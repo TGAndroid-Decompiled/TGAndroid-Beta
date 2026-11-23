@@ -8,9 +8,9 @@ import java.lang.reflect.Field;
 import org.telegram.messenger.a8;
 public final class w0 extends c5.l {
     public final y0 A0;
-    public long f58937x0;
-    public boolean f58938y0;
-    public final v0 f58939z0;
+    public long f59054x0;
+    public boolean f59055y0;
+    public final v0 f59056z0;
 
     public w0(y0 y0Var, Context context) {
         super(context);
@@ -19,7 +19,7 @@ public final class w0 extends c5.l {
             Field declaredField = c5.l.class.getDeclaredField("r");
             declaredField.setAccessible(true);
             v0 v0Var = new v0(this, getContext());
-            this.f58939z0 = v0Var;
+            this.f59056z0 = v0Var;
             declaredField.set(this, v0Var);
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -29,16 +29,16 @@ public final class w0 extends c5.l {
     public final boolean A(MotionEvent motionEvent) {
         v0 v0Var;
         if (motionEvent.getAction() == 0) {
-            this.f58937x0 = System.currentTimeMillis();
+            this.f59054x0 = System.currentTimeMillis();
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            if (System.currentTimeMillis() - this.f58937x0 <= ViewConfiguration.getTapTimeout() && (v0Var = this.f58939z0) != null && v0Var.isFinished()) {
-                this.f58938y0 = true;
+            if (System.currentTimeMillis() - this.f59054x0 <= ViewConfiguration.getTapTimeout() && (v0Var = this.f59056z0) != null && v0Var.isFinished()) {
+                this.f59055y0 = true;
                 int i7 = (motionEvent.getX() > (getWidth() * 0.45f) ? 1 : (motionEvent.getX() == (getWidth() * 0.45f) ? 0 : -1));
                 y0 y0Var = this.A0;
                 if (i7 > 0) {
-                    if (y0Var.B1 + 1 < y0Var.f58962o1.size()) {
+                    if (y0Var.B1 + 1 < y0Var.f59079o1.size()) {
                         x(y0Var.B1 + 1, true);
                     }
                 } else {
@@ -47,11 +47,11 @@ public final class w0 extends c5.l {
                         x(i10, true);
                     }
                 }
-                this.f58938y0 = false;
+                this.f59055y0 = false;
                 return false;
             }
         } else if (motionEvent.getAction() == 3) {
-            this.f58937x0 = -1L;
+            this.f59054x0 = -1L;
         }
         return false;
     }
@@ -78,7 +78,7 @@ public final class w0 extends c5.l {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.A0.f58970w1) {
+        if (!this.A0.f59087w1) {
             boolean A = A(motionEvent);
             if (!super.onTouchEvent(motionEvent) && !A) {
                 return false;

@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class f {
-    public final int f20606a;
-    public final List f20607b;
+    public final int f20702a;
+    public final List f20703b;
 
     public f(int i7, List list) {
-        this.f20606a = i7;
-        this.f20607b = list;
+        this.f20702a = i7;
+        this.f20703b = list;
     }
 
     public m4.g0 a(int r6, m6.n r7) {
@@ -25,7 +25,7 @@ public final class f {
         List list;
         boolean z11;
         boolean c10 = c(32);
-        List list2 = this.f20607b;
+        List list2 = this.f20703b;
         if (c10) {
             return list2;
         }
@@ -65,10 +65,10 @@ public final class f {
                         list = null;
                     }
                     e2.t tVar = new e2.t();
-                    tVar.f10709r = s0.n(str);
+                    tVar.f10707r = s0.n(str);
                     tVar.d = y10;
                     tVar.O = i7;
-                    tVar.f10712u = list;
+                    tVar.f10710u = list;
                     arrayList.add(new e2.u(tVar));
                 }
                 list2 = arrayList;
@@ -79,19 +79,19 @@ public final class f {
     }
 
     public boolean c(int i7) {
-        if ((i7 & this.f20606a) != 0) {
+        if ((i7 & this.f20702a) != 0) {
             return true;
         }
         return false;
     }
 
     public f() {
-        this.f20606a = 1;
-        this.f20607b = Collections.singletonList(null);
+        this.f20702a = 1;
+        this.f20703b = Collections.singletonList(null);
     }
 
     public f(ArrayList arrayList) {
-        this.f20606a = 0;
-        this.f20607b = arrayList;
+        this.f20702a = 0;
+        this.f20703b = arrayList;
     }
 }

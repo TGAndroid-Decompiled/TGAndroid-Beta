@@ -2,48 +2,190 @@ package org.telegram.ui.ActionBar;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.bz;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.xi;
 public final class y5 extends Drawable {
-    public final RectF f30273a = new RectF();
-    public final int f30274b;
-    public final int f30275c;
+    public final int f30364a;
+    public final Paint f30365b;
+    public final RectF f30366c;
     public final int d;
-    public final int f30276e;
-    public final float f30277f;
+    public final Object f30367e;
+    public final View f30368f;
 
-    public y5(int i7, int i10, int i11, int i12, float f10) {
-        this.f30274b = i7;
-        this.f30275c = i10;
-        this.d = i11;
-        this.f30276e = i12;
-        this.f30277f = f10;
+    public y5(View view, View view2, int i7, Paint paint) {
+        this.f30364a = 0;
+        this.f30367e = view;
+        this.f30368f = view2;
+        this.d = i7;
+        this.f30365b = paint;
+        this.f30366c = new RectF();
     }
 
     @Override
     public final void draw(Canvas canvas) {
+        switch (this.f30364a) {
+            case 0:
+                Rect bounds = getBounds();
+                RectF rectF = this.f30366c;
+                rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+                n6.t((View) this.f30367e, this.f30368f, null);
+                float f10 = this.d;
+                Paint paint = this.f30365b;
+                if (paint == null) {
+                    paint = n6.V0("paintChatActionBackground");
+                }
+                canvas.drawRoundRect(rectF, f10, f10, paint);
+                if (n6.d1()) {
+                    canvas.drawRoundRect(rectF, f10, f10, n6.V0("paintChatActionBackgroundDarken"));
+                    return;
+                }
+                return;
+            default:
+                e();
+                canvas.drawPath((Path) this.f30367e, this.f30365b);
+                return;
+        }
+    }
+
+    public void e() {
+        float f10;
+        boolean z10;
+        xi xiVar;
+        org.telegram.ui.Cells.x1 x1Var;
+        int i7;
+        int i10;
         Rect bounds = getBounds();
-        RectF rectF = this.f30273a;
-        rectF.set(bounds);
-        rectF.left += this.f30274b;
-        rectF.top += this.f30275c;
-        rectF.right -= this.d;
-        rectF.bottom -= this.f30276e;
-        float f10 = this.f30277f;
-        canvas.drawRoundRect(rectF, f10, f10, m6.f29751z);
+        RectF rectF = this.f30366c;
+        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+        Path path = (Path) this.f30367e;
+        path.rewind();
+        org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) this.f30368f;
+        int[] iArr = r1Var.L2;
+        int i11 = this.d;
+        int i12 = iArr[i11];
+        if (i12 != 3 && i12 != 4) {
+            float f11 = 0.0f;
+            if (i12 == 2) {
+                fj fjVar = r1Var.Q5;
+                if (fjVar != null && fjVar.P3()) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                for (int i13 = 0; i13 < 4; i13++) {
+                    if (!r1Var.E2) {
+                        if (z10) {
+                            i7 = 3;
+                        } else {
+                            i7 = 2;
+                        }
+                        if (i13 == i7) {
+                            float[] fArr = org.telegram.ui.Cells.r1.f31402wd;
+                            int i14 = i13 * 2;
+                            float L = org.telegram.messenger.g0.L(bz.Y0);
+                            fArr[i14 + 1] = L;
+                            fArr[i14] = L;
+                        } else if (((r1Var.C6 && r1Var.M == null) || r1Var.G) && (i13 == 2 || i13 == 3)) {
+                            float[] fArr2 = org.telegram.ui.Cells.r1.f31402wd;
+                            int i15 = i13 * 2;
+                            int i16 = i15 + 1;
+                            if (r1Var.G) {
+                                i10 = Math.min(5, bz.Y0);
+                            } else {
+                                i10 = bz.Y0;
+                            }
+                            float L2 = org.telegram.messenger.g0.L(i10);
+                            fArr2[i16] = L2;
+                            fArr2[i15] = L2;
+                        }
+                    }
+                    float[] fArr3 = org.telegram.ui.Cells.r1.f31402wd;
+                    int i17 = i13 * 2;
+                    fArr3[i17 + 1] = 0.0f;
+                    fArr3[i17] = 0.0f;
+                }
+                if (!z10 && !r1Var.K && (xiVar = r1Var.M) == null && (xiVar == null || ((x1Var = r1Var.f31714x2) != null && x1Var.f32384b))) {
+                    path.moveTo(rectF.left + org.telegram.messenger.g0.L(6.0f), rectF.top);
+                    path.lineTo(rectF.left + org.telegram.messenger.g0.L(6.0f), (rectF.bottom - org.telegram.messenger.g0.L(6.0f)) - org.telegram.messenger.g0.L(5.0f));
+                    RectF rectF2 = org.telegram.messenger.g0.P;
+                    rectF2.set(rectF.left + org.telegram.messenger.g0.L(-7.0f), rectF.bottom - org.telegram.messenger.g0.L(23.0f), rectF.left + org.telegram.messenger.g0.L(6.0f), rectF.bottom);
+                    path.arcTo(rectF2, 0.0f, 83.0f, false);
+                    float f12 = rectF.right;
+                    float[] fArr4 = org.telegram.ui.Cells.r1.f31402wd;
+                    float f13 = rectF.bottom;
+                    rectF2.set(f12 - (fArr4[4] * 2.0f), f13 - (fArr4[5] * 2.0f), f12, f13);
+                    path.arcTo(rectF2, 90.0f, -90.0f, false);
+                    path.lineTo(rectF.right, rectF.top);
+                    path.close();
+                } else {
+                    path.addRoundRect(rectF, org.telegram.ui.Cells.r1.f31402wd, Path.Direction.CW);
+                }
+                path.close();
+                return;
+            }
+            if (i12 == 0) {
+                f11 = org.telegram.messenger.g0.L(6.0f);
+            }
+            path.addRoundRect(rectF, f11, f11, Path.Direction.CW);
+            return;
+        }
+        float centerX = rectF.centerX();
+        float centerY = rectF.centerY();
+        if (iArr[i11] == 3) {
+            f10 = 16.0f;
+        } else {
+            f10 = 20.0f;
+        }
+        path.addCircle(centerX, centerY, org.telegram.messenger.g0.L(f10), Path.Direction.CW);
     }
 
     @Override
     public final int getOpacity() {
-        return 0;
+        switch (this.f30364a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
+        }
     }
 
     @Override
     public final void setAlpha(int i7) {
+        int i10 = this.f30364a;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
+        int i7 = this.f30364a;
+    }
+
+    public y5(org.telegram.ui.Cells.r1 r1Var, int i7) {
+        this.f30364a = 1;
+        this.f30368f = r1Var;
+        this.d = i7;
+        Paint paint = new Paint(1);
+        this.f30365b = paint;
+        paint.setColor(-1);
+        this.f30366c = new RectF();
+        this.f30367e = new Path();
+    }
+
+    private final void a(int i7) {
+    }
+
+    private final void b(int i7) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
+    }
+
+    private final void d(ColorFilter colorFilter) {
     }
 }

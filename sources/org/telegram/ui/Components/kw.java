@@ -1,35 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.ImageView;
-public final class kw extends ImageView {
-    public final ty f36959a;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class kw extends bv {
+    public final TLRPC.StickerSet R1;
+    public final qy S1;
 
-    public kw(ty tyVar, Context context) {
-        super(context);
-        this.f36959a = tyVar;
+    public kw(qy qyVar, org.telegram.ui.ActionBar.g2 g2Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
+        super(g2Var, context, i6Var, arrayList);
+        this.S1 = qyVar;
+        this.R1 = stickerSet;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        tx txVar;
-        int action = motionEvent.getAction();
-        ty tyVar = this.f36959a;
-        if (action == 0) {
-            tyVar.Q1 = true;
-            tyVar.R1 = false;
-            org.telegram.messenger.g0.h3(new org.telegram.ui.ii(tyVar, 350, 14), 350);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            tyVar.Q1 = false;
-            if (!tyVar.R1 && (txVar = tyVar.f40126u1) != null && txVar.k()) {
-                try {
-                    tyVar.f40139y.performHapticFeedback(3);
-                } catch (Exception unused) {
-                }
+    public final void L0(boolean z10) {
+        qy qyVar = this.S1;
+        ArrayList arrayList = qyVar.f39085q1;
+        TLRPC.StickerSet stickerSet = this.R1;
+        if (z10) {
+            if (!arrayList.contains(Long.valueOf(stickerSet.f28519id))) {
+                arrayList.add(Long.valueOf(stickerSet.f28519id));
             }
+        } else {
+            arrayList.remove(Long.valueOf(stickerSet.f28519id));
         }
-        super.onTouchEvent(motionEvent);
-        return true;
+        qyVar.U();
+    }
+
+    @Override
+    public final void dismiss() {
+        this.S1.f39111x2 = false;
+        super.dismiss();
     }
 }

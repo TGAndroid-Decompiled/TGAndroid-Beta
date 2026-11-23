@@ -18,13 +18,13 @@ public final class v8 implements Runnable {
         TLRPC.User user = this.f4162b;
         switch (i7) {
             case 0:
-                wg.j0.m1(new ArrayList(Arrays.asList(user)));
+                wg.i0.m1(new ArrayList(Arrays.asList(user)));
                 return;
             case 1:
-                wg.j0.m1(new ArrayList(Arrays.asList(user)));
+                wg.i0.m1(new ArrayList(Arrays.asList(user)));
                 return;
             default:
-                wg.j0.m1(new ArrayList(Arrays.asList(user)));
+                wg.i0.m1(new ArrayList(Arrays.asList(user)));
                 return;
         }
     }

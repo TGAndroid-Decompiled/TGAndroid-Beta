@@ -4,7 +4,7 @@ import android.media.MediaCodec;
 import android.media.MediaFormat;
 import java.nio.ByteBuffer;
 public interface x0 {
-    void A(MediaFormat mediaFormat);
+    void p(ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo);
 
-    void q(ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo);
+    void w(MediaFormat mediaFormat);
 }

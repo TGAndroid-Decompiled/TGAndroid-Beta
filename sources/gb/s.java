@@ -2,31 +2,26 @@ package gb;
 
 import android.content.Context;
 public final class s implements ib.b {
-    public final int f13399a = 0;
-    public final ib.c f13400b;
-    public final d9.o f13401c;
+    public final int f13394a;
+    public final e.a f13395b;
 
-    public s(ib.c cVar, d9.o oVar) {
-        this.f13400b = cVar;
-        this.f13401c = oVar;
+    public s(e.a aVar, int i7) {
+        this.f13394a = i7;
+        this.f13395b = aVar;
     }
 
     @Override
-    public final Object mo24get() {
-        switch (this.f13399a) {
+    public final Object mo23get() {
+        int i7 = this.f13394a;
+        e.a aVar = this.f13395b;
+        switch (i7) {
             case 0:
-                Context appContext = (Context) this.f13401c.f7917a;
-                id.h blockingDispatcher = (id.h) this.f13400b.mo24get();
-                kotlin.jvm.internal.j.e(appContext, "appContext");
-                kotlin.jvm.internal.j.e(blockingDispatcher, "blockingDispatcher");
-                return q.a(jb.j.f17356a, new h9.g1(new o(0), 13), zd.b0.b(blockingDispatcher), new p(appContext, 0));
+                o9.g firebaseApp = (o9.g) aVar.f10170a;
+                kotlin.jvm.internal.j.e(firebaseApp, "firebaseApp");
+                q0 q0Var = q0.f13392a;
+                return q0.a(firebaseApp);
             default:
-                return new jb.f((b) this.f13400b.mo24get(), (id.h) this.f13401c.f7917a);
+                return new jb.a((Context) aVar.f10170a);
         }
-    }
-
-    public s(d9.o oVar, ib.c cVar) {
-        this.f13401c = oVar;
-        this.f13400b = cVar;
     }
 }

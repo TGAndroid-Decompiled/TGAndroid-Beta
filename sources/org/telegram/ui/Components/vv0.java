@@ -1,36 +1,32 @@
 package org.telegram.ui.Components;
-public final class vv0 implements Runnable {
-    public final int f41537a;
-    public final kw0 f41538b;
 
-    public vv0(kw0 kw0Var, int i7) {
-        this.f41537a = i7;
-        this.f41538b = kw0Var;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class vv0 extends zo0 {
+    public final jw0 V2;
+
+    public vv0(jw0 jw0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, null, str, false, str2, false, i6Var);
+        this.V2 = jw0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41537a) {
-            case 0:
-                this.f41538b.f36975o1.f();
-                return;
-            case 1:
-                this.f41538b.f36975o1.f();
-                return;
-            case 2:
-                kw0 kw0Var = this.f41538b;
-                kw0Var.dismiss();
-                org.telegram.messenger.si.d0(kw0Var.f30139a).k2(kw0Var.getContext(), kw0Var.N1, 1, kw0Var.G1, false, false);
-                return;
-            case 3:
-                kw0 kw0Var2 = this.f41538b;
-                org.telegram.messenger.np.u1(kw0Var2.f30139a).F3("stickers", kw0Var2.G1, 1, null);
-                return;
-            default:
-                kw0 kw0Var3 = this.f41538b;
-                kw0Var3.dismiss();
-                org.telegram.messenger.si.d0(kw0Var3.f30139a).k2(kw0Var3.getContext(), kw0Var3.N1, 1, kw0Var3.G1, false, false);
-                return;
+    public final void L() {
+        super.L();
+        org.telegram.ui.ActionBar.g2 g2Var = this.V2.G1;
+        if (g2Var instanceof org.telegram.ui.bn) {
+            org.telegram.messenger.g0.Z2(g2Var.getParentActivity(), g2Var.getClassGuid());
+            if (((org.telegram.ui.bn) g2Var).f46118a0.getVisibility() == 0) {
+                g2Var.getFragmentView().requestLayout();
+            }
         }
+    }
+
+    @Override
+    public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        org.telegram.messenger.g0.h3(new org.telegram.ui.f0(this, hVar, i7, 26), 100L);
     }
 }

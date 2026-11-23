@@ -1,53 +1,152 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class l41 extends MetricAffectingSpan {
-    public Typeface f37061a;
-    public int f37062b;
-    public int f37063c;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.view.animation.DecelerateInterpolator;
+public final class l41 extends av0 {
+    public final int f37033a = org.telegram.messenger.i10.f24637t0;
+    public boolean f37034b = false;
+    public final float[] f37035c = new float[3];
+    public final float[] d = {0.0f, 150.0f, 300.0f};
+    public final float[] f37036e = {0.0f, 0.0f, 0.0f};
+    public long f37037f = 0;
+    public boolean f37038g = false;
+    public final DecelerateInterpolator h = new DecelerateInterpolator();
+    public boolean f37039i;
+    public final Paint f37040j;
 
-    public l41(Typeface typeface) {
-        this.f37063c = -1;
-        this.f37061a = typeface;
+    public l41(boolean z10) {
+        if (z10) {
+            this.f37040j = new Paint(1);
+        }
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i7 = this.f37063c;
-        if (i7 >= 0) {
-            this.f37062b = org.telegram.ui.ActionBar.m6.v0(i7);
+    public final void b(int i7) {
+        Paint paint = this.f37040j;
+        if (paint != null) {
+            paint.setColor(i7);
         }
-        Typeface typeface = this.f37061a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
-        int i10 = this.f37062b;
-        if (i10 != 0) {
-            textPaint.setColor(i10);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        Typeface typeface = this.f37061a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
+    public final void c(boolean z10) {
+        this.f37034b = z10;
+    }
+
+    @Override
+    public final void d() {
+        this.f37037f = System.currentTimeMillis();
+        this.f37038g = true;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int L;
+        int i7;
+        int i10 = getBounds().left;
+        if (this.f37034b) {
+            L = org.telegram.messenger.g0.L(8.5f);
+            i7 = getBounds().top;
+        } else {
+            L = org.telegram.messenger.g0.L(9.3f);
+            i7 = getBounds().top;
         }
-        textPaint.setFlags(textPaint.getFlags() | 128);
+        int i11 = L + i7;
+        Paint paint = this.f37040j;
+        if (paint == null) {
+            paint = org.telegram.ui.ActionBar.n6.f29429c2;
+            paint.setAlpha(255);
+        }
+        float f10 = i11;
+        float[] fArr = this.f37035c;
+        canvas.drawCircle(org.telegram.messenger.g0.L(3.0f) + i10, f10, fArr[0] * org.telegram.messenger.g0.f24225p, paint);
+        canvas.drawCircle(org.telegram.messenger.g0.L(9.0f) + i10, f10, fArr[1] * org.telegram.messenger.g0.f24225p, paint);
+        canvas.drawCircle(org.telegram.messenger.g0.L(15.0f) + i10, f10, fArr[2] * org.telegram.messenger.g0.f24225p, paint);
+        f();
     }
 
-    public l41() {
-        Typeface typeface = Typeface.DEFAULT;
-        this.f37063c = -1;
-        this.f37061a = typeface;
+    @Override
+    public final void e() {
+        for (int i7 = 0; i7 < 3; i7++) {
+            this.f37036e[i7] = 0.0f;
+            this.f37035c[i7] = 1.33f;
+        }
+        float[] fArr = this.d;
+        fArr[0] = 0.0f;
+        fArr[1] = 150.0f;
+        fArr[2] = 300.0f;
+        this.f37038g = false;
     }
 
-    public l41(Typeface typeface, int i7) {
-        this.f37063c = -1;
-        this.f37061a = typeface;
-        this.f37062b = i7;
+    public final void f() {
+        if (this.f37038g) {
+            if (org.telegram.messenger.ks.f(this.f37033a).g() && !this.f37039i) {
+                org.telegram.messenger.g0.h3(new bp0(this, 27), 100L);
+                return;
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            long j3 = currentTimeMillis - this.f37037f;
+            this.f37037f = currentTimeMillis;
+            if (j3 > 50) {
+                j3 = 50;
+            }
+            for (int i7 = 0; i7 < 3; i7++) {
+                float[] fArr = this.f37036e;
+                float f10 = fArr[i7] + ((float) j3);
+                fArr[i7] = f10;
+                float[] fArr2 = this.d;
+                float f11 = f10 - fArr2[i7];
+                int i10 = (f11 > 0.0f ? 1 : (f11 == 0.0f ? 0 : -1));
+                float[] fArr3 = this.f37035c;
+                if (i10 > 0) {
+                    int i11 = (f11 > 320.0f ? 1 : (f11 == 320.0f ? 0 : -1));
+                    DecelerateInterpolator decelerateInterpolator = this.h;
+                    if (i11 <= 0) {
+                        fArr3[i7] = decelerateInterpolator.getInterpolation(f11 / 320.0f) + 1.33f;
+                    } else if (f11 <= 640.0f) {
+                        fArr3[i7] = (1.0f - decelerateInterpolator.getInterpolation((f11 - 320.0f) / 320.0f)) + 1.33f;
+                    } else if (f11 >= 800.0f) {
+                        fArr[i7] = 0.0f;
+                        fArr2[i7] = 0.0f;
+                        fArr3[i7] = 1.33f;
+                    } else {
+                        fArr3[i7] = 1.33f;
+                    }
+                } else {
+                    fArr3[i7] = 1.33f;
+                }
+            }
+            a();
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return org.telegram.messenger.g0.L(18.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return org.telegram.messenger.g0.L(18.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        Paint paint = this.f37040j;
+        if (paint != null) {
+            paint.setColorFilter(colorFilter);
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
     }
 }

@@ -11,8 +11,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Trace;
 import c8.le;
-import h9.g1;
-import hi.u5;
+import hi.u0;
+import j6.r;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,8 +20,8 @@ import java.util.Collections;
 import java.util.List;
 import jg.w;
 public abstract class c {
-    public static final a0.j f21555a = new a0.j(2);
-    public static final w f21556b = new w(8);
+    public static final a0.j f21654a = new a0.j(2);
+    public static final w f21655b = new w(8);
 
     public static m4.f a(Context context, List list) {
         le.a("FontProvider.getFontFamilyResult");
@@ -42,20 +42,20 @@ public abstract class c {
     }
 
     public static ProviderInfo b(PackageManager packageManager, d dVar, Resources resources) {
-        w wVar = f21556b;
-        a0.j jVar = f21555a;
+        w wVar = f21655b;
+        a0.j jVar = f21654a;
         le.a("FontProvider.getProvider");
         try {
             List list = dVar.d;
-            String str = dVar.f21557a;
-            String str2 = dVar.f21558b;
+            String str = dVar.f21656a;
+            String str2 = dVar.f21657b;
             if (list == null) {
                 list = h0.b.h(resources, 0);
             }
             ?? obj = new Object();
-            obj.f21552a = str;
-            obj.f21553b = str2;
-            obj.f21554c = list;
+            obj.f21651a = str;
+            obj.f21652b = str2;
+            obj.f21653c = list;
             ProviderInfo providerInfo = (ProviderInfo) jVar.a(obj);
             if (providerInfo != null) {
                 return providerInfo;
@@ -94,7 +94,7 @@ public abstract class c {
     }
 
     public static h[] c(Context context, d dVar, String str) {
-        a g1Var;
+        a rVar;
         int i7;
         int i10;
         Uri withAppendedId;
@@ -106,45 +106,45 @@ public abstract class c {
             Uri build = new Uri.Builder().scheme("content").authority(str).build();
             Uri build2 = new Uri.Builder().scheme("content").authority(str).appendPath("file").build();
             if (Build.VERSION.SDK_INT < 24) {
-                g1Var = new u5(context, build);
+                rVar = new u0(context, build);
             } else {
-                g1Var = new g1(context, build);
+                rVar = new r(context, build);
             }
             String[] strArr = {"_id", "file_id", "font_ttc_index", "font_variation_settings", "font_weight", "font_italic", "result_code"};
             le.a("ContentQueryWrapper.query");
-            Cursor c10 = g1Var.c(build, strArr, new String[]{dVar.f21559c});
+            Cursor C = rVar.C(build, strArr, new String[]{dVar.f21658c});
             Trace.endSection();
-            if (c10 != null && c10.getCount() > 0) {
-                int columnIndex = c10.getColumnIndex("result_code");
+            if (C != null && C.getCount() > 0) {
+                int columnIndex = C.getColumnIndex("result_code");
                 ArrayList arrayList2 = new ArrayList();
-                int columnIndex2 = c10.getColumnIndex("_id");
-                int columnIndex3 = c10.getColumnIndex("file_id");
-                int columnIndex4 = c10.getColumnIndex("font_ttc_index");
-                int columnIndex5 = c10.getColumnIndex("font_weight");
-                int columnIndex6 = c10.getColumnIndex("font_italic");
-                while (c10.moveToNext()) {
+                int columnIndex2 = C.getColumnIndex("_id");
+                int columnIndex3 = C.getColumnIndex("file_id");
+                int columnIndex4 = C.getColumnIndex("font_ttc_index");
+                int columnIndex5 = C.getColumnIndex("font_weight");
+                int columnIndex6 = C.getColumnIndex("font_italic");
+                while (C.moveToNext()) {
                     if (columnIndex != -1) {
-                        i7 = c10.getInt(columnIndex);
+                        i7 = C.getInt(columnIndex);
                     } else {
                         i7 = 0;
                     }
                     if (columnIndex4 != -1) {
-                        i10 = c10.getInt(columnIndex4);
+                        i10 = C.getInt(columnIndex4);
                     } else {
                         i10 = 0;
                     }
                     if (columnIndex3 == -1) {
-                        withAppendedId = ContentUris.withAppendedId(build, c10.getLong(columnIndex2));
+                        withAppendedId = ContentUris.withAppendedId(build, C.getLong(columnIndex2));
                     } else {
-                        withAppendedId = ContentUris.withAppendedId(build2, c10.getLong(columnIndex3));
+                        withAppendedId = ContentUris.withAppendedId(build2, C.getLong(columnIndex3));
                     }
                     Uri uri = withAppendedId;
                     if (columnIndex5 != -1) {
-                        i11 = c10.getInt(columnIndex5);
+                        i11 = C.getInt(columnIndex5);
                     } else {
                         i11 = 400;
                     }
-                    if (columnIndex6 != -1 && c10.getInt(columnIndex6) == 1) {
+                    if (columnIndex6 != -1 && C.getInt(columnIndex6) == 1) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -153,10 +153,10 @@ public abstract class c {
                 }
                 arrayList = arrayList2;
             }
-            if (c10 != null) {
-                c10.close();
+            if (C != null) {
+                C.close();
             }
-            g1Var.close();
+            rVar.close();
             return (h[]) arrayList.toArray(new h[0]);
         } finally {
             Trace.endSection();

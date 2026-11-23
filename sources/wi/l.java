@@ -9,73 +9,73 @@ import java.util.ArrayList;
 import org.telegram.ui.Components.en0;
 import org.telegram.ui.LaunchActivity;
 public interface l {
-    void B(View view);
+    boolean A1(boolean z10, float f10, en0 en0Var);
 
-    void D(SurfaceTexture surfaceTexture);
+    void B0(View view);
 
-    View E();
+    boolean C2();
 
-    boolean G();
+    void D1(View view);
 
-    void H();
+    void D2(int i7);
 
-    int J();
+    void E0(SurfaceTexture surfaceTexture);
 
-    void L(float f10);
+    void I(o oVar);
 
-    boolean N();
+    View K0();
 
-    boolean O();
+    boolean O0();
 
-    c1 Q();
+    void P1();
 
-    boolean S();
+    void T0();
 
-    void U();
-
-    boolean V(boolean z10, float f10, en0 en0Var);
-
-    void X(View view);
-
-    void Z();
-
-    int a0();
+    int V1();
 
     void b();
 
-    float b0();
+    int b1();
 
     void c(long j3);
 
-    void d(View view);
+    void d1(float f10);
 
-    int e();
+    float d2();
 
     void f();
 
+    boolean f0();
+
     long getDuration();
 
-    boolean h();
+    boolean h1();
 
-    void h0(int i7, ArrayList arrayList);
+    boolean i1();
 
-    void i(o oVar);
+    boolean j();
 
-    void j0(Canvas canvas, int i7, int i10);
+    void l(View view);
 
-    long l();
+    boolean l0();
 
-    boolean o0();
+    long n();
 
-    boolean p();
+    c1 n1();
 
-    void p0(int i7);
+    void n2(int i7, ArrayList arrayList);
 
-    boolean s();
+    boolean o1();
 
-    void u(Rect rect);
+    void t2(Canvas canvas, int i7, int i10);
 
-    View v(LaunchActivity launchActivity);
+    void v1();
 
-    void w(View view);
+    void w0(Rect rect);
+
+    int y();
+
+    View y0(LaunchActivity launchActivity);
+
+    void z0(View view);
 }

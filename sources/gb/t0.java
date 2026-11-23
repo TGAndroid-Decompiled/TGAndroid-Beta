@@ -1,27 +1,18 @@
 package gb;
-public final class t0 implements q0 {
-    public static final double f13407f = Math.random();
-    public static final int f13408g = 0;
-    public final o9.g f13409a;
-    public final va.d f13410b;
-    public final jb.l f13411c;
-    public final l d;
-    public final id.h f13412e;
+public final class t0 extends kd.c {
+    public Object f13406a;
+    public final u0 f13407b;
+    public int f13408c;
 
-    public t0(o9.g firebaseApp, va.d firebaseInstallations, jb.l sessionSettings, l eventGDTLogger, id.h backgroundDispatcher) {
-        kotlin.jvm.internal.j.e(firebaseApp, "firebaseApp");
-        kotlin.jvm.internal.j.e(firebaseInstallations, "firebaseInstallations");
-        kotlin.jvm.internal.j.e(sessionSettings, "sessionSettings");
-        kotlin.jvm.internal.j.e(eventGDTLogger, "eventGDTLogger");
-        kotlin.jvm.internal.j.e(backgroundDispatcher, "backgroundDispatcher");
-        this.f13409a = firebaseApp;
-        this.f13410b = firebaseInstallations;
-        this.f13411c = sessionSettings;
-        this.d = eventGDTLogger;
-        this.f13412e = backgroundDispatcher;
+    public t0(u0 u0Var, kd.c cVar) {
+        super(cVar);
+        this.f13407b = u0Var;
     }
 
-    public static final java.lang.Object a(gb.t0 r6, kd.c r7) {
-        throw new UnsupportedOperationException("Method not decompiled: gb.t0.a(gb.t0, kd.c):java.lang.Object");
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.f13406a = obj;
+        this.f13408c |= Integer.MIN_VALUE;
+        return u0.a(this.f13407b, this);
     }
 }

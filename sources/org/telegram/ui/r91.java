@@ -1,9 +1,21 @@
 package org.telegram.ui;
-public final class r91 {
-    public final int f51557a;
-    public int f51558b;
+
+import androidx.recyclerview.widget.RecyclerView;
+public final class r91 extends v4.u0 {
+    public final int f51675a;
 
     public r91(int i7) {
-        this.f51557a = i7;
+        this.f51675a = i7;
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        int i11 = this.f51675a;
+    }
+
+    private final void c(RecyclerView recyclerView, int i7, int i10) {
+    }
+
+    private final void d(RecyclerView recyclerView, int i7, int i10) {
     }
 }

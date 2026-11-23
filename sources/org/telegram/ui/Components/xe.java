@@ -1,122 +1,117 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.util.Property;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.List;
-import org.telegram.tgnet.TLRPC;
-public final class xe extends qn0 {
-    public final ChatActivityEnterView H;
+public final class xe implements Runnable {
+    public final int f41987a;
+    public int f41988b;
+    public final KeyEvent.Callback f41989c;
 
-    public xe(ChatActivityEnterView chatActivityEnterView, final Context context, final org.telegram.ui.bn bnVar, org.telegram.messenger.np npVar, final boolean z10, TLRPC.Peer peer, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, final a3.h hVar, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context);
-        int width;
-        this.H = chatActivityEnterView;
-        this.f28941b = true;
-        this.f28942c = 150;
-        this.f28944f = -1L;
-        this.f28947j = new h2.f((int[]) null);
-        e();
-        this.f38918z = new ArrayList();
-        this.G = new ArrayList();
-        this.f38911r = peer;
-        this.f38912s = tL_channels_sendAsPeers;
-        bi.g3 g3Var = new bi.g3(25, context, this);
-        this.f38913t = g3Var;
-        g3Var.setLayoutParams(c8.na.c(-2.0f, -2));
-        setContentView(g3Var);
-        setWidth(-2);
-        setHeight(-2);
-        setBackgroundDrawable(null);
-        Drawable mutate = context.getDrawable(2131232569).mutate();
-        org.telegram.ui.ActionBar.t6.x(g3Var, mutate, org.telegram.ui.ActionBar.m6.G8, h6Var, PorterDuff.Mode.MULTIPLY);
-        g3Var.setBackground(mutate);
-        Rect rect = new Rect();
-        mutate.getPadding(rect);
-        g3Var.setPadding(rect.left, rect.top, rect.right, rect.bottom);
-        int L = org.telegram.messenger.g0.L(450.0f);
-        if (bnVar == null) {
-            width = org.telegram.messenger.g0.f24010q.x;
-        } else {
-            width = bnVar.f46064m1.getWidth();
-        }
-        int i7 = (int) (width * 0.75f);
-        kn0 kn0Var = new kn0(context, i7, L);
-        this.f38908o = kn0Var;
-        kn0Var.setOrientation(1);
-        TextView textView = new TextView(context);
-        this.f38909p = textView;
-        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29511m5, h6Var);
-        textView.setTextSize(1, 16.0f);
-        textView.setText(org.telegram.messenger.hd.N0(2131745404, null));
-        textView.setTypeface(org.telegram.messenger.g0.o(), 1);
-        int L2 = org.telegram.messenger.g0.L(18.0f);
-        textView.setPadding(L2, org.telegram.messenger.g0.L(12.0f), L2, org.telegram.messenger.g0.L(12.0f));
-        kn0Var.addView(textView);
-        FrameLayout frameLayout = new FrameLayout(context);
-        final ArrayList<TLRPC.TL_sendAsPeer> arrayList = tL_channels_sendAsPeers.peers;
-        ek0 ek0Var = new ek0(context, null);
-        this.v = ek0Var;
-        v4.b0 b0Var = new v4.b0();
-        this.f38915w = b0Var;
-        ek0Var.setLayoutManager(b0Var);
-        ek0Var.setAdapter(new ln0(h6Var, arrayList, npVar, i7, peer));
-        ek0Var.j(new mn0(this));
-        ek0Var.setOnItemClickListener(new qj0(arrayList, context, bnVar, z10, hVar) {
-            public final List f36241b;
-            public final Context f36242c;
-            public final org.telegram.ui.bn d;
-            public final a3.h f36243e;
-
-            {
-                this.f36243e = hVar;
-            }
-
-            @Override
-            public final void c(int i10, View view) {
-                qn0.k(xe.this, this.f36241b, this.f36242c, this.d, this.f36243e, view, i10);
-            }
-        });
-        ek0Var.setOverScrollMode(2);
-        frameLayout.addView(ek0Var);
-        View view = new View(context);
-        this.f38914u = view;
-        Drawable drawable = context.getDrawable(2131231237);
-        drawable.setAlpha(153);
-        view.setBackground(drawable);
-        view.setAlpha(0.0f);
-        frameLayout.addView(view, c8.na.c(4.0f, -1));
-        kn0Var.addView(frameLayout, c8.na.c(-2.0f, -1));
-        g3Var.addView(kn0Var);
+    public xe(KeyEvent.Callback callback, int i7, int i10) {
+        this.f41987a = i10;
+        this.f41989c = callback;
+        this.f41988b = i7;
     }
 
     @Override
-    public final void dismiss() {
-        ArrayList arrayList = this.f38918z;
-        ChatActivityEnterView chatActivityEnterView = this.H;
-        if (chatActivityEnterView.f32671r0 != this) {
-            super.dismiss();
-            return;
+    public final void run() {
+        int currentPage;
+        boolean z10;
+        boolean z11;
+        int max;
+        int i7 = this.f41987a;
+        KeyEvent.Callback callback = this.f41989c;
+        switch (i7) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) callback;
+                eg egVar = chatActivityEnterView.V0;
+                if (egVar != null && (currentPage = egVar.getCurrentPage()) != this.f41988b) {
+                    this.f41988b = currentPage;
+                    boolean z12 = chatActivityEnterView.f32741n4;
+                    int i10 = 2;
+                    if (currentPage != 1 && currentPage != 2) {
+                        z10 = false;
+                    } else {
+                        z10 = true;
+                    }
+                    chatActivityEnterView.f32741n4 = z10;
+                    boolean z13 = chatActivityEnterView.o4;
+                    if (currentPage == 0) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    chatActivityEnterView.o4 = z11;
+                    if (chatActivityEnterView.f32756p4) {
+                        if (chatActivityEnterView.H2 != 0) {
+                            if (currentPage != 0) {
+                                i10 = 1;
+                            }
+                            chatActivityEnterView.R1(i10, true);
+                            chatActivityEnterView.Q();
+                        } else if (!z10) {
+                            chatActivityEnterView.S1(false, true, false, true);
+                        }
+                    }
+                    if (z12 != chatActivityEnterView.f32741n4 || z13 != chatActivityEnterView.o4) {
+                        chatActivityEnterView.P(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                int i11 = this.f41988b;
+                kp kpVar = (kp) callback;
+                v4.p0 layoutManager = kpVar.f36839w1.getLayoutManager();
+                if (layoutManager != null) {
+                    if (i11 > kpVar.K1) {
+                        max = Math.min(i11 + 1, kpVar.f36834r1.d.size() - 1);
+                    } else {
+                        max = Math.max(i11 - 1, 0);
+                    }
+                    fp fpVar = kpVar.B1;
+                    fpVar.f59190a = max;
+                    layoutManager.w0(fpVar);
+                }
+                kpVar.K1 = i11;
+                return;
+            default:
+                int i12 = this.f41988b;
+                hi.s8 s8Var = (hi.s8) callback;
+                if (((xe) s8Var.f15404f) == this) {
+                    ArrayList arrayList = new ArrayList();
+                    TextView textView = (TextView) ((ArrayList) s8Var.f15401b).get(i12);
+                    Property property = View.SCALE_X;
+                    arrayList.add(ObjectAnimator.ofFloat(textView, property, 0.0f));
+                    Property property2 = View.SCALE_Y;
+                    arrayList.add(ObjectAnimator.ofFloat(textView, property2, 0.0f));
+                    Property property3 = View.ALPHA;
+                    arrayList.add(ObjectAnimator.ofFloat(textView, property3, 0.0f));
+                    TextView textView2 = (TextView) ((ArrayList) s8Var.f15402c).get(i12);
+                    arrayList.add(ObjectAnimator.ofFloat(textView2, property, 1.0f));
+                    arrayList.add(ObjectAnimator.ofFloat(textView2, property2, 1.0f));
+                    arrayList.add(ObjectAnimator.ofFloat(textView2, property3, 1.0f));
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    s8Var.f15403e = animatorSet;
+                    animatorSet.setDuration(150L);
+                    ((AnimatorSet) s8Var.f15403e).playTogether(arrayList);
+                    ((AnimatorSet) s8Var.f15403e).addListener(new p60(this, 8));
+                    ((AnimatorSet) s8Var.f15403e).start();
+                    return;
+                }
+                return;
         }
-        chatActivityEnterView.f32671r0 = null;
-        int i7 = 0;
-        if (!this.f38910q) {
-            l(new r1.g[0]);
-            chatActivityEnterView.f32662q0.a(true, true, 0.0f);
-            return;
-        }
-        int size = arrayList.size();
-        while (i7 < size) {
-            Object obj = arrayList.get(i7);
-            i7++;
-            ((r1.g) obj).d();
-        }
-        arrayList.clear();
-        super.dismiss();
+    }
+
+    public xe(ChatActivityEnterView chatActivityEnterView) {
+        this.f41987a = 0;
+        this.f41989c = chatActivityEnterView;
+        this.f41988b = -1;
     }
 }

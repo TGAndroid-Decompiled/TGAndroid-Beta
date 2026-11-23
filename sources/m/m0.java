@@ -29,7 +29,7 @@ public final class m0 extends d2 implements o0 {
     }
 
     @Override
-    public final void i(CharSequence charSequence) {
+    public final void h(CharSequence charSequence) {
         this.T = charSequence;
     }
 
@@ -43,16 +43,16 @@ public final class m0 extends d2 implements o0 {
         ViewTreeObserver viewTreeObserver;
         x xVar = this.P;
         boolean isShowing = xVar.isShowing();
-        s();
+        r();
         xVar.setInputMethodMode(2);
         g();
-        r1 r1Var = this.f20033c;
+        r1 r1Var = this.f20130c;
         r1Var.setChoiceMode(1);
         g0.d(r1Var, i7);
         g0.c(r1Var, i10);
         p0 p0Var = this.X;
         int selectedItemPosition = p0Var.getSelectedItemPosition();
-        r1 r1Var2 = this.f20033c;
+        r1 r1Var2 = this.f20130c;
         if (xVar.isShowing() && r1Var2 != null) {
             r1Var2.setListSelectionHidden(false);
             r1Var2.setSelection(selectedItemPosition);
@@ -68,16 +68,16 @@ public final class m0 extends d2 implements o0 {
     }
 
     @Override
-    public final void p(ListAdapter listAdapter) {
-        super.p(listAdapter);
+    public final void o(ListAdapter listAdapter) {
+        super.o(listAdapter);
         this.U = (j0) listAdapter;
     }
 
-    public final void s() {
+    public final void r() {
         int i7;
         int i10;
         p0 p0Var = this.X;
-        Rect rect = p0Var.f20172n;
+        Rect rect = p0Var.f20268n;
         x xVar = this.P;
         Drawable background = xVar.getBackground();
         if (background != null) {
@@ -102,17 +102,17 @@ public final class m0 extends d2 implements o0 {
             if (a10 > i12) {
                 a10 = i12;
             }
-            r(Math.max(a10, (width - paddingLeft) - paddingRight));
+            q(Math.max(a10, (width - paddingLeft) - paddingRight));
         } else if (i11 == -1) {
-            r((width - paddingLeft) - paddingRight);
+            q((width - paddingLeft) - paddingRight);
         } else {
-            r(i11);
+            q(i11);
         }
         if (r3.a(p0Var)) {
-            i10 = (((width - paddingRight) - this.f20034e) - this.W) + i7;
+            i10 = (((width - paddingRight) - this.f20131e) - this.W) + i7;
         } else {
             i10 = paddingLeft + this.W + i7;
         }
-        this.f20035f = i10;
+        this.f20132f = i10;
     }
 }

@@ -18,7 +18,7 @@ public final class p implements OnSuccessListener {
         switch (this.f979a) {
             case 0:
                 j0 j0Var = (j0) obj;
-                if (this.f980b.f7558f.s() && j0Var.f956g.a() != null) {
+                if (this.f980b.f7557f.t() && j0Var.f956g.a() != null) {
                     synchronized (j0Var) {
                         z10 = j0Var.f955f;
                     }
@@ -32,10 +32,10 @@ public final class p implements OnSuccessListener {
             default:
                 FirebaseMessaging firebaseMessaging = this.f980b;
                 m6.a aVar = (m6.a) obj;
-                ob.c cVar = FirebaseMessaging.f7551m;
+                ob.c cVar = FirebaseMessaging.f7550m;
                 firebaseMessaging.getClass();
                 if (aVar != null) {
-                    b1.b(aVar.f20837a);
+                    b1.b(aVar.f20933a);
                     firebaseMessaging.e();
                     return;
                 }

@@ -13,14 +13,14 @@ public final class d7 extends ImageReceiver {
     }
 
     @Override
-    public final boolean x0(Drawable drawable, String str, int i7, boolean z10, int i10) {
-        boolean x02 = super.x0(drawable, str, i7, z10, i10);
+    public final boolean y0(Drawable drawable, String str, int i7, boolean z10, int i10) {
+        boolean y02 = super.y0(drawable, str, i7, z10, i10);
         Runnable runnable = this.K1[0];
         if (runnable != null) {
             org.telegram.messenger.g0.r(runnable);
-            ((a6) this.L1.d).run();
+            ((l4) this.L1.d).run();
         }
         org.telegram.messenger.g0.g3(new f2.a(this, 15));
-        return x02;
+        return y02;
     }
 }

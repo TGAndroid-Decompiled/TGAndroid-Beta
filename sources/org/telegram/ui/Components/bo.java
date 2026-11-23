@@ -1,41 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class bo extends AnimatorListenerAdapter {
-    public final int f33846a;
-    public final co f33847b;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class bo implements View.OnClickListener {
+    public final int f33779a;
+    public final fo f33780b;
+    public final TLRPC.Document f33781c;
 
-    public bo(co coVar, int i7) {
-        this.f33846a = i7;
-        this.f33847b = coVar;
+    public bo(fo foVar, TLRPC.Document document, int i7) {
+        this.f33779a = i7;
+        this.f33780b = foVar;
+        this.f33781c = document;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f33846a) {
+    public final void onClick(View view) {
+        switch (this.f33779a) {
             case 0:
-                this.f33847b.R = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f33846a) {
-            case 0:
-                co coVar = this.f33847b;
-                if (coVar.R == animator) {
-                    coVar.getSubtitleTextView().setVisibility(4);
-                    coVar.R = null;
+                eo eoVar = this.f33780b.d;
+                if (eoVar != null) {
+                    eoVar.c(this.f33781c);
                     return;
                 }
                 return;
             default:
-                this.f33847b.R = null;
+                eo eoVar2 = this.f33780b.d;
+                if (eoVar2 != null) {
+                    eoVar2.c(this.f33781c);
+                    return;
+                }
                 return;
         }
     }

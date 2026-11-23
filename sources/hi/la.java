@@ -1,180 +1,32 @@
 package hi;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ee0;
-import org.telegram.ui.Components.w60;
-public final class la extends FrameLayout {
-    public float f14955a;
-    public float f14956b;
-    public final Paint f14957c;
-    public LinearGradient d;
-    public final ta f14958e;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class la extends CharacterStyle {
+    public final int f14847a;
 
-    public la(ta taVar, Activity activity) {
-        super(activity);
-        this.f14958e = taVar;
-        this.f14957c = new Paint(1);
-    }
-
-    public static void a(View view, int i7, int i10) {
-        view.measure(View.MeasureSpec.makeMeasureSpec(i7, 1073741824), View.MeasureSpec.makeMeasureSpec(i10, 1073741824));
-    }
-
-    public final void b(float f10) {
-        float f11 = this.f14955a;
-        this.f14956b = f10;
-        super.setTranslationY(f11 + f10);
-    }
-
-    public final void c() {
-        if (this.f14958e.K == 0) {
-            setBackground(org.telegram.ui.ActionBar.m6.d0(org.telegram.messenger.g0.L(12.0f), -16777216));
-        } else {
-            setBackground(null);
-        }
+    public la(int i7) {
+        this.f14847a = i7;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        float f10;
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        ta taVar = this.f14958e;
-        if (view == taVar.f15415i0) {
-            if (taVar.W) {
-                f10 = org.telegram.messenger.g0.f24004m;
-            } else {
-                f10 = 0.0f;
-            }
-            LinearGradient linearGradient = this.d;
-            Paint paint = this.f14957c;
-            if (linearGradient == null) {
-                LinearGradient linearGradient2 = new LinearGradient(0.0f, f10, 0.0f, f10 + org.telegram.messenger.g0.L(72.0f), new int[]{1073741824, 0}, new float[]{f10 / (org.telegram.messenger.g0.L(72.0f) + f10), 1.0f}, Shader.TileMode.CLAMP);
-                this.d = linearGradient2;
-                paint.setShader(linearGradient2);
-            }
-            paint.setAlpha(255);
-            RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(0.0f, 0.0f, getWidth(), org.telegram.messenger.g0.L(84.0f) + f10);
-            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), paint);
+    public final void updateDrawState(TextPaint textPaint) {
+        switch (this.f14847a) {
+            case 0:
+                textPaint.setAlpha(128);
+                return;
+            case 1:
+                textPaint.setTextSize(textPaint.getTextSize() * 0.8f);
+                textPaint.setColor(org.telegram.ui.ActionBar.n6.T2.getColor());
+                return;
+            case 2:
+                textPaint.setColor(org.telegram.ui.ActionBar.n6.f29648o2.linkColor);
+                return;
+            default:
+                return;
         }
-        return drawChild;
     }
 
-    @Override
-    public final void invalidate() {
-        ValueAnimator valueAnimator = this.f14958e.F;
-        if (valueAnimator != null && valueAnimator.isRunning()) {
-            return;
-        }
-        super.invalidate();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        int i13;
-        ta taVar = this.f14958e;
-        if (taVar.W) {
-            i13 = taVar.f15388a0;
-        } else {
-            i13 = 0;
-        }
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        taVar.f15415i0.layout(0, 0, taVar.T, taVar.U);
-        taVar.f15415i0.setPivotX(taVar.T * 0.5f);
-        FrameLayout frameLayout = taVar.f15418j0;
-        frameLayout.layout(0, i13, taVar.T, frameLayout.getMeasuredHeight() + i13);
-        FrameLayout frameLayout2 = taVar.f15424l0;
-        frameLayout2.layout(0, taVar.U - frameLayout2.getMeasuredHeight(), taVar.T, taVar.U);
-        FrameLayout frameLayout3 = taVar.f15429n0;
-        int i14 = taVar.U;
-        frameLayout3.layout(0, i14, taVar.T, frameLayout3.getMeasuredHeight() + i14);
-        taVar.m0.layout(0, 0, taVar.T, taVar.U);
-        bi.o3 o3Var = taVar.f15451u0;
-        if (o3Var != null) {
-            o3Var.layout(0, 0, measuredWidth, measuredHeight);
-        }
-        taVar.f15444s.f15051c.layout(0, 0, measuredWidth, measuredHeight);
-        i iVar = taVar.f15400d1.N;
-        if (iVar != null) {
-            iVar.layout(0, 0, taVar.T, taVar.U);
-            taVar.f15400d1.y();
-        }
-        ee0 ee0Var = taVar.C1;
-        if (ee0Var != null) {
-            ee0Var.layout(0, 0, ee0Var.getMeasuredWidth(), taVar.C1.getMeasuredHeight());
-        }
-        v9 v9Var = taVar.f15459w1;
-        if (v9Var != null) {
-            v9Var.layout(0, 0, v9Var.getMeasuredWidth(), taVar.f15459w1.getMeasuredHeight());
-        }
-        for (int i15 = 0; i15 < getChildCount(); i15++) {
-            View childAt = getChildAt(i15);
-            if (childAt instanceof w60) {
-                childAt.layout(0, 0, measuredWidth, measuredHeight);
-            }
-        }
-        setPivotX(measuredWidth / 2.0f);
-        setPivotY((-measuredHeight) * 0.2f);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        int size = View.MeasureSpec.getSize(i7);
-        int size2 = View.MeasureSpec.getSize(i10);
-        ta taVar = this.f14958e;
-        a(taVar.f15415i0, taVar.T, taVar.U);
-        taVar.i();
-        a(taVar.f15418j0, taVar.T, org.telegram.messenger.g0.L(150.0f));
-        a(taVar.f15424l0, taVar.T, org.telegram.messenger.g0.L(220.0f));
-        a(taVar.f15429n0, taVar.T, taVar.V);
-        a(taVar.m0, taVar.T, taVar.U);
-        a(taVar.f15444s.f15051c, size, size2);
-        bi.o3 o3Var = taVar.f15451u0;
-        if (o3Var != null) {
-            a(o3Var, size, size2);
-        }
-        i iVar = taVar.f15400d1.N;
-        if (iVar != null) {
-            a(iVar, taVar.T, taVar.U);
-        }
-        ee0 ee0Var = taVar.C1;
-        if (ee0Var != null) {
-            a(ee0Var, size, size2);
-        }
-        v9 v9Var = taVar.f15459w1;
-        if (v9Var != null) {
-            a(v9Var, size, size2);
-        }
-        for (int i11 = 0; i11 < getChildCount(); i11++) {
-            View childAt = getChildAt(i11);
-            if (childAt instanceof w60) {
-                a(childAt, size, size2);
-            }
-        }
-        setMeasuredDimension(size, size2);
-    }
-
-    @Override
-    public final void setTranslationY(float f10) {
-        this.f14955a = f10;
-        super.setTranslationY(this.f14956b + f10);
-        float i7 = Utilities.i((f10 / getMeasuredHeight()) * 4.0f, 1.0f, 0.0f);
-        ta taVar = this.f14958e;
-        taVar.L = i7;
-        taVar.n();
-        taVar.f15428n.invalidate();
-        float i10 = 1.0f - (Utilities.i(getTranslationY() / org.telegram.messenger.g0.L(320.0f), 1.0f, 0.0f) * 0.1f);
-        setScaleX(i10);
-        setScaleY(i10);
+    private final void a(TextPaint textPaint) {
     }
 }

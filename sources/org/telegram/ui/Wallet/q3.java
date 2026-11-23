@@ -1,43 +1,30 @@
 package org.telegram.ui.Wallet;
-public final class q3 implements Runnable {
-    public final int f44827a;
-    public final w3 f44828b;
 
-    public q3(w3 w3Var, int i7) {
-        this.f44827a = i7;
-        this.f44828b = w3Var;
+import android.animation.ValueAnimator;
+public final class q3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f44921a;
+    public final x3 f44922b;
+
+    public q3(x3 x3Var, int i7) {
+        this.f44921a = i7;
+        this.f44922b = x3Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f44827a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f44921a) {
             case 0:
-                w3 w3Var = this.f44828b;
-                if (!w3Var.T && !w3Var.S) {
-                    ih.d.c(w3Var.F, w3Var.h);
-                    w3Var.G.d();
-                    x6 x6Var = w3Var.f45216r;
-                    q3 q3Var = new q3(w3Var, 1);
-                    s6 s6Var = x6Var.E;
-                    if (s6Var != null) {
-                        if (s6Var.f45006b != null) {
-                            q3Var.run();
-                            return;
-                        } else {
-                            s6Var.d = q3Var;
-                            return;
-                        }
-                    }
-                    q3Var.run();
-                    return;
-                }
+                x3 x3Var = this.f44922b;
+                x3Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x3Var.R = floatValue;
+                x3Var.f45378r.setUseGyroscope(floatValue);
                 return;
             default:
-                w3 w3Var2 = this.f44828b;
-                if (!w3Var2.T && !w3Var2.S) {
-                    w3Var2.a(1.0f);
-                    return;
-                }
+                x3 x3Var2 = this.f44922b;
+                x3Var2.getClass();
+                x3Var2.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x3Var2.e();
                 return;
         }
     }

@@ -1,22 +1,12 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class bk extends v4.c0 {
-    public final kg.d0 f33828r;
+import java.util.ArrayList;
+public interface bk {
+    void A();
 
-    public bk(kg.d0 d0Var, Context context) {
-        super(context);
-        this.f33828r = d0Var;
-    }
+    void T();
 
-    @Override
-    public final int k(int i7, View view) {
-        return org.telegram.messenger.f3.B(56.0f, ((mk) this.f33828r.V).f37492r.getPaddingTop() - org.telegram.messenger.g0.f24004m, super.k(i7, view));
-    }
+    void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i7, long j3, boolean z11, long j10);
 
-    @Override
-    public final int m(int i7) {
-        return super.m(i7) * 2;
-    }
+    void p(ArrayList arrayList, boolean z10, int i7, long j3);
 }

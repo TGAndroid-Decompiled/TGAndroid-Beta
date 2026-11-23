@@ -1,55 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class wu extends View {
-    public org.telegram.messenger.hc[] f41856a;
-    public fi.s2 f41857b;
-    public y5 f41858c;
-    public ValueAnimator d;
-    public float f41859e;
+import java.util.regex.Pattern;
+public final class wu extends r41 {
+    public final xu f41733e;
 
-    public TLRPC.Document getDocument() {
-        y5 y5Var = this.f41858c;
-        if (y5Var != null) {
-            TLRPC.Document document = y5Var.document;
-            if (document == null) {
-                return p5.e(org.telegram.messenger.k10.f24932t0, y5Var.getDocumentId());
-            }
-            return document;
-        }
-        return null;
+    public wu(xu xuVar, String str) {
+        super(str, (ez0) null);
+        this.f41733e = xuVar;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        setPadding(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824));
-    }
-
-    @Override
-    public void setPressed(boolean z10) {
-        ValueAnimator valueAnimator;
-        if (isPressed() != z10) {
-            super.setPressed(z10);
-            invalidate();
-            if (z10 && (valueAnimator = this.d) != null) {
-                valueAnimator.removeAllListeners();
-                this.d.cancel();
-            }
-            if (!z10) {
-                float f10 = this.f41859e;
-                if (f10 != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
-                    this.d = ofFloat;
-                    ofFloat.addUpdateListener(new x(this, 18));
-                    this.d.addListener(new y(this, 24));
-                    org.telegram.ui.Cells.c0.q(5.0f, this.d);
-                    this.d.setDuration(350L);
-                    this.d.start();
-                }
-            }
-        }
+    public final void onClick(View view) {
+        xu xuVar = this.f41733e;
+        bv bvVar = xuVar.f42202y;
+        Pattern pattern = bv.Q1;
+        org.telegram.messenger.mp.u1(bvVar.f30223a).F3(getURL(), xuVar.f42202y.n1, 1, null);
+        xuVar.f42202y.M0();
+        xuVar.f42202y.dismiss();
     }
 }

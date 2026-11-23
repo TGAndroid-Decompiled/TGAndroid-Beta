@@ -8,15 +8,15 @@ import java.util.NoSuchElementException;
 import kd.i;
 import kotlin.jvm.internal.j;
 public final class c implements Iterator, id.c {
-    public int f59668a;
-    public Object f59669b;
-    public id.c f59670c;
+    public int f59788a;
+    public Object f59789b;
+    public id.c f59790c;
 
     public final RuntimeException a() {
-        int i7 = this.f59668a;
+        int i7 = this.f59788a;
         if (i7 != 4) {
             if (i7 != 5) {
-                return new IllegalStateException("Unexpected state of the iterator: " + this.f59668a);
+                return new IllegalStateException("Unexpected state of the iterator: " + this.f59788a);
             }
             return new IllegalStateException("Iterator has failed.");
         }
@@ -24,29 +24,29 @@ public final class c implements Iterator, id.c {
     }
 
     public final void b(Object obj, i iVar) {
-        this.f59669b = obj;
-        this.f59668a = 3;
-        this.f59670c = iVar;
-        jd.a aVar = jd.a.f17375a;
+        this.f59789b = obj;
+        this.f59788a = 3;
+        this.f59790c = iVar;
+        jd.a aVar = jd.a.f17478a;
     }
 
     @Override
     public final h getContext() {
-        return id.i.f16220a;
+        return id.i.f16317a;
     }
 
     @Override
     public final boolean hasNext() {
         int i7;
         while (true) {
-            i7 = this.f59668a;
+            i7 = this.f59788a;
             if (i7 != 0) {
                 break;
             }
-            this.f59668a = 5;
-            id.c cVar = this.f59670c;
+            this.f59788a = 5;
+            id.c cVar = this.f59790c;
             j.b(cVar);
-            this.f59670c = null;
+            this.f59790c = null;
             cVar.resumeWith(k.f13480a);
         }
         if (i7 != 1) {
@@ -64,18 +64,18 @@ public final class c implements Iterator, id.c {
 
     @Override
     public final Object next() {
-        int i7 = this.f59668a;
+        int i7 = this.f59788a;
         if (i7 != 0 && i7 != 1) {
             if (i7 != 2) {
                 if (i7 == 3) {
-                    this.f59668a = 0;
-                    Object obj = this.f59669b;
-                    this.f59669b = null;
+                    this.f59788a = 0;
+                    Object obj = this.f59789b;
+                    this.f59789b = null;
                     return obj;
                 }
                 throw a();
             }
-            this.f59668a = 1;
+            this.f59788a = 1;
             j.b(null);
             throw null;
         } else if (hasNext()) {
@@ -93,6 +93,6 @@ public final class c implements Iterator, id.c {
     @Override
     public final void resumeWith(Object obj) {
         z.b(obj);
-        this.f59668a = 4;
+        this.f59788a = 4;
     }
 }

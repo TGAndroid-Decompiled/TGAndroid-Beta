@@ -1,75 +1,39 @@
 package hi;
+public final class x9 implements r1.c {
+    public final int f15789a;
+    public final float f15790b;
+    public final Object f15791c;
 
-import android.app.Activity;
-import android.app.Dialog;
-public final class x9 extends org.telegram.ui.ActionBar.g2 {
-    public final int f15699a;
-    public final ta f15700b;
+    public x9(Object obj, float f10, int i7) {
+        this.f15789a = i7;
+        this.f15791c = obj;
+        this.f15790b = f10;
+    }
 
-    public x9(ta taVar, int i7) {
-        super(null);
-        this.f15699a = i7;
-        switch (i7) {
-            case 1:
-                this.f15700b = taVar;
-                super(null);
-                this.currentAccount = taVar.f15395c;
+    @Override
+    public final void a(r1.g gVar, boolean z10, float f10, float f11) {
+        switch (this.f15789a) {
+            case 0:
+                nb nbVar = (nb) this.f15791c;
+                if (!z10) {
+                    nbVar.N0.setTranslationY(this.f15790b);
+                    nbVar.N0.L = false;
+                    nbVar.f15103p2 = null;
+                    nbVar.f15106q2 = null;
+                    return;
+                }
                 return;
             default:
-                this.f15700b = taVar;
+                ki.s3 s3Var = (ki.s3) this.f15791c;
+                s3Var.f18998w = null;
+                float f12 = this.f15790b;
+                if (!z10) {
+                    s3Var.f18994f = f12;
+                    s3Var.c();
+                    return;
+                }
+                s3Var.h = f12;
                 return;
-        }
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        switch (this.f15699a) {
-            case 0:
-                return this.f15700b.f15391b;
-            default:
-                return this.f15700b.f15391b;
-        }
-    }
-
-    @Override
-    public final org.telegram.ui.ActionBar.h6 getResourceProvider() {
-        switch (this.f15699a) {
-            case 0:
-                return new fi.g2(7, this.f15700b.f15387a);
-            default:
-                return new fi.g2(8, this.f15700b.f15387a);
-        }
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        switch (this.f15699a) {
-            case 0:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean presentFragment(org.telegram.ui.ActionBar.g2 g2Var) {
-        switch (this.f15699a) {
-            case 0:
-                this.f15700b.S();
-                return false;
-            default:
-                return super.presentFragment(g2Var);
-        }
-    }
-
-    @Override
-    public Dialog showDialog(Dialog dialog) {
-        switch (this.f15699a) {
-            case 1:
-                dialog.show();
-                return dialog;
-            default:
-                return super.showDialog(dialog);
         }
     }
 }

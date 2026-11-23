@@ -12,7 +12,7 @@ public final class a implements u9.d {
     }
 
     @Override
-    public final Object e(r7 r7Var) {
+    public final Object c(r7 r7Var) {
         switch (this.f1011a) {
             case 0:
                 return new c((g) r7Var.a(g.class));

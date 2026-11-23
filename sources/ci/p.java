@@ -9,10 +9,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import com.google.android.gms.internal.vision.e2;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.Components.o5;
 public final class p extends View {
-    public final p5 f5734a;
+    public final o5 f5734a;
     public final Drawable f5735b;
     public float f5736c;
     public boolean d;
@@ -21,15 +21,15 @@ public final class p extends View {
         super(context);
         int i10;
         if (document != null) {
-            this.f5734a = p5.l(h0Var.f5752a, 5, document);
+            this.f5734a = o5.l(h0Var.f5752a, 5, document);
             this.f5735b = null;
             return;
         }
         this.f5734a = null;
         if (i7 == 0) {
-            i10 = 2131231064;
+            i10 = 2131231066;
         } else {
-            i10 = 2131232127;
+            i10 = 2131232130;
         }
         Drawable mutate = context.getDrawable(i10).mutate();
         this.f5735b = mutate;
@@ -39,18 +39,18 @@ public final class p extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        p5 p5Var = this.f5734a;
-        if (p5Var != null) {
-            p5Var.a(this);
+        o5 o5Var = this.f5734a;
+        if (o5Var != null) {
+            o5Var.a(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        p5 p5Var = this.f5734a;
-        if (p5Var != null) {
-            p5Var.n(this);
+        o5 o5Var = this.f5734a;
+        if (o5Var != null) {
+            o5Var.n(this);
         }
     }
 
@@ -71,7 +71,7 @@ public final class p extends View {
             this.f5736c = f10;
             invalidate();
         }
-        float interpolation = (1.0f - (nr.f37918g.getInterpolation(this.f5736c) * 0.15f)) * org.telegram.messenger.g0.L(26.0f);
+        float interpolation = (1.0f - (kr.f36859g.getInterpolation(this.f5736c) * 0.15f)) * org.telegram.messenger.g0.L(26.0f);
         float f13 = interpolation / 2.0f;
         int width = (int) ((getWidth() / 2.0f) - f13);
         int height = (int) ((getHeight() / 2.0f) - f13);

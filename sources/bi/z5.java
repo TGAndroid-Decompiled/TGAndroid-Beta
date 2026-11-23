@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.kj;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.jj;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.a70;
-import org.telegram.ui.Components.ga0;
-import org.telegram.ui.Components.gq0;
-import org.telegram.ui.Components.lc;
-import org.telegram.ui.Components.qa0;
-import org.telegram.ui.Components.va0;
-import org.telegram.ui.Components.wa0;
+import org.telegram.ui.Components.da0;
+import org.telegram.ui.Components.fq0;
+import org.telegram.ui.Components.kc;
+import org.telegram.ui.Components.na0;
+import org.telegram.ui.Components.sa0;
+import org.telegram.ui.Components.ta0;
+import org.telegram.ui.Components.x60;
 public final class z5 implements View.OnClickListener {
     public final int f4300a;
     public final boolean f4301b;
@@ -43,46 +43,46 @@ public final class z5 implements View.OnClickListener {
             case 0:
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj3;
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj2;
-                a70 a70Var = (a70) obj;
-                gq0 gq0Var = ((p6) frameLayout).f3966a;
+                x60 x60Var = (x60) obj;
+                fq0 fq0Var = ((p6) frameLayout).f3966a;
                 if (!z10) {
-                    di.n8 n8Var = gq0Var.f4151e;
+                    di.n8 n8Var = fq0Var.f4151e;
                     int i10 = tL_starGiftCollection.collection_id;
                     n8Var.getClass();
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(savedStarGift);
                     n8Var.a(i10, arrayList);
-                    lc.b0(gq0Var.f4148a).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.W2(hd.a0(null, null, 2131750376, di.f6.F1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                    kc.b0(fq0Var.f4148a).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.W2(gd.a0(null, null, 2131750376, di.f6.F1(savedStarGift.gift), tL_starGiftCollection.title))).j();
                 } else {
-                    gq0Var.f4151e.k(tL_starGiftCollection.collection_id, savedStarGift);
-                    lc.b0(gq0Var.f4148a).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.W2(hd.a0(null, null, 2131750020, di.f6.F1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                    fq0Var.f4151e.k(tL_starGiftCollection.collection_id, savedStarGift);
+                    kc.b0(fq0Var.f4148a).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.W2(gd.a0(null, null, 2131750020, di.f6.F1(savedStarGift.gift), tL_starGiftCollection.title))).j();
                 }
-                a70Var.v();
-                gq0Var.o();
+                x60Var.v();
+                fq0Var.o();
                 return;
             default:
-                qa0 qa0Var = (qa0) frameLayout;
+                na0 na0Var = (na0) frameLayout;
                 Context context = (Context) obj3;
-                va0 va0Var = (va0) obj2;
-                va0 va0Var2 = (va0) obj;
-                wa0 wa0Var = qa0Var.f38811d0;
-                kj kjVar = wa0Var.d;
+                sa0 sa0Var = (sa0) obj2;
+                sa0 sa0Var2 = (sa0) obj;
+                ta0 ta0Var = na0Var.f37742d0;
+                jj jjVar = ta0Var.d;
                 if (!z10) {
-                    new lc(wa0Var, wa0Var.G).Q(2131624217, 36, org.telegram.messenger.g0.T2(hd.N0(2131750566, null), new ga0(qa0Var, context, 0))).j();
+                    new kc(ta0Var, ta0Var.G).Q(2131624217, 36, org.telegram.messenger.g0.T2(gd.N0(2131750566, null), new da0(na0Var, context, 0))).j();
                     return;
                 }
-                boolean z11 = kjVar.f25051k;
-                kjVar.f25051k = !z11;
-                wa0Var.f41720y = false;
+                boolean z11 = jjVar.f24982k;
+                jjVar.f24982k = !z11;
+                ta0Var.f39891y = false;
                 if (z11) {
-                    kjVar.f25052l = false;
-                    if (va0Var != null) {
-                        va0Var.a(false, true);
+                    jjVar.f24983l = false;
+                    if (sa0Var != null) {
+                        sa0Var.a(false, true);
                     }
                 }
-                va0Var2.a(kjVar.f25051k, true);
-                qa0Var.i();
-                qa0Var.l(true);
+                sa0Var2.a(jjVar.f24982k, true);
+                na0Var.i();
+                na0Var.l(true);
                 return;
         }
     }

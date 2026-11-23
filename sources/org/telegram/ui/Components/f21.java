@@ -1,33 +1,34 @@
 package org.telegram.ui.Components;
-public final class f21 implements Runnable {
-    public final int f35040a;
-    public final int f35041b;
-    public final Object f35042c;
-    public final Object d;
 
-    public f21(int i7, org.telegram.ui.Wallet.w4 w4Var, org.telegram.ui.Wallet.u0 u0Var) {
-        this.f35040a = 17;
-        this.f35041b = i7;
-        this.f35042c = w4Var;
-        this.d = u0Var;
+import java.io.File;
+public final class f21 implements org.telegram.messenger.fs {
+    public final String f34986a;
+    public final org.telegram.messenger.ks f34987b;
+    public final org.telegram.messenger.fj f34988c;
+
+    public f21(String str, org.telegram.messenger.ks ksVar, org.telegram.messenger.fj fjVar, org.telegram.ui.Cells.m1 m1Var) {
+        this.f34986a = str;
+        this.f34987b = ksVar;
+        this.f34988c = fjVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.f21.run():void");
-    }
-
-    public f21(Object obj, int i7, Object obj2, int i10) {
-        this.f35040a = i10;
-        this.f35042c = obj;
-        this.f35041b = i7;
-        this.d = obj2;
-    }
-
-    public f21(Object obj, Object obj2, int i7, int i10) {
-        this.f35040a = i10;
-        this.f35042c = obj;
-        this.d = obj2;
-        this.f35041b = i7;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (!this.f34986a.equals(objArr[0])) {
+            return;
+        }
+        org.telegram.messenger.ks ksVar = this.f34987b;
+        int i11 = org.telegram.messenger.ks.Y1;
+        ksVar.n(this, i11);
+        ksVar.n(this, org.telegram.messenger.ks.Z1);
+        org.telegram.messenger.fj fjVar = this.f34988c;
+        if (i7 == i11 && objArr.length > 1) {
+            Object obj = objArr[1];
+            if (obj instanceof File) {
+                i21.y(fjVar, ((File) obj).getAbsolutePath());
+                return;
+            }
+        }
+        i21.n(fjVar);
     }
 }

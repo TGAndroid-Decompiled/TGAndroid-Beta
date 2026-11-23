@@ -3,11 +3,11 @@ package o2;
 import b3.q;
 import java.io.IOException;
 public final class d implements q {
-    public final h f21607a;
+    public final h f21706a;
 
     @Override
     public void a() {
-        h hVar = this.f21607a;
+        h hVar = this.f21706a;
         hVar.A.a();
         IOException iOException = hVar.C;
         if (iOException == null) {
@@ -18,7 +18,7 @@ public final class d implements q {
 
     public void b() {
         long j3;
-        h hVar = this.f21607a;
+        h hVar = this.f21706a;
         synchronized (c3.b.f4361b) {
             try {
                 if (c3.b.f4362c) {

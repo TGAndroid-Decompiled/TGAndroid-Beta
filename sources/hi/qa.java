@@ -1,165 +1,44 @@
 package hi;
 
-import android.animation.ValueAnimator;
-import android.view.MotionEvent;
-import org.telegram.ui.Components.f81;
-import org.telegram.ui.Components.p10;
-public final class qa extends p10 {
-    public final sa f15256a;
+import android.content.Context;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.gd;
+public final class qa extends l1 {
+    public final nb f15246c0;
 
-    public qa(sa saVar) {
-        this.f15256a = saVar;
+    public qa(nb nbVar, Context context, boolean z10) {
+        super(context, z10);
+        this.f15246c0 = nbVar;
     }
 
     @Override
-    public final boolean a() {
-        w9 w9Var;
-        ta taVar = this.f15256a.f15348o0;
-        if (taVar.f15409g0 == 0 && (w9Var = taVar.C0) != null && !taVar.T1 && w9Var.isInited() && !taVar.Q1 && !taVar.P0.f14544y0) {
-            o6 o6Var = taVar.E0;
-            if ((o6Var == null || (!o6Var.f15138y.f37437i && !o6Var.M)) && !taVar.I() && taVar.f15439q2 == null) {
-                return true;
-            }
-            return false;
+    public final void receivedAmplitude(double d) {
+        n6 n6Var = this.f15246c0.P0;
+        if (n6Var != null) {
+            n6Var.f15025h0 = Utilities.i((float) (d / 1800.0d), 1.0f, 0.0f);
         }
-        return false;
     }
 
     @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        ta taVar = this.f15256a.f15348o0;
-        w9 w9Var = taVar.C0;
-        if (w9Var != null && !taVar.T1 && !taVar.Q1 && w9Var.isInited() && taVar.f15409g0 == 0 && taVar.P1 != -1) {
-            taVar.C0.switchCamera();
-            taVar.P0.d(180.0f);
-            ta.Z(taVar.C0.isFrontface());
-            if (taVar.p0()) {
-                taVar.f15444s.c(null);
-                return true;
-            }
-            taVar.f15444s.d();
-            return true;
+    public final void toggleDual() {
+        int i7;
+        super.toggleDual();
+        nb nbVar = this.f15246c0;
+        nbVar.G0.setValue(isDual());
+        zb zbVar = nbVar.G0;
+        if (isDual()) {
+            i7 = 2131754886;
+        } else {
+            i7 = 2131754887;
         }
-        return false;
+        zbVar.setContentDescription(gd.N0(i7, null));
+        nbVar.d0(nbVar.B());
     }
 
     @Override
-    public final boolean onDoubleTapEvent(MotionEvent motionEvent) {
-        w9 w9Var = this.f15256a.f15348o0.C0;
-        if (w9Var != null) {
-            w9Var.O = null;
-            w9Var.L = -1L;
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        sa saVar = this.f15256a;
-        saVar.m0 = 0.0f;
-        saVar.f15347n0 = 0.0f;
-        return false;
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        o6 o6Var;
-        w9 w9Var;
-        f81 f81Var;
-        ga gaVar;
-        boolean z10;
-        boolean z11;
-        sa saVar = this.f15256a;
-        ta taVar = saVar.f15348o0;
-        ValueAnimator valueAnimator = taVar.F;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((o6Var = taVar.E0) != null && (o6Var.f15138y.f37437i || o6Var.M)) || taVar.P0.f14544y0 || (((w9Var = taVar.C0) != null && w9Var.f14260s) || saVar.f15345k0 || (((f81Var = taVar.W0) != null && (f81Var.G || f81Var.H)) || taVar.H())))) {
-            return false;
-        }
-        boolean z12 = true;
-        saVar.f15343i0 = true;
-        if (taVar.X) {
-            if (Math.abs(taVar.f15440r.f14955a) >= org.telegram.messenger.g0.L(1.0f)) {
-                if ((f11 > 0.0f && Math.abs(f11) > 2000.0f && Math.abs(f11) > Math.abs(f10)) || taVar.L > 0.4f) {
-                    taVar.p(true);
-                } else {
-                    ta.b(taVar);
-                }
-            } else if (taVar.N0 != null && !taVar.M0 && taVar.P1 != -1) {
-                if (Math.abs(f11) > 200.0f && (!taVar.N0.d.canScrollVertically(-1) || !taVar.L0)) {
-                    if (!taVar.R1 && f11 < 0.0f) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    taVar.e(z11);
-                } else {
-                    if (!taVar.R1 && taVar.N0.getTranslationY() < taVar.N0.getPadding()) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    taVar.e(z10);
-                }
-            }
-            taVar.M0 = false;
-            taVar.X = false;
-            taVar.Y = false;
-            if (z12 && (gaVar = taVar.B0) != null) {
-                gaVar.b();
-            }
-            return z12;
-        }
-        z12 = false;
-        taVar.M0 = false;
-        taVar.X = false;
-        taVar.Y = false;
-        if (z12) {
-            gaVar.b();
-        }
-        return z12;
-    }
-
-    @Override
-    public final boolean onScroll(android.view.MotionEvent r7, android.view.MotionEvent r8, float r9, float r10) {
-        throw new UnsupportedOperationException("Method not decompiled: hi.qa.onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float):boolean");
-    }
-
-    @Override
-    public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        w9 w9Var = this.f15256a.f15348o0.C0;
-        if (w9Var != null) {
-            b1 b1Var = w9Var.O;
-            if (b1Var != null) {
-                b1Var.run();
-                w9Var.O = null;
-                return true;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        ta taVar = this.f15256a.f15348o0;
-        taVar.X = false;
-        taVar.Y = false;
-        if (!a() && onSingleTapConfirmed(motionEvent)) {
-            return true;
-        }
-        if (!taVar.I() || motionEvent.getY() >= taVar.N0.g()) {
-            return false;
-        }
-        taVar.e(false);
-        return true;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-    }
-
-    @Override
-    public final void onShowPress(MotionEvent motionEvent) {
+    public final void u(boolean z10) {
+        nb nbVar = this.f15246c0;
+        nbVar.f15102p1.b(nbVar.f15067d1.getText());
+        nbVar.f15102p1.a(false, z10, nbVar.f15091l0);
     }
 }

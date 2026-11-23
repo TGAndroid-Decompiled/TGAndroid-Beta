@@ -1,27 +1,32 @@
 package org.telegram.ui;
 
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ey implements org.telegram.ui.ActionBar.q1 {
-    public final int f47372a;
-    public final EditTextBoldCursor f47373b;
+import android.view.KeyEvent;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ey implements TextView.OnEditorActionListener {
+    public final int f47644a;
+    public final AlertDialog$Builder f47645b;
 
-    public ey(EditTextBoldCursor editTextBoldCursor, int i7) {
-        this.f47372a = i7;
-        this.f47373b = editTextBoldCursor;
+    public ey(AlertDialog$Builder alertDialog$Builder, int i7) {
+        this.f47644a = i7;
+        this.f47645b = alertDialog$Builder;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f47372a) {
+    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
+        switch (this.f47644a) {
             case 0:
-                org.telegram.messenger.g0.v1(this.f47373b);
-                return;
+                org.telegram.messenger.g0.v1(textView);
+                this.f47645b.f28835a.d(-1).callOnClick();
+                return false;
             case 1:
-                org.telegram.messenger.g0.v1(this.f47373b);
-                return;
+                org.telegram.messenger.g0.v1(textView);
+                this.f47645b.f28835a.d(-1).callOnClick();
+                return false;
             default:
-                org.telegram.messenger.g0.v1(this.f47373b);
-                return;
+                org.telegram.messenger.g0.v1(textView);
+                this.f47645b.f28835a.d(-1).callOnClick();
+                return false;
         }
     }
 }

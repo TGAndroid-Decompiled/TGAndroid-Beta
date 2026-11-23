@@ -11,20 +11,20 @@ import com.google.firebase.concurrent.ExecutorsRegistrar;
 import com.google.firebase.installations.FirebaseInstallationsRegistrar;
 import java.util.ArrayList;
 import java.util.concurrent.ScheduledExecutorService;
-import org.telegram.ui.Components.pb0;
+import org.telegram.ui.Components.mb0;
+import org.telegram.ui.Components.ut0;
 import org.telegram.ui.Components.vt0;
-import org.telegram.ui.Components.wt0;
-public final class x implements org.telegram.ui.ActionBar.q1, v5.e, u9.d, ua.a, OnFailureListener, j2.g, pb0, vt0, wt0, g9.k {
-    public final int f58951a;
+public final class x implements org.telegram.ui.ActionBar.q1, v5.e, u9.d, ua.a, OnFailureListener, j2.g, mb0, ut0, vt0, g9.k {
+    public final int f59057a;
 
     public x(int i7) {
-        this.f58951a = i7;
+        this.f59057a = i7;
     }
 
     @Override
     public Object apply(Object obj) {
         byte[] decode;
-        switch (this.f58951a) {
+        switch (this.f59057a) {
             case 7:
                 Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
                 try {
@@ -40,7 +40,7 @@ public final class x implements org.telegram.ui.ActionBar.q1, v5.e, u9.d, ua.a, 
                             decode = Base64.decode(string, 0);
                         }
                         a10.f13932c = decode;
-                        arrayList.add(a10.j());
+                        arrayList.add(a10.u());
                     }
                     return arrayList;
                 } finally {
@@ -49,7 +49,7 @@ public final class x implements org.telegram.ui.ActionBar.q1, v5.e, u9.d, ua.a, 
             case 28:
                 return ((f3.o) obj).a().getClass().getSimpleName();
             default:
-                return h9.i0.q(h9.o.y(((x2.e0) obj).q().f60224b, new x2.z0(1)));
+                return h9.i0.q(h9.o.y(((x2.e0) obj).q().f60342b, new x2.z0(1)));
         }
     }
 
@@ -63,17 +63,39 @@ public final class x implements org.telegram.ui.ActionBar.q1, v5.e, u9.d, ua.a, 
     }
 
     @Override
-    public void c(Object obj, float f10) {
+    public Object c(r7 r7Var) {
+        switch (this.f59057a) {
+            case 8:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7541a.get();
+            case 9:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7543c.get();
+            case 10:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7542b.get();
+            case 11:
+                u9.m mVar = ExecutorsRegistrar.f7541a;
+                return v9.k.f59458a;
+            default:
+                return FirebaseInstallationsRegistrar.a(r7Var);
+        }
+    }
+
+    @Override
+    public j2.h createDataSource() {
+        return new j2.b(org.telegram.messenger.t0.f27013b);
+    }
+
+    @Override
+    public void d(Object obj, float f10) {
         wi.h hVar = (wi.h) obj;
-        switch (this.f58951a) {
+        switch (this.f59057a) {
             case 23:
-                WindowManager.LayoutParams layoutParams = hVar.f59959e;
+                WindowManager.LayoutParams layoutParams = hVar.f60077e;
                 hVar.B = f10;
                 layoutParams.x = (int) f10;
                 hVar.r();
                 return;
             default:
-                WindowManager.LayoutParams layoutParams2 = hVar.f59959e;
+                WindowManager.LayoutParams layoutParams2 = hVar.f60077e;
                 hVar.C = f10;
                 layoutParams2.y = (int) f10;
                 hVar.r();
@@ -82,31 +104,19 @@ public final class x implements org.telegram.ui.ActionBar.q1, v5.e, u9.d, ua.a, 
     }
 
     @Override
-    public j2.h createDataSource() {
-        return new j2.b(org.telegram.messenger.t0.f26895b);
-    }
-
-    @Override
-    public Object e(r7 r7Var) {
-        switch (this.f58951a) {
-            case 8:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7542a.get();
-            case 9:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7544c.get();
-            case 10:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7543b.get();
-            case 11:
-                u9.m mVar = ExecutorsRegistrar.f7542a;
-                return v9.j.f59336a;
+    public String e(int i7) {
+        switch (this.f59057a) {
+            case 18:
+                return String.valueOf(i7);
             default:
-                return FirebaseInstallationsRegistrar.a(r7Var);
+                return String.format("%02d", Integer.valueOf(i7 * 5));
         }
     }
 
     @Override
     public float get(Object obj) {
         wi.h hVar = (wi.h) obj;
-        switch (this.f58951a) {
+        switch (this.f59057a) {
             case 22:
                 return hVar.B;
             default:
@@ -115,8 +125,8 @@ public final class x implements org.telegram.ui.ActionBar.q1, v5.e, u9.d, ua.a, 
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f58951a) {
+    public void i(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f59057a) {
             case 0:
                 t1Var.dismiss();
                 return;
@@ -135,22 +145,12 @@ public final class x implements org.telegram.ui.ActionBar.q1, v5.e, u9.d, ua.a, 
     }
 
     @Override
-    public String i(int i7) {
-        switch (this.f58951a) {
-            case 18:
-                return String.valueOf(i7);
-            default:
-                return String.format("%02d", Integer.valueOf(i7 * 5));
-        }
-    }
-
-    @Override
     public void onFailure(Exception exc) {
         Log.e("FirebaseCrashlytics", "Error fetching settings.", exc);
     }
 
     public x(androidx.emoji2.text.f fVar) {
-        this.f58951a = 13;
+        this.f59057a = 13;
     }
 
     private final void a(org.telegram.ui.ActionBar.t1 t1Var, int i7) {

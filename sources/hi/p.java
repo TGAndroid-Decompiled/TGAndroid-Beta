@@ -1,26 +1,36 @@
 package hi;
 
-import android.content.Context;
-import org.telegram.messenger.camera.CameraController;
-public final class p extends j6 {
-    public final r G;
+import org.telegram.messenger.w10;
+public final class p implements w10 {
+    public final int f15174a;
+    public final db f15175b;
 
-    public p(r rVar, Context context) {
-        super(context);
-        this.G = rVar;
+    public p(db dbVar, int i7) {
+        this.f15174a = i7;
+        this.f15175b = dbVar;
     }
 
     @Override
-    public final void c() {
-        org.telegram.messenger.g0.r(this.h);
-        if (this.f14769c <= 0) {
-            a(true);
-        } else {
-            CameraController.getInstance().stopVideoRecording(this.f14767a.getCameraSessionRecording(), false, false);
-        }
-        r rVar = this.G;
-        if (rVar.O1) {
-            rVar.z(true, false);
+    public final void a(Object obj) {
+        Integer num = (Integer) obj;
+        switch (this.f15174a) {
+            case 0:
+                int intValue = num.intValue();
+                db dbVar = this.f15175b;
+                dbVar.setPeriod(intValue);
+                w10 w10Var = dbVar.B1;
+                if (w10Var != null) {
+                    w10Var.a(num);
+                    return;
+                }
+                return;
+            default:
+                w10 w10Var2 = this.f15175b.C1;
+                if (w10Var2 != null) {
+                    w10Var2.a(num);
+                    return;
+                }
+                return;
         }
     }
 }

@@ -33,10 +33,10 @@ import j$.util.Objects;
 import java.util.ArrayList;
 import kotlin.jvm.internal.j;
 public final class a implements Parcelable.Creator {
-    public final int f59588a;
+    public final int f59708a;
 
     public a(int i7) {
-        this.f59588a = i7;
+        this.f59708a = i7;
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class a implements Parcelable.Creator {
         Bundle bundle = null;
         byte[] bArr = null;
         String str3 = null;
-        switch (this.f59588a) {
+        switch (this.f59708a) {
             case 0:
                 Bundle readBundle = inParcel.readBundle(a.class.getClassLoader());
                 Objects.requireNonNull(readBundle);
@@ -329,12 +329,12 @@ public final class a implements Parcelable.Creator {
             case 10:
                 return new Parcelable(inParcel) {
                     public static final Parcelable.Creator<MediaBrowserCompat$MediaItem> CREATOR = new w.a(10);
-                    public final int f1629a;
-                    public final MediaDescriptionCompat f1630b;
+                    public final int f1630a;
+                    public final MediaDescriptionCompat f1631b;
 
                     {
-                        this.f1629a = inParcel.readInt();
-                        this.f1630b = MediaDescriptionCompat.CREATOR.createFromParcel(inParcel);
+                        this.f1630a = inParcel.readInt();
+                        this.f1631b = MediaDescriptionCompat.CREATOR.createFromParcel(inParcel);
                     }
 
                     @Override
@@ -343,13 +343,13 @@ public final class a implements Parcelable.Creator {
                     }
 
                     public final String toString() {
-                        return "MediaItem{mFlags=" + this.f1629a + ", mDescription=" + this.f1630b + '}';
+                        return "MediaItem{mFlags=" + this.f1630a + ", mDescription=" + this.f1631b + '}';
                     }
 
                     @Override
                     public final void writeToParcel(Parcel parcel, int i14) {
-                        parcel.writeInt(this.f1629a);
-                        this.f1630b.writeToParcel(parcel, i14);
+                        parcel.writeInt(this.f1630a);
+                        this.f1631b.writeToParcel(parcel, i14);
                     }
                 };
             case 11:
@@ -371,22 +371,22 @@ public final class a implements Parcelable.Creator {
                 return new androidx.fragment.app.c(inParcel);
             case 18:
                 ?? obj = new Object();
-                obj.f2304a = inParcel.readString();
-                obj.f2305b = inParcel.readInt();
+                obj.f2305a = inParcel.readString();
+                obj.f2306b = inParcel.readInt();
                 return obj;
             case 19:
                 ?? obj2 = new Object();
-                obj2.f2347e = null;
-                obj2.f2348f = new ArrayList();
+                obj2.f2348e = null;
+                obj2.f2349f = new ArrayList();
                 obj2.h = new ArrayList();
-                obj2.f2344a = inParcel.createStringArrayList();
-                obj2.f2345b = inParcel.createStringArrayList();
-                obj2.f2346c = (androidx.fragment.app.b[]) inParcel.createTypedArray(androidx.fragment.app.b.CREATOR);
+                obj2.f2345a = inParcel.createStringArrayList();
+                obj2.f2346b = inParcel.createStringArrayList();
+                obj2.f2347c = (androidx.fragment.app.b[]) inParcel.createTypedArray(androidx.fragment.app.b.CREATOR);
                 obj2.d = inParcel.readInt();
-                obj2.f2347e = inParcel.readString();
-                obj2.f2348f = inParcel.createStringArrayList();
+                obj2.f2348e = inParcel.readString();
+                obj2.f2349f = inParcel.createStringArrayList();
                 obj2.h = inParcel.createTypedArrayList(androidx.fragment.app.c.CREATOR);
-                obj2.f2349n = inParcel.createTypedArrayList(f0.CREATOR);
+                obj2.f2350n = inParcel.createTypedArrayList(f0.CREATOR);
                 return obj2;
             case 20:
                 return new o0(inParcel);
@@ -602,7 +602,7 @@ public final class a implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f59588a) {
+        switch (this.f59708a) {
             case 0:
                 return new b[i7];
             case 1:

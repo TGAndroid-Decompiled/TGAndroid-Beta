@@ -1,26 +1,18 @@
 package org.telegram.ui;
-public final class r81 implements Runnable {
-    public final int f51547a;
-    public final w81 f51548b;
-
-    public r81(w81 w81Var, int i7) {
-        this.f51547a = i7;
-        this.f51548b = w81Var;
-    }
+public final class r81 extends org.telegram.ui.Components.cu0 {
+    public boolean f51661g0;
 
     @Override
-    public final void run() {
-        switch (this.f51547a) {
-            case 0:
-                w81 w81Var = this.f51548b;
-                w81Var.getClass();
-                new ug.y0((org.telegram.ui.ActionBar.g2) w81Var, 11, false).show();
-                return;
-            default:
-                w81 w81Var2 = this.f51548b;
-                w81Var2.f52989e.requestFocus();
-                org.telegram.messenger.g0.I3(w81Var2.f52989e);
-                return;
+    public final void onMeasure(int i7, int i10) {
+        Q();
+        if (getKeyboardHeight() == 0 && !this.f51661g0) {
+            int i11 = org.telegram.messenger.mp.f1().getInt("kbd_height", org.telegram.messenger.g0.L(200.0f));
+            this.f34142f = i11;
+            setPadding(0, 0, 0, i11);
+        } else {
+            this.f51661g0 = true;
+            setPadding(0, 0, 0, 0);
         }
+        super.onMeasure(i7, i10);
     }
 }

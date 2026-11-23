@@ -9,12 +9,12 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.telegram.ui.Components.jn;
+import org.telegram.ui.Cells.aa;
 import w7.s;
 public final class c extends ea {
-    public final x f59042a = new x();
-    public final d4.f f59043b = new d4.f();
-    public k0 f59044c;
+    public final x f59159a = new x();
+    public final d4.f f59160b = new d4.f();
+    public k0 f59161c;
 
     @Override
     public final q0 b(o3.a aVar, ByteBuffer byteBuffer) {
@@ -29,17 +29,17 @@ public final class c extends ea {
         boolean z16;
         long j10;
         long j11;
-        k0 k0Var = this.f59044c;
-        if (k0Var == null || aVar.f21672r != k0Var.e()) {
-            k0 k0Var2 = new k0(aVar.f18122e);
-            this.f59044c = k0Var2;
-            k0Var2.a(aVar.f18122e - aVar.f21672r);
+        k0 k0Var = this.f59161c;
+        if (k0Var == null || aVar.f21771r != k0Var.e()) {
+            k0 k0Var2 = new k0(aVar.f18224e);
+            this.f59161c = k0Var2;
+            k0Var2.a(aVar.f18224e - aVar.f21771r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        x xVar = this.f59042a;
+        x xVar = this.f59159a;
         xVar.L(limit, array);
-        d4.f fVar = this.f59043b;
+        d4.f fVar = this.f59160b;
         fVar.H(limit, array);
         fVar.L(39);
         long j12 = (fVar.j(1) << 32) | fVar.j(32);
@@ -54,12 +54,12 @@ public final class c extends ea {
                         if (j14 != 6) {
                             obj = null;
                         } else {
-                            k0 k0Var3 = this.f59044c;
+                            k0 k0Var3 = this.f59161c;
                             long d = a.d(j12, xVar);
                             obj = new a(d, 1, k0Var3.b(d));
                         }
                     } else {
-                        k0 k0Var4 = this.f59044c;
+                        k0 k0Var4 = this.f59161c;
                         xVar.C();
                         if ((xVar.A() & 128) != 0) {
                             z13 = true;
@@ -161,7 +161,7 @@ public final class c extends ea {
                             xVar.A();
                             xVar.A();
                         }
-                        arrayList2.add(new jn(arrayList3));
+                        arrayList2.add(new aa(arrayList3));
                     }
                     obj = new f(arrayList2);
                 }

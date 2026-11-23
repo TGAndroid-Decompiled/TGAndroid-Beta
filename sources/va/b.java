@@ -1,11 +1,11 @@
 package va;
 public final class b implements Runnable {
-    public final int f59342a;
-    public final c f59343b;
+    public final int f59464a;
+    public final c f59465b;
 
     public b(c cVar, int i7) {
-        this.f59342a = i7;
-        this.f59343b = cVar;
+        this.f59464a = i7;
+        this.f59465b = cVar;
     }
 
     @Override

@@ -1,34 +1,41 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_account;
-public final class fa1 implements org.telegram.ui.ActionBar.q1 {
-    public final int f47618a;
-    public final TwoStepVerificationActivity f47619b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class fa1 implements Runnable {
+    public final int f47738a;
+    public final TwoStepVerificationActivity f47739b;
 
     public fa1(TwoStepVerificationActivity twoStepVerificationActivity, int i7) {
-        this.f47618a = i7;
-        this.f47619b = twoStepVerificationActivity;
+        this.f47738a = i7;
+        this.f47739b = twoStepVerificationActivity;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f47618a) {
+    public final void run() {
+        EditTextBoldCursor editTextBoldCursor;
+        switch (this.f47738a) {
             case 0:
-                this.f47619b.finishFragment();
+                TwoStepVerificationActivity twoStepVerificationActivity = this.f47739b;
+                if (!twoStepVerificationActivity.isFinishing() && !twoStepVerificationActivity.I && (editTextBoldCursor = twoStepVerificationActivity.f44008s) != null) {
+                    editTextBoldCursor.requestFocus();
+                    org.telegram.messenger.g0.I3(twoStepVerificationActivity.f44008s);
+                    return;
+                }
                 return;
             case 1:
-                TL_account.declinePasswordReset declinepasswordreset = new TL_account.declinePasswordReset();
-                TwoStepVerificationActivity twoStepVerificationActivity = this.f47619b;
-                twoStepVerificationActivity.getConnectionsManager().sendRequest(declinepasswordreset, new ga1(twoStepVerificationActivity, 2));
+                TwoStepVerificationActivity twoStepVerificationActivity2 = this.f47739b;
+                fa1 fa1Var = twoStepVerificationActivity2.W;
+                org.telegram.messenger.g0.r(fa1Var);
+                org.telegram.messenger.g0.h3(fa1Var, 1500L);
+                twoStepVerificationActivity2.V = true;
                 return;
             case 2:
-                this.f47619b.p0();
-                return;
-            case 3:
-                this.f47619b.z0();
+                TwoStepVerificationActivity twoStepVerificationActivity3 = this.f47739b;
+                twoStepVerificationActivity3.V = false;
+                twoStepVerificationActivity3.f44009w.a(0.0f);
                 return;
             default:
-                this.f47619b.z0();
+                this.f47739b.D0();
                 return;
         }
     }

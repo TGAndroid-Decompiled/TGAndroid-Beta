@@ -17,19 +17,19 @@ public class ChatsWidgetConfigActivity extends ExternalActionActivity {
         }
         if (this.F != 0) {
             org.telegram.ui.Cells.c0.l(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
-            kx kxVar = new kx(0, this.F);
-            kxVar.E = new w0(this, 28);
+            jx jxVar = new jx(0, this.F);
+            jxVar.E = new w0(this, 28);
             if (org.telegram.messenger.g0.Q1()) {
                 if (this.d.getFragmentStack().isEmpty()) {
-                    this.d.c(-1, kxVar);
+                    this.d.c(-1, jxVar);
                 }
-            } else if (this.f43051c.getFragmentStack().isEmpty()) {
-                this.f43051c.c(-1, kxVar);
+            } else if (this.f43161c.getFragmentStack().isEmpty()) {
+                this.f43161c.c(-1, jxVar);
             }
             if (!org.telegram.messenger.g0.Q1()) {
-                this.f43052e.setVisibility(8);
+                this.f43162e.setVisibility(8);
             }
-            this.f43051c.f0();
+            this.f43161c.f0();
             if (org.telegram.messenger.g0.Q1()) {
                 this.d.f0();
             }

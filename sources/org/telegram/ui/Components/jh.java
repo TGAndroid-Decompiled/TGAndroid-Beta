@@ -1,34 +1,75 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import android.view.KeyEvent;
-import android.view.View;
-public final class jh implements DialogInterface.OnCancelListener {
-    public final int f36458a;
-    public final KeyEvent.Callback f36459b;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class jh implements eh.a {
+    public final int f36411a;
+    public final Object f36412b;
 
-    public jh(KeyEvent.Callback callback, int i7) {
-        this.f36458a = i7;
-        this.f36459b = callback;
+    public jh(Object obj, int i7) {
+        this.f36411a = i7;
+        this.f36412b = obj;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f36458a) {
+    public final void c(dh.a aVar, RectF rectF) {
+        switch (this.f36411a) {
             case 0:
-                ui uiVar = (ui) this.f36459b;
-                r1.g gVar = uiVar.f40392n4;
-                if (gVar != null) {
-                    gVar.d();
+            case 1:
+            default:
+                aVar.f8363a = true;
+                return;
+        }
+    }
+
+    @Override
+    public final void d(Canvas canvas, RectF rectF) {
+        li liVar;
+        Canvas canvas2;
+        RectF rectF2;
+        float alpha;
+        li liVar2;
+        switch (this.f36411a) {
+            case 0:
+                ti tiVar = (ti) this.f36412b;
+                int i7 = 0;
+                while (i7 < 2) {
+                    if (i7 == 0) {
+                        liVar = tiVar.f40029w2;
+                    } else {
+                        liVar = tiVar.f40033x2;
+                    }
+                    if (liVar != null && liVar.f37136c != null && liVar.getVisibility() == 0) {
+                        if (i7 == 0 && (liVar2 = tiVar.f40033x2) != null && liVar2.getVisibility() == 0) {
+                            alpha = (1.0f - tiVar.f40033x2.getAlpha()) * liVar.getAlpha();
+                        } else {
+                            alpha = liVar.getAlpha();
+                        }
+                        canvas2 = canvas;
+                        rectF2 = rectF;
+                        ih.d.b(liVar.f37136c, canvas2, rectF2, liVar.d, tiVar.f30226b, (int) (alpha * 255.0f));
+                    } else {
+                        canvas2 = canvas;
+                        rectF2 = rectF;
+                    }
+                    i7++;
+                    canvas = canvas2;
+                    rectF = rectF2;
                 }
-                r1.g gVar2 = new r1.g((Object) uiVar.f30142b, (r1.e) r1.g.f56317p, 0.0f);
-                uiVar.f40392n4 = gVar2;
-                gVar2.f56333m.a(1.5f);
-                uiVar.f40392n4.f56333m.b(1500.0f);
-                uiVar.f40392n4.h();
+                return;
+            case 1:
+                qy qyVar = (qy) this.f36412b;
+                dx dxVar = qyVar.Q;
+                ih.d.a(dxVar, canvas, rectF, dxVar, qyVar);
+                vv vvVar = qyVar.f39062i0;
+                ih.d.a(vvVar, canvas, rectF, vvVar, qyVar);
+                aw awVar = qyVar.E0;
+                ih.d.a(awVar, canvas, rectF, awVar, qyVar);
                 return;
             default:
-                ((View) this.f36459b).setTag(null);
+                zo0 zo0Var = (zo0) this.f36412b;
+                bo0 bo0Var = zo0Var.B1;
+                ih.d.a(bo0Var, canvas, rectF, bo0Var, zo0Var.f30226b);
                 return;
         }
     }

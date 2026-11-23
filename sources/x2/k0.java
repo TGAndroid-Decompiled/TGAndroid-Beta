@@ -10,7 +10,7 @@ public interface k0 {
 
     void I(int i7, g0 g0Var, u uVar, c0 c0Var, int i10);
 
-    void b(int i7, g0 g0Var, c0 c0Var);
+    void i(int i7, g0 g0Var, c0 c0Var);
 
     void r(int i7, g0 g0Var, u uVar, c0 c0Var, IOException iOException, boolean z10);
 }

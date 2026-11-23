@@ -2,34 +2,34 @@ package wi;
 
 import org.telegram.messenger.g0;
 public final class e implements Runnable {
-    public final int f59949a;
-    public final h f59950b;
+    public final int f60067a;
+    public final h f60068b;
 
     public e(h hVar, int i7) {
-        this.f59949a = i7;
-        this.f59950b = hVar;
+        this.f60067a = i7;
+        this.f60068b = hVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f59949a) {
+        switch (this.f60067a) {
             case 0:
-                h hVar = this.f59950b;
+                h hVar = this.f60068b;
                 hVar.q();
-                if (hVar.f59957b.h()) {
+                if (hVar.f60075b.j()) {
                     g0.h3(this, 500L);
                     return;
                 }
                 return;
             default:
-                h hVar2 = this.f59950b;
-                if (hVar2.f59957b.s()) {
+                h hVar2 = this.f60068b;
+                if (hVar2.f60075b.l0()) {
                     g0.h3(this, 1500L);
                     return;
                 }
-                hVar2.f59974u = false;
+                hVar2.f60092u = false;
                 hVar2.o(false);
-                hVar2.f59975w = false;
+                hVar2.f60093w = false;
                 return;
         }
     }

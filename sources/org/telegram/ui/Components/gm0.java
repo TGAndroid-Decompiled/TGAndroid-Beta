@@ -1,14 +1,14 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class gm0 extends nv0 {
+public final class gm0 extends mv0 {
     public final int L;
-    public final org.telegram.ui.kw M;
+    public final org.telegram.ui.jw M;
 
-    public gm0(org.telegram.ui.kw kwVar, Context context, yz yzVar, int i7) {
-        super(context, yzVar, 1, null);
+    public gm0(org.telegram.ui.jw jwVar, Context context, vz vzVar, int i7) {
+        super(context, vzVar, 1, null);
         this.L = i7;
-        this.M = kwVar;
+        this.M = jwVar;
     }
 
     @Override

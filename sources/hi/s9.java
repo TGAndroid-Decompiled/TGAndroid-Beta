@@ -1,33 +1,29 @@
 package hi;
+public final class s9 implements Runnable {
+    public final int f15405a;
+    public final nb f15406b;
+    public final Runnable f15407c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class s9 extends AnimatorListenerAdapter {
-    public final int f15338a;
-    public final int f15339b;
-    public final int f15340c;
-    public final ta d;
-
-    public s9(ta taVar, int i7, int i10, int i11) {
-        this.f15338a = i11;
-        this.d = taVar;
-        this.f15339b = i7;
-        this.f15340c = i10;
+    public s9(nb nbVar, Runnable runnable, int i7) {
+        this.f15405a = i7;
+        this.f15406b = nbVar;
+        this.f15407c = runnable;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f15338a) {
+    public final void run() {
+        switch (this.f15405a) {
             case 0:
-                this.d.M(this.f15339b, this.f15340c);
+                this.f15407c.run();
+                this.f15406b.o0();
                 return;
             default:
-                int i7 = this.f15339b;
-                int i10 = this.f15340c;
-                if (i7 != i10) {
-                    this.d.P(i7, i10);
-                    return;
-                }
+                nb nbVar = this.f15406b;
+                nbVar.e(false);
+                org.telegram.messenger.g0.r(nbVar.f15081h2);
+                nbVar.f15081h2 = null;
+                nbVar.T1 = false;
+                this.f15407c.run();
                 return;
         }
     }

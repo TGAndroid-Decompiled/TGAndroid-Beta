@@ -13,7 +13,7 @@ public final class o extends mf.a {
     @Override
     public final boolean b(kf.a aVar) {
         if (this.f13596c) {
-            kf.a aVar2 = (kf.a) ((kf.p) this.f13594a.f18229b);
+            kf.a aVar2 = (kf.a) ((kf.p) this.f13594a.f18328b);
             return true;
         }
         return true;
@@ -33,7 +33,7 @@ public final class o extends mf.a {
     public final a h(g gVar) {
         boolean z10 = false;
         if (gVar.h) {
-            if (((kf.p) this.f13594a.f18230c) != null) {
+            if (((kf.p) this.f13594a.f18329c) != null) {
                 kf.a e10 = gVar.h().e();
                 this.f13596c = ((e10 instanceof r) || (e10 instanceof kf.o)) ? true : true;
                 return a.a(gVar.f13544e);

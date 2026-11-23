@@ -7,15 +7,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
 public final class k3 {
-    public final org.telegram.ui.bn f24965a;
-    public final ArrayList f24966b = new ArrayList(10);
-    public final ArrayList f24967c = new ArrayList(10);
+    public final org.telegram.ui.bn f25070a;
+    public final ArrayList f25071b = new ArrayList(10);
+    public final ArrayList f25072c = new ArrayList(10);
     public final ArrayList d = new ArrayList(10);
-    public final ArrayList f24968e = new ArrayList();
-    public final ArrayList f24969f = new ArrayList();
+    public final ArrayList f25073e = new ArrayList();
+    public final ArrayList f25074f = new ArrayList();
 
     public k3(org.telegram.ui.bn bnVar) {
-        this.f24965a = bnVar;
+        this.f25070a = bnVar;
     }
 
     public final void a(org.telegram.ui.kl klVar, int i7, int i10, long j3) {
@@ -24,7 +24,7 @@ public final class k3 {
         TLRPC.MessageMedia messageMedia;
         final k3 k3Var = this;
         ArrayList L = klVar.L();
-        org.telegram.ui.bn bnVar = k3Var.f24965a;
+        org.telegram.ui.bn bnVar = k3Var.f25070a;
         if (!bnVar.c() && i7 >= 0 && i10 >= 0) {
             int i11 = klVar.K;
             int i12 = (i10 - i11) - 10;
@@ -35,32 +35,32 @@ public final class k3 {
             if (i13 > L.size()) {
                 i13 = L.size();
             }
-            ArrayList arrayList = k3Var.f24966b;
+            ArrayList arrayList = k3Var.f25071b;
             arrayList.clear();
-            ArrayList arrayList2 = k3Var.f24967c;
+            ArrayList arrayList2 = k3Var.f25072c;
             arrayList2.clear();
             ArrayList arrayList3 = k3Var.d;
             arrayList3.clear();
             while (i12 < i13) {
-                gj gjVar = (gj) L.get(i12);
-                if (bnVar.f46067m4 != gjVar && gjVar.e1() > 0 && ((gjVar.f24177k.action == null || gjVar.z()) && j3 - gjVar.E > 15000)) {
-                    gjVar.E = j3;
-                    arrayList.add(gjVar);
+                fj fjVar = (fj) L.get(i12);
+                if (bnVar.f46282m4 != fjVar && fjVar.e1() > 0 && ((fjVar.f24073k.action == null || fjVar.z()) && j3 - fjVar.E > 15000)) {
+                    fjVar.E = j3;
+                    arrayList.add(fjVar);
                 }
-                if (bnVar.f46067m4 != gjVar && gjVar.e1() > 0 && ((gjVar.q2() || ((messageMedia = gjVar.f24177k.media) != null && (messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) && !messageMedia.extended_media.isEmpty() && (gjVar.f24177k.media.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMediaPreview))) && j3 - gjVar.F > 30000)) {
-                    gjVar.F = j3;
-                    arrayList2.add(gjVar);
+                if (bnVar.f46282m4 != fjVar && fjVar.e1() > 0 && ((fjVar.q2() || ((messageMedia = fjVar.f24073k.media) != null && (messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) && !messageMedia.extended_media.isEmpty() && (fjVar.f24073k.media.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMediaPreview))) && j3 - fjVar.F > 30000)) {
+                    fjVar.F = j3;
+                    arrayList2.add(fjVar);
                 }
-                int i14 = gjVar.D;
-                if (i14 == 23 || i14 == 24 || gjVar.f24177k.replyStory != null) {
+                int i14 = fjVar.D;
+                if (i14 == 23 || i14 == 24 || fjVar.f24073k.replyStory != null) {
                     if (i14 != 23 && i14 != 24) {
-                        storyItem2 = gjVar.f24177k.replyStory;
+                        storyItem2 = fjVar.f24073k.replyStory;
                     } else {
-                        storyItem2 = gjVar.f24177k.media.storyItem;
+                        storyItem2 = fjVar.f24073k.media.storyItem;
                     }
                     if (storyItem2 != null && !(storyItem2 instanceof TL_stories.TL_storyItemDeleted) && j3 - storyItem2.lastUpdateTime > 300000) {
                         storyItem2.lastUpdateTime = j3;
-                        arrayList3.add(gjVar);
+                        arrayList3.add(fjVar);
                     }
                 }
                 i12++;
@@ -70,29 +70,29 @@ public final class k3 {
                 TLRPC.TL_messages_getMessagesReactions tL_messages_getMessagesReactions = new TLRPC.TL_messages_getMessagesReactions();
                 tL_messages_getMessagesReactions.peer = bnVar.getMessagesController().l1(a10);
                 for (int i15 = 0; i15 < arrayList.size(); i15++) {
-                    tL_messages_getMessagesReactions.f28495id.add(Integer.valueOf(((gj) arrayList.get(i15)).e1()));
+                    tL_messages_getMessagesReactions.f28589id.add(Integer.valueOf(((fj) arrayList.get(i15)).e1()));
                 }
                 Integer valueOf = Integer.valueOf(bnVar.getConnectionsManager().sendRequest(tL_messages_getMessagesReactions, new RequestDelegate(k3Var) {
-                    public final k3 f24548b;
+                    public final k3 f24672b;
 
                     {
-                        this.f24548b = k3Var;
+                        this.f24672b = k3Var;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r2) {
                             case 0:
-                                k3 k3Var2 = this.f24548b;
+                                k3 k3Var2 = this.f24672b;
                                 if (tL_error == null) {
-                                    k3Var2.f24965a.getMessagesController().V3((TLRPC.Updates) tLObject, false);
+                                    k3Var2.f25070a.getMessagesController().V3((TLRPC.Updates) tLObject, false);
                                     return;
                                 } else {
                                     k3Var2.getClass();
                                     return;
                                 }
                             default:
-                                k3 k3Var3 = this.f24548b;
+                                k3 k3Var3 = this.f24672b;
                                 k3Var3.getClass();
                                 if (tL_error == null) {
                                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
@@ -101,14 +101,14 @@ public final class k3 {
                                             ((TL_update.TL_updateMessageReactions) updates.updates.get(i16)).updateUnreadState = false;
                                         }
                                     }
-                                    k3Var3.f24965a.getMessagesController().V3(updates, false);
+                                    k3Var3.f25070a.getMessagesController().V3(updates, false);
                                     return;
                                 }
                                 return;
                         }
                     }
                 }));
-                ArrayList arrayList4 = k3Var.f24968e;
+                ArrayList arrayList4 = k3Var.f25073e;
                 arrayList4.add(valueOf);
                 if (arrayList4.size() > 5) {
                     bnVar.getConnectionsManager().cancelRequest(((Integer) arrayList4.remove(0)).intValue(), true);
@@ -116,34 +116,34 @@ public final class k3 {
             }
             long a11 = bnVar.a();
             boolean isEmpty = arrayList2.isEmpty();
-            ArrayList arrayList5 = k3Var.f24969f;
+            ArrayList arrayList5 = k3Var.f25074f;
             if (!isEmpty) {
                 TLRPC.TL_messages_getExtendedMedia tL_messages_getExtendedMedia = new TLRPC.TL_messages_getExtendedMedia();
                 tL_messages_getExtendedMedia.peer = bnVar.getMessagesController().l1(a11);
                 for (int i16 = 0; i16 < arrayList2.size(); i16++) {
-                    tL_messages_getExtendedMedia.f28489id.add(Integer.valueOf(((gj) arrayList2.get(i16)).e1()));
+                    tL_messages_getExtendedMedia.f28583id.add(Integer.valueOf(((fj) arrayList2.get(i16)).e1()));
                 }
                 arrayList5.add(Integer.valueOf(bnVar.getConnectionsManager().sendRequest(tL_messages_getExtendedMedia, new RequestDelegate(k3Var) {
-                    public final k3 f24548b;
+                    public final k3 f24672b;
 
                     {
-                        this.f24548b = k3Var;
+                        this.f24672b = k3Var;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r2) {
                             case 0:
-                                k3 k3Var2 = this.f24548b;
+                                k3 k3Var2 = this.f24672b;
                                 if (tL_error == null) {
-                                    k3Var2.f24965a.getMessagesController().V3((TLRPC.Updates) tLObject, false);
+                                    k3Var2.f25070a.getMessagesController().V3((TLRPC.Updates) tLObject, false);
                                     return;
                                 } else {
                                     k3Var2.getClass();
                                     return;
                                 }
                             default:
-                                k3 k3Var3 = this.f24548b;
+                                k3 k3Var3 = this.f24672b;
                                 k3Var3.getClass();
                                 if (tL_error == null) {
                                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
@@ -152,7 +152,7 @@ public final class k3 {
                                             ((TL_update.TL_updateMessageReactions) updates.updates.get(i162)).updateUnreadState = false;
                                         }
                                     }
-                                    k3Var3.f24965a.getMessagesController().V3(updates, false);
+                                    k3Var3.f25070a.getMessagesController().V3(updates, false);
                                     return;
                                 }
                                 return;
@@ -167,11 +167,11 @@ public final class k3 {
                 int i17 = 0;
                 while (i17 < arrayList3.size()) {
                     TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
-                    gj gjVar2 = (gj) arrayList3.get(i17);
+                    fj fjVar2 = (fj) arrayList3.get(i17);
                     new TL_stories.TL_storyItem();
-                    int i18 = gjVar2.D;
+                    int i18 = fjVar2.D;
                     if (i18 != 23 && i18 != 24) {
-                        TLRPC.Message message = gjVar2.f24177k;
+                        TLRPC.Message message = fjVar2.f24073k;
                         TLRPC.MessageReplyHeader messageReplyHeader = message.reply_to;
                         if (messageReplyHeader != null) {
                             storyItem = message.replyStory;
@@ -181,15 +181,15 @@ public final class k3 {
                             k3Var = this;
                         }
                     } else {
-                        TLRPC.MessageMedia messageMedia2 = gjVar2.f24177k.media;
+                        TLRPC.MessageMedia messageMedia2 = fjVar2.f24073k.media;
                         TL_stories.StoryItem storyItem3 = messageMedia2.storyItem;
                         storyItem3.dialogId = messageMedia2.user_id;
                         storyItem = storyItem3;
                     }
                     long j10 = storyItem.dialogId;
                     tL_stories_getStoriesByID.peer = bnVar.getMessagesController().l1(j10);
-                    tL_stories_getStoriesByID.f28644id.add(Integer.valueOf(storyItem.f28637id));
-                    arrayList5.add(Integer.valueOf(bnVar.getConnectionsManager().sendRequest(tL_stories_getStoriesByID, new j3(storyItem.f28637id, 0, j10, k3Var, gjVar2))));
+                    tL_stories_getStoriesByID.f28738id.add(Integer.valueOf(storyItem.f28731id));
+                    arrayList5.add(Integer.valueOf(bnVar.getConnectionsManager().sendRequest(tL_stories_getStoriesByID, new j3(storyItem.f28731id, 0, j10, k3Var, fjVar2))));
                     i17++;
                     k3Var = this;
                 }

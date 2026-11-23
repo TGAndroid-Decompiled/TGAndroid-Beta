@@ -1,9 +1,9 @@
 package bi;
 
-import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.kc;
 public final class j0 extends f9 {
     @Override
-    public final lc f1() {
-        return new lc(this.f30145c, this.J0);
+    public final kc f1() {
+        return new kc(this.f30229c, this.J0);
     }
 }

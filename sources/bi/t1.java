@@ -22,13 +22,13 @@ public final class t1 implements View.OnLayoutChangeListener {
                 }
                 return;
             case 1:
-                ((hi.o3) this.f4072b).d();
+                ((hi.x3) this.f4072b).d();
                 return;
             case 2:
                 ng.c cVar = (ng.c) this.f4072b;
-                TextView textView = cVar.f21474c;
+                TextView textView = cVar.f21573c;
                 textView.setPivotX(textView.getMeasuredWidth() * 0.7f);
-                TextView textView2 = cVar.f21473b;
+                TextView textView2 = cVar.f21572b;
                 textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
                 return;
             default:

@@ -40,46 +40,46 @@ public final class n implements s {
     public int X;
     public int Y;
     public int Z;
-    public final x f62211a;
-    public int f62212a0;
-    public final long f62213b;
-    public int f62214b0;
-    public final int f62215c;
-    public boolean f62216c0;
+    public final x f62331a;
+    public int f62332a0;
+    public final long f62333b;
+    public int f62334b0;
+    public final int f62335c;
+    public boolean f62336c0;
     public final int d;
-    public long f62217d0;
-    public final int f62218e;
-    public final o f62219f;
-    public final c f62220g;
+    public long f62337d0;
+    public final int f62338e;
+    public final o f62339f;
+    public final c f62340g;
     public final c h;
-    public MediaCodec f62226n;
-    public MediaCodec f62227o;
-    public AudioRecord f62228p;
-    public Surface f62229q;
-    public Thread f62230r;
-    public Thread f62231s;
-    public d f62232t;
-    public d f62233u;
+    public MediaCodec f62346n;
+    public MediaCodec f62347o;
+    public AudioRecord f62348p;
+    public Surface f62349q;
+    public Thread f62350r;
+    public Thread f62351s;
+    public d f62352t;
+    public d f62353u;
     public volatile boolean v;
-    public volatile boolean f62234w;
-    public volatile boolean f62235x;
-    public boolean f62236y;
-    public int f62237z;
-    public final AtomicBoolean f62221i = new AtomicBoolean();
-    public final ArrayList f62222j = new ArrayList();
-    public final AudioTimestamp f62223k = new AudioTimestamp();
-    public final long[] f62224l = new long[256];
-    public final long[] f62225m = new long[256];
+    public volatile boolean f62354w;
+    public volatile boolean f62355x;
+    public boolean f62356y;
+    public int f62357z;
+    public final AtomicBoolean f62341i = new AtomicBoolean();
+    public final ArrayList f62342j = new ArrayList();
+    public final AudioTimestamp f62343k = new AudioTimestamp();
+    public final long[] f62344l = new long[256];
+    public final long[] f62345m = new long[256];
     public volatile long B = Long.MAX_VALUE;
 
     public n(x xVar, long j3, int i7, int i10, int i11, o oVar, c cVar, c cVar2) {
-        this.f62211a = xVar;
-        this.f62213b = j3;
-        this.f62215c = i7;
+        this.f62331a = xVar;
+        this.f62333b = j3;
+        this.f62335c = i7;
         this.d = i10;
-        this.f62218e = i11;
-        this.f62219f = oVar;
-        this.f62220g = cVar;
+        this.f62338e = i11;
+        this.f62339f = oVar;
+        this.f62340g = cVar;
         this.h = cVar2;
     }
 
@@ -126,11 +126,11 @@ public final class n implements s {
             createAudioFormat.setInteger("aac-profile", 2);
             createAudioFormat.setInteger("bitrate", 64000);
             createAudioFormat.setInteger("max-input-size", max);
-            this.f62227o = MediaCodec.createEncoderByType("audio/mp4a-latm");
-            this.f62219f.b("audio encoder configure: codec=" + this.f62227o.getName() + ", format=" + createAudioFormat + ", minBufferSize=" + minBufferSize + ", audioBufferSize=" + max);
-            this.f62227o.configure(createAudioFormat, (Surface) null, (MediaCrypto) null, 1);
+            this.f62347o = MediaCodec.createEncoderByType("audio/mp4a-latm");
+            this.f62339f.b("audio encoder configure: codec=" + this.f62347o.getName() + ", format=" + createAudioFormat + ", minBufferSize=" + minBufferSize + ", audioBufferSize=" + max);
+            this.f62347o.configure(createAudioFormat, (Surface) null, (MediaCrypto) null, 1);
             AudioRecord audioRecord = new AudioRecord(5, 48000, 16, 2, max);
-            this.f62228p = audioRecord;
+            this.f62348p = audioRecord;
             if (audioRecord.getState() == 1) {
                 return;
             }
@@ -140,17 +140,17 @@ public final class n implements s {
     }
 
     public final void b() {
-        int i7 = this.f62215c;
+        int i7 = this.f62335c;
         int i10 = this.d;
-        int i11 = this.f62218e;
+        int i11 = this.f62338e;
         MediaFormat c10 = c(i7, i10, i11);
         MediaCodec createEncoderByType = MediaCodec.createEncoderByType("video/avc");
-        this.f62226n = createEncoderByType;
+        this.f62346n = createEncoderByType;
         MediaCodecInfo.VideoCapabilities videoCapabilities = createEncoderByType.getCodecInfo().getCapabilitiesForType("video/avc").getVideoCapabilities();
         if (videoCapabilities.isSizeSupported(i7, i7) && videoCapabilities.areSizeAndRateSupported(i7, i7, i11)) {
-            this.f62219f.b("video encoder configure: codec=" + this.f62226n.getName() + ", format=" + c10);
-            this.f62226n.configure(c10, (Surface) null, (MediaCrypto) null, 1);
-            this.f62229q = this.f62226n.createInputSurface();
+            this.f62339f.b("video encoder configure: codec=" + this.f62346n.getName() + ", format=" + c10);
+            this.f62346n.configure(c10, (Surface) null, (MediaCrypto) null, 1);
+            this.f62349q = this.f62346n.createInputSurface();
             return;
         }
         throw new IOException(a8.p0.n(i11, " fps", i5.c.n("Video encoder does not support ", i7, "x", i7, " at ")));
@@ -158,18 +158,18 @@ public final class n implements s {
 
     public final boolean d(MediaCodec.BufferInfo bufferInfo, long j3) {
         ByteBuffer outputBuffer;
-        int dequeueOutputBuffer = this.f62227o.dequeueOutputBuffer(bufferInfo, j3);
+        int dequeueOutputBuffer = this.f62347o.dequeueOutputBuffer(bufferInfo, j3);
         boolean z10 = false;
         while (true) {
             boolean z11 = true;
             if (dequeueOutputBuffer < 0) {
                 break;
             }
-            if (bufferInfo.size > 0 && (bufferInfo.flags & 2) == 0 && (outputBuffer = this.f62227o.getOutputBuffer(dequeueOutputBuffer)) != null && !this.f62235x) {
+            if (bufferInfo.size > 0 && (bufferInfo.flags & 2) == 0 && (outputBuffer = this.f62347o.getOutputBuffer(dequeueOutputBuffer)) != null && !this.f62355x) {
                 if (bufferInfo.presentationTimeUs >= this.B) {
                     this.Z++;
-                    this.f62212a0++;
-                } else if (this.f62216c0) {
+                    this.f62332a0++;
+                } else if (this.f62336c0) {
                     this.J++;
                     this.H += bufferInfo.size;
                     m(false, bufferInfo);
@@ -186,7 +186,7 @@ public final class n implements s {
                         outputBuffer.position(position);
                         MediaCodec.BufferInfo bufferInfo2 = new MediaCodec.BufferInfo();
                         bufferInfo2.set(0, bufferInfo.size, bufferInfo.presentationTimeUs, bufferInfo.flags);
-                        this.f62222j.add(new m(allocateDirect, bufferInfo2));
+                        this.f62342j.add(new m(allocateDirect, bufferInfo2));
                         long j10 = this.O;
                         if (j10 != Long.MIN_VALUE && bufferInfo.presentationTimeUs >= j10) {
                             e(j10, false);
@@ -202,25 +202,25 @@ public final class n implements s {
                 z11 = false;
             }
             z10 |= z11;
-            this.f62227o.releaseOutputBuffer(dequeueOutputBuffer, false);
-            dequeueOutputBuffer = this.f62227o.dequeueOutputBuffer(bufferInfo, 0L);
+            this.f62347o.releaseOutputBuffer(dequeueOutputBuffer, false);
+            dequeueOutputBuffer = this.f62347o.dequeueOutputBuffer(bufferInfo, 0L);
         }
         if (dequeueOutputBuffer == -2) {
-            s(this.f62227o.getOutputFormat(), false);
+            s(this.f62347o.getOutputFormat(), false);
         }
-        if (z10 && !this.f62216c0 && this.O != Long.MIN_VALUE) {
+        if (z10 && !this.f62336c0 && this.O != Long.MIN_VALUE) {
             e(this.O, true);
         }
         return z10;
     }
 
     public final void e(long j3, boolean z10) {
-        ArrayList arrayList = this.f62222j;
+        ArrayList arrayList = this.f62342j;
         if (!arrayList.isEmpty()) {
             int i7 = 0;
             while (true) {
                 if (i7 < arrayList.size()) {
-                    if (((m) arrayList.get(i7)).f62207b.presentationTimeUs >= j3) {
+                    if (((m) arrayList.get(i7)).f62327b.presentationTimeUs >= j3) {
                         break;
                     }
                     i7++;
@@ -234,18 +234,18 @@ public final class n implements s {
                     return;
                 }
                 i7 = arrayList.size() - 1;
-            } else if (i7 > 0 && j3 - ((m) arrayList.get(i7 - 1)).f62207b.presentationTimeUs <= ((m) arrayList.get(i7)).f62207b.presentationTimeUs - j3) {
+            } else if (i7 > 0 && j3 - ((m) arrayList.get(i7 - 1)).f62327b.presentationTimeUs <= ((m) arrayList.get(i7)).f62327b.presentationTimeUs - j3) {
                 i7--;
             }
             for (int i10 = 0; i10 < i7; i10++) {
                 this.Z++;
             }
             m mVar = (m) arrayList.get(i7);
-            this.f62217d0 = mVar.f62207b.presentationTimeUs - j3;
+            this.f62337d0 = mVar.f62327b.presentationTimeUs - j3;
             while (i7 < arrayList.size()) {
                 m mVar2 = (m) arrayList.get(i7);
-                ByteBuffer byteBuffer = mVar2.f62206a;
-                MediaCodec.BufferInfo bufferInfo = mVar2.f62207b;
+                ByteBuffer byteBuffer = mVar2.f62326a;
+                MediaCodec.BufferInfo bufferInfo = mVar2.f62327b;
                 this.J++;
                 this.H += bufferInfo.size;
                 m(false, bufferInfo);
@@ -253,12 +253,12 @@ public final class n implements s {
                 i7++;
             }
             arrayList.clear();
-            this.f62216c0 = true;
+            this.f62336c0 = true;
             StringBuilder t6 = a8.p0.t(j3, "A/V start aligned: videoPtsUs=", ", audioPtsUs=");
-            t6.append(mVar.f62207b.presentationTimeUs);
+            t6.append(mVar.f62327b.presentationTimeUs);
             t6.append(", deltaUs=");
-            t6.append(this.f62217d0);
-            this.f62219f.b(t6.toString());
+            t6.append(this.f62337d0);
+            this.f62339f.b(t6.toString());
         }
     }
 
@@ -274,7 +274,7 @@ public final class n implements s {
             try {
                 thread.join(j3);
                 if (thread.isAlive()) {
-                    o oVar = this.f62219f;
+                    o oVar = this.f62339f;
                     oVar.b("encoder thread did not stop: " + thread.getName());
                 }
             } catch (InterruptedException unused) {
@@ -285,10 +285,10 @@ public final class n implements s {
 
     public final void i() {
         synchronized (this) {
-            if (this.f62232t != null && !this.v) {
-                d dVar = this.f62232t;
-                this.f62232t = null;
-                this.f62219f.b("audio capture ready; waiting for common A/V start frame");
+            if (this.f62352t != null && !this.v) {
+                d dVar = this.f62352t;
+                this.f62352t = null;
+                this.f62339f.b("audio capture ready; waiting for common A/V start frame");
                 dVar.run();
             }
         }
@@ -299,8 +299,8 @@ public final class n implements s {
         synchronized (this) {
             try {
                 z10 = true;
-                int i7 = this.f62237z - 1;
-                this.f62237z = i7;
+                int i7 = this.f62357z - 1;
+                this.f62357z = i7;
                 if (!this.A || i7 != 0) {
                     z10 = false;
                 }
@@ -312,7 +312,7 @@ public final class n implements s {
             }
         }
         if (z10) {
-            this.f62219f.b("deferred codec release: encoder threads exited");
+            this.f62339f.b("deferred codec release: encoder threads exited");
             n();
         }
     }
@@ -328,13 +328,13 @@ public final class n implements s {
             } else {
                 return;
             }
-        } while (this.f62224l[i7] != j3);
-        long nanoTime = System.nanoTime() - this.f62225m[i7];
+        } while (this.f62344l[i7] != j3);
+        long nanoTime = System.nanoTime() - this.f62345m[i7];
         this.K++;
         this.L += nanoTime;
         this.M = Math.max(this.M, nanoTime);
         if (this.K % 30 == 0) {
-            this.f62219f.b("codec latency: average=" + ((((float) this.L) / this.K) / 1000000.0f) + " ms, max=" + (((float) this.M) / 1000000.0f) + " ms");
+            this.f62339f.b("codec latency: average=" + ((((float) this.L) / this.K) / 1000000.0f) + " ms, max=" + (((float) this.M) / 1000000.0f) + " ms");
         }
     }
 
@@ -373,19 +373,19 @@ public final class n implements s {
     public final void n() {
         this.D = false;
         this.E = false;
-        this.f62232t = null;
-        this.f62233u = null;
-        AudioRecord audioRecord = this.f62228p;
+        this.f62352t = null;
+        this.f62353u = null;
+        AudioRecord audioRecord = this.f62348p;
         if (audioRecord != null) {
             audioRecord.release();
-            this.f62228p = null;
+            this.f62348p = null;
         }
-        Surface surface = this.f62229q;
+        Surface surface = this.f62349q;
         if (surface != null) {
             surface.release();
-            this.f62229q = null;
+            this.f62349q = null;
         }
-        MediaCodec mediaCodec = this.f62226n;
+        MediaCodec mediaCodec = this.f62346n;
         if (mediaCodec != null) {
             try {
                 mediaCodec.stop();
@@ -393,7 +393,7 @@ public final class n implements s {
             }
             mediaCodec.release();
         }
-        MediaCodec mediaCodec2 = this.f62227o;
+        MediaCodec mediaCodec2 = this.f62347o;
         if (mediaCodec2 != null) {
             try {
                 mediaCodec2.stop();
@@ -401,10 +401,10 @@ public final class n implements s {
             }
             mediaCodec2.release();
         }
-        this.f62227o = null;
-        this.f62226n = null;
-        this.f62231s = null;
-        this.f62230r = null;
+        this.f62347o = null;
+        this.f62346n = null;
+        this.f62351s = null;
+        this.f62350r = null;
     }
 
     public final void o(RuntimeException runtimeException) {
@@ -417,9 +417,9 @@ public final class n implements s {
             str = "";
         }
         sb2.append(str);
-        this.f62219f.a(sb2.toString(), runtimeException);
-        if (this.f62221i.compareAndSet(false, true)) {
-            this.f62220g.a(runtimeException);
+        this.f62339f.a(sb2.toString(), runtimeException);
+        if (this.f62341i.compareAndSet(false, true)) {
+            this.f62340g.a(runtimeException);
         }
     }
 
@@ -433,17 +433,17 @@ public final class n implements s {
                     this.v = true;
                     long max = Math.max(0L, (SystemClock.elapsedRealtimeNanos() - this.F) / 1000);
                     this.B = max;
-                    AudioRecord audioRecord = this.f62228p;
+                    AudioRecord audioRecord = this.f62348p;
                     if (audioRecord != null) {
                         try {
                             if (audioRecord.getRecordingState() == 3) {
                                 audioRecord.stop();
                             }
                         } catch (IllegalStateException e10) {
-                            this.f62219f.a("AudioRecord stop failed", e10);
+                            this.f62339f.a("AudioRecord stop failed", e10);
                         }
                     }
-                    o oVar = this.f62219f;
+                    o oVar = this.f62339f;
                     oVar.b("recording stop boundary: presentationTimeUs=" + max);
                     return max;
                 }
@@ -455,10 +455,10 @@ public final class n implements s {
 
     public final void q() {
         this.v = false;
-        this.f62234w = false;
-        this.f62235x = false;
-        this.f62236y = false;
-        this.f62237z = 0;
+        this.f62354w = false;
+        this.f62355x = false;
+        this.f62356y = false;
+        this.f62357z = 0;
         this.A = false;
         this.B = Long.MAX_VALUE;
         this.F = 0L;
@@ -482,22 +482,22 @@ public final class n implements s {
         this.Y = 0;
         this.X = 0;
         this.Z = 0;
-        this.f62212a0 = 0;
-        this.f62214b0 = 0;
-        this.f62216c0 = false;
-        this.f62217d0 = Long.MIN_VALUE;
-        this.f62232t = null;
-        this.f62233u = null;
-        this.f62222j.clear();
+        this.f62332a0 = 0;
+        this.f62334b0 = 0;
+        this.f62336c0 = false;
+        this.f62337d0 = Long.MIN_VALUE;
+        this.f62352t = null;
+        this.f62353u = null;
+        this.f62342j.clear();
     }
 
     public final long r(int i7) {
         long max = Math.max(0L, ((SystemClock.elapsedRealtimeNanos() - this.F) / 1000) - ((i7 * 1000000) / 48000));
         int i10 = Build.VERSION.SDK_INT;
-        o oVar = this.f62219f;
+        o oVar = this.f62339f;
         if (i10 >= 24) {
-            AudioRecord audioRecord = this.f62228p;
-            AudioTimestamp audioTimestamp = this.f62223k;
+            AudioRecord audioRecord = this.f62348p;
+            AudioTimestamp audioTimestamp = this.f62343k;
             if (audioRecord.getTimestamp(audioTimestamp, 1) == 0) {
                 long max2 = Math.max(0L, ((audioTimestamp.nanoTime - this.F) / 1000) - ((audioTimestamp.framePosition * 1000000) / 48000));
                 oVar.b("audio timestamp alignment: framePosition=" + audioTimestamp.framePosition + ", timestampDeltaUs=" + ((audioTimestamp.nanoTime - this.F) / 1000) + ", timestampBaseUs=" + max2 + ", readCompletionBaseUs=" + max);
@@ -513,15 +513,15 @@ public final class n implements s {
         if (z10) {
             try {
                 this.N = f(mediaFormat);
-                x xVar = this.f62211a;
-                int i7 = this.f62218e;
+                x xVar = this.f62331a;
+                int i7 = this.f62338e;
                 synchronized (xVar) {
-                    xVar.f62382s = i7;
+                    xVar.f62502s = i7;
                 }
             } catch (u e10) {
-                if (!this.f62235x) {
-                    this.f62235x = true;
-                    this.f62219f.a("recording segment rejected; earlier segments are kept", e10);
+                if (!this.f62355x) {
+                    this.f62355x = true;
+                    this.f62339f.a("recording segment rejected; earlier segments are kept", e10);
                     this.h.a(e10);
                     return;
                 }
@@ -530,7 +530,7 @@ public final class n implements s {
                 throw new IllegalStateException(e11);
             }
         }
-        o oVar = this.f62219f;
+        o oVar = this.f62339f;
         StringBuilder sb2 = new StringBuilder();
         if (z10) {
             str = "video";
@@ -541,7 +541,7 @@ public final class n implements s {
         sb2.append(" output format: ");
         sb2.append(mediaFormat);
         oVar.b(sb2.toString());
-        this.f62211a.n(mediaFormat, z10);
+        this.f62331a.n(mediaFormat, z10);
     }
 
     public final synchronized void t(d dVar, d dVar2) {
@@ -550,20 +550,20 @@ public final class n implements s {
         }
         if (this.D) {
             try {
-                this.f62227o.start();
-                this.f62228p.startRecording();
-                if (this.f62228p.getRecordingState() == 3) {
+                this.f62347o.start();
+                this.f62348p.startRecording();
+                if (this.f62348p.getRecordingState() == 3) {
                     this.F = SystemClock.elapsedRealtimeNanos();
-                    this.f62232t = dVar;
-                    this.f62233u = dVar2;
+                    this.f62352t = dVar;
+                    this.f62353u = dVar2;
                     this.E = true;
-                    o oVar = this.f62219f;
-                    oVar.b("audio and video recording started: timeOriginNs=" + this.F + ", timelineOffsetUs=" + this.f62213b + ", audioSessionId=" + this.f62228p.getAudioSessionId());
-                    this.f62230r = new Thread(new Runnable(this) {
-                        public final n f62195b;
+                    o oVar = this.f62339f;
+                    oVar.b("audio and video recording started: timeOriginNs=" + this.F + ", timelineOffsetUs=" + this.f62333b + ", audioSessionId=" + this.f62348p.getAudioSessionId());
+                    this.f62350r = new Thread(new Runnable(this) {
+                        public final n f62315b;
 
                         {
-                            this.f62195b = this;
+                            this.f62315b = this;
                         }
 
                         @Override
@@ -576,7 +576,7 @@ public final class n implements s {
                             long j12;
                             long j13;
                             int i7 = r2;
-                            n nVar = this.f62195b;
+                            n nVar = this.f62315b;
                             nVar.getClass();
                             switch (i7) {
                                 case 0:
@@ -589,13 +589,13 @@ public final class n implements s {
                                                 if (!nVar.v) {
                                                     nVar.o(e10);
                                                 } else {
-                                                    nVar.f62219f.a("video drain failed while stopping", e10);
+                                                    nVar.f62339f.a("video drain failed while stopping", e10);
                                                 }
                                             }
-                                            if (!nVar.f62234w) {
-                                                int dequeueOutputBuffer = nVar.f62226n.dequeueOutputBuffer(bufferInfo, 10000L);
+                                            if (!nVar.f62354w) {
+                                                int dequeueOutputBuffer = nVar.f62346n.dequeueOutputBuffer(bufferInfo, 10000L);
                                                 if (dequeueOutputBuffer == -2) {
-                                                    nVar.s(nVar.f62226n.getOutputFormat(), true);
+                                                    nVar.s(nVar.f62346n.getOutputFormat(), true);
                                                 } else if (dequeueOutputBuffer >= 0) {
                                                     if (bufferInfo.size > 0 && (bufferInfo.flags & 2) == 0) {
                                                         z10 = true;
@@ -608,9 +608,9 @@ public final class n implements s {
                                                             nVar.G += bufferInfo.size;
                                                             nVar.m(true, bufferInfo);
                                                             nVar.l(bufferInfo.presentationTimeUs);
-                                                            nVar.v(true, nVar.f62226n.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
+                                                            nVar.v(true, nVar.f62346n.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
                                                         } else {
-                                                            nVar.f62214b0++;
+                                                            nVar.f62334b0++;
                                                         }
                                                     }
                                                     if ((bufferInfo.flags & 4) != 0) {
@@ -618,7 +618,7 @@ public final class n implements s {
                                                     } else {
                                                         z11 = false;
                                                     }
-                                                    nVar.f62226n.releaseOutputBuffer(dequeueOutputBuffer, false);
+                                                    nVar.f62346n.releaseOutputBuffer(dequeueOutputBuffer, false);
                                                 }
                                             } else {
                                                 nVar.j();
@@ -642,7 +642,7 @@ public final class n implements s {
                                     while (!z12) {
                                         try {
                                             try {
-                                                if (!nVar.f62234w) {
+                                                if (!nVar.f62354w) {
                                                     if (z13) {
                                                         j3 = 10000;
                                                     } else {
@@ -650,7 +650,7 @@ public final class n implements s {
                                                     }
                                                     z12 = nVar.d(bufferInfo2, j3);
                                                     if (!z12) {
-                                                        int dequeueInputBuffer = nVar.f62227o.dequeueInputBuffer(10000L);
+                                                        int dequeueInputBuffer = nVar.f62347o.dequeueInputBuffer(10000L);
                                                         if (dequeueInputBuffer >= 0) {
                                                             if (nVar.v) {
                                                                 if (j15 == j14) {
@@ -658,16 +658,16 @@ public final class n implements s {
                                                                 } else {
                                                                     j13 = j15 + ((1000000 * j16) / 48000);
                                                                 }
-                                                                nVar.f62227o.queueInputBuffer(dequeueInputBuffer, 0, 0, j13, 4);
+                                                                nVar.f62347o.queueInputBuffer(dequeueInputBuffer, 0, 0, j13, 4);
                                                                 z13 = true;
                                                             } else {
-                                                                ByteBuffer inputBuffer = nVar.f62227o.getInputBuffer(dequeueInputBuffer);
+                                                                ByteBuffer inputBuffer = nVar.f62347o.getInputBuffer(dequeueInputBuffer);
                                                                 if (inputBuffer == null) {
-                                                                    nVar.f62227o.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
+                                                                    nVar.f62347o.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
                                                                 } else {
                                                                     inputBuffer.clear();
                                                                     j10 = j14;
-                                                                    int read = nVar.f62228p.read(inputBuffer, Math.min(inputBuffer.remaining(), 2048));
+                                                                    int read = nVar.f62348p.read(inputBuffer, Math.min(inputBuffer.remaining(), 2048));
                                                                     if (read <= 0) {
                                                                         if (read < 0) {
                                                                             int i10 = nVar.X + 1;
@@ -683,12 +683,12 @@ public final class n implements s {
                                                                         } else {
                                                                             j12 = j15 + ((1000000 * j16) / 48000);
                                                                         }
-                                                                        nVar.f62227o.queueInputBuffer(dequeueInputBuffer, 0, 0, j12, 0);
+                                                                        nVar.f62347o.queueInputBuffer(dequeueInputBuffer, 0, 0, j12, 0);
                                                                     } else {
                                                                         int i11 = read / 2;
                                                                         if (j15 == j10) {
                                                                             long r10 = nVar.r(i11);
-                                                                            o oVar2 = nVar.f62219f;
+                                                                            o oVar2 = nVar.f62339f;
                                                                             StringBuilder sb2 = new StringBuilder();
                                                                             sb2.append("first audio input: basePtsUs=");
                                                                             sb2.append(r10);
@@ -707,7 +707,7 @@ public final class n implements s {
                                                                         } else {
                                                                             j11 = 48000;
                                                                         }
-                                                                        nVar.f62227o.queueInputBuffer(dequeueInputBuffer, 0, i11 * 2, j15 + ((1000000 * j16) / j11), 0);
+                                                                        nVar.f62347o.queueInputBuffer(dequeueInputBuffer, 0, i11 * 2, j15 + ((1000000 * j16) / j11), 0);
                                                                         j16 += i11;
                                                                         nVar.i();
                                                                     }
@@ -723,7 +723,7 @@ public final class n implements s {
                                                 if (!nVar.v) {
                                                     nVar.o(e11);
                                                 } else {
-                                                    nVar.f62219f.a("audio capture failed while stopping", e11);
+                                                    nVar.f62339f.a("audio capture failed while stopping", e11);
                                                 }
                                             }
                                             nVar.j();
@@ -738,11 +738,11 @@ public final class n implements s {
                             }
                         }
                     }, "RoundVideoVideoEncoder");
-                    this.f62231s = new Thread(new Runnable(this) {
-                        public final n f62195b;
+                    this.f62351s = new Thread(new Runnable(this) {
+                        public final n f62315b;
 
                         {
-                            this.f62195b = this;
+                            this.f62315b = this;
                         }
 
                         @Override
@@ -755,7 +755,7 @@ public final class n implements s {
                             long j12;
                             long j13;
                             int i7 = r2;
-                            n nVar = this.f62195b;
+                            n nVar = this.f62315b;
                             nVar.getClass();
                             switch (i7) {
                                 case 0:
@@ -768,13 +768,13 @@ public final class n implements s {
                                                 if (!nVar.v) {
                                                     nVar.o(e10);
                                                 } else {
-                                                    nVar.f62219f.a("video drain failed while stopping", e10);
+                                                    nVar.f62339f.a("video drain failed while stopping", e10);
                                                 }
                                             }
-                                            if (!nVar.f62234w) {
-                                                int dequeueOutputBuffer = nVar.f62226n.dequeueOutputBuffer(bufferInfo, 10000L);
+                                            if (!nVar.f62354w) {
+                                                int dequeueOutputBuffer = nVar.f62346n.dequeueOutputBuffer(bufferInfo, 10000L);
                                                 if (dequeueOutputBuffer == -2) {
-                                                    nVar.s(nVar.f62226n.getOutputFormat(), true);
+                                                    nVar.s(nVar.f62346n.getOutputFormat(), true);
                                                 } else if (dequeueOutputBuffer >= 0) {
                                                     if (bufferInfo.size > 0 && (bufferInfo.flags & 2) == 0) {
                                                         z10 = true;
@@ -787,9 +787,9 @@ public final class n implements s {
                                                             nVar.G += bufferInfo.size;
                                                             nVar.m(true, bufferInfo);
                                                             nVar.l(bufferInfo.presentationTimeUs);
-                                                            nVar.v(true, nVar.f62226n.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
+                                                            nVar.v(true, nVar.f62346n.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
                                                         } else {
-                                                            nVar.f62214b0++;
+                                                            nVar.f62334b0++;
                                                         }
                                                     }
                                                     if ((bufferInfo.flags & 4) != 0) {
@@ -797,7 +797,7 @@ public final class n implements s {
                                                     } else {
                                                         z11 = false;
                                                     }
-                                                    nVar.f62226n.releaseOutputBuffer(dequeueOutputBuffer, false);
+                                                    nVar.f62346n.releaseOutputBuffer(dequeueOutputBuffer, false);
                                                 }
                                             } else {
                                                 nVar.j();
@@ -821,7 +821,7 @@ public final class n implements s {
                                     while (!z12) {
                                         try {
                                             try {
-                                                if (!nVar.f62234w) {
+                                                if (!nVar.f62354w) {
                                                     if (z13) {
                                                         j3 = 10000;
                                                     } else {
@@ -829,7 +829,7 @@ public final class n implements s {
                                                     }
                                                     z12 = nVar.d(bufferInfo2, j3);
                                                     if (!z12) {
-                                                        int dequeueInputBuffer = nVar.f62227o.dequeueInputBuffer(10000L);
+                                                        int dequeueInputBuffer = nVar.f62347o.dequeueInputBuffer(10000L);
                                                         if (dequeueInputBuffer >= 0) {
                                                             if (nVar.v) {
                                                                 if (j15 == j14) {
@@ -837,16 +837,16 @@ public final class n implements s {
                                                                 } else {
                                                                     j13 = j15 + ((1000000 * j16) / 48000);
                                                                 }
-                                                                nVar.f62227o.queueInputBuffer(dequeueInputBuffer, 0, 0, j13, 4);
+                                                                nVar.f62347o.queueInputBuffer(dequeueInputBuffer, 0, 0, j13, 4);
                                                                 z13 = true;
                                                             } else {
-                                                                ByteBuffer inputBuffer = nVar.f62227o.getInputBuffer(dequeueInputBuffer);
+                                                                ByteBuffer inputBuffer = nVar.f62347o.getInputBuffer(dequeueInputBuffer);
                                                                 if (inputBuffer == null) {
-                                                                    nVar.f62227o.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
+                                                                    nVar.f62347o.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
                                                                 } else {
                                                                     inputBuffer.clear();
                                                                     j10 = j14;
-                                                                    int read = nVar.f62228p.read(inputBuffer, Math.min(inputBuffer.remaining(), 2048));
+                                                                    int read = nVar.f62348p.read(inputBuffer, Math.min(inputBuffer.remaining(), 2048));
                                                                     if (read <= 0) {
                                                                         if (read < 0) {
                                                                             int i10 = nVar.X + 1;
@@ -862,12 +862,12 @@ public final class n implements s {
                                                                         } else {
                                                                             j12 = j15 + ((1000000 * j16) / 48000);
                                                                         }
-                                                                        nVar.f62227o.queueInputBuffer(dequeueInputBuffer, 0, 0, j12, 0);
+                                                                        nVar.f62347o.queueInputBuffer(dequeueInputBuffer, 0, 0, j12, 0);
                                                                     } else {
                                                                         int i11 = read / 2;
                                                                         if (j15 == j10) {
                                                                             long r10 = nVar.r(i11);
-                                                                            o oVar2 = nVar.f62219f;
+                                                                            o oVar2 = nVar.f62339f;
                                                                             StringBuilder sb2 = new StringBuilder();
                                                                             sb2.append("first audio input: basePtsUs=");
                                                                             sb2.append(r10);
@@ -886,7 +886,7 @@ public final class n implements s {
                                                                         } else {
                                                                             j11 = 48000;
                                                                         }
-                                                                        nVar.f62227o.queueInputBuffer(dequeueInputBuffer, 0, i11 * 2, j15 + ((1000000 * j16) / j11), 0);
+                                                                        nVar.f62347o.queueInputBuffer(dequeueInputBuffer, 0, i11 * 2, j15 + ((1000000 * j16) / j11), 0);
                                                                         j16 += i11;
                                                                         nVar.i();
                                                                     }
@@ -902,7 +902,7 @@ public final class n implements s {
                                                 if (!nVar.v) {
                                                     nVar.o(e11);
                                                 } else {
-                                                    nVar.f62219f.a("audio capture failed while stopping", e11);
+                                                    nVar.f62339f.a("audio capture failed while stopping", e11);
                                                 }
                                             }
                                             nVar.j();
@@ -917,9 +917,9 @@ public final class n implements s {
                             }
                         }
                     }, "RoundVideoAudioEncoder");
-                    this.f62237z = 2;
-                    this.f62230r.start();
-                    this.f62231s.start();
+                    this.f62357z = 2;
+                    this.f62350r.start();
+                    this.f62351s.start();
                     return;
                 }
                 throw new IllegalStateException("Unable to start AudioRecord");
@@ -945,19 +945,19 @@ public final class n implements s {
         p();
         synchronized (this) {
             try {
-                if (this.D && !this.f62236y) {
+                if (this.D && !this.f62356y) {
                     if (!this.E) {
                         n();
                         return;
                     }
-                    this.f62236y = true;
+                    this.f62356y = true;
                     try {
-                        this.f62226n.signalEndOfInputStream();
+                        this.f62346n.signalEndOfInputStream();
                     } catch (IllegalStateException e10) {
-                        this.f62219f.a("video encoder EOS failed", e10);
+                        this.f62339f.a("video encoder EOS failed", e10);
                     }
-                    h(this.f62230r, 5000L);
-                    h(this.f62231s, 5000L);
+                    h(this.f62350r, 5000L);
+                    h(this.f62351s, 5000L);
                     Object obj = "n/a";
                     if (g()) {
                         j3 = this.Q - this.O;
@@ -983,7 +983,7 @@ public final class n implements s {
                     } else {
                         j12 = 0;
                     }
-                    o oVar = this.f62219f;
+                    o oVar = this.f62339f;
                     StringBuilder sb2 = new StringBuilder("codec summary: videoBuffers=");
                     sb2.append(this.I);
                     sb2.append(", videoBytes=");
@@ -1042,9 +1042,9 @@ public final class n implements s {
                     sb2.append(", droppedAudioBuffers=");
                     sb2.append(this.Z);
                     sb2.append(", droppedAudioAfterStop=");
-                    sb2.append(this.f62212a0);
+                    sb2.append(this.f62332a0);
                     sb2.append(", droppedVideoAfterStop=");
-                    sb2.append(this.f62214b0);
+                    sb2.append(this.f62334b0);
                     sb2.append(", stopPresentationTimeUs=");
                     if (this.B == Long.MAX_VALUE) {
                         valueOf5 = "n/a";
@@ -1053,7 +1053,7 @@ public final class n implements s {
                     }
                     sb2.append(valueOf5);
                     sb2.append(", alignedAudioStartDeltaUs=");
-                    long j20 = this.f62217d0;
+                    long j20 = this.f62337d0;
                     if (j20 == Long.MIN_VALUE) {
                         valueOf6 = "n/a";
                     } else {
@@ -1071,21 +1071,21 @@ public final class n implements s {
                     oVar.b(sb2.toString());
                     synchronized (this) {
                         try {
-                            if (this.f62237z > 0) {
-                                this.f62234w = true;
+                            if (this.f62357z > 0) {
+                                this.f62354w = true;
                             }
                         } finally {
                         }
                     }
-                    if (this.f62234w) {
-                        h(this.f62230r, 1000L);
-                        h(this.f62231s, 1000L);
+                    if (this.f62354w) {
+                        h(this.f62350r, 1000L);
+                        h(this.f62351s, 1000L);
                     }
                     synchronized (this) {
                         try {
-                            if (this.f62237z > 0) {
+                            if (this.f62357z > 0) {
                                 this.A = true;
-                                this.f62219f.b("codec release deferred until encoder threads exit: running=" + this.f62237z);
+                                this.f62339f.b("codec release deferred until encoder threads exit: running=" + this.f62357z);
                                 return;
                             }
                             n();
@@ -1100,7 +1100,7 @@ public final class n implements s {
 
     public final void v(boolean z10, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
         int i7;
-        if (byteBuffer != null && !this.f62235x) {
+        if (byteBuffer != null && !this.f62355x) {
             if (z10) {
                 try {
                     int i10 = this.N;
@@ -1112,7 +1112,7 @@ public final class n implements s {
                     throw new IllegalStateException(e10);
                 }
             }
-            this.f62211a.q(z10, byteBuffer, bufferInfo, this.f62213b);
+            this.f62331a.q(z10, byteBuffer, bufferInfo, this.f62333b);
         }
     }
 }

@@ -2,540 +2,93 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import android.graphics.Shader;
+import android.graphics.Path;
 import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeProvider;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import org.telegram.ui.ProfileActivity;
-public final class tf0 extends View {
-    public final HashSet E;
-    public int F;
-    public boolean G;
-    public boolean H;
-    public qf0 I;
-    public qf0 J;
-    public qf0 K;
-    public final float L;
-    public final float M;
-    public final float N;
-    public int O;
-    public boolean P;
-    public RadialGradient Q;
-    public final Matrix R;
-    public int S;
-    public PorterDuffColorFilter T;
-    public qf0 U;
-    public float V;
-    public float W;
-    public final ArrayList f39837a;
-    public long f39838a0;
-    public final Paint f39839b;
-    public pf0 f39840b0;
-    public final Paint f39841c;
-    public float d;
-    public boolean f39842e;
-    public float f39843f;
-    public dh.c h;
-    public final ArrayList f39844n;
-    public int f39845r;
-    public int f39846s;
-    public final int f39847w;
-    public float f39848x;
-    public sf0 f39849y;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+public final class tf0 extends ng0 {
+    public final Drawable R;
+    public final Drawable S;
+    public final wy0 T;
+    public wy0 U;
+    public final Paint V;
+    public final Path W;
+    public float f39913a0;
+    public final DecimalFormat f39914b0;
 
-    public tf0(Context context, int i7) {
+    public tf0(Context context) {
         super(context);
-        this.f39837a = new ArrayList();
-        Paint paint = new Paint();
-        this.f39839b = paint;
-        this.f39841c = new Paint();
-        this.f39842e = true;
-        this.f39843f = -1.0f;
-        this.f39844n = new ArrayList();
-        this.f39846s = 0;
-        this.f39848x = 0.0f;
-        this.f39849y = null;
-        this.E = new HashSet();
-        this.F = 6;
-        this.I = null;
-        this.O = 0;
-        this.R = new Matrix();
-        this.U = null;
-        paint.setColor(-16777216);
-        paint.setAlpha(40);
-        this.L = org.telegram.messenger.g0.N(14.0f);
-        float N = org.telegram.messenger.g0.N(12.0f);
-        this.M = N;
-        float N2 = org.telegram.messenger.g0.N(8.0f);
-        this.N = N2;
-        this.f39847w = (int) ((i7 - N) - N2);
-        setBackgroundColor(0);
-        setImportantForAccessibility(1);
-    }
-
-    private float getItemWidth() {
-        int measuredWidth = getMeasuredWidth();
-        float f10 = this.L;
-        int i7 = this.f39846s;
-        return ((measuredWidth - ((f10 / 2.0f) * (i7 - 1))) - (f10 * 2.0f)) / i7;
-    }
-
-    public static qf0 i(int i7, List list) {
-        int size = list.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            qf0 qf0Var = (qf0) list.get(i10);
-            if (!qf0Var.f38861o && qf0Var.f38849a == i7) {
-                return qf0Var;
-            }
-        }
-        return null;
-    }
-
-    public final void a() {
-        qf0 qf0Var = new qf0(this, rf0.SET_PHOTO);
-        qf0Var.f38849a = 14;
-        this.f39837a.add(qf0Var);
-    }
-
-    public final void b() {
-        qf0 qf0Var = new qf0(this, rf0.EDIT_INFO);
-        qf0Var.f38849a = 16;
-        this.f39837a.add(qf0Var);
-    }
-
-    public final void c() {
-        qf0 qf0Var = new qf0(this, rf0.SETTINGS);
-        qf0Var.f38849a = 17;
-        this.f39837a.add(qf0Var);
-    }
-
-    public final void d() {
-        boolean z10;
-        if (this.G) {
-            return;
-        }
-        if (this.F == 6) {
-            this.f39846s = this.f39837a.size();
-            invalidate();
-            return;
-        }
-        ArrayList arrayList = new ArrayList();
-        HashSet hashSet = this.E;
-        if (hashSet.contains(7) && !hashSet.contains(9)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int i7 = this.F;
-        if (i7 != 0) {
-            if (i7 != 1) {
-                if (i7 != 2) {
-                    if (i7 != 3 && i7 != 4) {
-                        if (i7 == 5) {
-                            m(0, arrayList);
-                            m(1, arrayList);
-                        }
-                    } else {
-                        if (z10) {
-                            m(7, arrayList);
-                        } else {
-                            m(0, arrayList);
-                        }
-                        m(1, arrayList);
-                        if (z10) {
-                            arrayList.add(j(8));
-                        } else {
-                            m(10, arrayList);
-                            n(11, 10, arrayList);
-                            m(12, arrayList);
-                            m(9, arrayList);
-                        }
-                    }
-                } else {
-                    m(0, arrayList);
-                    m(1, arrayList);
-                    m(4, arrayList);
-                    arrayList.add(j(13));
-                }
-            } else {
-                if (z10) {
-                    m(7, arrayList);
-                } else {
-                    m(10, arrayList);
-                    n(11, 10, arrayList);
-                }
-                m(1, arrayList);
-                if (!z10) {
-                    m(2, arrayList);
-                    if (hashSet.contains(3) && !hashSet.contains(2) && !hashSet.contains(12)) {
-                        arrayList.add(j(3));
-                    }
-                }
-                n(4, 12, arrayList);
-                if (z10) {
-                    arrayList.add(j(8));
-                } else {
-                    m(12, arrayList);
-                    n(9, 12, arrayList);
-                }
-            }
-        } else {
-            m(0, arrayList);
-            m(1, arrayList);
-            m(5, arrayList);
-            m(6, arrayList);
-            n(3, 6, arrayList);
-        }
-        org.telegram.messenger.g0.g3(new fw(23, this, arrayList));
-    }
-
-    public final void e() {
-        this.G = true;
-    }
-
-    public final boolean f() {
-        int i7 = this.F;
-        if (i7 == 1 || i7 == 3) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void g() {
-        float f10;
-        int i7 = this.O;
-        if (i7 != 0) {
-            if (!this.P) {
-                this.f39839b.setColor(i7);
-                return;
-            }
-            int measuredWidth = getMeasuredWidth();
-            if (measuredWidth <= 0) {
-                return;
-            }
-            float f11 = this.L;
-            float max = ((measuredWidth - ((f11 / 2.0f) * Math.max(0, this.f39846s - 1))) - (f11 * 2.0f)) / Math.max(1, this.f39846s);
-            float f12 = max / 2.0f;
-            float f13 = this.f39847w / 2.0f;
-            if (this.P) {
-                f10 = max * 0.65f;
-            } else {
-                f10 = 1.0f;
-            }
-            RadialGradient radialGradient = new RadialGradient(f12, f13, f10, org.telegram.ui.ActionBar.m6.r1(0.8f, this.O), this.O, Shader.TileMode.CLAMP);
-            this.Q = radialGradient;
-            this.f39841c.setShader(radialGradient);
-        }
+        Paint paint = new Paint(1);
+        this.V = paint;
+        Path path = new Path();
+        this.W = path;
+        this.f39914b0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
+        this.R = i5.c.g(context, 2131232585);
+        this.S = i5.c.g(context, 2131232586);
+        this.T = new wy0(org.telegram.messenger.gd.N0(2131744914, null) + ":", 11.0f, null);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(org.telegram.messenger.g0.N(1.16f));
+        path.moveTo(0.0f, -org.telegram.messenger.g0.N(3.33f));
+        path.lineTo(org.telegram.messenger.g0.N(3.16f), 0.0f);
+        path.lineTo(0.0f, org.telegram.messenger.g0.N(3.33f));
+        setBalance(0L);
     }
 
     @Override
-    public AccessibilityNodeProvider getAccessibilityNodeProvider() {
-        if (this.f39840b0 == null) {
-            this.f39840b0 = new pf0(this);
+    public final void b(Canvas canvas, float f10) {
+        Drawable drawable;
+        float height = getHeight() / 2.0f;
+        canvas.translate(0.0f, (-org.telegram.messenger.g0.L(20.0f)) * this.f39913a0);
+        float f11 = f10 * 0.85f;
+        this.T.c(0.0f, height, f11, this.F, canvas);
+        canvas.translate(this.T.k() + org.telegram.messenger.g0.L(4.0f), 0.0f);
+        if (!this.G && this.H < 0.8f) {
+            drawable = this.R;
+        } else {
+            drawable = this.S;
         }
-        return this.f39840b0;
-    }
-
-    public float getRoundRadius() {
-        return org.telegram.messenger.g0.L(16.0f);
-    }
-
-    public final void h(Canvas canvas, Drawable drawable, float f10) {
-        if (drawable == null) {
-            return;
-        }
-        drawable.setColorFilter(this.T);
-        drawable.setAlpha((int) (f10 * 255.0f));
+        int L = org.telegram.messenger.g0.L(13.0f);
+        int i7 = ((int) height) - (L / 2);
+        drawable.setBounds(0, i7, L, i7 + L);
+        drawable.setAlpha((int) (255.0f * f10));
         drawable.draw(canvas);
-    }
-
-    public final qf0 j(int i7) {
-        qf0 i10 = i(i7, this.f39837a);
-        if (i10 != null) {
-            if (i7 == 1) {
-                p(i10, false);
-            }
-            return i10;
-        }
-        switch (i7) {
-            case 0:
-                i10 = new qf0(this, rf0.MESSAGE);
-                break;
-            case 1:
-                i10 = new qf0(this);
-                p(i10, false);
-                break;
-            case 2:
-                i10 = new qf0(this, rf0.DISCUSS);
-                break;
-            case 3:
-                i10 = new qf0(this, rf0.GIFT);
-                i10.f38866t = true;
-                i10.f38869x = 200;
-                break;
-            case 4:
-                i10 = new qf0(this, rf0.SHARE);
-                break;
-            case 5:
-                i10 = new qf0(this, rf0.CALL);
-                this.I = i10;
-                i10.f38866t = true;
-                i10.f38869x = 500;
-                break;
-            case 6:
-                i10 = new qf0(this, rf0.VIDEO);
-                i10.f38866t = true;
-                i10.f38869x = 500;
-                break;
-            case 7:
-                i10 = new qf0(this, rf0.JOIN);
-                i10.f38866t = true;
-                i10.v = 300;
-                break;
-            case 8:
-                i10 = new qf0(this, rf0.REPORT);
-                i10.f38866t = true;
-                i10.f38869x = 500;
-                break;
-            case 9:
-                i10 = new qf0(this, rf0.LEAVE);
-                i10.f38866t = true;
-                i10.f38867u = 2131624164;
-                i10.f38869x = 300;
-                break;
-            case 10:
-                i10 = new qf0(this, rf0.VOICE_CHAT);
-                i10.f38866t = true;
-                i10.f38867u = 2131624167;
-                i10.f38869x = 500;
-                break;
-            case 11:
-                i10 = new qf0(this, rf0.STREAM);
-                i10.f38866t = true;
-                i10.f38867u = 2131624167;
-                i10.f38869x = 500;
-                break;
-            case 12:
-                i10 = new qf0(this, rf0.STORY);
-                break;
-            case 13:
-                i10 = new qf0(this, rf0.STOP);
-                i10.f38866t = true;
-                i10.f38869x = 300;
-                break;
-        }
-        if (i10 != null) {
-            i10.f38849a = i7;
-        }
-        return i10;
-    }
-
-    public final boolean k() {
-        if (this.E.contains(5) && this.I != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void l() {
-        int i7 = this.f39845r;
-        while (true) {
-            ArrayList arrayList = this.f39844n;
-            if (i7 < arrayList.size()) {
-                fh.g gVar = (fh.g) arrayList.get(i7);
-                if (!gVar.getBounds().isEmpty()) {
-                    gVar.setBounds(0, 0, 0, 0);
-                }
-                i7++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    public final void m(int i7, ArrayList arrayList) {
-        if (this.E.contains(Integer.valueOf(i7))) {
-            arrayList.add(j(i7));
-        }
-    }
-
-    public final void n(int i7, int i10, ArrayList arrayList) {
-        Integer valueOf = Integer.valueOf(i7);
-        HashSet hashSet = this.E;
-        if (hashSet.contains(valueOf) && !hashSet.contains(Integer.valueOf(i10))) {
-            arrayList.add(j(i7));
-        }
-    }
-
-    public final void o(int i7, boolean z10) {
-        boolean remove;
-        HashSet hashSet = this.E;
-        if (z10) {
-            remove = hashSet.add(Integer.valueOf(i7));
-        } else {
-            remove = hashSet.remove(Integer.valueOf(i7));
-        }
-        if (remove) {
-            d();
-        }
+        canvas.translate(org.telegram.messenger.g0.L(2.0f) + L, 0.0f);
+        this.U.c(0.0f, height, f10, this.F, canvas);
+        canvas.translate(org.telegram.messenger.g0.N(4.8f) + this.U.k(), height);
+        int r12 = org.telegram.ui.ActionBar.n6.r1(f11, this.F);
+        Paint paint = this.V;
+        paint.setColor(r12);
+        canvas.drawPath(this.W, paint);
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.tf0.onDraw(android.graphics.Canvas):void");
+    public final float c(float f10) {
+        wy0 wy0Var = this.T;
+        wy0Var.f41774p = -1.0f;
+        this.U.f41774p = -1.0f;
+        float max = Math.max(0.0f, f10 - org.telegram.messenger.g0.L(43.0f));
+        wy0Var.f41774p = Math.max(0.0f, max - this.U.k());
+        this.U.f41774p = Math.max(0.0f, max - wy0Var.k());
+        return this.U.k() + wy0Var.k() + org.telegram.messenger.g0.L(27.0f);
     }
 
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.makeMeasureSpec((int) (this.f39847w + this.N + this.M), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        qf0 qf0Var;
-        if (this.f39848x >= org.telegram.messenger.g0.L(8.0f)) {
-            float x10 = motionEvent.getX();
-            float y10 = motionEvent.getY();
-            int action = motionEvent.getAction();
-            if (action == 0) {
-                this.U = null;
-                ArrayList arrayList = this.f39837a;
-                int size = arrayList.size();
-                int i7 = 0;
-                while (true) {
-                    if (i7 >= size) {
-                        break;
-                    }
-                    qf0 qf0Var2 = (qf0) arrayList.get(i7);
-                    if (!qf0Var2.f38861o && qf0Var2.d.contains(x10, y10)) {
-                        this.U = qf0Var2;
-                        this.V = x10;
-                        this.W = y10;
-                        this.f39838a0 = System.currentTimeMillis();
-                        this.U.f38850b.c(true);
-                        break;
-                    }
-                    i7++;
-                }
-            } else if (action == 2) {
-                if (this.U != null && (Math.abs(x10 - this.V) > 20.0f || Math.abs(y10 - this.W) > 20.0f)) {
-                    this.U.f38850b.c(false);
-                    this.U = null;
-                }
-            } else if ((action == 1 || action == 3) && (qf0Var = this.U) != null) {
-                qf0Var.f38850b.c(false);
-                if (action == 1 && this.U.d.contains(x10, y10)) {
-                    if (System.currentTimeMillis() - this.f39838a0 > 250) {
-                        try {
-                            performHapticFeedback(0, 1);
-                        } catch (Exception unused) {
-                        }
-                    }
-                    qf0 qf0Var3 = this.U;
-                    if (qf0Var3.f38866t && !qf0Var3.f38865s) {
-                        qf0Var3.f38865s = true;
-                        invalidate();
-                    }
-                    qf0 qf0Var4 = this.U;
-                    int i10 = qf0Var4.f38867u;
-                    if (i10 != 0) {
-                        qf0Var4.d(i10, 0, 0);
-                    }
-                    this.U.f38868w = System.currentTimeMillis();
-                    qf0 qf0Var5 = this.U;
-                    sf0 sf0Var = this.f39849y;
-                    if (sf0Var != null) {
-                        int i11 = qf0Var5.v;
-                        if (i11 == 0) {
-                            int i12 = qf0Var5.f38849a;
-                            RectF rectF = qf0Var5.d;
-                            ProfileActivity.l0(((org.telegram.ui.ut0) sf0Var).f52631b, i12, rectF.left, rectF.top);
-                        } else {
-                            postDelayed(new fw(24, this, qf0Var5), i11);
-                        }
-                    }
-                }
-                this.U = null;
-                return true;
-            }
-            if (this.U != null) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final void p(qf0 qf0Var, boolean z10) {
-        rf0 rf0Var;
-        if (z10) {
-            if (this.H) {
-                qf0Var.c(org.telegram.messenger.hd.N0(2131746491, null));
-                qf0Var.d(2131624166, 2131231155, 2131232497);
-                return;
-            }
-            qf0Var.c(org.telegram.messenger.hd.N0(2131746490, null));
-            qf0Var.d(2131624165, 2131231161, 2131232502);
-            return;
-        }
-        if (this.H) {
-            rf0Var = rf0.NOTIFICATION_MUTE;
-        } else {
-            rf0Var = rf0.NOTIFICATION_UNMUTE;
-        }
-        qf0Var.d(0, rf0Var.f39142b, rf0Var.f39143c);
-        qf0Var.c(org.telegram.messenger.hd.N0(rf0Var.f39141a, null));
-    }
-
-    public void setGlassFactory(dh.c cVar) {
-        this.h = cVar;
-        this.f39844n.clear();
-        this.f39845r = 0;
+    public void setBalance(long j3) {
+        String format = this.f39914b0.format(new BigDecimal(org.telegram.ui.Wallet.v0.u(j3, false)));
+        this.U = new wy0(format, 11.0f, org.telegram.messenger.g0.o());
+        setContentDescription(org.telegram.messenger.gd.N0(2131744914, null) + ": " + format);
         invalidate();
     }
 
-    public void setNotifications(boolean z10) {
-        boolean z11;
-        if (this.H != z10) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.H = z10;
-        qf0 i7 = i(1, this.f39837a);
-        if (i7 != null) {
-            p(i7, z11);
-            invalidate();
+    public void setEjectProgress(float f10) {
+        if (this.f39913a0 == f10) {
             return;
         }
-        this.E.add(1);
-        d();
-    }
-
-    public void setOnActionClickListener(sf0 sf0Var) {
-        this.f39849y = sf0Var;
-    }
-
-    public void setParentExpanded(float f10) {
-        if (this.d != f10) {
-            this.d = f10;
-            invalidate();
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && !(drawable instanceof q80)) {
-            return false;
-        }
-        return true;
+        this.f39913a0 = f10;
+        invalidate();
     }
 }

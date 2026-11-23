@@ -9,37 +9,37 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 public final class qq extends org.telegram.ui.Components.dk0 {
     public final rq E;
-    public final Context f51254c;
+    public final Context f51504c;
     public final jg.z1 h;
-    public oq f51257n;
-    public boolean f51259s;
-    public int f51260w;
-    public int f51261x;
-    public int f51262y;
+    public oq f51507n;
+    public boolean f51509s;
+    public int f51510w;
+    public int f51511x;
+    public int f51512y;
     public ArrayList d = new ArrayList();
-    public a0.h f51255e = new a0.h();
-    public ArrayList f51256f = new ArrayList();
-    public int f51258r = 0;
+    public a0.h f51505e = new a0.h();
+    public ArrayList f51506f = new ArrayList();
+    public int f51508r = 0;
 
     public qq(rq rqVar, Context context) {
         this.E = rqVar;
-        this.f51254c = context;
+        this.f51504c = context;
         jg.z1 z1Var = new jg.z1(true);
         this.h = z1Var;
-        z1Var.f17721a = new pq(this);
+        z1Var.f17823a = new pq(this);
     }
 
     @Override
-    public final void A(v4.e1 e1Var) {
-        View view = e1Var.f59111a;
+    public final void A(v4.f1 f1Var) {
+        View view = f1Var.f59245a;
         if (view instanceof org.telegram.ui.Cells.b5) {
             ((org.telegram.ui.Cells.b5) view).a();
         }
     }
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
-        if (e1Var.f59115f != 1) {
+    public final boolean D(v4.f1 f1Var) {
+        if (f1Var.f59249f != 1) {
             return true;
         }
         return false;
@@ -47,14 +47,14 @@ public final class qq extends org.telegram.ui.Components.dk0 {
 
     public final TLObject E(int i7) {
         jg.z1 z1Var = this.h;
-        int size = z1Var.f17726g.size();
+        int size = z1Var.f17828g.size();
         if (size != 0) {
             int i10 = size + 1;
             if (i10 > i7) {
                 if (i7 == 0) {
                     return null;
                 }
-                return (TLObject) z1Var.f17726g.get(i7 - 1);
+                return (TLObject) z1Var.f17828g.get(i7 - 1);
             }
             i7 -= i10;
         }
@@ -69,23 +69,23 @@ public final class qq extends org.telegram.ui.Components.dk0 {
             }
             i7 -= i11;
         }
-        int size3 = z1Var.f17724e.size();
+        int size3 = z1Var.f17826e.size();
         if (size3 == 0 || size3 + 1 <= i7 || i7 == 0) {
             return null;
         }
-        return (TLObject) z1Var.f17724e.get(i7 - 1);
+        return (TLObject) z1Var.f17826e.get(i7 - 1);
     }
 
     public final void F(String str) {
         boolean z10;
         long j3;
-        if (this.f51257n != null) {
-            Utilities.f22776g.a(this.f51257n);
-            this.f51257n = null;
+        if (this.f51507n != null) {
+            Utilities.f22879g.a(this.f51507n);
+            this.f51507n = null;
         }
         this.d.clear();
-        this.f51255e.b();
-        this.f51256f.clear();
+        this.f51505e.b();
+        this.f51506f.clear();
         this.h.f(null, null);
         jg.z1 z1Var = this.h;
         rq rqVar = this.E;
@@ -94,7 +94,7 @@ public final class qq extends org.telegram.ui.Components.dk0 {
         } else {
             z10 = false;
         }
-        if (org.telegram.messenger.v3.T(rqVar.f51754n)) {
+        if (org.telegram.messenger.v3.T(rqVar.f51839n)) {
             j3 = this.E.N;
         } else {
             j3 = 0;
@@ -102,23 +102,23 @@ public final class qq extends org.telegram.ui.Components.dk0 {
         z1Var.g(null, z10, false, true, false, j3, false, this.E.O, 0);
         f();
         if (!TextUtils.isEmpty(str)) {
-            this.f51259s = true;
-            this.E.f51728b.e(true, true);
-            org.telegram.messenger.q5 q5Var = Utilities.f22776g;
+            this.f51509s = true;
+            this.E.f51813b.e(true, true);
+            org.telegram.messenger.q5 q5Var = Utilities.f22879g;
             oq oqVar = new oq(this, str, 0);
-            this.f51257n = oqVar;
+            this.f51507n = oqVar;
             q5Var.d(oqVar, 300L);
         }
     }
 
     @Override
     public final int b() {
-        return this.f51258r;
+        return this.f51508r;
     }
 
     @Override
     public final int d(int i7) {
-        if (i7 != this.f51262y && i7 != this.f51260w && i7 != this.f51261x) {
+        if (i7 != this.f51512y && i7 != this.f51510w && i7 != this.f51511x) {
             return 0;
         }
         return 1;
@@ -127,73 +127,73 @@ public final class qq extends org.telegram.ui.Components.dk0 {
     @Override
     public final void f() {
         di.b1 b1Var;
-        this.f51258r = 0;
+        this.f51508r = 0;
         jg.z1 z1Var = this.h;
-        int size = z1Var.f17726g.size();
+        int size = z1Var.f17828g.size();
         if (size != 0) {
-            this.f51260w = 0;
-            this.f51258r = size + 1 + this.f51258r;
+            this.f51510w = 0;
+            this.f51508r = size + 1 + this.f51508r;
         } else {
-            this.f51260w = -1;
+            this.f51510w = -1;
         }
         int size2 = this.d.size();
         if (size2 != 0) {
-            int i7 = this.f51258r;
-            this.f51261x = i7;
-            this.f51258r = size2 + 1 + i7;
+            int i7 = this.f51508r;
+            this.f51511x = i7;
+            this.f51508r = size2 + 1 + i7;
         } else {
-            this.f51261x = -1;
+            this.f51511x = -1;
         }
-        int size3 = z1Var.f17724e.size();
+        int size3 = z1Var.f17826e.size();
         if (size3 != 0) {
-            int i10 = this.f51258r;
-            this.f51262y = i10;
-            this.f51258r = size3 + 1 + i10;
+            int i10 = this.f51508r;
+            this.f51512y = i10;
+            this.f51508r = size3 + 1 + i10;
         } else {
-            this.f51262y = -1;
+            this.f51512y = -1;
         }
         rq rqVar = this.E;
-        if (rqVar.f51757o1 && (b1Var = rqVar.f51731c) != null) {
-            v4.h0 adapter = b1Var.getAdapter();
-            qq qqVar = rqVar.f51736e;
+        if (rqVar.f51842o1 && (b1Var = rqVar.f51816c) != null) {
+            v4.i0 adapter = b1Var.getAdapter();
+            qq qqVar = rqVar.f51821e;
             if (adapter != qqVar) {
-                di.b1 b1Var2 = rqVar.f51731c;
+                di.b1 b1Var2 = rqVar.f51816c;
                 b1Var2.X1 = true;
                 b1Var2.Y1 = 0;
                 b1Var2.setAdapter(qqVar);
-                rqVar.f51731c.setFastScrollVisible(false);
-                rqVar.f51731c.setVerticalScrollBarEnabled(true);
+                rqVar.f51816c.setFastScrollVisible(false);
+                rqVar.f51816c.setVerticalScrollBarEnabled(true);
             }
         }
         super.f();
     }
 
     @Override
-    public final void t(v4.e1 r17, int r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qq.t(v4.e1, int):void");
+    public final void t(v4.f1 r17, int r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qq.t(v4.f1, int):void");
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
         boolean z10;
         View view;
-        org.telegram.ui.ActionBar.h6 h6Var;
+        org.telegram.ui.ActionBar.i6 i6Var;
         rq rqVar = this.E;
         if (i7 != 0) {
-            h6Var = ((org.telegram.ui.ActionBar.g2) rqVar).resourceProvider;
-            view = new org.telegram.ui.Cells.y3(26, this.f51254c, h6Var);
+            i6Var = ((org.telegram.ui.ActionBar.g2) rqVar).resourceProvider;
+            view = new org.telegram.ui.Cells.y3(26, this.f51504c, i6Var);
             view.setBackground(null);
         } else {
-            if (rqVar.f51738e1 == 0) {
+            if (rqVar.f51823e1 == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(this.f51254c, 2, 2, z10, null);
+            org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(this.f51504c, 2, 2, z10, null);
             b5Var.H = true;
             b5Var.setDelegate(new pq(this));
             view = b5Var;
         }
-        return new v4.e1(view);
+        return new v4.f1(view);
     }
 }

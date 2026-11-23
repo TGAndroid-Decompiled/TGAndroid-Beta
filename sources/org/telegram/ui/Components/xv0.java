@@ -1,85 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.TextView;
-import java.io.Serializable;
-import java.util.HashMap;
-public final class xv0 implements TextWatcher {
-    public final int f42206a = 0;
-    public final EditTextBoldCursor f42207b;
-    public final Serializable f42208c;
-    public final Object d;
-    public final org.telegram.messenger.gs f42209e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class xv0 extends AnimatorListenerAdapter {
+    public final int f42226a;
+    public final boolean f42227b;
+    public final jw0 f42228c;
 
-    public xv0(kw0 kw0Var, int[] iArr, TextView textView, EditTextBoldCursor editTextBoldCursor) {
-        this.f42209e = kw0Var;
-        this.f42208c = iArr;
-        this.d = textView;
-        this.f42207b = editTextBoldCursor;
+    public xv0(jw0 jw0Var, int i7, boolean z10) {
+        this.f42228c = jw0Var;
+        this.f42226a = i7;
+        this.f42227b = z10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        switch (this.f42206a) {
-            case 0:
-                return;
-            default:
-                org.telegram.ui.hk0 hk0Var = (org.telegram.ui.hk0) this.f42209e;
-                String str = (String) this.f42208c;
-                if (((HashMap) this.d) == hk0Var.f48426u1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                EditTextBoldCursor editTextBoldCursor = this.f42207b;
-                org.telegram.ui.hk0.N0(hk0Var, editTextBoldCursor, str, editable, z10);
-                int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
-                EditTextBoldCursor editTextBoldCursor2 = hk0Var.Z[intValue];
-                if (intValue == 6) {
-                    hk0Var.c1(true);
-                    return;
-                }
-                return;
+    public final void onAnimationCancel(Animator animator) {
+        AnimatorSet[] animatorSetArr = this.f42228c.D1;
+        int i7 = this.f42226a;
+        AnimatorSet animatorSet = animatorSetArr[i7];
+        if (animatorSet != null && animatorSet.equals(animator)) {
+            animatorSetArr[i7] = null;
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f42206a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        switch (this.f42206a) {
-            case 0:
-                if (((int[]) this.f42208c)[0] == 2) {
-                    ((kw0) this.f42209e).L0((TextView) this.d, this.f42207b.getText().toString(), false);
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        jw0 jw0Var = this.f42228c;
+        AnimatorSet[] animatorSetArr = jw0Var.D1;
+        int i7 = this.f42226a;
+        AnimatorSet animatorSet = animatorSetArr[i7];
+        if (animatorSet != null && animatorSet.equals(animator)) {
+            if (!this.f42227b) {
+                jw0Var.E1[i7].setVisibility(4);
+            }
+            animatorSetArr[i7] = null;
         }
-    }
-
-    public xv0(org.telegram.ui.hk0 hk0Var, EditTextBoldCursor editTextBoldCursor, String str, HashMap hashMap) {
-        this.f42209e = hk0Var;
-        this.f42207b = editTextBoldCursor;
-        this.f42208c = str;
-        this.d = hashMap;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

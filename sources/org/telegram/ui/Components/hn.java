@@ -1,16 +1,7 @@
 package org.telegram.ui.Components;
-public final class hn extends v4.k {
-    public final tn F;
-
-    public hn(tn tnVar) {
-        this.F = tnVar;
-    }
-
+public final class hn extends zw0 {
     @Override
-    public final void P(v4.e1 e1Var) {
-        if (e1Var.b() == 0) {
-            tn tnVar = this.F;
-            tnVar.f37477b.N1(tnVar, 0);
-        }
+    public final int d() {
+        return 3;
     }
 }

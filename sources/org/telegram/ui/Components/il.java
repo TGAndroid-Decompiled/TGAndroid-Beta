@@ -1,24 +1,51 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-public final class il extends v4.c0 {
-    public final kg.d0 f36233r;
+import android.widget.TextView;
+public final class il extends jg.s0 {
+    public final int E = 0;
+    public final org.telegram.messenger.fs F;
 
-    public il(kg.d0 d0Var, Context context) {
-        super(context);
-        this.f36233r = d0Var;
+    public il(kl klVar, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
+        super(context, i6Var, z10, false);
+        this.F = klVar;
     }
 
     @Override
-    public final int k(int i7, View view) {
-        int k10 = super.k(i7, view);
-        ml mlVar = (ml) this.f36233r.V;
-        return k10 - (mlVar.M.getPaddingTop() - (mlVar.f37522r0 - mlVar.f37520q0));
+    public final void f() {
+        int i7 = this.E;
+        org.telegram.messenger.fs fsVar = this.F;
+        switch (i7) {
+            case 0:
+                kl klVar = (kl) fsVar;
+                il ilVar = klVar.O;
+                org.telegram.ui.ActionBar.q0 q0Var = klVar.f36798x;
+                if (q0Var != null) {
+                    q0Var.setShowSearchProgress(ilVar.f17506w);
+                }
+                TextView textView = klVar.f36796w;
+                if (textView != null) {
+                    textView.setText(org.telegram.messenger.gd.a0(null, null, 2131747972, ilVar.h));
+                }
+                super.f();
+                return;
+            default:
+                org.telegram.ui.pa0 pa0Var = (org.telegram.ui.pa0) fsVar;
+                org.telegram.ui.ActionBar.g5 g5Var = pa0Var.f50940r;
+                if (g5Var != null) {
+                    g5Var.setShowSearchProgress(pa0Var.T.f17506w);
+                }
+                TextView textView2 = pa0Var.f50935n;
+                if (textView2 != null) {
+                    textView2.setText(org.telegram.messenger.gd.a0(null, null, 2131747972, pa0Var.T.h));
+                }
+                super.f();
+                return;
+        }
     }
 
-    @Override
-    public final int m(int i7) {
-        return super.m(i7) * 4;
+    public il(org.telegram.ui.pa0 pa0Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
+        super(context, i6Var, false, z10);
+        this.F = pa0Var;
     }
 }

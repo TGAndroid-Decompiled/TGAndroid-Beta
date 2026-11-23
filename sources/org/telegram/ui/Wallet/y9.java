@@ -1,70 +1,82 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.GradientDrawable;
-import android.view.MotionEvent;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.nr;
-public final class y9 extends EditTextBoldCursor {
-    public final org.telegram.ui.Components.d6 M1;
-    public final org.telegram.ui.Components.d6 N1;
-    public float O1;
-    public float P1;
-    public final ca Q1;
+import android.animation.ValueAnimator;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.Components.kr;
+public final class y9 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f45455a;
+    public final float f45456b;
+    public final float f45457c;
+    public final float d;
+    public final float f45458e;
+    public final int f45459f;
+    public final KeyEvent.Callback f45460g;
 
-    public y9(ca caVar, Context context) {
-        super(context);
-        this.Q1 = caVar;
-        this.M1 = new org.telegram.ui.Components.d6(this, 180L, nr.h);
-        this.N1 = new org.telegram.ui.Components.d6(this, 320L, ca.T);
-        this.O1 = 1.0f;
+    public y9(KeyEvent.Callback callback, float f10, float f11, float f12, float f13, int i7, int i10) {
+        this.f45455a = i10;
+        this.f45460g = callback;
+        this.f45456b = f10;
+        this.f45457c = f11;
+        this.d = f12;
+        this.f45458e = f13;
+        this.f45459f = i7;
     }
 
     @Override
-    public final void n(Canvas canvas, GradientDrawable gradientDrawable) {
-        gradientDrawable.setCornerRadius(org.telegram.messenger.g0.N(1.5f));
-        int lineBaseline = getLayout().getLineBaseline(0);
-        Rect bounds = gradientDrawable.getBounds();
-        float f10 = lineBaseline;
-        int round = Math.round(((bounds.top - lineBaseline) * this.O1) + f10);
-        int round2 = Math.round(((bounds.bottom - lineBaseline) * this.O1) + f10);
-        int i7 = bounds.left;
-        int width = bounds.width();
-        if (this.P1 > 0.0f) {
-            float f11 = i7;
-            i7 = Math.round((((((((getWidth() + getScrollX()) - getCompoundPaddingLeft()) - getCompoundPaddingRight()) - getPaint().measureText("0")) - width) - f11) * this.P1) + f11);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f45455a) {
+            case 0:
+                da daVar = (da) this.f45460g;
+                daVar.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kr krVar = kr.h;
+                float interpolation = krVar.getInterpolation(floatValue);
+                float interpolation2 = krVar.getInterpolation(Math.min(1.0f, (floatValue * 320.0f) / 120.0f));
+                n7 n7Var = daVar.d;
+                float f10 = this.f45457c;
+                float f11 = this.f45456b;
+                n7Var.setAlpha(((f10 - f11) * interpolation2) + f11);
+                TextView textView = daVar.f44179f;
+                float f12 = this.f45458e;
+                float f13 = this.d;
+                textView.setAlpha(((f12 - f13) * interpolation2) + f13);
+                FrameLayout frameLayout = daVar.f44178e;
+                ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
+                int i7 = this.f45459f;
+                layoutParams.width = Math.round(((daVar.E - i7) * interpolation) + i7);
+                frameLayout.requestLayout();
+                return;
+            default:
+                zh.k kVar = (zh.k) this.f45460g;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kVar.f62136y = floatValue2;
+                float f14 = this.f45456b;
+                float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, f14, floatValue2, f14);
+                zh.j jVar = kVar.E;
+                jVar.setScaleX(z10);
+                jVar.setScaleY(z10);
+                jVar.setTranslationX((1.0f - kVar.f62136y) * this.f45457c);
+                jVar.setTranslationY((1.0f - kVar.f62136y) * this.d);
+                int i10 = (int) ((1.0f - kVar.f62136y) * this.f45458e);
+                kVar.h.N(i10, i10);
+                float a10 = c8.m9.a((kVar.f62136y * 2.0f) - 1.0f, 0.0f, 1.0f);
+                kVar.f62128c.setAlpha((int) (a10 * 255.0f));
+                kVar.d.setAlpha(a10);
+                kVar.f62129e.setAlpha(a10);
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = kVar.f62130f;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - kVar.f62136y) * this.f45459f);
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(a10);
+                BitmapDrawable bitmapDrawable = kVar.f62135x;
+                if (bitmapDrawable != null) {
+                    bitmapDrawable.setAlpha((int) (kVar.f62136y * 255.0f));
+                }
+                kVar.f62131n.setAlpha(a10);
+                return;
         }
-        gradientDrawable.setBounds(i7, round, width + i7, round2);
-        gradientDrawable.draw(canvas);
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.y9.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onSelectionChanged(int i7, int i10) {
-        super.onSelectionChanged(i7, i10);
-        if (i7 != i10) {
-            this.Q1.b();
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        if (motionEvent.getActionMasked() == 0) {
-            this.Q1.b();
-            if (length() == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            this.N1.a(z10);
-        }
-        return super.onTouchEvent(motionEvent);
     }
 }

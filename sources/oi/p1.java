@@ -1,87 +1,44 @@
 package oi;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.ff;
-import org.telegram.messenger.ls;
+import org.telegram.messenger.fj;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.gh;
-import org.telegram.ui.Components.si;
-import org.telegram.ui.Components.ui;
-public final class p1 implements si {
-    public final ui f22265a;
-    public final a2 f22266b;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Components.aj;
+import org.telegram.ui.Components.jl;
+import org.telegram.ui.Components.ti;
+public final class p1 implements jl, aj {
+    public final b2 f22373a;
+    public final ti f22374b;
 
-    public p1(a2 a2Var, ui uiVar) {
-        this.f22266b = a2Var;
-        this.f22265a = uiVar;
+    public p1(b2 b2Var, ti tiVar) {
+        this.f22373a = b2Var;
+        this.f22374b = tiVar;
     }
 
     @Override
-    public final boolean V1() {
-        return false;
-    }
-
-    @Override
-    public final void f0(gh ghVar) {
-        ls.f(this.f22266b.getCurrentAccount()).d(ghVar);
-    }
-
-    @Override
-    public final boolean g0() {
-        return false;
-    }
-
-    @Override
-    public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
-        ui uiVar = this.f22265a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40363e2;
-        a2 a2Var = this.f22266b;
-        if (i7 == 7 || i7 == 8) {
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            s3 s3Var = a2Var.Q;
-            a aVar = s3Var.f22358j4;
-            s3Var.f22358j4 = null;
-            int i12 = 0;
-            while (true) {
-                if (i12 >= selectedPhotosOrder.size()) {
-                    break;
-                }
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i12));
-                if (obj instanceof ff) {
-                    if (aVar != null) {
-                        a2Var.Q.X1(aVar, (ff) obj);
-                    } else {
-                        a2Var.Q.i2((ff) obj);
-                    }
-                } else {
-                    i12++;
-                }
-            }
+    public void d(TLRPC.MessageMedia messageMedia, int i7, boolean z10, int i10, long j3) {
+        b2 b2Var = this.f22373a;
+        b2Var.getClass();
+        ti tiVar = this.f22374b;
+        if (messageMedia != null && messageMedia.geo != null) {
+            TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
+            pageblockmap.geo = messageMedia.geo;
+            pageblockmap.zoom = 15;
+            pageblockmap.f28717w = 600;
+            pageblockmap.h = 400;
+            b2Var.Q.V1(pageblockmap);
+            tiVar.a(true);
+            return;
         }
-        a2Var.Q.f22358j4 = null;
-        uiVar.a(true);
+        tiVar.a(true);
     }
 
     @Override
-    public final void K0() {
-    }
-
-    @Override
-    public final void v0() {
-    }
-
-    @Override
-    public final void R0(Object obj) {
-    }
-
-    @Override
-    public final void h1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void b2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i7, int i10, long j3, boolean z11, long j10) {
+    public void e(ArrayList arrayList, CharSequence charSequence, boolean z10, int i7, int i10, long j3, boolean z11, long j10) {
+        if (!arrayList.isEmpty()) {
+            this.f22373a.Q.e2((fj) arrayList.get(0));
+        }
+        this.f22374b.a(true);
     }
 }

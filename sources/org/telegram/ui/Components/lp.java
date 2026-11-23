@@ -1,276 +1,163 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.net.Uri;
-import android.text.TextUtils;
-import android.view.ViewGroup;
-import java.io.File;
-import java.io.FileInputStream;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class lp extends dk0 {
-    public final org.telegram.ui.ActionBar.h6 f37212c;
-    public ArrayList d;
-    public WeakReference f37213e;
-    public final int h;
-    public final int f37215n;
-    public final long f37216r;
-    public int f37214f = -1;
-    public final HashMap f37217s = new HashMap();
-    public final HashMap f37218w = new HashMap();
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+public class lp extends View {
+    public final CheckBoxBase f37189a;
+    public Drawable f37190b;
+    public int f37191c;
 
-    public lp(int i7, long j3, org.telegram.ui.zm zmVar, int i10) {
-        this.f37215n = i10;
-        this.f37216r = j3;
-        this.f37212c = zmVar;
-        this.h = i7;
+    public lp(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context);
+        this.f37189a = new CheckBoxBase(i7, this, i6Var);
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        this.f37189a.f(-1, z10, z11);
+    }
+
+    public final void b(int i7, int i10, int i11) {
+        this.f37189a.h(i7, i10, i11);
+    }
+
+    public CheckBoxBase getCheckBoxBase() {
+        return this.f37189a;
+    }
+
+    public boolean getDrawUnchecked() {
+        return this.f37189a.f32946z;
+    }
+
+    public float getProgress() {
+        return this.f37189a.getProgress();
     }
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
-        return false;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f37189a.f32933l = true;
     }
 
-    public final void E(int i7) {
-        k01 k01Var;
-        int i10 = this.f37214f;
-        if (i10 == i7) {
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f37189a.f32933l = false;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.f37190b != null) {
+            int measuredWidth = getMeasuredWidth() >> 1;
+            int measuredHeight = getMeasuredHeight() >> 1;
+            Drawable drawable = this.f37190b;
+            drawable.setBounds(org.telegram.ui.Cells.c0.C(2, measuredWidth, drawable), org.telegram.ui.Cells.c0.A(2, measuredHeight, this.f37190b), org.telegram.ui.Cells.c0.y(2, measuredWidth, this.f37190b), org.telegram.ui.Cells.c0.j(2, measuredHeight, this.f37190b));
+            this.f37190b.draw(canvas);
+            Paint paint = new Paint();
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(org.telegram.messenger.g0.L(1.2f));
+            paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.U6, false));
+            canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth - org.telegram.messenger.g0.L(1.5f), paint);
             return;
         }
-        if (i10 >= 0) {
-            g(i10);
-            WeakReference weakReference = this.f37213e;
-            if (weakReference == null) {
-                k01Var = null;
-            } else {
-                k01Var = (k01) weakReference.get();
-            }
-            if (k01Var != null) {
-                k01Var.setSelected(false);
-            }
-        }
-        this.f37214f = i7;
-        g(i7);
+        this.f37189a.a(canvas);
     }
 
     @Override
-    public final int b() {
-        ArrayList arrayList = this.d;
-        if (arrayList == null) {
-            return 0;
-        }
-        return arrayList.size();
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Switch");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.f37189a.f32938q);
     }
 
     @Override
-    public final void t(v4.e1 e1Var, int i7) {
-        boolean z10;
-        boolean z11;
-        FileInputStream fileInputStream;
-        char c10;
-        int h;
-        int intValue;
-        String[] split;
-        k01 k01Var = (k01) e1Var.f59111a;
-        org.telegram.ui.ActionBar.l6 i10 = ((mp) this.d.get(i7)).f37548a.i(((mp) this.d.get(i7)).f37550c);
-        if (i10 != null && i10.f29200b != null && !i10.U && new File(i10.f29200b).exists() && i10.f29200b != null) {
-            try {
-                FileInputStream fileInputStream2 = new FileInputStream(new File(i10.f29200b));
-                int i11 = 0;
-                boolean z12 = false;
-                while (true) {
-                    try {
-                        int read = fileInputStream2.read(org.telegram.ui.Cells.ia.f30835q3);
-                        if (read != -1) {
-                            int i12 = i11;
-                            int i13 = 0;
-                            int i14 = 0;
-                            while (true) {
-                                if (i13 < read) {
-                                    byte[] bArr = org.telegram.ui.Cells.ia.f30835q3;
-                                    if (bArr[i13] == 10) {
-                                        int i15 = i13 - i14;
-                                        int i16 = i15 + 1;
-                                        String str = new String(bArr, i14, i15, "UTF-8");
-                                        if (str.startsWith("WLS=")) {
-                                            String substring = str.substring(4);
-                                            Uri parse = Uri.parse(substring);
-                                            i10.f29205e = parse.getQueryParameter("slug");
-                                            File h7 = org.telegram.messenger.t0.h();
-                                            StringBuilder sb2 = new StringBuilder();
-                                            fileInputStream = fileInputStream2;
-                                            try {
-                                                sb2.append(Utilities.a(substring));
-                                                sb2.append(".wp");
-                                                i10.f29202c = new File(h7, sb2.toString()).getAbsolutePath();
-                                                String queryParameter = parse.getQueryParameter("mode");
-                                                if (queryParameter != null && (split = queryParameter.toLowerCase().split(" ")) != null && split.length > 0) {
-                                                    int i17 = 0;
-                                                    while (true) {
-                                                        if (i17 >= split.length) {
-                                                            break;
-                                                        } else if ("blur".equals(split[i17])) {
-                                                            i10.h = true;
-                                                            break;
-                                                        } else {
-                                                            i17++;
-                                                        }
-                                                    }
-                                                }
-                                                if (!TextUtils.isEmpty(parse.getQueryParameter("pattern"))) {
-                                                    try {
-                                                        String queryParameter2 = parse.getQueryParameter("bg_color");
-                                                        if (!TextUtils.isEmpty(queryParameter2)) {
-                                                            i10.f29215r = Integer.parseInt(queryParameter2.substring(0, 6), 16) | (-16777216);
-                                                            if (queryParameter2.length() >= 13 && org.telegram.messenger.g0.S1(queryParameter2.charAt(6))) {
-                                                                i10.f29216s = Integer.parseInt(queryParameter2.substring(7, 13), 16) | (-16777216);
-                                                            }
-                                                            if (queryParameter2.length() >= 20 && org.telegram.messenger.g0.S1(queryParameter2.charAt(13))) {
-                                                                i10.f29217w = Integer.parseInt(queryParameter2.substring(14, 20), 16) | (-16777216);
-                                                            }
-                                                            if (queryParameter2.length() == 27 && org.telegram.messenger.g0.S1(queryParameter2.charAt(20))) {
-                                                                i10.f29218x = Integer.parseInt(queryParameter2.substring(21), 16) | (-16777216);
-                                                            }
-                                                        }
-                                                    } catch (Exception unused) {
-                                                    }
-                                                    try {
-                                                        String queryParameter3 = parse.getQueryParameter("rotation");
-                                                        if (!TextUtils.isEmpty(queryParameter3)) {
-                                                            i10.f29219y = Utilities.z(queryParameter3).intValue();
-                                                        }
-                                                    } catch (Exception unused2) {
-                                                    }
-                                                    String queryParameter4 = parse.getQueryParameter("intensity");
-                                                    if (!TextUtils.isEmpty(queryParameter4)) {
-                                                        i10.E = Utilities.z(queryParameter4).intValue();
-                                                    }
-                                                    if (i10.E == 0) {
-                                                        i10.E = 50;
-                                                    }
-                                                }
-                                                c10 = 65535;
-                                                i14 += i16;
-                                                i12 += i16;
-                                            } catch (Throwable th2) {
-                                                th = th2;
-                                                Throwable th3 = th;
-                                                fileInputStream.close();
-                                                throw th3;
-                                            }
-                                        } else {
-                                            fileInputStream = fileInputStream2;
-                                            if (str.startsWith("WPS")) {
-                                                i10.Q = i16 + i12;
-                                                z12 = true;
-                                                break;
-                                            }
-                                            int indexOf = str.indexOf(61);
-                                            c10 = 65535;
-                                            if (indexOf != -1 && ((h = org.telegram.ui.ActionBar.v4.h(str.substring(0, indexOf))) == org.telegram.ui.ActionBar.m6.f29610ra || h == org.telegram.ui.ActionBar.m6.f29611rb || h == org.telegram.ui.ActionBar.m6.Ee || h == org.telegram.ui.ActionBar.m6.Fe || h == org.telegram.ui.ActionBar.m6.Ge || h == org.telegram.ui.ActionBar.m6.He)) {
-                                                String substring2 = str.substring(indexOf + 1);
-                                                if (substring2.length() > 0 && substring2.charAt(0) == '#') {
-                                                    try {
-                                                        intValue = Color.parseColor(substring2);
-                                                    } catch (Exception unused3) {
-                                                        intValue = Utilities.z(substring2).intValue();
-                                                    }
-                                                } else {
-                                                    intValue = Utilities.z(substring2).intValue();
-                                                }
-                                                if (h == org.telegram.ui.ActionBar.m6.f29610ra) {
-                                                    i10.R = intValue;
-                                                } else if (h == org.telegram.ui.ActionBar.m6.f29611rb) {
-                                                    i10.S = intValue;
-                                                } else if (h == org.telegram.ui.ActionBar.m6.Ee) {
-                                                    i10.M = intValue;
-                                                } else if (h == org.telegram.ui.ActionBar.m6.Fe) {
-                                                    i10.N = intValue;
-                                                } else if (h == org.telegram.ui.ActionBar.m6.Ge) {
-                                                    i10.O = intValue;
-                                                } else if (h == org.telegram.ui.ActionBar.m6.He) {
-                                                    i10.P = intValue;
-                                                }
-                                            }
-                                            i14 += i16;
-                                            i12 += i16;
-                                        }
-                                    } else {
-                                        fileInputStream = fileInputStream2;
-                                        c10 = 65535;
-                                    }
-                                    i13++;
-                                    fileInputStream2 = fileInputStream;
-                                } else {
-                                    fileInputStream = fileInputStream2;
-                                    break;
-                                }
-                            }
-                            if (z12 || i11 == i12) {
-                                break;
-                            }
-                            fileInputStream.getChannel().position(i12);
-                            i11 = i12;
-                            fileInputStream2 = fileInputStream;
-                        } else {
-                            fileInputStream = fileInputStream2;
-                            break;
-                        }
-                    } catch (Throwable th4) {
-                        th = th4;
-                        fileInputStream = fileInputStream2;
-                    }
-                }
-                fileInputStream.close();
-            } catch (Throwable th5) {
-                org.telegram.messenger.a8.g(th5, true);
-            }
-            if (i10.f29202c != null && !i10.f29207f && !new File(i10.f29202c).exists()) {
-                HashMap hashMap = this.f37218w;
-                if (!hashMap.containsKey(i10)) {
-                    hashMap.put(i10, i10.f29205e);
-                    TL_account.getWallPaper getwallpaper = new TL_account.getWallPaper();
-                    TLRPC.TL_inputWallPaperSlug tL_inputWallPaperSlug = new TLRPC.TL_inputWallPaperSlug();
-                    tL_inputWallPaperSlug.slug = i10.f29205e;
-                    getwallpaper.wallpaper = tL_inputWallPaperSlug;
-                    ConnectionsManager.getInstance(i10.F).sendRequest(getwallpaper, new org.telegram.ui.u7(15, this, i10));
-                }
-            } else {
-                i10.U = true;
-            }
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        this.f37189a.e(0, 0, i11 - i7, i12 - i10);
+    }
+
+    public void setCirclePaintProvider(org.telegram.messenger.i9 i9Var) {
+        CheckBoxBase checkBoxBase = this.f37189a;
+        if (checkBoxBase.G == i9Var) {
+            return;
         }
-        mp mpVar = (mp) this.d.get(i7);
-        mp mpVar2 = k01Var.H;
-        if (mpVar2 != null && ig.b.a(mpVar2.f37548a.f29951c, mpVar.f37548a.f29951c) && !org.telegram.ui.cx.C4 && k01Var.W == mpVar.f37550c) {
-            z10 = true;
+        checkBoxBase.G = i9Var;
+        checkBoxBase.b();
+    }
+
+    public void setDrawBackgroundAsArc(int i7) {
+        this.f37189a.d(i7);
+    }
+
+    public void setDrawUnchecked(boolean z10) {
+        this.f37189a.k(z10);
+    }
+
+    public void setDuration(long j3) {
+        this.f37189a.H = j3;
+    }
+
+    @Override
+    public void setEnabled(boolean z10) {
+        CheckBoxBase checkBoxBase = this.f37189a;
+        if (checkBoxBase.f32932k != z10) {
+            checkBoxBase.f32932k = z10;
+            checkBoxBase.b();
+        }
+        super.setEnabled(z10);
+    }
+
+    public void setForbidden(boolean z10) {
+        CheckBoxBase checkBoxBase = this.f37189a;
+        if (checkBoxBase.f32935n == z10) {
+            return;
+        }
+        checkBoxBase.f32935n = z10;
+        checkBoxBase.b();
+    }
+
+    public void setIcon(int i7) {
+        if (i7 != this.f37191c) {
+            this.f37191c = i7;
+            if (i7 == 0) {
+                this.f37190b = null;
+                return;
+            }
+            Drawable mutate = getContext().getDrawable(i7).mutate();
+            this.f37190b = mutate;
+            org.telegram.ui.ActionBar.u6.x(this, mutate, org.telegram.ui.ActionBar.n6.U6, null, PorterDuff.Mode.MULTIPLY);
+        }
+    }
+
+    public void setNum(int i7) {
+        String str;
+        CheckBoxBase checkBoxBase = this.f37189a;
+        if (i7 >= 0) {
+            checkBoxBase.getClass();
+            str = "" + (i7 + 1);
+        } else if (checkBoxBase.f32937p != null) {
+            str = checkBoxBase.C;
         } else {
-            z10 = false;
+            str = null;
         }
-        k01Var.setFocusable(true);
-        k01Var.setEnabled(true);
-        org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29438i5, k01Var, null);
-        k01Var.f(mpVar, this.f37216r, z10);
-        if (i7 == this.f37214f) {
-            z11 = true;
-        } else {
-            z11 = false;
+        String str2 = checkBoxBase.C;
+        if (str2 == null) {
+            if (str == null) {
+                return;
+            }
+        } else if (str2.equals(str)) {
+            return;
         }
-        k01Var.g(z11, z10);
-        if (i7 == this.f37214f) {
-            this.f37213e = new WeakReference(k01Var);
-        }
+        checkBoxBase.C = str;
+        checkBoxBase.b();
     }
 
-    @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        Context context = viewGroup.getContext();
-        org.telegram.ui.ActionBar.h6 h6Var = this.f37212c;
-        return new v4.e1(new k01(this.h, this.f37215n, context, h6Var));
+    public void setProgressDelegate(mp mpVar) {
+        this.f37189a.D = mpVar;
     }
 }

@@ -1,46 +1,62 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Rect;
-public final class jq0 extends org.telegram.ui.nx0 {
-    public final jt0 f36540x;
+import android.widget.ImageView;
+public final class jq0 extends ds0 {
+    public final it0 Q;
 
-    public jq0(jt0 jt0Var, Context context, fi.d6 d6Var, iq0 iq0Var) {
-        super(context, d6Var, iq0Var);
-        this.f36540x = jt0Var;
+    public jq0(it0 it0Var, Context context) {
+        super(context);
+        this.Q = it0Var;
     }
 
     @Override
-    public final void b() {
-        nq0 nq0Var;
-        Rect rect = this.f50357s;
-        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
-        setClipBounds(rect);
-        invalidate();
-        jt0 jt0Var = this.f36540x;
-        ds0[] ds0VarArr = jt0Var.f36605n0;
-        if (ds0VarArr != null) {
-            for (ds0 ds0Var : ds0VarArr) {
-                if (ds0Var != null && (nq0Var = ds0Var.h) != null) {
-                    int paddingTop = nq0Var.getPaddingTop();
-                    nq0 nq0Var2 = ds0Var.h;
-                    int paddingLeft = nq0Var2.getPaddingLeft();
-                    int j02 = jt0Var.j0(ds0Var.F);
-                    int paddingRight = ds0Var.h.getPaddingRight();
-                    nq0 nq0Var3 = ds0Var.h;
-                    int i02 = jt0Var.i0(jt0Var.I0());
-                    nq0Var3.f34264i3 = i02;
-                    nq0Var2.setPadding(paddingLeft, j02, paddingRight, i02);
-                    int paddingTop2 = paddingTop - ds0Var.h.getPaddingTop();
-                    if (paddingTop2 != 0) {
-                        org.telegram.messenger.g0.J(ds0Var.h, new qp0(ds0Var, paddingTop2, 2));
-                    }
-                }
-                if (ds0Var != null && ds0Var.f34542s != null) {
-                    jt0Var.K1(ds0Var);
+    public final void setTranslationX(float f10) {
+        ds0 ds0Var;
+        int i7;
+        float translationX = getTranslationX();
+        super.setTranslationX(f10);
+        it0 it0Var = this.Q;
+        ds0[] ds0VarArr = it0Var.f36133n0;
+        if (ds0VarArr[0] == this) {
+            float f11 = translationX - f10;
+            ri.q qVar = it0Var.f36118h2;
+            if (qVar != null) {
+                float f12 = it0Var.f36121i2 + f11;
+                it0Var.f36121i2 = f12;
+                int i10 = (int) f12;
+                if (i10 != 0) {
+                    it0Var.f36121i2 = f12 - i10;
+                    qVar.h(i10, 0);
                 }
             }
         }
-        jt0Var.U();
+        if (it0Var.f36123j1 && (ds0Var = ds0VarArr[0]) == this) {
+            float abs = Math.abs(ds0Var.getTranslationX()) / ds0VarArr[0].getMeasuredWidth();
+            it0Var.l1(abs, ds0VarArr[1].F);
+            if (it0Var.I()) {
+                int i11 = it0Var.A0;
+                if (i11 == 2) {
+                    it0Var.f36145r0 = 1.0f - abs;
+                } else if (i11 == 1) {
+                    it0Var.f36145r0 = abs;
+                }
+                it0Var.M1(abs);
+                float k02 = it0Var.k0(abs);
+                it0Var.f36149s0 = k02;
+                ImageView imageView = it0Var.f36154u0;
+                if (k02 != 0.0f && it0Var.I() && !it0Var.A0()) {
+                    i7 = 0;
+                } else {
+                    i7 = 4;
+                }
+                imageView.setVisibility(i7);
+            } else {
+                it0Var.f36145r0 = 0.0f;
+            }
+            it0Var.I1(false);
+        }
+        it0Var.S();
+        it0Var.U();
     }
 }

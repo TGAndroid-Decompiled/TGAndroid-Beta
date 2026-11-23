@@ -1,6 +1,6 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.io.Serializable;
 public interface u10 {
-    void i(Object obj, TLRPC.Document document, Boolean bool);
+    void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2);
 }

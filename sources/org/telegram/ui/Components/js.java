@@ -1,43 +1,64 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_bots;
-public final class js {
-    public final int f36546a;
-    public final gs f36547b;
-    public boolean f36548c;
-    public boolean d;
-    public boolean f36549e;
-    public long f36550f;
-    public String f36551g;
-    public final ArrayList h = new ArrayList();
-    public boolean f36552i = false;
+import org.telegram.tgnet.TLRPC;
+public abstract class js extends b51 {
+    public final int Q;
+    public final int R;
+    public final ArrayList S;
+    public final ArrayList T;
+    public final ArrayList U;
+    public final ArrayList V;
+    public boolean W;
+    public boolean X;
+    public final ArrayList Y;
+    public boolean Z;
+    public boolean f36503a0;
+    public boolean f36504b0;
+    public int f36505c0;
+    public int f36506d0;
+    public String f36507e0;
+    public final lo f36508f0;
 
-    public js(int i7, gs gsVar) {
-        this.f36546a = i7;
-        this.f36547b = gsVar;
+    public js(ek0 ek0Var, Context context, int i7, int i10) {
+        super(ek0Var, context, i7, 0, false, null, null);
+        this.S = new ArrayList();
+        this.T = new ArrayList();
+        this.U = new ArrayList();
+        this.V = new ArrayList();
+        this.Y = new ArrayList();
+        om0 om0Var = (om0) this;
+        this.f36508f0 = new lo(om0Var, 8);
+        this.f33633w = new d(om0Var, 10);
+        this.Q = i7;
+        this.R = i10;
+        O(false);
     }
 
-    public final void a() {
-        if (!this.f36548c && !this.f36549e) {
-            this.f36548c = true;
-            boolean z10 = this.d;
-            int i7 = this.f36546a;
-            if (!z10) {
-                is isVar = new is(this, 0);
-                org.telegram.messenger.ur a02 = org.telegram.messenger.ur.a0(i7);
-                a02.f27214a.c(new g(this, a02, isVar, 10));
-                return;
+    public final void W(boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.js.W(boolean):void");
+    }
+
+    public final void X() {
+        ArrayList arrayList = new ArrayList();
+        int i7 = this.Q;
+        ArrayList arrayList2 = org.telegram.messenger.mp.u1(i7).f25904y;
+        int size = arrayList2.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList2.get(i10);
+            i10++;
+            TLRPC.Chat O0 = org.telegram.messenger.mp.u1(i7).O0(Long.valueOf(-((TLRPC.Dialog) obj).f28496id));
+            if (O0 != null && org.telegram.messenger.v3.V(O0) && org.telegram.messenger.v3.t0(O0) && !org.telegram.messenger.v3.r0(O0)) {
+                arrayList.add(O0);
+                if (arrayList.size() >= 100) {
+                    break;
+                }
             }
-            TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();
-            getpopularappbots.limit = 20;
-            String str = this.f36551g;
-            if (str == null) {
-                str = "";
-            }
-            getpopularappbots.offset = str;
-            ConnectionsManager.getInstance(i7).sendRequest(getpopularappbots, new f2(this, 2));
         }
+        ArrayList arrayList3 = this.Y;
+        arrayList3.clear();
+        arrayList3.addAll(arrayList);
     }
 }

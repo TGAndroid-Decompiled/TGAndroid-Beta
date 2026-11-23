@@ -1,6 +1,6 @@
 package ai;
 
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.tgnet.tl.TL_aicompose;
 public final class c {
     public final String f1142a;
@@ -17,7 +17,7 @@ public final class c {
 
     public final String a() {
         if (this.d) {
-            return hd.N0(2131745060, null);
+            return gd.N0(2131745060, null);
         }
         return this.f1142a;
     }

@@ -8,26 +8,26 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.util.HashSet;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.tgnet.TLRPC;
-public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public org.telegram.ui.Components.q9 f32502a;
-    public org.telegram.ui.ActionBar.m5 f32503b;
-    public org.telegram.ui.ActionBar.m5 f32504c;
+public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+    public org.telegram.ui.Components.p9 f32590a;
+    public org.telegram.ui.ActionBar.n5 f32591b;
+    public org.telegram.ui.ActionBar.n5 f32592c;
     public ImageView d;
-    public org.telegram.ui.Components.b9 f32505e;
-    public TLRPC.User f32506f;
+    public org.telegram.ui.Components.a9 f32593e;
+    public TLRPC.User f32594f;
     public Paint h;
-    public int f32507n;
-    public boolean f32508r;
-    public int f32509s;
+    public int f32595n;
+    public boolean f32596r;
+    public int f32597s;
 
     public final void a(int i7, int i10) {
-        this.f32507n = i7;
+        this.f32595n = i7;
         ImageView imageView = this.d;
         imageView.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
-        this.f32504c.setTextColor(i10);
-        org.telegram.ui.ActionBar.m6.H1(imageView.getDrawable(), i10 & 620756991, true);
+        this.f32592c.setTextColor(i10);
+        org.telegram.ui.ActionBar.n6.H1(imageView.getDrawable(), i10 & 620756991, true);
     }
 
     @Override
@@ -35,8 +35,8 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
         Canvas canvas2;
         float L;
         int i7;
-        if (this.f32508r) {
-            if (hd.f24408a0) {
+        if (this.f32596r) {
+            if (gd.f24314a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(68.0f);
@@ -44,7 +44,7 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24408a0) {
+            if (gd.f24314a0) {
                 i7 = org.telegram.messenger.g0.L(68.0f);
             } else {
                 i7 = 0;
@@ -58,11 +58,11 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
     }
 
     public CharSequence getName() {
-        return this.f32503b.getText();
+        return this.f32591b.getText();
     }
 
     public TLRPC.User getUser() {
-        return this.f32506f;
+        return this.f32594f;
     }
 
     @Override
@@ -76,7 +76,7 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
     }
 
     public void setDrawDivider(boolean z10) {
-        this.f32508r = z10;
+        this.f32596r = z10;
         invalidate();
     }
 
@@ -84,10 +84,10 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
     public final void updateColors() {
         int x02;
         try {
-            this.h.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Xg, false));
-            if (this.d != null && this.f32504c != null && (x02 = org.telegram.ui.ActionBar.m6.x0(null, this.f32507n, false)) != this.f32509s) {
-                this.f32509s = x02;
-                a(this.f32507n, x02);
+            this.h.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Xg, false));
+            if (this.d != null && this.f32592c != null && (x02 = org.telegram.ui.ActionBar.n6.x0(null, this.f32595n, false)) != this.f32597s) {
+                this.f32597s = x02;
+                a(this.f32595n, x02);
             }
             invalidate();
         } catch (Exception e10) {

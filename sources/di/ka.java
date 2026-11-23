@@ -9,19 +9,19 @@ import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.widget.LinearLayout;
 public final class ka extends LinearLayout {
-    public final Path f9195a;
-    public final Matrix f9196b;
-    public final RadialGradient f9197c;
+    public final Path f9191a;
+    public final Matrix f9192b;
+    public final RadialGradient f9193c;
     public final Paint d;
-    public final org.telegram.ui.Components.n5 f9198e;
+    public final org.telegram.ui.Components.m5 f9194e;
 
-    public ka(Context context, Matrix matrix, RadialGradient radialGradient, Paint paint, org.telegram.ui.Components.n5 n5Var) {
+    public ka(Context context, Matrix matrix, RadialGradient radialGradient, Paint paint, org.telegram.ui.Components.m5 m5Var) {
         super(context);
-        this.f9196b = matrix;
-        this.f9197c = radialGradient;
+        this.f9192b = matrix;
+        this.f9193c = radialGradient;
         this.d = paint;
-        this.f9198e = n5Var;
-        this.f9195a = new Path();
+        this.f9194e = m5Var;
+        this.f9191a = new Path();
     }
 
     @Override
@@ -29,19 +29,19 @@ public final class ka extends LinearLayout {
         float L = org.telegram.messenger.g0.L(10.0f);
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(0.0f, org.telegram.messenger.g0.L(2.0f) + 1, getWidth(), getHeight() + L);
-        Path path = this.f9195a;
+        Path path = this.f9191a;
         path.rewind();
         path.addRoundRect(rectF, L, L, Path.Direction.CW);
         canvas.save();
         canvas.clipPath(path);
-        Matrix matrix = this.f9196b;
+        Matrix matrix = this.f9192b;
         matrix.reset();
         matrix.postTranslate(getWidth() / 2.0f, org.telegram.messenger.g0.L(100.0f));
-        this.f9197c.setLocalMatrix(matrix);
+        this.f9193c.setLocalMatrix(matrix);
         canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.d);
         canvas.save();
         canvas.translate(getWidth() / 2.0f, org.telegram.messenger.g0.L(100.0f));
-        v0.a(canvas, 0, this.f9198e, getWidth(), org.telegram.messenger.g0.L(180.0f), 1.0f, 1.0f);
+        v0.a(canvas, 0, this.f9194e, getWidth(), org.telegram.messenger.g0.L(180.0f), 1.0f, 1.0f);
         canvas.restore();
         super.dispatchDraw(canvas);
         canvas.restore();
@@ -50,12 +50,12 @@ public final class ka extends LinearLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f9198e.a();
+        this.f9194e.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f9198e.b();
+        this.f9194e.b();
     }
 }

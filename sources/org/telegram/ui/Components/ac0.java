@@ -1,20 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-public final class ac0 {
-    public Paint f33455a;
-    public Paint f33456b;
-    public View f33457c;
-    public l2.x d;
-    public long f33458e;
-    public RectF f33459f;
-    public float f33460g;
-    public float h;
-    public float f33461i;
-    public Path f33462j;
-    public boolean f33463k;
-    public boolean f33464l;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class ac0 extends tg.f {
+    public final int f33459h2;
+
+    public ac0(Context context, int i7) {
+        super(context);
+        this.f33459h2 = i7;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f33459h2) {
+            case 0:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f33459h2) {
+            case 0:
+                return false;
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
 }

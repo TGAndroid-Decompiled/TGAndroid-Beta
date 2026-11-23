@@ -2,7 +2,7 @@ package kf;
 
 import c8.g1;
 public final class q extends n {
-    public int f18233g;
+    public int f18332g;
     public char h;
 
     @Override

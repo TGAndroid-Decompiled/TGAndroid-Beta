@@ -9,16 +9,16 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.util.SparseArray;
 public final class rf {
-    public final ChatActivityEnterView f39132a;
+    public final ChatActivityEnterView f39289a;
 
     public rf(ChatActivityEnterView chatActivityEnterView) {
-        this.f39132a = chatActivityEnterView;
+        this.f39289a = chatActivityEnterView;
     }
 
     public final void a(Canvas canvas) {
         org.telegram.ui.bj bjVar;
-        ChatActivityEnterView chatActivityEnterView = this.f39132a;
-        Drawable backgroundImage = chatActivityEnterView.f32557c2.getBackgroundImage();
+        ChatActivityEnterView chatActivityEnterView = this.f39289a;
+        Drawable backgroundImage = chatActivityEnterView.f32655c2.getBackgroundImage();
         if (backgroundImage != null) {
             backgroundImage.draw(canvas);
         }
@@ -39,52 +39,52 @@ public final class rf {
     public final void b() {
         boolean z10;
         Editable text;
-        ChatActivityEnterView chatActivityEnterView = this.f39132a;
-        fe feVar = chatActivityEnterView.R0;
-        if (feVar != null) {
-            feVar.invalidate();
+        ChatActivityEnterView chatActivityEnterView = this.f39289a;
+        ge geVar = chatActivityEnterView.R0;
+        if (geVar != null) {
+            geVar.invalidate();
         }
-        chatActivityEnterView.o2(chatActivityEnterView.M6);
-        ai.k0 k0Var = chatActivityEnterView.f32611j1;
+        chatActivityEnterView.q2(chatActivityEnterView.M6);
+        ai.l0 l0Var = chatActivityEnterView.f32709j1;
         boolean z11 = true;
-        if (k0Var != null && k0Var.n()) {
+        if (l0Var != null && l0Var.l()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        gf gfVar = chatActivityEnterView.F0;
-        if (gfVar == null) {
+        hf hfVar = chatActivityEnterView.F0;
+        if (hfVar == null) {
             text = null;
         } else {
-            text = gfVar.getText();
+            text = hfVar.getText();
         }
-        gf gfVar2 = chatActivityEnterView.F0;
-        if (gfVar2 == null || gfVar2.getLineCount() <= 2 || text == null || TextUtils.isEmpty(text.toString().trim())) {
+        hf hfVar2 = chatActivityEnterView.F0;
+        if (hfVar2 == null || hfVar2.getLineCount() <= 2 || text == null || TextUtils.isEmpty(text.toString().trim())) {
             z11 = false;
         }
-        chatActivityEnterView.Z1(z11);
-        chatActivityEnterView.f32637m6 = z10;
+        chatActivityEnterView.b2(z11);
+        chatActivityEnterView.f32735m6 = z10;
         org.telegram.ui.bn bnVar = chatActivityEnterView.F3;
         if (bnVar != null) {
             bnVar.dd();
-            ax0 ax0Var = bnVar.f46141s1;
-            if (ax0Var != null) {
-                ax0Var.e();
+            zw0 zw0Var = bnVar.f46356s1;
+            if (zw0Var != null) {
+                zw0Var.e();
             }
         }
     }
 
     public final void c(float f10, int i7) {
-        ChatActivityEnterView chatActivityEnterView = this.f39132a;
-        fe feVar = chatActivityEnterView.R0;
+        ChatActivityEnterView chatActivityEnterView = this.f39289a;
+        ge geVar = chatActivityEnterView.R0;
         SparseArray sparseArray = chatActivityEnterView.C1;
-        int i10 = org.telegram.ui.ActionBar.m6.Nl;
-        int i11 = ChatActivityEnterView.f32535s7;
+        int i10 = org.telegram.ui.ActionBar.n6.Nl;
+        int i11 = ChatActivityEnterView.f32633s7;
         int G0 = chatActivityEnterView.G0(i10);
         if (f10 <= 0.004f) {
             if (chatActivityEnterView.B1 != 0) {
                 chatActivityEnterView.B1 = 0;
-                feVar.setColorFilter(new PorterDuffColorFilter(G0, PorterDuff.Mode.SRC_IN));
+                geVar.setColorFilter(new PorterDuffColorFilter(G0, PorterDuff.Mode.SRC_IN));
                 return;
             }
             return;
@@ -102,13 +102,13 @@ public final class rf {
             }
             sparseArray.put(f11, colorFilter);
         }
-        feVar.setColorFilter(colorFilter);
+        geVar.setColorFilter(colorFilter);
     }
 
     public final void d(float f10) {
         boolean z10;
-        ChatActivityEnterView chatActivityEnterView = this.f39132a;
-        chatActivityEnterView.f32724y1 = f10;
+        ChatActivityEnterView chatActivityEnterView = this.f39289a;
+        chatActivityEnterView.f32822y1 = f10;
         if (f10 >= 1.0f || f10 <= 0.0f) {
             Editable text = chatActivityEnterView.F0.getText();
             if (chatActivityEnterView.F0.getLineCount() > 2 && text != null && !TextUtils.isEmpty(text.toString().trim())) {
@@ -116,17 +116,17 @@ public final class rf {
             } else {
                 z10 = false;
             }
-            chatActivityEnterView.T1(z10);
+            chatActivityEnterView.V1(z10);
         }
-        chatActivityEnterView.m2();
-        org.telegram.ui.d61 d61Var = chatActivityEnterView.f32582f2;
-        if (d61Var != null) {
-            d61Var.invalidate();
+        chatActivityEnterView.o2();
+        org.telegram.ui.b61 b61Var = chatActivityEnterView.f32680f2;
+        if (b61Var != null) {
+            b61Var.invalidate();
         }
-        ie ieVar = chatActivityEnterView.f32598h2;
-        if (ieVar != null) {
-            ieVar.invalidate();
+        je jeVar = chatActivityEnterView.f32696h2;
+        if (jeVar != null) {
+            jeVar.invalidate();
         }
-        chatActivityEnterView.f32664q2.setAlpha((1.0f - f10) * chatActivityEnterView.f32731z1);
+        chatActivityEnterView.f32762q2.setAlpha((1.0f - f10) * chatActivityEnterView.f32829z1);
     }
 }

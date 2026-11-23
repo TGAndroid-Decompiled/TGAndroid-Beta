@@ -1,37 +1,37 @@
 package p4;
 
-import org.telegram.messenger.qe;
+import org.telegram.messenger.pe;
 public final class h0 implements Runnable {
-    public final int f55277a;
-    public final m0 f55278b;
-    public final i1 f55279c;
+    public final int f55398a;
+    public final n0 f55399b;
+    public final h1 f55400c;
 
-    public h0(m0 m0Var, i1 i1Var, int i7) {
-        this.f55277a = i7;
-        this.f55278b = m0Var;
-        this.f55279c = i1Var;
+    public h0(n0 n0Var, h1 h1Var, int i7) {
+        this.f55398a = i7;
+        this.f55399b = n0Var;
+        this.f55400c = h1Var;
     }
 
     @Override
     public final void run() {
         e2.l1 l1Var;
-        switch (this.f55277a) {
+        switch (this.f55398a) {
             case 0:
-                m0 m0Var = this.f55278b;
-                q4.q qVar = m0Var.f55342n;
-                i1 i1Var = this.f55279c;
-                qVar.f(m0Var.h0(i1Var));
-                qe qeVar = m0Var.f55338j;
-                if (i1Var.t().a(17)) {
-                    l1Var = i1Var.y0();
+                n0 n0Var = this.f55399b;
+                q4.q qVar = n0Var.f55487n;
+                h1 h1Var = this.f55400c;
+                qVar.f(n0Var.h0(h1Var));
+                pe peVar = n0Var.f55483j;
+                if (h1Var.u().a(17)) {
+                    l1Var = h1Var.z0();
                 } else {
-                    l1Var = e2.l1.f10500a;
+                    l1Var = e2.l1.f10498a;
                 }
-                qeVar.w(l1Var);
+                peVar.w(l1Var);
                 return;
             default:
-                m0 m0Var2 = this.f55278b;
-                m0Var2.f55342n.f(m0Var2.h0(this.f55279c));
+                n0 n0Var2 = this.f55399b;
+                n0Var2.f55487n.f(n0Var2.h0(this.f55400c));
                 return;
         }
     }

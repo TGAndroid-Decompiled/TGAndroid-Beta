@@ -4,8 +4,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.JsPromptResult;
 import android.widget.TextView;
-import org.telegram.messenger.y10;
-import org.telegram.ui.Components.ot;
+import org.telegram.messenger.w10;
+import org.telegram.ui.Components.mt;
 public final class x5 implements TextView.OnEditorActionListener {
     public final int f4215a;
     public final Object f4216b;
@@ -31,7 +31,7 @@ public final class x5 implements TextView.OnEditorActionListener {
                 }
                 String obj = w5Var.getText().toString();
                 if (obj.length() > 0 && obj.length() <= 12) {
-                    ((y10) this.f4217c).a(obj);
+                    ((w10) this.f4217c).a(obj);
                     org.telegram.ui.ActionBar.t1 t1Var = ((org.telegram.ui.ActionBar.t1[]) this.d)[0];
                     if (t1Var != null) {
                         t1Var.dismiss();
@@ -51,7 +51,7 @@ public final class x5 implements TextView.OnEditorActionListener {
                 boolean[] zArr = (boolean[]) this.f4216b;
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    ((JsPromptResult) this.f4217c).confirm(((ot) this.d).getText().toString());
+                    ((JsPromptResult) this.f4217c).confirm(((mt) this.d).getText().toString());
                     ((org.telegram.ui.ActionBar.t1) this.f4218e).dismiss();
                 }
                 return true;

@@ -3,13 +3,13 @@ package bi;
 import android.text.TextUtils;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import org.telegram.messenger.np;
-import org.telegram.messenger.ur;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.tr;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.gf;
+import org.telegram.ui.Components.hf;
 import org.telegram.ui.Components.mg;
 public final class t4 implements Runnable {
     public final int f4074a = 1;
@@ -20,8 +20,8 @@ public final class t4 implements Runnable {
     public final Object f4078f;
     public final Object h;
 
-    public t4(ur urVar, long j3, ArrayList arrayList, boolean z10, int i7, int i10) {
-        this.f4078f = urVar;
+    public t4(tr trVar, long j3, ArrayList arrayList, boolean z10, int i7, int i10) {
+        this.f4078f = trVar;
         this.f4075b = j3;
         this.h = arrayList;
         this.f4076c = z10;
@@ -43,8 +43,8 @@ public final class t4 implements Runnable {
                 int i10 = this.d;
                 if (z11) {
                     TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    np.u1(i10).f4(tL_payments_uniqueStarGift.users, false);
-                    np.u1(i10).Z3(tL_payments_uniqueStarGift.chats, false);
+                    mp.u1(i10).f4(tL_payments_uniqueStarGift.users, false);
+                    mp.u1(i10).Z3(tL_payments_uniqueStarGift.chats, false);
                     TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
                     if (starGift instanceof TL_stars.TL_starGiftUnique) {
                         tL_starGiftUnique = (TL_stars.TL_starGiftUnique) starGift;
@@ -54,7 +54,7 @@ public final class t4 implements Runnable {
                             org.telegram.messenger.g0.h3(new r4(i10, i7, j3, str, z10), a5.f3354a[i7]);
                             return;
                         } else if (tL_starGiftUnique != null) {
-                            org.telegram.ui.Wallet.u0.D(i10).B().i(tL_starGiftUnique);
+                            org.telegram.ui.Wallet.v0.D(i10).B().i(tL_starGiftUnique);
                             di.y8.y(i10, false).a0(tL_starGiftUnique);
                             ArrayList arrayList = m8.U;
                             if (!TextUtils.isEmpty(tL_starGiftUnique.slug)) {
@@ -83,9 +83,9 @@ public final class t4 implements Runnable {
                                                             a8Var.n(tL_starGiftUnique2);
                                                         } else {
                                                             arrayList3.set(i12, tL_starGiftUnique);
-                                                            y10 y10Var = a8Var.f3363c;
-                                                            if (y10Var != null) {
-                                                                y10Var.a(Boolean.FALSE);
+                                                            w10 w10Var = a8Var.f3363c;
+                                                            if (w10Var != null) {
+                                                                w10Var.a(Boolean.FALSE);
                                                             }
                                                         }
                                                     }
@@ -110,20 +110,20 @@ public final class t4 implements Runnable {
                 org.telegram.messenger.g0.h3(new r4(i10, i7, j3, str, z10), a5.f3354a[i7]);
                 return;
             case 1:
-                ((ur) this.f4078f).Q0(this.d, this.f4077e, this.f4075b, (ArrayList) this.h, this.f4076c);
+                ((tr) this.f4078f).Q0(this.d, this.f4077e, this.f4075b, (ArrayList) this.h, this.f4076c);
                 return;
             default:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f4078f;
                 CharSequence charSequence = (CharSequence) this.h;
-                chatActivityEnterView.f32588g0 = null;
-                chatActivityEnterView.O0(true);
-                gf gfVar = chatActivityEnterView.F0;
-                if (gfVar != null) {
-                    gfVar.setText("");
+                chatActivityEnterView.f32686g0 = null;
+                chatActivityEnterView.P0(true);
+                hf hfVar = chatActivityEnterView.F0;
+                if (hfVar != null) {
+                    hfVar.setText("");
                 }
                 mg mgVar = chatActivityEnterView.P3;
                 if (mgVar != null) {
-                    mgVar.H(charSequence, this.f4076c, this.d, this.f4077e, this.f4075b);
+                    mgVar.G(charSequence, this.f4076c, this.d, this.f4077e, this.f4075b);
                     return;
                 }
                 return;

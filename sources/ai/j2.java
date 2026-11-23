@@ -1,39 +1,25 @@
 package ai;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.w2;
-public final class j2 implements View.OnClickListener {
-    public final int f1308a;
-    public final w2[] f1309b;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import org.telegram.messenger.mp;
+import org.telegram.ui.Dictation.DictationAsr;
+import org.telegram.ui.i20;
+public final class j2 {
+    public final i20 f1311a;
+    public boolean f1313c;
+    public volatile boolean d;
+    public Thread f1314e;
+    public final ConcurrentLinkedQueue f1312b = new ConcurrentLinkedQueue();
+    public long f1315f = 1;
 
-    public j2(w2[] w2VarArr, int i7) {
-        this.f1308a = i7;
-        this.f1309b = w2VarArr;
+    public j2(i20 i20Var) {
+        this.f1311a = i20Var;
     }
 
-    @Override
-    public final void onClick(View view) {
-        switch (this.f1308a) {
-            case 0:
-                w2 w2Var = this.f1309b[0];
-                if (w2Var != null) {
-                    w2Var.dismiss();
-                    return;
-                }
-                return;
-            case 1:
-                this.f1309b[0].dismiss();
-                return;
-            case 2:
-                w2 w2Var2 = this.f1309b[0];
-                if (w2Var2 != null) {
-                    w2Var2.dismiss();
-                    return;
-                }
-                return;
-            default:
-                this.f1309b[0].dismiss();
-                return;
+    public static boolean a() {
+        if (!DictationAsr.G() || !mp.g1().getBoolean("asr_live_captions", false)) {
+            return false;
         }
+        return true;
     }
 }

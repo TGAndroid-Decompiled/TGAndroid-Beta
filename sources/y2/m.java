@@ -2,9 +2,9 @@ package y2;
 public interface m {
     public static final sa.d C = new sa.d(28);
 
-    long O();
+    long P0();
 
-    long S0();
+    long U();
 
     boolean next();
 }

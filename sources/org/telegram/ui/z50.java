@@ -7,37 +7,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class z50 extends ViewGroup {
-    public AnimatorSet f54403a;
-    public boolean f54404b;
-    public final ArrayList f54405c;
-    public org.telegram.ui.Components.p20 d;
-    public int f54406e;
-    public final a60 f54407f;
+    public AnimatorSet f54528a;
+    public boolean f54529b;
+    public final ArrayList f54530c;
+    public org.telegram.ui.Components.n20 d;
+    public int f54531e;
+    public final a60 f54532f;
 
     public z50(a60 a60Var, Context context) {
         super(context);
-        this.f54407f = a60Var;
-        this.f54405c = new ArrayList();
+        this.f54532f = a60Var;
+        this.f54530c = new ArrayList();
     }
 
-    public final void a(org.telegram.ui.Components.p20 p20Var) {
-        a60 a60Var = this.f54407f;
-        a60Var.E.remove(p20Var.getKey());
-        a60Var.F.remove(p20Var);
-        p20Var.setOnClickListener(null);
-        AnimatorSet animatorSet = this.f54403a;
+    public final void a(org.telegram.ui.Components.n20 n20Var) {
+        a60 a60Var = this.f54532f;
+        a60Var.E.remove(n20Var.getKey());
+        a60Var.F.remove(n20Var);
+        n20Var.setOnClickListener(null);
+        AnimatorSet animatorSet = this.f54528a;
         if (animatorSet != null && animatorSet.isRunning()) {
-            this.f54403a.setupEndValues();
-            this.f54403a.cancel();
+            this.f54528a.setupEndValues();
+            this.f54528a.cancel();
         }
-        this.f54404b = false;
+        this.f54529b = false;
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f54403a = animatorSet2;
-        animatorSet2.addListener(new org.telegram.ui.Components.h10(10, this, p20Var));
-        this.f54403a.setInterpolator(org.telegram.ui.Components.nr.h);
-        this.f54403a.setDuration(320L);
-        this.d = p20Var;
-        ArrayList arrayList = this.f54405c;
+        this.f54528a = animatorSet2;
+        animatorSet2.addListener(new org.telegram.ui.Components.f10(10, this, n20Var));
+        this.f54528a.setInterpolator(org.telegram.ui.Components.kr.h);
+        this.f54528a.setDuration(320L);
+        this.d = n20Var;
+        ArrayList arrayList = this.f54530c;
         arrayList.clear();
         arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_X, 1.0f, 0.75f));
         arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 1.0f, 0.75f));
@@ -70,12 +70,12 @@ public final class z50 extends ViewGroup {
         int i17 = 0;
         int i18 = 0;
         while (true) {
-            arrayList = this.f54405c;
+            arrayList = this.f54530c;
             if (i15 >= childCount) {
                 break;
             }
             View childAt = getChildAt(i15);
-            if (childAt instanceof org.telegram.ui.Components.p20) {
+            if (childAt instanceof org.telegram.ui.Components.n20) {
                 childAt.measure(View.MeasureSpec.makeMeasureSpec(i12, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(28.0f), 1073741824));
                 if (childAt != this.d && childAt.getMeasuredWidth() + i17 > i12) {
                     i14 += org.telegram.messenger.g0.L(34.0f);
@@ -86,12 +86,12 @@ public final class z50 extends ViewGroup {
                     i18 = 0;
                 }
                 int i19 = L + i17;
-                if (!this.f54404b) {
-                    org.telegram.ui.Components.p20 p20Var = this.d;
-                    if (childAt == p20Var) {
+                if (!this.f54529b) {
+                    org.telegram.ui.Components.n20 n20Var = this.d;
+                    if (childAt == n20Var) {
                         childAt.setTranslationX(L + i18);
                         childAt.setTranslationY(i13);
-                    } else if (p20Var != null) {
+                    } else if (n20Var != null) {
                         float f10 = i19;
                         if (childAt.getTranslationX() != f10) {
                             i11 = 1;
@@ -120,25 +120,25 @@ public final class z50 extends ViewGroup {
             i15++;
         }
         int C2 = org.telegram.messenger.f3.C(28.0f, i16, L);
-        if (!this.f54404b) {
-            AnimatorSet animatorSet = this.f54403a;
+        if (!this.f54529b) {
+            AnimatorSet animatorSet = this.f54528a;
             if (animatorSet != null) {
-                this.f54406e = C2;
+                this.f54531e = C2;
                 animatorSet.playTogether(arrayList);
-                this.f54403a.start();
-                this.f54404b = true;
+                this.f54528a.start();
+                this.f54529b = true;
             } else {
-                this.f54406e = Math.max(C2, org.telegram.messenger.g0.L(28.0f) + i13 + L);
+                this.f54531e = Math.max(C2, org.telegram.messenger.g0.L(28.0f) + i13 + L);
             }
         }
-        a60 a60Var = this.f54407f;
-        te.c cVar = a60Var.f45477a;
+        a60 a60Var = this.f54532f;
+        te.c cVar = a60Var.f45595a;
         if (a60Var.F.isEmpty()) {
             min = 0.0f;
         } else {
-            min = Math.min(C2, a60Var.f45486x);
+            min = Math.min(C2, a60Var.f45604x);
         }
         cVar.a(min);
-        setMeasuredDimension(size, this.f54406e);
+        setMeasuredDimension(size, this.f54531e);
     }
 }

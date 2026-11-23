@@ -2,14 +2,14 @@ package fi;
 
 import android.content.Intent;
 import java.util.ArrayList;
-import org.telegram.messenger.az;
+import org.telegram.messenger.zy;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ck;
-public final class p2 implements ck {
-    public final z3 f12365a;
+import org.telegram.ui.Components.bk;
+public final class p2 implements bk {
+    public final z3 f12377a;
 
     public p2(z3 z3Var) {
-        this.f12365a = z3Var;
+        this.f12377a = z3Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class p2 implements ck {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
             intent.setType("*/*");
-            org.telegram.ui.ActionBar.g2 g2Var = this.f12365a.f12867t0.f11961f;
+            org.telegram.ui.ActionBar.g2 g2Var = this.f12377a.f12878t0.f11972f;
             if (g2Var.getParentActivity() == null) {
                 return;
             }
@@ -32,11 +32,11 @@ public final class p2 implements ck {
     public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i7, long j3, boolean z11, long j10) {
         org.telegram.messenger.c accountInstance;
         boolean z12;
-        z3 z3Var = this.f12365a;
-        TL_stories.StoryItem storyItem = z3Var.f12888y1.f12715a;
+        z3 z3Var = this.f12377a;
+        TL_stories.StoryItem storyItem = z3Var.f12899y1.f12727a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = z3Var.getAccountInstance();
-            az.V(i7, z3Var.l1, 0L, j10, 0L, str, null, arrayList, arrayList, null, null, null, null, accountInstance, null, null, null, null, null, storyItem, null, null, null, z10, false);
+            zy.V(i7, z3Var.l1, 0L, j10, 0L, str, null, arrayList, arrayList, null, null, null, null, accountInstance, null, null, null, null, null, storyItem, null, null, null, z10, false);
             if (j10 <= 0) {
                 z12 = true;
             } else {

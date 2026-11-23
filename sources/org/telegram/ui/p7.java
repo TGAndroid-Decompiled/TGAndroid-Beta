@@ -1,112 +1,20 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class p7 extends f7 {
-    public final s7 f50744n;
+import android.content.Context;
+public final class p7 extends org.telegram.ui.Cells.g7 {
+    public final k7 m0;
+    public final q7 f50872n0;
 
-    public p7(s7 s7Var) {
-        super(s7Var, 3);
-        this.f50744n = s7Var;
+    public p7(q7 q7Var, Context context, k7 k7Var) {
+        super(0, context, null);
+        this.f50872n0 = q7Var;
+        this.m0 = k7Var;
     }
 
     @Override
-    public final void t(v4.e1 e1Var, int i7) {
-        boolean z10;
-        boolean z11;
-        float f10;
-        j7 j7Var = (j7) e1Var.f59111a;
-        org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) j7Var.f48919b.getChildAt(0);
-        ei.b bVar = ((l7) this.f47119e.get(i7)).d;
-        if (bVar == j7Var.getTag()) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (i7 != this.f47119e.size() - 1) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        j7Var.setTag(bVar);
-        s7 s7Var = this.f50744n;
-        if (bVar.f10962f == null) {
-            TLRPC.TL_message tL_message = new TLRPC.TL_message();
-            tL_message.out = true;
-            tL_message.f28419id = i7;
-            tL_message.peer_id = new TLRPC.TL_peerUser();
-            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-            tL_message.from_id = tL_peerUser;
-            TLRPC.Peer peer = tL_message.peer_id;
-            long e10 = org.telegram.messenger.k10.i(s7Var.f51922e.getCurrentAccount()).e();
-            tL_peerUser.user_id = e10;
-            peer.user_id = e10;
-            tL_message.date = (int) (System.currentTimeMillis() / 1000);
-            tL_message.message = "";
-            tL_message.attachPath = bVar.f10958a.getPath();
-            TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-            tL_message.media = tL_messageMediaDocument;
-            tL_messageMediaDocument.flags |= 3;
-            tL_messageMediaDocument.document = new TLRPC.TL_document();
-            tL_message.flags |= 768;
-            tL_message.dialog_id = bVar.f10959b;
-            String D = org.telegram.messenger.w7.D(bVar.f10958a);
-            TLRPC.Document document = tL_message.media.document;
-            document.f28404id = 0L;
-            document.access_hash = 0L;
-            document.file_reference = new byte[0];
-            document.date = tL_message.date;
-            if (D.length() <= 0) {
-                D = "mp3";
-            }
-            document.mime_type = "audio/".concat(D);
-            TLRPC.Document document2 = tL_message.media.document;
-            document2.size = bVar.f10960c;
-            document2.dc_id = 0;
-            TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-            if (bVar.f10961e == null) {
-                ?? obj = new Object();
-                bVar.f10961e = obj;
-                obj.f10957a = true;
-                Utilities.f22774e.c(new o1(s7Var, bVar, tL_documentAttributeAudio, 4));
-            }
-            tL_documentAttributeAudio.flags |= 3;
-            tL_message.media.document.attributes.add(tL_documentAttributeAudio);
-            TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
-            tL_documentAttributeFilename.file_name = bVar.f10958a.getName();
-            tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-            org.telegram.messenger.gj gjVar = new org.telegram.messenger.gj(s7Var.f51922e.getCurrentAccount(), tL_message, false, false);
-            bVar.f10962f = gjVar;
-            gjVar.f24236z0 = true;
-        }
-        h7Var.f(bVar.f10962f, z11);
-        boolean z12 = bVar.f10961e.f10957a;
-        boolean z13 = !z12;
-        if (!z10) {
-            if (!z12) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
-            }
-            h7Var.f30744h0 = f10;
-        }
-        if (h7Var.f30743g0 != z13) {
-            h7Var.f30743g0 = z13;
-            h7Var.invalidate();
-        }
-        j7Var.d = z11;
-        j7Var.f48920c.setText(org.telegram.messenger.g0.i0(bVar.f10960c, false, false));
-        j7Var.f48918a.a(this.f50744n.h.f10971j.contains(bVar), z10);
-    }
-
-    @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        j7 j7Var = new j7(this, viewGroup.getContext(), 1);
-        j7Var.f48921e = 3;
-        o7 o7Var = new o7(this, viewGroup.getContext(), j7Var);
-        o7Var.setCheckForButtonPress(true);
-        j7Var.f48919b.addView(o7Var);
-        return new v4.e1(j7Var);
+    public final void a() {
+        t7 t7Var = this.f50872n0.f51340n;
+        k7 k7Var = this.m0;
+        t7.b(t7Var, (ei.b) k7Var.getTag(), k7Var);
     }
 }

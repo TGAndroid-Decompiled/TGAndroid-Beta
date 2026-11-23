@@ -1,7 +1,7 @@
 package fi;
 
 import android.view.View;
-public final class f0 extends v4.k {
+public final class f0 extends v4.l {
     public final a2 F;
 
     public f0(a2 a2Var) {
@@ -15,11 +15,11 @@ public final class f0 extends v4.k {
 
     @Override
     public final void M() {
-        this.F.f12553c.invalidate();
+        this.F.f12564c.invalidate();
     }
 
     @Override
-    public final void P(v4.e1 e1Var) {
-        this.F.f12553c.invalidate();
+    public final void P(v4.f1 f1Var) {
+        this.F.f12564c.invalidate();
     }
 }

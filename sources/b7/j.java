@@ -2,11 +2,11 @@ package b7;
 
 import java.util.Random;
 public final class j extends ThreadLocal {
-    public final int f2929a;
+    public final int f2930a;
 
     @Override
     public final Object initialValue() {
-        switch (this.f2929a) {
+        switch (this.f2930a) {
             case 0:
                 return 0L;
             case 1:
@@ -17,7 +17,7 @@ public final class j extends ThreadLocal {
                 return new Random();
             default:
                 ?? obj = new Object();
-                obj.f57703a = new byte[4096];
+                obj.f57817a = new byte[4096];
                 return obj;
         }
     }

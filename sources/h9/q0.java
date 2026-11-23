@@ -1,30 +1,30 @@
 package h9;
 public final class q0 extends t0 {
     public final int d;
-    public final r0 f14039e;
+    public final r0 f14040e;
 
     public q0(r0 r0Var, int i7) {
         this.d = i7;
-        this.f14039e = r0Var;
+        this.f14040e = r0Var;
     }
 
     @Override
     public final boolean contains(Object obj) {
         switch (this.d) {
             case 0:
-                if (!(obj instanceof p1)) {
+                if (!(obj instanceof o1)) {
                     return false;
                 }
-                p1 p1Var = (p1) obj;
-                if (p1Var.a() <= 0) {
+                o1 o1Var = (o1) obj;
+                if (o1Var.a() <= 0) {
                     return false;
                 }
-                if (((z1) this.f14039e).f14092e.b(p1Var.f14034a) != p1Var.a()) {
+                if (((y1) this.f14040e).f14085e.b(o1Var.f14026a) != o1Var.a()) {
                     return false;
                 }
                 return true;
             default:
-                return ((z1) this.f14039e).contains(obj);
+                return ((y1) this.f14040e).contains(obj);
         }
     }
 
@@ -32,7 +32,7 @@ public final class q0 extends t0 {
     public int hashCode() {
         switch (this.d) {
             case 0:
-                return this.f14039e.hashCode();
+                return this.f14040e.hashCode();
             default:
                 return super.hashCode();
         }
@@ -47,7 +47,7 @@ public final class q0 extends t0 {
     public final boolean m() {
         switch (this.d) {
             case 0:
-                this.f14039e.getClass();
+                this.f14040e.getClass();
                 return false;
             default:
                 return true;
@@ -55,7 +55,7 @@ public final class q0 extends t0 {
     }
 
     @Override
-    public final h2 n() {
+    public final g2 n() {
         return f().listIterator(0);
     }
 
@@ -68,9 +68,9 @@ public final class q0 extends t0 {
     public final int size() {
         switch (this.d) {
             case 0:
-                return this.f14039e.o().size();
+                return this.f14040e.o().size();
             default:
-                return ((z1) this.f14039e).f14092e.f14042c;
+                return ((y1) this.f14040e).f14085e.f14034c;
         }
     }
 }

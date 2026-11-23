@@ -2,19 +2,19 @@ package oe;
 
 import h2.o0;
 public final class c implements ke.a {
-    public static final c f21783a = new Object();
-    public static final n f21784b = new n("kotlin.Double", me.b.f20963c);
+    public static final c f21883a = new Object();
+    public static final n f21884b = new n("kotlin.Double", me.b.f21059c);
 
     @Override
     public final void a(qe.h hVar, Object obj) {
         double doubleValue = ((Number) obj).doubleValue();
-        ca.i iVar = (ca.i) hVar.f56128b;
-        if (hVar.f56127a) {
+        ca.i iVar = (ca.i) hVar.f56241b;
+        if (hVar.f56240a) {
             hVar.j(String.valueOf(doubleValue));
         } else {
             ((mc.a) iVar.f5118c).c(String.valueOf(doubleValue));
         }
-        ((o0) hVar.f56131f).getClass();
+        ((o0) hVar.f56244f).getClass();
         if (!Double.isInfinite(doubleValue) && !Double.isNaN(doubleValue)) {
             return;
         }
@@ -30,7 +30,7 @@ public final class c implements ke.a {
         String k10 = kVar.k();
         try {
             double parseDouble = Double.parseDouble(k10);
-            ((pe.b) decoder.f13725b).f55582a.getClass();
+            ((pe.b) decoder.f13725b).f55695a.getClass();
             if (!Double.isInfinite(parseDouble) && !Double.isNaN(parseDouble)) {
                 return Double.valueOf(parseDouble);
             }
@@ -45,6 +45,6 @@ public final class c implements ke.a {
 
     @Override
     public final me.d d() {
-        return f21784b;
+        return f21884b;
     }
 }

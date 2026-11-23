@@ -1,26 +1,26 @@
 package z3;
 
 import e2.u;
-import f3.i0;
 import f3.j0;
+import f3.k0;
 public final class k {
-    public final q f61416a;
-    public final t f61417b;
-    public final i0 f61418c;
-    public final j0 d;
-    public int f61419e;
-    public u f61420f;
+    public final q f61535a;
+    public final t f61536b;
+    public final j0 f61537c;
+    public final k0 d;
+    public int f61538e;
+    public u f61539f;
 
-    public k(q qVar, t tVar, i0 i0Var) {
-        j0 j0Var;
-        this.f61416a = qVar;
-        this.f61417b = tVar;
-        this.f61418c = i0Var;
-        if ("audio/true-hd".equals(qVar.f61457g.f10761s)) {
-            j0Var = new j0();
+    public k(q qVar, t tVar, j0 j0Var) {
+        k0 k0Var;
+        this.f61535a = qVar;
+        this.f61536b = tVar;
+        this.f61537c = j0Var;
+        if ("audio/true-hd".equals(qVar.f61576g.f10759s)) {
+            k0Var = new k0();
         } else {
-            j0Var = null;
+            k0Var = null;
         }
-        this.d = j0Var;
+        this.d = k0Var;
     }
 }

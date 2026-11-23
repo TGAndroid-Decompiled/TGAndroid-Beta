@@ -1,37 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-public final class ir extends n41 {
-    public static final int f36261b = 0;
+public final class ir implements Drawable.Callback {
+    public final int f36078a;
+    public final jr f36079b;
 
-    static {
-        n41.h(new n41());
+    public ir(jr jrVar, int i7) {
+        this.f36078a = i7;
+        this.f36079b = jrVar;
     }
 
     @Override
-    public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
-        org.telegram.ui.Cells.y8 y8Var = (org.telegram.ui.Cells.y8) view;
-        y8Var.c(o41Var.f38058m, o41Var.f38060o, !o41Var.f38055j);
-        xh.l lVar = y8Var.f32481a;
-        if (o41Var.f38058m instanceof SpannableStringBuilder) {
-            lVar.setTextSize(1, 13.0f);
-            lVar.setTranslationY(org.telegram.messenger.g0.L(2.0f));
-            lVar.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f36078a) {
+            case 0:
+                jr jrVar = this.f36079b;
+                if (jrVar.f36498c < 1.0f) {
+                    jrVar.invalidateSelf();
+                    return;
+                }
+                return;
+            default:
+                jr jrVar2 = this.f36079b;
+                if (jrVar2.f36498c > 0.0f) {
+                    jrVar2.invalidateSelf();
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        org.telegram.ui.Cells.y8 y8Var = new org.telegram.ui.Cells.y8(context, h6Var, true);
-        org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29347d6, y8Var, h6Var);
-        Drawable mutate = context.getDrawable(2131232105).mutate();
-        org.telegram.ui.ActionBar.t6.x(y8Var, mutate, org.telegram.ui.ActionBar.m6.L6, h6Var, PorterDuff.Mode.MULTIPLY);
-        y8Var.setImage(mutate);
-        y8Var.setImageClickListener(new ah.h(this, context, y8Var, 28));
-        return y8Var;
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
+        switch (this.f36078a) {
+            case 0:
+                jr jrVar = this.f36079b;
+                if (jrVar.f36498c < 1.0f) {
+                    jrVar.scheduleSelf(runnable, j3);
+                    return;
+                }
+                return;
+            default:
+                jr jrVar2 = this.f36079b;
+                if (jrVar2.f36498c > 0.0f) {
+                    jrVar2.scheduleSelf(runnable, j3);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f36078a) {
+            case 0:
+                jr jrVar = this.f36079b;
+                if (jrVar.f36498c < 1.0f) {
+                    jrVar.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+            default:
+                jr jrVar2 = this.f36079b;
+                if (jrVar2.f36498c > 0.0f) {
+                    jrVar2.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+        }
     }
 }

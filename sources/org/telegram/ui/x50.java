@@ -6,29 +6,29 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.Timer;
 public final class x50 extends org.telegram.ui.Components.dk0 {
-    public final Context f53558c;
+    public final Context f53857c;
     public ArrayList d = new ArrayList();
-    public ArrayList f53559e = new ArrayList();
-    public Timer f53560f;
+    public ArrayList f53858e = new ArrayList();
+    public Timer f53859f;
     public boolean h;
-    public final a60 f53561n;
+    public final a60 f53860n;
 
     public x50(a60 a60Var, Context context) {
-        this.f53561n = a60Var;
-        this.f53558c = context;
+        this.f53860n = a60Var;
+        this.f53857c = context;
     }
 
     @Override
-    public final void A(v4.e1 e1Var) {
-        View view = e1Var.f59111a;
+    public final void A(v4.f1 f1Var) {
+        View view = f1Var.f59245a;
         if (view instanceof org.telegram.ui.Cells.r4) {
-            ((org.telegram.ui.Cells.r4) view).f31692a.getImageReceiver().c();
+            ((org.telegram.ui.Cells.r4) view).f31776a.getImageReceiver().c();
         }
     }
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
-        if (e1Var.f59115f != 2) {
+    public final boolean D(v4.f1 f1Var) {
+        if (f1Var.f59249f != 2) {
             return true;
         }
         return false;
@@ -36,7 +36,7 @@ public final class x50 extends org.telegram.ui.Components.dk0 {
 
     public final void E(String str) {
         try {
-            Timer timer = this.f53560f;
+            Timer timer = this.f53859f;
             if (timer != null) {
                 timer.cancel();
             }
@@ -45,12 +45,12 @@ public final class x50 extends org.telegram.ui.Components.dk0 {
         }
         if (str == null) {
             this.d.clear();
-            this.f53559e.clear();
+            this.f53858e.clear();
             f();
             return;
         }
         Timer timer2 = new Timer();
-        this.f53560f = timer2;
+        this.f53859f = timer2;
         timer2.schedule(new jg.q1(3, this, str), 200L, 300L);
     }
 
@@ -59,7 +59,7 @@ public final class x50 extends org.telegram.ui.Components.dk0 {
         if (this.h) {
             return this.d.size();
         }
-        return this.f53561n.f45485w.size() + 2;
+        return this.f53860n.f45603w.size() + 2;
     }
 
     @Override
@@ -80,59 +80,59 @@ public final class x50 extends org.telegram.ui.Components.dk0 {
     public final void f() {
         int i7;
         super.f();
-        a60 a60Var = this.f53561n;
-        x50 x50Var = a60Var.f45484s;
-        if (x50Var != null && !a60Var.f45487y) {
+        a60 a60Var = this.f53860n;
+        x50 x50Var = a60Var.f45602s;
+        if (x50Var != null && !a60Var.f45605y) {
             int b10 = x50Var.b();
-            org.telegram.ui.Components.nv0 nv0Var = a60Var.f45483r;
+            org.telegram.ui.Components.mv0 mv0Var = a60Var.f45601r;
             if (b10 == 2) {
                 i7 = 0;
             } else {
                 i7 = 4;
             }
-            nv0Var.setVisibility(i7);
+            mv0Var.setVisibility(i7);
         }
     }
 
     @Override
-    public final void t(v4.e1 e1Var, int i7) {
+    public final void t(v4.f1 f1Var, int i7) {
         org.telegram.messenger.f5 f5Var;
         CharSequence charSequence;
-        if (e1Var.f59115f == 0) {
-            org.telegram.ui.Cells.r4 r4Var = (org.telegram.ui.Cells.r4) e1Var.f59111a;
+        if (f1Var.f59249f == 0) {
+            org.telegram.ui.Cells.r4 r4Var = (org.telegram.ui.Cells.r4) f1Var.f59245a;
             boolean z10 = this.h;
-            a60 a60Var = this.f53561n;
+            a60 a60Var = this.f53860n;
             if (z10) {
                 f5Var = (org.telegram.messenger.f5) this.d.get(i7);
-                charSequence = (CharSequence) this.f53559e.get(i7);
+                charSequence = (CharSequence) this.f53858e.get(i7);
             } else {
-                f5Var = (org.telegram.messenger.f5) a60Var.f45485w.get(i7 - 2);
+                f5Var = (org.telegram.messenger.f5) a60Var.f45603w.get(i7 - 2);
                 charSequence = null;
             }
             r4Var.a(f5Var, charSequence);
-            boolean containsKey = a60Var.E.containsKey(f5Var.f23825b);
-            org.telegram.ui.Components.op opVar = r4Var.f31695e;
-            if (opVar != null) {
-                opVar.a(containsKey, false);
+            boolean containsKey = a60Var.E.containsKey(f5Var.f23949b);
+            org.telegram.ui.Components.lp lpVar = r4Var.f31779e;
+            if (lpVar != null) {
+                lpVar.a(containsKey, false);
             }
         }
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.Cells.n8 n8Var;
-        Context context = this.f53558c;
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        org.telegram.ui.Cells.m8 m8Var;
+        Context context = this.f53857c;
         if (i7 == 1) {
-            org.telegram.ui.Cells.n8 n8Var2 = new org.telegram.ui.Cells.n8(context);
-            int i10 = org.telegram.ui.ActionBar.m6.G6;
-            n8Var2.g(i10, i10);
-            n8Var2.u(org.telegram.messenger.hd.N0(2131745231, null), "", false, 2131232367, false);
-            n8Var = n8Var2;
+            org.telegram.ui.Cells.m8 m8Var2 = new org.telegram.ui.Cells.m8(context);
+            int i10 = org.telegram.ui.ActionBar.n6.G6;
+            m8Var2.g(i10, i10);
+            m8Var2.u(org.telegram.messenger.gd.N0(2131745231, null), "", false, 2131232370, false);
+            m8Var = m8Var2;
         } else if (i7 == 2) {
-            n8Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c0) null);
+            m8Var = new org.telegram.ui.Cells.y6(context, (org.telegram.ui.Cells.c0) null);
         } else {
-            n8Var = new org.telegram.ui.Cells.r4(context, true);
+            m8Var = new org.telegram.ui.Cells.r4(context, true);
         }
-        return new v4.e1(n8Var);
+        return new v4.f1(m8Var);
     }
 }

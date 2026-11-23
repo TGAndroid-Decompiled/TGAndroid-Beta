@@ -4,18 +4,18 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-public abstract class l implements j1 {
-    public transient Collection f14008a;
-    public transient Set f14009b;
-    public transient Collection f14010c;
+public abstract class l implements i1 {
+    public transient Collection f14005a;
+    public transient Set f14006b;
+    public transient Collection f14007c;
     public transient Map d;
 
     @Override
     public Collection a() {
-        Collection collection = this.f14008a;
+        Collection collection = this.f14005a;
         if (collection == null) {
             Collection e10 = e();
-            this.f14008a = e10;
+            this.f14005a = e10;
             return e10;
         }
         return collection;
@@ -49,8 +49,8 @@ public abstract class l implements j1 {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof j1) {
-            return b().equals(((j1) obj).b());
+        if (obj instanceof i1) {
+            return b().equals(((i1) obj).b());
         }
         return false;
     }
@@ -65,10 +65,10 @@ public abstract class l implements j1 {
 
     @Override
     public Set keySet() {
-        Set set = this.f14009b;
+        Set set = this.f14006b;
         if (set == null) {
             Set f10 = f();
-            this.f14009b = f10;
+            this.f14006b = f10;
             return f10;
         }
         return set;

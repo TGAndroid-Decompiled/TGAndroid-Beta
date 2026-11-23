@@ -3,22 +3,22 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.accessibility.AccessibilityNodeInfo;
-public final class il0 extends x5 {
-    public final d6 d;
-    public final int f36234e;
-    public final ScrollSlidingTextTabStrip f36235f;
+public final class il0 extends w5 {
+    public final c6 d;
+    public final int f36050e;
+    public final ScrollSlidingTextTabStrip f36051f;
 
     public il0(ScrollSlidingTextTabStrip scrollSlidingTextTabStrip, Context context, int i7) {
         super(context);
-        this.f36235f = scrollSlidingTextTabStrip;
-        this.f36234e = i7;
-        this.d = new d6(this, 360L, nr.h);
+        this.f36051f = scrollSlidingTextTabStrip;
+        this.f36050e = i7;
+        this.d = new c6(this, 360L, kr.h);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        float d = this.d.d(this.f36235f.f33118o0);
+        float d = this.d.d(this.f36051f.f33216o0);
         int i7 = (d > 0.0f ? 1 : (d == 0.0f ? 0 : -1));
         if (i7 > 0) {
             canvas2 = canvas;
@@ -36,7 +36,7 @@ public final class il0 extends x5 {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         boolean z10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f36235f.f33119r == this.f36234e) {
+        if (this.f36051f.f33217r == this.f36050e) {
             z10 = true;
         } else {
             z10 = false;

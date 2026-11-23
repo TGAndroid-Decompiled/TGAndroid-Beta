@@ -1,26 +1,14 @@
 package org.telegram.ui;
 
-import com.google.android.gms.tasks.OnFailureListener;
-public final class vc1 implements OnFailureListener {
-    public final int f52774a;
-    public final hi.d f52775b;
-
-    public vc1(hi.d dVar, int i7) {
-        this.f52774a = i7;
-        this.f52775b = dVar;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+public final class vc1 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29394a7));
     }
 
     @Override
-    public final void onFailure(Exception exc) {
-        switch (this.f52774a) {
-            case 0:
-                org.telegram.messenger.a8.d("wear-auth: /answer send failed: " + exc.getMessage());
-                this.f52775b.setLoading(false);
-                return;
-            default:
-                org.telegram.messenger.a8.d("wear-auth: /token send failed: " + exc.getMessage());
-                this.f52775b.setLoading(false);
-                return;
-        }
+    public final void updateColors() {
     }
 }

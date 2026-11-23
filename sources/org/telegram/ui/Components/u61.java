@@ -1,117 +1,67 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
-public final class u61 extends View {
-    public ShapeDrawable f40256a;
-    public Drawable f40257b;
-    public StaticLayout f40258c;
-    public TextPaint d;
-    public long f40259e;
-    public float f40260f;
-    public float h;
-    public boolean f40261n;
-    public int f40262r;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.os.AsyncTask;
+public final class u61 extends AsyncTask {
+    public int f40287a = 0;
+    public final x61 f40288b;
 
-    public final void a(boolean z10) {
-        this.f40261n = z10;
-        invalidate();
-    }
-
-    public final void b() {
-        Drawable drawable = this.f40257b;
-        this.d.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29412gg, false));
-        ShapeDrawable shapeDrawable = this.f40256a;
-        if (shapeDrawable != null) {
-            org.telegram.ui.ActionBar.m6.C1(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.hg, false), shapeDrawable);
-        } else {
-            this.f40256a = org.telegram.ui.ActionBar.m6.d0(org.telegram.messenger.g0.L(5.0f), org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.hg, false));
-        }
-        int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.hg, false);
-        if (x02 == this.f40262r && drawable.getColorFilter() != null) {
-            return;
-        }
-        this.f40262r = x02;
-        drawable.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));
+    public u61(x61 x61Var) {
+        this.f40288b = x61Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f10;
-        Drawable drawable = this.f40257b;
-        if (this.f40258c != null) {
-            if (this.f40261n) {
-                float f11 = this.h;
-                if (f11 != 1.0f) {
-                    float f12 = f11 + 0.12f;
-                    this.h = f12;
-                    if (f12 > 1.0f) {
-                        this.h = 1.0f;
-                    }
-                    invalidate();
-                }
-            } else {
-                float f13 = this.h;
-                if (f13 != 0.0f) {
-                    float f14 = f13 - 0.12f;
-                    this.h = f14;
-                    if (f14 < 0.0f) {
-                        this.h = 0.0f;
-                    }
-                    invalidate();
-                }
-                if (this.h == 0.0f) {
-                    return;
-                }
+    public final Object doInBackground(Object[] objArr) {
+        Bitmap frameAtTime;
+        x61 x61Var = this.f40288b;
+        this.f40287a = ((Integer[]) objArr)[0].intValue();
+        Bitmap bitmap = null;
+        if (!isCancelled()) {
+            try {
+                frameAtTime = x61Var.f41907r.getFrameAtTime(x61Var.f41911y * this.f40287a * 1000, 2);
+            } catch (Exception e10) {
+                e = e10;
             }
-            float f15 = this.h;
-            if (f15 > 0.5f) {
-                f10 = 1.0f;
-            } else {
-                f10 = f15 / 0.5f;
+            try {
+                if (!isCancelled()) {
+                    if (frameAtTime != null) {
+                        Bitmap createBitmap = Bitmap.createBitmap(x61Var.E, x61Var.F, frameAtTime.getConfig());
+                        Canvas canvas = new Canvas(createBitmap);
+                        float max = Math.max(x61Var.E / frameAtTime.getWidth(), x61Var.F / frameAtTime.getHeight());
+                        int width = (int) (frameAtTime.getWidth() * max);
+                        int height = (int) (frameAtTime.getHeight() * max);
+                        canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((x61Var.E - width) / 2, (x61Var.F - height) / 2, width, height), (Paint) null);
+                        frameAtTime.recycle();
+                        return createBitmap;
+                    }
+                    return frameAtTime;
+                }
+            } catch (Exception e11) {
+                e = e11;
+                bitmap = frameAtTime;
+                org.telegram.messenger.a8.g(e, true);
+                return bitmap;
             }
-            int i7 = (int) (f10 * 255.0f);
-            canvas.save();
-            float f16 = this.h;
-            canvas.scale(f16, f16, this.f40260f, getMeasuredHeight());
-            canvas.translate(this.f40260f - (this.f40258c.getWidth() / 2.0f), 0.0f);
-            this.f40256a.setBounds(-org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f) + this.f40258c.getWidth(), (int) (org.telegram.messenger.g0.N(4.0f) + this.f40258c.getHeight()));
-            drawable.setBounds(org.telegram.ui.Cells.c0.C(2, this.f40258c.getWidth() / 2, drawable), (int) (org.telegram.messenger.g0.N(4.0f) + this.f40258c.getHeight()), org.telegram.ui.Cells.c0.y(2, this.f40258c.getWidth() / 2, drawable), drawable.getIntrinsicHeight() + ((int) (org.telegram.messenger.g0.N(4.0f) + this.f40258c.getHeight())));
-            drawable.setAlpha(i7);
-            this.f40256a.setAlpha(i7);
-            this.d.setAlpha(i7);
-            drawable.draw(canvas);
-            this.f40256a.draw(canvas);
-            canvas.translate(0.0f, org.telegram.messenger.g0.N(1.0f));
-            this.f40258c.draw(canvas);
-            canvas.restore();
         }
+        return null;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(this.f40257b.getIntrinsicHeight() + org.telegram.messenger.g0.L(4.0f) + this.f40258c.getHeight(), 1073741824));
-    }
-
-    public void setCx(float f10) {
-        this.f40260f = f10;
-        invalidate();
-    }
-
-    public void setTime(int i7) {
-        long j3 = i7;
-        if (j3 != this.f40259e) {
-            this.f40259e = j3;
-            String g02 = org.telegram.messenger.g0.g0(i7, false, false);
-            TextPaint textPaint = this.d;
-            this.f40258c = new StaticLayout(g02, textPaint, (int) textPaint.measureText(g02), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+    public final void onPostExecute(Object obj) {
+        Bitmap bitmap = (Bitmap) obj;
+        if (!isCancelled()) {
+            x61 x61Var = this.f40288b;
+            x61Var.f41909w.add(bitmap);
+            x61Var.invalidate();
+            int i7 = this.f40287a;
+            if (i7 < x61Var.G) {
+                x61Var.b(i7 + 1);
+            } else {
+                x61Var.P = true;
+            }
         }
     }
 }

@@ -1,22 +1,21 @@
 package n2;
 
 import android.media.AudioTrack;
-import hi.x4;
 public final class z {
-    public final y f21281a;
-    public final int f21282b;
-    public final x4 f21283c;
+    public final y f21380a;
+    public final int f21381b;
+    public final h6.o f21382c;
     public int d;
-    public long f21284e;
-    public long f21285f;
-    public long f21286g;
+    public long f21383e;
+    public long f21384f;
+    public long f21385g;
     public long h;
-    public long f21287i;
+    public long f21386i;
 
-    public z(AudioTrack audioTrack, x4 x4Var) {
-        this.f21281a = new y(audioTrack);
-        this.f21282b = audioTrack.getSampleRate();
-        this.f21283c = x4Var;
+    public z(AudioTrack audioTrack, h6.o oVar) {
+        this.f21380a = new y(audioTrack);
+        this.f21381b = audioTrack.getSampleRate();
+        this.f21382c = oVar;
         a(0);
     }
 
@@ -26,21 +25,21 @@ public final class z {
             if (i7 != 1) {
                 if (i7 != 2 && i7 != 3) {
                     if (i7 == 4) {
-                        this.f21285f = 500000L;
+                        this.f21384f = 500000L;
                         return;
                     }
                     throw new IllegalStateException();
                 }
-                this.f21285f = 10000000L;
+                this.f21384f = 10000000L;
                 return;
             }
-            this.f21285f = 10000L;
+            this.f21384f = 10000L;
             return;
         }
-        this.f21286g = 0L;
+        this.f21385g = 0L;
         this.h = -1L;
-        this.f21287i = -9223372036854775807L;
-        this.f21284e = System.nanoTime() / 1000;
-        this.f21285f = 10000L;
+        this.f21386i = -9223372036854775807L;
+        this.f21383e = System.nanoTime() / 1000;
+        this.f21384f = 10000L;
     }
 }

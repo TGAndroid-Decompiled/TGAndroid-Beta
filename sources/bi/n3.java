@@ -9,7 +9,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import di.ec;
-import org.telegram.messenger.qc;
+import org.telegram.messenger.pc;
 public final class n3 extends Drawable {
     public final int f3873a;
     public final RectF f3874b;
@@ -18,7 +18,7 @@ public final class n3 extends Drawable {
     public final ec f3876e;
     public boolean f3877f;
     public a3.f f3878g;
-    public ai.c0 h;
+    public ai.d0 h;
     public boolean f3879i;
 
     public n3(int i7) {
@@ -27,7 +27,7 @@ public final class n3 extends Drawable {
 
     public final void a() {
         boolean z10;
-        if (this.f3876e != null && this.f3879i && qc.e(131072)) {
+        if (this.f3876e != null && this.f3879i && pc.e(131072)) {
             z10 = true;
         } else {
             z10 = false;

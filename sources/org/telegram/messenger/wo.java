@@ -1,11 +1,16 @@
 package org.telegram.messenger;
-public final class wo {
-    public final int f27743a;
-    public final int f27744b;
 
-    public wo(int i7, int i10) {
-        this.f27743a = i7;
-        this.f27744b = i10;
+import android.util.Base64;
+import java.util.Arrays;
+public final class wo {
+    public final long f27839a;
+    public final long f27840b;
+    public final byte[] f27841c;
+
+    public wo(long j3, String str, long j10) {
+        this.f27839a = j3;
+        this.f27840b = j10;
+        this.f27841c = Base64.decode(str, 8);
     }
 
     public final boolean equals(Object obj) {
@@ -13,9 +18,15 @@ public final class wo {
             return false;
         }
         wo woVar = (wo) obj;
-        if (this.f27743a != woVar.f27743a || this.f27744b != woVar.f27744b) {
+        if (this.f27839a != woVar.f27839a || this.f27840b != woVar.f27840b || !Arrays.equals(this.f27841c, woVar.f27841c)) {
             return false;
         }
         return true;
+    }
+
+    public wo(long j3, long j10, byte[] bArr) {
+        this.f27839a = j3;
+        this.f27840b = j10;
+        this.f27841c = bArr;
     }
 }

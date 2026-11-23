@@ -1,312 +1,188 @@
 package hi;
 
-import android.animation.ValueAnimator;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
-import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.np;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.we0;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.mp;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 public final class u8 implements View.OnClickListener {
-    public final int f15503a;
-    public final ta f15504b;
+    public final int f15526a;
+    public final f9 f15527b;
 
-    public u8(ta taVar, int i7) {
-        this.f15503a = i7;
-        this.f15504b = taVar;
+    public u8(f9 f9Var, int i7) {
+        this.f15526a = i7;
+        this.f15527b = f9Var;
     }
 
     @Override
     public final void onClick(View view) {
-        long j3;
-        nr nrVar;
-        boolean z10;
-        int i7;
-        String N0;
-        int i10;
-        int i11;
-        y yVar;
-        int i12 = this.f15503a;
-        boolean z11 = false;
-        ta taVar = this.f15504b;
-        switch (i12) {
+        i9 i9Var;
+        int i7 = this.f15526a;
+        f9 f9Var = this.f15527b;
+        switch (i7) {
             case 0:
-                ta taVar2 = this.f15504b;
-                if (taVar2.L1 != null && taVar2.D2 == null && taVar2.f15419j1 != null) {
-                    ValueAnimator valueAnimator = taVar2.F2;
-                    if (valueAnimator == null || !valueAnimator.isRunning()) {
-                        boolean z12 = taVar2.L1.f14412y0;
-                        Bitmap createBitmap = Bitmap.createBitmap(taVar2.f15428n.getWidth(), taVar2.f15428n.getHeight(), Bitmap.Config.ARGB_8888);
-                        Canvas canvas = new Canvas(createBitmap);
-                        taVar2.f15419j1.setAlpha(0.0f);
-                        ha haVar = taVar2.Y0;
-                        if (haVar != null) {
-                            haVar.f15606h0 = true;
+                HashMap hashMap = f9Var.d;
+                ArrayList arrayList = f9Var.f14497c;
+                k9 k9Var = f9Var.f14495a0;
+                e eVar = f9Var.f14503w;
+                if (!eVar.R) {
+                    int i10 = k9.Y1;
+                    int i11 = k9Var.f30223a;
+                    HashMap hashMap2 = k9Var.f14789p1;
+                    ArrayList arrayList2 = k9Var.f14788o1;
+                    HashMap hashMap3 = k9Var.f14793t1;
+                    ArrayList arrayList3 = k9Var.f14792s1;
+                    mp u12 = mp.u1(i11);
+                    int i12 = f9Var.f14494a;
+                    if (i12 == 5) {
+                        w8 w8Var = k9Var.Q1;
+                        if (w8Var != null) {
+                            w8Var.a(arrayList);
                         }
-                        v9 v9Var = taVar2.f15459w1;
-                        if (v9Var != null) {
-                            v9Var.f14914s0 = true;
-                        }
-                        taVar2.f15428n.draw(canvas);
-                        ha haVar2 = taVar2.Y0;
-                        if (haVar2 != null) {
-                            haVar2.f15606h0 = false;
-                        }
-                        v9 v9Var2 = taVar2.f15459w1;
-                        if (v9Var2 != null) {
-                            v9Var2.f14914s0 = false;
-                        }
-                        taVar2.f15419j1.setAlpha(1.0f);
-                        Paint paint = new Paint(1);
-                        paint.setColor(-16777216);
-                        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                        Paint paint2 = new Paint(1);
-                        paint2.setFilterBitmap(true);
-                        int[] iArr = new int[2];
-                        taVar2.f15419j1.getLocationInWindow(iArr);
-                        float f10 = iArr[0];
-                        float f11 = iArr[1];
-                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                        paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                        ba baVar = new ba(taVar2, taVar2.f15391b, z12, canvas, (taVar2.f15419j1.getMeasuredWidth() / 2.0f) + f10, (taVar2.f15419j1.getMeasuredHeight() / 2.0f) + f11, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + org.telegram.messenger.g0.f24005n, paint, createBitmap, paint2, f10, f11);
-                        taVar2.D2 = baVar;
-                        baVar.setOnTouchListener(new gi.a(2));
-                        taVar2.E2 = 0.0f;
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        taVar2.F2 = ofFloat;
-                        ofFloat.addUpdateListener(new ca(taVar2, 0));
-                        taVar2.F2.addListener(new t9(taVar2, 2));
-                        taVar2.F2.setStartDelay(80L);
-                        ValueAnimator valueAnimator2 = taVar2.F2;
-                        if (z12) {
-                            j3 = 320;
+                        k9Var.dismiss();
+                        return;
+                    } else if (i12 == 1) {
+                        TLRPC.TL_editCloseFriends tL_editCloseFriends = new TLRPC.TL_editCloseFriends();
+                        tL_editCloseFriends.f28542id.addAll(arrayList);
+                        eVar.setLoading(true);
+                        ConnectionsManager.getInstance(k9Var.f30223a).sendRequest(tL_editCloseFriends, new bi.o1(17, f9Var, u12));
+                        return;
+                    } else if (i12 == 0) {
+                        int i13 = k9Var.I1;
+                        if (i13 == 3) {
+                            i9Var = new i9(k9Var.I1, k9Var.f30223a, new ArrayList(k9.S0(arrayList3, hashMap3)));
+                            ArrayList arrayList4 = i9Var.f14703c;
+                            arrayList4.clear();
+                            arrayList4.addAll(arrayList3);
+                            HashMap hashMap4 = i9Var.d;
+                            hashMap4.clear();
+                            hashMap4.putAll(hashMap3);
+                        } else if (i13 == 2) {
+                            i9Var = new i9(i13, k9Var.f30223a, k9Var.f14791r1);
+                        } else if (i13 == 4) {
+                            i9Var = new i9(k9Var.I1, k9Var.f30223a, new ArrayList(k9.S0(arrayList2, hashMap2)));
+                            ArrayList arrayList5 = i9Var.f14703c;
+                            arrayList5.clear();
+                            arrayList5.addAll(arrayList2);
+                            HashMap hashMap5 = i9Var.d;
+                            hashMap5.clear();
+                            hashMap5.putAll(hashMap2);
                         } else {
-                            j3 = 450;
+                            i9Var = new i9(i13, k9Var.f30223a, (ArrayList) null);
                         }
-                        valueAnimator2.setDuration(j3);
-                        ValueAnimator valueAnimator3 = taVar2.F2;
-                        if (z12) {
-                            nrVar = nr.f37919i;
+                        k9Var.O0(i9Var, new fi.o3(k9Var, 1), false);
+                        return;
+                    } else if (i12 == 2) {
+                        if (k9Var.U1) {
+                            k9Var.N0();
+                            k9Var.O0(new i9(2, k9Var.f30223a, arrayList), new fi.o3(k9Var, 1), false);
+                            return;
+                        }
+                        k9Var.N0();
+                        k9Var.f14787m1.C(0);
+                        return;
+                    } else if (i12 == 3) {
+                        if (k9Var.U1) {
+                            HashSet S0 = k9.S0(arrayList, hashMap);
+                            if (!S0.isEmpty()) {
+                                k9Var.N0();
+                                i9 i9Var2 = new i9(3, k9Var.f30223a, new ArrayList(S0));
+                                ArrayList arrayList6 = i9Var2.f14703c;
+                                arrayList6.clear();
+                                arrayList6.addAll(arrayList);
+                                HashMap hashMap6 = i9Var2.d;
+                                hashMap6.clear();
+                                hashMap6.putAll(hashMap);
+                                k9Var.O0(i9Var2, new v8(f9Var, 0), false);
+                                return;
+                            }
+                            return;
+                        } else if (!k9.S0(arrayList, hashMap).isEmpty()) {
+                            k9Var.I1 = 3;
+                            k9Var.N0();
+                            k9Var.f14787m1.C(0);
+                            return;
                         } else {
-                            nrVar = nr.h;
+                            return;
                         }
-                        valueAnimator3.setInterpolator(nrVar);
-                        taVar2.F2.start();
-                        taVar2.f15428n.addView(taVar2.D2, new ViewGroup.LayoutParams(-1, -1));
-                        org.telegram.messenger.g0.g3(new s8(taVar2, 4));
+                    } else if (i12 == 6) {
+                        HashSet S02 = k9.S0(arrayList, hashMap);
+                        eVar.setLoading(true);
+                        fi.p6 R1 = mp.u1(k9Var.f30223a).R1();
+                        v8 v8Var = new v8(f9Var, 1);
+                        int i14 = R1.f12387a;
+                        TLRPC.TL_contacts_setBlocked tL_contacts_setBlocked = new TLRPC.TL_contacts_setBlocked();
+                        tL_contacts_setBlocked.my_stories_from = true;
+                        HashSet hashSet = R1.L;
+                        tL_contacts_setBlocked.limit = hashSet.size();
+                        int size = R1.N - hashSet.size();
+                        R1.N = size;
+                        if (size < 0) {
+                            R1.N = 0;
+                        }
+                        hashSet.clear();
+                        Iterator it = S02.iterator();
+                        while (it.hasNext()) {
+                            Long l10 = (Long) it.next();
+                            TLRPC.InputPeer l1 = mp.u1(i14).l1(l10.longValue());
+                            if (!(l1 instanceof TLRPC.TL_inputPeerEmpty)) {
+                                hashSet.add(l10);
+                                tL_contacts_setBlocked.f28539id.add(l1);
+                            }
+                        }
+                        R1.N = hashSet.size() + R1.N;
+                        tL_contacts_setBlocked.limit = Math.max(tL_contacts_setBlocked.limit, hashSet.size());
+                        ConnectionsManager.getInstance(i14).sendRequest(tL_contacts_setBlocked, new ai.b1(v8Var, 6));
+                        return;
+                    } else {
+                        k9Var.I1 = i12;
+                        k9Var.N0();
+                        k9Var.f14787m1.C(0);
                         return;
                     }
-                    return;
                 }
                 return;
             case 1:
-                if (!taVar.T1) {
-                    taVar.L();
+                k9 k9Var2 = f9Var.f14495a0;
+                if (k9Var2.J1) {
+                    k9Var2.H1 = 5;
+                    k9Var2.f14787m1.C(1);
                     return;
                 }
-                return;
-            case 2:
-                d7 d7Var = taVar.L1;
-                if (d7Var != null && !taVar.T1) {
-                    d7Var.Y = !d7Var.Y;
-                    ArrayList arrayList = d7Var.T;
-                    if (arrayList != null) {
-                        int size = arrayList.size();
-                        int i13 = 0;
-                        while (i13 < size) {
-                            Object obj = arrayList.get(i13);
-                            i13++;
-                            ((d7) obj).Y = taVar.L1.Y;
-                        }
-                    }
-                    boolean isEmpty = TextUtils.isEmpty(taVar.L1.f14411y);
-                    d7 d7Var2 = taVar.L1;
-                    if (d7Var2.f14393o0 != null) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (taVar.f15412h0 == -1) {
-                        l3 l3Var = taVar.l1;
-                        if (d7Var2.Y) {
-                            if (isEmpty && !z10) {
-                                i10 = 2131744219;
-                            } else {
-                                i10 = 2131744351;
-                            }
-                            N0 = hd.N0(i10, null);
-                        } else {
-                            if (isEmpty && !z10) {
-                                i7 = 2131744218;
-                            } else {
-                                i7 = 2131744350;
-                            }
-                            N0 = hd.N0(i7, null);
-                        }
-                        boolean z13 = taVar.l1.W;
-                        if (l3Var.getMeasuredWidth() < 0) {
-                            l3Var.H = N0;
-                        } else {
-                            org.telegram.ui.Components.n6 n6Var = l3Var.I;
-                            if (!hd.f24408a0 && z13) {
-                                z11 = true;
-                            }
-                            n6Var.t(N0, z11, true);
-                        }
-                        taVar.l1.x();
-                    }
-                    taVar.e0(taVar.L1.Y, true);
-                    taVar.Y0.c();
-                    return;
-                }
-                return;
-            case 3:
-                boolean k10 = taVar.Y0.k();
-                taVar.Y0.x(-9982, k10);
-                ((we0) taVar.f15422k1.f15016c).a(!k10, true);
-                return;
-            case 4:
-                if (taVar.C0 != null && !taVar.T1) {
-                    String B = taVar.B();
-                    String E = taVar.E();
-                    if (B != null && !B.equals(E)) {
-                        w9 w9Var = taVar.C0;
-                        if (w9Var != null && w9Var.getCameraSession() != null) {
-                            if (taVar.C0.isFrontface() && !taVar.C0.getCameraSession().hasFlashModes()) {
-                                int indexOf = taVar.f15456v2.indexOf(E);
-                                if (indexOf >= 0) {
-                                    taVar.f15453u2 = indexOf;
-                                    np.g1().edit().putInt("frontflash", taVar.f15453u2).apply();
-                                }
-                            } else {
-                                taVar.C0.getCameraSession().setCurrentFlashMode(E);
-                            }
-                        }
-                        taVar.d0(E);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                w9 w9Var2 = taVar.C0;
-                if (w9Var2 != null && taVar.f15409g0 == 0) {
-                    w9Var2.toggleDual();
-                    taVar.G0.setValue(taVar.C0.isDual());
-                    fb fbVar = taVar.G0;
-                    if (taVar.C0.isDual()) {
-                        i11 = 2131754886;
-                    } else {
-                        i11 = 2131754887;
-                    }
-                    fbVar.setContentDescription(hd.N0(i11, null));
-                    taVar.f15426m1.f(true);
-                    np.g1().edit().putInt("storydualhint", 2).apply();
-                    if (taVar.n1.W) {
-                        np.g1().edit().putInt("storysvddualhint", 2).apply();
-                    }
-                    taVar.n1.f(true);
-                    return;
-                }
-                return;
-            case 6:
-                if (taVar.f15409g0 == 0 && !taVar.f15394b2) {
-                    w9 w9Var3 = taVar.C0;
-                    if (w9Var3 != null && w9Var3.isDual()) {
-                        taVar.C0.toggleDual();
-                    }
-                    if (!taVar.J0.f15704e && !taVar.B0.j()) {
-                        taVar.B0.o(taVar.A0);
-                        taVar.J0.setSelected(taVar.A0);
-                        taVar.H0.a(new u(taVar.A0, false), true);
-                        taVar.H0.setSelected(true);
-                        w9 w9Var4 = taVar.C0;
-                        if (w9Var4 != null) {
-                            w9Var4.recordHevc = !taVar.B0.j();
-                        }
-                        g3 g3Var = taVar.N0;
-                        if (g3Var != null) {
-                            g3Var.setMultipleOnClick(taVar.B0.j());
-                            taVar.N0.setMaxCount(Math.min(10, t.b() - taVar.B0.getFilledCount()));
-                        }
-                    }
-                    taVar.J0.a(!yVar.f15704e, true);
-                    taVar.l0(true);
-                    return;
-                }
-                return;
-            case 7:
-                taVar.B0.o(null);
-                taVar.B0.c();
-                taVar.J0.setSelected((t) null);
-                w9 w9Var5 = taVar.C0;
-                if (w9Var5 != null) {
-                    w9Var5.recordHevc = !taVar.B0.j();
-                }
-                taVar.J0.a(false, true);
-                taVar.l0(true);
-                g3 g3Var2 = taVar.N0;
-                if (g3Var2 != null) {
-                    g3Var2.setMultipleOnClick(taVar.B0.j());
-                    taVar.N0.setMaxCount(Math.min(10, t.b() - taVar.B0.getFilledCount()));
-                    return;
-                }
-                return;
-            case 8:
-                taVar.j0();
-                return;
-            case 9:
-                w9 w9Var6 = taVar.C0;
-                if (w9Var6 != null && !taVar.T1 && !taVar.Q1 && w9Var6.isInited() && taVar.f15409g0 == 0) {
-                    taVar.C0.switchCamera();
-                    taVar.P0.d(180.0f);
-                    ta.Z(taVar.C0.isFrontface());
-                    if (taVar.p0()) {
-                        taVar.f15444s.c(null);
-                        return;
-                    } else {
-                        taVar.f15444s.d();
-                        return;
-                    }
-                }
-                return;
-            case 10:
-                taVar.j0();
-                return;
-            case 11:
-                d7 d7Var3 = taVar.L1;
-                if (d7Var3 != null) {
-                    d7Var3.f14377f0 = true;
-                    d7Var3.f14374e0 = taVar.N1;
-                    taVar.W();
-                    d7 d7Var4 = taVar.L1;
-                    if (d7Var4 != null && !d7Var4.f14366b0) {
-                        org.telegram.messenger.g0.h3(new s8(taVar, 24), 400L);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 12:
-                if (taVar.f15450t2) {
-                    taVar.Y(true);
-                    return;
-                }
-                return;
-            case 13:
-                taVar.k0(-1, false, true);
+                k9 k9Var3 = new k9(f9Var.getContext(), k9Var2.J0);
+                k9Var3.Q1 = new w8(f9Var, 1);
+                k9Var3.L1 = k9Var2.L1;
+                k9Var3.show();
                 return;
             default:
-                taVar.k0(-1, false, true);
+                HashMap hashMap7 = f9Var.d;
+                a0.h hVar = f9Var.f14496b;
+                ArrayList arrayList7 = f9Var.f14497c;
+                int size2 = arrayList7.size();
+                int i15 = 0;
+                while (i15 < size2) {
+                    Object obj = arrayList7.get(i15);
+                    i15++;
+                    hVar.k(Boolean.FALSE, ((Long) obj).longValue());
+                }
+                for (ArrayList arrayList8 : hashMap7.values()) {
+                    int size3 = arrayList8.size();
+                    int i16 = 0;
+                    while (i16 < size3) {
+                        Object obj2 = arrayList8.get(i16);
+                        i16++;
+                        hVar.k(Boolean.FALSE, ((Long) obj2).longValue());
+                    }
+                }
+                arrayList7.clear();
+                hashMap7.clear();
+                f9Var.f14495a0.E1.clear();
+                f9Var.f14505y.d.a();
+                f9Var.g(true);
+                f9Var.f(true);
                 return;
         }
     }

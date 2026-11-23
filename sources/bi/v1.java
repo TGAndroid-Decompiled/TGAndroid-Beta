@@ -5,7 +5,7 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.Components.mj0;
-public final class v1 extends v4.t0 {
+public final class v1 extends v4.u0 {
     public final int f4136a;
     public final Object f4137b;
 
@@ -47,36 +47,36 @@ public final class v1 extends v4.t0 {
                 }
                 return;
             case 13:
-                fi.a5 a5Var = (fi.a5) this.f4137b;
+                fi.b5 b5Var = (fi.b5) this.f4137b;
                 if (i7 == 0) {
-                    a5Var.W = true;
-                    a5Var.invalidate();
+                    b5Var.W = true;
+                    b5Var.invalidate();
                 }
                 if (i7 == 1) {
-                    a5Var.W = false;
-                    xa xaVar = a5Var.d;
+                    b5Var.W = false;
+                    xa xaVar = b5Var.d;
                     ValueAnimator valueAnimator = (ValueAnimator) xaVar.f714c;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
                         ((ValueAnimator) xaVar.f714c).cancel();
                         xaVar.f714c = null;
                     }
-                    org.telegram.messenger.g0.v1(a5Var);
+                    org.telegram.messenger.g0.v1(b5Var);
                     return;
                 }
                 return;
             case 15:
-                hi.y1 y1Var = (hi.y1) this.f4137b;
-                if (i7 == 0 && y1Var.f15713n >= 0.0f && !y1Var.f15709b.canScrollVertically(-1)) {
-                    y1Var.f15713n = -1.0f;
+                hi.g2 g2Var = (hi.g2) this.f4137b;
+                if (i7 == 0 && g2Var.f14524n >= 0.0f && !g2Var.f14520b.canScrollVertically(-1)) {
+                    g2Var.f14524n = -1.0f;
                     return;
                 }
                 return;
             case 16:
                 if (i7 == 0) {
-                    hi.v6 v6Var = (hi.v6) this.f4137b;
-                    if (v6Var.f15535e2) {
-                        v6Var.f15535e2 = false;
+                    hi.e7 e7Var = (hi.e7) this.f4137b;
+                    if (e7Var.f14378e2) {
+                        e7Var.f14378e2 = false;
                         return;
                     }
                     return;
@@ -84,36 +84,36 @@ public final class v1 extends v4.t0 {
                 return;
             case 20:
                 if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(((kg.z1) this.f4137b).getParentActivity().getCurrentFocus());
+                    org.telegram.messenger.g0.v1(((kg.y1) this.f4137b).getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 25:
-                li.b0 b0Var = (li.b0) this.f4137b;
+                li.a0 a0Var = (li.a0) this.f4137b;
                 if (i7 == 0) {
-                    b0Var.f19890e = !b0Var.d.canScrollVertically(-1);
-                    b0Var.d.canScrollVertically(1);
+                    a0Var.f19989e = !a0Var.d.canScrollVertically(-1);
+                    a0Var.d.canScrollVertically(1);
                     return;
                 }
                 return;
             case 29:
-                org.telegram.ui.Components.f8 f8Var = (org.telegram.ui.Components.f8) this.f4137b;
-                org.telegram.ui.Components.r7 r7Var = f8Var.f35108s1;
+                org.telegram.ui.Components.e8 e8Var = (org.telegram.ui.Components.e8) this.f4137b;
+                org.telegram.ui.Components.q7 q7Var = e8Var.f34614s1;
                 if (i7 == 0) {
                     int L = org.telegram.messenger.g0.L(13.0f);
-                    int i10 = f8Var.f35113u2;
-                    int i11 = f8Var.f30176t0;
-                    if (((i10 - i11) - L) + i11 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && r7Var.canScrollVertically(1) && (mj0Var = (mj0) r7Var.K(f8Var.f35103p2 ? 1 : 0)) != null) {
-                        View view = mj0Var.f59111a;
+                    int i10 = e8Var.f34619u2;
+                    int i11 = e8Var.f30260t0;
+                    if (((i10 - i11) - L) + i11 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && q7Var.canScrollVertically(1) && (mj0Var = (mj0) q7Var.K(e8Var.f34609p2 ? 1 : 0)) != null) {
+                        View view = mj0Var.f59245a;
                         if (view.getTop() > org.telegram.messenger.g0.L(7.0f)) {
-                            r7Var.w0(0, view.getTop() - org.telegram.messenger.g0.L(7.0f), null);
+                            q7Var.w0(0, view.getTop() - org.telegram.messenger.g0.L(7.0f), null);
                             return;
                         }
                         return;
                     }
                     return;
                 } else if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(f8Var.getCurrentFocus());
+                    org.telegram.messenger.g0.v1(e8Var.getCurrentFocus());
                     return;
                 } else {
                     return;

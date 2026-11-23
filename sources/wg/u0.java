@@ -1,41 +1,21 @@
 package wg;
 
-import android.util.Pair;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.y10;
-public final class u0 implements y10 {
-    public final int f59837a;
-    public final w0 f59838b;
-    public final boolean f59839c;
+import android.content.Context;
+import org.telegram.ui.ActionBar.i6;
+public final class u0 extends ah.o {
+    public final v0 L;
 
-    public u0(w0 w0Var, boolean z10, int i7) {
-        this.f59837a = i7;
-        this.f59838b = w0Var;
-        this.f59839c = z10;
+    public u0(v0 v0Var, Context context, i6 i6Var) {
+        super(context, i6Var);
+        this.L = v0Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f59837a) {
-            case 0:
-                List list = (List) obj;
-                w0 w0Var = this.f59838b;
-                ArrayList arrayList = w0Var.f59846c2;
-                if (this.f59839c) {
-                    w0Var.d2.addAll(list);
-                }
-                if (w0Var.f59856n2 == 1) {
-                    arrayList.clear();
-                    arrayList.addAll(list);
-                    w0Var.o1(true, true);
-                    w0Var.k1(true);
-                    return;
-                }
-                return;
-            default:
-                w0.e1(this.f59838b, this.f59839c, (Pair) obj);
-                return;
-        }
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        int L = org.telegram.messenger.g0.L(78.0f) + getMeasuredHeight();
+        v0 v0Var = this.L;
+        v0Var.f59949l2 = L;
+        v0Var.f59948k2.G();
     }
 }

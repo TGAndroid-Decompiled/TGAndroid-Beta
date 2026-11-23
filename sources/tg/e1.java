@@ -2,70 +2,32 @@ package tg;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.o10;
-import org.telegram.ui.ActionBar.a6;
-public final class e1 extends TextView {
-    public boolean f57804a;
-    public Drawable f57805b;
+import android.graphics.Paint;
+import android.view.View;
+public final class e1 extends View {
+    public final Paint f57887a;
+    public float f57888b;
 
     public e1(Context context) {
         super(context);
-        setTextColor(-1);
-        setTextSize(1, 14.0f);
-        setCurrent(false);
-        setEllipsize(TextUtils.TruncateAt.END);
-        setSingleLine();
+        Paint paint = new Paint(1);
+        this.f57887a = paint;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.save();
-        canvas.translate(0.0f, org.telegram.messenger.g0.L(-1.0f));
         super.onDraw(canvas);
-        canvas.restore();
-        if (this.f57804a) {
-            int z10 = o10.z(16.0f, getHeight(), 2);
-            if (hd.f24408a0) {
-                this.f57805b.setBounds(org.telegram.messenger.g0.L(7.0f), z10, org.telegram.messenger.g0.L(23.0f), org.telegram.messenger.g0.L(16.0f) + z10);
-            } else {
-                this.f57805b.setBounds(getWidth() - org.telegram.messenger.g0.L(23.0f), z10, getWidth() - org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(16.0f) + z10);
-            }
-            this.f57805b.draw(canvas);
-        }
+        Paint paint = this.f57887a;
+        canvas.drawLine((getWidth() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(-6.7f, -7.0f, this.f57888b)), (getHeight() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(0.71f, 0.0f, this.f57888b)), (getWidth() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(-2.45f, 7.0f, this.f57888b)), (getHeight() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(4.79f, 0.0f, this.f57888b)), paint);
+        canvas.drawLine((getWidth() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(-2.45f, 0.0f, this.f57888b)), (getHeight() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(4.79f, 7.0f, this.f57888b)), (getWidth() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(6.59f, 0.0f, this.f57888b)), (getHeight() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(-4.27f, -7.0f, this.f57888b)), paint);
     }
 
-    public void setCurrent(boolean z10) {
-        float f10;
-        this.f57804a = z10;
-        if (z10) {
-            float f11 = 12.0f;
-            if (hd.f24408a0) {
-                f10 = 27.0f;
-            } else {
-                f10 = 12.0f;
-            }
-            int L = org.telegram.messenger.g0.L(f10);
-            int L2 = org.telegram.messenger.g0.L(6.0f);
-            if (!hd.f24408a0) {
-                f11 = 27.0f;
-            }
-            setPadding(L, L2, org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(6.0f));
-            setBackground(a6.d(0, a6.b(1090519039), org.telegram.messenger.g0.L(32.0f)));
-        } else {
-            setPadding(org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(14.0f));
-            setBackground(a6.d(0, a6.b(-14145495), 0.0f));
-        }
-        if (this.f57804a && this.f57805b == null) {
-            Drawable drawable = getContext().getDrawable(2131232524);
-            this.f57805b = drawable;
-            drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        }
+    public void setProgress(float f10) {
+        this.f57888b = f10;
         invalidate();
     }
 }

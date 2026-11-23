@@ -1,11 +1,11 @@
 package a4;
 
-import f3.b0;
+import f3.c0;
 import f3.p;
 public interface h {
-    b0 f();
+    c0 N();
 
-    long m0(p pVar);
+    long a0(p pVar);
 
-    void v0(long j3);
+    void l0(long j3);
 }

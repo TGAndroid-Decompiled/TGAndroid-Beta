@@ -1,169 +1,35 @@
 package org.telegram.ui.Components;
+public final class ia0 implements Runnable {
+    public final int f35969a;
+    public final ja0 f35970b;
 
-import android.view.KeyEvent;
-import android.view.View;
-import java.util.ArrayList;
-public final class ia0 extends v4.t {
-    public final int S;
-    public final KeyEvent.Callback T;
-
-    public ia0(KeyEvent.Callback callback, int i7) {
-        super(true);
-        this.S = i7;
-        this.T = callback;
+    public ia0(ja0 ja0Var, int i7) {
+        this.f35969a = i7;
+        this.f35970b = ja0Var;
     }
 
     @Override
-    public final boolean B1(int i7) {
-        byte b10;
-        byte b11;
-        org.telegram.messenger.yi d;
-        byte b12;
-        switch (this.S) {
+    public final void run() {
+        switch (this.f35969a) {
             case 0:
-                qa0 qa0Var = (qa0) this.T;
-                org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) qa0Var.f38815r.f24701f.get(i7);
-                org.telegram.messenger.bj a10 = qa0.a(qa0Var, gjVar);
-                if (a10 == null) {
-                    return false;
-                }
-                ArrayList arrayList = a10.f23077e;
-                org.telegram.messenger.yi d2 = a10.d(gjVar);
-                if (d2.f28056a == d2.f28057b || (b10 = d2.f28058c) != d2.d || b10 == 0) {
-                    return false;
-                }
-                int size = arrayList.size();
-                for (int i10 = 0; i10 < size; i10++) {
-                    org.telegram.messenger.yi yiVar = (org.telegram.messenger.yi) arrayList.get(i10);
-                    if (yiVar != d2) {
-                        byte b13 = yiVar.f28058c;
-                        byte b14 = d2.f28058c;
-                        if (b13 <= b14 && yiVar.d >= b14) {
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            case 1:
-                org.telegram.ui.eg0 eg0Var = (org.telegram.ui.eg0) this.T;
-                org.telegram.messenger.gj gjVar2 = (org.telegram.messenger.gj) eg0Var.N.get((B() - 1) - i7);
-                org.telegram.messenger.bj l10 = eg0Var.l(gjVar2);
-                if (l10 != null) {
-                    ArrayList arrayList2 = l10.f23077e;
-                    org.telegram.messenger.yi d10 = l10.d(gjVar2);
-                    if (d10.f28056a != d10.f28057b && (b11 = d10.f28058c) == d10.d && b11 != 0) {
-                        int size2 = arrayList2.size();
-                        for (int i11 = 0; i11 < size2; i11++) {
-                            org.telegram.messenger.yi yiVar2 = (org.telegram.messenger.yi) arrayList2.get(i11);
-                            if (yiVar2 != d10) {
-                                byte b15 = yiVar2.f28058c;
-                                byte b16 = d10.f28058c;
-                                if (b15 <= b16 && yiVar2.d >= b16) {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                }
-                return false;
-            default:
-                hi.b5 b5Var = (hi.b5) this.T;
-                ArrayList arrayList3 = b5Var.f58167t0;
-                int size3 = (arrayList3.size() - 1) - i7;
-                org.telegram.messenger.bj bjVar = b5Var.f58168u0;
-                if (bjVar != null && size3 >= 0 && size3 < arrayList3.size() && (d = bjVar.d((org.telegram.messenger.gj) arrayList3.get(size3))) != null && d.f28056a != d.f28057b && (b12 = d.f28058c) == d.d && b12 != 0) {
-                    int size4 = bjVar.f23077e.size();
-                    for (int i12 = 0; i12 < size4; i12++) {
-                        org.telegram.messenger.yi yiVar3 = (org.telegram.messenger.yi) bjVar.f23077e.get(i12);
-                        if (yiVar3 != d) {
-                            byte b17 = yiVar3.f28058c;
-                            byte b18 = d.f28058c;
-                            if (b17 <= b18 && yiVar3.d >= b18) {
-                                return true;
-                            }
-                        }
-                    }
-                }
-                return false;
-        }
-    }
-
-    @Override
-    public final boolean C1(View view) {
-        switch (this.S) {
-            case 0:
-                return false;
-            case 1:
-                if (view instanceof org.telegram.ui.Cells.r1) {
-                    return !((org.telegram.ui.Cells.r1) view).getMessageObject().P3();
-                }
-                return false;
-            default:
-                if (view instanceof org.telegram.ui.Cells.r1) {
-                    return !((org.telegram.ui.Cells.r1) view).getMessageObject().P3();
-                }
-                return false;
-        }
-    }
-
-    @Override
-    public void b0(v4.w0 w0Var, v4.b1 b1Var) {
-        switch (this.S) {
-            case 0:
-                boolean z10 = org.telegram.messenger.s2.f26694a;
-                try {
-                    super.b0(w0Var, b1Var);
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    org.telegram.messenger.g0.g3(new oo(this, 28));
+                ja0 ja0Var = this.f35970b;
+                if (ja0Var.W != -1) {
+                    org.telegram.messenger.ks.f(ja0Var.Y.f37742d0.f39890x).j(ja0Var.W);
+                    ja0Var.W = -1;
                     return;
                 }
-            default:
-                super.b0(w0Var, b1Var);
                 return;
-        }
-    }
-
-    @Override
-    public int j(v4.b1 b1Var) {
-        switch (this.S) {
             case 1:
-                return B0(b1Var);
+                this.f35970b.Y.i();
+                return;
             default:
-                return super.j(b1Var);
-        }
-    }
-
-    @Override
-    public int k(v4.b1 b1Var) {
-        switch (this.S) {
-            case 1:
-                return C0(b1Var);
-            default:
-                return super.k(b1Var);
-        }
-    }
-
-    @Override
-    public int l(v4.b1 b1Var) {
-        switch (this.S) {
-            case 1:
-                return D0(b1Var);
-            default:
-                return super.l(b1Var);
-        }
-    }
-
-    @Override
-    public boolean y0() {
-        switch (this.S) {
-            case 1:
-                return true;
-            case 2:
-                return false;
-            default:
-                return super.y0();
+                ja0 ja0Var2 = this.f35970b;
+                if (ja0Var2.W != -1) {
+                    org.telegram.messenger.ks.f(ja0Var2.Y.f37742d0.f39890x).j(ja0Var2.W);
+                    ja0Var2.W = -1;
+                    return;
+                }
+                return;
         }
     }
 }

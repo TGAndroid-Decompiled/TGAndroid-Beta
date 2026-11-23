@@ -3,27 +3,27 @@ package a3;
 import a8.ma;
 import e2.s1;
 import j$.util.Objects;
-import l2.m1;
+import l2.n1;
 public final class y {
     public final int f143a;
-    public final m1[] f144b;
+    public final n1[] f144b;
     public final u[] f145c;
     public final s1 d;
     public final Object f146e;
 
-    public y(m1[] m1VarArr, u[] uVarArr, s1 s1Var, Object obj) {
+    public y(n1[] n1VarArr, u[] uVarArr, s1 s1Var, Object obj) {
         boolean z10;
-        if (m1VarArr.length == uVarArr.length) {
+        if (n1VarArr.length == uVarArr.length) {
             z10 = true;
         } else {
             z10 = false;
         }
         ma.f(z10);
-        this.f144b = m1VarArr;
+        this.f144b = n1VarArr;
         this.f145c = (u[]) uVarArr.clone();
         this.d = s1Var;
         this.f146e = obj;
-        this.f143a = m1VarArr.length;
+        this.f143a = n1VarArr.length;
     }
 
     public final boolean a(y yVar, int i7) {

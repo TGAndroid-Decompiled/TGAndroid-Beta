@@ -1,22 +1,22 @@
 package jb;
 public final class i {
     public static final h Companion = new Object();
-    public final Boolean f17352a;
-    public final Double f17353b;
-    public final Integer f17354c;
+    public final Boolean f17452a;
+    public final Double f17453b;
+    public final Integer f17454c;
     public final Integer d;
-    public final Long f17355e;
+    public final Long f17455e;
 
     public i(int i7, Boolean bool, Double d, Integer num, Integer num2, Long l10) {
         if (31 != (i7 & 31)) {
-            oe.k.a(i7, 31, g.f17351a.d());
+            oe.k.a(i7, 31, g.f17451a.d());
             throw null;
         }
-        this.f17352a = bool;
-        this.f17353b = d;
-        this.f17354c = num;
+        this.f17452a = bool;
+        this.f17453b = d;
+        this.f17454c = num;
         this.d = num2;
-        this.f17355e = l10;
+        this.f17455e = l10;
     }
 
     public final boolean equals(Object obj) {
@@ -27,7 +27,7 @@ public final class i {
             return false;
         }
         i iVar = (i) obj;
-        if (kotlin.jvm.internal.j.a(this.f17352a, iVar.f17352a) && kotlin.jvm.internal.j.a(this.f17353b, iVar.f17353b) && kotlin.jvm.internal.j.a(this.f17354c, iVar.f17354c) && kotlin.jvm.internal.j.a(this.d, iVar.d) && kotlin.jvm.internal.j.a(this.f17355e, iVar.f17355e)) {
+        if (kotlin.jvm.internal.j.a(this.f17452a, iVar.f17452a) && kotlin.jvm.internal.j.a(this.f17453b, iVar.f17453b) && kotlin.jvm.internal.j.a(this.f17454c, iVar.f17454c) && kotlin.jvm.internal.j.a(this.d, iVar.d) && kotlin.jvm.internal.j.a(this.f17455e, iVar.f17455e)) {
             return true;
         }
         return false;
@@ -39,21 +39,21 @@ public final class i {
         int hashCode3;
         int hashCode4;
         int i7 = 0;
-        Boolean bool = this.f17352a;
+        Boolean bool = this.f17452a;
         if (bool == null) {
             hashCode = 0;
         } else {
             hashCode = bool.hashCode();
         }
         int i10 = hashCode * 31;
-        Double d = this.f17353b;
+        Double d = this.f17453b;
         if (d == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = d.hashCode();
         }
         int i11 = (i10 + hashCode2) * 31;
-        Integer num = this.f17354c;
+        Integer num = this.f17454c;
         if (num == null) {
             hashCode3 = 0;
         } else {
@@ -67,7 +67,7 @@ public final class i {
             hashCode4 = num2.hashCode();
         }
         int i13 = (i12 + hashCode4) * 31;
-        Long l10 = this.f17355e;
+        Long l10 = this.f17455e;
         if (l10 != null) {
             i7 = l10.hashCode();
         }
@@ -75,14 +75,14 @@ public final class i {
     }
 
     public final String toString() {
-        return "SessionConfigs(sessionsEnabled=" + this.f17352a + ", sessionSamplingRate=" + this.f17353b + ", sessionTimeoutSeconds=" + this.f17354c + ", cacheDurationSeconds=" + this.d + ", cacheUpdatedTimeSeconds=" + this.f17355e + ')';
+        return "SessionConfigs(sessionsEnabled=" + this.f17452a + ", sessionSamplingRate=" + this.f17453b + ", sessionTimeoutSeconds=" + this.f17454c + ", cacheDurationSeconds=" + this.d + ", cacheUpdatedTimeSeconds=" + this.f17455e + ')';
     }
 
     public i(Boolean bool, Double d, Integer num, Integer num2, Long l10) {
-        this.f17352a = bool;
-        this.f17353b = d;
-        this.f17354c = num;
+        this.f17452a = bool;
+        this.f17453b = d;
+        this.f17454c = num;
         this.d = num2;
-        this.f17355e = l10;
+        this.f17455e = l10;
     }
 }

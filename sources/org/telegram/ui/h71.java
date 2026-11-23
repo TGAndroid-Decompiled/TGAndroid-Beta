@@ -1,28 +1,26 @@
 package org.telegram.ui;
-public final class h71 implements p71 {
-    public boolean f48254a;
-    public final bn f48255b;
 
-    public h71(bn bnVar, boolean z10) {
-        this.f48255b = bnVar;
-        this.f48254a = z10;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+public final class h71 extends org.telegram.ui.Components.zo0 {
+    public final k71 V2;
+
+    public h71(k71 k71Var, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.V2 = k71Var;
     }
 
     @Override
-    public final boolean Y0() {
-        return true;
-    }
-
-    @Override
-    public final boolean d() {
-        return this.f48254a;
-    }
-
-    @Override
-    public final void l1(boolean z10) {
-        boolean z11 = !this.f48254a;
-        this.f48254a = z11;
-        zm zmVar = this.f48255b.Ba;
-        zmVar.r(zmVar.f54552f, zmVar.f54553g, z10, Boolean.valueOf(z11), false);
+    public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        int m10 = hVar.m();
+        k71 k71Var = this.V2;
+        if (m10 == 1) {
+            k71Var.f49361a.f52886n0.m(((TLRPC.Dialog) hVar.n(0)).f28496id, Integer.valueOf(i7), 61);
+        } else {
+            k71Var.f49361a.f52886n0.k(0L, 61, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
+        }
     }
 }

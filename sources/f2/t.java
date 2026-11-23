@@ -7,13 +7,13 @@ public final class t extends o {
 
     @Override
     public final k h(k kVar) {
-        int i7 = kVar.f11046c;
+        int i7 = kVar.f11044c;
         if (i7 != 3 && i7 != 2 && i7 != 268435456 && i7 != 21 && i7 != 1342177280 && i7 != 22 && i7 != 1610612736 && i7 != 4 && i7 != 1879048192) {
             throw new m(kVar);
         }
         if (i7 != 2) {
-            return new k(kVar.f11044a, kVar.f11045b, 2);
+            return new k(kVar.f11042a, kVar.f11043b, 2);
         }
-        return k.f11043e;
+        return k.f11041e;
     }
 }

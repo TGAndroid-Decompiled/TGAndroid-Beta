@@ -1,35 +1,25 @@
 package hi;
-public final class c9 implements Runnable {
-    public final int f14280a;
-    public final ta f14281b;
-    public final boolean f14282c;
 
-    public c9(ta taVar, boolean z10, int i7) {
-        this.f14280a = i7;
-        this.f14281b = taVar;
-        this.f14282c = z10;
+import android.animation.ValueAnimator;
+public final class c9 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f14278a;
+    public final d9 f14279b;
+
+    public c9(d9 d9Var, int i7) {
+        this.f14278a = i7;
+        this.f14279b = d9Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f14280a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f14278a) {
             case 0:
-                this.f14281b.e(this.f14282c);
+                d9.a(this.f14279b, valueAnimator);
                 return;
-            case 1:
-                ta taVar = this.f14281b;
-                if (!this.f14282c) {
-                    taVar.K0.b(false, false);
-                    return;
-                } else {
-                    taVar.getClass();
-                    return;
-                }
             default:
-                ta taVar2 = this.f14281b;
-                taVar2.S = null;
-                taVar2.f15401e = false;
-                taVar2.p(this.f14282c);
+                d9 d9Var = this.f14279b;
+                d9Var.getClass();
+                d9Var.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

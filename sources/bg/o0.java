@@ -15,7 +15,7 @@ import android.media.MediaFormat;
 import android.media.metrics.LogSessionId;
 import android.media.session.MediaSession;
 import android.os.Build;
-import h9.t1;
+import h9.s1;
 import j$.util.Comparator$CC;
 import j$.util.Comparator$EL;
 import java.io.ByteArrayInputStream;
@@ -106,8 +106,8 @@ public abstract class o0 {
             }
             return h9.i0.q(treeSet);
         }
-        h9.g0 g0Var = h9.i0.f13998b;
-        return t1.f14066e;
+        h9.g0 g0Var = h9.i0.f13995b;
+        return s1.f14058e;
     }
 
     public static RenderEffect d() {
@@ -156,7 +156,7 @@ public abstract class o0 {
 
     public static void j(q4.q qVar, ComponentName componentName) {
         try {
-            MediaSession mediaSession = ((q4.l) qVar.f55836b).f55818a;
+            MediaSession mediaSession = ((q4.l) qVar.f55949b).f55931a;
             mediaSession.getClass();
             mediaSession.setMediaButtonBroadcastReceiver(componentName);
         } catch (IllegalArgumentException e10) {

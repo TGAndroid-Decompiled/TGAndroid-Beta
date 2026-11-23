@@ -1,78 +1,50 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class zr0 implements jg.y1, org.telegram.ui.Cells.a5 {
-    public final bs0 f42930a;
+import org.telegram.messenger.Utilities;
+public final class zr0 implements Runnable {
+    public final int f43031a;
+    public final bs0 f43032b;
+    public final String f43033c;
 
-    public zr0(bs0 bs0Var) {
-        this.f42930a = bs0Var;
+    public zr0(bs0 bs0Var, String str, int i7) {
+        this.f43031a = i7;
+        this.f43032b = bs0Var;
+        this.f43033c = str;
     }
 
     @Override
-    public a0.h K0() {
-        return null;
-    }
-
-    @Override
-    public boolean b(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
-        int intValue = ((Integer) b5Var.getTag()).intValue();
-        bs0 bs0Var = this.f42930a;
-        TLObject E = bs0Var.E(intValue);
-        if (E instanceof TLRPC.ChannelParticipant) {
-            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
-            TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
-            tL_chatChannelParticipant.channelParticipant = channelParticipant;
-            tL_chatChannelParticipant.user_id = org.telegram.messenger.gj.B1(channelParticipant.peer);
-            tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
-            tL_chatChannelParticipant.date = channelParticipant.date;
-            return bs0Var.f33876s.G1.h(tL_chatChannelParticipant, true, !z10, b5Var);
-        }
-        return false;
-    }
-
-    @Override
-    public a0.h d1() {
-        return null;
-    }
-
-    @Override
-    public void r(int i7) {
-        bs0 bs0Var = this.f42930a;
-        bs0Var.f();
-        if (i7 == 1) {
-            int i10 = bs0Var.f33875r - 1;
-            bs0Var.f33875r = i10;
-            if (i10 == 0) {
-                int i11 = 0;
-                while (true) {
-                    jt0 jt0Var = bs0Var.f33876s;
-                    ds0[] ds0VarArr = jt0Var.f36605n0;
-                    if (i11 < ds0VarArr.length) {
-                        ds0 ds0Var = ds0VarArr[i11];
-                        if (ds0Var.F == 7) {
-                            if (bs0Var.h == 0) {
-                                ds0Var.f34543w.e(false, true);
-                            } else {
-                                jt0Var.D(ds0Var.h, 0, null);
-                            }
-                        }
-                        i11++;
-                    } else {
-                        return;
-                    }
+    public final void run() {
+        long j3;
+        switch (this.f43031a) {
+            case 0:
+                bs0 bs0Var = this.f43032b;
+                String str = this.f43033c;
+                bs0Var.getClass();
+                org.telegram.messenger.g0.g3(new zr0(bs0Var, str, 1));
+                return;
+            default:
+                bs0 bs0Var2 = this.f43032b;
+                String str2 = this.f43033c;
+                ArrayList arrayList = null;
+                bs0Var2.f33808f = null;
+                if (!org.telegram.messenger.v3.T(bs0Var2.f33809n) && bs0Var2.f33811s.f36114g1 != null) {
+                    arrayList = new ArrayList(bs0Var2.f33811s.f36114g1.participants.participants);
                 }
-            }
+                bs0Var2.f33810r = 2;
+                if (arrayList != null) {
+                    Utilities.f22879g.c(new org.telegram.ui.Cells.fa(bs0Var2, str2, arrayList, 29));
+                } else {
+                    bs0Var2.f33810r = 1;
+                }
+                jg.z1 z1Var = bs0Var2.f33807e;
+                if (org.telegram.messenger.v3.T(bs0Var2.f33809n)) {
+                    j3 = bs0Var2.f33809n.f28492id;
+                } else {
+                    j3 = 0;
+                }
+                z1Var.g(str2, false, false, true, false, j3, false, 2, 1);
+                return;
         }
-    }
-
-    @Override
-    public boolean v1(int i7) {
-        return true;
-    }
-
-    @Override
-    public void P1(ArrayList arrayList) {
     }
 }

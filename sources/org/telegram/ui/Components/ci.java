@@ -1,31 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class ci extends ug {
-    public final ui f34172y0;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class ci implements lj {
+    public final ti f34066a;
 
-    public ci(Context context, org.telegram.ui.ActionBar.h6 h6Var, ui uiVar) {
-        super(2131232696, context, h6Var, false);
-        this.f34172y0 = uiVar;
+    public ci(ti tiVar) {
+        this.f34066a = tiVar;
     }
 
     @Override
-    public final boolean b() {
-        return false;
+    public final void a(TLRPC.User user, boolean z10, int i7, long j3) {
+        org.telegram.ui.bn bnVar = (org.telegram.ui.bn) this.f34066a.f39956a2;
+        if (bnVar.u7()) {
+            org.telegram.messenger.xy g10 = org.telegram.messenger.xy.g(user, bnVar.f46271l6, bnVar.F5, bnVar.f46282m4, null, null, z10, i7, 0);
+            g10.K = bnVar.Y8();
+            g10.O = 0L;
+            g10.L = false;
+            g10.Q = j3;
+            g10.R = bnVar.j9();
+            g10.T = bnVar.f46436y5;
+            bnVar.getSendMessagesHelper().r0(g10);
+            bnVar.L6();
+        }
     }
 
     @Override
-    public final boolean c() {
-        return !this.f34172y0.S2;
-    }
-
-    @Override
-    public final boolean d() {
-        return true;
-    }
-
-    @Override
-    public final int getFillColor() {
-        return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.S5, this.f34172y0.J0);
+    public final void c(ArrayList arrayList, String str, boolean z10, int i7, long j3, boolean z11) {
+        ((org.telegram.ui.bn) this.f34066a.f39956a2).Jb(arrayList, str, z10, i7, j3, z11);
     }
 }

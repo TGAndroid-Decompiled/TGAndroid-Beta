@@ -3,9 +3,9 @@ package u9;
 import a8.p0;
 import c8.xc;
 public final class i {
-    public final q f58557a;
-    public final int f58558b;
-    public final int f58559c;
+    public final q f58672a;
+    public final int f58673b;
+    public final int f58674c;
 
     public i(int i7, int i10, Class cls) {
         this(q.a(cls), i7, i10);
@@ -22,7 +22,7 @@ public final class i {
     public final boolean equals(Object obj) {
         if (obj instanceof i) {
             i iVar = (i) obj;
-            if (this.f58557a.equals(iVar.f58557a) && this.f58558b == iVar.f58558b && this.f58559c == iVar.f58559c) {
+            if (this.f58672a.equals(iVar.f58672a) && this.f58673b == iVar.f58673b && this.f58674c == iVar.f58674c) {
                 return true;
             }
             return false;
@@ -31,16 +31,16 @@ public final class i {
     }
 
     public final int hashCode() {
-        return ((((this.f58557a.hashCode() ^ 1000003) * 1000003) ^ this.f58558b) * 1000003) ^ this.f58559c;
+        return ((((this.f58672a.hashCode() ^ 1000003) * 1000003) ^ this.f58673b) * 1000003) ^ this.f58674c;
     }
 
     public final String toString() {
         String str;
         String str2;
         StringBuilder sb2 = new StringBuilder("Dependency{anInterface=");
-        sb2.append(this.f58557a);
+        sb2.append(this.f58672a);
         sb2.append(", type=");
-        int i7 = this.f58558b;
+        int i7 = this.f58673b;
         if (i7 == 1) {
             str = "required";
         } else if (i7 == 0) {
@@ -50,7 +50,7 @@ public final class i {
         }
         sb2.append(str);
         sb2.append(", injection=");
-        int i10 = this.f58559c;
+        int i10 = this.f58674c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
@@ -69,8 +69,8 @@ public final class i {
 
     public i(q qVar, int i7, int i10) {
         xc.a(qVar, "Null dependency anInterface.");
-        this.f58557a = qVar;
-        this.f58558b = i7;
-        this.f58559c = i10;
+        this.f58672a = qVar;
+        this.f58673b = i7;
+        this.f58674c = i10;
     }
 }

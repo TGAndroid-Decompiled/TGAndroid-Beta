@@ -1,7 +1,7 @@
 package bi;
 
-import org.telegram.messenger.y10;
-public final class w6 implements y10 {
+import org.telegram.messenger.w10;
+public final class w6 implements w10 {
     public final int f4185a;
     public final m8 f4186b;
 

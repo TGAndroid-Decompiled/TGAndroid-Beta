@@ -1,24 +1,23 @@
 package org.telegram.ui.Wallet;
-public final class h7 implements r1.c {
-    public final int f44322a;
-    public final Object f44323b;
+public final class h7 implements r1.d {
+    public final int f44439a;
+    public final n7 f44440b;
 
-    public h7(Object obj, int i7) {
-        this.f44322a = i7;
-        this.f44323b = obj;
+    public h7(n7 n7Var, int i7) {
+        this.f44439a = i7;
+        this.f44440b = n7Var;
     }
 
     @Override
-    public final void a(r1.g gVar, boolean z10, float f10, float f11) {
-        switch (this.f44322a) {
+    public final void a(r1.g gVar, float f10, float f11) {
+        switch (this.f44439a) {
             case 0:
-                m7.b((m7) this.f44323b, z10, f10);
+                n7 n7Var = this.f44440b;
+                n7Var.f44756c.setScaleX(f10);
+                n7Var.f44756c.setScaleY(f10);
                 return;
             default:
-                da daVar = (da) this.f44323b;
-                daVar.f44064b0 = null;
-                daVar.f44065c0 = 1.0f;
-                daVar.G0();
+                this.f44440b.Q = f11;
                 return;
         }
     }

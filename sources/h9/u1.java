@@ -1,27 +1,35 @@
 package h9;
 
-import a8.ma;
-import j$.util.Objects;
-import java.util.AbstractMap;
-public final class u1 extends i0 {
-    public final v1 f14069c;
+import java.util.Map;
+public final class u1 extends t0 {
+    public final transient l0 d;
+    public final transient Object[] f14065e;
+    public final transient int f14066f;
+    public final transient int h;
 
-    public u1(v1 v1Var) {
-        this.f14069c = v1Var;
+    public u1(l0 l0Var, Object[] objArr, int i7, int i10) {
+        this.d = l0Var;
+        this.f14065e = objArr;
+        this.f14066f = i7;
+        this.h = i10;
     }
 
     @Override
-    public final Object get(int i7) {
-        v1 v1Var = this.f14069c;
-        ma.j(i7, v1Var.h);
-        Object[] objArr = v1Var.f14074e;
-        int i10 = i7 * 2;
-        int i11 = v1Var.f14075f;
-        Object obj = objArr[i10 + i11];
-        Objects.requireNonNull(obj);
-        Object obj2 = objArr[i10 + (i11 ^ 1)];
-        Objects.requireNonNull(obj2);
-        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
+    public final boolean contains(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            if (value != null && value.equals(this.d.get(key))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final int i(int i7, Object[] objArr) {
+        return f().i(i7, objArr);
     }
 
     @Override
@@ -30,7 +38,17 @@ public final class u1 extends i0 {
     }
 
     @Override
+    public final g2 n() {
+        return f().listIterator(0);
+    }
+
+    @Override
+    public final i0 r() {
+        return new t1(this);
+    }
+
+    @Override
     public final int size() {
-        return this.f14069c.h;
+        return this.h;
     }
 }

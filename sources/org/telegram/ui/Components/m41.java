@@ -1,152 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.view.animation.DecelerateInterpolator;
-public final class m41 extends bv0 {
-    public final int f37376a = org.telegram.messenger.k10.f24932t0;
-    public boolean f37377b = false;
-    public final float[] f37378c = new float[3];
-    public final float[] d = {0.0f, 150.0f, 300.0f};
-    public final float[] f37379e = {0.0f, 0.0f, 0.0f};
-    public long f37380f = 0;
-    public boolean f37381g = false;
-    public final DecelerateInterpolator h = new DecelerateInterpolator();
-    public boolean f37382i;
-    public final Paint f37383j;
+import android.content.Context;
+import android.util.LongSparseArray;
+import android.view.View;
+import java.util.HashMap;
+public abstract class m41 {
+    public final int f37371a;
 
-    public m41(boolean z10) {
-        if (z10) {
-            this.f37383j = new Paint(1);
+    public m41() {
+        int i7 = n41.K;
+        n41.K = i7 + 1;
+        this.f37371a = i7;
+    }
+
+    public static void h(m41 m41Var) {
+        if (n41.M == null) {
+            n41.M = new HashMap();
+        }
+        if (n41.L == null) {
+            n41.L = new LongSparseArray();
+        }
+        Class<?> cls = m41Var.getClass();
+        if (!n41.M.containsKey(cls)) {
+            n41.M.put(cls, m41Var);
+            n41.L.put(m41Var.f37371a, m41Var);
         }
     }
 
-    @Override
-    public final void b(int i7) {
-        Paint paint = this.f37383j;
-        if (paint != null) {
-            paint.setColor(i7);
-        }
+    public boolean c(n41 n41Var, n41 n41Var2) {
+        return n41Var.I(n41Var2);
     }
 
-    @Override
-    public final void c(boolean z10) {
-        this.f37377b = z10;
+    public abstract View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var);
+
+    public boolean e(n41 n41Var, n41 n41Var2) {
+        return n41Var.J(n41Var2);
     }
 
-    @Override
-    public final void d() {
-        this.f37380f = System.currentTimeMillis();
-        this.f37381g = true;
-        invalidateSelf();
+    public boolean f() {
+        return !(this instanceof org.telegram.messenger.tt);
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        int L;
-        int i7;
-        int i10 = getBounds().left;
-        if (this.f37377b) {
-            L = org.telegram.messenger.g0.L(8.5f);
-            i7 = getBounds().top;
-        } else {
-            L = org.telegram.messenger.g0.L(9.3f);
-            i7 = getBounds().top;
-        }
-        int i11 = L + i7;
-        Paint paint = this.f37383j;
-        if (paint == null) {
-            paint = org.telegram.ui.ActionBar.m6.f29325c2;
-            paint.setAlpha(255);
-        }
-        float f10 = i11;
-        float[] fArr = this.f37378c;
-        canvas.drawCircle(org.telegram.messenger.g0.L(3.0f) + i10, f10, fArr[0] * org.telegram.messenger.g0.f24009p, paint);
-        canvas.drawCircle(org.telegram.messenger.g0.L(9.0f) + i10, f10, fArr[1] * org.telegram.messenger.g0.f24009p, paint);
-        canvas.drawCircle(org.telegram.messenger.g0.L(15.0f) + i10, f10, fArr[2] * org.telegram.messenger.g0.f24009p, paint);
-        f();
+    public boolean g() {
+        return this instanceof bj;
     }
 
-    @Override
-    public final void e() {
-        for (int i7 = 0; i7 < 3; i7++) {
-            this.f37379e[i7] = 0.0f;
-            this.f37378c[i7] = 1.33f;
-        }
-        float[] fArr = this.d;
-        fArr[0] = 0.0f;
-        fArr[1] = 150.0f;
-        fArr[2] = 300.0f;
-        this.f37381g = false;
+    public void a(ek0 ek0Var, View view, n41 n41Var) {
     }
 
-    public final void f() {
-        if (this.f37381g) {
-            if (org.telegram.messenger.ls.f(this.f37376a).g() && !this.f37382i) {
-                org.telegram.messenger.g0.h3(new cp0(this, 27), 100L);
-                return;
-            }
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f37380f;
-            this.f37380f = currentTimeMillis;
-            if (j3 > 50) {
-                j3 = 50;
-            }
-            for (int i7 = 0; i7 < 3; i7++) {
-                float[] fArr = this.f37379e;
-                float f10 = fArr[i7] + ((float) j3);
-                fArr[i7] = f10;
-                float[] fArr2 = this.d;
-                float f11 = f10 - fArr2[i7];
-                int i10 = (f11 > 0.0f ? 1 : (f11 == 0.0f ? 0 : -1));
-                float[] fArr3 = this.f37378c;
-                if (i10 > 0) {
-                    int i11 = (f11 > 320.0f ? 1 : (f11 == 320.0f ? 0 : -1));
-                    DecelerateInterpolator decelerateInterpolator = this.h;
-                    if (i11 <= 0) {
-                        fArr3[i7] = decelerateInterpolator.getInterpolation(f11 / 320.0f) + 1.33f;
-                    } else if (f11 <= 640.0f) {
-                        fArr3[i7] = (1.0f - decelerateInterpolator.getInterpolation((f11 - 320.0f) / 320.0f)) + 1.33f;
-                    } else if (f11 >= 800.0f) {
-                        fArr[i7] = 0.0f;
-                        fArr2[i7] = 0.0f;
-                        fArr3[i7] = 1.33f;
-                    } else {
-                        fArr3[i7] = 1.33f;
-                    }
-                } else {
-                    fArr3[i7] = 1.33f;
-                }
-            }
-            a();
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(18.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(18.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        Paint paint = this.f37383j;
-        if (paint != null) {
-            paint.setColorFilter(colorFilter);
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
+    public void b(View view, n41 n41Var, boolean z10, b51 b51Var, g51 g51Var) {
     }
 }

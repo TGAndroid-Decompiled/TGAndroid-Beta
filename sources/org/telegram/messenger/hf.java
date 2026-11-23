@@ -1,14 +1,64 @@
 package org.telegram.messenger;
-public final class hf {
-    public final gj f24443a;
-    public final float f24444b;
-    public final int f24445c;
-    public final int d;
 
-    public hf(gj gjVar) {
-        this.f24443a = gjVar;
-        this.f24444b = gjVar.f24137b0;
-        this.f24445c = gjVar.f24146d0;
-        this.d = gjVar.f24169i0;
+import java.util.HashMap;
+import org.telegram.tgnet.TLRPC;
+public final class hf extends xe {
+    public String B;
+    public String C;
+    public String D;
+    public int E;
+    public int F;
+    public int G;
+    public int H;
+    public CharSequence I;
+    public TLRPC.Document J;
+    public TLRPC.Photo K;
+    public TLRPC.PhotoSize L;
+    public TLRPC.PhotoSize M;
+    public TLRPC.BotInlineResult N;
+    public HashMap O;
+
+    @Override
+    public final String a() {
+        if (this.L != null) {
+            w7.G(i10.f24637t0);
+            return w7.J(this.L, null, true, true).getAbsolutePath();
+        } else if (this.J != null) {
+            w7.G(i10.f24637t0);
+            return w7.J(this.J, null, true, true).getAbsolutePath();
+        } else {
+            return ec.A(this.C).getAbsolutePath();
+        }
+    }
+
+    public final hf clone() {
+        ?? obj = new Object();
+        obj.B = this.B;
+        obj.C = this.C;
+        obj.D = this.D;
+        obj.E = this.E;
+        obj.F = this.F;
+        obj.G = this.G;
+        obj.H = this.H;
+        obj.I = this.I;
+        obj.J = this.J;
+        obj.K = this.K;
+        obj.L = this.L;
+        obj.M = this.M;
+        obj.N = this.N;
+        obj.O = this.O;
+        return obj;
+    }
+
+    public final String g() {
+        if (this.L != null) {
+            w7.G(i10.f24637t0);
+            return w7.J(this.L, null, true, true).getAbsolutePath();
+        } else if (this.J != null) {
+            w7.G(i10.f24637t0);
+            return w7.J(this.J, null, true, true).getAbsolutePath();
+        } else {
+            return this.C;
+        }
     }
 }

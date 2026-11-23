@@ -1,22 +1,33 @@
 package org.telegram.ui;
 
-import java.util.TimerTask;
-public final class ck0 extends TimerTask {
-    public final dk0 f46573a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import java.util.HashSet;
+public final class ck0 extends View implements org.telegram.ui.ActionBar.c6 {
+    public Paint f46821a;
+    public Paint f46822b;
+    public float f46823c;
 
-    public ck0(dk0 dk0Var) {
-        this.f46573a = dk0Var;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float measuredWidth = (int) (getMeasuredWidth() * this.f46823c);
+        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f46822b);
+        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f46821a);
     }
 
     @Override
-    public final void run() {
-        dk0 dk0Var = this.f46573a;
-        if (dk0Var.f46966w == null) {
-            return;
+    public final void updateColors() {
+        try {
+            this.f46821a.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Xi, false));
+            this.f46822b.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Yi, false));
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
-        double currentTimeMillis = System.currentTimeMillis();
-        dk0Var.E = (int) (dk0Var.E - (currentTimeMillis - dk0Var.G));
-        dk0Var.G = currentTimeMillis;
-        org.telegram.messenger.g0.g3(new hf0(this, 9));
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

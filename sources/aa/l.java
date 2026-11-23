@@ -12,10 +12,10 @@ import java.io.StringReader;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.gj;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.mp;
 import org.telegram.messenger.n5;
-import org.telegram.messenger.np;
-import org.telegram.messenger.t00;
+import org.telegram.messenger.r00;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ps;
 public final class l implements Function {
@@ -48,7 +48,7 @@ public final class l implements Function {
             case 1:
                 File file = (File) obj;
                 try {
-                    ea.a aVar = ga.b.f13265g;
+                    ea.a aVar = ga.b.f13264g;
                     String f10 = ga.b.f(file);
                     aVar.getClass();
                     try {
@@ -76,7 +76,7 @@ public final class l implements Function {
                 return Integer.valueOf(Integer.bitCount(((Integer) obj).intValue()));
             case 3:
                 String str = (String) obj;
-                Pattern pattern = Utilities.f22771a;
+                Pattern pattern = Utilities.f22874a;
                 try {
                     j3 = Long.parseLong(str);
                 } catch (Exception unused) {
@@ -89,15 +89,15 @@ public final class l implements Function {
             case 5:
                 return String.valueOf((Long) obj);
             case 6:
-                return np.a((int[]) obj);
+                return mp.a((int[]) obj);
             case 7:
-                return ((t00) obj).f26906b;
+                return ((r00) obj).f26619b;
             case 8:
                 return Long.valueOf(n5.o((TLRPC.Peer) obj));
             case 9:
-                return Long.valueOf(((gj) obj).Z0());
+                return Long.valueOf(((fj) obj).Z0());
             case 10:
-                return Integer.valueOf(((gj) obj).e1());
+                return Integer.valueOf(((fj) obj).e1());
             case 11:
                 TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) obj;
                 if (channelParticipant == null) {
@@ -109,9 +109,9 @@ public final class l implements Function {
             case 13:
                 return Long.valueOf(n5.o(((TLRPC.GroupCallParticipant) obj).peer));
             case 14:
-                return ((ps) obj).f50902a;
+                return ((ps) obj).f51135a;
             default:
-                return ((ps) obj).f50902a;
+                return ((ps) obj).f51135a;
         }
     }
 

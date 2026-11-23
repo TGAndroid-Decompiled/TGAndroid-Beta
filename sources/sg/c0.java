@@ -1,42 +1,42 @@
 package sg;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.Components.jn;
+import org.telegram.ui.Components.nd0;
 public final class c0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f57185a;
-    public final i0 f57186b;
+    public final int f57298a;
+    public final h0 f57299b;
 
-    public c0(i0 i0Var, int i7) {
-        this.f57185a = i7;
-        this.f57186b = i0Var;
+    public c0(h0 h0Var, int i7) {
+        this.f57298a = i7;
+        this.f57299b = h0Var;
     }
 
     @Override
     public final void onAnimationUpdate(final ValueAnimator valueAnimator) {
-        switch (this.f57185a) {
+        switch (this.f57298a) {
             case 0:
-                final i0 i0Var = this.f57186b;
-                i0Var.f57235f.f(new Runnable() {
+                final h0 h0Var = this.f57299b;
+                h0Var.f57343f.f(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                i0 i0Var2 = i0Var;
-                                i0Var2.getClass();
-                                i0Var2.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                jn jnVar = i0Var2.f57231a;
-                                if (jnVar != null) {
-                                    jnVar.l();
+                                h0 h0Var2 = h0Var;
+                                h0Var2.getClass();
+                                h0Var2.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                nd0 nd0Var = h0Var2.f57339a;
+                                if (nd0Var != null) {
+                                    nd0Var.p();
                                     return;
                                 }
                                 return;
                             default:
-                                i0 i0Var3 = i0Var;
-                                i0Var3.getClass();
-                                i0Var3.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                jn jnVar2 = i0Var3.f57231a;
-                                if (jnVar2 != null) {
-                                    jnVar2.l();
+                                h0 h0Var3 = h0Var;
+                                h0Var3.getClass();
+                                h0Var3.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                nd0 nd0Var2 = h0Var3.f57339a;
+                                if (nd0Var2 != null) {
+                                    nd0Var2.p();
                                     return;
                                 }
                                 return;
@@ -45,28 +45,28 @@ public final class c0 implements ValueAnimator.AnimatorUpdateListener {
                 });
                 return;
             default:
-                final i0 i0Var2 = this.f57186b;
-                i0Var2.f57235f.f(new Runnable() {
+                final h0 h0Var2 = this.f57299b;
+                h0Var2.f57343f.f(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                i0 i0Var22 = i0Var2;
-                                i0Var22.getClass();
-                                i0Var22.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                jn jnVar = i0Var22.f57231a;
-                                if (jnVar != null) {
-                                    jnVar.l();
+                                h0 h0Var22 = h0Var2;
+                                h0Var22.getClass();
+                                h0Var22.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                nd0 nd0Var = h0Var22.f57339a;
+                                if (nd0Var != null) {
+                                    nd0Var.p();
                                     return;
                                 }
                                 return;
                             default:
-                                i0 i0Var3 = i0Var2;
-                                i0Var3.getClass();
-                                i0Var3.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                jn jnVar2 = i0Var3.f57231a;
-                                if (jnVar2 != null) {
-                                    jnVar2.l();
+                                h0 h0Var3 = h0Var2;
+                                h0Var3.getClass();
+                                h0Var3.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                nd0 nd0Var2 = h0Var3.f57339a;
+                                if (nd0Var2 != null) {
+                                    nd0Var2.p();
                                     return;
                                 }
                                 return;

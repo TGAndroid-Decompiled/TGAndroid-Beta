@@ -1,6 +1,6 @@
 package zd;
 public final class b2 implements id.f, id.g {
-    public static final b2 f61836a = new Object();
+    public static final b2 f61955a = new Object();
 
     @Override
     public final Object fold(Object obj, rd.p pVar) {

@@ -27,20 +27,20 @@ public final class a implements nf.a {
         } else {
             gVar = new g(3);
         }
-        for (p pVar = (p) sVar.f18232f; pVar != null && pVar != sVar2; pVar = (p) pVar.f18232f) {
+        for (p pVar = (p) sVar.f18331f; pVar != null && pVar != sVar2; pVar = (p) pVar.f18331f) {
             gVar.b(pVar);
         }
         gVar.g();
-        p pVar2 = (p) sVar.f18232f;
-        gVar.f18232f = pVar2;
+        p pVar2 = (p) sVar.f18331f;
+        gVar.f18331f = pVar2;
         if (pVar2 != null) {
-            pVar2.f18231e = gVar;
+            pVar2.f18330e = gVar;
         }
-        gVar.f18231e = sVar;
-        sVar.f18232f = gVar;
-        p pVar3 = (p) sVar.f18229b;
-        gVar.f18229b = pVar3;
-        if (((p) gVar.f18232f) == null) {
+        gVar.f18330e = sVar;
+        sVar.f18331f = gVar;
+        p pVar3 = (p) sVar.f18328b;
+        gVar.f18328b = pVar3;
+        if (((p) gVar.f18331f) == null) {
             pVar3.d = gVar;
         }
     }

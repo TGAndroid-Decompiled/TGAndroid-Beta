@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import org.telegram.tgnet.TLRPC;
-public final class zh extends org.telegram.ui.Components.io {
+public final class zh extends org.telegram.ui.Components.fo {
     public final bn N;
 
-    public zh(bn bnVar, Activity activity, int i7, TLRPC.Document document, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(activity, i7, document, h6Var);
+    public zh(bn bnVar, Activity activity, int i7, TLRPC.Document document, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(activity, i7, document, i6Var);
         this.N = bnVar;
     }
 
@@ -15,8 +15,8 @@ public final class zh extends org.telegram.ui.Components.io {
         super.onLayout(z10, i7, i10, i11, i12);
         float y10 = getY();
         bn bnVar = this.N;
-        float y11 = bnVar.f45986g1.getY() + y10;
-        this.K = bnVar.f46064m1.getBackgroundSizeY();
+        float y11 = bnVar.f46201g1.getY() + y10;
+        this.K = bnVar.f46279m1.getBackgroundSizeY();
         this.J = y11;
     }
 }

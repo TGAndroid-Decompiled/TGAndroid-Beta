@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.util.Log;
 import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.concurrent.Callable;
 import org.telegram.ui.Dictation.DictationLid;
 import org.webrtc.audio.WebRtcAudioRecord;
@@ -38,27 +37,27 @@ public final class i implements Callable {
             case 0:
                 Context context = (Context) this.f939b;
                 Intent intent = (Intent) this.f940c;
-                c0 s5 = c0.s();
-                s5.getClass();
+                c0 v = c0.v();
+                v.getClass();
                 if (Log.isLoggable("FirebaseMessaging", 3)) {
                     Log.d("FirebaseMessaging", "Starting service");
                 }
-                ((ArrayDeque) s5.f910e).offer(intent);
+                ((ArrayDeque) v.f910e).offer(intent);
                 Intent intent2 = new Intent("com.google.firebase.MESSAGING_EVENT");
                 intent2.setPackage(context.getPackageName());
-                synchronized (s5) {
+                synchronized (v) {
                     try {
-                        str = (String) s5.f908b;
+                        str = (String) v.f908b;
                         if (str == null) {
                             ResolveInfo resolveService = context.getPackageManager().resolveService(intent2, 0);
                             if (resolveService != null && (serviceInfo = resolveService.serviceInfo) != null) {
                                 if (context.getPackageName().equals(serviceInfo.packageName) && (str2 = serviceInfo.name) != null) {
                                     if (str2.startsWith(".")) {
-                                        s5.f908b = context.getPackageName() + serviceInfo.name;
+                                        v.f908b = context.getPackageName() + serviceInfo.name;
                                     } else {
-                                        s5.f908b = serviceInfo.name;
+                                        v.f908b = serviceInfo.name;
                                     }
-                                    str = (String) s5.f908b;
+                                    str = (String) v.f908b;
                                 }
                                 Log.e("FirebaseMessaging", "Error resolving target intent service, skipping classname enforcement. Resolved service was: " + serviceInfo.packageName + "/" + serviceInfo.name);
                                 str = null;
@@ -76,7 +75,7 @@ public final class i implements Callable {
                     intent2.setClassName(context.getPackageName(), str);
                 }
                 try {
-                    if (s5.y(context)) {
+                    if (v.A(context)) {
                         startService = m0.d(context, intent2);
                     } else {
                         startService = context.startService(intent2);
@@ -102,7 +101,7 @@ public final class i implements Callable {
                 j2.i iVar = (j2.i) this.f939b;
                 byte[] bArr = (byte[]) this.f940c;
                 boolean z10 = iVar.d;
-                Bitmap b10 = bg.o0.b(bArr.length, iVar.f17166c, bArr);
+                Bitmap b10 = bg.o0.b(bArr.length, iVar.f17263c, bArr);
                 if (z10) {
                     return bg.o0.e(b10);
                 }
@@ -110,11 +109,11 @@ public final class i implements Callable {
             case 3:
                 j2.i iVar2 = (j2.i) this.f939b;
                 Uri uri = (Uri) this.f940c;
-                j2.h createDataSource = iVar2.f17165b.createDataSource();
-                int i10 = iVar2.f17166c;
+                j2.h createDataSource = iVar2.f17262b.createDataSource();
+                int i10 = iVar2.f17263c;
                 boolean z11 = iVar2.d;
                 try {
-                    j2.m mVar = new j2.m(uri, 1, null, Collections.EMPTY_MAP, 0L, -1L, null, 0);
+                    j2.m mVar = new j2.m(0L, uri);
                     j2.n nVar = (j2.n) createDataSource;
                     nVar.open(mVar);
                     byte[] bArr2 = new byte[1024];

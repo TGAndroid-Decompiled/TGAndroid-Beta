@@ -1,17 +1,11 @@
 package org.telegram.ui;
-
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class o20 extends FrameLayout {
+public final class o20 extends org.telegram.ui.Components.qb0 {
     public o20(LaunchActivity launchActivity) {
-        super(launchActivity);
+        super(launchActivity, null);
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() <= 0.95f) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
+    public final CharSequence d(int i7) {
+        return org.telegram.messenger.gd.G(i7, "Hours", new Object[0]);
     }
 }

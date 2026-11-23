@@ -4,9 +4,9 @@ import e2.u;
 public interface k {
     public static final pb.b f4387i = new pb.b(6);
 
-    boolean H(u uVar);
+    boolean G(u uVar);
 
-    int O(u uVar);
+    int I(u uVar);
 
-    m j(u uVar);
+    m f(u uVar);
 }

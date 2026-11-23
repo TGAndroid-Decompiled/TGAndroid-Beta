@@ -5,19 +5,19 @@ import android.view.View;
 import android.widget.ImageView;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class uf implements View.OnKeyListener {
-    public final int f52549a;
-    public final Object f52550b;
+    public final int f52654a;
+    public final Object f52655b;
 
     public uf(Object obj, int i7) {
-        this.f52549a = i7;
-        this.f52550b = obj;
+        this.f52654a = i7;
+        this.f52655b = obj;
     }
 
     @Override
     public final boolean onKey(View view, int i7, KeyEvent keyEvent) {
-        switch (this.f52549a) {
+        switch (this.f52654a) {
             case 0:
-                bn bnVar = (bn) this.f52550b;
+                bn bnVar = (bn) this.f52655b;
                 bnVar.getClass();
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
                 if (i7 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
@@ -26,24 +26,24 @@ public final class uf implements View.OnKeyListener {
                 }
                 return false;
             case 1:
-                hk0 hk0Var = (hk0) this.f52550b;
+                fk0 fk0Var = (fk0) this.f52655b;
                 if (i7 == 67) {
-                    if (hk0Var.Z[2].length() == 0) {
-                        hk0Var.Z[1].requestFocus();
-                        EditTextBoldCursor editTextBoldCursor2 = hk0Var.Z[1];
+                    if (fk0Var.Z[2].length() == 0) {
+                        fk0Var.Z[1].requestFocus();
+                        EditTextBoldCursor editTextBoldCursor2 = fk0Var.Z[1];
                         editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                        hk0Var.Z[1].dispatchKeyEvent(keyEvent);
+                        fk0Var.Z[1].dispatchKeyEvent(keyEvent);
                         return true;
                     }
                 } else {
-                    hk0Var.getClass();
+                    fk0Var.getClass();
                 }
                 return false;
             default:
-                nr0 nr0Var = (nr0) this.f52550b;
+                mr0 mr0Var = (mr0) this.f52655b;
                 EditTextBoldCursor editTextBoldCursor3 = (EditTextBoldCursor) view;
                 if (i7 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor3.length() == 0) {
-                    ImageView imageView = nr0Var.f30443f;
+                    ImageView imageView = mr0Var.f30477f;
                     if (imageView != null) {
                         imageView.callOnClick();
                     }

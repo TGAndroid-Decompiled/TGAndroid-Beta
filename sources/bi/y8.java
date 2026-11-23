@@ -4,8 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 import android.widget.LinearLayout;
-import org.telegram.ui.Components.du0;
-public final class y8 extends du0 {
+import org.telegram.ui.Components.cu0;
+public final class y8 extends cu0 {
     public int f4272g0;
     public final f9 f4273h0;
 
@@ -27,7 +27,7 @@ public final class y8 extends du0 {
 
     @Override
     public final void S() {
-        this.f4273h0.f39487o1.invalidate();
+        this.f4273h0.f39246o1.invalidate();
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class y8 extends du0 {
         f9 f9Var = this.f4273h0;
         LinearLayout linearLayout = f9Var.f3581e2;
         linearLayout.setTranslationY(((i12 - i10) - linearLayout.getMeasuredHeight()) / 2.0f);
-        f9Var.f3583g2.k0(f9Var.f3583g2.getY() + f9Var.f3581e2.getY(), getBackgroundSizeY());
+        f9Var.f3583g2.m0(f9Var.f3583g2.getY() + f9Var.f3581e2.getY(), getBackgroundSizeY());
     }
 
     @Override

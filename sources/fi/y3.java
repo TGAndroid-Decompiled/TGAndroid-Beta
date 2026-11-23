@@ -7,124 +7,124 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.k10;
-import org.telegram.messenger.ls;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.ks;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.at;
+import org.telegram.ui.zs;
 public final class y3 {
-    public boolean f12765a;
-    public Object f12766b;
-    public Object f12767c;
+    public boolean f12775a;
+    public Object f12776b;
+    public Object f12777c;
     public Object d;
-    public Object f12768e;
-    public Object f12769f;
-    public Object f12770g;
+    public Object f12778e;
+    public Object f12779f;
+    public Object f12780g;
 
     public y3(Context context, int i7) {
         switch (i7) {
             case 3:
-                this.d = yi.g.f61320a;
-                this.f12765a = true;
-                this.f12770g = yi.j.H;
-                this.f12766b = context;
+                this.d = yi.g.f61439a;
+                this.f12775a = true;
+                this.f12780g = yi.j.H;
+                this.f12776b = context;
                 return;
             default:
-                this.f12766b = context;
-                this.f12767c = n2.b.f21063f;
+                this.f12776b = context;
+                this.f12777c = n2.b.f21153f;
                 return;
         }
     }
 
-    public static void c(at atVar) {
+    public static void c(zs zsVar) {
         ?? obj = new Object();
-        obj.f12766b = new org.telegram.messenger.j5(obj, 0);
-        obj.d = atVar;
-        int i7 = k10.f24932t0;
-        obj.f12770g = new org.telegram.messenger.a(obj, 6);
-        obj.f12769f = org.telegram.messenger.i5.r(i7);
-        obj.f12768e = ls.f(i7);
-        obj.f12767c = new Handler(Looper.myLooper());
+        obj.f12776b = new org.telegram.messenger.j5(obj, 0);
+        obj.d = zsVar;
+        int i7 = i10.f24637t0;
+        obj.f12780g = new org.telegram.messenger.a(obj, 6);
+        obj.f12779f = org.telegram.messenger.i5.r(i7);
+        obj.f12778e = ks.f(i7);
+        obj.f12777c = new Handler(Looper.myLooper());
         if (!obj.d(false)) {
-            ((ls) obj.f12768e).b((org.telegram.messenger.j5) obj.f12766b, ls.O);
-            ((Handler) obj.f12767c).postDelayed((org.telegram.messenger.a) obj.f12770g, 1000L);
+            ((ks) obj.f12778e).b((org.telegram.messenger.j5) obj.f12776b, ks.O);
+            ((Handler) obj.f12777c).postDelayed((org.telegram.messenger.a) obj.f12780g, 1000L);
         }
     }
 
-    public n2.r0 a() {
+    public n2.s0 a() {
         boolean z10;
         n2.b bVar;
-        Context context = (Context) this.f12766b;
+        Context context = (Context) this.f12776b;
         boolean z11 = true;
-        ma.p(!this.f12765a);
-        this.f12765a = true;
+        ma.p(!this.f12775a);
+        this.f12775a = true;
         if (((h6.m) this.d) == null) {
             this.d = new h6.m(new f2.n[0]);
         }
-        if (((n2.i0) this.f12769f) == null) {
-            if (((n2.l0) this.f12770g) == null) {
-                this.f12770g = new n2.l0(context);
+        if (((n2.j0) this.f12779f) == null) {
+            if (((n2.m0) this.f12780g) == null) {
+                this.f12780g = new n2.m0(context);
             }
-            if (((n2.s0) this.f12768e) == null) {
-                this.f12768e = n2.s0.f21233a;
+            if (((n2.t0) this.f12778e) == null) {
+                this.f12778e = n2.t0.f21334a;
             }
-            n2.h0 h0Var = new n2.h0(context);
+            n2.i0 i0Var = new n2.i0(context);
             if (context != null) {
                 bVar = null;
             } else {
-                bVar = (n2.b) this.f12767c;
+                bVar = (n2.b) this.f12777c;
             }
-            Context context2 = h0Var.f21114a;
+            Context context2 = i0Var.f21220a;
             if (context2 == null) {
-                h0Var.d = bVar;
+                i0Var.d = bVar;
             }
-            n2.l0 l0Var = (n2.l0) this.f12770g;
-            h0Var.f21115b = l0Var;
-            h0Var.f21116c = (n2.s0) this.f12768e;
-            if (l0Var == null) {
-                h0Var.f21115b = new n2.l0(context2);
+            n2.m0 m0Var = (n2.m0) this.f12780g;
+            i0Var.f21221b = m0Var;
+            i0Var.f21222c = (n2.t0) this.f12778e;
+            if (m0Var == null) {
+                i0Var.f21221b = new n2.m0(context2);
             }
-            this.f12769f = new n2.i0(h0Var);
+            this.f12779f = new n2.j0(i0Var);
         } else {
-            if (((n2.l0) this.f12770g) == null) {
+            if (((n2.m0) this.f12780g) == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             ma.p(z10);
-            if (((n2.s0) this.f12768e) != null) {
+            if (((n2.t0) this.f12778e) != null) {
                 z11 = false;
             }
             ma.p(z11);
         }
-        return new n2.r0(this);
+        return new n2.s0(this);
     }
 
     public void b() {
-        ArrayList arrayList = (ArrayList) this.f12770g;
+        ArrayList arrayList = (ArrayList) this.f12780g;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             ((View) arrayList.get(i7)).invalidate();
         }
     }
 
     public boolean d(boolean z10) {
-        boolean z11 = this.f12765a;
+        boolean z11 = this.f12775a;
         if (!z11) {
-            if (((org.telegram.messenger.i5) this.f12769f).h || z10) {
+            if (((org.telegram.messenger.i5) this.f12779f).h || z10) {
                 if (!z11) {
-                    ls lsVar = (ls) this.f12768e;
-                    if (lsVar != null) {
-                        lsVar.n((org.telegram.messenger.j5) this.f12766b, ls.O);
+                    ks ksVar = (ks) this.f12778e;
+                    if (ksVar != null) {
+                        ksVar.n((org.telegram.messenger.j5) this.f12776b, ks.O);
                     }
-                    Handler handler = (Handler) this.f12767c;
+                    Handler handler = (Handler) this.f12777c;
                     if (handler != null) {
-                        handler.removeCallbacks((org.telegram.messenger.a) this.f12770g);
+                        handler.removeCallbacks((org.telegram.messenger.a) this.f12780g);
                     }
-                    this.f12765a = true;
+                    this.f12775a = true;
                 }
-                at atVar = (at) this.d;
-                Intent intent = (Intent) atVar.f45646c;
+                zs zsVar = (zs) this.d;
+                Intent intent = (Intent) zsVar.f54714c;
                 String str = LaunchActivity.C1;
-                ((LaunchActivity) atVar.f45645b).W(intent, true, false, false, null, true, false);
+                ((LaunchActivity) zsVar.f54713b).W(intent, true, false, false, null, true, false);
                 return true;
             }
             return false;

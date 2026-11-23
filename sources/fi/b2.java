@@ -1,14 +1,14 @@
 package fi;
 
 import c8.ia;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.kj;
-import org.telegram.messenger.np;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.jj;
+import org.telegram.messenger.mp;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Cells.r9;
-import org.telegram.ui.Components.ka0;
-import org.telegram.ui.Components.qa0;
-import org.telegram.ui.Components.wa0;
+import org.telegram.ui.Cells.q9;
+import org.telegram.ui.Components.ha0;
+import org.telegram.ui.Components.na0;
+import org.telegram.ui.Components.ta0;
 import org.telegram.ui.bn;
 import org.telegram.ui.rm;
 import org.telegram.ui.uk;
@@ -23,25 +23,25 @@ public final class b2 extends ia {
 
     @Override
     public final void a(boolean z10) {
-        gj gjVar;
+        fj fjVar;
         switch (this.f11757a) {
             case 0:
                 z3 z3Var = (z3) this.f11758b;
                 s3 s3Var = z3Var.A1;
-                boolean x10 = z3Var.f12871u0.f12730a0.x();
+                boolean x10 = z3Var.f12882u0.f12740a0.x();
                 f9 f9Var = ((w8) s3Var).d;
-                f9Var.f11971j1 = x10;
+                f9Var.f11982j1 = x10;
                 f9Var.V();
                 return;
             case 1:
                 bn bnVar = (bn) this.f11758b;
                 bnVar.K9 = !z10;
                 if (z10) {
-                    if (bnVar.f46185v9 != null) {
+                    if (bnVar.f46400v9 != null) {
                         bn.e2(bnVar, 0.0f);
-                        bnVar.f46185v9 = null;
+                        bnVar.f46400v9 = null;
                     }
-                    bnVar.f46199w9 = false;
+                    bnVar.f46414w9 = false;
                     bnVar.C9 = false;
                     uk ukVar = bnVar.E9;
                     if (ukVar != null) {
@@ -52,34 +52,34 @@ public final class b2 extends ia {
                 bnVar.dd();
                 return;
             default:
-                qa0 qa0Var = (qa0) this.f11758b;
-                ka0 ka0Var = qa0Var.f38812e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = qa0Var.f38816s;
-                wa0 wa0Var = qa0Var.f38811d0;
-                if (wa0Var.f41717s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f36864b > 0.0f) {
+                na0 na0Var = (na0) this.f11758b;
+                ha0 ha0Var = na0Var.f37743e;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = na0Var.f37747s;
+                ta0 ta0Var = na0Var.f37742d0;
+                if (ta0Var.f39888s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f36399b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z10) {
-                        if (ka0Var.v - ka0Var.f32266u > np.u1(wa0Var.f41719x).f25912r4) {
-                            qa0Var.g();
+                        if (ha0Var.v - ha0Var.f32289u > mp.u1(ta0Var.f39890x).f25844r4) {
+                            na0Var.g();
                             return;
                         }
-                        r9 r9Var = ka0Var.W;
-                        if (r9Var != null) {
-                            gjVar = ((org.telegram.ui.Cells.r1) r9Var).getMessageObject();
+                        q9 q9Var = ha0Var.W;
+                        if (q9Var != null) {
+                            fjVar = ((org.telegram.ui.Cells.r1) q9Var).getMessageObject();
                         } else {
-                            gjVar = null;
+                            fjVar = null;
                         }
-                        gj c10 = qa0Var.c(gjVar);
-                        kj kjVar = wa0Var.d;
-                        if (kjVar.d == null) {
-                            int i7 = ka0Var.f32266u;
-                            kjVar.f25046e = i7;
-                            int i10 = ka0Var.v;
-                            kjVar.f25047f = i10;
-                            kjVar.d = rm.b(i7, i10, c10);
-                            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(qa0Var.J);
+                        fj c10 = na0Var.c(fjVar);
+                        jj jjVar = ta0Var.d;
+                        if (jjVar.d == null) {
+                            int i7 = ha0Var.f32289u;
+                            jjVar.f24977e = i7;
+                            int i10 = ha0Var.v;
+                            jjVar.f24978f = i10;
+                            jjVar.d = rm.b(i7, i10, c10);
+                            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(na0Var.J);
                             return;
                         }
                         return;

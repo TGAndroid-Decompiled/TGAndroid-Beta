@@ -1,6 +1,6 @@
 package bi;
 
-import org.telegram.messenger.np;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -43,10 +43,10 @@ public final class u4 implements Runnable {
                 return;
             default:
                 bn bnVar = (bn) this.f4122e;
-                np messagesController = bnVar.getMessagesController();
-                long j10 = bnVar.f46056l6;
-                if (org.telegram.messenger.v3.T(bnVar.f45958e)) {
-                    j3 = bnVar.f46056l6;
+                mp messagesController = bnVar.getMessagesController();
+                long j10 = bnVar.f46271l6;
+                if (org.telegram.messenger.v3.T(bnVar.f46173e)) {
+                    j3 = bnVar.f46271l6;
                 } else {
                     j3 = 0;
                 }

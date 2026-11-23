@@ -4,42 +4,42 @@ import android.animation.ValueAnimator;
 import android.graphics.Paint;
 import android.graphics.Path;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
 public class f {
-    public final mg.a f21496a;
-    public final Paint f21497b;
-    public final Paint f21498c;
+    public final mg.a f21595a;
+    public final Paint f21596b;
+    public final Paint f21597c;
     public final Paint d;
-    public final Path f21499e;
-    public final Path f21500f;
-    public final Path f21501g;
+    public final Path f21598e;
+    public final Path f21599f;
+    public final Path f21600g;
     public ValueAnimator h;
-    public ValueAnimator f21502i;
-    public int f21503j;
-    public final float[] f21504k;
-    public final float[] f21505l;
-    public int f21506m;
-    public boolean f21507n;
-    public float f21508o;
-    public final h6 f21509p;
+    public ValueAnimator f21601i;
+    public int f21602j;
+    public final float[] f21603k;
+    public final float[] f21604l;
+    public int f21605m;
+    public boolean f21606n;
+    public float f21607o;
+    public final i6 f21608p;
 
-    public f(mg.a aVar, boolean z10, h6 h6Var) {
+    public f(mg.a aVar, boolean z10, i6 i6Var) {
         int length;
         int length2;
         Paint paint = new Paint(1);
-        this.f21497b = paint;
+        this.f21596b = paint;
         Paint paint2 = new Paint(1);
-        this.f21498c = paint2;
+        this.f21597c = paint2;
         Paint paint3 = new Paint(1);
         this.d = paint3;
-        this.f21499e = new Path();
-        this.f21500f = new Path();
-        this.f21501g = new Path();
-        this.f21507n = true;
-        this.f21508o = 1.0f;
-        this.f21509p = h6Var;
-        this.f21496a = aVar;
+        this.f21598e = new Path();
+        this.f21599f = new Path();
+        this.f21600g = new Path();
+        this.f21606n = true;
+        this.f21607o = 1.0f;
+        this.f21608p = i6Var;
+        this.f21595a = aVar;
         paint2.setStrokeWidth(g0.N(2.0f));
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
@@ -54,39 +54,39 @@ public class f {
         paint3.setStyle(style);
         paint3.setStrokeCap(Paint.Cap.ROUND);
         paint3.setColor(aVar.h);
-        long[] jArr = aVar.f20971a;
+        long[] jArr = aVar.f21067a;
         if (z10) {
             length = jArr.length * 8;
         } else {
             length = jArr.length << 2;
         }
-        this.f21504k = new float[length];
-        long[] jArr2 = aVar.f20971a;
+        this.f21603k = new float[length];
+        long[] jArr2 = aVar.f21067a;
         if (z10) {
             length2 = jArr2.length * 8;
         } else {
             length2 = jArr2.length << 2;
         }
-        this.f21505l = new float[length2];
+        this.f21604l = new float[length2];
     }
 
     public void a() {
         int i7;
-        mg.a aVar = this.f21496a;
-        int i10 = aVar.f20976g;
-        h6 h6Var = this.f21509p;
-        if (i10 >= 0 && m6.f1(i10)) {
-            this.f21506m = m6.w0(aVar.f20976g, h6Var);
+        mg.a aVar = this.f21595a;
+        int i10 = aVar.f21072g;
+        i6 i6Var = this.f21608p;
+        if (i10 >= 0 && n6.f1(i10)) {
+            this.f21605m = n6.w0(aVar.f21072g, i6Var);
         } else {
-            if (i0.a.h(m6.w0(m6.f29347d6, h6Var)) < 0.5d) {
-                i7 = aVar.f20977i;
+            if (i0.a.h(n6.w0(n6.f29451d6, i6Var)) < 0.5d) {
+                i7 = aVar.f21073i;
             } else {
                 i7 = aVar.h;
             }
-            this.f21506m = i7;
+            this.f21605m = i7;
         }
-        this.f21498c.setColor(this.f21506m);
-        this.f21497b.setColor(this.f21506m);
-        this.d.setColor(this.f21506m);
+        this.f21597c.setColor(this.f21605m);
+        this.f21596b.setColor(this.f21605m);
+        this.d.setColor(this.f21605m);
     }
 }

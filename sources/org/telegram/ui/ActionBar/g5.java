@@ -9,8 +9,8 @@ public final class g5 extends q0 {
     public boolean D0;
     public boolean E0;
 
-    public g5(Context context, f5 f5Var, int i7, int i10, boolean z10, h6 h6Var) {
-        super(context, null, i7, i10, z10, h6Var);
+    public g5(Context context, f5 f5Var, int i7, int i10, boolean z10, i6 i6Var) {
+        super(context, null, i7, i10, z10, i6Var);
         this.D0 = true;
         this.E0 = true;
         this.A0 = f5Var;
@@ -27,7 +27,7 @@ public final class g5 extends q0 {
 
     @Override
     public final void G(boolean z10) {
-        this.A0.f28924a.B(z10, true);
+        this.A0.f29016a.B(z10, true);
     }
 
     @Override
@@ -45,18 +45,18 @@ public final class g5 extends q0 {
     @Override
     public final q0 O() {
         this.B0 = true;
-        this.A0.f28924a.setSearchItem(this);
+        this.A0.f29016a.setSearchItem(this);
         return this;
     }
 
     @Override
     public final void Q(CharSequence charSequence, boolean z10) {
-        this.A0.f28924a.setSearchFieldText(charSequence);
+        this.A0.f29016a.setSearchFieldText(charSequence);
     }
 
     @Override
     public final boolean U(boolean z10) {
-        z4 z4Var = this.A0.f28924a;
+        z4 z4Var = this.A0.f29016a;
         if (z4Var.G) {
             z4Var.o(z10);
             return false;
@@ -76,7 +76,7 @@ public final class g5 extends q0 {
         if (z12 == z10) {
             if (!z10 && !z11 && getVisibility() != 8) {
                 super.setVisibility(8);
-                f5Var.f28928f = true;
+                f5Var.f29020f = true;
                 f5Var.requestLayout();
                 return;
             } else if (z10 && getVisibility() != 0) {
@@ -98,8 +98,8 @@ public final class g5 extends q0 {
         } else if (!z11 || !isLaidOut() || !f5Var.isLaidOut()) {
             super.setVisibility(8);
         }
-        if (!z11 || !f5Var.f28924a.y()) {
-            f5Var.f28928f = true;
+        if (!z11 || !f5Var.f29016a.y()) {
+            f5Var.f29020f = true;
         }
         f5Var.requestLayout();
     }
@@ -110,7 +110,7 @@ public final class g5 extends q0 {
 
     @Override
     public EditTextBoldCursor getSearchField() {
-        return this.A0.f28924a.getSearchField();
+        return this.A0.f29016a.getSearchField();
     }
 
     public m0 getSearchListener() {
@@ -118,19 +118,19 @@ public final class g5 extends q0 {
     }
 
     @Override
-    public j5 getSubMenuOverlay() {
-        return this.A0.f28924a.getMenuOverlay();
+    public k5 getSubMenuOverlay() {
+        return this.A0.f29016a.getMenuOverlay();
     }
 
     @Override
     public t4 getSubMenuOverlayHost() {
-        return this.A0.f28924a;
+        return this.A0.f29016a;
     }
 
     @Override
     public final boolean j() {
         f5 f5Var = this.A0;
-        if (f5Var.f28925b && !f5Var.f28924a.x()) {
+        if (f5Var.f29017b && !f5Var.f29016a.x()) {
             return false;
         }
         return true;
@@ -138,17 +138,17 @@ public final class g5 extends q0 {
 
     @Override
     public final void o() {
-        this.A0.f28924a.setSearchFieldText("");
+        this.A0.f29016a.setSearchFieldText("");
     }
 
     @Override
     public void setSearchFieldCaption(CharSequence charSequence) {
-        this.A0.f28924a.setSearchFieldCaption(charSequence);
+        this.A0.f29016a.setSearchFieldCaption(charSequence);
     }
 
     @Override
     public void setSearchFieldHint(CharSequence charSequence) {
-        this.A0.f28924a.setSearchFieldHint(charSequence);
+        this.A0.f29016a.setSearchFieldHint(charSequence);
         setContentDescription(charSequence);
     }
 
@@ -163,8 +163,8 @@ public final class g5 extends q0 {
             } else {
                 z10 = false;
             }
-            z4 z4Var = f5Var.f28924a;
-            if (f5Var.isLaidOut() && z4Var.y() && (!f5Var.f28925b || (z4Var.x() && z4Var.getActionModeFactor() > 0.0f))) {
+            z4 z4Var = f5Var.f29016a;
+            if (f5Var.isLaidOut() && z4Var.y() && (!f5Var.f29017b || (z4Var.x() && z4Var.getActionModeFactor() > 0.0f))) {
                 z11 = true;
             }
             Z(z10, z11);
@@ -180,11 +180,11 @@ public final class g5 extends q0 {
 
     @Override
     public final boolean w() {
-        return this.A0.f28924a.G;
+        return this.A0.f29016a.G;
     }
 
     @Override
     public final boolean x() {
-        return this.A0.f28924a.G;
+        return this.A0.f29016a.G;
     }
 }

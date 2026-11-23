@@ -1,4 +1,4 @@
 package fd;
 public interface a {
-    Object mo24get();
+    Object mo23get();
 }

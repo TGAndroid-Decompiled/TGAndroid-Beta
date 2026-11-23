@@ -1,22 +1,17 @@
 package org.telegram.messenger;
 public final class ik implements Runnable {
-    public final int f24706a;
-    public final boolean[] f24707b;
+    public final int f24806a;
+    public final mp f24807b;
+    public final long f24808c;
 
-    public ik(int i7, boolean[] zArr) {
-        this.f24706a = i7;
-        this.f24707b = zArr;
+    public ik(mp mpVar, long j3, int i7) {
+        this.f24806a = i7;
+        this.f24807b = mpVar;
+        this.f24808c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f24706a) {
-            case 0:
-                this.f24707b[0] = true;
-                return;
-            default:
-                this.f24707b[0] = true;
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ik.run():void");
     }
 }

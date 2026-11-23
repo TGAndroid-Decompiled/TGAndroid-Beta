@@ -1,29 +1,35 @@
 package org.telegram.ui.Components;
-public final class me0 implements Runnable {
-    public final int f37460a;
-    public final pe0 f37461b;
 
-    public me0(pe0 pe0Var, int i7) {
-        this.f37460a = i7;
-        this.f37461b = pe0Var;
+import android.view.View;
+public final class me0 implements View.OnClickListener {
+    public final int f37441a;
+    public final oe0 f37442b;
+    public final Runnable f37443c;
+
+    public me0(oe0 oe0Var, Runnable runnable, int i7) {
+        this.f37441a = i7;
+        this.f37442b = oe0Var;
+        this.f37443c = runnable;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37460a) {
+    public final void onClick(View view) {
+        switch (this.f37441a) {
             case 0:
-                this.f37461b.d.a(false);
+                oe0 oe0Var = this.f37442b;
+                org.telegram.ui.ActionBar.k5 k5Var = oe0Var.d;
+                if (k5Var.I) {
+                    oe0Var.I = this.f37443c;
+                    k5Var.a(true);
+                    return;
+                }
                 return;
             default:
-                pe0 pe0Var = this.f37461b;
-                Runnable runnable = pe0Var.I;
-                pe0Var.I = null;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                Runnable runnable2 = pe0Var.J;
-                if (runnable2 != null) {
-                    runnable2.run();
+                oe0 oe0Var2 = this.f37442b;
+                org.telegram.ui.ActionBar.k5 k5Var2 = oe0Var2.d;
+                if (k5Var2.I) {
+                    oe0Var2.I = this.f37443c;
+                    k5Var2.a(true);
                     return;
                 }
                 return;

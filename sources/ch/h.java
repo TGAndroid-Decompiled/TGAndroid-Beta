@@ -1,7 +1,7 @@
 package ch;
 
-import org.telegram.messenger.hd;
-import org.telegram.messenger.ls;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.ks;
 public final class h implements Runnable {
     public final int f5362a;
     public final p f5363b;
@@ -28,10 +28,10 @@ public final class h implements Runnable {
             case 3:
                 if (pVar.Q && !pVar.P) {
                     pVar.P = true;
-                    ls.e().k(98, 512);
+                    ks.e().k(98, 512);
                     pVar.f5457c.setVisibility(0);
                     pVar.f5457c.setLayerType(2, null);
-                    pVar.j0(pVar.R.f57665e);
+                    pVar.j0(pVar.R.f57779e);
                     pVar.R.a(true, true);
                     return;
                 }
@@ -40,7 +40,7 @@ public final class h implements Runnable {
                 vf.c.t(pVar.getParentActivity(), "https://t.me/stickers");
                 return;
             case 5:
-                vf.c.t(pVar.getParentActivity(), hd.N0(2131752397, null));
+                vf.c.t(pVar.getParentActivity(), gd.N0(2131752397, null));
                 return;
             default:
                 pVar.e0(false);

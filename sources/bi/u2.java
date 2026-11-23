@@ -3,11 +3,11 @@ package bi;
 import android.view.View;
 public final class u2 implements View.OnAttachStateChangeListener {
     public final int f4094a;
-    public final org.telegram.ui.Components.n5 f4095b;
+    public final org.telegram.ui.Components.m5 f4095b;
 
-    public u2(org.telegram.ui.Components.n5 n5Var, int i7) {
+    public u2(org.telegram.ui.Components.m5 m5Var, int i7) {
         this.f4094a = i7;
-        this.f4095b = n5Var;
+        this.f4095b = m5Var;
     }
 
     @Override

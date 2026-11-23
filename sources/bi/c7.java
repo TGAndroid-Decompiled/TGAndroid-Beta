@@ -4,31 +4,31 @@ import android.view.View;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.w10;
+import org.telegram.messenger.u10;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.o41;
-public final class c7 implements w10 {
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.n41;
+public final class c7 implements u10 {
     public final int f3441a;
     public final m8 f3442b;
-    public final h51[] f3443c;
+    public final g51[] f3443c;
 
-    public c7(m8 m8Var, h51[] h51VarArr, int i7) {
+    public c7(m8 m8Var, g51[] g51VarArr, int i7) {
         this.f3441a = i7;
         this.f3442b = m8Var;
-        this.f3443c = h51VarArr;
+        this.f3443c = g51VarArr;
     }
 
     @Override
-    public final void l(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        o41 o41Var = (o41) obj;
+    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        n41 n41Var = (n41) obj;
         View view = (View) obj2;
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
         switch (this.f3441a) {
             case 0:
-                long j3 = ((TL_stars.starGiftAttributePattern) o41Var.H).document.f28404id;
+                long j3 = ((TL_stars.starGiftAttributePattern) n41Var.H).document.f28498id;
                 a8 a8Var = this.f3442b.d;
                 HashSet hashSet = a8Var.f3370l;
                 if (!hashSet.contains(Long.valueOf(j3))) {
@@ -39,7 +39,7 @@ public final class c7 implements w10 {
                         while (i7 < size) {
                             Object obj3 = arrayList.get(i7);
                             i7++;
-                            long j10 = ((TL_stars.starGiftAttributePattern) obj3).document.f28404id;
+                            long j10 = ((TL_stars.starGiftAttributePattern) obj3).document.f28498id;
                             if (j10 != j3) {
                                 hashSet.add(Long.valueOf(j10));
                             }
@@ -51,14 +51,14 @@ public final class c7 implements w10 {
                     hashSet.remove(Long.valueOf(j3));
                 }
                 a8Var.m();
-                h51 h51Var = this.f3443c[0];
-                if (h51Var != null) {
-                    h51Var.f35742g3.O(true);
+                g51 g51Var = this.f3443c[0];
+                if (g51Var != null) {
+                    g51Var.f35323g3.O(true);
                     return;
                 }
                 return;
             case 1:
-                int i10 = ((TL_stars.starGiftAttributeBackdrop) o41Var.H).backdrop_id;
+                int i10 = ((TL_stars.starGiftAttributeBackdrop) n41Var.H).backdrop_id;
                 a8 a8Var2 = this.f3442b.d;
                 HashSet hashSet2 = a8Var2.f3369k;
                 if (!hashSet2.contains(Integer.valueOf(i10))) {
@@ -81,14 +81,14 @@ public final class c7 implements w10 {
                     hashSet2.remove(Integer.valueOf(i10));
                 }
                 a8Var2.m();
-                h51 h51Var2 = this.f3443c[0];
-                if (h51Var2 != null) {
-                    h51Var2.f35742g3.O(true);
+                g51 g51Var2 = this.f3443c[0];
+                if (g51Var2 != null) {
+                    g51Var2.f35323g3.O(true);
                     return;
                 }
                 return;
             default:
-                long j11 = ((TL_stars.starGiftAttributeModel) o41Var.H).document.f28404id;
+                long j11 = ((TL_stars.starGiftAttributeModel) n41Var.H).document.f28498id;
                 a8 a8Var3 = this.f3442b.d;
                 HashSet hashSet3 = a8Var3.f3368j;
                 if (!hashSet3.contains(Long.valueOf(j11))) {
@@ -99,7 +99,7 @@ public final class c7 implements w10 {
                         while (i13 < size3) {
                             Object obj5 = arrayList3.get(i13);
                             i13++;
-                            long j12 = ((TL_stars.starGiftAttributeModel) obj5).document.f28404id;
+                            long j12 = ((TL_stars.starGiftAttributeModel) obj5).document.f28498id;
                             if (j12 != j11) {
                                 hashSet3.add(Long.valueOf(j12));
                             }
@@ -111,9 +111,9 @@ public final class c7 implements w10 {
                     hashSet3.remove(Long.valueOf(j11));
                 }
                 a8Var3.m();
-                h51 h51Var3 = this.f3443c[0];
-                if (h51Var3 != null) {
-                    h51Var3.f35742g3.O(true);
+                g51 g51Var3 = this.f3443c[0];
+                if (g51Var3 != null) {
+                    g51Var3.f35323g3.O(true);
                     return;
                 }
                 return;

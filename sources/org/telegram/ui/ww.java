@@ -1,10 +1,10 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public interface ww {
-    boolean G();
+import org.telegram.tgnet.TLRPC;
+public final class ww extends TLRPC.Dialog {
+    public final int f53778a;
 
-    boolean P(cx cxVar);
-
-    boolean y(cx cxVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i7, int i10, y91 y91Var);
+    public ww(int i7) {
+        this.f53778a = i7;
+    }
 }

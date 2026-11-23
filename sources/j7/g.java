@@ -7,35 +7,35 @@ import android.os.ResultReceiver;
 import c8.cc;
 public final class g extends r6.a {
     public static final Parcelable.Creator<g> CREATOR = new b(5);
-    public final String f17292a;
-    public final Bundle f17293b;
-    public final Bundle f17294c;
+    public final String f17392a;
+    public final Bundle f17393b;
+    public final Bundle f17394c;
     public final String d;
-    public final String f17295e;
-    public final ResultReceiver f17296f;
+    public final String f17395e;
+    public final ResultReceiver f17396f;
 
     public g(String type, Bundle credentialData, Bundle candidateQueryData, String str, String str2, ResultReceiver resultReceiver) {
         kotlin.jvm.internal.j.e(type, "type");
         kotlin.jvm.internal.j.e(credentialData, "credentialData");
         kotlin.jvm.internal.j.e(candidateQueryData, "candidateQueryData");
-        this.f17292a = type;
-        this.f17293b = credentialData;
-        this.f17294c = candidateQueryData;
+        this.f17392a = type;
+        this.f17393b = credentialData;
+        this.f17394c = candidateQueryData;
         this.d = str;
-        this.f17295e = str2;
-        this.f17296f = resultReceiver;
+        this.f17395e = str2;
+        this.f17396f = resultReceiver;
     }
 
     @Override
     public final void writeToParcel(Parcel dest, int i7) {
         kotlin.jvm.internal.j.e(dest, "dest");
         int r10 = cc.r(dest, 20293);
-        cc.l(dest, 1, this.f17292a);
-        cc.b(dest, 2, this.f17293b);
-        cc.b(dest, 3, this.f17294c);
+        cc.l(dest, 1, this.f17392a);
+        cc.b(dest, 2, this.f17393b);
+        cc.b(dest, 3, this.f17394c);
         cc.l(dest, 4, this.d);
-        cc.l(dest, 5, this.f17295e);
-        cc.k(dest, 6, this.f17296f, i7);
+        cc.l(dest, 5, this.f17395e);
+        cc.k(dest, 6, this.f17396f, i7);
         cc.s(dest, r10);
     }
 }

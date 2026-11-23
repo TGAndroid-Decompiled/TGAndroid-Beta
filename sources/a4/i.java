@@ -43,31 +43,31 @@ public final class i extends j {
             byte[] copyOf = Arrays.copyOf(xVar.f13828a, xVar.f13830c);
             int i7 = copyOf[9] & 255;
             ArrayList a10 = o.a(copyOf);
-            if (((u) qVar.f55836b) == null) {
+            if (((u) qVar.f55949b) == null) {
                 t tVar = new t();
-                tVar.f10708q = s0.n("audio/ogg");
-                tVar.f10709r = s0.n("audio/opus");
+                tVar.f10706q = s0.n("audio/ogg");
+                tVar.f10707r = s0.n("audio/opus");
                 tVar.J = i7;
                 tVar.K = 48000;
-                tVar.f10712u = a10;
-                qVar.f55836b = new u(tVar);
+                tVar.f10710u = a10;
+                qVar.f55949b = new u(tVar);
                 return true;
             }
         } else if (e(xVar, f177p)) {
-            ((u) qVar.f55836b).getClass();
+            ((u) qVar.f55949b).getClass();
             if (!this.f178n) {
                 this.f178n = true;
                 xVar.O(8);
-                q0 r10 = f3.b.r(i0.r(f3.b.u(xVar, false, false).f11176a));
+                q0 r10 = f3.b.r(i0.r(f3.b.u(xVar, false, false).f11185a));
                 if (r10 != null) {
-                    t a11 = ((u) qVar.f55836b).a();
-                    a11.f10702k = r10.b(((u) qVar.f55836b).f10754l);
-                    qVar.f55836b = new u(a11);
+                    t a11 = ((u) qVar.f55949b).a();
+                    a11.f10700k = r10.b(((u) qVar.f55949b).f10752l);
+                    qVar.f55949b = new u(a11);
                     return true;
                 }
             }
         } else {
-            ((u) qVar.f55836b).getClass();
+            ((u) qVar.f55949b).getClass();
             return false;
         }
         return true;

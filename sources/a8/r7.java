@@ -51,21 +51,21 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.ui.Components.an0;
-import org.telegram.ui.Components.jn;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.o71;
+import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.Components.nd0;
+import org.telegram.ui.Components.p71;
 import org.telegram.ui.Components.wi0;
 import org.telegram.ui.Components.zm0;
 import org.telegram.ui.SaveToGallerySettingsActivity;
 import org.telegram.ui.WallpapersListActivity;
-import org.telegram.ui.bz0;
-import org.telegram.ui.dz0;
-import org.telegram.ui.md0;
-import org.telegram.ui.qm0;
-import org.telegram.ui.yc1;
-public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.ya, zm0, q5.b, u9.b {
+import org.telegram.ui.az0;
+import org.telegram.ui.cz0;
+import org.telegram.ui.om0;
+import org.telegram.ui.wc1;
+public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.xa, zm0, q5.b, u9.b {
     public final int f615a;
     public Object f616b;
     public Object f617c;
@@ -78,7 +78,7 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
     }
 
     public static void O(r7 r7Var, com.google.android.gms.internal.cast.s6 s6Var) {
-        int i7 = s6Var.f6657e;
+        int i7 = s6Var.f6656e;
         if (i7 == 2 && ((com.google.android.gms.internal.cast.r6) r7Var.f618e) != null) {
             r7Var.Q();
         }
@@ -90,10 +90,10 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
         com.google.android.gms.internal.cast.r6 r6Var = (com.google.android.gms.internal.cast.r6) r7Var.f618e;
         q6.m.h(r6Var);
         s6Var.d = r6Var.h;
-        r6Var.f6635b.add(s6Var);
+        r6Var.f6634b.add(s6Var);
     }
 
-    public static r7 l(SharedPreferences sharedPreferences, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
+    public static r7 s(SharedPreferences sharedPreferences, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
         r7 r7Var = new r7(sharedPreferences, scheduledThreadPoolExecutor);
         synchronized (((ArrayDeque) r7Var.f618e)) {
             try {
@@ -117,16 +117,36 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
         }
     }
 
-    public static Exception u(Task task) {
+    public static Exception y(Task task) {
         if (task.getException() != null) {
             return task.getException();
         }
         return new ExecutionException(new RuntimeException("Unexpected Error"));
     }
 
-    public void A() {
-        m.o3 o3Var = (m.o3) ((ai.g0) this.f616b).f1199b;
-        h6.m mVar = (h6.m) o3Var.f20156b;
+    public void A(int r9, int r10, android.content.Intent r11) {
+        throw new UnsupportedOperationException("Method not decompiled: a8.r7.A(int, int, android.content.Intent):void");
+    }
+
+    public void B() {
+        ai.h0 h0Var = (ai.h0) this.f616b;
+        ga.d dVar = (ga.d) h0Var.f1214b;
+        StrictMode.ThreadPolicy threadPolicy = StrictMode.getThreadPolicy();
+        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder(threadPolicy).permitAll().build());
+        try {
+            dVar.getClass();
+            dVar.g(new a7.c(dVar, 0));
+            if (((h6.m) dVar.f13270a) == null) {
+                ga.d.f(h0Var);
+            }
+        } finally {
+            StrictMode.setThreadPolicy(threadPolicy);
+        }
+    }
+
+    public void C() {
+        ga.d dVar = (ga.d) ((ai.h0) this.f616b).f1214b;
+        h6.m mVar = (h6.m) dVar.f13270a;
         if (mVar != null) {
             try {
                 l8.f fVar = (l8.f) mVar.f13932c;
@@ -136,14 +156,14 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                 throw new RuntimeException(e10);
             }
         }
-        while (!((LinkedList) o3Var.f20157c).isEmpty() && ((a7.c) ((LinkedList) o3Var.f20157c).getLast()).a() >= 1) {
-            ((LinkedList) o3Var.f20157c).removeLast();
+        while (!((LinkedList) dVar.f13271b).isEmpty() && ((a7.c) ((LinkedList) dVar.f13271b).getLast()).a() >= 1) {
+            ((LinkedList) dVar.f13271b).removeLast();
         }
     }
 
-    public void B() {
-        m.o3 o3Var = (m.o3) ((ai.g0) this.f616b).f1199b;
-        h6.m mVar = (h6.m) o3Var.f20156b;
+    public void D() {
+        ga.d dVar = (ga.d) ((ai.h0) this.f616b).f1214b;
+        h6.m mVar = (h6.m) dVar.f13270a;
         if (mVar != null) {
             try {
                 l8.f fVar = (l8.f) mVar.f13932c;
@@ -153,23 +173,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                 throw new RuntimeException(e10);
             }
         }
-        while (!((LinkedList) o3Var.f20157c).isEmpty() && ((a7.c) ((LinkedList) o3Var.f20157c).getLast()).a() >= 5) {
-            ((LinkedList) o3Var.f20157c).removeLast();
+        while (!((LinkedList) dVar.f13271b).isEmpty() && ((a7.c) ((LinkedList) dVar.f13271b).getLast()).a() >= 5) {
+            ((LinkedList) dVar.f13271b).removeLast();
         }
     }
 
-    @Override
-    public boolean E() {
-        return true;
+    public void E() {
+        ga.d dVar = (ga.d) ((ai.h0) this.f616b).f1214b;
+        dVar.getClass();
+        dVar.g(new a7.c(dVar, 1));
     }
 
     public void F() {
-        m.o3 o3Var = (m.o3) ((ai.g0) this.f616b).f1199b;
-        o3Var.getClass();
-        o3Var.b(new a7.c(o3Var, 1));
-    }
-
-    public void G() {
         org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.d;
         if (g2Var != null) {
             Activity parentActivity = g2Var.getParentActivity();
@@ -184,10 +199,10 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                     return;
                 }
             }
-            qm0 qm0Var = new qm0(2, false, false, null);
-            qm0Var.f51246y = false;
-            qm0Var.W = new jn(this, 7);
-            g2Var.presentFragment(qm0Var);
+            om0 om0Var = new om0(2, false, false, null);
+            om0Var.f50727y = false;
+            om0Var.W = new nd0(this, 4);
+            g2Var.presentFragment(om0Var);
             return;
         }
         Intent intent = new Intent("android.intent.action.PICK");
@@ -195,13 +210,7 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
         ((Activity) this.f617c).startActivityForResult(intent, 11);
     }
 
-    @Override
-    public void H(int i7, float f10, float f11, te.c cVar) {
-        ((TextView) this.f617c).setAlpha(org.telegram.messenger.g0.T1(0.5f, 1.0f, ((te.a) this.f618e).f57665e));
-        ((lh.c) this.f619f).b(this);
-    }
-
-    public String I() {
+    public String H() {
         String str;
         synchronized (((ArrayDeque) this.f618e)) {
             str = (String) ((ArrayDeque) this.f618e).peek();
@@ -209,11 +218,11 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
         return str;
     }
 
-    public Task J() {
+    public Task I() {
         Task forException;
         int i7;
-        boolean v = v();
-        if (v && ((ab.v) this.f619f).c() >= 261200000) {
+        boolean z10 = z();
+        if (z10 && ((ab.v) this.f619f).c() >= 261200000) {
             final ExecutorService newSingleThreadExecutor = Executors.newSingleThreadExecutor(new f5.s("Firebase-Messaging-Network-Io"));
             return ((va.c) ((va.d) this.d)).f().continueWithTask(newSingleThreadExecutor, new Continuation(this) {
                 public final r7 f993b;
@@ -230,28 +239,28 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                     switch (i10) {
                         case 0:
                             if (!task.isSuccessful()) {
-                                return Tasks.forException(r7.u(task));
+                                return Tasks.forException(r7.y(task));
                             }
                             String str = (String) ((Pair) task.getResult()).first;
                             String str2 = (String) ((Pair) task.getResult()).second;
                             o9.g gVar = (o9.g) r7Var.f617c;
                             gVar.a();
-                            o9.i iVar = gVar.f21756c;
-                            String str3 = iVar.f21766a;
+                            o9.i iVar = gVar.f21856c;
+                            String str3 = iVar.f21866a;
                             gVar.a();
-                            m6.b bVar = new m6.b(v.b(gVar), iVar.f21767b, str3, str, str2);
+                            m6.b bVar = new m6.b(v.b(gVar), iVar.f21867b, str3, str, str2);
                             o7.d dVar = (o7.d) r7Var.f616b;
                             dVar.getClass();
                             com.google.android.gms.common.api.internal.t b10 = com.google.android.gms.common.api.internal.u.b();
-                            b10.d = new n6.c[]{m6.i.f20860a};
-                            b10.f6349c = new ji.k(7, dVar, bVar);
-                            b10.f6347a = 39001;
+                            b10.d = new n6.c[]{m6.i.f20956a};
+                            b10.f6348c = new j6.k(dVar, bVar, false, 8);
+                            b10.f6346a = 39001;
                             return dVar.e(0, b10.a()).continueWith(executorService, new t(str, 0));
                         default:
                             if (!task.isSuccessful()) {
-                                return Tasks.forException(r7.u(task));
+                                return Tasks.forException(r7.y(task));
                             }
-                            return ((va.c) ((va.d) r7Var.d)).e().continueWithTask(executorService, new t(r7Var, ((va.a) task.getResult()).f59339a));
+                            return ((va.c) ((va.d) r7Var.d)).e().continueWithTask(executorService, new t(r7Var, ((va.a) task.getResult()).f59461a));
                     }
                 }
             }).continueWithTask(newSingleThreadExecutor, new Continuation(this) {
@@ -269,28 +278,28 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                     switch (i10) {
                         case 0:
                             if (!task.isSuccessful()) {
-                                return Tasks.forException(r7.u(task));
+                                return Tasks.forException(r7.y(task));
                             }
                             String str = (String) ((Pair) task.getResult()).first;
                             String str2 = (String) ((Pair) task.getResult()).second;
                             o9.g gVar = (o9.g) r7Var.f617c;
                             gVar.a();
-                            o9.i iVar = gVar.f21756c;
-                            String str3 = iVar.f21766a;
+                            o9.i iVar = gVar.f21856c;
+                            String str3 = iVar.f21866a;
                             gVar.a();
-                            m6.b bVar = new m6.b(v.b(gVar), iVar.f21767b, str3, str, str2);
+                            m6.b bVar = new m6.b(v.b(gVar), iVar.f21867b, str3, str, str2);
                             o7.d dVar = (o7.d) r7Var.f616b;
                             dVar.getClass();
                             com.google.android.gms.common.api.internal.t b10 = com.google.android.gms.common.api.internal.u.b();
-                            b10.d = new n6.c[]{m6.i.f20860a};
-                            b10.f6349c = new ji.k(7, dVar, bVar);
-                            b10.f6347a = 39001;
+                            b10.d = new n6.c[]{m6.i.f20956a};
+                            b10.f6348c = new j6.k(dVar, bVar, false, 8);
+                            b10.f6346a = 39001;
                             return dVar.e(0, b10.a()).continueWith(executorService, new t(str, 0));
                         default:
                             if (!task.isSuccessful()) {
-                                return Tasks.forException(r7.u(task));
+                                return Tasks.forException(r7.y(task));
                             }
-                            return ((va.c) ((va.d) r7Var.d)).e().continueWithTask(executorService, new t(r7Var, ((va.a) task.getResult()).f59339a));
+                            return ((va.c) ((va.d) r7Var.d)).e().continueWithTask(executorService, new t(r7Var, ((va.a) task.getResult()).f59461a));
                     }
                 }
             });
@@ -299,23 +308,23 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
         String b10 = ab.v.b((o9.g) b8Var.f341a);
         Bundle bundle = new Bundle();
         try {
-            b8Var.l(b10, bundle, v);
+            b8Var.l(b10, bundle, z10);
             m6.c cVar = (m6.c) b8Var.f343c;
-            m6.d dVar = m6.d.f20851b;
-            cc.c cVar2 = cVar.f20847c;
+            m6.d dVar = m6.d.f20947b;
+            cc.c cVar2 = cVar.f20943c;
             if (cVar2.i() < 12000000) {
                 if (cVar2.h() != 0) {
-                    forException = cVar.d(bundle).continueWithTask(dVar, new ji.k(5, cVar, bundle));
+                    forException = cVar.d(bundle).continueWithTask(dVar, new j6.k(cVar, bundle, false, 6));
                 } else {
                     forException = Tasks.forException(new IOException("MISSING_INSTANCEID_SERVICE"));
                 }
             } else {
-                m6.n i10 = m6.n.i(cVar.f20846b);
+                m6.n i10 = m6.n.i(cVar.f20942b);
                 synchronized (i10) {
-                    i7 = i10.f20875a;
-                    i10.f20875a = i7 + 1;
+                    i7 = i10.f20971a;
+                    i10.f20971a = i7 + 1;
                 }
-                forException = i10.k(new m6.m(i7, 1, bundle, 1)).continueWith(dVar, nb.a.f21461b);
+                forException = i10.k(new m6.m(i7, 1, bundle, 1)).continueWith(dVar, nb.a.f21560b);
             }
         } catch (InterruptedException | ExecutionException e10) {
             forException = Tasks.forException(e10);
@@ -323,7 +332,7 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
         return forException.continueWith(new d3.b(3), new a1.c(b8Var, 4));
     }
 
-    public boolean K(Object obj) {
+    public boolean J(Object obj) {
         boolean remove;
         synchronized (((ArrayDeque) this.f618e)) {
             remove = ((ArrayDeque) this.f618e).remove(obj);
@@ -334,8 +343,14 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
         return remove;
     }
 
+    @Override
+    public void K(int i7, float f10, float f11, te.c cVar) {
+        ((TextView) this.f617c).setAlpha(org.telegram.messenger.g0.T1(0.5f, 1.0f, ((te.a) this.f618e).f57779e));
+        ((lh.c) this.f619f).b(this);
+    }
+
     public Set L(Class cls) {
-        return i(u9.q.a(cls));
+        return g(u9.q.a(cls));
     }
 
     public void M(Uri uri) {
@@ -387,87 +402,87 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
         long j3;
         com.google.android.gms.internal.cast.r6 r6Var = (com.google.android.gms.internal.cast.r6) this.f618e;
         if (r6Var != null) {
-            Map map = r6Var.f6637e;
+            Map map = r6Var.f6636e;
             List<com.google.android.gms.internal.cast.e3> list = r6Var.d;
-            List<com.google.android.gms.internal.cast.a> list2 = r6Var.f6636c;
-            List<com.google.android.gms.internal.cast.s6> list3 = r6Var.f6635b;
-            g6.c cVar = r6Var.f6641j;
+            List<com.google.android.gms.internal.cast.a> list2 = r6Var.f6635c;
+            List<com.google.android.gms.internal.cast.s6> list3 = r6Var.f6634b;
+            g6.c cVar = r6Var.f6640j;
             if (cVar != null) {
-                cVar.f13211l = null;
-                r6Var.f6641j = null;
+                cVar.f13210l = null;
+                r6Var.f6640j = null;
             }
-            long j10 = r6Var.f6640i;
+            long j10 = r6Var.f6639i;
             com.google.android.gms.internal.cast.o1 m10 = com.google.android.gms.internal.cast.p1.m();
             m10.c();
-            com.google.android.gms.internal.cast.p1.t((com.google.android.gms.internal.cast.p1) m10.f6472b, j10);
-            String str = r6Var.f6643l;
+            com.google.android.gms.internal.cast.p1.t((com.google.android.gms.internal.cast.p1) m10.f6471b, j10);
+            String str = r6Var.f6642l;
             if (str != null) {
                 m10.c();
-                com.google.android.gms.internal.cast.p1.y((com.google.android.gms.internal.cast.p1) m10.f6472b, str);
+                com.google.android.gms.internal.cast.p1.y((com.google.android.gms.internal.cast.p1) m10.f6471b, str);
             }
-            String str2 = r6Var.f6644m;
+            String str2 = r6Var.f6643m;
             if (str2 != null) {
                 m10.c();
-                com.google.android.gms.internal.cast.p1.u((com.google.android.gms.internal.cast.p1) m10.f6472b, str2);
+                com.google.android.gms.internal.cast.p1.u((com.google.android.gms.internal.cast.p1) m10.f6471b, str2);
             }
             com.google.android.gms.internal.cast.h1 l10 = com.google.android.gms.internal.cast.i1.l();
-            String str3 = com.google.android.gms.internal.cast.r6.f6632o;
+            String str3 = com.google.android.gms.internal.cast.r6.f6631o;
             l10.c();
-            com.google.android.gms.internal.cast.i1.n((com.google.android.gms.internal.cast.i1) l10.f6472b, str3);
-            String str4 = r6Var.f6639g;
+            com.google.android.gms.internal.cast.i1.n((com.google.android.gms.internal.cast.i1) l10.f6471b, str3);
+            String str4 = r6Var.f6638g;
             l10.c();
-            com.google.android.gms.internal.cast.i1.m((com.google.android.gms.internal.cast.i1) l10.f6472b, str4);
+            com.google.android.gms.internal.cast.i1.m((com.google.android.gms.internal.cast.i1) l10.f6471b, str4);
             m10.c();
-            com.google.android.gms.internal.cast.p1.r((com.google.android.gms.internal.cast.p1) m10.f6472b, (com.google.android.gms.internal.cast.i1) l10.a());
-            com.google.android.gms.internal.cast.b0 b0Var = r6Var.f6634a;
+            com.google.android.gms.internal.cast.p1.r((com.google.android.gms.internal.cast.p1) m10.f6471b, (com.google.android.gms.internal.cast.i1) l10.a());
+            com.google.android.gms.internal.cast.b0 b0Var = r6Var.f6633a;
             com.google.android.gms.internal.cast.u1 l11 = com.google.android.gms.internal.cast.v1.l();
             Object zza = b0Var.zza();
             if (zza != null) {
                 com.google.android.gms.internal.cast.g2 l12 = com.google.android.gms.internal.cast.h2.l();
                 l12.c();
-                com.google.android.gms.internal.cast.h2.m((com.google.android.gms.internal.cast.h2) l12.f6472b, (String) zza);
+                com.google.android.gms.internal.cast.h2.m((com.google.android.gms.internal.cast.h2) l12.f6471b, (String) zza);
                 l11.c();
-                com.google.android.gms.internal.cast.v1.m((com.google.android.gms.internal.cast.v1) l11.f6472b, (com.google.android.gms.internal.cast.h2) l12.a());
+                com.google.android.gms.internal.cast.v1.m((com.google.android.gms.internal.cast.v1) l11.f6471b, (com.google.android.gms.internal.cast.h2) l12.a());
             }
-            String str5 = r6Var.f6642k;
+            String str5 = r6Var.f6641k;
             if (str5 != null) {
                 try {
                     String replace = str5.replace("-", "");
                     j3 = new BigInteger(replace.substring(0, Math.min(16, replace.length())), 16).longValue();
                 } catch (NumberFormatException e10) {
-                    j6.b bVar = com.google.android.gms.internal.cast.r6.f6631n;
-                    Log.w(bVar.f17235a, bVar.d("receiverSessionId %s is not valid for hash", str5), e10);
+                    j6.b bVar = com.google.android.gms.internal.cast.r6.f6630n;
+                    Log.w(bVar.f17332a, bVar.d("receiverSessionId %s is not valid for hash", str5), e10);
                     j3 = 0;
                 }
                 l11.c();
-                com.google.android.gms.internal.cast.v1.n((com.google.android.gms.internal.cast.v1) l11.f6472b, j3);
+                com.google.android.gms.internal.cast.v1.n((com.google.android.gms.internal.cast.v1) l11.f6471b, j3);
             }
             if (!list3.isEmpty()) {
                 ArrayList arrayList = new ArrayList();
                 for (com.google.android.gms.internal.cast.s6 s6Var : list3) {
                     s6Var.getClass();
                     com.google.android.gms.internal.cast.s1 l13 = com.google.android.gms.internal.cast.t1.l();
-                    int i12 = s6Var.f6657e;
+                    int i12 = s6Var.f6656e;
                     l13.c();
-                    com.google.android.gms.internal.cast.t1.p((com.google.android.gms.internal.cast.t1) l13.f6472b, i12);
+                    com.google.android.gms.internal.cast.t1.p((com.google.android.gms.internal.cast.t1) l13.f6471b, i12);
                     l13.c();
-                    com.google.android.gms.internal.cast.t1.m((com.google.android.gms.internal.cast.t1) l13.f6472b, (int) (s6Var.f6655b - s6Var.d));
-                    Integer num = s6Var.f6654a;
+                    com.google.android.gms.internal.cast.t1.m((com.google.android.gms.internal.cast.t1) l13.f6471b, (int) (s6Var.f6654b - s6Var.d));
+                    Integer num = s6Var.f6653a;
                     if (num != null) {
                         int intValue = num.intValue();
                         l13.c();
-                        com.google.android.gms.internal.cast.t1.n((com.google.android.gms.internal.cast.t1) l13.f6472b, intValue);
+                        com.google.android.gms.internal.cast.t1.n((com.google.android.gms.internal.cast.t1) l13.f6471b, intValue);
                     }
-                    Boolean bool = s6Var.f6656c;
+                    Boolean bool = s6Var.f6655c;
                     if (bool != null) {
                         boolean booleanValue = bool.booleanValue();
                         l13.c();
-                        com.google.android.gms.internal.cast.t1.o((com.google.android.gms.internal.cast.t1) l13.f6472b, booleanValue);
+                        com.google.android.gms.internal.cast.t1.o((com.google.android.gms.internal.cast.t1) l13.f6471b, booleanValue);
                     }
                     arrayList.add((com.google.android.gms.internal.cast.t1) l13.a());
                 }
                 l11.c();
-                com.google.android.gms.internal.cast.v1.o((com.google.android.gms.internal.cast.v1) l11.f6472b, arrayList);
+                com.google.android.gms.internal.cast.v1.o((com.google.android.gms.internal.cast.v1) l11.f6471b, arrayList);
             }
             int i13 = 2;
             if (!list2.isEmpty()) {
@@ -476,8 +491,8 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                     aVar.getClass();
                     com.google.android.gms.internal.cast.y1 l14 = com.google.android.gms.internal.cast.z1.l();
                     l14.c();
-                    com.google.android.gms.internal.cast.z1.m((com.google.android.gms.internal.cast.z1) l14.f6472b, (int) (aVar.f6422b - aVar.f6423c));
-                    int i14 = aVar.f6421a;
+                    com.google.android.gms.internal.cast.z1.m((com.google.android.gms.internal.cast.z1) l14.f6471b, (int) (aVar.f6421b - aVar.f6422c));
+                    int i14 = aVar.f6420a;
                     if (i14 != 1) {
                         if (i14 != 2) {
                             if (i14 != 3) {
@@ -492,19 +507,19 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                         i11 = 2;
                     }
                     l14.c();
-                    com.google.android.gms.internal.cast.z1.n((com.google.android.gms.internal.cast.z1) l14.f6472b, i11);
+                    com.google.android.gms.internal.cast.z1.n((com.google.android.gms.internal.cast.z1) l14.f6471b, i11);
                     arrayList2.add((com.google.android.gms.internal.cast.z1) l14.a());
                 }
                 i7 = 1;
                 l11.c();
-                com.google.android.gms.internal.cast.v1.q((com.google.android.gms.internal.cast.v1) l11.f6472b, arrayList2);
+                com.google.android.gms.internal.cast.v1.q((com.google.android.gms.internal.cast.v1) l11.f6471b, arrayList2);
             } else {
                 i7 = 1;
             }
             if (!list.isEmpty()) {
                 ArrayList arrayList3 = new ArrayList();
                 for (com.google.android.gms.internal.cast.e3 e3Var : list) {
-                    String str6 = e3Var.f6513a;
+                    String str6 = e3Var.f6512a;
                     com.google.android.gms.internal.cast.q1 l15 = com.google.android.gms.internal.cast.r1.l();
                     switch (str6.hashCode()) {
                         case -1189611734:
@@ -512,18 +527,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 13;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i15 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i15 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i15);
-                                int i16 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i15);
+                                int i16 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i16);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i16);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i17 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i17 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i17);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i17);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -534,18 +549,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 22;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i152 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i152 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i152);
-                                int i162 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i152);
+                                int i162 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i162);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i162);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i172 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i172 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i172);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i172);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -556,18 +571,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 15;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i1522 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i1522 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i1522);
-                                int i1622 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i1522);
+                                int i1622 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i1622);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i1622);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i1722 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i1722 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i1722);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i1722);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -578,18 +593,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 19;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i15222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i15222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i15222);
-                                int i16222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i15222);
+                                int i16222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i16222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i16222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i17222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i17222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i17222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i17222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -600,18 +615,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 23;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i152222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i152222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i152222);
-                                int i162222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i152222);
+                                int i162222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i162222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i162222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i172222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i172222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i172222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i172222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -622,18 +637,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 9;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i1522222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i1522222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i1522222);
-                                int i1622222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i1522222);
+                                int i1622222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i1622222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i1622222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i1722222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i1722222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i1722222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i1722222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -644,18 +659,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 21;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i15222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i15222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i15222222);
-                                int i16222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i15222222);
+                                int i16222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i16222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i16222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i17222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i17222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i17222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i17222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -666,18 +681,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 10;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i152222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i152222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i152222222);
-                                int i162222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i152222222);
+                                int i162222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i162222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i162222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i172222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i172222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i172222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i172222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -688,18 +703,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 14;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i1522222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i1522222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i1522222222);
-                                int i1622222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i1522222222);
+                                int i1622222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i1622222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i1622222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i1722222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i1722222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i1722222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i1722222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -710,18 +725,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 7;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i15222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i15222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i15222222222);
-                                int i16222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i15222222222);
+                                int i16222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i16222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i16222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i17222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i17222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i17222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i17222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -732,18 +747,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 20;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i152222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i152222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i152222222222);
-                                int i162222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i152222222222);
+                                int i162222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i162222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i162222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i172222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i172222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i172222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i172222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -754,18 +769,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = i13;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i1522222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i1522222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i1522222222222);
-                                int i1622222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i1522222222222);
+                                int i1622222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i1622222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i1622222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i1722222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i1722222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i1722222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i1722222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -776,18 +791,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 8;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i15222222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i15222222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i15222222222222);
-                                int i16222222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i15222222222222);
+                                int i16222222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i16222222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i16222222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i17222222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i17222222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i17222222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i17222222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -798,18 +813,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 3;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i152222222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i152222222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i152222222222222);
-                                int i162222222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i152222222222222);
+                                int i162222222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i162222222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i162222222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i172222222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i172222222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i172222222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i172222222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -820,18 +835,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 6;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i1522222222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i1522222222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i1522222222222222);
-                                int i1622222222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i1522222222222222);
+                                int i1622222222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i1622222222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i1622222222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i1722222222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i1722222222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i1722222222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i1722222222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -842,18 +857,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 5;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i15222222222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i15222222222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i15222222222222222);
-                                int i16222222222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i15222222222222222);
+                                int i16222222222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i16222222222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i16222222222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i17222222222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i17222222222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i17222222222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i17222222222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -864,18 +879,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 4;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i152222222222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i152222222222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i152222222222222222);
-                                int i162222222222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i152222222222222222);
+                                int i162222222222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i162222222222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i162222222222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i172222222222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i172222222222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i172222222222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i172222222222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -886,18 +901,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 18;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i1522222222222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i1522222222222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i1522222222222222222);
-                                int i1622222222222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i1522222222222222222);
+                                int i1622222222222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i1622222222222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i1622222222222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i1722222222222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i1722222222222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i1722222222222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i1722222222222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -908,18 +923,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 16;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i15222222222222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i15222222222222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i15222222222222222222);
-                                int i16222222222222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i15222222222222222222);
+                                int i16222222222222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i16222222222222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i16222222222222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i17222222222222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i17222222222222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i17222222222222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i17222222222222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -930,18 +945,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 12;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i152222222222222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i152222222222222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i152222222222222222222);
-                                int i162222222222222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i152222222222222222222);
+                                int i162222222222222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i162222222222222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i162222222222222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i172222222222222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i172222222222222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i172222222222222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i172222222222222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -952,18 +967,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 11;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i1522222222222222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i1522222222222222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i1522222222222222222222);
-                                int i1622222222222222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i1522222222222222222222);
+                                int i1622222222222222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i1622222222222222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i1622222222222222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i1722222222222222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i1722222222222222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i1722222222222222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i1722222222222222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -974,18 +989,18 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                                 i10 = 17;
                                 continue;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                                int i15222222222222222222222 = (int) e3Var.f6514b;
+                                com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                                int i15222222222222222222222 = (int) e3Var.f6513b;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i15222222222222222222222);
-                                int i16222222222222222222222 = e3Var.f6515c;
+                                com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i15222222222222222222222);
+                                int i16222222222222222222222 = e3Var.f6514c;
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i16222222222222222222222);
+                                com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i16222222222222222222222);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                                int i17222222222222222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                                com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                                int i17222222222222222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                                 l15.c();
-                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i17222222222222222222222);
+                                com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i17222222222222222222222);
                                 arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                                 m10 = m10;
                                 i13 = 2;
@@ -994,25 +1009,25 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                     }
                     i10 = i7;
                     l15.c();
-                    com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6472b, i10);
-                    int i152222222222222222222222 = (int) e3Var.f6514b;
+                    com.google.android.gms.internal.cast.r1.q((com.google.android.gms.internal.cast.r1) l15.f6471b, i10);
+                    int i152222222222222222222222 = (int) e3Var.f6513b;
                     l15.c();
-                    com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6472b, i152222222222222222222222);
-                    int i162222222222222222222222 = e3Var.f6515c;
+                    com.google.android.gms.internal.cast.r1.m((com.google.android.gms.internal.cast.r1) l15.f6471b, i152222222222222222222222);
+                    int i162222222222222222222222 = e3Var.f6514c;
                     l15.c();
-                    com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6472b, i162222222222222222222222);
+                    com.google.android.gms.internal.cast.r1.n((com.google.android.gms.internal.cast.r1) l15.f6471b, i162222222222222222222222);
                     l15.c();
-                    com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6472b, (int) (e3Var.d - e3Var.f6517f));
-                    int i172222222222222222222222 = (int) (e3Var.f6516e - e3Var.f6517f);
+                    com.google.android.gms.internal.cast.r1.o((com.google.android.gms.internal.cast.r1) l15.f6471b, (int) (e3Var.d - e3Var.f6516f));
+                    int i172222222222222222222222 = (int) (e3Var.f6515e - e3Var.f6516f);
                     l15.c();
-                    com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6472b, i172222222222222222222222);
+                    com.google.android.gms.internal.cast.r1.p((com.google.android.gms.internal.cast.r1) l15.f6471b, i172222222222222222222222);
                     arrayList3.add((com.google.android.gms.internal.cast.r1) l15.a());
                     m10 = m10;
                     i13 = 2;
                 }
                 o1Var = m10;
                 l11.c();
-                com.google.android.gms.internal.cast.v1.p((com.google.android.gms.internal.cast.v1) l11.f6472b, arrayList3);
+                com.google.android.gms.internal.cast.v1.p((com.google.android.gms.internal.cast.v1) l11.f6471b, arrayList3);
             } else {
                 o1Var = m10;
             }
@@ -1021,25 +1036,25 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                 for (com.google.android.gms.internal.cast.b bVar2 : map.values()) {
                     bVar2.getClass();
                     com.google.android.gms.internal.cast.w1 l16 = com.google.android.gms.internal.cast.x1.l();
-                    int i18 = bVar2.f6479e;
+                    int i18 = bVar2.f6478e;
                     l16.c();
-                    com.google.android.gms.internal.cast.x1.p((com.google.android.gms.internal.cast.x1) l16.f6472b, i18);
+                    com.google.android.gms.internal.cast.x1.p((com.google.android.gms.internal.cast.x1) l16.f6471b, i18);
                     int i19 = bVar2.d.get();
                     l16.c();
-                    com.google.android.gms.internal.cast.x1.m((com.google.android.gms.internal.cast.x1) l16.f6472b, i19);
-                    int i20 = (int) (bVar2.f6476a - bVar2.f6478c);
+                    com.google.android.gms.internal.cast.x1.m((com.google.android.gms.internal.cast.x1) l16.f6471b, i19);
+                    int i20 = (int) (bVar2.f6475a - bVar2.f6477c);
                     l16.c();
-                    com.google.android.gms.internal.cast.x1.n((com.google.android.gms.internal.cast.x1) l16.f6472b, i20);
+                    com.google.android.gms.internal.cast.x1.n((com.google.android.gms.internal.cast.x1) l16.f6471b, i20);
                     l16.c();
-                    com.google.android.gms.internal.cast.x1.o((com.google.android.gms.internal.cast.x1) l16.f6472b, (int) (bVar2.f6477b - bVar2.f6478c));
+                    com.google.android.gms.internal.cast.x1.o((com.google.android.gms.internal.cast.x1) l16.f6471b, (int) (bVar2.f6476b - bVar2.f6477c));
                     arrayList4.add((com.google.android.gms.internal.cast.x1) l16.a());
                 }
                 l11.c();
-                com.google.android.gms.internal.cast.v1.r((com.google.android.gms.internal.cast.v1) l11.f6472b, arrayList4);
+                com.google.android.gms.internal.cast.v1.r((com.google.android.gms.internal.cast.v1) l11.f6471b, arrayList4);
             }
             o1Var.c();
-            com.google.android.gms.internal.cast.p1.q((com.google.android.gms.internal.cast.p1) o1Var.f6472b, (com.google.android.gms.internal.cast.v1) l11.a());
-            r6Var.f6638f.a((com.google.android.gms.internal.cast.p1) o1Var.a(), 233);
+            com.google.android.gms.internal.cast.p1.q((com.google.android.gms.internal.cast.p1) o1Var.f6471b, (com.google.android.gms.internal.cast.v1) l11.a());
+            r6Var.f6637f.a((com.google.android.gms.internal.cast.p1) o1Var.a(), 233);
             this.f618e = null;
         }
     }
@@ -1055,6 +1070,11 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
             return new Object();
         }
         throw new RuntimeException("Attempting to request an undeclared dependency " + cls + ".");
+    }
+
+    @Override
+    public int a0() {
+        return 0;
     }
 
     @Override
@@ -1097,25 +1117,22 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
     }
 
     @Override
-    public void g(View view, ch.p0 p0Var, boolean z10, boolean z11) {
-        hi.l5 l5Var = (hi.l5) this.f619f;
-        tg.s1 s1Var = l5Var.K1;
-        if (s1Var == null) {
-            return;
+    public Set g(u9.q qVar) {
+        if (((Set) this.f618e).contains(qVar)) {
+            return ((u9.b) this.f619f).g(qVar);
         }
-        s1Var.s(p0Var, true);
-        l5Var.L0(false);
+        throw new RuntimeException("Attempting to request an undeclared dependency Set<" + qVar + ">.");
     }
 
     @Override
-    public Object mo24get() {
+    public Object mo23get() {
         switch (this.f615a) {
             case 6:
-                return new gb.t0((o9.g) ((d9.o) this.f616b).f7917a, (va.d) ((ib.c) this.f617c).mo24get(), (jb.l) ((ib.c) this.d).mo24get(), (gb.l) ((ib.c) this.f618e).mo24get(), (id.h) ((ib.c) this.f619f).mo24get());
+                return new gb.u0((o9.g) ((e.a) this.f616b).f10170a, (va.d) ((ib.c) this.f617c).mo23get(), (jb.l) ((ib.c) this.d).mo23get(), (gb.l) ((ib.c) this.f618e).mo23get(), (id.h) ((ib.c) this.f619f).mo23get());
             case 10:
-                return new jb.d((gb.h1) ((ib.c) this.f616b).mo24get(), (va.d) ((ib.c) this.f617c).mo24get(), (gb.b) ((ib.c) this.d).mo24get(), (jb.f) ((ib.c) this.f618e).mo24get(), (jb.p) ((ib.c) this.f619f).mo24get());
+                return new jb.d((gb.i1) ((ib.c) this.f616b).mo23get(), (va.d) ((ib.c) this.f617c).mo23get(), (gb.b) ((ib.c) this.d).mo23get(), (jb.f) ((ib.c) this.f618e).mo23get(), (jb.q) ((ib.c) this.f619f).mo23get());
             default:
-                return new t5.a((Executor) ((fd.a) this.f616b).mo24get(), (p5.e) ((fd.a) this.f617c).mo24get(), (md0) ((md0) this.d).mo24get(), (v5.d) ((fd.a) this.f618e).mo24get(), (w5.c) ((fd.a) this.f619f).mo24get());
+                return new t5.a((Executor) ((fd.a) this.f616b).mo23get(), (p5.e) ((fd.a) this.f617c).mo23get(), (i61) ((i61) this.d).mo23get(), (v5.d) ((fd.a) this.f618e).mo23get(), (w5.c) ((fd.a) this.f619f).mo23get());
         }
     }
 
@@ -1125,95 +1142,59 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
     }
 
     @Override
-    public long h(int i7) {
+    public void h(View view, ch.p0 p0Var, boolean z10, boolean z11) {
+        hi.v5 v5Var = (hi.v5) this.f619f;
+        tg.v1 v1Var = v5Var.K1;
+        if (v1Var == null) {
+            return;
+        }
+        v1Var.s(p0Var, true);
+        v5Var.O0(false);
+    }
+
+    @Override
+    public long i(int i7) {
         return ((long[]) this.f617c)[i7];
     }
 
     @Override
-    public Set i(u9.q qVar) {
-        if (((Set) this.f618e).contains(qVar)) {
-            return ((u9.b) this.f619f).i(qVar);
-        }
-        throw new RuntimeException("Attempting to request an undeclared dependency Set<" + qVar + ">.");
-    }
-
-    public byte[] j() {
-        byte[] bArr = (byte[]) this.f617c;
-        byte[] bArr2 = (byte[]) this.f616b;
-        SecureRandom secureRandom = new SecureRandom();
-        BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = yc1.f54141b;
-        BigInteger bigInteger3 = yc1.f54140a;
-        BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
-        BigInteger bigInteger4 = BigInteger.ONE;
-        if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
-            byte[] a10 = yc1.a(modPow);
-            BigInteger bigInteger5 = new BigInteger(1, bArr);
-            if (bigInteger5.compareTo(bigInteger4) > 0 && bigInteger5.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
-                byte[] a11 = yc1.a(bigInteger5.modPow(bigInteger, bigInteger3));
-                byte[] bArr3 = new byte[16];
-                secureRandom.nextBytes(bArr3);
-                byte[] b10 = yc1.b(new byte[][]{a11, bArr2, bArr3});
-                byte[] b11 = yc1.b(new byte[][]{a11, bArr});
-                this.f618e = b10;
-                String[] strArr = {"👋", "👍", "👎", "👌", "👊", "🤟", "🫵", "👏", "🤝", "✍", "💪", "👀", "👅", "🥶", "🤡", "💀", "👽", "😈", "😎", "🤠", "🤩", "😍", "🤯", "🦄", "🐶", "🐷", "🐔", "🐥", "🦊", "🐙", "🐸", "🐳", "🦉", "🦆", "🐢", "🦖", "🐵", "🐝", "🦁", "🐧", "🦋", "🐬", "🦀", "🐌", "🦠", "🐠", "🌵", "💐", "💐", "🎄", "🍄", "🍔", "🍕", "☕", "🍩", "🍪", "🎂", "🍫", "🍭", "🍎", "🥥", "🍒", "🌶", "🥒", "🥦", "🍇", "🍋", "🍓", "🍌", "🍍", "🍆", "🌽", "🍺", "🍷", "🍾", "🍦", "🍰", "🍞", "🍖", "🌭", "🧊", "🍳", "⭐", "☁", "🚀", "🎈", "💎", "💡", "🔑", "❄", "🔎", "👠", "👕", "👗", "👖", "👙", "👜", "👓", "🎀", "💄", "💍", "♠", "❤", "♦", "♣", "🌈", "🌊", "🎃", "👻", "🎁", "🔮", "🎥", "💿", "💻", "📡", "🔉", "⏳", "🔒", "🚗", "🔱", "🔗", "🎲", "🎮", "⚽", "🎳", "🏁", "🏆", "🎸", "💣", "🚽", "🎹", "🎤", "🎨", "🔫", "💊", "💰", "📦", "📅", "📚", "❗", "❓", "💯", "💦", "💤", "🌍", "🏝", "🚂", "🛢", "🛹", "🚢", "✈", "🛎", "🧳", "🌖", "🌞", "🔥", "🏓", "🎰", "🧸", "🪩", "🎭", "👑", "🎩", "🧢", "🔈", "🔋", "🕯", "✏", "💼", "📌", "✂", "🗑", "🛡", "⚙", "🧲", "🪏", "⚖", "🧪", "🚪", "🫧", "🛒", "🪑", "🗿", "🏁", "🏴\u200d☠", "📊", "🥁", "🎧", "🎵", "🧩", "⛳", "🥇", "🥈", "🥈", "🌪", "⛺", "🧭", "🫆", "🧠", "💋"};
-                ArrayList arrayList = new ArrayList(4);
-                for (int i7 = 0; i7 < 4; i7++) {
-                    int i10 = i7 * 8;
-                    arrayList.add(strArr[(int) (((b11[i10 + 7] & 255) | ((((((((b11[i10] & 127) << 56) | ((b11[i10 + 1] & 255) << 48)) | ((b11[i10 + 2] & 255) << 40)) | ((b11[i10 + 3] & 255) << 32)) | ((b11[i10 + 4] & 255) << 24)) | ((b11[i10 + 5] & 255) << 16)) | ((b11[i10 + 6] & 255) << 8))) % 200)]);
-                }
-                this.f619f = arrayList;
-                org.telegram.messenger.a8.b("wear-auth: built answer; session " + yc1.d(bArr2) + " emojis=" + ((ArrayList) this.f619f));
-                byte[] bArr4 = new byte[288];
-                System.arraycopy(bArr2, 0, bArr4, 0, 16);
-                System.arraycopy(bArr3, 0, bArr4, 16, 16);
-                System.arraycopy(a10, 0, bArr4, 32, 256);
-                return bArr4;
-            }
-            throw new IllegalArgumentException("peer pubkey out of range");
-        }
-        throw new IllegalStateException("our pubkey invalid (extremely unlikely)");
-    }
-
-    public void k(Canvas canvas, boolean z10, boolean z11, int i7, float f10) {
-        int i10;
-        RectF rectF = (RectF) this.f617c;
-        float[] fArr = (float[]) this.d;
-        Paint paint = (Paint) this.f619f;
-        org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f616b;
-        Path path = (Path) this.f618e;
-        if (z11) {
-            i10 = 0;
+    public void j(boolean z10, float f10) {
+        long j3;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = ((az0) this.f619f).d;
+        cz0 cz0Var = (cz0) this.f618e;
+        cz0 cz0Var2 = (cz0) this.f617c;
+        cz0 cz0Var3 = (cz0) this.d;
+        boolean isAttachedToWindow = ((an0) this.f616b).isAttachedToWindow();
+        if (f10 > 0.7f) {
+            j3 = (((float) 4089446400L) * ((f10 - 0.7f) / 0.3f)) + ((float) 104857600);
         } else {
-            i10 = (int) f3Var.H;
+            j3 = (((float) 104333312) * (f10 / 0.7f)) + 524288.0f;
         }
-        int i11 = (int) (i10 * f10);
-        int L = org.telegram.messenger.g0.L(10.0f) * Math.min(1, i11 / org.telegram.messenger.g0.L(60.0f));
-        if (i11 <= 0) {
-            return;
+        if (f10 >= 1.0f) {
+            cz0Var2.e(false, isAttachedToWindow);
+            cz0Var3.e(false, isAttachedToWindow);
+            cz0Var.e(true, isAttachedToWindow);
+            org.telegram.messenger.g0.X3(cz0Var3, false, 0.8f, true, isAttachedToWindow);
+        } else if (f10 == 0.0f) {
+            cz0Var2.e(true, isAttachedToWindow);
+            cz0Var3.e(false, isAttachedToWindow);
+            cz0Var.e(false, isAttachedToWindow);
+            org.telegram.messenger.g0.X3(cz0Var3, false, 0.8f, true, isAttachedToWindow);
+        } else {
+            cz0Var3.c(gd.a0("UpToFileSize", null, 2131743576, org.telegram.messenger.g0.i0(j3, true, false)), false, true);
+            cz0Var2.e(false, isAttachedToWindow);
+            cz0Var3.e(true, isAttachedToWindow);
+            cz0Var.e(false, isAttachedToWindow);
+            org.telegram.messenger.g0.X3(cz0Var3, true, 0.8f, true, isAttachedToWindow);
         }
-        fArr[3] = 0.0f;
-        fArr[2] = 0.0f;
-        fArr[1] = 0.0f;
-        fArr[0] = 0.0f;
-        float f11 = L;
-        fArr[7] = f11;
-        fArr[6] = f11;
-        fArr[5] = f11;
-        fArr[4] = f11;
-        path.rewind();
-        rectF.set(0.0f, 0.0f, i7, (f3Var.getY() + f3Var.getHeight()) - i11);
-        path.addRoundRect(rectF, fArr, Path.Direction.CW);
-        paint.setAlpha(0);
         if (z10) {
-            paint.setShadowLayer(org.telegram.messenger.g0.L(2.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), 268435456);
-            canvas.drawPath(path, paint);
+            saveToGallerySettingsActivity.c0().f25561c = j3;
+            saveToGallerySettingsActivity.d0();
         }
-        canvas.clipPath(path);
     }
 
     @Override
-    public List m(long j3) {
+    public List k(long j3) {
         i4.a[] aVarArr;
         i4.c cVar = (i4.c) this.f616b;
         HashMap hashMap = (HashMap) this.f618e;
@@ -1236,14 +1217,14 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
                 Bitmap decodeByteArray = BitmapFactory.decodeByteArray(decode, 0, decode.length);
                 i4.e eVar = (i4.e) hashMap.get(pair.first);
                 eVar.getClass();
-                arrayList2.add(new g2.b(null, null, null, decodeByteArray, eVar.f16021c, 0, eVar.f16022e, eVar.f16020b, 0, Integer.MIN_VALUE, -3.4028235E38f, eVar.f16023f, eVar.f16024g, false, -16777216, eVar.f16026j, 0.0f, 0));
+                arrayList2.add(new g2.b(null, null, null, decodeByteArray, eVar.f16116c, 0, eVar.f16117e, eVar.f16115b, 0, Integer.MIN_VALUE, -3.4028235E38f, eVar.f16118f, eVar.f16119g, false, -16777216, eVar.f16121j, 0.0f, 0));
             }
         }
         for (Map.Entry entry : treeMap.entrySet()) {
             i4.e eVar2 = (i4.e) hashMap.get(entry.getKey());
             eVar2.getClass();
             g2.a aVar = (g2.a) entry.getValue();
-            CharSequence charSequence = aVar.f13075a;
+            CharSequence charSequence = aVar.f13074a;
             charSequence.getClass();
             SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) charSequence;
             for (i4.a aVar2 : (i4.a[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), i4.a.class)) {
@@ -1287,115 +1268,196 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
             if (spannableStringBuilder.length() > 0 && spannableStringBuilder.charAt(spannableStringBuilder.length() - 1) == '\n') {
                 spannableStringBuilder.delete(spannableStringBuilder.length() - 1, spannableStringBuilder.length());
             }
-            float f10 = eVar2.f16021c;
+            float f10 = eVar2.f16116c;
             int i18 = eVar2.d;
-            aVar.f13078e = f10;
-            aVar.f13079f = i18;
-            aVar.f13080g = eVar2.f16022e;
-            aVar.h = eVar2.f16020b;
-            aVar.f13084l = eVar2.f16023f;
-            float f11 = eVar2.f16025i;
+            aVar.f13077e = f10;
+            aVar.f13078f = i18;
+            aVar.f13079g = eVar2.f16117e;
+            aVar.h = eVar2.f16115b;
+            aVar.f13083l = eVar2.f16118f;
+            float f11 = eVar2.f16120i;
             int i19 = eVar2.h;
-            aVar.f13083k = f11;
-            aVar.f13082j = i19;
-            aVar.f13088p = eVar2.f16026j;
+            aVar.f13082k = f11;
+            aVar.f13081j = i19;
+            aVar.f13087p = eVar2.f16121j;
             arrayList2.add(aVar.a());
         }
         return arrayList2;
     }
 
     @Override
-    public void n(boolean z10, float f10) {
-        long j3;
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = ((bz0) this.f619f).d;
-        dz0 dz0Var = (dz0) this.f618e;
-        dz0 dz0Var2 = (dz0) this.f617c;
-        dz0 dz0Var3 = (dz0) this.d;
-        boolean isAttachedToWindow = ((an0) this.f616b).isAttachedToWindow();
-        if (f10 > 0.7f) {
-            j3 = (((float) 4089446400L) * ((f10 - 0.7f) / 0.3f)) + ((float) 104857600);
-        } else {
-            j3 = (((float) 104333312) * (f10 / 0.7f)) + 524288.0f;
-        }
-        if (f10 >= 1.0f) {
-            dz0Var2.e(false, isAttachedToWindow);
-            dz0Var3.e(false, isAttachedToWindow);
-            dz0Var.e(true, isAttachedToWindow);
-            org.telegram.messenger.g0.X3(dz0Var3, false, 0.8f, true, isAttachedToWindow);
-        } else if (f10 == 0.0f) {
-            dz0Var2.e(true, isAttachedToWindow);
-            dz0Var3.e(false, isAttachedToWindow);
-            dz0Var.e(false, isAttachedToWindow);
-            org.telegram.messenger.g0.X3(dz0Var3, false, 0.8f, true, isAttachedToWindow);
-        } else {
-            dz0Var3.c(hd.a0("UpToFileSize", null, 2131743580, org.telegram.messenger.g0.i0(j3, true, false)), false, true);
-            dz0Var2.e(false, isAttachedToWindow);
-            dz0Var3.e(true, isAttachedToWindow);
-            dz0Var.e(false, isAttachedToWindow);
-            org.telegram.messenger.g0.X3(dz0Var3, true, 0.8f, true, isAttachedToWindow);
-        }
-        if (z10) {
-            saveToGallerySettingsActivity.c0().f25612c = j3;
-            saveToGallerySettingsActivity.d0();
-        }
-    }
-
-    @Override
-    public boolean o() {
+    public boolean l() {
         return true;
     }
 
     @Override
-    public int p() {
+    public int m() {
         return ((long[]) this.f617c).length;
     }
 
     @Override
-    public boolean q() {
+    public boolean n() {
         return false;
     }
 
-    public void r(View view) {
+    public byte[] o() {
+        byte[] bArr = (byte[]) this.f617c;
+        byte[] bArr2 = (byte[]) this.f616b;
+        SecureRandom secureRandom = new SecureRandom();
+        BigInteger bigInteger = new BigInteger(2048, secureRandom);
+        BigInteger bigInteger2 = wc1.f53297b;
+        BigInteger bigInteger3 = wc1.f53296a;
+        BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
+        BigInteger bigInteger4 = BigInteger.ONE;
+        if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
+            byte[] a10 = wc1.a(modPow);
+            BigInteger bigInteger5 = new BigInteger(1, bArr);
+            if (bigInteger5.compareTo(bigInteger4) > 0 && bigInteger5.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
+                byte[] a11 = wc1.a(bigInteger5.modPow(bigInteger, bigInteger3));
+                byte[] bArr3 = new byte[16];
+                secureRandom.nextBytes(bArr3);
+                byte[] b10 = wc1.b(new byte[][]{a11, bArr2, bArr3});
+                byte[] b11 = wc1.b(new byte[][]{a11, bArr});
+                this.f618e = b10;
+                String[] strArr = {"👋", "👍", "👎", "👌", "👊", "🤟", "🫵", "👏", "🤝", "✍", "💪", "👀", "👅", "🥶", "🤡", "💀", "👽", "😈", "😎", "🤠", "🤩", "😍", "🤯", "🦄", "🐶", "🐷", "🐔", "🐥", "🦊", "🐙", "🐸", "🐳", "🦉", "🦆", "🐢", "🦖", "🐵", "🐝", "🦁", "🐧", "🦋", "🐬", "🦀", "🐌", "🦠", "🐠", "🌵", "💐", "💐", "🎄", "🍄", "🍔", "🍕", "☕", "🍩", "🍪", "🎂", "🍫", "🍭", "🍎", "🥥", "🍒", "🌶", "🥒", "🥦", "🍇", "🍋", "🍓", "🍌", "🍍", "🍆", "🌽", "🍺", "🍷", "🍾", "🍦", "🍰", "🍞", "🍖", "🌭", "🧊", "🍳", "⭐", "☁", "🚀", "🎈", "💎", "💡", "🔑", "❄", "🔎", "👠", "👕", "👗", "👖", "👙", "👜", "👓", "🎀", "💄", "💍", "♠", "❤", "♦", "♣", "🌈", "🌊", "🎃", "👻", "🎁", "🔮", "🎥", "💿", "💻", "📡", "🔉", "⏳", "🔒", "🚗", "🔱", "🔗", "🎲", "🎮", "⚽", "🎳", "🏁", "🏆", "🎸", "💣", "🚽", "🎹", "🎤", "🎨", "🔫", "💊", "💰", "📦", "📅", "📚", "❗", "❓", "💯", "💦", "💤", "🌍", "🏝", "🚂", "🛢", "🛹", "🚢", "✈", "🛎", "🧳", "🌖", "🌞", "🔥", "🏓", "🎰", "🧸", "🪩", "🎭", "👑", "🎩", "🧢", "🔈", "🔋", "🕯", "✏", "💼", "📌", "✂", "🗑", "🛡", "⚙", "🧲", "🪏", "⚖", "🧪", "🚪", "🫧", "🛒", "🪑", "🗿", "🏁", "🏴\u200d☠", "📊", "🥁", "🎧", "🎵", "🧩", "⛳", "🥇", "🥈", "🥈", "🌪", "⛺", "🧭", "🫆", "🧠", "💋"};
+                ArrayList arrayList = new ArrayList(4);
+                for (int i7 = 0; i7 < 4; i7++) {
+                    int i10 = i7 * 8;
+                    arrayList.add(strArr[(int) (((b11[i10 + 7] & 255) | ((((((((b11[i10] & 127) << 56) | ((b11[i10 + 1] & 255) << 48)) | ((b11[i10 + 2] & 255) << 40)) | ((b11[i10 + 3] & 255) << 32)) | ((b11[i10 + 4] & 255) << 24)) | ((b11[i10 + 5] & 255) << 16)) | ((b11[i10 + 6] & 255) << 8))) % 200)]);
+                }
+                this.f619f = arrayList;
+                org.telegram.messenger.a8.b("wear-auth: built answer; session " + wc1.d(bArr2) + " emojis=" + ((ArrayList) this.f619f));
+                byte[] bArr4 = new byte[288];
+                System.arraycopy(bArr2, 0, bArr4, 0, 16);
+                System.arraycopy(bArr3, 0, bArr4, 16, 16);
+                System.arraycopy(a10, 0, bArr4, 32, 256);
+                return bArr4;
+            }
+            throw new IllegalArgumentException("peer pubkey out of range");
+        }
+        throw new IllegalStateException("our pubkey invalid (extremely unlikely)");
+    }
+
+    public void p(Canvas canvas, boolean z10, boolean z11, int i7, float f10) {
+        int i10;
+        RectF rectF = (RectF) this.f617c;
+        float[] fArr = (float[]) this.d;
+        Paint paint = (Paint) this.f619f;
+        org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f616b;
+        Path path = (Path) this.f618e;
+        if (z11) {
+            i10 = 0;
+        } else {
+            i10 = (int) f3Var.H;
+        }
+        int i11 = (int) (i10 * f10);
+        int L = org.telegram.messenger.g0.L(10.0f) * Math.min(1, i11 / org.telegram.messenger.g0.L(60.0f));
+        if (i11 <= 0) {
+            return;
+        }
+        fArr[3] = 0.0f;
+        fArr[2] = 0.0f;
+        fArr[1] = 0.0f;
+        fArr[0] = 0.0f;
+        float f11 = L;
+        fArr[7] = f11;
+        fArr[6] = f11;
+        fArr[5] = f11;
+        fArr[4] = f11;
+        path.rewind();
+        rectF.set(0.0f, 0.0f, i7, (f3Var.getY() + f3Var.getHeight()) - i11);
+        path.addRoundRect(rectF, fArr, Path.Direction.CW);
+        paint.setAlpha(0);
+        if (z10) {
+            paint.setShadowLayer(org.telegram.messenger.g0.L(2.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), 268435456);
+            canvas.drawPath(path, paint);
+        }
+        canvas.clipPath(path);
+    }
+
+    @Override
+    public void q(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
+        Paint paint;
+        org.telegram.ui.Components.ba baVar;
+        Path path = (Path) this.f617c;
+        org.telegram.ui.Components.fa faVar = (org.telegram.ui.Components.fa) this.d;
+        Paint paint2 = (Paint) this.f618e;
+        hi.v5 v5Var = (hi.v5) this.f619f;
+        if (!z10 && (baVar = v5Var.O1) != null && baVar.c()) {
+            if (z10) {
+                faVar = (org.telegram.ui.Components.fa) this.f616b;
+            }
+            path.rewind();
+            path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(path);
+            faVar.b(canvas, true);
+            paint2.setAlpha((int) (i7 * 0.4f));
+            canvas.drawPaint(paint2);
+            canvas.restore();
+            return;
+        }
+        if (z10) {
+            if (((org.telegram.ui.Components.fa) this.f616b) == null) {
+                this.f616b = new org.telegram.ui.Components.fa(v5Var.O1, v5Var.J1.getReactionsWindow().f5291c, 0, false);
+            }
+            float f13 = -f11;
+            float f14 = -f12;
+            ((org.telegram.ui.Components.fa) this.f616b).e(f13, f14, v5Var.getMeasuredWidth() + f13, v5Var.getMeasuredHeight() + f14);
+            paint = ((org.telegram.ui.Components.fa) this.f616b).h;
+        } else {
+            float f15 = -f11;
+            float f16 = -f12;
+            faVar.e(f15, f16, v5Var.getMeasuredWidth() + f15, v5Var.getMeasuredHeight() + f16);
+            paint = faVar.h;
+        }
+        paint.setAlpha(i7);
+        paint2.setAlpha((int) (i7 * 0.4f));
+        canvas.drawRoundRect(rectF, f10, f10, paint);
+        canvas.drawRoundRect(rectF, f10, f10, paint2);
+    }
+
+    @Override
+    public boolean t() {
+        return true;
+    }
+
+    public void u(View view) {
         if (view instanceof GLSurfaceView) {
             this.f619f = (GLSurfaceView) view;
         }
         if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i7 = 0; i7 < viewGroup.getChildCount(); i7++) {
-                r(viewGroup.getChildAt(i7));
+                u(viewGroup.getChildAt(i7));
             }
         }
     }
 
-    @Override
-    public int r0() {
-        return 0;
-    }
-
-    public u9.o s(Class cls) {
+    public u9.o v(Class cls) {
         return b(u9.q.a(cls));
     }
 
-    public void t(q0.a aVar) {
-        ai.g0 g0Var = (ai.g0) this.f616b;
-        org.telegram.messenger.ga gaVar = new org.telegram.messenger.ga(this, aVar);
-        g0Var.getClass();
+    public void x(q0.a aVar) {
+        ai.h0 h0Var = (ai.h0) this.f616b;
+        org.telegram.messenger.fa faVar = new org.telegram.messenger.fa(this, aVar);
+        h0Var.getClass();
         q6.m.e("getMapAsync() must be called on the main thread");
-        m.o3 o3Var = (m.o3) g0Var.f1199b;
-        h6.m mVar = (h6.m) o3Var.f20156b;
+        ga.d dVar = (ga.d) h0Var.f1214b;
+        h6.m mVar = (h6.m) dVar.f13270a;
         if (mVar != null) {
-            mVar.y(gaVar);
+            mVar.C(faVar);
         } else {
-            ((ArrayList) o3Var.f20160g).add(gaVar);
+            ((ArrayList) dVar.h).add(faVar);
         }
     }
 
-    public boolean v() {
+    public boolean z() {
         ApplicationInfo applicationInfo;
         Bundle bundle;
         o9.g gVar = (o9.g) this.f617c;
         gVar.a();
-        Context context = gVar.f21754a;
+        Context context = gVar.f21854a;
         try {
             PackageManager packageManager = context.getPackageManager();
             if (packageManager != null && (bundle = (applicationInfo = packageManager.getApplicationInfo(context.getPackageName(), 128)).metaData) != null && bundle.containsKey("firebase_messaging_installation_id_enabled")) {
@@ -1404,68 +1466,6 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
             return false;
         } catch (PackageManager.NameNotFoundException unused) {
             return false;
-        }
-    }
-
-    public void w(int r9, int r10, android.content.Intent r11) {
-        throw new UnsupportedOperationException("Method not decompiled: a8.r7.w(int, int, android.content.Intent):void");
-    }
-
-    @Override
-    public void x(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
-        Paint paint;
-        org.telegram.ui.Components.ca caVar;
-        Path path = (Path) this.f617c;
-        org.telegram.ui.Components.ga gaVar = (org.telegram.ui.Components.ga) this.d;
-        Paint paint2 = (Paint) this.f618e;
-        hi.l5 l5Var = (hi.l5) this.f619f;
-        if (!z10 && (caVar = l5Var.O1) != null && caVar.c()) {
-            if (z10) {
-                gaVar = (org.telegram.ui.Components.ga) this.f616b;
-            }
-            path.rewind();
-            path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
-            canvas.save();
-            canvas.clipPath(path);
-            gaVar.b(canvas, true);
-            paint2.setAlpha((int) (i7 * 0.4f));
-            canvas.drawPaint(paint2);
-            canvas.restore();
-            return;
-        }
-        if (z10) {
-            if (((org.telegram.ui.Components.ga) this.f616b) == null) {
-                this.f616b = new org.telegram.ui.Components.ga(l5Var.O1, l5Var.J1.getReactionsWindow().f5291c, 0, false);
-            }
-            float f13 = -f11;
-            float f14 = -f12;
-            ((org.telegram.ui.Components.ga) this.f616b).e(f13, f14, l5Var.getMeasuredWidth() + f13, l5Var.getMeasuredHeight() + f14);
-            paint = ((org.telegram.ui.Components.ga) this.f616b).h;
-        } else {
-            float f15 = -f11;
-            float f16 = -f12;
-            gaVar.e(f15, f16, l5Var.getMeasuredWidth() + f15, l5Var.getMeasuredHeight() + f16);
-            paint = gaVar.h;
-        }
-        paint.setAlpha(i7);
-        paint2.setAlpha((int) (i7 * 0.4f));
-        canvas.drawRoundRect(rectF, f10, f10, paint);
-        canvas.drawRoundRect(rectF, f10, f10, paint2);
-    }
-
-    public void y() {
-        ai.g0 g0Var = (ai.g0) this.f616b;
-        m.o3 o3Var = (m.o3) g0Var.f1199b;
-        StrictMode.ThreadPolicy threadPolicy = StrictMode.getThreadPolicy();
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder(threadPolicy).permitAll().build());
-        try {
-            o3Var.getClass();
-            o3Var.b(new a7.c(o3Var, 0));
-            if (((h6.m) o3Var.f20156b) == null) {
-                m.o3.a(g0Var);
-            }
-        } finally {
-            StrictMode.setThreadPolicy(threadPolicy);
         }
     }
 
@@ -1493,7 +1493,7 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
 
     public r7(Context context, o9.g gVar, va.d dVar, b8 b8Var, ab.v vVar) {
         this.f615a = 1;
-        this.f616b = new com.google.android.gms.common.api.j(context, o7.d.f21734l, com.google.android.gms.common.api.b.f6192j, com.google.android.gms.common.api.i.f6202c);
+        this.f616b = new com.google.android.gms.common.api.j(context, o7.d.f21834l, com.google.android.gms.common.api.b.f6192j, com.google.android.gms.common.api.i.f6202c);
         this.f617c = gVar;
         this.d = dVar;
         this.f618e = b8Var;
@@ -1514,13 +1514,13 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
         HashSet hashSet3 = new HashSet();
         HashSet hashSet4 = new HashSet();
         HashSet hashSet5 = new HashSet();
-        Set<u9.i> set = aVar.f58540c;
-        Set set2 = aVar.f58543g;
+        Set<u9.i> set = aVar.f58655c;
+        Set set2 = aVar.f58658g;
         for (u9.i iVar : set) {
-            int i7 = iVar.f58559c;
-            int i10 = iVar.f58558b;
+            int i7 = iVar.f58674c;
+            int i10 = iVar.f58673b;
             boolean z10 = i7 == 0;
-            u9.q qVar = iVar.f58557a;
+            u9.q qVar = iVar.f58672a;
             if (z10) {
                 if (i10 == 2) {
                     hashSet4.add(qVar);
@@ -1547,11 +1547,11 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
     }
 
     @Override
-    public void C() {
+    public void r() {
     }
 
     @Override
-    public void z() {
+    public void w() {
     }
 
     public r7(i4.c cVar, HashMap hashMap, HashMap hashMap2, HashMap hashMap3) {
@@ -1573,14 +1573,14 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
     }
 
     @Override
-    public void D(float f10, int i7) {
+    public void G(float f10, int i7) {
     }
 
-    public r7(Activity activity, WallpapersListActivity wallpapersListActivity, o71 o71Var) {
+    public r7(Activity activity, WallpapersListActivity wallpapersListActivity, p71 p71Var) {
         this.f615a = 16;
         this.f617c = activity;
         this.d = wallpapersListActivity;
-        this.f618e = o71Var;
+        this.f618e = p71Var;
     }
 
     public r7(SharedPreferences sharedPreferences, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
@@ -1610,9 +1610,9 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
     public r7(lh.c cVar) {
         this.f615a = 12;
         this.f619f = cVar;
-        nr nrVar = nr.h;
-        this.d = new te.a(0, this, nrVar, 320L, true);
-        this.f618e = new te.a(1, this, nrVar, 320L, true);
+        kr krVar = kr.h;
+        this.d = new te.a(0, this, krVar, 320L, true);
+        this.f618e = new te.a(1, this, krVar, 320L, true);
     }
 
     public r7(int i7) {
@@ -1624,13 +1624,13 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
         this.f619f = new float[i7];
     }
 
-    public r7(bz0 bz0Var, an0 an0Var, dz0 dz0Var, dz0 dz0Var2, dz0 dz0Var3) {
+    public r7(az0 az0Var, an0 an0Var, cz0 cz0Var, cz0 cz0Var2, cz0 cz0Var3) {
         this.f615a = 18;
-        this.f619f = bz0Var;
+        this.f619f = az0Var;
         this.f616b = an0Var;
-        this.f617c = dz0Var;
-        this.d = dz0Var2;
-        this.f618e = dz0Var3;
+        this.f617c = cz0Var;
+        this.d = cz0Var2;
+        this.f618e = cz0Var3;
     }
 
     public r7(org.telegram.ui.ActionBar.f3 f3Var) {
@@ -1642,10 +1642,10 @@ public final class r7 implements ib.b, wi0, c4.d, te.b, org.telegram.messenger.y
         this.f616b = f3Var;
     }
 
-    public r7(hi.l5 l5Var, org.telegram.ui.Components.ga gaVar, Paint paint) {
+    public r7(hi.v5 v5Var, org.telegram.ui.Components.fa faVar, Paint paint) {
         this.f615a = 7;
-        this.f619f = l5Var;
-        this.d = gaVar;
+        this.f619f = v5Var;
+        this.d = faVar;
         this.f618e = paint;
         this.f617c = new Path();
     }

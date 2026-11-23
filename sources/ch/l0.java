@@ -73,7 +73,7 @@ public final class l0 {
     }
 
     public static int e() {
-        return (int) ((org.telegram.messenger.g0.L(40.0f) * 2.0f) / org.telegram.messenger.g0.f24009p);
+        return (int) ((org.telegram.messenger.g0.L(40.0f) * 2.0f) / org.telegram.messenger.g0.f24225p);
     }
 
     public static void f() {

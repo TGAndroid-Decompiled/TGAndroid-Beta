@@ -3,21 +3,21 @@ package l9;
 import a8.ma;
 import java.io.Serializable;
 public final class a implements Serializable {
-    public static final a f19697c = new a(new int[0]);
-    public final int[] f19698a;
-    public final int f19699b;
+    public static final a f19797c = new a(new int[0]);
+    public final int[] f19798a;
+    public final int f19799b;
 
     public a(int[] iArr) {
         int length = iArr.length;
-        this.f19698a = iArr;
-        this.f19699b = length;
+        this.f19798a = iArr;
+        this.f19799b = length;
     }
 
     public final boolean a(int i7) {
         int i10 = 0;
         while (true) {
-            if (i10 < this.f19699b) {
-                if (this.f19698a[i10] == i7) {
+            if (i10 < this.f19799b) {
+                if (this.f19798a[i10] == i7) {
                     break;
                 }
                 i10++;
@@ -33,16 +33,16 @@ public final class a implements Serializable {
     }
 
     public final int b(int i7) {
-        ma.j(i7, this.f19699b);
-        return this.f19698a[i7];
+        ma.j(i7, this.f19799b);
+        return this.f19798a[i7];
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                int i7 = aVar.f19699b;
-                int i10 = this.f19699b;
+                int i7 = aVar.f19799b;
+                int i10 = this.f19799b;
                 if (i10 == i7) {
                     for (int i11 = 0; i11 < i10; i11++) {
                         if (b(i11) == aVar.b(i11)) {
@@ -58,20 +58,20 @@ public final class a implements Serializable {
 
     public final int hashCode() {
         int i7 = 1;
-        for (int i10 = 0; i10 < this.f19699b; i10++) {
-            i7 = (i7 * 31) + this.f19698a[i10];
+        for (int i10 = 0; i10 < this.f19799b; i10++) {
+            i7 = (i7 * 31) + this.f19798a[i10];
         }
         return i7;
     }
 
     public final String toString() {
-        int i7 = this.f19699b;
+        int i7 = this.f19799b;
         if (i7 == 0) {
             return "[]";
         }
         StringBuilder sb2 = new StringBuilder(i7 * 5);
         sb2.append('[');
-        int[] iArr = this.f19698a;
+        int[] iArr = this.f19798a;
         sb2.append(iArr[0]);
         for (int i10 = 1; i10 < i7; i10++) {
             sb2.append(", ");

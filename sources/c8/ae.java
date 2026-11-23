@@ -4,7 +4,7 @@ public final class ae {
     public final te f4480b;
 
     public ae(q4.q qVar) {
-        this.f4479a = (eb) qVar.f55836b;
-        this.f4480b = (te) qVar.f55837c;
+        this.f4479a = (eb) qVar.f55949b;
+        this.f4480b = (te) qVar.f55950c;
     }
 }

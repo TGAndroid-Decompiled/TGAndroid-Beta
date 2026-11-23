@@ -1,10 +1,10 @@
 package bi;
 
-import org.telegram.messenger.y10;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.j71;
 import org.telegram.ui.ProfileActivity;
-public final class n5 implements y10 {
+public final class n5 implements w10 {
     public final int f3885a;
     public final v6 f3886b;
 
@@ -19,9 +19,9 @@ public final class n5 implements y10 {
             case 0:
                 v6 v6Var = this.f3886b;
                 v6Var.f(true);
-                i71 i71Var = v6Var.f4153n;
+                j71 j71Var = v6Var.f4153n;
                 int i7 = ((TL_stars.TL_starGiftCollection) obj).collection_id;
-                i71Var.e(i7, v6Var.f4151e.f(i7) + 1);
+                j71Var.e(i7, v6Var.f4151e.f(i7) + 1);
                 org.telegram.ui.ActionBar.g2 g2Var = v6Var.f4148a;
                 if (g2Var instanceof ProfileActivity) {
                     ((ProfileActivity) g2Var).X4(true);

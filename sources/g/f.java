@@ -23,11 +23,11 @@ import java.util.WeakHashMap;
 import m.v1;
 import r0.i0;
 public class f extends u implements DialogInterface {
-    public final e f12980f;
+    public final e f12979f;
 
     public f(ContextThemeWrapper contextThemeWrapper, int i7) {
         super(contextThemeWrapper, e(contextThemeWrapper, i7));
-        this.f12980f = new e(getContext(), this, getWindow());
+        this.f12979f = new e(getContext(), this, getWindow());
     }
 
     public static int e(Context context, int i7) {
@@ -52,16 +52,16 @@ public class f extends u implements DialogInterface {
         View view;
         View findViewById;
         super.onCreate(bundle);
-        e eVar = this.f12980f;
-        eVar.f12958b.setContentView(eVar.f12975u);
-        Context context = eVar.f12957a;
-        Window window = eVar.f12959c;
+        e eVar = this.f12979f;
+        eVar.f12957b.setContentView(eVar.f12974u);
+        Context context = eVar.f12956a;
+        Window window = eVar.f12958c;
         View findViewById2 = window.findViewById(2131296592);
         View findViewById3 = findViewById2.findViewById(2131296724);
         View findViewById4 = findViewById2.findViewById(2131296404);
         View findViewById5 = findViewById2.findViewById(2131296355);
         ViewGroup viewGroup = (ViewGroup) findViewById2.findViewById(2131296408);
-        View view2 = eVar.f12961f;
+        View view2 = eVar.f12960f;
         if (view2 == null) {
             view2 = null;
         }
@@ -77,10 +77,10 @@ public class f extends u implements DialogInterface {
         if (z10) {
             FrameLayout frameLayout = (FrameLayout) window.findViewById(2131296407);
             frameLayout.addView(view2, new ViewGroup.LayoutParams(-1, -1));
-            if (eVar.f12962g) {
+            if (eVar.f12961g) {
                 frameLayout.setPadding(0, 0, 0, 0);
             }
-            if (eVar.f12960e != null) {
+            if (eVar.f12959e != null) {
                 ((LinearLayout.LayoutParams) ((v1) viewGroup.getLayoutParams())).weight = 0.0f;
             }
         } else {
@@ -93,19 +93,19 @@ public class f extends u implements DialogInterface {
         ViewGroup b11 = e.b(findViewById7, findViewById4);
         ViewGroup b12 = e.b(findViewById8, findViewById5);
         NestedScrollView nestedScrollView = (NestedScrollView) window.findViewById(2131296633);
-        eVar.f12967m = nestedScrollView;
+        eVar.f12966m = nestedScrollView;
         nestedScrollView.setFocusable(false);
-        eVar.f12967m.setNestedScrollingEnabled(false);
+        eVar.f12966m.setNestedScrollingEnabled(false);
         TextView textView = (TextView) b11.findViewById(16908299);
-        eVar.f12971q = textView;
+        eVar.f12970q = textView;
         if (textView != null) {
             textView.setVisibility(8);
-            eVar.f12967m.removeView(eVar.f12971q);
-            if (eVar.f12960e != null) {
-                ViewGroup viewGroup2 = (ViewGroup) eVar.f12967m.getParent();
-                int indexOfChild = viewGroup2.indexOfChild(eVar.f12967m);
+            eVar.f12966m.removeView(eVar.f12970q);
+            if (eVar.f12959e != null) {
+                ViewGroup viewGroup2 = (ViewGroup) eVar.f12966m.getParent();
+                int indexOfChild = viewGroup2.indexOfChild(eVar.f12966m);
                 viewGroup2.removeViewAt(indexOfChild);
-                viewGroup2.addView(eVar.f12960e, indexOfChild, new ViewGroup.LayoutParams(-1, -1));
+                viewGroup2.addView(eVar.f12959e, indexOfChild, new ViewGroup.LayoutParams(-1, -1));
             } else {
                 b11.setVisibility(8);
             }
@@ -123,23 +123,23 @@ public class f extends u implements DialogInterface {
             z11 = true;
         }
         Button button2 = (Button) b12.findViewById(16908314);
-        eVar.f12963i = button2;
+        eVar.f12962i = button2;
         button2.setOnClickListener(wVar);
-        if (TextUtils.isEmpty(eVar.f12964j)) {
-            eVar.f12963i.setVisibility(8);
+        if (TextUtils.isEmpty(eVar.f12963j)) {
+            eVar.f12962i.setVisibility(8);
         } else {
-            eVar.f12963i.setText(eVar.f12964j);
-            eVar.f12963i.setVisibility(0);
+            eVar.f12962i.setText(eVar.f12963j);
+            eVar.f12962i.setVisibility(0);
             z11 |= true;
         }
         Button button3 = (Button) b12.findViewById(16908315);
-        eVar.f12966l = button3;
+        eVar.f12965l = button3;
         button3.setOnClickListener(wVar);
         if (TextUtils.isEmpty(null)) {
-            eVar.f12966l.setVisibility(8);
+            eVar.f12965l.setVisibility(8);
         } else {
-            eVar.f12966l.setText((CharSequence) null);
-            eVar.f12966l.setVisibility(0);
+            eVar.f12965l.setText((CharSequence) null);
+            eVar.f12965l.setVisibility(0);
             z11 |= true;
         }
         TypedValue typedValue = new TypedValue();
@@ -152,13 +152,13 @@ public class f extends u implements DialogInterface {
                 layoutParams.weight = 0.5f;
                 button4.setLayoutParams(layoutParams);
             } else if (z11) {
-                Button button5 = eVar.f12963i;
+                Button button5 = eVar.f12962i;
                 LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) button5.getLayoutParams();
                 layoutParams2.gravity = 1;
                 layoutParams2.weight = 0.5f;
                 button5.setLayoutParams(layoutParams2);
             } else if (z11) {
-                Button button6 = eVar.f12966l;
+                Button button6 = eVar.f12965l;
                 LinearLayout.LayoutParams layoutParams3 = (LinearLayout.LayoutParams) button6.getLayoutParams();
                 layoutParams3.gravity = 1;
                 layoutParams3.weight = 0.5f;
@@ -168,25 +168,25 @@ public class f extends u implements DialogInterface {
         if (!z11) {
             b12.setVisibility(8);
         }
-        if (eVar.f12972r != null) {
-            b10.addView(eVar.f12972r, 0, new ViewGroup.LayoutParams(-1, -2));
+        if (eVar.f12971r != null) {
+            b10.addView(eVar.f12971r, 0, new ViewGroup.LayoutParams(-1, -2));
             window.findViewById(2131296718).setVisibility(8);
         } else {
-            eVar.f12969o = (ImageView) window.findViewById(16908294);
-            if (!TextUtils.isEmpty(eVar.d) && eVar.f12978y) {
+            eVar.f12968o = (ImageView) window.findViewById(16908294);
+            if (!TextUtils.isEmpty(eVar.d) && eVar.f12977y) {
                 TextView textView2 = (TextView) window.findViewById(2131296334);
-                eVar.f12970p = textView2;
+                eVar.f12969p = textView2;
                 textView2.setText(eVar.d);
-                Drawable drawable = eVar.f12968n;
+                Drawable drawable = eVar.f12967n;
                 if (drawable != null) {
-                    eVar.f12969o.setImageDrawable(drawable);
+                    eVar.f12968o.setImageDrawable(drawable);
                 } else {
-                    eVar.f12970p.setPadding(eVar.f12969o.getPaddingLeft(), eVar.f12969o.getPaddingTop(), eVar.f12969o.getPaddingRight(), eVar.f12969o.getPaddingBottom());
-                    eVar.f12969o.setVisibility(8);
+                    eVar.f12969p.setPadding(eVar.f12968o.getPaddingLeft(), eVar.f12968o.getPaddingTop(), eVar.f12968o.getPaddingRight(), eVar.f12968o.getPaddingBottom());
+                    eVar.f12968o.setVisibility(8);
                 }
             } else {
                 window.findViewById(2131296718).setVisibility(8);
-                eVar.f12969o.setVisibility(8);
+                eVar.f12968o.setVisibility(8);
                 b10.setVisibility(8);
             }
         }
@@ -209,11 +209,11 @@ public class f extends u implements DialogInterface {
             findViewById.setVisibility(0);
         }
         if (i7 != 0) {
-            NestedScrollView nestedScrollView2 = eVar.f12967m;
+            NestedScrollView nestedScrollView2 = eVar.f12966m;
             if (nestedScrollView2 != null) {
                 nestedScrollView2.setClipToPadding(true);
             }
-            if (eVar.f12960e != null) {
+            if (eVar.f12959e != null) {
                 view = b10.findViewById(2131296717);
             } else {
                 view = null;
@@ -227,7 +227,7 @@ public class f extends u implements DialogInterface {
                 findViewById9.setVisibility(0);
             }
         }
-        AlertController$RecycleListView alertController$RecycleListView = eVar.f12960e;
+        AlertController$RecycleListView alertController$RecycleListView = eVar.f12959e;
         if (alertController$RecycleListView != null) {
             alertController$RecycleListView.getClass();
             if (!z13 || i7 == 0) {
@@ -235,21 +235,21 @@ public class f extends u implements DialogInterface {
                 if (i7 != 0) {
                     i10 = alertController$RecycleListView.getPaddingTop();
                 } else {
-                    i10 = alertController$RecycleListView.f1801a;
+                    i10 = alertController$RecycleListView.f1802a;
                 }
                 int paddingRight = alertController$RecycleListView.getPaddingRight();
                 if (z13) {
                     i11 = alertController$RecycleListView.getPaddingBottom();
                 } else {
-                    i11 = alertController$RecycleListView.f1802b;
+                    i11 = alertController$RecycleListView.f1803b;
                 }
                 alertController$RecycleListView.setPadding(paddingLeft, i10, paddingRight, i11);
             }
         }
         if (!z12) {
-            View view3 = eVar.f12960e;
+            View view3 = eVar.f12959e;
             if (view3 == null) {
-                view3 = eVar.f12967m;
+                view3 = eVar.f12966m;
             }
             if (view3 != null) {
                 if (z13) {
@@ -257,7 +257,7 @@ public class f extends u implements DialogInterface {
                 }
                 View findViewById10 = window.findViewById(2131296632);
                 View findViewById11 = window.findViewById(2131296631);
-                WeakHashMap weakHashMap = i0.f56254a;
+                WeakHashMap weakHashMap = i0.f56367a;
                 r0.b0.b(view3, i7 | i12, 3);
                 if (findViewById10 != null) {
                     b11.removeView(findViewById10);
@@ -267,10 +267,10 @@ public class f extends u implements DialogInterface {
                 }
             }
         }
-        AlertController$RecycleListView alertController$RecycleListView2 = eVar.f12960e;
-        if (alertController$RecycleListView2 != null && (listAdapter = eVar.f12973s) != null) {
+        AlertController$RecycleListView alertController$RecycleListView2 = eVar.f12959e;
+        if (alertController$RecycleListView2 != null && (listAdapter = eVar.f12972s) != null) {
             alertController$RecycleListView2.setAdapter(listAdapter);
-            int i13 = eVar.f12974t;
+            int i13 = eVar.f12973t;
             if (i13 > -1) {
                 alertController$RecycleListView2.setItemChecked(i13, true);
                 alertController$RecycleListView2.setSelection(i13);
@@ -280,8 +280,8 @@ public class f extends u implements DialogInterface {
 
     @Override
     public boolean onKeyDown(int i7, KeyEvent keyEvent) {
-        NestedScrollView nestedScrollView = this.f12980f.f12967m;
-        if (nestedScrollView != null && nestedScrollView.g(keyEvent)) {
+        NestedScrollView nestedScrollView = this.f12979f.f12966m;
+        if (nestedScrollView != null && nestedScrollView.h(keyEvent)) {
             return true;
         }
         return super.onKeyDown(i7, keyEvent);
@@ -289,8 +289,8 @@ public class f extends u implements DialogInterface {
 
     @Override
     public boolean onKeyUp(int i7, KeyEvent keyEvent) {
-        NestedScrollView nestedScrollView = this.f12980f.f12967m;
-        if (nestedScrollView != null && nestedScrollView.g(keyEvent)) {
+        NestedScrollView nestedScrollView = this.f12979f.f12966m;
+        if (nestedScrollView != null && nestedScrollView.h(keyEvent)) {
             return true;
         }
         return super.onKeyUp(i7, keyEvent);
@@ -299,9 +299,9 @@ public class f extends u implements DialogInterface {
     @Override
     public final void setTitle(CharSequence charSequence) {
         super.setTitle(charSequence);
-        e eVar = this.f12980f;
+        e eVar = this.f12979f;
         eVar.d = charSequence;
-        TextView textView = eVar.f12970p;
+        TextView textView = eVar.f12969p;
         if (textView != null) {
             textView.setText(charSequence);
         }

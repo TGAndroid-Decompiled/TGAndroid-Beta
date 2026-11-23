@@ -48,12 +48,7 @@ public final class a implements m {
     }
 
     @Override
-    public final d q(int i7, int i10, byte[] bArr) {
-        return p0.a(this, bArr, i10);
-    }
-
-    @Override
-    public final void v(byte[] bArr, int i7, int i10, l lVar, j jVar) {
+    public final void E(byte[] bArr, int i7, int i10, l lVar, j jVar) {
         ArrayList arrayList;
         String n10;
         String str;
@@ -158,8 +153,13 @@ public final class a implements m {
     }
 
     @Override
-    public final int y() {
+    public final int N() {
         return 1;
+    }
+
+    @Override
+    public final d s(int i7, int i10, byte[] bArr) {
+        return p0.a(this, bArr, i10);
     }
 
     @Override

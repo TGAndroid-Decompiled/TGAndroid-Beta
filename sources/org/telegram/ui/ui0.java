@@ -1,72 +1,66 @@
 package org.telegram.ui;
 
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ui0 implements Runnable {
-    public final int f52572a;
-    public final hk0 f52573b;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ui0 implements View.OnTouchListener {
+    public final int f52677a;
+    public final fk0 f52678b;
 
-    public ui0(hk0 hk0Var, int i7) {
-        this.f52572a = i7;
-        this.f52573b = hk0Var;
+    public ui0(fk0 fk0Var, int i7) {
+        this.f52677a = i7;
+        this.f52678b = fk0Var;
     }
 
     @Override
-    public final void run() {
-        ViewGroup viewGroup;
-        switch (this.f52572a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        int i7 = this.f52677a;
+        fk0 fk0Var = this.f52678b;
+        switch (i7) {
             case 0:
-                hk0 hk0Var = this.f52573b;
-                ViewGroup[] viewGroupArr = hk0Var.f48381a0;
-                if (viewGroupArr != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
-                    hk0Var.Z[0].requestFocus();
-                    org.telegram.messenger.g0.I3(hk0Var.Z[0]);
-                    return;
+                if (fk0Var.getParentActivity() == null) {
+                    return false;
                 }
-                return;
+                if (motionEvent.getAction() == 1) {
+                    ts tsVar = new ts(null, false);
+                    tsVar.f52468r = new yi0(1, fk0Var, view);
+                    fk0Var.presentFragment(tsVar);
+                }
+                return true;
             case 1:
-                hk0 hk0Var2 = this.f52573b;
-                hk0Var2.presentFragment(hk0Var2.f48402i1, true);
-                hk0Var2.f48402i1 = null;
-                return;
+                if (fk0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(fk0Var.getParentActivity());
+                    String N0 = org.telegram.messenger.gd.N0(2131747272, null);
+                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28835a;
+                    t1Var.S = N0;
+                    alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.gd.N0(2131747314, null), org.telegram.messenger.gd.N0(2131747375, null)}, new k4(fk0Var, 3));
+                    alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131752577, null), null);
+                    fk0Var.showDialog(t1Var);
+                }
+                return true;
             case 2:
-                hk0 hk0Var3 = this.f52573b;
-                EditTextBoldCursor[] editTextBoldCursorArr = hk0Var3.f48384b0;
-                if (editTextBoldCursorArr != null) {
-                    hk0Var3.M1(editTextBoldCursorArr[0]);
-                    return;
+                if (fk0Var.getParentActivity() == null) {
+                    return false;
                 }
-                return;
-            case 3:
-                org.telegram.messenger.g0.I3(this.f52573b.Z[2]);
-                return;
-            case 4:
-                this.f52573b.B1();
-                return;
-            case 5:
-                int i7 = 0;
-                while (true) {
-                    hk0 hk0Var4 = this.f52573b;
-                    if (i7 < hk0Var4.f48389d0.getChildCount()) {
-                        View childAt = hk0Var4.f48389d0.getChildAt(i7);
-                        if (childAt instanceof gk0) {
-                            hk0Var4.f48389d0.removeView(childAt);
-                            i7--;
-                        }
-                        i7++;
-                    } else {
-                        hk0Var4.B1();
-                        hk0Var4.f48419r1.clear();
-                        hk0Var4.f48416q1.clear();
-                        hk0Var4.E.values.clear();
-                        hk0Var4.V1();
-                        return;
-                    }
+                if (motionEvent.getAction() == 1) {
+                    ts tsVar2 = new ts(null, false);
+                    tsVar2.f52468r = new vi0(fk0Var, 2);
+                    fk0Var.presentFragment(tsVar2);
                 }
+                return true;
             default:
-                this.f52573b.finishFragment();
-                return;
+                if (fk0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    ts tsVar3 = new ts(null, false);
+                    tsVar3.f52468r = new vi0(fk0Var, 3);
+                    fk0Var.presentFragment(tsVar3);
+                }
+                return true;
         }
     }
 }

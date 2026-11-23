@@ -1,59 +1,31 @@
 package hi;
+public final class k1 implements Runnable {
+    public final int f14767a;
+    public final l1 f14768b;
 
-import android.content.Context;
-import org.telegram.ui.Components.ty;
-import org.telegram.ui.Components.uw;
-import org.telegram.ui.g01;
-import org.telegram.ui.r11;
-public final class k1 extends pi.l {
-    public final int f14805q;
-    public final Object f14806r;
-
-    public k1(int i7, Context context, Object obj) {
-        super(context, 2);
-        this.f14805q = i7;
-        this.f14806r = obj;
+    public k1(l1 l1Var, int i7) {
+        this.f14767a = i7;
+        this.f14768b = l1Var;
     }
 
     @Override
-    public void e() {
-        switch (this.f14805q) {
+    public final void run() {
+        switch (this.f14767a) {
             case 0:
-                ((n1) this.f14806r).j3 = true;
-                return;
-            case 1:
-                ((ty) this.f14806r).f40083g0 = true;
-                return;
-            case 2:
-            case 3:
-            default:
-                return;
-            case 4:
-                ((r11) this.f14806r).f51458y1 = true;
-                return;
-        }
-    }
-
-    @Override
-    public final void i() {
-        switch (this.f14805q) {
-            case 0:
-                ((n1) this.f14806r).j3 = false;
-                return;
-            case 1:
-                ((ty) this.f14806r).f40083g0 = false;
-                return;
-            case 2:
-                ((uw) this.f14806r).Q.f40083g0 = false;
-                return;
-            case 3:
-                ((g01) this.f14806r).R.f51458y1 = false;
-                return;
-            case 4:
-                ((r11) this.f14806r).f51458y1 = false;
+                l1 l1Var = this.f14768b;
+                if (l1Var.L > 0) {
+                    l1Var.dualToggleShape();
+                    try {
+                        l1Var.performHapticFeedback(0, 1);
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
                 return;
             default:
-                ((g01) this.f14806r).R.f51458y1 = false;
+                l1 l1Var2 = this.f14768b;
+                l1Var2.focusToPoint((int) l1Var2.J, (int) l1Var2.K);
                 return;
         }
     }

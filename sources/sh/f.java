@@ -5,21 +5,21 @@ import android.util.SparseArray;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class f {
-    public final TLRPC.TL_messageMediaPoll f57462a;
-    public final TLRPC.TL_inputMediaPoll f57463b;
-    public final long f57464c;
+    public final TLRPC.TL_messageMediaPoll f57573a;
+    public final TLRPC.TL_inputMediaPoll f57574b;
+    public final long f57575c;
     public final String d;
-    public final ArrayList f57465e;
+    public final ArrayList f57576e;
 
     public f(d dVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, long j3, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f57464c = j3;
+        this.f57575c = j3;
         this.d = str;
-        this.f57465e = arrayList;
+        this.f57576e = arrayList;
         TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
         TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
         tL_inputMediaPoll.poll = tL_poll;
         TLRPC.Poll poll = tL_messageMediaPoll.poll;
-        tL_poll.f28424id = poll.f28424id;
+        tL_poll.f28518id = poll.f28518id;
         tL_poll.flags = poll.flags;
         tL_poll.closed = poll.closed;
         tL_poll.public_voters = poll.public_voters;
@@ -59,26 +59,26 @@ public final class f {
             tL_inputMediaPoll.flags |= 1;
         }
         if (dVar != null) {
-            SparseArray sparseArray = dVar.f57442a;
+            SparseArray sparseArray = dVar.f57553a;
             int size2 = sparseArray.size();
             for (int i10 = 0; i10 < size2; i10++) {
                 int keyAt = sparseArray.keyAt(i10);
                 c cVar = (c) sparseArray.valueAt(i10);
                 if (cVar instanceof th.e) {
                     TLRPC.TL_inputMediaWebPage tL_inputMediaWebPage = new TLRPC.TL_inputMediaWebPage();
-                    tL_inputMediaWebPage.url = ((th.e) cVar).f58227b;
+                    tL_inputMediaWebPage.url = ((th.e) cVar).f58342b;
                     tL_inputMediaWebPage.optional = true;
                     d.k(tL_inputMediaPoll, keyAt, tL_inputMediaWebPage);
                 } else if (cVar instanceof th.f) {
-                    d.k(tL_inputMediaPoll, keyAt, cg.d.h(((th.f) cVar).f58234b));
+                    d.k(tL_inputMediaPoll, keyAt, cg.d.h(((th.f) cVar).f58349b));
                 } else if (cVar instanceof th.h) {
                     TLRPC.TL_inputMediaDocument tL_inputMediaDocument = new TLRPC.TL_inputMediaDocument();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    TLRPC.Document document = ((th.h) cVar).f58237b;
-                    tL_inputDocument.f28410id = document.f28404id;
+                    TLRPC.Document document = ((th.h) cVar).f58352b;
+                    tL_inputDocument.f28504id = document.f28498id;
                     tL_inputDocument.access_hash = document.access_hash;
                     tL_inputDocument.file_reference = document.file_reference;
-                    tL_inputMediaDocument.f28459id = tL_inputDocument;
+                    tL_inputMediaDocument.f28553id = tL_inputDocument;
                     d.k(tL_inputMediaPoll, keyAt, tL_inputMediaDocument);
                 }
             }
@@ -90,20 +90,20 @@ public final class f {
                     TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = new TLRPC.TL_messageMediaWebPage();
                     TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
                     tL_messageMediaWebPage.webpage = tL_webPage;
-                    String str2 = ((th.e) cVar2).f58227b;
+                    String str2 = ((th.e) cVar2).f58342b;
                     tL_webPage.display_url = str2;
                     tL_webPage.url = str2;
                     d.l(tL_messageMediaPoll, keyAt2, tL_messageMediaWebPage);
                 } else if (cVar2 instanceof th.f) {
-                    d.l(tL_messageMediaPoll, keyAt2, ((th.f) cVar2).f58234b);
+                    d.l(tL_messageMediaPoll, keyAt2, ((th.f) cVar2).f58349b);
                 } else if (cVar2 instanceof th.h) {
                     TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-                    tL_messageMediaDocument.document = ((th.h) cVar2).f58237b;
+                    tL_messageMediaDocument.document = ((th.h) cVar2).f58352b;
                     d.l(tL_messageMediaPoll, keyAt2, tL_messageMediaDocument);
                 }
             }
         }
-        this.f57462a = tL_messageMediaPoll;
-        this.f57463b = tL_inputMediaPoll;
+        this.f57573a = tL_messageMediaPoll;
+        this.f57574b = tL_inputMediaPoll;
     }
 }

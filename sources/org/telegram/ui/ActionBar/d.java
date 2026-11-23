@@ -3,7 +3,7 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import org.telegram.ui.Components.du0;
+import org.telegram.ui.Components.cu0;
 public final class d extends y {
     public final k h;
 
@@ -17,9 +17,9 @@ public final class d extends y {
         Canvas canvas2;
         k kVar = this.h;
         Paint paint = kVar.N0;
-        if (kVar.M0 && this.f30248a && kVar.f29137x != 0) {
+        if (kVar.M0 && this.f30339a && kVar.f29187x != 0) {
             kVar.O0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            paint.setColor(kVar.f29137x);
+            paint.setColor(kVar.f29187x);
             canvas2 = canvas;
             kVar.L0.H(canvas2, 0.0f, kVar.O0, paint, true);
         } else {
@@ -31,18 +31,18 @@ public final class d extends y {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        du0 du0Var = this.h.L0;
-        if (du0Var != null) {
-            du0Var.P.add(this);
+        cu0 cu0Var = this.h.L0;
+        if (cu0Var != null) {
+            cu0Var.P.add(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        du0 du0Var = this.h.L0;
-        if (du0Var != null) {
-            du0Var.P.remove(this);
+        cu0 cu0Var = this.h.L0;
+        if (cu0Var != null) {
+            cu0Var.P.remove(this);
         }
     }
 
@@ -51,7 +51,7 @@ public final class d extends y {
         super.setAlpha(f10);
         k kVar = this.h;
         kVar.invalidate();
-        Runnable runnable = kVar.f29098e1;
+        Runnable runnable = kVar.f29148e1;
         if (runnable != null) {
             runnable.run();
         }
@@ -60,7 +60,7 @@ public final class d extends y {
     @Override
     public final void setBackgroundColor(int i7) {
         k kVar = this.h;
-        kVar.f29137x = i7;
+        kVar.f29187x = i7;
         if (!kVar.M0) {
             super.setBackgroundColor(i7);
         }

@@ -1,25 +1,25 @@
 package org.telegram.messenger;
 public final class b7 implements Runnable {
-    public final int f23020a;
-    public final h7 f23021b;
+    public final int f23169a;
+    public final h7 f23170b;
 
     public b7(h7 h7Var, int i7) {
-        this.f23020a = i7;
-        this.f23021b = h7Var;
+        this.f23169a = i7;
+        this.f23170b = h7Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f23020a) {
+        switch (this.f23169a) {
             case 0:
-                Runnable runnable = this.f23021b.f24376l;
+                Runnable runnable = this.f23170b.f24499l;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                Runnable runnable2 = this.f23021b.f24376l;
+                Runnable runnable2 = this.f23170b.f24499l;
                 if (runnable2 != null) {
                     runnable2.run();
                     return;

@@ -16,10 +16,10 @@ public final class e {
         this.f13464b = iArr;
         this.f13465c = jVarArr;
         j jVar = jVarArr[0];
-        int i10 = jVar.f2872b;
+        int i10 = jVar.f2873b;
         int i11 = 0;
-        for (r0 r0Var : (r0[]) jVar.f2873c) {
-            i11 += (r0Var.f10680b + i10) * r0Var.f10679a;
+        for (r0 r0Var : (r0[]) jVar.f2874c) {
+            i11 += (r0Var.f10678b + i10) * r0Var.f10677a;
         }
         this.d = i11;
     }

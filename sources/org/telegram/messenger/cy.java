@@ -2,33 +2,28 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.tl.TL_update;
 public final class cy implements Runnable {
-    public final int f23351a;
-    public final az f23352b;
-    public final TL_update.TL_updateNewMessage f23353c;
+    public final int f23550a;
+    public final zy f23551b;
+    public final TL_update.TL_updateNewChannelMessage f23552c;
 
-    public cy(az azVar, TL_update.TL_updateNewMessage tL_updateNewMessage, int i7) {
-        this.f23351a = i7;
-        this.f23352b = azVar;
-        this.f23353c = tL_updateNewMessage;
+    public cy(zy zyVar, TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage, int i7) {
+        this.f23550a = i7;
+        this.f23551b = zyVar;
+        this.f23552c = tL_updateNewChannelMessage;
     }
 
     @Override
     public final void run() {
-        switch (this.f23351a) {
+        switch (this.f23550a) {
             case 0:
-                np messagesController = this.f23352b.getMessagesController();
-                TL_update.TL_updateNewMessage tL_updateNewMessage = this.f23353c;
-                messagesController.T3(tL_updateNewMessage.pts, -1, tL_updateNewMessage.pts_count);
-                return;
-            case 1:
-                np messagesController2 = this.f23352b.getMessagesController();
-                TL_update.TL_updateNewMessage tL_updateNewMessage2 = this.f23353c;
-                messagesController2.T3(tL_updateNewMessage2.pts, -1, tL_updateNewMessage2.pts_count);
+                mp messagesController = this.f23551b.getMessagesController();
+                TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage = this.f23552c;
+                messagesController.S3(tL_updateNewChannelMessage.pts, tL_updateNewChannelMessage.pts_count, tL_updateNewChannelMessage.message.peer_id.channel_id);
                 return;
             default:
-                np messagesController3 = this.f23352b.getMessagesController();
-                TL_update.TL_updateNewMessage tL_updateNewMessage3 = this.f23353c;
-                messagesController3.T3(tL_updateNewMessage3.pts, -1, tL_updateNewMessage3.pts_count);
+                mp messagesController2 = this.f23551b.getMessagesController();
+                TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage2 = this.f23552c;
+                messagesController2.S3(tL_updateNewChannelMessage2.pts, tL_updateNewChannelMessage2.pts_count, tL_updateNewChannelMessage2.message.peer_id.channel_id);
                 return;
         }
     }

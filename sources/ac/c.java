@@ -14,7 +14,7 @@ public final class c extends q {
     }
 
     @Override
-    public final Object Q0(Object obj) {
+    public final Object h(Object obj) {
         uf b10 = wf.b();
         g gVar = this.f1014b;
         return new f(gVar, (zb.d) obj, b10, new wa(gVar.b(), 1));

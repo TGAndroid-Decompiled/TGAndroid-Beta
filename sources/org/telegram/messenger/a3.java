@@ -2,19 +2,19 @@ package org.telegram.messenger;
 
 import com.google.android.gms.tasks.OnFailureListener;
 public final class a3 implements OnFailureListener {
-    public final int f22822a;
-    public final c3 f22823b;
+    public final int f22926a;
+    public final c3 f22927b;
 
     public a3(c3 c3Var, int i7) {
-        this.f22822a = i7;
-        this.f22823b = c3Var;
+        this.f22926a = i7;
+        this.f22927b = c3Var;
     }
 
     @Override
     public final void onFailure(Exception exc) {
         String upperCase;
         String upperCase2;
-        switch (this.f22822a) {
+        switch (this.f22926a) {
             case 0:
                 a8.e("CaptchaController: getTasksClient failure", exc);
                 StringBuilder sb2 = new StringBuilder("RECAPTCHA_FAILED_GETCLIENT_EXCEPTION_");
@@ -26,7 +26,7 @@ public final class a3 implements OnFailureListener {
                     upperCase = exc.getMessage().replaceAll(" ", "_").toUpperCase();
                 }
                 sb2.append(upperCase);
-                c3.a(this.f22823b, sb2.toString());
+                c3.a(this.f22927b, sb2.toString());
                 return;
             default:
                 a8.e("CaptchaController: executeTask failure", exc);
@@ -39,7 +39,7 @@ public final class a3 implements OnFailureListener {
                     upperCase2 = exc.getMessage().replaceAll(" ", "_").toUpperCase();
                 }
                 sb3.append(upperCase2);
-                c3.a(this.f22823b, sb3.toString());
+                c3.a(this.f22927b, sb3.toString());
                 return;
         }
     }

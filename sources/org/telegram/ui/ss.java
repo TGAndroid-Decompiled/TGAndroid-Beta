@@ -1,4 +1,4 @@
 package org.telegram.ui;
 public interface ss {
-    void b(ps psVar);
+    void d(ps psVar);
 }

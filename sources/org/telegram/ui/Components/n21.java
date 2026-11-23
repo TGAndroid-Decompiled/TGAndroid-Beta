@@ -1,36 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
 import android.view.View;
-public final class n21 extends ek0 {
-    public final b31 f37709f3;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+public final class n21 extends v4.u0 {
+    public final a31 f37629a;
 
-    public n21(b31 b31Var, Context context) {
-        super(context, null);
-        this.f37709f3 = b31Var;
+    public n21(a31 a31Var) {
+        this.f37629a = a31Var;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            float y10 = motionEvent.getY();
-            b31 b31Var = this.f37709f3;
-            if (y10 < b31Var.M0(true) - getTop()) {
-                b31Var.dismiss();
-                return true;
-            }
+    public final void a(RecyclerView recyclerView, int i7) {
+        a31 a31Var = this.f37629a;
+        m21 m21Var = a31Var.H1;
+        if (i7 == 0) {
+            a31Var.G1 = false;
         }
-        return super.dispatchTouchEvent(motionEvent);
+        if ((i7 == 0 || i7 == 2) && a31Var.M0(false) > 0.0f && a31Var.M0(false) < org.telegram.messenger.g0.L(96.0f) && m21Var.canScrollVertically(1) && a31.J0(a31Var)) {
+            a31Var.G1 = true;
+            m21Var.w0(0, (int) a31Var.M0(false), null);
+        }
     }
 
     @Override
-    public final boolean onRequestFocusInDescendants(int i7, Rect rect) {
-        return true;
-    }
-
-    @Override
-    public final void requestChildFocus(View view, View view2) {
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        float f10;
+        a31 a31Var = this.f37629a;
+        a31Var.f30226b.invalidate();
+        boolean canScrollVertically = a31Var.H1.canScrollVertically(1);
+        View view = a31Var.L1;
+        Boolean bool = a31Var.R1;
+        if (bool != null && bool.booleanValue() == canScrollVertically) {
+            return;
+        }
+        a31Var.R1 = Boolean.valueOf(canScrollVertically);
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (canScrollVertically) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        org.telegram.messenger.m10.o(animate.alpha(f10), kr.h, 320L);
     }
 }

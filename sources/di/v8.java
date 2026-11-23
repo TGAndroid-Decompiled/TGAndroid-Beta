@@ -1,25 +1,25 @@
 package di;
 public final class v8 implements Runnable {
-    public final int f9929a;
-    public final w8 f9930b;
-    public final long f9931c;
+    public final int f9923a;
+    public final w8 f9924b;
+    public final long f9925c;
 
     public v8(w8 w8Var, long j3, int i7) {
-        this.f9929a = i7;
-        this.f9930b = w8Var;
-        this.f9931c = j3;
+        this.f9923a = i7;
+        this.f9924b = w8Var;
+        this.f9925c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f9929a) {
+        switch (this.f9923a) {
             case 0:
-                w8 w8Var = this.f9930b;
-                w8Var.f9973q.b0(w8Var.f9960b, w8Var.f9961c, this.f9931c, true, true, w8Var.f9970n);
+                w8 w8Var = this.f9924b;
+                w8Var.f9971q.b0(w8Var.f9958b, w8Var.f9959c, this.f9925c, true, true, w8Var.f9968n);
                 return;
             default:
-                w8 w8Var2 = this.f9930b;
-                w8Var2.f9973q.b0(w8Var2.f9960b, w8Var2.f9961c, this.f9931c, true, true, w8Var2.f9970n);
+                w8 w8Var2 = this.f9924b;
+                w8Var2.f9971q.b0(w8Var2.f9958b, w8Var2.f9959c, this.f9925c, true, true, w8Var2.f9968n);
                 return;
         }
     }

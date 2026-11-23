@@ -1,10 +1,10 @@
 package m1;
 public final class w0 extends e1 {
-    public final Throwable f20456b;
+    public final Throwable f20552b;
 
     public w0(int i7, Throwable readException) {
         super(i7);
         kotlin.jvm.internal.j.e(readException, "readException");
-        this.f20456b = readException;
+        this.f20552b = readException;
     }
 }

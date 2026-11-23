@@ -1,52 +1,75 @@
 package hi;
 
-import android.view.ScaleGestureDetector;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.f81;
-public final class ra extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-    public final sa f15313a;
+import android.app.Activity;
+import android.app.Dialog;
+public final class ra extends org.telegram.ui.ActionBar.g2 {
+    public final int f15326a;
+    public final nb f15327b;
 
-    public ra(sa saVar) {
-        this.f15313a = saVar;
+    public ra(nb nbVar, int i7) {
+        super(null);
+        this.f15326a = i7;
+        switch (i7) {
+            case 1:
+                this.f15327b = nbVar;
+                super(null);
+                this.currentAccount = nbVar.f15062c;
+                return;
+            default:
+                this.f15327b = nbVar;
+                return;
+        }
     }
 
     @Override
-    public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
-        w9 w9Var;
-        sa saVar = this.f15313a;
-        ta taVar = saVar.f15348o0;
-        if (!saVar.f15345k0 || (w9Var = taVar.C0) == null || taVar.f15409g0 != 0 || w9Var.f14260s || taVar.B0.getFilledProgress() >= 1.0f) {
-            return false;
+    public final Activity getParentActivity() {
+        switch (this.f15326a) {
+            case 0:
+                return this.f15327b.f15058b;
+            default:
+                return this.f15327b.f15058b;
         }
-        float scaleFactor = taVar.U1 + ((scaleGestureDetector.getScaleFactor() - 1.0f) * 0.75f);
-        taVar.U1 = scaleFactor;
-        taVar.U1 = Utilities.i(scaleFactor, 1.0f, 0.0f);
-        taVar.C0.setZoom(taVar.U1);
-        f81 f81Var = taVar.W0;
-        if (f81Var != null) {
-            f81Var.b(false, taVar.U1);
-        }
-        taVar.i0(true);
-        return true;
     }
 
     @Override
-    public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
-        sa saVar = this.f15313a;
-        ta taVar = saVar.f15348o0;
-        if (taVar.C0 != null && taVar.f15409g0 == 0 && !taVar.L0) {
-            saVar.f15345k0 = true;
-            return super.onScaleBegin(scaleGestureDetector);
+    public final org.telegram.ui.ActionBar.i6 getResourceProvider() {
+        switch (this.f15326a) {
+            case 0:
+                return new fi.g2(7, this.f15327b.f15054a);
+            default:
+                return new fi.g2(8, this.f15327b.f15054a);
         }
-        return false;
     }
 
     @Override
-    public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
-        sa saVar = this.f15313a;
-        saVar.f15345k0 = false;
-        saVar.f15348o0.e(false);
-        ta.b(saVar.f15348o0);
-        super.onScaleEnd(scaleGestureDetector);
+    public final boolean isLightStatusBar() {
+        switch (this.f15326a) {
+            case 0:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean presentFragment(org.telegram.ui.ActionBar.g2 g2Var) {
+        switch (this.f15326a) {
+            case 0:
+                this.f15327b.S();
+                return false;
+            default:
+                return super.presentFragment(g2Var);
+        }
+    }
+
+    @Override
+    public Dialog showDialog(Dialog dialog) {
+        switch (this.f15326a) {
+            case 1:
+                dialog.show();
+                return dialog;
+            default:
+                return super.showDialog(dialog);
+        }
     }
 }

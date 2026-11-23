@@ -1,38 +1,62 @@
 package org.telegram.ui.Components;
-public final class t00 implements Runnable {
-    public final FragmentContextView f39698a;
 
-    public t00(FragmentContextView fragmentContextView) {
-        this.f39698a = fragmentContextView;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.text.TextUtils;
+import android.widget.TextView;
+public final class t00 extends z7 {
+    public final int E;
+    public final Context F;
+    public final FragmentContextView G;
+
+    public t00(FragmentContextView fragmentContextView, Context context, Context context2, int i7) {
+        super(context);
+        this.E = i7;
+        this.G = fragmentContextView;
+        this.F = context2;
     }
 
     @Override
-    public final void run() {
-        String j02;
-        FragmentContextView fragmentContextView = this.f39698a;
-        org.telegram.ui.ActionBar.g2 g2Var = fragmentContextView.h;
-        if (fragmentContextView.f32966h0 != null && (g2Var instanceof org.telegram.ui.bn)) {
-            org.telegram.messenger.t3 groupCall = fragmentContextView.f32971n.getGroupCall();
-            if (groupCall != null && groupCall.j()) {
-                int currentTime = groupCall.f26914b.schedule_date - g2Var.getConnectionsManager().getCurrentTime();
-                if (currentTime >= 86400) {
-                    j02 = org.telegram.messenger.hd.G(Math.round(currentTime / 86400.0f), "Days", new Object[0]);
+    public final TextView a() {
+        switch (this.E) {
+            case 0:
+                TextView textView = new TextView(this.F);
+                textView.setMaxLines(1);
+                textView.setLines(1);
+                textView.setSingleLine(true);
+                textView.setEllipsize(TextUtils.TruncateAt.END);
+                textView.setTextSize(1, 15.0f);
+                textView.setGravity(19);
+                FragmentContextView fragmentContextView = this.G;
+                int i7 = fragmentContextView.V;
+                if (i7 != 0 && i7 != 2) {
+                    if (i7 == 4) {
+                        textView.setGravity(51);
+                        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29748t7, fragmentContextView.f33075r0);
+                        textView.setTypeface(org.telegram.messenger.g0.o());
+                        textView.setTextSize(1, 15.0f);
+                    } else if (i7 == 1 || i7 == 3) {
+                        textView.setGravity(19);
+                        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.A7, fragmentContextView.f33075r0);
+                        textView.setTypeface(org.telegram.messenger.g0.o());
+                        textView.setTextSize(1, 14.0f);
+                    }
                 } else {
-                    j02 = org.telegram.messenger.g0.j0(currentTime);
+                    textView.setGravity(19);
+                    textView.setTypeface(Typeface.DEFAULT);
+                    textView.setTextSize(1, 15.0f);
                 }
-                n6 n6Var = fragmentContextView.f32969k0;
-                if (!fragmentContextView.f32968j0) {
-                    j02 = org.telegram.messenger.hd.N0(2131743197, null);
-                }
-                n6Var.t(j02, true, true);
-                org.telegram.messenger.g0.h3(fragmentContextView.f32972n0, 1000L);
-                fragmentContextView.f32978s.invalidate();
-                return;
-            }
-            fragmentContextView.f32967i0 = false;
-            fragmentContextView.m0 = false;
-            return;
+                return textView;
+            default:
+                TextView textView2 = new TextView(this.F);
+                textView2.setMaxLines(1);
+                textView2.setLines(1);
+                textView2.setSingleLine(true);
+                textView2.setEllipsize(TextUtils.TruncateAt.END);
+                textView2.setGravity(3);
+                textView2.setTextSize(1, 13.0f);
+                org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29825x7, this.G.f33075r0);
+                return textView2;
         }
-        fragmentContextView.m0 = false;
     }
 }

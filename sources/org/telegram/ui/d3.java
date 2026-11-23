@@ -11,39 +11,39 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class d3 extends pq0 {
-    public final int[] f46828a = new int[2];
-    public final List f46829b;
-    public final g4 f46830c;
+public final class d3 extends oq0 {
+    public final int[] f46938a = new int[2];
+    public final List f46939b;
+    public final g4 f46940c;
 
     public d3(g4 g4Var, List list) {
-        this.f46830c = g4Var;
-        this.f46829b = list;
+        this.f46940c = g4Var;
+        this.f46939b = list;
     }
 
     @Override
     public final void D() {
-        this.f46830c.l();
+        this.f46940c.l();
     }
 
     @Override
-    public final xq0 E(org.telegram.messenger.gj gjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
+    public final wq0 E(org.telegram.messenger.fj fjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
         if (i7 >= 0) {
-            List list = this.f46829b;
+            List list = this.f46939b;
             if (i7 < list.size()) {
-                g4 g4Var = this.f46830c;
-                int[] iArr = this.f46828a;
-                ImageReceiver d02 = d0(g4Var.f47920v0[0].f49136b, (TL_iv.PageBlock) list.get(i7), iArr);
+                g4 g4Var = this.f46940c;
+                int[] iArr = this.f46938a;
+                ImageReceiver d02 = d0(g4Var.f48084v0[0].f49288b, (TL_iv.PageBlock) list.get(i7), iArr);
                 if (d02 != null) {
-                    xq0 xq0Var = new xq0();
-                    xq0Var.f53899b = iArr[0];
-                    xq0Var.f53900c = iArr[1];
-                    xq0Var.d = g4Var.f47920v0[0].f49136b;
-                    xq0Var.f53898a = d02;
-                    xq0Var.f53901e = d02.p();
-                    xq0Var.h = d02.E();
-                    xq0Var.f53905j = g4Var.K0;
-                    return xq0Var;
+                    wq0 wq0Var = new wq0();
+                    wq0Var.f53727b = iArr[0];
+                    wq0Var.f53728c = iArr[1];
+                    wq0Var.d = g4Var.f48084v0[0].f49288b;
+                    wq0Var.f53726a = d02;
+                    wq0Var.f53729e = d02.p();
+                    wq0Var.h = d02.F();
+                    wq0Var.f53733j = g4Var.K0;
+                    return wq0Var;
                 }
                 return null;
             }
@@ -77,25 +77,25 @@ public final class d3 extends pq0 {
             a2 a2Var = (a2) view;
             if (a2Var.O == pageBlock) {
                 view.getLocationInWindow(iArr);
-                return a2Var.f45433e;
+                return a2Var.f45560e;
             }
             return null;
         } else if (view instanceof v2) {
             v2 v2Var = (v2) view;
-            ImageReceiver imageReceiver = v2Var.f52686e;
-            TextureView textureView = v2Var.f52688n;
+            ImageReceiver imageReceiver = v2Var.f52788e;
+            TextureView textureView = v2Var.f52790n;
             if (v2Var.M == pageBlock) {
                 view.getLocationInWindow(iArr);
-                g4 g4Var = this.f46830c;
-                if (v2Var == g4Var.f50734y && (videoPlayerHolderBase = g4Var.f50733x) != null && videoPlayerHolderBase.firstFrameRendered && textureView.getSurfaceTexture() != null) {
+                g4 g4Var = this.f46940c;
+                if (v2Var == g4Var.f50848y && (videoPlayerHolderBase = g4Var.f50847x) != null && videoPlayerHolderBase.firstFrameRendered && textureView.getSurfaceTexture() != null) {
                     if (Build.VERSION.SDK_INT >= 24) {
                         Surface surface = new Surface(textureView.getSurfaceTexture());
                         Bitmap createBitmap = Bitmap.createBitmap(textureView.getMeasuredWidth(), textureView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
                         org.telegram.messenger.g0.y0(surface, createBitmap);
                         surface.release();
-                        imageReceiver.v0(createBitmap);
+                        imageReceiver.w0(createBitmap);
                     } else {
-                        imageReceiver.v0(textureView.getBitmap());
+                        imageReceiver.w0(textureView.getBitmap());
                     }
                     int i7 = v2.W;
                     textureView.setAlpha(0.0f);
@@ -104,24 +104,24 @@ public final class d3 extends pq0 {
             }
             return null;
         } else if (view instanceof h1) {
-            ImageReceiver d02 = d0(((h1) view).f48156a, pageBlock, iArr);
+            ImageReceiver d02 = d0(((h1) view).f48394a, pageBlock, iArr);
             if (d02 != null) {
                 return d02;
             }
             return null;
         } else if (view instanceof o2) {
-            ImageReceiver d03 = d0(((o2) view).f50398b, pageBlock, iArr);
+            ImageReceiver d03 = d0(((o2) view).f50480b, pageBlock, iArr);
             if (d03 != null) {
                 return d03;
             }
             return null;
         } else if (view instanceof v1) {
             org.telegram.ui.Components.mj0 mj0Var2 = ((v1) view).d;
-            if (mj0Var2 != null && (e03 = e0(mj0Var2.f59111a, pageBlock, iArr)) != null) {
+            if (mj0Var2 != null && (e03 = e0(mj0Var2.f59245a, pageBlock, iArr)) != null) {
                 return e03;
             }
             return null;
-        } else if ((view instanceof y1) && (mj0Var = ((y1) view).d) != null && (e02 = e0(mj0Var.f59111a, pageBlock, iArr)) != null) {
+        } else if ((view instanceof y1) && (mj0Var = ((y1) view).d) != null && (e02 = e0(mj0Var.f59245a, pageBlock, iArr)) != null) {
             return e02;
         } else {
             return null;

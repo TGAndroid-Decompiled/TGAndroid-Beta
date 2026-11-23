@@ -1,66 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class pc0 extends Drawable implements Drawable.Callback {
-    public final fh.g f38525a;
-    public final RectF f38526b = new RectF();
-    public int f38527c = 255;
+import org.telegram.ui.LaunchActivity;
+public final class pc0 extends oc0 {
+    public final qc0 f38450k0;
 
-    public pc0(fh.g gVar) {
-        this.f38525a = gVar;
-        gVar.setCallback(this);
+    public pc0(qc0 qc0Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f38450k0 = qc0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        this.f38525a.draw(canvas);
-        Rect bounds = getBounds();
-        RectF rectF = this.f38526b;
-        rectF.set(bounds);
-        float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
-        float f10 = this.f38527c / 255.0f;
-        ci.u.c(canvas, rectF, min, f10);
-        ci.u.a(min, f10, 0, canvas, rectF);
+    public final void h(float f10) {
+        LaunchActivity launchActivity = LaunchActivity.H1;
+        if (launchActivity == null) {
+            return;
+        }
+        org.telegram.ui.ActionBar.o3 o3Var = launchActivity.f43232y0;
+        o3Var.setScaleX(org.telegram.messenger.g0.T1(1.0f, 1.25f, f10));
+        o3Var.setScaleY(org.telegram.messenger.g0.T1(1.0f, 1.25f, f10));
     }
 
     @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        invalidateSelf();
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f38525a.setBounds(rect);
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        scheduleSelf(runnable, j3);
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        this.f38527c = i7;
-        this.f38525a.setAlpha(i7);
-        invalidateSelf();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f38525a.getClass();
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
+    public final void j() {
+        qc0.a(this.f38450k0);
+        LaunchActivity launchActivity = LaunchActivity.H1;
+        if (launchActivity == null) {
+            return;
+        }
+        org.telegram.ui.ActionBar.o3 o3Var = launchActivity.f43232y0;
+        o3Var.setScaleX(1.0f);
+        o3Var.setScaleY(1.0f);
     }
 }

@@ -4,14 +4,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.recyclerview.widget.RecyclerView;
-import v4.f1;
-import v4.w0;
+import v4.g1;
+import v4.x0;
 public final class g extends r0.b {
     public final int d = 0;
     public final Object f4416e;
 
-    public g(f1 f1Var) {
-        this.f4416e = f1Var;
+    public g(g1 g1Var) {
+        this.f4416e = g1Var;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class g extends r0.b {
         boolean z10;
         switch (this.d) {
             case 0:
-                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56750a;
-                this.f56226a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56863a;
+                this.f56339a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
                 cVar.i(l.class.getName());
                 l lVar = (l) this.f4416e;
                 a aVar = lVar.f4433e;
@@ -44,10 +44,10 @@ public final class g extends r0.b {
                 }
                 return;
             default:
-                this.f56226a.onInitializeAccessibilityNodeInfo(view, cVar.f56750a);
-                f1 f1Var = (f1) this.f4416e;
-                boolean e10 = f1Var.e();
-                RecyclerView recyclerView = f1Var.d;
+                this.f56339a.onInitializeAccessibilityNodeInfo(view, cVar.f56863a);
+                g1 g1Var = (g1) this.f4416e;
+                boolean e10 = g1Var.e();
+                RecyclerView recyclerView = g1Var.d;
                 if (!e10 && recyclerView.getLayoutManager() != null) {
                     recyclerView.getLayoutManager().T(view, cVar);
                     return;
@@ -75,14 +75,14 @@ public final class g extends r0.b {
                 }
                 return false;
             default:
-                f1 f1Var = (f1) this.f4416e;
+                g1 g1Var = (g1) this.f4416e;
                 if (super.d(view, i7, bundle)) {
                     return true;
                 }
-                boolean e10 = f1Var.e();
-                RecyclerView recyclerView = f1Var.d;
+                boolean e10 = g1Var.e();
+                RecyclerView recyclerView = g1Var.d;
                 if (!e10 && recyclerView.getLayoutManager() != null) {
-                    w0 w0Var = recyclerView.getLayoutManager().f59197b.f2761b;
+                    x0 x0Var = recyclerView.getLayoutManager().f59332b.f2762b;
                 }
                 return false;
         }

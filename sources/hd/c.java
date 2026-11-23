@@ -164,7 +164,7 @@ public abstract class c implements List, Collection {
     }
 
     public final String toString() {
-        return f.g(this, ", ", "[", "]", new c1.b(this, 4), 24);
+        return f.g(this, ", ", "[", "]", new c1.c(this, 4), 24);
     }
 
     @Override

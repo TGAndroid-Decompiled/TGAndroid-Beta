@@ -23,33 +23,33 @@ public final class b0 {
         Object l10;
         e0 e0Var = this.h;
         i0 i0Var = (i0) e0Var.f13743f;
-        l2.f0 f0Var = (l2.f0) e0Var.f13739a;
-        if (!f0Var.h()) {
+        l2.g0 g0Var = (l2.g0) e0Var.f13739a;
+        if (!g0Var.j()) {
             if (this.f13722f) {
                 i0Var.e(2);
             }
             this.f13722f = false;
             return;
         }
-        l1 y02 = f0Var.y0();
-        if (y02.p()) {
+        l1 z02 = g0Var.z0();
+        if (z02.p()) {
             l10 = null;
         } else {
-            l10 = y02.l(f0Var.B());
+            l10 = z02.l(g0Var.C());
         }
-        int n02 = f0Var.n0();
-        int O = f0Var.O();
-        long l11 = f0Var.l();
-        if (l10 != null && n02 == -1) {
-            l11 -= l0.h0(y02.g(l10, (i1) e0Var.f13742e).f10429e);
+        int o02 = g0Var.o0();
+        int P = g0Var.P();
+        long n10 = g0Var.n();
+        if (l10 != null && o02 == -1) {
+            n10 -= l0.h0(z02.g(l10, (i1) e0Var.f13742e).f10427e);
         }
         ((g0) e0Var.d).getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
         boolean z10 = this.f13722f;
         int i7 = this.f13718a;
-        if (z10 && Objects.equals(l10, this.f13719b) && n02 == this.f13720c && O == this.d && l11 == this.f13721e) {
+        if (z10 && Objects.equals(l10, this.f13719b) && o02 == this.f13720c && P == this.d && n10 == this.f13721e) {
             if (elapsedRealtime - this.f13723g >= i7) {
-                ((l2.z) e0Var.f13741c).f19594a.A1(new l2.l(2, new f0(2, i7), 1003));
+                ((l2.a0) e0Var.f13741c).f19342a.A1(new l2.m(2, new f0(2, i7), 1003));
                 return;
             }
             return;
@@ -57,9 +57,9 @@ public final class b0 {
         this.f13722f = true;
         this.f13723g = elapsedRealtime;
         this.f13719b = l10;
-        this.f13720c = n02;
-        this.d = O;
-        this.f13721e = l11;
+        this.f13720c = o02;
+        this.d = P;
+        this.f13721e = n10;
         i0Var.e(2);
         i0Var.f13763a.sendEmptyMessageDelayed(2, i7);
     }

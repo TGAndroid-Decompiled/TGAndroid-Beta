@@ -1,103 +1,17 @@
 package org.telegram.ui.Components;
+public abstract class tp extends c5.a {
+    public abstract int j();
 
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import java.util.Random;
-public final class tp {
-    public float f39987g;
-    public float f39990k;
-    public final Path f39982a = new Path();
-    public final float[] f39983b = new float[4];
-    public final float[] f39984c = new float[4];
-    public final Matrix d = new Matrix();
-    public final float h = 1.0f;
-    public final Random f39988i = new Random();
-    public final int f39986f = 6;
-    public final float f39985e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f39989j = new float[6];
-
-    public tp() {
-        for (int i7 = 0; i7 < this.f39986f; i7++) {
-            this.f39989j[i7] = (this.f39988i.nextInt() % 100) / 100.0f;
+    public final int k(int i7) {
+        int size = ((fg0) this).f35128c.size();
+        int j3 = j();
+        if (i7 < j3) {
+            return ((size - (j3 * 2)) - ((j3 - i7) - 1)) - 1;
         }
-    }
-
-    public final void a(float f10, float f11, Canvas canvas, Paint paint) {
-        float f12;
-        int i7;
-        float f13;
-        tp tpVar = this;
-        float f14 = tpVar.f39987g;
-        float f15 = (f14 - 0.0f) - 0.0f;
-        float f16 = f14 + 0.0f + 0.0f;
-        float max = Math.max(f15, f16);
-        float f17 = tpVar.f39985e;
-        float f18 = max * f17 * tpVar.h;
-        Path path = tpVar.f39982a;
-        path.reset();
-        int i10 = 0;
-        while (true) {
-            int i11 = tpVar.f39986f;
-            if (i10 < i11) {
-                Matrix matrix = tpVar.d;
-                matrix.reset();
-                float f19 = 360.0f / i11;
-                matrix.setRotate(i10 * f19, f10, f11);
-                if (i10 % 2 == 0) {
-                    f12 = f15;
-                } else {
-                    f12 = f16;
-                }
-                float f20 = tpVar.f39990k;
-                float[] fArr = tpVar.f39989j;
-                float f21 = (fArr[i10] * f20) + f12;
-                float[] fArr2 = tpVar.f39983b;
-                fArr2[0] = f10;
-                float f22 = f11 - f21;
-                fArr2[1] = f22;
-                float f23 = f16;
-                fArr2[2] = com.google.android.gms.internal.vision.e2.x(f20, fArr[i10], f17, f10 + f18);
-                fArr2[3] = f22;
-                matrix.mapPoints(fArr2);
-                int i12 = i10 + 1;
-                if (i12 >= i11) {
-                    i7 = 0;
-                } else {
-                    i7 = i12;
-                }
-                if (i7 % 2 == 0) {
-                    f13 = f15;
-                } else {
-                    f13 = f23;
-                }
-                float f24 = tpVar.f39990k;
-                float[] fArr3 = tpVar.f39984c;
-                fArr3[0] = f10;
-                float f25 = f11 - ((fArr[i7] * f24) + f13);
-                fArr3[1] = f25;
-                float f26 = f15;
-                fArr3[2] = com.google.android.gms.internal.vision.e2.x(f24, fArr[i7], f17, f10 - f18);
-                fArr3[3] = f25;
-                matrix.reset();
-                matrix.setRotate(f19 * i7, f10, f11);
-                matrix.mapPoints(fArr3);
-                if (i10 == 0) {
-                    path.moveTo(fArr2[0], fArr2[1]);
-                }
-                path.cubicTo(fArr2[2], fArr2[3], fArr3[2], fArr3[3], fArr3[0], fArr3[1]);
-                i10 = i12;
-                f16 = f23;
-                f15 = f26;
-                tpVar = this;
-            } else {
-                canvas.save();
-                canvas.rotate(0.0f, f10, f11);
-                canvas.drawPath(path, paint);
-                canvas.restore();
-                return;
-            }
+        int i10 = size - j3;
+        if (i7 >= i10) {
+            return i7 - i10;
         }
+        return i7 - j3;
     }
 }

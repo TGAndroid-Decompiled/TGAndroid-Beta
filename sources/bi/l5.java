@@ -1,8 +1,8 @@
 package bi;
 
 import android.view.View;
-import org.telegram.ui.Cells.ua;
 import org.telegram.ui.Cells.va;
+import org.telegram.ui.Cells.wa;
 public final class l5 implements View.OnLongClickListener {
     public final int f3804a = 0;
     public final int f3805b;
@@ -23,13 +23,13 @@ public final class l5 implements View.OnLongClickListener {
                 ((Runnable) this.d).run();
                 return true;
             default:
-                return ((va) this.f3806c).b(((ua) this.d).h, this.f3805b);
+                return ((wa) this.f3806c).b(((va) this.d).h, this.f3805b);
         }
     }
 
-    public l5(va vaVar, ua uaVar, int i7) {
-        this.f3806c = vaVar;
-        this.d = uaVar;
+    public l5(wa waVar, va vaVar, int i7) {
+        this.f3806c = waVar;
+        this.d = vaVar;
         this.f3805b = i7;
     }
 }

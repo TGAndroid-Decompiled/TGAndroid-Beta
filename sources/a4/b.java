@@ -1,7 +1,7 @@
 package a4;
 
 import a8.ma;
-import f3.b0;
+import f3.c0;
 import h2.l0;
 public final class b implements h {
     public final g f148a;
@@ -38,7 +38,7 @@ public final class b implements h {
     }
 
     @Override
-    public final b0 f() {
+    public final c0 N() {
         if (this.f152f != 0) {
             return new a(this);
         }
@@ -46,12 +46,12 @@ public final class b implements h {
     }
 
     @Override
-    public final long m0(f3.p r28) {
-        throw new UnsupportedOperationException("Method not decompiled: a4.b.m0(f3.p):long");
+    public final long a0(f3.p r28) {
+        throw new UnsupportedOperationException("Method not decompiled: a4.b.a0(f3.p):long");
     }
 
     @Override
-    public final void v0(long j3) {
+    public final void l0(long j3) {
         this.f153n = l0.j(j3, 0L, this.f152f - 1);
         this.f151e = 2;
         this.f154r = this.f149b;

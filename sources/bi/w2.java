@@ -4,12 +4,12 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-import org.telegram.ui.Components.m80;
-public final class w2 extends m80 {
+import org.telegram.ui.Components.j80;
+public final class w2 extends j80 {
     public final int M;
 
-    public w2(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, h6Var);
+    public w2(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, i6Var);
         this.M = i7;
     }
 

@@ -34,7 +34,7 @@ public final class f extends r6.a {
     public final int T;
     public final int U;
     public final int V;
-    public final p W;
+    public final q W;
     public final boolean X;
     public final boolean Y;
     public final ArrayList f13902a;
@@ -52,7 +52,7 @@ public final class f extends r6.a {
     public final int f13912y;
 
     static {
-        d0 d0Var = f0.f6521b;
+        d0 d0Var = f0.f6520b;
         Object[] objArr = {"com.google.android.gms.cast.framework.action.TOGGLE_PLAYBACK", "com.google.android.gms.cast.framework.action.STOP_CASTING"};
         for (int i7 = 0; i7 < 2; i7++) {
             if (objArr[i7] == null) {
@@ -65,7 +65,7 @@ public final class f extends r6.a {
     }
 
     public f(List list, int[] iArr, long j3, String str, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, int i20, int i21, int i22, int i23, int i24, int i25, int i26, int i27, int i28, int i29, int i30, int i31, int i32, int i33, int i34, int i35, IBinder iBinder, boolean z10, boolean z11) {
-        p aVar;
+        q aVar;
         this.f13902a = new ArrayList(list);
         this.f13903b = Arrays.copyOf(iArr, iArr.length);
         this.f13904c = j3;
@@ -103,8 +103,8 @@ public final class f extends r6.a {
             aVar = 0;
         } else {
             IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cast.framework.media.INotificationActionsProvider");
-            if (queryLocalInterface instanceof p) {
-                aVar = (p) queryLocalInterface;
+            if (queryLocalInterface instanceof q) {
+                aVar = (q) queryLocalInterface;
             } else {
                 aVar = new a8.a(iBinder, "com.google.android.gms.cast.framework.media.INotificationActionsProvider", 2);
             }
@@ -176,11 +176,11 @@ public final class f extends r6.a {
         parcel.writeInt(this.U);
         cc.q(parcel, 32, 4);
         parcel.writeInt(this.V);
-        p pVar = this.W;
-        if (pVar == null) {
+        q qVar = this.W;
+        if (qVar == null) {
             iBinder = null;
         } else {
-            iBinder = pVar.f306b;
+            iBinder = qVar.f306b;
         }
         cc.f(parcel, 33, iBinder);
         cc.q(parcel, 34, 4);

@@ -10,33 +10,33 @@ import z7.ia;
 import z7.pa;
 import z7.qa;
 public final class d implements Callable {
-    public final int f59368a = 1;
-    public final Object f59369b;
-    public final Object f59370c;
+    public final int f59490a = 1;
+    public final Object f59491b;
+    public final Object f59492c;
 
     public d(MobileVisionBase mobileVisionBase, ub.a aVar) {
-        this.f59369b = mobileVisionBase;
-        this.f59370c = aVar;
+        this.f59491b = mobileVisionBase;
+        this.f59492c = aVar;
     }
 
     @Override
     public final Object call() {
         ia iaVar;
-        int i7 = this.f59368a;
-        Object obj = this.f59369b;
-        Object obj2 = this.f59370c;
+        int i7 = this.f59490a;
+        Object obj = this.f59491b;
+        Object obj2 = this.f59492c;
         switch (i7) {
             case 0:
                 MobileVisionBase mobileVisionBase = (MobileVisionBase) obj;
                 ub.a aVar = (ub.a) obj2;
-                HashMap hashMap = ia.f61617f;
+                HashMap hashMap = ia.f61736f;
                 qa.b();
-                int i10 = pa.f61704a;
+                int i10 = pa.f61823a;
                 qa.b();
                 if (!Boolean.parseBoolean("")) {
                     iaVar = ha.h;
                 } else {
-                    HashMap hashMap2 = ia.f61617f;
+                    HashMap hashMap2 = ia.f61736f;
                     if (hashMap2.get("detectorTaskWithResource#run") == null) {
                         hashMap2.put("detectorTaskWithResource#run", new ia("detectorTaskWithResource#run"));
                     }
@@ -44,7 +44,7 @@ public final class d implements Callable {
                 }
                 iaVar.a();
                 try {
-                    Object e10 = mobileVisionBase.f7578b.e(aVar);
+                    Object e10 = mobileVisionBase.f7577b.e(aVar);
                     iaVar.close();
                     return e10;
                 } catch (Throwable th2) {
@@ -59,12 +59,12 @@ public final class d implements Callable {
                     throw th2;
                 }
             default:
-                return (f) ((ShortcutInfoCompatSaverImpl) obj2).f2798b.get((String) obj);
+                return (f) ((ShortcutInfoCompatSaverImpl) obj2).f2799b.get((String) obj);
         }
     }
 
     public d(ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl, String str) {
-        this.f59370c = shortcutInfoCompatSaverImpl;
-        this.f59369b = str;
+        this.f59492c = shortcutInfoCompatSaverImpl;
+        this.f59491b = str;
     }
 }

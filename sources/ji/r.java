@@ -12,26 +12,26 @@ import android.graphics.drawable.GradientDrawable;
 import java.util.Arrays;
 import java.util.HashMap;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.nz;
+import org.telegram.messenger.lz;
 public final class r {
-    public float[] f18046a;
-    public int f18047b;
-    public int f18048c;
+    public float[] f18148a;
+    public int f18149b;
+    public int f18150c;
     public int d;
-    public int f18049e;
-    public Object f18050f;
-    public Object f18051g;
+    public int f18151e;
+    public Object f18152f;
+    public Object f18153g;
 
     public r(int i7) {
         switch (i7) {
             case 1:
-                this.f18046a = new float[8];
+                this.f18148a = new float[8];
                 return;
             default:
-                this.f18047b = -1;
-                this.f18048c = 1;
-                this.f18050f = new float[126];
-                this.f18051g = new byte[4096];
+                this.f18149b = -1;
+                this.f18150c = 1;
+                this.f18152f = new float[126];
+                this.f18153g = new byte[4096];
                 return;
         }
     }
@@ -56,7 +56,7 @@ public final class r {
         int i16;
         Bitmap bitmap2;
         Paint paint;
-        float[] fArr = this.f18046a;
+        float[] fArr = this.f18148a;
         if (!str.isEmpty()) {
             if (i7 >= 0 && i10 >= 0) {
                 bc.b bVar2 = bc.b.f3081a;
@@ -72,7 +72,7 @@ public final class r {
                     i13 = 4;
                 }
                 cc.c cVar = (cc.c) ic.b.b(str, bVar, hashMap).f194f;
-                this.f18050f = cVar;
+                this.f18152f = cVar;
                 if (cVar != null) {
                     int i17 = cVar.f5154b;
                     int i18 = cVar.f5155c;
@@ -99,15 +99,15 @@ public final class r {
                     gradientDrawable.setCornerRadii(fArr);
                     float f15 = min;
                     int round = Math.round((i23 / 4.65f) / f15);
-                    this.f18047b = round;
+                    this.f18149b = round;
                     int i25 = 1;
                     if (round % 2 != i17 % 2) {
-                        this.f18047b = round + 1;
+                        this.f18149b = round + 1;
                     }
-                    int i26 = this.f18047b;
-                    this.f18048c = (i17 - i26) / 2;
+                    int i26 = this.f18149b;
+                    this.f18150c = (i17 - i26) / 2;
                     int i27 = (i26 * min) - 24;
-                    this.f18049e = i27;
+                    this.f18151e = i27;
                     int i28 = (i24 - i27) / 2;
                     paint2.setColor(i12);
                     float f16 = this.d;
@@ -297,15 +297,15 @@ public final class r {
                         i31 += min;
                         i14 = 16;
                     }
-                    Drawable drawable = (Drawable) this.f18051g;
+                    Drawable drawable = (Drawable) this.f18153g;
                     if (drawable != null) {
-                        int i41 = i30 + this.f18049e;
+                        int i41 = i30 + this.f18151e;
                         drawable.setBounds(i30, i30, i41, i41);
-                        ((Drawable) this.f18051g).draw(canvas);
+                        ((Drawable) this.f18153g).draw(canvas);
                     } else {
                         String y22 = g0.y2(null, 2131624171);
-                        int i42 = this.f18049e;
-                        Bitmap e10 = nz.e(i42, i42, y22);
+                        int i42 = this.f18151e;
+                        Bitmap e10 = lz.e(i42, i42, y22);
                         float f29 = i30;
                         canvas.drawBitmap(e10, f29, f29, (Paint) null);
                         e10.recycle();
@@ -321,19 +321,19 @@ public final class r {
     }
 
     public boolean b(int i7, int i10) {
-        int i11 = this.f18048c;
+        int i11 = this.f18150c;
         if (i7 >= i11) {
-            int i12 = this.f18047b;
+            int i12 = this.f18149b;
             if (i7 < i11 + i12 && i10 >= i11 && i10 < i11 + i12) {
                 return false;
             }
         }
         int i13 = this.d;
-        if ((i7 < i13 || i7 >= ((cc.c) this.f18050f).f5154b - i13) && i10 < i13) {
+        if ((i7 < i13 || i7 >= ((cc.c) this.f18152f).f5154b - i13) && i10 < i13) {
             return false;
         }
-        if ((i7 >= i13 || i10 < ((cc.c) this.f18050f).f5155c - i13) && i7 >= 0 && i10 >= 0) {
-            cc.c cVar = (cc.c) this.f18050f;
+        if ((i7 >= i13 || i10 < ((cc.c) this.f18152f).f5155c - i13) && i7 >= 0 && i10 >= 0) {
+            cc.c cVar = (cc.c) this.f18152f;
             if (i7 < cVar.f5154b && i10 < cVar.f5155c && cVar.e(i7, i10) == 1) {
                 return true;
             }

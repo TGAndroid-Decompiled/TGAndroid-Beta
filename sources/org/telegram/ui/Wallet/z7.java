@@ -1,19 +1,27 @@
 package org.telegram.ui.Wallet;
 
-import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.Wallet.WalletEngine2;
-public final class z7 {
-    public final CountDownLatch f45365a = new CountDownLatch(1);
-    public int f45366b;
-    public byte[] f45367c;
-    public WalletEngine2.HttpTransport.HostException d;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.atomic.AtomicBoolean;
+public final class z7 implements Runnable {
+    public final int f45495a;
+    public final AtomicBoolean f45496b;
+    public final FutureTask f45497c;
 
-    public final synchronized void a(byte[] bArr, WalletEngine2.HttpTransport.HostException hostException) {
-        if (this.f45365a.getCount() == 0) {
-            return;
+    public z7(AtomicBoolean atomicBoolean, FutureTask futureTask, int i7) {
+        this.f45495a = i7;
+        this.f45496b = atomicBoolean;
+        this.f45497c = futureTask;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f45495a) {
+            case 0:
+                WalletEngine2.N(this.f45496b, this.f45497c);
+                return;
+            default:
+                WalletEngine2.B(this.f45496b, this.f45497c);
+                return;
         }
-        this.f45367c = bArr;
-        this.d = hostException;
-        this.f45365a.countDown();
     }
 }

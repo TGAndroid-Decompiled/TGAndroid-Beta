@@ -1,34 +1,56 @@
 package org.telegram.ui;
-public final class x21 implements Runnable {
-    public final int f53510a;
-    public final y21 f53511b;
 
-    public x21(y21 y21Var, int i7) {
-        this.f53510a = i7;
-        this.f53511b = y21Var;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class x21 implements s9 {
+    public TLObject f53827a = null;
+    public TLRPC.TL_error f53828b = null;
+    public final SessionsActivity f53829c;
+
+    public x21(SessionsActivity sessionsActivity) {
+        this.f53829c = sessionsActivity;
     }
 
     @Override
-    public final void run() {
-        String sb2;
-        int i7 = this.f53510a;
-        y21 y21Var = this.f53511b;
-        switch (i7) {
-            case 0:
-                String str = y21Var.f53997b.text;
-                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
-                    sb2 = org.telegram.messenger.hd.N0(2131754708, null);
-                } else {
-                    StringBuilder sb3 = new StringBuilder();
-                    org.telegram.ui.Cells.c0.u(null, 2131751093, sb3, "\n");
-                    sb3.append(y21Var.f53997b.text);
-                    sb2 = sb3.toString();
-                }
-                org.telegram.ui.Components.c5.r0(y21Var.f53998c, org.telegram.messenger.hd.N0(2131753891, null), sb2, null);
-                return;
-            default:
-                org.telegram.ui.Components.c5.r0(y21Var.f53998c, org.telegram.messenger.hd.N0(2131753891, null), org.telegram.messenger.hd.N0(2131751093, null), null);
-                return;
+    public final void H(String str) {
+        TLObject tLObject = this.f53827a;
+        if (tLObject instanceof TLRPC.TL_authorization) {
+            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
+            boolean z10 = tL_authorization.password_pending;
+            SessionsActivity sessionsActivity = this.f53829c;
+            if (z10) {
+                sessionsActivity.f43902e.add(0, tL_authorization);
+                sessionsActivity.V = 4;
+                sessionsActivity.p0(false);
+            } else {
+                sessionsActivity.d.add(0, tL_authorization);
+            }
+            sessionsActivity.r0();
+            sessionsActivity.f43899a.f();
+            sessionsActivity.f43905r.m(0L, this.f53827a, 11);
+        } else if (this.f53828b != null) {
+            org.telegram.messenger.g0.g3(new w21(this, 0));
         }
+    }
+
+    @Override
+    public final boolean Z0(String str, k9 k9Var) {
+        this.f53827a = null;
+        this.f53828b = null;
+        org.telegram.messenger.g0.h3(new t21(this, str, k9Var, 2), 750L);
+        return true;
+    }
+
+    @Override
+    public final String w0() {
+        return null;
+    }
+
+    @Override
+    public final void E0(org.telegram.messenger.ur urVar) {
+    }
+
+    @Override
+    public final void onDismiss() {
     }
 }

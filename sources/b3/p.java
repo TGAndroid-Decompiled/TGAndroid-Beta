@@ -7,11 +7,11 @@ import android.os.SystemClock;
 import java.io.IOException;
 public final class p implements q {
     public static final i d = new i(0, -9223372036854775807L, false);
-    public static final i f2882e = new i(2, -9223372036854775807L, false);
-    public static final i f2883f = new i(3, -9223372036854775807L, false);
-    public final c3.a f2884a;
-    public l f2885b;
-    public IOException f2886c;
+    public static final i f2883e = new i(2, -9223372036854775807L, false);
+    public static final i f2884f = new i(3, -9223372036854775807L, false);
+    public final c3.a f2885a;
+    public l f2886b;
+    public IOException f2887c;
 
     public p(java.lang.String r3) {
         throw new UnsupportedOperationException("Method not decompiled: b3.p.<init>(java.lang.String):void");
@@ -19,13 +19,13 @@ public final class p implements q {
 
     @Override
     public final void a() {
-        IOException iOException = this.f2886c;
+        IOException iOException = this.f2887c;
         if (iOException == null) {
-            l lVar = this.f2885b;
+            l lVar = this.f2886b;
             if (lVar != null) {
-                int i7 = lVar.f2874a;
-                IOException iOException2 = lVar.f2877e;
-                if (iOException2 != null && lVar.f2878f > i7) {
+                int i7 = lVar.f2875a;
+                IOException iOException2 = lVar.f2878e;
+                if (iOException2 != null && lVar.f2879f > i7) {
                     throw iOException2;
                 }
                 return;
@@ -36,31 +36,31 @@ public final class p implements q {
     }
 
     public final void b() {
-        l lVar = this.f2885b;
+        l lVar = this.f2886b;
         lVar.getClass();
         lVar.a(false);
     }
 
     public final boolean c() {
-        if (this.f2886c != null) {
+        if (this.f2887c != null) {
             return true;
         }
         return false;
     }
 
     public final boolean d() {
-        if (this.f2885b != null) {
+        if (this.f2886b != null) {
             return true;
         }
         return false;
     }
 
     public final void e(n nVar) {
-        l lVar = this.f2885b;
+        l lVar = this.f2886b;
         if (lVar != null) {
             lVar.a(true);
         }
-        c3.a aVar = this.f2884a;
+        c3.a aVar = this.f2885a;
         if (nVar != null) {
             aVar.execute(new sa(nVar, 12));
         }
@@ -71,19 +71,19 @@ public final class p implements q {
         boolean z10;
         Looper myLooper = Looper.myLooper();
         myLooper.getClass();
-        this.f2886c = null;
+        this.f2887c = null;
         l lVar = new l(this, myLooper, mVar, kVar, i7, SystemClock.elapsedRealtime());
-        if (this.f2885b == null) {
+        if (this.f2886b == null) {
             z10 = true;
         } else {
             z10 = false;
         }
         ma.p(z10);
-        this.f2885b = lVar;
+        this.f2886b = lVar;
         lVar.b();
     }
 
     public p(c3.a aVar) {
-        this.f2884a = aVar;
+        this.f2885a = aVar;
     }
 }

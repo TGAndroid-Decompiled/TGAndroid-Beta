@@ -1,8 +1,8 @@
 package gi;
 
 import android.view.View;
-import fi.z5;
-import org.telegram.ui.Components.fq0;
+import fi.a6;
+import org.telegram.ui.Components.eq0;
 public final class b implements View.OnClickListener {
     public final int f13625a;
     public final m f13626b;
@@ -18,14 +18,14 @@ public final class b implements View.OnClickListener {
         switch (this.f13625a) {
             case 0:
                 m mVar = this.f13626b;
-                fq0 fq0Var = mVar.f13644a0;
-                z5 z5Var = mVar.f13643a;
-                if (z5Var == null) {
+                eq0 eq0Var = mVar.f13644a0;
+                a6 a6Var = mVar.f13643a;
+                if (a6Var == null) {
                     str = "";
                 } else {
-                    str = z5Var.E;
+                    str = a6Var.E;
                 }
-                fq0Var.a(str);
+                eq0Var.a(str);
                 return;
             default:
                 m mVar2 = this.f13626b;

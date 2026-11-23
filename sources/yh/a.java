@@ -14,16 +14,16 @@ import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import c8.na;
-import org.telegram.messenger.cz;
+import org.telegram.messenger.bz;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.d6;
-import org.telegram.ui.Components.ke;
-import org.telegram.ui.Components.n6;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.we0;
+import org.telegram.ui.Components.c6;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.Components.le;
+import org.telegram.ui.Components.m6;
+import org.telegram.ui.Components.ve0;
 import org.telegram.ui.Components.zi0;
 public final class a extends FrameLayout {
     public boolean E;
@@ -33,59 +33,59 @@ public final class a extends FrameLayout {
     public boolean I;
     public String J;
     public final TextPaint K;
-    public final h6 f61296a;
-    public final ke f61297b;
-    public final i f61298c;
+    public final i6 f61415a;
+    public final le f61416b;
+    public final i f61417c;
     public final Paint d;
-    public final Paint f61299e;
-    public final Paint f61300f;
+    public final Paint f61418e;
+    public final Paint f61419f;
     public final TextPaint h;
-    public final n6 f61301n;
-    public final we0 f61302r;
-    public LinearGradient f61303s;
-    public final Matrix f61304w;
-    public final d6 f61305x;
-    public final d6 f61306y;
+    public final m6 f61420n;
+    public final ve0 f61421r;
+    public LinearGradient f61422s;
+    public final Matrix f61423w;
+    public final c6 f61424x;
+    public final c6 f61425y;
 
-    public a(Context context, h6 h6Var, ke keVar) {
+    public a(Context context, i6 i6Var, le leVar) {
         super(context);
         this.d = new Paint(1);
-        this.f61299e = new Paint(1);
-        this.f61300f = new Paint(1);
+        this.f61418e = new Paint(1);
+        this.f61419f = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
         this.h = textPaint;
-        this.f61304w = new Matrix();
-        nr nrVar = nr.h;
-        this.f61305x = new d6(this, 0L, 420L, nrVar);
-        this.f61306y = new d6(this, 0L, 200L, nrVar);
+        this.f61423w = new Matrix();
+        kr krVar = kr.h;
+        this.f61424x = new c6(this, 0L, 420L, krVar);
+        this.f61425y = new c6(this, 0L, 200L, krVar);
         this.F = -1.0f;
         this.G = 1.0f;
         this.H = new RectF();
         this.J = "0:01";
         this.K = new TextPaint(1);
-        this.f61296a = h6Var;
-        this.f61297b = keVar;
+        this.f61415a = i6Var;
+        this.f61416b = leVar;
         setWillNotDraw(false);
         setClipChildren(false);
         setClipToPadding(false);
-        n6 n6Var = new n6(false, false, false);
-        this.f61301n = n6Var;
-        n6Var.n(0.35f, 260L, nrVar);
-        n6Var.setCallback(this);
-        n6Var.w(g0.L(14.0f));
-        n6Var.x(g0.o1("fonts/rmedium.ttf"));
-        n6Var.N = g0.f24010q.x;
-        we0 we0Var = new we0(10);
-        this.f61302r = we0Var;
-        we0Var.f41762f = this;
-        we0Var.setCallback(this);
-        we0Var.h = 260;
+        m6 m6Var = new m6(false, false, false);
+        this.f61420n = m6Var;
+        m6Var.n(0.35f, 260L, krVar);
+        m6Var.setCallback(this);
+        m6Var.w(g0.L(14.0f));
+        m6Var.x(g0.o1("fonts/rmedium.ttf"));
+        m6Var.N = g0.f24226q.x;
+        ve0 ve0Var = new ve0(10);
+        this.f61421r = ve0Var;
+        ve0Var.f40671f = this;
+        ve0Var.setCallback(this);
+        ve0Var.h = 260;
         textPaint.setTextSize(g0.L(15.0f));
         i iVar = new i(12, context, this);
-        this.f61298c = iVar;
+        this.f61417c = iVar;
         iVar.setBackground(null);
         iVar.setPadding(0, 0, 0, 0);
-        iVar.setTextSize(1, cz.W0);
+        iVar.setTextSize(1, bz.W0);
         iVar.setMaxLines(6);
         iVar.setGravity(51);
         iVar.setImeOptions(268435456);
@@ -96,25 +96,25 @@ public final class a extends FrameLayout {
         iVar.setVisibility(8);
         iVar.setAlpha(0.0f);
         addView(iVar, na.d(-1, -2.0f, 51, 10.0f, 40.0f, 6.0f, 11.0f));
-        int w02 = m6.w0(m6.Uf, h6Var);
-        int i7 = m6.Le;
-        iVar.setTextColor(m6.w0(i7, h6Var));
-        iVar.setHintTextColor(m6.w0(m6.Me, h6Var));
+        int w02 = n6.w0(n6.Uf, i6Var);
+        int i7 = n6.Le;
+        iVar.setTextColor(n6.w0(i7, i6Var));
+        iVar.setHintTextColor(n6.w0(n6.Me, i6Var));
         iVar.setCursorColor(w02);
         iVar.setHandlesColor(w02);
-        iVar.setHighlightColor(m6.r1(0.25f, w02));
-        textPaint.setColor(m6.r1(0.5f, m6.w0(i7, h6Var)));
-        this.f61303s = null;
+        iVar.setHighlightColor(n6.r1(0.25f, w02));
+        textPaint.setColor(n6.r1(0.5f, n6.w0(i7, i6Var)));
+        this.f61422s = null;
         invalidate();
         setMinimumHeight(g0.L(44.0f));
     }
 
     public final float a() {
-        ke keVar = this.f61297b;
-        if (keVar != null) {
-            float a12 = keVar.f36861b.a1(this);
-            if (!Float.isNaN(a12)) {
-                return a12;
+        le leVar = this.f61416b;
+        if (leVar != null) {
+            float b12 = leVar.f37118b.b1(this);
+            if (!Float.isNaN(b12)) {
+                return b12;
             }
         }
         if (this.F <= 0.0f) {
@@ -146,15 +146,15 @@ public final class a extends FrameLayout {
         float f12;
         boolean z10;
         zi0 zi0Var;
-        int i7 = m6.Uf;
-        h6 h6Var = this.f61296a;
-        int w02 = m6.w0(i7, h6Var);
-        d6 d6Var = this.f61305x;
-        d6Var.getClass();
-        float e10 = d6Var.e(false, 0.0f);
+        int i7 = n6.Uf;
+        i6 i6Var = this.f61415a;
+        int w02 = n6.w0(i7, i6Var);
+        c6 c6Var = this.f61424x;
+        c6Var.getClass();
+        float e10 = c6Var.e(false, 0.0f);
         float a10 = a();
-        float d = this.f61306y.d(this.I);
-        i iVar = this.f61298c;
+        float d = this.f61425y.d(this.I);
+        i iVar = this.f61417c;
         iVar.setTranslationY(a10);
         if (iVar.getVisibility() == 0) {
             L = g0.L(11.0f) + iVar.getBottom();
@@ -191,25 +191,25 @@ public final class a extends FrameLayout {
         } else {
             f12 = this.G;
         }
-        int r12 = m6.r1(0.12f * f12, w02);
+        int r12 = n6.r1(0.12f * f12, w02);
         Paint paint2 = this.d;
         paint2.setColor(r12);
         canvas.drawRoundRect(rectF, L3, L3, paint2);
         int L4 = g0.L(10.0f);
-        ke keVar = this.f61297b;
-        if (keVar != null && (zi0Var = keVar.f36861b.f32604i1) != null && zi0Var.g()) {
+        le leVar = this.f61416b;
+        if (leVar != null && (zi0Var = leVar.f37118b.f32702i1) != null && zi0Var.g()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        we0 we0Var = this.f61302r;
-        we0Var.a(z10, true);
-        we0Var.f41758a.setColor(w02);
-        we0Var.f41763g = (int) (f12 * 255.0f);
+        ve0 ve0Var = this.f61421r;
+        ve0Var.a(z10, true);
+        ve0Var.f40667a.setColor(w02);
+        ve0Var.f40672g = (int) (f12 * 255.0f);
         float f16 = L4 / 2.0f;
-        we0Var.setBounds((int) (rectF.left + g0.L(10.0f)), (int) (T1 - f16), ((int) (rectF.left + g0.L(10.0f))) + L4, (int) (f16 + T1));
-        we0Var.draw(canvas);
-        paint.setColor(m6.r1(f12, w02));
+        ve0Var.setBounds((int) (rectF.left + g0.L(10.0f)), (int) (T1 - f16), ((int) (rectF.left + g0.L(10.0f))) + L4, (int) (f16 + T1));
+        ve0Var.draw(canvas);
+        paint.setColor(n6.r1(f12, w02));
         canvas.drawText(this.J, rectF.left + g0.L(26.0f), T1 - ((paint.ascent() + paint.descent()) / 2.0f), paint);
         canvas.restore();
         float f17 = (1.0f - e10) * this.G;
@@ -219,31 +219,31 @@ public final class a extends FrameLayout {
             float f18 = (-g0.L(6.0f)) * e10;
             Paint paint3 = this.h;
             paint3.setAlpha((int) (127.5f * f17));
-            int i10 = m6.Le;
-            paint3.setColor(m6.r1(0.5f * f17, m6.w0(i10, h6Var)));
+            int i10 = n6.Le;
+            paint3.setColor(n6.r1(0.5f * f17, n6.w0(i10, i6Var)));
             canvas.drawText("Transcribing…", L5, g0.L(19.0f) + a10 + f18, paint3);
             float L6 = a10 + g0.L(28.0f) + f18;
-            int w03 = m6.w0(i10, h6Var);
-            int r13 = m6.r1(0.08f * f17, w03);
-            Paint paint4 = this.f61299e;
+            int w03 = n6.w0(i10, i6Var);
+            int r13 = n6.r1(0.08f * f17, w03);
+            Paint paint4 = this.f61418e;
             paint4.setColor(r13);
             RectF rectF2 = g0.P;
             rectF2.set(L5, L6, width, g0.L(6.0f) + L6);
             canvas.drawRoundRect(rectF2, g0.L(3.0f), g0.L(3.0f), paint4);
             float f19 = width - L5;
             if (f19 > 0.0f) {
-                LinearGradient linearGradient = this.f61303s;
-                Paint paint5 = this.f61300f;
+                LinearGradient linearGradient = this.f61422s;
+                Paint paint5 = this.f61419f;
                 if (linearGradient == null) {
-                    LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, g0.L(90.0f), 0.0f, new int[]{0, m6.r1(0.14f, w03), 0}, (float[]) null, Shader.TileMode.CLAMP);
-                    this.f61303s = linearGradient2;
+                    LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, g0.L(90.0f), 0.0f, new int[]{0, n6.r1(0.14f, w03), 0}, (float[]) null, Shader.TileMode.CLAMP);
+                    this.f61422s = linearGradient2;
                     paint5.setShader(linearGradient2);
                 }
                 float L7 = f19 + g0.L(90.0f);
-                nr nrVar = nr.f37920j;
-                Matrix matrix = this.f61304w;
-                matrix.setTranslate((nrVar.getInterpolation(((float) (SystemClock.elapsedRealtime() % 1300)) / 1300.0f) * L7) + (L5 - g0.L(90.0f)), 0.0f);
-                this.f61303s.setLocalMatrix(matrix);
+                kr krVar = kr.f36861j;
+                Matrix matrix = this.f61423w;
+                matrix.setTranslate((krVar.getInterpolation(((float) (SystemClock.elapsedRealtime() % 1300)) / 1300.0f) * L7) + (L5 - g0.L(90.0f)), 0.0f);
+                this.f61422s.setLocalMatrix(matrix);
                 paint5.setAlpha((int) (f17 * 255.0f));
                 canvas.drawRoundRect(rectF2, g0.L(3.0f), g0.L(3.0f), paint5);
                 invalidate();
@@ -253,7 +253,7 @@ public final class a extends FrameLayout {
     }
 
     public String getText() {
-        i iVar = this.f61298c;
+        i iVar = this.f61417c;
         if (iVar.getText() == null) {
             return "";
         }
@@ -271,7 +271,7 @@ public final class a extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        this.f61298c.setTranslationY(a());
+        this.f61417c.setTranslationY(a());
     }
 
     @Override
@@ -282,7 +282,7 @@ public final class a extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ke keVar;
+        le leVar;
         int actionMasked = motionEvent.getActionMasked();
         if (actionMasked == 0) {
             if (!b(motionEvent)) {
@@ -293,9 +293,9 @@ public final class a extends FrameLayout {
             return true;
         } else if ((actionMasked == 1 || actionMasked == 3) && this.I) {
             this.I = false;
-            if (actionMasked == 1 && (keVar = this.f61297b) != null) {
-                ChatActivityEnterView chatActivityEnterView = keVar.f36861b;
-                zi0 zi0Var = chatActivityEnterView.f32604i1;
+            if (actionMasked == 1 && (leVar = this.f61416b) != null) {
+                ChatActivityEnterView chatActivityEnterView = leVar.f37118b;
+                zi0 zi0Var = chatActivityEnterView.f32702i1;
                 if (zi0Var != null) {
                     zi0Var.setPlaying(!zi0Var.g());
                 }
@@ -326,14 +326,14 @@ public final class a extends FrameLayout {
     public void setVisibleHeight(float f10) {
         if (this.F != f10) {
             this.F = f10;
-            this.f61298c.setTranslationY(a());
+            this.f61417c.setTranslationY(a());
             invalidate();
         }
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f61301n && drawable != this.f61302r && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f61420n && drawable != this.f61421r && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

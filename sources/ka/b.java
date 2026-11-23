@@ -8,41 +8,41 @@ import rd.l;
 import rd.p;
 import zd.z;
 public final class b extends j implements p {
-    public final int f18193a;
-    public Object f18194b;
-    public final Object f18195c;
+    public final int f18292a;
+    public Object f18293b;
+    public final Object f18294c;
 
     public b(Object obj, id.c cVar, int i7) {
         super(2, cVar);
-        this.f18193a = i7;
-        this.f18195c = obj;
+        this.f18292a = i7;
+        this.f18294c = obj;
     }
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        switch (this.f18193a) {
+        switch (this.f18292a) {
             case 0:
-                b bVar = new b((l) this.f18195c, cVar, 0);
-                bVar.f18194b = obj;
+                b bVar = new b((l) this.f18294c, cVar, 0);
+                bVar.f18293b = obj;
                 return bVar;
             case 1:
-                b bVar2 = new b((e1) this.f18195c, cVar, 1);
-                bVar2.f18194b = obj;
+                b bVar2 = new b((e1) this.f18294c, cVar, 1);
+                bVar2.f18293b = obj;
                 return bVar2;
             case 2:
-                b bVar3 = new b((Set) this.f18195c, cVar, 2);
-                bVar3.f18194b = obj;
+                b bVar3 = new b((Set) this.f18294c, cVar, 2);
+                bVar3.f18293b = obj;
                 return bVar3;
             default:
-                b bVar4 = new b((androidx.activity.d) this.f18195c, cVar, 3);
-                bVar4.f18194b = obj;
+                b bVar4 = new b((androidx.activity.d) this.f18294c, cVar, 3);
+                bVar4.f18293b = obj;
                 return bVar4;
         }
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f18193a) {
+        switch (this.f18292a) {
             case 0:
                 k kVar = k.f13480a;
                 ((b) create((q1.b) obj, (id.c) obj2)).invokeSuspend(kVar);

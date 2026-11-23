@@ -2,111 +2,50 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.view.View;
-import java.util.HashSet;
-public final class qq extends View implements org.telegram.ui.ActionBar.b6 {
-    public final Paint f38924a;
-    public final Paint f38925b;
-    public final RectF f38926c;
-    public int d;
-    public long f38927e;
-    public int f38928f;
-    public int h;
-    public int f38929n;
-    public int f38930r;
+public final class qq extends View {
+    public final pq f38979a;
 
-    public qq(Context context, int i7) {
+    public qq(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
-        Paint paint = new Paint(1);
-        this.f38924a = paint;
-        Paint paint2 = new Paint(1);
-        this.f38925b = paint2;
-        this.f38926c = new RectF();
-        this.d = 0;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        if (i7 == 0) {
-            this.f38928f = org.telegram.ui.ActionBar.m6.B7;
-            this.h = org.telegram.ui.ActionBar.m6.C7;
-        } else if (i7 == 1) {
-            this.f38928f = org.telegram.ui.ActionBar.m6.D7;
-            this.h = org.telegram.ui.ActionBar.m6.E7;
-        } else if (i7 == 2) {
-            this.f38928f = org.telegram.ui.ActionBar.m6.F7;
-            this.h = org.telegram.ui.ActionBar.m6.G7;
-        } else if (i7 == 3) {
-            this.f38928f = org.telegram.ui.ActionBar.m6.H7;
-            this.h = org.telegram.ui.ActionBar.m6.I7;
+        setVisibility(8);
+        pq pqVar = new pq(this, true, i6Var);
+        this.f38979a = pqVar;
+        pqVar.G = true;
+    }
+
+    public float getEnterProgress() {
+        int i7;
+        pq pqVar = this.f38979a;
+        float f10 = pqVar.f38550l;
+        if (f10 != 1.0f && ((i7 = pqVar.f38543c) == 0 || i7 == 1)) {
+            if (i7 == 0) {
+                return f10;
+            }
+            return 1.0f - f10;
+        } else if (pqVar.h != 0) {
+            return 1.0f;
+        } else {
+            return 0.0f;
         }
-        updateColors();
-    }
-
-    public final void a(int i7, int i10) {
-        this.f38928f = -1;
-        this.h = -1;
-        this.f38929n = i7;
-        this.f38930r = i10;
-        updateColors();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f38927e = System.currentTimeMillis();
-        invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (getVisibility() != 0) {
-            return;
-        }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j3 = currentTimeMillis - this.f38927e;
-        this.f38927e = currentTimeMillis;
-        this.d = (int) ((((float) (j3 * 360)) / 1000.0f) + this.d);
-        int measuredWidth = (getMeasuredWidth() / 2) - org.telegram.messenger.g0.L(9.0f);
-        int measuredHeight = (getMeasuredHeight() / 2) - org.telegram.messenger.g0.L(9.0f);
-        RectF rectF = this.f38926c;
-        rectF.set(measuredWidth, measuredHeight, org.telegram.messenger.g0.L(18.0f) + measuredWidth, org.telegram.messenger.g0.L(18.0f) + measuredHeight);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, org.telegram.messenger.g0.L(9.0f), this.f38924a);
-        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f38925b);
-        invalidate();
+        this.f38979a.a(canvas);
     }
 
     @Override
-    public void setVisibility(int i7) {
-        super.setVisibility(i7);
-        this.f38927e = System.currentTimeMillis();
-        invalidate();
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        this.f38979a.d(getMeasuredHeight(), getMeasuredWidth());
     }
 
-    @Override
-    public final void updateColors() {
-        int i7 = this.f38928f;
-        Paint paint = this.f38924a;
-        if (i7 >= 0) {
-            paint.setColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
-        } else {
-            paint.setColor(this.f38929n);
-        }
-        int i10 = this.h;
-        Paint paint2 = this.f38925b;
-        if (i10 >= 0) {
-            paint2.setColor(org.telegram.ui.ActionBar.m6.x0(null, i10, false));
-        } else {
-            paint2.setColor(this.f38930r);
-        }
-        invalidate();
+    public void setGravity(int i7) {
+        this.f38979a.f38563z = i7;
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public void setReverse(boolean z10) {
+        this.f38979a.D = z10;
     }
 }

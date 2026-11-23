@@ -1,12 +1,12 @@
 package m4;
 
 import h9.i0;
-import h9.t1;
+import h9.s1;
 import java.util.List;
 public final class a implements f3.o {
-    public final b f20528a = new b("audio/ac3");
-    public final h2.x f20529b = new h2.x(2786);
-    public boolean f20530c;
+    public final b f20624a = new b("audio/ac3");
+    public final h2.x f20625b = new h2.x(2786);
+    public boolean f20626c;
 
     @Override
     public final boolean b(f3.p pVar) {
@@ -16,7 +16,7 @@ public final class a implements f3.o {
         int i7 = 0;
         while (true) {
             lVar = (f3.l) pVar;
-            lVar.g(xVar.f13828a, 0, 10, false);
+            lVar.k(xVar.f13828a, 0, 10, false);
             xVar.N(0);
             if (xVar.D() != 4801587) {
                 break;
@@ -24,22 +24,22 @@ public final class a implements f3.o {
             xVar.O(3);
             int z10 = xVar.z();
             i7 += z10 + 10;
-            lVar.x(z10, false);
+            lVar.t(z10, false);
         }
-        lVar.f11181f = 0;
-        lVar.x(i7, false);
+        lVar.f11184f = 0;
+        lVar.t(i7, false);
         int i10 = 0;
         int i11 = i7;
         while (true) {
-            lVar.g(xVar.f13828a, 0, 6, false);
+            lVar.k(xVar.f13828a, 0, 6, false);
             xVar.N(0);
             if (xVar.H() != 2935) {
-                lVar.f11181f = 0;
+                lVar.f11184f = 0;
                 i11++;
                 if (i11 - i7 >= 8192) {
                     break;
                 }
-                lVar.x(i11, false);
+                lVar.t(i11, false);
                 i10 = 0;
             } else {
                 i10++;
@@ -58,7 +58,7 @@ public final class a implements f3.o {
                 if (e10 == -1) {
                     break;
                 }
-                lVar.x(e10 - 6, false);
+                lVar.t(e10 - 6, false);
             }
         }
         return false;
@@ -66,37 +66,37 @@ public final class a implements f3.o {
 
     @Override
     public final void c(f3.q qVar) {
-        this.f20528a.g(qVar, new f0(0, 1));
-        qVar.d1();
-        qVar.j(new f3.t(-9223372036854775807L));
+        this.f20624a.g(qVar, new f0(0, 1));
+        qVar.Z0();
+        qVar.h(new f3.t(-9223372036854775807L));
     }
 
     @Override
     public final void d(long j3, long j10) {
-        this.f20530c = false;
-        this.f20528a.d();
+        this.f20626c = false;
+        this.f20624a.d();
     }
 
     @Override
     public final List e() {
-        h9.g0 g0Var = i0.f13998b;
-        return t1.f14066e;
+        h9.g0 g0Var = i0.f13995b;
+        return s1.f14058e;
     }
 
     @Override
     public final int f(f3.p pVar, f3.s sVar) {
-        h2.x xVar = this.f20529b;
+        h2.x xVar = this.f20625b;
         int read = pVar.read(xVar.f13828a, 0, 2786);
         if (read == -1) {
             return -1;
         }
         xVar.N(0);
         xVar.M(read);
-        boolean z10 = this.f20530c;
-        b bVar = this.f20528a;
+        boolean z10 = this.f20626c;
+        b bVar = this.f20624a;
         if (!z10) {
-            bVar.f20543o = 0L;
-            this.f20530c = true;
+            bVar.f20639o = 0L;
+            this.f20626c = true;
         }
         bVar.c(xVar);
         return 0;

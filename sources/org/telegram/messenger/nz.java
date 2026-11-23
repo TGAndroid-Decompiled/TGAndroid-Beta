@@ -1,383 +1,199 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FilterInputStream;
-import java.io.InputStream;
-import java.io.StringReader;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.regex.Pattern;
-import javax.xml.parsers.SAXParserFactory;
-import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-public abstract class nz {
-    public static final double[] f26028a = new double[128];
-    public static final Pattern f26029b;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ig0;
+import org.telegram.ui.ow0;
+import org.telegram.ui.wc1;
+public final class nz implements Runnable {
+    public final int f26104a;
+    public final Object f26105b;
+    public final Object f26106c;
+    public final Object d;
 
-    static {
-        int i7 = 0;
-        while (true) {
-            double[] dArr = f26028a;
-            if (i7 < dArr.length) {
-                dArr[i7] = Math.pow(10.0d, i7);
-                i7++;
-            } else {
-                f26029b = Pattern.compile("(?<=\\))\\s*(?=[A-Za-z])");
+    public nz(Object obj, Object obj2, Object obj3, int i7) {
+        this.f26104a = i7;
+        this.f26105b = obj;
+        this.f26106c = obj2;
+        this.d = obj3;
+    }
+
+    @Override
+    public final void run() {
+        org.telegram.ui.ActionBar.i6 i6Var;
+        switch (this.f26104a) {
+            case 0:
+                ((oz) this.f26105b).q((String) this.f26106c, (Bundle) this.d);
                 return;
-            }
-        }
-    }
-
-    public static String a(byte[] bArr) {
-        try {
-            StringBuilder sb2 = new StringBuilder(bArr.length * 2);
-            sb2.append('M');
-            for (byte b10 : bArr) {
-                int i7 = b10 & 255;
-                if (i7 >= 192) {
-                    sb2.append("AACAAAAHAAALMAAAQASTAVAAAZaacaaaahaaalmaaaqastava.az0123456789-,".charAt(i7 - 192));
-                } else {
-                    if (i7 >= 128) {
-                        sb2.append(',');
-                    } else if (i7 >= 64) {
-                        sb2.append('-');
-                    }
-                    sb2.append(b10 & 63);
+            case 1:
+                y00 y00Var = (y00) this.f26105b;
+                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f26106c;
+                storyItem.detectedLng = "und";
+                y00Var.getMessagesController().R1().f12395k.h(storyItem.dialogId, storyItem);
+                y00Var.J.remove((w00) this.d);
+                return;
+            case 2:
+                int[] iArr = (int[]) this.f26105b;
+                Runnable runnable = (Runnable) this.d;
+                Pattern pattern = Utilities.f22874a;
+                int i7 = iArr[0] + 1;
+                iArr[0] = i7;
+                if (i7 == ((w10[]) this.f26106c).length && runnable != null) {
+                    runnable.run();
+                    return;
                 }
-            }
-            sb2.append('z');
-            return sb2.toString();
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return "";
-        }
-    }
-
-    public static android.graphics.Path b(java.lang.String r50) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.nz.b(java.lang.String):android.graphics.Path");
-    }
-
-    public static Bitmap c(float f10, int i7, int i10, int i11, int i12, int i13) {
-        try {
-            InputStream openRawResource = t0.f26895b.getResources().openRawResource(i7);
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            kz kzVar = new kz(i10, i11, Integer.valueOf(i12), false, f10, i13);
-            xMLReader.setContentHandler(kzVar);
-            xMLReader.parse(new InputSource(openRawResource));
-            Bitmap bitmap = kzVar.f25125b;
-            if (openRawResource != null) {
-                openRawResource.close();
-            }
-            return bitmap;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static Bitmap d(int i7, int i10, int i11, int i12) {
-        return c(1.0f, i7, i10, i11, i12, 1);
-    }
-
-    public static Bitmap e(int i7, int i10, String str) {
-        try {
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            kz kzVar = new kz(i7, i10, null, false);
-            xMLReader.setContentHandler(kzVar);
-            xMLReader.parse(new InputSource(new StringReader(str)));
-            return kzVar.f25125b;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static Bitmap f(File file, int i7, int i10, int i11) {
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            kz kzVar = new kz(i7, i10, null, false, 1.0f, i11);
-            kzVar.F = true;
-            xMLReader.setContentHandler(kzVar);
-            xMLReader.parse(new InputSource(fileInputStream));
-            Bitmap bitmap = kzVar.f25125b;
-            fileInputStream.close();
-            return bitmap;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static Bitmap g(FilterInputStream filterInputStream, int i7, int i10) {
-        try {
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            kz kzVar = new kz(i7, i10, null, false);
-            xMLReader.setContentHandler(kzVar);
-            xMLReader.parse(new InputSource(filterInputStream));
-            return kzVar.f25125b;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static mz h(int i7, Integer num) {
-        try {
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            kz kzVar = new kz(0, 0, num, true);
-            xMLReader.setContentHandler(kzVar);
-            xMLReader.parse(new InputSource(t0.f26895b.getResources().openRawResource(i7)));
-            return kzVar.f25126c;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static mz i(String str) {
-        try {
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            kz kzVar = new kz(0, 0, null, true);
-            xMLReader.setContentHandler(kzVar);
-            xMLReader.parse(new InputSource(new StringReader(str)));
-            return kzVar.f25126c;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static mz j(int i7, int i10, Path path) {
-        try {
-            mz mzVar = new mz();
-            mzVar.f25653a.add(path);
-            mzVar.f25654b.put(path, new Paint(1));
-            mzVar.f25656e = i7;
-            mzVar.f25657f = i10;
-            return mzVar;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static Float k(String str, Attributes attributes) {
-        String l10 = l(str, attributes);
-        if (l10 == null) {
-            return null;
-        }
-        if (l10.endsWith("px")) {
-            l10 = com.google.android.gms.internal.vision.e2.k(l10, 2, 0);
-        } else if (l10.endsWith("mm")) {
-            return null;
-        }
-        return Float.valueOf(Float.parseFloat(l10));
-    }
-
-    public static String l(String str, Attributes attributes) {
-        int length = attributes.getLength();
-        for (int i7 = 0; i7 < length; i7++) {
-            if (attributes.getLocalName(i7).equals(str)) {
-                return attributes.getValue(i7);
-            }
-        }
-        return null;
-    }
-
-    public static kz m(File file, int i7, int i10, boolean z10) {
-        Integer num;
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            if (z10) {
-                num = -1;
-            } else {
-                num = null;
-            }
-            kz kzVar = new kz(i7, i10, num, false);
-            if (!z10) {
-                kzVar.F = true;
-            }
-            xMLReader.setContentHandler(kzVar);
-            xMLReader.parse(new InputSource(fileInputStream));
-            fileInputStream.close();
-            return kzVar;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static gz n(String str) {
-        int length = str.length();
-        ArrayList arrayList = new ArrayList();
-        int i7 = 0;
-        boolean z10 = false;
-        for (int i10 = 1; i10 < length; i10++) {
-            if (z10) {
-                z10 = false;
-            } else {
-                char charAt = str.charAt(i10);
-                switch (charAt) {
-                    case '\t':
-                    case '\n':
-                    case ' ':
-                    case ',':
-                    case '-':
-                        if (charAt == '-' && str.charAt(i10 - 1) == 'e') {
-                            break;
-                        } else {
-                            String substring = str.substring(i7, i10);
-                            if (substring.trim().length() > 0) {
-                                arrayList.add(Float.valueOf(Float.parseFloat(substring)));
-                                if (charAt == '-') {
-                                    i7 = i10;
-                                    break;
-                                } else {
-                                    i7 = i10 + 1;
-                                    z10 = true;
-                                    break;
-                                }
-                            } else {
-                                i7++;
-                                continue;
+                return;
+            default:
+                String str = (String) this.f26106c;
+                String str2 = (String) this.f26105b;
+                byte[] bArr = (byte[]) this.d;
+                int i10 = WearAuthListenerService.f22888r;
+                str.getClass();
+                if (!str.equals("/tg-wear-auth/offer")) {
+                    if (!str.equals("/tg-wear-auth/cancel")) {
+                        a8.b("wear-auth: unexpected path ".concat(str));
+                        return;
+                    }
+                    a8.b("wear-auth: cancel from " + str2);
+                    BigInteger bigInteger = wc1.f53296a;
+                    a8.b("wear-auth: cancel received; dropping session and dismissing sheet");
+                    wc1.d = null;
+                    org.telegram.ui.ActionBar.w2 w2Var = wc1.f53298c;
+                    if (w2Var != null) {
+                        w2Var.dismiss();
+                        wc1.f53298c = null;
+                        return;
+                    }
+                    return;
+                }
+                StringBuilder u10 = a8.p0.u("wear-auth: offer from ", str2, " (");
+                u10.append(bArr.length);
+                u10.append(" bytes)");
+                a8.b(u10.toString());
+                BigInteger bigInteger2 = wc1.f53296a;
+                if (bArr.length != 272) {
+                    a8.b("wear-auth: malformed offer (" + bArr.length + ")");
+                    return;
+                }
+                byte[] copyOfRange = Arrays.copyOfRange(bArr, 0, 16);
+                byte[] copyOfRange2 = Arrays.copyOfRange(bArr, 16, bArr.length);
+                a8.r7 r7Var = wc1.d;
+                if (r7Var != null && Arrays.equals((byte[]) r7Var.f616b, copyOfRange)) {
+                    a8.b("wear-auth: duplicate offer (same sessionId) — ignoring");
+                    return;
+                }
+                a8.b("wear-auth: new session " + wc1.d(copyOfRange) + " from " + str2);
+                wc1.d = new a8.r7(copyOfRange, copyOfRange2, str2);
+                Context context = LaunchActivity.H1;
+                if (context == null) {
+                    context = t0.f27013b;
+                }
+                if (context != null) {
+                    org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
+                    if (T != null) {
+                        i6Var = T.getResourceProvider();
+                    } else {
+                        i6Var = null;
+                    }
+                    org.telegram.ui.ActionBar.w2 w2Var2 = wc1.f53298c;
+                    if (w2Var2 != null) {
+                        w2Var2.dismiss();
+                        wc1.f53298c = null;
+                    }
+                    org.telegram.ui.ActionBar.w2 j3 = f3.j(1, context, i6Var, false);
+                    FrameLayout frameLayout = new FrameLayout(context);
+                    j3.O = frameLayout;
+                    int i11 = i10.f24637t0;
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.clear();
+                    for (int i12 = 0; i12 < 4; i12++) {
+                        if (i10.i(i12).p()) {
+                            if (!ConnectionsManager.getInstance(i12).isTestBackend()) {
+                                i11 = i12;
                             }
+                            arrayList.add(Integer.valueOf(i12));
                         }
-                    case ')':
-                    case 'A':
-                    case 'C':
-                    case 'H':
-                    case 'L':
-                    case 'M':
-                    case 'Q':
-                    case 'S':
-                    case 'T':
-                    case 'V':
-                    case 'Z':
-                    case 'a':
-                    case 'c':
-                    case 'h':
-                    case 'l':
-                    case 'm':
-                    case 'q':
-                    case 's':
-                    case 't':
-                    case 'v':
-                    case 'z':
-                        String substring2 = str.substring(i7, i10);
-                        if (substring2.trim().length() > 0) {
-                            arrayList.add(Float.valueOf(Float.parseFloat(substring2)));
+                    }
+                    Collections.sort(arrayList, new ow0(6));
+                    if (!arrayList.isEmpty()) {
+                        FrameLayout frameLayout2 = new FrameLayout(context);
+                        FrameLayout frameLayout3 = new FrameLayout(context);
+                        int L = g0.L(14.0f);
+                        int i13 = org.telegram.ui.ActionBar.n6.f29542i5;
+                        Drawable d02 = org.telegram.ui.ActionBar.n6.d0(L, org.telegram.ui.ActionBar.n6.w0(i13, i6Var));
+                        org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i13);
+                        frameLayout3.setBackground(d02);
+                        org.telegram.ui.ActionBar.u6.j(frameLayout3, d02, M, null, i6Var);
+                        org.telegram.ui.Components.p9 p9Var = new org.telegram.ui.Components.p9(context);
+                        p9Var.setRoundRadius(g0.L(14.0f));
+                        p9Var.getImageReceiver().B0 = true;
+                        org.telegram.ui.Components.a9 a9Var = new org.telegram.ui.Components.a9((org.telegram.ui.ActionBar.i6) null);
+                        int[] iArr2 = {i10.f24637t0};
+                        TLRPC.User f10 = i10.i(iArr2[0]).f();
+                        a9Var.r(f10);
+                        p9Var.f(f10, a9Var);
+                        frameLayout3.addView(p9Var, c8.na.e(28, 28, 115));
+                        ImageView imageView = new ImageView(context);
+                        imageView.setScaleType(ImageView.ScaleType.CENTER);
+                        org.telegram.ui.ActionBar.u6.s(imageView, org.telegram.ui.ActionBar.n6.f29709r5, i6Var, PorterDuff.Mode.SRC_IN);
+                        imageView.setImageResource(2131230873);
+                        frameLayout3.addView(imageView, c8.na.d(18, 18.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
+                        frameLayout2.addView(frameLayout3, c8.na.e(52, 28, 17));
+                        frameLayout2.setPadding(g0.L(8.0f), g0.L(4.0f), g0.L(8.0f), 0);
+                        frameLayout.addView(frameLayout2, c8.na.q(-2, -2, 0.0f, 51, 6, 4, 6, 0));
+                        c8.sa.a(frameLayout2);
+                        if (arrayList.size() <= 1) {
+                            frameLayout2.setVisibility(8);
                         }
-                        return new gz(arrayList);
+                        LinearLayout g10 = f3.g(context, 1);
+                        frameLayout.addView(g10, c8.na.e(-1, -1, 119));
+                        org.telegram.ui.Components.p9 p9Var2 = new org.telegram.ui.Components.p9(context);
+                        g10.addView(p9Var2, c8.na.s(130, 130, 49, 32.0f, 32.0f, 32.0f, 9.66f));
+                        ri.d0(i11).h2(p9Var2, "Utya3D", "😎", "130_130");
+                        int i14 = org.telegram.ui.ActionBar.n6.f29559j5;
+                        TextView b10 = c8.wa.b(context, 20.0f, i14, true, i6Var);
+                        f3.k(b10, 17, null, 2131742673);
+                        g10.addView(b10, c8.na.s(-1, -2, 49, 32.0f, 24.0f, 32.0f, 9.66f));
+                        TextView b11 = c8.wa.b(context, 14.0f, i14, false, null);
+                        f3.k(b11, 17, null, 2131742674);
+                        g10.addView(b11, c8.na.t(-1, -2, 49, 32, 0, 32, 24));
+                        hi.e g11 = m10.g(24, context, i6Var, true);
+                        g11.setText(gd.N0(2131748057, null));
+                        g10.addView(g11, c8.na.t(-1, 48, 7, 12, 12, 12, 8));
+                        int i15 = org.telegram.ui.ActionBar.n6.f29394a7;
+                        j3.w0(i15);
+                        j3.Q(i15);
+                        frameLayout2.setOnClickListener(new org.telegram.ui.Components.v1(j3, frameLayout3, arrayList, iArr2, a9Var, p9Var, 4));
+                        g11.setOnClickListener(new ig0(23, g11, iArr2));
+                        wc1.f53298c = j3;
+                        j3.show();
+                        return;
+                    }
+                    return;
                 }
-            }
+                return;
         }
-        String substring3 = str.substring(i7);
-        if (substring3.length() > 0) {
-            try {
-                arrayList.add(Float.valueOf(Float.parseFloat(substring3)));
-            } catch (NumberFormatException unused) {
-            }
-        }
-        return new gz(arrayList);
     }
 
-    public static Matrix o(String str) {
-        List<String> list;
-        Matrix matrix;
-        Matrix matrix2;
-        Matrix matrix3 = new Matrix();
-        if (str == null) {
-            list = Collections.EMPTY_LIST;
-        } else {
-            String trim = str.trim();
-            if (trim.isEmpty()) {
-                list = Collections.EMPTY_LIST;
-            } else {
-                String[] split = f26029b.split(trim);
-                ArrayList arrayList = new ArrayList(split.length);
-                for (String str2 : split) {
-                    String trim2 = str2.trim();
-                    if (!trim2.isEmpty()) {
-                        arrayList.add(trim2);
-                    }
-                }
-                list = arrayList;
-            }
-        }
-        for (String str3 : list) {
-            float f10 = 0.0f;
-            if (str3.startsWith("matrix(")) {
-                ArrayList arrayList2 = n(str3.substring(7)).f24299a;
-                if (arrayList2.size() == 6) {
-                    matrix = new Matrix();
-                    matrix.setValues(new float[]{((Float) arrayList2.get(0)).floatValue(), ((Float) arrayList2.get(2)).floatValue(), ((Float) arrayList2.get(4)).floatValue(), ((Float) arrayList2.get(1)).floatValue(), ((Float) arrayList2.get(3)).floatValue(), ((Float) arrayList2.get(5)).floatValue(), 0.0f, 0.0f, 1.0f});
-                }
-                matrix = null;
-            } else if (str3.startsWith("translate(")) {
-                ArrayList arrayList3 = n(str3.substring(10)).f24299a;
-                if (arrayList3.size() > 0) {
-                    float floatValue = ((Float) arrayList3.get(0)).floatValue();
-                    if (arrayList3.size() > 1) {
-                        f10 = ((Float) arrayList3.get(1)).floatValue();
-                    }
-                    matrix2 = new Matrix();
-                    matrix2.postTranslate(floatValue, f10);
-                    matrix = matrix2;
-                }
-                matrix = null;
-            } else {
-                if (str3.startsWith("scale(")) {
-                    ArrayList arrayList4 = n(str3.substring(6)).f24299a;
-                    if (arrayList4.size() > 0) {
-                        float floatValue2 = ((Float) arrayList4.get(0)).floatValue();
-                        if (arrayList4.size() > 1) {
-                            f10 = ((Float) arrayList4.get(1)).floatValue();
-                        }
-                        matrix2 = new Matrix();
-                        matrix2.postScale(floatValue2, f10);
-                        matrix = matrix2;
-                    }
-                } else if (str3.startsWith("skewX(")) {
-                    ArrayList arrayList5 = n(str3.substring(6)).f24299a;
-                    if (arrayList5.size() > 0) {
-                        float floatValue3 = ((Float) arrayList5.get(0)).floatValue();
-                        matrix = new Matrix();
-                        matrix.postSkew((float) Math.tan(floatValue3), 0.0f);
-                    }
-                } else if (str3.startsWith("skewY(")) {
-                    ArrayList arrayList6 = n(str3.substring(6)).f24299a;
-                    if (arrayList6.size() > 0) {
-                        float floatValue4 = ((Float) arrayList6.get(0)).floatValue();
-                        matrix = new Matrix();
-                        matrix.postSkew(0.0f, (float) Math.tan(floatValue4));
-                    }
-                } else if (str3.startsWith("rotate(")) {
-                    ArrayList arrayList7 = n(str3.substring(7)).f24299a;
-                    if (arrayList7.size() > 0) {
-                        matrix = new Matrix();
-                        float floatValue5 = ((Float) arrayList7.get(0)).floatValue();
-                        if (arrayList7.size() > 2) {
-                            matrix.postRotate(floatValue5, ((Float) arrayList7.get(1)).floatValue(), ((Float) arrayList7.get(2)).floatValue());
-                        } else {
-                            matrix.postRotate(floatValue5);
-                        }
-                    }
-                }
-                matrix = null;
-            }
-            if (matrix != null) {
-                matrix3.preConcat(matrix);
-            }
-        }
-        return matrix3;
+    public nz(byte[] bArr, String str, String str2) {
+        this.f26104a = 3;
+        this.f26106c = str;
+        this.f26105b = str2;
+        this.d = bArr;
     }
 }

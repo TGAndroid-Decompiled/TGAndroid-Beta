@@ -1,36 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class nw extends dv {
-    public final TLRPC.StickerSet R1;
-    public final ty S1;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class nw extends AnimatorListenerAdapter {
+    public final int f37926a;
+    public final boolean f37927b;
+    public final qy f37928c;
 
-    public nw(ty tyVar, org.telegram.ui.ActionBar.g2 g2Var, Context context, org.telegram.ui.ActionBar.h6 h6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
-        super(g2Var, context, h6Var, arrayList);
-        this.S1 = tyVar;
-        this.R1 = stickerSet;
+    public nw(qy qyVar, boolean z10, int i7) {
+        this.f37926a = i7;
+        this.f37928c = qyVar;
+        this.f37927b = z10;
     }
 
     @Override
-    public final void L0(boolean z10) {
-        ty tyVar = this.S1;
-        ArrayList arrayList = tyVar.f40112q1;
-        TLRPC.StickerSet stickerSet = this.R1;
-        if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f28425id))) {
-                arrayList.add(Long.valueOf(stickerSet.f28425id));
-            }
-        } else {
-            arrayList.remove(Long.valueOf(stickerSet.f28425id));
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37926a) {
+            case 0:
+                if (!this.f37927b) {
+                    this.f37928c.f39112y.setVisibility(4);
+                    return;
+                }
+                return;
+            default:
+                if (!this.f37927b) {
+                    this.f37928c.E.setVisibility(4);
+                    return;
+                }
+                return;
         }
-        tyVar.U();
-    }
-
-    @Override
-    public final void dismiss() {
-        this.S1.f40138x2 = false;
-        super.dismiss();
     }
 }

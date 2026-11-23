@@ -1,224 +1,42 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class fs0 implements org.telegram.ui.Components.mg {
-    public final PopupNotificationActivity f47802a;
+import java.io.Serializable;
+public final class fs0 implements org.telegram.ui.ActionBar.q1, org.telegram.messenger.u10 {
+    public final int f47979a;
+    public final hs0 f47980b;
 
-    public fs0(PopupNotificationActivity popupNotificationActivity) {
-        this.f47802a = popupNotificationActivity;
+    public fs0(hs0 hs0Var, int i7) {
+        this.f47979a = i7;
+        this.f47980b = hs0Var;
     }
 
     @Override
-    public final boolean E0() {
-        return true;
-    }
-
-    @Override
-    public final void G1() {
-        PopupNotificationActivity popupNotificationActivity = this.f47802a;
-        org.telegram.messenger.gj gjVar = popupNotificationActivity.R;
-        if (gjVar != null) {
-            org.telegram.messenger.np.u1(gjVar.K1).N4(0, popupNotificationActivity.L, org.telegram.messenger.gj.B0(popupNotificationActivity.R.f24177k), 0L, null);
+    public void i(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f47979a) {
+            case 0:
+                this.f47980b.d0();
+                return;
+            default:
+                this.f47980b.finishFragment();
+                return;
         }
     }
 
     @Override
-    public final void H(CharSequence charSequence, boolean z10, int i7, int i10, long j3) {
-        PopupNotificationActivity popupNotificationActivity = this.f47802a;
-        if (popupNotificationActivity.R == null) {
-            return;
+    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f10 = (Float) serializable;
+        Float f11 = (Float) serializable2;
+        if (((org.telegram.ui.Components.n41) obj).d == 1) {
+            org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
+            boolean z10 = !r8Var.f31813e.h;
+            hs0 hs0Var = this.f47980b;
+            hs0Var.f48624n = z10;
+            r8Var.setChecked(z10);
+            hs0Var.d.f35323g3.O(true);
+            hs0Var.a0(true);
         }
-        int i11 = popupNotificationActivity.T;
-        if (i11 >= 0 && i11 < popupNotificationActivity.f43420b0.size()) {
-            popupNotificationActivity.f43420b0.remove(popupNotificationActivity.T);
-        }
-        org.telegram.messenger.np.u1(popupNotificationActivity.R.K1).q3(org.telegram.messenger.gj.B0(popupNotificationActivity.R.f24177k), popupNotificationActivity.R.e1(), Math.max(0, popupNotificationActivity.R.e1()), popupNotificationActivity.R.f24177k.date, true, 0L, 0, true, 0);
-        popupNotificationActivity.R = null;
-        popupNotificationActivity.f();
-    }
-
-    @Override
-    public final TLRPC.TL_channels_sendAsPeers J() {
-        return null;
-    }
-
-    @Override
-    public final int b1() {
-        return 0;
-    }
-
-    @Override
-    public final TL_stories.StoryItem c1() {
-        return null;
-    }
-
-    @Override
-    public final boolean e1(long j3) {
-        return false;
-    }
-
-    @Override
-    public final boolean g1() {
-        return false;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final rm m0() {
-        return null;
-    }
-
-    @Override
-    public final boolean m1() {
-        return false;
-    }
-
-    @Override
-    public final int n() {
-        return 0;
-    }
-
-    @Override
-    public final TLRPC.Peer t() {
-        return null;
-    }
-
-    @Override
-    public final boolean v1() {
-        return false;
-    }
-
-    @Override
-    public final void A(boolean z10) {
-    }
-
-    @Override
-    public final void a0(boolean z10) {
-    }
-
-    @Override
-    public final void a1(int i7) {
-    }
-
-    @Override
-    public final void k2(int i7) {
-    }
-
-    @Override
-    public final void n2(boolean z10) {
-    }
-
-    @Override
-    public final void u1(CharSequence charSequence) {
-    }
-
-    @Override
-    public final void x(float f10) {
-    }
-
-    @Override
-    public final void B2() {
-    }
-
-    @Override
-    public final void D() {
-    }
-
-    @Override
-    public final void G() {
-    }
-
-    @Override
-    public final void G0() {
-    }
-
-    @Override
-    public final void J0() {
-    }
-
-    @Override
-    public final void Q0() {
-    }
-
-    @Override
-    public final void V() {
-    }
-
-    @Override
-    public final void b0() {
-    }
-
-    @Override
-    public final void d() {
-    }
-
-    @Override
-    public final void g() {
-    }
-
-    @Override
-    public final void i2() {
-    }
-
-    @Override
-    public final void l1() {
-    }
-
-    @Override
-    public final void m2() {
-    }
-
-    @Override
-    public final void n1() {
-    }
-
-    @Override
-    public final void o1() {
-    }
-
-    @Override
-    public final void q1() {
-    }
-
-    @Override
-    public final void r2() {
-    }
-
-    @Override
-    public final void s0() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w1() {
-    }
-
-    @Override
-    public final void w2() {
-    }
-
-    @Override
-    public final void Q(float f10, int i7) {
-    }
-
-    @Override
-    public final void j1(CharSequence charSequence, boolean z10, boolean z11) {
-    }
-
-    @Override
-    public final void s1(View view, CharSequence charSequence, boolean z10) {
-    }
-
-    @Override
-    public final void o2(int i7, int i10, int i11, long j3, long j10, boolean z10) {
     }
 }

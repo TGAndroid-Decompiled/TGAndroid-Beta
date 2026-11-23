@@ -2,45 +2,48 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import android.graphics.Canvas;
-public final class dz0 extends org.telegram.ui.Components.o6 {
-    public boolean f47055s;
-    public final org.telegram.ui.Components.d6 f47056w;
-    public final SaveToGallerySettingsActivity f47057x;
+import android.graphics.Path;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+public final class dz0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+    public final Path f47271a;
+    public fh.g f47272b;
 
-    public dz0(SaveToGallerySettingsActivity saveToGallerySettingsActivity, Activity activity) {
-        super(activity, true, true, false);
-        this.f47057x = saveToGallerySettingsActivity;
-        this.f47056w = new org.telegram.ui.Components.d6(this);
-        getDrawable().K = true;
+    public dz0(Activity activity) {
+        super(activity);
+        this.f47271a = new Path();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        float f10;
-        if (this.f47055s) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        org.telegram.ui.Components.d6 d6Var = this.f47056w;
-        d6Var.e(false, f10);
-        int i7 = org.telegram.ui.ActionBar.m6.f29739y6;
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f47057x;
-        setTextColor(i0.a.f(d6Var.f34349c, saveToGallerySettingsActivity.getThemedColor(i7), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.m6.f29529n6)));
+        canvas.save();
+        canvas.clipPath(this.f47271a);
         super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
-    public final void e(boolean z10, boolean z11) {
-        float f10;
-        if (this.f47055s != z10) {
-            this.f47055s = z10;
-            if (z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
-            }
-            this.f47056w.e(z11, f10);
-            invalidate();
+    @Override
+    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
+        super.onSizeChanged(i7, i10, i11, i12);
+        Path path = this.f47271a;
+        path.rewind();
+        path.addRoundRect(org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f), i7 - org.telegram.messenger.g0.L(9.0f), i10 - org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), Path.Direction.CW);
+    }
+
+    public void setBlurredBackground(fh.g gVar) {
+        this.f47272b = gVar;
+        setBackground(gVar);
+    }
+
+    @Override
+    public final void updateColors() {
+        fh.g gVar = this.f47272b;
+        if (gVar != null) {
+            gVar.updateColors();
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

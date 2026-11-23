@@ -3,7 +3,7 @@ package di;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
-public final class b6 extends org.telegram.ui.Components.ka {
+public final class b6 extends org.telegram.ui.Components.ja {
     public ArrayList W1;
     public LimitPreviewView X1;
 

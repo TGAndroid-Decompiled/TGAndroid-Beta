@@ -1,17 +1,9 @@
 package b9;
-
-import com.google.android.gms.common.api.Status;
-public final class i0 implements com.google.android.gms.common.api.r {
-    public final Status f2982a;
-    public final int f2983b;
-
-    public i0(Status status, int i7) {
-        this.f2982a = status;
-        this.f2983b = i7;
-    }
+public final class i0 implements q6.l {
+    public static final i0 f2981a = new Object();
 
     @Override
-    public final Status a() {
-        return this.f2982a;
+    public Object n(com.google.android.gms.common.api.r rVar) {
+        return Integer.valueOf(((h0) rVar).f2979b);
     }
 }

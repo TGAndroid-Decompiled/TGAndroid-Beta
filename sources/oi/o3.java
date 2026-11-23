@@ -1,8 +1,8 @@
 package oi;
-public final class o3 implements j4 {
-    public final s3 f22250a;
+public final class o3 {
+    public final t3 f22348a;
 
-    public o3(s3 s3Var) {
-        this.f22250a = s3Var;
+    public o3(t3 t3Var) {
+        this.f22348a = t3Var;
     }
 }

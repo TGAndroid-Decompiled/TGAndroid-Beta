@@ -8,7 +8,7 @@ import h2.l0;
 import h2.x;
 import h9.f0;
 import h9.i0;
-import h9.t1;
+import h9.s1;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -17,11 +17,11 @@ import java.util.Arrays;
 import java.util.Locale;
 import r0.f1;
 public final class h extends ea {
-    public static final f1 f57579b = new f1(26);
-    public final g f57580a;
+    public static final f1 f57693b = new f1(26);
+    public final g f57694a;
 
     public h(g gVar) {
-        this.f57580a = gVar;
+        this.f57694a = gVar;
     }
 
     public static a d(x xVar, int i7, int i10) {
@@ -226,7 +226,7 @@ public final class h extends ea {
         return new n(str, null, n(A, 0, bArr));
     }
 
-    public static t1 n(int i7, int i10, byte[] bArr) {
+    public static s1 n(int i7, int i10, byte[] bArr) {
         if (i10 >= bArr.length) {
             return i0.u("");
         }
@@ -237,7 +237,7 @@ public final class h extends ea {
             i10 = r(i7) + u10;
             u10 = u(i10, i7, bArr);
         }
-        t1 f10 = p10.f();
+        s1 f10 = p10.f();
         if (f10.isEmpty()) {
             return i0.u("");
         }

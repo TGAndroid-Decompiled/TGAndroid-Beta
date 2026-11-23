@@ -1,70 +1,60 @@
 package hi;
 
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.media.MediaMetadataRetriever;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class bb {
-    public long f14233a;
-    public volatile long f14234b;
-    public int f14235c;
-    public volatile int f14237f;
-    public volatile int f14238g;
-    public final boolean h;
-    public boolean f14239i;
-    public long f14240j;
-    public Path f14243m;
-    public final db f14244n;
-    public final ArrayList d = new ArrayList();
-    public boolean f14241k = false;
-    public final Paint f14242l = new Paint(3);
-    public MediaMetadataRetriever f14236e = new MediaMetadataRetriever();
+import android.app.Activity;
+import android.graphics.Matrix;
+import android.view.View;
+public final class bb extends f6 {
+    public final nb D0;
 
-    public bb(db dbVar, boolean z10, final String str, final int i7, final int i10, final Long l10, final long j3, final long j10, final long j11, final Runnable runnable) {
-        this.f14244n = dbVar;
-        this.h = z10;
-        Utilities.f22777i.c(new Runnable() {
-            @Override
-            public final void run() {
-                throw new UnsupportedOperationException("Method not decompiled: hi.za.run():void");
-            }
-        });
+    public bb(nb nbVar, Activity activity, org.telegram.ui.Components.ba baVar, e6 e6Var) {
+        super(activity, baVar, e6Var);
+        this.D0 = nbVar;
     }
 
+    @Override
     public final void b() {
-        this.f14239i = true;
-        Utilities.f22777i.a(new b0(this, 23));
-        ArrayList arrayList = this.d;
-        int size = arrayList.size();
-        int i7 = 0;
-        while (i7 < size) {
-            Object obj = arrayList.get(i7);
-            i7++;
-            Bitmap bitmap = ((ab) obj).f14201a;
-            if (bitmap != null) {
-                bitmap.recycle();
+        x7 x7Var = this.d;
+        if (x7Var != null && !x7Var.f15775u) {
+            if (this.f14461n != null) {
+                Matrix matrix = x7Var.f15762n0;
+                Matrix matrix2 = this.f14445a0;
+                matrix2.set(matrix);
+                float width = 1.0f / getWidth();
+                int i7 = this.d.f15757k0;
+                if (i7 < 0) {
+                    i7 = this.f14453f;
+                }
+                float f10 = width * i7;
+                float height = 1.0f / getHeight();
+                int i10 = this.d.f15759l0;
+                if (i10 < 0) {
+                    i10 = this.h;
+                }
+                matrix2.preScale(f10, height * i10);
+                matrix2.postScale(getWidth() / this.d.f15753i0, getHeight() / this.d.f15755j0);
+                Matrix matrix3 = this.f14459k0;
+                matrix3.reset();
+                this.f14458j0.invert(matrix3);
+                this.f14461n.setTransform(matrix2);
+                this.f14461n.invalidate();
             }
+            invalidate();
         }
-        this.d.clear();
-        MediaMetadataRetriever mediaMetadataRetriever = this.f14236e;
-        if (mediaMetadataRetriever != null) {
-            try {
-                mediaMetadataRetriever.release();
-            } catch (Exception e10) {
-                this.f14236e = null;
-                org.telegram.messenger.a8.g(e10, true);
-            }
-        }
+        this.D0.i();
     }
 
-    public final void c() {
-        if (!this.f14241k && this.f14236e != null && this.d.size() < this.f14235c) {
-            this.f14241k = true;
-            this.f14240j += this.f14234b;
-            Utilities.f22777i.a(new b0(this, 23));
-            Utilities.f22777i.c(new b0(this, 23));
+    @Override
+    public final void i() {
+        pa paVar;
+        nb nbVar = this.D0;
+        x7 x7Var = nbVar.L1;
+        if (x7Var != null && x7Var.f15775u && x7Var.K && (paVar = nbVar.f15126w1) != null && paVar.B0 != null) {
+            for (int i7 = 0; i7 < nbVar.f15126w1.B0.getChildCount(); i7++) {
+                View childAt = nbVar.f15126w1.B0.getChildAt(i7);
+                if (childAt instanceof tg.z0) {
+                    ((tg.z0) childAt).s();
+                }
+            }
         }
     }
 }

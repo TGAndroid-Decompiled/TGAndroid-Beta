@@ -3,11 +3,11 @@ package org.telegram.utils.twidget;
 import android.text.TextPaint;
 import java.util.ArrayList;
 public final class v1 {
-    public static final TextPaint f54982b = new TextPaint();
-    public final ArrayList f54983a;
+    public static final TextPaint f55098b = new TextPaint();
+    public final ArrayList f55099a;
 
     public v1(ArrayList arrayList) {
-        this.f54983a = arrayList;
+        this.f55099a = arrayList;
     }
 
     public static org.telegram.utils.twidget.v1 a(java.lang.String r38, org.telegram.utils.twidget.q r39, float r40) {

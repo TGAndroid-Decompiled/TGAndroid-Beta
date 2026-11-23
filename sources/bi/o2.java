@@ -1,8 +1,8 @@
 package bi;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.y10;
-public final class o2 implements y10 {
+import org.telegram.messenger.w10;
+public final class o2 implements w10 {
     public final int f3893a;
     public final Object f3894b;
     public final Object f3895c;

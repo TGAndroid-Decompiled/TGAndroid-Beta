@@ -8,118 +8,108 @@ import android.os.Handler;
 import android.view.Surface;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import org.telegram.ui.Cells.c5;
-import p4.o0;
+import org.telegram.ui.Components.nd0;
+import org.telegram.ui.web.t1;
 public final class x implements l {
-    public final MediaCodec f58396a;
-    public final j f58397b;
+    public final MediaCodec f58511a;
+    public final j f58512b;
 
     public x(MediaCodec mediaCodec, j jVar) {
-        this.f58396a = mediaCodec;
-        this.f58397b = jVar;
+        this.f58511a = mediaCodec;
+        this.f58512b = jVar;
         if (Build.VERSION.SDK_INT >= 35 && jVar != null) {
             jVar.a(mediaCodec);
         }
     }
 
     @Override
-    public final void b(int i7, int i10, int i11, long j3) {
-        this.f58396a.queueInputBuffer(i7, 0, i10, j3, i11);
-    }
-
-    @Override
-    public final void c(int i7, k2.d dVar, long j3, int i10) {
-        this.f58396a.queueSecureInputBuffer(i7, 0, dVar.f18117i, j3, i10);
-    }
-
-    @Override
-    public final void d(int i7) {
-        this.f58396a.releaseOutputBuffer(i7, false);
-    }
-
-    @Override
-    public final void e() {
-        this.f58396a.detachOutputSurface();
-    }
-
-    @Override
-    public final void f(int i7, long j3) {
-        this.f58396a.releaseOutputBuffer(i7, j3);
-    }
-
-    @Override
     public final void flush() {
-        this.f58396a.flush();
+        this.f58511a.flush();
     }
 
     @Override
-    public final int g() {
-        return this.f58396a.dequeueInputBuffer(0L);
+    public final void g(int i7, int i10, int i11, long j3) {
+        this.f58511a.queueInputBuffer(i7, 0, i10, j3, i11);
     }
 
     @Override
     public final ByteBuffer getInputBuffer(int i7) {
-        return this.f58396a.getInputBuffer(i7);
+        return this.f58511a.getInputBuffer(i7);
     }
 
     @Override
     public final ByteBuffer getOutputBuffer(int i7) {
-        return this.f58396a.getOutputBuffer(i7);
+        return this.f58511a.getOutputBuffer(i7);
     }
 
     @Override
     public final MediaFormat getOutputFormat() {
-        return this.f58396a.getOutputFormat();
+        return this.f58511a.getOutputFormat();
     }
 
     @Override
-    public final void h(o0 o0Var) {
-        o0Var.run();
+    public final void h(int i7, k2.d dVar, long j3, int i10) {
+        this.f58511a.queueSecureInputBuffer(i7, 0, dVar.f18219i, j3, i10);
     }
 
     @Override
-    public final boolean i(c5 c5Var) {
-        return false;
+    public final void i(int i7) {
+        this.f58511a.releaseOutputBuffer(i7, false);
     }
 
     @Override
-    public final int j(MediaCodec.BufferInfo bufferInfo) {
+    public final void j() {
+        this.f58511a.detachOutputSurface();
+    }
+
+    @Override
+    public final void k(int i7, long j3) {
+        this.f58511a.releaseOutputBuffer(i7, j3);
+    }
+
+    @Override
+    public final int l() {
+        return this.f58511a.dequeueInputBuffer(0L);
+    }
+
+    @Override
+    public final void m(t1 t1Var) {
+        t1Var.run();
+    }
+
+    @Override
+    public final int n(MediaCodec.BufferInfo bufferInfo) {
         int dequeueOutputBuffer;
         do {
-            dequeueOutputBuffer = this.f58396a.dequeueOutputBuffer(bufferInfo, 0L);
+            dequeueOutputBuffer = this.f58511a.dequeueOutputBuffer(bufferInfo, 0L);
         } while (dequeueOutputBuffer == -3);
         return dequeueOutputBuffer;
     }
 
     @Override
-    public final void k(d3.k kVar, Handler handler) {
-        this.f58396a.setOnFrameRenderedListener(new a(this, kVar, 1), handler);
+    public final void o(d3.k kVar, Handler handler) {
+        this.f58511a.setOnFrameRenderedListener(new a(this, kVar, 1), handler);
     }
 
     @Override
-    public final void l(int i7) {
-        this.f58396a.setVideoScalingMode(i7);
+    public final boolean p(nd0 nd0Var) {
+        return false;
     }
 
     @Override
-    public final void m(Surface surface) {
-        this.f58396a.setOutputSurface(surface);
+    public final void q(int i7) {
+        this.f58511a.setVideoScalingMode(i7);
     }
 
     @Override
-    public final void n(ArrayList arrayList) {
-        this.f58396a.subscribeToVendorParameters(arrayList);
-    }
-
-    @Override
-    public final void o(ArrayList arrayList) {
-        this.f58396a.unsubscribeFromVendorParameters(arrayList);
+    public final void r(Surface surface) {
+        this.f58511a.setOutputSurface(surface);
     }
 
     @Override
     public final void release() {
-        j jVar = this.f58397b;
-        MediaCodec mediaCodec = this.f58396a;
+        j jVar = this.f58512b;
+        MediaCodec mediaCodec = this.f58511a;
         try {
             int i7 = Build.VERSION.SDK_INT;
             if (i7 >= 30 && i7 < 33) {
@@ -139,7 +129,17 @@ public final class x implements l {
     }
 
     @Override
+    public final void s(ArrayList arrayList) {
+        this.f58511a.subscribeToVendorParameters(arrayList);
+    }
+
+    @Override
     public final void setParameters(Bundle bundle) {
-        this.f58396a.setParameters(bundle);
+        this.f58511a.setParameters(bundle);
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+        this.f58511a.unsubscribeFromVendorParameters(arrayList);
     }
 }

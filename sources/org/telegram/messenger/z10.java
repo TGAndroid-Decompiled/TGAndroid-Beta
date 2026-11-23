@@ -1,4 +1,6 @@
 package org.telegram.messenger;
+
+import org.telegram.tgnet.TLObject;
 public interface z10 {
-    Object a(Object obj);
+    void a(int i7, TLObject tLObject);
 }

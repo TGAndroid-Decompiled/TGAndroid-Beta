@@ -1,20 +1,21 @@
 package org.telegram.ui;
+public final class wh implements org.telegram.ui.Components.tj0 {
+    public final bn f53681a;
 
-import android.app.Activity;
-import java.util.ArrayList;
-public final class wh extends org.telegram.ui.Components.dv {
-    public final bn R1;
-
-    public wh(bn bnVar, org.telegram.ui.ActionBar.g2 g2Var, Activity activity, org.telegram.ui.ActionBar.h6 h6Var, ArrayList arrayList) {
-        super(g2Var, activity, h6Var, arrayList);
-        this.R1 = bnVar;
+    public wh(bn bnVar) {
+        this.f53681a = bnVar;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        bn bnVar = this.R1;
-        bnVar.getClass();
-        bnVar.x8(false, true, 0.0f);
+    public final boolean mo24g(float r11, float r12, int r13, android.view.View r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wh.mo24g(float, float, int, android.view.View):boolean");
+    }
+
+    @Override
+    public final void l(float f10) {
+    }
+
+    @Override
+    public final void h() {
     }
 }

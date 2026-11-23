@@ -2,8 +2,8 @@ package ee;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public abstract class b {
-    public static final AtomicReferenceFieldUpdater f10915a = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_next$volatile");
-    public static final AtomicReferenceFieldUpdater f10916b = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_prev$volatile");
+    public static final AtomicReferenceFieldUpdater f10913a = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_next$volatile");
+    public static final AtomicReferenceFieldUpdater f10914b = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_prev$volatile");
     private volatile Object _next$volatile;
     private volatile Object _prev$volatile;
 
@@ -12,12 +12,12 @@ public abstract class b {
     }
 
     public final void b() {
-        f10916b.set(this, null);
+        f10914b.set(this, null);
     }
 
     public final b c() {
-        Object obj = f10915a.get(this);
-        if (obj == a.f10909a) {
+        Object obj = f10913a.get(this);
+        if (obj == a.f10907a) {
             return null;
         }
         return (b) obj;
@@ -32,7 +32,7 @@ public abstract class b {
             return;
         }
         while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f10916b;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f10914b;
             b bVar2 = (b) atomicReferenceFieldUpdater.get(this);
             while (bVar2 != null && bVar2.d()) {
                 bVar2 = (b) atomicReferenceFieldUpdater.get(bVar2);
@@ -56,7 +56,7 @@ public abstract class b {
                 }
             }
             if (bVar2 != null) {
-                f10915a.set(bVar2, c11);
+                f10913a.set(bVar2, c11);
             }
             if (!c11.d() || c11.c() == null) {
                 if (bVar2 == null || !bVar2.d()) {

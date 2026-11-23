@@ -7,24 +7,24 @@ import android.os.SystemClock;
 import java.io.ByteArrayOutputStream;
 import java.util.concurrent.Semaphore;
 public final class x0 extends Binder implements d {
-    public final y0 f54988a;
-    public final WidgetSandboxBackend f54989b;
-    public volatile long f54990c;
+    public final y0 f55104a;
+    public final WidgetSandboxBackend f55105b;
+    public volatile long f55106c;
     public final ByteArrayOutputStream d;
-    public final Semaphore f54991e;
-    public double f54992f;
-    public long f54993i;
-    public final z0 f54994j;
+    public final Semaphore f55107e;
+    public double f55108f;
+    public long f55109i;
+    public final z0 f55110j;
 
     public x0(z0 z0Var, y0 y0Var, WidgetSandboxBackend widgetSandboxBackend) {
-        this.f54994j = z0Var;
+        this.f55110j = z0Var;
         attachInterface(this, "org.telegram.utils.twidget.IWidgetEngineCallback");
         this.d = new ByteArrayOutputStream();
-        this.f54991e = new Semaphore(4);
-        this.f54992f = 2000.0d;
-        this.f54993i = SystemClock.elapsedRealtime();
-        this.f54988a = y0Var;
-        this.f54989b = widgetSandboxBackend;
+        this.f55107e = new Semaphore(4);
+        this.f55108f = 2000.0d;
+        this.f55109i = SystemClock.elapsedRealtime();
+        this.f55104a = y0Var;
+        this.f55105b = widgetSandboxBackend;
     }
 
     @Override
@@ -32,7 +32,7 @@ public final class x0 extends Binder implements d {
         return (byte[]) h1(new p0() {
             @Override
             public final Object run() {
-                return x0.this.f54989b.canvasRead(i7, i10, i11, i12, i13);
+                return x0.this.f55105b.canvasRead(i7, i10, i11, i12, i13);
             }
         });
     }
@@ -54,7 +54,7 @@ public final class x0 extends Binder implements d {
                 if (i15 >= 0 && (i13 = i10) >= 0 && i15 <= 16384 && i13 <= 16384) {
                     float f12 = f10;
                     if (f12 > 0.0f && f12 <= 10.0f) {
-                        WidgetSandboxBackend widgetSandboxBackend = x0Var.f54989b;
+                        WidgetSandboxBackend widgetSandboxBackend = x0Var.f55105b;
                         byte[] bArr3 = bArr2;
                         if (bArr3 == null) {
                             bArr3 = new byte[]{123, 125};
@@ -73,7 +73,7 @@ public final class x0 extends Binder implements d {
         return (float[]) h1(new p0() {
             @Override
             public final Object run() {
-                return x0.this.f54989b.defineFont(i7, bArr, f10, i10, z10, bArr2);
+                return x0.this.f55105b.defineFont(i7, bArr, f10, i10, z10, bArr2);
             }
         });
     }
@@ -84,7 +84,7 @@ public final class x0 extends Binder implements d {
             @Override
             public final Object run() {
                 x0 x0Var = this;
-                x0Var.f54989b.recordLayer(i7, i10, x0Var.i1(bArr));
+                x0Var.f55105b.recordLayer(i7, i10, x0Var.i1(bArr));
                 return null;
             }
         });
@@ -98,7 +98,7 @@ public final class x0 extends Binder implements d {
     @Override
     public final void R0(int i7, float f10) {
         try {
-            this.f54989b.state(i7, f10);
+            this.f55105b.state(i7, f10);
         } catch (Throwable unused) {
         }
     }
@@ -114,14 +114,14 @@ public final class x0 extends Binder implements d {
     }
 
     public final Object h1(p0 p0Var) {
-        if (this.f54988a.f55002s == 0) {
-            this.f54988a.f55002s = Binder.getCallingPid();
+        if (this.f55104a.f55118s == 0) {
+            this.f55104a.f55118s = Binder.getCallingPid();
         }
-        if (this.f54991e.tryAcquire()) {
+        if (this.f55107e.tryAcquire()) {
             try {
-                if (this.f54994j.f55015m.tryAcquire()) {
+                if (this.f55110j.f55131m.tryAcquire()) {
                     Object run = p0Var.run();
-                    this.f54994j.f55015m.release();
+                    this.f55110j.f55131m.release();
                     return run;
                 }
                 throw new IllegalStateException("Widget engine: too many calls at once");
@@ -129,7 +129,7 @@ public final class x0 extends Binder implements d {
                 try {
                     throw new IllegalStateException(th2.getClass().getSimpleName() + ": " + th2.getMessage());
                 } finally {
-                    this.f54991e.release();
+                    this.f55107e.release();
                 }
             }
         }

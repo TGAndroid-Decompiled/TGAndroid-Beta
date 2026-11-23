@@ -1,6 +1,6 @@
 package ch;
 
-import org.telegram.ui.Components.hb0;
+import org.telegram.ui.Components.eb0;
 public final class t implements Runnable {
     public final int f5512a;
     public final b0 f5513b;
@@ -18,19 +18,19 @@ public final class t implements Runnable {
                 return;
             default:
                 b0 b0Var = this.f5513b;
-                ai.g0 g0Var = b0Var.f5291c;
-                if (g0Var.getParent() != null) {
+                ai.h0 h0Var = b0Var.f5291c;
+                if (h0Var.getParent() != null) {
                     if (b0Var.d) {
-                        org.telegram.messenger.g0.E2(g0Var);
+                        org.telegram.messenger.g0.E2(h0Var);
                     } else {
                         try {
-                            b0Var.f5290b.removeView(g0Var);
+                            b0Var.f5290b.removeView(h0Var);
                         } catch (Exception unused) {
                         }
                     }
-                    hb0 hb0Var = b0Var.f5302p;
-                    if (hb0Var != null) {
-                        hb0Var.run();
+                    eb0 eb0Var = b0Var.f5302p;
+                    if (eb0Var != null) {
+                        eb0Var.run();
                         return;
                     }
                     return;

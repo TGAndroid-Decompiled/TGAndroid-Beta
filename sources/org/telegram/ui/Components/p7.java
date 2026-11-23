@@ -1,30 +1,59 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class p7 extends rh0 {
-    public final f8 E;
-    public float f38477r;
-    public float f38478s;
-    public boolean f38479w;
-    public final j6.o f38480x;
-    public final float f38481y;
+import org.telegram.ui.PhotoViewer;
+public final class p7 extends zc {
+    public final int f38411b;
+    public final org.telegram.messenger.fs f38412c;
 
-    public p7(f8 f8Var, Context context, float f10) {
+    public p7(org.telegram.messenger.fs fsVar, Context context, int i7) {
         super(context);
-        this.E = f8Var;
-        this.f38481y = f10;
-        this.f38480x = new j6.o(this, 27);
+        this.f38411b = i7;
+        this.f38412c = fsVar;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.addAction(16);
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.p7.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void c(boolean z10) {
+        boolean z11;
+        int i7;
+        switch (this.f38411b) {
+            case 0:
+                e8 e8Var = (e8) this.f38412c;
+                e8Var.updateColors();
+                org.telegram.ui.xq xqVar = e8Var.I1;
+                if (xqVar != null) {
+                    xqVar.a(d1.f.u());
+                    return;
+                }
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) this.f38412c;
+                org.telegram.ui.ActionBar.y0 y0Var = photoViewer.G0;
+                if (y0Var != null) {
+                    y0Var.f(z10);
+                    org.telegram.ui.ActionBar.y0 y0Var2 = photoViewer.G0;
+                    if (z10) {
+                        i7 = 259241196;
+                    } else {
+                        i7 = 268435455;
+                    }
+                    y0Var2.setSelectorColor(i7);
+                }
+                h61 h61Var = photoViewer.G2;
+                if (h61Var != null) {
+                    if (!d1.f.u() && !photoViewer.f43436r) {
+                        z11 = false;
+                    } else {
+                        z11 = true;
+                    }
+                    h61Var.t0(z11);
+                }
+                org.telegram.ui.xq xqVar2 = photoViewer.f43492x0;
+                if (xqVar2 != null) {
+                    xqVar2.a(d1.f.u());
+                    return;
+                }
+                return;
+        }
     }
 }

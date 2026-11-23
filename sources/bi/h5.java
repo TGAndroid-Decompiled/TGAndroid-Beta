@@ -1,17 +1,17 @@
 package bi;
 
 import java.util.ArrayList;
-import org.telegram.messenger.np;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.gq0;
+import org.telegram.ui.Components.fq0;
 public final class h5 implements Runnable {
     public final int f3643a;
-    public final gq0 f3644b;
+    public final fq0 f3644b;
 
-    public h5(gq0 gq0Var, int i7) {
+    public h5(fq0 fq0Var, int i7) {
         this.f3643a = i7;
-        this.f3644b = gq0Var;
+        this.f3644b = fq0Var;
     }
 
     @Override
@@ -21,9 +21,9 @@ public final class h5 implements Runnable {
                 di.n8 n8Var = this.f3644b.f4151e;
                 n8Var.getClass();
                 TL_stars.reorderStarGiftCollections reorderstargiftcollections = new TL_stars.reorderStarGiftCollections();
-                int i7 = n8Var.f9373a;
-                reorderstargiftcollections.peer = np.u1(i7).l1(n8Var.f9374b);
-                ArrayList arrayList = n8Var.f9376e;
+                int i7 = n8Var.f9367a;
+                reorderstargiftcollections.peer = mp.u1(i7).l1(n8Var.f9368b);
+                ArrayList arrayList = n8Var.f9370e;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {

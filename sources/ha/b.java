@@ -8,7 +8,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import l5.d;
-import o5.r;
+import o5.s;
 import q4.q;
 public final class b {
     public final double f14098a;
@@ -18,18 +18,18 @@ public final class b {
     public final int f14101e;
     public final ArrayBlockingQueue f14102f;
     public final ThreadPoolExecutor f14103g;
-    public final r h;
+    public final s h;
     public final q f14104i;
     public int f14105j;
     public long f14106k;
 
-    public b(r rVar, ia.b bVar, q qVar) {
+    public b(s sVar, ia.b bVar, q qVar) {
         double d = bVar.d;
-        double d2 = bVar.f16180e;
+        double d2 = bVar.f16277e;
         this.f14098a = d;
         this.f14099b = d2;
-        this.f14100c = bVar.f16181f * 1000;
-        this.h = rVar;
+        this.f14100c = bVar.f16278f * 1000;
+        this.h = sVar;
         this.f14104i = qVar;
         this.d = SystemClock.elapsedRealtime();
         int i7 = (int) d;
@@ -70,6 +70,6 @@ public final class b {
         } else {
             z10 = false;
         }
-        this.h.a(new l5.a(null, bVar.f779a, d.f19671c, null), new g(this, taskCompletionSource, z10, bVar, 2));
+        this.h.a(new l5.a(null, bVar.f779a, d.f19771c, null), new g(this, taskCompletionSource, z10, bVar, 2));
     }
 }

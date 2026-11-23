@@ -1,31 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class p50 extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.w2[] f38464a;
-    public final TLRPC.TL_chatInviteImporter f38465b;
+public final class p50 implements RequestDelegate {
+    public final int f38387a;
+    public final r50 f38388b;
 
-    public p50(org.telegram.ui.ActionBar.w2[] w2VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
-        this.f38464a = w2VarArr;
-        this.f38465b = tL_chatInviteImporter;
+    public p50(r50 r50Var, int i7) {
+        this.f38387a = i7;
+        this.f38388b = r50Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.f38464a[0].dismiss();
-        org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
-        if (T != null) {
-            T.presentFragment(ProfileActivity.D4(this.f38465b.user_id));
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f38387a) {
+            case 0:
+                org.telegram.messenger.g0.g3(new org.telegram.ui.Cells.fa(this.f38388b, tL_error, tLObject, 16));
+                return;
+            default:
+                org.telegram.messenger.g0.g3(new bt(18, this.f38388b, tL_error));
+                return;
         }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
     }
 }

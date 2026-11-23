@@ -2,10 +2,10 @@ package ch;
 
 import android.text.TextUtils;
 import j$.util.Objects;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.k10;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.i10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.o5;
 public final class p0 {
     public boolean f5466a;
     public boolean f5467b;
@@ -70,7 +70,7 @@ public final class p0 {
         ?? obj = new Object();
         boolean z10 = true;
         obj.f5467b = true;
-        long j3 = tL_availableEffect.f28429id;
+        long j3 = tL_availableEffect.f28523id;
         obj.f5468c = j3;
         if (tL_availableEffect.effect_animation_id != 0) {
             z10 = false;
@@ -86,7 +86,7 @@ public final class p0 {
     public final p0 a() {
         String V;
         long j3 = this.f5471g;
-        if (j3 != 0 && (V = gj.V(p5.e(k10.f24932t0, j3), null, null)) != null) {
+        if (j3 != 0 && (V = fj.V(o5.e(i10.f24637t0, j3), null, null)) != null) {
             return b(V);
         }
         return this;
@@ -139,8 +139,8 @@ public final class p0 {
             return this.f5470f;
         }
         long j3 = this.f5471g;
-        if (j3 != 0 && (e10 = p5.e(k10.f24932t0, j3)) != null) {
-            return gj.V(e10, null, null);
+        if (j3 != 0 && (e10 = o5.e(i10.f24637t0, j3)) != null) {
+            return fj.V(e10, null, null);
         }
         StringBuilder sb2 = new StringBuilder("VisibleReaction{");
         sb2.append(this.f5471g);

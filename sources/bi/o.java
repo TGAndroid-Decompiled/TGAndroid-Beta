@@ -7,14 +7,14 @@ import android.net.Uri;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.ls;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.ks;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.FragmentContextView;
-import org.telegram.ui.Components.i61;
-import org.telegram.ui.Components.mq;
-import org.telegram.ui.Components.nc;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.jq;
+import org.telegram.ui.Components.mc;
+import org.telegram.ui.Components.or;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
@@ -36,7 +36,7 @@ public final class o implements View.OnClickListener {
                 int i10 = y.f4222w2;
                 return;
             case 1:
-                nc[] ncVarArr = m0.f3817l2;
+                mc[] mcVarArr = m0.f3817l2;
                 return;
             case 2:
                 int i11 = t0.f4068c2;
@@ -44,14 +44,14 @@ public final class o implements View.OnClickListener {
             case 3:
                 org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
                 if (T != null) {
-                    T.presentFragment(new org.telegram.ui.Wallet.n6());
+                    T.presentFragment(new org.telegram.ui.Wallet.o6());
                     return;
                 }
                 return;
             case 4:
                 org.telegram.ui.ActionBar.g2 T2 = LaunchActivity.T();
                 if (T2 != null) {
-                    T2.presentFragment(new org.telegram.ui.Wallet.n6());
+                    T2.presentFragment(new org.telegram.ui.Wallet.o6());
                     return;
                 }
                 return;
@@ -59,19 +59,19 @@ public final class o implements View.OnClickListener {
                 int i12 = ch.f.f5341e;
                 return;
             case 6:
-                int i13 = di.h1.f8890w2;
+                int i13 = di.h1.f8886w2;
                 return;
             case 7:
-                int i14 = hi.p3.f15169e;
+                int i14 = hi.y3.f15859e;
                 return;
             case 8:
                 PhotoViewer.p1().c0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 9:
-                int i15 = ki.l.f18744n;
+                int i15 = ki.l.f18847n;
                 return;
             case 10:
-                int i16 = lh.c.f19847e;
+                int i16 = lh.c.f19947e;
                 return;
             case 11:
                 return;
@@ -88,35 +88,35 @@ public final class o implements View.OnClickListener {
             case 14:
                 if (!MediaController.B().B0) {
                     if (MediaController.B().H()) {
-                        MediaController.B().S(MediaController.B().f22735v0);
+                        MediaController.B().S(MediaController.B().f22838v0);
                         return;
                     } else {
-                        MediaController.B().R(MediaController.B().f22735v0, true);
+                        MediaController.B().R(MediaController.B().f22838v0, true);
                         return;
                     }
                 }
                 return;
             case 15:
-                int i18 = mq.f37554g0;
+                int i18 = jq.f36478g0;
                 return;
             case 16:
-                int i19 = rr.f39276x;
+                int i19 = or.f38250x;
                 return;
             case 17:
                 float[] fArr = FragmentContextView.X0;
                 MediaController B = MediaController.B();
-                i61 i61Var = B.F0;
-                if (i61Var != null) {
-                    i61Var.s0(false);
+                h61 h61Var = B.F0;
+                if (h61Var != null) {
+                    h61Var.s0(false);
                 }
                 B.n0();
                 B.m();
-                gj gjVar = B.f22735v0;
-                if (gjVar != null) {
-                    ls f10 = ls.f(gjVar.K1);
-                    gj gjVar2 = B.f22735v0;
-                    if (gjVar2 != null) {
-                        i7 = gjVar2.e1();
+                fj fjVar = B.f22838v0;
+                if (fjVar != null) {
+                    ks f10 = ks.f(fjVar.K1);
+                    fj fjVar2 = B.f22838v0;
+                    if (fjVar2 != null) {
+                        i7 = fjVar2.e1();
                     } else {
                         i7 = 0;
                     }
@@ -133,14 +133,14 @@ public final class o implements View.OnClickListener {
                     sharedInstance.hangUp();
                     return;
                 } else {
-                    org.telegram.ui.Components.voip.h2.b();
+                    org.telegram.ui.Components.voip.i2.b();
                     return;
                 }
             case 20:
                 f2.l1(false, null);
                 return;
             case 21:
-                ArrayList arrayList = ExternalActionActivity.f43048y;
+                ArrayList arrayList = ExternalActionActivity.f43158y;
                 return;
             case 22:
                 return;
@@ -159,7 +159,7 @@ public final class o implements View.OnClickListener {
                     return;
                 }
             case 26:
-                int i20 = org.telegram.ui.Wallet.w3.X;
+                int i20 = org.telegram.ui.Wallet.x3.X;
                 return;
             default:
                 PhotoViewer.p1().c0(1.0f, 0.0f, 0.0f, false);

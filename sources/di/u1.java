@@ -8,29 +8,29 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.np;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.h01;
-import org.telegram.ui.hc1;
-import org.telegram.ui.nl0;
-import org.telegram.ui.qx0;
+import org.telegram.ui.fc1;
+import org.telegram.ui.g01;
+import org.telegram.ui.ll0;
+import org.telegram.ui.ox0;
 public final class u1 implements DialogInterface.OnDismissListener {
-    public final int f9842a;
-    public final Object f9843b;
-    public final Object f9844c;
+    public final int f9841a;
+    public final Object f9842b;
+    public final Object f9843c;
 
     public u1(int i7, Object obj, Object obj2) {
-        this.f9842a = i7;
-        this.f9843b = obj;
-        this.f9844c = obj2;
+        this.f9841a = i7;
+        this.f9842b = obj;
+        this.f9843c = obj2;
     }
 
     @Override
@@ -38,10 +38,10 @@ public final class u1 implements DialogInterface.OnDismissListener {
         org.telegram.ui.ActionBar.g2 lastFragment;
         HashMap hashMap;
         HashMap hashMap2;
-        org.telegram.ui.Wallet.da daVar;
-        int i7 = this.f9842a;
-        Object obj = this.f9844c;
-        Object obj2 = this.f9843b;
+        org.telegram.ui.Wallet.ea eaVar;
+        int i7 = this.f9841a;
+        Object obj = this.f9843c;
+        Object obj2 = this.f9842b;
         switch (i7) {
             case 0:
                 ((boolean[]) obj2)[0] = true;
@@ -52,10 +52,10 @@ public final class u1 implements DialogInterface.OnDismissListener {
                 }
                 return;
             case 1:
-                y10 y10Var = (y10) obj;
+                w10 w10Var = (w10) obj;
                 boolean[] zArr = (boolean[]) obj2;
-                if (y10Var != null && !zArr[0]) {
-                    y10Var.a(Boolean.FALSE);
+                if (w10Var != null && !zArr[0]) {
+                    w10Var.a(Boolean.FALSE);
                     return;
                 }
                 return;
@@ -105,7 +105,7 @@ public final class u1 implements DialogInterface.OnDismissListener {
                 return;
             case 8:
                 ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj2;
-                ArrayList arrayList = ExternalActionActivity.f43048y;
+                ArrayList arrayList = ExternalActionActivity.f43158y;
                 externalActionActivity.getClass();
                 externalActionActivity.setResult(1, new Intent().putExtra("error", ((TLRPC.TL_error) obj).text));
                 externalActionActivity.finish();
@@ -114,33 +114,33 @@ public final class u1 implements DialogInterface.OnDismissListener {
                 LaunchActivity launchActivity = (LaunchActivity) obj2;
                 org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) obj;
                 if (t1Var == launchActivity.G0) {
-                    ActionBarLayout actionBarLayout = launchActivity.f43104p0;
+                    ActionBarLayout actionBarLayout = launchActivity.f43214p0;
                     if (actionBarLayout == null) {
                         lastFragment = null;
                     } else {
                         lastFragment = actionBarLayout.getLastFragment();
                     }
                     try {
-                        String str = hd.E0().B.f23495c;
+                        String str = gd.E0().B.f23445c;
                         if (lastFragment != null) {
-                            org.telegram.ui.Components.lc b02 = org.telegram.ui.Components.lc.b0(lastFragment);
+                            org.telegram.ui.Components.kc b02 = org.telegram.ui.Components.kc.b0(lastFragment);
                             if (str.equals("en")) {
                                 hashMap2 = launchActivity.J0;
                             } else {
                                 hashMap2 = launchActivity.I0;
                             }
-                            org.telegram.ui.Components.gc Q = b02.Q(2131624104, 36, LaunchActivity.U(2131752533, "ChangeLanguageLater", hashMap2));
-                            Q.f35489j = 5000;
+                            org.telegram.ui.Components.fc Q = b02.Q(2131624104, 36, LaunchActivity.U(2131752533, "ChangeLanguageLater", hashMap2));
+                            Q.f35091j = 5000;
                             Q.j();
                         } else {
-                            org.telegram.ui.Components.lc lcVar = new org.telegram.ui.Components.lc(org.telegram.ui.Components.cb.a(launchActivity), null);
+                            org.telegram.ui.Components.kc kcVar = new org.telegram.ui.Components.kc(org.telegram.ui.Components.bb.a(launchActivity), null);
                             if (str.equals("en")) {
                                 hashMap = launchActivity.J0;
                             } else {
                                 hashMap = launchActivity.I0;
                             }
-                            org.telegram.ui.Components.gc Q2 = lcVar.Q(2131624104, 36, LaunchActivity.U(2131752533, "ChangeLanguageLater", hashMap));
-                            Q2.f35489j = 5000;
+                            org.telegram.ui.Components.fc Q2 = kcVar.Q(2131624104, 36, LaunchActivity.U(2131752533, "ChangeLanguageLater", hashMap));
+                            Q2.f35091j = 5000;
                             Q2.j();
                         }
                     } catch (Exception e10) {
@@ -148,34 +148,34 @@ public final class u1 implements DialogInterface.OnDismissListener {
                     }
                     launchActivity.G0 = null;
                 } else if (t1Var == launchActivity.E0) {
-                    np.g1();
-                    SharedPreferences.Editor edit = np.g1().edit();
+                    mp.g1();
+                    SharedPreferences.Editor edit = mp.g1().edit();
                     edit.putBoolean("proxy_enabled", false);
                     edit.commit();
                     ConnectionsManager.setProxySettings(false, null);
-                    ls.e().k(280, new Object[0]);
+                    ks.e().k(280, new Object[0]);
                     launchActivity.E0 = null;
                 }
                 launchActivity.D0.remove(t1Var);
                 return;
             case 10:
-                nl0 nl0Var = (nl0) obj;
+                ll0 ll0Var = (ll0) obj;
                 if (!((boolean[]) obj2)[0]) {
-                    nl0Var.a(Boolean.FALSE);
+                    ll0Var.a(Boolean.FALSE);
                     return;
                 }
                 return;
             case 11:
-                h01 h01Var = (h01) obj;
+                g01 g01Var = (g01) obj;
                 if (!((boolean[]) obj2)[0]) {
-                    h01Var.c(true);
+                    g01Var.c(true);
                 }
-                h01Var.f50056x = null;
+                g01Var.f49933x = null;
                 return;
             case 12:
-                hc1 hc1Var = (hc1) obj;
+                fc1 fc1Var = (fc1) obj;
                 if (!((boolean[]) obj2)[0]) {
-                    hc1Var.f48333u0.b();
+                    fc1Var.f47790u0.b();
                     return;
                 }
                 return;
@@ -185,12 +185,12 @@ public final class u1 implements DialogInterface.OnDismissListener {
                 org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
                 if (T != null) {
                     if (user != null) {
-                        daVar = new org.telegram.ui.Wallet.da(user);
+                        eaVar = new org.telegram.ui.Wallet.ea(user);
                     } else {
-                        daVar = new org.telegram.ui.Wallet.da(wallettransactionpeeruser.address);
-                        daVar.A0(wallettransactionpeeruser.domain);
+                        eaVar = new org.telegram.ui.Wallet.ea(wallettransactionpeeruser.address);
+                        eaVar.A0(wallettransactionpeeruser.domain);
                     }
-                    T.presentFragment(daVar);
+                    T.presentFragment(eaVar);
                     return;
                 }
                 return;
@@ -201,7 +201,7 @@ public final class u1 implements DialogInterface.OnDismissListener {
                     v0Var.getClass();
                     runnable2.run();
                 }
-                v0Var.f53311d0 = null;
+                v0Var.f53581d0 = null;
                 return;
             case 15:
                 boolean[] zArr4 = (boolean[]) obj2;
@@ -213,9 +213,9 @@ public final class u1 implements DialogInterface.OnDismissListener {
                 }
                 return;
             default:
-                qx0 qx0Var = (qx0) obj;
+                ox0 ox0Var = (ox0) obj;
                 if (!((AtomicBoolean) obj2).get()) {
-                    qx0Var.run();
+                    ox0Var.run();
                     return;
                 }
                 return;
@@ -223,8 +223,8 @@ public final class u1 implements DialogInterface.OnDismissListener {
     }
 
     public u1(Object obj, boolean[] zArr, int i7) {
-        this.f9842a = i7;
-        this.f9844c = obj;
-        this.f9843b = zArr;
+        this.f9841a = i7;
+        this.f9843c = obj;
+        this.f9842b = zArr;
     }
 }

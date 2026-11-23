@@ -12,11 +12,11 @@ public abstract class m {
     public static OnBackInvokedCallback b(Object obj, s sVar) {
         Objects.requireNonNull(sVar);
         androidx.activity.q qVar = new androidx.activity.q(sVar, 2);
-        ci.v.g(obj).registerOnBackInvokedCallback(1000000, qVar);
+        ci.v.e(obj).registerOnBackInvokedCallback(1000000, qVar);
         return qVar;
     }
 
     public static void c(Object obj, Object obj2) {
-        ci.v.g(obj).unregisterOnBackInvokedCallback((OnBackInvokedCallback) obj2);
+        ci.v.e(obj).unregisterOnBackInvokedCallback((OnBackInvokedCallback) obj2);
     }
 }

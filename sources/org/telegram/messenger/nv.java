@@ -1,57 +1,42 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import android.util.LongSparseArray;
-public final class nv extends mv {
-    public int d;
+import java.util.ArrayList;
+public final class nv implements Runnable {
+    public final int f26086a;
+    public final pv f26087b;
 
-    public static void c(nv nvVar, String str, SharedPreferences sharedPreferences) {
-        nvVar.getClass();
-        sharedPreferences.edit().putBoolean(str.concat("_save_gallery_photo"), nvVar.f25610a).putBoolean(str.concat("_save_gallery_video"), nvVar.f25611b).putLong(str.concat("_save_gallery_limitVideo"), nvVar.f25612c).apply();
-    }
-
-    public static nv d(String str, SharedPreferences sharedPreferences) {
-        ?? mvVar = new mv();
-        mvVar.f25610a = sharedPreferences.getBoolean(str.concat("_save_gallery_photo"), false);
-        mvVar.f25611b = sharedPreferences.getBoolean(str.concat("_save_gallery_video"), false);
-        mvVar.f25612c = sharedPreferences.getLong(str.concat("_save_gallery_limitVideo"), 104857600L);
-        return mvVar;
+    public nv(pv pvVar, int i7) {
+        this.f26086a = i7;
+        this.f26087b = pvVar;
     }
 
     @Override
-    public final void b() {
-        super.b();
-        c6.o(this.d);
-    }
-
-    public final CharSequence e(int i7) {
-        StringBuilder sb2 = new StringBuilder();
-        if (a()) {
-            if (this.f25610a) {
-                sb2.append(hd.N0(2131745724, null));
-            }
-            if (this.f25611b) {
-                if (sb2.length() != 0) {
-                    sb2.append(", ");
+    public final void run() {
+        switch (this.f26086a) {
+            case 0:
+                this.f26087b.g(false);
+                return;
+            case 1:
+                this.f26087b.f26399o = false;
+                return;
+            case 2:
+                pv pvVar = this.f26087b;
+                pvVar.f26399o = false;
+                pvVar.f26396l = false;
+                return;
+            case 3:
+                this.f26087b.l();
+                return;
+            default:
+                pv pvVar2 = this.f26087b;
+                if (!pvVar2.f26399o) {
+                    pvVar2.f26399o = true;
+                    ArrayList arrayList = new ArrayList(pvVar2.f26394j);
+                    tr a02 = tr.a0(pvVar2.f26387a);
+                    a02.f27149a.c(new kg(pvVar2, a02, arrayList, 24));
+                    return;
                 }
-                sb2.append(hd.N0(2131745717, null));
-                long j3 = this.f25612c;
-                if (j3 > 0 && j3 < 4194304000L) {
-                    sb2.append(" (");
-                    sb2.append(g0.i0(this.f25612c, true, false));
-                    sb2.append(")");
-                }
-            }
-        } else {
-            sb2.append(hd.N0(2131745725, null));
+                return;
         }
-        LongSparseArray m10 = k10.i(i7).m(this.d);
-        if (m10.size() != 0) {
-            if (sb2.length() != 0) {
-                sb2.append(", ");
-            }
-            sb2.append(hd.G(m10.size(), "Exception", Integer.valueOf(m10.size())));
-        }
-        return sb2;
     }
 }

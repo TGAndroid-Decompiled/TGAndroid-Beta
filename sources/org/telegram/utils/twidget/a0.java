@@ -9,11 +9,11 @@ import android.util.Log;
 import java.nio.charset.StandardCharsets;
 import org.telegram.ui.cd0;
 public final class a0 extends Binder implements b {
-    public static final int f54686b = 0;
-    public final WidgetEngineService f54687a;
+    public static final int f54802b = 0;
+    public final WidgetEngineService f54803a;
 
     public a0(WidgetEngineService widgetEngineService) {
-        this.f54687a = widgetEngineService;
+        this.f54803a = widgetEngineService;
         attachInterface(this, "org.telegram.utils.twidget.IWidgetEngine");
     }
 
@@ -28,8 +28,8 @@ public final class a0 extends Binder implements b {
             @Override
             public final void run() {
                 WidgetSandboxNative.destroy(j3);
-                synchronized (l.f54836a) {
-                    l.f54837b = Math.max(0, l.f54837b - 1);
+                synchronized (l.f54952a) {
+                    l.f54953b = Math.max(0, l.f54953b - 1);
                 }
             }
         });
@@ -52,14 +52,14 @@ public final class a0 extends Binder implements b {
 
     @Override
     public final void b1() {
-        if (WidgetEngineService.f54683e) {
+        if (WidgetEngineService.f54799e) {
             return;
         }
         SystemClock.uptimeMillis();
         try {
-            String d = WidgetEngineService.d(new q(this.f54687a.getAssets(), 3));
+            String d = WidgetEngineService.d(new q(this.f54803a.getAssets(), 3));
             SystemClock.uptimeMillis();
-            WidgetEngineBackend.warmFonts(this.f54687a.getResources().getDisplayMetrics().density);
+            WidgetEngineBackend.warmFonts(this.f54803a.getResources().getDisplayMetrics().density);
             SystemClock.uptimeMillis();
             WidgetSandboxNative.prepare(d.getBytes(StandardCharsets.UTF_8));
         } catch (RuntimeException e10) {
@@ -129,7 +129,7 @@ public final class a0 extends Binder implements b {
                         dVar2 = (d) queryLocalInterface;
                     } else {
                         ?? obj = new Object();
-                        obj.f54693a = readStrongBinder;
+                        obj.f54809a = readStrongBinder;
                         dVar = obj;
                         long t6 = t(createByteArray, createByteArray2, readFloat, readFloat2, readInt, createByteArray3, createByteArray4, createByteArray5, createByteArray6, z10, dVar);
                         parcel2.writeNoException();
@@ -233,17 +233,17 @@ public final class a0 extends Binder implements b {
 
     @Override
     public final long t(byte[] bArr, byte[] bArr2, float f10, float f11, int i7, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6, boolean z10, d dVar) {
-        if (!WidgetEngineService.f54683e) {
+        if (!WidgetEngineService.f54799e) {
             SystemClock.uptimeMillis();
-            String d = WidgetEngineService.d(new q(this.f54687a.getAssets(), 3));
+            String d = WidgetEngineService.d(new q(this.f54803a.getAssets(), 3));
             SystemClock.uptimeMillis();
             long create = WidgetSandboxNative.create(d.getBytes(StandardCharsets.UTF_8), bArr, bArr2, f10, f11, i7, bArr3, bArr4, bArr5, bArr6, z10, new WidgetEngineBackend(dVar, f11));
-            Object obj = l.f54836a;
+            Object obj = l.f54952a;
             synchronized (obj) {
                 try {
-                    l.f54837b++;
-                    if (!l.f54838c) {
-                        l.f54838c = true;
+                    l.f54953b++;
+                    if (!l.f54954c) {
+                        l.f54954c = true;
                         Thread thread = new Thread(new cd0(17), "widget-engine-memory");
                         thread.setDaemon(true);
                         thread.start();

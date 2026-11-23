@@ -3,16 +3,16 @@ public final class dj extends pi.k {
     public Runnable W;
     public final bn X;
 
-    public dj(bn bnVar, bn bnVar2, bj bjVar, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(bnVar2, bjVar, h6Var);
+    public dj(bn bnVar, bn bnVar2, bj bjVar, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(bnVar2, bjVar, i6Var);
         this.X = bnVar;
     }
 
     @Override
     public final void F() {
         bn bnVar = this.X;
-        if (bnVar.f45969ea == -1) {
-            bnVar.f45969ea = bnVar.getNotificationCenter().q(bn.f45899sd, bnVar.f45969ea, false);
+        if (bnVar.f46184ea == -1) {
+            bnVar.f46184ea = bnVar.getNotificationCenter().q(bn.f46114sd, bnVar.f46184ea, false);
         }
     }
 
@@ -32,21 +32,21 @@ public final class dj extends pi.k {
     @Override
     public final void W() {
         bn bnVar = this.X;
-        bnVar.f45969ea = bnVar.getNotificationCenter().q(bn.f45899sd, bnVar.f45969ea, false);
+        bnVar.f46184ea = bnVar.getNotificationCenter().q(bn.f46114sd, bnVar.f46184ea, false);
         Runnable runnable = this.W;
         if (runnable != null) {
             org.telegram.messenger.g0.r(runnable);
             this.W = null;
         }
-        if (org.telegram.messenger.s2.f26694a) {
+        if (org.telegram.messenger.s2.f26829a) {
             org.telegram.messenger.a8.b("chatItemAnimator disable notifications");
         }
-        j6.o oVar = bnVar.f45903a0.getAdjustPanLayoutHelper().h;
-        org.telegram.messenger.g0.r(oVar);
-        oVar.run();
-        org.telegram.ui.Components.te teVar = bnVar.f45903a0.O4;
-        org.telegram.messenger.g0.r(teVar);
-        teVar.run();
+        i6.g gVar = bnVar.f46118a0.getAdjustPanLayoutHelper().h;
+        org.telegram.messenger.g0.r(gVar);
+        gVar.run();
+        org.telegram.ui.Components.ue ueVar = bnVar.f46118a0.O4;
+        org.telegram.messenger.g0.r(ueVar);
+        ueVar.run();
     }
 
     @Override

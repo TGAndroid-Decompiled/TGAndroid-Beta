@@ -5,12 +5,12 @@ import java.util.Comparator;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class b1 implements Comparator {
-    public final a0.h f17397a;
-    public final ArrayList f17398b;
+    public final a0.h f17499a;
+    public final ArrayList f17500b;
 
     public b1(a0.h hVar, ArrayList arrayList) {
-        this.f17397a = hVar;
-        this.f17398b = arrayList;
+        this.f17499a = hVar;
+        this.f17500b = arrayList;
     }
 
     @Override
@@ -20,21 +20,21 @@ public final class b1 implements Comparator {
         TLObject tLObject = (TLObject) obj;
         TLObject tLObject2 = (TLObject) obj2;
         if (tLObject instanceof TLRPC.User) {
-            j3 = ((TLRPC.User) tLObject).f28547id;
+            j3 = ((TLRPC.User) tLObject).f28641id;
         } else {
-            j3 = -((TLRPC.Chat) tLObject).f28398id;
+            j3 = -((TLRPC.Chat) tLObject).f28492id;
         }
         if (tLObject2 instanceof TLRPC.User) {
-            j10 = ((TLRPC.User) tLObject2).f28547id;
+            j10 = ((TLRPC.User) tLObject2).f28641id;
         } else {
-            j10 = -((TLRPC.Chat) tLObject2).f28398id;
+            j10 = -((TLRPC.Chat) tLObject2).f28492id;
         }
-        a0.h hVar = this.f17397a;
+        a0.h hVar = this.f17499a;
         if (hVar.h(j3) < 0 || hVar.h(j10) < 0) {
             if (hVar.h(j3) < 0) {
                 if (hVar.h(j10) < 0) {
                     Long valueOf = Long.valueOf(j3);
-                    ArrayList arrayList = this.f17398b;
+                    ArrayList arrayList = this.f17500b;
                     int indexOf = arrayList.indexOf(valueOf);
                     int indexOf2 = arrayList.indexOf(Long.valueOf(j10));
                     if (indexOf != -1 && indexOf2 != -1) {

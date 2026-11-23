@@ -3,14 +3,14 @@ package ch;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.messenger.gj;
+import org.telegram.messenger.fj;
 import org.telegram.ui.ActionBar.g2;
 import org.telegram.ui.bn;
 public final class i0 extends FrameLayout {
     public final g2 f5368a;
     public final View f5369b;
     public final boolean f5370c;
-    public final gj d;
+    public final fj d;
     public final bn f5371e;
     public final int f5372f;
     public final int h;
@@ -21,13 +21,13 @@ public final class i0 extends FrameLayout {
     public final p0 f5377x;
     public final l0 f5378y;
 
-    public i0(l0 l0Var, Context context, g2 g2Var, View view, boolean z10, gj gjVar, bn bnVar, int i7, int i10, boolean z11, float f10, float f11, float f12, p0 p0Var) {
+    public i0(l0 l0Var, Context context, g2 g2Var, View view, boolean z10, fj fjVar, bn bnVar, int i7, int i10, boolean z11, float f10, float f11, float f12, p0 p0Var) {
         super(context);
         this.f5378y = l0Var;
         this.f5368a = g2Var;
         this.f5369b = view;
         this.f5370c = z10;
-        this.d = gjVar;
+        this.d = fjVar;
         this.f5371e = bnVar;
         this.f5372f = i7;
         this.h = i10;
@@ -50,7 +50,7 @@ public final class i0 extends FrameLayout {
         while (true) {
             l0 l0Var = this.f5378y;
             if (i7 < l0Var.f5415x.size()) {
-                ((k0) l0Var.f5415x.get(i7)).f5384a.P();
+                ((k0) l0Var.f5415x.get(i7)).f5384a.Q();
                 i7++;
             } else {
                 return;
@@ -65,7 +65,7 @@ public final class i0 extends FrameLayout {
         while (true) {
             l0 l0Var = this.f5378y;
             if (i7 < l0Var.f5415x.size()) {
-                ((k0) l0Var.f5415x.get(i7)).f5384a.R();
+                ((k0) l0Var.f5415x.get(i7)).f5384a.S();
                 i7++;
             } else {
                 return;

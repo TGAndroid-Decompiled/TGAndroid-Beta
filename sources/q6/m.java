@@ -9,9 +9,9 @@ import com.google.android.gms.internal.vision.e2;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public abstract class m {
-    public static final Object f55946a = new Object();
-    public static boolean f55947b;
-    public static int f55948c;
+    public static final Object f56059a = new Object();
+    public static boolean f56060b;
+    public static int f56061c;
 
     public static void a(String str, boolean z10) {
         if (z10) {

@@ -25,26 +25,26 @@ public final class a0 {
         int i7 = this.d;
         e0 e0Var = (e0) this.f13714i;
         i0 i0Var = (i0) e0Var.f13743f;
-        l2.f0 f0Var = (l2.f0) e0Var.f13739a;
-        if (f0Var.i() == 2 && f0Var.u() && f0Var.w0() == 0) {
-            l1 y02 = f0Var.y0();
-            if (y02.p()) {
+        l2.g0 g0Var = (l2.g0) e0Var.f13739a;
+        if (g0Var.i() == 2 && g0Var.v() && g0Var.x0() == 0) {
+            l1 z02 = g0Var.z0();
+            if (z02.p()) {
                 l10 = null;
             } else {
-                l10 = y02.l(f0Var.B());
+                l10 = z02.l(g0Var.C());
             }
-            int n02 = f0Var.n0();
-            int O = f0Var.O();
-            long d02 = f0Var.d0();
-            long max = Math.max(0L, f0Var.r() - Math.max(0L, d02 - f0Var.l()));
-            if (l10 != null && n02 == -1) {
-                d02 -= l0.h0(y02.g(l10, (i1) e0Var.f13742e).f10429e);
+            int o02 = g0Var.o0();
+            int P = g0Var.P();
+            long e02 = g0Var.e0();
+            long max = Math.max(0L, g0Var.s() - Math.max(0L, e02 - g0Var.n()));
+            if (l10 != null && o02 == -1) {
+                e02 -= l0.h0(z02.g(l10, (i1) e0Var.f13742e).f10427e);
             }
             ((g0) e0Var.d).getClass();
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            if (this.f13711e && Objects.equals(l10, this.h) && n02 == this.f13712f && O == this.f13713g && d02 == this.f13708a && max == this.f13709b) {
+            if (this.f13711e && Objects.equals(l10, this.h) && o02 == this.f13712f && P == this.f13713g && e02 == this.f13708a && max == this.f13709b) {
                 if (elapsedRealtime - this.f13710c >= i7) {
-                    ((l2.z) e0Var.f13741c).f19594a.A1(new l2.l(2, new f0(1, i7), 1003));
+                    ((l2.a0) e0Var.f13741c).f19342a.A1(new l2.m(2, new f0(1, i7), 1003));
                     return;
                 }
                 return;
@@ -52,9 +52,9 @@ public final class a0 {
             this.f13711e = true;
             this.f13710c = elapsedRealtime;
             this.h = l10;
-            this.f13712f = n02;
-            this.f13713g = O;
-            this.f13708a = d02;
+            this.f13712f = o02;
+            this.f13713g = P;
+            this.f13708a = e02;
             this.f13709b = max;
             i0Var.e(1);
             i0Var.f13763a.sendEmptyMessageDelayed(1, i7);

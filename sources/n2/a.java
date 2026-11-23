@@ -1,14 +1,14 @@
 package n2;
 
 import android.os.Build;
-import h9.h2;
+import h9.g2;
 import j$.util.Objects;
 import java.util.Set;
 public final class a {
     public static final a d;
-    public final int f21051a;
-    public final int f21052b;
-    public final h9.t0 f21053c;
+    public final int f21147a;
+    public final int f21148b;
+    public final h9.t0 f21149c;
 
     static {
         a aVar;
@@ -25,15 +25,15 @@ public final class a {
     }
 
     public a(int i7, Set set) {
-        this.f21051a = i7;
+        this.f21147a = i7;
         h9.t0 q10 = h9.t0.q(set);
-        this.f21053c = q10;
-        h2 it = q10.iterator();
+        this.f21149c = q10;
+        g2 it = q10.iterator();
         int i10 = 0;
         while (it.hasNext()) {
             i10 = Math.max(i10, Integer.bitCount(((Integer) it.next()).intValue()));
         }
-        this.f21052b = i10;
+        this.f21148b = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -44,7 +44,7 @@ public final class a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f21051a == aVar.f21051a && this.f21052b == aVar.f21052b && Objects.equals(this.f21053c, aVar.f21053c)) {
+        if (this.f21147a == aVar.f21147a && this.f21148b == aVar.f21148b && Objects.equals(this.f21149c, aVar.f21149c)) {
             return true;
         }
         return false;
@@ -52,8 +52,8 @@ public final class a {
 
     public final int hashCode() {
         int hashCode;
-        int i7 = ((this.f21051a * 31) + this.f21052b) * 31;
-        h9.t0 t0Var = this.f21053c;
+        int i7 = ((this.f21147a * 31) + this.f21148b) * 31;
+        h9.t0 t0Var = this.f21149c;
         if (t0Var == null) {
             hashCode = 0;
         } else {
@@ -63,12 +63,12 @@ public final class a {
     }
 
     public final String toString() {
-        return "AudioProfile[format=" + this.f21051a + ", maxChannelCount=" + this.f21052b + ", channelMasks=" + this.f21053c + "]";
+        return "AudioProfile[format=" + this.f21147a + ", maxChannelCount=" + this.f21148b + ", channelMasks=" + this.f21149c + "]";
     }
 
     public a(int i7, int i10) {
-        this.f21051a = i7;
-        this.f21052b = i10;
-        this.f21053c = null;
+        this.f21147a = i7;
+        this.f21148b = i10;
+        this.f21149c = null;
     }
 }

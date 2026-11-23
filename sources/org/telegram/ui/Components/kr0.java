@@ -2,161 +2,55 @@ package org.telegram.ui.Components;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.util.SparseBooleanArray;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class kr0 implements ViewTreeObserver.OnPreDrawListener {
-    public final ek0 f36928a;
-    public final SparseBooleanArray f36929b;
-    public final View f36930c;
-    public final int d;
-    public final jt0 f36931e;
+    public final int f36868a;
+    public final int f36869b;
+    public final KeyEvent.Callback f36870c;
 
-    public kr0(jt0 jt0Var, ek0 ek0Var, SparseBooleanArray sparseBooleanArray, yz yzVar, int i7) {
-        this.f36931e = jt0Var;
-        this.f36928a = ek0Var;
-        this.f36929b = sparseBooleanArray;
-        this.f36930c = yzVar;
-        this.d = i7;
+    public kr0(KeyEvent.Callback callback, int i7, int i10) {
+        this.f36868a = i10;
+        this.f36870c = callback;
+        this.f36869b = i7;
     }
 
     @Override
     public final boolean onPreDraw() {
-        View childAt;
-        jt0 jt0Var = this.f36931e;
-        jt0Var.getViewTreeObserver().removeOnPreDrawListener(this);
-        final ek0 ek0Var = this.f36928a;
-        v4.h0 adapter = ek0Var.getAdapter();
-        if (adapter != jt0Var.K && adapter != jt0Var.N && adapter != jt0Var.P && adapter != jt0Var.O) {
-            int childCount = ek0Var.getChildCount();
-            AnimatorSet animatorSet = new AnimatorSet();
-            for (int i7 = 0; i7 < childCount; i7++) {
-                View childAt2 = ek0Var.getChildAt(i7);
-                View view = this.f36930c;
-                if (childAt2 != view && RecyclerView.R(childAt2) >= this.d - 1) {
-                    childAt2.setAlpha(0.0f);
-                    ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt2, View.ALPHA, 0.0f, 1.0f);
-                    ofFloat.setStartDelay((int) ((Math.min(ek0Var.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / ek0Var.getMeasuredHeight()) * 100.0f));
-                    ofFloat.setDuration(200L);
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            switch (r1) {
-                                case 0:
-                                    ek0 ek0Var2 = ek0Var;
-                                    if (ek0Var2.b1()) {
-                                        ek0Var2.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                case 1:
-                                    ek0 ek0Var3 = ek0Var;
-                                    if (ek0Var3.b1()) {
-                                        ek0Var3.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    ek0 ek0Var4 = ek0Var;
-                                    if (ek0Var4.b1()) {
-                                        ek0Var4.invalidate();
-                                        return;
-                                    }
-                                    return;
-                            }
+        int i7 = this.f36868a;
+        int i10 = this.f36869b;
+        KeyEvent.Callback callback = this.f36870c;
+        switch (i7) {
+            case 0:
+                it0 it0Var = (it0) callback;
+                it0Var.f36133n0[i10].getViewTreeObserver().removeOnPreDrawListener(this);
+                it0Var.e0(i10);
+                return true;
+            default:
+                q51 q51Var = (q51) callback;
+                di.b1 b1Var = q51Var.f38698o1;
+                b1Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                int childCount = b1Var.getChildCount();
+                AnimatorSet animatorSet = new AnimatorSet();
+                for (int i11 = 0; i11 < childCount; i11++) {
+                    View childAt = b1Var.getChildAt(i11);
+                    b1Var.getClass();
+                    int R = RecyclerView.R(childAt);
+                    if (R >= i10) {
+                        if (R == 1 && b1Var.getAdapter() == q51Var.f38699p1 && (childAt instanceof org.telegram.ui.Cells.y3)) {
+                            childAt = ((org.telegram.ui.Cells.y3) childAt).getTextView();
                         }
-                    });
-                    animatorSet.playTogether(ofFloat);
-                }
-                if (view != null && view.getParent() == null) {
-                    ek0Var.addView(view);
-                    v4.o0 layoutManager = ek0Var.getLayoutManager();
-                    if (layoutManager != null) {
-                        layoutManager.M(view);
-                        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view, View.ALPHA, view.getAlpha(), 0.0f);
-                        ofFloat2.addListener(new s60(this, layoutManager));
-                        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                switch (r1) {
-                                    case 0:
-                                        ek0 ek0Var2 = ek0Var;
-                                        if (ek0Var2.b1()) {
-                                            ek0Var2.invalidate();
-                                            return;
-                                        }
-                                        return;
-                                    case 1:
-                                        ek0 ek0Var3 = ek0Var;
-                                        if (ek0Var3.b1()) {
-                                            ek0Var3.invalidate();
-                                            return;
-                                        }
-                                        return;
-                                    default:
-                                        ek0 ek0Var4 = ek0Var;
-                                        if (ek0Var4.b1()) {
-                                            ek0Var4.invalidate();
-                                            return;
-                                        }
-                                        return;
-                                }
-                            }
-                        });
-                        ofFloat2.start();
+                        childAt.setAlpha(0.0f);
+                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
+                        ofFloat.setStartDelay((int) ((Math.min(b1Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / b1Var.getMeasuredHeight()) * 100.0f));
+                        ofFloat.setDuration(200L);
+                        animatorSet.playTogether(ofFloat);
                     }
                 }
-            }
-            animatorSet.start();
-            return true;
+                animatorSet.start();
+                return true;
         }
-        SparseBooleanArray sparseBooleanArray = this.f36929b;
-        if (sparseBooleanArray != null) {
-            int childCount2 = ek0Var.getChildCount();
-            for (int i10 = 0; i10 < childCount2; i10++) {
-                int o4 = jt0.o(ek0Var.getChildAt(i10));
-                if (o4 != 0 && sparseBooleanArray.get(o4, false)) {
-                    jt0Var.S1.put(o4, Float.valueOf(0.0f));
-                    ValueAnimator ofFloat3 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    ofFloat3.addUpdateListener(new hi.a4(this, o4, ek0Var));
-                    ofFloat3.addListener(new ki.e2(this, o4, 13));
-                    ofFloat3.setStartDelay((int) ((Math.min(ek0Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / ek0Var.getMeasuredHeight()) * 100.0f));
-                    ofFloat3.setDuration(250L);
-                    ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            switch (r1) {
-                                case 0:
-                                    ek0 ek0Var2 = ek0Var;
-                                    if (ek0Var2.b1()) {
-                                        ek0Var2.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                case 1:
-                                    ek0 ek0Var3 = ek0Var;
-                                    if (ek0Var3.b1()) {
-                                        ek0Var3.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    ek0 ek0Var4 = ek0Var;
-                                    if (ek0Var4.b1()) {
-                                        ek0Var4.invalidate();
-                                        return;
-                                    }
-                                    return;
-                            }
-                        }
-                    });
-                    ofFloat3.start();
-                }
-                ek0Var.invalidate();
-            }
-        }
-        return true;
     }
 }

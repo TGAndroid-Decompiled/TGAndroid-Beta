@@ -6,18 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 public final class k5 extends FrameLayout {
-    public final int f44457a;
-    public final n6 f44458b;
+    public final int f44571a;
+    public final o6 f44572b;
 
-    public k5(n6 n6Var, Context context, int i7) {
+    public k5(o6 o6Var, Context context, int i7) {
         super(context);
-        this.f44457a = i7;
-        this.f44458b = n6Var;
+        this.f44571a = i7;
+        this.f44572b = o6Var;
     }
 
     @Override
     public void dispatchSetPressed(boolean z10) {
-        switch (this.f44457a) {
+        switch (this.f44571a) {
             case 0:
                 return;
             default:
@@ -31,11 +31,11 @@ public final class k5 extends FrameLayout {
         int i7;
         int i10;
         int i11;
-        switch (this.f44457a) {
+        switch (this.f44571a) {
             case 0:
-                n6 n6Var = this.f44458b;
-                if (n6Var.f44649q0) {
-                    bi.i6 i6Var = n6Var.f34671a;
+                o6 o6Var = this.f44572b;
+                if (o6Var.f44811q0) {
+                    bi.i6 i6Var = o6Var.f34213a;
                     if (i6Var != null) {
                         i11 = i6Var.getPaddingTop();
                     } else {
@@ -48,7 +48,7 @@ public final class k5 extends FrameLayout {
                 canvas.save();
                 int width = getWidth();
                 int height = getHeight();
-                bi.i6 i6Var2 = n6Var.f34671a;
+                bi.i6 i6Var2 = o6Var.f34213a;
                 if (i6Var2 != null) {
                     i10 = i6Var2.getPaddingBottom();
                 } else {
@@ -65,7 +65,7 @@ public final class k5 extends FrameLayout {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f44457a) {
+        switch (this.f44571a) {
             case 0:
                 super.onAttachedToWindow();
                 if (getParent() instanceof ViewGroup) {
@@ -83,11 +83,11 @@ public final class k5 extends FrameLayout {
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         int i13;
         int i14;
-        switch (this.f44457a) {
+        switch (this.f44571a) {
             case 0:
-                n6 n6Var = this.f44458b;
-                hi.h1 h1Var = n6Var.f44653s0;
-                bi.i6 i6Var = n6Var.f34671a;
+                o6 o6Var = this.f44572b;
+                hi.q1 q1Var = o6Var.f44815s0;
+                bi.i6 i6Var = o6Var.f34213a;
                 if (i6Var != null) {
                     i13 = i6Var.getPaddingTop();
                 } else {
@@ -96,13 +96,13 @@ public final class k5 extends FrameLayout {
                 int i15 = -i13;
                 int i16 = i11 - i7;
                 int i17 = i12 - i10;
-                bi.i6 i6Var2 = n6Var.f34671a;
+                bi.i6 i6Var2 = o6Var.f34213a;
                 if (i6Var2 != null) {
                     i14 = i6Var2.getPaddingBottom();
                 } else {
                     i14 = 0;
                 }
-                h1Var.layout(0, i15, i16, i14 + i17);
+                q1Var.layout(0, i15, i16, i14 + i17);
                 return;
             default:
                 super.onLayout(z10, i7, i10, i11, i12);
@@ -113,15 +113,15 @@ public final class k5 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         int i11;
-        switch (this.f44457a) {
+        switch (this.f44571a) {
             case 0:
                 int size = View.MeasureSpec.getSize(i7);
                 int size2 = View.MeasureSpec.getSize(i10);
                 setMeasuredDimension(size, size2);
-                n6 n6Var = this.f44458b;
-                hi.h1 h1Var = n6Var.f44653s0;
+                o6 o6Var = this.f44572b;
+                hi.q1 q1Var = o6Var.f44815s0;
                 int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-                bi.i6 i6Var = n6Var.f34671a;
+                bi.i6 i6Var = o6Var.f34213a;
                 int i12 = 0;
                 if (i6Var != null) {
                     i11 = i6Var.getPaddingTop();
@@ -129,15 +129,15 @@ public final class k5 extends FrameLayout {
                     i11 = 0;
                 }
                 int i13 = i11 + size2;
-                bi.i6 i6Var2 = n6Var.f34671a;
+                bi.i6 i6Var2 = o6Var.f34213a;
                 if (i6Var2 != null) {
                     i12 = i6Var2.getPaddingBottom();
                 }
-                h1Var.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i12 + i13, 1073741824));
+                q1Var.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i12 + i13, 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);
-                setMeasuredDimension(getMeasuredWidth(), (int) Math.ceil(this.f44458b.T.d(org.telegram.messenger.g0.L(4.0f))));
+                setMeasuredDimension(getMeasuredWidth(), (int) Math.ceil(this.f44572b.T.d(org.telegram.messenger.g0.L(4.0f))));
                 return;
         }
     }

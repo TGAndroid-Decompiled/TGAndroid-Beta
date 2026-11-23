@@ -1,7 +1,7 @@
 package p;
 
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.fc;
+import org.telegram.ui.Components.kc;
 public interface a {
-    gc a(lc lcVar);
+    fc a(kc kcVar);
 }

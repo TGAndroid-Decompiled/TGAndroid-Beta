@@ -5,20 +5,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.LaunchActivity;
 public final class cg implements Runnable {
-    public final org.telegram.messenger.gj f34161a;
-    public final long f34162b;
-    public final TL_keyboard.KeyboardButtonProto f34163c;
-    public final org.telegram.messenger.gj d;
-    public final TLRPC.User f34164e;
-    public final ChatActivityEnterView f34165f;
+    public final org.telegram.messenger.fj f34049a;
+    public final long f34050b;
+    public final TL_keyboard.KeyboardButtonProto f34051c;
+    public final org.telegram.messenger.fj d;
+    public final TLRPC.User f34052e;
+    public final ChatActivityEnterView f34053f;
 
-    public cg(ChatActivityEnterView chatActivityEnterView, org.telegram.messenger.gj gjVar, long j3, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.messenger.gj gjVar2, TLRPC.User user) {
-        this.f34165f = chatActivityEnterView;
-        this.f34161a = gjVar;
-        this.f34162b = j3;
-        this.f34163c = keyboardButtonProto;
-        this.d = gjVar2;
-        this.f34164e = user;
+    public cg(ChatActivityEnterView chatActivityEnterView, org.telegram.messenger.fj fjVar, long j3, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.messenger.fj fjVar2, TLRPC.User user) {
+        this.f34053f = chatActivityEnterView;
+        this.f34049a = fjVar;
+        this.f34050b = j3;
+        this.f34051c = keyboardButtonProto;
+        this.d = fjVar2;
+        this.f34052e = user;
     }
 
     @Override
@@ -26,19 +26,19 @@ public final class cg implements Runnable {
         int i7;
         long j92;
         String H1;
-        ChatActivityEnterView chatActivityEnterView = this.f34165f;
+        ChatActivityEnterView chatActivityEnterView = this.f34053f;
         org.telegram.ui.bn bnVar = chatActivityEnterView.F3;
-        if (chatActivityEnterView.f32557c2.Q() <= org.telegram.messenger.g0.L(20.0f) && !chatActivityEnterView.S0()) {
+        if (chatActivityEnterView.f32655c2.Q() <= org.telegram.messenger.g0.L(20.0f) && !chatActivityEnterView.T0()) {
             if (bnVar != null) {
                 int i10 = chatActivityEnterView.R;
-                long j3 = this.f34161a.f24177k.dialog_id;
-                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f34163c;
+                long j3 = this.f34049a.f24073k.dialog_id;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f34051c;
                 String text = keyboardButtonProto.getText();
                 String url = keyboardButtonProto.getUrl();
                 boolean c10 = cg.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
-                org.telegram.messenger.gj gjVar = this.d;
-                if (gjVar != null) {
-                    i7 = gjVar.f24177k.f28419id;
+                org.telegram.messenger.fj fjVar = this.d;
+                if (fjVar != null) {
+                    i7 = fjVar.f24073k.f28513id;
                 } else {
                     i7 = 0;
                 }
@@ -47,7 +47,7 @@ public final class cg implements Runnable {
                 } else {
                     j92 = bnVar.j9();
                 }
-                ki.e4 b10 = ki.e4.b(i10, j3, this.f34162b, text, url, c10 ? 1 : 0, i7, j92, null, false, null, null, 0, false, false);
+                ki.f4 b10 = ki.f4.b(i10, j3, this.f34050b, text, url, c10 ? 1 : 0, i7, j92, null, false, null, null, 0, false, false);
                 LaunchActivity launchActivity = LaunchActivity.H1;
                 if (launchActivity != null && launchActivity.N() != null && LaunchActivity.H1.N().k(b10) != null) {
                     ki.y yVar = chatActivityEnterView.m0;
@@ -57,26 +57,26 @@ public final class cg implements Runnable {
                     }
                     return;
                 }
-                TLRPC.User user = this.f34164e;
+                TLRPC.User user = this.f34052e;
                 if (user == null) {
                     H1 = null;
                 } else {
-                    H1 = org.telegram.messenger.np.u1(chatActivityEnterView.R).H1(user.restriction_reason);
+                    H1 = org.telegram.messenger.mp.u1(chatActivityEnterView.R).H1(user.restriction_reason);
                 }
                 if (!TextUtils.isEmpty(H1)) {
-                    org.telegram.messenger.np.u1(chatActivityEnterView.R);
-                    org.telegram.messenger.np.d5(H1, bnVar);
+                    org.telegram.messenger.mp.u1(chatActivityEnterView.R);
+                    org.telegram.messenger.mp.d5(H1, bnVar);
                     return;
                 }
-                ki.s2 s2Var = new ki.s2(chatActivityEnterView.getContext(), chatActivityEnterView.M4);
-                s2Var.m0 = chatActivityEnterView.E3;
-                s2Var.x(bnVar, b10);
-                s2Var.show();
+                ki.t2 t2Var = new ki.t2(chatActivityEnterView.getContext(), chatActivityEnterView.M4);
+                t2Var.m0 = chatActivityEnterView.E3;
+                t2Var.x(bnVar, b10);
+                t2Var.show();
                 return;
             }
             return;
         }
-        chatActivityEnterView.K0(false);
+        chatActivityEnterView.L0(false);
         org.telegram.messenger.g0.v1(chatActivityEnterView);
         org.telegram.messenger.g0.h3(this, 150L);
     }

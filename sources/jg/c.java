@@ -6,39 +6,39 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.q5;
 public abstract class c extends rg.b {
     public final boolean d;
-    public final boolean f17399e;
-    public final ArrayList f17400f = new ArrayList();
+    public final boolean f17501e;
+    public final ArrayList f17502f = new ArrayList();
     public String h;
-    public b f17401n;
-    public a f17402r;
-    public int f17403s;
-    public boolean f17404w;
+    public b f17503n;
+    public a f17504r;
+    public int f17505s;
+    public boolean f17506w;
 
     public c(boolean z10, boolean z11) {
         this.d = z10;
-        this.f17399e = z11;
+        this.f17501e = z11;
     }
 
     public final void F() {
-        if (this.f17402r != null) {
-            Utilities.f22776g.a(this.f17402r);
-            this.f17402r = null;
+        if (this.f17504r != null) {
+            Utilities.f22879g.a(this.f17504r);
+            this.f17504r = null;
         }
-        this.f17403s++;
+        this.f17505s++;
     }
 
     public final void G(String str) {
         F();
         if (TextUtils.isEmpty(str)) {
-            this.f17400f.clear();
-            this.f17404w = false;
+            this.f17502f.clear();
+            this.f17506w = false;
             f();
             return;
         }
-        this.f17404w = true;
-        q5 q5Var = Utilities.f22776g;
+        this.f17506w = true;
+        q5 q5Var = Utilities.f22879g;
         a aVar = new a((s0) this, str, 0);
-        this.f17402r = aVar;
+        this.f17504r = aVar;
         q5Var.d(aVar, 400L);
     }
 }

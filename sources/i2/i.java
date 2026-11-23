@@ -1,20 +1,20 @@
 package i2;
 
 import h9.i0;
-import h9.t1;
+import h9.s1;
 public final class i {
-    public final i0 f15929a;
-    public final int[] f15930b;
+    public final i0 f16024a;
+    public final int[] f16025b;
 
-    public i(t1 t1Var, int[] iArr, int i7) {
+    public i(s1 s1Var, int[] iArr, int i7) {
         switch (i7) {
             case 1:
-                this.f15929a = i0.q(t1Var);
-                this.f15930b = iArr;
+                this.f16024a = i0.q(s1Var);
+                this.f16025b = iArr;
                 return;
             default:
-                this.f15929a = i0.q(t1Var);
-                this.f15930b = iArr;
+                this.f16024a = i0.q(s1Var);
+                this.f16025b = iArr;
                 return;
         }
     }

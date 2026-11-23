@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class b extends ea {
-    public final int f55156a;
+    public final int f55272a;
 
     public static q3.a c(x xVar) {
         String v = xVar.v();
@@ -22,7 +22,7 @@ public final class b extends ea {
 
     @Override
     public final q0 b(o3.a aVar, ByteBuffer byteBuffer) {
-        switch (this.f55156a) {
+        switch (this.f55272a) {
             case 0:
                 if (byteBuffer.get() != 116) {
                     return null;

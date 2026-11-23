@@ -1,39 +1,27 @@
 package gb;
+public final class u0 implements r0 {
+    public static final double f13411f = Math.random();
+    public static final int f13412g = 0;
+    public final o9.g f13413a;
+    public final va.d f13414b;
+    public final jb.l f13415c;
+    public final l d;
+    public final id.h f13416e;
 
-import java.util.Locale;
-import java.util.UUID;
-public final class u0 {
-    public final h1 f13414a;
-    public final i1 f13415b;
-
-    public u0(h1 timeProvider, i1 uuidGenerator) {
-        kotlin.jvm.internal.j.e(timeProvider, "timeProvider");
-        kotlin.jvm.internal.j.e(uuidGenerator, "uuidGenerator");
-        this.f13414a = timeProvider;
-        this.f13415b = uuidGenerator;
+    public u0(o9.g firebaseApp, va.d firebaseInstallations, jb.l sessionSettings, l eventGDTLogger, id.h backgroundDispatcher) {
+        kotlin.jvm.internal.j.e(firebaseApp, "firebaseApp");
+        kotlin.jvm.internal.j.e(firebaseInstallations, "firebaseInstallations");
+        kotlin.jvm.internal.j.e(sessionSettings, "sessionSettings");
+        kotlin.jvm.internal.j.e(eventGDTLogger, "eventGDTLogger");
+        kotlin.jvm.internal.j.e(backgroundDispatcher, "backgroundDispatcher");
+        this.f13413a = firebaseApp;
+        this.f13414b = firebaseInstallations;
+        this.f13415c = sessionSettings;
+        this.d = eventGDTLogger;
+        this.f13416e = backgroundDispatcher;
     }
 
-    public final n0 a(n0 n0Var) {
-        String str;
-        int i7;
-        String str2;
-        this.f13415b.getClass();
-        UUID randomUUID = UUID.randomUUID();
-        kotlin.jvm.internal.j.d(randomUUID, "randomUUID(...)");
-        String uuid = randomUUID.toString();
-        kotlin.jvm.internal.j.d(uuid, "toString(...)");
-        String lowerCase = xd.l.c(uuid, "-", "").toLowerCase(Locale.ROOT);
-        kotlin.jvm.internal.j.d(lowerCase, "toLowerCase(...)");
-        if (n0Var != null && (str2 = n0Var.f13383b) != null) {
-            str = str2;
-        } else {
-            str = lowerCase;
-        }
-        if (n0Var != null) {
-            i7 = n0Var.f13384c + 1;
-        } else {
-            i7 = 0;
-        }
-        return new n0(this.f13414a.a().f13339b, lowerCase, str, i7);
+    public static final java.lang.Object a(gb.u0 r6, kd.c r7) {
+        throw new UnsupportedOperationException("Method not decompiled: gb.u0.a(gb.u0, kd.c):java.lang.Object");
     }
 }

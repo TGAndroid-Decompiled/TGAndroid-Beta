@@ -1,9 +1,9 @@
 package da;
 public final class h1 extends m2 {
-    public final String f8034a;
+    public final String f8033a;
 
     public h1(String str) {
-        this.f8034a = str;
+        this.f8033a = str;
     }
 
     public final boolean equals(Object obj) {
@@ -11,16 +11,16 @@ public final class h1 extends m2 {
             return true;
         }
         if (obj instanceof m2) {
-            return this.f8034a.equals(((h1) ((m2) obj)).f8034a);
+            return this.f8033a.equals(((h1) ((m2) obj)).f8033a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f8034a.hashCode() ^ 1000003;
+        return this.f8033a.hashCode() ^ 1000003;
     }
 
     public final String toString() {
-        return a8.p0.s(new StringBuilder("Log{content="), this.f8034a, "}");
+        return a8.p0.s(new StringBuilder("Log{content="), this.f8033a, "}");
     }
 }

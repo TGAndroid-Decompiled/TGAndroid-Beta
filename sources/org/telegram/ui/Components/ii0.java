@@ -3,47 +3,47 @@ package org.telegram.ui.Components;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-public final class ii0 implements org.telegram.messenger.y10 {
-    public final int f36214a;
-    public final xi0 f36215b;
+public final class ii0 implements org.telegram.messenger.w10 {
+    public final int f36025a;
+    public final xi0 f36026b;
 
     public ii0(xi0 xi0Var, int i7) {
-        this.f36214a = i7;
-        this.f36215b = xi0Var;
+        this.f36025a = i7;
+        this.f36026b = xi0Var;
     }
 
     @Override
     public final void a(Object obj) {
         float f10;
         View view = (View) obj;
-        switch (this.f36214a) {
+        switch (this.f36025a) {
             case 0:
-                xi0 xi0Var = this.f36215b;
+                xi0 xi0Var = this.f36026b;
                 ArrayList arrayList = xi0Var.d;
-                xi0Var.f42059b.getClass();
+                xi0Var.f42011b.getClass();
                 int R = RecyclerView.R(view);
                 if (R >= 0 && R < arrayList.size() && (view instanceof vi0)) {
-                    ((vi0) view).f(((oi0) arrayList.get(R)).f38210c, true);
+                    ((vi0) view).f(((oi0) arrayList.get(R)).f38161c, true);
                     return;
                 }
                 return;
             default:
                 if (view instanceof vi0) {
                     vi0 vi0Var = (vi0) view;
-                    ui0 ui0Var = vi0Var.f40788b;
+                    ui0 ui0Var = vi0Var.f40709b;
                     vi0Var.O = false;
                     float f11 = 1.0f;
                     ui0Var.setAlpha(1.0f);
-                    if (this.f36215b.O0) {
+                    if (this.f36026b.O0) {
                         float f12 = vi0Var.J;
-                        if (vi0Var.f40796x) {
+                        if (vi0Var.f40717x) {
                             f10 = 0.76f;
                         } else {
                             f10 = 1.0f;
                         }
                         ui0Var.setScaleX(f12 * f10);
                         float f13 = vi0Var.J;
-                        if (vi0Var.f40796x) {
+                        if (vi0Var.f40717x) {
                             f11 = 0.76f;
                         }
                         ui0Var.setScaleY(f13 * f11);

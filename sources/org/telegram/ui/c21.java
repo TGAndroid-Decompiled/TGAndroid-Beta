@@ -1,147 +1,100 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class c21 extends v4.t0 {
-    public final int f46381a;
-    public final Object f46382b;
+import android.view.View;
+import java.util.HashMap;
+public final class c21 extends org.telegram.ui.Components.ra implements org.telegram.messenger.fs {
+    public final org.telegram.ui.Components.ty T1;
+    public final hi.e U1;
+    public final fi.h6 V1;
+    public final HashMap W1;
+    public final int X1;
+    public int Y1;
+    public org.telegram.ui.Components.b51 Z1;
 
-    public c21(Object obj, int i7) {
-        this.f46381a = i7;
-        this.f46382b = obj;
+    public c21(org.telegram.ui.ActionBar.g2 r17, long r18, int r20, bi.d5 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.c21.<init>(org.telegram.ui.ActionBar.g2, long, int, bi.d5):void");
     }
 
     @Override
-    public void a(RecyclerView recyclerView, int i7) {
-        switch (this.f46381a) {
-            case 1:
-                if (i7 == 0) {
-                    o31 o31Var = (o31) this.f46382b;
-                    if (o31Var.F != null) {
-                        org.telegram.ui.ActionBar.g5 g5Var = o31Var.d;
-                        if (g5Var == null || !g5Var.x()) {
-                            float f10 = o31Var.Y;
-                            if (f10 > 0.0f && f10 < 1.0f) {
-                                if (f10 >= 0.5f) {
-                                    o31Var.f50444c.w0(0, (int) (-(o31Var.f50441a0 - o31Var.Z)), org.telegram.ui.Components.nr.h);
-                                    return;
-                                } else {
-                                    o31Var.f50444c.w0(0, (int) Math.ceil(o31Var.Z - o31Var.f50443b0), org.telegram.ui.Components.nr.h);
-                                    return;
-                                }
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 2:
-            case 5:
-            default:
-                return;
-            case 3:
-                if (i7 == 0) {
-                    ((x71) this.f46382b).f53691t0 = false;
-                    return;
-                }
-                return;
-            case 4:
-                if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(((p81) this.f46382b).getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            case 6:
-                if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(((UsersSelectActivity) this.f46382b).f43906c);
-                    return;
-                }
-                return;
-            case 7:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f46382b;
-                boolean z10 = true;
-                if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(wallpapersListActivity.getParentActivity().getCurrentFocus());
-                }
-                if (i7 == 0) {
-                    z10 = false;
-                }
-                wallpapersListActivity.f45399g0 = z10;
-                return;
+    public final org.telegram.ui.Components.dk0 M0(org.telegram.ui.Components.ek0 ek0Var) {
+        org.telegram.ui.Components.b51 b51Var = new org.telegram.ui.Components.b51(ek0Var, getContext(), this.f30223a, 0, false, new a5(this, 26), this.J0);
+        this.Z1 = b51Var;
+        b51Var.f33631r = false;
+        return b51Var;
+    }
+
+    @Override
+    public final CharSequence P0() {
+        return org.telegram.messenger.gd.N0(2131744557, null);
+    }
+
+    @Override
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == org.telegram.messenger.ks.A5 && ((fi.h6) objArr[0]) == this.V1) {
+            this.Z1.O(false);
+            e1();
         }
     }
 
-    @Override
-    public void b(RecyclerView recyclerView, int i7, int i10) {
+    public final void e1() {
         int abs;
-        switch (this.f46381a) {
-            case 0:
-                ((d21) this.f46382b).e1();
-                return;
-            case 1:
-                o31 o31Var = (o31) this.f46382b;
-                o31Var.o0(false, true);
-                o31Var.p0();
-                if (o31Var.f50444c.J1) {
-                    org.telegram.messenger.g0.v1(o31Var.fragmentView);
-                    return;
-                }
-                return;
-            case 2:
-                c51 c51Var = (c51) this.f46382b;
-                if (c51Var.f46443v0.size() != c51Var.f46445w0.size() && !c51Var.A0 && c51Var.U.N0() > c51Var.X.f48185d0 - 20) {
-                    c51Var.k0();
-                    return;
-                }
-                return;
-            case 3:
-                x71 x71Var = (x71) this.f46382b;
-                x71Var.f53698w0.g1();
-                x71Var.f53691t0 = true;
-                return;
-            case 4:
-            case 6:
-            default:
-                return;
-            case 5:
-                u91 u91Var = (u91) this.f46382b;
-                if (u91Var.f52488p0 && u91Var.f52475b0.N0() + 5 >= u91Var.f52486n0) {
-                    u91Var.H(u91Var.f52478e0);
-                }
-                y91 y91Var = u91Var.f52495w0;
-                if (y91Var.f54117t0) {
-                    if (i7 != 0 || i10 != 0) {
-                        org.telegram.messenger.g0.v1(y91Var.f54110q0.getSearchField());
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 7:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f46382b;
-                if (wallpapersListActivity.G.getAdapter() == wallpapersListActivity.I) {
-                    int L0 = wallpapersListActivity.J.L0();
-                    if (L0 == -1) {
-                        abs = 0;
-                    } else {
-                        abs = Math.abs(wallpapersListActivity.J.N0() - L0) + 1;
-                    }
-                    if (abs > 0) {
-                        int B = wallpapersListActivity.J.B();
-                        if (abs != 0 && L0 + abs > B - 2) {
-                            uc1 uc1Var = wallpapersListActivity.I;
-                            if (!uc1Var.f52528f && uc1Var.f52531s == 0) {
-                                uc1Var.F(uc1Var.h, uc1Var.f52530r, true);
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
+        org.telegram.ui.Components.ty tyVar = this.T1;
+        int L0 = tyVar.L0();
+        if (L0 == -1) {
+            abs = 0;
+        } else {
+            abs = Math.abs(tyVar.N0() - L0) + 1;
         }
+        fi.h6 h6Var = this.V1;
+        if (h6Var != null) {
+            int i7 = L0 + abs;
+            int i10 = h6Var.i();
+            int i11 = this.X1;
+            if (i7 > i10 - i11) {
+                h6Var.p(Math.min(100, Math.max(1, i11 / 2) * i11 * i11), false);
+            }
+        }
+    }
+
+    public final boolean f1(int i7, View view) {
+        org.telegram.ui.Components.n41 G;
+        org.telegram.ui.Components.b51 b51Var = this.Z1;
+        if (b51Var == null || i7 == 0 || (G = b51Var.G(i7 - 1)) == null) {
+            return false;
+        }
+        Object obj = G.H;
+        if (obj instanceof org.telegram.messenger.fj) {
+            org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) obj;
+            int e12 = fjVar.e1();
+            Integer valueOf = Integer.valueOf(e12);
+            HashMap hashMap = this.W1;
+            if (hashMap.containsKey(valueOf)) {
+                hashMap.remove(Integer.valueOf(e12));
+                G.f37648e = false;
+                ((org.telegram.ui.Cells.o7) view).i(false, true);
+            } else {
+                hashMap.put(Integer.valueOf(e12), fjVar.f24078l);
+                G.f37648e = true;
+                ((org.telegram.ui.Cells.o7) view).i(true, true);
+            }
+            hi.e eVar = this.U1;
+            eVar.setEnabled(!hashMap.isEmpty());
+            eVar.c(hashMap.size(), true);
+        }
+        return true;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.Y1 = this.V1.o();
+        org.telegram.messenger.ks.f(this.f30223a).c(this, org.telegram.messenger.ks.A5);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.V1.z(this.Y1);
+        org.telegram.messenger.ks.f(this.f30223a).n(this, org.telegram.messenger.ks.A5);
     }
 }

@@ -1,66 +1,61 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class e81 implements View.OnClickListener {
-    public final mf0 f47171a;
-    public final bn f47172b;
-    public final org.telegram.ui.Components.ek0 f47173c;
-    public final LinearLayout d;
-    public final org.telegram.ui.Components.a70 f47174e;
-    public final org.telegram.ui.Components.a70 f47175f;
-    public final i81 h;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+public final class e81 extends org.telegram.ui.Cells.r1 {
+    public final Paint Ad;
+    public final int Bd;
+    public final int Cd;
+    public final int Dd;
+    public final g81 Ed;
+    public final Path f47476zd;
 
-    public e81(i81 i81Var, mf0 mf0Var, bn bnVar, org.telegram.ui.Components.ek0 ek0Var, LinearLayout linearLayout, org.telegram.ui.Components.a70 a70Var, org.telegram.ui.Components.a70 a70Var2) {
-        this.h = i81Var;
-        this.f47171a = mf0Var;
-        this.f47172b = bnVar;
-        this.f47173c = ek0Var;
-        this.d = linearLayout;
-        this.f47174e = a70Var;
-        this.f47175f = a70Var2;
+    public e81(g81 g81Var, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var, int i10, int i11, int i12) {
+        super(context, i7, false, null, i6Var);
+        this.Ed = g81Var;
+        this.Bd = i10;
+        this.Cd = i11;
+        this.Dd = i12;
+        this.f47476zd = new Path();
+        this.Ad = new Paint(1);
     }
 
     @Override
-    public final void onClick(View view) {
-        mf0 mf0Var = this.f47171a;
-        ArrayList arrayList = mf0Var.f49841b;
-        ArrayList arrayList2 = mf0Var.f49842c;
-        if (!arrayList2.isEmpty()) {
-            int size = arrayList2.size();
-            i81 i81Var = this.h;
-            bn bnVar = this.f47172b;
-            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
-                TLObject tLObject = (TLObject) arrayList2.get(0);
-                if (tLObject == null) {
-                    return;
-                }
-                Bundle bundle = new Bundle();
-                if (tLObject instanceof TLRPC.User) {
-                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f28547id);
-                } else if (tLObject instanceof TLRPC.Chat) {
-                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f28398id);
-                }
-                bnVar.presentFragment(new ProfileActivity(bundle, null));
-                i81Var.c(false);
-                return;
-            }
-            if (org.telegram.messenger.cz.f23362c1 > 0 && bnVar.f46064m1.getKeyboardHeight() < org.telegram.messenger.g0.L(20.0f)) {
-                org.telegram.ui.Components.gc t6 = new org.telegram.ui.Components.lc(org.telegram.ui.Components.cb.a(i81Var.getContext()), i81Var.f48648a).t(org.telegram.messenger.g0.W2(org.telegram.messenger.hd.N0(2131748295, null)), null);
-                bnVar.C1 = t6;
-                t6.f35489j = 4000;
-                t6.j();
-                org.telegram.messenger.cz.S(org.telegram.messenger.cz.f23362c1 - 1);
-            }
-            org.telegram.ui.Components.ek0 ek0Var = this.f47173c;
-            ek0Var.requestLayout();
-            this.d.requestLayout();
-            ek0Var.getAdapter().f();
-            this.f47174e.L(this.f47175f);
-        }
+    public final void j1(Canvas canvas) {
+        this.S4 = 0;
+        this.T4 = this.Q4.size() - 1;
+        super.j1(canvas);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        int c22 = c2(this.Bd);
+        float V1 = V1(c22);
+        float U1 = U1(c22);
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(getPollButtonsLeft(), V1, getPollButtonsRight(), U1);
+        Path path = this.f47476zd;
+        path.rewind();
+        path.addRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), Path.Direction.CW);
+        Paint paint = this.Ad;
+        paint.setColor(0);
+        paint.setShadowLayer(org.telegram.messenger.g0.L(2.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.n6.r1(this.Ed.f48186y * 0.2f, -16777216));
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
+        canvas.clipPath(path);
+        d1(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        setMeasuredDimension(this.Cd, this.Dd);
+    }
+
+    @Override
+    public final void setPressed(boolean z10) {
     }
 }

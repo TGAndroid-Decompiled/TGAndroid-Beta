@@ -1,13 +1,27 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-public final class pv0 extends iz {
+import org.telegram.tgnet.TLRPC;
+public final class pv0 implements kp {
+    public final bx f51150a;
+    public final qv0 f51151b;
+
+    public pv0(qv0 qv0Var, bx bxVar) {
+        this.f51151b = qv0Var;
+        this.f51150a = bxVar;
+    }
+
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        canvas.save();
-        canvas.translate(org.telegram.messenger.g0.L(2.0f), 0.0f);
-        super.draw(canvas, charSequence, i7, i10, f10, i11, i12, i13, paint);
-        canvas.restore();
+    public final void b(int i7, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        ProfileActivity profileActivity = this.f51151b.f51546b;
+        profileActivity.N1 = true;
+        this.f51150a.removeSelfFromStack();
+        org.telegram.messenger.ks notificationCenter = profileActivity.getNotificationCenter();
+        int i10 = org.telegram.messenger.ks.f25289t;
+        notificationCenter.n(profileActivity, i10);
+        profileActivity.getNotificationCenter().k(i10, new Object[0]);
+    }
+
+    @Override
+    public final void a(TLRPC.User user) {
     }
 }

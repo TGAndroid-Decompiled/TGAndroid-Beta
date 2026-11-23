@@ -16,43 +16,43 @@ import h2.l0;
 import h2.x;
 import h9.g0;
 import h9.i0;
-import h9.t1;
+import h9.s1;
 import i5.c;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 public final class a implements m {
-    public final x f17219a = new x();
-    public final boolean f17220b;
-    public final int f17221c;
+    public final x f17316a = new x();
+    public final boolean f17317b;
+    public final int f17318c;
     public final int d;
-    public final String f17222e;
-    public final float f17223f;
+    public final String f17319e;
+    public final float f17320f;
     public final int h;
 
     public a(List list) {
         if (list.size() == 1 && (((byte[]) list.get(0)).length == 48 || ((byte[]) list.get(0)).length == 53)) {
             byte[] bArr = (byte[]) list.get(0);
-            this.f17221c = bArr[24];
+            this.f17318c = bArr[24];
             this.d = ((bArr[26] & 255) << 24) | ((bArr[27] & 255) << 16) | ((bArr[28] & 255) << 8) | (bArr[29] & 255);
-            this.f17222e = "Serif".equals(new String(bArr, 43, bArr.length - 43, StandardCharsets.UTF_8)) ? "serif" : "sans-serif";
+            this.f17319e = "Serif".equals(new String(bArr, 43, bArr.length - 43, StandardCharsets.UTF_8)) ? "serif" : "sans-serif";
             int i7 = bArr[25] * 20;
             this.h = i7;
             boolean z10 = (bArr[0] & 32) != 0;
-            this.f17220b = z10;
+            this.f17317b = z10;
             if (z10) {
-                this.f17223f = l0.h(((bArr[11] & 255) | ((bArr[10] & 255) << 8)) / i7, 0.0f, 0.95f);
+                this.f17320f = l0.h(((bArr[11] & 255) | ((bArr[10] & 255) << 8)) / i7, 0.0f, 0.95f);
                 return;
             } else {
-                this.f17223f = 0.85f;
+                this.f17320f = 0.85f;
                 return;
             }
         }
-        this.f17221c = 0;
+        this.f17318c = 0;
         this.d = -1;
-        this.f17222e = "sans-serif";
-        this.f17220b = false;
-        this.f17223f = 0.85f;
+        this.f17319e = "sans-serif";
+        this.f17317b = false;
+        this.f17320f = 0.85f;
         this.h = -1;
     }
 
@@ -100,12 +100,7 @@ public final class a implements m {
     }
 
     @Override
-    public final d q(int i7, int i10, byte[] bArr) {
-        return p0.a(this, bArr, i10);
-    }
-
-    @Override
-    public final void v(byte[] bArr, int i7, int i10, l lVar, j jVar) {
+    public final void E(byte[] bArr, int i7, int i10, l lVar, j jVar) {
         boolean z10;
         String y10;
         int i11;
@@ -113,7 +108,7 @@ public final class a implements m {
         boolean z12;
         boolean z13;
         int i12;
-        x xVar = this.f17219a;
+        x xVar = this.f17316a;
         xVar.L(i7 + i10, bArr);
         xVar.N(i7);
         int i13 = 1;
@@ -138,19 +133,19 @@ public final class a implements m {
             y10 = xVar.y(i17, J);
         }
         if (y10.isEmpty()) {
-            g0 g0Var = i0.f13998b;
-            jVar.accept(new c4.a(-9223372036854775807L, -9223372036854775807L, t1.f14066e));
+            g0 g0Var = i0.f13995b;
+            jVar.accept(new c4.a(-9223372036854775807L, -9223372036854775807L, s1.f14058e));
             return;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(y10);
-        b(spannableStringBuilder, this.f17221c, 0, 0, spannableStringBuilder.length(), 16711680);
+        b(spannableStringBuilder, this.f17318c, 0, 0, spannableStringBuilder.length(), 16711680);
         a(spannableStringBuilder, this.d, -1, 0, spannableStringBuilder.length(), 16711680);
         int length = spannableStringBuilder.length();
-        String str = this.f17222e;
+        String str = this.f17319e;
         if (str != "sans-serif") {
             spannableStringBuilder.setSpan(new TypefaceSpan(str), 0, length, 16711713);
         }
-        float f10 = this.f17223f;
+        float f10 = this.f17320f;
         while (xVar.a() >= 8) {
             int i18 = xVar.f13829b;
             int m10 = xVar.m();
@@ -191,7 +186,7 @@ public final class a implements m {
                     } else {
                         i12 = i20;
                         int i21 = H4;
-                        b(spannableStringBuilder, A, this.f17221c, H3, i21, 0);
+                        b(spannableStringBuilder, A, this.f17318c, H3, i21, 0);
                         a(spannableStringBuilder, m12, this.d, H3, i21, 0);
                     }
                     i19 = i12 + 1;
@@ -200,7 +195,7 @@ public final class a implements m {
                     i15 = 2;
                 }
                 i11 = i15;
-            } else if (m11 == 1952608120 && this.f17220b) {
+            } else if (m11 == 1952608120 && this.f17317b) {
                 i11 = 2;
                 if (xVar.a() >= 2) {
                     z11 = true;
@@ -221,8 +216,13 @@ public final class a implements m {
     }
 
     @Override
-    public final int y() {
+    public final int N() {
         return 2;
+    }
+
+    @Override
+    public final d s(int i7, int i10, byte[] bArr) {
+        return p0.a(this, bArr, i10);
     }
 
     @Override

@@ -1,215 +1,179 @@
 package kg;
 
-import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import c8.na;
-import hi.e7;
+import com.google.android.gms.internal.vision.e2;
+import j$.time.Instant;
+import j$.time.ZoneId;
+import j$.time.format.TextStyle;
 import java.util.ArrayList;
-import org.telegram.messenger.gs;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.si;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.mp;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.g2;
-import org.telegram.ui.ActionBar.g5;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Cells.s8;
-import org.telegram.ui.Components.c51;
-import org.telegram.ui.Components.ek0;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.o41;
-import org.telegram.ui.Components.q9;
-public final class z1 extends g2 implements gs {
-    public h51 f18546a;
-    public LinearLayout f18547b;
-    public ai.r1 f18548c;
-    public boolean d;
-    public String f18549e;
-    public String f18550f;
-    public boolean h;
-    public String f18551n;
+public final class z1 {
+    public static volatile z1[] f18643e = new z1[4];
+    public static final Object[] f18644f = new Object[4];
+    public final int f18645a;
+    public boolean f18646b;
+    public boolean f18647c;
+    public final ArrayList d = new ArrayList();
 
-    public static void Z(z1 z1Var, o41 o41Var, View view) {
-        if (o41Var.d == -1) {
-            boolean z10 = z1Var.h;
-            z1Var.h = !z10;
-            if (!z10) {
-                String str = z1Var.f18550f;
-                z1Var.f18551n = str;
-                ai.r1 r1Var = z1Var.f18548c;
-                if (r1Var != null) {
-                    r1Var.a(str);
-                }
-            }
-            ((s8) view).setChecked(z1Var.h);
-            z1Var.f18546a.f35742g3.O(true);
-        } else if (view.isEnabled()) {
-            a2 b10 = a2.b(z1Var.currentAccount);
-            ArrayList arrayList = b10.d;
-            int i7 = o41Var.d;
-            if (i7 >= 0) {
-                b10.g();
-                if (i7 < arrayList.size()) {
-                    b10.g();
-                    z1Var.h = false;
-                    String str2 = ((TLRPC.TL_timezone) arrayList.get(o41Var.d)).f28538id;
-                    z1Var.f18551n = str2;
-                    ai.r1 r1Var2 = z1Var.f18548c;
-                    if (r1Var2 != null) {
-                        r1Var2.a(str2);
-                    }
-                    if (z1Var.d) {
-                        z1Var.simpleActionBar.o(true);
-                    }
-                    z1Var.f18546a.f35742g3.O(true);
-                }
-            }
+    static {
+        for (int i7 = 0; i7 < 4; i7++) {
+            f18644f[i7] = new Object();
         }
     }
 
-    public static void a0(z1 z1Var, ArrayList arrayList, c51 c51Var) {
-        boolean z10;
-        boolean z11;
-        if (z1Var.d && !TextUtils.isEmpty(z1Var.f18549e)) {
-            z10 = true;
+    public z1(int i7) {
+        this.f18645a = i7;
+    }
+
+    public static z1 b(int i7) {
+        z1 z1Var;
+        z1 z1Var2 = f18643e[i7];
+        if (z1Var2 == null) {
+            synchronized (f18644f[i7]) {
+                try {
+                    z1Var = f18643e[i7];
+                    if (z1Var == null) {
+                        z1[] z1VarArr = f18643e;
+                        z1 z1Var3 = new z1(i7);
+                        z1VarArr[i7] = z1Var3;
+                        z1Var = z1Var3;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            return z1Var;
+        }
+        return z1Var2;
+    }
+
+    public static String e(TLRPC.TL_timezone tL_timezone, boolean z10) {
+        if (tL_timezone == null) {
+            return null;
+        }
+        if (z10) {
+            return tL_timezone.name + ", " + f(tL_timezone);
+        }
+        return tL_timezone.name;
+    }
+
+    public static String f(TLRPC.TL_timezone tL_timezone) {
+        String str;
+        String str2;
+        int i7 = tL_timezone.utc_offset;
+        if (i7 == 0) {
+            return "GMT";
+        }
+        if (i7 < 0) {
+            str = "-";
         } else {
-            z10 = false;
+            str = "+";
         }
-        a2 b10 = a2.b(z1Var.currentAccount);
-        ArrayList arrayList2 = b10.d;
-        if (!z10) {
-            c51Var.V();
-            String N0 = hd.N0(2131743879, null);
-            o41 o41Var = new o41(9);
-            o41Var.d = -1;
-            o41Var.f38058m = N0;
-            o41Var.L(z1Var.h);
-            arrayList.add(o41Var);
-            c51Var.U();
-            arrayList.add(o41.C(hd.a0(null, null, 2131743878, b10.d(z1Var.f18551n, true))));
+        String concat = "GMT".concat(str);
+        int abs = Math.abs(tL_timezone.utc_offset) / 60;
+        int i10 = abs / 60;
+        int i11 = abs % 60;
+        StringBuilder m10 = e2.m(concat);
+        String str3 = "";
+        if (i10 >= 10) {
+            str2 = "";
+        } else {
+            str2 = "0";
         }
-        c51Var.V();
-        if (!z10) {
-            i5.c.s(2131743877, null, arrayList);
+        m10.append(str2);
+        m10.append(i10);
+        StringBuilder m11 = e2.m(p5.c.v(m10.toString(), ":"));
+        if (i11 < 10) {
+            str3 = "0";
         }
-        boolean z12 = true;
+        m11.append(str3);
+        m11.append(i11);
+        return m11.toString();
+    }
+
+    public final TLRPC.TL_timezone a(String str) {
+        if (str == null) {
+            return null;
+        }
+        g();
         int i7 = 0;
         while (true) {
-            b10.g();
-            if (i7 >= arrayList2.size()) {
-                break;
+            ArrayList arrayList = this.d;
+            if (i7 >= arrayList.size()) {
+                return null;
             }
-            b10.g();
-            TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList2.get(i7);
-            CharSequence e10 = a2.e(tL_timezone, false);
-            if (z10) {
-                String replace = org.telegram.messenger.g0.M3(tL_timezone.name).toLowerCase().replace("/", " ");
-                String lowerCase = org.telegram.messenger.g0.M3(z1Var.f18549e).toLowerCase();
-                if (i5.c.B(" ", lowerCase, replace) || replace.startsWith(lowerCase)) {
-                    e10 = org.telegram.messenger.g0.w1(e10, z1Var.f18549e, z1Var.resourceProvider);
-                } else {
-                    i7++;
-                }
+            TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i7);
+            if (TextUtils.equals(tL_timezone.f28632id, str)) {
+                return tL_timezone;
             }
-            String f10 = a2.f(tL_timezone);
-            o41 o41Var2 = new o41(10);
-            o41Var2.d = i7;
-            o41Var2.f38058m = e10;
-            o41Var2.f38060o = f10;
-            o41Var2.L(TextUtils.equals(tL_timezone.f28538id, z1Var.f18551n));
-            if (z1Var.h && !z10) {
-                z11 = false;
-            } else {
-                z11 = true;
-            }
-            o41Var2.f38053g = z11;
-            arrayList.add(o41Var2);
-            z12 = false;
             i7++;
         }
-        c51Var.U();
-        if (z12) {
-            arrayList.add(o41.m(z1Var.f18547b));
+    }
+
+    public final java.lang.String c() {
+        throw new UnsupportedOperationException("Method not decompiled: kg.z1.c():java.lang.String");
+    }
+
+    public final String d(String str, boolean z10) {
+        String str2;
+        TLRPC.TL_timezone a10 = a(str);
+        if (a10 != null) {
+            return e(a10, z10);
+        }
+        ZoneId of2 = ZoneId.of(str);
+        String str3 = "";
+        if (of2 == null) {
+            return "";
+        }
+        if (z10) {
+            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, gd.E0().f24342y);
+            str2 = "GMT";
+            if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
+                str2 = "GMT".concat(displayName);
+            }
         } else {
-            arrayList.add(o41.C(null));
+            str2 = null;
         }
-    }
-
-    @Override
-    public final View createView(Context context) {
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(2131231240);
-        this.simpleActionBar.setTitle(hd.N0(2131743875, null));
-        this.simpleActionBar.setActionBarMenuOnItemClick(new bi.w1(this, 14));
-        g5 b10 = this.simpleActionBar.t().b(1, 2131232488);
-        b10.O();
-        b10.C0 = new bi.x1(this, 1);
-        b10.setSearchFieldHint(hd.N0(2131745640, null));
-        FrameLayout frameLayout = new FrameLayout(context);
-        h51 h51Var = new h51(this, new e7(this, 15), new y1(this, 0), null);
-        this.f18546a = h51Var;
-        h51Var.r1();
-        this.f18546a.setSectionsDrawBackground(true);
-        frameLayout.addView(this.f18546a, na.c(-1.0f, -1));
-        this.f18546a.setOnScrollListener(new bi.v1(this, 20));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.f18547b = linearLayout;
-        linearLayout.setOrientation(1);
-        this.f18547b.setMinimumHeight(org.telegram.messenger.g0.L(500.0f));
-        q9 q9Var = new q9(context);
-        q9Var.getImageReceiver().A1 = false;
-        si.d0(this.currentAccount).h2(q9Var, "RestrictedEmoji", "🌖", "130_130");
-        this.f18547b.addView(q9Var, na.t(130, 130, 49, 0, 42, 0, 12));
-        TextView textView = new TextView(context);
-        textView.setText(hd.N0(2131743876, null));
-        t6.U(textView, m6.f29739y6, this.resourceProvider);
-        textView.setTextSize(1, 15.0f);
-        this.f18547b.addView(textView, na.t(-2, -2, 49, 0, 0, 0, 0));
-        this.fragmentView = frameLayout;
-        return frameLayout;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        h51 h51Var;
-        c51 c51Var;
-        if (i7 == ls.f25352t3 && (h51Var = this.f18546a) != null && (c51Var = h51Var.f35742g3) != null) {
-            c51Var.O(true);
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(of2.getId().replace("/", ", ").replace("_", " "));
+        if (str2 != null) {
+            str3 = ", ".concat(str2);
         }
+        sb2.append(str3);
+        return sb2.toString();
     }
 
-    @Override
-    public final ek0 getListViewForSimpleGlass() {
-        return this.f18546a;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        String c10 = a2.b(this.currentAccount).c();
-        this.f18550f = c10;
-        this.h = TextUtils.equals(c10, this.f18551n);
-        getNotificationCenter().c(this, ls.f25352t3);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        getNotificationCenter().n(this, ls.f25352t3);
-        super.onFragmentDestroy();
-    }
-
-    @Override
-    public final boolean useSimpleActionBar() {
-        return true;
+    public final void g() {
+        if (!this.f18646b && !this.f18647c) {
+            this.f18646b = true;
+            int i7 = this.f18645a;
+            SharedPreferences sharedPreferences = mp.u1(i7).h7;
+            TLRPC.help_timezonesList help_timezoneslist = null;
+            String string = sharedPreferences.getString("timezones", null);
+            int i10 = 0;
+            if (string != null) {
+                SerializedData serializedData = new SerializedData(Utilities.v(string));
+                help_timezoneslist = TLRPC.help_timezonesList.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+            }
+            ArrayList arrayList = this.d;
+            arrayList.clear();
+            if (help_timezoneslist != null) {
+                arrayList.addAll(help_timezoneslist.timezones);
+            }
+            ks.f(i7).k(ks.f25293t3, new Object[0]);
+            TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
+            if (help_timezoneslist != null) {
+                i10 = help_timezoneslist.hash;
+            }
+            tL_help_getTimezonesList.hash = i10;
+            ConnectionsManager.getInstance(i7).sendRequest(tL_help_getTimezonesList, new bi.o1(22, this, sharedPreferences));
+        }
     }
 }

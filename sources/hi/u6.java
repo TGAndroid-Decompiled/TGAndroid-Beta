@@ -1,55 +1,48 @@
 package hi;
 
-import android.view.KeyEvent;
-import android.view.View;
-import androidx.appcompat.widget.SearchView;
-public final class u6 implements View.OnFocusChangeListener {
-    public final int f15496a;
-    public final KeyEvent.Callback f15497b;
+import android.os.Bundle;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.n10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ProfileActivity;
+public final class u6 extends w6 {
+    public final TLRPC.User f15523b;
 
-    public u6(KeyEvent.Callback callback, int i7) {
-        this.f15496a = i7;
-        this.f15497b = callback;
+    public u6(String str, TLRPC.User user) {
+        super(str);
+        this.f15523b = user;
     }
 
     @Override
-    public final void onFocusChange(View view, boolean z10) {
-        switch (this.f15496a) {
-            case 0:
-                if (z10) {
-                    v6 v6Var = (v6) this.f15497b;
-                    v6Var.f15535e2 = true;
-                    pi.l lVar = new pi.l(v6Var.getContext(), 2);
-                    lVar.f59055a = 1;
-                    lVar.f55709p = (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f24004m) - org.telegram.messenger.g0.L(1.0f);
-                    ((v4.b0) v6Var.f39487o1.getLayoutManager()).w0(lVar);
-                    return;
-                }
-                return;
-            case 1:
-                SearchView searchView = (SearchView) this.f15497b;
-                View.OnFocusChangeListener onFocusChangeListener = searchView.f1865e0;
-                if (onFocusChangeListener != null) {
-                    onFocusChangeListener.onFocusChange(searchView, z10);
-                    return;
-                }
-                return;
-            case 2:
-                org.telegram.ui.Cells.i3 i3Var = (org.telegram.ui.Cells.i3) this.f15497b;
-                i3Var.f30801n = z10;
-                if (i3Var.h) {
-                    i3Var.c();
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.Cells.l3 l3Var = (org.telegram.ui.Cells.l3) this.f15497b;
-                l3Var.f30973s = z10;
-                if (l3Var.f30971n) {
-                    l3Var.c();
-                }
-                l3Var.a(z10);
-                return;
+    public final String a() {
+        return gd.N0(2131743296, null);
+    }
+
+    @Override
+    public final String b() {
+        return n10.q(this.f15523b);
+    }
+
+    @Override
+    public final void c(org.telegram.ui.ActionBar.g2 g2Var) {
+        TLRPC.User user = this.f15523b;
+        if (user.f28641id == i10.i(i10.f24637t0).e()) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", user.f28641id);
+            bundle.putBoolean("my_profile", true);
+            g2Var.presentFragment(new ProfileActivity(bundle, null));
+            return;
         }
+        g2Var.presentFragment(ProfileActivity.D4(user.f28641id));
+    }
+
+    @Override
+    public final void d(ImageReceiver imageReceiver) {
+        org.telegram.ui.Components.a9 a9Var = new org.telegram.ui.Components.a9((org.telegram.ui.ActionBar.i6) null);
+        TLRPC.User user = this.f15523b;
+        a9Var.r(user);
+        imageReceiver.j0(user, a9Var, null);
     }
 }

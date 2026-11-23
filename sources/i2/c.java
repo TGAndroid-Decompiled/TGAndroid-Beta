@@ -3,23 +3,23 @@ package i2;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class c extends dd.k {
-    public final long f15914c;
+    public final long f16009c;
     public final ArrayList d;
-    public final ArrayList f15915e;
+    public final ArrayList f16010e;
 
     public c(int i7, long j3) {
         super(i7, 1);
-        this.f15914c = j3;
+        this.f16009c = j3;
         this.d = new ArrayList();
-        this.f15915e = new ArrayList();
+        this.f16010e = new ArrayList();
     }
 
     public final c d(int i7) {
-        ArrayList arrayList = this.f15915e;
+        ArrayList arrayList = this.f16010e;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             c cVar = (c) arrayList.get(i10);
-            if (cVar.f8314b == i7) {
+            if (cVar.f8313b == i7) {
                 return cVar;
             }
         }
@@ -31,7 +31,7 @@ public final class c extends dd.k {
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             d dVar = (d) arrayList.get(i10);
-            if (dVar.f8314b == i7) {
+            if (dVar.f8313b == i7) {
                 return dVar;
             }
         }
@@ -40,6 +40,6 @@ public final class c extends dd.k {
 
     @Override
     public final String toString() {
-        return dd.k.a(this.f8314b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.f15915e.toArray());
+        return dd.k.a(this.f8313b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.f16010e.toArray());
     }
 }

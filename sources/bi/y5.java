@@ -6,8 +6,8 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ub0;
+import org.telegram.messenger.gd;
+import org.telegram.ui.tb0;
 public final class y5 implements TextWatcher {
     public final int f4264a;
     public boolean f4265b;
@@ -40,16 +40,16 @@ public final class y5 implements TextWatcher {
                 }
                 return;
             case 1:
-                ub0 ub0Var = (ub0) view;
+                tb0 tb0Var = (tb0) view;
                 if (this.f4265b) {
-                    if (ub0Var.f52512f.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
-                        if (ub0Var.E) {
-                            ub0Var.f52512f.callOnClick();
+                    if (tb0Var.f52343f.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
+                        if (tb0Var.E) {
+                            tb0Var.f52343f.callOnClick();
                         }
-                        org.telegram.messenger.g0.X3(ub0Var.f52512f, true, 0.1f, true, true);
+                        org.telegram.messenger.g0.X3(tb0Var.f52343f, true, 0.1f, true, true);
                         return;
-                    } else if (ub0Var.f52512f.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
-                        org.telegram.messenger.g0.X3(ub0Var.f52512f, false, 0.1f, true, true);
+                    } else if (tb0Var.f52343f.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
+                        org.telegram.messenger.g0.X3(tb0Var.f52343f, false, 0.1f, true, true);
                         return;
                     } else {
                         return;
@@ -66,25 +66,25 @@ public final class y5 implements TextWatcher {
                     } else {
                         i7 = 2131754483;
                     }
-                    textView.setText(hd.N0(i7, null));
+                    textView.setText(gd.N0(i7, null));
                     return;
                 }
                 return;
             default:
-                tg.n2 n2Var = (tg.n2) view;
-                tg.m2 m2Var = n2Var.f58052r0;
-                if (this.f4265b && n2Var.f58058x0 > 0 && n2Var.f58059y0 > 0 && !n2Var.A0 && m2Var.getLayout() != null) {
-                    float f10 = org.telegram.messenger.g0.f24010q.y / 3.0f;
-                    float height = m2Var.getLayout().getHeight();
-                    if (height > f10 && (j3 = Utilities.j((int) ((f10 / height) * n2Var.getBaseFontSize()), n2Var.f58059y0, n2Var.f58058x0)) != n2Var.getBaseFontSize()) {
-                        n2Var.setBaseFontSize(j3);
-                        Runnable runnable = n2Var.f58060z0;
+                tg.q2 q2Var = (tg.q2) view;
+                tg.p2 p2Var = q2Var.f58178s0;
+                if (this.f4265b && q2Var.f58184y0 > 0 && q2Var.f58185z0 > 0 && !q2Var.B0 && p2Var.getLayout() != null) {
+                    float f10 = org.telegram.messenger.g0.f24226q.y / 3.0f;
+                    float height = p2Var.getLayout().getHeight();
+                    if (height > f10 && (j3 = Utilities.j((int) ((f10 / height) * q2Var.getBaseFontSize()), q2Var.f58185z0, q2Var.f58184y0)) != q2Var.getBaseFontSize()) {
+                        q2Var.setBaseFontSize(j3);
+                        Runnable runnable = q2Var.A0;
                         if (runnable != null) {
                             runnable.run();
                         }
                     }
                 }
-                n2Var.s();
+                q2Var.t();
                 return;
         }
     }
@@ -113,15 +113,15 @@ public final class y5 implements TextWatcher {
         int i12 = this.f4264a;
     }
 
-    public y5(kg.a1 a1Var, TextView textView) {
+    public y5(kg.z0 z0Var, TextView textView) {
         this.f4264a = 2;
         this.f4266c = textView;
-        this.f4265b = TextUtils.isEmpty(a1Var.getText());
+        this.f4265b = TextUtils.isEmpty(z0Var.getText());
     }
 
-    public y5(ub0 ub0Var, boolean z10) {
+    public y5(tb0 tb0Var, boolean z10) {
         this.f4264a = 1;
-        this.f4266c = ub0Var;
+        this.f4266c = tb0Var;
         this.f4265b = z10;
     }
 

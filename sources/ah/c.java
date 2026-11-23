@@ -6,40 +6,40 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import c8.na;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.messenger.j6;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Components.op;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.lp;
 public final class c extends yg.c {
-    public final op f1058s;
+    public final lp f1058s;
     public TLRPC.TL_help_country f1059w;
     public final TextPaint f1060x;
     public final a3.f f1061y;
 
-    public c(Context context, h6 h6Var) {
-        super(context, h6Var);
+    public c(Context context, i6 i6Var) {
+        super(context, i6Var);
         int i7;
         TextPaint textPaint = new TextPaint();
         this.f1060x = textPaint;
         this.f1061y = new a3.f(this, 3);
         textPaint.setTextSize(g0.L(20.0f));
-        this.f61225f.setVisibility(8);
-        this.f61223c.setVisibility(8);
-        op opVar = new op(21, context, h6Var);
-        this.f1058s = opVar;
-        opVar.b(m6.B5, m6.f29457j7, m6.C5);
-        opVar.setDrawUnchecked(true);
-        opVar.setDrawBackgroundAsArc(10);
-        addView(opVar);
-        opVar.a(false, false);
-        if (hd.f24408a0) {
+        this.f61344f.setVisibility(8);
+        this.f61342c.setVisibility(8);
+        lp lpVar = new lp(21, context, i6Var);
+        this.f1058s = lpVar;
+        lpVar.b(n6.B5, n6.f29561j7, n6.C5);
+        lpVar.setDrawUnchecked(true);
+        lpVar.setDrawBackgroundAsArc(10);
+        addView(lpVar);
+        lpVar.a(false, false);
+        if (gd.f24314a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        opVar.setLayoutParams(na.d(24, 24.0f, i7 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
+        lpVar.setLayoutParams(na.d(24, 24.0f, i7 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
     }
 
     @Override
@@ -54,9 +54,9 @@ public final class c extends yg.c {
 
     @Override
     public final void c(boolean z10, boolean z11) {
-        op opVar = this.f1058s;
-        if (opVar.getVisibility() == 0) {
-            opVar.a(z10, z11);
+        lp lpVar = this.f1058s;
+        if (lpVar.getVisibility() == 0) {
+            lpVar.a(z10, z11);
         }
     }
 
@@ -70,7 +70,7 @@ public final class c extends yg.c {
         float f13;
         float f14;
         float f15;
-        boolean z10 = hd.f24408a0;
+        boolean z10 = gd.f24314a0;
         int i11 = 3;
         if (z10) {
             i7 = 5;
@@ -89,7 +89,7 @@ public final class c extends yg.c {
             f11 = 20.0f;
         }
         this.d.setLayoutParams(na.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
-        boolean z11 = hd.f24408a0;
+        boolean z11 = gd.f24314a0;
         if (z11) {
             i10 = 5;
         } else {
@@ -106,8 +106,8 @@ public final class c extends yg.c {
         } else {
             f13 = 20.0f;
         }
-        this.f61224e.setLayoutParams(na.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
-        boolean z12 = hd.f24408a0;
+        this.f61343e.setLayoutParams(na.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        boolean z12 = gd.f24314a0;
         if (z12) {
             i11 = 5;
         }
@@ -122,13 +122,13 @@ public final class c extends yg.c {
         } else {
             f15 = 15.0f;
         }
-        this.f61225f.setLayoutParams(na.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
+        this.f61344f.setLayoutParams(na.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
     }
 
     public final void f() {
         TLRPC.TL_help_country tL_help_country = this.f1059w;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        CharSequence o4 = j6.o(hd.F0(tL_help_country.iso2), this.f1060x.getFontMetricsInt(), 0, this.f1061y);
+        CharSequence o4 = j6.o(gd.F0(tL_help_country.iso2), this.f1060x.getFontMetricsInt(), 0, this.f1061y);
         if (o4 != null) {
             spannableStringBuilder.append(o4).append((CharSequence) " ");
             spannableStringBuilder.setSpan(new b(16), o4.length(), o4.length() + 1, 0);
@@ -136,7 +136,7 @@ public final class c extends yg.c {
             spannableStringBuilder.append((CharSequence) " ");
             spannableStringBuilder.setSpan(new b(34), 0, 1, 0);
         }
-        String i02 = hd.i0(2131750504, tL_help_country.iso2);
+        String i02 = gd.i0(2131750504, tL_help_country.iso2);
         if (TextUtils.isEmpty(i02)) {
             i02 = tL_help_country.default_name;
         }

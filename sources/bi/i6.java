@@ -1,21 +1,21 @@
 package bi;
 
 import android.content.Context;
-import hi.m9;
+import hi.ga;
+import org.telegram.ui.Components.c51;
 import org.telegram.ui.Components.d51;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.ej;
-import org.telegram.ui.Components.gq0;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.ui;
-import org.telegram.ui.Components.yi;
-public final class i6 extends h51 {
+import org.telegram.ui.Components.dj;
+import org.telegram.ui.Components.fq0;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.ti;
+import org.telegram.ui.Components.xi;
+public final class i6 extends g51 {
     public final int f3702n3 = 0;
     public final Object f3703o3;
 
-    public i6(e51 e51Var, e51 e51Var2, org.telegram.ui.Components.d dVar, d51 d51Var, d51 d51Var2) {
-        super(e51Var2, dVar, d51Var, d51Var2);
-        this.f3703o3 = e51Var;
+    public i6(d51 d51Var, d51 d51Var2, org.telegram.ui.Components.d dVar, c51 c51Var, c51 c51Var2) {
+        super(d51Var2, dVar, c51Var, c51Var2);
+        this.f3703o3 = d51Var;
     }
 
     @Override
@@ -23,10 +23,10 @@ public final class i6 extends h51 {
         int i7;
         switch (this.f3702n3) {
             case 2:
-                ui uiVar = ((ej) this.f3703o3).f37477b;
-                int L = org.telegram.messenger.g0.L(30.0f) + uiVar.Z3[0];
-                if (!uiVar.f40355b2) {
-                    i7 = org.telegram.messenger.g0.f24004m;
+                ti tiVar = ((dj) this.f3703o3).f37135b;
+                int L = org.telegram.messenger.g0.L(30.0f) + tiVar.Z3[0];
+                if (!tiVar.f39959b2) {
+                    i7 = org.telegram.messenger.g0.f24220m;
                 } else {
                     i7 = 0;
                 }
@@ -43,8 +43,8 @@ public final class i6 extends h51 {
     public void F1() {
         switch (this.f3702n3) {
             case 2:
-                ej ejVar = (ej) this.f3703o3;
-                ejVar.f37477b.N1(ejVar, 0);
+                dj djVar = (dj) this.f3703o3;
+                djVar.f37135b.N1(djVar, 0);
                 return;
             default:
                 return;
@@ -55,7 +55,7 @@ public final class i6 extends h51 {
     public void K1() {
         switch (this.f3702n3) {
             case 1:
-                org.telegram.messenger.g0.d0(((m9) this.f3703o3).f15669b, new ai.c0(this, 27));
+                org.telegram.messenger.g0.d0(((ga) this.f3703o3).f14529b, new ai.d0(this, 27));
                 return;
             default:
                 return;
@@ -92,7 +92,7 @@ public final class i6 extends h51 {
         switch (this.f3702n3) {
             case 0:
                 super.onLayout(z10, i7, i10, i11, i12);
-                ((gq0) this.f3703o3).p();
+                ((fq0) this.f3703o3).p();
                 return;
             case 1:
             default:
@@ -100,33 +100,33 @@ public final class i6 extends h51 {
                 return;
             case 2:
                 super.onLayout(z10, i7, i10, i11, i12);
-                ej ejVar = (ej) this.f3703o3;
-                ejVar.f37477b.N1(ejVar, 0);
+                dj djVar = (dj) this.f3703o3;
+                djVar.f37135b.N1(djVar, 0);
                 return;
             case 3:
                 super.onLayout(z10, i7, i10, i11, i12);
-                ((e51) this.f3703o3).f34673c = -1;
+                ((d51) this.f3703o3).f34215c = -1;
                 return;
         }
     }
 
-    public i6(m9 m9Var, Context context, int i7, hi.s3 s3Var, di.v6 v6Var, fi.b bVar) {
-        super(context, i7, 0, false, s3Var, v6Var, null, bVar, -1, 0);
-        this.f3703o3 = m9Var;
+    public i6(ga gaVar, Context context, int i7, hi.b4 b4Var, di.v6 v6Var, fi.b bVar) {
+        super(context, i7, 0, false, b4Var, v6Var, null, bVar, -1, 0);
+        this.f3703o3 = gaVar;
     }
 
-    public i6(org.telegram.ui.web.k kVar, Context context, int i7, org.telegram.ui.web.b bVar, org.telegram.ui.web.a aVar, hi.d5 d5Var) {
-        super(context, i7, 0, false, bVar, aVar, null, d5Var);
+    public i6(org.telegram.ui.web.k kVar, Context context, int i7, org.telegram.ui.web.b bVar, org.telegram.ui.web.a aVar, hi.n5 n5Var) {
+        super(context, i7, 0, false, bVar, aVar, null, n5Var);
         this.f3703o3 = kVar;
     }
 
-    public i6(ej ejVar, Context context, int i7, org.telegram.ui.Components.d dVar, yi yiVar, yi yiVar2, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, i7, 0, false, dVar, yiVar, yiVar2, h6Var);
-        this.f3703o3 = ejVar;
+    public i6(dj djVar, Context context, int i7, org.telegram.ui.Components.d dVar, xi xiVar, xi xiVar2, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, i7, 0, false, dVar, xiVar, xiVar2, i6Var);
+        this.f3703o3 = djVar;
     }
 
-    public i6(Context context, int i7, b bVar, g6 g6Var, g6 g6Var2, org.telegram.ui.ActionBar.h6 h6Var, gq0 gq0Var) {
-        super(context, i7, 0, false, bVar, g6Var, g6Var2, h6Var, 3, 1);
-        this.f3703o3 = gq0Var;
+    public i6(Context context, int i7, b bVar, g6 g6Var, g6 g6Var2, org.telegram.ui.ActionBar.i6 i6Var, fq0 fq0Var) {
+        super(context, i7, 0, false, bVar, g6Var, g6Var2, i6Var, 3, 1);
+        this.f3703o3 = fq0Var;
     }
 }

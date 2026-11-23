@@ -6,34 +6,34 @@ import c8.qb;
 import java.nio.ByteBuffer;
 import java.util.Date;
 public final class n extends com.googlecode.mp4parser.c {
-    public static final ze.b J;
-    public static final ze.b K;
-    public static final ze.b L;
-    public static final ze.b M;
-    public static final ze.b N;
-    public static final ze.b O;
-    public static final ze.b P;
-    public static final ze.b Q;
-    public static final ze.b R;
-    public static final ze.b S;
-    public static final ze.b T;
-    public static final ze.b U;
-    public static final ze.b V;
-    public static final ze.b W;
+    public static final v4.b J;
+    public static final v4.b K;
+    public static final v4.b L;
+    public static final v4.b M;
+    public static final v4.b N;
+    public static final v4.b O;
+    public static final v4.b P;
+    public static final v4.b Q;
+    public static final v4.b R;
+    public static final v4.b S;
+    public static final v4.b T;
+    public static final v4.b U;
+    public static final v4.b V;
+    public static final v4.b W;
     public int E;
     public int F;
     public int G;
     public int H;
     public int I;
-    public Date f16077e;
-    public Date f16078f;
+    public Date f16172e;
+    public Date f16173f;
     public long h;
-    public long f16079n;
-    public double f16080r;
-    public float f16081s;
-    public pc.d f16082w;
-    public long f16083x;
-    public int f16084y;
+    public long f16174n;
+    public double f16175r;
+    public float f16176s;
+    public pc.d f16177w;
+    public long f16178x;
+    public int f16179y;
 
     static {
         ze.a aVar = new ze.a(n.class, "MovieHeaderBox.java");
@@ -72,59 +72,59 @@ public final class n extends com.googlecode.mp4parser.c {
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
         if (e() == 1) {
-            this.f16077e = qb.b(h5.b.j(byteBuffer));
-            this.f16078f = qb.b(h5.b.j(byteBuffer));
+            this.f16172e = qb.b(h5.b.j(byteBuffer));
+            this.f16173f = qb.b(h5.b.j(byteBuffer));
             this.h = h5.b.i(byteBuffer);
-            this.f16079n = h5.b.j(byteBuffer);
+            this.f16174n = h5.b.j(byteBuffer);
         } else {
-            this.f16077e = qb.b(h5.b.i(byteBuffer));
-            this.f16078f = qb.b(h5.b.i(byteBuffer));
+            this.f16172e = qb.b(h5.b.i(byteBuffer));
+            this.f16173f = qb.b(h5.b.i(byteBuffer));
             this.h = h5.b.i(byteBuffer);
-            this.f16079n = h5.b.i(byteBuffer);
+            this.f16174n = h5.b.i(byteBuffer);
         }
-        this.f16080r = h5.b.f(byteBuffer);
-        this.f16081s = h5.b.g(byteBuffer);
+        this.f16175r = h5.b.f(byteBuffer);
+        this.f16176s = h5.b.g(byteBuffer);
         h5.b.h(byteBuffer);
         h5.b.i(byteBuffer);
         h5.b.i(byteBuffer);
-        this.f16082w = pc.d.a(byteBuffer);
-        this.f16084y = byteBuffer.getInt();
+        this.f16177w = pc.d.a(byteBuffer);
+        this.f16179y = byteBuffer.getInt();
         this.E = byteBuffer.getInt();
         this.F = byteBuffer.getInt();
         this.G = byteBuffer.getInt();
         this.H = byteBuffer.getInt();
         this.I = byteBuffer.getInt();
-        this.f16083x = h5.b.i(byteBuffer);
+        this.f16178x = h5.b.i(byteBuffer);
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
         if (e() == 1) {
-            byteBuffer.putLong(qb.a(this.f16077e));
-            byteBuffer.putLong(qb.a(this.f16078f));
+            byteBuffer.putLong(qb.a(this.f16172e));
+            byteBuffer.putLong(qb.a(this.f16173f));
             byteBuffer.putInt((int) this.h);
-            byteBuffer.putLong(this.f16079n);
+            byteBuffer.putLong(this.f16174n);
         } else {
-            byteBuffer.putInt((int) qb.a(this.f16077e));
-            byteBuffer.putInt((int) qb.a(this.f16078f));
+            byteBuffer.putInt((int) qb.a(this.f16172e));
+            byteBuffer.putInt((int) qb.a(this.f16173f));
             byteBuffer.putInt((int) this.h);
-            byteBuffer.putInt((int) this.f16079n);
+            byteBuffer.putInt((int) this.f16174n);
         }
-        h5.b.n(byteBuffer, this.f16080r);
-        h5.b.o(byteBuffer, this.f16081s);
+        h5.b.n(byteBuffer, this.f16175r);
+        h5.b.o(byteBuffer, this.f16176s);
         h5.b.p(0, byteBuffer);
         int i7 = (int) 0;
         byteBuffer.putInt(i7);
         byteBuffer.putInt(i7);
-        this.f16082w.b(byteBuffer);
-        byteBuffer.putInt(this.f16084y);
+        this.f16177w.b(byteBuffer);
+        byteBuffer.putInt(this.f16179y);
         byteBuffer.putInt(this.E);
         byteBuffer.putInt(this.F);
         byteBuffer.putInt(this.G);
         byteBuffer.putInt(this.H);
         byteBuffer.putInt(this.I);
-        byteBuffer.putInt((int) this.f16083x);
+        byteBuffer.putInt((int) this.f16178x);
     }
 
     @Override
@@ -144,26 +144,26 @@ public final class n extends com.googlecode.mp4parser.c {
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("MovieHeaderBox[creationTime=");
         c.w(ze.a.b(J, this, this));
-        sb2.append(this.f16077e);
+        sb2.append(this.f16172e);
         sb2.append(";modificationTime=");
         c.w(ze.a.b(K, this, this));
-        sb2.append(this.f16078f);
+        sb2.append(this.f16173f);
         sb2.append(";timescale=");
         c.w(ze.a.b(L, this, this));
         sb2.append(this.h);
         sb2.append(";duration=");
         c.w(ze.a.b(M, this, this));
-        sb2.append(this.f16079n);
+        sb2.append(this.f16174n);
         sb2.append(";rate=");
         c.w(ze.a.b(N, this, this));
-        sb2.append(this.f16080r);
+        sb2.append(this.f16175r);
         sb2.append(";volume=");
         c.w(ze.a.b(O, this, this));
-        sb2.append(this.f16081s);
+        sb2.append(this.f16176s);
         sb2.append(";matrix=");
-        sb2.append(this.f16082w);
+        sb2.append(this.f16177w);
         sb2.append(";nextTrackId=");
         c.w(ze.a.b(P, this, this));
-        return p0.r(sb2, this.f16083x, "]");
+        return p0.r(sb2, this.f16178x, "]");
     }
 }

@@ -1,7 +1,7 @@
 package bi;
 
 import org.telegram.ui.bn;
-import org.telegram.ui.y91;
+import org.telegram.ui.w91;
 public final class i implements Runnable {
     public final int f3652a;
     public final bn f3653b;
@@ -20,7 +20,7 @@ public final class i implements Runnable {
             default:
                 bn bnVar = this.f3653b;
                 if (bnVar.getParentLayout() != null) {
-                    y91.M0(bnVar);
+                    w91.M0(bnVar);
                     return;
                 }
                 return;

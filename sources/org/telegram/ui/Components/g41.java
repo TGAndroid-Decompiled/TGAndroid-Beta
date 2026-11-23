@@ -1,23 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class g41 implements ValueAnimator.AnimatorUpdateListener {
-    public int f35379a = 0;
-    public final int f35380b;
-    public final k41 f35381c;
+import android.view.MotionEvent;
+import org.telegram.tgnet.TLRPC;
+public abstract class g41 {
+    public String[] f35313a = new String[0];
 
-    public g41(k41 k41Var, int i7) {
-        this.f35381c = k41Var;
-        this.f35380b = i7;
+    public boolean a() {
+        return false;
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f35380b);
-        k41 k41Var = this.f35381c;
-        k41Var.O = true;
-        k41Var.f36738n.scrollBy(0, floatValue - this.f35379a);
-        k41Var.O = false;
-        this.f35379a = floatValue;
+    public String[] b() {
+        return this.f35313a;
+    }
+
+    public boolean c() {
+        return false;
+    }
+
+    public boolean d(z31 z31Var, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public boolean e(z31 z31Var, n nVar, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
+
+    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    public void i(String[] strArr) {
+        this.f35313a = strArr;
+    }
+
+    public void f(TLRPC.Document document, Object obj, boolean z10, int i7) {
     }
 }

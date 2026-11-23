@@ -1,37 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-public final class n70 implements DialogInterface.OnDismissListener {
-    public final int f37781a;
-    public final Object f37782b;
-    public final boolean f37783c;
+import android.app.Activity;
+import android.os.Bundle;
+import org.telegram.tgnet.TLRPC;
+public final class n70 extends org.telegram.ui.bn {
+    public boolean f37699vd;
+    public final boolean f37700wd;
+    public final long f37701xd;
+    public final o70 f37702yd;
 
-    public n70(int i7, Object obj, boolean z10) {
-        this.f37781a = i7;
-        this.f37782b = obj;
-        this.f37783c = z10;
+    public n70(o70 o70Var, Bundle bundle, boolean z10, long j3) {
+        super(bundle);
+        this.f37702yd = o70Var;
+        this.f37700wd = z10;
+        this.f37701xd = j3;
+        this.f37699vd = false;
+    }
+
+    public static void Hd(n70 n70Var, long j3, TLRPC.Chat chat) {
+        boolean z10;
+        if (!org.telegram.messenger.g0.E1(n70Var.getParentActivity())) {
+            return;
+        }
+        Activity parentActivity = n70Var.getParentActivity();
+        int i7 = n70Var.currentAccount;
+        long j10 = -j3;
+        TLRPC.User f10 = n70Var.getUserConfig().f();
+        if (chat.admin_rights != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        oy0.c(parentActivity, i7, j10, f10, null, z10, chat.creator, n70Var.f37702yd.J0);
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f37781a) {
-            case 0:
-                r70 r70Var = (r70) this.f37782b;
-                r70.K0(r70Var.getContext(), r70Var.f39061o1, r70Var.f39066t1, this.f37783c);
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.f37699vd && this.f37700wd) {
+            this.f37699vd = true;
+            org.telegram.messenger.mp messagesController = getMessagesController();
+            long j3 = this.f37701xd;
+            TLRPC.Chat O0 = messagesController.O0(Long.valueOf(j3));
+            if (org.telegram.messenger.v3.h(O0)) {
+                fc K = kc.b0(this).K(2131623990, org.telegram.messenger.gd.N0(2131748878, null), org.telegram.messenger.gd.N0(2131748877, null), new bi.s2(this, j3, O0, 24));
+                K.f35099r = false;
+                K.k(true);
                 return;
-            case 1:
-                r70 r70Var2 = (r70) this.f37782b;
-                r70.K0(r70Var2.getContext(), r70Var2.f39061o1, r70Var2.f39066t1, this.f37783c);
-                return;
-            default:
-                hi.ta taVar = (hi.ta) this.f37782b;
-                taVar.A2 = false;
-                taVar.Y0.x(7, true);
-                if (this.f37783c) {
-                    taVar.p(true);
-                    return;
-                }
-                return;
+            }
+            fc Q = kc.b0(this).Q(2131623990, 36, org.telegram.messenger.gd.N0(2131748878, null));
+            Q.f35099r = false;
+            Q.k(true);
         }
     }
 }

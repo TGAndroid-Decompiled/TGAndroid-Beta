@@ -1,28 +1,28 @@
 package di;
 
-import org.telegram.messenger.gj;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class n1 implements y10 {
-    public final int f9349a;
-    public final f6 f9350b;
+public final class n1 implements w10 {
+    public final int f9345a;
+    public final f6 f9346b;
 
     public n1(f6 f6Var, int i7) {
-        this.f9349a = i7;
-        this.f9350b = f6Var;
+        this.f9345a = i7;
+        this.f9346b = f6Var;
     }
 
     @Override
     public final void a(Object obj) {
         TLRPC.Message message;
-        switch (this.f9349a) {
+        switch (this.f9345a) {
             case 0:
                 ((Boolean) obj).booleanValue();
-                this.f9350b.dismiss();
+                this.f9346b.dismiss();
                 return;
             case 1:
-                f6 f6Var = this.f9350b;
+                f6 f6Var = this.f9346b;
                 f6Var.getClass();
                 if (((Boolean) obj).booleanValue()) {
                     f6Var.O0 = true;
@@ -31,25 +31,25 @@ public final class n1 implements y10 {
                 return;
             case 2:
                 TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
-                f6 f6Var2 = this.f9350b;
+                f6 f6Var2 = this.f9346b;
                 f6Var2.getClass();
                 if (stargiftupgradepreview != null) {
-                    f6Var2.f8782n3 = stargiftupgradepreview.sample_attributes;
-                    f6Var2.f8784o3 = stargiftupgradepreview.prices;
-                    f6Var2.f8786p3 = stargiftupgradepreview.next_prices;
+                    f6Var2.f8781n3 = stargiftupgradepreview.sample_attributes;
+                    f6Var2.f8783o3 = stargiftupgradepreview.prices;
+                    f6Var2.f8785p3 = stargiftupgradepreview.next_prices;
                     f6Var2.n2();
                     return;
                 }
                 return;
             default:
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                f6 f6Var3 = this.f9350b;
+                f6 f6Var3 = this.f9346b;
                 f6Var3.J2 = false;
                 f6Var3.K2 = true;
                 if (savedStarGift != null) {
-                    f6Var3.f8778l3 = Boolean.valueOf(savedStarGift.unsaved);
-                    gj gjVar = f6Var3.D2;
-                    if (gjVar != null && (message = gjVar.f24177k) != null) {
+                    f6Var3.f8777l3 = Boolean.valueOf(savedStarGift.unsaved);
+                    fj fjVar = f6Var3.D2;
+                    if (fjVar != null && (message = fjVar.f24073k) != null) {
                         TLRPC.MessageAction messageAction = message.action;
                         if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
                             TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = (TLRPC.TL_messageActionStarGiftUnique) messageAction;
@@ -70,7 +70,7 @@ public final class n1 implements y10 {
                                 return;
                             }
                         }
-                        f6Var3.v2(gjVar, null);
+                        f6Var3.v2(fjVar, null);
                         return;
                     }
                     return;

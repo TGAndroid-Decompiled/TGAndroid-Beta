@@ -2,17 +2,17 @@ package bi;
 
 import android.os.Bundle;
 import android.view.View;
-import org.telegram.messenger.k10;
-import org.telegram.messenger.np;
-import org.telegram.messenger.p10;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.n10;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lc;
-import org.telegram.ui.Components.r70;
+import org.telegram.ui.Components.kc;
+import org.telegram.ui.Components.o70;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.cx;
+import org.telegram.ui.bx;
 public final class q implements View.OnClickListener {
     public final int f3980a;
     public final long f3981b;
@@ -33,11 +33,11 @@ public final class q implements View.OnClickListener {
                 org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
                 if (T != null) {
                     long j3 = this.f3981b;
-                    if (!p10.B(j3)) {
+                    if (!n10.B(j3)) {
                         Bundle bundle = new Bundle();
                         if (j3 > 0) {
                             bundle.putLong("user_id", j3);
-                            if (j3 == k10.i(yVar.f30139a).e()) {
+                            if (j3 == i10.i(yVar.f30223a).e()) {
                                 bundle.putBoolean("my_profile", true);
                             }
                         } else {
@@ -75,32 +75,32 @@ public final class q implements View.OnClickListener {
                 } else {
                     bundle2.putLong("chat_id", -j10);
                 }
-                z3Var.f12867t0.N(new ProfileActivity(bundle2, null));
+                z3Var.f12878t0.N(new ProfileActivity(bundle2, null));
                 return;
             case 3:
-                r70 r70Var = (r70) this.f3982c;
-                r70Var.dismiss();
+                o70 o70Var = (o70) this.f3982c;
+                o70Var.dismiss();
                 TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
-                tL_messages_importChatInvite.hash = r70Var.n1;
-                ConnectionsManager.getInstance(r70Var.f30139a).sendRequestTyped(tL_messages_importChatInvite, null, new h8(r70Var, this.f3981b, tL_messages_importChatInvite), 2);
+                tL_messages_importChatInvite.hash = o70Var.n1;
+                ConnectionsManager.getInstance(o70Var.f30223a).sendRequestTyped(tL_messages_importChatInvite, null, new h8(o70Var, this.f3981b, tL_messages_importChatInvite), 2);
                 return;
             case 4:
-                cx cxVar = (cx) this.f3982c;
-                np messagesController = cxVar.getMessagesController();
+                bx bxVar = (bx) this.f3982c;
+                mp messagesController = bxVar.getMessagesController();
                 long j11 = this.f3981b;
                 boolean u22 = messagesController.u2(j11, 0L, null);
                 if (!u22) {
-                    cxVar.getNotificationsController().T(j11, 3, 0L);
+                    bxVar.getNotificationsController().T(j11, 3, 0L);
                 } else {
-                    cxVar.getNotificationsController().T(j11, 4, 0L);
+                    bxVar.getNotificationsController().T(j11, 4, 0L);
                 }
-                lc.A(cxVar, !u22, null).j();
-                cxVar.finishPreviewFragment();
+                kc.A(bxVar, !u22, null).j();
+                bxVar.finishPreviewFragment();
                 return;
             default:
-                y10 y10Var = ((sh.m) this.f3982c).f57476f;
-                if (y10Var != null) {
-                    y10Var.a(Long.valueOf(this.f3981b));
+                w10 w10Var = ((sh.m) this.f3982c).f57587f;
+                if (w10Var != null) {
+                    w10Var.a(Long.valueOf(this.f3981b));
                     return;
                 }
                 return;

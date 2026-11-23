@@ -3,42 +3,42 @@ package vh;
 import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.c51;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.ek0;
-import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.m41;
 import org.telegram.ui.Components.n41;
-import org.telegram.ui.Components.o41;
-public final class f extends n41 {
-    public static final int f59570b = 0;
+public final class f extends m41 {
+    public static final int f59690b = 0;
 
     static {
-        n41.h(new n41());
+        m41.h(new m41());
     }
 
     @Override
-    public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
+    public final void b(View view, n41 n41Var, boolean z10, b51 b51Var, g51 g51Var) {
         ah.c cVar = (ah.c) view;
-        cVar.f1059w = (TLRPC.TL_help_country) o41Var.H;
+        cVar.f1059w = (TLRPC.TL_help_country) n41Var.H;
         cVar.f();
         cVar.setDivider(z10);
-        cVar.c(o41Var.f38051e, false);
+        cVar.c(n41Var.f37648e, false);
     }
 
     @Override
-    public final boolean c(o41 o41Var, o41 o41Var2) {
-        return o41Var.I(o41Var2);
+    public final boolean c(n41 n41Var, n41 n41Var2) {
+        return n41Var.I(n41Var2);
     }
 
     @Override
-    public final View d(Context context, ek0 ek0Var, int i7, h6 h6Var) {
-        ah.c cVar = new ah.c(context, h6Var);
+    public final View d(Context context, ek0 ek0Var, int i7, i6 i6Var) {
+        ah.c cVar = new ah.c(context, i6Var);
         cVar.setBackground(null);
         return cVar;
     }
 
     @Override
-    public final boolean e(o41 o41Var, o41 o41Var2) {
-        return o41Var.J(o41Var2);
+    public final boolean e(n41 n41Var, n41 n41Var2) {
+        return n41Var.J(n41Var2);
     }
 }

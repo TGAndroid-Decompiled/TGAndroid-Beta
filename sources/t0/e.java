@@ -1,7 +1,7 @@
 package t0;
 
 import android.os.Bundle;
-import org.telegram.ui.Components.pf;
+import org.telegram.ui.Cells.aa;
 public interface e {
-    boolean d(pf pfVar, int i7, Bundle bundle);
+    boolean e(aa aaVar, int i7, Bundle bundle);
 }

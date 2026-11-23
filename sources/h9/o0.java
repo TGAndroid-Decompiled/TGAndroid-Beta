@@ -2,18 +2,18 @@ package h9;
 
 import j$.util.Objects;
 import java.util.Iterator;
-public final class o0 extends h2 {
-    public int f14025a;
-    public Object f14026b;
-    public final Iterator f14027c;
+public final class o0 extends g2 {
+    public int f14023a;
+    public Object f14024b;
+    public final Iterator f14025c;
 
-    public o0(h2 h2Var) {
-        this.f14027c = h2Var;
+    public o0(g2 g2Var) {
+        this.f14025c = g2Var;
     }
 
     @Override
     public final boolean hasNext() {
-        if (this.f14025a <= 0 && !this.f14027c.hasNext()) {
+        if (this.f14023a <= 0 && !this.f14025c.hasNext()) {
             return false;
         }
         return true;
@@ -21,13 +21,13 @@ public final class o0 extends h2 {
 
     @Override
     public final Object next() {
-        if (this.f14025a <= 0) {
-            p1 p1Var = (p1) this.f14027c.next();
-            this.f14026b = p1Var.f14034a;
-            this.f14025a = p1Var.a();
+        if (this.f14023a <= 0) {
+            o1 o1Var = (o1) this.f14025c.next();
+            this.f14024b = o1Var.f14026a;
+            this.f14023a = o1Var.a();
         }
-        this.f14025a--;
-        Object obj = this.f14026b;
+        this.f14023a--;
+        Object obj = this.f14024b;
         Objects.requireNonNull(obj);
         return obj;
     }

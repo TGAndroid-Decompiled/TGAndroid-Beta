@@ -2,22 +2,22 @@ package ci;
 
 import android.os.SystemClock;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.gs;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.r10;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.n8;
-import org.telegram.ui.Components.lc;
+import org.telegram.ui.Cells.m8;
+import org.telegram.ui.Components.kc;
 import org.telegram.ui.rq;
-public final class l0 implements r10 {
+public final class l0 implements p10 {
     public final int f5704a;
     public final boolean f5705b;
-    public final gs f5706c;
+    public final fs f5706c;
     public final Object d;
 
-    public l0(gs gsVar, Object obj, boolean z10, int i7) {
+    public l0(fs fsVar, Object obj, boolean z10, int i7) {
         this.f5704a = i7;
-        this.f5706c = gsVar;
+        this.f5706c = fsVar;
         this.d = obj;
         this.f5705b = z10;
     }
@@ -29,10 +29,10 @@ public final class l0 implements r10 {
         boolean z10 = false;
         boolean z11 = this.f5705b;
         Object obj3 = this.d;
-        gs gsVar = this.f5706c;
+        fs fsVar = this.f5706c;
         switch (i7) {
             case 0:
-                o0 o0Var = (o0) gsVar;
+                o0 o0Var = (o0) fsVar;
                 TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken = (TLRPC.TL_exportedNoPaidMessagesToken) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 z0 z0Var = o0Var.f5724b;
@@ -55,7 +55,7 @@ public final class l0 implements r10 {
                             if (z12 == z11) {
                                 if (str != null) {
                                     z0Var.getClass();
-                                    z0Var.d1(2131232438, hd.N0(2131751093, null), null);
+                                    z0Var.d1(2131232441, gd.N0(2131751093, null), null);
                                     return;
                                 }
                                 return;
@@ -65,12 +65,12 @@ public final class l0 implements r10 {
                         o0Var.f().edit().putBoolean("qrNoPaidPermanent", false).apply();
                         if (z0Var.f6060w0) {
                             if (str != null) {
-                                str2 = hd.N0(2131751093, null);
+                                str2 = gd.N0(2131751093, null);
                             }
                             z0Var.U0(str2);
                             return;
                         } else if (str != null) {
-                            z0Var.d1(2131232438, hd.N0(2131751093, null), null);
+                            z0Var.d1(2131232441, gd.N0(2131751093, null), null);
                             return;
                         } else {
                             return;
@@ -96,8 +96,8 @@ public final class l0 implements r10 {
                 }
                 return;
             default:
-                rq rqVar = (rq) gsVar;
-                n8 n8Var = (n8) obj3;
+                rq rqVar = (rq) fsVar;
+                m8 m8Var = (m8) obj3;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (updates != null) {
@@ -106,8 +106,8 @@ public final class l0 implements r10 {
                 }
                 rqVar.getClass();
                 if (tL_error2 != null) {
-                    n8Var.setChecked(z11);
-                    lc.b0(rqVar).g0(tL_error2, false);
+                    m8Var.setChecked(z11);
+                    kc.b0(rqVar).g0(tL_error2, false);
                     return;
                 }
                 return;

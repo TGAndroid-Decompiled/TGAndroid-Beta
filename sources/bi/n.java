@@ -3,14 +3,14 @@ package bi;
 import android.text.TextUtils;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.r10;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.bc;
+import org.telegram.ui.Components.fc;
+import org.telegram.ui.Components.kc;
 import org.telegram.ui.LaunchActivity;
-public final class n implements r10 {
+public final class n implements p10 {
     public final int f3860a;
     public final long f3861b;
     public final Object f3862c;
@@ -42,32 +42,32 @@ public final class n implements r10 {
                     } else {
                         z10 = false;
                     }
-                    cc ccVar = new cc(yVar.getContext(), yVar.J0);
-                    ccVar.f34134a.setImageResource(2131231117);
+                    bc bcVar = new bc(yVar.getContext(), yVar.J0);
+                    bcVar.f33733a.setImageResource(2131231119);
                     if (z10) {
                         i7 = 2131750290;
                     } else {
                         i7 = 2131750289;
                     }
-                    String N0 = hd.N0(i7, null);
-                    TextView textView = ccVar.f34135b;
+                    String N0 = gd.N0(i7, null);
+                    TextView textView = bcVar.f33734b;
                     textView.setText(N0);
                     textView.setSingleLine(true);
                     textView.setTextSize(1, 15.0f);
                     textView.setMaxLines(1);
                     textView.setTypeface(org.telegram.messenger.g0.o());
-                    String a02 = hd.a0(null, null, 2131750325, Integer.valueOf(yVar.f4229h2.d.gifts_per_round));
-                    TextView textView2 = ccVar.f34136c;
+                    String a02 = gd.a0(null, null, 2131750325, Integer.valueOf(yVar.f4229h2.d.gifts_per_round));
+                    TextView textView2 = bcVar.f33735c;
                     textView2.setText(a02);
                     textView2.setSingleLine(false);
                     textView2.setMaxLines(5);
                     yVar.i1();
-                    gc.f(frameLayout, ccVar, 2750).j();
-                    di.y8.y(yVar.f30139a, false).q(null, false, true);
+                    fc.f(frameLayout, bcVar, 2750).j();
+                    di.y8.y(yVar.f30223a, false).q(null, false, true);
                 }
                 if (str != null) {
                     yVar.i1();
-                    new lc(frameLayout, yVar.J0).Q(2131624012, 36, hd.a0(null, null, 2131743635, str)).j();
+                    new kc(frameLayout, yVar.J0).Q(2131624012, 36, gd.a0(null, null, 2131743631, str)).j();
                     return;
                 }
                 return;
@@ -77,14 +77,14 @@ public final class n implements r10 {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
                     if (TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {
-                        li.l0.d(2, -j3, g2Var);
+                        li.k0.d(2, -j3, g2Var);
                         return;
                     } else {
-                        lc.b0(g2Var).g0(tL_error, false);
+                        kc.b0(g2Var).g0(tL_error, false);
                         return;
                     }
                 }
-                li.l0.d(1, -j3, g2Var);
+                li.k0.d(1, -j3, g2Var);
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) obj3;

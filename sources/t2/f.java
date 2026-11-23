@@ -3,13 +3,14 @@ package t2;
 import a8.ma;
 import android.graphics.Bitmap;
 import android.os.Trace;
-import androidx.emoji2.text.n;
+import androidx.biometric.t;
 import e2.u;
 import java.util.ArrayDeque;
+import jb.m;
 import k2.h;
-import l2.h0;
+import l2.i0;
 public final class f extends l2.b {
-    public final n J;
+    public final t J;
     public final h K;
     public final ArrayDeque L;
     public boolean M;
@@ -23,20 +24,20 @@ public final class f extends l2.b {
     public b U;
     public h V;
     public d W;
-    public h0 X;
+    public i0 X;
     public Bitmap Y;
     public boolean Z;
-    public m5.b f57557a0;
-    public m5.b f57558b0;
-    public int f57559c0;
-    public boolean f57560d0;
+    public m5.b f57671a0;
+    public m5.b f57672b0;
+    public int f57673c0;
+    public boolean f57674d0;
 
-    public f(n nVar) {
+    public f(t tVar) {
         super(4);
-        this.J = nVar;
-        this.W = d.f57553a;
+        this.J = tVar;
+        this.W = d.f57667a;
         this.K = new h(0, 0);
-        this.O = e.f57554c;
+        this.O = e.f57668c;
         this.L = new ArrayDeque();
         this.Q = -9223372036854775807L;
         this.P = -9223372036854775807L;
@@ -47,7 +48,7 @@ public final class f extends l2.b {
     @Override
     public final int C(u uVar) {
         this.J.getClass();
-        return n.f(uVar);
+        return t.d(uVar);
     }
 
     public final boolean F(long r13) {
@@ -59,23 +60,23 @@ public final class f extends l2.b {
     }
 
     public final void H() {
-        if (!this.f57560d0) {
+        if (!this.f57674d0) {
             return;
         }
         u uVar = this.T;
         uVar.getClass();
-        n nVar = this.J;
-        nVar.getClass();
-        int f10 = n.f(uVar);
-        if (f10 != i5.c.a(4, 0, 0, 0) && f10 != i5.c.a(3, 0, 0, 0)) {
+        t tVar = this.J;
+        tVar.getClass();
+        int d = t.d(uVar);
+        if (d != i5.c.a(4, 0, 0, 0) && d != i5.c.a(3, 0, 0, 0)) {
             throw d(new Exception("Provided decoder factory can't create decoder for format."), this.T, false, 4005);
         }
         b bVar = this.U;
         if (bVar != null) {
             bVar.release();
         }
-        this.U = new b(nVar.f2231a);
-        this.f57560d0 = false;
+        this.U = new b(tVar.f1934a);
+        this.f57674d0 = false;
     }
 
     public final void I() {
@@ -96,7 +97,7 @@ public final class f extends l2.b {
             if (i7 != 23) {
                 return;
             }
-            this.X = (h0) obj;
+            this.X = (i0) obj;
             return;
         }
         if (obj instanceof d) {
@@ -105,7 +106,7 @@ public final class f extends l2.b {
             dVar = null;
         }
         if (dVar == null) {
-            dVar = d.f57553a;
+            dVar = d.f57667a;
         }
         this.W = dVar;
     }
@@ -116,7 +117,7 @@ public final class f extends l2.b {
     }
 
     @Override
-    public final boolean l() {
+    public final boolean k() {
         return this.N;
     }
 
@@ -135,7 +136,7 @@ public final class f extends l2.b {
     @Override
     public final void n() {
         this.T = null;
-        this.O = e.f57554c;
+        this.O = e.f57668c;
         this.L.clear();
         I();
         this.W.getClass();
@@ -152,8 +153,8 @@ public final class f extends l2.b {
         this.N = false;
         this.M = false;
         this.Y = null;
-        this.f57557a0 = null;
-        this.f57558b0 = null;
+        this.f57671a0 = null;
+        this.f57672b0 = null;
         this.Z = false;
         this.V = null;
         b bVar = this.U;
@@ -183,16 +184,16 @@ public final class f extends l2.b {
     public final void x(long j3, long j10) {
         if (!this.N) {
             if (this.T == null) {
-                k8.a aVar = this.f19251c;
-                aVar.g0();
+                m mVar = this.f19348c;
+                mVar.T();
                 h hVar = this.K;
                 hVar.clear();
-                int w10 = w(aVar, hVar, 2);
+                int w10 = w(mVar, hVar, 2);
                 if (w10 == -5) {
-                    u uVar = (u) aVar.f18178c;
+                    u uVar = (u) mVar.f17465c;
                     uVar.getClass();
                     this.T = uVar;
-                    this.f57560d0 = true;
+                    this.f57674d0 = true;
                 } else if (w10 == -4) {
                     ma.p(hVar.isEndOfStream());
                     this.M = true;

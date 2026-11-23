@@ -6,5 +6,5 @@ import r0.f1;
 public interface e {
     public static final f1 B = new f1(28);
 
-    List k(ComponentRegistrar componentRegistrar);
+    List j(ComponentRegistrar componentRegistrar);
 }

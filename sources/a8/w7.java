@@ -9,15 +9,15 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 public abstract class w7 {
-    public static b9.k0 a(Context context, GoogleSignInOptions googleSignInOptions) {
+    public static b9.j0 a(Context context, GoogleSignInOptions googleSignInOptions) {
         q6.m.h(googleSignInOptions);
-        return new com.google.android.gms.common.api.j(context, z5.a.f61489a, googleSignInOptions, new com.google.android.gms.common.api.i(new w7.s(6), Looper.getMainLooper()));
+        return new com.google.android.gms.common.api.j(context, z5.a.f61608a, googleSignInOptions, new com.google.android.gms.common.api.i(new w7.s(6), Looper.getMainLooper()));
     }
 
     public static Task b(Intent intent) {
         c6.b bVar;
         GoogleSignInAccount googleSignInAccount;
-        org.telegram.messenger.d1 d1Var = d6.h.f7870a;
+        org.telegram.messenger.d1 d1Var = d6.h.f7869a;
         Status status = Status.h;
         if (intent == null) {
             bVar = new c6.b(null, status);

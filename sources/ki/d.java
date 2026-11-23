@@ -1,33 +1,33 @@
 package ki;
 
 import android.app.Activity;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
 public final class d implements Runnable {
-    public final int f18607a;
-    public final j f18608b;
+    public final int f18711a;
+    public final j f18712b;
 
     public d(j jVar, int i7) {
-        this.f18607a = i7;
-        this.f18608b = jVar;
+        this.f18711a = i7;
+        this.f18712b = jVar;
     }
 
     @Override
     public final void run() {
         int i7;
         int i10;
-        int i11 = this.f18607a;
+        int i11 = this.f18711a;
         String str = null;
-        j jVar = this.f18608b;
+        j jVar = this.f18712b;
         switch (i11) {
             case 0:
                 bi.s sVar = jVar.W;
-                if (jVar.f18716b0.end_date != 0) {
+                if (jVar.f18815b0.end_date != 0) {
                     str = ah.r.f((i7 - jVar.getConnectionsManager().getCurrentTime()) * 1000);
                 }
                 sVar.g(str, true);
-                if (jVar.f18716b0.end_date != 0 && jVar.f18719e0) {
+                if (jVar.f18815b0.end_date != 0 && jVar.f18818e0) {
                     org.telegram.messenger.g0.h3(jVar.Y, 1000L);
                     return;
                 }
@@ -35,7 +35,7 @@ public final class d implements Runnable {
             case 1:
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
                 updatestarrefprogram.bot = jVar.getMessagesController().q1(jVar.S);
-                TL_payments.starRefProgram starrefprogram = jVar.f18716b0;
+                TL_payments.starRefProgram starrefprogram = jVar.f18815b0;
                 updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
                 int i12 = starrefprogram.duration_months;
                 updatestarrefprogram.duration_months = i12;
@@ -52,12 +52,12 @@ public final class d implements Runnable {
                 return;
             default:
                 Activity parentActivity = jVar.getParentActivity();
-                if (!jVar.Z && jVar.f18716b0.end_date == 0) {
+                if (!jVar.Z && jVar.f18815b0.end_date == 0) {
                     i10 = 2131754324;
                 } else {
                     i10 = 2131754311;
                 }
-                vf.c.t(parentActivity, hd.N0(i10, null));
+                vf.c.t(parentActivity, gd.N0(i10, null));
                 return;
         }
     }

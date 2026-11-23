@@ -17,11 +17,11 @@ public final class c {
     public final h f13889c;
     public ArrayList d;
     public final SparseIntArray f13890e;
-    public final s f13891f;
+    public final t f13891f;
     public final ArrayList f13892g;
     public final ArrayDeque h;
     public final y f13893i;
-    public final r f13894j;
+    public final s f13894j;
     public BasePendingResult f13895k;
     public BasePendingResult f13896l;
     public final Set f13897m = DesugarCollections.synchronizedSet(new HashSet());
@@ -35,9 +35,9 @@ public final class c {
         this.f13892g = new ArrayList();
         this.h = new ArrayDeque(20);
         this.f13893i = new y(Looper.getMainLooper(), 0);
-        this.f13894j = new r(this, 0);
+        this.f13894j = new s(this, 0);
         hVar.p(new c0(this, 1));
-        this.f13891f = new s(this);
+        this.f13891f = new t(this);
         this.f13888b = e();
         d();
     }
@@ -113,7 +113,7 @@ public final class c {
                 basePendingResult2 = iVar;
             }
             this.f13896l = basePendingResult2;
-            basePendingResult2.i(new q(this, 0));
+            basePendingResult2.i(new r(this, 0));
         }
     }
 
@@ -121,15 +121,15 @@ public final class c {
         int i7;
         f6.q e10 = this.f13889c.e();
         if (e10 != null) {
-            MediaInfo mediaInfo = e10.f11435a;
+            MediaInfo mediaInfo = e10.f11434a;
             if (mediaInfo == null) {
                 i7 = -1;
             } else {
                 i7 = mediaInfo.f6155b;
             }
-            int i10 = e10.f11438e;
-            int i11 = e10.f11439f;
-            int i12 = e10.f11444x;
+            int i10 = e10.f11437e;
+            int i11 = e10.f11438f;
+            int i12 = e10.f11443x;
             if (i10 == 1) {
                 if (i11 != 1) {
                     if (i11 != 2) {
@@ -144,7 +144,7 @@ public final class c {
                     return 0L;
                 }
             }
-            return e10.f11436b;
+            return e10.f11435b;
         }
         return 0L;
     }

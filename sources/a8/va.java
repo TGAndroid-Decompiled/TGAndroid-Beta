@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
-import org.telegram.messenger.np;
-import org.telegram.messenger.ys;
-import org.telegram.ui.Components.lc;
-import org.telegram.ui.Components.qo;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.xs;
+import org.telegram.ui.Components.kc;
+import org.telegram.ui.Components.no;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.jx0;
-public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 {
+import org.telegram.ui.hx0;
+public final class va implements OnFailureListener, f3.p, f3.q, o2.i, no, zi.x0 {
     public final int f692a;
     public long f693b;
     public Object f694c;
@@ -29,38 +29,11 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
         this.f694c = obj;
     }
 
-    @Override
-    public void A(MediaFormat mediaFormat) {
-        ((zi.x) this.f694c).n(mediaFormat, true);
-    }
-
-    @Override
-    public void B(int i7) {
-        ProfileActivity profileActivity = (ProfileActivity) this.f694c;
-        if (i7 == 0) {
-            if (profileActivity.getMessagesController().u2(this.f693b, profileActivity.f43565g1, null)) {
-                s();
-            }
-            if (lc.a(profileActivity)) {
-                lc.z(profileActivity, 4, i7, profileActivity.A0).j();
-                return;
-            }
-            return;
-        }
-        RectF rectF = ProfileActivity.Z6;
-        profileActivity.getNotificationsController().H(this.f693b, i7, profileActivity.f43565g1);
-        if (lc.a(profileActivity)) {
-            lc.z(profileActivity, 5, i7, profileActivity.A0).j();
-        }
-        profileActivity.y5();
-        profileActivity.J5(true);
-    }
-
-    public void C(int i7) {
+    public void A(int i7) {
         if (i7 >= 64) {
             va vaVar = (va) this.f694c;
             if (vaVar != null) {
-                vaVar.C(i7 - 64);
+                vaVar.A(i7 - 64);
                 return;
             }
             return;
@@ -68,7 +41,7 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
         this.f693b &= ~(1 << i7);
     }
 
-    public int D(int i7) {
+    public int B(int i7) {
         va vaVar = (va) this.f694c;
         if (vaVar == null) {
             if (i7 >= 64) {
@@ -78,17 +51,17 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
         } else if (i7 < 64) {
             return Long.bitCount(this.f693b & ((1 << i7) - 1));
         } else {
-            return Long.bitCount(this.f693b) + vaVar.D(i7 - 64);
+            return Long.bitCount(this.f693b) + vaVar.B(i7 - 64);
         }
     }
 
-    public void E() {
+    public void C() {
         if (((va) this.f694c) == null) {
             this.f694c = new va(8);
         }
     }
 
-    public void F(yc.a aVar) {
+    public void D(yc.a aVar) {
         this.f693b++;
         Thread thread = new Thread(aVar);
         thread.setDaemon(true);
@@ -97,10 +70,10 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
         thread.start();
     }
 
-    public boolean G(int i7) {
+    public boolean E(int i7) {
         if (i7 >= 64) {
-            E();
-            return ((va) this.f694c).G(i7 - 64);
+            C();
+            return ((va) this.f694c).E(i7 - 64);
         } else if ((this.f693b & (1 << i7)) != 0) {
             return true;
         } else {
@@ -108,11 +81,11 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
         }
     }
 
-    public void H(int i7, boolean z10) {
+    public void F(int i7, boolean z10) {
         boolean z11;
         if (i7 >= 64) {
-            E();
-            ((va) this.f694c).H(i7 - 64, z10);
+            C();
+            ((va) this.f694c).F(i7 - 64, z10);
             return;
         }
         long j3 = this.f693b;
@@ -124,22 +97,22 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
         long j10 = (1 << i7) - 1;
         this.f693b = ((j3 & (~j10)) << 1) | (j3 & j10);
         if (z10) {
-            K(i7);
+            I(i7);
         } else {
-            C(i7);
+            A(i7);
         }
         if (!z11 && ((va) this.f694c) == null) {
             return;
         }
-        E();
-        ((va) this.f694c).H(0, z11);
+        C();
+        ((va) this.f694c).F(0, z11);
     }
 
-    public boolean I(int i7) {
+    public boolean G(int i7) {
         boolean z10;
         if (i7 >= 64) {
-            E();
-            return ((va) this.f694c).I(i7 - 64);
+            C();
+            return ((va) this.f694c).G(i7 - 64);
         }
         long j3 = 1 << i7;
         long j10 = this.f693b;
@@ -154,34 +127,77 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
         this.f693b = (j11 & j12) | Long.rotateRight((~j12) & j11, 1);
         va vaVar = (va) this.f694c;
         if (vaVar != null) {
-            if (vaVar.G(0)) {
-                K(63);
+            if (vaVar.E(0)) {
+                I(63);
             }
-            ((va) this.f694c).I(0);
+            ((va) this.f694c).G(0);
         }
         return z10;
     }
 
-    public void J() {
+    public void H() {
         this.f693b = 0L;
         va vaVar = (va) this.f694c;
         if (vaVar != null) {
-            vaVar.J();
+            vaVar.H();
         }
     }
 
-    public void K(int i7) {
+    public void I(int i7) {
         if (i7 >= 64) {
-            E();
-            ((va) this.f694c).K(i7 - 64);
+            C();
+            ((va) this.f694c).I(i7 - 64);
             return;
         }
         this.f693b |= 1 << i7;
     }
 
     @Override
+    public void J() {
+        ProfileActivity profileActivity = (ProfileActivity) this.f694c;
+        SharedPreferences sharedPreferences = mp.u1(ProfileActivity.k1(profileActivity)).f25753g7;
+        StringBuilder sb2 = new StringBuilder("sound_enabled_");
+        long j3 = this.f693b;
+        sb2.append(xs.v(j3, profileActivity.f43681g1, false));
+        boolean z10 = sharedPreferences.getBoolean(sb2.toString(), true);
+        boolean z11 = !z10 ? 1 : 0;
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean("sound_enabled_" + xs.v(j3, profileActivity.f43681g1, false), z11).apply();
+        if (kc.a(profileActivity)) {
+            kc.S(z10 ? 1 : 0, profileActivity, profileActivity.A0).j();
+        }
+    }
+
+    @Override
+    public void Q(int i7) {
+        ProfileActivity profileActivity = (ProfileActivity) this.f694c;
+        if (i7 == 0) {
+            if (profileActivity.getMessagesController().u2(this.f693b, profileActivity.f43681g1, null)) {
+                v();
+            }
+            if (kc.a(profileActivity)) {
+                kc.z(profileActivity, 4, i7, profileActivity.A0).j();
+                return;
+            }
+            return;
+        }
+        RectF rectF = ProfileActivity.Z6;
+        profileActivity.getNotificationsController().H(this.f693b, i7, profileActivity.f43681g1);
+        if (kc.a(profileActivity)) {
+            kc.z(profileActivity, 5, i7, profileActivity.A0).j();
+        }
+        profileActivity.y5();
+        profileActivity.J5(true);
+    }
+
+    @Override
+    public void Z0() {
+        ((f3.q) this.f694c).Z0();
+    }
+
+    @Override
     public long a(long j3) {
-        return ((f3.j) this.f694c).f11162e[(int) j3] - this.f693b;
+        return ((f3.j) this.f694c).f11166e[(int) j3] - this.f693b;
     }
 
     @Override
@@ -190,38 +206,35 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
     }
 
     @Override
-    public boolean c(byte[] bArr, int i7, int i10, boolean z10) {
-        return ((f3.p) this.f694c).c(bArr, 0, i10, z10);
+    public long c(long j3, long j10) {
+        return ((f3.j) this.f694c).d[(int) j3];
     }
 
     @Override
-    public int d(int i7, int i10, byte[] bArr) {
-        return ((f3.p) this.f694c).d(i7, i10, bArr);
+    public boolean d(byte[] bArr, int i7, int i10, boolean z10) {
+        return ((f3.p) this.f694c).d(bArr, 0, i10, z10);
     }
 
     @Override
-    public void d1() {
-        ((f3.q) this.f694c).d1();
-    }
-
-    @Override
-    public f3.i0 d2(int i7, int i10) {
+    public f3.j0 d2(int i7, int i10) {
         return ((f3.q) this.f694c).d2(i7, i10);
     }
 
     @Override
     public long e(long j3, long j10) {
-        return ((f3.j) this.f694c).d[(int) j3];
+        return 0L;
     }
 
     @Override
-    public boolean f(int i7, boolean z10) {
-        return ((f3.p) this.f694c).f(i7, true);
+    public long f(long j3, long j10) {
+        return -9223372036854775807L;
     }
 
     @Override
-    public boolean g(byte[] bArr, int i7, int i10, boolean z10) {
-        return ((f3.p) this.f694c).g(bArr, i7, i10, z10);
+    public p2.j g(long j3) {
+        f3.j jVar = (f3.j) this.f694c;
+        int i7 = (int) j3;
+        return new p2.j(jVar.f11165c[i7], null, jVar.f11164b[i7]);
     }
 
     @Override
@@ -235,25 +248,23 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
     }
 
     @Override
-    public long h(long j3, long j10) {
-        return 0L;
+    public void h(f3.c0 c0Var) {
+        ((f3.q) this.f694c).h(new f3.h0(this, c0Var, c0Var));
     }
 
     @Override
-    public long i(long j3, long j10) {
-        return -9223372036854775807L;
+    public int i(int i7, int i10, byte[] bArr) {
+        return ((f3.p) this.f694c).i(i7, i10, bArr);
     }
 
     @Override
-    public void j(f3.b0 b0Var) {
-        ((f3.q) this.f694c).j(new f3.g0(this, b0Var, b0Var));
+    public boolean j(int i7, boolean z10) {
+        return ((f3.p) this.f694c).j(i7, true);
     }
 
     @Override
-    public p2.j k(long j3) {
-        f3.j jVar = (f3.j) this.f694c;
-        int i7 = (int) j3;
-        return new p2.j(jVar.f11161c[i7], null, jVar.f11160b[i7]);
+    public boolean k(byte[] bArr, int i7, int i10, boolean z10) {
+        return ((f3.p) this.f694c).k(bArr, i7, i10, z10);
     }
 
     @Override
@@ -267,13 +278,13 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
     }
 
     @Override
-    public void n() {
-        ((f3.p) this.f694c).n();
+    public long n(long j3, long j10) {
+        return h2.l0.f(((f3.j) this.f694c).f11166e, j3 + this.f693b, true);
     }
 
     @Override
-    public long o(long j3, long j10) {
-        return h2.l0.f(((f3.j) this.f694c).f11162e, j3 + this.f693b, true);
+    public void o() {
+        ((f3.p) this.f694c).o();
     }
 
     @Override
@@ -289,7 +300,7 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
             case 2:
             case 3:
             default:
-                ((AtomicLong) ((tg.y) this.f694c).f58190c).set(this.f693b);
+                ((AtomicLong) ((t1.a) this.f694c).f57642c).set(this.f693b);
                 return;
             case 4:
                 if (exc instanceof com.google.android.gms.common.api.f) {
@@ -306,25 +317,18 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
     }
 
     @Override
-    public void p() {
-        Bundle bundle = new Bundle();
-        bundle.putLong("dialog_id", this.f693b);
-        ?? g2Var = new org.telegram.ui.ActionBar.g2(bundle);
-        g2Var.d = new ArrayList();
-        g2Var.f47190e = new HashSet();
-        ProfileActivity profileActivity = (ProfileActivity) this.f694c;
-        g2Var.f47190e = profileActivity.f43615n5;
-        profileActivity.presentFragment((org.telegram.ui.ActionBar.g2) g2Var);
-    }
-
-    @Override
-    public void q(ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
+    public void p(ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
         ((zi.x) this.f694c).q(true, byteBuffer, bufferInfo, -this.f693b);
     }
 
     @Override
-    public void r(int i7) {
-        ((f3.p) this.f694c).r(i7);
+    public void q(int i7) {
+        ((f3.p) this.f694c).q(i7);
+    }
+
+    @Override
+    public boolean r() {
+        return true;
     }
 
     @Override
@@ -338,15 +342,8 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
     }
 
     @Override
-    public void s() {
-        ProfileActivity profileActivity = (ProfileActivity) this.f694c;
-        boolean z10 = !profileActivity.getMessagesController().u2(this.f693b, profileActivity.f43565g1, null);
-        profileActivity.getNotificationsController().G(this.f693b, profileActivity.f43565g1, z10);
-        if (profileActivity.fragmentView != null) {
-            lc.A(profileActivity, z10, null).j();
-        }
-        profileActivity.y5();
-        profileActivity.J5(true);
+    public long s() {
+        return 0L;
     }
 
     @Override
@@ -355,8 +352,8 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
     }
 
     @Override
-    public boolean t() {
-        return true;
+    public boolean t(int i7, boolean z10) {
+        return ((f3.p) this.f694c).t(i7, true);
     }
 
     public String toString() {
@@ -373,50 +370,53 @@ public final class va implements OnFailureListener, f3.p, f3.q, o2.i, qo, zi.x0 
 
     @Override
     public void u() {
+        Bundle bundle = new Bundle();
+        bundle.putLong("dialog_id", this.f693b);
+        ?? g2Var = new org.telegram.ui.ActionBar.g2(bundle);
+        g2Var.d = new ArrayList();
+        g2Var.f46755e = new HashSet();
+        ProfileActivity profileActivity = (ProfileActivity) this.f694c;
+        g2Var.f46755e = profileActivity.f43731n5;
+        profileActivity.presentFragment((org.telegram.ui.ActionBar.g2) g2Var);
+    }
+
+    @Override
+    public void v() {
+        ProfileActivity profileActivity = (ProfileActivity) this.f694c;
+        boolean z10 = !profileActivity.getMessagesController().u2(this.f693b, profileActivity.f43681g1, null);
+        profileActivity.getNotificationsController().G(this.f693b, profileActivity.f43681g1, z10);
+        if (profileActivity.fragmentView != null) {
+            kc.A(profileActivity, z10, null).j();
+        }
+        profileActivity.y5();
+        profileActivity.J5(true);
+    }
+
+    @Override
+    public void w(MediaFormat mediaFormat) {
+        ((zi.x) this.f694c).n(mediaFormat, true);
+    }
+
+    @Override
+    public long x(long j3) {
+        return ((f3.j) this.f694c).f11163a;
+    }
+
+    @Override
+    public void y() {
         ProfileActivity profileActivity = (ProfileActivity) this.f694c;
         long j3 = this.f693b;
         if (j3 != 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", j3);
-            bundle.putLong("topic_id", profileActivity.f43565g1);
-            profileActivity.presentFragment(new jx0(bundle, profileActivity.A0));
+            bundle.putLong("topic_id", profileActivity.f43681g1);
+            profileActivity.presentFragment(new hx0(bundle, profileActivity.A0));
         }
-    }
-
-    @Override
-    public long v() {
-        return 0L;
-    }
-
-    @Override
-    public void w() {
-        ProfileActivity profileActivity = (ProfileActivity) this.f694c;
-        SharedPreferences sharedPreferences = np.u1(ProfileActivity.k1(profileActivity)).f25821g7;
-        StringBuilder sb2 = new StringBuilder("sound_enabled_");
-        long j3 = this.f693b;
-        sb2.append(ys.v(j3, profileActivity.f43565g1, false));
-        boolean z10 = sharedPreferences.getBoolean(sb2.toString(), true);
-        boolean z11 = !z10 ? 1 : 0;
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putBoolean("sound_enabled_" + ys.v(j3, profileActivity.f43565g1, false), z11).apply();
-        if (lc.a(profileActivity)) {
-            lc.S(z10 ? 1 : 0, profileActivity, profileActivity.A0).j();
-        }
-    }
-
-    @Override
-    public boolean x(int i7, boolean z10) {
-        return ((f3.p) this.f694c).x(i7, true);
-    }
-
-    @Override
-    public long y(long j3) {
-        return ((f3.j) this.f694c).f11159a;
     }
 
     @Override
     public long z(long j3, long j10) {
-        return ((f3.j) this.f694c).f11159a;
+        return ((f3.j) this.f694c).f11163a;
     }
 
     public va(Object obj, long j3, int i7) {

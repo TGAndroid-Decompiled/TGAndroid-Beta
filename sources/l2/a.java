@@ -2,23 +2,23 @@ package l2;
 
 import android.util.Pair;
 public abstract class a extends e2.l1 {
-    public static final int f19240g = 0;
-    public final int f19241e;
-    public final x2.i1 f19242f;
+    public static final int f19339g = 0;
+    public final int f19340e;
+    public final x2.i1 f19341f;
 
     public a(x2.i1 i1Var) {
-        this.f19242f = i1Var;
-        this.f19241e = i1Var.getLength();
+        this.f19341f = i1Var;
+        this.f19340e = i1Var.getLength();
     }
 
     @Override
     public final int a(boolean z10) {
         int i7;
-        if (this.f19241e == 0) {
+        if (this.f19340e == 0) {
             return -1;
         }
         if (z10) {
-            i7 = this.f19242f.b();
+            i7 = this.f19341f.b();
         } else {
             i7 = 0;
         }
@@ -50,11 +50,11 @@ public abstract class a extends e2.l1 {
     @Override
     public final int c(boolean z10) {
         int i7;
-        int i10 = this.f19241e;
+        int i10 = this.f19340e;
         if (i10 == 0) {
             return -1;
         }
-        x2.i1 i1Var = this.f19242f;
+        x2.i1 i1Var = this.f19341f;
         if (z10) {
             i7 = i1Var.h();
         } else {
@@ -112,12 +112,12 @@ public abstract class a extends e2.l1 {
         int r10 = r(i7);
         int v = v(r10);
         x(r10).f(i7 - u(r10), i1Var, z10);
-        i1Var.f10428c += v;
+        i1Var.f10426c += v;
         if (z10) {
             Object t6 = t(r10);
-            Object obj = i1Var.f10427b;
+            Object obj = i1Var.f10425b;
             obj.getClass();
-            i1Var.f10427b = Pair.create(t6, obj);
+            i1Var.f10425b = Pair.create(t6, obj);
         }
         return i1Var;
     }
@@ -130,8 +130,8 @@ public abstract class a extends e2.l1 {
         int q10 = q(obj2);
         int v = v(q10);
         x(q10).g(obj3, i1Var);
-        i1Var.f10428c += v;
-        i1Var.f10427b = obj;
+        i1Var.f10426c += v;
+        i1Var.f10425b = obj;
         return i1Var;
     }
 
@@ -153,12 +153,12 @@ public abstract class a extends e2.l1 {
         int u10 = u(s5);
         x(s5).m(i7 - v, k1Var, j3);
         Object t6 = t(s5);
-        if (!e2.k1.f10461q.equals(k1Var.f10470a)) {
-            t6 = Pair.create(t6, k1Var.f10470a);
+        if (!e2.k1.f10459q.equals(k1Var.f10468a)) {
+            t6 = Pair.create(t6, k1Var.f10468a);
         }
-        k1Var.f10470a = t6;
-        k1Var.f10481n += u10;
-        k1Var.f10482o += u10;
+        k1Var.f10468a = t6;
+        k1Var.f10479n += u10;
+        k1Var.f10480o += u10;
         return k1Var;
     }
 
@@ -176,9 +176,9 @@ public abstract class a extends e2.l1 {
 
     public final int w(int i7, boolean z10) {
         if (z10) {
-            return this.f19242f.e(i7);
+            return this.f19341f.e(i7);
         }
-        if (i7 < this.f19241e - 1) {
+        if (i7 < this.f19340e - 1) {
             return i7 + 1;
         }
         return -1;

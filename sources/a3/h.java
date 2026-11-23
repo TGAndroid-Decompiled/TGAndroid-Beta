@@ -1,7 +1,7 @@
 package a3;
 
 import ab.d0;
-import ai.f1;
+import ai.g1;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,20 +27,19 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.messaging.FirebaseMessaging;
 import di.f6;
-import di.i2;
+import di.j2;
 import e2.m1;
 import fi.a9;
 import fi.r3;
 import fi.z3;
 import h9.f0;
 import h9.i0;
-import h9.t1;
-import hi.n1;
-import hi.o8;
-import hi.q8;
-import hi.x1;
-import hi.x4;
-import hi.y1;
+import h9.s1;
+import hi.f2;
+import hi.g2;
+import hi.i9;
+import hi.k9;
+import hi.w1;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,67 +48,69 @@ import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 import jg.h1;
-import kg.a1;
-import ki.n2;
-import oi.a2;
-import oi.b4;
-import oi.e2;
-import oi.k1;
-import oi.p3;
-import oi.s3;
+import kg.z0;
+import ki.o2;
+import oi.b2;
+import oi.c4;
+import oi.l1;
+import oi.q3;
+import oi.t3;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.az;
 import org.telegram.messenger.f4;
+import org.telegram.messenger.fj;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gj;
+import org.telegram.messenger.h6;
 import org.telegram.messenger.j6;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.n10;
 import org.telegram.messenger.n5;
-import org.telegram.messenger.np;
+import org.telegram.messenger.ni;
 import org.telegram.messenger.oi;
-import org.telegram.messenger.p10;
-import org.telegram.messenger.pi;
-import org.telegram.messenger.si;
+import org.telegram.messenger.ri;
+import org.telegram.messenger.rr;
 import org.telegram.messenger.sr;
 import org.telegram.messenger.t0;
-import org.telegram.messenger.tr;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.w10;
+import org.telegram.messenger.zy;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.l0;
 import org.telegram.ui.ActionBar.q1;
+import org.telegram.ui.ActionBar.t1;
 import org.telegram.ui.ActionBar.w2;
 import org.telegram.ui.Cells.c0;
 import org.telegram.ui.Cells.d2;
-import org.telegram.ui.Cells.p7;
+import org.telegram.ui.Cells.o7;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.a5;
-import org.telegram.ui.Components.c4;
-import org.telegram.ui.Components.c5;
+import org.telegram.ui.Components.a4;
+import org.telegram.ui.Components.b4;
+import org.telegram.ui.Components.b5;
+import org.telegram.ui.Components.i4;
 import org.telegram.ui.Components.j4;
 import org.telegram.ui.Components.jj0;
-import org.telegram.ui.Components.k4;
-import org.telegram.ui.Components.ll;
-import org.telegram.ui.Components.ml;
-import org.telegram.ui.Components.rb0;
-import org.telegram.ui.Components.tb0;
-import org.telegram.ui.Components.tn;
-import org.telegram.ui.Components.ui;
-import org.telegram.ui.Components.zb0;
-import org.telegram.ui.Components.zk;
+import org.telegram.ui.Components.jl;
+import org.telegram.ui.Components.kl;
+import org.telegram.ui.Components.ob0;
+import org.telegram.ui.Components.qb0;
+import org.telegram.ui.Components.qn;
+import org.telegram.ui.Components.ti;
+import org.telegram.ui.Components.wb0;
+import org.telegram.ui.Components.xk;
+import org.telegram.ui.Components.z4;
 import org.telegram.ui.Dictation.DictationAsr;
 import org.telegram.ui.bn;
-import org.telegram.ui.cx;
-import org.telegram.ui.ll0;
-import org.telegram.ui.u7;
-import org.telegram.ui.ww;
-import org.telegram.ui.y91;
-public final class h implements p, SuccessContinuation, f1, androidx.car.app.utils.b, Continuation, ww, sr, a9, OnFailureListener, pi, q1, ll0, ll, l0, rb0, a5 {
+import org.telegram.ui.bx;
+import org.telegram.ui.jl0;
+import org.telegram.ui.v7;
+import org.telegram.ui.vw;
+import org.telegram.ui.w91;
+public final class h implements p, SuccessContinuation, g1, androidx.car.app.utils.b, Continuation, vw, rr, a9, OnFailureListener, oi, q1, jl0, jl, l0, ob0, z4 {
     public final int f87a;
     public final Object f88b;
     public final Object f89c;
@@ -123,7 +124,7 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
     }
 
     @Override
-    public boolean G() {
+    public boolean F() {
         switch (this.f87a) {
             case 6:
                 return false;
@@ -133,23 +134,23 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
     }
 
     @Override
-    public void O(int i7, int i10, boolean z10) {
+    public void I(int i7, int i10, boolean z10) {
         switch (this.f87a) {
             case 28:
-                ml mlVar = (ml) this.f89c;
-                mlVar.f37518o0.b((TLRPC.TL_messageMediaGeo) this.f88b, mlVar.f37519p0, z10, i7, ((Long) this.d).longValue());
-                mlVar.f37477b.a(true);
+                kl klVar = (kl) this.f89c;
+                klVar.f36786o0.d((TLRPC.TL_messageMediaGeo) this.f88b, klVar.f36787p0, z10, i7, ((Long) this.d).longValue());
+                klVar.f37135b.a(true);
                 return;
             default:
-                tn tnVar = (tn) this.f89c;
-                tnVar.f39947k0.d((TLRPC.TL_messageMediaToDo) this.f88b, null, null, null, z10, i7, ((Long) this.d).longValue());
-                tnVar.f37477b.a(true);
+                qn qnVar = (qn) this.f89c;
+                qnVar.f38929k0.c((TLRPC.TL_messageMediaToDo) this.f88b, null, null, null, z10, i7, ((Long) this.d).longValue());
+                qnVar.f37135b.a(true);
                 return;
         }
     }
 
     @Override
-    public boolean P(cx cxVar) {
+    public boolean O(bx bxVar) {
         switch (this.f87a) {
             case 6:
                 return false;
@@ -161,71 +162,13 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
     @Override
     public void a(String str) {
         r3 r3Var = (r3) this.f89c;
-        z3 z3Var = r3Var.f12493x;
-        z3Var.getStoriesController().r(z3Var.l1, str, new bi.j(r3Var, (TL_stories.StoryItem) this.f88b, (h6) this.d, 8));
+        z3 z3Var = r3Var.f12494x;
+        z3Var.getStoriesController().r(z3Var.l1, str, new bi.j(r3Var, (TL_stories.StoryItem) this.f88b, (i6) this.d, 8));
     }
 
     @Override
-    public void b(TLRPC.MessageMedia messageMedia, int i7, boolean z10, int i10, long j3) {
-        switch (this.f87a) {
-            case 15:
-                oi.o oVar = (oi.o) this.f89c;
-                oi.a aVar = (oi.a) this.f88b;
-                ui uiVar = (ui) this.d;
-                s3 s3Var = oVar.f22237r;
-                if (messageMedia != null && messageMedia.geo != null) {
-                    e2 e2Var = s3Var.R3;
-                    if (e2Var != null) {
-                        e2Var.d();
-                    }
-                    TL_iv.pageBlockMap pageblockmap = (TL_iv.pageBlockMap) aVar.f21901b;
-                    pageblockmap.geo = messageMedia.geo;
-                    pageblockmap.zoom = 15;
-                    if (pageblockmap.f28623w <= 0 || pageblockmap.h <= 0) {
-                        pageblockmap.f28623w = 600;
-                        pageblockmap.h = 400;
-                    }
-                    e2 e2Var2 = s3Var.R3;
-                    if (e2Var2 != null) {
-                        e2Var2.h();
-                    }
-                    oVar.a0(true);
-                    uiVar.a(true);
-                    s3Var.post(new oi.f(oVar, aVar, 0));
-                    return;
-                }
-                return;
-            default:
-                a2 a2Var = (a2) this.f89c;
-                oi.a aVar2 = (oi.a) this.f88b;
-                ui uiVar2 = (ui) this.d;
-                if (messageMedia != null && messageMedia.geo != null) {
-                    e2 e2Var3 = a2Var.Q.R3;
-                    if (e2Var3 != null) {
-                        e2Var3.d();
-                    }
-                    TL_iv.pageBlockMap pageblockmap2 = (TL_iv.pageBlockMap) aVar2.f21901b;
-                    pageblockmap2.geo = messageMedia.geo;
-                    pageblockmap2.zoom = 15;
-                    if (pageblockmap2.f28623w <= 0 || pageblockmap2.h <= 0) {
-                        pageblockmap2.f28623w = 600;
-                        pageblockmap2.h = 400;
-                    }
-                    e2 e2Var4 = a2Var.Q.R3;
-                    if (e2Var4 != null) {
-                        e2Var4.h();
-                    }
-                    uiVar2.a(true);
-                    a2Var.Q.post(new k1(a2Var, aVar2, 9));
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void c(long j3, long j10) {
-        ai.p pVar = (ai.p) this.f89c;
+    public void b(long j3, long j10) {
+        ai.q qVar = (ai.q) this.f89c;
         long[] jArr = (long[]) this.d;
         long[] jArr2 = (long[]) DictationAsr.h.get((String) this.f88b);
         if (jArr2 != null) {
@@ -235,15 +178,164 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
             }
         }
         if (j10 > 0) {
-            if (pVar != null) {
-                pVar.f1450k = Math.min(1.0f, ((float) j3) / ((float) j10));
+            if (qVar != null) {
+                qVar.f1462k = Math.min(1.0f, ((float) j3) / ((float) j10));
             }
             long elapsedRealtime = SystemClock.elapsedRealtime();
             if (elapsedRealtime - jArr[0] > 100) {
                 jArr[0] = elapsedRealtime;
-                DictationAsr.p();
+                DictationAsr.q();
             }
         }
+    }
+
+    @Override
+    public void c(String str, ArrayList arrayList) {
+        int i7;
+        int i10;
+        ArrayList<TLRPC.Document> arrayList2;
+        int i11;
+        ArrayList arrayList3;
+        boolean z10;
+        ArrayList arrayList4;
+        ArrayList arrayList5 = arrayList;
+        f2 f2Var = (f2) this.f89c;
+        ri riVar = (ri) this.d;
+        ArrayList arrayList6 = f2Var.h;
+        SparseIntArray sparseIntArray = f2Var.E;
+        ArrayList arrayList7 = f2Var.f14423n;
+        g2 g2Var = f2Var.O;
+        ArrayList arrayList8 = f2Var.f14426w;
+        HashSet hashSet = f2Var.M;
+        ArrayList arrayList9 = f2Var.f14425s;
+        if (!TextUtils.equals((String) this.f88b, f2Var.I)) {
+            return;
+        }
+        ArrayList j3 = j6.j(f2Var.I, null);
+        int i12 = 0;
+        for (int i13 = 0; i13 < j3.size(); i13++) {
+            try {
+                ?? obj = new Object();
+                obj.f26023a = ((h6) j3.get(i13)).f24489c.toString();
+                arrayList5.add(obj);
+            } catch (Exception unused) {
+            }
+        }
+        f2Var.f14428y = 0;
+        arrayList9.clear();
+        arrayList8.clear();
+        sparseIntArray.clear();
+        arrayList7.clear();
+        int i14 = 1;
+        f2Var.f14428y++;
+        arrayList9.add(null);
+        arrayList8.add(0L);
+        if (g2Var.f14262a == 0) {
+            hashSet.clear();
+            for (int i15 = 0; i15 < arrayList5.size(); i15++) {
+                ni niVar = (ni) arrayList5.get(i15);
+                String str2 = niVar.f26023a;
+                if (str2 != null && !str2.startsWith("animated_") && (arrayList4 = (ArrayList) f2Var.d.get(niVar.f26023a)) != null) {
+                    hashSet.addAll(arrayList4);
+                }
+            }
+            arrayList8.addAll(hashSet);
+            for (int i16 = 0; i16 < hashSet.size(); i16++) {
+                arrayList9.add(null);
+            }
+            f2Var.f14428y = hashSet.size() + f2Var.f14428y;
+            i7 = 1;
+            i10 = 0;
+        } else {
+            HashMap hashMap = riVar.f26709e0;
+            int i17 = 0;
+            while (i17 < arrayList5.size()) {
+                ni niVar2 = (ni) arrayList5.get(i17);
+                int i18 = i12;
+                String str3 = niVar2.f26023a;
+                if (str3 == null || str3.startsWith("animated_") || (arrayList3 = (ArrayList) hashMap.get(niVar2.f26023a)) == null || arrayList3.isEmpty()) {
+                    i11 = i14;
+                } else {
+                    i11 = i14;
+                    for (int i19 = i18; i19 < arrayList3.size(); i19++) {
+                        TLRPC.Document document = (TLRPC.Document) arrayList3.get(i19);
+                        if (document != null && !arrayList9.contains(document)) {
+                            arrayList9.add(document);
+                            f2Var.f14428y++;
+                        }
+                    }
+                }
+                i17++;
+                i12 = i18;
+                i14 = i11;
+            }
+            i7 = i14;
+            i10 = i12;
+            ArrayList arrayList10 = riVar.f26740t0[i10];
+            int i20 = i10;
+            while (i20 < arrayList5.size()) {
+                ni niVar3 = (ni) arrayList5.get(i20);
+                String str4 = niVar3.f26023a;
+                if (str4 != null && !str4.startsWith("animated_")) {
+                    for (int i21 = i10; i21 < arrayList10.size(); i21++) {
+                        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList10.get(i21);
+                        if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
+                            arrayList2 = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
+                        } else if (!stickerSetCovered.covers.isEmpty()) {
+                            arrayList2 = stickerSetCovered.covers;
+                        } else if (stickerSetCovered.cover != null) {
+                            ArrayList<TLRPC.Document> arrayList11 = new ArrayList<>();
+                            arrayList11.add(stickerSetCovered.cover);
+                            arrayList2 = arrayList11;
+                        }
+                        for (int i22 = i10; i22 < arrayList2.size(); i22++) {
+                            String V = fj.V(arrayList2.get(i22), null, null);
+                            if (V != null && V.contains(niVar3.f26023a)) {
+                                arrayList9.add(arrayList2.get(i22));
+                                f2Var.f14428y++;
+                            }
+                        }
+                    }
+                }
+                i20++;
+                arrayList5 = arrayList;
+            }
+        }
+        String M3 = g0.M3((f2Var.I + "").toLowerCase());
+        for (int i23 = i10; i23 < arrayList6.size(); i23++) {
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList6.get(i23);
+            if (tL_messages_stickerSet != null && tL_messages_stickerSet.set != null) {
+                String M32 = g0.M3((tL_messages_stickerSet.set.title + "").toLowerCase());
+                if (M32.startsWith(M3) || M32.contains(" ".concat(M3))) {
+                    int size = arrayList7.size();
+                    arrayList7.add(tL_messages_stickerSet);
+                    sparseIntArray.put(f2Var.f14428y, size);
+                    arrayList9.add(null);
+                    f2Var.f14428y++;
+                    arrayList9.addAll(tL_messages_stickerSet.documents);
+                    f2Var.f14428y = tL_messages_stickerSet.documents.size() + f2Var.f14428y;
+                }
+            }
+        }
+        int i24 = i7;
+        if (arrayList8.size() <= i24 && arrayList9.size() <= i24) {
+            z10 = i24;
+        } else {
+            z10 = i10;
+        }
+        f2Var.f14427x = z10;
+        if (z10 != 0) {
+            f2Var.f14428y += i24;
+        }
+        if (z10 == 0) {
+            f2Var.L += i24;
+        }
+        f2Var.J = f2Var.I;
+        f2Var.f();
+        boolean z11 = i10;
+        w1.z1(g2Var.f14520b, z11 ? 1 : 0, z11 ? 1 : 0);
+        g2Var.f14523f.c(z11);
+        g2Var.f14522e.n(z11);
     }
 
     @Override
@@ -281,206 +373,115 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
     }
 
     @Override
-    public void d(int i7) {
+    public void d(TLRPC.MessageMedia messageMedia, int i7, boolean z10, int i10, long j3) {
         switch (this.f87a) {
-            case 14:
-                n2 n2Var = (n2) this.f89c;
-                zb0 zb0Var = (zb0) this.d;
-                String str = (String) this.f88b;
-                if (i7 != 3) {
-                    zb0Var.dismiss();
+            case 15:
+                oi.p pVar = (oi.p) this.f89c;
+                oi.a aVar = (oi.a) this.f88b;
+                ti tiVar = (ti) this.d;
+                t3 t3Var = pVar.f22367r;
+                if (messageMedia != null && messageMedia.geo != null) {
+                    oi.g2 g2Var = t3Var.R3;
+                    if (g2Var != null) {
+                        g2Var.d();
+                    }
+                    TL_iv.pageBlockMap pageblockmap = (TL_iv.pageBlockMap) aVar.f22001b;
+                    pageblockmap.geo = messageMedia.geo;
+                    pageblockmap.zoom = 15;
+                    if (pageblockmap.f28717w <= 0 || pageblockmap.h <= 0) {
+                        pageblockmap.f28717w = 600;
+                        pageblockmap.h = 400;
+                    }
+                    oi.g2 g2Var2 = t3Var.R3;
+                    if (g2Var2 != null) {
+                        g2Var2.h();
+                    }
+                    pVar.a0(true);
+                    tiVar.a(true);
+                    t3Var.post(new oi.f(pVar, aVar, 0));
+                    return;
                 }
-                n2Var.d.E.G(str, c0.D(i7).toLowerCase(Locale.ROOT), false);
                 return;
             default:
-                zb0 zb0Var2 = (zb0) this.f89c;
-                ki.s3 s3Var = (ki.s3) this.d;
-                String str2 = (String) this.f88b;
-                if (i7 != 3) {
-                    zb0Var2.dismiss();
+                b2 b2Var = (b2) this.f89c;
+                oi.a aVar2 = (oi.a) this.f88b;
+                ti tiVar2 = (ti) this.d;
+                if (messageMedia != null && messageMedia.geo != null) {
+                    oi.g2 g2Var3 = b2Var.Q.R3;
+                    if (g2Var3 != null) {
+                        g2Var3.d();
+                    }
+                    TL_iv.pageBlockMap pageblockmap2 = (TL_iv.pageBlockMap) aVar2.f22001b;
+                    pageblockmap2.geo = messageMedia.geo;
+                    pageblockmap2.zoom = 15;
+                    if (pageblockmap2.f28717w <= 0 || pageblockmap2.h <= 0) {
+                        pageblockmap2.f28717w = 600;
+                        pageblockmap2.h = 400;
+                    }
+                    oi.g2 g2Var4 = b2Var.Q.R3;
+                    if (g2Var4 != null) {
+                        g2Var4.h();
+                    }
+                    tiVar2.a(true);
+                    b2Var.Q.post(new l1(b2Var, aVar2, 9));
+                    return;
                 }
-                s3Var.getWebViewContainer().G(str2, c0.D(i7).toLowerCase(Locale.ROOT), false);
                 return;
         }
     }
 
     @Override
-    public void e(String str, ArrayList arrayList) {
-        int i7;
-        int i10;
-        ArrayList<TLRPC.Document> arrayList2;
-        int i11;
-        ArrayList arrayList3;
-        boolean z10;
-        ArrayList arrayList4;
-        ArrayList arrayList5 = arrayList;
-        x1 x1Var = (x1) this.f89c;
-        si siVar = (si) this.d;
-        ArrayList arrayList6 = x1Var.h;
-        SparseIntArray sparseIntArray = x1Var.E;
-        ArrayList arrayList7 = x1Var.f15661n;
-        y1 y1Var = x1Var.O;
-        ArrayList arrayList8 = x1Var.f15664w;
-        HashSet hashSet = x1Var.M;
-        ArrayList arrayList9 = x1Var.f15663s;
-        if (!TextUtils.equals((String) this.f88b, x1Var.I)) {
-            return;
-        }
-        ArrayList j3 = j6.j(x1Var.I, null);
-        int i12 = 0;
-        for (int i13 = 0; i13 < j3.size(); i13++) {
-            try {
-                ?? obj = new Object();
-                obj.f26090a = ((org.telegram.messenger.h6) j3.get(i13)).f24366c.toString();
-                arrayList5.add(obj);
-            } catch (Exception unused) {
-            }
-        }
-        x1Var.f15666y = 0;
-        arrayList9.clear();
-        arrayList8.clear();
-        sparseIntArray.clear();
-        arrayList7.clear();
-        int i14 = 1;
-        x1Var.f15666y++;
-        arrayList9.add(null);
-        arrayList8.add(0L);
-        if (y1Var.f15489a == 0) {
-            hashSet.clear();
-            for (int i15 = 0; i15 < arrayList5.size(); i15++) {
-                oi oiVar = (oi) arrayList5.get(i15);
-                String str2 = oiVar.f26090a;
-                if (str2 != null && !str2.startsWith("animated_") && (arrayList4 = (ArrayList) x1Var.d.get(oiVar.f26090a)) != null) {
-                    hashSet.addAll(arrayList4);
+    public void e(int i7) {
+        switch (this.f87a) {
+            case 14:
+                o2 o2Var = (o2) this.f89c;
+                wb0 wb0Var = (wb0) this.d;
+                String str = (String) this.f88b;
+                if (i7 != 3) {
+                    wb0Var.dismiss();
                 }
-            }
-            arrayList8.addAll(hashSet);
-            for (int i16 = 0; i16 < hashSet.size(); i16++) {
-                arrayList9.add(null);
-            }
-            x1Var.f15666y = hashSet.size() + x1Var.f15666y;
-            i7 = 1;
-            i10 = 0;
-        } else {
-            HashMap hashMap = siVar.f26786e0;
-            int i17 = 0;
-            while (i17 < arrayList5.size()) {
-                oi oiVar2 = (oi) arrayList5.get(i17);
-                int i18 = i12;
-                String str3 = oiVar2.f26090a;
-                if (str3 == null || str3.startsWith("animated_") || (arrayList3 = (ArrayList) hashMap.get(oiVar2.f26090a)) == null || arrayList3.isEmpty()) {
-                    i11 = i14;
-                } else {
-                    i11 = i14;
-                    for (int i19 = i18; i19 < arrayList3.size(); i19++) {
-                        TLRPC.Document document = (TLRPC.Document) arrayList3.get(i19);
-                        if (document != null && !arrayList9.contains(document)) {
-                            arrayList9.add(document);
-                            x1Var.f15666y++;
-                        }
-                    }
+                o2Var.d.E.G(str, c0.D(i7).toLowerCase(Locale.ROOT), false);
+                return;
+            default:
+                wb0 wb0Var2 = (wb0) this.f89c;
+                ki.t3 t3Var = (ki.t3) this.d;
+                String str2 = (String) this.f88b;
+                if (i7 != 3) {
+                    wb0Var2.dismiss();
                 }
-                i17++;
-                i12 = i18;
-                i14 = i11;
-            }
-            i7 = i14;
-            i10 = i12;
-            ArrayList arrayList10 = siVar.f26817t0[i10];
-            int i20 = i10;
-            while (i20 < arrayList5.size()) {
-                oi oiVar3 = (oi) arrayList5.get(i20);
-                String str4 = oiVar3.f26090a;
-                if (str4 != null && !str4.startsWith("animated_")) {
-                    for (int i21 = i10; i21 < arrayList10.size(); i21++) {
-                        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList10.get(i21);
-                        if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
-                            arrayList2 = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
-                        } else if (!stickerSetCovered.covers.isEmpty()) {
-                            arrayList2 = stickerSetCovered.covers;
-                        } else if (stickerSetCovered.cover != null) {
-                            ArrayList<TLRPC.Document> arrayList11 = new ArrayList<>();
-                            arrayList11.add(stickerSetCovered.cover);
-                            arrayList2 = arrayList11;
-                        }
-                        for (int i22 = i10; i22 < arrayList2.size(); i22++) {
-                            String V = gj.V(arrayList2.get(i22), null, null);
-                            if (V != null && V.contains(oiVar3.f26090a)) {
-                                arrayList9.add(arrayList2.get(i22));
-                                x1Var.f15666y++;
-                            }
-                        }
-                    }
-                }
-                i20++;
-                arrayList5 = arrayList;
-            }
+                t3Var.getWebViewContainer().G(str2, c0.D(i7).toLowerCase(Locale.ROOT), false);
+                return;
         }
-        String M3 = g0.M3((x1Var.I + "").toLowerCase());
-        for (int i23 = i10; i23 < arrayList6.size(); i23++) {
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList6.get(i23);
-            if (tL_messages_stickerSet != null && tL_messages_stickerSet.set != null) {
-                String M32 = g0.M3((tL_messages_stickerSet.set.title + "").toLowerCase());
-                if (M32.startsWith(M3) || M32.contains(" ".concat(M3))) {
-                    int size = arrayList7.size();
-                    arrayList7.add(tL_messages_stickerSet);
-                    sparseIntArray.put(x1Var.f15666y, size);
-                    arrayList9.add(null);
-                    x1Var.f15666y++;
-                    arrayList9.addAll(tL_messages_stickerSet.documents);
-                    x1Var.f15666y = tL_messages_stickerSet.documents.size() + x1Var.f15666y;
-                }
-            }
-        }
-        int i24 = i7;
-        if (arrayList8.size() <= i24 && arrayList9.size() <= i24) {
-            z10 = i24;
-        } else {
-            z10 = i10;
-        }
-        x1Var.f15665x = z10;
-        if (z10 != 0) {
-            x1Var.f15666y += i24;
-        }
-        if (z10 == 0) {
-            x1Var.L += i24;
-        }
-        x1Var.J = x1Var.I;
-        x1Var.f();
-        boolean z11 = i10;
-        n1.z1(y1Var.f15709b, z11 ? 1 : 0, z11 ? 1 : 0);
-        y1Var.f15712f.c(z11);
-        y1Var.f15711e.n(z11);
     }
 
     @Override
-    public t1 f(int i7, m1 m1Var, int[] iArr) {
+    public s1 f(int i7, m1 m1Var, int[] iArr) {
         n nVar = (n) this.f89c;
         String str = (String) this.f88b;
         String str2 = (String) this.d;
         f0 p10 = i0.p();
-        for (int i10 = 0; i10 < m1Var.f10519a; i10++) {
+        for (int i10 = 0; i10 < m1Var.f10517a; i10++) {
             p10.c(new o(i7, m1Var, i10, nVar, iArr[i10], str, str2));
         }
         return p10.f();
     }
 
     @Override
-    public void g(int i7) {
-        a5 a5Var = (a5) this.f89c;
+    public void h(int i7) {
+        z4 z4Var = (z4) this.f89c;
         boolean[] zArr = (boolean[]) this.f88b;
-        x4 x4Var = (x4) this.d;
+        h6.o oVar = (h6.o) this.d;
         if (i7 == 1) {
-            a5Var.O(2147483646, 0, zArr[0]);
-            ((w2) x4Var.f15680b).f30184y0.run();
+            z4Var.I(2147483646, 0, zArr[0]);
+            ((w2) oVar.f13936b).f30268y0.run();
         }
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+    public void i(t1 t1Var, int i7) {
         switch (this.f87a) {
             case 11:
-                ((q8) this.f89c).O0((o8) this.f88b, (Runnable) this.d, true);
+                ((k9) this.f89c).O0((i9) this.f88b, (Runnable) this.d, true);
                 return;
             case 12:
                 h1 h1Var = (h1) this.f89c;
@@ -488,8 +489,8 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
                 h1Var.getClass();
                 ((boolean[]) this.f88b)[0] = true;
                 if (user != null) {
-                    SharedPreferences.Editor edit = np.u1(h1Var.f17501f).f25821g7.edit();
-                    edit.putBoolean("inlinegeo_" + user.f28547id, true).commit();
+                    SharedPreferences.Editor edit = mp.u1(h1Var.f17603f).f25753g7.edit();
+                    edit.putBoolean("inlinegeo_" + user.f28641id, true).commit();
                     h1Var.G();
                     return;
                 }
@@ -500,7 +501,7 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
                 org.telegram.ui.web.o oVar = (org.telegram.ui.web.o) this.d;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + t0.f26895b.getPackageName()));
+                    intent.setData(Uri.parse("package:" + t0.f27013b.getPackageName()));
                     activity.startActivity(intent);
                 } catch (Exception e10) {
                     a8.g(e10, true);
@@ -510,102 +511,102 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
                 oVar.a(bool, bool);
                 return;
             case 17:
-                b4 b4Var = (b4) this.d;
+                c4 c4Var = (c4) this.d;
                 String trim = ((EditTextBoldCursor) this.f89c).getText().toString().trim();
                 String trim2 = ((EditTextBoldCursor) this.f88b).getText().toString().trim();
                 if (!TextUtils.isEmpty(trim) && !TextUtils.isEmpty(trim2)) {
-                    int i10 = b4Var.f21979a;
-                    p3 p3Var = b4Var.f21980b;
+                    int i10 = c4Var.f22112a;
+                    q3 q3Var = c4Var.f22113b;
                     switch (i10) {
                         case 1:
                             TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = new TL_keyboard.TL_inlineButtonTypeUrl();
                             tL_inlineButtonTypeUrl.url = trim2;
-                            p3Var.a(trim, tL_inlineButtonTypeUrl);
+                            q3Var.a(trim, tL_inlineButtonTypeUrl);
                             return;
                         default:
                             TL_keyboard.TL_inlineButtonTypeCopy tL_inlineButtonTypeCopy = new TL_keyboard.TL_inlineButtonTypeCopy();
                             tL_inlineButtonTypeCopy.copy_text = trim2;
-                            p3Var.a(trim, tL_inlineButtonTypeCopy);
+                            q3Var.a(trim, tL_inlineButtonTypeCopy);
                             return;
                     }
                 }
                 return;
             case 18:
                 ((boolean[]) this.f89c)[0] = true;
-                ((y10) this.f88b).a(Boolean.FALSE);
-                ((org.telegram.ui.ActionBar.t1[]) this.d)[0].dismiss();
+                ((w10) this.f88b).a(Boolean.FALSE);
+                ((t1[]) this.d)[0].dismiss();
                 return;
             case 22:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f89c;
-                gj gjVar = (gj) this.f88b;
+                fj fjVar = (fj) this.f88b;
                 TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) this.d;
                 Activity activity2 = chatActivityEnterView.E3;
                 if (activity2.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
                     activity2.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
-                    chatActivityEnterView.Y3 = gjVar;
+                    chatActivityEnterView.Y3 = fjVar;
                     chatActivityEnterView.Z3 = keyboardButtonProto;
                     return;
                 }
-                az.C(chatActivityEnterView.R).o0(gjVar, keyboardButtonProto);
+                zy.C(chatActivityEnterView.R).o0(fjVar, keyboardButtonProto);
                 return;
             case 25:
-                ui uiVar = (ui) this.f89c;
+                ti tiVar = (ti) this.f89c;
                 TLRPC.TL_attachMenuBot tL_attachMenuBot = (TLRPC.TL_attachMenuBot) this.f88b;
                 TLRPC.User user2 = (TLRPC.User) this.d;
-                int i11 = uiVar.H3;
+                int i11 = tiVar.H3;
                 if (tL_attachMenuBot != null) {
                     TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
-                    tL_messages_toggleBotInAttachMenu.bot = np.u1(i11).s1(user2);
+                    tL_messages_toggleBotInAttachMenu.bot = mp.u1(i11).s1(user2);
                     tL_messages_toggleBotInAttachMenu.enabled = false;
-                    ConnectionsManager.getInstance(i11).sendRequest(tL_messages_toggleBotInAttachMenu, new u7(13, uiVar, tL_attachMenuBot), 66);
+                    ConnectionsManager.getInstance(i11).sendRequest(tL_messages_toggleBotInAttachMenu, new v7(13, tiVar, tL_attachMenuBot), 66);
                     return;
                 }
-                si.d0(i11).Q1(user2.f28547id);
+                ri.d0(i11).Q1(user2.f28641id);
                 return;
             default:
-                zk zkVar = (zk) this.f89c;
-                a1 a1Var = (a1) this.f88b;
+                xk xkVar = (xk) this.f89c;
+                z0 z0Var = (z0) this.f88b;
                 d2 d2Var = (d2) this.d;
-                TextView textView = zkVar.V;
+                TextView textView = xkVar.V;
                 String str = null;
-                if (a1Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
-                    int i12 = -zkVar.f42887w0;
-                    zkVar.f42887w0 = i12;
-                    g0.E3(i12, a1Var, null);
+                if (z0Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
+                    int i12 = -xkVar.f42084w0;
+                    xkVar.f42084w0 = i12;
+                    g0.E3(i12, z0Var, null);
                     return;
                 }
-                String trim3 = a1Var.getText().toString().trim();
+                String trim3 = z0Var.getText().toString().trim();
                 if (!TextUtils.isEmpty(trim3)) {
                     str = trim3;
                 }
-                zkVar.f42883t0 = str;
-                zkVar.f42884u0 = !d2Var.b();
-                if (TextUtils.isEmpty(zkVar.f42883t0)) {
+                xkVar.f42080t0 = str;
+                xkVar.f42081u0 = !d2Var.b();
+                if (TextUtils.isEmpty(xkVar.f42080t0)) {
                     textView.setVisibility(8);
                 } else {
-                    textView.setText(zkVar.f42883t0);
+                    textView.setText(xkVar.f42080t0);
                     textView.setVisibility(0);
                 }
-                zkVar.k0();
+                xkVar.k0();
                 t1Var.dismiss();
-                zkVar.a0();
+                xkVar.a0();
                 return;
         }
     }
 
     @Override
     public void m(Canvas canvas, RectF rectF, float f10) {
-        p7 p7Var = (p7) this.f89c;
+        o7 o7Var = (o7) this.f89c;
         jj0 jj0Var = (jj0) this.f88b;
         int[] iArr = (int[]) this.d;
-        p7Var.c(canvas, rectF, f10);
-        p7Var.f(canvas, rectF, f10);
-        if (p7Var.h) {
-            p7Var.b(canvas, rectF, f10);
+        o7Var.c(canvas, rectF, f10);
+        o7Var.f(canvas, rectF, f10);
+        if (o7Var.h) {
+            o7Var.b(canvas, rectF, f10);
         } else {
-            p7Var.e(canvas, rectF, f10);
+            o7Var.e(canvas, rectF, f10);
         }
-        if (jj0Var != null && jj0Var.f36484b0 && jj0Var.getVisibility() == 0) {
+        if (jj0Var != null && jj0Var.f36426b0 && jj0Var.getVisibility() == 0) {
             canvas.saveLayerAlpha(0.0f, 0.0f, canvas.getWidth(), canvas.getHeight(), (int) (f10 * 255.0f), 31);
             canvas.translate(iArr[0], iArr[1]);
             jj0Var.draw(canvas);
@@ -614,13 +615,13 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
     }
 
     @Override
-    public void n(tb0 tb0Var, int i7) {
+    public void o(qb0 qb0Var, int i7) {
         switch (this.f87a) {
             case 20:
-                c5.g(null, null, 0L, 0L, 0, (tb0) this.f89c, (j4) this.f88b, (k4) this.d);
+                b5.g(null, null, 0L, 0L, 0, (qb0) this.f89c, (i4) this.f88b, (j4) this.d);
                 return;
             default:
-                c5.g(null, null, 0L, 0L, 0, (tb0) this.f89c, (org.telegram.ui.Components.b4) this.f88b, (c4) this.d);
+                b5.g(null, null, 0L, 0L, 0, (qb0) this.f89c, (a4) this.f88b, (b4) this.d);
                 return;
         }
     }
@@ -636,7 +637,7 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
             int statusCode = ((com.google.android.gms.common.api.f) e10).getStatusCode();
             if (statusCode == 16) {
                 hVar = new w0.g(e10.getMessage());
-            } else if (b1.d.f2817b.contains(Integer.valueOf(statusCode))) {
+            } else if (b1.d.f2818b.contains(Integer.valueOf(statusCode))) {
                 hVar = new w0.j(e10.getMessage());
             } else {
                 hVar = new w0.h(2, "Get digital credential failed, failure: " + e10);
@@ -667,46 +668,46 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
     }
 
     @Override
-    public boolean y(cx cxVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i7, int i10, y91 y91Var) {
+    public boolean z(bx bxVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i7, int i10, w91 w91Var) {
         long j3;
         TLRPC.User c22;
         switch (this.f87a) {
             case 6:
                 f6 f6Var = (f6) this.f89c;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.f88b;
-                cx cxVar2 = (cx) this.d;
+                bx bxVar2 = (bx) this.d;
                 if (arrayList.isEmpty()) {
                     return false;
                 }
-                long j10 = ((tr) arrayList.get(0)).f27037a;
-                Long l10 = (Long) f4.f(f6Var.f30139a).f23823r.get(tL_starGiftUnique.slug);
+                long j10 = ((sr) arrayList.get(0)).f26946a;
+                Long l10 = (Long) f4.f(f6Var.f30223a).f23947r.get(tL_starGiftUnique.slug);
                 if (l10 != null) {
                     j3 = l10.longValue();
                 } else {
                     j3 = 0;
                 }
                 if (j3 != 0 && j3 != j10) {
-                    c5.k0(f6Var.getContext(), f6Var.J0, f6Var.f30139a, tL_starGiftUnique, j3, new i2(f6Var, j10, tL_starGiftUnique, cxVar2, 1));
+                    b5.k0(f6Var.getContext(), f6Var.J0, f6Var.f30223a, tL_starGiftUnique, j3, new j2(f6Var, j10, tL_starGiftUnique, bxVar2, 1));
                 } else {
-                    f4.f(f6Var.f30139a).s(j10, new ig.b(null, tL_starGiftUnique.slug), null, true);
-                    cxVar2.presentFragment(bn.ua(j10), true);
+                    f4.f(f6Var.f30223a).s(j10, new ig.b(null, tL_starGiftUnique.slug), null, true);
+                    bxVar2.presentFragment(bn.ua(j10), true);
                 }
                 return true;
             default:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f89c;
                 TL_keyboard.TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline = (TL_keyboard.TL_inlineButtonTypeSwitchInline) this.d;
                 bn bnVar = chatActivityEnterView.F3;
-                TLRPC.Message message = ((gj) this.f88b).f24177k;
+                TLRPC.Message message = ((fj) this.f88b).f24073k;
                 long j11 = message.from_id.user_id;
                 long j12 = message.via_bot_id;
                 if (j12 != 0) {
                     j11 = j12;
                 }
-                if (np.u1(chatActivityEnterView.S.f23166a).c2(Long.valueOf(j11)) == null) {
-                    cxVar.finishFragment();
+                if (mp.u1(chatActivityEnterView.S.f23343a).c2(Long.valueOf(j11)) == null) {
+                    bxVar.finishFragment();
                 } else {
-                    long j13 = ((tr) arrayList.get(0)).f27037a;
-                    si.d0(chatActivityEnterView.R).V1(j13, 0, "@" + p10.o(c22) + " " + tL_inlineButtonTypeSwitchInline.query, null, null, null, null, 0L, true, false, null);
+                    long j13 = ((sr) arrayList.get(0)).f26946a;
+                    ri.d0(chatActivityEnterView.R).V1(j13, 0, "@" + n10.o(c22) + " " + tL_inlineButtonTypeSwitchInline.query, null, null, null, null, 0L, true, false, null);
                     if (j13 != chatActivityEnterView.G3) {
                         if (!n5.C(j13)) {
                             Bundle bundle = new Bundle();
@@ -715,20 +716,20 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
                             } else {
                                 bundle.putLong("chat_id", -j13);
                             }
-                            if (np.u1(chatActivityEnterView.S.f23166a).E(bundle, cxVar, null, null)) {
+                            if (mp.u1(chatActivityEnterView.S.f23343a).E(bundle, bxVar, null, null)) {
                                 if (bnVar.presentFragment(new bn(bundle), true)) {
                                     if (!g0.Q1()) {
                                         bnVar.removeSelfFromStack();
                                     }
                                 } else {
-                                    cxVar.finishFragment();
+                                    bxVar.finishFragment();
                                 }
                             }
                         } else {
-                            cxVar.finishFragment();
+                            bxVar.finishFragment();
                         }
                     } else {
-                        cxVar.finishFragment();
+                        bxVar.finishFragment();
                     }
                 }
                 return true;
@@ -749,10 +750,10 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
         this.f88b = str;
     }
 
-    public h(String str, ai.p pVar, long[] jArr) {
+    public h(String str, ai.q qVar, long[] jArr) {
         this.f87a = 2;
         this.f88b = str;
-        this.f89c = pVar;
+        this.f89c = qVar;
         this.d = jArr;
     }
 
@@ -763,27 +764,27 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
         String str = (String) this.f88b;
         d0 d0Var = (d0) this.d;
         String str2 = (String) obj;
-        ob.c c10 = FirebaseMessaging.c(firebaseMessaging.f7555b);
-        o9.g gVar = firebaseMessaging.f7554a;
+        ob.c c10 = FirebaseMessaging.c(firebaseMessaging.f7554b);
+        o9.g gVar = firebaseMessaging.f7553a;
         gVar.a();
-        if ("[DEFAULT]".equals(gVar.f21755b)) {
+        if ("[DEFAULT]".equals(gVar.f21855b)) {
             d = "";
         } else {
             d = gVar.d();
         }
-        String a10 = firebaseMessaging.f7560i.a();
+        String a10 = firebaseMessaging.f7559i.a();
         synchronized (c10) {
             String a11 = d0.a(System.currentTimeMillis(), str2, a10);
             if (a11 != null) {
-                SharedPreferences.Editor edit = ((SharedPreferences) c10.f21774b).edit();
+                SharedPreferences.Editor edit = ((SharedPreferences) c10.f21874b).edit();
                 edit.putString(d + "|T|" + str + "|*", a11);
                 edit.commit();
             }
         }
-        if (firebaseMessaging.d.v() || d0Var == null || !str2.equals(d0Var.f914a)) {
-            o9.g gVar2 = firebaseMessaging.f7554a;
+        if (firebaseMessaging.d.z() || d0Var == null || !str2.equals(d0Var.f914a)) {
+            o9.g gVar2 = firebaseMessaging.f7553a;
             gVar2.a();
-            String str3 = gVar2.f21755b;
+            String str3 = gVar2.f21855b;
             if ("[DEFAULT]".equals(str3)) {
                 if (Log.isLoggable("FirebaseMessaging", 3)) {
                     StringBuilder sb2 = new StringBuilder("Invoking onNewToken for app: ");
@@ -791,15 +792,15 @@ public final class h implements p, SuccessContinuation, f1, androidx.car.app.uti
                     sb2.append(str3);
                     Log.d("FirebaseMessaging", sb2.toString());
                 }
-                boolean v = firebaseMessaging.d.v();
+                boolean z10 = firebaseMessaging.d.z();
                 Intent intent = new Intent();
                 intent.putExtra("token", str2);
-                if (v) {
+                if (z10) {
                     intent.setAction("com.google.firebase.messaging.FCM_REGISTERED");
                 } else {
                     intent.setAction("com.google.firebase.messaging.NEW_TOKEN");
                 }
-                new ab.k(firebaseMessaging.f7555b).b(intent);
+                new ab.k(firebaseMessaging.f7554b).b(intent);
             }
         }
         return Tasks.forResult(str2);

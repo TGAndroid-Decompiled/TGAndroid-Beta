@@ -6,26 +6,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 public class f {
-    public final MediaController f55801a;
-    public final Object f55802b = new Object();
-    public final ArrayList f55803c = new ArrayList();
+    public final MediaController f55914a;
+    public final Object f55915b = new Object();
+    public final ArrayList f55916c = new ArrayList();
     public final HashMap d = new HashMap();
-    public final p f55804e;
+    public final p f55917e;
 
     public f(Context context, p pVar) {
-        this.f55804e = pVar;
-        MediaController mediaController = new MediaController(context, pVar.f55833b);
-        this.f55801a = mediaController;
+        this.f55917e = pVar;
+        MediaController mediaController = new MediaController(context, pVar.f55946b);
+        this.f55914a = mediaController;
         if (pVar.a() == null) {
             mediaController.sendCommand("android.support.v4.media.session.command.GET_EXTRA_BINDER", null, new c1.e(this));
         }
     }
 
     public final void a() {
-        if (this.f55804e.a() == null) {
+        if (this.f55917e.a() == null) {
             return;
         }
-        ArrayList arrayList = this.f55803c;
+        ArrayList arrayList = this.f55916c;
         Iterator it = arrayList.iterator();
         if (!it.hasNext()) {
             arrayList.clear();

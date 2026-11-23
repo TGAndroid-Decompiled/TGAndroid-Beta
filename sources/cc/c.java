@@ -102,7 +102,7 @@ public final class c implements z3.b {
         }
         Context context = (Context) this.d;
         PackageManager packageManager = context.getPackageManager();
-        if (z6.b.a(context).f1933a.getPackageManager().checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
+        if (z6.b.a(context).f1934a.getPackageManager().checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
             Log.e("Metadata", "Google Play services missing or without correct permission.");
             return 0;
         }
@@ -136,7 +136,7 @@ public final class c implements z3.b {
         PackageInfo packageInfo;
         if (this.f5154b == 0) {
             try {
-                packageInfo = z6.b.a((Context) this.d).b(0, "com.google.android.gms");
+                packageInfo = z6.b.a((Context) this.d).c(0, "com.google.android.gms");
             } catch (PackageManager.NameNotFoundException e10) {
                 Log.w("Metadata", "Failed to find package ".concat(e10.toString()));
                 packageInfo = null;
@@ -197,11 +197,11 @@ public final class c implements z3.b {
 
     public c(i2.d dVar, u uVar) {
         this.f5153a = 4;
-        x xVar = dVar.f15916c;
+        x xVar = dVar.f16011c;
         this.d = xVar;
         xVar.N(12);
         int E = xVar.E();
-        if ("audio/raw".equals(uVar.f10761s)) {
+        if ("audio/raw".equals(uVar.f10759s)) {
             int u10 = l0.u(uVar.M) * uVar.K;
             if (E % u10 != 0) {
                 h2.a.l("BoxParsers", "Audio sample size mismatch. stsd sample size: " + u10 + ", stsz sample size: " + E);

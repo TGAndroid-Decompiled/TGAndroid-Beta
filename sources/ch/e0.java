@@ -12,23 +12,23 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.jn;
-import org.telegram.ui.Components.ot;
-public abstract class e0 extends ot implements b6 {
-    public final h6 f5337e2;
-    public final jn f5338f2;
+import org.telegram.messenger.gd;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.mt;
+import org.telegram.ui.Components.nd0;
+public abstract class e0 extends mt implements c6 {
+    public final i6 f5337e2;
+    public final nd0 f5338f2;
     public Runnable f5339g2;
     public int f5340h2;
 
-    public e0(int i7, Context context, h6 h6Var) {
-        super(context, h6Var);
-        this.f5337e2 = h6Var;
-        this.f5338f2 = new jn(getContext(), new GestureDetector.SimpleOnGestureListener());
+    public e0(int i7, Context context, i6 i6Var) {
+        super(context, i6Var);
+        this.f5337e2 = i6Var;
+        this.f5338f2 = new nd0(getContext(), new GestureDetector.SimpleOnGestureListener());
         setBackground(null);
         setIncludeFontPadding(true);
         int i10 = Build.VERSION.SDK_INT;
@@ -40,14 +40,14 @@ public abstract class e0 extends ot implements b6 {
         setTextSize(1, 22.0f);
         setGravity(80);
         setPadding(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(12.0f));
-        t6.U(this, m6.Le, h6Var);
-        t6.G(this, m6.Yc, h6Var);
-        t6.C(this, m6.f29503lg, h6Var);
-        int i11 = m6.Me;
-        t6.l(this, 34, i11, h6Var);
-        t6.D(this, i11, h6Var);
-        t6.l(this, 30, m6.Ne, h6Var);
-        t6.l(this, 36, m6.f29520mg, h6Var);
+        u6.U(this, n6.Le, i6Var);
+        u6.G(this, n6.Yc, i6Var);
+        u6.C(this, n6.f29607lg, i6Var);
+        int i11 = n6.Me;
+        u6.l(this, 34, i11, i6Var);
+        u6.D(this, i11, i6Var);
+        u6.l(this, 30, n6.Ne, i6Var);
+        u6.l(this, 36, n6.f29624mg, i6Var);
         if (i10 >= 28) {
             setFallbackLineSpacing(false);
         }
@@ -76,23 +76,23 @@ public abstract class e0 extends ot implements b6 {
         b[] bVarArr;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         for (b bVar : (b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)) {
-            c1.c cVar = new c1.c(5, this, bVar);
+            c1.a aVar = new c1.a(7, this, bVar);
             if (z10) {
                 setCursorVisible(false);
                 ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f5288f, 0);
                 ofInt.addUpdateListener(new a(bVar, this, 1));
-                ofInt.addListener(new ai.f0(cVar, 2));
+                ofInt.addListener(new ai.g0(aVar, 2));
                 ofInt.setDuration(200L);
                 ofInt.start();
             } else {
-                cVar.run();
+                aVar.run();
             }
         }
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((GestureDetector) this.f5338f2.f36522b).onTouchEvent(motionEvent) && !isLongClickable()) {
+        if (((GestureDetector) this.f5338f2.f37766b).onTouchEvent(motionEvent) && !isLongClickable()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -121,7 +121,7 @@ public abstract class e0 extends ot implements b6 {
     @Override
     public final void o(ActionMode actionMode, Menu menu) {
         menu.clear();
-        menu.add(2131296496, 2131296496, 0, hd.N0(2131751586, null));
+        menu.add(2131296496, 2131296496, 0, gd.N0(2131751586, null));
     }
 
     @Override
@@ -145,11 +145,11 @@ public abstract class e0 extends ot implements b6 {
 
     @Override
     public final void updateColors() {
-        h6 h6Var = this.f5337e2;
+        i6 i6Var = this.f5337e2;
         try {
-            setHintColor(m6.w0(m6.Me, h6Var));
-            setCursorColor(m6.w0(m6.Ne, h6Var));
-            setHandlesColor(m6.w0(m6.f29520mg, h6Var));
+            setHintColor(n6.w0(n6.Me, i6Var));
+            setCursorColor(n6.w0(n6.Ne, i6Var));
+            setHandlesColor(n6.w0(n6.f29624mg, i6Var));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

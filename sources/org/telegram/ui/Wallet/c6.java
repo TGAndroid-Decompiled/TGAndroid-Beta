@@ -2,35 +2,31 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-public final class c6 extends FrameLayout {
-    public View f44007a;
-    public float f44008b;
-    public int f44009c;
-    public final a6 d;
-    public final n6 f44010e;
+public final class c6 extends y6 {
+    public final o6 m0;
 
-    public c6(n6 n6Var, Context context) {
+    public c6(o6 o6Var, Context context) {
         super(context);
-        this.f44010e = n6Var;
-        this.d = new a6(1, this);
+        this.m0 = o6Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        getViewTreeObserver().addOnPreDrawListener(this.d);
+    public final void onMeasure(int i7, int i10) {
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
+        super.onMeasure(i7, makeMeasureSpec);
+        o6 o6Var = this.m0;
+        if (o6Var.f44812r > 0 && getMeasuredHeight() > o6Var.f44812r) {
+            int paddingRight = getPaddingRight() + getPaddingLeft();
+            int paddingBottom = getPaddingBottom() + getPaddingTop();
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(paddingRight + ((int) ((getMeasuredWidth() - paddingRight) * (Math.max(0, o6Var.f44812r - paddingBottom) / Math.max(1, getMeasuredHeight() - paddingBottom)))), 1073741824), makeMeasureSpec);
+        }
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        getViewTreeObserver().removeOnPreDrawListener(this.d);
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        super.onLayout(z10, i7, i10, i11, i12);
-        this.f44010e.Y0();
+    public final void setStickerStyle(float[] fArr) {
+        super.setStickerStyle(fArr);
+        o6 o6Var = this.m0;
+        o6Var.Z0(o6Var.A0);
+        o6Var.a1(fArr);
     }
 }

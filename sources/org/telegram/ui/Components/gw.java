@@ -1,19 +1,64 @@
 package org.telegram.ui.Components;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
-public final class gw extends gy {
-    public final ty I;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+public final class gw extends c5.l {
+    public final qy f35563x0;
 
-    public gw(ty tyVar, Context context) {
-        super(tyVar, context, 0);
-        this.I = tyVar;
+    public gw(qy qyVar, Context context) {
+        super(context);
+        this.f35563x0 = qyVar;
     }
 
     @Override
-    public final void setTranslationY(float f10) {
-        if (f10 != getTranslationY()) {
-            super.setTranslationY(f10);
-            this.I.f40140y0.invalidate();
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f35563x0.f39052f) {
+            return false;
         }
+        if (getParent() != null) {
+            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+        }
+        try {
+            return super.onInterceptTouchEvent(motionEvent);
+        } catch (IllegalArgumentException unused) {
+            return false;
+        }
+    }
+
+    @Override
+    public final void x(int i7, boolean z10) {
+        boolean z11;
+        qy qyVar = this.f35563x0;
+        vw vwVar = qyVar.J;
+        if (i7 == 1) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        qy.a(qyVar, z11);
+        if (i7 == getCurrentItem()) {
+            if (i7 == 0) {
+                qyVar.R0[1] = 0;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(vwVar, ViewGroup.TRANSLATION_Y, 0.0f);
+                ofFloat.setDuration(150L);
+                ofFloat.setInterpolator(kr.h);
+                ofFloat.start();
+                qyVar.F(1, 0);
+                if (vwVar != null) {
+                    vwVar.j(0, true);
+                    return;
+                }
+                return;
+            } else if (i7 == 1) {
+                qyVar.f39062i0.y0(0);
+                return;
+            } else {
+                qyVar.E0.y0(1);
+                return;
+            }
+        }
+        super.x(i7, z10);
     }
 }

@@ -36,16 +36,16 @@ public final class b implements Runnable {
                 CredentialProviderPlayServicesImpl.$r8$lambda$4jXvrTRoERmCISXRfwXYkLdVeEA(this.f36b);
                 return;
             case 7:
-                this.f36b.a(new h(2, "No provider data returned."));
+                this.f36b.T(new h(2, "No provider data returned."));
                 return;
             case 8:
-                this.f36b.a(new w0.c(2, (CharSequence) null));
+                this.f36b.T(new w0.c(2, (CharSequence) null));
                 return;
             case 9:
-                this.f36b.a(new w0.c(2, (CharSequence) null));
+                this.f36b.T(new w0.c(2, (CharSequence) null));
                 return;
             default:
-                this.f36b.a(new h(2, "Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context."));
+                this.f36b.T(new h(2, "Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context."));
                 return;
         }
     }

@@ -9,7 +9,7 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 public abstract class pe {
-    public static n2.q0 a(File file, zi.x xVar, long j3, long j10, boolean z10, b7.d dVar) {
+    public static n2.r0 a(File file, zi.x xVar, long j3, long j10, boolean z10, b7.d dVar) {
         MediaFormat mediaFormat;
         long j11;
         long j12;
@@ -32,9 +32,9 @@ public abstract class pe {
                     mediaFormat = null;
                 }
                 mediaExtractor.release();
-                int i7 = dVar.f2915c;
+                int i7 = dVar.f2916c;
                 synchronized (xVar) {
-                    xVar2.f62382s = i7;
+                    xVar2.f62502s = i7;
                 }
                 if (mediaFormat != null) {
                     xVar2.n(mediaFormat, false);
@@ -85,30 +85,30 @@ public abstract class pe {
                             j12 = 0;
                         } else {
                             long min = Math.min(j15, max2);
-                            y7.f7 f7Var = new y7.f7(4);
+                            y7.s2 s2Var = new y7.s2(6);
                             j12 = 0;
-                            qe.c(file, j14, max, min, dVar.f2913a, dVar.f2914b, dVar.f2915c, f7Var);
-                            if (((MediaFormat) f7Var.f60823c) != null && !((ArrayList) f7Var.f60821a).isEmpty()) {
-                                boolean m10 = zi.x.m(trackFormat, (MediaFormat) f7Var.f60823c, "csd-0", "csd-1");
+                            qe.c(file, j14, max, min, dVar.f2914a, dVar.f2915b, dVar.f2916c, s2Var);
+                            if (((MediaFormat) s2Var.d) != null && !((ArrayList) s2Var.f61063b).isEmpty()) {
+                                boolean m10 = zi.x.m(trackFormat, (MediaFormat) s2Var.d, "csd-0", "csd-1");
                                 if (min >= max2) {
                                     if (m10) {
                                         mediaFormat2 = trackFormat;
                                     } else {
-                                        mediaFormat2 = (MediaFormat) f7Var.f60823c;
+                                        mediaFormat2 = (MediaFormat) s2Var.d;
                                     }
                                     xVar2.n(mediaFormat2, true);
-                                    e(xVar2, f7Var, max);
+                                    e(xVar2, s2Var, max);
                                     str = "reencode-range-in-gop";
                                     max = max;
                                 } else if (m10) {
                                     xVar2.n(trackFormat, true);
-                                    e(xVar2, f7Var, max);
+                                    e(xVar2, s2Var, max);
                                     b(file, xVar2, j15, max, max2);
                                     max = max;
                                     str = "reencode-head";
                                 } else {
                                     max = max;
-                                    qe.c(file, j14, max, max2, dVar.f2913a, dVar.f2914b, dVar.f2915c, new a8.va(xVar2, max, 11));
+                                    qe.c(file, j14, max, max2, dVar.f2914a, dVar.f2915b, dVar.f2916c, new a8.va(xVar2, max, 11));
                                     str = "reencode-all";
                                 }
                             } else {
@@ -148,9 +148,9 @@ public abstract class pe {
                         }
                         long h = xVar.h();
                         ?? obj = new Object();
-                        obj.f21201a = max / 1000;
-                        obj.f21202b = h;
-                        obj.f21203c = str;
+                        obj.f21304a = max / 1000;
+                        obj.f21305b = h;
+                        obj.f21306c = str;
                         return obj;
                     }
                     throw new IOException("Trim range has no video sync sample");
@@ -236,10 +236,10 @@ public abstract class pe {
         return -1;
     }
 
-    public static void e(zi.x xVar, y7.f7 f7Var, long j3) {
-        ArrayList arrayList = (ArrayList) f7Var.f60821a;
+    public static void e(zi.x xVar, y7.s2 s2Var, long j3) {
+        ArrayList arrayList = (ArrayList) s2Var.f61063b;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            xVar.q(true, (ByteBuffer) arrayList.get(i7), (MediaCodec.BufferInfo) ((ArrayList) f7Var.f60822b).get(i7), -j3);
+            xVar.q(true, (ByteBuffer) arrayList.get(i7), (MediaCodec.BufferInfo) ((ArrayList) s2Var.f61064c).get(i7), -j3);
         }
     }
 }

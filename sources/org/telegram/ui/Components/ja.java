@@ -1,17 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import android.view.View;
-public final class ja extends View {
-    public int f36410a;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+public abstract class ja extends ra {
+    public final LinearLayout T1;
+    public FrameLayout U1;
+    public hi.e V1;
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
+    public ja(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, null, false, false, i6Var);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.T1 = linearLayout;
+        linearLayout.setOrientation(1);
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f36410a, 1073741824));
+    public final dk0 M0(ek0 ek0Var) {
+        return new di.l4(this, 2);
+    }
+
+    @Override
+    public final CharSequence P0() {
+        return null;
+    }
+
+    @Override
+    public final void setTitle(CharSequence charSequence) {
+        this.f39247p1.setTitle(charSequence);
     }
 }

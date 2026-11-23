@@ -1,87 +1,73 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class fw extends AnimatorListenerAdapter {
-    public final int f47817a;
-    public final float f47818b;
-    public final cx f47819c;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class fw extends UndoView {
+    public final bx f47988k0;
 
-    public fw(cx cxVar, float f10, int i7) {
-        this.f47817a = i7;
-        this.f47819c = cxVar;
-        this.f47818b = f10;
+    public fw(bx bxVar, Activity activity) {
+        super(activity);
+        this.f47988k0 = bxVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i7;
-        int i10;
-        switch (this.f47817a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                cx cxVar = this.f47819c;
-                cxVar.f46776x3 = null;
-                int i11 = 0;
-                cxVar.P = false;
-                cxVar.R = true;
-                cxVar.S = true;
-                cxVar.fragmentView.invalidate();
-                if (cxVar.L) {
-                    i7 = 81;
-                } else {
-                    i7 = 0;
+    public final boolean a() {
+        int i7 = 0;
+        while (true) {
+            ax[] axVarArr = this.f47988k0.f46549f0;
+            if (i7 < axVarArr.length) {
+                if (axVarArr[i7].f45832y.k()) {
+                    return false;
                 }
-                cxVar.A3 = -(org.telegram.messenger.g0.L(i7 + 48) - this.f47818b);
-                cxVar.f46683f0[0].setTranslationY(0.0f);
-                while (true) {
-                    bx[] bxVarArr = cxVar.f46683f0;
-                    if (i11 < bxVarArr.length) {
-                        bx bxVar = bxVarArr[i11];
-                        if (bxVar != null) {
-                            bxVar.f46318a.requestLayout();
-                        }
-                        i11++;
-                    } else {
-                        cxVar.fragmentView.requestLayout();
-                        qw qwVar = cxVar.Y;
-                        if (qwVar != null && cxVar.f46660b.f57666f) {
-                            qwVar.f34632r.requestFocus();
-                            org.telegram.messenger.g0.I3(cxVar.Y.f34632r);
-                            return;
-                        }
-                        return;
+                i7++;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    @Override
+    public final void g(int i7, long j3) {
+        if (i7 != 1 && i7 != 27) {
+            return;
+        }
+        bx bxVar = this.f47988k0;
+        bxVar.U4(true, true);
+        if (bxVar.T1 != null) {
+            int i10 = 0;
+            while (true) {
+                if (i10 < bxVar.T1.size()) {
+                    if (((TLRPC.Dialog) bxVar.T1.get(i10)).f28496id == j3) {
+                        break;
                     }
-                }
-                break;
-            default:
-                super.onAnimationEnd(animator);
-                cx cxVar2 = this.f47819c;
-                cxVar2.f46776x3 = null;
-                cxVar2.Q = 0;
-                cxVar2.P = true;
-                if (cxVar2.L) {
-                    i10 = 81;
+                    i10++;
                 } else {
-                    i10 = 0;
+                    i10 = -1;
+                    break;
                 }
-                cxVar2.A3 = org.telegram.messenger.g0.L(i10 + 48) - this.f47818b;
-                cxVar2.f46683f0[0].setTranslationY(0.0f);
-                int i12 = 0;
-                while (true) {
-                    bx[] bxVarArr2 = cxVar2.f46683f0;
-                    if (i12 < bxVarArr2.length) {
-                        bx bxVar2 = bxVarArr2[i12];
-                        if (bxVar2 != null) {
-                            bxVar2.f46318a.requestLayout();
-                        }
-                        i12++;
-                    } else {
-                        cxVar2.F0.l(false, 1.0f);
-                        cxVar2.fragmentView.requestLayout();
-                        return;
-                    }
-                }
+            }
+            if (i10 >= 0) {
+                bxVar.f46549f0[0].d.f();
+                org.telegram.messenger.g0.g3(new org.telegram.ui.Components.e21(this, i10, (TLRPC.Dialog) bxVar.T1.remove(i10), 1));
+            } else {
+                bxVar.U4(false, true);
+            }
+        }
+        bxVar.z3();
+    }
+
+    @Override
+    public final void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        bx bxVar = this.f47988k0;
+        UndoView[] undoViewArr = bxVar.f46650z0;
+        if (this == undoViewArr[0]) {
+            UndoView undoView = undoViewArr[1];
+            if (undoView == null || undoView.getVisibility() != 0) {
+                bxVar.f46634w1 = Math.max(0.0f, (org.telegram.messenger.g0.L(8.0f) + getMeasuredHeight()) - f10);
+                bxVar.s5();
+            }
         }
     }
 }

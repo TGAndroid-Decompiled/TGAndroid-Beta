@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
-public final class xf extends org.telegram.messenger.gj {
+public final class xf extends org.telegram.messenger.fj {
     @Override
     public final boolean P3() {
         return true;

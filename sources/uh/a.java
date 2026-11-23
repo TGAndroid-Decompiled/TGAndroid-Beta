@@ -11,36 +11,36 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import bg.t;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Components.nr;
+import org.telegram.messenger.gd;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.kr;
 public final class a extends c implements te.b {
     public final te.a d;
-    public final int[] f58978e;
-    public final Drawable f58979f;
+    public final int[] f59095e;
+    public final Drawable f59096f;
     public final TextPaint h;
-    public StaticLayout f58980n;
-    public int f58981r;
-    public int f58982s;
+    public StaticLayout f59097n;
+    public int f59098r;
+    public int f59099s;
 
-    public a(Context context, h6 h6Var) {
-        super(h6Var);
-        this.d = new te.a(0, this, nr.h, 320L, false);
-        this.f58978e = new int[]{16842910, 16842919};
-        this.f58979f = i5.c.g(context, 2131232490);
-        this.h = new TextPaint(m6.P2);
-        int w02 = m6.w0(m6.f29439i6, h6Var);
-        if (this.f58995b != w02) {
-            m6.H1(this.f58994a, w02, false);
-            this.f58995b = w02;
+    public a(Context context, i6 i6Var) {
+        super(i6Var);
+        this.d = new te.a(0, this, kr.h, 320L, false);
+        this.f59095e = new int[]{16842910, 16842919};
+        this.f59096f = i5.c.g(context, 2131232493);
+        this.h = new TextPaint(n6.P2);
+        int w02 = n6.w0(n6.f29543i6, i6Var);
+        if (this.f59112b != w02) {
+            n6.H1(this.f59111a, w02, false);
+            this.f59112b = w02;
         }
         b();
         c();
     }
 
     @Override
-    public final void H(int i7, float f10, float f11, te.c cVar) {
+    public final void K(int i7, float f10, float f11, te.c cVar) {
         b();
         c();
         invalidateSelf();
@@ -48,19 +48,19 @@ public final class a extends c implements te.b {
 
     @Override
     public final void a(int i7) {
-        this.f58994a.setAlpha(i7);
+        this.f59111a.setAlpha(i7);
         b();
         c();
     }
 
     public final void b() {
-        Drawable drawable = this.f58979f;
-        drawable.setAlpha((int) ((1.0f - this.d.f57665e) * this.f58996c));
+        Drawable drawable = this.f59096f;
+        drawable.setAlpha((int) ((1.0f - this.d.f57779e) * this.f59113c));
     }
 
     public final void c() {
         TextPaint textPaint = this.h;
-        textPaint.setAlpha((int) ((1.0f - this.d.f57665e) * this.f58996c));
+        textPaint.setAlpha((int) ((1.0f - this.d.f57779e) * this.f59113c));
     }
 
     public final void d(boolean z10, boolean z11) {
@@ -70,21 +70,21 @@ public final class a extends c implements te.b {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        this.f58994a.draw(canvas);
-        t.b(canvas, this.f58979f, 1.0f - this.d.f57665e);
-        if (this.f58980n != null) {
+        this.f59111a.draw(canvas);
+        t.b(canvas, this.f59096f, 1.0f - this.d.f57779e);
+        if (this.f59097n != null) {
             canvas.save();
             canvas.translate(g0.L(44.0f) + bounds.left, g0.L(13.66f) + bounds.top);
-            this.f58980n.draw(canvas);
+            this.f59097n.draw(canvas);
             canvas.restore();
         }
     }
 
     public final void e(int i7) {
-        if (this.f58982s != i7) {
-            this.f58982s = i7;
+        if (this.f59099s != i7) {
+            this.f59099s = i7;
             this.h.setColor(i7);
-            this.f58979f.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
+            this.f59096f.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
             c();
         }
     }
@@ -96,16 +96,16 @@ public final class a extends c implements te.b {
         float L = g0.L(22.33f) + rect.left;
         g0.L(27.0f);
         g0.L(44.0f);
-        t.d(this.f58979f, L, exactCenterY, 17);
+        t.d(this.f59096f, L, exactCenterY, 17);
         int width = rect.width() - g0.L(56.0f);
-        if (this.f58980n != null && this.f58981r == width) {
+        if (this.f59097n != null && this.f59098r == width) {
             return;
         }
-        this.f58981r = width;
-        this.f58980n = new StaticLayout(hd.N0(2131746990, null), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f59098r = width;
+        this.f59097n = new StaticLayout(gd.N0(2131746990, null), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
     }
 
     @Override
-    public final void D(float f10, int i7) {
+    public final void G(float f10, int i7) {
     }
 }

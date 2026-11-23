@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.ve;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.ue;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.zy0;
+import org.telegram.ui.yy0;
 public final class w1 extends org.telegram.ui.ActionBar.j {
     public final int f4170a;
     public final Object f4171b;
@@ -21,7 +21,7 @@ public final class w1 extends org.telegram.ui.ActionBar.j {
     public final void b(int i7) {
         int i10;
         int i11;
-        org.telegram.ui.ActionBar.h6 h6Var;
+        org.telegram.ui.ActionBar.i6 i6Var;
         int i12 = this.f4170a;
         Object obj = this.f4171b;
         switch (i12) {
@@ -57,16 +57,16 @@ public final class w1 extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 5:
-                hi.d3 d3Var = (hi.d3) obj;
+                hi.m3 m3Var = (hi.m3) obj;
                 if (i7 == -1) {
-                    Runnable runnable = d3Var.W;
+                    Runnable runnable = m3Var.W;
                     if (runnable != null) {
                         runnable.run();
                         return;
                     }
                     return;
                 } else if (i7 >= 10) {
-                    d3Var.e((ve) d3Var.f14345h0.get(i7 - 10), false);
+                    m3Var.e((ue) m3Var.f14899h0.get(i7 - 10), false);
                     return;
                 } else {
                     return;
@@ -100,57 +100,57 @@ public final class w1 extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 8:
-                kg.t0 t0Var = (kg.t0) obj;
+                kg.s0 s0Var = (kg.s0) obj;
                 if (i7 == -1) {
-                    if (t0Var.onBackPressed(true)) {
-                        t0Var.finishFragment();
+                    if (s0Var.onBackPressed(true)) {
+                        s0Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i7 == 1) {
-                    t0Var.f0();
+                    s0Var.f0();
                     return;
                 } else {
                     return;
                 }
             case 9:
-                kg.v0 v0Var = (kg.v0) obj;
+                kg.u0 u0Var = (kg.u0) obj;
                 if (i7 == -1) {
-                    if (v0Var.onBackPressed(true)) {
-                        v0Var.finishFragment();
+                    if (u0Var.onBackPressed(true)) {
+                        u0Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i7 == 1) {
-                    v0Var.c0();
+                    u0Var.c0();
                     return;
                 } else {
                     return;
                 }
             case 10:
-                kg.d1 d1Var = (kg.d1) obj;
+                kg.c1 c1Var = (kg.c1) obj;
                 if (i7 == -1) {
-                    if (d1Var.onBackPressed(true)) {
-                        d1Var.finishFragment();
+                    if (c1Var.onBackPressed(true)) {
+                        c1Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i7 == 1) {
-                    d1Var.b0();
+                    c1Var.b0();
                     return;
                 } else {
                     return;
                 }
             case 11:
-                kg.f1 f1Var = (kg.f1) obj;
+                kg.e1 e1Var = (kg.e1) obj;
                 if (i7 == -1) {
-                    if (f1Var.onBackPressed(true)) {
-                        f1Var.finishFragment();
+                    if (e1Var.onBackPressed(true)) {
+                        e1Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i7 == 1) {
-                    f1Var.i0();
+                    e1Var.i0();
                     return;
                 } else {
                     return;
@@ -163,7 +163,7 @@ public final class w1 extends org.telegram.ui.ActionBar.j {
                 return;
             case 13:
                 kg.t1 t1Var = (kg.t1) obj;
-                ArrayList arrayList = t1Var.f18486b;
+                ArrayList arrayList = t1Var.f18581b;
                 if (i7 == -1) {
                     if (arrayList.isEmpty()) {
                         t1Var.finishFragment();
@@ -180,8 +180,8 @@ public final class w1 extends org.telegram.ui.ActionBar.j {
                         if (c10 != null) {
                             Activity parentActivity = t1Var.getParentActivity();
                             i11 = ((org.telegram.ui.ActionBar.g2) t1Var).currentAccount;
-                            h6Var = ((org.telegram.ui.ActionBar.g2) t1Var).resourceProvider;
-                            kg.t1.i0(parentActivity, i11, null, c10, h6Var, new hi.r3(this, intValue, 2));
+                            i6Var = ((org.telegram.ui.ActionBar.g2) t1Var).resourceProvider;
+                            kg.t1.i0(parentActivity, i11, null, c10, i6Var, new hi.a4(this, intValue, 2));
                             return;
                         }
                         return;
@@ -189,12 +189,12 @@ public final class w1 extends org.telegram.ui.ActionBar.j {
                     return;
                 } else if (i7 == 2) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, t1Var.getParentActivity(), t1Var.getResourceProvider());
-                    String G = hd.G(arrayList.size(), "BusinessRepliesDeleteTitle", new Object[0]);
-                    org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28743a;
+                    String G = gd.G(arrayList.size(), "BusinessRepliesDeleteTitle", new Object[0]);
+                    org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28835a;
                     t1Var2.S = G;
-                    t1Var2.U = hd.G(arrayList.size(), "BusinessRepliesDeleteMessage", new Object[0]);
-                    alertDialog$Builder.k(hd.N0(2131746125, null), new di.v6(this, 29));
-                    alertDialog$Builder.h(hd.N0(2131752577, null), null);
+                    t1Var2.U = gd.G(arrayList.size(), "BusinessRepliesDeleteMessage", new Object[0]);
+                    alertDialog$Builder.k(gd.N0(2131746125, null), new kg.f1(this, 1));
+                    alertDialog$Builder.h(gd.N0(2131752577, null), null);
                     t1Var.showDialog(t1Var2);
                     return;
                 } else {
@@ -202,7 +202,7 @@ public final class w1 extends org.telegram.ui.ActionBar.j {
                 }
             case 14:
                 if (i7 == -1) {
-                    ((kg.z1) obj).finishFragment();
+                    ((kg.y1) obj).finishFragment();
                     return;
                 }
                 return;
@@ -214,76 +214,76 @@ public final class w1 extends org.telegram.ui.ActionBar.j {
                 return;
             case 16:
                 if (i7 == -1) {
-                    ((ki.d4) obj).finishFragment();
+                    ((ki.e4) obj).finishFragment();
                     return;
                 }
                 return;
             case 17:
                 if (i7 == -1) {
-                    ((li.g) obj).finishFragment();
+                    ((li.f) obj).finishFragment();
                     return;
                 }
                 return;
             case 18:
                 if (i7 == -1) {
-                    ((li.p) obj).finishFragment();
+                    ((li.o) obj).finishFragment();
                     return;
                 }
                 return;
             case 19:
                 if (i7 == -1) {
-                    ((li.s) obj).finishFragment();
+                    ((li.r) obj).finishFragment();
                     return;
                 }
                 return;
             case 20:
-                li.d0 d0Var = ((li.y) obj).f20008n;
+                li.c0 c0Var = ((li.x) obj).f20105n;
                 if (i7 == -1) {
-                    if (d0Var.I1) {
-                        d0Var.dismiss();
+                    if (c0Var.I1) {
+                        c0Var.dismiss();
                         return;
                     }
-                    d0Var.f19906v1.d.f35742g3.O(false);
-                    d0Var.f19899o1.A(0);
+                    c0Var.f20003v1.d.f35323g3.O(false);
+                    c0Var.f19996o1.C(0);
                     return;
                 } else if (i7 == 3) {
-                    d0Var.n1.a(true, true);
-                    d0Var.u0(false);
-                    d0Var.N1 = null;
-                    d0Var.B1.f35742g3.O(true);
-                    d0Var.f19910z1.f34632r.getText().clear();
-                    d0Var.f19910z1.f34632r.requestFocus();
-                    org.telegram.messenger.g0.I3(d0Var.f19910z1.f34632r);
+                    c0Var.n1.a(true, true);
+                    c0Var.u0(false);
+                    c0Var.N1 = null;
+                    c0Var.B1.f35323g3.O(true);
+                    c0Var.f20007z1.f33883r.getText().clear();
+                    c0Var.f20007z1.f33883r.requestFocus();
+                    org.telegram.messenger.g0.I3(c0Var.f20007z1.f33883r);
                     return;
                 } else {
                     return;
                 }
             case 21:
-                li.d0 d0Var2 = ((li.z) obj).f20010r;
+                li.c0 c0Var2 = ((li.y) obj).f20107r;
                 if (i7 == 2) {
                     Bundle bundle = new Bundle();
-                    bundle.putLong("community_id", d0Var2.f19900p1);
-                    d0Var2.f19905u1.presentFragment(new li.p(bundle));
-                    d0Var2.dismiss();
+                    bundle.putLong("community_id", c0Var2.f19997p1);
+                    c0Var2.f20002u1.presentFragment(new li.o(bundle));
+                    c0Var2.dismiss();
                     return;
                 } else if (i7 == 3) {
-                    d0Var2.f19898m1.a(true, true);
-                    d0Var2.u0(false);
-                    TextUtils.isEmpty(d0Var2.M1);
-                    d0Var2.M1 = null;
-                    d0Var2.A1.h(0L, d0Var2.f19900p1, 0L, 0L, null, false, null, true);
-                    d0Var2.f19909y1.f34632r.getText().clear();
-                    d0Var2.f19909y1.f34632r.requestFocus();
-                    org.telegram.messenger.g0.I3(d0Var2.f19909y1.f34632r);
+                    c0Var2.f19995m1.a(true, true);
+                    c0Var2.u0(false);
+                    TextUtils.isEmpty(c0Var2.M1);
+                    c0Var2.M1 = null;
+                    c0Var2.A1.h(0L, c0Var2.f19997p1, 0L, 0L, null, false, null, true);
+                    c0Var2.f20006y1.f33883r.getText().clear();
+                    c0Var2.f20006y1.f33883r.requestFocus();
+                    org.telegram.messenger.g0.I3(c0Var2.f20006y1.f33883r);
                     return;
                 } else {
                     return;
                 }
             case 22:
-                li.d0 d0Var3 = ((li.y) obj).f20008n;
+                li.c0 c0Var3 = ((li.x) obj).f20105n;
                 if (i7 == -1) {
-                    d0Var3.f19906v1.d.f35742g3.O(false);
-                    d0Var3.f19899o1.A(0);
+                    c0Var3.f20003v1.d.f35323g3.O(false);
+                    c0Var3.f19996o1.C(0);
                     return;
                 }
                 return;
@@ -307,7 +307,7 @@ public final class w1 extends org.telegram.ui.ActionBar.j {
                 return;
             case 26:
                 if (i7 == -1) {
-                    ((zy0) obj).finishFragment();
+                    ((yy0) obj).finishFragment();
                     return;
                 }
                 return;
@@ -319,36 +319,36 @@ public final class w1 extends org.telegram.ui.ActionBar.j {
                 return;
             case 28:
                 if (i7 == -1) {
-                    ((org.telegram.ui.x5) obj).finishFragment();
+                    ((org.telegram.ui.y5) obj).finishFragment();
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.x6 x6Var = (org.telegram.ui.x6) obj;
+                org.telegram.ui.y6 y6Var = (org.telegram.ui.y6) obj;
                 if (i7 == -1) {
-                    if (org.telegram.ui.x6.e0(x6Var).x()) {
-                        ei.c cVar2 = x6Var.f53578e0;
+                    if (org.telegram.ui.y6.e0(y6Var).x()) {
+                        ei.c cVar2 = y6Var.f54248e0;
                         if (cVar2 != null) {
                             cVar2.d();
                         }
-                        org.telegram.ui.i6 i6Var = x6Var.N;
-                        if (i6Var != null) {
-                            i6Var.f(false);
-                            x6Var.N.e();
+                        org.telegram.ui.j6 j6Var = y6Var.N;
+                        if (j6Var != null) {
+                            j6Var.f(false);
+                            y6Var.N.e();
                             return;
                         }
                         return;
                     }
-                    x6Var.finishFragment();
+                    y6Var.finishFragment();
                     return;
                 } else if (i7 == 1) {
-                    org.telegram.ui.x6.k0(x6Var);
+                    org.telegram.ui.y6.k0(y6Var);
                     return;
                 } else if (i7 == 3) {
-                    org.telegram.ui.x6.l0(x6Var, false);
+                    org.telegram.ui.y6.l0(y6Var, false);
                     return;
                 } else if (i7 == 4) {
-                    org.telegram.ui.x6.l0(x6Var, true);
+                    org.telegram.ui.y6.l0(y6Var, true);
                     return;
                 } else {
                     return;

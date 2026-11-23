@@ -9,7 +9,7 @@ import com.google.android.gms.internal.cast.f4;
 import com.google.android.gms.internal.vision.e2;
 import e2.t;
 import e2.u;
-import f3.i0;
+import f3.j0;
 import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -378,8 +378,8 @@ public abstract class c {
         }
     }
 
-    public static void r(t tVar, i0 i0Var) {
-        i0Var.g(new u(tVar));
+    public static void r(t tVar, j0 j0Var) {
+        j0Var.g(new u(tVar));
     }
 
     public static void s(String str, StringBuilder sb2) {

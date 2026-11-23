@@ -1,103 +1,93 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Picture;
-import android.text.TextUtils;
-public abstract class f5 extends i80 implements te.b {
-    public final te.c Q0;
-    public Picture R0;
-    public float S0;
-    public int T0;
-    public Paint U0;
+import android.animation.TimeInterpolator;
+import android.os.SystemClock;
+import android.view.View;
+public final class f5 {
+    public final View f35002a;
+    public final Runnable f35003b;
+    public int f35004c;
+    public int d;
+    public boolean f35005e;
+    public final long f35006f;
+    public final TimeInterpolator f35007g;
+    public boolean h;
+    public long f35008i;
+    public int f35009j;
 
-    public f5(Context context) {
-        super(context);
-        this.Q0 = new te.c(0, this, nr.h, 320L, 1.0f);
-        this.T0 = 0;
+    public f5(View view) {
+        this.f35006f = 200L;
+        this.f35007g = kr.f36858f;
+        this.f35002a = view;
+        this.f35005e = true;
     }
 
-    @Override
-    public final void D(float f10, int i7) {
-        if (f10 == 1.0f) {
-            if (this.R0 != null) {
-                this.R0 = null;
-                super.setLayerType(this.T0, this.U0);
+    public final int a(int i7, boolean z10) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j3 = this.f35006f;
+        if (!z10 && j3 > 0 && !this.f35005e) {
+            if (this.d != i7) {
+                this.h = true;
+                this.d = i7;
+                this.f35009j = this.f35004c;
+                this.f35008i = elapsedRealtime;
             }
-            invalidate();
-        }
-    }
-
-    @Override
-    public int getLayerType() {
-        return this.T0;
-    }
-
-    public final void n(Canvas canvas, float f10, float f11) {
-        if (f10 >= 1.0f && f11 == 0.0f) {
-            super.onDraw(canvas);
-            return;
-        }
-        canvas.save();
-        canvas.translate(0.0f, f11);
-        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (f10 * 255.0f));
-        super.onDraw(canvas);
-        canvas.restore();
-        canvas.restore();
-    }
-
-    public final boolean o(CharSequence charSequence, boolean z10) {
-        CharSequence text = getText();
-        if (TextUtils.equals(text, charSequence)) {
-            return l(charSequence, false);
-        }
-        te.c cVar = this.Q0;
-        if (z10 && isAttachedToWindow() && isLaidOut() && getVisibility() == 0 && getAlpha() > 0.0f && getWidth() > 0 && getHeight() > 0 && !TextUtils.isEmpty(text)) {
-            Picture picture = new Picture();
-            n(picture.beginRecording(getWidth(), getHeight()), 1.0f, 0.0f);
-            picture.endRecording();
-            cVar.c(0.0f);
-            this.R0 = picture;
-            this.S0 = getTranslationX();
-            super.setLayerType(0, null);
-            cVar.a(1.0f);
         } else {
-            cVar.c(1.0f);
-            if (this.R0 != null) {
-                this.R0 = null;
-                super.setLayerType(this.T0, this.U0);
+            this.d = i7;
+            this.f35004c = i7;
+            this.h = false;
+            this.f35005e = false;
+        }
+        if (this.h) {
+            float a10 = c8.m9.a(((float) (elapsedRealtime - this.f35008i)) / ((float) j3), 0.0f, 1.0f);
+            if (elapsedRealtime - this.f35008i >= 0) {
+                TimeInterpolator timeInterpolator = this.f35007g;
+                if (timeInterpolator == null) {
+                    this.f35004c = i0.a.f(a10, this.f35009j, this.d);
+                } else {
+                    this.f35004c = i0.a.f(timeInterpolator.getInterpolation(a10), this.f35009j, this.d);
+                }
             }
-            invalidate();
+            if (a10 >= 1.0f) {
+                this.h = false;
+            } else {
+                View view = this.f35002a;
+                if (view != null) {
+                    view.invalidate();
+                }
+                Runnable runnable = this.f35003b;
+                if (runnable != null) {
+                    runnable.run();
+                }
+            }
         }
-        invalidate();
-        return l(charSequence, false);
+        return this.f35004c;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.R0 == null) {
-            super.onDraw(canvas);
-            return;
-        }
-        float f10 = this.Q0.f57671f;
-        int L = org.telegram.messenger.g0.L(6.0f);
-        canvas.save();
-        canvas.translate(this.S0 - getTranslationX(), (-L) * f10);
-        float f11 = 1.0f - f10;
-        canvas.saveLayerAlpha(0.0f, 0.0f, this.R0.getWidth(), this.R0.getHeight(), (int) (255.0f * f11));
-        canvas.drawPicture(this.R0);
-        canvas.restore();
-        canvas.restore();
-        n(canvas, f10, L * f11);
+    public f5(View view, long j3, TimeInterpolator timeInterpolator) {
+        this.f35006f = 200L;
+        kr krVar = kr.f36858f;
+        this.f35002a = view;
+        this.f35006f = j3;
+        this.f35007g = timeInterpolator;
+        this.f35005e = true;
     }
 
-    @Override
-    public final void setLayerType(int i7, Paint paint) {
-        this.T0 = i7;
-        this.U0 = paint;
-        if (this.R0 == null) {
-            super.setLayerType(i7, paint);
-        }
+    public f5(View view, long j3, TimeInterpolator timeInterpolator, int i7) {
+        this.f35006f = 200L;
+        kr krVar = kr.f36858f;
+        this.f35002a = view;
+        this.f35006f = j3;
+        this.f35007g = timeInterpolator;
+        this.f35005e = true;
+    }
+
+    public f5(Runnable runnable, long j3, TimeInterpolator timeInterpolator) {
+        this.f35006f = 200L;
+        kr krVar = kr.f36858f;
+        this.f35003b = runnable;
+        this.f35006f = j3;
+        this.f35007g = timeInterpolator;
+        this.f35005e = true;
     }
 }

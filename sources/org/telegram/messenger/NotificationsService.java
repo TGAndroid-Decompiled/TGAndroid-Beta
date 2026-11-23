@@ -18,7 +18,7 @@ public class NotificationsService extends Service {
     @Override
     public final void onDestroy() {
         super.onDestroy();
-        if (np.h1().getBoolean("pushService", true)) {
+        if (mp.h1().getBoolean("pushService", true)) {
             Intent intent = new Intent("org.telegram.start");
             intent.setPackage(getPackageName());
             sendBroadcast(intent);

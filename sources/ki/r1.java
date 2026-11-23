@@ -2,25 +2,25 @@ package ki;
 
 import android.animation.ValueAnimator;
 public final class r1 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f18860a;
-    public final s2 f18861b;
+    public final int f18968a;
+    public final t2 f18969b;
 
-    public r1(s2 s2Var, int i7) {
-        this.f18860a = i7;
-        this.f18861b = s2Var;
+    public r1(t2 t2Var, int i7) {
+        this.f18968a = i7;
+        this.f18969b = t2Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f18860a) {
+        switch (this.f18968a) {
             case 0:
-                s2 s2Var = this.f18861b;
-                s2Var.getClass();
-                s2Var.S0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                s2Var.l();
+                t2 t2Var = this.f18969b;
+                t2Var.getClass();
+                t2Var.S0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                t2Var.l();
                 return;
             default:
-                this.f18861b.F.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f18969b.F.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

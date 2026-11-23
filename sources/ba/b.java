@@ -13,7 +13,7 @@ public final class b implements Continuation, q1 {
     }
 
     @Override
-    public void h(t1 t1Var, int i7) {
+    public void i(t1 t1Var, int i7) {
         this.f3054a.run();
     }
 

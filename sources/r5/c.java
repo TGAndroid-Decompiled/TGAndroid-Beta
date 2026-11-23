@@ -8,14 +8,14 @@ public enum c implements qa.b {
     INVALID_PAYLOD(5),
     SERVER_ERROR(6);
     
-    public final int f56480a;
+    public final int f56593a;
 
     c(int i7) {
-        this.f56480a = i7;
+        this.f56593a = i7;
     }
 
     @Override
     public final int a() {
-        return this.f56480a;
+        return this.f56593a;
     }
 }

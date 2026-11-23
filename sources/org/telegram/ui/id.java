@@ -1,31 +1,31 @@
 package org.telegram.ui;
 public final class id implements Runnable {
-    public final int f48718a;
-    public final xd f48719b;
-    public final c51 f48720c;
+    public final int f48789a;
+    public final xd f48790b;
+    public final b51 f48791c;
     public final TwoStepVerificationActivity d;
 
-    public id(xd xdVar, c51 c51Var, TwoStepVerificationActivity twoStepVerificationActivity, int i7) {
-        this.f48718a = i7;
-        this.f48719b = xdVar;
-        this.f48720c = c51Var;
+    public id(xd xdVar, b51 b51Var, TwoStepVerificationActivity twoStepVerificationActivity, int i7) {
+        this.f48789a = i7;
+        this.f48790b = xdVar;
+        this.f48791c = b51Var;
         this.d = twoStepVerificationActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f48718a) {
+        switch (this.f48789a) {
             case 0:
-                this.f48719b.B0.setLoading(false);
-                this.f48720c.presentFragment(this.d);
+                this.f48790b.B0.setLoading(false);
+                this.f48791c.presentFragment(this.d);
                 return;
             case 1:
-                this.f48719b.H0.setLoading(false);
-                this.f48720c.presentFragment(this.d);
+                this.f48790b.H0.setLoading(false);
+                this.f48791c.presentFragment(this.d);
                 return;
             default:
-                this.f48719b.H0.setLoading(false);
-                this.f48720c.presentFragment(this.d);
+                this.f48790b.H0.setLoading(false);
+                this.f48791c.presentFragment(this.d);
                 return;
         }
     }

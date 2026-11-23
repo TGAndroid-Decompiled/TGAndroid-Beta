@@ -17,9 +17,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.cz;
+import org.telegram.messenger.bz;
 import org.telegram.messenger.w7;
-import org.telegram.ui.Components.oh0;
+import org.telegram.ui.Components.nh0;
 public final class i {
     public static int A;
     public static xa B;
@@ -94,7 +94,7 @@ public final class i {
         File file3 = new File(file2, a8.p0.s(sb2, str2, ".pcache2"));
         this.f3229m = file3;
         this.f3223f = (i7 >= org.telegram.messenger.g0.L(60.0f) || i10 >= org.telegram.messenger.g0.L(60.0f)) ? false : z11;
-        if (cz.o() >= 2) {
+        if (bz.o() >= 2) {
             this.f3227k = file3.exists();
             try {
                 if (this.f3227k) {
@@ -159,7 +159,7 @@ public final class i {
         A = i7;
         if (i7 <= 0) {
             A = 0;
-            oh0.U0.postRunnable(new ai.i(3));
+            nh0.U0.postRunnable(new ai.k(3));
         }
     }
 

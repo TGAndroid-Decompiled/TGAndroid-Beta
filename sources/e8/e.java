@@ -1,13 +1,13 @@
 package e8;
 
 import a8.q;
-import b9.h0;
+import b9.g0;
 public final class e extends q {
-    public final h0 f10869b;
+    public final g0 f10867b;
 
-    public e(h0 h0Var) {
+    public e(g0 g0Var) {
         super(5);
-        this.f10869b = h0Var;
+        this.f10867b = g0Var;
         attachInterface(this, "com.google.android.gms.safetynet.internal.ISafetyNetCallbacks");
     }
 }

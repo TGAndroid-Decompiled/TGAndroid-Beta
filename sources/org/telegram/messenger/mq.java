@@ -1,21 +1,45 @@
 package org.telegram.messenger;
-public final class mq implements Runnable {
-    public final int f25585a;
-    public final ur f25586b;
-    public final long f25587c;
-    public final long d;
-    public final String f25588e;
 
-    public mq(ur urVar, long j3, long j10, String str, int i7) {
-        this.f25585a = i7;
-        this.f25586b = urVar;
-        this.f25587c = j3;
-        this.d = j10;
-        this.f25588e = str;
+import java.util.Comparator;
+import org.telegram.messenger.support.LongSparseIntArray;
+public final class mq implements Comparator {
+    public final int f25923a;
+    public final LongSparseIntArray f25924b;
+
+    public mq(LongSparseIntArray longSparseIntArray, int i7) {
+        this.f25923a = i7;
+        this.f25924b = longSparseIntArray;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.mq.run():void");
+    public final int compare(Object obj, Object obj2) {
+        Long l10 = (Long) obj;
+        Long l11 = (Long) obj2;
+        switch (this.f25923a) {
+            case 0:
+                long longValue = l10.longValue();
+                LongSparseIntArray longSparseIntArray = this.f25924b;
+                int i7 = longSparseIntArray.get(longValue);
+                int i10 = longSparseIntArray.get(l11.longValue());
+                if (i7 > i10) {
+                    return 1;
+                }
+                if (i7 < i10) {
+                    return -1;
+                }
+                return 0;
+            default:
+                long longValue2 = l10.longValue();
+                LongSparseIntArray longSparseIntArray2 = this.f25924b;
+                int i11 = longSparseIntArray2.get(longValue2);
+                int i12 = longSparseIntArray2.get(l11.longValue());
+                if (i11 < i12) {
+                    return 1;
+                }
+                if (i11 > i12) {
+                    return -1;
+                }
+                return 0;
+        }
     }
 }

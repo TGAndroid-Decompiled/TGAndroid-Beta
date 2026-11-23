@@ -1,29 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class jz implements ValueAnimator.AnimatorUpdateListener {
-    public final int f36679a;
-    public final pz f36680b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class jz extends AnimatorListenerAdapter {
+    public final int f36566a;
+    public final oz f36567b;
 
-    public jz(pz pzVar, int i7) {
-        this.f36679a = i7;
-        this.f36680b = pzVar;
+    public jz(oz ozVar, int i7) {
+        this.f36566a = i7;
+        this.f36567b = ozVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f36679a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36566a) {
             case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pz pzVar = this.f36680b;
-                pzVar.f38666y = floatValue;
-                pzVar.invalidate();
+                oz ozVar = this.f36567b;
+                if (ozVar.C0 == animator) {
+                    ozVar.C0 = null;
+                    return;
+                }
                 return;
             default:
-                pz pzVar2 = this.f36680b;
-                pzVar2.getClass();
-                pzVar2.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pzVar2.invalidate();
+                oz ozVar2 = this.f36567b;
+                ozVar2.V = ozVar2.f38295d0;
+                ozVar2.f38294c0 = ozVar2.f38300g0;
+                ozVar2.W = ozVar2.f38297e0;
+                ozVar2.f38290a0 = ozVar2.f38299f0;
+                ozVar2.f38295d0 = -1;
+                ozVar2.f38297e0 = -1;
+                ozVar2.f38299f0 = -1;
+                ozVar2.f38300g0 = -1;
                 return;
         }
     }

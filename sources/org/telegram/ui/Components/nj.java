@@ -1,30 +1,32 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class nj implements tj {
-    public final int f37841a;
-    public final org.telegram.messenger.f5 f37842b;
+import org.telegram.tgnet.TLRPC;
+public final class nj implements sj {
+    public final int f37837a;
+    public final TLRPC.User f37838b;
 
-    public nj(org.telegram.messenger.f5 f5Var, int i7) {
-        this.f37841a = i7;
-        this.f37842b = f5Var;
+    public nj(int i7, TLRPC.User user) {
+        this.f37837a = i7;
+        this.f37838b = user;
     }
 
     @Override
     public final String run() {
-        switch (this.f37841a) {
+        pf.b c10;
+        StringBuilder sb2;
+        String str;
+        switch (this.f37837a) {
             case 0:
-                ArrayList arrayList = this.f37842b.f23827e;
-                if (arrayList.isEmpty()) {
-                    return "";
-                }
-                return pf.b.c().b((String) arrayList.get(0));
+                c10 = pf.b.c();
+                sb2 = new StringBuilder("+");
+                str = this.f37838b.phone;
+                break;
             default:
-                ArrayList arrayList2 = this.f37842b.f23827e;
-                if (arrayList2.isEmpty()) {
-                    return "";
-                }
-                return pf.b.c().b((String) arrayList2.get(0));
+                c10 = pf.b.c();
+                sb2 = new StringBuilder("+");
+                str = this.f37838b.phone;
+                break;
         }
+        return org.telegram.messenger.m10.h(sb2, str, c10);
     }
 }

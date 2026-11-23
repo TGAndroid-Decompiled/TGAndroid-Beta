@@ -1,11 +1,11 @@
 package bi;
 
 import android.os.Bundle;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.lc;
-import org.telegram.ui.Components.wz;
+import org.telegram.ui.Components.fc;
+import org.telegram.ui.Components.kc;
+import org.telegram.ui.Components.tz;
 import org.telegram.ui.bn;
 public final class k7 extends bn {
     public boolean f3761vd;
@@ -24,12 +24,12 @@ public final class k7 extends bn {
         super.onBecomeFullyVisible();
         if (!this.f3761vd) {
             this.f3761vd = true;
-            gc O = lc.b0(this).O(this.f3762wd.getDocument(), hd.N0(2131752873, null), hd.a0(null, null, 2131752874, org.telegram.messenger.n5.s(this.currentAccount, this.f3763xd)));
-            O.f35497r = false;
+            fc O = kc.b0(this).O(this.f3762wd.getDocument(), gd.N0(2131752873, null), gd.a0(null, null, 2131752874, org.telegram.messenger.n5.s(this.currentAccount, this.f3763xd)));
+            O.f35099r = false;
             O.j();
-            wz wzVar = this.J9;
-            if (wzVar != null) {
-                wzVar.c(true);
+            tz tzVar = this.J9;
+            if (tzVar != null) {
+                tzVar.c(true);
             }
         }
     }

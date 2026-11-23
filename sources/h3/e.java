@@ -1,14 +1,14 @@
 package h3;
 
 import a8.ma;
-import f3.a0;
-import f3.c0;
-import f3.i0;
+import f3.b0;
+import f3.d0;
+import f3.j0;
 import h2.l0;
 import java.math.RoundingMode;
 public final class e {
     public final d f13858a;
-    public final i0 f13859b;
+    public final j0 f13859b;
     public final int f13860c;
     public final int d;
     public final long f13861e;
@@ -22,7 +22,7 @@ public final class e {
     public long[] f13868m;
     public int[] f13869n;
 
-    public e(int i7, d dVar, i0 i0Var) {
+    public e(int i7, d dVar, j0 j0Var) {
         int i10;
         int i11;
         int i12 = dVar.d;
@@ -43,7 +43,7 @@ public final class e {
         long j3 = dVar.f13855c;
         String str = l0.f13778a;
         this.f13861e = l0.a0(i12, dVar.f13854b * 1000000, j3, RoundingMode.DOWN);
-        this.f13859b = i0Var;
+        this.f13859b = j0Var;
         if (a10 == 2) {
             i11 = i13 | 1650720768;
         } else {
@@ -56,26 +56,26 @@ public final class e {
         this.f13862f = i12;
     }
 
-    public final c0 a(int i7) {
-        return new c0(((this.f13861e * 1) / this.f13862f) * this.f13869n[i7], this.f13868m[i7]);
+    public final d0 a(int i7) {
+        return new d0(((this.f13861e * 1) / this.f13862f) * this.f13869n[i7], this.f13868m[i7]);
     }
 
-    public final a0 b(long j3) {
+    public final b0 b(long j3) {
         if (this.f13866k == 0) {
-            c0 c0Var = new c0(0L, this.f13867l);
-            return new a0(c0Var, c0Var);
+            d0 d0Var = new d0(0L, this.f13867l);
+            return new b0(d0Var, d0Var);
         }
         int i7 = (int) (j3 / ((this.f13861e * 1) / this.f13862f));
         int e10 = l0.e(this.f13869n, i7, true, true);
         if (this.f13869n[e10] == i7) {
-            c0 a10 = a(e10);
-            return new a0(a10, a10);
+            d0 a10 = a(e10);
+            return new b0(a10, a10);
         }
-        c0 a11 = a(e10);
+        d0 a11 = a(e10);
         int i10 = e10 + 1;
         if (i10 < this.f13868m.length) {
-            return new a0(a11, a(i10));
+            return new b0(a11, a(i10));
         }
-        return new a0(a11, a11);
+        return new b0(a11, a11);
     }
 }

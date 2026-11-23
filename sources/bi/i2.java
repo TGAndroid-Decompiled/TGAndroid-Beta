@@ -2,9 +2,9 @@ package bi;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.messenger.y10;
-import org.telegram.ui.Components.c51;
-public final class i2 implements y10 {
+import org.telegram.messenger.w10;
+import org.telegram.ui.Components.b51;
+public final class i2 implements w10 {
     public final int f3656a;
     public final p3 f3657b;
 
@@ -23,15 +23,15 @@ public final class i2 implements y10 {
                 List list = (List) obj;
                 p3 p3Var = this.f3657b;
                 if (p3Var.getContext() != null && !p3Var.J) {
-                    ArrayList b10 = wg.s.b(1, list);
+                    ArrayList b10 = wg.r.b(1, list);
                     p3Var.V1 = b10;
-                    List c10 = wg.s.c(b10);
+                    List c10 = wg.r.c(b10);
                     p3Var.V1 = c10;
                     if (!((ArrayList) c10).isEmpty()) {
                         p3Var.h1();
-                        c51 c51Var = p3Var.U1;
-                        if (c51Var != null) {
-                            c51Var.O(true);
+                        b51 b51Var = p3Var.U1;
+                        if (b51Var != null) {
+                            b51Var.O(true);
                             return;
                         }
                         return;

@@ -2,20 +2,20 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 public final class c {
-    public static volatile c[] f23165b = new c[4];
-    public int f23166a;
+    public static volatile c[] f23342b = new c[4];
+    public int f23343a;
 
     public static c a(int i7) {
         c cVar;
-        c cVar2 = f23165b[i7];
+        c cVar2 = f23342b[i7];
         if (cVar2 == null) {
             synchronized (c.class) {
                 try {
-                    cVar = f23165b[i7];
+                    cVar = f23342b[i7];
                     if (cVar == null) {
-                        c[] cVarArr = f23165b;
+                        c[] cVarArr = f23342b;
                         ?? obj = new Object();
-                        obj.f23166a = i7;
+                        obj.f23343a = i7;
                         cVarArr[i7] = obj;
                         cVar = obj;
                     }
@@ -28,19 +28,19 @@ public final class c {
         return cVar2;
     }
 
-    public final np b() {
-        return np.u1(this.f23166a);
+    public final mp b() {
+        return mp.u1(this.f23343a);
     }
 
-    public final ls c() {
-        return ls.f(this.f23166a);
+    public final ks c() {
+        return ks.f(this.f23343a);
     }
 
     public final SharedPreferences d() {
-        return np.u1(this.f23166a).f25821g7;
+        return mp.u1(this.f23343a).f25753g7;
     }
 
-    public final k10 e() {
-        return k10.i(this.f23166a);
+    public final i10 e() {
+        return i10.i(this.f23343a);
     }
 }

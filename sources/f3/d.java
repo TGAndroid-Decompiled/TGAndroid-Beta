@@ -3,32 +3,32 @@ package f3;
 import e2.t0;
 import java.util.ArrayList;
 public final class d {
-    public final ArrayList f11124a;
-    public final int f11125b;
-    public final int f11126c;
+    public final ArrayList f11125a;
+    public final int f11126b;
+    public final int f11127c;
     public final int d;
-    public final int f11127e;
-    public final int f11128f;
-    public final int f11129g;
+    public final int f11128e;
+    public final int f11129f;
+    public final int f11130g;
     public final int h;
-    public final int f11130i;
-    public final int f11131j;
-    public final float f11132k;
-    public final String f11133l;
+    public final int f11131i;
+    public final int f11132j;
+    public final float f11133k;
+    public final String f11134l;
 
     public d(ArrayList arrayList, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, float f10, String str) {
-        this.f11124a = arrayList;
-        this.f11125b = i7;
-        this.f11126c = i10;
+        this.f11125a = arrayList;
+        this.f11126b = i7;
+        this.f11127c = i10;
         this.d = i11;
-        this.f11127e = i12;
-        this.f11128f = i13;
-        this.f11129g = i14;
+        this.f11128e = i12;
+        this.f11129f = i13;
+        this.f11130g = i14;
         this.h = i15;
-        this.f11130i = i16;
-        this.f11131j = i17;
-        this.f11132k = f10;
-        this.f11133l = str;
+        this.f11131i = i16;
+        this.f11132j = i17;
+        this.f11133k = f10;
+        this.f11134l = str;
     }
 
     public static d a(h2.x xVar) {
@@ -71,23 +71,23 @@ public final class d {
                 }
                 if (A2 > 0) {
                     i2.n m10 = i2.o.m(4, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
-                    int i21 = m10.f15954e;
-                    int i22 = m10.f15955f;
-                    int i23 = m10.f15964p;
-                    int i24 = m10.f15965q;
-                    int i25 = m10.f15966r;
-                    int i26 = m10.f15967s;
-                    float f11 = m10.f15956g;
-                    int i27 = m10.f15951a;
-                    int i28 = m10.f15952b;
-                    int i29 = m10.f15953c;
+                    int i21 = m10.f16049e;
+                    int i22 = m10.f16050f;
+                    int i23 = m10.f16059p;
+                    int i24 = m10.f16060q;
+                    int i25 = m10.f16061r;
+                    int i26 = m10.f16062s;
+                    float f11 = m10.f16051g;
+                    int i27 = m10.f16046a;
+                    int i28 = m10.f16047b;
+                    int i29 = m10.f16048c;
                     byte[] bArr5 = h2.g.f13752a;
                     str = String.format("avc1.%02X%02X%02X", Integer.valueOf(i27), Integer.valueOf(i28), Integer.valueOf(i29));
                     i14 = i26;
                     f10 = f11;
                     i15 = i24;
                     i16 = i25;
-                    i12 = m10.f15957i + 8;
+                    i12 = m10.f16052i + 8;
                     i13 = i23;
                     i10 = i22;
                     i11 = m10.h + 8;

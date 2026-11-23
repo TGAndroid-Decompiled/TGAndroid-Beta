@@ -4,63 +4,53 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public interface mg {
-    void A(boolean z10);
+    void E();
 
-    void B2();
-
-    void D();
-
-    boolean E0();
-
-    void G();
-
-    void G0();
+    void G(CharSequence charSequence, boolean z10, int i7, int i10, long j3);
 
     void G1();
 
-    void H(CharSequence charSequence, boolean z10, int i7, int i10, long j3);
+    TLRPC.TL_channels_sendAsPeers H();
 
-    TLRPC.TL_channels_sendAsPeers J();
+    void K(float f10, int i7);
 
-    void J0();
+    void K0();
 
-    void Q(float f10, int i7);
+    void N();
 
-    void Q0();
+    void Q(boolean z10);
+
+    void U0(int i7);
 
     void V();
 
-    void a0(boolean z10);
+    int X0();
 
-    void a1(int i7);
+    TL_stories.StoryItem Y0();
 
-    void b0();
+    org.telegram.ui.rm a0();
 
-    int b1();
+    void b();
 
-    TL_stories.StoryItem c1();
+    boolean b1(long j3);
 
-    void d();
+    boolean d1();
 
-    boolean e1(long j3);
+    void f();
 
-    void g();
+    void g0();
 
-    boolean g1();
+    void h2();
 
-    void i2();
+    void i1(CharSequence charSequence, boolean z10, boolean z11);
 
-    void j1(CharSequence charSequence, boolean z10, boolean z11);
+    void i2(int i7);
 
-    boolean k();
+    boolean j();
 
-    void k2(int i7);
+    void j1();
 
-    void l1();
-
-    org.telegram.ui.rm m0();
-
-    boolean m1();
+    boolean l1();
 
     void m2();
 
@@ -70,29 +60,39 @@ public interface mg {
 
     void n2(boolean z10);
 
+    TLRPC.Peer o();
+
     void o1();
 
     void o2(int i7, int i10, int i11, long j3, long j10, boolean z10);
 
     void q1();
 
-    void r2();
+    void r();
 
-    void s0();
+    void r2();
 
     void s1(View view, CharSequence charSequence, boolean z10);
 
-    TLRPC.Peer t();
+    void t2();
 
-    void u();
+    void u(float f10);
 
     void u1(CharSequence charSequence);
 
     boolean v1();
 
+    void v2();
+
+    void w(boolean z10);
+
+    boolean w0();
+
     void w1();
 
-    void w2();
+    void y0();
 
-    void x(float f10);
+    void z();
+
+    void z0();
 }

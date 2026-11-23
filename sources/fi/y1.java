@@ -1,32 +1,32 @@
 package fi;
 public final class y1 implements Runnable {
-    public final int f12762a;
-    public final Runnable f12763b;
-    public final long f12764c;
+    public final int f12772a;
+    public final Runnable f12773b;
+    public final long f12774c;
 
     public y1(int i7, long j3, Runnable runnable) {
-        this.f12762a = i7;
-        this.f12763b = runnable;
-        this.f12764c = j3;
+        this.f12772a = i7;
+        this.f12773b = runnable;
+        this.f12774c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f12762a) {
+        switch (this.f12772a) {
             case 0:
-                Runnable runnable = this.f12763b;
+                Runnable runnable = this.f12773b;
                 org.telegram.messenger.g0.r(runnable);
-                org.telegram.messenger.g0.h3(runnable, Math.max(0L, 32 - (System.currentTimeMillis() - this.f12764c)));
+                org.telegram.messenger.g0.h3(runnable, Math.max(0L, 32 - (System.currentTimeMillis() - this.f12774c)));
                 return;
             case 1:
-                Runnable runnable2 = this.f12763b;
+                Runnable runnable2 = this.f12773b;
                 org.telegram.messenger.g0.r(runnable2);
-                org.telegram.messenger.g0.h3(runnable2, Math.max(0L, 32 - (System.currentTimeMillis() - this.f12764c)));
+                org.telegram.messenger.g0.h3(runnable2, Math.max(0L, 32 - (System.currentTimeMillis() - this.f12774c)));
                 return;
             default:
-                Runnable runnable3 = this.f12763b;
+                Runnable runnable3 = this.f12773b;
                 org.telegram.messenger.g0.r(runnable3);
-                org.telegram.messenger.g0.h3(runnable3, Math.max(0L, 32 - (System.currentTimeMillis() - this.f12764c)));
+                org.telegram.messenger.g0.h3(runnable3, Math.max(0L, 32 - (System.currentTimeMillis() - this.f12774c)));
                 return;
         }
     }

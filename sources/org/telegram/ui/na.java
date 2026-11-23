@@ -1,20 +1,20 @@
 package org.telegram.ui;
 
 import android.graphics.RectF;
-public final class na implements org.telegram.messenger.or {
-    public final int f50148a;
-    public final Object f50149b;
+public final class na implements org.telegram.messenger.nr {
+    public final int f50276a;
+    public final Object f50277b;
 
     public na(Object obj, int i7) {
-        this.f50148a = i7;
-        this.f50149b = obj;
+        this.f50276a = i7;
+        this.f50277b = obj;
     }
 
     @Override
     public final void a(int i7) {
-        rq0 rq0Var;
-        int i10 = this.f50148a;
-        Object obj = this.f50149b;
+        qq0 qq0Var;
+        int i10 = this.f50276a;
+        Object obj = this.f50277b;
         switch (i10) {
             case 0:
                 ((lb) obj).Z0(true);
@@ -24,8 +24,8 @@ public final class na implements org.telegram.messenger.or {
                 return;
             case 2:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                if (photoViewer.E != null && (rq0Var = photoViewer.f43218f0) != null && i7 > 0) {
-                    org.telegram.ui.Components.lc.F(rq0Var, true).j();
+                if (photoViewer.E != null && (qq0Var = photoViewer.f43334f0) != null && i7 > 0) {
+                    org.telegram.ui.Components.kc.F(qq0Var, true).j();
                     return;
                 }
                 return;
@@ -39,15 +39,15 @@ public final class na implements org.telegram.messenger.or {
                     profileActivity.finishFragment();
                     return;
                 }
-                profileActivity.getNotificationCenter().k(79, Long.valueOf(profileActivity.f43550e1));
+                profileActivity.getNotificationCenter().k(79, Long.valueOf(profileActivity.f43666e1));
                 return;
             default:
-                y91 y91Var = ((e91) obj).f47182a;
+                w91 w91Var = ((c91) obj).f46748a;
                 if (i7 == 0) {
-                    y91Var.S0(false);
+                    w91Var.S0(false);
                     return;
                 } else {
-                    y91Var.finishFragment();
+                    w91Var.finishFragment();
                     return;
                 }
         }

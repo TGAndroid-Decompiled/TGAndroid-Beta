@@ -13,15 +13,15 @@ public abstract class bb {
         while (i7 < size2) {
             Object obj = arrayList2.get(i7);
             i7++;
-            org.telegram.ui.Wallet.x3 x3Var = (org.telegram.ui.Wallet.x3) obj;
+            org.telegram.ui.Wallet.y3 y3Var = (org.telegram.ui.Wallet.y3) obj;
             ?? obj2 = new Object();
-            obj2.f45258a = x3Var.f45258a;
-            obj2.f45259b = x3Var.f45259b;
-            obj2.f45260c = x3Var.f45260c;
-            obj2.d = new int[x3Var.d.length];
+            obj2.f45420a = y3Var.f45420a;
+            obj2.f45421b = y3Var.f45421b;
+            obj2.f45422c = y3Var.f45422c;
+            obj2.d = new int[y3Var.d.length];
             int i10 = 0;
             while (true) {
-                int[] iArr = x3Var.d;
+                int[] iArr = y3Var.d;
                 if (i10 < iArr.length) {
                     obj2.d[i10] = iArr[i10] + size;
                     i10++;
@@ -60,15 +60,15 @@ public abstract class bb {
                     ?? obj2 = new Object();
                     int i16 = i14 + 1;
                     int i17 = bArr[i14];
-                    obj2.f45258a = i17 & 255;
+                    obj2.f45420a = i17 & 255;
                     int i18 = i14 + 2;
                     int i19 = bArr[i16] & 255;
-                    obj2.f45259b = i19;
+                    obj2.f45421b = i19;
                     if ((i17 & 16) == 0) {
                         int i20 = i17 & 7;
                         int i21 = (i19 + 1) / 2;
                         byte[] bArr2 = new byte[i21];
-                        obj2.f45260c = bArr2;
+                        obj2.f45422c = bArr2;
                         System.arraycopy(bArr, i18, bArr2, 0, i21);
                         i14 = i18 + i21;
                         obj2.d = new int[i20];

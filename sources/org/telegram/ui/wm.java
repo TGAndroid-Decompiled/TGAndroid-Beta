@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class wm {
-    public final zm f53419a;
+    public final zm f53703a;
 
     public wm(zm zmVar) {
-        this.f53419a = zmVar;
+        this.f53703a = zmVar;
     }
 }

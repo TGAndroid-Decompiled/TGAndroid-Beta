@@ -1,36 +1,47 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class mb0 extends br {
-    public final int h;
-    public final Object f49814n;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+public final class mb0 extends TextView {
+    public final int f50027a;
 
-    public mb0(int i7, Context context, Object obj) {
+    public mb0(Context context, int i7) {
         super(context);
-        this.h = i7;
-        this.f49814n = obj;
+        this.f50027a = i7;
     }
 
     @Override
-    public final void a() {
-        switch (this.h) {
+    public CharSequence getAccessibilityClassName() {
+        switch (this.f50027a) {
+            case 5:
+                return Button.class.getName();
+            default:
+                return super.getAccessibilityClassName();
+        }
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        switch (this.f50027a) {
             case 0:
-                ((pb0) this.f49814n).h(null);
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), Integer.MIN_VALUE));
                 return;
             case 1:
-                ((hc0) this.f49814n).h(null);
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(100.0f)), Integer.MIN_VALUE));
                 return;
             case 2:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f49814n;
-                if (passcodeActivity.F == 0) {
-                    postDelayed(new hf0(this, 3), 260L);
-                    return;
-                } else {
-                    passcodeActivity.u0();
-                    return;
-                }
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), Integer.MIN_VALUE));
+                return;
+            case 3:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), Integer.MIN_VALUE));
+                return;
+            case 4:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(org.telegram.messenger.g0.L(26.0f)), 1073741824));
+                return;
             default:
-                ((bb1) this.f49814n).H0();
+                super.onMeasure(i7, i10);
                 return;
         }
     }

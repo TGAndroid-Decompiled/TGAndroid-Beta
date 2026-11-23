@@ -6,23 +6,23 @@ import android.widget.PopupWindow;
 import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.g1;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.c0;
-import org.telegram.ui.Components.qk;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.b0;
+import org.telegram.ui.Components.ok;
 public abstract class a {
-    public boolean f18052a;
-    public Object f18053b;
+    public boolean f18154a;
+    public Object f18155b;
 
-    public a(Context context, h6 h6Var, boolean z10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232567, z10 ? 1 : 0, context, h6Var);
+    public a(Context context, i6 i6Var, boolean z10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232570, z10 ? 1 : 0, context, i6Var);
         actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new qk(this, 1));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new c0(this, 26));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new ok(this, 1));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new b0(this, 26));
         actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
-        l(actionBarPopupWindow$ActionBarPopupWindowLayout);
+        k(actionBarPopupWindow$ActionBarPopupWindowLayout);
         g1 g1Var = new g1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f18053b = g1Var;
-        g1Var.f28941b = false;
+        this.f18155b = g1Var;
+        g1Var.f29034b = false;
         g1Var.setAnimationStyle(2131755193);
         g1Var.setOutsideTouchable(true);
         g1Var.setClippingEnabled(true);
@@ -36,44 +36,44 @@ public abstract class a {
             @Override
             public final void onDismiss() {
                 k.a aVar = k.a.this;
-                aVar.m();
-                aVar.f18052a = false;
+                aVar.l();
+                aVar.f18154a = false;
             }
         });
     }
 
     public void a() {
-        g1 g1Var = (g1) this.f18053b;
+        g1 g1Var = (g1) this.f18155b;
         if (g1Var != null) {
             g1Var.dismiss();
         }
     }
 
-    public abstract void c();
+    public abstract void b();
 
-    public abstract View d();
+    public abstract View c();
 
-    public abstract l.k e();
+    public abstract l.k d();
 
-    public abstract h f();
+    public abstract h e();
+
+    public abstract CharSequence f();
 
     public abstract CharSequence g();
 
-    public abstract CharSequence i();
+    public abstract void h();
 
-    public abstract void j();
+    public abstract boolean j();
 
-    public abstract boolean k();
+    public abstract void k(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout);
 
-    public abstract void l(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout);
+    public abstract void l();
 
-    public abstract void m();
+    public abstract void m(View view);
 
-    public abstract void n(View view);
+    public abstract void n(int i7);
 
-    public abstract void o(int i7);
-
-    public abstract void p(CharSequence charSequence);
+    public abstract void o(CharSequence charSequence);
 
     public abstract void q(int i7);
 

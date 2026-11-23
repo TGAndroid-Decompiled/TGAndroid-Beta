@@ -2,22 +2,22 @@ package e2;
 
 import a8.ma;
 public final class j1 extends l1 {
-    public final h9.i0 f10440e;
-    public final h9.i0 f10441f;
-    public final int[] f10442g;
+    public final h9.i0 f10438e;
+    public final h9.i0 f10439f;
+    public final int[] f10440g;
     public final int[] h;
 
-    public j1(h9.t1 t1Var, h9.t1 t1Var2, int[] iArr) {
+    public j1(h9.s1 s1Var, h9.s1 s1Var2, int[] iArr) {
         boolean z10;
-        if (t1Var.d == iArr.length) {
+        if (s1Var.d == iArr.length) {
             z10 = true;
         } else {
             z10 = false;
         }
         ma.f(z10);
-        this.f10440e = t1Var;
-        this.f10441f = t1Var2;
-        this.f10442g = iArr;
+        this.f10438e = s1Var;
+        this.f10439f = s1Var2;
+        this.f10440g = iArr;
         this.h = new int[iArr.length];
         for (int i7 = 0; i7 < iArr.length; i7++) {
             this.h[iArr[i7]] = i7;
@@ -32,7 +32,7 @@ public final class j1 extends l1 {
         if (!z10) {
             return 0;
         }
-        return this.f10442g[0];
+        return this.f10440g[0];
     }
 
     @Override
@@ -45,9 +45,9 @@ public final class j1 extends l1 {
         if (p()) {
             return -1;
         }
-        h9.i0 i0Var = this.f10440e;
+        h9.i0 i0Var = this.f10438e;
         if (z10) {
-            return this.f10442g[i0Var.size() - 1];
+            return this.f10440g[i0Var.size() - 1];
         }
         return i0Var.size() - 1;
     }
@@ -63,7 +63,7 @@ public final class j1 extends l1 {
             }
             return -1;
         } else if (z10) {
-            return this.f10442g[this.h[i7] + 1];
+            return this.f10440g[this.h[i7] + 1];
         } else {
             return i7 + 1;
         }
@@ -71,14 +71,14 @@ public final class j1 extends l1 {
 
     @Override
     public final i1 f(int i7, i1 i1Var, boolean z10) {
-        i1 i1Var2 = (i1) this.f10441f.get(i7);
-        i1Var.h(i1Var2.f10426a, i1Var2.f10427b, i1Var2.f10428c, i1Var2.d, i1Var2.f10429e, i1Var2.f10431g, i1Var2.f10430f);
+        i1 i1Var2 = (i1) this.f10439f.get(i7);
+        i1Var.h(i1Var2.f10424a, i1Var2.f10425b, i1Var2.f10426c, i1Var2.d, i1Var2.f10427e, i1Var2.f10429g, i1Var2.f10428f);
         return i1Var;
     }
 
     @Override
     public final int h() {
-        return this.f10441f.size();
+        return this.f10439f.size();
     }
 
     @Override
@@ -92,7 +92,7 @@ public final class j1 extends l1 {
             }
             return -1;
         } else if (z10) {
-            return this.f10442g[this.h[i7] - 1];
+            return this.f10440g[this.h[i7] - 1];
         } else {
             return i7 - 1;
         }
@@ -105,14 +105,14 @@ public final class j1 extends l1 {
 
     @Override
     public final k1 m(int i7, k1 k1Var, long j3) {
-        k1 k1Var2 = (k1) this.f10440e.get(i7);
-        k1Var.b(k1Var2.f10470a, k1Var2.f10472c, k1Var2.d, k1Var2.f10473e, k1Var2.f10474f, k1Var2.f10475g, k1Var2.h, k1Var2.f10476i, k1Var2.f10477j, k1Var2.f10479l, k1Var2.f10480m, k1Var2.f10481n, k1Var2.f10482o, k1Var2.f10483p);
-        k1Var.f10478k = k1Var2.f10478k;
+        k1 k1Var2 = (k1) this.f10438e.get(i7);
+        k1Var.b(k1Var2.f10468a, k1Var2.f10470c, k1Var2.d, k1Var2.f10471e, k1Var2.f10472f, k1Var2.f10473g, k1Var2.h, k1Var2.f10474i, k1Var2.f10475j, k1Var2.f10477l, k1Var2.f10478m, k1Var2.f10479n, k1Var2.f10480o, k1Var2.f10481p);
+        k1Var.f10476k = k1Var2.f10476k;
         return k1Var;
     }
 
     @Override
     public final int o() {
-        return this.f10440e.size();
+        return this.f10438e.size();
     }
 }

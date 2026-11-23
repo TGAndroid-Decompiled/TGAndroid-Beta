@@ -5,36 +5,36 @@ import java.util.Collections;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class gq implements kq {
-    public final rq f48094a;
+    public final rq f48340a;
 
     public gq(rq rqVar) {
-        this.f48094a = rqVar;
+        this.f48340a = rqVar;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        rq.h0(this.f48094a, user);
+        rq.h0(this.f48340a, user);
     }
 
     @Override
     public final void b(long j3) {
-        rq rqVar = this.f48094a;
+        rq rqVar = this.f48340a;
         ArrayList arrayList = rqVar.F;
         a0.h hVar = rqVar.K;
         TLRPC.User c22 = rqVar.getMessagesController().c2(Long.valueOf(j3));
         if (c22 != null) {
-            org.telegram.messenger.g0.h3(new ci(14, this, c22), 200L);
+            org.telegram.messenger.g0.h3(new ah(18, this, c22), 200L);
         }
         if (hVar.f(j3) == null) {
             lq B0 = rqVar.B0();
             TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             tL_channelParticipantAdmin.peer = tL_peerUser;
-            tL_peerUser.user_id = c22.f28547id;
+            tL_peerUser.user_id = c22.f28641id;
             tL_channelParticipantAdmin.date = rqVar.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantAdmin.promoted_by = org.telegram.messenger.k10.i(rqVar.getAccountInstance().f23166a).f24951n;
+            tL_channelParticipantAdmin.promoted_by = org.telegram.messenger.i10.i(rqVar.getAccountInstance().f23343a).f24656n;
             arrayList.add(tL_channelParticipantAdmin);
-            hVar.k(tL_channelParticipantAdmin, c22.f28547id);
+            hVar.k(tL_channelParticipantAdmin, c22.f28641id);
             Collections.sort(arrayList, new pe(3));
             rqVar.F0(B0);
         }
@@ -42,7 +42,7 @@ public final class gq implements kq {
 
     @Override
     public final void c(long j3, TLObject tLObject) {
-        rq rqVar = this.f48094a;
+        rq rqVar = this.f48340a;
         ArrayList arrayList = rqVar.F;
         a0.h hVar = rqVar.K;
         if (tLObject != null && hVar.f(j3) == null) {

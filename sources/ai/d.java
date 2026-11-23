@@ -2,19 +2,19 @@ package ai;
 
 import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.np;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 public final class d {
-    public static final c f1158c = new c(null, 0, null, true);
-    public final int f1159a;
-    public int f1160b = -1;
+    public static final c f1156c = new c(null, 0, null, true);
+    public final int f1157a;
+    public int f1158b = -1;
 
     public d(int i7) {
-        this.f1159a = i7;
+        this.f1157a = i7;
         try {
-            np.u1(i7).T1().b();
+            mp.u1(i7).T1().b();
         } catch (Exception unused) {
         }
     }
@@ -39,21 +39,21 @@ public final class d {
         }
         boolean[] zArr = new boolean[1];
         org.telegram.messenger.g0.h3(new aa.r(this, zArr, bVar, 2), 25000L);
-        this.f1160b = ConnectionsManager.getInstance(this.f1159a).sendRequestTyped(tL_messages_composeMessageWithAI, new d3.b(1), new a(this, zArr, currentTimeMillis, bVar));
+        this.f1158b = ConnectionsManager.getInstance(this.f1157a).sendRequestTyped(tL_messages_composeMessageWithAI, new d3.b(1), new a(this, zArr, currentTimeMillis, bVar));
     }
 
     public final void b() {
-        if (this.f1160b >= 0) {
-            ConnectionsManager.getInstance(this.f1159a).cancelRequest(this.f1160b, true);
-            this.f1160b = -1;
+        if (this.f1158b >= 0) {
+            ConnectionsManager.getInstance(this.f1157a).cancelRequest(this.f1158b, true);
+            this.f1158b = -1;
         }
     }
 
     public final ArrayList c() {
         ArrayList arrayList = new ArrayList();
-        org.telegram.messenger.e T1 = np.u1(this.f1159a).T1();
+        org.telegram.messenger.e T1 = mp.u1(this.f1157a).T1();
         if (T1 != null) {
-            ArrayList arrayList2 = T1.f23609b;
+            ArrayList arrayList2 = T1.f23740b;
             int size = arrayList2.size();
             int i7 = 0;
             while (i7 < size) {

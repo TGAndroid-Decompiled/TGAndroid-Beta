@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class yz0 extends AnimatorListenerAdapter {
-    public final ThemeEditorView.EditorAlert f42565a;
+import android.text.TextWatcher;
+public final class yz0 implements TextWatcher {
+    public final int f42592a;
+    public final zz0 f42593b;
 
-    public yz0(ThemeEditorView.EditorAlert editorAlert) {
-        this.f42565a = editorAlert;
+    public yz0(zz0 zz0Var, int i7) {
+        this.f42593b = zz0Var;
+        this.f42592a = i7;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ThemeEditorView.EditorAlert editorAlert = this.f42565a;
-        if (editorAlert.n1.getAdapter() == editorAlert.f33166t1) {
-            e01 e01Var = editorAlert.f33163q1.f35320b;
-            e01Var.requestFocus();
-            org.telegram.messenger.g0.I3(e01Var);
-        }
-        editorAlert.f33160m1.setVisibility(8);
-        editorAlert.f33168v1.setVisibility(8);
-        editorAlert.C1 = false;
+    public final void afterTextChanged(android.text.Editable r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yz0.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

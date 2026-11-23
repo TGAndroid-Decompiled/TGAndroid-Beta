@@ -4,22 +4,22 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.k10;
+import org.telegram.messenger.i10;
 import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.zj0;
 public final class e0 extends zj0 {
-    public final ArrayList f18296r;
-    public final int f18297s;
-    public final Context f18298w;
-    public final h0 f18299x;
+    public final ArrayList f18392r;
+    public final int f18393s;
+    public final Context f18394w;
+    public final h0 f18395x;
 
     public e0(h0 h0Var, Context context) {
-        this.f18299x = h0Var;
+        this.f18395x = h0Var;
         ArrayList arrayList = new ArrayList();
-        this.f18296r = arrayList;
-        int i7 = k10.f24932t0;
-        this.f18297s = i7;
-        this.f18298w = context;
+        this.f18392r = arrayList;
+        int i7 = i10.f24637t0;
+        this.f18393s = i7;
+        this.f18394w = context;
         arrayList.addAll(w1.f(i7).e());
     }
 
@@ -37,7 +37,7 @@ public final class e0 extends zj0 {
     @Override
     public final int M(int i7) {
         if (i7 != 0 && i7 != 2) {
-            return this.f18296r.size();
+            return this.f18392r.size();
         }
         return 1;
     }
@@ -45,7 +45,7 @@ public final class e0 extends zj0 {
     @Override
     public final Object O(int i7, int i10) {
         if (i7 != 0 && i10 >= 0) {
-            ArrayList arrayList = this.f18296r;
+            ArrayList arrayList = this.f18392r;
             if (i10 < arrayList.size()) {
                 return arrayList.get(i10);
             }
@@ -75,17 +75,17 @@ public final class e0 extends zj0 {
     }
 
     @Override
-    public final boolean V(int i7, int i10, v4.e1 e1Var) {
-        if (i7 != 0 && i7 != 2 && i10 < this.f18296r.size()) {
+    public final boolean V(int i7, int i10, v4.f1 f1Var) {
+        if (i7 != 0 && i7 != 2 && i10 < this.f18392r.size()) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final void W(int i7, int i10, v4.e1 e1Var) {
-        if (e1Var.f59115f == 0) {
-            s1 s1Var = (s1) e1Var.f59111a;
+    public final void W(int i7, int i10, v4.f1 f1Var) {
+        if (f1Var.f59249f == 0) {
+            s1 s1Var = (s1) f1Var.f59245a;
             Object O = O(i7, i10);
             boolean z10 = true;
             if (i7 == 1 && i10 == M(i7) - 1) {
@@ -94,36 +94,36 @@ public final class e0 extends zj0 {
             if (O instanceof v1) {
                 v1 v1Var = (v1) O;
                 s1Var.a(v1Var, null, z10);
-                s1Var.d.a(this.f18299x.f18328x.contains(Integer.valueOf(v1Var.f18505a)), false);
+                s1Var.d.a(this.f18395x.f18424x.contains(Integer.valueOf(v1Var.f18601a)), false);
             }
         }
     }
 
     @Override
     public final void f() {
-        ArrayList arrayList = this.f18296r;
+        ArrayList arrayList = this.f18392r;
         arrayList.clear();
-        arrayList.addAll(w1.f(this.f18297s).e());
+        arrayList.addAll(w1.f(this.f18393s).e());
         X(false);
-        this.f18299x.Q();
+        this.f18395x.Q();
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
         View s1Var;
-        Context context = this.f18298w;
+        Context context = this.f18394w;
         if (i7 != 0) {
             if (i7 != 1) {
                 s1Var = new View(context);
                 s1Var.setTag(-33024);
             } else {
                 s1Var = new View(context);
-                s1Var.setLayoutParams(new v4.p0(-1, org.telegram.messenger.g0.L(56.0f)));
+                s1Var.setLayoutParams(new v4.q0(-1, org.telegram.messenger.g0.L(56.0f)));
                 s1Var.setTag(-33024);
             }
         } else {
-            s1Var = new s1(context, this.f18299x.f37476a, false);
+            s1Var = new s1(context, this.f18395x.f37134a, false);
         }
-        return new v4.e1(s1Var);
+        return new v4.f1(s1Var);
     }
 }

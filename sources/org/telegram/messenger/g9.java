@@ -1,66 +1,51 @@
 package org.telegram.messenger;
 
-import android.os.Bundle;
-import com.google.android.gms.tasks.CancellationToken;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.util.concurrent.CancellationException;
-import org.json.JSONObject;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.o60;
-public final class g9 implements v0.g {
-    public final CancellationToken f24070a;
-    public final TaskCompletionSource f24071b;
-    public final o60 f24072c;
-    public final int d;
-    public final Runnable[] f24073e;
+import android.content.Context;
+import android.os.Build;
+import android.telephony.SubscriptionInfo;
+import android.telephony.SubscriptionManager;
+public abstract class g9 {
+    public static db.a f24285a;
 
-    public g9(CancellationToken cancellationToken, TaskCompletionSource taskCompletionSource, o60 o60Var, int i7, Runnable[] runnableArr) {
-        this.f24070a = cancellationToken;
-        this.f24071b = taskCompletionSource;
-        this.f24072c = o60Var;
-        this.d = i7;
-        this.f24073e = runnableArr;
+    public static org.telegram.messenger.d1 a(android.content.Context r8, db.c r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.g9.a(android.content.Context, db.c):org.telegram.messenger.d1");
     }
 
-    @Override
-    public final void a(Object obj) {
-        w0.i iVar = (w0.i) obj;
-        if (this.f24070a.isCancellationRequested()) {
-            return;
-        }
-        boolean z10 = iVar instanceof w0.k;
-        TaskCompletionSource taskCompletionSource = this.f24071b;
-        if (z10) {
-            taskCompletionSource.trySetException(new Exception("EMPTY"));
-        } else if (!(iVar instanceof w0.g) && !(iVar instanceof w0.j)) {
-            taskCompletionSource.trySetException(iVar);
-        } else {
-            taskCompletionSource.trySetException(new CancellationException());
-        }
-    }
-
-    @Override
-    public final void onResult(Object obj) {
-        v0.n nVar = (v0.n) obj;
-        TaskCompletionSource taskCompletionSource = this.f24071b;
-        CancellationToken cancellationToken = this.f24070a;
-        if (!cancellationToken.isCancellationRequested()) {
-            try {
-                String string = new JSONObject(((Bundle) nVar.f59033a.f6390a).getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON")).getJSONObject("data").getJSONObject("vp_token").getJSONArray("firebase").getString(0);
-                this.f24072c.run();
-                TLRPC.TL_auth_finishFirebasePnvLogin tL_auth_finishFirebasePnvLogin = new TLRPC.TL_auth_finishFirebasePnvLogin();
-                tL_auth_finishFirebasePnvLogin.google_token = string;
-                int i7 = this.d;
-                f9 f9Var = new f9(i7, ConnectionsManager.getInstance(i7).sendRequestTyped(tL_auth_finishFirebasePnvLogin, new d3.b(1), new z3(1, cancellationToken, taskCompletionSource), 8), 1);
-                Runnable[] runnableArr = this.f24073e;
-                runnableArr[0] = f9Var;
-                if (cancellationToken.isCancellationRequested()) {
-                    runnableArr[0].run();
-                }
-            } catch (Exception e10) {
-                taskCompletionSource.trySetException(e10);
+    public static int b(Context context, int i7) {
+        try {
+            int i10 = Build.VERSION.SDK_INT;
+            if (i10 >= 34) {
+                return SubscriptionManager.getSubscriptionId(i7);
             }
+            boolean z10 = false;
+            SubscriptionInfo subscriptionInfo = null;
+            int[] subscriptionIds = null;
+            if (i10 >= 29) {
+                SubscriptionManager subscriptionManager = (SubscriptionManager) context.getSystemService(SubscriptionManager.class);
+                if (subscriptionManager != null) {
+                    subscriptionIds = subscriptionManager.getSubscriptionIds(i7);
+                }
+                if (subscriptionIds != null && subscriptionIds.length > 0) {
+                    return subscriptionIds[0];
+                }
+            } else {
+                if (context.checkSelfPermission("android.permission.READ_PHONE_STATE") == 0) {
+                    z10 = true;
+                }
+                if (z10) {
+                    SubscriptionManager subscriptionManager2 = (SubscriptionManager) context.getSystemService("telephony_subscription_service");
+                    if (subscriptionManager2 != null) {
+                        subscriptionInfo = subscriptionManager2.getActiveSubscriptionInfoForSimSlotIndex(i7);
+                    }
+                    if (subscriptionInfo != null) {
+                        return subscriptionInfo.getSubscriptionId();
+                    }
+                }
+            }
+            return -1;
+        } catch (Exception e10) {
+            a8.g(e10, true);
+            return -1;
         }
     }
 }

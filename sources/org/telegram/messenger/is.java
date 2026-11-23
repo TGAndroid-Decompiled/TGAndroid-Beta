@@ -1,72 +1,39 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-public final class is extends ArrayList {
-    public HashSet f24745a;
+import java.lang.ref.WeakReference;
+public final class is implements fs {
+    public final ks f24836a;
+    public final WeakReference f24837b;
+    public final int f24838c;
+
+    public is(ks ksVar, fs fsVar) {
+        this.f24836a = ksVar;
+        this.f24837b = new WeakReference(fsVar);
+        this.f24838c = System.identityHashCode(fsVar);
+    }
 
     @Override
-    public final boolean add(Object obj) {
-        if (this.f24745a.add(obj)) {
-            return super.add(obj);
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        fs fsVar = (fs) this.f24837b.get();
+        if (fsVar != null) {
+            fsVar.didReceivedNotification(i7, i10, objArr);
+        } else {
+            this.f24836a.n(this, i7);
+        }
+    }
+
+    public final boolean equals(Object obj) {
+        fs fsVar;
+        if (this == obj) {
+            return true;
+        }
+        if ((obj instanceof is) && (fsVar = (fs) this.f24837b.get()) != null && fsVar == ((is) obj).f24837b.get()) {
+            return true;
         }
         return false;
     }
 
-    @Override
-    public final boolean addAll(Collection collection) {
-        boolean z10 = false;
-        for (Object obj : collection) {
-            if (add(obj)) {
-                z10 = true;
-            }
-        }
-        return z10;
-    }
-
-    @Override
-    public final void clear() {
-        this.f24745a.clear();
-        super.clear();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        return this.f24745a.contains(obj);
-    }
-
-    @Override
-    public final Object remove(int i7) {
-        Object remove = super.remove(i7);
-        if (remove != null) {
-            this.f24745a.remove(remove);
-        }
-        return remove;
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void add(int i7, Object obj) {
-        if (this.f24745a.add(obj)) {
-            super.add(i7, obj);
-        }
-    }
-
-    @Override
-    public final boolean addAll(int i7, Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        if (this.f24745a.remove(obj)) {
-            return super.remove(obj);
-        }
-        return false;
+    public final int hashCode() {
+        return this.f24838c;
     }
 }

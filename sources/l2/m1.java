@@ -1,28 +1,93 @@
 package l2;
-public final class m1 {
-    public static final m1 f19446c = new m1(0, false);
-    public final int f19447a;
-    public final boolean f19448b;
 
-    public m1(int i7, boolean z10) {
-        this.f19447a = i7;
-        this.f19448b = z10;
+import java.util.HashMap;
+public final class m1 extends a {
+    public final int h;
+    public final int f19535i;
+    public final int[] f19536j;
+    public final int[] f19537k;
+    public final e2.l1[] f19538l;
+    public final Object[] f19539m;
+    public final HashMap f19540n;
+
+    public m1(e2.l1[] l1VarArr, Object[] objArr, x2.i1 i1Var) {
+        super(i1Var);
+        int length = l1VarArr.length;
+        this.f19538l = l1VarArr;
+        this.f19536j = new int[length];
+        this.f19537k = new int[length];
+        this.f19539m = objArr;
+        this.f19540n = new HashMap();
+        int length2 = l1VarArr.length;
+        int i7 = 0;
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        while (i7 < length2) {
+            e2.l1 l1Var = l1VarArr[i7];
+            this.f19538l[i12] = l1Var;
+            this.f19537k[i12] = i10;
+            this.f19536j[i12] = i11;
+            i10 += l1Var.o();
+            i11 += this.f19538l[i12].h();
+            this.f19540n.put(objArr[i12], Integer.valueOf(i12));
+            i7++;
+            i12++;
+        }
+        this.h = i10;
+        this.f19535i = i11;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && m1.class == obj.getClass()) {
-            m1 m1Var = (m1) obj;
-            if (this.f19447a == m1Var.f19447a && this.f19448b == m1Var.f19448b) {
-                return true;
-            }
-        }
-        return false;
+    @Override
+    public final int h() {
+        return this.f19535i;
     }
 
-    public final int hashCode() {
-        return (this.f19447a << 1) + (this.f19448b ? 1 : 0);
+    @Override
+    public final int o() {
+        return this.h;
+    }
+
+    @Override
+    public final int q(Object obj) {
+        Integer num = (Integer) this.f19540n.get(obj);
+        if (num == null) {
+            return -1;
+        }
+        return num.intValue();
+    }
+
+    @Override
+    public final int r(int i7) {
+        return h2.l0.e(this.f19536j, i7 + 1, false, false);
+    }
+
+    @Override
+    public final int s(int i7) {
+        return h2.l0.e(this.f19537k, i7 + 1, false, false);
+    }
+
+    @Override
+    public final Object t(int i7) {
+        return this.f19539m[i7];
+    }
+
+    @Override
+    public final int u(int i7) {
+        return this.f19536j[i7];
+    }
+
+    @Override
+    public final int v(int i7) {
+        return this.f19537k[i7];
+    }
+
+    @Override
+    public final e2.l1 x(int i7) {
+        return this.f19538l[i7];
+    }
+
+    public m1(java.util.ArrayList r8, x2.i1 r9) {
+        throw new UnsupportedOperationException("Method not decompiled: l2.m1.<init>(java.util.ArrayList, x2.i1):void");
     }
 }

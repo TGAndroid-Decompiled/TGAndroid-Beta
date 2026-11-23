@@ -6,32 +6,32 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.ef;
 import org.telegram.ui.Components.ek0;
-import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.ff;
+import org.telegram.ui.Components.kr;
 public abstract class u extends FrameLayout {
-    public ObjectAnimator f18957a;
-    public e2.r0 f18958b;
-    public di.b1 f18959c;
+    public ObjectAnimator f19059a;
+    public e2.r0 f19060b;
+    public di.b1 f19061c;
     public Paint d;
-    public float f18960e;
-    public boolean f18961f;
+    public float f19062e;
+    public boolean f19063f;
     public float h;
-    public boolean f18962n;
-    public fh.g f18963r;
+    public boolean f19064n;
+    public fh.g f19065r;
 
     public final void a() {
-        ObjectAnimator objectAnimator = this.f18957a;
+        ObjectAnimator objectAnimator = this.f19059a;
         if (objectAnimator != null) {
             objectAnimator.removeAllListeners();
-            this.f18957a.cancel();
-            this.f18957a = null;
+            this.f19059a.cancel();
+            this.f19059a = null;
         }
     }
 
     public final void b() {
-        di.b1 b1Var = this.f18959c;
-        fh.g gVar = this.f18963r;
+        di.b1 b1Var = this.f19061c;
+        fh.g gVar = this.f19065r;
         if (gVar != null) {
             gVar.setBounds(0, ((int) this.h) - org.telegram.messenger.g0.L(25.0f), getMeasuredWidth(), org.telegram.messenger.g0.L(5.0f) + getMeasuredHeight());
             b1Var.invalidateOutline();
@@ -40,17 +40,17 @@ public abstract class u extends FrameLayout {
     }
 
     public final void c() {
-        if (!this.f18961f) {
-            this.f18961f = true;
+        if (!this.f19063f) {
+            this.f19063f = true;
             a();
-            di.b1 b1Var = this.f18959c;
+            di.b1 b1Var = this.f19061c;
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(b1Var, FrameLayout.TRANSLATION_Y, b1Var.getTranslationY(), (getMeasuredHeight() - this.h) + org.telegram.messenger.g0.L(40.0f));
-            this.f18957a = ofFloat;
-            ofFloat.addListener(new ai.f0(this, 28));
-            this.f18957a.setDuration(150L);
-            this.f18957a.setInterpolator(nr.f37917f);
-            this.f18957a.start();
-            y yVar = ((ef) this).f34770w.m0;
+            this.f19059a = ofFloat;
+            ofFloat.addListener(new ai.g0(this, 28));
+            this.f19059a.setDuration(150L);
+            this.f19059a.setInterpolator(kr.f36858f);
+            this.f19059a.start();
+            y yVar = ((ff) this).f35116w.m0;
             if (yVar != null) {
                 yVar.setOpened(false);
             }
@@ -58,20 +58,20 @@ public abstract class u extends FrameLayout {
     }
 
     public final void d(boolean z10) {
-        if (this.f18961f) {
+        if (this.f19063f) {
             return;
         }
-        di.b1 b1Var = this.f18959c;
+        di.b1 b1Var = this.f19061c;
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(b1Var, FrameLayout.TRANSLATION_Y, b1Var.getTranslationY(), 0.0f);
-        this.f18957a = ofFloat;
+        this.f19059a = ofFloat;
         if (z10) {
             ofFloat.setDuration(320L);
-            this.f18957a.setInterpolator(new OvershootInterpolator(0.8f));
+            this.f19059a.setInterpolator(new OvershootInterpolator(0.8f));
         } else {
             ofFloat.setDuration(150L);
-            this.f18957a.setInterpolator(nr.f37917f);
+            this.f19059a.setInterpolator(kr.f36858f);
         }
-        this.f18957a.start();
+        this.f19059a.start();
     }
 
     @Override
@@ -83,22 +83,22 @@ public abstract class u extends FrameLayout {
     }
 
     public ek0 getListView() {
-        return this.f18959c;
+        return this.f19061c;
     }
 
     @Override
     public int getNestedScrollAxes() {
-        return this.f18958b.b();
+        return this.f19060b.b();
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        di.b1 b1Var = this.f18959c;
+        di.b1 b1Var = this.f19061c;
         super.onMeasure(i7, i10);
-        if (this.f18962n && !this.f18961f) {
+        if (this.f19064n && !this.f19063f) {
             b1Var.setTranslationY(org.telegram.messenger.g0.L(16.0f) + (b1Var.getMeasuredHeight() - b1Var.getPaddingTop()));
             d(true);
-            this.f18962n = false;
+            this.f19064n = false;
         }
         b();
     }
@@ -115,8 +115,8 @@ public abstract class u extends FrameLayout {
 
     @Override
     public final void onNestedPreScroll(View view, int i7, int i10, int[] iArr) {
-        di.b1 b1Var = this.f18959c;
-        if (!this.f18961f) {
+        di.b1 b1Var = this.f19061c;
+        if (!this.f19063f) {
             a();
             float translationY = b1Var.getTranslationY();
             float f10 = 0.0f;
@@ -134,8 +134,8 @@ public abstract class u extends FrameLayout {
 
     @Override
     public final void onNestedScroll(View view, int i7, int i10, int i11, int i12) {
-        di.b1 b1Var = this.f18959c;
-        if (!this.f18961f) {
+        di.b1 b1Var = this.f19061c;
+        if (!this.f19063f) {
             a();
             if (i12 != 0) {
                 float translationY = b1Var.getTranslationY() - i12;
@@ -150,8 +150,8 @@ public abstract class u extends FrameLayout {
 
     @Override
     public final void onNestedScrollAccepted(View view, View view2, int i7) {
-        this.f18958b.f10679a = i7;
-        if (this.f18961f) {
+        this.f19060b.f10677a = i7;
+        if (this.f19063f) {
             return;
         }
         a();
@@ -159,7 +159,7 @@ public abstract class u extends FrameLayout {
 
     @Override
     public final boolean onStartNestedScroll(View view, View view2, int i7) {
-        if (!this.f18961f && i7 == 2) {
+        if (!this.f19063f && i7 == 2) {
             return true;
         }
         return false;
@@ -167,12 +167,12 @@ public abstract class u extends FrameLayout {
 
     @Override
     public final void onStopNestedScroll(View view) {
-        this.f18958b.f10679a = 0;
-        boolean z10 = this.f18961f;
+        this.f19060b.f10677a = 0;
+        boolean z10 = this.f19063f;
         if (z10 || z10) {
             return;
         }
-        if (this.f18959c.getTranslationY() > org.telegram.messenger.g0.L(16.0f)) {
+        if (this.f19061c.getTranslationY() > org.telegram.messenger.g0.L(16.0f)) {
             c();
         } else {
             d(false);
@@ -180,10 +180,10 @@ public abstract class u extends FrameLayout {
     }
 
     public void setBackgroundDrawable(fh.g gVar) {
-        this.f18963r = gVar;
+        this.f19065r = gVar;
         gVar.r(org.telegram.messenger.g0.L(22.0f));
-        this.f18963r.q(org.telegram.messenger.g0.L(5.0f));
-        di.b1 b1Var = this.f18959c;
+        this.f19065r.q(org.telegram.messenger.g0.L(5.0f));
+        di.b1 b1Var = this.f19061c;
         if (gVar.S == null) {
             gVar.S = new fh.a(gVar, 0);
         }

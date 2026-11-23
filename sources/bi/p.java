@@ -6,12 +6,12 @@ import di.gb;
 public final class p implements View.OnClickListener {
     public final int f3924a;
     public final Context f3925b;
-    public final org.telegram.ui.ActionBar.h6 f3926c;
+    public final org.telegram.ui.ActionBar.i6 f3926c;
 
-    public p(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+    public p(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
         this.f3924a = i7;
         this.f3925b = context;
-        this.f3926c = h6Var;
+        this.f3926c = i6Var;
     }
 
     @Override

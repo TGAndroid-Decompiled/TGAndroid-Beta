@@ -1,38 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.GestureDetector;
+import android.view.View;
 import android.widget.FrameLayout;
-public final class za extends FrameLayout {
-    public final gc E;
-    public final lb f42700a;
-    public final Rect f42701b;
-    public final GestureDetector f42702c;
-    public boolean d;
-    public boolean f42703e;
-    public float f42704f;
-    public float h;
-    public float f42705n;
-    public boolean f42706r;
-    public boolean f42707s;
-    public boolean f42708w;
-    public boolean f42709x;
-    public final FrameLayout f42710y;
+import j$.util.Objects;
+import org.telegram.ui.ob1;
+public final class za implements View.OnLayoutChangeListener {
+    public final boolean f42779a;
+    public final fc f42780b;
 
-    public za(gc gcVar, lb lbVar, FrameLayout frameLayout) {
-        super(lbVar.getContext());
-        this.E = gcVar;
-        this.f42710y = frameLayout;
-        this.f42701b = new Rect();
-        this.f42700a = lbVar;
-        GestureDetector gestureDetector = new GestureDetector(lbVar.getContext(), new vb(this, lbVar));
-        this.f42702c = gestureDetector;
-        gestureDetector.setIsLongpressEnabled(false);
-        addView(lbVar);
+    public za(fc fcVar, boolean z10) {
+        this.f42780b = fcVar;
+        this.f42779a = z10;
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.za.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
+        eb ebVar;
+        int i17;
+        fc fcVar = this.f42780b;
+        kb kbVar = fcVar.f35087e;
+        kbVar.removeOnLayoutChangeListener(this);
+        if (fcVar.f35093l) {
+            kbVar.onShow();
+            org.telegram.ui.ActionBar.g2 g2Var = fcVar.f35089g;
+            boolean z10 = this.f42779a;
+            if (z10 && (g2Var instanceof ob1)) {
+                g2Var = ((ob1) g2Var).c0();
+            }
+            FrameLayout frameLayout = fcVar.h;
+            if (g2Var == null || (ebVar = g2Var.getBulletinDelegate()) == null) {
+                if (frameLayout != null) {
+                    Object tag = frameLayout.getTag(2131296353);
+                    if (tag instanceof eb) {
+                        ebVar = (eb) tag;
+                    }
+                }
+                ebVar = null;
+            }
+            fcVar.f35097p = ebVar;
+            if (ebVar == null && g2Var != null) {
+                fcVar.f35097p = new org.telegram.ui.ActionBar.a2(1, g2Var);
+            }
+            r1.g gVar = fcVar.d;
+            if (gVar == null || !gVar.f56440f) {
+                eb ebVar2 = fcVar.f35097p;
+                if (ebVar2 != null) {
+                    i17 = ebVar2.f(fcVar.f35084a);
+                } else {
+                    i17 = 0;
+                }
+                fcVar.f35096o = i17;
+            }
+            eb ebVar3 = fcVar.f35097p;
+            if (ebVar3 != null) {
+                ebVar3.b(fcVar);
+            }
+            if (g2Var != null) {
+                g2Var.setupBulletinGlass(fcVar);
+            }
+            if (org.telegram.messenger.mp.g1().getBoolean("view_animations", true) && !fcVar.f35100s) {
+                if (kbVar != null && fcVar.f35098q == null) {
+                    fcVar.f35098q = kbVar.createTransition();
+                }
+                kbVar.transitionRunningEnter = true;
+                kbVar.delegate = fcVar.f35097p;
+                kbVar.invalidate();
+                jb jbVar = fcVar.f35098q;
+                Objects.requireNonNull(kbVar);
+                jbVar.H(kbVar, new va(kbVar, 1), new ng(this, 15), new pl(2, this, z10));
+                return;
+            }
+            eb ebVar4 = fcVar.f35097p;
+            kbVar.delegate = ebVar4;
+            if (ebVar4 != null && !z10) {
+                ebVar4.c(kbVar.getHeight());
+            }
+            fcVar.l();
+            kbVar.onEnterTransitionStart();
+            kbVar.onEnterTransitionEnd();
+            if (fcVar.f35102u) {
+                fcVar.i(true);
+            }
+        }
     }
 }

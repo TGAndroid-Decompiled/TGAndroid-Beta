@@ -1,62 +1,54 @@
 package l2;
 
-import android.os.SystemClock;
-public final class q1 implements t0 {
-    public long f19527a;
-    public long f19528b;
-    public boolean f19529c;
-    public Object d;
-    public Object f19530e;
+import a8.ma;
+public final class q1 {
+    public static final q1 f19625c;
+    public static final q1 d;
+    public static final q1 f19626e;
+    public static final q1 f19627f;
+    public final long f19628a;
+    public final long f19629b;
 
-    @Override
-    public long a() {
-        long j3;
-        long j10 = this.f19527a;
-        if (this.f19529c) {
-            ((h2.g0) this.d).getClass();
-            long elapsedRealtime = SystemClock.elapsedRealtime() - this.f19528b;
-            e2.w0 w0Var = (e2.w0) this.f19530e;
-            if (w0Var.f10784a == 1.0f) {
-                j3 = h2.l0.S(elapsedRealtime);
-            } else {
-                j3 = elapsedRealtime * w0Var.f10786c;
-            }
-            return j3 + j10;
-        }
-        return j10;
+    static {
+        q1 q1Var = new q1(0L, 0L);
+        f19625c = q1Var;
+        d = new q1(Long.MAX_VALUE, Long.MAX_VALUE);
+        f19626e = new q1(Long.MAX_VALUE, 0L);
+        new q1(0L, Long.MAX_VALUE);
+        f19627f = q1Var;
     }
 
-    @Override
-    public boolean b() {
+    public q1(long j3, long j10) {
+        boolean z10;
+        if (j3 >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        ma.f(z10);
+        ma.f(j10 >= 0);
+        this.f19628a = j3;
+        this.f19629b = j10;
+    }
+
+    public final long a(long r17, long r19, long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: l2.q1.a(long, long, long):long");
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && q1.class == obj.getClass()) {
+            q1 q1Var = (q1) obj;
+            if (this.f19628a == q1Var.f19628a && this.f19629b == q1Var.f19629b) {
+                return true;
+            }
+        }
         return false;
     }
 
-    public void c(long j3) {
-        this.f19527a = j3;
-        if (this.f19529c) {
-            ((h2.g0) this.d).getClass();
-            this.f19528b = SystemClock.elapsedRealtime();
-        }
-    }
-
-    public void d() {
-        if (!this.f19529c) {
-            ((h2.g0) this.d).getClass();
-            this.f19528b = SystemClock.elapsedRealtime();
-            this.f19529c = true;
-        }
-    }
-
-    @Override
-    public void e(e2.w0 w0Var) {
-        if (this.f19529c) {
-            c(a());
-        }
-        this.f19530e = w0Var;
-    }
-
-    @Override
-    public e2.w0 j() {
-        return (e2.w0) this.f19530e;
+    public final int hashCode() {
+        return (((int) this.f19628a) * 31) + ((int) this.f19629b);
     }
 }

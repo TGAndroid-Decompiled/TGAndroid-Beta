@@ -2,15 +2,15 @@ package w7;
 
 import a8.v;
 public final class l extends v {
-    public static final l f59626n = new l(null, new Object[0], 0);
-    public final transient Object f59627e;
-    public final transient Object[] f59628f;
+    public static final l f59746n = new l(null, new Object[0], 0);
+    public final transient Object f59747e;
+    public final transient Object[] f59748f;
     public final transient int h;
 
     public l(Object obj, Object[] objArr, int i7) {
         super(4);
-        this.f59627e = obj;
-        this.f59628f = objArr;
+        this.f59747e = obj;
+        this.f59748f = objArr;
         this.h = i7;
     }
 

@@ -3,17 +3,17 @@ package bi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.text.Editable;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.si;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.ri;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.du0;
+import org.telegram.ui.Components.cu0;
 public final class z8 extends org.telegram.ui.Cells.i3 {
     public final fh.g F;
     public final int G;
     public final f9 H;
 
-    public z8(f9 f9Var, Context context, du0 du0Var, String str, int i7, org.telegram.ui.ActionBar.h6 h6Var, fh.g gVar, int i10) {
-        super(context, du0Var, str, true, i7, h6Var);
+    public z8(f9 f9Var, Context context, cu0 cu0Var, String str, int i7, org.telegram.ui.ActionBar.i6 i6Var, fh.g gVar, int i10) {
+        super(context, cu0Var, str, true, i7, i6Var);
         this.H = f9Var;
         this.F = gVar;
         this.G = i10;
@@ -23,7 +23,7 @@ public final class z8 extends org.telegram.ui.Cells.i3 {
     public final void b(Editable editable) {
         TLRPC.TL_textWithEntities tL_textWithEntities;
         f9 f9Var = this.H;
-        gj gjVar = f9Var.f3585i2;
+        fj fjVar = f9Var.f3585i2;
         TLRPC.MessageAction messageAction = f9Var.f3584h2;
         if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
             tL_textWithEntities = new TLRPC.TL_textWithEntities();
@@ -42,10 +42,10 @@ public final class z8 extends org.telegram.ui.Cells.i3 {
             return;
         }
         CharSequence[] charSequenceArr = {f9Var.f3592p2.getText()};
-        tL_textWithEntities.entities = si.d0(this.G).Y(charSequenceArr, true, true);
+        tL_textWithEntities.entities = ri.d0(this.G).Y(charSequenceArr, true, true);
         tL_textWithEntities.text = charSequenceArr[0].toString();
-        gjVar.L5();
-        f9Var.f3583g2.i0(gjVar, true);
+        fjVar.L5();
+        f9Var.f3583g2.k0(fjVar, true);
         f9Var.f3593q2.O(true);
         f9Var.h1(true);
     }

@@ -1,28 +1,30 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.z10;
-public final class w implements z10 {
-    public final int f28669a;
-    public final InputSerializedData f28670b;
+import org.telegram.messenger.w10;
+public final class w implements w10 {
+    public final int f28763a;
+    public final OutputSerializedData f28764b;
 
-    public w(InputSerializedData inputSerializedData, int i7) {
-        this.f28669a = i7;
-        this.f28670b = inputSerializedData;
+    public w(OutputSerializedData outputSerializedData, int i7) {
+        this.f28763a = i7;
+        this.f28764b = outputSerializedData;
     }
 
     @Override
-    public final Object a(Object obj) {
-        int i7 = this.f28669a;
-        boolean booleanValue = ((Boolean) obj).booleanValue();
-        switch (i7) {
+    public final void a(Object obj) {
+        switch (this.f28763a) {
             case 0:
-                return Long.valueOf(this.f28670b.readInt64(booleanValue));
+                this.f28764b.writeInt64(((Long) obj).longValue());
+                return;
             case 1:
-                return Integer.valueOf(this.f28670b.readInt32(booleanValue));
+                this.f28764b.writeInt32(((Integer) obj).intValue());
+                return;
             case 2:
-                return this.f28670b.readString(booleanValue);
+                this.f28764b.writeByteArray((byte[]) obj);
+                return;
             default:
-                return this.f28670b.readByteArray(booleanValue);
+                this.f28764b.writeString((String) obj);
+                return;
         }
     }
 }

@@ -3,17 +3,17 @@ package ug;
 import android.content.Context;
 import android.widget.Scroller;
 public final class v0 extends Scroller {
-    public final w0 f58934a;
+    public final w0 f59050a;
 
     public v0(w0 w0Var, Context context) {
         super(context);
-        this.f58934a = w0Var;
+        this.f59050a = w0Var;
     }
 
     @Override
     public final void startScroll(int i7, int i10, int i11, int i12, int i13) {
         int i14;
-        if (this.f58934a.f58938y0) {
+        if (this.f59050a.f59055y0) {
             i14 = 3;
         } else {
             i14 = 1;

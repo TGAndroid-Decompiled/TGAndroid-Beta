@@ -7,25 +7,25 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import h6.m;
-import hi.f9;
-import org.telegram.ui.Components.cb0;
+import hi.z9;
+import org.telegram.ui.Components.za0;
 import org.telegram.ui.en;
 public final class l {
-    public static final Rect f17793f = new Rect();
-    public final ui.c f17794a = new ui.c();
-    public final ui.b f17795b = new ui.b();
-    public final m f17796c = new m(new f9(7));
-    public final m d = new m(new f9(8));
-    public final m f17797e = new m(new f9(9));
+    public static final Rect f17895f = new Rect();
+    public final ui.c f17896a = new ui.c();
+    public final ui.b f17897b = new ui.b();
+    public final m f17898c = new m(new z9(7));
+    public final m d = new m(new z9(8));
+    public final m f17899e = new m(new z9(9));
 
     public final int a(ui.a aVar) {
         if (aVar instanceof ui.c) {
-            return ((ui.c) aVar).f59006b;
+            return ((ui.c) aVar).f59123b;
         }
         if (aVar instanceof ui.b) {
-            return ((Integer) this.d.r(((ui.b) aVar).d)).intValue();
+            return ((Integer) this.d.x(((ui.b) aVar).d)).intValue();
         } else if (aVar instanceof ui.g) {
-            return a(((ui.g) aVar).f59020a);
+            return a(((ui.g) aVar).f59137a);
         } else {
             return 0;
         }
@@ -33,12 +33,12 @@ public final class l {
 
     public final int b(ui.a aVar) {
         if (aVar instanceof ui.c) {
-            return ((ui.c) aVar).f59006b;
+            return ((ui.c) aVar).f59123b;
         }
         if (aVar instanceof ui.b) {
-            return ((Integer) this.f17797e.r(((ui.b) aVar).d)).intValue();
+            return ((Integer) this.f17899e.x(((ui.b) aVar).d)).intValue();
         } else if (aVar instanceof ui.g) {
-            return b(((ui.g) aVar).f59020a);
+            return b(((ui.g) aVar).f59137a);
         } else {
             return 0;
         }
@@ -46,26 +46,26 @@ public final class l {
 
     public final ui.a c(Drawable drawable) {
         boolean z10 = drawable instanceof ColorDrawable;
-        ui.c cVar = this.f17794a;
+        ui.c cVar = this.f17896a;
         if (z10) {
             cVar.a(((ColorDrawable) drawable).getColor());
             return cVar;
         }
-        boolean z11 = drawable instanceof cb0;
-        ui.b bVar = this.f17795b;
+        boolean z11 = drawable instanceof za0;
+        ui.b bVar = this.f17897b;
         if (z11) {
-            cb0 cb0Var = (cb0) drawable;
-            if (cb0Var.f34125q < 0) {
+            za0 za0Var = (za0) drawable;
+            if (za0Var.f42801q < 0) {
                 cVar.a(-16777216);
                 return cVar;
             }
-            bVar.a(cb0Var.f34119k);
+            bVar.a(za0Var.f42795k);
             return bVar;
         }
         boolean z12 = drawable instanceof BitmapDrawable;
-        m mVar = this.f17796c;
+        m mVar = this.f17898c;
         if (z12) {
-            bVar.a((Bitmap) mVar.r(((BitmapDrawable) drawable).getBitmap()));
+            bVar.a((Bitmap) mVar.x(((BitmapDrawable) drawable).getBitmap()));
             return bVar;
         } else if (drawable instanceof en) {
             return c(((en) drawable).c(false));
@@ -76,23 +76,23 @@ public final class l {
                 float f11 = f10 / 1.0f;
                 int round = Math.round(f11);
                 int round2 = Math.round(f11);
-                Bitmap bitmap = bVar.f59003f;
-                if (bitmap != null && !bitmap.isRecycled() && bVar.f59003f.getWidth() == round2 && bVar.f59003f.getHeight() == round2) {
-                    bVar.f59003f.eraseColor(0);
+                Bitmap bitmap = bVar.f59120f;
+                if (bitmap != null && !bitmap.isRecycled() && bVar.f59120f.getWidth() == round2 && bVar.f59120f.getHeight() == round2) {
+                    bVar.f59120f.eraseColor(0);
                 } else {
-                    bVar.f59003f = Bitmap.createBitmap(round, round2, Bitmap.Config.ARGB_8888);
+                    bVar.f59120f = Bitmap.createBitmap(round, round2, Bitmap.Config.ARGB_8888);
                 }
-                Canvas canvas = new Canvas(bVar.f59003f);
+                Canvas canvas = new Canvas(bVar.f59120f);
                 canvas.scale(f10 / round, 160 / round2);
                 Rect bounds = drawable.getBounds();
-                Rect rect = f17793f;
+                Rect rect = f17895f;
                 rect.set(bounds);
                 drawable.setBounds(0, 0, 120, 160);
                 drawable.draw(canvas);
                 drawable.setBounds(rect);
-                bVar.a(bVar.f59003f);
-                bVar.f59003f = null;
-                bVar.a((Bitmap) mVar.r(bVar.d));
+                bVar.a(bVar.f59120f);
+                bVar.f59120f = null;
+                bVar.a((Bitmap) mVar.x(bVar.d));
             }
             return bVar;
         }

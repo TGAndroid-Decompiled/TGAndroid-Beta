@@ -1,3 +1,4 @@
 package l2;
-public interface p extends e2.c1 {
+public final class p {
+    public static final p f19584a = new Object();
 }

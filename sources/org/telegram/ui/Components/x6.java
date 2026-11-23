@@ -1,79 +1,80 @@
 package org.telegram.ui.Components;
-public final class x6 implements org.telegram.ui.ActionBar.u6 {
-    public final int f41941a;
-    public final Object f41942b;
 
-    public x6(Object obj, int i7) {
-        this.f41941a = i7;
-        this.f41942b = obj;
+import android.view.View;
+import org.telegram.messenger.MediaController;
+public final class x6 implements org.telegram.ui.ActionBar.l0, sj0 {
+    public final int f41857a;
+    public final e8 f41858b;
+
+    public x6(e8 e8Var, int i7) {
+        this.f41857a = i7;
+        this.f41858b = e8Var;
     }
 
     @Override
-    public final void a(float f10) {
-        int i7 = this.f41941a;
+    public boolean b(int i7, View view) {
+        boolean z10 = view instanceof org.telegram.ui.Cells.w;
+        e8 e8Var = this.f41858b;
+        if (z10) {
+            if (!e8Var.P0()) {
+                org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) view;
+                e8Var.Y0(wVar, wVar.getMessageObject());
+                return true;
+            }
+            return false;
+        }
+        e8Var.getClass();
+        return false;
     }
 
     @Override
-    public final void b() {
-        switch (this.f41941a) {
+    public void h(int i7) {
+        switch (this.f41857a) {
             case 0:
-                ((f8) this.f41942b).L0();
-                return;
-            case 1:
-                ((ml) this.f41942b).b0();
-                return;
-            case 2:
-                mq mqVar = (mq) this.f41942b;
-                org.telegram.ui.ActionBar.q0 q0Var = mqVar.J;
-                q0Var.setIconColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G6, mqVar.f37563e0));
-                org.telegram.ui.ActionBar.m6.C1(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.I5, mqVar.f37563e0), q0Var.getBackground());
-                q0Var.P(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.E8, mqVar.f37563e0), false);
-                q0Var.P(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.F8, mqVar.f37563e0), true);
-                q0Var.I(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G8, mqVar.f37563e0));
-                return;
-            case 3:
-                ((ff0) this.f41942b).N0();
-                return;
-            case 4:
-                qm0 qm0Var = ((tm0) this.f41942b).A0;
-                if (qm0Var != null) {
-                    qm0Var.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29741y8, false));
+                e8 e8Var = this.f41858b;
+                e8Var.getClass();
+                if (i7 >= 0) {
+                    float[] fArr = e8.U2;
+                    if (i7 < 6) {
+                        MediaController.B().m0(true, fArr[i7]);
+                        e8Var.b1(true);
+                        return;
+                    }
                     return;
                 }
                 return;
-            case 5:
-                ((Runnable) this.f41942b).run();
-                return;
-            case 6:
-                ((kw0) this.f41942b).Y0(false);
+            case 1:
+                e8 e8Var2 = this.f41858b;
+                if (i7 != 1 && i7 != 2) {
+                    if (i7 == 4) {
+                        if (org.telegram.messenger.bz.S0 == 1) {
+                            org.telegram.messenger.bz.E(0);
+                        } else {
+                            org.telegram.messenger.bz.E(1);
+                        }
+                    } else if (org.telegram.messenger.bz.S0 == 2) {
+                        org.telegram.messenger.bz.E(0);
+                    } else {
+                        org.telegram.messenger.bz.E(2);
+                    }
+                } else {
+                    boolean z10 = org.telegram.messenger.bz.O0;
+                    if ((z10 && i7 == 1) || (org.telegram.messenger.bz.N0 && i7 == 2)) {
+                        MediaController.B().l0(0);
+                    } else {
+                        MediaController.B().l0(i7);
+                    }
+                    e8Var2.f34618u1.f();
+                    if (z10 != org.telegram.messenger.bz.O0) {
+                        e8Var2.f34614s1.C0();
+                        e8Var2.T0(false);
+                    }
+                }
+                e8Var2.d1();
                 return;
             default:
-                ((k41) this.f41942b).d();
+                this.f41858b.Q0(i7);
                 return;
         }
-    }
-
-    private final void c(float f10) {
-    }
-
-    private final void d(float f10) {
-    }
-
-    private final void e(float f10) {
-    }
-
-    private final void f(float f10) {
-    }
-
-    private final void g(float f10) {
-    }
-
-    private final void h(float f10) {
-    }
-
-    private final void i(float f10) {
-    }
-
-    private final void j(float f10) {
     }
 }

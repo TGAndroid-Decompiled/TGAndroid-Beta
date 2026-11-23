@@ -2,49 +2,49 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Intro;
 public final class k2 implements c5.h {
-    public final int f49130a;
-    public final Object f49131b;
+    public final int f49281a;
+    public final Object f49282b;
 
     public k2(Object obj, int i7) {
-        this.f49130a = i7;
-        this.f49131b = obj;
+        this.f49281a = i7;
+        this.f49282b = obj;
     }
 
     @Override
     public final void a(int i7) {
-        switch (this.f49130a) {
+        switch (this.f49281a) {
             case 0:
-                o2 o2Var = (o2) this.f49131b;
-                o2Var.f50406x = i7;
+                o2 o2Var = (o2) this.f49282b;
+                o2Var.f50488x = i7;
                 o2Var.d.invalidate();
                 return;
             case 1:
-                ((v50) this.f49131b).I = i7;
+                ((v50) this.f49282b).I = i7;
                 return;
             default:
-                ((x71) this.f49131b).f53646c0.invalidate();
+                ((v71) this.f49282b).f52854c0.invalidate();
                 return;
         }
     }
 
     @Override
     public final void b(float f10, int i7, int i10) {
-        switch (this.f49130a) {
+        switch (this.f49281a) {
             case 0:
-                o2 o2Var = (o2) this.f49131b;
-                float measuredWidth = o2Var.f50398b.getMeasuredWidth();
+                o2 o2Var = (o2) this.f49282b;
+                float measuredWidth = o2Var.f50480b.getMeasuredWidth();
                 if (measuredWidth != 0.0f) {
-                    o2Var.f50405w = com.google.android.gms.internal.vision.e2.w(o2Var.f50406x, measuredWidth, (i7 * measuredWidth) + i10, measuredWidth);
+                    o2Var.f50487w = com.google.android.gms.internal.vision.e2.w(o2Var.f50488x, measuredWidth, (i7 * measuredWidth) + i10, measuredWidth);
                     o2Var.d.invalidate();
                     return;
                 }
                 return;
             case 1:
-                v50 v50Var = (v50) this.f49131b;
-                org.telegram.ui.Components.ia iaVar = v50Var.f52703e;
-                iaVar.f36182b = f10;
-                iaVar.f36183c = i7;
-                iaVar.invalidate();
+                v50 v50Var = (v50) this.f49282b;
+                org.telegram.ui.Components.ha haVar = v50Var.f52813e;
+                haVar.f35700b = f10;
+                haVar.f35701c = i7;
+                haVar.invalidate();
                 float measuredWidth2 = v50Var.d.getMeasuredWidth();
                 if (measuredWidth2 != 0.0f) {
                     Intro.setScrollOffset((((i7 * measuredWidth2) + i10) - (v50Var.I * measuredWidth2)) / measuredWidth2);
@@ -58,11 +58,11 @@ public final class k2 implements c5.h {
 
     @Override
     public final void c(int i7) {
-        switch (this.f49130a) {
+        switch (this.f49281a) {
             case 0:
                 return;
             case 1:
-                v50 v50Var = (v50) this.f49131b;
+                v50 v50Var = (v50) this.f49282b;
                 if (i7 == 1) {
                     v50Var.L = true;
                     v50Var.d.getCurrentItem();
@@ -72,8 +72,8 @@ public final class k2 implements c5.h {
                     if (v50Var.L) {
                         v50Var.L = false;
                     }
-                    if (v50Var.f52709x != v50Var.d.getCurrentItem()) {
-                        v50Var.f52709x = v50Var.d.getCurrentItem();
+                    if (v50Var.f52819x != v50Var.d.getCurrentItem()) {
+                        v50Var.f52819x = v50Var.d.getCurrentItem();
                         return;
                     }
                     return;

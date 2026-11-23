@@ -11,7 +11,7 @@ public final class g2 implements te.b, ri.n, org.telegram.messenger.q1 {
     }
 
     @Override
-    public void H(int i7, float f10, float f11, te.c cVar) {
+    public void K(int i7, float f10, float f11, te.c cVar) {
         org.telegram.ui.ActionBar.z4 z4Var = this.f3602a.f3952v2;
         if (z4Var != null) {
             z4Var.setTitlesAlpha(f10);
@@ -37,7 +37,7 @@ public final class g2 implements te.b, ri.n, org.telegram.messenger.q1 {
                     Object obj = arrayList.get(i7);
                     i7++;
                     ug.j jVar = (ug.j) obj;
-                    if (jVar.h() != null && jVar.h().equals(mVar.f11296c)) {
+                    if (jVar.h() != null && jVar.h().equals(mVar.f11295c)) {
                         jVar.h = mVar;
                         if (jVar.f() > j3) {
                             j3 = jVar.f();
@@ -50,19 +50,19 @@ public final class g2 implements te.b, ri.n, org.telegram.messenger.q1 {
         while (i7 < size2) {
             Object obj2 = arrayList.get(i7);
             i7++;
-            ((ug.j) obj2).f58716g = j3;
+            ((ug.j) obj2).f58831g = j3;
         }
         org.telegram.messenger.g0.g3(new a3.f(p3Var, 20));
     }
 
     @Override
-    public int e() {
+    public int j() {
         p3 p3Var = this.f3602a;
         p3Var.getClass();
-        return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29310b6, p3Var.J0);
+        return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29414b6, p3Var.J0);
     }
 
     @Override
-    public void D(float f10, int i7) {
+    public void G(float f10, int i7) {
     }
 }

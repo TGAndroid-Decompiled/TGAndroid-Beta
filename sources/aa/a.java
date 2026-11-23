@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.os.Build;
 import java.util.ArrayList;
-import sg.h0;
 public final class a {
     public final String f767a;
     public final String f768b;
@@ -13,9 +12,9 @@ public final class a {
     public final String f770e;
     public final String f771f;
     public final String f772g;
-    public final h0 h;
+    public final s2.e h;
 
-    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, h0 h0Var) {
+    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, s2.e eVar) {
         this.f767a = str;
         this.f768b = str2;
         this.f769c = arrayList;
@@ -23,10 +22,10 @@ public final class a {
         this.f770e = str4;
         this.f771f = str5;
         this.f772g = str6;
-        this.h = h0Var;
+        this.h = eVar;
     }
 
-    public static a a(Context context, a0 a0Var, String str, String str2, ArrayList arrayList, h0 h0Var) {
+    public static a a(Context context, a0 a0Var, String str, String str2, ArrayList arrayList, s2.e eVar) {
         String num;
         String packageName = context.getPackageName();
         String d = a0Var.d();
@@ -41,6 +40,6 @@ public final class a {
         if (str4 == null) {
             str4 = "0.0";
         }
-        return new a(str, str2, arrayList, d, packageName, str3, str4, h0Var);
+        return new a(str, str2, arrayList, d, packageName, str3, str4, eVar);
     }
 }

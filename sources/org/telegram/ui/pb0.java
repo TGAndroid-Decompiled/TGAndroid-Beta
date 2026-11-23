@@ -1,387 +1,102 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import java.util.Locale;
+import android.app.Dialog;
+import android.text.TextUtils;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class pb0 extends org.telegram.ui.Components.iu0 {
-    public Bundle E;
-    public boolean F;
-    public GoogleSignInAccount G;
-    public int H;
-    public int I;
-    public String J;
-    public String K;
-    public String L;
-    public String M;
-    public String N;
-    public boolean O;
-    public int P;
-    public final boolean Q;
-    public final ob0 R;
-    public boolean S;
-    public final ib0 T;
-    public final ib0 U;
-    public final ib0 V;
-    public boolean W;
-    public final mb0 f50806a;
-    public final de0 f50807a0;
-    public final TextView f50808b;
-    public final xh.l f50809c;
-    public final TextView d;
-    public final FrameLayout f50810e;
-    public final TextView f50811f;
-    public final FrameLayout h;
-    public final nb0 f50812n;
-    public final nb0 f50813r;
-    public final TextView f50814s;
-    public final org.telegram.ui.Components.t80 f50815w;
-    public final org.telegram.ui.Components.rh0 f50816x;
-    public boolean f50817y;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class pb0 implements Runnable {
+    public final int f50959a = 1;
+    public final tb0 f50960b;
+    public final TLRPC.TL_error f50961c;
+    public final String d;
+    public final String f50962e;
+    public final TLObject f50963f;
 
-    public pb0(org.telegram.ui.de0 r30, android.content.Context r31, boolean r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pb0.<init>(org.telegram.ui.de0, android.content.Context, boolean):void");
+    public pb0(tb0 tb0Var, TLRPC.TL_error tL_error, String str, String str2, TLObject tLObject) {
+        this.f50960b = tb0Var;
+        this.f50961c = tL_error;
+        this.d = str;
+        this.f50962e = str2;
+        this.f50963f = tLObject;
     }
 
     @Override
-    public final void g() {
-        if (this.I != 0) {
-            org.telegram.messenger.g0.r(this.V);
-        }
-    }
-
-    @Override
-    public String getHeaderName() {
-        return org.telegram.messenger.hd.N0(2131743376, null);
-    }
-
-    @Override
-    public final void h(String str) {
-        TLRPC.TL_auth_signIn tL_auth_signIn;
+    public final void run() {
+        String G;
         int i7;
-        if (!this.F) {
-            org.telegram.messenger.g0.r(this.U);
-            mb0 mb0Var = this.f50806a;
-            mb0Var.f46274e = true;
-            er[] erVarArr = mb0Var.f46275f;
-            if (erVarArr != null) {
-                for (er erVar : erVarArr) {
-                    erVar.B(0.0f);
-                }
-            }
-            String code = mb0Var.getCode();
-            int length = code.length();
-            de0 de0Var = this.f50807a0;
-            if (length == 0 && this.G == null) {
-                if (de0Var.getParentActivity() == null) {
+        int i10 = this.f50959a;
+        TLObject tLObject = this.f50963f;
+        String str = this.f50962e;
+        String str2 = this.d;
+        TLRPC.TL_error tL_error = this.f50961c;
+        tb0 tb0Var = this.f50960b;
+        switch (i10) {
+            case 0:
+                tb0Var.getClass();
+                if (tL_error == null) {
+                    TL_account.Password password = (TL_account.Password) tLObject;
+                    tb0Var.f52346s = password;
+                    TwoStepVerificationActivity.r0(password);
+                    tb0Var.n(str2, str);
                     return;
                 }
-                try {
-                    mb0Var.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
-                }
-                for (er erVar2 : mb0Var.f46275f) {
-                    erVar2.A(1.0f);
-                }
-                mb0Var.f46275f[0].requestFocus();
-                org.telegram.messenger.g0.E3(10.0f, mb0Var, new ib0(this, 1));
                 return;
-            }
-            this.F = true;
-            de0Var.F1(0, true);
-            if (de0Var.G == 3) {
-                TL_account.verifyEmail verifyemail = new TL_account.verifyEmail();
-                verifyemail.purpose = new TLRPC.TL_emailVerifyPurposeLoginChange();
-                TLRPC.TL_emailVerificationCode tL_emailVerificationCode = new TLRPC.TL_emailVerificationCode();
-                tL_emailVerificationCode.code = code;
-                verifyemail.verification = tL_emailVerificationCode;
-                tL_auth_signIn = verifyemail;
-            } else if (this.O) {
-                TL_account.verifyEmail verifyemail2 = new TL_account.verifyEmail();
-                TLRPC.TL_emailVerifyPurposeLoginSetup tL_emailVerifyPurposeLoginSetup = new TLRPC.TL_emailVerifyPurposeLoginSetup();
-                tL_emailVerifyPurposeLoginSetup.phone_number = this.M;
-                tL_emailVerifyPurposeLoginSetup.phone_code_hash = this.N;
-                verifyemail2.purpose = tL_emailVerifyPurposeLoginSetup;
-                TLRPC.TL_emailVerificationCode tL_emailVerificationCode2 = new TLRPC.TL_emailVerificationCode();
-                tL_emailVerificationCode2.code = code;
-                verifyemail2.verification = tL_emailVerificationCode2;
-                tL_auth_signIn = verifyemail2;
-            } else {
-                TLRPC.TL_auth_signIn tL_auth_signIn2 = new TLRPC.TL_auth_signIn();
-                tL_auth_signIn2.phone_number = this.M;
-                tL_auth_signIn2.phone_code_hash = this.N;
-                if (this.G != null) {
-                    TLRPC.TL_emailVerificationGoogle tL_emailVerificationGoogle = new TLRPC.TL_emailVerificationGoogle();
-                    tL_emailVerificationGoogle.token = this.G.f6113b;
-                    tL_auth_signIn2.email_verification = tL_emailVerificationGoogle;
+            default:
+                de0 de0Var = tb0Var.H;
+                if (tL_error != null && ("SRP_ID_INVALID".equals(tL_error.text) || "NEW_SALT_INVALID".equals(tL_error.text))) {
+                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                    i7 = ((org.telegram.ui.ActionBar.g2) de0Var).currentAccount;
+                    ConnectionsManager.getInstance(i7).sendRequest(getpassword, new sb0(tb0Var, str2, str, 1), 8);
+                    return;
+                }
+                de0Var.C1(false, true);
+                if (tLObject instanceof TLRPC.auth_Authorization) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(de0Var.getParentActivity());
+                    alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131751759, null), new zs(22, tb0Var, tLObject));
+                    boolean isEmpty = TextUtils.isEmpty(str2);
+                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28835a;
+                    if (isEmpty) {
+                        t1Var.U = org.telegram.messenger.gd.N0(2131742528, null);
+                    } else {
+                        t1Var.U = org.telegram.messenger.gd.N0(2131742533, null);
+                    }
+                    t1Var.S = org.telegram.messenger.gd.N0(2131743684, null);
+                    Dialog showDialog = de0Var.showDialog(t1Var);
+                    if (showDialog != null) {
+                        showDialog.setCanceledOnTouchOutside(false);
+                        showDialog.setCancelable(false);
+                        return;
+                    }
+                    return;
+                } else if (tL_error != null) {
+                    tb0Var.f52348x = false;
+                    if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                        int intValue = Utilities.z(tL_error.text).intValue();
+                        if (intValue < 60) {
+                            G = org.telegram.messenger.gd.G(intValue, "Seconds", new Object[0]);
+                        } else {
+                            G = org.telegram.messenger.gd.G(intValue / 60, "Minutes", new Object[0]);
+                        }
+                        de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.a0("FloodWaitTime", null, 2131750669, G));
+                        return;
+                    }
+                    de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), tL_error.text);
+                    return;
                 } else {
-                    TLRPC.TL_emailVerificationCode tL_emailVerificationCode3 = new TLRPC.TL_emailVerificationCode();
-                    tL_emailVerificationCode3.code = code;
-                    tL_auth_signIn2.email_verification = tL_emailVerificationCode3;
+                    return;
                 }
-                tL_auth_signIn2.flags = 2 | tL_auth_signIn2.flags;
-                tL_auth_signIn = tL_auth_signIn2;
-            }
-            mb0Var.f46274e = true;
-            er[] erVarArr2 = mb0Var.f46275f;
-            if (erVarArr2 != null) {
-                for (er erVar3 : erVarArr2) {
-                    erVar3.B(0.0f);
-                }
-            }
-            i7 = ((org.telegram.ui.ActionBar.g2) de0Var).currentAccount;
-            ConnectionsManager.getInstance(i7).sendRequest(tL_auth_signIn, new fb0(this, code, 0), 10);
         }
     }
 
-    @Override
-    public final void j() {
-        if (this.f50817y) {
-            this.f50817y = false;
-        } else {
-            org.telegram.messenger.g0.h3(new ib0(this, 8), de0.A0);
-        }
-    }
-
-    @Override
-    public final void k(Bundle bundle) {
-        Bundle bundle2 = bundle.getBundle("emailcode_params");
-        this.E = bundle2;
-        if (bundle2 != null) {
-            m(bundle2, true);
-        }
-        String string = bundle.getString("emailcode_code");
-        if (string != null) {
-            this.f50806a.setText(string);
-        }
-    }
-
-    @Override
-    public final void l(Bundle bundle) {
-        String code = this.f50806a.getCode();
-        if (code != null && code.length() != 0) {
-            bundle.putString("emailcode_code", code);
-        }
-        Bundle bundle2 = this.E;
-        if (bundle2 != null) {
-            bundle.putBundle("emailcode_params", bundle2);
-        }
-    }
-
-    @Override
-    public final void m(Bundle bundle, boolean z10) {
-        int i7;
-        int i10;
-        er[] erVarArr;
-        if (bundle != null) {
-            this.E = bundle;
-            this.M = bundle.getString("phoneFormated");
-            this.N = this.E.getString("phoneHash");
-            this.J = this.E.getString("phone");
-            this.K = this.E.getString("ephone");
-            this.O = this.E.getBoolean("setup");
-            this.P = this.E.getInt("length");
-            this.L = this.E.getString("email");
-            this.H = this.E.getInt("resetAvailablePeriod");
-            this.I = this.E.getInt("resetPendingDate");
-            de0 de0Var = this.f50807a0;
-            int i11 = de0Var.G;
-            int i12 = 8;
-            FrameLayout frameLayout = this.h;
-            xh.l lVar = this.f50809c;
-            if (i11 == 3) {
-                lVar.setText(org.telegram.messenger.hd.a0(null, null, 2131752130, this.L));
-                org.telegram.messenger.g0.X3(frameLayout, false, 1.0f, true, false);
-            } else if (this.Q) {
-                lVar.setText(org.telegram.messenger.hd.a0(null, null, 2131743375, this.L));
-                org.telegram.messenger.g0.X3(frameLayout, false, 1.0f, true, false);
-            } else {
-                org.telegram.messenger.g0.X3(frameLayout, true, 1.0f, true, false);
-                if (this.I == 0) {
-                    i7 = 0;
-                } else {
-                    i7 = 8;
-                }
-                this.f50812n.setVisibility(i7);
-                if (this.I != 0) {
-                    i10 = 0;
-                } else {
-                    i10 = 8;
-                }
-                this.f50813r.setVisibility(i10);
-                if (this.I != 0) {
-                    q();
-                }
-            }
-            int i13 = this.P;
-            mb0 mb0Var = this.f50806a;
-            mb0Var.b(i13, 1);
-            for (er erVar : mb0Var.f46275f) {
-                erVar.setShowSoftInputOnFocusCompat(org.telegram.messenger.g0.C1());
-                erVar.addTextChangedListener(new m0(this, 9));
-                erVar.setOnFocusChangeListener(new ed(this, 2));
-            }
-            mb0Var.setText("");
-            if (!this.O && de0Var.G != 3) {
-                String string = this.E.getString("emailPattern");
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
-                int indexOf = string.indexOf(42);
-                int lastIndexOf = string.lastIndexOf(42);
-                if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
-                    ?? obj = new Object();
-                    obj.f35299a |= 256;
-                    obj.f35300b = indexOf;
-                    int i14 = lastIndexOf + 1;
-                    obj.f35301c = i14;
-                    spannableStringBuilder.setSpan(new org.telegram.ui.Components.gz0(obj, 0), indexOf, i14, 0);
-                }
-                lVar.setText(org.telegram.messenger.g0.m0(org.telegram.messenger.hd.N0(2131752132, null), spannableStringBuilder));
-            }
-            if (bundle.getBoolean("googleSignInAllowed") && org.telegram.messenger.ot.f26129b.hasServices()) {
-                i12 = 0;
-            }
-            this.f50815w.setVisibility(i12);
-            this.d.setVisibility(i12);
-            de0.b1(de0Var, mb0Var.f46275f[0]);
-            mb0Var.requestFocus();
-            if (!z10 && bundle.containsKey("nextType")) {
-                org.telegram.messenger.g0.h3(this.U, bundle.getInt("timeout"));
-            }
-            if (this.I != 0) {
-                org.telegram.messenger.g0.h3(this.V, 1000L);
-            }
-        }
-    }
-
-    public final void n(Runnable runnable) {
-        if (this.G != null) {
-            runnable.run();
-            return;
-        }
-        int i7 = 0;
-        while (true) {
-            mb0 mb0Var = this.f50806a;
-            er[] erVarArr = mb0Var.f46275f;
-            if (i7 < erVarArr.length) {
-                mb0Var.postDelayed(new ii(this, i7, 26), i7 * 75);
-                i7++;
-            } else {
-                mb0Var.postDelayed(new o60(15, this, runnable), (erVarArr.length * 75) + 400);
-                return;
-            }
-        }
-    }
-
-    public final void o() {
-        if (this.W) {
-            return;
-        }
-        this.W = true;
-        Bundle bundle = new Bundle();
-        bundle.putString("phone", this.J);
-        bundle.putString("ephone", this.K);
-        bundle.putString("phoneFormated", this.M);
-        TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail = new TLRPC.TL_auth_resetLoginEmail();
-        tL_auth_resetLoginEmail.phone_number = this.M;
-        tL_auth_resetLoginEmail.phone_code_hash = this.N;
-        this.f50807a0.getConnectionsManager().sendRequest(tL_auth_resetLoginEmail, new gb0(this, bundle, tL_auth_resetLoginEmail, 0), 10);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        removeCallbacks(this.T);
-        removeCallbacks(this.U);
-    }
-
-    public final void p(boolean z10) {
-        boolean z11;
-        float f10;
-        org.telegram.messenger.g0.V3(this.f50811f, z10);
-        if (!z10 && this.f50807a0.G != 3 && !this.Q) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        org.telegram.messenger.g0.V3(this.h, z11);
-        org.telegram.ui.Components.t80 t80Var = this.f50815w;
-        if (t80Var.getVisibility() != 8) {
-            if (z10) {
-                f10 = 8.0f;
-            } else {
-                f10 = 16.0f;
-            }
-            t80Var.setLayoutParams(c8.na.d(-1, 16.0f, 17, 0.0f, 0.0f, 0.0f, f10));
-            t80Var.requestLayout();
-        }
-    }
-
-    public final void q() {
-        String str;
-        String a02;
-        int currentTimeMillis = (int) (this.I - (System.currentTimeMillis() / 1000));
-        int i7 = this.I;
-        nb0 nb0Var = this.f50813r;
-        if (i7 > 0 && currentTimeMillis > 0) {
-            int i10 = currentTimeMillis / 86400;
-            int i11 = currentTimeMillis % 86400;
-            int i12 = i11 / 3600;
-            int i13 = i11 % 3600;
-            int i14 = i13 / 60;
-            int i15 = i13 % 60;
-            if (i12 >= 16) {
-                i10++;
-            }
-            if (i10 != 0) {
-                a02 = org.telegram.messenger.hd.a0(null, null, 2131748541, org.telegram.messenger.hd.G(i10, "Days", new Object[0]));
-            } else {
-                StringBuilder sb2 = new StringBuilder();
-                if (i12 == 0) {
-                    str = "";
-                } else {
-                    str = String.format(Locale.ROOT, "%02d:", Integer.valueOf(i12));
-                }
-                sb2.append(str);
-                Locale locale = Locale.ROOT;
-                sb2.append(String.format(locale, "%02d:", Integer.valueOf(i14)));
-                sb2.append(String.format(locale, "%02d", Integer.valueOf(i15)));
-                a02 = org.telegram.messenger.hd.a0(null, null, 2131748541, sb2.toString());
-            }
-            String a03 = org.telegram.messenger.hd.a0(null, null, 2131748540, a02);
-            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(a03);
-            int indexOf = a03.indexOf(42);
-            int lastIndexOf = a03.lastIndexOf(42);
-            if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
-                valueOf.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
-                valueOf.replace(indexOf, indexOf + 1, (CharSequence) "");
-                valueOf.setSpan(new org.telegram.ui.Components.k00(org.telegram.ui.ActionBar.m6.f29587q6, this.f50807a0.getResourceProvider()), indexOf, lastIndexOf - 1, 33);
-            }
-            nb0Var.setText(valueOf);
-            org.telegram.messenger.g0.h3(this.V, 1000L);
-            return;
-        }
-        nb0Var.setVisibility(0);
-        nb0Var.setText(org.telegram.messenger.hd.N0(2131748538, null));
-        org.telegram.messenger.g0.h3(new ib0(this, 0), 1000L);
-    }
-
-    @Override
-    public final void updateColors() {
-        this.f50808b.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.G6, false));
-        int i7 = org.telegram.ui.ActionBar.m6.D6;
-        this.f50809c.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
-        int i10 = org.telegram.ui.ActionBar.m6.f29587q6;
-        this.d.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, i10, false));
-        this.f50815w.updateColors();
-        this.f50811f.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, i10, false));
-        this.f50812n.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, i10, false));
-        this.f50813r.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
-        this.f50814s.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29588q7, false));
-        this.f50806a.invalidate();
+    public pb0(tb0 tb0Var, TLRPC.TL_error tL_error, TLObject tLObject, String str, String str2) {
+        this.f50960b = tb0Var;
+        this.f50961c = tL_error;
+        this.f50963f = tLObject;
+        this.d = str;
+        this.f50962e = str2;
     }
 }

@@ -7,15 +7,15 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.m10;
 public final class q0 extends i3 {
     public final t0 A0;
     public final RectF f3983x0;
     public final RectF f3984y0;
     public final Path f3985z0;
 
-    public q0(t0 t0Var, Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(i7, context, h6Var);
+    public q0(t0 t0Var, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(i7, context, i6Var);
         this.A0 = t0Var;
         this.f3983x0 = new RectF();
         this.f3984y0 = new RectF();
@@ -34,7 +34,7 @@ public final class q0 extends i3 {
         boolean drawChild = super.drawChild(canvas, view, j3);
         FrameLayout frameLayout = this.d;
         if (view == frameLayout) {
-            FrameLayout frameLayout2 = o0Var.f10108b;
+            FrameLayout frameLayout2 = o0Var.f10106b;
             n0 n0Var = t0Var.U1;
             RectF rectF = this.f3983x0;
             if (jh.k.c(frameLayout2, n0Var, rectF)) {
@@ -49,14 +49,14 @@ public final class q0 extends i3 {
                     canvas.clipPath(this.f3985z0);
                     canvas.scale(0.6f, 0.6f, rectF2.centerX(), rectF2.centerY());
                     float centerX2 = rectF2.centerX() - (o0Var.getWidth() / 2.0f);
-                    o10.k(o0Var.getHeight(), 2.0f, rectF2.centerY(), centerX2, canvas);
+                    m10.k(o0Var.getHeight(), 2.0f, rectF2.centerY(), centerX2, canvas);
                     o0Var.b(o0Var.getWidth() / 2.0f, org.telegram.messenger.g0.L(104.0f), o0Var.getWidth(), o0Var.getHeight(), canvas);
                     o0Var.c(o0Var.getWidth() / 2.0f, org.telegram.messenger.g0.L(104.0f), o0Var.getWidth(), o0Var.getHeight(), canvas);
                     canvas.restore();
                     canvas.save();
                     canvas.translate(centerX, centerY);
                     canvas.scale(org.telegram.messenger.g0.L(80.0f) / rectF.width(), org.telegram.messenger.g0.L(80.0f) / rectF.height());
-                    o0Var.f10108b.draw(canvas);
+                    o0Var.f10106b.draw(canvas);
                     canvas.restore();
                 }
             } else {

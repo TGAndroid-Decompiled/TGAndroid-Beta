@@ -1,7 +1,7 @@
 package h2;
 
 import a8.ma;
-import ai.d1;
+import ai.e1;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -84,7 +84,7 @@ public final class r {
             }
             ma.p(z10);
         }
-        this.f13809f.add(new d1(new CopyOnWriteArraySet(this.d), i7, oVar, 12));
+        this.f13809f.add(new e1(new CopyOnWriteArraySet(this.d), i7, oVar, 12));
     }
 
     public final void d() {
@@ -107,7 +107,7 @@ public final class r {
             qVar.d = true;
             if (pVar != null && qVar.f13804c) {
                 qVar.f13804c = false;
-                pVar.g(qVar.f13802a, qVar.f13803b.d());
+                pVar.f(qVar.f13802a, qVar.f13803b.d());
             }
         }
         this.d.clear();

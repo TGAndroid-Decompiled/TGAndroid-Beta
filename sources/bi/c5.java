@@ -1,8 +1,8 @@
 package bi;
 
 import java.util.HashMap;
-import org.telegram.messenger.sq;
-import org.telegram.messenger.ur;
+import org.telegram.messenger.rq;
+import org.telegram.messenger.tr;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class c5 implements Runnable {
     public final int f3436a;
@@ -31,11 +31,11 @@ public final class c5 implements Runnable {
                 f5Var.dismiss();
                 return;
             default:
-                int i10 = f5Var.f30139a;
+                int i10 = f5Var.f30223a;
                 String str = f5Var.f3557m1.slug;
                 HashMap hashMap = l4.f3801a;
-                ur a02 = ur.a0(i10);
-                a02.f27214a.c(new sq(6, a02, str));
+                tr a02 = tr.a0(i10);
+                a02.f27149a.c(new rq(6, a02, str));
                 return;
         }
     }

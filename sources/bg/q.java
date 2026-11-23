@@ -1,4 +1,4 @@
 package bg;
 public interface q {
-    void i(long j3);
+    void g(long j3);
 }

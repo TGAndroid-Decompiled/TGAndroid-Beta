@@ -18,17 +18,17 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.gc;
-import org.telegram.messenger.k10;
+import org.telegram.messenger.fc;
+import org.telegram.messenger.i10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.kr;
 public final class l1 extends Drawable {
     public NinePatchDrawable f3773a;
     public NinePatchDrawable f3774b;
     public final TextPaint f3775c;
     public final ImageReceiver d;
-    public final org.telegram.ui.Components.b9 f3776e;
+    public final org.telegram.ui.Components.a9 f3776e;
     public final int f3777f;
     public final int f3778g;
     public final float h;
@@ -40,7 +40,7 @@ public final class l1 extends Drawable {
     public StaticLayout f3784n;
     public float f3785o;
     public float f3786p;
-    public org.telegram.ui.Components.u5 f3787q;
+    public org.telegram.ui.Components.t5 f3787q;
     public View f3788r;
     public int f3789s;
     public int f3790t;
@@ -51,7 +51,7 @@ public final class l1 extends Drawable {
         this.f3775c = textPaint;
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.d = imageReceiver;
-        this.f3776e = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);
+        this.f3776e = new org.telegram.ui.Components.a9((org.telegram.ui.ActionBar.i6) null);
         int L = org.telegram.messenger.g0.L(10.66f);
         this.f3777f = L * 2;
         this.f3778g = org.telegram.messenger.g0.L(4.0f);
@@ -59,15 +59,15 @@ public final class l1 extends Drawable {
         this.f3779i = org.telegram.messenger.g0.N(7.33f);
         this.f3780j = org.telegram.messenger.g0.L(8.0f);
         this.f3781k = (int) org.telegram.messenger.g0.N(22.66f);
-        nr nrVar = nr.f37917f;
+        kr krVar = kr.f36858f;
         textPaint.setTextSize(org.telegram.messenger.g0.L(12.0f));
         textPaint.setColor(-1);
-        imageReceiver.J0(L);
+        imageReceiver.K0(L);
     }
 
     public final void a() {
         if (this.f3773a == null) {
-            Drawable drawable = org.telegram.messenger.t0.f26895b.getResources().getDrawable(2131231217);
+            Drawable drawable = org.telegram.messenger.t0.f27013b.getResources().getDrawable(2131231220);
             int intrinsicWidth = drawable.getIntrinsicWidth();
             int intrinsicHeight = drawable.getIntrinsicHeight();
             Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888);
@@ -78,7 +78,7 @@ public final class l1 extends Drawable {
             this.f3773a = c8.r0.a(createBitmap, new Rect((intrinsicWidth * 27) / 168, i7, (intrinsicWidth * 5) / 168, i7), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
         }
         if (this.f3774b == null) {
-            Drawable drawable2 = org.telegram.messenger.t0.f26895b.getResources().getDrawable(2131231218);
+            Drawable drawable2 = org.telegram.messenger.t0.f27013b.getResources().getDrawable(2131231221);
             int intrinsicWidth2 = drawable2.getIntrinsicWidth();
             int intrinsicHeight2 = drawable2.getIntrinsicHeight();
             Bitmap createBitmap2 = Bitmap.createBitmap(intrinsicWidth2, intrinsicHeight2, Bitmap.Config.ARGB_8888);
@@ -158,16 +158,16 @@ public final class l1 extends Drawable {
         }
         this.f3782l = z10;
         if (z10) {
-            org.telegram.ui.Components.b9 b9Var = this.f3776e;
-            b9Var.l(tLObject);
+            org.telegram.ui.Components.a9 a9Var = this.f3776e;
+            a9Var.l(tLObject);
             boolean z11 = tLObject instanceof TLRPC.User;
             ImageReceiver imageReceiver = this.d;
             if (z11) {
-                imageReceiver.q0(gc.l(k10.f24932t0, 1, (TLRPC.User) tLObject), "48_48", b9Var, null, null, 0);
+                imageReceiver.r0(fc.l(i10.f24637t0, 1, (TLRPC.User) tLObject), "48_48", a9Var, null, null, 0);
             } else if (tLObject instanceof TLRPC.Chat) {
-                imageReceiver.q0(gc.a(1, (TLRPC.Chat) tLObject), "48_48", b9Var, null, null, 0);
+                imageReceiver.r0(fc.a(1, (TLRPC.Chat) tLObject), "48_48", a9Var, null, null, 0);
             } else {
-                imageReceiver.w0(b9Var);
+                imageReceiver.x0(a9Var);
             }
         }
         this.f3789s = -1;
@@ -213,16 +213,16 @@ public final class l1 extends Drawable {
             this.f3784n.draw(canvas);
             View view = this.f3788r;
             if (view != null && (this.f3783m instanceof Spanned)) {
-                org.telegram.ui.Components.u5 update = org.telegram.ui.Components.y5.update(0, view, false, this.f3787q, this.f3784n);
+                org.telegram.ui.Components.t5 update = org.telegram.ui.Components.x5.update(0, view, false, this.f3787q, this.f3784n);
                 this.f3787q = update;
-                org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, this.f3784n, update, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, null);
+                org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, this.f3784n, update, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, null);
             }
             canvas.restore();
         }
         if (f10 > 0.0f) {
             int i15 = bounds.left;
             ImageReceiver imageReceiver = this.d;
-            imageReceiver.y0(i15, bounds.bottom - i13, i13, i13);
+            imageReceiver.z0(i15, bounds.bottom - i13, i13, i13);
             canvas.save();
             canvas.scale(f10, f10, imageReceiver.r(), imageReceiver.s());
             imageReceiver.h(canvas, null);

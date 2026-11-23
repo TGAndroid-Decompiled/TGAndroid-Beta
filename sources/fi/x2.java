@@ -6,42 +6,37 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.ui.Components.wi0;
 public final class x2 implements wi0 {
-    public final z3 f12714a;
+    public final z3 f12726a;
 
     public x2(z3 z3Var) {
-        this.f12714a = z3Var;
+        this.f12726a = z3Var;
     }
 
     @Override
-    public final boolean E() {
-        return false;
-    }
-
-    @Override
-    public final void g(View view, ch.p0 p0Var, boolean z10, boolean z11) {
-        z3 z3Var = this.f12714a;
+    public final void h(View view, ch.p0 p0Var, boolean z10, boolean z11) {
+        z3 z3Var = this.f12726a;
         if (!z10) {
             z3Var.l0(new aa.c0(this, view, p0Var, z10, z11));
         } else {
-            org.telegram.ui.Components.c5.X(z3Var.f12842m2, 1, z3Var.l1, new w2(this, z10, p0Var, view));
+            org.telegram.ui.Components.b5.X(z3Var.f12853m2, 1, z3Var.l1, new w2(this, z10, p0Var, view));
         }
     }
 
     @Override
-    public final boolean o() {
+    public final boolean l() {
         return true;
     }
 
     @Override
-    public final boolean q() {
-        return this.f12714a.L0();
+    public final boolean n() {
+        return this.f12726a.L0();
     }
 
     @Override
-    public final void x(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
-        z3 z3Var = this.f12714a;
+    public final void q(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
+        z3 z3Var = this.f12726a;
         Paint paint = z3Var.X1;
-        a8.b8 b8Var = z3Var.f12892z1;
+        a8.b8 b8Var = z3Var.f12903z1;
         float f13 = -f11;
         float f14 = -f12;
         b8Var.k(f13, f14, z3Var.getMeasuredWidth() + f13, z3Var.getMeasuredHeight() + f14);
@@ -55,7 +50,12 @@ public final class x2 implements wi0 {
     }
 
     @Override
-    public final void z() {
-        ((w8) this.f12714a.A1).b(false);
+    public final void r() {
+        ((w8) this.f12726a.A1).b(false);
+    }
+
+    @Override
+    public final boolean t() {
+        return false;
     }
 }

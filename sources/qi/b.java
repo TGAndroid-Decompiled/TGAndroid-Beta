@@ -1,11 +1,11 @@
 package qi;
 public final class b {
-    public final String f56182a;
-    public final String f56183b;
+    public final String f56295a;
+    public final String f56296b;
 
     public b(String str, String str2) {
-        this.f56182a = str;
-        this.f56183b = str2;
+        this.f56295a = str;
+        this.f56296b = str2;
     }
 
     public final boolean equals(Object obj) {
@@ -13,13 +13,13 @@ public final class b {
             return false;
         }
         b bVar = (b) obj;
-        if (!this.f56182a.equals(bVar.f56182a) || !this.f56183b.equals(bVar.f56183b)) {
+        if (!this.f56295a.equals(bVar.f56295a) || !this.f56296b.equals(bVar.f56296b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return this.f56183b.hashCode() + (this.f56182a.hashCode() * 31);
+        return this.f56296b.hashCode() + (this.f56295a.hashCode() * 31);
     }
 }

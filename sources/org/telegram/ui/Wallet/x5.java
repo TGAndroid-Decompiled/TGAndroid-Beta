@@ -1,29 +1,12 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.ShapeDrawable;
-import org.telegram.ui.Components.es;
-public final class x5 extends es {
-    public final ShapeDrawable H;
-    public final n6 I;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class x5 implements di.d6 {
+    public final TL_wallet.nftItem f45386a;
+    public final o6 f45387b;
 
-    public x5(n6 n6Var, Context context) {
-        super(context);
-        this.I = n6Var;
-        this.H = org.telegram.ui.ActionBar.m6.d0(org.telegram.messenger.g0.L(22.0f), n6Var.getThemedColor(org.telegram.ui.ActionBar.m6.f29347d6));
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int ceil = (int) Math.ceil(getMetadata().f57684g.f57691a);
-        if (ceil > 0) {
-            ShapeDrawable shapeDrawable = this.H;
-            shapeDrawable.getPaint().setColor(this.I.getThemedColor(org.telegram.ui.ActionBar.m6.f29347d6));
-            shapeDrawable.setBounds(0, 0, getWidth(), ceil);
-            shapeDrawable.setAlpha((int) (getMetadata().f57681c.f57691a * 255.0f));
-            shapeDrawable.draw(canvas);
-        }
-        super.dispatchDraw(canvas);
+    public x5(o6 o6Var, TL_wallet.nftItem nftitem) {
+        this.f45387b = o6Var;
+        this.f45386a = nftitem;
     }
 }

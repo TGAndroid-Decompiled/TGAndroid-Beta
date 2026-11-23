@@ -1,119 +1,127 @@
 package org.telegram.ui.Components;
+public final class fi extends org.telegram.ui.ActionBar.i1 {
+    public final gi f35139x;
 
-import android.view.View;
-public final class fi extends q6 {
-    public final int f35219b;
-    public final ui f35220c;
+    public fi(gi giVar, gi giVar2) {
+        super(giVar2);
+        this.f35139x = giVar;
+    }
 
-    public fi(ui uiVar, int i7) {
-        super("translation", 0);
-        this.f35219b = i7;
-        switch (i7) {
-            case 1:
-                this.f35220c = uiVar;
-                super("openProgress", 0);
-                return;
-            default:
-                this.f35220c = uiVar;
-                return;
+    @Override
+    public final boolean b() {
+        qy qyVar;
+        ti tiVar = this.f35139x.f35439l0;
+        if ((!tiVar.J || tiVar.f40013s2) && tiVar.f40006q3) {
+            li liVar = tiVar.f40029w2;
+            if (liVar == tiVar.f39976h2 || liVar == tiVar.f39979i2 || tiVar.b1().m()) {
+                li liVar2 = tiVar.f40029w2;
+                qn qnVar = tiVar.f39976h2;
+                if (liVar2 != qnVar || ((qyVar = qnVar.F) != null && qyVar.getVisibility() == 0)) {
+                    li liVar3 = tiVar.f40029w2;
+                    qn qnVar2 = tiVar.f39979i2;
+                    if (liVar3 == qnVar2) {
+                        qy qyVar2 = qnVar2.F;
+                        if (qyVar2 != null && qyVar2.getVisibility() == 0) {
+                            return false;
+                        }
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void e(float f10, float f11, boolean z10) {
+        float f12;
+        gi giVar = this.f35139x;
+        ti tiVar = giVar.f35439l0;
+        tiVar.f39983j4 = f10;
+        float f13 = tiVar.f39961b4;
+        float f14 = 0.0f;
+        if (f13 > 0.0f) {
+            if (tiVar.f40029w2 == tiVar.f40009r2 && !z10) {
+                f12 = f11;
+            } else {
+                f12 = 1.0f - f11;
+            }
+            tiVar.f39983j4 = com.google.android.gms.internal.vision.e2.z(f13, tiVar.f39964c4, f12, f10);
+        }
+        tiVar.V2.setTranslationY(tiVar.f39983j4);
+        tiVar.Y2.setTranslationY(tiVar.f39983j4);
+        org.telegram.ui.ActionBar.q0 q0Var = tiVar.f39963c3;
+        if (q0Var != null) {
+            q0Var.setTranslationY(tiVar.f39983j4);
+        }
+        org.telegram.ui.ActionBar.q0 q0Var2 = tiVar.f39957a3;
+        if (q0Var2 != null) {
+            q0Var2.setTranslationY(tiVar.Y2.getTranslationY());
+        }
+        hi.u3 u3Var = tiVar.f39960b3;
+        if (u3Var != null) {
+            u3Var.setTranslationY(tiVar.Y2.getTranslationY());
+        }
+        tiVar.f39965d3.setTranslationY(tiVar.f39983j4);
+        tiVar.Q1(0);
+        if (tiVar.f40029w2 != tiVar.f40009r2) {
+            f14 = tiVar.f39983j4;
+        }
+        tiVar.F0 = f14;
+        tiVar.f30229c.invalidate();
+        giVar.invalidate();
+        tiVar.B2.invalidate();
+        tiVar.K1();
+        li liVar = tiVar.f40029w2;
+        if (liVar != null) {
+            liVar.n(tiVar.f39983j4, f11);
         }
     }
 
     @Override
-    public final void c(Object obj, float f10) {
+    public final void f() {
         int i7;
-        float f11;
-        switch (this.f35219b) {
-            case 0:
-                mi miVar = (mi) obj;
-                ui uiVar = this.f35220c;
-                uiVar.Y1 = f10;
-                mi miVar2 = uiVar.f40429x2;
-                if (miVar2 != null) {
-                    if (!(miVar2 instanceof rm) && !(uiVar.f40425w2 instanceof rm)) {
-                        miVar2.setAlpha(f10);
-                        uiVar.f40429x2.v(f10);
-                        mi miVar3 = uiVar.f40429x2;
-                        tn tnVar = uiVar.f40372h2;
-                        int i10 = 0;
-                        if (miVar3 == tnVar || uiVar.f40425w2 == tnVar) {
-                            if (miVar3 == tnVar) {
-                                i7 = 1;
-                            } else {
-                                i7 = 0;
-                            }
-                            uiVar.Q1(i7);
-                        }
-                        mi miVar4 = uiVar.f40429x2;
-                        tn tnVar2 = uiVar.f40375i2;
-                        if (miVar4 == tnVar2 || uiVar.f40425w2 == tnVar2) {
-                            if (miVar4 == tnVar2) {
-                                i10 = 1;
-                            }
-                            uiVar.Q1(i10);
-                        }
-                        uiVar.f40429x2.setTranslationY(org.telegram.messenger.g0.L(78.0f) * f10);
-                        uiVar.f40425w2.v(1.0f - Math.min(1.0f, f10 / 0.7f));
-                        uiVar.f40425w2.m(uiVar.f40379j4);
-                    } else {
-                        int max = Math.max(miVar2.getWidth(), uiVar.f40425w2.getWidth());
-                        if (uiVar.f40429x2 instanceof rm) {
-                            uiVar.f40425w2.setTranslationX((-max) * f10);
-                            uiVar.f40429x2.setTranslationX((1.0f - f10) * max);
-                        } else {
-                            uiVar.f40425w2.setTranslationX(max * f10);
-                            uiVar.f40429x2.setTranslationX((1.0f - f10) * (-max));
-                        }
-                    }
-                    if (uiVar.f40406r3 != null) {
-                        uiVar.Q1(1);
-                    }
-                    uiVar.f30142b.invalidate();
-                    return;
-                }
-                return;
-            default:
-                ui uiVar2 = (ui) obj;
-                vh vhVar = this.f35220c.f40426w3;
-                int childCount = vhVar.getChildCount();
-                for (int i11 = 0; i11 < childCount; i11++) {
-                    float f12 = (3 - i11) * 32.0f;
-                    View childAt = vhVar.getChildAt(i11);
-                    if (f10 > f12) {
-                        float f13 = f10 - f12;
-                        if (f13 <= 200.0f) {
-                            float f14 = f13 / 200.0f;
-                            f11 = nr.f37918g.getInterpolation(f14) * 1.1f;
-                            childAt.setAlpha(nr.f37920j.getInterpolation(f14));
-                        } else {
-                            childAt.setAlpha(1.0f);
-                            float f15 = f13 - 200.0f;
-                            if (f15 <= 100.0f) {
-                                f11 = 1.1f - (nr.f37919i.getInterpolation(f15 / 100.0f) * 0.1f);
-                            } else {
-                                f11 = 1.0f;
-                            }
-                        }
-                    } else {
-                        f11 = 0.0f;
-                    }
-                    if (childAt instanceof pi) {
-                        ((pi) childAt).f38558a.setAttachScale(f11);
-                    }
-                }
-                return;
+        ti tiVar = this.f35139x.f35439l0;
+        tiVar.N1(tiVar.f40029w2, 0);
+        tiVar.f39958a4 = tiVar.Z3[0];
+        tiVar.f40029w2.y();
+        if ((tiVar.f40029w2 instanceof ki.t3) && !tiVar.B3) {
+            if (tiVar.d) {
+                i7 = org.telegram.messenger.g0.L(84.0f);
+            } else {
+                i7 = 0;
+            }
+            for (int i10 = 0; i10 < tiVar.f40025v2.size(); i10++) {
+                ((ki.t3) tiVar.f40025v2.valueAt(i10)).setMeasureOffsetY(i7);
+            }
         }
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.f35219b) {
-            case 0:
-                mi miVar = (mi) obj;
-                return Float.valueOf(this.f35220c.Y1);
-            default:
-                ui uiVar = (ui) obj;
-                return Float.valueOf(0.0f);
+    public final void g(int i7, boolean z10) {
+        int i10;
+        gi giVar = this.f35139x;
+        ti tiVar = giVar.f35439l0;
+        int i11 = tiVar.f39958a4;
+        if (i11 > 0 && i11 != (i10 = tiVar.Z3[0]) && (z10 || tiVar.f40029w2 == tiVar.f40009r2)) {
+            tiVar.f39961b4 = i11;
+            tiVar.f39964c4 = i10;
+        } else {
+            tiVar.f39961b4 = -1.0f;
         }
+        giVar.invalidate();
+        th thVar = tiVar.f40026v3;
+        if ((tiVar.f40029w2 instanceof ki.t3) && !tiVar.B3) {
+            if (z10) {
+                thVar.setVisibility(8);
+            } else {
+                thVar.setVisibility(0);
+            }
+        }
+        tiVar.f40029w2.z(i7, z10);
     }
 }

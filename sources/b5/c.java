@@ -7,13 +7,13 @@ import android.os.Parcel;
 import android.util.SparseIntArray;
 public final class c extends b {
     public final SparseIntArray d;
-    public final Parcel f2906e;
-    public final int f2907f;
-    public final int f2908g;
+    public final Parcel f2907e;
+    public final int f2908f;
+    public final int f2909g;
     public final String h;
-    public int f2909i;
-    public int f2910j;
-    public int f2911k;
+    public int f2910i;
+    public int f2911j;
+    public int f2912k;
 
     public c(Parcel parcel) {
         this(parcel, parcel.dataPosition(), parcel.dataSize(), "", new l(0), new l(0), new l(0));
@@ -21,27 +21,27 @@ public final class c extends b {
 
     @Override
     public final c a() {
-        Parcel parcel = this.f2906e;
+        Parcel parcel = this.f2907e;
         int dataPosition = parcel.dataPosition();
-        int i7 = this.f2910j;
-        if (i7 == this.f2907f) {
-            i7 = this.f2908g;
+        int i7 = this.f2911j;
+        if (i7 == this.f2908f) {
+            i7 = this.f2909g;
         }
-        return new c(parcel, dataPosition, i7, p0.s(new StringBuilder(), this.h, "  "), this.f2903a, this.f2904b, this.f2905c);
+        return new c(parcel, dataPosition, i7, p0.s(new StringBuilder(), this.h, "  "), this.f2904a, this.f2905b, this.f2906c);
     }
 
     @Override
     public final boolean e(int i7) {
-        while (this.f2910j < this.f2908g) {
-            int i10 = this.f2911k;
+        while (this.f2911j < this.f2909g) {
+            int i10 = this.f2912k;
             if (i10 != i7) {
                 if (String.valueOf(i10).compareTo(String.valueOf(i7)) <= 0) {
-                    int i11 = this.f2910j;
-                    Parcel parcel = this.f2906e;
+                    int i11 = this.f2911j;
+                    Parcel parcel = this.f2907e;
                     parcel.setDataPosition(i11);
                     int readInt = parcel.readInt();
-                    this.f2911k = parcel.readInt();
-                    this.f2910j += readInt;
+                    this.f2912k = parcel.readInt();
+                    this.f2911j += readInt;
                 } else {
                     return false;
                 }
@@ -49,7 +49,7 @@ public final class c extends b {
                 return true;
             }
         }
-        if (this.f2911k == i7) {
+        if (this.f2912k == i7) {
             return true;
         }
         return false;
@@ -57,9 +57,9 @@ public final class c extends b {
 
     @Override
     public final void i(int i7) {
-        int i10 = this.f2909i;
+        int i10 = this.f2910i;
         SparseIntArray sparseIntArray = this.d;
-        Parcel parcel = this.f2906e;
+        Parcel parcel = this.f2907e;
         if (i10 >= 0) {
             int i11 = sparseIntArray.get(i10);
             int dataPosition = parcel.dataPosition();
@@ -67,7 +67,7 @@ public final class c extends b {
             parcel.writeInt(dataPosition - i11);
             parcel.setDataPosition(dataPosition);
         }
-        this.f2909i = i7;
+        this.f2910i = i7;
         sparseIntArray.put(i7, parcel.dataPosition());
         parcel.writeInt(0);
         parcel.writeInt(i7);
@@ -76,12 +76,12 @@ public final class c extends b {
     public c(Parcel parcel, int i7, int i10, String str, f fVar, f fVar2, f fVar3) {
         super(fVar, fVar2, fVar3);
         this.d = new SparseIntArray();
-        this.f2909i = -1;
-        this.f2911k = -1;
-        this.f2906e = parcel;
-        this.f2907f = i7;
-        this.f2908g = i10;
-        this.f2910j = i7;
+        this.f2910i = -1;
+        this.f2912k = -1;
+        this.f2907e = parcel;
+        this.f2908f = i7;
+        this.f2909g = i10;
+        this.f2911j = i7;
         this.h = str;
     }
 }

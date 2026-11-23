@@ -6,52 +6,52 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.a8;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Cells.a9;
-import org.telegram.ui.Components.oq;
-public final class d0 extends a9 {
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Cells.z8;
+import org.telegram.ui.Components.lq;
+public final class d0 extends z8 {
     public Drawable E;
     public int F;
     public boolean G;
-    public final h6 f61241x;
-    public ColorDrawable f61242y;
+    public final i6 f61360x;
+    public ColorDrawable f61361y;
 
-    public d0(Context context, h6 h6Var) {
-        super(context, h6Var);
-        this.f61241x = h6Var;
+    public d0(Context context, i6 i6Var) {
+        super(context, i6Var);
+        this.f61360x = i6Var;
     }
 
     public void setBackground(boolean z10) {
         int i7;
         Context context = getContext();
         if (z10) {
-            i7 = 2131231230;
+            i7 = 2131231233;
         } else {
-            i7 = 2131231229;
+            i7 = 2131231232;
         }
-        int i10 = m6.f29311b7;
-        h6 h6Var = this.f61241x;
-        Drawable X0 = m6.X0(context, i7, m6.w0(i10, h6Var));
-        ColorDrawable colorDrawable = new ColorDrawable(m6.w0(m6.f29290a7, h6Var));
-        this.f61242y = colorDrawable;
+        int i10 = n6.f29415b7;
+        i6 i6Var = this.f61360x;
+        Drawable X0 = n6.X0(context, i7, n6.w0(i10, i6Var));
+        ColorDrawable colorDrawable = new ColorDrawable(n6.w0(n6.f29394a7, i6Var));
+        this.f61361y = colorDrawable;
         this.E = X0;
-        oq oqVar = new oq(colorDrawable, X0, 0, 0);
-        oqVar.f38309x = true;
-        setBackground(oqVar);
+        lq lqVar = new lq(colorDrawable, X0, 0, 0);
+        lqVar.f37204x = true;
+        setBackground(lqVar);
     }
 
     @Override
     public final void updateColors() {
         super.updateColors();
         try {
-            ColorDrawable colorDrawable = this.f61242y;
-            h6 h6Var = this.f61241x;
+            ColorDrawable colorDrawable = this.f61361y;
+            i6 i6Var = this.f61360x;
             if (colorDrawable != null) {
-                colorDrawable.setColor(m6.w0(m6.f29290a7, h6Var));
+                colorDrawable.setColor(n6.w0(n6.f29394a7, i6Var));
             }
             if (this.E != null) {
-                int w02 = m6.w0(m6.f29311b7, h6Var);
+                int w02 = n6.w0(n6.f29415b7, i6Var);
                 if (w02 != this.F || !this.G) {
                     this.F = w02;
                     this.G = true;

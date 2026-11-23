@@ -1,32 +1,40 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class ga0 implements Runnable {
-    public final int f35468a;
-    public final qa0 f35469b;
-    public final Context f35470c;
+import android.view.MotionEvent;
+public final class ga0 extends org.telegram.ui.ActionBar.y0 {
+    public final int W;
 
-    public ga0(qa0 qa0Var, Context context, int i7) {
-        this.f35468a = i7;
-        this.f35469b = qa0Var;
-        this.f35470c = context;
+    public ga0(int i7, int i10, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10, boolean z11) {
+        super(i7, context, i6Var, z10, z11);
+        this.W = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35468a) {
+    public final void l() {
+        switch (this.W) {
             case 0:
-                qa0 qa0Var = this.f35469b;
-                qa0Var.f38811d0.a(false);
-                org.telegram.messenger.g0.g3(new ga0(qa0Var, this.f35470c, 1));
+                setBackground(null);
                 return;
             default:
-                Context context = this.f35470c;
-                if (org.telegram.messenger.g0.E1(context)) {
-                    new ug.y0(43, context, this.f35469b.f38811d0.G).show();
-                    return;
-                }
+                setBackground(null);
                 return;
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.W) {
+            case 0:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
         }
     }
 }

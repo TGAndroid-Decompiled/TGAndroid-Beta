@@ -3,13 +3,13 @@ package t3;
 import com.google.android.gms.internal.vision.e2;
 import j$.util.Objects;
 public final class o extends i {
-    public final String f57593b;
-    public final String f57594c;
+    public final String f57707b;
+    public final String f57708c;
 
     public o(String str, String str2, String str3) {
         super(str);
-        this.f57593b = str2;
-        this.f57594c = str3;
+        this.f57707b = str2;
+        this.f57708c = str3;
     }
 
     public final boolean equals(Object obj) {
@@ -18,7 +18,7 @@ public final class o extends i {
         }
         if (obj != null && o.class == obj.getClass()) {
             o oVar = (o) obj;
-            if (this.f57581a.equals(oVar.f57581a) && Objects.equals(this.f57593b, oVar.f57593b) && Objects.equals(this.f57594c, oVar.f57594c)) {
+            if (this.f57695a.equals(oVar.f57695a) && Objects.equals(this.f57707b, oVar.f57707b) && Objects.equals(this.f57708c, oVar.f57708c)) {
                 return true;
             }
         }
@@ -27,16 +27,16 @@ public final class o extends i {
 
     public final int hashCode() {
         int i7;
-        int h = e2.h(527, 31, this.f57581a);
+        int h = e2.h(527, 31, this.f57695a);
         int i10 = 0;
-        String str = this.f57593b;
+        String str = this.f57707b;
         if (str != null) {
             i7 = str.hashCode();
         } else {
             i7 = 0;
         }
         int i11 = (h + i7) * 31;
-        String str2 = this.f57594c;
+        String str2 = this.f57708c;
         if (str2 != null) {
             i10 = str2.hashCode();
         }
@@ -45,6 +45,6 @@ public final class o extends i {
 
     @Override
     public final String toString() {
-        return this.f57581a + ": url=" + this.f57594c;
+        return this.f57695a + ": url=" + this.f57708c;
     }
 }

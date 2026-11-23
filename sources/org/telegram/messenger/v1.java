@@ -10,17 +10,17 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class v1 {
-    public static volatile v1[] f27271f = new v1[4];
-    public static final Object[] f27272g = new Object[4];
-    public final int f27273a;
-    public long f27274b;
-    public t1 f27275c;
+    public static volatile v1[] f27412f = new v1[4];
+    public static final Object[] f27413g = new Object[4];
+    public final int f27414a;
+    public long f27415b;
+    public t1 f27416c;
     public final Set d;
-    public boolean f27276e;
+    public boolean f27417e;
 
     static {
         for (int i7 = 0; i7 < 4; i7++) {
-            f27272g[i7] = new Object();
+            f27413g[i7] = new Object();
         }
     }
 
@@ -28,9 +28,9 @@ public final class v1 {
         v1 v1Var;
         Exception exc;
         u1 u1Var;
-        this.f27273a = i7;
-        SharedPreferences sharedPreferences = np.u1(i7).h7;
-        this.f27274b = sharedPreferences.getLong("bday_check", 0L);
+        this.f27414a = i7;
+        SharedPreferences sharedPreferences = mp.u1(i7).h7;
+        this.f27415b = sharedPreferences.getLong("bday_check", 0L);
         u1 u1Var2 = null;
         String string = sharedPreferences.getString("bday_contacts", null);
         if (string != null) {
@@ -39,7 +39,7 @@ public final class v1 {
                 int readInt32 = serializedData.readInt32(true);
                 if (readInt32 != 290452237) {
                     try {
-                        int i10 = u1.f27114b;
+                        int i10 = u1.f27210b;
                     } catch (Exception e10) {
                         exc = e10;
                         v1Var = this;
@@ -54,14 +54,14 @@ public final class v1 {
                 e = e11;
                 v1Var = this;
             }
-            if (u1Var != null && !u1Var.f27115a.isEmpty()) {
+            if (u1Var != null && !u1Var.f27211a.isEmpty()) {
                 ArrayList arrayList = new ArrayList();
-                for (int i11 = 0; i11 < u1Var.f27115a.size(); i11++) {
-                    arrayList.add(Long.valueOf(((TL_account.TL_contactBirthday) u1Var.f27115a.get(i11)).contact_id));
+                for (int i11 = 0; i11 < u1Var.f27211a.size(); i11++) {
+                    arrayList.add(Long.valueOf(((TL_account.TL_contactBirthday) u1Var.f27211a.get(i11)).contact_id));
                 }
                 v1Var = this;
                 try {
-                    ur.a0(i7).f27214a.c(new eg(v1Var, i7, arrayList, u1Var, 2));
+                    tr.a0(i7).f27149a.c(new dg(v1Var, i7, arrayList, u1Var, 2));
                 } catch (Exception e12) {
                     e = e12;
                     exc = e;
@@ -77,13 +77,13 @@ public final class v1 {
 
     public static v1 a(int i7) {
         v1 v1Var;
-        v1 v1Var2 = f27271f[i7];
+        v1 v1Var2 = f27412f[i7];
         if (v1Var2 == null) {
-            synchronized (f27272g[i7]) {
+            synchronized (f27413g[i7]) {
                 try {
-                    v1Var = f27271f[i7];
+                    v1Var = f27412f[i7];
                     if (v1Var == null) {
-                        v1[] v1VarArr = f27271f;
+                        v1[] v1VarArr = f27412f;
                         v1 v1Var3 = new v1(i7);
                         v1VarArr[i7] = v1Var3;
                         v1Var = v1Var3;
@@ -98,7 +98,7 @@ public final class v1 {
     }
 
     public static boolean d(TLRPC.UserFull userFull) {
-        if (userFull == null || !e(userFull.birthday) || p10.c(userFull)) {
+        if (userFull == null || !e(userFull.birthday) || n10.c(userFull)) {
             return false;
         }
         return true;
@@ -118,20 +118,20 @@ public final class v1 {
     }
 
     public final t1 b() {
-        t1 t1Var = this.f27275c;
-        if (t1Var == null || this.d.contains(t1Var.f26908a)) {
+        t1 t1Var = this.f27416c;
+        if (t1Var == null || this.d.contains(t1Var.f27028a)) {
             return null;
         }
-        return this.f27275c;
+        return this.f27416c;
     }
 
     public final boolean c(long j3) {
-        t1 t1Var = this.f27275c;
+        t1 t1Var = this.f27416c;
         if (t1Var != null && t1Var.a(j3)) {
             return true;
         }
-        TLRPC.UserFull d2 = np.u1(this.f27273a).d2(j3);
-        if (d2 != null && e(d2.birthday) && !p10.c(d2)) {
+        TLRPC.UserFull d2 = mp.u1(this.f27414a).d2(j3);
+        if (d2 != null && e(d2.birthday) && !n10.c(d2)) {
             return true;
         }
         return false;

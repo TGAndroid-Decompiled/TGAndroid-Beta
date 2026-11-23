@@ -2,9 +2,9 @@ package b0;
 
 import kotlin.jvm.internal.j;
 public abstract class a {
-    public static final int[] f2807a = new int[0];
-    public static final long[] f2808b = new long[0];
-    public static final Object[] f2809c = new Object[0];
+    public static final int[] f2808a = new int[0];
+    public static final long[] f2809b = new long[0];
+    public static final Object[] f2810c = new Object[0];
 
     public static final int a(int i7, int i10, int[] array) {
         j.e(array, "array");

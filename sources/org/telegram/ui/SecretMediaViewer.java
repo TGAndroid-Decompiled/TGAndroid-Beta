@@ -43,17 +43,17 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
-    public static volatile SecretMediaViewer f43723w1;
+public class SecretMediaViewer implements org.telegram.messenger.fs, GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
+    public static volatile SecretMediaViewer f43839w1;
     public float A0;
     public float B0;
     public float C0;
     public float D0;
-    public mp0 E;
+    public kp0 E;
     public float E0;
     public boolean F;
     public float F0;
-    public org.telegram.ui.Components.v7 G;
+    public org.telegram.ui.Components.u7 G;
     public int[] G0;
     public AnimatorSet H;
     public boolean H0;
@@ -65,100 +65,100 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
     public GestureDetector K0;
     public boolean L;
     public final DecelerateInterpolator L0;
-    public vq0 M;
+    public uq0 M;
     public float M0;
     public int N;
     public float N0;
     public int O;
     public float O0;
-    public org.telegram.ui.Components.k61 P;
+    public org.telegram.ui.Components.l61 P;
     public float P0;
-    public uv Q;
+    public tv Q;
     public float Q0;
-    public org.telegram.ui.ActionBar.m5 R;
+    public org.telegram.ui.ActionBar.n5 R;
     public float R0;
     public View S;
     public float S0;
-    public nz0 T;
+    public mz0 T;
     public float T0;
     public ImageView U;
     public float U0;
-    public org.telegram.ui.Components.we0 V;
+    public org.telegram.ui.Components.ve0 V;
     public float V0;
     public FrameLayout W;
     public float W0;
-    public wo0 X;
+    public uo0 X;
     public float X0;
-    public nq0 Y;
+    public mq0 Y;
     public boolean Y0;
-    public xp0 Z;
+    public wp0 Z;
     public boolean Z0;
-    public int f43724a;
-    public int f43725a0;
-    public boolean f43726a1;
+    public int f43840a;
+    public int f43841a0;
+    public boolean f43842a1;
     private float animationValue;
-    public Activity f43727b;
-    public boolean f43728b0;
-    public boolean f43729b1;
-    public WindowManager.LayoutParams f43730c;
-    public boolean f43731c0;
-    public boolean f43732c1;
+    public Activity f43843b;
+    public boolean f43844b0;
+    public boolean f43845b1;
+    public WindowManager.LayoutParams f43846c;
+    public boolean f43847c0;
+    public boolean f43848c1;
     public k0 d;
-    public float f43733d0;
-    public boolean f43734d1;
-    public ai.g0 f43735e;
-    public long f43736e0;
-    public boolean f43737e1;
-    public View f43738f;
-    public WindowInsets f43739f0;
-    public org.telegram.ui.Components.ll0 f43740f1;
-    public org.telegram.messenger.gj f43741g0;
-    public boolean f43742g1;
-    public org.telegram.messenger.ic f43743h0;
-    public final fz0 f43744h1;
-    public boolean f43745i0;
-    public final int[] f43746i1;
-    public final int[] f43748j1;
-    public bg.v0 f43750k1;
-    public int f43751l0;
+    public float f43849d0;
+    public boolean f43850d1;
+    public ai.h0 f43851e;
+    public long f43852e0;
+    public boolean f43853e1;
+    public View f43854f;
+    public WindowInsets f43855f0;
+    public org.telegram.ui.Components.ll0 f43856f1;
+    public org.telegram.messenger.fj f43857g0;
+    public boolean f43858g1;
+    public org.telegram.messenger.hc f43859h0;
+    public final ez0 f43860h1;
+    public boolean f43861i0;
+    public final int[] f43862i1;
+    public final int[] f43864j1;
+    public bg.v0 f43866k1;
+    public int f43867l0;
     public boolean l1;
     public long m0;
-    public int f43752m1;
-    public mz0 f43753n;
-    public Runnable f43754n0;
+    public int f43868m1;
+    public lz0 f43869n;
+    public Runnable f43870n0;
     public boolean n1;
-    public boolean f43755o0;
-    public Runnable f43756o1;
-    public float f43757p0;
-    public boolean f43758p1;
-    public float f43759q0;
-    public final fz0 f43760q1;
-    public hi.l3 f43761r;
-    public float f43762r0;
-    public float[] f43763r1;
-    public boolean f43764s;
-    public float f43765s0;
-    public final Path f43766s1;
-    public float f43767t0;
-    public final q0 f43768t1;
-    public float f43769u0;
-    public final q0 f43770u1;
-    public float f43771v0;
-    public boolean f43772v1;
-    public long f43773w;
-    public float f43774w0;
-    public j4 f43775x;
-    public float f43776x0;
-    public TextureView f43777y;
-    public float f43778y0;
-    public float f43779z0;
+    public boolean f43871o0;
+    public Runnable f43872o1;
+    public float f43873p0;
+    public boolean f43874p1;
+    public float f43875q0;
+    public final ez0 f43876q1;
+    public hi.u3 f43877r;
+    public float f43878r0;
+    public float[] f43879r1;
+    public boolean f43880s;
+    public float f43881s0;
+    public final Path f43882s1;
+    public float f43883t0;
+    public final q0 f43884t1;
+    public float f43885u0;
+    public final q0 f43886u1;
+    public float f43887v0;
+    public boolean f43888v1;
+    public long f43889w;
+    public float f43890w0;
+    public j4 f43891x;
+    public float f43892x0;
+    public TextureView f43893y;
+    public float f43894y0;
+    public float f43895z0;
     public final ImageReceiver h = new ImageReceiver(null);
-    public boolean f43747j0 = true;
-    public final PhotoBackgroundDrawable f43749k0 = new PhotoBackgroundDrawable();
+    public boolean f43863j0 = true;
+    public final PhotoBackgroundDrawable f43865k0 = new PhotoBackgroundDrawable();
 
     public class PhotoBackgroundDrawable extends ColorDrawable {
-        public ur0 f43780a;
-        public int f43781b;
+        public iy0 f43896a;
+        public int f43897b;
 
         public PhotoBackgroundDrawable() {
             super(-16777216);
@@ -166,16 +166,16 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
 
         @Override
         public final void draw(Canvas canvas) {
-            ur0 ur0Var;
+            iy0 iy0Var;
             super.draw(canvas);
             if (getAlpha() != 0) {
-                if (this.f43781b == 2 && (ur0Var = this.f43780a) != null) {
-                    ur0Var.run();
-                    this.f43780a = null;
+                if (this.f43897b == 2 && (iy0Var = this.f43896a) != null) {
+                    iy0Var.run();
+                    this.f43896a = null;
                 } else {
                     invalidateSelf();
                 }
-                this.f43781b++;
+                this.f43897b++;
             }
         }
 
@@ -183,9 +183,9 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
         public void setAlpha(int i7) {
             boolean z10;
             SecretMediaViewer secretMediaViewer = SecretMediaViewer.this;
-            bg.v0 v0Var = secretMediaViewer.f43750k1;
+            bg.v0 v0Var = secretMediaViewer.f43866k1;
             if (v0Var != null) {
-                if (secretMediaViewer.f43745i0 && i7 == 255) {
+                if (secretMediaViewer.f43861i0 && i7 == 255) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -197,34 +197,34 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
 
         @Override
         public final void setBounds(int i7, int i10, int i11, int i12) {
-            super.setBounds(i7, i10, i11, i12 + org.telegram.messenger.g0.f24005n);
+            super.setBounds(i7, i10, i11, i12 + org.telegram.messenger.g0.f24221n);
         }
 
         @Override
         public final void setBounds(Rect rect) {
-            rect.bottom += org.telegram.messenger.g0.f24005n;
+            rect.bottom += org.telegram.messenger.g0.f24221n;
             super.setBounds(rect);
         }
     }
 
     public SecretMediaViewer() {
         new Paint();
-        this.f43776x0 = 1.0f;
+        this.f43892x0 = 1.0f;
         this.L0 = new DecelerateInterpolator(1.5f);
         this.N0 = 1.0f;
-        this.f43732c1 = true;
-        this.f43744h1 = new fz0(this, 2);
-        this.f43746i1 = new int[2];
-        this.f43748j1 = new int[2];
-        this.f43760q1 = new fz0(this, 3);
-        this.f43766s1 = new Path();
-        this.f43768t1 = new q0("videoCrossfadeAlpha", 5);
-        this.f43770u1 = new q0("animationValue", 6);
+        this.f43848c1 = true;
+        this.f43860h1 = new ez0(this, 2);
+        this.f43862i1 = new int[2];
+        this.f43864j1 = new int[2];
+        this.f43876q1 = new ez0(this, 3);
+        this.f43882s1 = new Path();
+        this.f43884t1 = new q0("videoCrossfadeAlpha", 5);
+        this.f43886u1 = new q0("animationValue", 6);
     }
 
     public static WindowInsets a(SecretMediaViewer secretMediaViewer, WindowInsets windowInsets) {
-        WindowInsets windowInsets2 = secretMediaViewer.f43739f0;
-        secretMediaViewer.f43739f0 = windowInsets;
+        WindowInsets windowInsets2 = secretMediaViewer.f43855f0;
+        secretMediaViewer.f43855f0 = windowInsets;
         if (windowInsets2 == null || !windowInsets2.toString().equals(windowInsets.toString())) {
             secretMediaViewer.d.requestLayout();
         }
@@ -240,14 +240,14 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
 
     public static SecretMediaViewer f() {
         SecretMediaViewer secretMediaViewer;
-        SecretMediaViewer secretMediaViewer2 = f43723w1;
+        SecretMediaViewer secretMediaViewer2 = f43839w1;
         if (secretMediaViewer2 == null) {
             synchronized (PhotoViewer.class) {
                 try {
-                    secretMediaViewer = f43723w1;
+                    secretMediaViewer = f43839w1;
                     if (secretMediaViewer == null) {
                         secretMediaViewer = new SecretMediaViewer();
-                        f43723w1 = secretMediaViewer;
+                        f43839w1 = secretMediaViewer;
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -259,27 +259,27 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
     }
 
     public static boolean g() {
-        if (f43723w1 != null) {
+        if (f43839w1 != null) {
             return true;
         }
         return false;
     }
 
     public final void c(float f10, float f11, float f12, boolean z10) {
-        if (this.f43776x0 == f10 && this.f43771v0 == f11 && this.f43774w0 == f12) {
+        if (this.f43892x0 == f10 && this.f43887v0 == f11 && this.f43890w0 == f12) {
             return;
         }
-        this.f43734d1 = z10;
+        this.f43850d1 = z10;
         this.A0 = f10;
-        this.f43778y0 = f11;
-        this.f43779z0 = f12;
+        this.f43894y0 = f11;
+        this.f43895z0 = f12;
         this.I0 = System.currentTimeMillis();
         AnimatorSet animatorSet = new AnimatorSet();
         this.J0 = animatorSet;
         animatorSet.playTogether(ObjectAnimator.ofFloat(this, "animationValue", 0.0f, 1.0f));
         this.J0.setInterpolator(this.L0);
         this.J0.setDuration(250);
-        this.J0.addListener(new lz0(this, 3));
+        this.J0.addListener(new kz0(this, 3));
         this.J0.start();
     }
 
@@ -289,34 +289,34 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ls.f25368w) {
-            if (!((Boolean) objArr[2]).booleanValue() && this.f43741g0 != null && ((Long) objArr[1]).longValue() == 0 && ((ArrayList) objArr[0]).contains(Integer.valueOf(this.f43741g0.e1()))) {
+        if (i7 == org.telegram.messenger.ks.f25309w) {
+            if (!((Boolean) objArr[2]).booleanValue() && this.f43857g0 != null && ((Long) objArr[1]).longValue() == 0 && ((ArrayList) objArr[0]).contains(Integer.valueOf(this.f43857g0.e1()))) {
                 if (this.K && !this.I) {
                     this.J = true;
                 } else if (!e(true, true)) {
-                    this.f43742g1 = true;
+                    this.f43858g1 = true;
                 }
             }
-        } else if (i7 == org.telegram.messenger.ls.f25286i0) {
-            if (this.f43741g0 != null && this.f43753n != null && ((Long) objArr[0]).longValue() == this.f43773w) {
+        } else if (i7 == org.telegram.messenger.ks.f25227i0) {
+            if (this.f43857g0 != null && this.f43869n != null && ((Long) objArr[0]).longValue() == this.f43889w) {
                 SparseArray sparseArray = (SparseArray) objArr[1];
                 for (int i11 = 0; i11 < sparseArray.size(); i11++) {
                     int keyAt = sparseArray.keyAt(i11);
                     ArrayList arrayList = (ArrayList) sparseArray.get(keyAt);
                     for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                        if (this.f43741g0.e1() == ((Integer) arrayList.get(i12)).intValue()) {
-                            this.f43741g0.f24177k.destroyTime = keyAt;
-                            this.f43753n.invalidate();
+                        if (this.f43857g0.e1() == ((Integer) arrayList.get(i12)).intValue()) {
+                            this.f43857g0.f24073k.destroyTime = keyAt;
+                            this.f43869n.invalidate();
                             return;
                         }
                     }
                 }
             }
-        } else if (i7 == org.telegram.messenger.ls.f25303l0 && this.f43741g0.e1() == ((TLRPC.Message) objArr[0]).f28419id) {
+        } else if (i7 == org.telegram.messenger.ks.f25244l0 && this.f43857g0.e1() == ((TLRPC.Message) objArr[0]).f28513id) {
             if (this.K && !this.I) {
                 this.J = true;
             } else if (!e(true, true)) {
-                this.f43742g1 = true;
+                this.f43858g1 = true;
             }
         }
     }
@@ -330,11 +330,11 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
     }
 
     public float getVideoCrossfadeAlpha() {
-        return this.f43733d0;
+        return this.f43849d0;
     }
 
-    public final void h(org.telegram.messenger.gj gjVar, vk vkVar, he heVar, bi.s2 s2Var) {
-        xq0 E;
+    public final void h(org.telegram.messenger.fj fjVar, vk vkVar, he heVar, bi.s2 s2Var) {
+        wq0 E;
         boolean z10;
         int i7;
         int i10;
@@ -343,7 +343,7 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
         bg.v0 v0Var;
         String str;
         Bitmap bitmap;
-        org.telegram.messenger.ic icVar;
+        org.telegram.messenger.hc hcVar;
         int i11;
         PhotoBackgroundDrawable photoBackgroundDrawable;
         float f10;
@@ -354,22 +354,22 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
         float f11;
         File M;
         BitmapDrawable bitmapDrawable2;
-        org.telegram.messenger.gc b10;
+        org.telegram.messenger.fc b10;
         BitmapDrawable bitmapDrawable3;
-        if (this.f43727b != null && gjVar.m5() && vkVar != null && (E = vkVar.E(gjVar, null, 0, true, false)) != null) {
-            if (gjVar.f24177k.ttl == Integer.MAX_VALUE) {
+        if (this.f43843b != null && fjVar.m5() && vkVar != null && (E = vkVar.E(fjVar, null, 0, true, false)) != null) {
+            if (fjVar.f24073k.ttl == Integer.MAX_VALUE) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f43758p1 = z10;
-            this.f43756o1 = s2Var;
+            this.f43874p1 = z10;
+            this.f43872o1 = s2Var;
             this.M = vkVar;
             System.currentTimeMillis();
-            this.f43747j0 = true;
-            this.f43745i0 = true;
-            this.f43755o0 = false;
-            j4 j4Var = this.f43775x;
+            this.f43863j0 = true;
+            this.f43861i0 = true;
+            this.f43871o0 = false;
+            j4 j4Var = this.f43891x;
             if (j4Var != null) {
                 j4Var.setVisibility(4);
             }
@@ -384,32 +384,32 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
             this.T0 = 0.0f;
             this.Y0 = false;
             this.Z0 = false;
-            this.f43726a1 = false;
-            this.f43729b1 = false;
-            this.f43732c1 = true;
-            o(this.f43776x0);
-            PhotoBackgroundDrawable photoBackgroundDrawable2 = this.f43749k0;
+            this.f43842a1 = false;
+            this.f43845b1 = false;
+            this.f43848c1 = true;
+            o(this.f43892x0);
+            PhotoBackgroundDrawable photoBackgroundDrawable2 = this.f43865k0;
             photoBackgroundDrawable2.setAlpha(0);
-            this.f43735e.setAlpha(1.0f);
-            this.f43735e.setVisibility(0);
-            this.f43753n.setAlpha(1.0f);
+            this.f43851e.setAlpha(1.0f);
+            this.f43851e.setVisibility(0);
+            this.f43869n.setAlpha(1.0f);
             this.K = false;
             this.I = false;
             this.J = false;
             this.L = true;
             ImageReceiver imageReceiver = this.h;
-            imageReceiver.f22642m1 = false;
+            imageReceiver.f22745m1 = false;
             this.N = 0;
             this.O = 0;
-            RectF rectF = new RectF(E.f53898a.Q0);
-            rectF.left = Math.max(rectF.left, E.f53898a.L0);
-            rectF.top = Math.max(rectF.top, E.f53898a.M0);
-            rectF.right = Math.min(rectF.right, E.f53898a.y());
-            rectF.bottom = Math.min(rectF.bottom, E.f53898a.A());
+            RectF rectF = new RectF(E.f53726a.Q0);
+            rectF.left = Math.max(rectF.left, E.f53726a.L0);
+            rectF.top = Math.max(rectF.top, E.f53726a.M0);
+            rectF.right = Math.min(rectF.right, E.f53726a.z());
+            rectF.bottom = Math.min(rectF.bottom, E.f53726a.B());
             float width = rectF.width();
             float height = rectF.height();
-            Point point = org.telegram.messenger.g0.f24010q;
-            this.f43776x0 = Math.max(width / point.x, height / (point.y + org.telegram.messenger.g0.f24004m));
+            Point point = org.telegram.messenger.g0.f24226q;
+            this.f43892x0 = Math.max(width / point.x, height / (point.y + org.telegram.messenger.g0.f24220m));
             int[] iArr2 = E.h;
             if (iArr2 != null) {
                 this.G0 = new int[iArr2.length];
@@ -428,24 +428,24 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
                 this.G0 = null;
             }
             float f12 = rectF.left;
-            this.f43771v0 = ((width / 2.0f) + (E.f53899b + f12)) - (i7 / 2);
-            this.f43774w0 = ((height / 2.0f) + (E.f53900c + rectF.top)) - (i10 / 2);
-            this.f43769u0 = Math.abs(f12 - E.f53898a.L0);
+            this.f43887v0 = ((width / 2.0f) + (E.f53727b + f12)) - (i7 / 2);
+            this.f43890w0 = ((height / 2.0f) + (E.f53728c + rectF.top)) - (i10 / 2);
+            this.f43885u0 = Math.abs(f12 - E.f53726a.L0);
             E.d.getLocationInWindow(new int[2]);
-            float f13 = (iArr[r17] - (E.f53900c + rectF.top)) + E.f53905j;
-            this.f43759q0 = f13;
-            float abs = (int) Math.abs(rectF.top - E.f53898a.M0);
-            this.f43759q0 = Math.max(0.0f, Math.max(f13, abs));
-            float height2 = (((E.f53900c + rectF.top) + ((int) height)) - (E.d.getHeight() + iArr[r17])) + E.f53904i;
-            this.f43762r0 = height2;
-            this.f43762r0 = Math.max(0.0f, Math.max(height2, abs));
-            this.f43765s0 = 0.0f;
-            this.f43765s0 = Math.max(0.0f, Math.max(0.0f, abs));
-            this.f43767t0 = 0.0f;
-            this.f43767t0 = Math.max(0.0f, Math.max(0.0f, abs));
+            float f13 = (iArr[r17] - (E.f53728c + rectF.top)) + E.f53733j;
+            this.f43875q0 = f13;
+            float abs = (int) Math.abs(rectF.top - E.f53726a.M0);
+            this.f43875q0 = Math.max(0.0f, Math.max(f13, abs));
+            float height2 = (((E.f53728c + rectF.top) + ((int) height)) - (E.d.getHeight() + iArr[r17])) + E.f53732i;
+            this.f43878r0 = height2;
+            this.f43878r0 = Math.max(0.0f, Math.max(height2, abs));
+            this.f43881s0 = 0.0f;
+            this.f43881s0 = Math.max(0.0f, Math.max(0.0f, abs));
+            this.f43883t0 = 0.0f;
+            this.f43883t0 = Math.max(0.0f, Math.max(0.0f, abs));
             this.I0 = System.currentTimeMillis();
-            this.f43778y0 = 0.0f;
-            this.f43779z0 = 0.0f;
+            this.f43894y0 = 0.0f;
+            this.f43895z0 = 0.0f;
             this.C0 = 0.0f;
             this.E0 = 0.0f;
             this.F0 = 0.0f;
@@ -454,11 +454,11 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
             this.A0 = 1.0f;
             boolean z13 = r17;
             this.H0 = z13;
-            this.f43734d1 = z13;
-            bg.v0 v0Var2 = this.f43750k1;
+            this.f43850d1 = z13;
+            bg.v0 v0Var2 = this.f43866k1;
             if (v0Var2 != null) {
                 v0Var2.a();
-                this.f43750k1 = null;
+                this.f43866k1 = null;
             }
             LaunchActivity launchActivity = LaunchActivity.H1;
             if (launchActivity != null) {
@@ -466,25 +466,25 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
             } else {
                 v0Var = null;
             }
-            this.f43750k1 = v0Var;
-            org.telegram.messenger.ls.f(this.f43724a).b(this, org.telegram.messenger.ls.f25368w);
-            org.telegram.messenger.ls.f(this.f43724a).b(this, org.telegram.messenger.ls.f25303l0);
-            org.telegram.messenger.ls.f(this.f43724a).b(this, org.telegram.messenger.ls.f25286i0);
-            this.f43773w = org.telegram.messenger.gj.B1(gjVar.f24177k.peer_id);
-            this.f43741g0 = gjVar;
-            TLRPC.Document F0 = gjVar.F0();
-            org.telegram.messenger.ic icVar2 = this.f43743h0;
-            if (icVar2 != null) {
-                icVar2.a();
-                this.f43743h0 = null;
+            this.f43866k1 = v0Var;
+            org.telegram.messenger.ks.f(this.f43840a).b(this, org.telegram.messenger.ks.f25309w);
+            org.telegram.messenger.ks.f(this.f43840a).b(this, org.telegram.messenger.ks.f25244l0);
+            org.telegram.messenger.ks.f(this.f43840a).b(this, org.telegram.messenger.ks.f25227i0);
+            this.f43889w = org.telegram.messenger.fj.B1(fjVar.f24073k.peer_id);
+            this.f43857g0 = fjVar;
+            TLRPC.Document F0 = fjVar.F0();
+            org.telegram.messenger.hc hcVar2 = this.f43859h0;
+            if (hcVar2 != null) {
+                hcVar2.a();
+                this.f43859h0 = null;
             }
-            ImageReceiver imageReceiver2 = E.f53898a;
-            Drawable drawable = imageReceiver2.f22618b0;
+            ImageReceiver imageReceiver2 = E.f53726a;
+            Drawable drawable = imageReceiver2.f22721b0;
             if (drawable instanceof BitmapDrawable) {
                 bitmap = ((BitmapDrawable) drawable).getBitmap();
                 str = imageReceiver2.Z;
             } else {
-                Drawable drawable2 = imageReceiver2.f22644n0;
+                Drawable drawable2 = imageReceiver2.f22747n0;
                 if (drawable2 instanceof BitmapDrawable) {
                     bitmap = ((BitmapDrawable) drawable2).getBitmap();
                     str = null;
@@ -494,11 +494,11 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
                 }
             }
             if (bitmap != null) {
-                icVar = new org.telegram.messenger.ic(bitmap, str, 0);
+                hcVar = new org.telegram.messenger.hc(bitmap, str, 0);
             } else {
-                icVar = null;
+                hcVar = null;
             }
-            this.f43743h0 = icVar;
+            this.f43859h0 = hcVar;
             this.T.setVisibility(8);
             if (F0 != null) {
                 int i14 = 0;
@@ -509,45 +509,45 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
                     TLRPC.DocumentAttribute documentAttribute = F0.attributes.get(i14);
                     if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
                         TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) documentAttribute;
-                        this.N = tL_documentAttributeVideo.f28405w;
+                        this.N = tL_documentAttributeVideo.f28499w;
                         this.O = tL_documentAttributeVideo.h;
                         break;
                     }
                     i14++;
                 }
-                if (org.telegram.messenger.gj.s3(F0, false)) {
-                    this.G.setTitle(org.telegram.messenger.hd.N0(2131751397, null));
-                    String str2 = gjVar.f24177k.attachPath;
-                    if (str2 != null && gjVar.f24232y0) {
-                        b10 = org.telegram.messenger.gc.g(str2);
+                if (org.telegram.messenger.fj.s3(F0, false)) {
+                    this.G.setTitle(org.telegram.messenger.gd.N0(2131751397, null));
+                    String str2 = fjVar.f24073k.attachPath;
+                    if (str2 != null && fjVar.f24128y0) {
+                        b10 = org.telegram.messenger.fc.g(str2);
                     } else {
-                        b10 = org.telegram.messenger.gc.b(F0);
+                        b10 = org.telegram.messenger.fc.b(F0);
                     }
-                    if (this.f43743h0 != null) {
-                        bitmapDrawable3 = new BitmapDrawable(this.f43743h0.f24668c);
+                    if (this.f43859h0 != null) {
+                        bitmapDrawable3 = new BitmapDrawable(this.f43859h0.f24522c);
                     } else {
                         bitmapDrawable3 = null;
                     }
                     f10 = 1.0f;
                     photoBackgroundDrawable = photoBackgroundDrawable2;
                     i11 = 2;
-                    imageReceiver.p0(b10, null, bitmapDrawable3, -1L, null, gjVar, 1);
+                    imageReceiver.q0(b10, null, bitmapDrawable3, -1L, null, fjVar, 1);
                 } else {
                     i11 = 2;
                     photoBackgroundDrawable = photoBackgroundDrawable2;
                     f10 = 1.0f;
-                    this.f43725a0 = 1;
-                    this.G.setTitle(org.telegram.messenger.hd.N0(2131751395, null));
-                    File file = new File(gjVar.f24177k.attachPath);
+                    this.f43841a0 = 1;
+                    this.G.setTitle(org.telegram.messenger.gd.N0(2131751395, null));
+                    File file = new File(fjVar.f24073k.attachPath);
                     if (file.exists()) {
                         i(file);
                     } else {
-                        if (gjVar.D3()) {
-                            org.telegram.messenger.w7.G(this.f43724a);
+                        if (fjVar.D3()) {
+                            org.telegram.messenger.w7.G(this.f43840a);
                             M = org.telegram.messenger.w7.J(F0, null, true, true);
                         } else {
-                            org.telegram.messenger.w7.G(this.f43724a);
-                            M = org.telegram.messenger.w7.M(gjVar.f24177k, false, true);
+                            org.telegram.messenger.w7.G(this.f43840a);
+                            M = org.telegram.messenger.w7.M(fjVar.f24073k, false, true);
                         }
                         File file2 = new File(M.getAbsolutePath() + ".enc");
                         if (file2.exists()) {
@@ -557,70 +557,70 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
                     }
                     this.K = true;
                     this.T.setVisibility(0);
-                    if (this.f43743h0 != null) {
-                        bitmapDrawable2 = new BitmapDrawable(this.f43743h0.f24668c);
+                    if (this.f43859h0 != null) {
+                        bitmapDrawable2 = new BitmapDrawable(this.f43859h0.f24522c);
                     } else {
                         bitmapDrawable2 = null;
                     }
-                    imageReceiver.p0(null, null, bitmapDrawable2, -1L, null, gjVar, 2);
+                    imageReceiver.q0(null, null, bitmapDrawable2, -1L, null, fjVar, 2);
                 }
             } else {
                 i11 = 2;
                 photoBackgroundDrawable = photoBackgroundDrawable2;
                 f10 = 1.0f;
-                this.G.setTitle(org.telegram.messenger.hd.N0(2131751396, null));
-                TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(gjVar.f24197p0, org.telegram.messenger.g0.Z0(false), false, null, false);
-                org.telegram.messenger.gc f14 = org.telegram.messenger.gc.f(w10, gjVar.f24190n0);
-                if (this.f43743h0 != null) {
-                    bitmapDrawable = new BitmapDrawable(this.f43743h0.f24668c);
+                this.G.setTitle(org.telegram.messenger.gd.N0(2131751396, null));
+                TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(fjVar.f24093p0, org.telegram.messenger.g0.Z0(false), false, null, false);
+                org.telegram.messenger.fc f14 = org.telegram.messenger.fc.f(w10, fjVar.f24086n0);
+                if (this.f43859h0 != null) {
+                    bitmapDrawable = new BitmapDrawable(this.f43859h0.f24522c);
                 } else {
                     bitmapDrawable = null;
                 }
-                imageReceiver.p0(f14, null, bitmapDrawable, -1L, null, gjVar, 2);
+                imageReceiver.q0(f14, null, bitmapDrawable, -1L, null, fjVar, 2);
                 if (w10 != null) {
-                    this.N = w10.f28423w;
+                    this.N = w10.f28517w;
                     this.O = w10.h;
                 }
             }
-            k(gjVar, "", false);
-            k(gjVar, gjVar.f24235z, true);
+            k(fjVar, "", false);
+            k(fjVar, fjVar.f24131z, true);
             n(true, false);
             l(false, false);
             this.V.a(true, true);
-            if (this.f43758p1) {
-                mz0 mz0Var = this.f43753n;
-                mz0Var.f50029e = true;
-                TextPaint textPaint = mz0Var.f50032r;
+            if (this.f43874p1) {
+                lz0 lz0Var = this.f43869n;
+                lz0Var.f49904e = true;
+                TextPaint textPaint = lz0Var.f49907r;
                 textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
                 textPaint.setTypeface(org.telegram.messenger.g0.o1("fonts/num.otf"));
                 textPaint.setColor(-1);
                 StaticLayout staticLayout = new StaticLayout("1", textPaint, 999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                mz0Var.f50033s = staticLayout;
+                lz0Var.f49908s = staticLayout;
                 if (staticLayout.getLineCount() > 0) {
-                    f11 = mz0Var.f50033s.getLineWidth(0);
+                    f11 = lz0Var.f49908s.getLineWidth(0);
                 } else {
                     f11 = 0.0f;
                 }
-                mz0Var.f50034w = f11;
-                mz0Var.f50035x = mz0Var.f50033s.getHeight();
-                mz0Var.invalidate();
-                this.f43753n.setOnClickListener(new oy0(this, 4));
+                lz0Var.f49909w = f11;
+                lz0Var.f49910x = lz0Var.f49908s.getHeight();
+                lz0Var.invalidate();
+                this.f43869n.setOnClickListener(new ny0(this, 4));
             } else {
-                this.f43753n.setOnClickListener(null);
+                this.f43869n.setOnClickListener(null);
             }
             try {
                 if (this.d.getParent() != null) {
-                    ((WindowManager) this.f43727b.getSystemService("window")).removeView(this.d);
+                    ((WindowManager) this.f43843b.getSystemService("window")).removeView(this.d);
                 }
                 z11 = true;
             } catch (Exception e10) {
                 z11 = true;
                 org.telegram.messenger.a8.g(e10, true);
             }
-            ((WindowManager) this.f43727b.getSystemService("window")).addView(this.d, this.f43730c);
-            this.f43753n.invalidate();
-            this.f43764s = z11;
-            Window window = this.f43727b.getWindow();
+            ((WindowManager) this.f43843b.getSystemService("window")).addView(this.d, this.f43846c);
+            this.f43869n.invalidate();
+            this.f43880s = z11;
+            Window window = this.f43843b.getWindow();
             int i15 = Build.VERSION.SDK_INT;
             if (i15 >= 26) {
                 z12 = c8.ed.a(window.getDecorView().getSystemUiVisibility(), 16);
@@ -628,9 +628,9 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
                 z12 = false;
             }
             this.n1 = z12;
-            org.telegram.messenger.g0.l3(this.f43727b, false);
+            org.telegram.messenger.g0.l3(this.f43843b, false);
             org.telegram.messenger.g0.n3(this.d, false);
-            Activity activity = this.f43727b;
+            Activity activity = this.f43843b;
             if (activity instanceof LaunchActivity) {
                 LaunchActivity launchActivity2 = (LaunchActivity) activity;
                 if (i15 >= 26) {
@@ -638,24 +638,24 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
                 } else {
                     i12 = 0;
                 }
-                this.f43752m1 = i12;
-                ((LaunchActivity) this.f43727b).x(-16777216);
+                this.f43868m1 = i12;
+                ((LaunchActivity) this.f43843b).x(-16777216);
             } else {
-                this.f43752m1 = window.getNavigationBarColor();
-                Activity activity2 = this.f43727b;
+                this.f43868m1 = window.getNavigationBarColor();
+                Activity activity2 = this.f43843b;
                 if (activity2 != null) {
                     org.telegram.messenger.g0.t3(activity2.getWindow(), -16777216, true, null);
                 }
             }
             AnimatorSet animatorSet = new AnimatorSet();
             this.J0 = animatorSet;
-            org.telegram.ui.Components.v7 v7Var = this.G;
+            org.telegram.ui.Components.u7 u7Var = this.G;
             Property property = View.ALPHA;
             float[] fArr = new float[i11];
             
             fArr[0] = 0.0f;
             fArr[1] = 1.0f;
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(v7Var, property, fArr);
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(u7Var, property, fArr);
             float[] fArr2 = new float[i11];
             
             fArr2[0] = 0.0f;
@@ -665,21 +665,21 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
             
             fArr3[0] = 0.0f;
             fArr3[1] = 1.0f;
-            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this.f43761r, property, fArr3);
-            ObjectAnimator ofInt = ObjectAnimator.ofInt(photoBackgroundDrawable, org.telegram.ui.Components.r6.d, 0, 255);
+            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this.f43877r, property, fArr3);
+            ObjectAnimator ofInt = ObjectAnimator.ofInt(photoBackgroundDrawable, org.telegram.ui.Components.q6.d, 0, 255);
             float[] fArr4 = new float[i11];
             
             fArr4[0] = 0.0f;
             fArr4[1] = 1.0f;
-            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this, this.f43770u1, fArr4);
-            nz0 nz0Var = this.T;
+            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this, this.f43886u1, fArr4);
+            mz0 mz0Var = this.T;
             int i16 = i11;
-            ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(nz0Var, nz0Var.f50374n, f10);
-            nz0 nz0Var2 = this.T;
+            ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(mz0Var, mz0Var.f50161n, f10);
+            mz0 mz0Var2 = this.T;
             if (!this.K) {
                 f10 = 0.0f;
             }
-            ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(nz0Var2, property, f10);
+            ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(mz0Var2, property, f10);
             Animator[] animatorArr = new Animator[7];
             animatorArr[0] = ofFloat;
             animatorArr[1] = ofFloat2;
@@ -689,44 +689,44 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
             animatorArr[5] = ofFloat5;
             animatorArr[6] = ofFloat6;
             animatorSet.playTogether(animatorArr);
-            this.f43751l0 = 3;
-            this.f43754n0 = new mc0(this, heVar, gjVar, 29);
+            this.f43867l0 = 3;
+            this.f43870n0 = new lc0(this, heVar, fjVar, 29);
             this.J0.setDuration(250L);
-            this.J0.addListener(new lz0(this, 0));
+            this.J0.addListener(new kz0(this, 0));
             this.m0 = System.currentTimeMillis();
-            if (org.telegram.messenger.cz.o() == 0) {
-                this.f43735e.setLayerType(i16, null);
+            if (org.telegram.messenger.bz.o() == 0) {
+                this.f43851e.setLayerType(i16, null);
             }
             this.J0.setInterpolator(new DecelerateInterpolator());
-            photoBackgroundDrawable.f43781b = 0;
-            photoBackgroundDrawable.f43780a = new ur0(27, this, E);
+            photoBackgroundDrawable.f43897b = 0;
+            photoBackgroundDrawable.f43896a = new iy0(3, this, E);
             this.J0.start();
         }
     }
 
     public final void i(File file) {
-        if (this.f43727b == null) {
+        if (this.f43843b == null) {
             return;
         }
         j();
-        if (this.f43777y == null) {
-            j4 j4Var = new j4(this.f43727b);
-            this.f43775x = j4Var;
+        if (this.f43893y == null) {
+            j4 j4Var = new j4(this.f43843b);
+            this.f43891x = j4Var;
             j4Var.setVisibility(0);
-            this.f43735e.addView(this.f43775x, 0, c8.na.e(-1, -1, 17));
-            TextureView textureView = new TextureView(this.f43727b);
-            this.f43777y = textureView;
+            this.f43851e.addView(this.f43891x, 0, c8.na.e(-1, -1, 17));
+            TextureView textureView = new TextureView(this.f43843b);
+            this.f43893y = textureView;
             textureView.setOpaque(false);
-            this.f43775x.addView(this.f43777y, c8.na.e(-1, -1, 17));
+            this.f43891x.addView(this.f43893y, c8.na.e(-1, -1, 17));
         }
-        this.f43728b0 = false;
-        this.f43731c0 = false;
-        this.f43777y.setAlpha(1.0f);
+        this.f43844b0 = false;
+        this.f43847c0 = false;
+        this.f43893y.setAlpha(1.0f);
         if (this.E == null) {
-            mp0 mp0Var = new mp0(this, 1);
-            this.E = mp0Var;
-            mp0Var.A0(this.f43777y);
-            this.E.K = new ji.k(this, file, false, 19);
+            kp0 kp0Var = new kp0(this, 1);
+            this.E = kp0Var;
+            kp0Var.A0(this.f43893y);
+            this.E.K = new j6.k(20, this, file);
         }
         this.E.j0(Uri.fromFile(file), "other");
         this.E.u0(true);
@@ -734,46 +734,46 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
     }
 
     public final void j() {
-        mp0 mp0Var = this.E;
-        if (mp0Var != null) {
-            this.f43725a0 = 0;
-            mp0Var.m0();
+        kp0 kp0Var = this.E;
+        if (kp0Var != null) {
+            this.f43841a0 = 0;
+            kp0Var.m0();
             this.E = null;
         }
         try {
-            Activity activity = this.f43727b;
+            Activity activity = this.f43843b;
             if (activity != null) {
                 activity.getWindow().clearFlags(128);
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
-        j4 j4Var = this.f43775x;
+        j4 j4Var = this.f43891x;
         if (j4Var != null) {
-            this.f43735e.removeView(j4Var);
-            this.f43775x = null;
+            this.f43851e.removeView(j4Var);
+            this.f43891x = null;
         }
-        if (this.f43777y != null) {
-            this.f43777y = null;
+        if (this.f43893y != null) {
+            this.f43893y = null;
         }
         this.F = false;
     }
 
-    public final void k(org.telegram.messenger.gj gjVar, CharSequence charSequence, boolean z10) {
+    public final void k(org.telegram.messenger.fj fjVar, CharSequence charSequence, boolean z10) {
         TextView currentView;
         boolean z11;
-        CharSequence cloneSpans = org.telegram.ui.Components.y5.cloneSpans(charSequence, 3);
+        CharSequence cloneSpans = org.telegram.ui.Components.x5.cloneSpans(charSequence, 3);
         if (this.Z == null) {
-            FrameLayout frameLayout = new FrameLayout(this.f43735e.getContext());
+            FrameLayout frameLayout = new FrameLayout(this.f43851e.getContext());
             this.W = frameLayout;
             this.Y.setContainer(frameLayout);
-            xp0 xp0Var = new xp0(this, this.f43735e.getContext(), this.Y, this.W, 1);
-            this.Z = xp0Var;
-            this.Y.setScrollView(xp0Var);
+            wp0 wp0Var = new wp0(this, this.f43851e.getContext(), this.Y, this.W, 1);
+            this.Z = wp0Var;
+            this.Y.setScrollView(wp0Var);
             this.W.setClipChildren(false);
             this.Z.addView(this.W, new ViewGroup.LayoutParams(-1, -2));
-            this.f43735e.addView(this.Z, c8.na.d(-1, -1.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-            this.X.n(this.f43735e.getContext()).bringToFront();
+            this.f43851e.addView(this.Z, c8.na.d(-1, -1.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+            this.X.n(this.f43851e.getContext()).bringToFront();
         }
         boolean z12 = true;
         if (this.Y.getParent() != this.W) {
@@ -782,11 +782,11 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
         }
         boolean isEmpty = TextUtils.isEmpty(cloneSpans);
         boolean isEmpty2 = TextUtils.isEmpty(this.Y.getCurrentView().getText());
-        nq0 nq0Var = this.Y;
+        mq0 mq0Var = this.Y;
         if (z10) {
-            currentView = nq0Var.getNextView();
+            currentView = mq0Var.getNextView();
         } else {
-            currentView = nq0Var.getCurrentView();
+            currentView = mq0Var.getCurrentView();
         }
         int maxLines = currentView.getMaxLines();
         if (maxLines == 1) {
@@ -800,11 +800,11 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
             this.Y.getNextView().setEllipsize(null);
         }
         currentView.setScrollX(0);
-        xp0 xp0Var2 = this.Z;
-        xp0Var2.m0 = false;
+        wp0 wp0Var2 = this.Z;
+        wp0Var2.m0 = false;
         if (z10) {
-            TransitionManager.endTransitions(xp0Var2);
-            TransitionSet duration = new TransitionSet().addTransition(new jz0(this, isEmpty2, isEmpty, 1)).addTransition(new jz0(this, isEmpty2, isEmpty, 0)).setDuration(200L);
+            TransitionManager.endTransitions(wp0Var2);
+            TransitionSet duration = new TransitionSet().addTransition(new iz0(this, isEmpty2, isEmpty, 1)).addTransition(new iz0(this, isEmpty2, isEmpty, 0)).setDuration(200L);
             if (!isEmpty2) {
                 this.Z.m0 = true;
                 duration.addTransition(new org.telegram.ui.Components.cl0(this, 3));
@@ -816,22 +816,22 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
             z11 = true;
         } else {
             this.Y.getCurrentView().setText((CharSequence) null);
-            xp0 xp0Var3 = this.Z;
-            if (xp0Var3 != null) {
-                xp0Var3.scrollTo(0, 0);
+            wp0 wp0Var3 = this.Z;
+            if (wp0Var3 != null) {
+                wp0Var3.scrollTo(0, 0);
             }
             z11 = false;
         }
         int i7 = 4;
         if (!isEmpty) {
-            org.telegram.ui.ActionBar.m6.P();
-            TLRPC.Message message = gjVar.f24177k;
-            if (message == null || message.translatedText == null || !TextUtils.equals(message.translatedToLanguage, org.telegram.ui.Components.b31.N0())) {
-                if (!gjVar.f24177k.entities.isEmpty()) {
+            org.telegram.ui.ActionBar.n6.P();
+            TLRPC.Message message = fjVar.f24073k;
+            if (message == null || message.translatedText == null || !TextUtils.equals(message.translatedToLanguage, org.telegram.ui.Components.a31.N0())) {
+                if (!fjVar.f24073k.entities.isEmpty()) {
                     SpannableString spannableString = new SpannableString(cloneSpans);
-                    gjVar.c(spannableString, true, false);
-                    if (org.telegram.messenger.gj.L4(gjVar.f24177k)) {
-                        org.telegram.messenger.gj.h(gjVar.P3(), spannableString, false, 3, (int) gjVar.L0(), false);
+                    fjVar.c(spannableString, true, false);
+                    if (org.telegram.messenger.fj.L4(fjVar.f24073k)) {
+                        org.telegram.messenger.fj.h(fjVar.P3(), spannableString, false, 3, (int) fjVar.L0(), false);
                     }
                     cloneSpans = org.telegram.messenger.j6.m(spannableString, currentView.getPaint().getFontMetricsInt(), false, null, 0);
                 } else {
@@ -841,32 +841,32 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
             this.Y.setTag(cloneSpans);
             try {
                 this.Y.a(cloneSpans, z10, false);
-                xp0 xp0Var4 = this.Z;
-                if (xp0Var4 != null) {
-                    xp0Var4.H(xp0Var4.getWidth(), xp0Var4.getHeight());
+                wp0 wp0Var4 = this.Z;
+                if (wp0Var4 != null) {
+                    wp0Var4.H(wp0Var4.getWidth(), wp0Var4.getHeight());
                 }
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);
             }
             currentView.setScrollY(0);
             currentView.setTextColor(-1);
-            nq0 nq0Var2 = this.Y;
-            if (this.f43747j0) {
+            mq0 mq0Var2 = this.Y;
+            if (this.f43863j0) {
                 i7 = 0;
             }
-            nq0Var2.setVisibility(i7);
+            mq0Var2.setVisibility(i7);
         } else {
             this.Y.a(null, z10, false);
             this.Y.getCurrentView().setTextColor(-1);
-            nq0 nq0Var3 = this.Y;
+            mq0 mq0Var3 = this.Y;
             if (z11 && !isEmpty2) {
                 z12 = false;
             }
-            nq0Var3.b(4, z12);
+            mq0Var3.b(4, z12);
             this.Y.setTag(null);
         }
-        if (this.Y.getCurrentView() instanceof mq0) {
-            ((mq0) this.Y.getCurrentView()).setLoading(false);
+        if (this.Y.getCurrentView() instanceof lq0) {
+            ((lq0) this.Y.getCurrentView()).setLoading(false);
         }
     }
 
@@ -901,7 +901,7 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
             if (z12) {
                 f12 = 1.0f;
             }
-            scaleY.alpha(f12).setDuration(340L).setInterpolator(org.telegram.ui.Components.nr.h).start();
+            scaleY.alpha(f12).setDuration(340L).setInterpolator(org.telegram.ui.Components.kr.h).start();
             return;
         }
         ImageView imageView = this.U;
@@ -925,28 +925,28 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
 
     public final void m() {
         int i7;
-        this.f43761r.r(true);
+        this.f43877r.r(true);
         if (this.K) {
-            i7 = 2131743337;
+            i7 = 2131743330;
         } else {
             i7 = 2131747068;
         }
-        String N0 = org.telegram.messenger.hd.N0(i7, null);
-        hi.l3 l3Var = this.f43761r;
-        l3Var.h = hi.l3.a(N0, l3Var.getTextPaint());
-        this.f43761r.v(N0);
-        this.f43761r.n(12.0f, 7.0f, 11.0f, 7.0f);
-        hi.l3 l3Var2 = this.f43761r;
-        l3Var2.getClass();
-        l3Var2.f14855f0 = org.telegram.messenger.g0.L(2);
-        hi.l3 l3Var3 = this.f43761r;
-        l3Var3.getClass();
-        l3Var3.f14853e0 = 0.0f;
-        org.telegram.ui.Components.oh0 oh0Var = new org.telegram.ui.Components.oh0(2131624021, org.telegram.messenger.g0.L(34.0f), org.telegram.messenger.g0.L(34.0f));
-        oh0Var.start();
-        l3Var3.m(oh0Var);
-        this.f43761r.x();
-        org.telegram.messenger.np.g1().edit().putInt("viewoncehint", org.telegram.messenger.np.g1().getInt("viewoncehint", 0) + 1).commit();
+        String N0 = org.telegram.messenger.gd.N0(i7, null);
+        hi.u3 u3Var = this.f43877r;
+        u3Var.h = hi.u3.a(N0, u3Var.getTextPaint());
+        this.f43877r.v(N0);
+        this.f43877r.n(12.0f, 7.0f, 11.0f, 7.0f);
+        hi.u3 u3Var2 = this.f43877r;
+        u3Var2.getClass();
+        u3Var2.f15493f0 = org.telegram.messenger.g0.L(2);
+        hi.u3 u3Var3 = this.f43877r;
+        u3Var3.getClass();
+        u3Var3.f15491e0 = 0.0f;
+        org.telegram.ui.Components.nh0 nh0Var = new org.telegram.ui.Components.nh0(2131624021, org.telegram.messenger.g0.L(34.0f), org.telegram.messenger.g0.L(34.0f));
+        nh0Var.start();
+        u3Var3.m(nh0Var);
+        this.f43877r.x();
+        org.telegram.messenger.mp.g1().edit().putInt("viewoncehint", org.telegram.messenger.mp.g1().getInt("viewoncehint", 0) + 1).commit();
     }
 
     public final void n(boolean z10, boolean z11) {
@@ -957,43 +957,43 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
         float f14;
         float f15;
         float f16;
-        fz0 fz0Var = this.f43760q1;
-        org.telegram.messenger.g0.r(fz0Var);
+        ez0 ez0Var = this.f43876q1;
+        org.telegram.messenger.g0.r(ez0Var);
         if (z10 && this.K) {
-            org.telegram.messenger.g0.h3(fz0Var, 3000L);
+            org.telegram.messenger.g0.h3(ez0Var, 3000L);
         }
         if (z10) {
             this.G.setVisibility(0);
         }
         this.G.setEnabled(z10);
-        this.f43747j0 = z10;
+        this.f43863j0 = z10;
         l(z10, z11);
         float f17 = 0.0f;
         if (z11) {
             ArrayList arrayList = new ArrayList();
-            org.telegram.ui.Components.v7 v7Var = this.G;
+            org.telegram.ui.Components.u7 u7Var = this.G;
             Property property = View.ALPHA;
             if (z10) {
                 f13 = 1.0f;
             } else {
                 f13 = 0.0f;
             }
-            arrayList.add(ObjectAnimator.ofFloat(v7Var, property, f13));
-            nz0 nz0Var = this.T;
-            q0 q0Var = nz0Var.f50374n;
+            arrayList.add(ObjectAnimator.ofFloat(u7Var, property, f13));
+            mz0 mz0Var = this.T;
+            q0 q0Var = mz0Var.f50161n;
             if (z10) {
                 f14 = 1.0f;
             } else {
                 f14 = 0.0f;
             }
-            arrayList.add(ObjectAnimator.ofFloat(nz0Var, q0Var, f14));
-            xp0 xp0Var = this.Z;
+            arrayList.add(ObjectAnimator.ofFloat(mz0Var, q0Var, f14));
+            wp0 wp0Var = this.Z;
             if (z10) {
                 f15 = 1.0f;
             } else {
                 f15 = 0.0f;
             }
-            arrayList.add(ObjectAnimator.ofFloat(xp0Var, property, f15));
+            arrayList.add(ObjectAnimator.ofFloat(wp0Var, property, f15));
             View view = this.S;
             if (z10) {
                 f16 = 1.0f;
@@ -1001,7 +1001,7 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
                 f16 = 0.0f;
             }
             arrayList.add(ObjectAnimator.ofFloat(view, property, f16));
-            View view2 = this.f43738f;
+            View view2 = this.f43854f;
             if (z10) {
                 f17 = 1.0f;
             }
@@ -1010,26 +1010,26 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
             this.H = animatorSet;
             animatorSet.playTogether(arrayList);
             if (!z10) {
-                this.H.addListener(new lz0(this, 1));
+                this.H.addListener(new kz0(this, 1));
             }
             this.H.setDuration(200L);
             this.H.start();
             return;
         }
-        org.telegram.ui.Components.v7 v7Var2 = this.G;
+        org.telegram.ui.Components.u7 u7Var2 = this.G;
         if (z10) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
-        v7Var2.setAlpha(f10);
-        xp0 xp0Var2 = this.Z;
+        u7Var2.setAlpha(f10);
+        wp0 wp0Var2 = this.Z;
         if (z10) {
             f11 = 1.0f;
         } else {
             f11 = 0.0f;
         }
-        xp0Var2.setAlpha(f11);
+        wp0Var2.setAlpha(f11);
         View view3 = this.S;
         if (z10) {
             f12 = 1.0f;
@@ -1037,7 +1037,7 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
             f12 = 0.0f;
         }
         view3.setAlpha(f12);
-        View view4 = this.f43738f;
+        View view4 = this.f43854f;
         if (z10) {
             f17 = 1.0f;
         }
@@ -1050,8 +1050,8 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
 
     public final void o(float f10) {
         ImageReceiver imageReceiver = this.h;
-        int width = ((int) ((imageReceiver.N0 * f10) - this.f43735e.getWidth())) / 2;
-        int height = ((int) ((imageReceiver.O0 * f10) - this.f43735e.getHeight())) / 2;
+        int width = ((int) ((imageReceiver.N0 * f10) - this.f43851e.getWidth())) / 2;
+        int height = ((int) ((imageReceiver.O0 * f10) - this.f43851e.getHeight())) / 2;
         if (width > 0) {
             this.U0 = -width;
             this.V0 = width;
@@ -1085,10 +1085,10 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
 
     @Override
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        if (this.f43776x0 != 1.0f) {
-            this.f43740f1.a();
-            this.f43740f1.c(Math.round(this.f43771v0), Math.round(this.f43774w0), Math.round(f10), Math.round(f11), (int) this.U0, (int) this.V0, (int) this.W0, (int) this.X0);
-            this.f43735e.postInvalidate();
+        if (this.f43892x0 != 1.0f) {
+            this.f43856f1.a();
+            this.f43856f1.c(Math.round(this.f43887v0), Math.round(this.f43890w0), Math.round(f10), Math.round(f11), (int) this.U0, (int) this.V0, (int) this.W0, (int) this.X0);
+            this.f43851e.postInvalidate();
             return false;
         }
         return false;
@@ -1101,20 +1101,20 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
 
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        if (this.f43737e1) {
+        if (this.f43853e1) {
             return false;
         }
-        if (this.E != null && this.f43747j0 && motionEvent.getX() >= this.U.getX() && motionEvent.getY() >= this.U.getY() && motionEvent.getX() <= this.U.getX() + this.U.getMeasuredWidth() && motionEvent.getX() <= this.U.getX() + this.U.getMeasuredWidth()) {
-            mp0 mp0Var = this.E;
-            mp0Var.u0(!mp0Var.d.u());
-            if (this.E.d.u()) {
+        if (this.E != null && this.f43863j0 && motionEvent.getX() >= this.U.getX() && motionEvent.getY() >= this.U.getY() && motionEvent.getX() <= this.U.getX() + this.U.getMeasuredWidth() && motionEvent.getX() <= this.U.getX() + this.U.getMeasuredWidth()) {
+            kp0 kp0Var = this.E;
+            kp0Var.u0(!kp0Var.d.v());
+            if (this.E.d.v()) {
                 n(true, true);
                 return true;
             }
             l(true, true);
             return true;
         }
-        n(!this.f43747j0, true);
+        n(!this.f43863j0, true);
         return true;
     }
 
@@ -1125,12 +1125,12 @@ public class SecretMediaViewer implements org.telegram.messenger.gs, GestureDete
 
     public void setAnimationValue(float f10) {
         this.animationValue = f10;
-        this.f43735e.invalidate();
+        this.f43851e.invalidate();
     }
 
     public void setVideoCrossfadeAlpha(float f10) {
-        this.f43733d0 = f10;
-        this.f43735e.invalidate();
+        this.f43849d0 = f10;
+        this.f43851e.invalidate();
     }
 
     @Override

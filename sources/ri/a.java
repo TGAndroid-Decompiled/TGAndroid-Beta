@@ -7,73 +7,72 @@ import android.widget.FrameLayout;
 import c8.j0;
 import c8.na;
 import org.telegram.messenger.g0;
-import org.telegram.tgnet.v;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.z4;
 import org.telegram.ui.Components.ek0;
 public final class a {
-    public final q f56624a;
-    public final ui.c f56625b;
-    public final dh.c f56626c;
+    public final q f56737a;
+    public final ui.c f56738b;
+    public final dh.c f56739c;
     public final dh.c d;
-    public final ui.d f56627e;
-    public final dh.c f56628f;
-    public final d f56629g;
+    public final ui.d f56740e;
+    public final dh.c f56741f;
+    public final d f56742g;
     public final ui.f h;
-    public final ui.f f56630i;
-    public Runnable f56631j;
-    public final ui.a f56632k;
-    public boolean f56633l;
-    public FrameLayout f56634m;
-    public ViewGroup f56635n;
-    public eh.a f56636o;
+    public final ui.f f56743i;
+    public Runnable f56744j;
+    public final ui.a f56745k;
+    public boolean f56746l;
+    public FrameLayout f56747m;
+    public ViewGroup f56748n;
+    public eh.a f56749o;
 
     public a(q qVar, n nVar) {
-        this.f56624a = qVar;
-        qVar.f56704a = new v(this, 21);
+        this.f56737a = qVar;
+        qVar.f56817a = new org.telegram.tgnet.g(this, 23);
         qVar.d = new ti.b(g0.L(48.0f));
         ui.c cVar = new ui.c();
-        this.f56625b = cVar;
-        cVar.a(nVar.e());
+        this.f56738b = cVar;
+        cVar.a(nVar.j());
         qVar.E.add(new o(cVar, nVar));
         if (Build.VERSION.SDK_INT >= 31) {
             d dVar = new d();
-            this.f56629g = dVar;
+            this.f56742g = dVar;
             ui.f fVar = new ui.f(cVar);
-            fVar.f59015f = cVar;
+            fVar.f59132f = cVar;
             fVar.h = dVar.d(2);
             this.h = fVar;
             ui.f fVar2 = new ui.f(cVar);
-            this.f56630i = fVar2;
-            fVar2.f59015f = cVar;
+            this.f56743i = fVar2;
+            fVar2.f59132f = cVar;
             fVar2.h = dVar.d(3);
             dh.c cVar2 = new dh.c(fVar, fVar2, cVar);
-            this.f56626c = cVar2;
-            cVar2.f8373j = qVar;
-            cVar2.f8374k = true;
+            this.f56739c = cVar2;
+            cVar2.f8372j = qVar;
+            cVar2.f8373k = true;
             ui.d dVar2 = new ui.d(fVar, fVar2);
-            this.f56627e = dVar2;
+            this.f56740e = dVar2;
             dh.c cVar3 = new dh.c(fVar2, fVar2, cVar);
-            this.f56628f = cVar3;
-            cVar3.f8373j = qVar;
+            this.f56741f = cVar3;
+            cVar3.f8372j = qVar;
             dh.c cVar4 = new dh.c(dVar2, fVar2, cVar);
             this.d = cVar4;
-            cVar4.f8373j = qVar;
-            cVar4.f8374k = true;
-            this.f56632k = dVar.d(1);
+            cVar4.f8372j = qVar;
+            cVar4.f8373k = true;
+            this.f56745k = dVar.d(1);
             return;
         }
-        this.f56632k = ui.e.f59010a;
-        this.f56629g = null;
+        this.f56745k = ui.e.f59127a;
+        this.f56742g = null;
         this.h = null;
-        this.f56630i = null;
+        this.f56743i = null;
         dh.c cVar5 = new dh.c(cVar, cVar, cVar);
-        this.f56626c = cVar5;
-        cVar5.f8373j = qVar;
-        this.f56627e = null;
+        this.f56739c = cVar5;
+        cVar5.f8372j = qVar;
+        this.f56740e = null;
         this.d = cVar5;
-        this.f56628f = cVar5;
+        this.f56741f = cVar5;
     }
 
     public static int c(int i7) {
@@ -93,121 +92,121 @@ public final class a {
     }
 
     public final si.f a(View view) {
-        si.f fVar = new si.f(this.f56632k);
+        si.f fVar = new si.f(this.f56745k);
         si.g gVar = new si.g(g0.L(32.0f));
         si.g gVar2 = new si.g(g0.L(56.0f));
         si.g gVar3 = new si.g(g0.L(48.0f));
-        if (fVar.f57516y != 1) {
-            fVar.f57516y = 1;
-            fVar.f57514w = true;
-            fVar.f57515x = true;
+        if (fVar.f57627y != 1) {
+            fVar.f57627y = 1;
+            fVar.f57625w = true;
+            fVar.f57626x = true;
             fVar.invalidateSelf();
         }
-        fVar.H = this.f56625b;
-        fVar.f57514w = true;
+        fVar.H = this.f56738b;
+        fVar.f57625w = true;
         fVar.updateColors();
         fVar.invalidateSelf();
         fVar.J = 160;
         ui.c cVar = fVar.H;
         if (cVar != null) {
-            fVar.I = m6.r1(160 / 255.0f, cVar.f59006b);
+            fVar.I = n6.r1(160 / 255.0f, cVar.f59123b);
         }
-        fVar.f57514w = true;
+        fVar.f57625w = true;
         fVar.invalidateSelf();
         fVar.E = gVar;
-        fVar.f57514w = true;
+        fVar.f57625w = true;
         fVar.invalidateSelf();
         fVar.F = gVar2;
-        fVar.f57514w = true;
+        fVar.f57625w = true;
         fVar.invalidateSelf();
         fVar.L = 210;
         ui.c cVar2 = fVar.H;
         if (cVar2 != null) {
-            fVar.K = m6.r1(210 / 255.0f, cVar2.f59006b);
+            fVar.K = n6.r1(210 / 255.0f, cVar2.f59123b);
         }
-        fVar.f57515x = true;
+        fVar.f57626x = true;
         fVar.invalidateSelf();
         fVar.G = gVar3;
-        fVar.f57515x = true;
+        fVar.f57626x = true;
         fVar.invalidateSelf();
-        this.f56624a.f56706c.add(new p(view, fVar));
+        this.f56737a.f56819c.add(new p(view, fVar));
         return fVar;
     }
 
     public final si.f b(View view) {
-        si.f fVar = new si.f(this.f56632k);
+        si.f fVar = new si.f(this.f56745k);
         si.g gVar = new si.g(g0.L(28.0f));
         si.g gVar2 = new si.g(g0.L(40.0f));
         si.g gVar3 = new si.g(g0.L(30.0f));
-        if (fVar.f57516y != 4) {
-            fVar.f57516y = 4;
-            fVar.f57514w = true;
-            fVar.f57515x = true;
+        if (fVar.f57627y != 4) {
+            fVar.f57627y = 4;
+            fVar.f57625w = true;
+            fVar.f57626x = true;
             fVar.invalidateSelf();
         }
-        fVar.H = this.f56625b;
-        fVar.f57514w = true;
+        fVar.H = this.f56738b;
+        fVar.f57625w = true;
         fVar.updateColors();
         fVar.invalidateSelf();
         fVar.J = 160;
         ui.c cVar = fVar.H;
         if (cVar != null) {
-            fVar.I = m6.r1(160 / 255.0f, cVar.f59006b);
+            fVar.I = n6.r1(160 / 255.0f, cVar.f59123b);
         }
-        fVar.f57514w = true;
+        fVar.f57625w = true;
         fVar.invalidateSelf();
         fVar.E = gVar;
-        fVar.f57514w = true;
+        fVar.f57625w = true;
         fVar.invalidateSelf();
         fVar.F = gVar2;
-        fVar.f57514w = true;
+        fVar.f57625w = true;
         fVar.invalidateSelf();
         fVar.L = 210;
         ui.c cVar2 = fVar.H;
         if (cVar2 != null) {
-            fVar.K = m6.r1(210 / 255.0f, cVar2.f59006b);
+            fVar.K = n6.r1(210 / 255.0f, cVar2.f59123b);
         }
-        fVar.f57515x = true;
+        fVar.f57626x = true;
         fVar.invalidateSelf();
         fVar.G = gVar3;
-        fVar.f57515x = true;
+        fVar.f57626x = true;
         fVar.invalidateSelf();
-        this.f56624a.f56706c.add(new p(view, fVar));
+        this.f56737a.f56819c.add(new p(view, fVar));
         return fVar;
     }
 
-    public final void f(FrameLayout frameLayout, ek0 ek0Var, View view, h6 h6Var) {
-        this.f56634m = frameLayout;
-        this.f56635n = ek0Var;
+    public final void f(FrameLayout frameLayout, ek0 ek0Var, View view, i6 i6Var) {
+        this.f56747m = frameLayout;
+        this.f56748n = ek0Var;
         ek0Var.setCaptureSectionsDecoratorAllowed(true);
-        this.f56636o = new di.f(9, ek0Var, frameLayout);
-        this.f56624a.b(ek0Var);
+        this.f56749o = new di.f(9, ek0Var, frameLayout);
+        this.f56737a.b(ek0Var);
         ek0Var.setClipToPadding(false);
-        g(frameLayout, view, h6Var);
+        g(frameLayout, view, i6Var);
     }
 
-    public final void g(FrameLayout frameLayout, View view, h6 h6Var) {
+    public final void g(FrameLayout frameLayout, View view, i6 i6Var) {
         if (view != null) {
             g0.E2(view);
             frameLayout.addView(view, na.e(-1, -2, 48));
             boolean z10 = view instanceof z4;
-            dh.c cVar = this.f56626c;
+            dh.c cVar = this.f56739c;
             if (z10) {
                 z4 z4Var = (z4) view;
                 z4Var.setExtraHeight(g0.L(6.0f));
-                gh.e m10 = j0.m(h6Var);
+                gh.e m10 = j0.m(i6Var);
                 z4Var.M = cVar;
                 z4Var.N = m10;
                 z4Var.r();
-                z4Var.f30307o0 = this.d;
-                z4Var.f30308p0 = this.f56627e;
+                z4Var.f30398o0 = this.d;
+                z4Var.f30399p0 = this.f56740e;
             } else if (view instanceof org.telegram.ui.ActionBar.k) {
                 org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) view;
                 kVar.setAddToContainer(false);
                 kVar.setCenterTitleAndGlass(true);
                 kVar.setExtraHeight(g0.L(6.0f));
                 kVar.U0 = true;
-                kVar.P(cVar, j0.m(h6Var), false);
+                kVar.P(cVar, j0.m(i6Var), false);
             }
         }
     }

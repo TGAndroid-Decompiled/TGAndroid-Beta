@@ -1,10 +1,10 @@
 package org.telegram.ui.Dictation;
 
-import ai.g1;
-import ai.s0;
+import ai.a1;
+import ai.h1;
 import ai.t0;
 import ai.u0;
-import ai.w0;
+import ai.v0;
 import ai.x0;
 import ai.y0;
 import ai.z0;
@@ -17,24 +17,24 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.np;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.TLRPC;
 public abstract class DictationLid {
-    public static volatile long f43042c;
+    public static volatile long f43152c;
     public static volatile String[] d;
-    public static boolean f43043e;
-    public static volatile boolean f43044f;
-    public static volatile boolean f43045g;
+    public static boolean f43153e;
+    public static volatile boolean f43154f;
+    public static volatile boolean f43155g;
     public static volatile boolean h;
-    public static final ExecutorService f43040a = Executors.newSingleThreadExecutor(new u0(0));
-    public static final ExecutorService f43041b = Executors.newSingleThreadExecutor();
-    public static final Object f43046i = new Object();
-    public static final int[] f43047j = {1000, 2000, 5000, 10000, 20000};
+    public static final ExecutorService f43150a = Executors.newSingleThreadExecutor(new v0(0));
+    public static final ExecutorService f43151b = Executors.newSingleThreadExecutor();
+    public static final Object f43156i = new Object();
+    public static final int[] f43157j = {1000, 2000, 5000, 10000, 20000};
 
     public static float[] a(byte[] bArr, int[] iArr) {
         byte[] j3 = j(bArr);
         iArr[0] = j3.length / 32;
-        long j10 = f43042c;
+        long j10 = f43152c;
         if (iArr[0] >= 500 && j10 != 0) {
             float[] fArr = new float[d.length];
             if (nativePredict(j10, j3, 0, j3.length, false, fArr)) {
@@ -46,15 +46,15 @@ public abstract class DictationLid {
     }
 
     public static void b() {
-        long j3 = f43042c;
-        f43042c = 0L;
+        long j3 = f43152c;
+        f43152c = 0L;
         if (j3 != 0) {
             nativeFree(j3);
         }
     }
 
-    public static void c(int i7, y0 y0Var, String str, byte[] bArr) {
-        long j3 = f43042c;
+    public static void c(int i7, z0 z0Var, String str, byte[] bArr) {
+        long j3 = f43152c;
         if (j3 == 0) {
             return;
         }
@@ -62,7 +62,7 @@ public abstract class DictationLid {
         byte[] j10 = j(bArr);
         int length = j10.length / 32;
         if (length < i7) {
-            g0.g3(new t0(y0Var, length, 1));
+            g0.g3(new u0(z0Var, length, 1));
             return;
         }
         float[] fArr = new float[d.length];
@@ -70,7 +70,7 @@ public abstract class DictationLid {
         if (nativePredict && str != null && !str.isEmpty()) {
             nativeRestrict(j3, fArr, str);
         }
-        g0.g3(new x0(y0Var, nativePredict, fArr, SystemClock.elapsedRealtime() - elapsedRealtime, length));
+        g0.g3(new y0(z0Var, nativePredict, fArr, SystemClock.elapsedRealtime() - elapsedRealtime, length));
     }
 
     public static void d(Context context) {
@@ -79,44 +79,44 @@ public abstract class DictationLid {
         long j3;
         Context applicationContext = context.getApplicationContext();
         File file = new File(applicationContext.getFilesDir(), "tinylid.bin");
-        if (System.currentTimeMillis() - np.g1().getLong("tinylid_checked", 0L) > 3600000) {
+        if (System.currentTimeMillis() - mp.g1().getLong("tinylid_checked", 0L) > 3600000) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (file.exists() && !f43043e) {
+        if (file.exists() && !f43153e) {
             File file2 = new File(applicationContext.getApplicationContext().getFilesDir(), "tinylid.bin");
             if (file2.exists()) {
-                f43043e = true;
-                f43045g = true;
-                f43040a.execute(new s0(file2, 1));
+                f43153e = true;
+                f43155g = true;
+                f43150a.execute(new t0(file2, 1));
             }
         }
-        if (file.exists() || g1.b()) {
-            boolean i7 = g1.i(g1.f(g1.a(), "tinylid"), file);
+        if (file.exists() || h1.b()) {
+            boolean i7 = h1.i(h1.f(h1.a(), "tinylid"), file);
             if (!file.exists() || z10 || i7) {
                 if (i7 && org.telegram.messenger.t0.s()) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (f43044f) {
+                if (f43154f) {
                     return;
                 }
-                f43044f = true;
+                f43154f = true;
                 h = z11;
                 File file3 = new File(applicationContext.getFilesDir(), "tinylid.bin");
                 if (!file3.exists()) {
-                    TLRPC.TL_transcriptionModel f10 = g1.f(g1.a(), "tinylid");
+                    TLRPC.TL_transcriptionModel f10 = h1.f(h1.a(), "tinylid");
                     if (f10 != null) {
                         j3 = f10.document.size;
                     } else {
                         j3 = 0;
                     }
                     DictationAsr.h.putIfAbsent("tinylid.bin", new long[]{0, Math.max(j3, 4400000L)});
-                    DictationAsr.p();
+                    DictationAsr.q();
                 }
-                f43041b.execute(new s0(file3, 0));
+                f43151b.execute(new t0(file3, 0));
             }
         }
     }
@@ -139,9 +139,9 @@ public abstract class DictationLid {
             if (nativeLoad == 0) {
                 Log.e("Dictation", "tinylid: model rejected (" + file.length() + " bytes)");
             } else {
-                long j3 = f43042c;
+                long j3 = f43152c;
                 d = nativeLanguages(nativeLoad);
-                f43042c = nativeLoad;
+                f43152c = nativeLoad;
                 if (j3 != 0) {
                     nativeFree(j3);
                 }
@@ -152,14 +152,14 @@ public abstract class DictationLid {
             try {
                 Log.e("Dictation", "tinylid: load failed", th2);
             } finally {
-                f43045g = false;
+                f43155g = false;
                 f();
             }
         }
     }
 
     public static void f() {
-        Object obj = f43046i;
+        Object obj = f43156i;
         synchronized (obj) {
             obj.notifyAll();
         }
@@ -181,16 +181,16 @@ public abstract class DictationLid {
         return 0.5f;
     }
 
-    public static void h(int i7, y0 y0Var, String str, byte[] bArr) {
-        if (f43042c == 0) {
+    public static void h(int i7, z0 z0Var, String str, byte[] bArr) {
+        if (f43152c == 0) {
             return;
         }
-        f43040a.execute(new w0(bArr, i7, y0Var, str, 0));
+        f43150a.execute(new x0(bArr, i7, z0Var, str, 0));
     }
 
     public static void i(String str) {
-        if (str != null && !str.equals(np.g1().getString("tinylid_lang", null))) {
-            np.g1().edit().putString("tinylid_lang", str).apply();
+        if (str != null && !str.equals(mp.g1().getString("tinylid_lang", null))) {
+            mp.g1().edit().putString("tinylid_lang", str).apply();
         }
     }
 
@@ -245,7 +245,7 @@ public abstract class DictationLid {
         return bArr2;
     }
 
-    public static z0 k(float f10, float[] fArr) {
+    public static a1 k(float f10, float[] fArr) {
         boolean z10;
         String[] strArr = d;
         if (fArr != null && strArr != null && strArr.length == fArr.length) {
@@ -266,7 +266,7 @@ public abstract class DictationLid {
             if (z10 && f11 >= f10) {
                 z11 = true;
             }
-            return new z0(str, f11, z11);
+            return new a1(str, f11, z11);
         }
         return null;
     }

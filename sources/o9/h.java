@@ -10,19 +10,19 @@ import kotlin.jvm.internal.j;
 import u9.q;
 import zd.v0;
 public final class h implements u9.d, r {
-    public static final h f21762b = new h(0);
-    public static final h f21763c = new h(1);
+    public static final h f21862b = new h(0);
+    public static final h f21863c = new h(1);
     public static final h d = new h(2);
-    public static final h f21764e = new h(3);
-    public final int f21765a;
+    public static final h f21864e = new h(3);
+    public final int f21865a;
 
     public h(int i7) {
-        this.f21765a = i7;
+        this.f21865a = i7;
     }
 
     @Override
-    public Object e(r7 r7Var) {
-        switch (this.f21765a) {
+    public Object c(r7 r7Var) {
+        switch (this.f21865a) {
             case 0:
                 Object e10 = r7Var.e(new q(q9.a.class, Executor.class));
                 j.d(e10, "get(...)");
@@ -43,7 +43,7 @@ public final class h implements u9.d, r {
     }
 
     @Override
-    public Exception k(Status status) {
+    public Exception f(Status status) {
         int i7 = status.f6189a;
         int i10 = status.f6189a;
         String str = status.f6190b;

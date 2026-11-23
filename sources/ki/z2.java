@@ -1,158 +1,120 @@
 package ki;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.np;
-import org.telegram.messenger.r10;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import bi.s4;
+import java.util.ArrayList;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Cells.b6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.py0;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.x60;
 public final class z2 implements View.OnClickListener {
-    public final int f19095a = 1;
-    public final hi.d f19096b;
-    public final long f19097c;
-    public final TLRPC.User d;
-    public final int f19098e;
-    public final org.telegram.ui.ActionBar.w2 f19099f;
-    public final boolean h;
-    public final h6 f19100n;
-    public final Object f19101r;
-    public final Object f19102s;
-    public final Object f19103w;
+    public final int f19197a = 1;
+    public final int f19198b;
+    public final org.telegram.ui.ActionBar.w2 f19199c;
+    public final i6 d;
+    public final long f19200e;
+    public final Context f19201f;
+    public final TL_payments.connectedBotStarRef h;
+    public final Object f19202n;
 
-    public z2(hi.d dVar, py0 py0Var, np npVar, long j3, TLRPC.User user, String[] strArr, int i7, org.telegram.ui.ActionBar.w2 w2Var, boolean z10, h6 h6Var) {
-        this.f19096b = dVar;
-        this.f19101r = py0Var;
-        this.f19102s = npVar;
-        this.f19097c = j3;
-        this.d = user;
-        this.f19103w = strArr;
-        this.f19098e = i7;
-        this.f19099f = w2Var;
-        this.h = z10;
-        this.f19100n = h6Var;
+    public z2(int i7, org.telegram.ui.ActionBar.w2 w2Var, i6 i6Var, LinearLayout linearLayout, long j3, Context context, TL_payments.connectedBotStarRef connectedbotstarref) {
+        this.f19198b = i7;
+        this.f19199c = w2Var;
+        this.d = i6Var;
+        this.f19202n = linearLayout;
+        this.f19200e = j3;
+        this.f19201f = context;
+        this.h = connectedbotstarref;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f19095a) {
+        long j3;
+        boolean z10;
+        switch (this.f19197a) {
             case 0:
-                long[] jArr = (long[]) this.f19101r;
-                final TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) this.f19102s;
-                final Context context = (Context) this.f19103w;
-                final hi.d dVar = this.f19096b;
-                if (!dVar.R) {
-                    dVar.setLoading(true);
-                    final long j3 = jArr[0];
-                    TL_payments.connectStarRefBot connectstarrefbot = new TL_payments.connectStarRefBot();
-                    final int i7 = this.f19098e;
-                    connectstarrefbot.bot = np.u1(i7).q1(starrefprogram.bot_id);
-                    connectstarrefbot.peer = np.u1(i7).l1(j3);
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i7);
-                    final org.telegram.ui.ActionBar.w2 w2Var = this.f19099f;
-                    final long j10 = this.f19097c;
-                    final boolean z10 = this.h;
-                    final h6 h6Var = this.f19100n;
-                    final TLRPC.User user = this.d;
-                    connectionsManager.sendRequest(connectstarrefbot, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            org.telegram.messenger.g0.g3(new x2(hi.d.this, tLObject, i7, j3, w2Var, starrefprogram, j10, z10, context, h6Var, user, tL_error));
-                        }
-                    });
-                    return;
-                }
-                return;
-            default:
-                py0 py0Var = (py0) this.f19101r;
-                b6 b6Var = py0Var.h;
-                final np npVar = (np) this.f19102s;
-                String[] strArr = (String[]) this.f19103w;
-                final hi.d dVar2 = this.f19096b;
-                if (!dVar2.R) {
-                    EditTextBoldCursor textView = b6Var.getTextView();
-                    if (textView.getText().toString().trim().length() <= 16) {
-                        dVar2.setLoading(true);
-                        org.telegram.messenger.g0.v1(b6Var);
-                        final TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank = new TLRPC.TL_messages_editChatParticipantRank();
-                        final long j11 = this.f19097c;
-                        tL_messages_editChatParticipantRank.peer = npVar.l1(j11);
-                        final TLRPC.User user2 = this.d;
-                        tL_messages_editChatParticipantRank.participant = np.p1(user2);
-                        tL_messages_editChatParticipantRank.rank = strArr[0];
-                        ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(this.f19098e);
-                        d3.b bVar = new d3.b(1);
-                        final org.telegram.ui.ActionBar.w2 w2Var2 = this.f19099f;
-                        final boolean z11 = this.h;
-                        final h6 h6Var2 = this.f19100n;
-                        connectionsManager2.sendRequestTyped(tL_messages_editChatParticipantRank, bVar, new r10() {
-                            @Override
-                            public final void a(Object obj, Object obj2) {
-                                int i10;
-                                TLRPC.Updates updates = (TLRPC.Updates) obj;
-                                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                                org.telegram.ui.ActionBar.w2 w2Var3 = w2Var2;
-                                if (updates != null) {
-                                    long j12 = user2.f28547id;
-                                    TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank2 = tL_messages_editChatParticipantRank;
-                                    String str = tL_messages_editChatParticipantRank2.rank;
-                                    org.telegram.messenger.np npVar2 = org.telegram.messenger.np.this;
-                                    npVar2.B5(-j11, str, j12);
-                                    npVar2.V3(updates, false);
-                                    w2Var3.dismiss();
-                                    org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
-                                    if (!TextUtils.isEmpty(tL_messages_editChatParticipantRank2.rank) && T != null) {
-                                        lc b02 = lc.b0(T);
-                                        if (z11) {
-                                            i10 = 2131744047;
-                                        } else {
-                                            i10 = 2131744046;
-                                        }
-                                        gc I = b02.I(2131623990, org.telegram.messenger.hd.N0(i10, null), tL_messages_editChatParticipantRank2.rank);
-                                        lb lbVar = I.f35485e;
-                                        if (lbVar.getLayoutParams() instanceof FrameLayout.LayoutParams) {
-                                            ((FrameLayout.LayoutParams) lbVar.getLayoutParams()).width = -2;
-                                            ((FrameLayout.LayoutParams) lbVar.getLayoutParams()).gravity |= 1;
-                                        }
-                                        I.j();
-                                    }
-                                } else if (tL_error != null) {
-                                    org.telegram.ui.Cells.c0.t(w2Var3.F, h6Var2, tL_error, false);
-                                    dVar2.setLoading(false);
-                                }
-                            }
-                        });
+                ai.j jVar = (ai.j) this.f19202n;
+                TL_payments.connectedBotStarRef connectedbotstarref = this.h;
+                if (connectedbotstarref.revoked) {
+                    int i7 = this.f19198b;
+                    TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(connectedbotstarref.bot_id));
+                    if (c22 != null) {
+                        mp.u1(i7).c3(c22, 0, true, new w2(this.f19199c, this.f19201f, i7, this.f19200e, this.d, 0));
                         return;
                     }
-                    float f10 = -py0Var.E;
-                    py0Var.E = f10;
-                    org.telegram.messenger.g0.E3(f10, textView, null);
-                    org.telegram.messenger.q2.APP_ERROR.a();
                     return;
                 }
+                jVar.run();
+                return;
+            default:
+                LinearLayout linearLayout = (LinearLayout) this.f19202n;
+                int i10 = this.f19198b;
+                di.e0 g10 = di.e0.g(i10);
+                g10.n();
+                g10.o();
+                ArrayList arrayList = new ArrayList();
+                ArrayList arrayList2 = g10.f8687j;
+                if (arrayList2 != null) {
+                    arrayList.addAll(arrayList2);
+                }
+                ArrayList arrayList3 = g10.f8689l;
+                if (arrayList3 != null) {
+                    arrayList.addAll(arrayList3);
+                }
+                arrayList.add(0, i10.i(i10).f());
+                org.telegram.ui.ActionBar.w2 w2Var = this.f19199c;
+                ViewGroup viewGroup = w2Var.f30226b;
+                i6 i6Var = this.d;
+                x60 x60Var = new x60(viewGroup, i6Var, linearLayout, false, false, true);
+                int size = arrayList.size();
+                int i11 = 0;
+                while (i11 < size) {
+                    Object obj = arrayList.get(i11);
+                    i11++;
+                    TLObject tLObject = (TLObject) obj;
+                    if (tLObject instanceof TLRPC.User) {
+                        j3 = ((TLRPC.User) tLObject).f28641id;
+                    } else if (tLObject instanceof TLRPC.Chat) {
+                        TLRPC.Chat chat = (TLRPC.Chat) tLObject;
+                        if (org.telegram.messenger.v3.V(chat)) {
+                            j3 = -chat.f28492id;
+                        }
+                    }
+                    long j10 = j3;
+                    if (j10 == this.f19200e) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    boolean z11 = z10;
+                    int i12 = i10;
+                    i6 i6Var2 = i6Var;
+                    x60Var.g(tLObject, z11, new s4(i12, j10, this.f19201f, this.h, w2Var, i6Var2));
+                    i10 = i12;
+                    i6Var = i6Var2;
+                }
+                x60Var.f41894t = false;
+                x60Var.f41892s = 0;
+                x60Var.W(5);
+                x60Var.b0(org.telegram.messenger.g0.L(24.0f), 0.0f);
+                x60Var.a0();
                 return;
         }
     }
 
-    public z2(hi.d dVar, long[] jArr, int i7, TL_payments.starRefProgram starrefprogram, org.telegram.ui.ActionBar.w2 w2Var, long j3, boolean z10, Context context, h6 h6Var, TLRPC.User user) {
-        this.f19096b = dVar;
-        this.f19101r = jArr;
-        this.f19098e = i7;
-        this.f19102s = starrefprogram;
-        this.f19099f = w2Var;
-        this.f19097c = j3;
-        this.h = z10;
-        this.f19103w = context;
-        this.f19100n = h6Var;
-        this.d = user;
+    public z2(TL_payments.connectedBotStarRef connectedbotstarref, int i7, org.telegram.ui.ActionBar.w2 w2Var, Context context, long j3, i6 i6Var, ai.j jVar) {
+        this.h = connectedbotstarref;
+        this.f19198b = i7;
+        this.f19199c = w2Var;
+        this.f19201f = context;
+        this.f19200e = j3;
+        this.d = i6Var;
+        this.f19202n = jVar;
     }
 }

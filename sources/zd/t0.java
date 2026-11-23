@@ -1,20 +1,20 @@
 package zd;
 public abstract class t0 extends x {
-    public static final int f61896f = 0;
-    public long f61897c;
+    public static final int f62015f = 0;
+    public long f62016c;
     public boolean d;
-    public hd.d f61898e;
+    public hd.d f62017e;
 
     public final void g(boolean z10) {
         long j3;
-        long j10 = this.f61897c;
+        long j10 = this.f62016c;
         if (z10) {
             j3 = 4294967296L;
         } else {
             j3 = 1;
         }
         long j11 = j10 - j3;
-        this.f61897c = j11;
+        this.f62016c = j11;
         if (j11 <= 0 && this.d) {
             shutdown();
         }
@@ -24,13 +24,13 @@ public abstract class t0 extends x {
 
     public final void i(boolean z10) {
         long j3;
-        long j10 = this.f61897c;
+        long j10 = this.f62016c;
         if (z10) {
             j3 = 4294967296L;
         } else {
             j3 = 1;
         }
-        this.f61897c = j3 + j10;
+        this.f62016c = j3 + j10;
         if (!z10) {
             this.d = true;
         }
@@ -40,7 +40,7 @@ public abstract class t0 extends x {
 
     public final boolean k() {
         Object removeFirst;
-        hd.d dVar = this.f61898e;
+        hd.d dVar = this.f62017e;
         if (dVar == null) {
             return false;
         }
@@ -58,7 +58,7 @@ public abstract class t0 extends x {
     }
 
     public void l(long j3, q0 q0Var) {
-        c0.f61840s.q(j3, q0Var);
+        c0.f61959s.q(j3, q0Var);
     }
 
     public abstract void shutdown();

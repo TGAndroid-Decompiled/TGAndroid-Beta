@@ -20,9 +20,9 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.List;
 public final class g extends n0 {
-    public static final Class f15895a;
-    public static final Constructor f15896b;
-    public static final Method f15897c;
+    public static final Class f15990a;
+    public static final Constructor f15991b;
+    public static final Method f15992c;
     public static final Method d;
 
     static {
@@ -43,15 +43,15 @@ public final class g extends n0 {
             method = null;
             method2 = null;
         }
-        f15896b = constructor;
-        f15895a = cls;
-        f15897c = method2;
+        f15991b = constructor;
+        f15990a = cls;
+        f15992c = method2;
         d = method;
     }
 
     public static boolean g(Object obj, ByteBuffer byteBuffer, int i7, int i10, boolean z10) {
         try {
-            return ((Boolean) f15897c.invoke(obj, byteBuffer, Integer.valueOf(i7), null, Integer.valueOf(i10), Boolean.valueOf(z10))).booleanValue();
+            return ((Boolean) f15992c.invoke(obj, byteBuffer, Integer.valueOf(i7), null, Integer.valueOf(i10), Boolean.valueOf(z10))).booleanValue();
         } catch (IllegalAccessException | InvocationTargetException unused) {
             return false;
         }
@@ -59,7 +59,7 @@ public final class g extends n0 {
 
     public static Typeface h(Object obj) {
         try {
-            Object newInstance = Array.newInstance(f15895a, 1);
+            Object newInstance = Array.newInstance(f15990a, 1);
             Array.set(newInstance, 0, obj);
             return (Typeface) d.invoke(null, newInstance);
         } catch (IllegalAccessException | InvocationTargetException unused) {
@@ -74,7 +74,7 @@ public final class g extends n0 {
         MappedByteBuffer mappedByteBuffer;
         FileInputStream fileInputStream;
         try {
-            obj = f15896b.newInstance(null);
+            obj = f15991b.newInstance(null);
         } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
             obj = null;
         }
@@ -117,7 +117,7 @@ public final class g extends n0 {
     public final Typeface b(Context context, o0.h[] hVarArr, int i7) {
         Object obj;
         try {
-            obj = f15896b.newInstance(null);
+            obj = f15991b.newInstance(null);
         } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
             obj = null;
         }
@@ -128,13 +128,13 @@ public final class g extends n0 {
             while (true) {
                 if (i10 < length) {
                     o0.h hVar = hVarArr[i10];
-                    Uri uri = hVar.f21570a;
+                    Uri uri = hVar.f21669a;
                     ByteBuffer byteBuffer = (ByteBuffer) lVar.get(uri);
                     if (byteBuffer == null) {
                         byteBuffer = o0.e(context, uri);
                         lVar.put(uri, byteBuffer);
                     }
-                    if (byteBuffer == null || !g(obj, byteBuffer, hVar.f21571b, hVar.f21572c, hVar.d)) {
+                    if (byteBuffer == null || !g(obj, byteBuffer, hVar.f21670b, hVar.f21671c, hVar.d)) {
                         break;
                     }
                     i10++;

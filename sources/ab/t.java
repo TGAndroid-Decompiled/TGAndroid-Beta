@@ -8,9 +8,9 @@ import android.util.Pair;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
-import hi.b7;
+import hi.v7;
 import java.util.concurrent.ExecutionException;
-public final class t implements Continuation, b7 {
+public final class t implements Continuation, v7 {
     public final int f995a;
     public final String f996b;
 
@@ -20,7 +20,7 @@ public final class t implements Continuation, b7 {
     }
 
     @Override
-    public Bitmap c(BitmapFactory.Options options) {
+    public Bitmap b(BitmapFactory.Options options) {
         return BitmapFactory.decodeFile(this.f996b, options);
     }
 
@@ -41,7 +41,7 @@ public final class t implements Continuation, b7 {
                 throw new ExecutionException(task.getException());
             default:
                 if (!task.isSuccessful()) {
-                    return Tasks.forException(r7.u(task));
+                    return Tasks.forException(r7.y(task));
                 }
                 return Tasks.forResult(new Pair((String) task.getResult(), this.f996b));
         }

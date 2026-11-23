@@ -1,231 +1,139 @@
 package org.telegram.ui.Cells;
 
-import android.content.ClipboardManager;
-import android.content.Context;
+import android.graphics.Rect;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.hd;
-import org.telegram.ui.Components.b31;
-import org.telegram.ui.Components.ot;
-import org.telegram.ui.sy0;
-public final class g9 implements ActionMode.Callback {
-    public final int f30678a;
-    public Object f30679b;
-    public final Object f30680c;
+import android.view.View;
+import java.lang.reflect.Field;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class g9 extends ActionMode.Callback2 {
+    public final int f30826a = 2;
+    public final ActionMode.Callback f30827b;
+    public final Object f30828c;
 
-    public g9(ot otVar, ActionMode.Callback callback) {
-        this.f30678a = 1;
-        this.f30680c = otVar;
-        this.f30679b = callback;
-    }
-
-    public void b(Menu menu) {
-        boolean z10;
-        hd.E0().f24436y.getLanguage();
-        MenuItem findItem = menu.findItem(3);
-        if (findItem == null) {
-            return;
-        }
-        if (((w9) this.f30680c).f32253k0 != null && ((String) this.f30679b) != null && !sy0.d0().contains((String) this.f30679b)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        findItem.setVisible(z10);
+    public g9(EditTextBoldCursor editTextBoldCursor, ActionMode.Callback callback) {
+        this.f30828c = editTextBoldCursor;
+        this.f30827b = callback;
     }
 
     @Override
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        gj gjVar;
-        CharSequence s5;
-        int i7 = this.f30678a;
-        Object obj = this.f30680c;
-        switch (i7) {
+        switch (this.f30826a) {
             case 0:
-                w9 w9Var = (w9) obj;
-                f fVar = w9Var.m0;
-                if (w9Var.x()) {
-                    int itemId = menuItem.getItemId();
-                    if (itemId == 16908321) {
-                        if (w9Var.x() && w9Var.b()) {
-                            if (!w9Var.C()) {
-                                CharSequence r10 = w9Var.r();
-                                if (r10 != null) {
-                                    org.telegram.messenger.g0.g(r10);
-                                }
-                            }
-                            w9Var.u();
-                            w9Var.f(true);
-                            c8.ia iaVar = w9Var.D;
-                            if (iaVar != null) {
-                                iaVar.b();
-                            }
-                        }
-                    } else if (itemId == 16908319) {
-                        if (!w9Var.J() && (s5 = w9Var.s(w9Var.W, false)) != null) {
-                            w9Var.f32266u = 0;
-                            w9Var.v = s5.length();
-                            w9Var.u();
-                            w9Var.w();
-                            org.telegram.messenger.g0.r(fVar);
-                            org.telegram.messenger.g0.g3(fVar);
-                        }
-                    } else if (itemId == 3) {
-                        if (w9Var.f32253k0 != null) {
-                            String language = hd.E0().f24436y.getLanguage();
-                            org.telegram.ui.s sVar = w9Var.f32253k0;
-                            CharSequence r11 = w9Var.r();
-                            f fVar2 = new f(this, 10);
-                            org.telegram.ui.g4 g4Var = sVar.f51832a;
-                            b31.W0(g4Var.M, g4Var.N, (String) this.f30679b, language, r11, null, fVar2);
-                        }
-                        w9Var.u();
-                    } else if (itemId == 2131296504) {
-                        if (w9Var.x()) {
-                            r9 r9Var = w9Var.W;
-                            if (r9Var instanceof r1) {
-                                gjVar = ((r1) r9Var).getMessageObject();
-                            } else {
-                                gjVar = null;
-                            }
-                            if (gjVar != null && w9Var.r() != null) {
-                                w9Var.I(w9Var.f32266u, w9Var.v, gjVar);
-                                w9Var.f(true);
-                            }
-                        }
-                        w9Var.u();
-                    } else if (itemId == 16908320) {
-                        w9Var.D();
-                        w9Var.u();
-                    } else if (itemId == 16908322) {
-                        w9Var.H();
-                        w9Var.u();
-                    } else {
-                        w9Var.f(false);
-                    }
-                }
+                ((f9) this.f30827b).onActionItemClicked(actionMode, menuItem);
                 return true;
+            case 1:
+                return this.f30827b.onActionItemClicked(actionMode, menuItem);
             default:
-                if (((ot) obj).H(menuItem.getItemId())) {
-                    actionMode.finish();
-                    return true;
-                }
-                try {
-                    return ((ActionMode.Callback) this.f30679b).onActionItemClicked(actionMode, menuItem);
-                } catch (Exception unused) {
-                    return true;
-                }
+                return ((f9) this.f30827b).onActionItemClicked(actionMode, menuItem);
         }
     }
 
     @Override
     public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f30678a) {
+        switch (this.f30826a) {
             case 0:
-                menu.add(0, 16908321, 0, 17039361);
-                menu.add(0, 2131296504, 1, hd.N0(2131746244, null));
-                menu.add(0, 3, 2, hd.N0(2131743713, null));
-                menu.add(0, 16908320, 3, 17039363);
-                menu.add(0, 16908322, 4, 17039371);
-                menu.add(0, 16908319, 5, 17039373);
+                ((f9) this.f30827b).onCreateActionMode(actionMode, menu);
                 return true;
+            case 1:
+                return this.f30827b.onCreateActionMode(actionMode, menu);
             default:
-                ((ot) this.f30680c).F();
-                return ((ActionMode.Callback) this.f30679b).onCreateActionMode(actionMode, menu);
+                return ((f9) this.f30827b).onCreateActionMode(actionMode, menu);
         }
     }
 
     @Override
     public final void onDestroyActionMode(ActionMode actionMode) {
-        switch (this.f30678a) {
+        int i7 = this.f30826a;
+        ActionMode.Callback callback = this.f30827b;
+        switch (i7) {
             case 0:
                 return;
+            case 1:
+                callback.onDestroyActionMode(actionMode);
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f30828c;
+                Field field = EditTextBoldCursor.E1;
+                editTextBoldCursor.m();
+                editTextBoldCursor.Z0 = null;
+                return;
             default:
-                ((ot) this.f30680c).E();
-                ((ActionMode.Callback) this.f30679b).onDestroyActionMode(actionMode);
+                ((f9) callback).onDestroyActionMode(actionMode);
                 return;
         }
     }
 
     @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        Context context;
-        ClipboardManager clipboardManager;
-        boolean z10;
-        w9 w9Var;
-        r9 r9Var;
-        switch (this.f30678a) {
+    public final void onGetContentRect(ActionMode actionMode, View view, Rect rect) {
+        int i7;
+        switch (this.f30826a) {
             case 0:
-                MenuItem findItem = menu.findItem(2131296504);
-                if (findItem != null) {
-                    findItem.setVisible(((w9) this.f30680c).e());
-                }
-                MenuItem findItem2 = menu.findItem(16908321);
-                if (findItem2 != null) {
-                    findItem2.setVisible(((w9) this.f30680c).b());
-                }
-                MenuItem findItem3 = menu.findItem(16908319);
-                if (findItem3 != null && (r9Var = (w9Var = (w9) this.f30680c).W) != null) {
-                    CharSequence s5 = w9Var.s(r9Var, false);
-                    if (!((w9) this.f30680c).b()) {
-                        findItem3.setVisible(false);
-                    } else if (((w9) this.f30680c).j()) {
-                        findItem3.setVisible(true);
+                v9 v9Var = (v9) this.f30828c;
+                if (v9Var.x()) {
+                    v9Var.O();
+                    int[] l10 = v9Var.l();
+                    int i10 = 1;
+                    if (v9Var.W != null) {
+                        int[] B = v9Var.B(v9Var.f32289u);
+                        i7 = B[0] + v9Var.f32257a;
+                        int L = (((-v9Var.m()) / 2) + ((B[1] + v9Var.f32259b) + l10[1])) - org.telegram.messenger.g0.L(4.0f);
+                        if (L >= 1) {
+                            i10 = L;
+                        }
                     } else {
-                        w9 w9Var2 = (w9) this.f30680c;
-                        if (!w9Var2.Z && (w9Var2.f32266u > 0 || w9Var2.v < s5.length() - 1)) {
-                            findItem3.setVisible(true);
-                        } else {
-                            findItem3.setVisible(false);
-                        }
+                        i7 = 0;
                     }
-                }
-                MenuItem findItem4 = menu.findItem(16908320);
-                if (findItem4 != null) {
-                    findItem4.setVisible(((w9) this.f30680c) instanceof oi.g3);
-                }
-                MenuItem findItem5 = menu.findItem(16908322);
-                if (findItem5 != null) {
-                    w9 w9Var3 = (w9) this.f30680c;
-                    if (w9Var3 instanceof oi.g3) {
-                        try {
-                            v9 v9Var = w9Var3.C;
-                            if (v9Var != null) {
-                                context = v9Var.getContext();
-                            } else {
-                                context = org.telegram.messenger.t0.f26895b;
-                            }
-                        } catch (Exception unused) {
-                        }
-                        if (context != null && (clipboardManager = (ClipboardManager) context.getSystemService("clipboard")) != null) {
-                            if (clipboardManager.hasPrimaryClip()) {
-                                z10 = true;
-                                findItem5.setVisible(z10);
-                            }
-                        }
+                    int width = v9Var.F.getWidth();
+                    v9Var.N();
+                    if (v9Var.W != null) {
+                        width = v9Var.B(v9Var.v)[0] + v9Var.f32257a;
                     }
-                    z10 = false;
-                    findItem5.setVisible(z10);
+                    rect.set(Math.min(i7, width), i10, Math.max(i7, width), i10 + 1);
+                    return;
                 }
-                w9 w9Var4 = (w9) this.f30680c;
-                if (w9Var4.f32253k0 != null && w9Var4.r() != null) {
-                    org.telegram.messenger.c6.d(((w9) this.f30680c).r().toString(), new f9(this, menu), new f9(this, menu), false);
+                return;
+            case 1:
+                ActionMode.Callback callback = this.f30827b;
+                if (callback instanceof ActionMode.Callback2) {
+                    ((ActionMode.Callback2) callback).onGetContentRect(actionMode, view, rect);
+                    return;
                 } else {
-                    this.f30679b = null;
-                    b(menu);
+                    super.onGetContentRect(actionMode, view, rect);
+                    return;
                 }
-                return true;
             default:
-                return ((ActionMode.Callback) this.f30679b).onPrepareActionMode(actionMode, menu);
+                ActionMode.Callback callback2 = (ActionMode.Callback) this.f30828c;
+                if (callback2 instanceof ActionMode.Callback2) {
+                    ((ActionMode.Callback2) callback2).onGetContentRect(actionMode, view, rect);
+                    return;
+                } else {
+                    super.onGetContentRect(actionMode, view, rect);
+                    return;
+                }
         }
     }
 
-    public g9(w9 w9Var) {
-        this.f30678a = 0;
-        this.f30680c = w9Var;
-        this.f30679b = null;
+    @Override
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        switch (this.f30826a) {
+            case 0:
+                ((f9) this.f30827b).onPrepareActionMode(actionMode, menu);
+                return true;
+            case 1:
+                return this.f30827b.onPrepareActionMode(actionMode, menu);
+            default:
+                return ((ActionMode.Callback) ((f9) this.f30827b).f30710b).onPrepareActionMode(actionMode, menu);
+        }
+    }
+
+    public g9(f9 f9Var, ActionMode.Callback callback) {
+        this.f30827b = f9Var;
+        this.f30828c = callback;
+    }
+
+    public g9(v9 v9Var, f9 f9Var) {
+        this.f30828c = v9Var;
+        this.f30827b = f9Var;
     }
 
     private final void a(ActionMode actionMode) {

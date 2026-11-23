@@ -8,31 +8,31 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
 public abstract class ds0 extends FrameLayout {
-    public org.telegram.ui.ActionBar.k5 E;
+    public org.telegram.ui.ActionBar.l5 E;
     public int F;
     public bi.v2 G;
-    public jn0 H;
+    public sh0 H;
     public boolean I;
     public int J;
     public boolean K;
     public float L;
     public boolean M;
     public final Paint N;
-    public org.telegram.ui.ActionBar.h6 O;
+    public org.telegram.ui.ActionBar.i6 O;
     public Drawable P;
-    public long f34535a;
-    public boolean f34536b;
-    public ObjectAnimator f34537c;
-    public v4.k d;
-    public v4.v0 f34538e;
-    public v4.v0 f34539f;
-    public nq0 h;
-    public cs0 f34540n;
-    public oq0 f34541r;
-    public xq0 f34542s;
-    public zq0 f34543w;
-    public lq0 f34544x;
-    public wq0 f34545y;
+    public long f34441a;
+    public boolean f34442b;
+    public ObjectAnimator f34443c;
+    public v4.l d;
+    public v4.w0 f34444e;
+    public v4.w0 f34445f;
+    public mq0 h;
+    public cs0 f34446n;
+    public nq0 f34447r;
+    public wq0 f34448s;
+    public yq0 f34449w;
+    public kq0 f34450x;
+    public vq0 f34451y;
 
     public ds0(Context context) {
         super(context);
@@ -74,7 +74,7 @@ public abstract class ds0 extends FrameLayout {
                     L += org.telegram.messenger.g0.L(64.0f);
                 }
                 int i7 = this.F;
-                if (i7 == 8 || jt0.J0(i7)) {
+                if (i7 == 8 || it0.J0(i7)) {
                     L += org.telegram.messenger.g0.L(42.0f);
                 }
                 this.G.setPivotX(v2Var.getMeasuredWidth());
@@ -83,14 +83,14 @@ public abstract class ds0 extends FrameLayout {
                 this.G.setTranslationY(L);
             }
             if (fastScroll.getProgress() > 0.85f) {
-                jt0.s(this, null, false);
+                it0.s(this, null, false);
             }
         }
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f34540n) {
+        if (view == this.f34446n) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -108,7 +108,7 @@ public abstract class ds0 extends FrameLayout {
             this.P.draw(canvas);
             canvas.restore();
         } else if (this.M) {
-            int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29290a7, this.O);
+            int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394a7, this.O);
             Paint paint = this.N;
             paint.setColor(w02);
             canvas.drawRect(-L, min, getWidth() + L, max, paint);

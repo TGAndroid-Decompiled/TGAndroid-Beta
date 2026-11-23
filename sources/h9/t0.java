@@ -7,8 +7,8 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.SortedSet;
 public abstract class t0 extends d0 implements Set, j$.util.Set {
-    public static final int f14064c = 0;
-    public transient i0 f14065b;
+    public static final int f14061c = 0;
+    public transient i0 f14062b;
 
     public static int o(int i7) {
         int max = Math.max(i7, 2);
@@ -63,7 +63,7 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
                 if (i12 == 1) {
                     Object obj3 = objArr[0];
                     Objects.requireNonNull(obj3);
-                    return new f2(obj3);
+                    return new e2(obj3);
                 } else if (o(i12) < o4 / 2) {
                     return p(i12, objArr);
                 } else {
@@ -71,14 +71,14 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
                     if (i12 < (length >> 1) + (length >> 2)) {
                         objArr = Arrays.copyOf(objArr, i12);
                     }
-                    return new a2(i11, i10, i12, objArr, objArr2);
+                    return new z1(i11, i10, i12, objArr, objArr2);
                 }
             }
             Object obj4 = objArr[0];
             Objects.requireNonNull(obj4);
-            return new f2(obj4);
+            return new e2(obj4);
         }
-        return a2.f13957s;
+        return z1.f14090s;
     }
 
     public static t0 q(Collection collection) {
@@ -117,7 +117,7 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
         if (obj == this) {
             return true;
         }
-        if ((obj instanceof t0) && (this instanceof a2) && (((t0) obj) instanceof a2) && hashCode() != obj.hashCode()) {
+        if ((obj instanceof t0) && (this instanceof z1) && (((t0) obj) instanceof z1) && hashCode() != obj.hashCode()) {
             return false;
         }
         return o.k(this, obj);
@@ -125,10 +125,10 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
 
     @Override
     public i0 f() {
-        i0 i0Var = this.f14065b;
+        i0 i0Var = this.f14062b;
         if (i0Var == null) {
             i0 r10 = r();
-            this.f14065b = r10;
+            this.f14062b = r10;
             return r10;
         }
         return i0Var;
@@ -140,8 +140,8 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
     }
 
     public i0 r() {
-        Object[] array = toArray(d0.f13980a);
-        g0 g0Var = i0.f13998b;
+        Object[] array = toArray(d0.f13979a);
+        g0 g0Var = i0.f13995b;
         return i0.o(array.length, array);
     }
 }

@@ -2,11 +2,11 @@ package ch;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import org.telegram.ui.Components.p5;
-import org.telegram.ui.Components.q9;
-public final class j0 extends q9 {
+import org.telegram.ui.Components.o5;
+import org.telegram.ui.Components.p9;
+public final class j0 extends p9 {
     public boolean H;
-    public p5 I;
+    public o5 I;
     public d J;
     public boolean K;
     public final l0 L;
@@ -14,16 +14,16 @@ public final class j0 extends q9 {
     public j0(l0 l0Var, Context context) {
         super(context);
         this.L = l0Var;
-        getImageReceiver().h0(3);
+        getImageReceiver().i0(3);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.K = true;
-        p5 p5Var = this.I;
-        if (p5Var != null) {
-            p5Var.a(this);
+        o5 o5Var = this.I;
+        if (o5Var != null) {
+            o5Var.a(this);
         }
         d dVar = this.J;
         if (dVar != null) {
@@ -35,9 +35,9 @@ public final class j0 extends q9 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.K = false;
-        p5 p5Var = this.I;
-        if (p5Var != null) {
-            p5Var.n(this);
+        o5 o5Var = this.I;
+        if (o5Var != null) {
+            o5Var.n(this);
         }
         d dVar = this.J;
         if (dVar != null) {
@@ -47,9 +47,9 @@ public final class j0 extends q9 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        p5 p5Var = this.I;
-        if (p5Var != null) {
-            p5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        o5 o5Var = this.I;
+        if (o5Var != null) {
+            o5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.I.setAlpha(255);
             this.I.draw(canvas);
             this.H = true;
@@ -62,16 +62,16 @@ public final class j0 extends q9 {
             this.H = true;
             return;
         }
-        if (getImageReceiver().B() != null && getImageReceiver().B().f38188l0) {
+        if (getImageReceiver().C() != null && getImageReceiver().C().f37814l0) {
             this.H = true;
         }
-        if (!this.H && getImageReceiver().B() != null && !getImageReceiver().B().f38188l0) {
+        if (!this.H && getImageReceiver().C() != null && !getImageReceiver().C().f37814l0) {
             l0 l0Var = this.L;
             if (l0Var.f5395a == 2 && !l0Var.f5417z) {
-                getImageReceiver().B().N(getImageReceiver().B().f38179e[0] - 1, false, false);
+                getImageReceiver().C().N(getImageReceiver().C().f37805e[0] - 1, false, false);
             } else {
-                getImageReceiver().B().N(0, false, false);
-                getImageReceiver().B().start();
+                getImageReceiver().C().N(0, false, false);
+                getImageReceiver().C().start();
             }
         }
         super.onDraw(canvas);

@@ -165,7 +165,7 @@ public final class h extends z {
         if (this.valueCase_ == 8) {
             return (androidx.datastore.preferences.protobuf.h) this.value_;
         }
-        return androidx.datastore.preferences.protobuf.h.f2101c;
+        return androidx.datastore.preferences.protobuf.h.f2102c;
     }
 
     public final double w() {

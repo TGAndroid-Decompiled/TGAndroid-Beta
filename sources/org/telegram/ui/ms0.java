@@ -1,34 +1,33 @@
 package org.telegram.ui;
 
-import android.util.SparseIntArray;
-import java.util.Comparator;
-public final class ms0 implements Comparator {
-    public final int f49939a;
-    public final org.telegram.messenger.np f49940b;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class ms0 extends q11 {
+    public final bi.r6 f50106f2;
+    public final h11[] f50107g2;
+    public final PremiumPreviewFragment f50108h2;
 
-    public ms0(org.telegram.messenger.np npVar, int i7) {
-        this.f49939a = i7;
-        this.f49940b = npVar;
+    public ms0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i7, org.telegram.ui.ActionBar.i6 i6Var, int i10, bi.r6 r6Var, h11[] h11VarArr) {
+        super(premiumPreviewFragment2, activity, true, num, i7, true, i6Var, i10);
+        this.f50108h2 = premiumPreviewFragment;
+        this.f50106f2 = r6Var;
+        this.f50107g2 = h11VarArr;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int i7;
-        int i10;
-        xs0 xs0Var = (xs0) obj;
-        xs0 xs0Var2 = (xs0) obj2;
-        switch (this.f49939a) {
-            case 0:
-                SparseIntArray sparseIntArray = this.f49940b.P0;
-                i7 = sparseIntArray.get(xs0Var.f53918a, Integer.MAX_VALUE);
-                i10 = sparseIntArray.get(xs0Var2.f53918a, Integer.MAX_VALUE);
-                break;
-            default:
-                SparseIntArray sparseIntArray2 = this.f49940b.O0;
-                i7 = sparseIntArray2.get(xs0Var.f53918a, Integer.MAX_VALUE);
-                i10 = sparseIntArray2.get(xs0Var2.f53918a, Integer.MAX_VALUE);
-                break;
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        this.f50106f2.a(l10, num);
+        h11 h11Var = this.f50107g2[0];
+        if (h11Var != null) {
+            this.f50108h2.f43574v0 = null;
+            h11Var.dismiss();
         }
-        return i7 - i10;
     }
 }

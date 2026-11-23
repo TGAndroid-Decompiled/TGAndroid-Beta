@@ -1,75 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class mr extends Drawable {
-    public final Drawable f37573a;
-    public final Drawable f37574b;
-    public float f37575c;
-    public float d = 255.0f;
+import android.content.Context;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+public final class mr extends ImageView {
+    public final int f37527a = 0;
+    public Object f37528b;
+    public final ViewGroup f37529c;
 
-    public mr(Drawable drawable, Drawable drawable2) {
-        this.f37573a = drawable;
-        this.f37574b = drawable2;
-        if (drawable != null) {
-            drawable.setCallback(new lr(this, 0));
-        }
-        if (drawable2 != null) {
-            drawable2.setCallback(new lr(this, 1));
-        }
-    }
-
-    public final void a(float f10) {
-        this.f37575c = f10;
-        invalidateSelf();
+    public mr(or orVar, Context context, nd0 nd0Var) {
+        super(context);
+        this.f37529c = orVar;
+        this.f37528b = nd0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int i7 = (int) ((1.0f - this.f37575c) * this.d);
-        Drawable drawable = this.f37573a;
-        drawable.setAlpha(i7);
-        int i10 = (int) (this.d * this.f37575c);
-        Drawable drawable2 = this.f37574b;
-        drawable2.setAlpha(i10);
-        if (i7 > 0) {
-            drawable.draw(canvas);
-        }
-        if (i10 > 0) {
-            drawable2.draw(canvas);
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f37527a) {
+            case 0:
+                or orVar = (or) this.f37529c;
+                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (orVar.f38256n || orVar.f38255f)) {
+                    orVar.f38256n = false;
+                    orVar.f38255f = false;
+                    removeCallbacks(orVar.f38257r);
+                    removeCallbacks(orVar.h);
+                }
+                super.onTouchEvent(motionEvent);
+                return ((GestureDetector) ((nd0) this.f37528b).f37766b).onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
         }
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f37573a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f37573a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f37573a.setBounds(rect);
-        this.f37574b.setBounds(rect);
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        this.d = i7;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f37573a.setColorFilter(colorFilter);
+    public mr(xi0 xi0Var, Context context) {
+        super(context);
+        this.f37529c = xi0Var;
     }
 }

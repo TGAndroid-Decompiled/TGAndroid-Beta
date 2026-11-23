@@ -12,36 +12,36 @@ import android.widget.TextView;
 import c8.na;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.p5;
-public final class m1 extends FrameLayout implements b6 {
-    public final ImageView f53207a;
-    public final TextView f53208b;
-    public final n2 f53209c;
-    public p5 d;
-    public String f53210e;
-    public boolean f53211f;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.o5;
+public final class m1 extends FrameLayout implements c6 {
+    public final ImageView f53478a;
+    public final TextView f53479b;
+    public final n2 f53480c;
+    public o5 d;
+    public String f53481e;
+    public boolean f53482f;
     public ShapeDrawable h;
 
     public m1(Context context) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f53207a = imageView;
+        this.f53478a = imageView;
         addView(imageView, na.d(32, 32.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f53208b = textView;
-        t6.U(textView, m6.G6, null);
+        this.f53479b = textView;
+        u6.U(textView, n6.G6, null);
         textView.setTextSize(1, 16.0f);
         textView.setMaxLines(1);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
         addView(textView, na.d(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
         n2 n2Var = new n2(11, context, this);
-        this.f53209c = n2Var;
-        t6.U(n2Var, m6.f29739y6, null);
+        this.f53480c = n2Var;
+        u6.U(n2Var, n6.f29843y6, null);
         n2Var.setTextSize(1, 13.0f);
         n2Var.setMaxLines(1);
         n2Var.setEllipsize(truncateAt);
@@ -49,16 +49,16 @@ public final class m1 extends FrameLayout implements b6 {
         addView(n2Var, na.d(-1, -2.0f, 55, 68.0f, 30.0f, 54.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        imageView2.setImageResource(2131231244);
-        t6.s(imageView2, m6.A6, null, PorterDuff.Mode.SRC_IN);
+        imageView2.setImageResource(2131231247);
+        u6.s(imageView2, n6.A6, null, PorterDuff.Mode.SRC_IN);
         addView(imageView2, na.d(32, 32.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f53211f) {
-            canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getHeight() - 1, getWidth(), getHeight(), m6.f29470k0);
+        if (this.f53482f) {
+            canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getHeight() - 1, getWidth(), getHeight(), n6.f29574k0);
         }
     }
 
@@ -72,8 +72,8 @@ public final class m1 extends FrameLayout implements b6 {
         try {
             ShapeDrawable shapeDrawable = this.h;
             if (shapeDrawable != null) {
-                m6.C1(m6.r1(0.1f, m6.x0(null, m6.G6, false)), shapeDrawable);
-                ImageView imageView = this.f53207a;
+                n6.C1(n6.r1(0.1f, n6.x0(null, n6.G6, false)), shapeDrawable);
+                ImageView imageView = this.f53478a;
                 if (imageView != null) {
                     imageView.invalidate();
                 }

@@ -4,29 +4,29 @@ import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 public final class v0 {
-    public final SensorManager f18982a;
-    public Sensor f18983b;
-    public long f18984c;
+    public final SensorManager f19079a;
+    public Sensor f19080b;
+    public long f19081c;
     public Sensor d;
-    public long f18985e;
-    public Sensor f18986f;
-    public Sensor f18987g;
+    public long f19082e;
+    public Sensor f19083f;
+    public Sensor f19084g;
     public long h;
-    public Sensor f18988i;
-    public long f18989j;
-    public org.telegram.ui.web.s0 f18990k;
-    public boolean f18991l;
-    public kg.s0 f18992m;
-    public kg.s0 f18994o;
-    public kg.s0 f18996q;
-    public kg.s0 f18998s;
-    public final s0 f18993n = new s0(this, 0);
-    public final s0 f18995p = new s0(this, 1);
-    public final t0 f18997r = new t0(this);
-    public final u0 f18999t = new u0(this);
+    public Sensor f19085i;
+    public long f19086j;
+    public org.telegram.ui.web.s0 f19087k;
+    public boolean f19088l;
+    public kg.i0 f19089m;
+    public kg.i0 f19091o;
+    public kg.i0 f19093q;
+    public kg.i0 f19095s;
+    public final s0 f19090n = new s0(this, 0);
+    public final s0 f19092p = new s0(this, 1);
+    public final t0 f19094r = new t0(this);
+    public final u0 f19096t = new u0(this);
 
     public v0(Context context) {
-        this.f18982a = (SensorManager) context.getSystemService("sensor");
+        this.f19079a = (SensorManager) context.getSystemService("sensor");
     }
 
     public static int a(long j3) {
@@ -40,67 +40,67 @@ public final class v0 {
     }
 
     public final void b() {
-        if (!this.f18991l) {
-            this.f18991l = true;
-            SensorManager sensorManager = this.f18982a;
+        if (!this.f19088l) {
+            this.f19088l = true;
+            SensorManager sensorManager = this.f19079a;
             if (sensorManager != null) {
-                Sensor sensor = this.f18983b;
+                Sensor sensor = this.f19080b;
                 if (sensor != null) {
-                    sensorManager.unregisterListener(this.f18993n, sensor);
+                    sensorManager.unregisterListener(this.f19090n, sensor);
                 }
-                kg.s0 s0Var = this.f18992m;
-                if (s0Var != null) {
-                    org.telegram.messenger.g0.r(s0Var);
-                    this.f18992m = null;
+                kg.i0 i0Var = this.f19089m;
+                if (i0Var != null) {
+                    org.telegram.messenger.g0.r(i0Var);
+                    this.f19089m = null;
                 }
                 Sensor sensor2 = this.d;
                 if (sensor2 != null) {
-                    sensorManager.unregisterListener(this.f18995p, sensor2);
+                    sensorManager.unregisterListener(this.f19092p, sensor2);
                 }
-                kg.s0 s0Var2 = this.f18994o;
-                if (s0Var2 != null) {
-                    org.telegram.messenger.g0.r(s0Var2);
-                    this.f18994o = null;
+                kg.i0 i0Var2 = this.f19091o;
+                if (i0Var2 != null) {
+                    org.telegram.messenger.g0.r(i0Var2);
+                    this.f19091o = null;
                 }
-                Sensor sensor3 = this.f18987g;
-                t0 t0Var = this.f18997r;
+                Sensor sensor3 = this.f19084g;
+                t0 t0Var = this.f19094r;
                 if (sensor3 != null) {
                     sensorManager.unregisterListener(t0Var, sensor3);
                 }
-                Sensor sensor4 = this.f18986f;
+                Sensor sensor4 = this.f19083f;
                 if (sensor4 != null) {
                     sensorManager.unregisterListener(t0Var, sensor4);
                 }
-                kg.s0 s0Var3 = this.f18996q;
-                if (s0Var3 != null) {
-                    org.telegram.messenger.g0.r(s0Var3);
-                    this.f18996q = null;
+                kg.i0 i0Var3 = this.f19093q;
+                if (i0Var3 != null) {
+                    org.telegram.messenger.g0.r(i0Var3);
+                    this.f19093q = null;
                 }
-                Sensor sensor5 = this.f18988i;
+                Sensor sensor5 = this.f19085i;
                 if (sensor5 != null) {
-                    sensorManager.unregisterListener(this.f18999t, sensor5);
+                    sensorManager.unregisterListener(this.f19096t, sensor5);
                 }
-                kg.s0 s0Var4 = this.f18998s;
-                if (s0Var4 != null) {
-                    org.telegram.messenger.g0.r(s0Var4);
-                    this.f18998s = null;
+                kg.i0 i0Var4 = this.f19095s;
+                if (i0Var4 != null) {
+                    org.telegram.messenger.g0.r(i0Var4);
+                    this.f19095s = null;
                 }
             }
         }
     }
 
     public final boolean c(long j3) {
-        SensorManager sensorManager = this.f18982a;
+        SensorManager sensorManager = this.f19079a;
         if (sensorManager != null) {
-            if (this.f18983b == null) {
+            if (this.f19080b == null) {
                 Sensor defaultSensor = sensorManager.getDefaultSensor(1);
-                this.f18983b = defaultSensor;
+                this.f19080b = defaultSensor;
                 if (defaultSensor == null) {
                     return false;
                 }
-                this.f18984c = j3;
-                if (!this.f18991l) {
-                    sensorManager.registerListener(this.f18993n, defaultSensor, a(j3));
+                this.f19081c = j3;
+                if (!this.f19088l) {
+                    sensorManager.registerListener(this.f19090n, defaultSensor, a(j3));
                 }
             }
             return true;
@@ -109,7 +109,7 @@ public final class v0 {
     }
 
     public final boolean d(long j3) {
-        SensorManager sensorManager = this.f18982a;
+        SensorManager sensorManager = this.f19079a;
         if (sensorManager != null) {
             if (this.d == null) {
                 Sensor defaultSensor = sensorManager.getDefaultSensor(4);
@@ -117,9 +117,9 @@ public final class v0 {
                 if (defaultSensor == null) {
                     return false;
                 }
-                this.f18985e = j3;
-                if (!this.f18991l) {
-                    sensorManager.registerListener(this.f18995p, defaultSensor, a(j3));
+                this.f19082e = j3;
+                if (!this.f19088l) {
+                    sensorManager.registerListener(this.f19092p, defaultSensor, a(j3));
                 }
             }
             return true;
@@ -129,32 +129,32 @@ public final class v0 {
 
     public final boolean e(long j3, boolean z10) {
         Sensor sensor;
-        SensorManager sensorManager = this.f18982a;
+        SensorManager sensorManager = this.f19079a;
         if (sensorManager != null) {
-            u0 u0Var = this.f18999t;
-            t0 t0Var = this.f18997r;
+            u0 u0Var = this.f19096t;
+            t0 t0Var = this.f19094r;
             if (z10) {
-                if (this.f18988i != null) {
-                    kg.s0 s0Var = this.f18998s;
-                    if (s0Var != null) {
-                        org.telegram.messenger.g0.r(s0Var);
-                        this.f18998s = null;
+                if (this.f19085i != null) {
+                    kg.i0 i0Var = this.f19095s;
+                    if (i0Var != null) {
+                        org.telegram.messenger.g0.r(i0Var);
+                        this.f19095s = null;
                     }
-                    if (!this.f18991l && (sensor = this.f18988i) != null) {
+                    if (!this.f19088l && (sensor = this.f19085i) != null) {
                         sensorManager.unregisterListener(u0Var, sensor);
                     }
-                    this.f18988i = null;
+                    this.f19085i = null;
                 }
-                if (this.f18986f == null || this.f18987g == null) {
-                    this.f18987g = sensorManager.getDefaultSensor(1);
+                if (this.f19083f == null || this.f19084g == null) {
+                    this.f19084g = sensorManager.getDefaultSensor(1);
                     Sensor defaultSensor = sensorManager.getDefaultSensor(2);
-                    this.f18986f = defaultSensor;
-                    Sensor sensor2 = this.f18987g;
+                    this.f19083f = defaultSensor;
+                    Sensor sensor2 = this.f19084g;
                     if (sensor2 != null && defaultSensor != null) {
                         this.h = j3;
-                        if (!this.f18991l) {
+                        if (!this.f19088l) {
                             sensorManager.registerListener(t0Var, sensor2, a(j3));
-                            sensorManager.registerListener(t0Var, this.f18986f, a(j3));
+                            sensorManager.registerListener(t0Var, this.f19083f, a(j3));
                             return true;
                         }
                     } else {
@@ -162,33 +162,33 @@ public final class v0 {
                     }
                 }
             } else {
-                if (this.f18986f != null || this.f18987g != null) {
-                    kg.s0 s0Var2 = this.f18996q;
-                    if (s0Var2 != null) {
-                        org.telegram.messenger.g0.r(s0Var2);
-                        this.f18996q = null;
+                if (this.f19083f != null || this.f19084g != null) {
+                    kg.i0 i0Var2 = this.f19093q;
+                    if (i0Var2 != null) {
+                        org.telegram.messenger.g0.r(i0Var2);
+                        this.f19093q = null;
                     }
-                    if (!this.f18991l) {
-                        Sensor sensor3 = this.f18987g;
+                    if (!this.f19088l) {
+                        Sensor sensor3 = this.f19084g;
                         if (sensor3 != null) {
                             sensorManager.unregisterListener(t0Var, sensor3);
                         }
-                        Sensor sensor4 = this.f18986f;
+                        Sensor sensor4 = this.f19083f;
                         if (sensor4 != null) {
                             sensorManager.unregisterListener(t0Var, sensor4);
                         }
                     }
-                    this.f18987g = null;
-                    this.f18986f = null;
+                    this.f19084g = null;
+                    this.f19083f = null;
                 }
-                if (this.f18988i == null) {
+                if (this.f19085i == null) {
                     Sensor defaultSensor2 = sensorManager.getDefaultSensor(15);
-                    this.f18988i = defaultSensor2;
+                    this.f19085i = defaultSensor2;
                     if (defaultSensor2 == null) {
                         return false;
                     }
-                    this.f18989j = j3;
-                    if (!this.f18991l) {
+                    this.f19086j = j3;
+                    if (!this.f19088l) {
                         sensorManager.registerListener(u0Var, defaultSensor2, a(j3));
                     }
                 }
@@ -199,28 +199,28 @@ public final class v0 {
     }
 
     public final boolean f() {
-        SensorManager sensorManager = this.f18982a;
+        SensorManager sensorManager = this.f19079a;
         if (sensorManager == null) {
             return false;
         }
-        Sensor sensor = this.f18983b;
+        Sensor sensor = this.f19080b;
         if (sensor == null) {
             return true;
         }
-        if (!this.f18991l) {
-            sensorManager.unregisterListener(this.f18993n, sensor);
+        if (!this.f19088l) {
+            sensorManager.unregisterListener(this.f19090n, sensor);
         }
-        kg.s0 s0Var = this.f18992m;
-        if (s0Var != null) {
-            org.telegram.messenger.g0.r(s0Var);
-            this.f18992m = null;
+        kg.i0 i0Var = this.f19089m;
+        if (i0Var != null) {
+            org.telegram.messenger.g0.r(i0Var);
+            this.f19089m = null;
         }
-        this.f18983b = null;
+        this.f19080b = null;
         return true;
     }
 
     public final boolean g() {
-        SensorManager sensorManager = this.f18982a;
+        SensorManager sensorManager = this.f19079a;
         if (sensorManager == null) {
             return false;
         }
@@ -228,54 +228,54 @@ public final class v0 {
         if (sensor == null) {
             return true;
         }
-        if (!this.f18991l) {
-            sensorManager.unregisterListener(this.f18995p, sensor);
+        if (!this.f19088l) {
+            sensorManager.unregisterListener(this.f19092p, sensor);
         }
-        kg.s0 s0Var = this.f18994o;
-        if (s0Var != null) {
-            org.telegram.messenger.g0.r(s0Var);
-            this.f18994o = null;
+        kg.i0 i0Var = this.f19091o;
+        if (i0Var != null) {
+            org.telegram.messenger.g0.r(i0Var);
+            this.f19091o = null;
         }
         this.d = null;
         return true;
     }
 
     public final boolean h() {
-        SensorManager sensorManager = this.f18982a;
+        SensorManager sensorManager = this.f19079a;
         if (sensorManager == null) {
             return false;
         }
-        Sensor sensor = this.f18987g;
-        if (sensor == null && this.f18986f == null && this.f18988i == null) {
+        Sensor sensor = this.f19084g;
+        if (sensor == null && this.f19083f == null && this.f19085i == null) {
             return true;
         }
-        if (!this.f18991l) {
-            t0 t0Var = this.f18997r;
+        if (!this.f19088l) {
+            t0 t0Var = this.f19094r;
             if (sensor != null) {
                 sensorManager.unregisterListener(t0Var, sensor);
             }
-            Sensor sensor2 = this.f18986f;
+            Sensor sensor2 = this.f19083f;
             if (sensor2 != null) {
                 sensorManager.unregisterListener(t0Var, sensor2);
             }
-            Sensor sensor3 = this.f18988i;
+            Sensor sensor3 = this.f19085i;
             if (sensor3 != null) {
-                sensorManager.unregisterListener(this.f18999t, sensor3);
+                sensorManager.unregisterListener(this.f19096t, sensor3);
             }
         }
-        kg.s0 s0Var = this.f18996q;
-        if (s0Var != null) {
-            org.telegram.messenger.g0.r(s0Var);
-            this.f18996q = null;
+        kg.i0 i0Var = this.f19093q;
+        if (i0Var != null) {
+            org.telegram.messenger.g0.r(i0Var);
+            this.f19093q = null;
         }
-        kg.s0 s0Var2 = this.f18998s;
-        if (s0Var2 != null) {
-            org.telegram.messenger.g0.r(s0Var2);
-            this.f18998s = null;
+        kg.i0 i0Var2 = this.f19095s;
+        if (i0Var2 != null) {
+            org.telegram.messenger.g0.r(i0Var2);
+            this.f19095s = null;
         }
-        this.f18987g = null;
-        this.f18986f = null;
-        this.f18988i = null;
+        this.f19084g = null;
+        this.f19083f = null;
+        this.f19085i = null;
         return true;
     }
 }

@@ -1,32 +1,42 @@
 package org.telegram.ui;
 
-import android.view.ViewTreeObserver;
-public final class z20 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f54347a;
-    public final f40 f54348b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.Paint;
+public final class z20 extends AnimatorListenerAdapter {
+    public final int f54500a;
+    public final e40 f54501b;
 
-    public z20(f40 f40Var, int i7) {
-        this.f54347a = i7;
-        this.f54348b = f40Var;
+    public z20(e40 e40Var, int i7) {
+        this.f54500a = i7;
+        this.f54501b = e40Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        switch (this.f54347a) {
+    public final void onAnimationEnd(Animator animator) {
+        int i7;
+        switch (this.f54500a) {
             case 0:
-                f40 f40Var = this.f54348b;
-                f40Var.L1.getViewTreeObserver().removeOnPreDrawListener(this);
-                f40Var.Z3.j(null);
-                org.telegram.messenger.g0.Z3(f40Var.f47477l4);
-                f40Var.f30142b.requestLayout();
-                return false;
+                e40 e40Var = this.f54501b;
+                e40Var.Q1.setVisibility(4);
+                e40Var.R1.setVisibility(4);
+                e40Var.P1.setVisibility(4);
+                return;
+            case 1:
+                this.f54501b.f47329c2 = null;
+                return;
             default:
-                f40 f40Var2 = this.f54348b;
-                f40Var2.L1.getViewTreeObserver().removeOnPreDrawListener(this);
-                f40Var2.Z3.j(null);
-                org.telegram.messenger.g0.Z3(f40Var2.f47477l4);
-                f40Var2.f30142b.requestLayout();
-                return false;
+                e40 e40Var2 = this.f54501b;
+                e40Var2.f47330c3 = null;
+                Paint paint = e40Var2.f47326b3;
+                if (e40Var2.S3 == 3) {
+                    i7 = -1163700;
+                } else {
+                    i7 = -12761513;
+                }
+                paint.setColor(i7);
+                e40Var2.f47322a3.invalidate();
+                return;
         }
     }
 }

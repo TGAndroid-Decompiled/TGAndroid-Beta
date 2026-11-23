@@ -8,13 +8,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import f6.d0;
 import f6.e0;
-import hi.x4;
-import j6.w;
+import h6.o;
+import j6.x;
 import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 import m6.m;
 import m6.n;
-import sg.h0;
 import z7.ma;
 public final class h implements Runnable {
     public final int f762a;
@@ -29,10 +28,10 @@ public final class h implements Runnable {
     private final void a() {
         f6.f fVar;
         d0 d0Var = (d0) this.f763b;
-        HashMap hashMap = d0Var.f11372b.D;
+        HashMap hashMap = d0Var.f11371b.D;
         String str = (String) this.f764c;
         synchronized (hashMap) {
-            fVar = (f6.f) d0Var.f11372b.D.get(str);
+            fVar = (f6.f) d0Var.f11371b.D.get(str);
         }
         if (fVar != null) {
             ((h6.h) fVar).o((String) this.d);
@@ -43,13 +42,13 @@ public final class h implements Runnable {
 
     private final void b() {
         f6.f fVar;
-        synchronized (((w) this.f763b).I) {
-            fVar = (f6.f) ((w) this.f763b).I.get((String) this.f764c);
+        synchronized (((x) this.f763b).I) {
+            fVar = (f6.f) ((x) this.f763b).I.get((String) this.f764c);
         }
         if (fVar != null) {
             ((h6.h) fVar).o((String) this.d);
         } else {
-            w.Y.b("Discarded message for unknown namespace '%s'", (String) this.f764c);
+            x.Y.b("Discarded message for unknown namespace '%s'", (String) this.f764c);
         }
     }
 
@@ -57,7 +56,7 @@ public final class h implements Runnable {
         int i7;
         Task k10;
         m6.a aVar = (m6.a) this.f764c;
-        Intent intent = aVar.f20837a;
+        Intent intent = aVar.f20933a;
         String stringExtra = intent.getStringExtra("google.message_id");
         if (stringExtra == null) {
             stringExtra = intent.getStringExtra("message_id");
@@ -68,13 +67,13 @@ public final class h implements Runnable {
             k10 = Tasks.forResult(null);
         } else {
             Bundle bundle = new Bundle();
-            Intent intent2 = aVar.f20837a;
+            Intent intent2 = aVar.f20933a;
             String stringExtra2 = intent2.getStringExtra("google.message_id");
             if (stringExtra2 == null) {
                 stringExtra2 = intent2.getStringExtra("message_id");
             }
             bundle.putString("google.message_id", stringExtra2);
-            Intent intent3 = aVar.f20837a;
+            Intent intent3 = aVar.f20933a;
             if (intent3.hasExtra("google.product_id")) {
                 num = Integer.valueOf(intent3.getIntExtra("google.product_id", 0));
             }
@@ -84,12 +83,12 @@ public final class h implements Runnable {
             bundle.putBoolean("supports_message_handled", true);
             n i10 = n.i((Context) this.f763b);
             synchronized (i10) {
-                i7 = i10.f20875a;
-                i10.f20875a = i7 + 1;
+                i7 = i10.f20971a;
+                i10.f20971a = i7 + 1;
             }
             k10 = i10.k(new m(i7, 2, bundle, 0));
         }
-        k10.addOnCompleteListener(m6.d.f20852c, new x4((CountDownLatch) this.d, 13));
+        k10.addOnCompleteListener(m6.d.f20948c, new o((CountDownLatch) this.d, 15));
     }
 
     @Override
@@ -111,10 +110,10 @@ public final class h implements Runnable {
         this.d = obj;
     }
 
-    public h(ma maVar, h0 h0Var, String str) {
+    public h(ma maVar, s2.e eVar, String str) {
         this.f762a = 12;
         this.f763b = maVar;
-        this.f764c = h0Var;
+        this.f764c = eVar;
         this.d = str;
     }
 }

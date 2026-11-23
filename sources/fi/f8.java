@@ -1,7 +1,7 @@
 package fi;
 
-import org.telegram.ui.qa0;
-public final class f8 extends qa0 {
+import org.telegram.ui.pa0;
+public final class f8 extends pa0 {
     public final int X0;
 
     public f8(int i7, int i10) {

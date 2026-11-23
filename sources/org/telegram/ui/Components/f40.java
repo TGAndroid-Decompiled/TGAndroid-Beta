@@ -1,15 +1,23 @@
 package org.telegram.ui.Components;
-public final class f40 implements Runnable {
-    public final int f35062a;
-    public final c50 f35063b;
 
-    public f40(c50 c50Var, int i7) {
-        this.f35062a = i7;
-        this.f35063b = c50Var;
+import android.content.Context;
+public final class f40 extends n40 {
+    public final z40 d;
+
+    public f40(z40 z40Var, Context context) {
+        super(z40Var, context);
+        this.d = z40Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.f40.run():void");
+    public final void setAlpha(float f10) {
+        super.setAlpha(f10);
+        this.d.invalidate();
+    }
+
+    @Override
+    public final void setRotationY(float f10) {
+        super.setRotationY(f10);
+        this.d.invalidate();
     }
 }

@@ -1,58 +1,27 @@
 package org.telegram.messenger;
-
-import android.app.Activity;
-import android.content.Context;
 public final class wm implements Runnable {
-    public final int f27737a;
-    public final Context f27738b;
-    public final org.telegram.ui.ActionBar.t1 f27739c;
+    public final int f27826a;
+    public final c1 f27827b;
+    public final Object f27828c;
+    public final Object d;
+    public final Object f27829e;
+    public final Object f27830f;
+    public final Object h;
+    public final Object f27831n;
 
-    public wm(int i7, Context context, org.telegram.ui.ActionBar.t1 t1Var) {
-        this.f27737a = i7;
-        this.f27738b = context;
-        this.f27739c = t1Var;
+    public wm(c1 c1Var, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7) {
+        this.f27826a = i7;
+        this.f27827b = c1Var;
+        this.h = obj;
+        this.f27828c = obj2;
+        this.d = obj3;
+        this.f27829e = obj4;
+        this.f27830f = obj5;
+        this.f27831n = obj6;
     }
 
     @Override
     public final void run() {
-        switch (this.f27737a) {
-            case 0:
-                org.telegram.ui.ActionBar.t1 t1Var = this.f27739c;
-                if (!((Activity) this.f27738b).isFinishing()) {
-                    try {
-                        t1Var.dismiss();
-                        return;
-                    } catch (Exception e10) {
-                        a8.g(e10, true);
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.t1 t1Var2 = this.f27739c;
-                if (!((Activity) this.f27738b).isFinishing()) {
-                    try {
-                        t1Var2.dismiss();
-                        return;
-                    } catch (Exception e11) {
-                        a8.g(e11, true);
-                        return;
-                    }
-                }
-                return;
-            default:
-                Context context = this.f27738b;
-                org.telegram.ui.ActionBar.t1 t1Var3 = this.f27739c;
-                try {
-                    if (!((Activity) context).isFinishing()) {
-                        t1Var3.dismiss();
-                        return;
-                    }
-                    return;
-                } catch (Exception e12) {
-                    a8.g(e12, true);
-                    return;
-                }
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.wm.run():void");
     }
 }

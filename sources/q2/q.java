@@ -3,33 +3,33 @@ package q2;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.telegram.ui.Cells.c5;
+import org.telegram.ui.ActionBar.i5;
 public interface q {
-    byte[] A(byte[] bArr, byte[] bArr2);
+    void B(byte[] bArr, m2.i iVar);
 
-    void C(byte[] bArr);
+    o E(byte[] bArr, List list, int i7, HashMap hashMap);
 
-    void F(byte[] bArr, m2.i iVar);
+    int G();
 
-    o G(byte[] bArr, List list, int i7, HashMap hashMap);
+    boolean N(String str, byte[] bArr);
 
-    int H();
+    Map a(byte[] bArr);
 
-    boolean O(String str, byte[] bArr);
+    p g();
 
-    void a(c5 c5Var);
+    k2.b j(byte[] bArr);
 
-    Map d(byte[] bArr);
+    byte[] l();
 
-    p n();
+    void n(byte[] bArr, byte[] bArr2);
 
-    k2.b r(byte[] bArr);
+    void r(byte[] bArr);
 
     void release();
 
-    byte[] t();
+    byte[] u(byte[] bArr, byte[] bArr2);
 
-    void u(byte[] bArr, byte[] bArr2);
+    void v(i5 i5Var);
 
-    void x(byte[] bArr);
+    void w(byte[] bArr);
 }

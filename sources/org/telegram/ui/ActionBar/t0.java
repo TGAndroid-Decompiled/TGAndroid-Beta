@@ -1,36 +1,36 @@
 package org.telegram.ui.ActionBar;
 
 import android.view.ViewGroup;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.gd;
 import org.telegram.ui.Components.an0;
 import org.telegram.ui.Components.dn0;
-import org.telegram.ui.Components.pu0;
+import org.telegram.ui.Components.ou0;
+import org.telegram.ui.Components.wz;
 import org.telegram.ui.Components.xm0;
 import org.telegram.ui.Components.zm0;
-import org.telegram.ui.Components.zz;
-public final class t0 extends zz {
-    public final int f29973e;
-    public final ViewGroup f29974f;
+public final class t0 extends wz {
+    public final int f30065e;
+    public final ViewGroup f30066f;
 
     public t0(ViewGroup viewGroup, int i7) {
         super(false);
-        this.f29973e = i7;
-        this.f29974f = viewGroup;
+        this.f30065e = i7;
+        this.f30066f = viewGroup;
     }
 
     @Override
     public CharSequence d() {
-        int i7 = this.f29973e;
-        ViewGroup viewGroup = this.f29974f;
+        int i7 = this.f30065e;
+        ViewGroup viewGroup = this.f30066f;
         switch (i7) {
             case 0:
-                return pu0.a(((u0) viewGroup).getSpeed()) + "x  " + hd.N0(2131754758, null);
+                return ou0.a(((u0) viewGroup).getSpeed()) + "x  " + gd.N0(2131754758, null);
             case 1:
             default:
                 return super.d();
             case 2:
-                zm0 zm0Var = ((an0) viewGroup).f33538y;
+                zm0 zm0Var = ((an0) viewGroup).f33521y;
                 if (zm0Var == null) {
                     return null;
                 }
@@ -40,16 +40,16 @@ public final class t0 extends zz {
 
     @Override
     public float h() {
-        switch (this.f29973e) {
+        switch (this.f30065e) {
             case 0:
                 return 0.2f;
             case 1:
             default:
                 return super.h();
             case 2:
-                int r02 = ((an0) this.f29974f).f33538y.r0();
-                if (r02 > 0) {
-                    return 1.0f / r02;
+                int a02 = ((an0) this.f30066f).f33521y.a0();
+                if (a02 > 0) {
+                    return 1.0f / a02;
                 }
                 return 0.05f;
         }
@@ -57,7 +57,7 @@ public final class t0 extends zz {
 
     @Override
     public float i() {
-        switch (this.f29973e) {
+        switch (this.f30065e) {
             case 0:
                 return 3.0f;
             default:
@@ -67,7 +67,7 @@ public final class t0 extends zz {
 
     @Override
     public float j() {
-        switch (this.f29973e) {
+        switch (this.f30065e) {
             case 0:
                 return 0.2f;
             default:
@@ -80,48 +80,48 @@ public final class t0 extends zz {
         float f10;
         int i7;
         int i10;
-        switch (this.f29973e) {
+        switch (this.f30065e) {
             case 0:
-                return ((u0) this.f29974f).getSpeed();
+                return ((u0) this.f30066f).getSpeed();
             case 1:
-                org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) this.f29974f;
+                org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) this.f30066f;
                 org.telegram.ui.Cells.j1 j1Var = r1Var.D4;
                 if (r1Var.Q5.I3()) {
-                    f10 = j1Var.f42126b;
-                    i7 = j1Var.f42129f;
+                    f10 = j1Var.f42103b;
+                    i7 = j1Var.f42106f;
                     i10 = xm0.E;
-                } else if (gj.R4(r1Var.Q5.f24177k)) {
+                } else if (fj.R4(r1Var.Q5.f24073k)) {
                     if (r1Var.C4) {
                         dn0 dn0Var = r1Var.E4;
-                        return dn0Var.f34498a / dn0Var.f34503g;
+                        return dn0Var.f34395a / dn0Var.f34400g;
                     }
-                    f10 = j1Var.f42126b;
-                    i7 = j1Var.f42129f;
+                    f10 = j1Var.f42103b;
+                    i7 = j1Var.f42106f;
                     i10 = xm0.E;
                 } else if (r1Var.Q5.h4()) {
-                    return r1Var.Q5.f24137b0;
+                    return r1Var.Q5.f24033b0;
                 } else {
                     return 0.0f;
                 }
                 return f10 / (i7 - i10);
             default:
-                return ((an0) this.f29974f).getProgress();
+                return ((an0) this.f30066f).getProgress();
         }
     }
 
     @Override
     public final void l(float f10) {
-        switch (this.f29973e) {
+        switch (this.f30065e) {
             case 0:
-                ((u0) this.f29974f).e(true, f10);
+                ((u0) this.f30066f).e(true, f10);
                 return;
             case 1:
-                org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) this.f29974f;
+                org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) this.f30066f;
                 dn0 dn0Var = r1Var.E4;
                 org.telegram.ui.Cells.j1 j1Var = r1Var.D4;
                 if (r1Var.Q5.I3()) {
                     j1Var.h(f10);
-                } else if (gj.R4(r1Var.Q5.f24177k)) {
+                } else if (fj.R4(r1Var.Q5.f24073k)) {
                     if (r1Var.C4) {
                         dn0Var.g(false, f10);
                     } else {
@@ -135,26 +135,26 @@ public final class t0 extends zz {
                     } else if (j1Var != null) {
                         j1Var.h(f10);
                     }
-                    r1Var.Q5.f24137b0 = f10;
+                    r1Var.Q5.f24033b0 = f10;
                 } else {
                     return;
                 }
-                r1Var.a(f10);
+                r1Var.e(f10);
                 r1Var.invalidate();
                 return;
             default:
-                an0 an0Var = (an0) this.f29974f;
-                an0Var.f33537x = true;
+                an0 an0Var = (an0) this.f30066f;
+                an0Var.f33520x = true;
                 an0Var.setProgress(f10);
                 an0Var.f(true, f10);
-                an0Var.f33537x = false;
+                an0Var.f33520x = false;
                 return;
         }
     }
 
     public t0(an0 an0Var, boolean z10) {
         super(z10);
-        this.f29973e = 2;
-        this.f29974f = an0Var;
+        this.f30065e = 2;
+        this.f30066f = an0Var;
     }
 }

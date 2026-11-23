@@ -1,26 +1,26 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class qp implements org.telegram.messenger.pr, org.telegram.ui.ActionBar.q1, org.telegram.ui.Components.rj0, org.telegram.ui.Components.sj0 {
-    public final int f51250a;
-    public final rq f51251b;
+public final class qp implements org.telegram.messenger.or, org.telegram.ui.ActionBar.q1, org.telegram.ui.Components.rj0, org.telegram.ui.Components.sj0 {
+    public final int f51500a;
+    public final rq f51501b;
 
     public qp(rq rqVar, int i7) {
-        this.f51250a = i7;
-        this.f51251b = rqVar;
+        this.f51500a = i7;
+        this.f51501b = rqVar;
     }
 
     @Override
-    public boolean b1(View view) {
+    public boolean U0(View view) {
         return false;
     }
 
     @Override
-    public boolean c(int i7, View view) {
-        rq rqVar = this.f51251b;
+    public boolean b(int i7, View view) {
+        rq rqVar = this.f51501b;
         if (rqVar.getParentActivity() != null) {
-            v4.h0 adapter = rqVar.f51731c.getAdapter();
-            nq nqVar = rqVar.f51725a;
+            v4.i0 adapter = rqVar.f51816c.getAdapter();
+            nq nqVar = rqVar.f51810a;
             if (adapter == nqVar) {
                 return rqVar.m0(nqVar.E(i7), false, view);
             }
@@ -29,28 +29,28 @@ public final class qp implements org.telegram.messenger.pr, org.telegram.ui.Acti
     }
 
     @Override
-    public void f(float f10, float f11, int i7, View view) {
-        rq.a0(this.f51251b, view, i7);
+    public void g(float f10, float f11, int i7, View view) {
+        rq.a0(this.f51501b, view, i7);
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f51250a) {
+    public void i(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f51500a) {
             case 1:
-                this.f51251b.z0();
+                this.f51501b.z0();
                 return;
             default:
-                this.f51251b.finishFragment();
+                this.f51501b.finishFragment();
                 return;
         }
     }
 
     @Override
     public void run(long j3) {
-        rq.Z(this.f51251b, j3);
+        rq.Z(this.f51501b, j3);
     }
 
     @Override
-    public void s0(View view, float f10, float f11) {
+    public void f0(View view, float f10, float f11) {
     }
 }

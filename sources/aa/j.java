@@ -23,14 +23,14 @@ public final class j {
             }
             ga.d dVar = iVar.f812a;
             h hVar = i.d;
-            File file = new File((File) dVar.f13274e, str);
+            File file = new File((File) dVar.d, str);
             file.mkdirs();
-            List i7 = ga.d.i(file.listFiles(hVar));
-            if (i7.isEmpty()) {
+            List e10 = ga.d.e(file.listFiles(hVar));
+            if (e10.isEmpty()) {
                 substring = null;
                 Log.w("FirebaseCrashlytics", "Unable to read App Quality Sessions session id.", null);
             } else {
-                substring = ((File) Collections.min(i7, i.f811e)).getName().substring(4);
+                substring = ((File) Collections.min(e10, i.f811e)).getName().substring(4);
             }
             return substring;
         }

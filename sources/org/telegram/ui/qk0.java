@@ -1,63 +1,77 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class qk0 implements Runnable {
-    public final int f51229a;
-    public final ml0 f51230b;
-    public final TLRPC.TL_error f51231c;
-    public final TLObject d;
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
+public final class qk0 extends LinearLayout {
+    public boolean f51478a;
+    public final int f51479b;
+    public final int[] f51480c;
+    public final int[] d;
 
-    public qk0(ml0 ml0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i7) {
-        this.f51229a = i7;
-        this.f51230b = ml0Var;
-        this.f51231c = tL_error;
-        this.d = tLObject;
+    public qk0(Context context, int i7, int[] iArr, int[] iArr2) {
+        super(context);
+        this.f51479b = i7;
+        this.f51480c = iArr;
+        this.d = iArr2;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f51229a;
-        TLObject tLObject = this.d;
-        TLRPC.TL_error tL_error = this.f51231c;
-        ml0 ml0Var = this.f51230b;
-        switch (i7) {
-            case 0:
-                ml0Var.f49882f0 = false;
-                if (tL_error == null) {
-                    TL_account.Password password = (TL_account.Password) tLObject;
-                    ml0Var.f49871b0 = password;
-                    if (!TwoStepVerificationActivity.n0(password, false)) {
-                        org.telegram.ui.Components.c5.u0(ml0Var.getParentActivity(), org.telegram.messenger.hd.N0(2131743577, null), true);
-                        return;
+    public final void onMeasure(int i7, int i10) {
+        View childAt;
+        int size = View.MeasureSpec.getSize(i7);
+        this.f51478a = true;
+        int L = org.telegram.messenger.g0.L(9.0f);
+        int i11 = this.f51479b;
+        int i12 = (i11 - 1) * L;
+        int[] iArr = this.f51480c;
+        float f10 = 1.0f;
+        if ((iArr[0] * i11) + i12 <= size) {
+            setWeightSum(1.0f);
+            int childCount = getChildCount();
+            for (int i13 = 0; i13 < childCount; i13++) {
+                getChildAt(i13).getLayoutParams().width = 0;
+                ((LinearLayout.LayoutParams) getChildAt(i13).getLayoutParams()).weight = 1.0f / childCount;
+            }
+        } else if (this.d[0] + i12 <= size) {
+            setWeightSum(1.0f);
+            int i14 = size - i12;
+            int childCount2 = getChildCount();
+            for (int i15 = 0; i15 < childCount2; i15++) {
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getChildAt(i15).getLayoutParams();
+                layoutParams.width = 0;
+                float intValue = ((Integer) childAt.getTag(2131296741)).intValue() / i14;
+                layoutParams.weight = intValue;
+                f10 -= intValue;
+            }
+            float f11 = f10 / (i11 - 1);
+            if (f11 > 0.0f) {
+                int childCount3 = getChildCount();
+                for (int i16 = 0; i16 < childCount3; i16++) {
+                    View childAt2 = getChildAt(i16);
+                    LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) childAt2.getLayoutParams();
+                    if (((Integer) childAt2.getTag(2131296741)).intValue() != iArr[0]) {
+                        layoutParams2.weight += f11;
                     }
-                    TLRPC.PaymentForm paymentForm = ml0Var.D0;
-                    if (paymentForm != null && ml0Var.f49871b0.has_password) {
-                        paymentForm.password_missing = false;
-                        paymentForm.can_save_credentials = true;
-                        ml0Var.Q0();
-                    }
-                    TwoStepVerificationActivity.r0(ml0Var.f49871b0);
-                    ml0 ml0Var2 = ml0Var.f49884g0;
-                    if (ml0Var2 != null) {
-                        ml0Var2.I0(ml0Var.f49871b0);
-                    }
-                    if (!ml0Var.f49871b0.has_password && ml0Var.f49879e0 == null) {
-                        nk0 nk0Var = new nk0(ml0Var, 2);
-                        ml0Var.f49879e0 = nk0Var;
-                        org.telegram.messenger.g0.h3(nk0Var, 5000L);
-                        return;
-                    }
-                    return;
                 }
-                return;
-            case 1:
-                ml0.a0(ml0Var, tL_error, tLObject);
-                return;
-            default:
-                ml0.c0(ml0Var, tL_error, tLObject);
-                return;
+            }
+        } else {
+            setWeightSum(0.0f);
+            int childCount4 = getChildCount();
+            for (int i17 = 0; i17 < childCount4; i17++) {
+                getChildAt(i17).getLayoutParams().width = -2;
+                ((LinearLayout.LayoutParams) getChildAt(i17).getLayoutParams()).weight = 0.0f;
+            }
         }
+        this.f51478a = false;
+        super.onMeasure(i7, i10);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f51478a) {
+            return;
+        }
+        super.requestLayout();
     }
 }

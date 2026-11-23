@@ -1,32 +1,32 @@
 package org.telegram.messenger;
 public final class z6 implements Runnable {
-    public final int f28264a;
-    public final i7 f28265b;
-    public final int f28266c;
+    public final int f28361a;
+    public final i7 f28362b;
+    public final int f28363c;
 
     public z6(i7 i7Var, int i7, int i10) {
-        this.f28264a = i10;
-        this.f28265b = i7Var;
-        this.f28266c = i7;
+        this.f28361a = i10;
+        this.f28362b = i7Var;
+        this.f28363c = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f28264a) {
+        switch (this.f28361a) {
             case 0:
-                this.f28265b.F0.add(Integer.valueOf(this.f28266c));
+                this.f28362b.F0.add(Integer.valueOf(this.f28363c));
                 return;
             case 1:
-                this.f28265b.F0.remove(Integer.valueOf(this.f28266c));
+                this.f28362b.F0.remove(Integer.valueOf(this.f28363c));
                 return;
             case 2:
-                this.f28265b.F0.remove(Integer.valueOf(this.f28266c));
+                this.f28362b.F0.remove(Integer.valueOf(this.f28363c));
                 return;
             default:
-                i7 i7Var = this.f28265b;
-                u7 u7Var = i7Var.f24606g0;
+                i7 i7Var = this.f28362b;
+                u7 u7Var = i7Var.f24730g0;
                 if (u7Var != null) {
-                    u7Var.b(i7Var, this.f28266c);
+                    u7Var.b(i7Var, this.f28363c);
                 }
                 i7Var.i();
                 return;

@@ -4,21 +4,21 @@ import android.app.Dialog;
 import android.view.View;
 import android.view.WindowInsets;
 public final class w1 implements View.OnApplyWindowInsetsListener {
-    public final int f19020a;
-    public final Dialog f19021b;
+    public final int f19118a;
+    public final Dialog f19119b;
 
     public w1(Dialog dialog, int i7) {
-        this.f19020a = i7;
-        this.f19021b = dialog;
+        this.f19118a = i7;
+        this.f19119b = dialog;
     }
 
     @Override
     public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        switch (this.f19020a) {
+        switch (this.f19118a) {
             case 0:
-                return s2.h((s2) this.f19021b, view, windowInsets);
+                return t2.h((t2) this.f19119b, view, windowInsets);
             default:
-                return org.telegram.ui.ActionBar.w2.z((org.telegram.ui.ActionBar.w2) this.f19021b, windowInsets);
+                return org.telegram.ui.ActionBar.w2.z((org.telegram.ui.ActionBar.w2) this.f19119b, windowInsets);
         }
     }
 }

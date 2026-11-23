@@ -157,7 +157,7 @@ public final class w {
     }
 
     public w(MediaMetadataCompat mediaMetadataCompat) {
-        Bundle bundle = new Bundle(mediaMetadataCompat.f1640a);
+        Bundle bundle = new Bundle(mediaMetadataCompat.f1641a);
         this.f1004a = bundle;
         android.support.v4.media.session.a0.g(bundle);
     }

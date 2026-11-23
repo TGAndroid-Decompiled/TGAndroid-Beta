@@ -17,7 +17,7 @@ import android.os.SystemClock;
 import android.util.Log;
 import c8.bd;
 import c8.cc;
-import fi.a6;
+import fi.l4;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class o0 implements yb.a {
@@ -40,7 +40,7 @@ public final class o0 implements yb.a {
             return;
         }
         AtomicBoolean atomicBoolean = new AtomicBoolean(true);
-        ((i0) this.f13801f).f13763a.postDelayed(new a6(25, this, atomicBoolean), 1000L);
+        ((i0) this.f13801f).f13763a.postDelayed(new l4(27, this, atomicBoolean), 1000L);
         i0Var.d(new n0(this, atomicBoolean, z10, z11, 0));
     }
 
@@ -69,17 +69,17 @@ public final class o0 implements yb.a {
                 throw new lb.a("Failed to init thin image labeler.", e10);
             }
         }
-        int i7 = aVar.f58576e;
-        int i10 = aVar.f58574b;
-        int i11 = aVar.f58575c;
+        int i7 = aVar.f58691e;
+        int i10 = aVar.f58689b;
+        int i11 = aVar.f58690c;
         int a10 = bd.a(aVar.d);
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        int i12 = aVar.f58576e;
+        int i12 = aVar.f58691e;
         if (i12 != -1) {
             if (i12 != 17) {
                 if (i12 != 35) {
                     if (i12 != 842094169) {
-                        throw new lb.a(i5.c.i(aVar.f58576e, "Unsupported image format: "), 3);
+                        throw new lb.a(i5.c.i(aVar.f58691e, "Unsupported image format: "), 3);
                     }
                 } else {
                     bVar = new a7.b(null);
@@ -88,7 +88,7 @@ public final class o0 implements yb.a {
             q6.m.h(null);
             throw null;
         }
-        Bitmap bitmap = aVar.f58573a;
+        Bitmap bitmap = aVar.f58688a;
         q6.m.h(bitmap);
         bVar = new a7.b(bitmap);
         try {
@@ -143,7 +143,7 @@ public final class o0 implements yb.a {
             return;
         }
         try {
-            IBinder b10 = b7.f.c(context, b7.f.f2916b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
+            IBinder b10 = b7.f.c(context, b7.f.f2917b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
             int i7 = fb.f402b;
             if (b10 == null) {
                 aVar = null;
@@ -155,7 +155,7 @@ public final class o0 implements yb.a {
                     aVar = new a8.a(b10, "com.google.mlkit.vision.label.aidls.IImageLabelerCreator", 0);
                 }
             }
-            this.f13801f = ((eb) aVar).x1(new a7.b(context), new ib(((xb.a) this.f13800e).f59666a, -1));
+            this.f13801f = ((eb) aVar).x1(new a7.b(context), new ib(((xb.a) this.f13800e).f59786a, -1));
         } catch (RemoteException e10) {
             throw new lb.a("Failed to create thin image labeler.", e10);
         } catch (b7.b unused) {
@@ -182,7 +182,7 @@ public final class o0 implements yb.a {
     }
 
     public o0() {
-        pe.a aVar = pe.a.f55580a;
+        pe.a aVar = pe.a.f55693a;
         this.f13798b = true;
         this.d = "    ";
         this.f13800e = "type";

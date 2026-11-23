@@ -1,17 +1,18 @@
 package org.telegram.messenger;
-public final class jk implements Runnable {
-    public final int f24843a;
-    public final np f24844b;
-    public final long f24845c;
 
-    public jk(np npVar, long j3, int i7) {
-        this.f24843a = i7;
-        this.f24844b = npVar;
-        this.f24845c = j3;
-    }
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.function.Supplier;
+public final class jk implements Supplier {
+    public final int f24995a;
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.jk.run():void");
+    public final Object get() {
+        switch (this.f24995a) {
+            case 0:
+                return new HashSet();
+            default:
+                return new ArrayList();
+        }
     }
 }

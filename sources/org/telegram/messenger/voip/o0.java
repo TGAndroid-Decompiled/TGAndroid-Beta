@@ -1,24 +1,24 @@
 package org.telegram.messenger.voip;
 public final class o0 implements Runnable {
-    public final int f27486a;
-    public final VoIPService f27487b;
+    public final int f27627a;
+    public final VoIPService f27628b;
 
     public o0(VoIPService voIPService, int i7) {
-        this.f27486a = i7;
-        this.f27487b = voIPService;
+        this.f27627a = i7;
+        this.f27628b = voIPService;
     }
 
     @Override
     public final void run() {
-        switch (this.f27486a) {
+        switch (this.f27627a) {
             case 0:
-                this.f27487b.destroyConverting();
+                VoIPService.k0(this.f27628b);
                 return;
             case 1:
-                this.f27487b.lambda$updateConnectionState$82();
+                VoIPService.L(this.f27628b);
                 return;
             default:
-                this.f27487b.lambda$onConnectionStateChanged$118();
+                VoIPService.o1(this.f27628b);
                 return;
         }
     }

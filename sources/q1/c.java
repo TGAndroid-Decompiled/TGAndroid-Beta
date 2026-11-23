@@ -7,14 +7,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import kd.j;
 import rd.p;
 public final class c extends j implements p {
-    public final int f55715a;
-    public int f55716b;
-    public Object f55717c;
+    public final int f55828a;
+    public int f55829b;
+    public Object f55830c;
     public final j d;
 
     public c(p pVar, id.c cVar, int i7) {
         super(2, cVar);
-        this.f55715a = i7;
+        this.f55828a = i7;
         switch (i7) {
             case 1:
                 this.d = (j) pVar;
@@ -28,14 +28,14 @@ public final class c extends j implements p {
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        switch (this.f55715a) {
+        switch (this.f55828a) {
             case 0:
                 c cVar2 = new c(this.d, cVar, 0);
-                cVar2.f55717c = obj;
+                cVar2.f55830c = obj;
                 return cVar2;
             default:
                 c cVar3 = new c(this.d, cVar, 1);
-                cVar3.f55717c = obj;
+                cVar3.f55830c = obj;
                 return cVar3;
         }
     }
@@ -44,7 +44,7 @@ public final class c extends j implements p {
     public final Object invoke(Object obj, Object obj2) {
         b bVar = (b) obj;
         id.c cVar = (id.c) obj2;
-        switch (this.f55715a) {
+        switch (this.f55828a) {
             case 0:
                 return ((c) create(bVar, cVar)).invokeSuspend(k.f13480a);
             default:
@@ -54,10 +54,10 @@ public final class c extends j implements p {
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        switch (this.f55715a) {
+        switch (this.f55828a) {
             case 0:
-                jd.a aVar = jd.a.f17375a;
-                int i7 = this.f55716b;
+                jd.a aVar = jd.a.f17478a;
+                int i7 = this.f55829b;
                 if (i7 != 0) {
                     if (i7 == 1) {
                         z.b(obj);
@@ -66,31 +66,31 @@ public final class c extends j implements p {
                     }
                 } else {
                     z.b(obj);
-                    this.f55716b = 1;
-                    obj = this.d.invoke((b) this.f55717c, this);
+                    this.f55829b = 1;
+                    obj = this.d.invoke((b) this.f55830c, this);
                     if (obj == aVar) {
                         return aVar;
                     }
                 }
                 b bVar = (b) obj;
                 kotlin.jvm.internal.j.c(bVar, "null cannot be cast to non-null type androidx.datastore.preferences.core.MutablePreferences");
-                ((AtomicBoolean) bVar.f55714b.f38544b).set(true);
+                ((AtomicBoolean) bVar.f55827b.f30491b).set(true);
                 return bVar;
             default:
-                jd.a aVar2 = jd.a.f17375a;
-                int i10 = this.f55716b;
+                jd.a aVar2 = jd.a.f17478a;
+                int i10 = this.f55829b;
                 if (i10 != 0) {
                     if (i10 == 1) {
-                        b bVar2 = (b) this.f55717c;
+                        b bVar2 = (b) this.f55830c;
                         z.b(obj);
                         return bVar2;
                     }
                     throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
                 }
                 z.b(obj);
-                b bVar3 = new b(new LinkedHashMap(((b) this.f55717c).a()), false);
-                this.f55717c = bVar3;
-                this.f55716b = 1;
+                b bVar3 = new b(new LinkedHashMap(((b) this.f55830c).a()), false);
+                this.f55830c = bVar3;
+                this.f55829b = 1;
                 if (this.d.invoke(bVar3, this) != aVar2) {
                     return bVar3;
                 }

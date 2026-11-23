@@ -5,8 +5,8 @@ import android.graphics.Canvas;
 import org.telegram.messenger.g0;
 import org.telegram.ui.Components.cs0;
 import org.telegram.ui.Components.kj0;
-import org.telegram.ui.Components.zs0;
-public final class e extends zs0 {
+import org.telegram.ui.Components.ys0;
+public final class e extends ys0 {
     public final m f13629v3;
 
     public e(m mVar, Context context) {

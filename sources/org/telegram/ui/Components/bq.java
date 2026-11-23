@@ -1,47 +1,114 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class bq extends FrameLayout {
-    public final View f33860a;
-    public final TextView f33861b;
+public final class bq extends Drawable {
+    public final Drawable f33791a;
+    public Path f33792b;
+    public final RectF f33793c;
+    public final RectF d;
+    public boolean f33794e;
+    public final float[] f33795f;
 
-    public bq(Context context) {
-        super(context);
-        View view = new View(context);
-        this.f33860a = view;
-        int L = org.telegram.messenger.g0.L(4.0f);
-        int i7 = org.telegram.ui.ActionBar.m6.Fi;
-        int v02 = org.telegram.ui.ActionBar.m6.v0(i7);
-        int i10 = org.telegram.ui.ActionBar.m6.Hi;
-        int v03 = org.telegram.ui.ActionBar.m6.v0(i10);
-        Drawable k02 = org.telegram.ui.ActionBar.m6.k0(L, L, L, L, v02, v03, v03);
-        org.telegram.ui.ActionBar.p6 M = org.telegram.ui.ActionBar.t6.M(i7);
-        org.telegram.ui.ActionBar.p6 M2 = org.telegram.ui.ActionBar.t6.M(i10);
-        view.setBackground(k02);
-        org.telegram.ui.ActionBar.t6.j(view, k02, M, M2, null);
-        addView(view, c8.na.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
-        TextView textView = new TextView(context);
-        this.f33861b = textView;
-        textView.setLines(1);
-        textView.setSingleLine(true);
-        textView.setGravity(1);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity(17);
-        org.telegram.messenger.f3.l(textView, org.telegram.ui.ActionBar.m6.Ji, null, 1, 14.0f);
-        addView(textView, c8.na.e(-2, -2, 17));
+    public bq(Drawable drawable) {
+        a5.b bVar = new a5.b(this, 6);
+        this.f33793c = new RectF();
+        this.d = new RectF();
+        this.f33794e = false;
+        this.f33795f = new float[8];
+        Drawable drawable2 = this.f33791a;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.f33791a = drawable;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            this.f33791a.setCallback(bVar);
+        }
+    }
+
+    public final void a() {
+        if (!this.f33794e) {
+            return;
+        }
+        Path path = this.f33792b;
+        if (path == null) {
+            this.f33792b = new Path();
+        } else {
+            path.rewind();
+        }
+        Rect bounds = getBounds();
+        RectF rectF = this.f33793c;
+        rectF.set(bounds);
+        float f10 = rectF.left;
+        RectF rectF2 = this.d;
+        rectF.left = f10 + rectF2.left;
+        rectF.top += rectF2.top;
+        rectF.right -= rectF2.right;
+        rectF.bottom -= rectF2.bottom;
+        this.f33792b.addRoundRect(rectF, this.f33795f, Path.Direction.CW);
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.f33791a;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            if (!this.f33794e) {
+                canvas.save();
+                canvas.clipRect(getBounds());
+                this.f33791a.draw(canvas);
+                canvas.restore();
+                return;
+            }
+            canvas.save();
+            a();
+            canvas.clipPath(this.f33792b);
+            this.f33791a.draw(canvas);
+            canvas.restore();
+        }
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f33861b.setText(charSequence);
+    @Override
+    public final int getIntrinsicHeight() {
+        Drawable drawable = this.f33791a;
+        if (drawable != null) {
+            return drawable.getIntrinsicHeight();
+        }
+        return super.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        Drawable drawable = this.f33791a;
+        if (drawable != null) {
+            return drawable.getIntrinsicWidth();
+        }
+        return super.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        Drawable drawable = this.f33791a;
+        if (drawable != null) {
+            drawable.setAlpha(i7);
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        Drawable drawable = this.f33791a;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
+        }
     }
 }

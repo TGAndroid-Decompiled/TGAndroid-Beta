@@ -1,33 +1,42 @@
 package hi;
+public final class ob implements Runnable {
+    public final int f15172a;
+    public final xb f15173b;
 
-import android.content.Context;
-import android.content.Intent;
-public final class ob implements org.telegram.ui.ActionBar.q1 {
-    public final int f15162a;
-    public final Context f15163b;
-
-    public ob(Context context, int i7) {
-        this.f15162a = i7;
-        this.f15163b = context;
+    public ob(xb xbVar, int i7) {
+        this.f15172a = i7;
+        this.f15173b = xbVar;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f15162a) {
+    public final void run() {
+        switch (this.f15172a) {
             case 0:
-                try {
-                    this.f15163b.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
-                    return;
-                } catch (Exception unused) {
+                xb xbVar = this.f15173b;
+                vb vbVar = xbVar.N;
+                if (vbVar != null) {
+                    long j3 = vbVar.f15618a;
+                    if (j3 > 0) {
+                        xbVar.I = j3;
+                        return;
+                    }
                     return;
                 }
+                return;
+            case 1:
+                rb rbVar = this.f15173b.f15792a;
+                if (rbVar != null) {
+                    rbVar.p0();
+                    return;
+                }
+                return;
             default:
-                try {
-                    this.f15163b.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
-                    return;
-                } catch (Exception unused2) {
+                rb rbVar2 = this.f15173b.f15792a;
+                if (rbVar2 != null) {
+                    rbVar2.t();
                     return;
                 }
+                return;
         }
     }
 }

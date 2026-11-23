@@ -1,220 +1,110 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import org.telegram.messenger.np;
-import org.telegram.messenger.r10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class s0 implements r10 {
-    public final int f44978a;
-    public final t0 f44979b;
-    public final TL_wallet.getTransactions f44980c;
+import java.util.Arrays;
+public final class s0 implements AutoCloseable {
+    public final byte[] f45033a;
+    public boolean f45034b;
 
-    public s0(t0 t0Var, TL_wallet.getTransactions gettransactions, int i7) {
-        this.f44978a = i7;
-        this.f44979b = t0Var;
-        this.f44980c = gettransactions;
+    public s0(byte[] bArr) {
+        if (bArr != null) {
+            this.f45033a = (byte[]) bArr.clone();
+            return;
+        }
+        throw new IllegalArgumentException("Missing recovery phrase");
+    }
+
+    public static boolean e(byte b10) {
+        if (b10 != 32 && b10 != 9 && b10 != 10 && b10 != 13 && b10 != 12 && b10 != 11) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void a() {
+        if (!this.f45034b) {
+            return;
+        }
+        throw new IllegalStateException("Recovery phrase is closed");
+    }
+
+    public final synchronized s0 b() {
+        a();
+        return new s0(this.f45033a);
+    }
+
+    public final synchronized byte[] c() {
+        a();
+        return (byte[]) this.f45033a.clone();
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
+    public final synchronized void close() {
+        Arrays.fill(this.f45033a, (byte) 0);
+        this.f45034b = true;
+    }
+
+    public final synchronized boolean d() {
         boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        boolean z14;
-        switch (this.f44978a) {
-            case 0:
-                TL_wallet.walletTransactions wallettransactions = (TL_wallet.walletTransactions) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                t0 t0Var = this.f44979b;
-                int i7 = t0Var.f45061m.f45093a;
-                t0Var.f45060l = -1;
-                int i10 = 0;
-                t0Var.f45059k = false;
-                if (wallettransactions != null) {
-                    np.u1(i7).f4(wallettransactions.users, false);
-                    np.u1(i7).Z3(wallettransactions.chats, false);
-                    int size = wallettransactions.transactions.size();
-                    u0.p(wallettransactions.transactions);
-                    ArrayList<TL_wallet.walletTransaction> arrayList = wallettransactions.transactions;
-                    int size2 = arrayList.size();
-                    while (i10 < size2) {
-                        TL_wallet.walletTransaction wallettransaction = arrayList.get(i10);
-                        i10++;
-                        TL_wallet.walletTransaction wallettransaction2 = wallettransaction;
-                        if (wallettransaction2 != null) {
-                            TL_wallet.walletTransaction c10 = t0Var.c(wallettransaction2);
-                            t0Var.e(wallettransaction2);
-                            if (c10 != null) {
-                                c10.set(wallettransaction2);
-                                if (!TextUtils.equals(c10.f28661id, wallettransaction2.f28661id)) {
-                                    c10.f28661id = wallettransaction2.f28661id;
-                                }
-                            } else {
-                                t0Var.f45052b.add(wallettransaction2);
-                            }
-                        }
-                    }
-                    String str = wallettransactions.next_offset;
-                    t0Var.f45056g = str;
-                    if (size < this.f44980c.limit || TextUtils.isEmpty(str)) {
-                        t0Var.h = true;
-                    }
-                } else {
-                    t0Var.h = true;
-                }
-                t0Var.k();
-                t0Var.i();
-                return;
-            default:
-                t0 t0Var2 = this.f44979b;
-                HashMap hashMap = t0Var2.f45055f;
-                HashSet hashSet = t0Var2.d;
-                TL_wallet.walletTransactions wallettransactions2 = (TL_wallet.walletTransactions) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList2 = t0Var2.f45052b;
-                u0 u0Var = t0Var2.f45061m;
-                int i11 = u0Var.f45093a;
-                h hVar = u0Var.I;
-                t0Var2.f45058j = -1;
-                t0Var2.f45057i = false;
-                if (wallettransactions2 != null) {
-                    np.u1(i11).f4(wallettransactions2.users, false);
-                    np.u1(i11).Z3(wallettransactions2.chats, false);
-                    int size3 = wallettransactions2.transactions.size();
-                    u0.p(wallettransactions2.transactions);
-                    ArrayList<TL_wallet.walletTransaction> arrayList3 = wallettransactions2.transactions;
-                    int size4 = arrayList3.size();
-                    int i12 = 0;
-                    while (true) {
-                        if (i12 < size4) {
-                            TL_wallet.walletTransaction wallettransaction3 = arrayList3.get(i12);
-                            i12++;
-                            if (t0Var2.c(wallettransaction3) != null) {
-                                boolean z15 = false;
-                                for (int size5 = wallettransactions2.transactions.size() - 1; size5 >= 0; size5--) {
-                                    TL_wallet.walletTransaction wallettransaction4 = wallettransactions2.transactions.get(size5);
-                                    TL_wallet.walletTransaction c11 = t0Var2.c(wallettransaction4);
-                                    t0Var2.e(wallettransaction4);
-                                    if (c11 != null) {
-                                        boolean a10 = u0.a(c11);
-                                        boolean z16 = c11.set(wallettransaction4);
-                                        if (!TextUtils.equals(c11.f28661id, wallettransaction4.f28661id)) {
-                                            c11.f28661id = wallettransaction4.f28661id;
-                                            z16 = true;
-                                        }
-                                        if (z16) {
-                                            z15 = true;
-                                        }
-                                        if (!a10 && u0.a(c11)) {
-                                            org.telegram.messenger.g0.r(hVar);
-                                            org.telegram.messenger.g0.h3(hVar, 300L);
-                                        }
-                                    } else {
-                                        arrayList2.add(0, wallettransaction4);
-                                        if (u0.a(wallettransaction4)) {
-                                            org.telegram.messenger.g0.r(hVar);
-                                            org.telegram.messenger.g0.h3(hVar, 300L);
-                                        }
-                                        z15 = true;
-                                    }
-                                }
-                                z10 = z15;
-                            }
-                        } else {
-                            if (arrayList2.isEmpty() && !t0Var2.h) {
-                                z11 = false;
-                            } else {
-                                z11 = true;
-                            }
-                            boolean z17 = t0Var2.f45059k;
-                            if (z17) {
-                                t0Var2.a();
-                            }
-                            ArrayList arrayList4 = new ArrayList();
-                            int size6 = arrayList2.size();
-                            int i13 = 0;
-                            while (i13 < size6) {
-                                Object obj3 = arrayList2.get(i13);
-                                i13++;
-                                TL_wallet.walletTransaction wallettransaction5 = (TL_wallet.walletTransaction) obj3;
-                                Iterator it = hashSet.iterator();
-                                while (true) {
-                                    if (it.hasNext()) {
-                                        if (hashMap.get((String) it.next()) == wallettransaction5) {
-                                            z14 = true;
-                                        }
-                                    } else {
-                                        z14 = false;
-                                    }
-                                }
-                                if (z14) {
-                                    arrayList4.add(wallettransaction5);
-                                }
-                            }
-                            ArrayList<TL_wallet.walletTransaction> arrayList5 = wallettransactions2.transactions;
-                            int size7 = arrayList5.size();
-                            int i14 = 0;
-                            while (i14 < size7) {
-                                TL_wallet.walletTransaction wallettransaction6 = arrayList5.get(i14);
-                                i14++;
-                                TL_wallet.walletTransaction wallettransaction7 = wallettransaction6;
-                                t0Var2.e(wallettransaction7);
-                                if (z11 && u0.a(wallettransaction7)) {
-                                    org.telegram.messenger.g0.r(hVar);
-                                    org.telegram.messenger.g0.h3(hVar, 300L);
-                                }
-                            }
-                            arrayList2.clear();
-                            arrayList2.addAll(wallettransactions2.transactions);
-                            int size8 = arrayList4.size();
-                            int i15 = 0;
-                            while (i15 < size8) {
-                                Object obj4 = arrayList4.get(i15);
-                                i15++;
-                                TL_wallet.walletTransaction wallettransaction8 = (TL_wallet.walletTransaction) obj4;
-                                Iterator it2 = hashSet.iterator();
-                                while (true) {
-                                    if (it2.hasNext()) {
-                                        if (hashMap.get((String) it2.next()) == wallettransaction8) {
-                                            z13 = true;
-                                        }
-                                    } else {
-                                        z13 = false;
-                                    }
-                                }
-                                if (z13) {
-                                    t0Var2.f(wallettransaction8);
-                                }
-                            }
-                            String str2 = wallettransactions2.next_offset;
-                            t0Var2.f45056g = str2;
-                            if (size3 >= this.f44980c.limit && !TextUtils.isEmpty(str2)) {
-                                z12 = false;
-                            } else {
-                                z12 = true;
-                            }
-                            t0Var2.h = z12;
-                            if (z17) {
-                                t0Var2.h();
-                            }
-                            z10 = true;
-                        }
-                    }
-                } else {
-                    z10 = false;
-                }
-                if (z10) {
-                    t0Var2.k();
-                    t0Var2.i();
-                    return;
-                }
-                return;
+        if (g() == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        return z10;
+    }
+
+    public final synchronized ArrayList f() {
+        ArrayList arrayList;
+        try {
+            a();
+            arrayList = new ArrayList();
+            int i7 = 0;
+            while (i7 < this.f45033a.length) {
+                while (true) {
+                    byte[] bArr = this.f45033a;
+                    if (i7 >= bArr.length || !e(bArr[i7])) {
+                        break;
+                    }
+                    i7++;
+                }
+                int i10 = i7;
+                while (true) {
+                    byte[] bArr2 = this.f45033a;
+                    if (i10 >= bArr2.length || e(bArr2[i10])) {
+                        break;
+                    }
+                    i10++;
+                }
+                if (i10 > i7) {
+                    arrayList.add(new String(this.f45033a, i7, i10 - i7, StandardCharsets.UTF_8));
+                }
+                i7 = i10;
+            }
+        } catch (Throwable th2) {
+            throw th2;
+        }
+        return arrayList;
+    }
+
+    public final synchronized int g() {
+        int i7;
+        a();
+        i7 = 0;
+        boolean z10 = false;
+        for (byte b10 : this.f45033a) {
+            if (e(b10)) {
+                z10 = false;
+            } else if (!z10) {
+                i7++;
+                z10 = true;
+            }
+        }
+        return i7;
+    }
+
+    public final String toString() {
+        return "SecretPhrase[redacted]";
     }
 }

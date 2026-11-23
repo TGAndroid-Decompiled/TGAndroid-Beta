@@ -13,11 +13,11 @@ public final class c0 implements q1 {
     }
 
     @Override
-    public void h(t1 t1Var, int i7) {
+    public void i(t1 t1Var, int i7) {
         j0 j0Var = this.f5605a;
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26895b.getPackageName()));
+            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f27013b.getPackageName()));
             j0Var.getParentActivity().startActivity(intent);
         } catch (Exception e10) {
             a8.g(e10, true);

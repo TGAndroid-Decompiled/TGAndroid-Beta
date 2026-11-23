@@ -1,15 +1,22 @@
 package org.telegram.ui;
-public final class c91 extends v4.t0 {
-    public int f46484a;
-    public int f46485b;
-    public final y91 f46486c;
 
-    public c91(y91 y91Var) {
-        this.f46486c = y91Var;
+import android.view.View;
+public final class c91 implements View.OnClickListener {
+    public final w91 f46748a;
+
+    public c91(w91 w91Var) {
+        this.f46748a = w91Var;
     }
 
     @Override
-    public final void b(androidx.recyclerview.widget.RecyclerView r5, int r6, int r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.c91.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
+    public final void onClick(View view) {
+        w91 w91Var = this.f46748a;
+        if (w91Var.N == 1) {
+            org.telegram.ui.Components.b5.g0(w91Var, -w91Var.f53216a, null, w91Var.g(), null, false, w91Var.K, new na(this, 4), w91Var.getResourceProvider());
+            return;
+        }
+        w91Var.getMessagesController().m(w91Var.f53216a, w91Var.getUserConfig().f(), 0, null, w91Var, false, new w81(w91Var, 2), new x81(w91Var), null);
+        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.L4, new Object[0]);
+        w91Var.S0(false);
     }
 }

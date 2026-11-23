@@ -1,13 +1,13 @@
 package org.telegram.ui.Components;
-public final class fm0 extends v4.k {
-    public final org.telegram.ui.kw F;
+public final class fm0 extends v4.l {
+    public final org.telegram.ui.jw F;
 
-    public fm0(org.telegram.ui.kw kwVar) {
-        this.F = kwVar;
+    public fm0(org.telegram.ui.jw jwVar) {
+        this.F = jwVar;
     }
 
     @Override
-    public final void P(v4.e1 e1Var) {
+    public final void P(v4.f1 f1Var) {
         this.F.invalidate();
     }
 }

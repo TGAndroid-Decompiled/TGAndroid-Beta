@@ -1,45 +1,32 @@
 package oi;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.view.View;
-import java.util.HashSet;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-public final class r0 extends View implements org.telegram.ui.ActionBar.b6 {
-    public final h6 f22301a;
-    public final Paint f22302b;
-    public a f22303c;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.n41;
+public final class r0 extends m41 {
+    public static final int f22414b = 0;
 
-    public r0(Context context, h6 h6Var) {
-        super(context);
-        this.f22302b = new Paint();
-        this.f22301a = h6Var;
-        updateColors();
+    static {
+        m41.h(new m41());
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(m6.wl));
-    }
-
-    public a getRow() {
-        return this.f22303c;
+    public final void b(View view, n41 n41Var, boolean z10, b51 b51Var, g51 g51Var) {
+        ((s0) view).f22435c = (a) n41Var.H;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, org.telegram.messenger.g0.L(6.0f), getMeasuredWidth(), org.telegram.messenger.g0.L(6.0f) + 1, this.f22302b);
+    public final View d(Context context, ek0 ek0Var, int i7, i6 i6Var) {
+        return new s0(context, i6Var);
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(6.0f) + 1);
-    }
-
-    @Override
-    public final void updateColors() {
-        this.f22302b.setColor(m6.w0(m6.wl, this.f22301a));
+    public final boolean f() {
+        return false;
     }
 }

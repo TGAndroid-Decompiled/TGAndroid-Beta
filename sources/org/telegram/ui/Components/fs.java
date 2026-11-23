@@ -1,38 +1,33 @@
 package org.telegram.ui.Components;
-public final class fs implements Runnable {
-    public final int f35267a;
-    public final org.telegram.ui.ActionBar.t1[] f35268b;
 
-    public fs(org.telegram.ui.ActionBar.t1[] t1VarArr, int i7) {
-        this.f35267a = i7;
-        this.f35268b = t1VarArr;
+import java.util.ArrayList;
+public final class fs implements Runnable {
+    public final int f35186a;
+    public final gs f35187b;
+
+    public fs(gs gsVar, int i7) {
+        this.f35186a = i7;
+        this.f35187b = gsVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f35267a) {
+        switch (this.f35186a) {
             case 0:
-                org.telegram.ui.ActionBar.t1 t1Var = this.f35268b[0];
-                if (t1Var != null) {
-                    t1Var.dismiss();
+                gs gsVar = this.f35187b;
+                gsVar.f35525c = false;
+                gsVar.f35524b.run();
+                ArrayList arrayList = gsVar.h;
+                if (arrayList.isEmpty() || System.currentTimeMillis() - gsVar.f35527f > 3600000) {
+                    arrayList.clear();
+                    gsVar.f35526e = false;
+                    gsVar.f35528g = null;
+                    gsVar.a();
                     return;
                 }
                 return;
-            case 1:
-                org.telegram.ui.ActionBar.t1[] t1VarArr = this.f35268b;
-                try {
-                    t1VarArr[0].dismiss();
-                } catch (Throwable unused) {
-                }
-                t1VarArr[0] = null;
-                return;
             default:
-                org.telegram.ui.ActionBar.t1[] t1VarArr2 = this.f35268b;
-                try {
-                    t1VarArr2[0].dismiss();
-                } catch (Throwable unused2) {
-                }
-                t1VarArr2[0] = null;
+                this.f35187b.f35529i = false;
                 return;
         }
     }

@@ -1,33 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class qw extends AnimatorListenerAdapter {
-    public final int f38957a;
-    public final boolean f38958b;
-    public final ty f38959c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class qw extends FrameLayout {
+    public final qy f39005a;
 
-    public qw(ty tyVar, boolean z10, int i7) {
-        this.f38957a = i7;
-        this.f38959c = tyVar;
-        this.f38958b = z10;
+    public qw(qy qyVar, Context context) {
+        super(context);
+        this.f39005a = qyVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f38957a) {
-            case 0:
-                if (!this.f38958b) {
-                    this.f38959c.f40139y.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                if (!this.f38958b) {
-                    this.f38959c.E.setVisibility(4);
-                    return;
-                }
-                return;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        qy qyVar = this.f39005a;
+        vw vwVar = qyVar.J;
+        sv svVar = qyVar.W;
+        dx dxVar = qyVar.Q;
+        if (view != dxVar && view != svVar) {
+            return super.drawChild(canvas, view, j3);
         }
+        canvas.save();
+        float y10 = vwVar.getY() + vwVar.getMeasuredHeight() + 1.0f;
+        if (view == dxVar && svVar != null) {
+            y10 = Math.max(y10, svVar.getY() + svVar.getMeasuredHeight() + 1.0f);
+        }
+        canvas.clipRect(0.0f, y10 - (org.telegram.messenger.g0.L(16.0f) * qyVar.f39038b.f57779e), getMeasuredWidth(), getMeasuredHeight());
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        canvas.restore();
+        return drawChild;
     }
 }

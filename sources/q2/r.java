@@ -3,9 +3,9 @@ package q2;
 import android.os.Build;
 import java.util.UUID;
 public final class r implements k2.b {
-    public static final boolean f55778c;
-    public final UUID f55779a;
-    public final byte[] f55780b;
+    public static final boolean f55891c;
+    public final UUID f55892a;
+    public final byte[] f55893b;
 
     static {
         boolean z10;
@@ -13,15 +13,15 @@ public final class r implements k2.b {
             String str = Build.MODEL;
             if ("AFTM".equals(str) || "AFTB".equals(str)) {
                 z10 = true;
-                f55778c = z10;
+                f55891c = z10;
             }
         }
         z10 = false;
-        f55778c = z10;
+        f55891c = z10;
     }
 
     public r(UUID uuid, byte[] bArr) {
-        this.f55779a = uuid;
-        this.f55780b = bArr;
+        this.f55892a = uuid;
+        this.f55893b = bArr;
     }
 }

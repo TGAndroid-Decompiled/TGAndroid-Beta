@@ -7,14 +7,14 @@ public enum p extends b2 {
     public static void e(l lVar, a aVar) {
         lVar.h("</" + lVar.h.toString());
         aVar.q();
-        lVar.f8319c = b2.f8270c;
+        lVar.f8318c = b2.f8269c;
     }
 
     @Override
     public final void d(l lVar, a aVar) {
         if (aVar.o()) {
             String e10 = aVar.e();
-            lVar.f8323i.h(e10);
+            lVar.f8322i.h(e10);
             lVar.h.append(e10);
             return;
         }
@@ -25,17 +25,17 @@ public enum p extends b2 {
                     e(lVar, aVar);
                 } else if (lVar.n()) {
                     lVar.k();
-                    lVar.f8319c = b2.f8266a;
+                    lVar.f8318c = b2.f8265a;
                 } else {
                     e(lVar, aVar);
                 }
             } else if (lVar.n()) {
-                lVar.f8319c = b2.f8276f0;
+                lVar.f8318c = b2.f8275f0;
             } else {
                 e(lVar, aVar);
             }
         } else if (lVar.n()) {
-            lVar.f8319c = b2.X;
+            lVar.f8318c = b2.X;
         } else {
             e(lVar, aVar);
         }

@@ -8,27 +8,27 @@ import java.util.List;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class rl implements sq0 {
-    public final TL_iv.RichMessage f51637a;
-    public final ArrayList f51638b;
-    public final org.telegram.messenger.gj f51639c;
+public final class rl implements rq0 {
+    public final TL_iv.RichMessage f51742a;
+    public final ArrayList f51743b;
+    public final org.telegram.messenger.fj f51744c;
 
-    public rl(TL_iv.RichMessage richMessage, ArrayList arrayList, org.telegram.messenger.gj gjVar) {
-        this.f51637a = richMessage;
-        this.f51638b = arrayList;
-        this.f51639c = gjVar;
+    public rl(TL_iv.RichMessage richMessage, ArrayList arrayList, org.telegram.messenger.fj fjVar) {
+        this.f51742a = richMessage;
+        this.f51743b = arrayList;
+        this.f51744c = fjVar;
     }
 
     @Override
     public final boolean a(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f51638b;
+            ArrayList arrayList = this.f51743b;
             if (i7 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i7);
                 if (pageBlock instanceof TL_iv.pageBlockVideo) {
-                    TLRPC.Document b10 = d4.b(this.f51637a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                    TLRPC.Document b10 = d4.b(this.f51742a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
                     if (b10 != null) {
-                        return org.telegram.messenger.gj.K4(b10);
+                        return org.telegram.messenger.fj.K4(b10);
                     }
                     return false;
                 }
@@ -44,11 +44,11 @@ public final class rl implements sq0 {
         TLRPC.Document b10;
         TLRPC.PhotoSize w10;
         if (i7 >= 0) {
-            ArrayList arrayList = this.f51638b;
+            ArrayList arrayList = this.f51743b;
             if (i7 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i7);
                 boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f51637a;
+                TL_iv.RichMessage richMessage = this.f51742a;
                 if (z10) {
                     TLRPC.Photo f10 = d4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                     if (f10 != null && (w10 = org.telegram.messenger.w7.w(f10.sizes, org.telegram.messenger.g0.Z0(false), false, null, false)) != null) {
@@ -74,11 +74,11 @@ public final class rl implements sq0 {
     @Override
     public final TLObject d(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f51638b;
+            ArrayList arrayList = this.f51743b;
             if (i7 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i7);
                 boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f51637a;
+                TL_iv.RichMessage richMessage = this.f51742a;
                 if (z10) {
                     return d4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                 }
@@ -133,49 +133,49 @@ public final class rl implements sq0 {
 
     @Override
     public final Object g() {
-        org.telegram.messenger.gj gjVar = this.f51639c;
-        if (gjVar != null) {
-            return gjVar;
+        org.telegram.messenger.fj fjVar = this.f51744c;
+        if (fjVar != null) {
+            return fjVar;
         }
-        return this.f51637a;
+        return this.f51742a;
     }
 
     @Override
     public final TL_iv.PageBlock get(int i7) {
-        return (TL_iv.PageBlock) this.f51638b.get(i7);
+        return (TL_iv.PageBlock) this.f51743b.get(i7);
     }
 
     @Override
     public final List getAll() {
-        return this.f51638b;
+        return this.f51743b;
     }
 
     @Override
     public final void h(TL_iv.PageBlock pageBlock) {
-        org.telegram.messenger.fv fvVar;
-        org.telegram.messenger.gj gjVar = this.f51639c;
-        if (gjVar != null && (fvVar = gjVar.f24234y2) != null) {
-            ArrayList arrayList = fvVar.f23945g;
+        org.telegram.messenger.ev evVar;
+        org.telegram.messenger.fj fjVar = this.f51744c;
+        if (fjVar != null && (evVar = fjVar.f24130y2) != null) {
+            ArrayList arrayList = evVar.f23877g;
             if (pageBlock != null) {
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                    org.telegram.messenger.au auVar = (org.telegram.messenger.au) arrayList.get(i7);
-                    if (auVar instanceof org.telegram.messenger.ru) {
-                        org.telegram.messenger.ru ruVar = (org.telegram.messenger.ru) auVar;
-                        ArrayList arrayList2 = ruVar.Y;
+                    org.telegram.messenger.zt ztVar = (org.telegram.messenger.zt) arrayList.get(i7);
+                    if (ztVar instanceof org.telegram.messenger.qu) {
+                        org.telegram.messenger.qu quVar = (org.telegram.messenger.qu) ztVar;
+                        ArrayList arrayList2 = quVar.Y;
                         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                            if (((org.telegram.messenger.tt) arrayList2.get(i10)).f27041b == pageBlock) {
+                            if (((org.telegram.messenger.st) arrayList2.get(i10)).f26950b == pageBlock) {
                                 int max = Math.max(0, Math.min(i10, arrayList2.size() - 1));
-                                ValueAnimator valueAnimator = ruVar.f26640l0;
+                                ValueAnimator valueAnimator = quVar.f26577l0;
                                 if (valueAnimator != null) {
                                     valueAnimator.cancel();
-                                    ruVar.f26640l0 = null;
+                                    quVar.f26577l0 = null;
                                 }
-                                if (ruVar.f26630b0 != max || ruVar.f26631c0 != 0.0f) {
-                                    ruVar.f26630b0 = max;
-                                    ruVar.f26631c0 = 0.0f;
-                                    ruVar.f26632d0 = false;
-                                    ruVar.f26633e0 = false;
-                                    View view = ruVar.W;
+                                if (quVar.f26567b0 != max || quVar.f26568c0 != 0.0f) {
+                                    quVar.f26567b0 = max;
+                                    quVar.f26568c0 = 0.0f;
+                                    quVar.f26569d0 = false;
+                                    quVar.f26570e0 = false;
+                                    View view = quVar.W;
                                     if (view != null) {
                                         view.invalidate();
                                         return;
@@ -199,6 +199,6 @@ public final class rl implements sq0 {
 
     @Override
     public final int j() {
-        return this.f51638b.size();
+        return this.f51743b.size();
     }
 }

@@ -1,75 +1,72 @@
 package ai;
 
-import android.media.AudioRecord;
-import java.util.Arrays;
+import android.content.Context;
+import org.telegram.messenger.bz;
+import org.telegram.ui.Dictation.DictationAsr;
 public final class u {
-    public final Object f1540a = new Object();
-    public byte[] f1541b = new byte[320000];
-    public int f1542c;
-    public boolean d;
-    public AudioRecord f1543e;
-    public Thread f1544f;
-    public volatile p1 f1545g;
-    public double h;
-    public int f1546i;
+    public boolean f1541a;
+    public boolean f1542b;
+    public long f1543c;
+    public final Object d;
+    public final Object f1544e;
+    public Object f1545f;
+    public Object f1546g;
+    public Object h;
 
-    public final void a(int i7, byte[] bArr) {
-        synchronized (this.f1540a) {
-            try {
-                int i10 = this.f1542c + i7;
-                if (i10 > 19200000) {
-                    return;
-                }
-                byte[] bArr2 = this.f1541b;
-                if (i10 > bArr2.length) {
-                    this.f1541b = Arrays.copyOf(bArr2, Math.min(19200000, Math.max(bArr2.length * 2, i10)));
-                }
-                System.arraycopy(bArr, 0, this.f1541b, this.f1542c, i7);
-                this.f1542c += i7;
-                this.f1540a.notifyAll();
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+    public u(Context context, d3.x xVar) {
+        this.d = context.getApplicationContext();
+        this.f1544e = xVar;
+        this.f1543c = 15000L;
+        this.h = new d3.y();
+        this.f1546g = h2.g0.f13755a;
     }
 
-    public final byte[] b(int i7, int i10) {
-        byte[] copyOfRange;
-        synchronized (this.f1540a) {
-            int max = Math.max(0, Math.min(i7, this.f1542c));
-            copyOfRange = Arrays.copyOfRange(this.f1541b, max, Math.max(max, Math.min(i10, this.f1542c)));
-        }
-        return copyOfRange;
-    }
-
-    public final int c() {
+    public static u c(android.support.v4.media.session.a0 a0Var, i2 i2Var) {
         int i7;
-        synchronized (this.f1540a) {
-            i7 = this.f1542c;
+        long nativeSessionNew;
+        q qVar = (q) a0Var.f1676b;
+        long k10 = DictationAsr.k(qVar);
+        if (k10 == 0) {
+            return null;
         }
-        return i7;
+        u uVar = new u(a0Var, i2Var);
+        String a10 = qVar.a((String) a0Var.f1677c);
+        String str = a10.split(",")[0];
+        if (bz.o() == 0) {
+            i7 = 2;
+        } else {
+            i7 = 4;
+        }
+        nativeSessionNew = DictationAsr.nativeSessionNew(k10, a10, str, i7);
+        uVar.f1543c = nativeSessionNew;
+        if (nativeSessionNew == 0) {
+            DictationAsr.T(qVar);
+            return null;
+        }
+        return uVar;
     }
 
-    public final void d() {
-        synchronized (this.f1540a) {
-            this.d = true;
-            this.f1540a.notifyAll();
+    public void a() {
+        String nativeSessionFinish;
+        long j3 = this.f1543c;
+        if (j3 != 0) {
+            nativeSessionFinish = DictationAsr.nativeSessionFinish(j3);
+            b(nativeSessionFinish);
+            DictationAsr.nativeSessionFree(this.f1543c);
+            this.f1543c = 0L;
+            DictationAsr.T((q) this.f1544e);
         }
-        AudioRecord audioRecord = this.f1543e;
-        if (audioRecord != null) {
-            try {
-                audioRecord.stop();
-            } catch (Exception unused) {
-            }
-            try {
-                Thread thread = this.f1544f;
-                if (thread != null) {
-                    thread.join(300L);
-                }
-            } catch (InterruptedException unused2) {
-            }
-            this.f1543e.release();
-            this.f1543e = null;
-        }
+    }
+
+    public void b(java.lang.String r18) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.u.b(java.lang.String):void");
+    }
+
+    public u(android.support.v4.media.session.a0 a0Var, i2 i2Var) {
+        this.f1546g = new StringBuilder();
+        this.h = "";
+        this.d = a0Var;
+        this.f1544e = (q) a0Var.f1676b;
+        this.f1545f = i2Var;
     }
 }

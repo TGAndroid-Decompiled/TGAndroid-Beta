@@ -1,89 +1,43 @@
 package gb;
+public final class f0 {
+    public final String f13332a;
+    public final int f13333b;
+    public final int f13334c;
+    public final boolean d;
 
-import android.app.ActivityManager;
-import android.app.Application;
-import android.content.Context;
-import android.os.Build;
-import android.os.Process;
-import java.util.ArrayList;
-import java.util.List;
-public abstract class f0 {
-    public static ArrayList a(Context context) {
-        ActivityManager activityManager;
-        List<ActivityManager.RunningAppProcessInfo> list;
-        kotlin.jvm.internal.j.e(context, "context");
-        int i7 = context.getApplicationInfo().uid;
-        String str = context.getApplicationInfo().processName;
-        Object systemService = context.getSystemService("activity");
-        if (systemService instanceof ActivityManager) {
-            activityManager = (ActivityManager) systemService;
-        } else {
-            activityManager = null;
-        }
-        if (activityManager == null || (list = activityManager.getRunningAppProcesses()) == null) {
-            list = hd.n.f14140a;
-        }
-        ArrayList arrayList = new ArrayList();
-        for (Object obj : list) {
-            if (obj != null) {
-                arrayList.add(obj);
-            }
-        }
-        ArrayList arrayList2 = new ArrayList();
-        int size = arrayList.size();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj2 = arrayList.get(i11);
-            i11++;
-            if (((ActivityManager.RunningAppProcessInfo) obj2).uid == i7) {
-                arrayList2.add(obj2);
-            }
-        }
-        ArrayList arrayList3 = new ArrayList(hd.h.d(arrayList2, 10));
-        int size2 = arrayList2.size();
-        while (i10 < size2) {
-            Object obj3 = arrayList2.get(i10);
-            i10++;
-            ActivityManager.RunningAppProcessInfo runningAppProcessInfo = (ActivityManager.RunningAppProcessInfo) obj3;
-            String processName = runningAppProcessInfo.processName;
-            kotlin.jvm.internal.j.d(processName, "processName");
-            arrayList3.add(new e0(runningAppProcessInfo.pid, runningAppProcessInfo.importance, processName, kotlin.jvm.internal.j.a(runningAppProcessInfo.processName, str)));
-        }
-        return arrayList3;
+    public f0(int i7, int i10, String str, boolean z10) {
+        this.f13332a = str;
+        this.f13333b = i7;
+        this.f13334c = i10;
+        this.d = z10;
     }
 
-    public static e0 b(Context context) {
-        Object obj;
-        String a10;
-        kotlin.jvm.internal.j.e(context, "context");
-        int myPid = Process.myPid();
-        ArrayList a11 = a(context);
-        int size = a11.size();
-        int i7 = 0;
-        while (true) {
-            if (i7 < size) {
-                obj = a11.get(i7);
-                i7++;
-                if (((e0) obj).f13327b == myPid) {
-                    break;
-                }
-            } else {
-                obj = null;
-                break;
-            }
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        e0 e0Var = (e0) obj;
-        if (e0Var == null) {
-            int i10 = Build.VERSION.SDK_INT;
-            if (i10 > 33) {
-                a10 = Process.myProcessName();
-                kotlin.jvm.internal.j.d(a10, "myProcessName(...)");
-            } else if ((i10 < 28 || (a10 = Application.getProcessName()) == null) && (a10 = x6.d.a()) == null) {
-                a10 = "";
-            }
-            return new e0(myPid, 0, a10, false);
+        if (!(obj instanceof f0)) {
+            return false;
         }
-        return e0Var;
+        f0 f0Var = (f0) obj;
+        if (kotlin.jvm.internal.j.a(this.f13332a, f0Var.f13332a) && this.f13333b == f0Var.f13333b && this.f13334c == f0Var.f13334c && this.d == f0Var.d) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int i7;
+        int hashCode = ((((this.f13332a.hashCode() * 31) + this.f13333b) * 31) + this.f13334c) * 31;
+        if (this.d) {
+            i7 = 1231;
+        } else {
+            i7 = 1237;
+        }
+        return hashCode + i7;
+    }
+
+    public final String toString() {
+        return "ProcessDetails(processName=" + this.f13332a + ", pid=" + this.f13333b + ", importance=" + this.f13334c + ", isDefaultProcess=" + this.d + ')';
     }
 }

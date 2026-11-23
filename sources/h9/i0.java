@@ -13,13 +13,13 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List {
-    public static final g0 f13998b = new g0(t1.f14066e, 0);
+    public static final g0 f13995b = new g0(s1.f14058e, 0);
 
-    public static t1 o(int i7, Object[] objArr) {
+    public static s1 o(int i7, Object[] objArr) {
         if (i7 == 0) {
-            return t1.f14066e;
+            return s1.f14058e;
         }
-        return new t1(i7, objArr);
+        return new s1(i7, objArr);
     }
 
     public static f0 p() {
@@ -30,7 +30,7 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
         if (collection instanceof d0) {
             i0 f10 = ((d0) collection).f();
             if (f10.m()) {
-                Object[] array = f10.toArray(d0.f13980a);
+                Object[] array = f10.toArray(d0.f13979a);
                 return o(array.length, array);
             }
             return f10;
@@ -40,34 +40,34 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
         return o(array2.length, array2);
     }
 
-    public static t1 r(Object[] objArr) {
+    public static s1 r(Object[] objArr) {
         if (objArr.length == 0) {
-            return t1.f14066e;
+            return s1.f14058e;
         }
         Object[] objArr2 = (Object[]) objArr.clone();
         o.e(objArr2.length, objArr2);
         return o(objArr2.length, objArr2);
     }
 
-    public static t1 t(Long l10, Long l11, Long l12, Long l13, Long l14) {
+    public static s1 t(Long l10, Long l11, Long l12, Long l13, Long l14) {
         Object[] objArr = {l10, l11, l12, l13, l14};
         o.e(5, objArr);
         return o(5, objArr);
     }
 
-    public static t1 u(Object obj) {
+    public static s1 u(Object obj) {
         Object[] objArr = {obj};
         o.e(1, objArr);
         return o(1, objArr);
     }
 
-    public static t1 v(Object obj, Object obj2) {
+    public static s1 v(Object obj, Object obj2) {
         Object[] objArr = {obj, obj2};
         o.e(2, objArr);
         return o(2, objArr);
     }
 
-    public static t1 w(Comparator comparator, List list) {
+    public static s1 w(Comparator comparator, List list) {
         List list2;
         comparator.getClass();
         if (list instanceof Collection) {
@@ -186,7 +186,7 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
     }
 
     @Override
-    public final h2 n() {
+    public final g2 n() {
         return listIterator(0);
     }
 
@@ -204,7 +204,7 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
     public final g0 listIterator(int i7) {
         ma.m(i7, size());
         if (isEmpty()) {
-            return f13998b;
+            return f13995b;
         }
         return new g0(this, i7);
     }
@@ -227,7 +227,7 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
             return this;
         }
         if (i11 == 0) {
-            return t1.f14066e;
+            return s1.f14058e;
         }
         return new h0(this, i7, i11);
     }

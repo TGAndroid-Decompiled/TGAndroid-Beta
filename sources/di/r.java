@@ -2,38 +2,38 @@ package di;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.hd;
-import org.telegram.ui.Components.b71;
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.gk0;
-public final class r extends b71 {
-    public final s[] f9602a = new s[3];
-    public final Context f9603b;
-    public final gk0 f9604c;
+public final class r extends c71 {
+    public final s[] f9598a = new s[3];
+    public final Context f9599b;
+    public final gk0 f9600c;
     public final t d;
 
     public r(t tVar, Context context, gk0 gk0Var) {
         this.d = tVar;
-        this.f9603b = context;
-        this.f9604c = gk0Var;
+        this.f9599b = context;
+        this.f9600c = gk0Var;
     }
 
     @Override
     public final void b(View view, int i7, int i10) {
-        this.f9604c.H(view);
+        this.f9600c.J(view);
     }
 
     @Override
     public final View d(int i7) {
-        s[] sVarArr = this.f9602a;
+        s[] sVarArr = this.f9598a;
         if (sVarArr[i7] == null) {
-            sVarArr[i7] = new s(this.d, this.f9603b, i7);
+            sVarArr[i7] = new s(this.d, this.f9599b, i7);
         }
         return sVarArr[i7];
     }
 
     @Override
     public final int e() {
-        return this.f9602a.length;
+        return this.f9598a.length;
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class r extends b71 {
         } else {
             i10 = 2131744679;
         }
-        return hd.N0(i10, null);
+        return gd.N0(i10, null);
     }
 
     @Override

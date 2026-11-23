@@ -1,75 +1,56 @@
 package h6;
 
-import com.google.android.gms.common.api.internal.BasePendingResult;
-import hi.b0;
-import java.net.Socket;
-import java.util.ArrayDeque;
-import java.util.TimerTask;
-import org.telegram.messenger.g0;
-import org.telegram.ui.Components.oo;
-import org.telegram.ui.ec0;
-import org.telegram.ui.hf0;
-import org.telegram.ui.lz;
-public final class r extends TimerTask {
+import android.util.Log;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.internal.cast.y;
+public final class r {
     public final int f13940a;
-    public final Object f13941b;
+    public final c f13941b;
 
-    public r(Object obj, int i7) {
+    public r(c cVar, int i7) {
         this.f13940a = i7;
-        this.f13941b = obj;
+        this.f13941b = cVar;
     }
 
-    @Override
-    public final void run() {
-        BasePendingResult basePendingResult;
+    public final void a(com.google.android.gms.common.api.r rVar) {
+        n nVar = (n) rVar;
         switch (this.f13940a) {
             case 0:
-                c cVar = (c) this.f13941b;
-                ArrayDeque arrayDeque = cVar.h;
-                if (!arrayDeque.isEmpty() && cVar.f13895k == null && cVar.f13888b != 0) {
-                    h hVar = cVar.f13889c;
-                    int[] e10 = j6.a.e(arrayDeque);
-                    hVar.getClass();
-                    q6.m.e("Must be called from the main thread.");
-                    if (!hVar.w()) {
-                        basePendingResult = h.t();
-                    } else {
-                        j jVar = new j(hVar, e10);
-                        h.x(jVar);
-                        basePendingResult = jVar;
-                    }
-                    cVar.f13895k = basePendingResult;
-                    basePendingResult.i(new q(cVar, 1));
-                    arrayDeque.clear();
+                Status a10 = nVar.a();
+                int i7 = a10.f6189a;
+                c cVar = this.f13941b;
+                if (i7 != 0) {
+                    j6.b bVar = cVar.f13887a;
+                    String str = a10.f6190b;
+                    Log.w(bVar.f17332a, bVar.d("Error fetching queue item ids, statusCode=" + i7 + ", statusMessage=" + str, new Object[0]));
+                }
+                cVar.f13896l = null;
+                if (!cVar.h.isEmpty()) {
+                    y yVar = cVar.f13893i;
+                    s sVar = cVar.f13894j;
+                    yVar.removeCallbacks(sVar);
+                    yVar.postDelayed(sVar, 500L);
                     return;
                 }
-                return;
-            case 1:
-                g0.g3(new b0(this, 7));
-                return;
-            case 2:
-                g0.g3(new oo(this, 24));
-                return;
-            case 3:
-                if (((ec0) this.f13941b).O != null) {
-                    g0.g3(new lz(this, 25));
-                    return;
-                }
-                return;
-            case 4:
-                g0.g3(new hf0(this, 8));
                 return;
             default:
-                try {
-                    Socket socket = ((rc.q) this.f13941b).f56580a.f56552a.f56546g;
-                    if (socket != null) {
-                        socket.close();
-                        return;
-                    }
-                    return;
-                } catch (Throwable unused) {
+                Status a11 = nVar.a();
+                int i10 = a11.f6189a;
+                c cVar2 = this.f13941b;
+                if (i10 != 0) {
+                    j6.b bVar2 = cVar2.f13887a;
+                    String str2 = a11.f6190b;
+                    Log.w(bVar2.f17332a, bVar2.d("Error fetching queue items, statusCode=" + i10 + ", statusMessage=" + str2, new Object[0]));
+                }
+                cVar2.f13895k = null;
+                if (!cVar2.h.isEmpty()) {
+                    y yVar2 = cVar2.f13893i;
+                    s sVar2 = cVar2.f13894j;
+                    yVar2.removeCallbacks(sVar2);
+                    yVar2.postDelayed(sVar2, 500L);
                     return;
                 }
+                return;
         }
     }
 }

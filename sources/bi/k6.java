@@ -1,11 +1,11 @@
 package bi;
 
-import org.telegram.ui.Components.gq0;
-public final class k6 extends v4.k {
-    public final gq0 F;
+import org.telegram.ui.Components.fq0;
+public final class k6 extends v4.l {
+    public final fq0 F;
 
-    public k6(gq0 gq0Var) {
-        this.F = gq0Var;
+    public k6(fq0 fq0Var) {
+        this.F = fq0Var;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class k6 extends v4.k {
     }
 
     @Override
-    public final void P(v4.e1 e1Var) {
+    public final void P(v4.f1 f1Var) {
         this.F.p();
     }
 

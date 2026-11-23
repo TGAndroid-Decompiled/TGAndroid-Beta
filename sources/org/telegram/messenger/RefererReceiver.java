@@ -7,7 +7,7 @@ public class RefererReceiver extends BroadcastReceiver {
     @Override
     public final void onReceive(Context context, Intent intent) {
         try {
-            np u12 = np.u1(k10.f24932t0);
+            mp u12 = mp.u1(i10.f24637t0);
             String string = intent.getExtras().getString("referrer");
             if (string != null) {
                 u12.U3 = string;

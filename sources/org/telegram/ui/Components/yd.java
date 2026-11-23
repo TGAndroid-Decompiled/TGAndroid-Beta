@@ -1,65 +1,58 @@
 package org.telegram.ui.Components;
 
+import android.graphics.RectF;
 import org.telegram.tgnet.TLRPC;
-public final class yd implements org.telegram.messenger.y10 {
-    public final int f42390a = 0;
-    public final Object f42391b;
-    public final boolean f42392c;
-    public final int d;
-    public final int f42393e;
-    public final boolean f42394f;
-    public final String f42395g;
-    public final Object h;
-    public final Object f42396i;
-    public final Object f42397j;
+import org.telegram.ui.ProfileActivity;
+public final class yd implements z4, org.telegram.messenger.nc {
+    public final String f42429a;
+    public final boolean f42430b;
+    public final org.telegram.messenger.fs f42431c;
+    public final Object d;
+    public final Object f42432e;
+    public final Object f42433f;
 
-    public yd(hg hgVar, Object obj, org.telegram.messenger.ff ffVar, boolean z10, int i7, int i10, boolean z11, String str, Object obj2) {
-        this.h = hgVar;
-        this.f42391b = obj;
-        this.f42396i = ffVar;
-        this.f42392c = z10;
-        this.d = i7;
-        this.f42393e = i10;
-        this.f42394f = z11;
-        this.f42395g = str;
-        this.f42397j = obj2;
+    public yd(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, Object obj, org.telegram.messenger.bj bjVar, boolean z10) {
+        this.f42431c = chatActivityEnterView;
+        this.d = document;
+        this.f42429a = str;
+        this.f42432e = obj;
+        this.f42433f = bjVar;
+        this.f42430b = z10;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f42390a;
-        Object obj2 = this.f42396i;
-        Object obj3 = this.h;
-        switch (i7) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj3;
-                int i10 = ChatActivityEnterView.f32535s7;
-                jd jdVar = new jd(chatActivityEnterView, (TLRPC.Document) obj2, this.f42395g, (org.telegram.messenger.cj) this.f42397j, this.f42392c, this.d, this.f42393e, this.f42391b, (Long) obj, this.f42394f);
-                if (!chatActivityEnterView.V1(jdVar)) {
-                    jdVar.run();
-                    return;
-                }
-                return;
-            default:
-                hg hgVar = (hg) obj3;
-                jd jdVar2 = new jd(hgVar, this.f42391b, (org.telegram.messenger.ff) obj2, this.f42392c, this.d, this.f42393e, this.f42394f, (Long) obj, this.f42395g, this.f42397j);
-                if (!hgVar.f35830a.V1(jdVar2)) {
-                    jdVar2.run();
-                    return;
-                }
-                return;
-        }
+    public void I(int i7, int i10, boolean z10) {
+        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f42431c;
+        TLRPC.Document document = (TLRPC.Document) this.d;
+        org.telegram.messenger.bj bjVar = (org.telegram.messenger.bj) this.f42433f;
+        int i11 = ChatActivityEnterView.f32633s7;
+        chatActivityEnterView.d(document, this.f42429a, this.f42432e, bjVar, this.f42430b, z10, i7, i10);
     }
 
-    public yd(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, org.telegram.messenger.cj cjVar, boolean z10, int i7, int i10, Object obj, boolean z11) {
-        this.h = chatActivityEnterView;
-        this.f42396i = document;
-        this.f42395g = str;
-        this.f42397j = cjVar;
-        this.f42392c = z10;
-        this.d = i7;
-        this.f42393e = i10;
-        this.f42391b = obj;
-        this.f42394f = z11;
+    @Override
+    public void a(String str) {
+        boolean z10;
+        TLRPC.Chat chat;
+        ProfileActivity profileActivity = (ProfileActivity) this.f42431c;
+        boolean[] zArr = (boolean[]) this.f42432e;
+        bi.i5 i5Var = (bi.i5) this.f42433f;
+        RectF rectF = ProfileActivity.Z6;
+        ((String[]) this.d)[0] = str;
+        if (str != null && ((!str.equals(this.f42429a) || str.equals("und")) && ((this.f42430b && !org.telegram.ui.ry0.d0().contains(str)) || ((chat = profileActivity.F2) != null && ((chat.has_link || org.telegram.messenger.v3.t0(chat)) && ("uk".equals(str) || "ru".equals(str))))))) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        zArr[0] = z10;
+        i5Var.run();
+    }
+
+    public yd(ProfileActivity profileActivity, String[] strArr, boolean[] zArr, String str, boolean z10, bi.i5 i5Var) {
+        this.f42431c = profileActivity;
+        this.d = strArr;
+        this.f42432e = zArr;
+        this.f42429a = str;
+        this.f42430b = z10;
+        this.f42433f = i5Var;
     }
 }

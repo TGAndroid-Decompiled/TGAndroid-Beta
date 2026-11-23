@@ -1,7 +1,7 @@
 package a4;
 
 import a8.ma;
-import f3.b0;
+import f3.c0;
 import f3.p;
 import f3.t;
 import f3.u;
@@ -19,7 +19,7 @@ public final class c implements h {
     }
 
     @Override
-    public b0 f() {
+    public c0 N() {
         boolean z10;
         if (this.f158a != -1) {
             z10 = true;
@@ -31,7 +31,7 @@ public final class c implements h {
     }
 
     @Override
-    public long m0(p pVar) {
+    public long a0(p pVar) {
         long j3 = this.f159b;
         if (j3 < 0) {
             return -1L;
@@ -42,8 +42,8 @@ public final class c implements h {
     }
 
     @Override
-    public void v0(long j3) {
-        long[] jArr = (long[]) ((wf.b) this.d).f59680b;
+    public void l0(long j3) {
+        long[] jArr = (long[]) ((wf.b) this.d).f59800b;
         this.f159b = jArr[l0.f(jArr, j3, true)];
     }
 

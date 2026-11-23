@@ -5,8 +5,8 @@ public final class c3 extends m8 {
     public final ViewTreeObserver V;
     public final l2 W;
 
-    public c3(long j3, String str, long j10, org.telegram.ui.ActionBar.h6 h6Var, ViewTreeObserver viewTreeObserver, l2 l2Var) {
-        super(j3, str, j10, h6Var);
+    public c3(long j3, String str, long j10, org.telegram.ui.ActionBar.i6 i6Var, ViewTreeObserver viewTreeObserver, l2 l2Var) {
+        super(j3, str, j10, i6Var);
         this.V = viewTreeObserver;
         this.W = l2Var;
     }

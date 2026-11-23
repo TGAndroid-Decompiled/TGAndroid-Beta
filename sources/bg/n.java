@@ -44,7 +44,7 @@ public final class n implements Html.TagHandler, ContentHandler {
         }
         Editable editable = this.f3289c;
         this.f3287a.getClass();
-        pb.b.G0(false, str2, editable, null);
+        pb.b.y0(false, str2, editable, null);
     }
 
     @Override
@@ -91,9 +91,9 @@ public final class n implements Html.TagHandler, ContentHandler {
     public final void startElement(String str, String str2, String str3, Attributes attributes) {
         Editable editable = this.f3289c;
         this.f3287a.getClass();
-        boolean G0 = pb.b.G0(true, str2, editable, attributes);
-        this.d.addLast(Boolean.valueOf(G0));
-        if (!G0) {
+        boolean y02 = pb.b.y0(true, str2, editable, attributes);
+        this.d.addLast(Boolean.valueOf(y02));
+        if (!y02) {
             this.f3288b.startElement(str, str2, str3, attributes);
         }
     }

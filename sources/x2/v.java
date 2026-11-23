@@ -1,17 +1,17 @@
 package x2;
 public final class v extends s {
-    public final int f60255f;
+    public final int f60373f;
 
     public v(e2.l1 l1Var, int i7) {
         super(l1Var);
-        this.f60255f = i7;
+        this.f60373f = i7;
     }
 
     @Override
     public int e(int i7, int i10, boolean z10) {
-        switch (this.f60255f) {
+        switch (this.f60373f) {
             case 0:
-                e2.l1 l1Var = this.f60226e;
+                e2.l1 l1Var = this.f60344e;
                 int e10 = l1Var.e(i7, i10, z10);
                 if (e10 == -1) {
                     return l1Var.a(z10);
@@ -24,10 +24,10 @@ public final class v extends s {
 
     @Override
     public e2.i1 f(int i7, e2.i1 i1Var, boolean z10) {
-        switch (this.f60255f) {
+        switch (this.f60373f) {
             case 1:
                 super.f(i7, i1Var, z10);
-                i1Var.f10430f = true;
+                i1Var.f10428f = true;
                 return i1Var;
             default:
                 return super.f(i7, i1Var, z10);
@@ -36,9 +36,9 @@ public final class v extends s {
 
     @Override
     public int k(int i7, int i10, boolean z10) {
-        switch (this.f60255f) {
+        switch (this.f60373f) {
             case 0:
-                e2.l1 l1Var = this.f60226e;
+                e2.l1 l1Var = this.f60344e;
                 int k10 = l1Var.k(i7, i10, z10);
                 if (k10 == -1) {
                     return l1Var.c(z10);
@@ -51,10 +51,10 @@ public final class v extends s {
 
     @Override
     public e2.k1 m(int i7, e2.k1 k1Var, long j3) {
-        switch (this.f60255f) {
+        switch (this.f60373f) {
             case 1:
                 super.m(i7, k1Var, j3);
-                k1Var.f10478k = true;
+                k1Var.f10476k = true;
                 return k1Var;
             default:
                 return super.m(i7, k1Var, j3);

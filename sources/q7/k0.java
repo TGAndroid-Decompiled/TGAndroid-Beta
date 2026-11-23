@@ -1,14 +1,14 @@
 package q7;
 public final class k0 extends m0 {
-    public final char[] f56029e;
+    public final char[] f56142e;
 
     public k0(j0 j0Var) {
         super(j0Var, (Character) null);
-        this.f56029e = new char[512];
-        char[] cArr = j0Var.f56023b;
+        this.f56142e = new char[512];
+        char[] cArr = j0Var.f56136b;
         if (cArr.length == 16) {
             for (int i7 = 0; i7 < 256; i7++) {
-                char[] cArr2 = this.f56029e;
+                char[] cArr2 = this.f56142e;
                 cArr2[i7] = cArr[i7 >>> 4];
                 cArr2[i7 | 256] = cArr[i7 & 15];
             }
@@ -22,7 +22,7 @@ public final class k0 extends m0 {
         a.m(0, i7, bArr.length);
         for (int i10 = 0; i10 < i7; i10++) {
             int i11 = bArr[i10] & 255;
-            char[] cArr = this.f56029e;
+            char[] cArr = this.f56142e;
             sb2.append(cArr[i11]);
             sb2.append(cArr[i11 | 256]);
         }

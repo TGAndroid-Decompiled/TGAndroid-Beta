@@ -1,43 +1,77 @@
 package gb;
+
+import android.content.Context;
+import android.os.Process;
+import java.util.LinkedHashMap;
+import java.util.Map;
 public final class e0 {
-    public final String f13326a;
-    public final int f13327b;
-    public final int f13328c;
-    public final boolean d;
+    public final Context f13314a;
+    public final gd.i f13315b;
+    public final int f13316c;
+    public final gd.i d;
+    public final gd.i f13317e;
+    public boolean f13318f;
 
-    public e0(int i7, int i10, String str, boolean z10) {
-        this.f13326a = str;
-        this.f13327b = i7;
-        this.f13328c = i10;
-        this.d = z10;
+    public e0(Context appContext, j1 uuidGenerator) {
+        kotlin.jvm.internal.j.e(appContext, "appContext");
+        kotlin.jvm.internal.j.e(uuidGenerator, "uuidGenerator");
+        this.f13314a = appContext;
+        this.f13315b = b7.h.b(new rd.a(this) {
+            public final e0 f13306b;
+
+            {
+                this.f13306b = this;
+            }
+
+            @Override
+            public final Object invoke() {
+                switch (r2) {
+                    case 0:
+                        return ((f0) this.f13306b.f13317e.getValue()).f13332a;
+                    default:
+                        return g0.b(this.f13306b.f13314a);
+                }
+            }
+        });
+        this.f13316c = Process.myPid();
+        this.d = b7.h.b(new androidx.activity.d(uuidGenerator, 1));
+        this.f13317e = b7.h.b(new rd.a(this) {
+            public final e0 f13306b;
+
+            {
+                this.f13306b = this;
+            }
+
+            @Override
+            public final Object invoke() {
+                switch (r2) {
+                    case 0:
+                        return ((f0) this.f13306b.f13317e.getValue()).f13332a;
+                    default:
+                        return g0.b(this.f13306b.f13314a);
+                }
+            }
+        });
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof e0)) {
-            return false;
-        }
-        e0 e0Var = (e0) obj;
-        if (kotlin.jvm.internal.j.a(this.f13326a, e0Var.f13326a) && this.f13327b == e0Var.f13327b && this.f13328c == e0Var.f13328c && this.d == e0Var.d) {
-            return true;
-        }
-        return false;
+    public final String a() {
+        return (String) this.f13315b.getValue();
     }
 
-    public final int hashCode() {
-        int i7;
-        int hashCode = ((((this.f13326a.hashCode() * 31) + this.f13327b) * 31) + this.f13328c) * 31;
-        if (this.d) {
-            i7 = 1231;
-        } else {
-            i7 = 1237;
+    public final Map b(Map map) {
+        gd.i iVar = this.d;
+        if (map != null) {
+            LinkedHashMap linkedHashMap = new LinkedHashMap(map);
+            linkedHashMap.put(a(), new c0(Process.myPid(), (String) iVar.getValue()));
+            int size = linkedHashMap.size();
+            if (size != 0) {
+                if (size != 1) {
+                    return new LinkedHashMap(linkedHashMap);
+                }
+                return hd.r.g(linkedHashMap);
+            }
+            return hd.o.f14141a;
         }
-        return hashCode + i7;
-    }
-
-    public final String toString() {
-        return "ProcessDetails(processName=" + this.f13326a + ", pid=" + this.f13327b + ", importance=" + this.f13328c + ", isDefaultProcess=" + this.d + ')';
+        return hd.r.c(new gd.e(a(), new c0(Process.myPid(), (String) iVar.getValue())));
     }
 }

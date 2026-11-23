@@ -1,31 +1,27 @@
 package hi;
+
+import android.view.ViewGroup;
 public final class b1 implements Runnable {
-    public final int f14207a;
-    public final c1 f14208b;
+    public final int f14213a;
+    public final c1 f14214b;
 
     public b1(c1 c1Var, int i7) {
-        this.f14207a = i7;
-        this.f14208b = c1Var;
+        this.f14213a = i7;
+        this.f14214b = c1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f14207a) {
+        switch (this.f14213a) {
             case 0:
-                c1 c1Var = this.f14208b;
-                if (c1Var.L > 0) {
-                    c1Var.dualToggleShape();
-                    try {
-                        c1Var.performHapticFeedback(0, 1);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
+                c1 c1Var = this.f14214b;
+                if (c1Var.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) c1Var.getParent()).removeView(c1Var);
+                    return;
                 }
                 return;
             default:
-                c1 c1Var2 = this.f14208b;
-                c1Var2.focusToPoint((int) c1Var2.J, (int) c1Var2.K);
+                this.f14214b.a();
                 return;
         }
     }

@@ -1,61 +1,55 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import java.util.HashSet;
-public final class cy extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public Paint f46789a;
-    public float[] f46790b;
-    public Path f46791c;
-    public float d;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
+public abstract class cy extends FrameLayout {
+    public float[] E;
+    public FrameLayout f46896a;
+    public org.telegram.ui.ActionBar.n5 f46897b;
+    public org.telegram.ui.ActionBar.n5 f46898c;
+    public ImageView d;
+    public ay f46899e;
+    public di.xb f46900f;
+    public di.xb h;
+    public TextView f46901n;
+    public org.telegram.ui.ActionBar.g2 f46902r;
+    public String f46903s;
+    public float f46904w;
+    public ValueAnimator f46905x;
+    public org.telegram.ui.ActionBar.g1 f46906y;
 
-    public final void a(float f10, float f11) {
-        float[] fArr = this.f46790b;
-        fArr[7] = f10;
-        fArr[6] = f10;
-        fArr[1] = f10;
-        fArr[0] = f10;
-        fArr[5] = f11;
-        fArr[4] = f11;
-        fArr[3] = f11;
-        fArr[2] = f11;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float measuredWidth = getMeasuredWidth() / 2.0f;
-        Path path = this.f46791c;
-        path.rewind();
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(0.0f, 0.0f, measuredWidth - org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(4.0f)), getMeasuredHeight());
-        a(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(8.0f)));
-        float[] fArr = this.f46790b;
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF, fArr, direction);
-        Paint paint = this.f46789a;
-        canvas.drawPath(path, paint);
-        path.rewind();
-        rectF.set(measuredWidth + org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(4.0f)), 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        a(org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(8.0f)), org.telegram.messenger.g0.L(8.0f));
-        path.addRoundRect(rectF, fArr, direction);
-        canvas.drawPath(path, paint);
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            this.f46789a.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Fi, false));
-            invalidate();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public static void a(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
+        float f10 = 0.0f;
+        float f11 = 0.0f;
+        FrameLayout frameLayout3 = frameLayout;
+        while (frameLayout3 != frameLayout2) {
+            float y10 = frameLayout3.getY() + f10;
+            f11 += frameLayout3.getX();
+            if (frameLayout3 instanceof ScrollView) {
+                y10 -= frameLayout3.getScrollY();
+            }
+            f10 = y10;
+            if (!(frameLayout3.getParent() instanceof View)) {
+                break;
+            }
+            ?? r32 = (View) frameLayout3.getParent();
+            boolean z10 = r32 instanceof ViewGroup;
+            frameLayout3 = r32;
+            if (!z10) {
+                return;
+            }
         }
+        fArr[0] = f11 - frameLayout2.getPaddingLeft();
+        fArr[1] = f10 - frameLayout2.getPaddingTop();
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(127.0f), 1073741824));
     }
 }

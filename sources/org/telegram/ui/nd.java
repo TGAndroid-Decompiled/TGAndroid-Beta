@@ -1,3 +1,3 @@
 package org.telegram.ui;
-public final class nd extends hi.d {
+public final class nd extends hi.e {
 }

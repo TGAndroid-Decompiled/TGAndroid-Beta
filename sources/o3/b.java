@@ -5,18 +5,18 @@ import e2.n0;
 import e2.p0;
 import e2.u;
 public final class b implements p0 {
-    public final long f21673a;
-    public final long f21674b;
-    public final long f21675c;
+    public final long f21772a;
+    public final long f21773b;
+    public final long f21774c;
     public final long d;
-    public final long f21676e;
+    public final long f21775e;
 
     public b(long j3, long j10, long j11, long j12, long j13) {
-        this.f21673a = j3;
-        this.f21674b = j10;
-        this.f21675c = j11;
+        this.f21772a = j3;
+        this.f21773b = j10;
+        this.f21774c = j11;
         this.d = j12;
-        this.f21676e = j13;
+        this.f21775e = j13;
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class b implements p0 {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f21673a == bVar.f21673a && this.f21674b == bVar.f21674b && this.f21675c == bVar.f21675c && this.d == bVar.d && this.f21676e == bVar.f21676e) {
+            if (this.f21772a == bVar.f21772a && this.f21773b == bVar.f21773b && this.f21774c == bVar.f21774c && this.d == bVar.d && this.f21775e == bVar.f21775e) {
                 return true;
             }
         }
@@ -43,14 +43,14 @@ public final class b implements p0 {
     }
 
     public final int hashCode() {
-        int b10 = m1.b(this.f21674b);
-        int b11 = m1.b(this.f21675c);
+        int b10 = m1.b(this.f21773b);
+        int b11 = m1.b(this.f21774c);
         int b12 = m1.b(this.d);
-        return m1.b(this.f21676e) + ((b12 + ((b11 + ((b10 + ((m1.b(this.f21673a) + 527) * 31)) * 31)) * 31)) * 31);
+        return m1.b(this.f21775e) + ((b12 + ((b11 + ((b10 + ((m1.b(this.f21772a) + 527) * 31)) * 31)) * 31)) * 31);
     }
 
     public final String toString() {
-        return "Motion photo metadata: photoStartPosition=" + this.f21673a + ", photoSize=" + this.f21674b + ", photoPresentationTimestampUs=" + this.f21675c + ", videoStartPosition=" + this.d + ", videoSize=" + this.f21676e;
+        return "Motion photo metadata: photoStartPosition=" + this.f21772a + ", photoSize=" + this.f21773b + ", photoPresentationTimestampUs=" + this.f21774c + ", videoStartPosition=" + this.d + ", videoSize=" + this.f21775e;
     }
 
     @Override

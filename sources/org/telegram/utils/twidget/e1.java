@@ -26,7 +26,7 @@ public abstract class e1 {
                 int ceil = (int) Math.ceil(rectF2.right * f10);
                 int ceil2 = (int) Math.ceil(rectF2.bottom * f10);
                 if (h1Var.p((ceil2 - floor2) * (ceil - floor))) {
-                    h1Var.f54768w++;
+                    h1Var.f54884w++;
                     RenderNode renderNode = new RenderNode("widget-backdrop");
                     renderNode.setPosition(floor, floor2, ceil, ceil2);
                     RecordingCanvas beginRecording = renderNode.beginRecording();
@@ -38,7 +38,7 @@ public abstract class e1 {
                     renderNode.setRenderEffect(c10);
                     Canvas canvas = (Canvas) eVar.d;
                     canvas.save();
-                    Path path = h1Var.f54753f;
+                    Path path = h1Var.f54869f;
                     path.rewind();
                     if (fArr == null) {
                         path.addRect(rectF, Path.Direction.CW);
@@ -70,12 +70,12 @@ public abstract class e1 {
             }
             RenderNode renderNode = new RenderNode("widget-filter");
             f1Var.d = floor;
-            f1Var.f54740e = floor2;
+            f1Var.f54856e = floor2;
             renderNode.setPosition(floor, floor2, ceil, ceil2);
             renderNode.setRenderEffect(c10);
-            f1Var.f54739c = renderNode;
+            f1Var.f54855c = renderNode;
             RecordingCanvas beginRecording = renderNode.beginRecording();
-            beginRecording.translate(-f1Var.d, -f1Var.f54740e);
+            beginRecording.translate(-f1Var.d, -f1Var.f54856e);
             beginRecording.scale(f10, f10);
             return beginRecording;
         }
@@ -146,12 +146,12 @@ public abstract class e1 {
     }
 
     public static void d(f1 f1Var, float f10) {
-        RenderNode d = n2.a0.d(f1Var.f54739c);
+        RenderNode d = n2.a0.d(f1Var.f54855c);
         d.endRecording();
-        f1Var.f54737a.save();
+        f1Var.f54853a.save();
         float f11 = 1.0f / f10;
-        f1Var.f54737a.scale(f11, f11);
-        f1Var.f54737a.drawRenderNode(d);
-        f1Var.f54737a.restore();
+        f1Var.f54853a.scale(f11, f11);
+        f1Var.f54853a.drawRenderNode(d);
+        f1Var.f54853a.restore();
     }
 }

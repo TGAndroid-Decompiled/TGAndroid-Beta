@@ -11,46 +11,46 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 public final class vd extends LinearLayout {
-    public final LinearLayout f52776a;
-    public final LinearLayout[] f52777b;
-    public final org.telegram.ui.Components.x5[] f52778c;
+    public final LinearLayout f52948a;
+    public final LinearLayout[] f52949b;
+    public final org.telegram.ui.Components.w5[] f52950c;
     public final TextView[] d;
-    public final TextView f52779e;
-    public final DecimalFormat f52780f;
+    public final TextView f52951e;
+    public final DecimalFormat f52952f;
 
-    public vd(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+    public vd(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
-        this.f52777b = new LinearLayout[2];
-        this.f52778c = new org.telegram.ui.Components.x5[2];
+        this.f52949b = new LinearLayout[2];
+        this.f52950c = new org.telegram.ui.Components.w5[2];
         this.d = new TextView[2];
         setOrientation(1);
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f52776a = linearLayout;
+        this.f52948a = linearLayout;
         linearLayout.setOrientation(1);
         addView(linearLayout, c8.na.k(22.0f, 9.0f, 22.0f, 0.0f, -1, -2));
         for (int i7 = 0; i7 < 2; i7++) {
-            this.f52777b[i7] = new LinearLayout(context);
-            this.f52777b[i7].setOrientation(0);
-            this.f52776a.addView(this.f52777b[i7], c8.na.p(-1, -2, 1.0f, 119));
-            this.f52778c[i7] = new org.telegram.ui.Components.x5(context);
-            this.f52778c[i7].setTypeface(org.telegram.messenger.g0.o());
-            this.f52778c[i7].setTextSize(1, 16.0f);
-            org.telegram.ui.ActionBar.t6.U(this.f52778c[i7], org.telegram.ui.ActionBar.m6.G6, h6Var);
-            this.f52777b[i7].addView(this.f52778c[i7], c8.na.t(-2, -2, 80, 0, 0, 5, 0));
-            this.d[i7] = new org.telegram.ui.Components.x5(context);
+            this.f52949b[i7] = new LinearLayout(context);
+            this.f52949b[i7].setOrientation(0);
+            this.f52948a.addView(this.f52949b[i7], c8.na.p(-1, -2, 1.0f, 119));
+            this.f52950c[i7] = new org.telegram.ui.Components.w5(context);
+            this.f52950c[i7].setTypeface(org.telegram.messenger.g0.o());
+            this.f52950c[i7].setTextSize(1, 16.0f);
+            org.telegram.ui.ActionBar.u6.U(this.f52950c[i7], org.telegram.ui.ActionBar.n6.G6, i6Var);
+            this.f52949b[i7].addView(this.f52950c[i7], c8.na.t(-2, -2, 80, 0, 0, 5, 0));
+            this.d[i7] = new org.telegram.ui.Components.w5(context);
             this.d[i7].setTextSize(1, 11.5f);
-            org.telegram.ui.ActionBar.t6.U(this.d[i7], org.telegram.ui.ActionBar.m6.f29739y6, h6Var);
-            this.f52777b[i7].addView(this.d[i7], c8.na.r(-2, -2, 80));
+            org.telegram.ui.ActionBar.u6.U(this.d[i7], org.telegram.ui.ActionBar.n6.f29843y6, i6Var);
+            this.f52949b[i7].addView(this.d[i7], c8.na.r(-2, -2, 80));
         }
         TextView textView = new TextView(context);
-        this.f52779e = textView;
+        this.f52951e = textView;
         textView.setTextSize(1, 13.0f);
-        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29739y6, h6Var);
+        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29843y6, i6Var);
         addView(textView, c8.na.t(-1, -2, 55, 22, 5, 22, 9));
         DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
         decimalFormatSymbols.setDecimalSeparator('.');
         DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-        this.f52780f = decimalFormat;
+        this.f52952f = decimalFormat;
         decimalFormat.setMinimumFractionDigits(2);
         decimalFormat.setMaximumFractionDigits(12);
         decimalFormat.setGroupingUsed(false);
@@ -66,34 +66,34 @@ public final class vd extends LinearLayout {
         long j3;
         int i7;
         int indexOf;
-        this.f52779e.setText(udVar.f52537c);
+        this.f52951e.setText(udVar.f52641c);
         int i10 = 0;
         while (i10 < 2) {
             if (i10 == 0) {
-                str = udVar.f52536b;
+                str = udVar.f52640b;
             } else {
                 str = udVar.h;
             }
             if (i10 == 0) {
-                j3 = udVar.f52538e;
+                j3 = udVar.f52642e;
             } else {
-                j3 = udVar.f52542j;
+                j3 = udVar.f52646j;
             }
-            LinearLayout[] linearLayoutArr = this.f52777b;
-            if (i10 == 0 && !udVar.f52535a) {
+            LinearLayout[] linearLayoutArr = this.f52949b;
+            if (i10 == 0 && !udVar.f52639a) {
                 linearLayoutArr[i10].setVisibility(8);
-            } else if (i10 == 1 && !udVar.f52540g) {
+            } else if (i10 == 1 && !udVar.f52644g) {
                 linearLayoutArr[i10].setVisibility(8);
             } else {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(p5.c.v(str, " "));
                 boolean equalsIgnoreCase = "TON".equalsIgnoreCase(str);
-                TextView[] textViewArr = this.f52778c;
+                TextView[] textViewArr = this.f52950c;
                 if (equalsIgnoreCase) {
-                    String format = this.f52780f.format(udVar.d / 1.0E9d);
+                    String format = this.f52952f.format(udVar.d / 1.0E9d);
                     int indexOf2 = format.indexOf(46);
                     if (indexOf2 >= 0) {
                         i7 = i10;
-                        spannableStringBuilder.append((CharSequence) org.telegram.messenger.hd.E((long) Math.floor(udVar.d / 1.0E9d), ' '));
+                        spannableStringBuilder.append((CharSequence) org.telegram.messenger.gd.E((long) Math.floor(udVar.d / 1.0E9d), ' '));
                         spannableStringBuilder.append((CharSequence) format.substring(indexOf2));
                     } else {
                         i7 = i10;
@@ -104,9 +104,9 @@ public final class vd extends LinearLayout {
                     i7 = i10;
                     if ("XTR".equalsIgnoreCase(str)) {
                         if (i7 == 0) {
-                            spannableStringBuilder.append((CharSequence) org.telegram.messenger.hd.E(udVar.d, ' '));
+                            spannableStringBuilder.append((CharSequence) org.telegram.messenger.gd.E(udVar.d, ' '));
                         } else {
-                            spannableStringBuilder.append((CharSequence) di.pb.M0(udVar.f52541i, 0.8f, ' '));
+                            spannableStringBuilder.append((CharSequence) di.pb.M0(udVar.f52645i, 0.8f, ' '));
                         }
                         spannableStringBuilder = di.pb.b1(false, spannableStringBuilder, 0.7f, null);
                     } else {
@@ -120,7 +120,7 @@ public final class vd extends LinearLayout {
                 linearLayoutArr[i7].setVisibility(0);
                 textViewArr[i7].setText(spannableStringBuilder2);
                 TextView textView = this.d[i7];
-                textView.setText("≈" + org.telegram.messenger.r1.i().f(j3, udVar.f52539f));
+                textView.setText("≈" + org.telegram.messenger.r1.i().f(j3, udVar.f52643f));
                 i10 = i7 + 1;
             }
             i7 = i10;

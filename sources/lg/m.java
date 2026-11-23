@@ -30,23 +30,23 @@ public final class m extends g {
         getMeasuredHeight();
         ArrayList arrayList3 = this.d;
         int size = arrayList3.size();
-        if (this.f19800i0 != null) {
+        if (this.f19900i0 != null) {
             int i12 = 0;
             while (i12 < size) {
                 ng.f fVar = (ng.f) arrayList3.get(i12);
-                boolean z11 = fVar.f21507n;
-                Paint paint2 = fVar.f21497b;
-                float[] fArr = fVar.f21505l;
-                Path path = fVar.f21499e;
+                boolean z11 = fVar.f21606n;
+                Paint paint2 = fVar.f21596b;
+                float[] fArr = fVar.f21604l;
+                Path path = fVar.f21598e;
                 float f12 = 0.0f;
-                if (!z11 && fVar.f21508o == 0.0f) {
+                if (!z11 && fVar.f21607o == 0.0f) {
                     arrayList = arrayList3;
                     i7 = size;
                 } else {
                     path.reset();
-                    int length = this.f19800i0.f20979b.length;
-                    long[] jArr = fVar.f21496a.f20971a;
-                    fVar.f21500f.reset();
+                    int length = this.f19900i0.f21075b.length;
+                    long[] jArr = fVar.f21595a.f21067a;
+                    fVar.f21599f.reset();
                     int i13 = 0;
                     int i14 = 0;
                     while (true) {
@@ -62,26 +62,26 @@ public final class m extends g {
                             i10 = size;
                             i11 = length;
                         } else {
-                            mg.b bVar = this.f19800i0;
+                            mg.b bVar = this.f19900i0;
                             arrayList2 = arrayList3;
-                            float f14 = this.D0 * bVar.f20979b[i13];
+                            float f14 = this.D0 * bVar.f21075b[i13];
                             boolean z12 = g.C1;
                             i10 = size;
                             if (z12) {
                                 i11 = length;
-                                f10 = this.f19804k0;
+                                f10 = this.f19904k0;
                                 paint = paint2;
                             } else {
                                 i11 = length;
                                 paint = paint2;
-                                f10 = (float) bVar.f20981e;
+                                f10 = (float) bVar.f21077e;
                             }
                             if (z12) {
-                                f11 = this.f19806l0;
+                                f11 = this.f19906l0;
                                 paint2 = paint;
                             } else {
                                 paint2 = paint;
-                                f11 = (float) bVar.f20982f;
+                                f11 = (float) bVar.f21078f;
                             }
                             float f15 = (1.0f - ((((float) j3) - f11) / (f10 - f11))) * this.C0;
                             if (z10) {
@@ -114,12 +114,12 @@ public final class m extends g {
                     arrayList = arrayList3;
                     i7 = size;
                     float f16 = f12;
-                    fVar.f21503j = i14;
-                    if (fVar.f21507n || fVar.f21508o != f16) {
+                    fVar.f21602j = i14;
+                    if (fVar.f21606n || fVar.f21607o != f16) {
                         Paint paint3 = paint2;
-                        paint3.setAlpha((int) (fVar.f21508o * 255.0f));
+                        paint3.setAlpha((int) (fVar.f21607o * 255.0f));
                         if (z10) {
-                            canvas.drawLines(fArr, 0, fVar.f21503j, paint3);
+                            canvas.drawLines(fArr, 0, fVar.f21602j, paint3);
                         } else {
                             canvas.drawPath(path, paint3);
                         }

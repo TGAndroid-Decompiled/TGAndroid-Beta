@@ -1,12 +1,12 @@
 package bi;
 
 import android.content.Context;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.lm0;
-import org.telegram.ui.nl0;
-public final class g8 implements y10 {
+import org.telegram.ui.jm0;
+import org.telegram.ui.ll0;
+public final class g8 implements w10 {
     public final int f3621a = 0;
     public final long f3622b;
     public final Object f3623c;
@@ -34,14 +34,14 @@ public final class g8 implements y10 {
                 if (tL_payments_paymentFormStarGift != null) {
                     di.f5 f5Var = new di.f5(bVar, tL_payments_paymentFormStarGift);
                     Context context = l8Var.getContext();
-                    org.telegram.ui.ActionBar.h6 h6Var = l8Var.J0;
-                    int i7 = l8Var.f30139a;
+                    org.telegram.ui.ActionBar.i6 i6Var = l8Var.J0;
+                    int i7 = l8Var.f30223a;
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append(tL_starGiftUnique.title);
                     sb2.append(" #");
                     String l10 = i5.c.l(tL_starGiftUnique.num, ',', sb2);
                     long j3 = this.f3622b;
-                    new di.h5(context, h6Var, tL_starGiftUnique, f5Var, i7, j3, l10, true, new h8(l8Var, tL_starGiftUnique, j3, 0)).b();
+                    new di.h5(context, i6Var, tL_starGiftUnique, f5Var, i7, j3, l10, true, new h8(l8Var, tL_starGiftUnique, j3, 0)).b();
                     return;
                 }
                 return;
@@ -54,7 +54,7 @@ public final class g8 implements y10 {
                 f6Var.v1(this.f3622b, stargiftdepositpayload, longValue, (vf.b) obj, f2Var);
                 return;
             default:
-                lm0.a0((lm0) this.f3623c, (cg.b) this.f3624e, (TL_stars.TL_starGiftUnique) this.f3625f, this.f3622b, (nl0) this.d, (TLRPC.TL_payments_paymentFormStarGift) obj);
+                jm0.a0((jm0) this.f3623c, (cg.b) this.f3624e, (TL_stars.TL_starGiftUnique) this.f3625f, this.f3622b, (ll0) this.d, (TLRPC.TL_payments_paymentFormStarGift) obj);
                 return;
         }
     }
@@ -67,11 +67,11 @@ public final class g8 implements y10 {
         this.f3625f = f2Var;
     }
 
-    public g8(lm0 lm0Var, cg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, nl0 nl0Var) {
-        this.f3623c = lm0Var;
+    public g8(jm0 jm0Var, cg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, ll0 ll0Var) {
+        this.f3623c = jm0Var;
         this.f3624e = bVar;
         this.f3625f = tL_starGiftUnique;
         this.f3622b = j3;
-        this.d = nl0Var;
+        this.d = ll0Var;
     }
 }

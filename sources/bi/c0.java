@@ -1,14 +1,14 @@
 package bi;
 
 import android.text.style.ClickableSpan;
-import org.telegram.ui.Components.n80;
+import org.telegram.ui.Components.k80;
 public final class c0 implements Runnable {
     public final int f3425a;
-    public final hi.l3 f3426b;
+    public final hi.u3 f3426b;
 
-    public c0(hi.l3 l3Var, int i7) {
+    public c0(hi.u3 u3Var, int i7) {
         this.f3425a = i7;
-        this.f3426b = l3Var;
+        this.f3426b = u3Var;
     }
 
     @Override
@@ -32,8 +32,8 @@ public final class c0 implements Runnable {
         }
     }
 
-    public c0(hi.l3 l3Var, n80 n80Var, ClickableSpan clickableSpan) {
+    public c0(hi.u3 u3Var, k80 k80Var, ClickableSpan clickableSpan) {
         this.f3425a = 4;
-        this.f3426b = l3Var;
+        this.f3426b = u3Var;
     }
 }

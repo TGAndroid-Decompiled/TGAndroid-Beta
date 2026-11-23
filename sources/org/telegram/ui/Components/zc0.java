@@ -1,42 +1,29 @@
 package org.telegram.ui.Components;
+public final class zc0 implements org.telegram.messenger.fs {
+    public final int f42825a;
+    public final org.telegram.messenger.w10 f42826b;
+    public final org.telegram.messenger.fs[] f42827c;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-public final class zc0 implements org.telegram.ui.ActionBar.q1 {
-    public final int f42736a;
-    public final Activity f42737b;
-
-    public zc0(Activity activity, int i7) {
-        this.f42736a = i7;
-        this.f42737b = activity;
+    public zc0(int i7, org.telegram.messenger.w10 w10Var, org.telegram.messenger.fs[] fsVarArr) {
+        this.f42825a = i7;
+        this.f42826b = w10Var;
+        this.f42827c = fsVarArr;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f42736a) {
-            case 0:
-                Activity activity = this.f42737b;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26895b.getPackageName()));
-                    activity.startActivity(intent);
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    return;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        int i11 = org.telegram.messenger.ks.s5;
+        if (i7 == i11) {
+            int intValue = ((Integer) objArr[0]).intValue();
+            String[] strArr = (String[]) objArr[1];
+            int[] iArr = (int[]) objArr[2];
+            if (intValue == this.f42825a) {
+                org.telegram.messenger.w10 w10Var = this.f42826b;
+                if (w10Var != null) {
+                    w10Var.a(iArr);
                 }
-            default:
-                Activity activity2 = this.f42737b;
-                try {
-                    Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent2.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26895b.getPackageName()));
-                    activity2.startActivity(intent2);
-                    return;
-                } catch (Exception e11) {
-                    org.telegram.messenger.a8.g(e11, true);
-                    return;
-                }
+                org.telegram.messenger.ks.e().n(this.f42827c[0], i11);
+            }
         }
     }
 }

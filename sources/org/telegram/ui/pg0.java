@@ -1,25 +1,27 @@
 package org.telegram.ui;
-public final class pg0 implements Runnable {
-    public final int f50852a;
-    public final vg0 f50853b;
 
-    public pg0(vg0 vg0Var, int i7) {
-        this.f50852a = i7;
-        this.f50853b = vg0Var;
+import android.content.Context;
+public final class pg0 extends ah.e {
+    public final int f51018n;
+
+    public pg0(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, i6Var);
+        this.f51018n = i7;
     }
 
     @Override
-    public final void run() {
-        switch (this.f50852a) {
+    public final int getHeaderHeight() {
+        switch (this.f51018n) {
             case 0:
-                this.f50853b.dismiss();
-                return;
-            case 1:
-                this.f50853b.h1(true, false);
-                return;
+                if (getResources().getConfiguration().orientation == 2) {
+                    return org.telegram.messenger.g0.L(48.0f);
+                }
+                return org.telegram.messenger.g0.L(54.0f);
             default:
-                this.f50853b.h1(true, false);
-                return;
+                if (getResources().getConfiguration().orientation == 2) {
+                    return org.telegram.messenger.g0.L(48.0f);
+                }
+                return org.telegram.messenger.g0.L(54.0f);
         }
     }
 }

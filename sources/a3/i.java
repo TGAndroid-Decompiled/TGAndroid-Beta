@@ -1,8 +1,8 @@
 package a3;
 
 import android.text.TextUtils;
-import h9.o1;
-import h9.r1;
+import h9.n1;
+import h9.q1;
 import j$.util.Objects;
 public final class i extends q implements Comparable {
     public final boolean E;
@@ -46,7 +46,7 @@ public final class i extends q implements Comparable {
         e2.u uVar2 = this.d;
         int i10 = uVar2.K;
         if (i10 != -1 && i10 == uVar.K) {
-            if ((this.E || ((str = uVar2.f10761s) != null && TextUtils.equals(str, uVar.f10761s))) && (i7 = uVar2.L) != -1 && i7 == uVar.L && this.N == iVar.N && this.O == iVar.O) {
+            if ((this.E || ((str = uVar2.f10759s) != null && TextUtils.equals(str, uVar.f10759s))) && (i7 = uVar2.L) != -1 && i7 == uVar.L && this.N == iVar.N && this.O == iVar.O) {
                 return true;
             }
             return false;
@@ -56,7 +56,7 @@ public final class i extends q implements Comparable {
 
     @Override
     public final int compareTo(i iVar) {
-        r1 a10;
+        q1 a10;
         boolean z10 = this.f93r;
         boolean z11 = this.f91f;
         if (z11 && z10) {
@@ -66,11 +66,11 @@ public final class i extends q implements Comparable {
         }
         boolean z12 = iVar.f93r;
         int i7 = iVar.L;
-        h9.w c10 = h9.w.f14076a.c(z10, z12);
+        h9.w c10 = h9.w.f14072a.c(z10, z12);
         Integer valueOf = Integer.valueOf(this.f95w);
         Integer valueOf2 = Integer.valueOf(iVar.f95w);
-        o1 o1Var = o1.f14029c;
-        h9.w b10 = c10.b(valueOf, valueOf2, o1Var).a(this.f94s, iVar.f94s).a(this.f96x, iVar.f96x).b(Integer.valueOf(this.f97y), Integer.valueOf(iVar.f97y), o1Var).c(this.I, iVar.I).c(this.F, iVar.F).b(Integer.valueOf(this.G), Integer.valueOf(iVar.G), o1Var).a(this.H, iVar.H).c(z11, iVar.f91f).b(Integer.valueOf(this.M), Integer.valueOf(iVar.M), o1Var);
+        n1 n1Var = n1.f14020c;
+        h9.w b10 = c10.b(valueOf, valueOf2, n1Var).a(this.f94s, iVar.f94s).a(this.f96x, iVar.f96x).b(Integer.valueOf(this.f97y), Integer.valueOf(iVar.f97y), n1Var).c(this.I, iVar.I).c(this.F, iVar.F).b(Integer.valueOf(this.G), Integer.valueOf(iVar.G), n1Var).a(this.H, iVar.H).c(z11, iVar.f91f).b(Integer.valueOf(this.M), Integer.valueOf(iVar.M), n1Var);
         boolean z13 = this.f92n.F;
         int i10 = this.L;
         if (z13) {

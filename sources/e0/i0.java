@@ -12,16 +12,16 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 public final class i0 {
     public static String d;
-    public static h0 f10220g;
-    public final Context f10221a;
-    public final NotificationManager f10222b;
-    public static final Object f10217c = new Object();
-    public static HashSet f10218e = new HashSet();
-    public static final Object f10219f = new Object();
+    public static h0 f10218g;
+    public final Context f10219a;
+    public final NotificationManager f10220b;
+    public static final Object f10215c = new Object();
+    public static HashSet f10216e = new HashSet();
+    public static final Object f10217f = new Object();
 
     public i0(Context context) {
-        this.f10221a = context;
-        this.f10222b = (NotificationManager) context.getSystemService("notification");
+        this.f10219a = context;
+        this.f10220b = (NotificationManager) context.getSystemService("notification");
     }
 
     public static i0 c(Context context) {
@@ -32,9 +32,9 @@ public final class i0 {
         Method method;
         Integer num;
         if (Build.VERSION.SDK_INT >= 24) {
-            return androidx.emoji2.text.x.a(this.f10222b);
+            return androidx.emoji2.text.x.a(this.f10220b);
         }
-        Context context = this.f10221a;
+        Context context = this.f10219a;
         AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService("appops");
         ApplicationInfo applicationInfo = context.getApplicationInfo();
         String packageName = context.getApplicationContext().getPackageName();
@@ -54,7 +54,7 @@ public final class i0 {
     }
 
     public final void b(int i7, String str) {
-        this.f10222b.cancel(str, i7);
+        this.f10220b.cancel(str, i7);
     }
 
     public final void d(int i7, Notification notification) {
@@ -62,16 +62,16 @@ public final class i0 {
     }
 
     public final void e(String str, int i7, Notification notification) {
-        NotificationManager notificationManager = this.f10222b;
+        NotificationManager notificationManager = this.f10220b;
         Bundle bundle = notification.extras;
         if (bundle != null && bundle.getBoolean("android.support.useSideChannel")) {
-            e0 e0Var = new e0(this.f10221a.getPackageName(), i7, str, notification);
-            synchronized (f10219f) {
+            e0 e0Var = new e0(this.f10219a.getPackageName(), i7, str, notification);
+            synchronized (f10217f) {
                 try {
-                    if (f10220g == null) {
-                        f10220g = new h0(this.f10221a.getApplicationContext());
+                    if (f10218g == null) {
+                        f10218g = new h0(this.f10219a.getApplicationContext());
                     }
-                    f10220g.f10215b.obtainMessage(0, e0Var).sendToTarget();
+                    f10218g.f10213b.obtainMessage(0, e0Var).sendToTarget();
                 } catch (Throwable th2) {
                     throw th2;
                 }

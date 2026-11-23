@@ -1,102 +1,37 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-public final class fr implements RequestDelegate {
-    public final int f35263a;
-    public final jr f35264b;
-    public final hi.d f35265c;
+import android.view.View;
+public final class fr extends m41 {
+    public static final int f35184b = 0;
 
-    public fr(jr jrVar, hi.d dVar, int i7) {
-        this.f35263a = i7;
-        this.f35264b = jrVar;
-        this.f35265c = dVar;
+    static {
+        m41.h(new m41());
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f35263a) {
-            case 0:
-                final jr jrVar = this.f35264b;
-                final hi.d dVar = this.f35265c;
-                org.telegram.messenger.g0.g3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                jr jrVar2 = jrVar;
-                                jrVar2.getClass();
-                                dVar.setLoading(false);
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
-                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
-                                    jrVar2.X1 = groupcallstreamrtmpurl.url;
-                                    jrVar2.Y1 = groupcallstreamrtmpurl.key;
-                                    jrVar2.Z1 = new SpannableStringBuilder(jrVar2.Y1);
-                                    jrVar2.f36541a2.O(true);
-                                    return;
-                                }
-                                return;
-                            default:
-                                jr jrVar3 = jrVar;
-                                jrVar3.getClass();
-                                dVar.setLoading(false);
-                                TLObject tLObject3 = tLObject;
-                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
-                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
-                                    jrVar3.X1 = groupcallstreamrtmpurl2.url;
-                                    jrVar3.Y1 = groupcallstreamrtmpurl2.key;
-                                    jrVar3.Z1 = new SpannableStringBuilder(jrVar3.Y1);
-                                    jrVar3.f36541a2.O(true);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final jr jrVar2 = this.f35264b;
-                final hi.d dVar2 = this.f35265c;
-                org.telegram.messenger.g0.g3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                jr jrVar22 = jrVar2;
-                                jrVar22.getClass();
-                                dVar2.setLoading(false);
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
-                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
-                                    jrVar22.X1 = groupcallstreamrtmpurl.url;
-                                    jrVar22.Y1 = groupcallstreamrtmpurl.key;
-                                    jrVar22.Z1 = new SpannableStringBuilder(jrVar22.Y1);
-                                    jrVar22.f36541a2.O(true);
-                                    return;
-                                }
-                                return;
-                            default:
-                                jr jrVar3 = jrVar2;
-                                jrVar3.getClass();
-                                dVar2.setLoading(false);
-                                TLObject tLObject3 = tLObject;
-                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
-                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
-                                    jrVar3.X1 = groupcallstreamrtmpurl2.url;
-                                    jrVar3.Y1 = groupcallstreamrtmpurl2.key;
-                                    jrVar3.Z1 = new SpannableStringBuilder(jrVar3.Y1);
-                                    jrVar3.f36541a2.O(true);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final void b(View view, n41 n41Var, boolean z10, b51 b51Var, g51 g51Var) {
+        org.telegram.ui.Cells.x8 x8Var = (org.telegram.ui.Cells.x8) view;
+        x8Var.c(n41Var.f37655m, n41Var.f37657o, !n41Var.f37652j);
+        xh.l lVar = x8Var.f32430a;
+        if (n41Var.f37655m instanceof SpannableStringBuilder) {
+            lVar.setTextSize(1, 13.0f);
+            lVar.setTranslationY(org.telegram.messenger.g0.L(2.0f));
+            lVar.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));
         }
+    }
+
+    @Override
+    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        org.telegram.ui.Cells.x8 x8Var = new org.telegram.ui.Cells.x8(context, i6Var, true);
+        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29451d6, x8Var, i6Var);
+        Drawable mutate = context.getDrawable(2131232108).mutate();
+        org.telegram.ui.ActionBar.u6.x(x8Var, mutate, org.telegram.ui.ActionBar.n6.L6, i6Var, PorterDuff.Mode.MULTIPLY);
+        x8Var.setImage(mutate);
+        x8Var.setImageClickListener(new ah.h(this, context, x8Var, 28));
+        return x8Var;
     }
 }

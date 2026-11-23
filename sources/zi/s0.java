@@ -3,9 +3,9 @@ public enum s0 {
     P480(480),
     P360(360);
     
-    public final int f62265a;
+    public final int f62385a;
 
     s0(int i7) {
-        this.f62265a = i7;
+        this.f62385a = i7;
     }
 }

@@ -1,70 +1,89 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.tgnet.TLRPC;
-public final class dy0 extends FrameLayout {
-    public final org.telegram.ui.Components.n5 f47051a;
-    public final ey0 f47052b;
+import android.app.Activity;
+public final class dy0 implements Runnable {
+    public final int f47256a;
+    public final bn f47257b;
+    public final Activity f47258c;
+    public final org.telegram.ui.ActionBar.i6 d;
+    public final org.telegram.messenger.fj f47259e;
 
-    public dy0(ey0 ey0Var, Context context) {
-        super(context);
-        this.f47052b = ey0Var;
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 16.0f);
-        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.G6, ey0Var.getResourceProvider());
-        textView.setText(org.telegram.messenger.hd.N0(2131751338, null));
-        addView(textView, c8.na.d(-1, -2.0f, 23, 20.0f, 0.0f, 48.0f, 0.0f));
-        this.f47051a = new org.telegram.ui.Components.n5(org.telegram.messenger.g0.L(24.0f), this);
+    public dy0(bn bnVar, Activity activity, org.telegram.ui.ActionBar.i6 i6Var, org.telegram.messenger.fj fjVar, int i7) {
+        this.f47256a = i7;
+        this.f47257b = bnVar;
+        this.f47258c = activity;
+        this.d = i6Var;
+        this.f47259e = fjVar;
     }
 
-    public final void a(boolean z10) {
-        ey0 ey0Var = this.f47052b;
-        String S = org.telegram.messenger.si.d0(ey0.d0(ey0Var)).S();
-        org.telegram.ui.Components.n5 n5Var = this.f47051a;
-        if (S != null && S.startsWith("animated_")) {
-            try {
-                n5Var.j(Long.parseLong(S.substring(9)), z10);
+    @Override
+    public final void run() {
+        int i7 = this.f47256a;
+        org.telegram.messenger.fj fjVar = this.f47259e;
+        org.telegram.ui.ActionBar.i6 i6Var = this.d;
+        final Activity activity = this.f47258c;
+        bn bnVar = this.f47257b;
+        switch (i7) {
+            case 0:
+                org.telegram.ui.Components.kc.b0(bnVar).c(org.telegram.messenger.g0.R2(org.telegram.messenger.gd.N0(2131754484, null), -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, i6Var)).j();
+                bnVar.ib(fjVar);
+                bnVar.kb(fjVar);
                 return;
-            } catch (Exception unused) {
-            }
+            case 1:
+                org.telegram.ui.Components.kc.b0(bnVar).c(org.telegram.messenger.g0.R2(org.telegram.messenger.gd.N0(2131754484, null), -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, i6Var)).j();
+                bnVar.ib(fjVar);
+                bnVar.kb(fjVar);
+                return;
+            default:
+                org.telegram.ui.Components.kc.b0(bnVar).c(org.telegram.messenger.g0.R2(org.telegram.messenger.gd.N0(2131754484, null), -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, i6Var)).j();
+                bnVar.ib(fjVar);
+                bnVar.kb(fjVar);
+                return;
         }
-        TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) org.telegram.messenger.si.d0(ey0.e0(ey0Var)).f26811r.get(S);
-        if (tL_availableReaction != null) {
-            n5Var.i(tL_availableReaction.static_icon, z10);
-        }
-    }
-
-    public final void b() {
-        int width = getWidth();
-        org.telegram.ui.Components.n5 n5Var = this.f47051a;
-        n5Var.setBounds((width - n5Var.f37736s) - org.telegram.messenger.g0.L(21.0f), (getHeight() - n5Var.f37736s) / 2, getWidth() - org.telegram.messenger.g0.L(21.0f), (getHeight() + n5Var.f37736s) / 2);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        b();
-        this.f47051a.draw(canvas);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f47051a.a();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f47051a.b();
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f), 1073741824));
     }
 }

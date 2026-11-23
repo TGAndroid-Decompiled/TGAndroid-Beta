@@ -1,32 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class tu0 extends sa {
-    public ks T1;
+import org.telegram.ui.ProfileActivity;
+public final class tu0 implements Runnable {
+    public final int f40168a;
+    public final wu0 f40169b;
 
-    public tu0(Context context) {
-        super(context, null, true, false, null);
-        O();
-        this.f39498z1 = true;
-        this.f39497y1 = true;
-        Z0();
-        ek0 ek0Var = this.f39487o1;
-        int i7 = this.f30177u0;
-        ek0Var.setPadding(i7, 0, i7, 0);
-        this.f39487o1.j(new oa(this, 20));
-        this.f39487o1.setOnItemClickListener(new o(this, 14));
+    public tu0(wu0 wu0Var, int i7) {
+        this.f40168a = i7;
+        this.f40169b = wu0Var;
     }
 
     @Override
-    public final dk0 M0(ek0 ek0Var) {
-        ks ksVar = new ks(ek0Var, getContext(), this.f30139a, 0, true, this.J0);
-        this.T1 = ksVar;
-        ksVar.f34026r = false;
-        return ksVar;
-    }
-
-    @Override
-    public final CharSequence P0() {
-        return org.telegram.messenger.hd.N0(2131745625, null);
+    public final void run() {
+        switch (this.f40168a) {
+            case 0:
+                wu0 wu0Var = this.f40169b;
+                wu0Var.invalidate();
+                org.telegram.messenger.g0.g3(new tu0(wu0Var, 1));
+                return;
+            default:
+                wu0 wu0Var2 = this.f40169b;
+                vu0 vu0Var = wu0Var2.f41737e;
+                if (vu0Var != null) {
+                    wu0Var2.getVisibilityFactor();
+                    ProfileActivity profileActivity = ((org.telegram.ui.st0) vu0Var).f52152b;
+                    profileActivity.f43753r.setTranslationX(profileActivity.m4(profileActivity.B6, profileActivity.D6));
+                    profileActivity.f43753r.setTranslationY(profileActivity.n4(profileActivity.E6));
+                    return;
+                }
+                return;
+        }
     }
 }

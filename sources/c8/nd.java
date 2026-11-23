@@ -22,13 +22,13 @@ public abstract class nd {
             } else {
                 f17 = 1.0f;
             }
-            obj.f59987a = Math.max(f10, Math.min(f11, f17));
-            obj.f59988b = new float[0];
-            obj.f59989c = new int[0];
-            obj.f59990e = new int[0];
+            obj.f60105a = Math.max(f10, Math.min(f11, f17));
+            obj.f60106b = new float[0];
+            obj.f60107c = new int[0];
+            obj.f60108e = new int[0];
             return obj;
         }
-        obj.f59991f = Float.MAX_VALUE;
+        obj.f60109f = Float.MAX_VALUE;
         Integer[] numArr = new Integer[length];
         for (int i11 = 0; i11 < length; i11++) {
             numArr[i11] = Integer.valueOf(i11);

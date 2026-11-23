@@ -6,9 +6,9 @@ public interface u {
 
     int P1();
 
-    MediaCodecInfo f(int i7);
+    MediaCodecInfo g(int i7);
 
-    boolean u2();
+    boolean s0(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities);
 
-    boolean x0(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities);
+    boolean s2();
 }

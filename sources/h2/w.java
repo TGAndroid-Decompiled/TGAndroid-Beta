@@ -2,19 +2,19 @@ package h2;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
-import fi.a6;
+import fi.l4;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executor;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.gj;
+import org.telegram.messenger.fj;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.j4;
-public final class w implements g61 {
+public final class w implements f61 {
     public static w f13820f;
     public boolean f13821a;
     public int f13822b;
@@ -81,7 +81,7 @@ public final class w implements g61 {
     }
 
     @Override
-    public void onError(i61 i61Var, Exception exc) {
+    public void onError(h61 h61Var, Exception exc) {
         a8.g(exc, true);
     }
 
@@ -93,10 +93,10 @@ public final class w implements g61 {
     public void onStateChanged(boolean z10, int i7) {
         int i10 = this.f13822b;
         MediaController mediaController = (MediaController) this.f13824e;
-        if (i10 != mediaController.f22718n0) {
+        if (i10 != mediaController.f22821n0) {
             return;
         }
-        MediaController.f(mediaController, (gj) this.f13823c, (int[]) this.d, this.f13821a, z10, i7);
+        MediaController.f(mediaController, (fj) this.f13823c, (int[]) this.d, this.f13821a, z10, i7);
     }
 
     @Override
@@ -133,10 +133,10 @@ public final class w implements g61 {
                     }
                     PipRoundVideoView pipRoundVideoView2 = mediaController.I0;
                     if (pipRoundVideoView2 != null) {
-                        if (pipRoundVideoView2.f33005c.getSurfaceTexture() != surfaceTexture) {
-                            mediaController.I0.f33005c.setSurfaceTexture(surfaceTexture);
+                        if (pipRoundVideoView2.f33103c.getSurfaceTexture() != surfaceTexture) {
+                            mediaController.I0.f33103c.setSurfaceTexture(surfaceTexture);
                         }
-                        mediaController.F0.A0(mediaController.I0.f33005c);
+                        mediaController.F0.A0(mediaController.I0.f33103c);
                     }
                 }
                 mediaController.J0 = 0;
@@ -186,13 +186,13 @@ public final class w implements g61 {
         this.d = new CopyOnWriteArrayList();
         this.f13824e = new Object();
         this.f13822b = 0;
-        e10.execute(new a6(22, this, context));
+        e10.execute(new l4(24, this, context));
     }
 
-    public w(MediaController mediaController, int i7, gj gjVar, int[] iArr, boolean z10) {
+    public w(MediaController mediaController, int i7, fj fjVar, int[] iArr, boolean z10) {
         this.f13824e = mediaController;
         this.f13822b = i7;
-        this.f13823c = gjVar;
+        this.f13823c = fjVar;
         this.d = iArr;
         this.f13821a = z10;
     }

@@ -14,7 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.kr;
 public final class e3 extends Drawable {
     public static m3 E = new m3();
     public long A;
@@ -22,7 +22,7 @@ public final class e3 extends Drawable {
     public Paint C;
     public int D;
     public final ViewGroup f3481a;
-    public final org.telegram.ui.ActionBar.h6 f3482b;
+    public final org.telegram.ui.ActionBar.i6 f3482b;
     public final Paint f3483c;
     public final Paint d;
     public final RectF f3484e;
@@ -38,7 +38,7 @@ public final class e3 extends Drawable {
     public final Matrix f3493o;
     public boolean f3494p;
     public final Paint f3495q;
-    public final org.telegram.ui.Components.d6 f3496r;
+    public final org.telegram.ui.Components.c6 f3496r;
     public float f3497s;
     public boolean f3498t;
     public int f3499u;
@@ -48,7 +48,7 @@ public final class e3 extends Drawable {
     public int f3502y;
     public Integer f3503z;
 
-    public e3(ViewGroup viewGroup, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
+    public e3(ViewGroup viewGroup, org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
         Paint paint = new Paint(1);
         this.f3483c = paint;
         Paint paint2 = new Paint(1);
@@ -60,14 +60,14 @@ public final class e3 extends Drawable {
         this.f3493o = new Matrix();
         Paint paint3 = new Paint(1);
         this.f3495q = paint3;
-        this.f3496r = new org.telegram.ui.Components.d6(new a3.f(this, 21), 320L, nr.h);
+        this.f3496r = new org.telegram.ui.Components.c6(new a3.f(this, 21), 320L, kr.h);
         this.f3497s = org.telegram.messenger.g0.L(11.0f);
         this.v = true;
         this.f3500w = 0;
-        int i7 = org.telegram.ui.ActionBar.m6.f29347d6;
+        int i7 = org.telegram.ui.ActionBar.n6.f29451d6;
         this.f3502y = i7;
         this.f3481a = viewGroup;
-        this.f3482b = h6Var;
+        this.f3482b = i6Var;
         d3 d3Var = new d3(this, viewGroup, org.telegram.messenger.g0.L(28.0f));
         this.f3490l = d3Var;
         viewGroup.addOnAttachStateChangeListener(new x2(this, 1));
@@ -75,7 +75,7 @@ public final class e3 extends Drawable {
             d3Var.a();
         }
         this.f3486g = z10;
-        int w02 = org.telegram.ui.ActionBar.m6.w0(i7, h6Var);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(i7, i6Var);
         this.f3501x = w02;
         paint.setColor(w02);
         a(z10);
@@ -87,7 +87,7 @@ public final class e3 extends Drawable {
     public final void a(boolean z10) {
         int i7;
         if (z10) {
-            i7 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29289a6, this.f3482b);
+            i7 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29393a6, this.f3482b);
         } else {
             i7 = 0;
         }
@@ -138,7 +138,7 @@ public final class e3 extends Drawable {
         d3Var.i(stargiftattributepattern.document, false);
         TLRPC.Document document = stargiftattributepattern.document;
         if (document != null) {
-            this.A = document.f28404id;
+            this.A = document.f28498id;
         }
     }
 

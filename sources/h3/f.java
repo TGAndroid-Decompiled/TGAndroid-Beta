@@ -10,7 +10,7 @@ import h9.c0;
 import h9.g0;
 import h9.i0;
 import h9.o;
-import h9.t1;
+import h9.s1;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -18,9 +18,9 @@ public final class f implements a {
     public final i0 f13870a;
     public final int f13871b;
 
-    public f(int i7, t1 t1Var) {
+    public f(int i7, s1 s1Var) {
         this.f13871b = i7;
-        this.f13870a = t1Var;
+        this.f13870a = s1Var;
     }
 
     public static f b(int i7, x xVar) {
@@ -85,9 +85,9 @@ public final class f implements a {
                                 break;
                             } else {
                                 t tVar = new t();
-                                tVar.f10715y = o11;
-                                tVar.f10716z = o12;
-                                tVar.f10709r = s0.n(str2);
+                                tVar.f10713y = o11;
+                                tVar.f10714z = o12;
+                                tVar.f10707r = s0.n(str2);
                                 gVar = new g(new u(tVar));
                                 break;
                             }
@@ -126,7 +126,7 @@ public final class f implements a {
                                         i10 = 0;
                                     }
                                     t tVar2 = new t();
-                                    tVar2.f10709r = s0.n(str);
+                                    tVar2.f10707r = s0.n(str);
                                     tVar2.J = t10;
                                     tVar2.K = o14;
                                     if (str.equals("audio/raw") && D != 0) {
@@ -135,7 +135,7 @@ public final class f implements a {
                                     if (str.equals("audio/mp4a-latm") && i10 > 0) {
                                         byte[] bArr = new byte[i10];
                                         xVar.k(0, i10, bArr);
-                                        tVar2.f10712u = i0.u(bArr);
+                                        tVar2.f10710u = i0.u(bArr);
                                     }
                                     gVar = new g(new u(tVar2));
                                     break;

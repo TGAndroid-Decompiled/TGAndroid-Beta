@@ -75,13 +75,13 @@ public final class d implements tf {
                 l0Var.c(j3);
             }
             Interpolator interpolator = (Interpolator) this.d;
-            if (interpolator != null && (view = (View) l0Var.f56266a.get()) != null) {
+            if (interpolator != null && (view = (View) l0Var.f56379a.get()) != null) {
                 view.animate().setInterpolator(interpolator);
             }
             if (((m0) this.f1018e) != null) {
                 l0Var.d((i) this.f1019f);
             }
-            View view2 = (View) l0Var.f56266a.get();
+            View view2 = (View) l0Var.f56379a.get();
             if (view2 != null) {
                 view2.animate().start();
             }
@@ -100,15 +100,15 @@ public final class d implements tf {
         gg ggVar = (gg) this.f1019f;
         r7 r7Var = new r7(3, (byte) 0);
         a0 a0Var = new a0(17, false);
-        a0Var.f1675b = Long.valueOf(j3 & Long.MAX_VALUE);
-        a0Var.f1676c = (eb) this.d;
+        a0Var.f1676b = Long.valueOf(j3 & Long.MAX_VALUE);
+        a0Var.f1677c = (eb) this.d;
         a0Var.d = Boolean.valueOf(z10);
         r7Var.f616b = new ua(a0Var);
-        int i10 = aVar.f58576e;
+        int i10 = aVar.f58691e;
         f.f1024l.getClass();
-        int i11 = aVar.f58576e;
+        int i11 = aVar.f58691e;
         if (i11 == -1) {
-            Bitmap bitmap = aVar.f58573a;
+            Bitmap bitmap = aVar.f58688a;
             m.h(bitmap);
             i7 = bitmap.getAllocationByteCount();
         } else if (i11 != 17 && i11 != 842094169) {
@@ -144,8 +144,8 @@ public final class d implements tf {
         } else {
             paVar = pa.BITMAP;
         }
-        bVar.f59680b = paVar;
-        bVar.f59681c = Integer.valueOf(i7 & Integer.MAX_VALUE);
+        bVar.f59800b = paVar;
+        bVar.f59801c = Integer.valueOf(i7 & Integer.MAX_VALUE);
         r7Var.f617c = new qa(bVar);
         r7Var.d = fVar.f1025e.a();
         if (ggVar != null) {
@@ -185,10 +185,10 @@ public final class d implements tf {
                 r7Var.f618e = c8.i.m(i12, objArr);
             }
         }
-        ga.d dVar = new ga.d(1);
-        dVar.d = db.TYPE_THIN;
-        dVar.h = new ce(r7Var);
-        return new xa(dVar, 0);
+        ?? obj = new Object();
+        obj.f13272c = db.TYPE_THIN;
+        obj.f13274f = new ce(r7Var);
+        return new xa((ga.d) obj, 0);
     }
 
     public d() {

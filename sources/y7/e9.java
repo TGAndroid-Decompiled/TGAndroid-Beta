@@ -1,33 +1,53 @@
 package y7;
 
-import a8.xa;
-import a8.ya;
+import a8.pa;
 import android.content.Context;
-public final class e9 implements c9 {
-    public final u9.m f60815a;
-    public final a9 f60816b;
+import com.google.android.gms.tasks.Task;
+import java.util.HashMap;
+public final class e9 {
+    public static n9 f60925j;
+    public static final d f60926k;
+    public final String f60927a;
+    public final String f60928b;
+    public final c9 f60929c;
+    public final pb.k d;
+    public final Task f60930e;
+    public final Task f60931f;
+    public final String f60932g;
+    public final int h;
+    public final HashMap f60933i = new HashMap();
 
-    public e9(Context context, a9 a9Var) {
-        this.f60816b = a9Var;
-        m5.a aVar = m5.a.f20824e;
-        o5.s.b(context);
-        o5.q c10 = o5.s.a().c(aVar);
-        if (m5.a.d.contains(new l5.c("json"))) {
-            new u9.m(new ya(c10, 4));
-        }
-        this.f60815a = new u9.m(new ya(c10, 5));
+    static {
+        Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
+        objArr[0].getClass();
+        objArr[1].getClass();
+        f60926k = new d(objArr);
     }
 
-    @Override
-    public final void a(xa xaVar) {
-        l5.a aVar;
-        this.f60816b.getClass();
-        o5.r rVar = (o5.r) this.f60815a.get();
-        if (xaVar.f713b != 0) {
-            aVar = l5.a.a(xaVar.F());
+    public e9(Context context, pb.k kVar, c9 c9Var, String str) {
+        int i7;
+        new HashMap();
+        this.f60927a = context.getPackageName();
+        this.f60928b = pb.c.a(context);
+        this.d = kVar;
+        this.f60929c = c9Var;
+        h9.b();
+        this.f60932g = str;
+        pb.f a10 = pb.f.a();
+        a2.b bVar = new a2.b(this, 8);
+        a10.getClass();
+        this.f60930e = pb.f.b(bVar);
+        pb.f a11 = pb.f.a();
+        kVar.getClass();
+        pa paVar = new pa(kVar, 3);
+        a11.getClass();
+        this.f60931f = pb.f.b(paVar);
+        d dVar = f60926k;
+        if (dVar.containsKey(str)) {
+            i7 = b7.f.d(context, (String) dVar.get(str), false);
         } else {
-            aVar = new l5.a(null, xaVar.F(), l5.d.f19670b, null);
+            i7 = -1;
         }
-        rVar.a(aVar, new n2.a0(8));
+        this.h = i7;
     }
 }

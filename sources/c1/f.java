@@ -9,7 +9,7 @@ import android.os.Looper;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import com.google.android.gms.common.api.internal.t;
 import com.google.android.gms.common.api.internal.u;
-import hi.u5;
+import hi.u0;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Executor;
 import kotlin.jvm.internal.j;
@@ -77,14 +77,14 @@ public final class f extends b1.d {
         long j3 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         a6.b bVar2 = bVar;
         boolean z11 = false;
-        for (h hVar : request.f59031a) {
+        for (h hVar : request.f59148a) {
             if ((hVar instanceof p) && !z11) {
                 if (j3 >= 231815000) {
-                    LinkedHashMap linkedHashMap = d1.g.f7613a;
-                    bVar2 = new a6.b(((p) hVar).f59035e, true);
+                    LinkedHashMap linkedHashMap = d1.g.f7612a;
+                    bVar2 = new a6.b(((p) hVar).f59152e, true);
                 } else {
-                    LinkedHashMap linkedHashMap2 = d1.g.f7613a;
-                    JSONObject jSONObject = new JSONObject(((p) hVar).f59035e);
+                    LinkedHashMap linkedHashMap2 = d1.g.f7612a;
+                    JSONObject jSONObject = new JSONObject(((p) hVar).f59152e);
                     String optString = jSONObject.optString("rpId", "");
                     j.b(optString);
                     if (optString.length() != 0) {
@@ -97,18 +97,18 @@ public final class f extends b1.d {
             }
         }
         if (j3 > 241217000) {
-            z10 = request.f59032b;
+            z10 = request.f59149b;
         } else {
             z10 = false;
         }
         l7.b a10 = a.a.a(context);
         new a6.a(false, null, null, true, null, null, false);
-        a6.e eVar = new a6.e(dVar, aVar, a10.f19692l, false, 0, cVar, bVar2, z10);
+        a6.e eVar = new a6.e(dVar, aVar, a10.f19792l, false, 0, cVar, bVar2, z10);
         t b10 = u.b();
         b10.d = new n6.c[]{new n6.c("auth_api_credentials_begin_sign_in", 8L)};
-        b10.f6349c = new u5(a10, eVar, 11);
-        b10.f6348b = false;
-        b10.f6347a = 1553;
+        b10.f6348c = new u0(a10, eVar, 12);
+        b10.f6347b = false;
+        b10.f6346a = 1553;
         a10.e(0, b10.a()).addOnSuccessListener(new a1.c(new ae.d(2, cancellationSignal, this), 16)).addOnFailureListener(new ab.g(7, this, cancellationSignal));
     }
 }

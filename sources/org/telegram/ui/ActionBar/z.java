@@ -4,27 +4,27 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class z implements View.OnClickListener {
-    public final int f30278a;
-    public final q0 f30279b;
+    public final int f30369a;
+    public final q0 f30370b;
 
     public z(q0 q0Var, int i7) {
-        this.f30278a = i7;
-        this.f30279b = q0Var;
+        this.f30369a = i7;
+        this.f30370b = q0Var;
     }
 
     @Override
     public final void onClick(View view) {
         m0 m0Var;
         g1 g1Var;
-        int i7 = this.f30278a;
-        q0 q0Var = this.f30279b;
+        int i7 = this.f30369a;
+        q0 q0Var = this.f30370b;
         switch (i7) {
             case 0:
-                ArrayList arrayList = q0Var.f29878h0;
-                if (q0Var.f29873e.length() != 0) {
-                    q0Var.f29873e.setText("");
+                ArrayList arrayList = q0Var.f29969h0;
+                if (q0Var.f29964e.length() != 0) {
+                    q0Var.f29964e.setText("");
                 } else if (q0Var.s()) {
-                    q0Var.f29873e.m();
+                    q0Var.f29964e.m();
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
                         if (q0Var.I != null && ((jg.o0) arrayList.get(i10)).h) {
                             q0Var.I.j((jg.o0) arrayList.get(i10));
@@ -41,8 +41,8 @@ public final class z implements View.OnClickListener {
                         }
                     }
                 }
-                q0Var.f29873e.requestFocus();
-                org.telegram.messenger.g0.I3(q0Var.f29873e);
+                q0Var.f29964e.requestFocus();
+                org.telegram.messenger.g0.I3(q0Var.f29964e);
                 return;
             case 1:
                 if (q0Var.y()) {
@@ -53,26 +53,26 @@ public final class z implements View.OnClickListener {
                         return;
                     }
                 }
-                y yVar = q0Var.f29870c;
+                y yVar = q0Var.f29961c;
                 if (yVar != null) {
                     yVar.o(((Integer) view.getTag()).intValue());
                     return;
                 }
                 l0 l0Var = q0Var.Q;
                 if (l0Var != null) {
-                    l0Var.g(((Integer) view.getTag()).intValue());
+                    l0Var.h(((Integer) view.getTag()).intValue());
                     return;
                 }
                 return;
             case 2:
-                y yVar2 = q0Var.f29870c;
+                y yVar2 = q0Var.f29961c;
                 if (yVar2 != null) {
                     yVar2.o(((Integer) view.getTag()).intValue());
                     return;
                 }
                 l0 l0Var2 = q0Var.Q;
                 if (l0Var2 != null) {
-                    l0Var2.g(((Integer) view.getTag()).intValue());
+                    l0Var2.h(((Integer) view.getTag()).intValue());
                     return;
                 }
                 return;
@@ -88,14 +88,14 @@ public final class z implements View.OnClickListener {
                         return;
                     }
                 }
-                y yVar3 = q0Var.f29870c;
+                y yVar3 = q0Var.f29961c;
                 if (yVar3 != null) {
                     yVar3.o(((Integer) view.getTag()).intValue());
                     return;
                 }
                 l0 l0Var3 = q0Var.Q;
                 if (l0Var3 != null) {
-                    l0Var3.g(((Integer) view.getTag()).intValue());
+                    l0Var3.h(((Integer) view.getTag()).intValue());
                     return;
                 }
                 return;

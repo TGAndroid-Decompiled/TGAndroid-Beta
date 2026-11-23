@@ -6,25 +6,25 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import tg.q1;
-public final class i extends q1 {
+import tg.t1;
+public final class i extends t1 {
     public final q E;
 
     public i(q qVar, Context context, Bitmap bitmap) {
         super(context);
         this.E = qVar;
         Paint paint = new Paint(1);
-        this.f58106b = paint;
+        this.f58245b = paint;
         Paint paint2 = new Paint(1);
-        this.f58107c = paint2;
+        this.f58246c = paint2;
         Paint paint3 = new Paint(1);
         this.d = paint3;
-        this.f58108e = 0.5f;
-        this.f58109f = 0.5f;
+        this.f58247e = 0.5f;
+        this.f58248f = 0.5f;
         this.h = new Path();
-        this.f58110n = new Rect();
-        this.f58111r = new RectF();
-        this.f58105a = bitmap;
+        this.f58249n = new Rect();
+        this.f58250r = new RectF();
+        this.f58244a = bitmap;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(4.0f));

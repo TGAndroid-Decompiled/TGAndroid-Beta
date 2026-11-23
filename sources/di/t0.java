@@ -7,11 +7,11 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.gs;
-import org.telegram.messenger.ls;
-import org.telegram.ui.Components.nr;
-public final class t0 extends View implements gs {
-    public final org.telegram.ui.Components.d6 E;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.ks;
+import org.telegram.ui.Components.kr;
+public final class t0 extends View implements fs {
+    public final org.telegram.ui.Components.c6 E;
     public float F;
     public p8 G;
     public final ArrayList H;
@@ -21,33 +21,33 @@ public final class t0 extends View implements gs {
     public final DecelerateInterpolator L;
     public final LinearInterpolator M;
     public s0 N;
-    public final int f9763a;
-    public final long f9764b;
-    public final View f9765c;
+    public final int f9761a;
+    public final long f9762b;
+    public final View f9763c;
     public boolean d;
-    public float f9766e;
-    public float f9767f;
+    public float f9764e;
+    public float f9765f;
     public boolean h;
-    public float f9768n;
-    public float f9769r;
-    public float f9770s;
-    public float f9771w;
-    public float f9772x;
-    public float f9773y;
+    public float f9766n;
+    public float f9767r;
+    public float f9768s;
+    public float f9769w;
+    public float f9770x;
+    public float f9771y;
 
     public t0(Context context, int i7, long j3, org.telegram.ui.k0 k0Var) {
         super(context);
         this.d = true;
-        this.E = new org.telegram.ui.Components.d6(this, 0L, 350L, nr.h);
+        this.E = new org.telegram.ui.Components.c6(this, 0L, 350L, kr.h);
         this.F = 1.0f;
         this.H = new ArrayList();
         this.I = new ArrayList();
         this.J = new HashSet();
         this.L = new DecelerateInterpolator();
         this.M = new LinearInterpolator();
-        this.f9763a = i7;
-        this.f9764b = j3;
-        this.f9765c = k0Var;
+        this.f9761a = i7;
+        this.f9762b = j3;
+        this.f9763c = k0Var;
     }
 
     public final void a() {
@@ -56,7 +56,7 @@ public final class t0 extends View implements gs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ls.I3 && ((Long) objArr[0]).longValue() == this.f9764b) {
+        if (i7 == ks.I3 && ((Long) objArr[0]).longValue() == this.f9762b) {
             a();
         }
     }
@@ -69,14 +69,14 @@ public final class t0 extends View implements gs {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ls.f(this.f9763a).c(this, ls.I3);
+        ks.f(this.f9761a).c(this, ks.I3);
         ArrayList arrayList = this.I;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
-            ((s0) obj).f9691j.a(this);
+            ((s0) obj).f9688j.a(this);
         }
         a();
     }
@@ -84,14 +84,14 @@ public final class t0 extends View implements gs {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ls.f(this.f9763a).n(this, ls.I3);
+        ks.f(this.f9761a).n(this, ks.I3);
         ArrayList arrayList = this.I;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
-            ((s0) obj).f9691j.n(this);
+            ((s0) obj).f9688j.n(this);
         }
     }
 
@@ -109,7 +109,7 @@ public final class t0 extends View implements gs {
         while (true) {
             ArrayList arrayList = this.I;
             if (i7 < arrayList.size()) {
-                if (((s0) arrayList.get(i7)).f9693l.contains(x10, y10)) {
+                if (((s0) arrayList.get(i7)).f9690l.contains(x10, y10)) {
                     s0Var = (s0) arrayList.get(i7);
                     break;
                 }
@@ -122,22 +122,22 @@ public final class t0 extends View implements gs {
         if (motionEvent.getAction() == 0) {
             this.N = s0Var;
             if (s0Var != null) {
-                s0Var.f9694m.c(true);
+                s0Var.f9691m.c(true);
             }
         } else if (motionEvent.getAction() == 2) {
             s0 s0Var4 = this.N;
             if (s0Var4 != s0Var && s0Var4 != null) {
-                s0Var4.f9694m.c(false);
+                s0Var4.f9691m.c(false);
                 this.N = null;
             }
         } else if (motionEvent.getAction() == 1) {
             if (this.N != null) {
-                vf.c.t(getContext(), "https://t.me/nft/" + s0Var3.f9687e);
-                this.N.f9694m.c(false);
+                vf.c.t(getContext(), "https://t.me/nft/" + s0Var3.f9684e);
+                this.N.f9691m.c(false);
                 this.N = null;
             }
         } else if (motionEvent.getAction() == 3 && (s0Var2 = this.N) != null) {
-            s0Var2.f9694m.c(false);
+            s0Var2.f9691m.c(false);
             this.N = null;
         }
         if (this.N == null) {
@@ -147,7 +147,7 @@ public final class t0 extends View implements gs {
     }
 
     public void setActionBarActionMode(float f10) {
-        this.f9768n = f10;
+        this.f9766n = f10;
         invalidate();
     }
 
@@ -156,13 +156,13 @@ public final class t0 extends View implements gs {
     }
 
     public void setExpandCoords(float f10) {
-        this.f9772x = f10;
+        this.f9770x = f10;
         invalidate();
     }
 
     public void setExpandProgress(float f10) {
-        if (this.f9766e != f10) {
-            this.f9766e = f10;
+        if (this.f9764e != f10) {
+            this.f9764e = f10;
             invalidate();
         }
     }

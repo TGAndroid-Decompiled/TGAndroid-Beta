@@ -1,31 +1,47 @@
 package s2;
 
-import android.net.Uri;
-import java.util.ArrayList;
-import java.util.HashMap;
+import a8.ma;
+import j$.util.Objects;
 public final class f {
-    public final String f56781a;
-    public Uri f56783c;
-    public Uri d;
-    public boolean f56788j;
-    public Boolean f56793o;
-    public String f56794p;
-    public String f56795q;
-    public String f56798t;
-    public final HashMap f56782b = new HashMap();
-    public long f56784e = -9223372036854775807L;
-    public long f56785f = -9223372036854775807L;
-    public long f56786g = -9223372036854775807L;
-    public long h = -9223372036854775807L;
-    public ArrayList f56787i = new ArrayList();
-    public long f56789k = -9223372036854775807L;
-    public long f56790l = -9223372036854775807L;
-    public ArrayList f56791m = new ArrayList();
-    public ArrayList f56792n = new ArrayList();
-    public long f56796r = -9223372036854775807L;
-    public long f56797s = -9223372036854775807L;
+    public final String f56894a;
+    public final int f56895b;
+    public final double f56896c;
+    public final String d;
 
-    public f(String str) {
-        this.f56781a = str;
+    public f(String str, double d) {
+        this.f56894a = str;
+        this.f56895b = 2;
+        this.f56896c = d;
+        this.d = null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof f) {
+                f fVar = (f) obj;
+                if (this.f56895b == fVar.f56895b && Double.compare(this.f56896c, fVar.f56896c) == 0 && Objects.equals(this.f56894a, fVar.f56894a) && Objects.equals(this.d, fVar.d)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.f56894a, Integer.valueOf(this.f56895b), Double.valueOf(this.f56896c), this.d);
+    }
+
+    public f(int i7, String str, String str2) {
+        boolean z10 = true;
+        if (i7 == 1 && !str2.startsWith("0x") && !str2.startsWith("0X")) {
+            z10 = false;
+        }
+        ma.p(z10);
+        this.f56894a = str;
+        this.f56895b = i7;
+        this.d = str2;
+        this.f56896c = 0.0d;
     }
 }

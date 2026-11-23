@@ -6,8 +6,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import v4.e1;
-public final class k extends v4.h0 {
+import v4.f1;
+public final class k extends v4.i0 {
     public final h0 f5694c;
 
     public k(h0 h0Var) {
@@ -30,13 +30,13 @@ public final class k extends v4.h0 {
     }
 
     @Override
-    public final void t(e1 e1Var, int i7) {
+    public final void t(f1 f1Var, int i7) {
         String str;
         int i10;
         h0 h0Var = this.f5694c;
         o oVar = (o) h0Var.f5757n.get(h0Var.f(i7));
-        int i11 = e1Var.f59115f;
-        View view = e1Var.f59111a;
+        int i11 = f1Var.f59249f;
+        View view = f1Var.f59245a;
         int i12 = 1;
         int i13 = 0;
         if (i11 == 0) {
@@ -82,16 +82,16 @@ public final class k extends v4.h0 {
     }
 
     @Override
-    public final e1 x(ViewGroup viewGroup, int i7) {
+    public final f1 x(ViewGroup viewGroup, int i7) {
         View lVar;
         h0 h0Var = this.f5694c;
         if (i7 == 0) {
             lVar = new n(h0Var, viewGroup.getContext());
-            lVar.setLayoutParams(new v4.p0(-1, org.telegram.messenger.g0.L(44.0f)));
+            lVar.setLayoutParams(new v4.q0(-1, org.telegram.messenger.g0.L(44.0f)));
         } else {
             lVar = new l(viewGroup.getContext(), h0Var.f5752a);
-            lVar.setLayoutParams(new v4.p0(-1, -2));
+            lVar.setLayoutParams(new v4.q0(-1, -2));
         }
-        return new e1(lVar);
+        return new f1(lVar);
     }
 }

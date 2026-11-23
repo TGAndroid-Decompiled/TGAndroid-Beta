@@ -1,18 +1,25 @@
 package org.telegram.ui.Wallet;
+public final class r6 implements Runnable {
+    public final int f44993a;
+    public final t6 f44994b;
 
-import android.content.Context;
-import android.view.View;
-public final class r6 extends View {
-    public boolean f44889a;
-    public final s6 f44890b;
-
-    public r6(s6 s6Var, Context context) {
-        super(context);
-        this.f44890b = s6Var;
+    public r6(t6 t6Var, int i7) {
+        this.f44993a = i7;
+        this.f44994b = t6Var;
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r40) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.r6.onDraw(android.graphics.Canvas):void");
+    public final void run() {
+        switch (this.f44993a) {
+            case 0:
+                this.f44994b.performClick();
+                return;
+            default:
+                t6 t6Var = this.f44994b;
+                t6Var.h.invalidate();
+                t6Var.f45183n.invalidate();
+                t6Var.f45173e.invalidate();
+                return;
+        }
     }
 }

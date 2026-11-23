@@ -4,14 +4,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 public class d extends a8.h0 {
-    public final Map f13978b;
-    public final l1 f13979c;
+    public final Map f13977b;
+    public final k1 f13978c;
 
-    public d(l1 l1Var, Map map) {
+    public d(k1 k1Var, Map map) {
         super(2);
-        this.f13979c = l1Var;
+        this.f13978c = k1Var;
         map.getClass();
-        this.f13978b = map;
+        this.f13977b = map;
     }
 
     @Override
@@ -30,17 +30,17 @@ public class d extends a8.h0 {
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f13978b.containsKey(obj);
+        return this.f13977b.containsKey(obj);
     }
 
     @Override
     public final boolean containsAll(Collection collection) {
-        return this.f13978b.keySet().containsAll(collection);
+        return this.f13977b.keySet().containsAll(collection);
     }
 
     @Override
     public final boolean equals(Object obj) {
-        if (this != obj && !this.f13978b.keySet().equals(obj)) {
+        if (this != obj && !this.f13977b.keySet().equals(obj)) {
             return false;
         }
         return true;
@@ -48,27 +48,27 @@ public class d extends a8.h0 {
 
     @Override
     public final int hashCode() {
-        return this.f13978b.keySet().hashCode();
+        return this.f13977b.keySet().hashCode();
     }
 
     @Override
     public final boolean isEmpty() {
-        return this.f13978b.isEmpty();
+        return this.f13977b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new a8.d(this, this.f13978b.entrySet().iterator(), 7);
+        return new a8.d(this, this.f13977b.entrySet().iterator(), 7);
     }
 
     @Override
     public final boolean remove(Object obj) {
         int i7;
-        Collection collection = (Collection) this.f13978b.remove(obj);
+        Collection collection = (Collection) this.f13977b.remove(obj);
         if (collection != null) {
             i7 = collection.size();
             collection.clear();
-            this.f13979c.f14015f -= i7;
+            this.f13978c.f14004f -= i7;
         } else {
             i7 = 0;
         }
@@ -80,6 +80,6 @@ public class d extends a8.h0 {
 
     @Override
     public final int size() {
-        return this.f13978b.size();
+        return this.f13977b.size();
     }
 }

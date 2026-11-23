@@ -35,7 +35,7 @@ public class n extends AbstractCollection {
                 ((h9.l) this.f546b).clear();
                 return;
             case 5:
-                ((h9.l1) this.f546b).clear();
+                ((h9.k1) this.f546b).clear();
                 return;
             case 6:
                 ((h9.s) this.f546b).clear();
@@ -70,7 +70,7 @@ public class n extends AbstractCollection {
                 }
                 return true;
             case 5:
-                return ((h9.l1) this.f546b).c(obj);
+                return ((h9.k1) this.f546b).c(obj);
             case 7:
                 return ((AbstractMap) this.f546b).containsValue(obj);
         }
@@ -114,7 +114,7 @@ public class n extends AbstractCollection {
             case 4:
                 return ((h9.l) this.f546b).g();
             case 5:
-                return new h9.b((h9.l1) this.f546b, 0);
+                return new h9.b((h9.k1) this.f546b, 0);
             case 6:
                 h9.s sVar = (h9.s) this.f546b;
                 Map d = sVar.d();
@@ -123,7 +123,7 @@ public class n extends AbstractCollection {
                 }
                 return new h9.p(sVar, 2);
             default:
-                return new h9.g2(((AbstractMap) this.f546b).entrySet().iterator());
+                return new h9.f2(((AbstractMap) this.f546b).entrySet().iterator());
         }
     }
 
@@ -305,7 +305,7 @@ public class n extends AbstractCollection {
             case 4:
                 return ((h9.l) this.f546b).size();
             case 5:
-                return ((h9.l1) this.f546b).f14015f;
+                return ((h9.k1) this.f546b).f14004f;
             case 6:
                 return ((h9.s) this.f546b).size();
             default:

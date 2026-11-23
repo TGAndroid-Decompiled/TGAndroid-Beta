@@ -1,16 +1,16 @@
 package na;
 
+import j6.k;
 import java.lang.annotation.Annotation;
 import java.util.Collections;
 import java.util.Map;
-import ji.k;
 public final class c {
-    public final String f21459a;
-    public final Map f21460b;
+    public final String f21558a;
+    public final Map f21559b;
 
     public c(String str, Map map) {
-        this.f21459a = str;
-        this.f21460b = map;
+        this.f21558a = str;
+        this.f21559b = map;
     }
 
     public static k a(String str) {
@@ -22,7 +22,7 @@ public final class c {
     }
 
     public final Annotation b(Class cls) {
-        return (Annotation) this.f21460b.get(cls);
+        return (Annotation) this.f21559b.get(cls);
     }
 
     public final boolean equals(Object obj) {
@@ -33,17 +33,17 @@ public final class c {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f21459a.equals(cVar.f21459a) && this.f21460b.equals(cVar.f21460b)) {
+        if (this.f21558a.equals(cVar.f21558a) && this.f21559b.equals(cVar.f21559b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f21460b.hashCode() + (this.f21459a.hashCode() * 31);
+        return this.f21559b.hashCode() + (this.f21558a.hashCode() * 31);
     }
 
     public final String toString() {
-        return "FieldDescriptor{name=" + this.f21459a + ", properties=" + this.f21460b.values() + "}";
+        return "FieldDescriptor{name=" + this.f21558a + ", properties=" + this.f21559b.values() + "}";
     }
 }

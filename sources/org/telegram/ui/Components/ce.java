@@ -1,95 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.util.Property;
-import android.view.View;
-public final class ce extends Property {
-    public final int f34152a;
-    public final ChatActivityEnterView f34153b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ce extends AnimatorListenerAdapter {
+    public final int f34029a;
+    public final int f34030b;
+    public final ChatActivityEnterView f34031c;
 
-    public ce(ChatActivityEnterView chatActivityEnterView, int i7) {
-        super(Float.class, "emoji_button_scale");
-        this.f34152a = i7;
-        switch (i7) {
-            case 1:
-                this.f34153b = chatActivityEnterView;
-                super(Float.class, "attach_scale");
-                return;
-            case 2:
-                this.f34153b = chatActivityEnterView;
-                super(Float.class, "emoji_button_alpha");
-                return;
-            case 3:
-                this.f34153b = chatActivityEnterView;
-                super(Float.class, "attach_layout_translation_x");
-                return;
-            case 4:
-                this.f34153b = chatActivityEnterView;
-                super(Float.class, "message_text_translation_x");
-                return;
-            default:
-                this.f34153b = chatActivityEnterView;
-                return;
-        }
+    public ce(ChatActivityEnterView chatActivityEnterView, int i7, int i10) {
+        this.f34029a = i10;
+        this.f34031c = chatActivityEnterView;
+        this.f34030b = i7;
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.f34152a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f34029a) {
             case 0:
-                View view = (View) obj;
-                return Float.valueOf(this.f34153b.h);
-            case 1:
-                View view2 = (View) obj;
-                return Float.valueOf(this.f34153b.F);
-            case 2:
-                View view3 = (View) obj;
-                return Float.valueOf(this.f34153b.f32639n);
-            case 3:
-                View view4 = (View) obj;
-                return Float.valueOf(this.f34153b.f32722y);
-            default:
-                View view5 = (View) obj;
-                return Float.valueOf(this.f34153b.H);
-        }
-    }
-
-    @Override
-    public final void set(Object obj, Object obj2) {
-        switch (this.f34152a) {
-            case 0:
-                View view = (View) obj;
-                float floatValue = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView = this.f34153b;
-                chatActivityEnterView.h = floatValue;
-                chatActivityEnterView.m2();
-                return;
-            case 1:
-                View view2 = (View) obj;
-                float floatValue2 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView2 = this.f34153b;
-                chatActivityEnterView2.F = floatValue2;
-                chatActivityEnterView2.h2();
-                return;
-            case 2:
-                View view3 = (View) obj;
-                float floatValue3 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView3 = this.f34153b;
-                chatActivityEnterView3.f32639n = floatValue3;
-                chatActivityEnterView3.m2();
-                return;
-            case 3:
-                View view4 = (View) obj;
-                float floatValue4 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView4 = this.f34153b;
-                chatActivityEnterView4.f32722y = floatValue4;
-                chatActivityEnterView4.h2();
+                ChatActivityEnterView chatActivityEnterView = this.f34031c;
+                cu0 cu0Var = chatActivityEnterView.f32655c2;
+                chatActivityEnterView.f32764q4 = false;
+                chatActivityEnterView.f32773r4 = null;
+                eg egVar = chatActivityEnterView.V0;
+                if (egVar != null) {
+                    if (chatActivityEnterView.f32676e7 == null) {
+                        egVar.getLayoutParams().height = this.f34030b;
+                    }
+                    chatActivityEnterView.V0.setLayerType(0, null);
+                }
+                if (cu0Var != null) {
+                    cu0Var.requestLayout();
+                    cu0Var.setForeground(null);
+                    cu0Var.setWillNotDraw(false);
+                }
+                if (chatActivityEnterView.f32755p3 && chatActivityEnterView.T0()) {
+                    chatActivityEnterView.Z1(0, chatActivityEnterView.V2, true, true);
+                }
+                dd ddVar = chatActivityEnterView.f32778s0;
+                if (ddVar != null) {
+                    ddVar.run();
+                    chatActivityEnterView.f32778s0 = null;
+                }
+                chatActivityEnterView.B4.e();
                 return;
             default:
-                View view5 = (View) obj;
-                float floatValue5 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView5 = this.f34153b;
-                chatActivityEnterView5.H = floatValue5;
-                chatActivityEnterView5.q2();
+                int i7 = this.f34030b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f34031c;
+                if (i7 == 0) {
+                    chatActivityEnterView2.f32763q3 = 0;
+                }
+                chatActivityEnterView2.W0 = null;
+                chatActivityEnterView2.f32815x2.setTranslationY(0.0f);
+                chatActivityEnterView2.f32815x2.setVisibility(8);
+                chatActivityEnterView2.B4.e();
+                mg mgVar = chatActivityEnterView2.P3;
+                if (mgVar != null) {
+                    mgVar.u(0.0f);
+                }
+                chatActivityEnterView2.requestLayout();
                 return;
         }
     }

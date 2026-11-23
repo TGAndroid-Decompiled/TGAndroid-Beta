@@ -4,19 +4,19 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.RunnableFuture;
 import java.util.concurrent.locks.LockSupport;
 public final class g0 extends s implements RunnableFuture {
-    public volatile f0 f20933n;
+    public volatile f0 f21029n;
 
     public g0(Callable callable) {
-        this.f20933n = new f0(this, callable);
+        this.f21029n = new f0(this, callable);
     }
 
     @Override
     public final void d() {
         f0 f0Var;
-        Object obj = this.f20944a;
-        if ((obj instanceof a) && ((a) obj).f20912a && (f0Var = this.f20933n) != null) {
+        Object obj = this.f21040a;
+        if ((obj instanceof a) && ((a) obj).f21008a && (f0Var = this.f21029n) != null) {
             androidx.emoji2.text.o oVar = f0.d;
-            androidx.emoji2.text.o oVar2 = f0.f20930c;
+            androidx.emoji2.text.o oVar2 = f0.f21026c;
             Runnable runnable = (Runnable) f0Var.get();
             if (runnable instanceof Thread) {
                 x xVar = new x(f0Var);
@@ -32,12 +32,12 @@ public final class g0 extends s implements RunnableFuture {
                 }
             }
         }
-        this.f20933n = null;
+        this.f21029n = null;
     }
 
     @Override
     public final String k() {
-        f0 f0Var = this.f20933n;
+        f0 f0Var = this.f21029n;
         if (f0Var != null) {
             return "task=[" + f0Var + "]";
         }
@@ -46,10 +46,10 @@ public final class g0 extends s implements RunnableFuture {
 
     @Override
     public final void run() {
-        f0 f0Var = this.f20933n;
+        f0 f0Var = this.f21029n;
         if (f0Var != null) {
             f0Var.run();
         }
-        this.f20933n = null;
+        this.f21029n = null;
     }
 }

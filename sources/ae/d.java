@@ -61,20 +61,20 @@ public final class d implements l {
             case 3:
                 CancellationSignal cancellationSignal2 = (CancellationSignal) this.f1046b;
                 d1.e eVar = (d1.e) this.f1047c;
-                Context context2 = eVar.f7605e;
+                Context context2 = eVar.f7604e;
                 PendingIntent result = (PendingIntent) obj;
                 j.e(result, "result");
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
-                    b1.d.a(eVar.f7608i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
+                    b1.d.a(eVar.f7607i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
                     intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", result);
                     try {
                         context2.startActivity(intent2);
                     } catch (Exception unused2) {
                         CredentialProviderPlayServicesImpl.Companion.getClass();
                         if (!a1.g.a(cancellationSignal2)) {
-                            Executor executor = eVar.f7607g;
+                            Executor executor = eVar.f7606g;
                             if (executor != null) {
                                 executor.execute(new d1.d(eVar, 0));
                             } else {
@@ -87,14 +87,14 @@ public final class d implements l {
                 return k.f13480a;
             default:
                 g1.a aVar = (g1.a) this.f1047c;
-                Context context3 = aVar.f13071e;
+                Context context3 = aVar.f13070e;
                 m mVar = (m) obj;
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a((CancellationSignal) this.f1046b)) {
                     Intent intent3 = new Intent(context3, IdentityCredentialApiHiddenActivity.class);
                     intent3.setFlags(65536);
-                    intent3.putExtra("RESULT_RECEIVER", b1.d.d(aVar.f13074i));
-                    intent3.putExtra("EXTRA_FLOW_PENDING_INTENT", mVar.f17307a);
+                    intent3.putExtra("RESULT_RECEIVER", b1.d.d(aVar.f13073i));
+                    intent3.putExtra("EXTRA_FLOW_PENDING_INTENT", mVar.f17407a);
                     intent3.putExtra("EXTRA_ERROR_NAME", "GET_UNKNOWN");
                     context3.startActivity(intent3);
                 }

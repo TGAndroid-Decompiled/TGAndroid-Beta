@@ -1,29 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-public final class ff implements qj0 {
-    public final ChatActivityEnterView f35192a;
+import android.content.Context;
+import android.graphics.Paint;
+public final class ff extends ki.u {
+    public boolean f35115s;
+    public final ChatActivityEnterView f35116w;
 
-    public ff(ChatActivityEnterView chatActivityEnterView) {
-        this.f35192a = chatActivityEnterView;
+    public ff(ChatActivityEnterView chatActivityEnterView, Context context) {
+        super(context);
+        this.f35116w = chatActivityEnterView;
+        this.f19059a = null;
+        Paint paint = new Paint(1);
+        this.d = paint;
+        this.f19063f = true;
+        this.f19060b = new Object();
+        di.b1 b1Var = new di.b1(5, context, this);
+        this.f19061c = b1Var;
+        b1Var.setOverScrollMode(2);
+        b1Var.setClipToPadding(false);
+        b1Var.setClipToOutline(true);
+        b1Var.j(new bi.v1(this, 21));
+        addView(b1Var);
+        paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.zj, false));
+        fh.g gVar = this.f19065r;
+        if (gVar != null) {
+            gVar.updateColors();
+        }
+        invalidate();
+        setClipChildren(false);
+        this.f35115s = false;
     }
 
     @Override
-    public final void c(int i7, View view) {
-        if (view instanceof ki.w) {
-            String command = ((ki.w) view).getCommand();
-            if (!TextUtils.isEmpty(command)) {
-                ChatActivityEnterView chatActivityEnterView = this.f35192a;
-                if (chatActivityEnterView.c()) {
-                    c5.J(chatActivityEnterView.E3, chatActivityEnterView.G3, new h2(7, this, command), chatActivityEnterView.M4);
-                    return;
-                }
-                org.telegram.ui.bn bnVar = chatActivityEnterView.F3;
-                if (bnVar == null || !bnVar.t7(view)) {
-                    c5.X(chatActivityEnterView.R, 1, chatActivityEnterView.G3, new li.d(27, this, command));
-                }
-            }
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        if (!this.f35115s) {
+            this.f35115s = true;
+            this.f35116w.l2();
         }
     }
 }

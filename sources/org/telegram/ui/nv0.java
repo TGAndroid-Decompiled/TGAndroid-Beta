@@ -1,19 +1,13 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.RectF;
-public final class nv0 extends org.telegram.ui.ActionBar.z4 {
-    public final ProfileActivity f50329w0;
-
-    public nv0(ProfileActivity profileActivity, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, h6Var);
-        this.f50329w0 = profileActivity;
-    }
-
+import android.graphics.Canvas;
+import android.graphics.Paint;
+public final class nv0 extends hz {
     @Override
-    public final void H(int i7, float f10, float f11, te.c cVar) {
-        super.H(i7, f10, f11, cVar);
-        RectF rectF = ProfileActivity.Z6;
-        this.f50329w0.A5();
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        canvas.save();
+        canvas.translate(org.telegram.messenger.g0.L(2.0f), 0.0f);
+        super.draw(canvas, charSequence, i7, i10, f10, i11, i12, i13, paint);
+        canvas.restore();
     }
 }

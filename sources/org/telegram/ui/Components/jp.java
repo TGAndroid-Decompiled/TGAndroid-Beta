@@ -1,35 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC;
-public final class jp implements ResultCallback {
-    public final org.telegram.messenger.f4 f36534a;
-    public final np f36535b;
+import android.graphics.drawable.Drawable;
+public final class jp {
+    public final org.telegram.ui.ActionBar.s3 f36472a;
+    public Drawable f36473b;
+    public int f36474c;
+    public boolean d;
 
-    public jp(np npVar, org.telegram.messenger.f4 f4Var) {
-        this.f36535b = npVar;
-        this.f36534a = f4Var;
+    public jp(org.telegram.ui.ActionBar.s3 s3Var) {
+        this.f36472a = s3Var;
     }
 
-    @Override
-    public final void onComplete(Object obj) {
-        List list = (List) obj;
-        ArrayList e10 = this.f36534a.e(7);
-        np npVar = this.f36535b;
-        org.telegram.messenger.ls.f(npVar.f30139a).d(new og(18, this, e10));
-        npVar.V1 = false;
-    }
-
-    @Override
-    public final void onError(Throwable th2) {
-        org.telegram.tgnet.k.a(this, th2);
-    }
-
-    @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f36535b.getContext(), tL_error.text, 0).show();
+    public final String a() {
+        org.telegram.ui.ActionBar.s3 s3Var = this.f36472a;
+        if (s3Var != null && !s3Var.f30045a) {
+            return s3Var.f30048e;
+        }
+        return null;
     }
 }

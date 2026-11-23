@@ -9,46 +9,46 @@ import android.graphics.Shader;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-public final class f extends View implements b6 {
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+public final class f extends View implements c6 {
     public LinearGradient E;
     public int F;
     public int G;
     public int H;
     public int I;
     public int J;
-    public dh.d f19862a;
-    public dh.d f19863b;
-    public int f19864c;
+    public dh.d f19962a;
+    public dh.d f19963b;
+    public int f19964c;
     public int d;
-    public ui.c f19865e;
-    public int f19866f;
+    public ui.c f19965e;
+    public int f19966f;
     public int h;
-    public final Paint f19867n;
-    public LinearGradient f19868r;
-    public LinearGradient f19869s;
-    public h6 f19870w;
-    public final Paint f19871x;
-    public LinearGradient f19872y;
+    public final Paint f19967n;
+    public LinearGradient f19968r;
+    public LinearGradient f19969s;
+    public i6 f19970w;
+    public final Paint f19971x;
+    public LinearGradient f19972y;
 
     public f(Context context) {
         super(context);
-        this.f19867n = new Paint();
-        this.f19871x = new Paint();
+        this.f19967n = new Paint();
+        this.f19971x = new Paint();
     }
 
     public final void a() {
-        this.f19862a.setBounds(0, 0, getMeasuredWidth(), this.f19864c);
-        this.f19863b.setBounds(0, getMeasuredHeight() - this.d, getMeasuredWidth(), getMeasuredHeight());
-        this.f19869s = null;
-        this.f19868r = null;
+        this.f19962a.setBounds(0, 0, getMeasuredWidth(), this.f19964c);
+        this.f19963b.setBounds(0, getMeasuredHeight() - this.d, getMeasuredWidth(), getMeasuredHeight());
+        this.f19969s = null;
+        this.f19968r = null;
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(this.f19866f));
+        hashSet.add(Integer.valueOf(this.f19966f));
     }
 
     public final LinearGradient b(boolean z10) {
@@ -56,7 +56,7 @@ public final class f extends View implements b6 {
         int o4 = i0.a.o(i7, (Color.alpha(i7) * 2) / 3);
         int o10 = i0.a.o(this.h, 0);
         if (z10) {
-            return new LinearGradient(0.0f, 0.0f, 0.0f, this.f19864c, new int[]{i7, o4, o10}, new float[]{0.0f, 0.82f, 1.0f}, Shader.TileMode.CLAMP);
+            return new LinearGradient(0.0f, 0.0f, 0.0f, this.f19964c, new int[]{i7, o4, o10}, new float[]{0.0f, 0.82f, 1.0f}, Shader.TileMode.CLAMP);
         }
         return new LinearGradient(0.0f, getMeasuredHeight() - this.d, 0.0f, getMeasuredHeight(), new int[]{o10, o4, i7}, new float[]{0.0f, 0.18f, 1.0f}, Shader.TileMode.CLAMP);
     }
@@ -65,12 +65,12 @@ public final class f extends View implements b6 {
         fh.g c10 = cVar.c(this, null, false);
         c10.p(eVar);
         dh.d dVar = new dh.d(c10);
-        this.f19862a = dVar;
+        this.f19962a = dVar;
         dVar.b(-g0.L(30.0f), true);
         fh.g c11 = cVar.c(this, null, false);
         c11.p(eVar);
         dh.d dVar2 = new dh.d(c11);
-        this.f19863b = dVar2;
+        this.f19963b = dVar2;
         dVar2.b(g0.L(30.0f), true);
     }
 
@@ -78,27 +78,27 @@ public final class f extends View implements b6 {
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
         super.onDraw(canvas);
-        if (m6.i1(this.f19870w)) {
-            int x02 = m6.x0(null, m6.Ca, false);
-            int x03 = m6.x0(null, m6.Da, false);
+        if (n6.i1(this.f19970w)) {
+            int x02 = n6.x0(null, n6.Ca, false);
+            int x03 = n6.x0(null, n6.Da, false);
             int measuredHeight = getMeasuredHeight();
-            if (this.f19872y == null || this.G != x02 || this.F != x03 || this.H != this.f19864c || this.I != this.d || this.J != measuredHeight) {
+            if (this.f19972y == null || this.G != x02 || this.F != x03 || this.H != this.f19964c || this.I != this.d || this.J != measuredHeight) {
                 this.G = x02;
                 this.F = x03;
-                this.H = this.f19864c;
+                this.H = this.f19964c;
                 this.I = this.d;
                 this.J = measuredHeight;
                 int[] iArr = {x02, x03, i0.a.o(x03, 0)};
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                this.f19872y = new LinearGradient(0.0f, 0.0f, 0.0f, Math.max(1, this.f19864c), iArr, new float[]{0.0f, 0.557f, 1.0f}, tileMode);
+                this.f19972y = new LinearGradient(0.0f, 0.0f, 0.0f, Math.max(1, this.f19964c), iArr, new float[]{0.0f, 0.557f, 1.0f}, tileMode);
                 this.E = new LinearGradient(0.0f, measuredHeight, 0.0f, measuredHeight - Math.max(1, this.d), iArr, new float[]{0.0f, 0.557f, 1.0f}, tileMode);
             }
-            int i7 = this.f19864c;
-            Paint paint = this.f19871x;
-            if (i7 > 0 && this.f19862a.H > 0) {
-                paint.setShader(this.f19872y);
-                paint.setAlpha(this.f19862a.H);
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.f19864c, paint);
+            int i7 = this.f19964c;
+            Paint paint = this.f19971x;
+            if (i7 > 0 && this.f19962a.H > 0) {
+                paint.setShader(this.f19972y);
+                paint.setAlpha(this.f19962a.H);
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.f19964c, paint);
             }
             if (this.d > 0) {
                 paint.setShader(this.E);
@@ -110,25 +110,25 @@ public final class f extends View implements b6 {
             }
         } else {
             canvas2 = canvas;
-            this.f19862a.draw(canvas2);
-            this.f19863b.draw(canvas2);
+            this.f19962a.draw(canvas2);
+            this.f19963b.draw(canvas2);
         }
         if (Color.alpha(this.h) != 0) {
-            int i10 = this.f19864c;
-            Paint paint2 = this.f19867n;
-            if (i10 > 0 && this.f19862a.H > 0) {
-                if (this.f19868r == null) {
-                    this.f19868r = b(true);
+            int i10 = this.f19964c;
+            Paint paint2 = this.f19967n;
+            if (i10 > 0 && this.f19962a.H > 0) {
+                if (this.f19968r == null) {
+                    this.f19968r = b(true);
                 }
-                paint2.setShader(this.f19868r);
-                paint2.setAlpha(this.f19862a.H);
-                canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.f19864c, paint2);
+                paint2.setShader(this.f19968r);
+                paint2.setAlpha(this.f19962a.H);
+                canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.f19964c, paint2);
             }
             if (this.d > 0) {
-                if (this.f19869s == null) {
-                    this.f19869s = b(false);
+                if (this.f19969s == null) {
+                    this.f19969s = b(false);
                 }
-                paint2.setShader(this.f19869s);
+                paint2.setShader(this.f19969s);
                 paint2.setAlpha(255);
                 canvas.drawRect(0.0f, getMeasuredHeight() - this.d, getMeasuredWidth(), getMeasuredHeight(), paint2);
             }
@@ -142,15 +142,15 @@ public final class f extends View implements b6 {
     }
 
     public void setFadeHeightBottom(int i7) {
-        this.f19863b.b(i7, true);
+        this.f19963b.b(i7, true);
     }
 
     public void setFadeHeightTop(int i7) {
-        this.f19862a.b(-i7, true);
+        this.f19962a.b(-i7, true);
     }
 
     public void setFadeTopAlpha(int i7) {
-        dh.d dVar = this.f19862a;
+        dh.d dVar = this.f19962a;
         if (dVar.H != i7) {
             dVar.H = i7;
             invalidate();
@@ -166,29 +166,29 @@ public final class f extends View implements b6 {
     }
 
     public void setFadeZoneTop(int i7) {
-        if (this.f19864c != i7) {
-            this.f19864c = i7;
+        if (this.f19964c != i7) {
+            this.f19964c = i7;
             a();
             invalidate();
         }
     }
 
     public void setIgnoreFastWay(boolean z10) {
-        this.f19862a.G = z10;
-        this.f19863b.G = z10;
+        this.f19962a.G = z10;
+        this.f19963b.G = z10;
     }
 
     public void setOverlayColor(int i7) {
         if (this.h != i7) {
             this.h = i7;
-            this.f19869s = null;
-            this.f19868r = null;
+            this.f19969s = null;
+            this.f19968r = null;
             invalidate();
         }
     }
 
-    public void setResourcesProvider(h6 h6Var) {
-        this.f19870w = h6Var;
+    public void setResourcesProvider(i6 i6Var) {
+        this.f19970w = i6Var;
     }
 
     public void setup(dh.c cVar) {
@@ -196,12 +196,12 @@ public final class f extends View implements b6 {
     }
 
     public void setupColorKey(int i7) {
-        this.f19866f = i7;
-        if (this.f19865e == null) {
+        this.f19966f = i7;
+        if (this.f19965e == null) {
             ui.c cVar = new ui.c();
-            this.f19865e = cVar;
-            cVar.a(m6.x0(null, i7, false));
-            ui.c cVar2 = this.f19865e;
+            this.f19965e = cVar;
+            cVar.a(n6.x0(null, i7, false));
+            ui.c cVar2 = this.f19965e;
             setup(new dh.c(cVar2, cVar2, cVar2));
         }
     }
@@ -209,9 +209,9 @@ public final class f extends View implements b6 {
     @Override
     public final void updateColors() {
         int i7;
-        ui.c cVar = this.f19865e;
-        if (cVar != null && (i7 = this.f19866f) != -1) {
-            cVar.a(m6.x0(null, i7, false));
+        ui.c cVar = this.f19965e;
+        if (cVar != null && (i7 = this.f19966f) != -1) {
+            cVar.a(n6.x0(null, i7, false));
             invalidate();
         }
     }

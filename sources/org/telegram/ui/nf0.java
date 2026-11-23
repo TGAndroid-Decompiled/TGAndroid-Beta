@@ -1,40 +1,46 @@
 package org.telegram.ui;
-public final class nf0 implements Runnable {
-    public final int f50180a;
-    public final eg0 f50181b;
 
-    public nf0(eg0 eg0Var, int i7) {
-        this.f50180a = i7;
-        this.f50181b = eg0Var;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.EditText;
+public final class nf0 implements Runnable {
+    public final int f50310a;
+    public final dg0 f50311b;
+    public final EditText f50312c;
+
+    public nf0(dg0 dg0Var, EditText editText, int i7) {
+        this.f50310a = i7;
+        this.f50311b = dg0Var;
+        this.f50312c = editText;
     }
 
     @Override
     public final void run() {
-        switch (this.f50180a) {
+        switch (this.f50310a) {
             case 0:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            case 1:
-                eg0 eg0Var = this.f50181b;
-                eg0Var.getClass();
-                xh.e.f(false);
-                xh.e eVar = eg0Var.f47245i0;
-                if (eVar != null) {
-                    eVar.b(eg0Var.F);
+                dg0 dg0Var = this.f50311b;
+                if (!dg0Var.f47117t0) {
+                    try {
+                        Window window = dg0Var.getWindow();
+                        WindowManager.LayoutParams attributes = window.getAttributes();
+                        attributes.flags &= -131073;
+                        window.setAttributes(attributes);
+                        dg0Var.f47117t0 = true;
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.g(e10, true);
+                    }
                 }
-                org.telegram.messenger.g0.g3(new nf0(eg0Var, 0));
-                return;
-            case 2:
-                xh.e.f(false);
-                eg0 eg0Var2 = this.f50181b;
-                xh.e eVar2 = eg0Var2.f47245i0;
-                if (eVar2 != null) {
-                    eVar2.b(eg0Var2.F);
-                }
-                org.telegram.messenger.g0.g3(new nf0(eg0Var2, 3));
+                org.telegram.messenger.g0.h3(new nf0(dg0Var, this.f50312c, 1), 100L);
                 return;
             default:
-                super/*android.app.Dialog*/.dismiss();
+                org.telegram.messenger.g0.I3(this.f50312c);
+                dg0 dg0Var2 = this.f50311b;
+                if (dg0Var2.W != null) {
+                    dg0Var2.d(dg0Var2.f47114r0);
+                    dg0Var2.X.setScaleX(dg0Var2.W.getScaleX());
+                    dg0Var2.X.setScaleY(dg0Var2.W.getScaleY());
+                    return;
+                }
                 return;
         }
     }

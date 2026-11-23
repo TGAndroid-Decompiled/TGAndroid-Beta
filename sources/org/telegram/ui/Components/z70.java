@@ -1,90 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-import android.widget.TextView;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class z70 implements View.OnClickListener {
-    public final int f42652a;
-    public final g80 f42653b;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
+public final class z70 implements PopupWindow.OnDismissListener {
+    public final int f42737a;
+    public final FrameLayout f42738b;
+    public final View f42739c;
+    public final ViewTreeObserver.OnPreDrawListener d;
+    public final ViewGroup f42740e;
 
-    public z70(g80 g80Var, int i7) {
-        this.f42652a = i7;
-        this.f42653b = g80Var;
+    public z70(ViewGroup viewGroup, View view, FrameLayout frameLayout, ViewTreeObserver.OnPreDrawListener onPreDrawListener, int i7) {
+        this.f42737a = i7;
+        this.f42740e = viewGroup;
+        this.f42739c = view;
+        this.f42738b = frameLayout;
+        this.d = onPreDrawListener;
     }
 
     @Override
-    public final void onClick(View view) {
-        boolean z10;
-        int i7;
-        int i10 = this.f42652a;
-        g80 g80Var = this.f42653b;
-        switch (i10) {
+    public final void onDismiss() {
+        switch (this.f42737a) {
             case 0:
-                g80Var.f35435r.f();
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.g1 g1Var = g80Var.f35436s;
-                if (g1Var != null) {
-                    g1Var.d(true);
-                }
-                g80Var.f35435r.d();
-                return;
-            case 2:
-                g80 g80Var2 = this.f42653b;
-                String str = g80Var2.f35430b;
-                if (str != null && str.endsWith("?direct")) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                Context context = g80Var2.getContext();
-                String N0 = org.telegram.messenger.hd.N0(2131748977, null);
-                String str2 = g80Var2.f35430b;
-                String str3 = g80Var2.K;
-                if (str3 == null) {
-                    if (g80Var2.I) {
-                        if (z10) {
-                            i7 = 2131746311;
-                        } else {
-                            i7 = 2131746312;
-                        }
-                    } else {
-                        i7 = 2131746309;
-                    }
-                    str3 = org.telegram.messenger.hd.N0(i7, null);
-                }
-                d80 d80Var = new d80(g80Var2, context, N0, str2, str3);
-                g80Var2.F = d80Var;
-                d80Var.J0();
-                g80Var2.F.show();
-                org.telegram.ui.ActionBar.g1 g1Var2 = g80Var2.f35436s;
-                if (g1Var2 != null) {
-                    g1Var2.d(true);
-                    return;
-                }
+                ((d80) this.f42740e).f34241s = null;
+                hi.w5 w5Var = (hi.w5) this.f42739c;
+                w5Var.animate().cancel();
+                w5Var.animate().alpha(0.0f).setDuration(150L).setListener(new p60(this, 3));
                 return;
             default:
-                org.telegram.ui.ActionBar.g1 g1Var3 = g80Var.f35436s;
-                if (g1Var3 != null) {
-                    g1Var3.d(true);
-                }
-                org.telegram.ui.ActionBar.g2 g2Var = g80Var.f35431c;
-                if (g2Var.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(g2Var.getParentActivity());
-                    String N02 = org.telegram.messenger.hd.N0(2131745827, null);
-                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
-                    t1Var.S = N02;
-                    t1Var.U = org.telegram.messenger.hd.N0(2131745830, null);
-                    alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131745828, null), new y70(g80Var, 1));
-                    alertDialog$Builder.h(org.telegram.messenger.hd.N0(2131752577, null), null);
-                    TextView textView = (TextView) t1Var.d(-1);
-                    if (textView != null) {
-                        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29588q7, null);
-                    }
-                    alertDialog$Builder.p();
-                    return;
-                }
+                ((org.telegram.ui.hy) this.f42740e).f46906y = null;
+                hi.w5 w5Var2 = (hi.w5) this.f42739c;
+                w5Var2.animate().cancel();
+                w5Var2.animate().alpha(0.0f).setDuration(150L).setListener(new org.telegram.ui.zx(this, 0));
                 return;
         }
     }

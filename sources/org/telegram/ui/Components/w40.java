@@ -1,52 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.os.SystemClock;
-public final class w40 implements Runnable {
-    public final int f41617a;
-    public final b50 f41618b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+import org.telegram.messenger.ImageReceiver;
+public final class w40 extends b50 {
+    public ImageReceiver f41511a;
+    public float f41512b;
+    public final y40 f41513c;
 
-    public w40(b50 b50Var, int i7) {
-        this.f41617a = i7;
-        this.f41618b = b50Var;
+    public w40(y40 y40Var, Context context) {
+        super(context);
+        this.f41513c = y40Var;
+        setWillNotDraw(false);
     }
 
     @Override
-    public final void run() {
-        zi.t0 t0Var;
-        int i7 = this.f41617a;
-        b50 b50Var = this.f41618b;
-        switch (i7) {
-            case 0:
-                zi.t0 t0Var2 = b50Var.R;
-                if (t0Var2 != null && t0Var2.f62313a == 3) {
-                    long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
-                    long j3 = b50Var.H0;
-                    if (j3 == 0 || elapsedRealtimeNanos - j3 >= 70000000) {
-                        b50Var.F();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                int i10 = b50.M0;
-                b50Var.u();
-                return;
-            default:
-                int i11 = b50.M0;
-                zi.u0 u0Var = b50Var.P;
-                if (u0Var != null && (t0Var = b50Var.R) != null) {
-                    if (t0Var.f62313a == 3) {
-                        b50Var.y();
-                        return;
-                    } else if (t0Var.f62316e) {
-                        u0Var.p();
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        y40 y40Var = this.f41513c;
+        FrameLayout frameLayout = y40Var.f42350x;
+        uk0 uk0Var = y40Var.f42348w;
+        v40 v40Var = y40Var.f42352y;
+        super.dispatchDraw(canvas);
+        if (this.f41511a == null) {
+            return;
         }
+        float f10 = this.f41512b;
+        if (f10 < 1.0f) {
+            this.f41512b = Math.min(1.0f, f10 + 0.064f);
+            invalidate();
+        }
+        canvas.save();
+        canvas.translate(v40Var.getLeft() + frameLayout.getLeft() + uk0Var.getLeft(), v40Var.getTop() + frameLayout.getTop() + uk0Var.getTop());
+        if (this.f41511a.N0 != v40Var.getWidth()) {
+            float width = v40Var.getWidth() / this.f41511a.N0;
+            canvas.scale(width, width);
+        }
+        ImageReceiver imageReceiver = this.f41511a;
+        canvas.translate(-imageReceiver.L0, -imageReceiver.M0);
+        float alpha = this.f41511a.getAlpha();
+        this.f41511a.setAlpha(this.f41512b);
+        this.f41511a.h(canvas, null);
+        this.f41511a.setAlpha(alpha);
+        canvas.restore();
+    }
+
+    @Override
+    public final void setImageReceiver(ImageReceiver imageReceiver) {
+        if (this.f41511a == null) {
+            this.f41512b = 0.0f;
+        }
+        this.f41511a = imageReceiver;
+        invalidate();
     }
 }

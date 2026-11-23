@@ -1,12 +1,12 @@
 package org.telegram.ui;
 public interface s9 {
-    void J(String str);
+    void E0(org.telegram.messenger.ur urVar);
 
-    String J0();
+    void H(String str);
 
-    void S0(org.telegram.messenger.vr vrVar);
-
-    boolean c1(String str, j9 j9Var);
+    boolean Z0(String str, k9 k9Var);
 
     void onDismiss();
+
+    String w0();
 }

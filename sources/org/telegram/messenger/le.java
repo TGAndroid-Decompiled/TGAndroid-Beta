@@ -1,8 +1,12 @@
 package org.telegram.messenger;
-public final class le {
-    public final MediaController f25181a;
 
-    public le(MediaController mediaController) {
-        this.f25181a = mediaController;
+import java.io.File;
+public final class le extends File {
+    @Override
+    public final boolean delete() {
+        if (s2.f26829a) {
+            a8.d("delete voice file");
+        }
+        return super.delete();
     }
 }

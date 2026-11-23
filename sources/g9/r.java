@@ -1,12 +1,12 @@
 package g9;
 public abstract class r implements l {
-    public static final n f13249a;
-    public static final r[] f13250b;
+    public static final n f13248a;
+    public static final r[] f13249b;
 
     static {
         n nVar = new n();
-        f13249a = nVar;
-        f13250b = new r[]{nVar, new r() {
+        f13248a = nVar;
+        f13249b = new r[]{nVar, new r() {
             @Override
             public final boolean apply(Object obj) {
                 return false;
@@ -50,6 +50,6 @@ public abstract class r implements l {
     }
 
     public static r[] values() {
-        return (r[]) f13250b.clone();
+        return (r[]) f13249b.clone();
     }
 }

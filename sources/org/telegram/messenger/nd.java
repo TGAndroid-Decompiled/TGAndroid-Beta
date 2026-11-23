@@ -1,42 +1,66 @@
 package org.telegram.messenger;
 
+import android.os.SystemClock;
 import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class nd implements Runnable {
-    public final int f25719a;
-    public final rd f25720b;
-    public final ArrayList f25721c;
+    public final int f26005a;
+    public final long f26006b;
+    public final Object f26007c;
 
-    public nd(rd rdVar, ArrayList arrayList, int i7) {
-        this.f25719a = i7;
-        this.f25720b = rdVar;
-        this.f25721c = arrayList;
+    public nd(Object obj, long j3, int i7) {
+        this.f26005a = i7;
+        this.f26007c = obj;
+        this.f26006b = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f25719a) {
+        int i7 = this.f26005a;
+        long j3 = this.f26006b;
+        Object obj = this.f26007c;
+        switch (i7) {
             case 0:
-                rd rdVar = this.f25720b;
-                ArrayList arrayList = rdVar.f26555b;
-                ArrayList arrayList2 = this.f25721c;
-                arrayList.addAll(arrayList2);
-                for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                    qd qdVar = (qd) arrayList.get(i7);
-                    rdVar.f26554a.k(qdVar, qdVar.f26398a);
+                qd qdVar = (qd) obj;
+                ArrayList arrayList = qdVar.f26492b;
+                a0.h hVar = qdVar.f26491a;
+                pd pdVar = (pd) hVar.f(j3);
+                hVar.l(j3);
+                if (pdVar != null) {
+                    TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
+                    tL_messages_editMessage.peer = qdVar.getMessagesController().l1(pdVar.f26319a);
+                    tL_messages_editMessage.f28576id = pdVar.f26320b;
+                    tL_messages_editMessage.flags |= 16384;
+                    TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
+                    tL_messages_editMessage.media = tL_inputMediaGeoLive;
+                    tL_inputMediaGeoLive.stopped = true;
+                    tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPointEmpty();
+                    qdVar.getConnectionsManager().sendRequest(tL_messages_editMessage, new id(qdVar, 0));
+                    arrayList.remove(pdVar);
+                    qdVar.l(pdVar, 1);
+                    g0.g3(new jd(qdVar, pdVar, 0));
+                    if (arrayList.isEmpty()) {
+                        qdVar.r(true);
+                        return;
+                    }
+                    return;
                 }
-                g0.g3(new nd(rdVar, arrayList2, 1));
+                return;
+            case 1:
+                ((bi.d5) obj).a(Long.valueOf(j3));
                 return;
             default:
-                rd rdVar2 = this.f25720b;
-                ArrayList arrayList3 = rdVar2.J;
-                ArrayList arrayList4 = this.f25721c;
-                arrayList3.addAll(arrayList4);
-                for (int i10 = 0; i10 < arrayList4.size(); i10++) {
-                    qd qdVar2 = (qd) arrayList4.get(i10);
-                    rdVar2.K.k(qdVar2, qdVar2.f26398a);
+                az azVar = (az) obj;
+                azVar.f23099e = SystemClock.elapsedRealtime();
+                azVar.f23098c = false;
+                if (j3 == -1) {
+                    azVar.d = false;
+                    azVar.f23097b = 0L;
+                } else {
+                    azVar.f23097b = j3;
+                    azVar.d = true;
                 }
-                rd.q();
-                ls.e().k(283, new Object[0]);
+                ks.e().k(281, azVar);
                 return;
         }
     }

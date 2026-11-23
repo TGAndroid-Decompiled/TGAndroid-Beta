@@ -14,7 +14,7 @@ import java.util.RandomAccess;
 import java.util.Set;
 import java.util.SortedSet;
 public abstract class o {
-    public final int f14024a = 2;
+    public final int f14022a = 2;
 
     public static int d(int i7) {
         if (i7 < 3) {
@@ -96,24 +96,24 @@ public abstract class o {
         return true;
     }
 
-    public static d2 l(Set set, g9.l lVar) {
+    public static c2 l(Set set, g9.l lVar) {
         if (set instanceof SortedSet) {
             SortedSet sortedSet = (SortedSet) set;
-            if (sortedSet instanceof d2) {
-                d2 d2Var = (d2) sortedSet;
-                g9.l lVar2 = d2Var.f13984b;
+            if (sortedSet instanceof c2) {
+                c2 c2Var = (c2) sortedSet;
+                g9.l lVar2 = c2Var.f13976b;
                 lVar2.getClass();
-                return new d2((SortedSet) d2Var.f13983a, new g9.m(Arrays.asList(lVar2, lVar)));
+                return new c2((SortedSet) c2Var.f13975a, new g9.m(Arrays.asList(lVar2, lVar)));
             }
-            return new d2(sortedSet, lVar);
-        } else if (set instanceof d2) {
-            d2 d2Var2 = (d2) set;
-            g9.l lVar3 = d2Var2.f13984b;
+            return new c2(sortedSet, lVar);
+        } else if (set instanceof c2) {
+            c2 c2Var2 = (c2) set;
+            g9.l lVar3 = c2Var2.f13976b;
             lVar3.getClass();
-            return new d2(d2Var2.f13983a, new g9.m(Arrays.asList(lVar3, lVar)));
+            return new c2(c2Var2.f13975a, new g9.m(Arrays.asList(lVar3, lVar)));
         } else {
             set.getClass();
-            return new d2(set, lVar);
+            return new c2(set, lVar);
         }
     }
 
@@ -155,10 +155,10 @@ public abstract class o {
         return i10;
     }
 
-    public static c2 p(Set set, t0 t0Var) {
+    public static b2 p(Set set, t0 t0Var) {
         ma.k(set, "set1");
         ma.k(t0Var, "set2");
-        return new c2(set, t0Var);
+        return new b2(set, t0Var);
     }
 
     public static int q(int i7, int i10, int i11) {
@@ -232,7 +232,7 @@ public abstract class o {
     public abstract Object i();
 
     public String toString() {
-        switch (this.f14024a) {
+        switch (this.f14022a) {
             case 2:
                 return i().toString();
             default:

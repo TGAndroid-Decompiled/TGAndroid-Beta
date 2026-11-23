@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class js implements Runnable {
-    public final ns f49052a;
+    public final ns f49201a;
 
     public js(ns nsVar) {
-        this.f49052a = nsVar;
+        this.f49201a = nsVar;
     }
 
     @Override

@@ -4,36 +4,36 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class wl0 implements qj0 {
-    public final int f41815a;
-    public final int f41816b;
-    public final org.telegram.ui.ActionBar.g2 f41817c;
+    public final int f41680a;
+    public final int f41681b;
+    public final org.telegram.ui.ActionBar.g2 f41682c;
     public final Object d;
 
     public wl0(Object obj, int i7, org.telegram.ui.ActionBar.g2 g2Var, int i10) {
-        this.f41815a = i10;
+        this.f41680a = i10;
         this.d = obj;
-        this.f41816b = i7;
-        this.f41817c = g2Var;
+        this.f41681b = i7;
+        this.f41682c = g2Var;
     }
 
     @Override
-    public final void c(int i7, View view) {
+    public final void b(int i7, View view) {
         ch.p0 p0Var;
-        switch (this.f41815a) {
+        switch (this.f41680a) {
             case 0:
                 em0 em0Var = (em0) this.d;
-                ArrayList arrayList = em0Var.f34894r;
+                ArrayList arrayList = em0Var.f34800r;
                 di.b1 b1Var = em0Var.d;
                 if (i7 >= 0 && i7 < arrayList.size()) {
-                    if (!org.telegram.messenger.k10.i(this.f41816b).q()) {
-                        new ug.y0(this.f41817c, 24, true).show();
+                    if (!org.telegram.messenger.i10.i(this.f41681b).q()) {
+                        new ug.y0(this.f41682c, 24, true).show();
                         return;
                     }
-                    long j3 = ((bm0) arrayList.get(i7)).f33834a.h;
+                    long j3 = ((bm0) arrayList.get(i7)).f33768a.h;
                     if (em0Var.h == j3) {
                         p0Var = null;
                     } else {
-                        p0Var = ((bm0) arrayList.get(i7)).f33834a;
+                        p0Var = ((bm0) arrayList.get(i7)).f33768a;
                     }
                     if (em0Var.f(p0Var)) {
                         for (int i10 = 0; i10 < b1Var.getChildCount(); i10++) {
@@ -66,10 +66,10 @@ public final class wl0 implements qj0 {
                 return;
             default:
                 ug.h1 h1Var = (ug.h1) this.d;
-                if (view instanceof org.telegram.ui.ks0) {
-                    org.telegram.ui.ks0 ks0Var = (org.telegram.ui.ks0) view;
-                    PremiumPreviewFragment.v0(this.f41816b, ks0Var.f49352f.f53918a);
-                    h1Var.t(new ug.y0(this.f41817c, ks0Var.f49352f.f53918a, false));
+                if (view instanceof org.telegram.ui.is0) {
+                    org.telegram.ui.is0 is0Var = (org.telegram.ui.is0) view;
+                    PremiumPreviewFragment.v0(this.f41681b, is0Var.f48916f.f53023a);
+                    h1Var.t(new ug.y0(this.f41682c, is0Var.f48916f.f53023a, false));
                     return;
                 }
                 return;

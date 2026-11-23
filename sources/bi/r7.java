@@ -6,29 +6,29 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import c8.sa;
-import org.telegram.ui.Components.nq;
+import org.telegram.ui.Components.kq;
 public final class r7 extends TextView {
-    public final nq f4033a;
+    public final kq f4033a;
     public final int f4034b;
     public final boolean f4035c;
 
-    public r7(Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
+    public r7(Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
         super(context);
         this.f4035c = z10;
         if (z10) {
-            org.telegram.ui.ActionBar.t6.U(this, org.telegram.ui.ActionBar.m6.G6, h6Var);
+            org.telegram.ui.ActionBar.u6.U(this, org.telegram.ui.ActionBar.n6.G6, i6Var);
             setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(14.0f), 0);
             setTextSize(1, 15.0f);
             this.f4034b = org.telegram.messenger.g0.L(40.0f);
         } else {
-            int i7 = org.telegram.ui.ActionBar.m6.f29741y8;
-            int w02 = org.telegram.ui.ActionBar.m6.w0(i7, h6Var);
-            org.telegram.ui.ActionBar.t6.U(this, i7, h6Var);
-            org.telegram.ui.Cells.y b02 = org.telegram.ui.ActionBar.m6.b0(org.telegram.ui.ActionBar.m6.r1(0.08f, w02), org.telegram.ui.ActionBar.m6.r1(0.15f, w02), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f));
-            org.telegram.ui.ActionBar.p6 K = org.telegram.ui.ActionBar.t6.K(0.08f, i7);
-            org.telegram.ui.ActionBar.p6 K2 = org.telegram.ui.ActionBar.t6.K(0.15f, i7);
+            int i7 = org.telegram.ui.ActionBar.n6.f29845y8;
+            int w02 = org.telegram.ui.ActionBar.n6.w0(i7, i6Var);
+            org.telegram.ui.ActionBar.u6.U(this, i7, i6Var);
+            org.telegram.ui.Cells.y b02 = org.telegram.ui.ActionBar.n6.b0(org.telegram.ui.ActionBar.n6.r1(0.08f, w02), org.telegram.ui.ActionBar.n6.r1(0.15f, w02), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f));
+            org.telegram.ui.ActionBar.q6 K = org.telegram.ui.ActionBar.u6.K(0.08f, i7);
+            org.telegram.ui.ActionBar.q6 K2 = org.telegram.ui.ActionBar.u6.K(0.15f, i7);
             setBackground(b02);
-            org.telegram.ui.ActionBar.t6.j(this, b02, K, K2, h6Var);
+            org.telegram.ui.ActionBar.u6.j(this, b02, K, K2, i6Var);
             setPadding(org.telegram.messenger.g0.L(11.0f), 0, org.telegram.messenger.g0.L(11.0f), 0);
             this.f4034b = org.telegram.messenger.g0.L(26.0f);
         }
@@ -37,11 +37,11 @@ public final class r7 extends TextView {
         if (!z10) {
             sa.a(this);
         }
-        nq nqVar = new nq(2131230873, 0);
-        this.f4033a = nqVar;
-        nqVar.H = 0.8f;
-        nqVar.f37907r = 0.0f;
-        nqVar.f37908s = org.telegram.messenger.g0.L(1.0f);
+        kq kqVar = new kq(2131230873, 0);
+        this.f4033a = kqVar;
+        kqVar.H = 0.8f;
+        kqVar.f36853r = 0.0f;
+        kqVar.f36854s = org.telegram.messenger.g0.L(1.0f);
     }
 
     @Override

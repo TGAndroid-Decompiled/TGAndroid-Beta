@@ -1,30 +1,45 @@
 package org.telegram.ui;
-public final class bg0 implements Runnable {
-    public final int f45833a;
-    public final cg0 f45834b;
+public final class bg0 extends pi.k {
+    public Runnable W;
 
-    public bg0(cg0 cg0Var, int i7) {
-        this.f45833a = i7;
-        this.f45834b = cg0Var;
+    @Override
+    public final void N() {
+        super.N();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+            this.W = null;
+        }
+        ag0 ag0Var = new ag0(this, 0);
+        this.W = ag0Var;
+        org.telegram.messenger.g0.g3(ag0Var);
     }
 
     @Override
-    public final void run() {
-        switch (this.f45833a) {
-            case 0:
-                this.f45834b.W = null;
-                if (org.telegram.messenger.s2.f26694a) {
-                    org.telegram.messenger.a8.b("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
-            default:
-                this.f45834b.W = null;
-                if (org.telegram.messenger.s2.f26694a) {
-                    org.telegram.messenger.a8.b("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
+    public final void W() {
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+            this.W = null;
         }
+        if (org.telegram.messenger.s2.f26829a) {
+            org.telegram.messenger.a8.b("chatItemAnimator disable notifications");
+        }
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+        }
+        ag0 ag0Var = new ag0(this, 1);
+        this.W = ag0Var;
+        org.telegram.messenger.g0.g3(ag0Var);
+    }
+
+    @Override
+    public final void F() {
     }
 }

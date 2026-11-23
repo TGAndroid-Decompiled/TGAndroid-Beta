@@ -14,7 +14,7 @@ import com.google.android.gms.internal.vision.e2;
 import java.util.HashMap;
 import java.util.Random;
 import org.telegram.messenger.f3;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.m10;
 public final class f {
     public static final float S;
     public static final float T;
@@ -129,7 +129,7 @@ public final class f {
             hashMap.put(bc.b.f3083c, 0);
             ji.r rVar = new ji.r(1);
             if (colorDrawable != null) {
-                rVar.f18051g = colorDrawable;
+                rVar.f18153g = colorDrawable;
             }
             e eVar = new e();
             Bitmap a10 = rVar.a(str, i7, i7, hashMap, null, f10, 0, -1);
@@ -147,7 +147,7 @@ public final class f {
                     float f12 = i13 + 0.5f;
                     float f13 = eVar.f5620f;
                     int i14 = (int) ((f12 * f13) + f11);
-                    int b10 = (int) o10.b(i12, 0.5f, f13, f11);
+                    int b10 = (int) m10.b(i12, 0.5f, f13, f11);
                     boolean z10 = false;
                     for (int i15 = -1; i15 <= 1 && !z10; i15++) {
                         if (Color.alpha(a10.getPixel(Math.max(0, Math.min(eVar.f5617b - 1, ((int) (i15 * eVar.f5620f * 0.3f)) + i14)), b10)) > 40) {
@@ -174,7 +174,7 @@ public final class f {
             Rect rect = eVar.f5618c;
             int i18 = eVar.f5617b;
             rect.set(0, 0, i18, i18);
-            int i19 = rVar.f18049e;
+            int i19 = rVar.f18151e;
             eVar.f5625l = i19;
             int round = Math.round(i19 / eVar.f5620f) + 2;
             int i20 = (eVar.f5619e - round) / 2;
@@ -193,7 +193,7 @@ public final class f {
     public static float h(e eVar, float f10) {
         float f11 = 1.0f - f10;
         float f12 = f11 * f11;
-        return o10.b(eVar.f5619e, 6.0f, 1.0f - (((f11 * 0.45f) + 0.55f) * f12), -1.5f);
+        return m10.b(eVar.f5619e, 6.0f, 1.0f - (((f11 * 0.45f) + 0.55f) * f12), -1.5f);
     }
 
     public static boolean i(e eVar, int i7, int i10) {
@@ -313,7 +313,7 @@ public final class f {
                             float f16 = eVar.f5621g;
                             float f17 = eVar.f5620f;
                             fArr[i16] = ((i18 + 0.5f) * f17) + f16;
-                            eVar.f5628o[i16] = o10.b(i17, 0.5f, f17, f16);
+                            eVar.f5628o[i16] = m10.b(i17, 0.5f, f17, f16);
                             float[] fArr2 = eVar.f5629p;
                             float hypot = (((float) Math.hypot(f11 - f10, f12 - f10)) / f14) * 0.5f;
                             if (i22) {

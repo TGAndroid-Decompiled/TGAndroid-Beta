@@ -1,22 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class lf extends org.telegram.ui.eg0 {
-    public final ji.e E0;
-    public final ChatActivityEnterView F0;
-
-    public lf(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.h6 h6Var, ji.e eVar) {
-        super(context, h6Var);
-        this.F0 = chatActivityEnterView;
-        this.E0 = eVar;
+import android.util.Property;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class lf extends Property {
+    @Override
+    public final Object get(Object obj) {
+        return Float.valueOf(((ChatActivityEnterView.RecordCircle) obj).getScale());
     }
 
     @Override
-    public final void m(long j3) {
-        this.F0.setEffectId(j3);
-        ji.e eVar = this.E0;
-        if (eVar != null) {
-            eVar.invalidate();
-        }
+    public final void set(Object obj, Object obj2) {
+        ((ChatActivityEnterView.RecordCircle) obj).setScale(((Float) obj2).floatValue());
     }
 }

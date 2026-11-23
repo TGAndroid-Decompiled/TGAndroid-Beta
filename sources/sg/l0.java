@@ -1,104 +1,45 @@
 package sg;
-
-import android.graphics.Bitmap;
-import android.graphics.PointF;
-import org.telegram.ui.Components.yt0;
 public final class l0 {
-    public final float f57284a;
-    public final float f57285b;
-    public final PointF f57286c;
-    public final PointF d;
-    public final float f57287e;
-    public final PointF f57288f;
-    public final PointF f57289g;
+    public final double f57398a;
+    public final double f57399b;
+    public final double f57400c;
+    public boolean d;
 
-    public l0(w8.a aVar, Bitmap bitmap, yt0 yt0Var, boolean z10) {
-        float degrees;
-        PointF pointF = null;
-        PointF pointF2 = null;
-        PointF pointF3 = null;
-        PointF pointF4 = null;
-        for (w8.c cVar : aVar.f59638b) {
-            PointF pointF5 = cVar.f59643a;
-            int i7 = cVar.f59644b;
-            if (i7 != 4) {
-                if (i7 != 5) {
-                    if (i7 != 10) {
-                        if (i7 == 11) {
-                            pointF4 = b(pointF5, bitmap, yt0Var, z10);
-                        }
-                    } else {
-                        pointF2 = b(pointF5, bitmap, yt0Var, z10);
-                    }
-                } else {
-                    pointF3 = b(pointF5, bitmap, yt0Var, z10);
-                }
-            } else {
-                pointF = b(pointF5, bitmap, yt0Var, z10);
-            }
-        }
-        if (pointF != null && pointF2 != null) {
-            if (pointF.x < pointF2.x) {
-                PointF pointF6 = pointF2;
-                pointF2 = pointF;
-                pointF = pointF6;
-            }
-            PointF pointF7 = new PointF((pointF2.x * 0.5f) + (pointF.x * 0.5f), (pointF2.y * 0.5f) + (pointF.y * 0.5f));
-            this.d = pointF7;
-            float hypot = (float) Math.hypot(pointF2.x - pointF.x, pointF2.y - pointF.y);
-            this.f57287e = hypot;
-            this.f57285b = (float) Math.toDegrees(Math.atan2(pointF2.y - pointF.y, pointF2.x - pointF.x) + 3.141592653589793d);
-            this.f57284a = 2.35f * hypot;
-            float f10 = hypot * 0.8f;
-            float f11 = pointF7.x;
-            double radians = (float) Math.toRadians(degrees - 90.0f);
-            this.f57286c = new PointF((((float) Math.cos(radians)) * f10) + f11, (f10 * ((float) Math.sin(radians))) + pointF7.y);
-        }
-        if (pointF3 != null && pointF4 != null) {
-            if (pointF3.x < pointF4.x) {
-                PointF pointF8 = pointF4;
-                pointF4 = pointF3;
-                pointF3 = pointF8;
-            }
-            PointF pointF9 = new PointF((pointF4.x * 0.5f) + (pointF3.x * 0.5f), (pointF4.y * 0.5f) + (pointF3.y * 0.5f));
-            this.f57288f = pointF9;
-            float f12 = this.f57287e * 0.7f;
-            float f13 = pointF9.x;
-            double radians2 = (float) Math.toRadians(this.f57285b + 90.0f);
-            this.f57289g = new PointF((((float) Math.cos(radians2)) * f12) + f13, (f12 * ((float) Math.sin(radians2))) + pointF9.y);
-        }
+    public l0(double d, double d2, double d10) {
+        this.f57398a = d;
+        this.f57399b = d2;
+        this.f57400c = d10;
     }
 
-    public static PointF b(PointF pointF, Bitmap bitmap, yt0 yt0Var, boolean z10) {
-        int width;
-        int height;
-        if (z10) {
-            width = bitmap.getHeight();
-        } else {
-            width = bitmap.getWidth();
-        }
-        float f10 = width;
-        if (z10) {
-            height = bitmap.getWidth();
-        } else {
-            height = bitmap.getHeight();
-        }
-        return new PointF((yt0Var.f42506a * pointF.x) / f10, (yt0Var.f42507b * pointF.y) / height);
+    public final float a(l0 l0Var) {
+        return (float) Math.sqrt(Math.pow(this.f57400c - l0Var.f57400c, 2.0d) + Math.pow(this.f57399b - l0Var.f57399b, 2.0d) + Math.pow(this.f57398a - l0Var.f57398a, 2.0d));
     }
 
-    public final PointF a(int i7) {
-        if (i7 != 0) {
-            if (i7 != 1) {
-                if (i7 != 2) {
-                    if (i7 != 3) {
-                        return null;
-                    }
-                    return this.f57289g;
-                }
-                return this.f57288f;
-            }
-            return this.d;
+    public final l0 b(l0 l0Var) {
+        return new l0((this.f57398a + l0Var.f57398a) * 0.5d, (this.f57399b + l0Var.f57399b) * 0.5d, (this.f57400c + l0Var.f57400c) * 0.5d);
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
         }
-        return this.f57286c;
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof l0)) {
+            return false;
+        }
+        l0 l0Var = (l0) obj;
+        if (this.f57398a != l0Var.f57398a || this.f57399b != l0Var.f57399b || this.f57400c != l0Var.f57400c) {
+            return false;
+        }
+        return true;
+    }
+
+    public l0(double d, double d2, double d10, int i7) {
+        this.f57398a = d;
+        this.f57399b = d2;
+        this.f57400c = d10;
+        this.d = true;
     }
 }

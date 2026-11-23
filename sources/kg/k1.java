@@ -2,19 +2,19 @@ package kg;
 
 import android.view.View;
 import java.io.Serializable;
-import org.telegram.messenger.w10;
-import org.telegram.messenger.x10;
-import org.telegram.ui.Components.o41;
-public final class k1 implements w10, x10 {
-    public final t1 f18370a;
+import org.telegram.messenger.u10;
+import org.telegram.messenger.v10;
+import org.telegram.ui.Components.n41;
+public final class k1 implements u10, v10 {
+    public final t1 f18465a;
 
     @Override
-    public Boolean a(o41 o41Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(n41 n41Var, View view, Integer num, Float f10, Float f11) {
         boolean z10;
-        if (o41Var.f56599a == 16) {
-            Object obj = o41Var.H;
-            if (!(obj instanceof v1) || !((v1) obj).f18510g) {
-                this.f18370a.j0(o41Var, view);
+        if (n41Var.f56712a == 16) {
+            Object obj = n41Var.H;
+            if (!(obj instanceof v1) || !((v1) obj).f18606g) {
+                this.f18465a.j0(n41Var, view);
                 z10 = true;
                 return Boolean.valueOf(z10);
             }
@@ -24,10 +24,10 @@ public final class k1 implements w10, x10 {
     }
 
     @Override
-    public void l(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        t1.b0(this.f18370a, (o41) obj, (View) obj2);
+        t1.b0(this.f18465a, (n41) obj, (View) obj2);
     }
 }

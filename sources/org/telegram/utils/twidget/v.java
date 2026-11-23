@@ -4,29 +4,29 @@ import android.content.Context;
 import android.net.Uri;
 import java.io.Serializable;
 public final class v implements x, org.telegram.ui.ActionBar.q1 {
-    public final int f54974a;
-    public final Serializable f54975b;
-    public final Object f54976c;
+    public final int f55090a;
+    public final Serializable f55091b;
+    public final Object f55092c;
 
     public v(int i7, Serializable serializable, Object obj) {
-        this.f54974a = i7;
-        this.f54976c = obj;
-        this.f54975b = serializable;
+        this.f55090a = i7;
+        this.f55092c = obj;
+        this.f55091b = serializable;
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        vf.c.q((Context) this.f54976c, Uri.parse((String) this.f54975b), true, false);
+    public void i(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        vf.c.q((Context) this.f55092c, Uri.parse((String) this.f55091b), true, false);
     }
 
     @Override
     public void mo26run() {
-        switch (this.f54974a) {
+        switch (this.f55090a) {
             case 0:
-                ((y) this.f54976c).a((byte[]) this.f54975b);
+                ((y) this.f55092c).a((byte[]) this.f55091b);
                 return;
             default:
-                ((WidgetEngineBackend) this.f54976c).lambda$send$11((byte[]) this.f54975b);
+                ((WidgetEngineBackend) this.f55092c).lambda$send$11((byte[]) this.f55091b);
                 return;
         }
     }

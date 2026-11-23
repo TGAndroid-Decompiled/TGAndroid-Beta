@@ -4,7 +4,7 @@ import android.view.View;
 import android.view.WindowInsets;
 public abstract class y {
     public static WindowInsets a(View view, WindowInsets windowInsets) {
-        int i7 = k0.f56265a;
+        int i7 = k0.f56378a;
         return view.dispatchApplyWindowInsets(windowInsets);
     }
 

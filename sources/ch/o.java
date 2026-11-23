@@ -4,15 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.y5;
-public final class o extends y5 {
+import org.telegram.ui.Components.x5;
+public final class o extends x5 {
     public final Bitmap f5451a;
 
     public o(p pVar) {
         super(-1L, (Paint.FontMetricsInt) null);
         Bitmap createBitmap = Bitmap.createBitmap(org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), Bitmap.Config.ARGB_8888);
         this.f5451a = createBitmap;
-        Drawable mutate = pVar.getParentActivity().getResources().getDrawable(2131232754).mutate();
+        Drawable mutate = pVar.getParentActivity().getResources().getDrawable(2131232757).mutate();
         mutate.setBounds(0, 0, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f));
         mutate.draw(new Canvas(createBitmap));
     }

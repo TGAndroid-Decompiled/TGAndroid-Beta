@@ -2,20 +2,20 @@ package xi;
 
 import org.telegram.messenger.g0;
 public final class f implements Runnable {
-    public final int f60634a;
-    public final i f60635b;
+    public final int f60752a;
+    public final i f60753b;
 
     public f(i iVar, int i7) {
-        this.f60634a = i7;
-        this.f60635b = iVar;
+        this.f60752a = i7;
+        this.f60753b = iVar;
     }
 
     private final void a() {
-        i iVar = this.f60635b;
+        i iVar = this.f60753b;
         iVar.g();
-        synchronized (iVar.f60642a) {
+        synchronized (iVar.f60760a) {
             try {
-                if (iVar.f60660u) {
+                if (iVar.f60778u) {
                     return;
                 }
                 g0.h3(new f(iVar, 2), 1000L);

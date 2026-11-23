@@ -1,20 +1,20 @@
 package di;
 
-import org.telegram.messenger.y10;
-public final class u6 implements y10 {
-    public final int f9865a = 1;
-    public final y8 f9866b;
-    public final int f9867c;
-    public final y10 d;
-    public final boolean[] f9868e;
-    public final y10 f9869f;
+import org.telegram.messenger.w10;
+public final class u6 implements w10 {
+    public final int f9860a = 1;
+    public final y8 f9861b;
+    public final int f9862c;
+    public final w10 d;
+    public final boolean[] f9863e;
+    public final w10 f9864f;
 
-    public u6(y8 y8Var, int i7, y10 y10Var, boolean[] zArr, y10 y10Var2) {
-        this.f9866b = y8Var;
-        this.f9867c = i7;
-        this.d = y10Var;
-        this.f9868e = zArr;
-        this.f9869f = y10Var2;
+    public u6(y8 y8Var, int i7, w10 w10Var, boolean[] zArr, w10 w10Var2) {
+        this.f9861b = y8Var;
+        this.f9862c = i7;
+        this.d = w10Var;
+        this.f9863e = zArr;
+        this.f9864f = w10Var2;
     }
 
     @Override
@@ -22,55 +22,55 @@ public final class u6 implements y10 {
         String str;
         String str2;
         Boolean bool = (Boolean) obj;
-        switch (this.f9865a) {
+        switch (this.f9860a) {
             case 0:
-                this.f9868e[0] = true;
-                if (this.f9867c > 0) {
-                    this.f9866b.Q();
+                this.f9863e[0] = true;
+                if (this.f9862c > 0) {
+                    this.f9861b.Q();
                 }
-                y10 y10Var = this.d;
-                if (y10Var != null) {
+                w10 w10Var = this.d;
+                if (w10Var != null) {
                     if (bool.booleanValue()) {
                         str = "paid";
                     } else {
                         str = "failed";
                     }
-                    y10Var.a(str);
+                    w10Var.a(str);
                 }
-                y10 y10Var2 = this.f9869f;
-                if (y10Var2 != null) {
-                    y10Var2.a(Boolean.TRUE);
+                w10 w10Var2 = this.f9864f;
+                if (w10Var2 != null) {
+                    w10Var2.a(Boolean.TRUE);
                     return;
                 }
                 return;
             default:
-                if (this.f9867c > 0) {
-                    this.f9866b.Q();
+                if (this.f9862c > 0) {
+                    this.f9861b.Q();
                 }
-                y10 y10Var3 = this.d;
-                if (y10Var3 != null) {
-                    y10Var3.a(Boolean.TRUE);
+                w10 w10Var3 = this.d;
+                if (w10Var3 != null) {
+                    w10Var3.a(Boolean.TRUE);
                 }
-                this.f9868e[0] = true;
-                y10 y10Var4 = this.f9869f;
-                if (y10Var4 != null) {
+                this.f9863e[0] = true;
+                w10 w10Var4 = this.f9864f;
+                if (w10Var4 != null) {
                     if (bool.booleanValue()) {
                         str2 = "paid";
                     } else {
                         str2 = "failed";
                     }
-                    y10Var4.a(str2);
+                    w10Var4.a(str2);
                     return;
                 }
                 return;
         }
     }
 
-    public u6(y8 y8Var, boolean[] zArr, int i7, y10 y10Var, y10 y10Var2) {
-        this.f9866b = y8Var;
-        this.f9868e = zArr;
-        this.f9867c = i7;
-        this.d = y10Var;
-        this.f9869f = y10Var2;
+    public u6(y8 y8Var, boolean[] zArr, int i7, w10 w10Var, w10 w10Var2) {
+        this.f9861b = y8Var;
+        this.f9863e = zArr;
+        this.f9862c = i7;
+        this.d = w10Var;
+        this.f9864f = w10Var2;
     }
 }

@@ -1,12 +1,12 @@
 package ch;
 
 import android.content.Context;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 public final class m extends e0 {
     public final p f5418i2;
 
-    public m(p pVar, Context context, h6 h6Var, int i7) {
-        super(i7, context, h6Var);
+    public m(p pVar, Context context, i6 i6Var, int i7) {
+        super(i7, context, i6Var);
         this.f5418i2 = pVar;
     }
 

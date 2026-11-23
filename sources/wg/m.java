@@ -1,41 +1,41 @@
 package wg;
 
 import java.util.ArrayList;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.TLRPC;
 public final class m implements Runnable {
-    public final int f59799a;
-    public final TLRPC.Chat f59800b;
-    public final int f59801c;
+    public final int f59898a;
+    public final TLRPC.Chat f59899b;
+    public final int f59900c;
     public final ArrayList d;
-    public final y10 f59802e;
+    public final w10 f59901e;
 
-    public m(TLRPC.Chat chat, int i7, ArrayList arrayList, y10 y10Var, int i10) {
-        this.f59799a = i10;
-        this.f59800b = chat;
-        this.f59801c = i7;
+    public m(TLRPC.Chat chat, int i7, ArrayList arrayList, w10 w10Var, int i10) {
+        this.f59898a = i10;
+        this.f59899b = chat;
+        this.f59900c = i7;
         this.d = arrayList;
-        this.f59802e = y10Var;
+        this.f59901e = w10Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f59799a) {
+        switch (this.f59898a) {
             case 0:
-                TLRPC.Chat chat = this.f59800b;
+                TLRPC.Chat chat = this.f59899b;
                 ArrayList arrayList = this.d;
                 if (chat == null) {
-                    s.m(this.f59801c, arrayList);
+                    r.m(this.f59900c, arrayList);
                 }
-                this.f59802e.a(arrayList);
+                this.f59901e.a(arrayList);
                 return;
             default:
-                TLRPC.Chat chat2 = this.f59800b;
+                TLRPC.Chat chat2 = this.f59899b;
                 ArrayList arrayList2 = this.d;
                 if (chat2 == null) {
-                    s.m(this.f59801c, arrayList2);
+                    r.m(this.f59900c, arrayList2);
                 }
-                this.f59802e.a(arrayList2);
+                this.f59901e.a(arrayList2);
                 return;
         }
     }

@@ -1,10 +1,21 @@
 package org.telegram.messenger;
-public final class ga {
-    public final a8.r7 f24074a;
-    public final q0.a f24075b;
 
-    public ga(a8.r7 r7Var, q0.a aVar) {
-        this.f24074a = r7Var;
-        this.f24075b = aVar;
+import android.view.MotionEvent;
+public final class ga {
+    public final int f24286a;
+    public final ai.h0 f24287b;
+
+    public ga(ai.h0 h0Var, int i7) {
+        this.f24286a = i7;
+        this.f24287b = h0Var;
+    }
+
+    public final Boolean a(Object obj) {
+        switch (this.f24286a) {
+            case 0:
+                return ai.h0.a(this.f24287b, (MotionEvent) obj);
+            default:
+                return ai.h0.b(this.f24287b, (MotionEvent) obj);
+        }
     }
 }

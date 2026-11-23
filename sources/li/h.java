@@ -1,27 +1,28 @@
 package li;
 
-import org.telegram.ui.bn;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.mp;
 public final class h implements Runnable {
-    public final int f19935a;
-    public final p f19936b;
-    public final long f19937c;
+    public final int f20035a;
+    public final o f20036b;
 
-    public h(p pVar, long j3, int i7) {
-        this.f19935a = i7;
-        this.f19936b = pVar;
-        this.f19937c = j3;
+    public h(o oVar, int i7) {
+        this.f20035a = i7;
+        this.f20036b = oVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f19935a) {
+        int i7 = this.f20035a;
+        o oVar = this.f20036b;
+        switch (i7) {
             case 0:
-                p.c0(this.f19936b, this.f19937c);
+                o.b0(oVar);
                 return;
             default:
-                p pVar = this.f19936b;
-                pVar.getClass();
-                pVar.presentFragment(bn.ua(this.f19937c));
+                ks notificationCenter = oVar.getNotificationCenter();
+                int i10 = mp.I8;
+                notificationCenter.k(2, 8192);
                 return;
         }
     }

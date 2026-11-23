@@ -1,135 +1,36 @@
 package tg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.ui.Components.d6;
-import org.telegram.ui.Components.jn;
-public final class n1 extends View {
-    public final d6 E;
-    public sg.u0 F;
-    public float G;
-    public float H;
-    public sg.h1 I;
-    public Runnable J;
-    public boolean K;
-    public m1 L;
-    public final Paint f58041a;
-    public final Paint f58042b;
-    public final Path f58043c;
-    public final jn d;
-    public final RectF f58044e;
-    public boolean f58045f;
-    public boolean h;
-    public float f58046n;
-    public float f58047r;
-    public long f58048s;
-    public boolean f58049w;
-    public final d6 f58050x;
-    public final d6 f58051y;
-
-    public n1(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f58041a = paint;
-        Paint paint2 = new Paint(1);
-        this.f58042b = paint2;
-        this.f58043c = new Path();
-        this.f58044e = new RectF();
-        this.f58049w = true;
-        this.f58050x = new d6(this);
-        this.f58051y = new d6(this);
-        this.E = new d6(this);
-        this.I = new sg.h1(1.0f, 0.016773745f, -1);
-        this.K = true;
-        this.d = new jn(context, new l1(this));
-        paint2.setColor(-1);
-        paint2.setShadowLayer(org.telegram.messenger.g0.L(4.0f), 0.0f, org.telegram.messenger.g0.L(2.0f), 1342177280);
-        paint.setColor(1090519039);
-        paint.setShadowLayer(org.telegram.messenger.g0.L(3.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), 637534208);
-    }
-
-    public final void a(float f10, float f11, float f12, Canvas canvas, boolean z10) {
-        if (z10) {
-            RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set((f10 - f12) - org.telegram.messenger.g0.L(6.0f), (f11 - f12) - org.telegram.messenger.g0.L(6.0f), f10 + f12 + org.telegram.messenger.g0.L(6.0f), f11 + f12 + org.telegram.messenger.g0.L(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.f58047r * 255.0f), 31);
-        }
-        canvas.drawCircle(f10, f11, f12, this.f58042b);
-        if (z10) {
-            canvas.restore();
-        }
-    }
-
-    public final void b(float f10, float f11) {
-        this.G = f10;
-        this.H = f11;
-        invalidate();
+import android.view.ViewGroup;
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.dk0;
+public final class n1 extends dk0 {
+    @Override
+    public final boolean D(v4.f1 f1Var) {
+        return true;
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r21) {
-        throw new UnsupportedOperationException("Method not decompiled: tg.n1.onDraw(android.graphics.Canvas):void");
+    public final int b() {
+        return sg.a0.c().size();
     }
 
     @Override
-    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
-        super.onSizeChanged(i7, i10, i11, i12);
-        int height = (int) (getHeight() * 0.3f);
-        this.f58044e.set(0.0f, (getHeight() - height) / 2.0f, org.telegram.messenger.g0.L(32.0f), (getHeight() + height) / 2.0f);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean onTouchEvent = ((GestureDetector) this.d.f36522b).onTouchEvent(motionEvent);
-        if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
-            return onTouchEvent;
+    public final void t(v4.f1 f1Var, int i7) {
+        i1 i1Var = (i1) f1Var.f59245a;
+        sg.a0 a0Var = (sg.a0) sg.a0.c().get(i7);
+        i1Var.getClass();
+        i1Var.setTypeface(a0Var.d());
+        String str = a0Var.f57280c;
+        if (str == null) {
+            str = gd.O0(a0Var.f57279b);
         }
-        this.f58045f = false;
-        invalidate();
-        return onTouchEvent;
+        i1Var.setText(str);
     }
 
-    public void setBrushWeight(float f10) {
-        this.I.f57230c = f10;
-        invalidate();
-    }
-
-    public void setColorSwatch(sg.h1 h1Var) {
-        this.I = h1Var;
-        invalidate();
-    }
-
-    public void setDrawCenter(boolean z10) {
-        this.K = z10;
-        invalidate();
-    }
-
-    public void setOnUpdate(Runnable runnable) {
-        this.J = runnable;
-    }
-
-    public void setRenderView(sg.u0 u0Var) {
-        this.F = u0Var;
-    }
-
-    public void setShowPreview(boolean z10) {
-        this.f58049w = z10;
-        invalidate();
-    }
-
-    public void setValueOverride(m1 m1Var) {
-        this.L = m1Var;
-        invalidate();
-    }
-
-    public void setViewHidden(boolean z10) {
-        this.h = z10;
-        invalidate();
+    @Override
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        i1 i1Var = new i1(viewGroup.getContext());
+        i1Var.setLayoutParams(new v4.q0(-1, -2));
+        return new v4.f1(i1Var);
     }
 }

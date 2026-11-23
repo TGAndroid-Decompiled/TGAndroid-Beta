@@ -1,12 +1,14 @@
 package hi;
 
 import android.app.Activity;
-import android.widget.FrameLayout;
-public final class ga extends f0 {
-    public final ta f14654z0;
+import android.graphics.Path;
+public final class ga extends g4 {
+    public final Path O;
+    public final nb P;
 
-    public ga(ta taVar, Activity activity, org.telegram.ui.Components.ca caVar, FrameLayout frameLayout, fi.b bVar) {
-        super(activity, caVar, frameLayout, bVar);
-        this.f14654z0 = taVar;
+    public ga(nb nbVar, Activity activity, fi.b bVar, org.telegram.ui.Components.ba baVar) {
+        super(activity, bVar, baVar);
+        this.P = nbVar;
+        this.O = new Path();
     }
 }

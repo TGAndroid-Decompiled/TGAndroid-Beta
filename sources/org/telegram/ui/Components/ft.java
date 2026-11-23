@@ -1,22 +1,57 @@
 package org.telegram.ui.Components;
-public final class ft implements org.telegram.messenger.q10 {
-    public final int f35270a;
-    public final Object f35271b;
 
-    public ft(Object obj, int i7) {
-        this.f35270a = i7;
-        this.f35271b = obj;
+import android.graphics.Canvas;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+public final class ft extends ShapeDrawable {
+    public final int f35195a = 1;
+    public final EditTextBoldCursor f35196b;
+
+    public ft(EditTextBoldCursor editTextBoldCursor, RectShape rectShape) {
+        super(rectShape);
+        this.f35196b = editTextBoldCursor;
     }
 
     @Override
-    public final Object run() {
-        switch (this.f35270a) {
+    public final void draw(Canvas canvas) {
+        switch (this.f35195a) {
             case 0:
-                return Boolean.valueOf(((EditTextBoldCursor) this.f35271b).w());
-            case 1:
-                return ((w30) this.f35271b).getCloseIntoObject();
+                super.draw(canvas);
+                this.f35196b.H0 = true;
+                return;
             default:
-                return Boolean.valueOf(((ot) this.f35271b).w());
+                EditTextBoldCursor editTextBoldCursor = this.f35196b;
+                if (editTextBoldCursor.f33012e1) {
+                    editTextBoldCursor.H0 = true;
+                    return;
+                } else {
+                    super.draw(canvas);
+                    return;
+                }
         }
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        switch (this.f35195a) {
+            case 1:
+                return org.telegram.messenger.g0.L(this.f35196b.f33021j0 + 20);
+            default:
+                return super.getIntrinsicHeight();
+        }
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        switch (this.f35195a) {
+            case 1:
+                return org.telegram.messenger.g0.L(this.f35196b.F0);
+            default:
+                return super.getIntrinsicWidth();
+        }
+    }
+
+    public ft(EditTextBoldCursor editTextBoldCursor) {
+        this.f35196b = editTextBoldCursor;
     }
 }

@@ -2,7 +2,7 @@ package bg;
 
 import android.graphics.Bitmap;
 import java.util.ArrayList;
-import org.telegram.messenger.ls;
+import org.telegram.messenger.ks;
 public final class e implements Runnable {
     public final int f3192a;
     public final ArrayList f3193b;
@@ -27,8 +27,8 @@ public final class e implements Runnable {
                 return;
             default:
                 sg.a0.h = this.f3193b;
-                sg.a0.f57163i = false;
-                ls.e().k(334, new Object[0]);
+                sg.a0.f57277i = false;
+                ks.e().k(334, new Object[0]);
                 return;
         }
     }

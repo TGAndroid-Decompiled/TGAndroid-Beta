@@ -1,113 +1,51 @@
 package oi;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.Layout;
-import c8.na;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.cz;
-import org.telegram.messenger.hd;
+import android.view.View;
+import org.telegram.messenger.j6;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Cells.i9;
-import org.telegram.ui.Cells.j9;
-import org.telegram.ui.Cells.u9;
-public final class d5 extends x implements org.telegram.ui.ActionBar.b6, i9 {
-    public final h6 f22020n;
-    public final e1 f22021r;
-    public b5 f22022s;
-    public final ArrayList f22023w;
-    public boolean f22024x;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.n41;
+public final class d5 extends m41 {
+    public static final int f22126b = 0;
 
-    public d5(Context context, h6 h6Var) {
-        super(context);
-        this.f22023w = new ArrayList();
-        this.f22020n = h6Var;
-        f(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(8.0f));
-        e1 e1Var = new e1(context, h6Var);
-        this.f22021r = e1Var;
-        e1Var.setPadding(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(1.0f));
-        e1Var.setAllowNewlines(false);
-        e1Var.setInputType(147457);
-        e1Var.setGravity(8388659);
-        e1Var.setTextSize(1, Math.max(8, cz.W0 - 2));
-        e1Var.setTypeface(org.telegram.messenger.g0.o1("fonts/rmedium.ttf"));
-        e1Var.setTextColorKey(m6.Fi);
-        e1Var.setAccentHint(true);
-        e1Var.setHint(hd.N0(2131754017, null));
-        e1Var.setListener(new hi.x4(this, 19));
-        e1Var.setDelegate(new kg.y1(this, 25));
-        addView(e1Var, na.e(-1, -2, 51));
-        updateColors();
+    static {
+        m41.h(new m41());
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(m6.Fi));
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        j9 j9Var;
-        b5 b5Var = this.f22022s;
-        if (b5Var != null) {
-            j9Var = ((z2) b5Var).f22543a.getTextSelectionHelper();
+    public final void b(View view, n41 n41Var, boolean z10, b51 b51Var, g51 g51Var) {
+        TL_iv.RichText richText;
+        e5 e5Var = (e5) view;
+        a aVar = (a) n41Var.H;
+        c5 c5Var = (c5) n41Var.I;
+        f1 f1Var = e5Var.f22150r;
+        e5Var.f22598a = aVar;
+        e5Var.f22151s = c5Var;
+        e5Var.f(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(8.0f));
+        e5Var.c(aVar);
+        if (c5Var != null) {
+            richText = (TL_iv.RichText) ((a3) c5Var).f22027a.f22505u3.get(Long.valueOf(aVar.f22017t));
         } else {
-            j9Var = null;
+            richText = null;
         }
-        if (j9Var != null) {
-            ArrayList arrayList = this.f22023w;
-            arrayList.clear();
-            k(arrayList);
-            for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                u9 u9Var = (u9) arrayList.get(i7);
-                canvas.save();
-                canvas.translate(u9Var.getX(), u9Var.getY());
-                j9Var.Z(canvas, this, i7);
-                canvas.restore();
-            }
+        if (!String.valueOf(f1Var.getText()).equals(c6.l(richText))) {
+            f1Var.setTextSilently(j6.m(c6.r(richText, null, true), f1Var.getPaint().getFontMetricsInt(), false, null, 0));
+            f1Var.f();
         }
-        super.dispatchDraw(canvas);
-    }
-
-    public final void g() {
-        a aVar;
-        b5 b5Var = this.f22022s;
-        if (b5Var != null && (aVar = this.f22468a) != null) {
-            long j3 = aVar.f21917t;
-            TL_iv.RichText f10 = b6.f(this.f22021r.getText());
-            s3 s3Var = ((z2) b5Var).f22543a;
-            if (f10 != null && !(f10 instanceof TL_iv.textEmpty)) {
-                s3Var.f22375u3.put(Long.valueOf(j3), f10);
-            } else {
-                s3Var.f22375u3.remove(Long.valueOf(j3));
-            }
-        }
-    }
-
-    public a getRow() {
-        return this.f22468a;
     }
 
     @Override
-    public final void k(ArrayList arrayList) {
-        e1 e1Var = this.f22021r;
-        Layout layout = e1Var.getLayout();
-        if (layout == null) {
-            return;
-        }
-        arrayList.add(new a5(layout, e1Var.getPaddingLeft() + e1Var.getLeft(), e1Var.getPaddingTop() + e1Var.getTop(), 0));
+    public final View d(Context context, ek0 ek0Var, int i7, i6 i6Var) {
+        return new e5(context, i6Var);
     }
 
     @Override
-    public final void updateColors() {
-        e1 e1Var = this.f22021r;
-        e1Var.updateColors();
-        int i7 = m6.Fi;
-        h6 h6Var = this.f22020n;
-        e1Var.setTextColor(m6.w0(i7, h6Var));
-        e1Var.setHintTextColor(m6.r1(0.5f, m6.w0(i7, h6Var)));
+    public final boolean f() {
+        return false;
     }
 }

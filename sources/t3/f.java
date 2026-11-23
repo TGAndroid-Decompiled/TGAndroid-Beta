@@ -3,17 +3,17 @@ package t3;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class f extends i {
-    public final String f57576b;
-    public final String f57577c;
+    public final String f57690b;
+    public final String f57691c;
     public final String d;
-    public final byte[] f57578e;
+    public final byte[] f57692e;
 
     public f(String str, byte[] bArr, String str2, String str3) {
         super("GEOB");
-        this.f57576b = str;
-        this.f57577c = str2;
+        this.f57690b = str;
+        this.f57691c = str2;
         this.d = str3;
-        this.f57578e = bArr;
+        this.f57692e = bArr;
     }
 
     public final boolean equals(Object obj) {
@@ -22,7 +22,7 @@ public final class f extends i {
         }
         if (obj != null && f.class == obj.getClass()) {
             f fVar = (f) obj;
-            if (Objects.equals(this.f57576b, fVar.f57576b) && Objects.equals(this.f57577c, fVar.f57577c) && Objects.equals(this.d, fVar.d) && Arrays.equals(this.f57578e, fVar.f57578e)) {
+            if (Objects.equals(this.f57690b, fVar.f57690b) && Objects.equals(this.f57691c, fVar.f57691c) && Objects.equals(this.d, fVar.d) && Arrays.equals(this.f57692e, fVar.f57692e)) {
                 return true;
             }
         }
@@ -33,14 +33,14 @@ public final class f extends i {
         int i7;
         int i10;
         int i11 = 0;
-        String str = this.f57576b;
+        String str = this.f57690b;
         if (str != null) {
             i7 = str.hashCode();
         } else {
             i7 = 0;
         }
         int i12 = (527 + i7) * 31;
-        String str2 = this.f57577c;
+        String str2 = this.f57691c;
         if (str2 != null) {
             i10 = str2.hashCode();
         } else {
@@ -51,11 +51,11 @@ public final class f extends i {
         if (str3 != null) {
             i11 = str3.hashCode();
         }
-        return Arrays.hashCode(this.f57578e) + ((i13 + i11) * 31);
+        return Arrays.hashCode(this.f57692e) + ((i13 + i11) * 31);
     }
 
     @Override
     public final String toString() {
-        return this.f57581a + ": mimeType=" + this.f57576b + ", filename=" + this.f57577c + ", description=" + this.d;
+        return this.f57695a + ": mimeType=" + this.f57690b + ", filename=" + this.f57691c + ", description=" + this.d;
     }
 }

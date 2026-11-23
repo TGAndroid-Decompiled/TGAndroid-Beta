@@ -1,213 +1,92 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.widget.EditText;
-public final class rr extends ViewGroup {
-    public static final int f39276x = 0;
-    public final pr f39277a;
-    public EditText f39278b;
-    public final View[] f39279c;
-    public View d;
-    public boolean f39280e;
-    public boolean f39281f;
-    public final or h;
-    public boolean f39282n;
-    public final or f39283r;
-    public int f39284s;
-    public int f39285w;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class rr implements Runnable {
+    public final int f39393a;
+    public final xr f39394b;
 
-    public rr(Context context) {
-        super(context);
-        String str;
-        int i7;
-        this.f39279c = new View[12];
-        int i10 = 0;
-        this.h = new or(this, 0);
-        this.f39283r = new or(this, 1);
-        for (int i11 = 0; i11 < 11; i11++) {
-            if (i11 != 9) {
-                switch (i11) {
-                    case 1:
-                        str = "ABC";
-                        break;
-                    case 2:
-                        str = "DEF";
-                        break;
-                    case 3:
-                        str = "GHI";
-                        break;
-                    case 4:
-                        str = "JKL";
-                        break;
-                    case 5:
-                        str = "MNO";
-                        break;
-                    case 6:
-                        str = "PQRS";
-                        break;
-                    case 7:
-                        str = "TUV";
-                        break;
-                    case 8:
-                        str = "WXYZ";
-                        break;
-                    case 9:
-                    default:
-                        str = "";
-                        break;
-                    case 10:
-                        str = "+";
-                        break;
-                }
-                if (i11 != 10) {
-                    i7 = i11 + 1;
-                } else {
-                    i7 = 0;
-                }
-                String valueOf = String.valueOf(i7);
-                this.f39279c[i11] = new qr(context, valueOf, str);
-                this.f39279c[i11].setOnClickListener(new m8(7, this, valueOf));
-                addView(this.f39279c[i11]);
-            }
-        }
-        pr prVar = new pr(this, context, new jn(context, new ki.p3(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.f39277a = prVar;
-        prVar.setImageResource(2131232095);
-        org.telegram.ui.ActionBar.t6.s(prVar, org.telegram.ui.ActionBar.m6.G6, null, PorterDuff.Mode.SRC_ATOP);
-        int L = org.telegram.messenger.g0.L(11.0f);
-        prVar.setPadding(L, L, L, L);
-        prVar.setOnClickListener(new bi.o(16));
-        this.f39279c[11] = prVar;
-        addView(prVar);
-        while (true) {
-            View[] viewArr = this.f39279c;
-            if (i10 < viewArr.length) {
-                View view = viewArr[i10];
-                if (view != null) {
-                    c8.sa.b(view, 0.02f, 1.2f);
-                    a(i10, view);
-                }
-                i10++;
-            } else {
-                return;
-            }
-        }
+    public rr(xr xrVar, int i7) {
+        this.f39393a = i7;
+        this.f39394b = xrVar;
     }
 
-    public static void a(int i7, View view) {
+    @Override
+    public final void run() {
+        Context context;
         boolean z10;
-        boolean z11;
-        boolean z12;
-        float f10;
-        float f11;
-        float f12;
-        boolean z13 = true;
-        if (i7 < 3) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int i10 = i7 % 3;
-        if (i10 == 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (i10 == 2) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        if (i7 <= 8) {
-            z13 = false;
-        }
-        int i11 = org.telegram.ui.ActionBar.m6.f29439i6;
-        int x02 = org.telegram.ui.ActionBar.m6.x0(null, i11, false);
-        int o4 = i0.a.o(org.telegram.ui.ActionBar.m6.x0(null, i11, false), 30);
-        float f13 = 12.0f;
-        if (z11 && z10) {
-            f10 = 24.0f;
-        } else {
-            f10 = 12.0f;
-        }
-        int L = org.telegram.messenger.g0.L(f10);
-        if (z12 && z10) {
-            f11 = 24.0f;
-        } else {
-            f11 = 12.0f;
-        }
-        int L2 = org.telegram.messenger.g0.L(f11);
-        if (z12 && z13) {
-            f12 = 24.0f;
-        } else {
-            f12 = 12.0f;
-        }
-        int L3 = org.telegram.messenger.g0.L(f12);
-        if (z11 && z13) {
-            f13 = 24.0f;
-        }
-        org.telegram.ui.Cells.y k02 = org.telegram.ui.ActionBar.m6.k0(L, L2, L3, org.telegram.messenger.g0.L(f13), x02, o4, o4);
-        org.telegram.ui.ActionBar.p6 M = org.telegram.ui.ActionBar.t6.M(i11);
-        org.telegram.ui.ActionBar.p6 g10 = org.telegram.ui.ActionBar.t6.g(i11, 30);
-        view.setBackground(k02);
-        org.telegram.ui.ActionBar.t6.j(view, k02, M, g10, null);
-    }
-
-    @Override
-    public final boolean canScrollHorizontally(int i7) {
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        int z11 = org.telegram.messenger.o10.z(32.0f, getWidth(), 3);
-        int z12 = org.telegram.messenger.o10.z(42.0f, getHeight(), 4);
-        int i13 = 0;
-        while (true) {
-            View[] viewArr = this.f39279c;
-            if (i13 < viewArr.length) {
-                int L = org.telegram.messenger.g0.L(6.0f) + z11;
-                int L2 = org.telegram.messenger.g0.L(10.0f) + (L * (i13 % 3));
-                int L3 = org.telegram.messenger.g0.L(6.0f) + z12;
-                int L4 = org.telegram.messenger.g0.L(10.0f) + (L3 * (i13 / 3));
-                View view = viewArr[i13];
-                if (view != null) {
-                    view.layout(L2, L4, L2 + z11, L4 + z12);
-                }
-                i13++;
-            } else {
+        CharSequence charSequence;
+        int i7 = this.f39393a;
+        xr xrVar = this.f39394b;
+        boolean z11 = false;
+        switch (i7) {
+            case 0:
+                xrVar.j1(false);
                 return;
-            }
+            default:
+                Context context2 = xrVar.getContext();
+                org.telegram.ui.ActionBar.i6 i6Var = xrVar.J0;
+                int i10 = xrVar.f30223a;
+                long j3 = xrVar.f42148m2;
+                ArrayList<Long> arrayList = xrVar.f42149n2.joined_chat_ids;
+                sr srVar = new sr(xrVar, 5);
+                Pattern pattern = b5.f33627a;
+                LinearLayout g10 = org.telegram.messenger.f3.g(context2, 1);
+                org.telegram.ui.ActionBar.t1[] t1VarArr = new org.telegram.ui.ActionBar.t1[1];
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context2, i6Var);
+                Object obj = null;
+                String N0 = org.telegram.messenger.gd.N0(2131751947, null);
+                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28835a;
+                t1Var.S = N0;
+                t1Var.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.G(arrayList.size(), "CommunityBanWillRemoveFromChats", org.telegram.messenger.n5.s(i10, j3)));
+                alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131747637, null), null);
+                alertDialog$Builder.h(org.telegram.messenger.gd.N0(2131752577, null), null);
+                alertDialog$Builder.o(g10);
+                int size = arrayList.size();
+                int i11 = 0;
+                while (i11 < size) {
+                    Long l10 = arrayList.get(i11);
+                    i11++;
+                    Long l11 = l10;
+                    long longValue = l11.longValue();
+                    TLRPC.Chat O0 = org.telegram.messenger.mp.u1(i10).O0(l11);
+                    TLRPC.ChatFull P0 = org.telegram.messenger.mp.u1(i10).P0(longValue);
+                    if (O0 == null) {
+                        obj = null;
+                    } else {
+                        org.telegram.ui.ActionBar.t1 t1Var2 = t1Var;
+                        di.d1 d1Var = new di.d1(context2, i6Var, z11);
+                        ((TextView) d1Var.f8633b).setText(org.telegram.messenger.n5.m(O0));
+                        TextView textView = (TextView) d1Var.d;
+                        if (P0 != null) {
+                            context = context2;
+                            z10 = false;
+                            charSequence = org.telegram.messenger.gd.G(P0.participants_count, "Members", new Object[0]);
+                        } else {
+                            context = context2;
+                            z10 = false;
+                            charSequence = null;
+                        }
+                        textView.setText(charSequence);
+                        ((p9) d1Var.f8634c).f(O0, new a9(O0));
+                        d1Var.setBackground(org.telegram.ui.ActionBar.n6.N0(z10));
+                        d1Var.setOnClickListener(new di.d3(t1VarArr, srVar, longValue, 3));
+                        g10.addView(d1Var, c8.na.o(-1, -2));
+                        z11 = z10;
+                        obj = null;
+                        t1Var = t1Var2;
+                        context2 = context;
+                    }
+                }
+                org.telegram.ui.ActionBar.t1 t1Var3 = t1Var;
+                t1VarArr[z11 ? 1 : 0] = t1Var3;
+                t1Var3.show();
+                return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        View[] viewArr;
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i10));
-        int z10 = org.telegram.messenger.o10.z(32.0f, getWidth(), 3);
-        int z11 = org.telegram.messenger.o10.z(42.0f, getHeight(), 4);
-        for (View view : this.f39279c) {
-            if (view != null) {
-                view.measure(View.MeasureSpec.makeMeasureSpec(z10, 1073741824), View.MeasureSpec.makeMeasureSpec(z11, 1073741824));
-            }
-        }
-    }
-
-    public void setDispatchBackWhenEmpty(boolean z10) {
-        this.f39280e = z10;
-    }
-
-    public void setEditText(EditText editText) {
-        this.f39278b = editText;
-        this.f39280e = false;
-    }
-
-    public void setViewToFindFocus(View view) {
-        this.d = view;
     }
 }

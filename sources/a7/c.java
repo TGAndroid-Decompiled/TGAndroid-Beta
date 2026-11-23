@@ -8,21 +8,20 @@ import android.view.ViewGroup;
 import h6.m;
 import j$.util.Objects;
 import l8.f;
-import m.o3;
 public final class c {
     public final int f300a;
-    public final o3 f301b;
+    public final ga.d f301b;
 
-    public c(o3 o3Var, int i7) {
+    public c(ga.d dVar, int i7) {
         this.f300a = i7;
         switch (i7) {
             case 1:
-                Objects.requireNonNull(o3Var);
-                this.f301b = o3Var;
+                Objects.requireNonNull(dVar);
+                this.f301b = dVar;
                 return;
             default:
-                Objects.requireNonNull(o3Var);
-                this.f301b = o3Var;
+                Objects.requireNonNull(dVar);
+                this.f301b = dVar;
                 return;
         }
     }
@@ -39,7 +38,7 @@ public final class c {
     public final void b() {
         switch (this.f300a) {
             case 0:
-                m mVar = (m) this.f301b.f20156b;
+                m mVar = (m) this.f301b.f13270a;
                 ViewGroup viewGroup = (ViewGroup) mVar.f13931b;
                 f fVar = (f) mVar.f13932c;
                 try {
@@ -59,7 +58,7 @@ public final class c {
                     throw new RuntimeException(e10);
                 }
             default:
-                m mVar2 = (m) this.f301b.f20156b;
+                m mVar2 = (m) this.f301b.f13270a;
                 mVar2.getClass();
                 try {
                     f fVar2 = (f) mVar2.f13932c;

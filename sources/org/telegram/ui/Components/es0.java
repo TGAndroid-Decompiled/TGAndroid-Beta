@@ -1,150 +1,105 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.text.SpannableString;
-import android.util.Pair;
-import android.view.View;
-import java.io.Serializable;
+import android.content.Context;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
-public final class es0 implements Runnable {
-    public final int f34959a;
-    public final Object f34960b;
-    public final Object f34961c;
-    public final Object d;
+import org.telegram.messenger.MediaController;
+public final class es0 extends org.telegram.ui.Cells.g7 {
+    public final int m0;
+    public final dk0 f34847n0;
 
-    public es0(Object obj, Object obj2, Serializable serializable, int i7) {
-        this.f34959a = i7;
-        this.f34961c = obj;
-        this.d = obj2;
-        this.f34960b = serializable;
-    }
-
-    private final void a() {
-        boolean z10;
-        Object obj;
-        org.telegram.ui.web.v1 v1Var = (org.telegram.ui.web.v1) this.f34961c;
-        org.telegram.ui.web.u1 u1Var = (org.telegram.ui.web.u1) this.f34960b;
-        Bitmap bitmap = (Bitmap) this.d;
-        v1Var.getClass();
-        if (org.telegram.ui.web.v1.f53342f != null) {
-            int i7 = 0;
-            if ((u1Var.d <= 0 || u1Var.f53299e <= 0) && bitmap != null) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (bitmap != null) {
-                v1Var.d.put(u1Var.f53297b, bitmap);
-                if (z10) {
-                    int i10 = u1Var.d;
-                    if (i10 == 0 && u1Var.f53299e == 0) {
-                        u1Var.d = bitmap.getWidth();
-                        u1Var.f53299e = bitmap.getHeight();
-                    } else if (i10 == 0) {
-                        u1Var.d = (int) ((bitmap.getWidth() / bitmap.getHeight()) * u1Var.f53299e);
-                    } else if (u1Var.f53299e == 0) {
-                        u1Var.f53299e = (int) ((bitmap.getHeight() / bitmap.getWidth()) * u1Var.d);
-                    }
-                }
-            }
-            ArrayList arrayList = (ArrayList) org.telegram.ui.web.v1.f53342f.remove(u1Var.f53297b);
-            if (arrayList != null) {
-                int size = arrayList.size();
-                while (i7 < size) {
-                    Object obj2 = arrayList.get(i7);
-                    i7++;
-                    Pair pair = (Pair) obj2;
-                    ((ImageReceiver) pair.first).v0(bitmap);
-                    if (z10 && (obj = pair.second) != null) {
-                        ((Runnable) obj).run();
-                    }
-                }
-            }
-        }
-    }
-
-    private final void b() {
-        p4.d0 d0Var = (p4.d0) this.f34961c;
-        p4.r0 r0Var = (p4.r0) this.f34960b;
-        p4.w wVar = (p4.w) this.d;
-        if (!d0Var.j()) {
-            p4.i1 i1Var = d0Var.f55205t;
-            r0Var.getClass();
-            c8.kb.b(i1Var, wVar);
-        }
-    }
-
-    private final void c() {
-        pi.k kVar = (pi.k) this.f34961c;
-        ArrayList arrayList = (ArrayList) this.d;
-        ArrayList arrayList2 = (ArrayList) this.f34960b;
-        kVar.getClass();
-        for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            ((View) arrayList.get(i7)).setVisibility(0);
-        }
-        if (kVar.A.removeAll(arrayList2)) {
-            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                kVar.d((v4.e1) arrayList2.get(i10));
-            }
-            kVar.G();
-        }
-        kVar.K.removeAll(arrayList);
-    }
-
-    private final void d() {
-        pi.k kVar = (pi.k) this.f34961c;
-        View view = (View) this.f34960b;
-        v4.e1 e1Var = (v4.e1) this.d;
-        kVar.getClass();
-        view.setVisibility(0);
-        if (kVar.A.remove(e1Var)) {
-            kVar.d(e1Var);
-            kVar.G();
-        }
-        kVar.K.remove(view);
-    }
-
-    private final void f() {
-        q2.j jVar = (q2.j) this.f34961c;
-        int i7 = jVar.f55769a;
-        x2.g0 g0Var = jVar.f55770b;
-        this.f34960b.K(i7, g0Var, (Exception) this.d);
-    }
-
-    private final void g() {
-        q2.j jVar = (q2.j) this.f34961c;
-        int i7 = jVar.f55769a;
-        x2.g0 g0Var = jVar.f55770b;
-        this.f34960b.c(i7, g0Var, (nb.a) this.d);
-    }
-
-    private final void h() {
-        SpannableString spannableString = (SpannableString) this.f34961c;
-        qi.j.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((ji.k) this.f34960b).f17942b);
-        ((oi.s2) this.d).run();
-    }
-
-    private final void i() {
-        SpannableString spannableString = (SpannableString) this.f34961c;
-        qi.j.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((ji.k) this.f34960b).f17942b);
-        ((di.p9) this.d).a(spannableString);
-    }
-
-    private final void j() {
-        ((wg.u0) this.f34961c).a(new Pair((HashMap) this.f34960b, (ArrayList) this.d));
+    public es0(dk0 dk0Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, int i7) {
+        super(0, context, i6Var);
+        this.m0 = i7;
+        this.f34847n0 = dk0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.es0.run():void");
+    public final boolean d(org.telegram.messenger.fj fjVar) {
+        ArrayList arrayList;
+        long playlistTopicId;
+        ArrayList arrayList2;
+        long playlistTopicId2;
+        ArrayList arrayList3;
+        switch (this.m0) {
+            case 0:
+                fs0 fs0Var = (fs0) this.f34847n0;
+                if (!org.telegram.messenger.fj.R4(fjVar.f24073k) && !fjVar.h4()) {
+                    if (!fjVar.I3()) {
+                        return false;
+                    }
+                    MediaController B = MediaController.B();
+                    ArrayList arrayList4 = fs0Var.d;
+                    it0 it0Var = fs0Var.f35194w;
+                    long j3 = it0Var.f36111f1;
+                    playlistTopicId = it0Var.getPlaylistTopicId();
+                    return B.o0(arrayList4, fjVar, j3, true, null, playlistTopicId);
+                }
+                boolean S = MediaController.B().S(fjVar);
+                MediaController B2 = MediaController.B();
+                if (S) {
+                    arrayList = fs0Var.d;
+                } else {
+                    arrayList = null;
+                }
+                B2.r0(arrayList, false);
+                if (fjVar.h4()) {
+                    MediaController.B().k0(false);
+                }
+                return S;
+            case 1:
+                vs0 vs0Var = (vs0) this.f34847n0;
+                int i7 = vs0Var.d;
+                it0 it0Var2 = vs0Var.f41434f;
+                if (!org.telegram.messenger.fj.R4(fjVar.f24073k) && !fjVar.h4()) {
+                    if (!fjVar.I3()) {
+                        return false;
+                    }
+                    MediaController B3 = MediaController.B();
+                    ArrayList arrayList5 = it0Var2.f36160w1[i7].f42165a;
+                    long j10 = it0Var2.f36111f1;
+                    playlistTopicId2 = it0Var2.getPlaylistTopicId();
+                    return B3.o0(arrayList5, fjVar, j10, true, null, playlistTopicId2);
+                }
+                boolean S2 = MediaController.B().S(fjVar);
+                MediaController B4 = MediaController.B();
+                if (S2) {
+                    arrayList2 = it0Var2.f36160w1[i7].f42165a;
+                } else {
+                    arrayList2 = null;
+                }
+                B4.r0(arrayList2, false);
+                return S2;
+            default:
+                org.telegram.ui.b00 b00Var = ((org.telegram.ui.wz) this.f34847n0).f53797w;
+                if (!org.telegram.messenger.fj.R4(fjVar.f24073k) && !fjVar.h4()) {
+                    if (!fjVar.I3()) {
+                        return false;
+                    }
+                    String str = b00Var.R;
+                    long j11 = b00Var.F;
+                    long j12 = b00Var.I;
+                    h2.a0 a0Var = new h2.a0(str, j11, j12, j12, b00Var.E);
+                    a0Var.f13711e = b00Var.O;
+                    a0Var.f13712f = b00Var.f45869w;
+                    a0Var.d = b00Var.P;
+                    a0Var.f13713g = b00Var.K ? 1 : 0;
+                    return MediaController.B().o0(b00Var.f45852f, fjVar, 0L, true, a0Var, 0L);
+                }
+                boolean S3 = MediaController.B().S(fjVar);
+                MediaController B5 = MediaController.B();
+                if (S3) {
+                    arrayList3 = b00Var.f45852f;
+                } else {
+                    arrayList3 = null;
+                }
+                B5.r0(arrayList3, false);
+                return S3;
+        }
     }
 
-    public es0(Object obj, Object obj2, Object obj3, int i7) {
-        this.f34959a = i7;
-        this.f34961c = obj;
-        this.f34960b = obj2;
-        this.d = obj3;
+    public es0(org.telegram.ui.wz wzVar, Context context) {
+        super(1, context, null);
+        this.m0 = 2;
+        this.f34847n0 = wzVar;
     }
 }

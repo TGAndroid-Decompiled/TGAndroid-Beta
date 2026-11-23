@@ -1,94 +1,79 @@
 package hi;
 
-import android.graphics.Point;
-import android.graphics.RectF;
-import org.telegram.messenger.gs;
-import org.telegram.messenger.ls;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.cx;
-public final class g9 implements Runnable {
-    public final int f14649a = 0;
-    public final long f14650b;
-    public final boolean f14651c;
-    public final boolean d;
-    public final gs f14652e;
-    public final TLObject f14653f;
-    public final TLObject h;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import java.util.ArrayList;
+public final class g9 extends AnimatorListenerAdapter {
+    public final int f14557a;
+    public final ArrayList f14558b;
+    public final ah.n f14559c;
 
-    public g9(ta taVar, boolean z10, TL_stories.StoryItem storyItem, long j3, TLRPC.InputGroupCall inputGroupCall, boolean z11) {
-        this.f14652e = taVar;
-        this.f14651c = z10;
-        this.f14653f = storyItem;
-        this.f14650b = j3;
-        this.h = inputGroupCall;
-        this.d = z11;
+    public g9(ah.n nVar, ArrayList arrayList, int i7) {
+        this.f14557a = i7;
+        this.f14559c = nVar;
+        this.f14558b = arrayList;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f14649a;
-        TLObject tLObject = this.h;
-        TLObject tLObject2 = this.f14653f;
-        gs gsVar = this.f14652e;
-        switch (i7) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f14557a) {
             case 0:
-                ta taVar = (ta) gsVar;
-                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) tLObject2;
-                TLRPC.InputGroupCall inputGroupCall = (TLRPC.InputGroupCall) tLObject;
-                boolean z10 = this.f14651c;
-                long j3 = this.f14650b;
-                if (!z10) {
-                    fi.c1.X = new fi.c1(taVar.f15391b, taVar.f15395c, storyItem, j3, storyItem.f28637id, z10, inputGroupCall, true, this.d);
-                }
-                oa oaVar = taVar.G;
-                if (oaVar != null) {
-                    oaVar.f(false);
-                }
-                taVar.G = null;
-                taVar.K = 0;
-                RectF rectF = taVar.I;
-                Point point = org.telegram.messenger.g0.f24010q;
-                rectF.set(0.0f, 0.0f, point.x, point.y);
-                taVar.H = org.telegram.messenger.g0.L(8.0f);
-                taVar.p(true);
-                org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
-                storyItem.dialogId = j3;
-                storyItem.justUploaded = true;
-                T.getOrCreateStoryViewer().L(taVar.f15391b, storyItem, null);
-                ls.f(taVar.f15395c).k(176, Long.valueOf(inputGroupCall.f28415id));
-                return;
-            default:
-                cx cxVar = (cx) gsVar;
-                TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
-                TLRPC.User user = (TLRPC.User) tLObject;
-                long j10 = this.f14650b;
-                boolean z11 = this.f14651c;
-                if (chat != null) {
-                    if (org.telegram.messenger.v3.r0(chat)) {
-                        cxVar.getMessagesController().X(0, j10, z11);
+                int i7 = 0;
+                while (true) {
+                    ArrayList arrayList = this.f14558b;
+                    int size = arrayList.size();
+                    ah.n nVar = this.f14559c;
+                    if (i7 < size) {
+                        nVar.removeView((View) arrayList.get(i7));
+                        i7++;
                     } else {
-                        cxVar.getMessagesController().g0(-j10, cxVar.getMessagesController().c2(Long.valueOf(cxVar.getUserConfig().e())), null, z11, z11);
-                    }
-                } else {
-                    cxVar.getMessagesController().X(0, j10, z11);
-                    if (user != null && user.bot && this.d) {
-                        cxVar.getMessagesController().w(user.f28547id);
+                        nVar.getClass();
+                        h9 h9Var = (h9) nVar.f1092n;
+                        nVar.h.clear();
+                        nVar.f1088b = null;
+                        nVar.f1089c = false;
+                        h9Var.f14597b.setAllowDrawCursor(true);
+                        v8 v8Var = h9Var.h;
+                        if (v8Var != null) {
+                            v8Var.run();
+                        }
+                        if (h9Var.M) {
+                            h9Var.fullScroll(130);
+                            h9Var.M = false;
+                            return;
+                        }
+                        return;
                     }
                 }
-                cxVar.getMessagesController().J(cxVar.Y2);
-                return;
+            default:
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f14558b;
+                    int size2 = arrayList2.size();
+                    ah.n nVar2 = this.f14559c;
+                    if (i10 < size2) {
+                        nVar2.removeView((View) arrayList2.get(i10));
+                        i10++;
+                    } else {
+                        ArrayList arrayList3 = nVar2.h;
+                        h9 h9Var2 = (h9) nVar2.f1092n;
+                        arrayList3.clear();
+                        nVar2.f1088b = null;
+                        nVar2.f1089c = false;
+                        h9Var2.f14597b.setAllowDrawCursor(true);
+                        v8 v8Var2 = h9Var2.h;
+                        if (v8Var2 != null) {
+                            v8Var2.run();
+                        }
+                        if (h9Var2.M) {
+                            h9Var2.fullScroll(130);
+                            h9Var2.M = false;
+                            return;
+                        }
+                        return;
+                    }
+                }
         }
-    }
-
-    public g9(cx cxVar, TLRPC.Chat chat, long j3, boolean z10, TLRPC.User user, boolean z11) {
-        this.f14652e = cxVar;
-        this.f14653f = chat;
-        this.f14650b = j3;
-        this.f14651c = z10;
-        this.h = user;
-        this.d = z11;
     }
 }

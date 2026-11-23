@@ -1,171 +1,160 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
+import android.util.SparseArray;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class vy extends FrameLayout {
-    public static final int h = 0;
-    public final org.telegram.ui.ActionBar.h6 f41561a;
-    public final TextView f41562b;
-    public final View f41563c;
-    public final rh0 d;
-    public boolean f41564e;
-    public int f41565f;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+public class vy extends v4.c0 {
+    public final SparseArray I;
+    public int J;
+    public int K;
+    public int L;
+    public int M;
+    public final RecyclerView N;
+    public boolean O;
+    public boolean P;
+    public final boolean Q;
+    public boolean R;
+    public int S;
+    public final boolean T;
 
-    public vy(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context);
-        this.f41561a = h6Var;
-        View radialProgressView = new RadialProgressView(context, null);
-        addView(radialProgressView, c8.na.c(-2.0f, -2));
-        this.f41563c = radialProgressView;
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setPadding(org.telegram.messenger.g0.L(20.0f), 0, org.telegram.messenger.g0.L(20.0f), 0);
-        linearLayout.setGravity(1);
-        linearLayout.setClipChildren(false);
-        linearLayout.setClipToPadding(false);
-        linearLayout.setOrientation(1);
-        ?? imageView = new ImageView(context);
-        this.d = imageView;
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setImportantForAccessibility(2);
-        imageView.setVisibility(8);
-        linearLayout.addView((View) imageView, c8.na.t(150, 150, 17, 0, 0, 0, 20));
-        TextView textView = new TextView(context);
-        this.f41562b = textView;
-        textView.setTextSize(1, 20.0f);
-        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29330c7, h6Var);
-        org.telegram.messenger.f3.k(textView, 1, null, 2131747974);
-        linearLayout.addView(textView, c8.na.r(-2, -2, 17));
-        addView(linearLayout, c8.na.c(-2.0f, -2));
-        org.telegram.messenger.g0.X3(textView, false, 2.0f, true, false);
-        org.telegram.messenger.g0.X3(radialProgressView, false, 1.0f, true, false);
-        setOnTouchListener(new gi.a(19));
-    }
-
-    public final void a(int i7, int i10, int i11) {
-        int i12;
-        if (i7 != 0) {
-            i12 = 0;
-        } else {
-            i12 = 8;
-        }
-        rh0 rh0Var = this.d;
-        rh0Var.setVisibility(i12);
-        if (i7 != 0) {
-            rh0Var.f(i7, i10, i11, null);
-            rh0Var.d();
-        }
-    }
-
-    public final void b() {
-        org.telegram.messenger.g0.X3(this.f41562b, false, 0.9f, true, true);
-        org.telegram.messenger.g0.X3(this.f41563c, true, 1.0f, true, true);
-    }
-
-    public final void c() {
-        org.telegram.messenger.g0.X3(this.f41562b, true, 0.9f, true, true);
-        org.telegram.messenger.g0.X3(this.f41563c, false, 1.0f, true, true);
+    public vy(int i7, ek0 ek0Var) {
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = ek0Var;
+        this.M = i7;
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        int measuredHeight;
-        int paddingTop;
-        this.f41564e = true;
-        int i13 = i11 - i7;
-        int i14 = i12 - i10;
-        int childCount = getChildCount();
-        for (int i15 = 0; i15 < childCount; i15++) {
-            View childAt = getChildAt(i15);
-            if (childAt.getVisibility() != 8) {
-                int measuredWidth = (i13 - childAt.getMeasuredWidth()) / 2;
-                View view = this.f41563c;
-                if (childAt == view && (view instanceof yz)) {
-                    measuredHeight = (i14 - childAt.getMeasuredHeight()) / 2;
-                    paddingTop = getPaddingTop();
-                } else {
-                    int i16 = this.f41565f;
-                    if (i16 == 2) {
-                        measuredHeight = (org.telegram.messenger.g0.L(100.0f) - childAt.getMeasuredHeight()) / 2;
-                        paddingTop = getPaddingTop();
-                    } else if (i16 == 1) {
-                        measuredHeight = ((i14 / 2) - childAt.getMeasuredHeight()) / 2;
-                        paddingTop = getPaddingTop();
-                    } else {
-                        measuredHeight = (i14 - childAt.getMeasuredHeight()) / 2;
-                        paddingTop = getPaddingTop();
-                    }
-                }
-                int i17 = paddingTop + measuredHeight;
-                childAt.layout(measuredWidth, i17, childAt.getMeasuredWidth() + measuredWidth, childAt.getMeasuredHeight() + i17);
+    public final void P(View view) {
+        v4.f1 T;
+        if (this.T) {
+            RecyclerView recyclerView = this.N;
+            View F = recyclerView.F(view);
+            if (F == null) {
+                T = null;
+            } else {
+                T = recyclerView.T(F);
+            }
+            if (T.b() == B() - 1) {
+                ((ViewGroup.MarginLayoutParams) ((v4.q0) view.getLayoutParams())).height = Math.max(this.J, 0);
             }
         }
-        this.f41564e = false;
+        super.P(view);
     }
 
     @Override
-    public final void requestLayout() {
-        if (!this.f41564e) {
-            super.requestLayout();
+    public final void Q() {
+        this.I.clear();
+        p1();
+    }
+
+    @Override
+    public final void V(RecyclerView recyclerView, int i7, int i10) {
+        p1();
+    }
+
+    @Override
+    public final void W(RecyclerView recyclerView) {
+        this.I.clear();
+        p1();
+    }
+
+    @Override
+    public final void X(RecyclerView recyclerView, int i7, int i10) {
+        p1();
+    }
+
+    @Override
+    public final void Y(RecyclerView recyclerView, int i7, int i10) {
+        p1();
+    }
+
+    @Override
+    public final void Z() {
+        p1();
+    }
+
+    @Override
+    public final void a0(RecyclerView recyclerView, int i7, int i10, Object obj) {
+        p1();
+        p1();
+    }
+
+    @Override
+    public final void d0(v4.x0 x0Var, v4.c1 c1Var, int i7, int i10) {
+        int i11 = this.K;
+        this.L = View.MeasureSpec.getSize(i7);
+        int size = View.MeasureSpec.getSize(i10);
+        this.K = size;
+        if (i11 != size) {
+            p1();
         }
+        super.d0(x0Var, c1Var, i7, i10);
     }
 
-    public void setProgressBarColor(int i7) {
-        View view = this.f41563c;
-        if (view instanceof RadialProgressView) {
-            ((RadialProgressView) view).setProgressColor(i7);
-        }
+    @Override
+    public final boolean e() {
+        return this.Q;
     }
 
-    public void setShowAtCenter(boolean z10) {
-        this.f41565f = z10 ? 1 : 0;
-    }
-
-    public void setShowAtTop(boolean z10) {
-        int i7;
-        if (z10) {
-            i7 = 2;
-        } else {
-            i7 = 0;
-        }
-        this.f41565f = i7;
-    }
-
-    public void setText(String str) {
-        this.f41562b.setText(str);
-    }
-
-    public void setTextColor(int i7) {
-        TextView textView = this.f41562b;
-        org.telegram.ui.ActionBar.t6.q(textView);
-        textView.setTextColor(i7);
-    }
-
-    public void setTextSize(int i7) {
-        this.f41562b.setTextSize(1, i7);
-    }
-
-    public void setTopImage(int i7) {
-        TextView textView = this.f41562b;
-        if (i7 == 0) {
-            textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
+    public final void p1() {
+        RecyclerView recyclerView;
+        v4.i0 adapter;
+        if (this.K <= 0 || (adapter = (recyclerView = this.N).getAdapter()) == null) {
             return;
         }
-        Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
-        if (mutate != null) {
-            org.telegram.ui.ActionBar.t6.x(this, mutate, org.telegram.ui.ActionBar.m6.f29330c7, this.f41561a, PorterDuff.Mode.MULTIPLY);
+        int b10 = adapter.b() - 1;
+        int i7 = 0;
+        int i10 = 0;
+        for (int i11 = this.O; i11 < b10; i11++) {
+            int d = adapter.d(i11);
+            SparseArray sparseArray = this.I;
+            v4.f1 f1Var = (v4.f1) sparseArray.get(d, null);
+            if (f1Var == null) {
+                f1Var = adapter.a(recyclerView, d);
+                View view = f1Var.f59245a;
+                sparseArray.put(d, f1Var);
+                if (view.getLayoutParams() == null) {
+                    view.setLayoutParams(n());
+                }
+            }
+            View view2 = f1Var.f59245a;
+            if (this.P) {
+                adapter.t(f1Var, i11);
+            }
+            v4.q0 q0Var = (v4.q0) view2.getLayoutParams();
+            view2.measure(v4.p0.s(d(), this.L, this.f59339k, E() + D() + ((ViewGroup.MarginLayoutParams) q0Var).leftMargin + ((ViewGroup.MarginLayoutParams) q0Var).rightMargin, ((ViewGroup.MarginLayoutParams) q0Var).width), v4.p0.s(this.Q, this.K, this.f59340l, C() + F() + ((ViewGroup.MarginLayoutParams) q0Var).topMargin + ((ViewGroup.MarginLayoutParams) q0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) q0Var).height));
+            i7 += view2.getMeasuredHeight();
+            if (i11 == 0) {
+                i10 = view2.getMeasuredHeight();
+            }
+            if (this.R) {
+                if (i7 >= this.K + i10) {
+                    break;
+                }
+            } else if (i7 >= this.K) {
+                break;
+            }
         }
-        textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
-        textView.setCompoundDrawablePadding(org.telegram.messenger.g0.L(1.0f));
+        if (this.R) {
+            this.J = Math.max(this.S, (((this.K - i7) - this.M) - recyclerView.getPaddingBottom()) + i10);
+        } else {
+            this.J = Math.max(this.S, ((this.K - i7) - this.M) - recyclerView.getPaddingBottom());
+        }
+    }
+
+    public vy(int i7, int i10, ek0 ek0Var) {
+        super(1, false);
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = ek0Var;
+        this.M = i7;
     }
 }

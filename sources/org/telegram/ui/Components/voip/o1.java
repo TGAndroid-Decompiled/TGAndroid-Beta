@@ -1,46 +1,69 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-import android.view.ViewTreeObserver;
-import org.telegram.ui.Cells.y9;
-import org.telegram.ui.Components.nr;
-public final class o1 implements ViewTreeObserver.OnPreDrawListener {
-    public final float f41201a;
-    public final float f41202b;
-    public final q1 f41203c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class o1 extends AnimatorListenerAdapter {
+    public final int f41103a;
+    public final float f41104b;
+    public final float f41105c;
+    public final Object d;
 
-    public o1(q1 q1Var, float f10, float f11) {
-        this.f41203c = q1Var;
-        this.f41201a = f10;
-        this.f41202b = f11;
+    public o1(Object obj, float f10, float f11, int i7) {
+        this.f41103a = i7;
+        this.d = obj;
+        this.f41104b = f10;
+        this.f41105c = f11;
+    }
+
+    public void a() {
+        te.c cVar = (te.c) this.d;
+        if (cVar.h) {
+            cVar.d(this.f41104b + this.f41105c, 1.0f);
+            if (cVar.h) {
+                cVar.h = false;
+            }
+            cVar.f57782b.G(cVar.f57785f, cVar.f57781a);
+        }
     }
 
     @Override
-    public final boolean onPreDraw() {
-        q1 q1Var = this.f41203c;
-        if (!q1Var.Q) {
-            ValueAnimator valueAnimator = q1Var.f41245e0;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(q1Var.K, 0.0f);
-            q1Var.f41245e0 = ofFloat;
-            ofFloat.addUpdateListener(q1Var.f41247f0);
-            q1Var.f41245e0.setDuration(300L);
-            q1Var.f41245e0.start();
-            float measuredWidth = this.f41201a - ((q1Var.getMeasuredWidth() - (q1Var.getMeasuredWidth() * 0.23f)) / 2.0f);
-            float measuredHeight = this.f41202b - ((q1Var.getMeasuredHeight() - (q1Var.getMeasuredHeight() * 0.23f)) / 2.0f);
-            q1Var.getViewTreeObserver().removeOnPreDrawListener(this);
-            q1Var.setTranslationX(measuredWidth);
-            q1Var.setTranslationY(measuredHeight);
-            q1Var.setScaleX(0.23f);
-            q1Var.setScaleY(0.23f);
-            q1Var.animate().setListener(null).cancel();
-            q1Var.animate().setListener(new y9(this, 16)).scaleX(1.0f).scaleY(1.0f).translationX(0.0f).translationY(0.0f).alpha(1.0f).setDuration(300L).setStartDelay(0L).setInterpolator(nr.f37917f).start();
-            return false;
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f41103a) {
+            case 1:
+                a();
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        q1Var.N = false;
-        q1Var.requestLayout();
-        return false;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f41103a) {
+            case 0:
+                r1 r1Var = (r1) this.d;
+                r1Var.P = false;
+                r1Var.N = true;
+                r1Var.f41172a0 = this.f41104b;
+                r1Var.f41174b0 = this.f41105c;
+                r1Var.requestLayout();
+                return;
+            default:
+                a();
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f41103a) {
+            case 1:
+                ((te.c) this.d).getClass();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
     }
 }

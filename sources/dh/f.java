@@ -7,58 +7,58 @@ import android.support.v4.media.session.w;
 import bg.o0;
 import org.telegram.messenger.g0;
 public final class f {
-    public final e f8395b;
-    public final e f8396c;
-    public long f8397e;
-    public final RenderNode f8394a = w.c();
+    public final e f8394b;
+    public final e f8395c;
+    public long f8396e;
+    public final RenderNode f8393a = w.c();
     public final Rect d = new Rect();
 
     public f(g gVar) {
         int i7;
-        boolean z10 = gVar.f8398a;
-        boolean z11 = gVar.f8400c;
+        boolean z10 = gVar.f8397a;
+        boolean z11 = gVar.f8399c;
         if (z10) {
             if (z11) {
                 e eVar = new e(gVar, "glass", 0, true);
-                this.f8396c = eVar;
-                eVar.f8389e = 4;
-                eVar.f8390f = 4;
+                this.f8395c = eVar;
+                eVar.f8388e = 4;
+                eVar.f8389f = 4;
                 eVar.d(g0.N(6.0f), o0.d());
             } else {
                 e eVar2 = new e(gVar, "glass", 1, true);
-                this.f8396c = eVar2;
-                eVar2.f8389e = 4;
-                eVar2.f8390f = 4;
+                this.f8395c = eVar2;
+                eVar2.f8388e = 4;
+                eVar2.f8389f = 4;
                 eVar2.c(g0.N(6.0f));
                 eVar2.e(o0.d());
             }
             e eVar3 = new e(gVar, "blur", 0, false);
-            this.f8395b = eVar3;
-            eVar3.f8389e = 8;
-            eVar3.f8390f = 8;
+            this.f8394b = eVar3;
+            eVar3.f8388e = 8;
+            eVar3.f8389f = 8;
             eVar3.c(g0.N(38.34f));
         } else if (z11) {
             e eVar4 = new e(gVar, "blur", 0, false);
-            this.f8395b = eVar4;
-            boolean z12 = gVar.f8399b;
+            this.f8394b = eVar4;
+            boolean z12 = gVar.f8398b;
             if (z12) {
                 i7 = 16;
             } else {
                 i7 = 8;
             }
             int i10 = z12 ? 16 : 8;
-            eVar4.f8389e = i7;
-            eVar4.f8390f = i10;
+            eVar4.f8388e = i7;
+            eVar4.f8389f = i10;
             eVar4.d(g0.N(40.0f), o0.d());
-            this.f8396c = null;
+            this.f8395c = null;
         } else {
             e eVar5 = new e(gVar, "blur", 1, false);
-            this.f8395b = eVar5;
-            eVar5.f8389e = 8;
-            eVar5.f8390f = 8;
+            this.f8394b = eVar5;
+            eVar5.f8388e = 8;
+            eVar5.f8389f = 8;
             eVar5.c(g0.N(40.0f));
             eVar5.e(o0.d());
-            this.f8396c = null;
+            this.f8395c = null;
         }
     }
 

@@ -5,66 +5,66 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import java.util.ArrayList;
 public final class c4 implements GestureDetector.OnGestureListener {
-    public final b5 f11804a;
+    public final c5 f11817a;
 
-    public c4(b5 b5Var) {
-        this.f11804a = b5Var;
+    public c4(c5 c5Var) {
+        this.f11817a = c5Var;
     }
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        b5 b5Var = this.f11804a;
-        b5Var.d.abortAnimation();
-        ValueAnimator valueAnimator = b5Var.N;
+        c5 c5Var = this.f11817a;
+        c5Var.d.abortAnimation();
+        ValueAnimator valueAnimator = c5Var.N;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            b5Var.N.cancel();
-            b5Var.N = null;
+            c5Var.N.cancel();
+            c5Var.N = null;
         }
-        b5Var.M = false;
-        b5Var.P.f12102x = false;
+        c5Var.M = false;
+        c5Var.P.f12158x = false;
         return true;
     }
 
     @Override
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        b5 b5Var = this.f11804a;
-        b5Var.d.fling((int) b5Var.f11927e, 0, (int) (-f10), 0, (int) b5Var.f11928f, (int) b5Var.h, 0, 0);
-        b5Var.invalidate();
+        c5 c5Var = this.f11817a;
+        c5Var.d.fling((int) c5Var.f11939e, 0, (int) (-f10), 0, (int) c5Var.f11940f, (int) c5Var.h, 0, 0);
+        c5Var.invalidate();
         return false;
     }
 
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        b5 b5Var = this.f11804a;
-        float f12 = b5Var.f11927e + f10;
-        b5Var.f11927e = f12;
-        float f13 = b5Var.f11928f;
+        c5 c5Var = this.f11817a;
+        float f12 = c5Var.f11939e + f10;
+        c5Var.f11939e = f12;
+        float f13 = c5Var.f11940f;
         if (f12 < f13) {
-            b5Var.f11927e = f13;
+            c5Var.f11939e = f13;
         }
-        float f14 = b5Var.f11927e;
-        float f15 = b5Var.h;
+        float f14 = c5Var.f11939e;
+        float f15 = c5Var.h;
         if (f14 > f15) {
-            b5Var.f11927e = f15;
+            c5Var.f11939e = f15;
         }
-        b5Var.invalidate();
+        c5Var.invalidate();
         return false;
     }
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        b5 b5Var = this.f11804a;
-        ArrayList arrayList = b5Var.H;
+        c5 c5Var = this.f11817a;
+        ArrayList arrayList = c5Var.H;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             e4 e4Var = (e4) arrayList.get(i7);
-            if (((e4) arrayList.get(i7)).f11876a.Q0.contains(motionEvent.getX(), motionEvent.getY())) {
-                int i10 = b5Var.L;
-                int i11 = e4Var.f11877b;
+            if (((e4) arrayList.get(i7)).f11887a.Q0.contains(motionEvent.getX(), motionEvent.getY())) {
+                int i10 = c5Var.L;
+                int i11 = e4Var.f11888b;
                 if (i10 != i11) {
-                    b5Var.c(i11, true, false);
+                    c5Var.c(i11, true, false);
                 } else {
-                    b5Var.O.o(false);
+                    c5Var.O.o(false);
                 }
             }
         }

@@ -1,66 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public final class ow extends h41 {
-    public final ty f38337b;
+import android.content.Context;
+public final class ow extends v4.d0 {
+    public final int f38272r;
 
-    public ow(ty tyVar) {
-        this.f38337b = tyVar;
+    public ow(Context context, int i7) {
+        super(context);
+        this.f38272r = i7;
     }
 
     @Override
-    public final boolean a() {
-        return this.f38337b.f40126u1.b();
+    public final int i(int i7, int i10, int i11, int i12, int i13) {
+        return super.i(i7, i10, i11, i12, i13) + this.f38272r;
     }
 
     @Override
-    public final String[] b() {
-        return this.f38337b.X0;
+    public final int m(int i7) {
+        return super.m(i7) * 16;
     }
 
     @Override
-    public final boolean c() {
-        return this.f38337b.f40126u1.c();
-    }
-
-    @Override
-    public final boolean d(a41 a41Var, MotionEvent motionEvent) {
-        org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
-        ty tyVar = this.f38337b;
-        tyVar.getMeasuredHeight();
-        return p10.q(motionEvent, a41Var, tyVar.f40088h2, tyVar.f40064a2);
-    }
-
-    @Override
-    public final boolean e(a41 a41Var, o oVar, MotionEvent motionEvent) {
-        org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
-        ty tyVar = this.f38337b;
-        tyVar.getMeasuredHeight();
-        return p10.r(motionEvent, a41Var, oVar, tyVar.f40088h2, tyVar.f40064a2);
-    }
-
-    @Override
-    public final void f(TLRPC.Document document, Object obj, boolean z10, int i7) {
-        this.f38337b.f40126u1.m(null, document, null, obj, null, z10, i7);
-    }
-
-    @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        ty tyVar = this.f38337b;
-        tyVar.f40126u1.r(stickerSetCovered);
-        if (z10) {
-            tyVar.Y(true);
-        }
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f38337b.f40126u1.h(stickerSetCovered);
-    }
-
-    @Override
-    public final void i(String[] strArr) {
-        this.f38337b.X0 = strArr;
+    public final int p() {
+        return -1;
     }
 }

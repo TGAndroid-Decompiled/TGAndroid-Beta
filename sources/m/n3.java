@@ -8,7 +8,6 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -17,105 +16,105 @@ import android.widget.TextView;
 import java.lang.reflect.Method;
 import java.util.WeakHashMap;
 public final class n3 implements View.OnLongClickListener, View.OnHoverListener, View.OnAttachStateChangeListener {
-    public static n3 f20136w;
-    public static n3 f20137x;
-    public final View f20138a;
-    public final CharSequence f20139b;
-    public final int f20140c;
+    public static n3 f20233w;
+    public static n3 f20234x;
+    public final View f20235a;
+    public final CharSequence f20236b;
+    public final int f20237c;
     public final m3 d = new Runnable(this) {
-        public final n3 f20128b;
+        public final n3 f20225b;
 
         {
-            this.f20128b = this;
+            this.f20225b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    this.f20128b.c(false);
+                    this.f20225b.c(false);
                     return;
                 default:
-                    this.f20128b.a();
+                    this.f20225b.a();
                     return;
             }
         }
     };
-    public final m3 f20141e = new Runnable(this) {
-        public final n3 f20128b;
+    public final m3 f20238e = new Runnable(this) {
+        public final n3 f20225b;
 
         {
-            this.f20128b = this;
+            this.f20225b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    this.f20128b.c(false);
+                    this.f20225b.c(false);
                     return;
                 default:
-                    this.f20128b.a();
+                    this.f20225b.a();
                     return;
             }
         }
     };
-    public int f20142f;
+    public int f20239f;
     public int h;
-    public o3 f20143n;
-    public boolean f20144r;
-    public boolean f20145s;
+    public o3 f20240n;
+    public boolean f20241r;
+    public boolean f20242s;
 
     public n3(View view, CharSequence charSequence) {
         int scaledTouchSlop;
-        this.f20138a = view;
-        this.f20139b = charSequence;
+        this.f20235a = view;
+        this.f20236b = charSequence;
         ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
-        Method method = r0.j0.f56264a;
+        Method method = r0.j0.f56377a;
         if (Build.VERSION.SDK_INT >= 28) {
             scaledTouchSlop = d1.f.o(viewConfiguration);
         } else {
             scaledTouchSlop = viewConfiguration.getScaledTouchSlop() / 2;
         }
-        this.f20140c = scaledTouchSlop;
-        this.f20145s = true;
+        this.f20237c = scaledTouchSlop;
+        this.f20242s = true;
         view.setOnLongClickListener(this);
         view.setOnHoverListener(this);
     }
 
     public static void b(n3 n3Var) {
-        n3 n3Var2 = f20136w;
+        n3 n3Var2 = f20233w;
         if (n3Var2 != null) {
-            n3Var2.f20138a.removeCallbacks(n3Var2.d);
+            n3Var2.f20235a.removeCallbacks(n3Var2.d);
         }
-        f20136w = n3Var;
+        f20233w = n3Var;
         if (n3Var != null) {
-            n3Var.f20138a.postDelayed(n3Var.d, ViewConfiguration.getLongPressTimeout());
+            n3Var.f20235a.postDelayed(n3Var.d, ViewConfiguration.getLongPressTimeout());
         }
     }
 
     public final void a() {
-        n3 n3Var = f20137x;
-        View view = this.f20138a;
+        n3 n3Var = f20234x;
+        View view = this.f20235a;
         if (n3Var == this) {
-            f20137x = null;
-            o3 o3Var = this.f20143n;
+            f20234x = null;
+            o3 o3Var = this.f20240n;
             if (o3Var != null) {
-                View view2 = (View) o3Var.f20156b;
+                View view2 = (View) o3Var.f20253b;
                 if (view2.getParent() != null) {
-                    ((WindowManager) ((Context) o3Var.f20155a).getSystemService("window")).removeView(view2);
+                    ((WindowManager) ((Context) o3Var.f20252a).getSystemService("window")).removeView(view2);
                 }
-                this.f20143n = null;
-                this.f20145s = true;
+                this.f20240n = null;
+                this.f20242s = true;
                 view.removeOnAttachStateChangeListener(this);
             } else {
                 Log.e("TooltipCompatHandler", "sActiveHandler.mPopup == null");
             }
         }
-        if (f20136w == this) {
+        if (f20233w == this) {
             b(null);
         }
-        view.removeCallbacks(this.f20141e);
+        view.removeCallbacks(this.f20238e);
     }
 
     public final void c(boolean z10) {
@@ -130,66 +129,48 @@ public final class n3 implements View.OnLongClickListener, View.OnHoverListener,
         long longPressTimeout;
         long j3;
         long j10;
-        WeakHashMap weakHashMap = r0.i0.f56254a;
-        View view = this.f20138a;
+        WeakHashMap weakHashMap = r0.i0.f56367a;
+        View view = this.f20235a;
         if (!view.isAttachedToWindow()) {
             return;
         }
         b(null);
-        n3 n3Var = f20137x;
+        n3 n3Var = f20234x;
         if (n3Var != null) {
             n3Var.a();
         }
-        f20137x = this;
-        this.f20144r = z10;
-        Context context = view.getContext();
-        ?? obj = new Object();
-        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-        obj.d = layoutParams;
-        obj.f20158e = new Rect();
-        obj.f20159f = new int[2];
-        obj.f20160g = new int[2];
-        obj.f20155a = context;
-        View inflate = LayoutInflater.from(context).inflate(2131492891, (ViewGroup) null);
-        obj.f20156b = inflate;
-        obj.f20157c = (TextView) inflate.findViewById(2131296515);
-        layoutParams.setTitle(o3.class.getSimpleName());
-        layoutParams.packageName = context.getPackageName();
-        layoutParams.type = 1002;
-        layoutParams.width = -2;
-        layoutParams.height = -2;
-        layoutParams.format = -3;
-        layoutParams.windowAnimations = 2131755014;
-        layoutParams.flags = 24;
-        View view2 = (View) obj.f20156b;
-        Context context2 = (Context) obj.f20155a;
-        this.f20143n = obj;
-        int i15 = this.f20142f;
+        f20234x = this;
+        this.f20241r = z10;
+        o3 o3Var = new o3(view.getContext());
+        View view2 = (View) o3Var.f20253b;
+        Context context = (Context) o3Var.f20252a;
+        this.f20240n = o3Var;
+        int i15 = this.f20239f;
         int i16 = this.h;
-        boolean z12 = this.f20144r;
-        WindowManager.LayoutParams layoutParams2 = (WindowManager.LayoutParams) obj.d;
+        boolean z12 = this.f20241r;
+        WindowManager.LayoutParams layoutParams = (WindowManager.LayoutParams) o3Var.d;
         if (view2.getParent() != null && view2.getParent() != null) {
-            ((WindowManager) context2.getSystemService("window")).removeView(view2);
+            ((WindowManager) context.getSystemService("window")).removeView(view2);
         }
-        ((TextView) obj.f20157c).setText(this.f20139b);
-        int[] iArr = (int[]) obj.f20160g;
-        int[] iArr2 = (int[]) obj.f20159f;
-        Rect rect = (Rect) obj.f20158e;
-        layoutParams2.token = view.getApplicationWindowToken();
-        int dimensionPixelOffset = context2.getResources().getDimensionPixelOffset(2131165359);
+        ((TextView) o3Var.f20254c).setText(this.f20236b);
+        int[] iArr = (int[]) o3Var.h;
+        int[] iArr2 = (int[]) o3Var.f20256f;
+        Rect rect = (Rect) o3Var.f20255e;
+        layoutParams.token = view.getApplicationWindowToken();
+        int dimensionPixelOffset = context.getResources().getDimensionPixelOffset(2131165359);
         if (view.getWidth() < dimensionPixelOffset) {
             i15 = view.getWidth() / 2;
         }
         if (view.getHeight() >= dimensionPixelOffset) {
-            int dimensionPixelOffset2 = context2.getResources().getDimensionPixelOffset(2131165358);
+            int dimensionPixelOffset2 = context.getResources().getDimensionPixelOffset(2131165358);
             height = i16 + dimensionPixelOffset2;
             i7 = i16 - dimensionPixelOffset2;
         } else {
             height = view.getHeight();
             i7 = 0;
         }
-        layoutParams2.gravity = 49;
-        Resources resources = context2.getResources();
+        layoutParams.gravity = 49;
+        Resources resources = context.getResources();
         if (z12) {
             i10 = 2131165362;
         } else {
@@ -197,18 +178,18 @@ public final class n3 implements View.OnLongClickListener, View.OnHoverListener,
         }
         int dimensionPixelOffset3 = resources.getDimensionPixelOffset(i10);
         View rootView = view.getRootView();
-        ViewGroup.LayoutParams layoutParams3 = rootView.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams2 = rootView.getLayoutParams();
         int i17 = i15;
-        if (!(layoutParams3 instanceof WindowManager.LayoutParams) || ((WindowManager.LayoutParams) layoutParams3).type != 2) {
-            Context context3 = view.getContext();
+        if (!(layoutParams2 instanceof WindowManager.LayoutParams) || ((WindowManager.LayoutParams) layoutParams2).type != 2) {
+            Context context2 = view.getContext();
             while (true) {
-                if (!(context3 instanceof ContextWrapper)) {
+                if (!(context2 instanceof ContextWrapper)) {
                     break;
-                } else if (context3 instanceof Activity) {
-                    rootView = ((Activity) context3).getWindow().getDecorView();
+                } else if (context2 instanceof Activity) {
+                    rootView = ((Activity) context2).getWindow().getDecorView();
                     break;
                 } else {
-                    context3 = ((ContextWrapper) context3).getBaseContext();
+                    context2 = ((ContextWrapper) context2).getBaseContext();
                 }
             }
         }
@@ -218,7 +199,7 @@ public final class n3 implements View.OnLongClickListener, View.OnHoverListener,
         } else {
             rootView.getWindowVisibleDisplayFrame(rect);
             if (rect.left < 0 && rect.top < 0) {
-                Resources resources2 = context2.getResources();
+                Resources resources2 = context.getResources();
                 i13 = 1;
                 i11 = i7;
                 z11 = z12;
@@ -242,7 +223,7 @@ public final class n3 implements View.OnLongClickListener, View.OnHoverListener,
             int i18 = iArr2[i12] - iArr[i12];
             iArr2[i12] = i18;
             iArr2[i13] = iArr2[i13] - iArr[i13];
-            layoutParams2.x = (i18 + i17) - (rootView.getWidth() / 2);
+            layoutParams.x = (i18 + i17) - (rootView.getWidth() / 2);
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i12, i12);
             view2.measure(makeMeasureSpec, makeMeasureSpec);
             int measuredHeight = view2.getMeasuredHeight();
@@ -251,19 +232,19 @@ public final class n3 implements View.OnLongClickListener, View.OnHoverListener,
             int i21 = i19 + height + dimensionPixelOffset3;
             if (z11) {
                 if (i20 >= 0) {
-                    layoutParams2.y = i20;
+                    layoutParams.y = i20;
                 } else {
-                    layoutParams2.y = i21;
+                    layoutParams.y = i21;
                 }
             } else if (measuredHeight + i21 <= rect.height()) {
-                layoutParams2.y = i21;
+                layoutParams.y = i21;
             } else {
-                layoutParams2.y = i20;
+                layoutParams.y = i20;
             }
         }
-        ((WindowManager) context2.getSystemService("window")).addView(view2, layoutParams2);
+        ((WindowManager) context.getSystemService("window")).addView(view2, layoutParams);
         view.addOnAttachStateChangeListener(this);
-        if (this.f20144r) {
+        if (this.f20241r) {
             j10 = 2500;
         } else {
             if ((view.getWindowSystemUiVisibility() & 1) == i13) {
@@ -275,7 +256,7 @@ public final class n3 implements View.OnLongClickListener, View.OnHoverListener,
             }
             j10 = j3 - longPressTimeout;
         }
-        m3 m3Var = this.f20141e;
+        m3 m3Var = this.f20238e;
         view.removeCallbacks(m3Var);
         view.postDelayed(m3Var, j10);
     }
@@ -287,7 +268,7 @@ public final class n3 implements View.OnLongClickListener, View.OnHoverListener,
 
     @Override
     public final boolean onLongClick(View view) {
-        this.f20142f = view.getWidth() / 2;
+        this.f20239f = view.getWidth() / 2;
         this.h = view.getHeight() / 2;
         c(true);
         return true;

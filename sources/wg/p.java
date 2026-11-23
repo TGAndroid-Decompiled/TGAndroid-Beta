@@ -11,41 +11,45 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.le;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.si;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.ke;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.n10;
+import org.telegram.messenger.ri;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.l80;
-import org.telegram.ui.Components.n80;
-import org.telegram.ui.Components.qy0;
-import org.telegram.ui.Components.sy0;
+import org.telegram.ui.Components.i80;
+import org.telegram.ui.Components.k80;
+import org.telegram.ui.Components.py0;
+import org.telegram.ui.Components.ry0;
 public final class p implements Runnable {
-    public final int f59815a;
-    public final Object f59816b;
-    public final Object f59817c;
+    public final int f59917a;
+    public final Object f59918b;
+    public final Object f59919c;
     public final Object d;
 
     public p(Object obj, Object obj2, Object obj3, int i7) {
-        this.f59815a = i7;
-        this.f59816b = obj;
-        this.f59817c = obj2;
+        this.f59917a = i7;
+        this.f59918b = obj;
+        this.f59919c = obj2;
         this.d = obj3;
     }
 
     private final void a() {
-        xi.i iVar = (xi.i) this.f59816b;
-        WebView webView = (WebView) this.f59817c;
+        xi.i iVar = (xi.i) this.f59918b;
+        WebView webView = (WebView) this.f59919c;
         e5.f fVar = (e5.f) this.d;
-        synchronized (iVar.f60642a) {
-            if (!iVar.f60660u && iVar.f60654o == webView && iVar.f60655p == fVar && !iVar.f60657r) {
-                if (iVar.f60658s) {
+        synchronized (iVar.f60760a) {
+            if (!iVar.f60778u && iVar.f60772o == webView && iVar.f60773p == fVar && !iVar.f60775r) {
+                if (iVar.f60776s) {
                     a8.d("WEB proxy: Base64 bridge installation timed out again; transport stopped");
                     iVar.q();
                     return;
                 }
-                iVar.f60658s = true;
+                iVar.f60776s = true;
                 a8.d("WEB proxy: Base64 bridge installation timed out; retrying once");
                 iVar.h();
             }
@@ -54,82 +58,103 @@ public final class p implements Runnable {
 
     private final void b() {
         File file = (File) this.d;
-        k8.a aVar = ((yi.j) this.f59816b).f61332g;
-        long j3 = ((yi.h) this.f59817c).f61323a;
-        synchronized (((e0.g) aVar.f18178c).f10201f) {
-            ((HashMap) ((e0.g) aVar.f18178c).f10202g).put(Long.valueOf(j3), file);
+        jb.m mVar = ((yi.j) this.f59918b).f61451g;
+        long j3 = ((yi.h) this.f59919c).f61442a;
+        synchronized (((e0.g) mVar.f17465c).f10199f) {
+            ((HashMap) ((e0.g) mVar.f17465c).f10200g).put(Long.valueOf(j3), file);
         }
-        ((Handler) ((e0.g) aVar.f18178c).d).post(new org.telegram.messenger.u0(aVar, j3, (le) aVar.f18177b, file, 1));
+        ((Handler) ((e0.g) mVar.f17465c).d).post(new org.telegram.messenger.u0(mVar, j3, (ke) mVar.f17464b, file, 1));
     }
 
     @Override
     public final void run() {
+        TLRPC.User c22;
         Exception runtimeException;
         byte[] bArr;
-        switch (this.f59815a) {
+        switch (this.f59917a) {
             case 0:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f59816b;
-                y10 y10Var = (y10) this.f59817c;
-                y10 y10Var2 = (y10) this.d;
+                TLObject tLObject = (TLObject) this.f59918b;
+                mp mpVar = (mp) this.f59919c;
+                t0 t0Var = (t0) this.d;
+                if (tLObject instanceof TLRPC.TL_channels_channelParticipants) {
+                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
+                    mpVar.f4(tL_channels_channelParticipants.users, false);
+                    mpVar.Z3(tL_channels_channelParticipants.chats, false);
+                    long e10 = i10.i(i10.f24637t0).e();
+                    ArrayList arrayList = new ArrayList();
+                    for (int i7 = 0; i7 < tL_channels_channelParticipants.participants.size(); i7++) {
+                        TLRPC.Peer peer = tL_channels_channelParticipants.participants.get(i7).peer;
+                        if (peer != null && fj.B1(peer) != e10 && (c22 = mpVar.c2(Long.valueOf(peer.user_id))) != null && !n10.y(c22) && !c22.bot) {
+                            arrayList.add(mpVar.o1(peer));
+                        }
+                    }
+                    t0Var.a(arrayList);
+                    return;
+                }
+                return;
+            case 1:
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f59918b;
+                w10 w10Var = (w10) this.f59919c;
+                w10 w10Var2 = (w10) this.d;
                 if (tL_error != null) {
-                    y10Var.a(tL_error);
+                    w10Var.a(tL_error);
                     return;
                 } else {
-                    y10Var2.a(null);
+                    w10Var2.a(null);
                     return;
                 }
-            case 1:
-                ((ug.z) this.f59816b).a(new Pair((HashMap) this.f59817c, (ArrayList) this.d));
-                return;
             case 2:
-                xh.l lVar = (xh.l) this.f59816b;
-                n80 n80Var = (n80) this.f59817c;
-                ClickableSpan clickableSpan = (ClickableSpan) this.d;
-                l80 l80Var = lVar.H;
-                if (l80Var != null && lVar.I == n80Var) {
-                    l80Var.a(clickableSpan);
-                    lVar.I = null;
-                    lVar.f60614y.f(true);
-                    return;
-                }
+                ((ug.z) this.f59918b).a(new Pair((HashMap) this.f59919c, (ArrayList) this.d));
                 return;
             case 3:
-                a();
+                xh.l lVar = (xh.l) this.f59918b;
+                k80 k80Var = (k80) this.f59919c;
+                ClickableSpan clickableSpan = (ClickableSpan) this.d;
+                i80 i80Var = lVar.H;
+                if (i80Var != null && lVar.I == k80Var) {
+                    i80Var.a(clickableSpan);
+                    lVar.I = null;
+                    lVar.f60732y.f(true);
+                    return;
+                }
                 return;
             case 4:
-                yf.e eVar = (yf.e) this.f59817c;
-                TLObject tLObject = (TLObject) this.d;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f59816b;
-                String str = eVar.f61208b;
-                int i7 = eVar.f61207a;
-                if (tLObject != null) {
-                    si.d0(i7).l1(str, (TLRPC.Document) tLObject, false);
+                a();
+                return;
+            case 5:
+                yf.e eVar = (yf.e) this.f59919c;
+                TLObject tLObject2 = (TLObject) this.f59918b;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.d;
+                String str = eVar.f61327b;
+                int i10 = eVar.f61326a;
+                if (tLObject2 != null) {
+                    ri.d0(i10).l1(str, (TLRPC.Document) tLObject2, false);
                 } else {
                     eVar.a();
-                    si.d0(i7).l1(str, null, true);
+                    ri.d0(i10).l1(str, null, true);
                     if (tL_error2 != null) {
-                        ls.f(i7).d(new r(16, eVar, tL_error2));
+                        ks.f(i10).d(new v9.b(22, eVar, tL_error2));
                     }
                 }
                 eVar.a();
                 return;
-            case 5:
-                yi.j jVar = (yi.j) this.f59816b;
+            case 6:
+                yi.j jVar = (yi.j) this.f59918b;
                 byte[] bArr2 = (byte[]) this.d;
-                File file = ((yi.h) this.f59817c).f61324b;
+                File file = ((yi.h) this.f59919c).f61443b;
                 if (jVar.G == 4) {
                     jVar.B = bArr2;
                     try {
                         jVar.p();
-                        if (jVar.f61330e) {
-                            l2.f0 a10 = new l2.n(jVar.f61327a).a();
+                        if (jVar.f61449e) {
+                            l2.g0 a10 = new l2.o(jVar.f61446a).a();
                             jVar.A = a10;
-                            a10.I0(jVar.F);
-                            jVar.A.m0(e2.l0.b(Uri.fromFile(file)));
+                            a10.J0(jVar.F);
+                            jVar.A.n0(e2.l0.b(Uri.fromFile(file)));
                             jVar.A.a();
                         }
                         jVar.s(5);
-                        ji.k kVar = jVar.f61331f;
+                        j6.k kVar = jVar.f61450f;
                         long j3 = jVar.j();
                         byte[] bArr3 = jVar.B;
                         if (bArr3 == null) {
@@ -137,7 +162,7 @@ public final class p implements Runnable {
                         } else {
                             bArr = (byte[]) bArr3.clone();
                         }
-                        kVar.Q(j3, bArr);
+                        kVar.k0(j3, bArr);
                         return;
                     } catch (Throwable th2) {
                         if (th2 instanceof Exception) {
@@ -150,12 +175,12 @@ public final class p implements Runnable {
                     }
                 }
                 return;
-            case 6:
+            case 7:
                 b();
                 return;
-            case 7:
-                zi.t tVar = (zi.t) this.f59816b;
-                HandlerThread handlerThread = (HandlerThread) this.f59817c;
+            case 8:
+                zi.t tVar = (zi.t) this.f59918b;
+                HandlerThread handlerThread = (HandlerThread) this.f59919c;
                 CountDownLatch countDownLatch = (CountDownLatch) this.d;
                 tVar.getClass();
                 try {
@@ -165,31 +190,31 @@ public final class p implements Runnable {
                     handlerThread.quitSafely();
                     countDownLatch.countDown();
                 }
-            case 8:
-                zi.u0 u0Var = (zi.u0) this.f59816b;
-                zi.x xVar = (zi.x) this.f59817c;
+            case 9:
+                zi.u0 u0Var = (zi.u0) this.f59918b;
+                zi.x xVar = (zi.x) this.f59919c;
                 File file2 = (File) this.d;
-                Handler handler = u0Var.f62327i;
+                Handler handler = u0Var.f62447i;
                 try {
                     xVar.c(file2);
                     u0Var.g();
                     long h = xVar.h();
-                    zi.o oVar = u0Var.f62331m;
+                    zi.o oVar = u0Var.f62451m;
                     oVar.b("preview snapshot completed: durationMs=" + h + ", size=" + file2.length() + ", elapsedMs=" + zi.u0.f(u0Var.N));
                     handler.post(new zi.f0(u0Var, h, 1));
                     return;
-                } catch (Exception e10) {
-                    handler.post(new zi.e0(u0Var, e10, 3));
+                } catch (Exception e11) {
+                    handler.post(new zi.e0(u0Var, e11, 3));
                     return;
                 }
             default:
                 File file3 = (File) this.d;
-                zi.r0 r0Var = ((zi.u0) this.f59816b).f62324e;
-                long j10 = ((zi.q0) this.f59817c).f62254a;
-                sy0 sy0Var = (sy0) r0Var;
-                synchronized (sy0Var) {
-                    if (!sy0Var.d) {
-                        sy0Var.f39680c.put(Long.valueOf(j10), new qy0(file3));
+                zi.r0 r0Var = ((zi.u0) this.f59918b).f62444e;
+                long j10 = ((zi.q0) this.f59919c).f62374a;
+                ry0 ry0Var = (ry0) r0Var;
+                synchronized (ry0Var) {
+                    if (!ry0Var.d) {
+                        ry0Var.f39436c.put(Long.valueOf(j10), new py0(file3));
                         return;
                     }
                     return;
@@ -198,9 +223,9 @@ public final class p implements Runnable {
     }
 
     public p(yf.e eVar, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f59815a = 4;
-        this.f59817c = eVar;
-        this.d = tLObject;
-        this.f59816b = tL_error;
+        this.f59917a = 5;
+        this.f59919c = eVar;
+        this.f59918b = tLObject;
+        this.d = tL_error;
     }
 }

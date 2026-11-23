@@ -1,40 +1,40 @@
 package org.telegram.utils.twidget;
 public final class s implements x, p0 {
-    public final int f54934a;
-    public final int f54935b;
-    public final int f54936c;
+    public final int f55050a;
+    public final int f55051b;
+    public final int f55052c;
     public final int d;
-    public final Object f54937e;
-    public final Object f54938f;
+    public final Object f55053e;
+    public final Object f55054f;
 
     public s(Object obj, int i7, int i10, int i11, Object obj2, int i12) {
-        this.f54934a = i12;
-        this.f54937e = obj;
-        this.f54935b = i7;
-        this.f54936c = i10;
+        this.f55050a = i12;
+        this.f55053e = obj;
+        this.f55051b = i7;
+        this.f55052c = i10;
         this.d = i11;
-        this.f54938f = obj2;
+        this.f55054f = obj2;
     }
 
     @Override
     public void mo26run() {
-        ((WidgetEngineBackend) this.f54937e).lambda$canvasRun$8(this.f54935b, this.f54936c, this.d, (int[]) this.f54938f);
+        ((WidgetEngineBackend) this.f55053e).lambda$canvasRun$8(this.f55051b, this.f55052c, this.d, (int[]) this.f55054f);
     }
 
     @Override
     public Object run() {
-        switch (this.f54934a) {
+        switch (this.f55050a) {
             case 1:
-                x0 x0Var = (x0) this.f54937e;
-                x0Var.f54989b.defineImage(this.f54935b, this.f54936c, this.d, x0Var.i1((byte[]) this.f54938f));
+                x0 x0Var = (x0) this.f55053e;
+                x0Var.f55105b.defineImage(this.f55051b, this.f55052c, this.d, x0Var.i1((byte[]) this.f55054f));
                 return null;
             default:
-                int[] iArr = (int[]) this.f54938f;
-                WidgetSandboxBackend widgetSandboxBackend = ((x0) this.f54937e).f54989b;
+                int[] iArr = (int[]) this.f55054f;
+                WidgetSandboxBackend widgetSandboxBackend = ((x0) this.f55053e).f55105b;
                 if (iArr == null) {
                     iArr = new int[0];
                 }
-                widgetSandboxBackend.canvasRun(this.f54935b, this.f54936c, this.d, iArr);
+                widgetSandboxBackend.canvasRun(this.f55051b, this.f55052c, this.d, iArr);
                 return null;
         }
     }

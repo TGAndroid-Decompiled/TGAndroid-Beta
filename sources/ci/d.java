@@ -4,7 +4,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.np;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public final class d {
@@ -17,7 +17,7 @@ public final class d {
 
     public d(int i7) {
         this.f5609a = i7;
-        String string = np.u1(i7).h7.getString("qrBackdrops", null);
+        String string = mp.u1(i7).h7.getString("qrBackdrops", null);
         if (!TextUtils.isEmpty(string)) {
             try {
                 SerializedData serializedData = new SerializedData(Utilities.v(string));

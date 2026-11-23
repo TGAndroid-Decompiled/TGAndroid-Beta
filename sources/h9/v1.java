@@ -1,35 +1,29 @@
 package h9;
-
-import java.util.Map;
 public final class v1 extends t0 {
     public final transient l0 d;
-    public final transient Object[] f14074e;
-    public final transient int f14075f;
-    public final transient int h;
+    public final transient w1 f14071e;
 
-    public v1(l0 l0Var, Object[] objArr, int i7, int i10) {
+    public v1(l0 l0Var, w1 w1Var) {
         this.d = l0Var;
-        this.f14074e = objArr;
-        this.f14075f = i7;
-        this.h = i10;
+        this.f14071e = w1Var;
     }
 
     @Override
     public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            if (value != null && value.equals(this.d.get(key))) {
-                return true;
-            }
+        if (this.d.get(obj) != null) {
+            return true;
         }
         return false;
     }
 
     @Override
+    public final i0 f() {
+        return this.f14071e;
+    }
+
+    @Override
     public final int i(int i7, Object[] objArr) {
-        return f().i(i7, objArr);
+        return this.f14071e.i(i7, objArr);
     }
 
     @Override
@@ -38,17 +32,12 @@ public final class v1 extends t0 {
     }
 
     @Override
-    public final h2 n() {
-        return f().listIterator(0);
-    }
-
-    @Override
-    public final i0 r() {
-        return new u1(this);
+    public final g2 n() {
+        return this.f14071e.listIterator(0);
     }
 
     @Override
     public final int size() {
-        return this.h;
+        return this.d.size();
     }
 }

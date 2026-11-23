@@ -1,51 +1,128 @@
 package org.telegram.ui.Components;
-public final class je implements a5, yi0 {
-    public final int f36438a;
-    public final ChatActivityEnterView f36439b;
 
-    public je(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f36438a = i7;
-        this.f36439b = chatActivityEnterView;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+public final class je extends ImageView {
+    public final int f36394a;
+    public final ChatActivityEnterView f36395b;
+
+    public je(ChatActivityEnterView chatActivityEnterView, Context context, int i7) {
+        super(context);
+        this.f36394a = i7;
+        this.f36395b = chatActivityEnterView;
     }
 
     @Override
-    public void O(int i7, int i10, boolean z10) {
-        switch (this.f36438a) {
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f36394a) {
             case 0:
-                this.f36439b.w1(z10, i7, i10, 0L, true);
-                return;
-            case 1:
+                if (getAlpha() >= 0.5f && this.f36395b.f32822y1 <= 0.0f) {
+                    return super.dispatchTouchEvent(motionEvent);
+                }
+                return false;
             default:
-                boolean w12 = this.f36439b.w1(z10, i7, i10, 0L, true);
-                ChatActivityEnterView chatActivityEnterView = this.f36439b;
-                org.telegram.ui.eg0 eg0Var = chatActivityEnterView.M0;
-                if (eg0Var != null) {
-                    eg0Var.h(!w12);
-                    chatActivityEnterView.M0 = null;
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        switch (this.f36394a) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = this.f36395b;
+                float f10 = chatActivityEnterView.f32822y1;
+                if (f10 < 1.0f) {
+                    if (f10 > 0.0f) {
+                        int saveLayerAlpha = canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - chatActivityEnterView.f32822y1) * 255.0f));
+                        super.draw(canvas);
+                        canvas.restoreToCount(saveLayerAlpha);
+                        return;
+                    }
+                    super.draw(canvas);
+                    return;
+                }
+                return;
+            default:
+                super.draw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        switch (this.f36394a) {
+            case 1:
+                super.onLayout(z10, i7, i10, i11, i12);
+                post(new td(this.f36395b, 16));
+                return;
+            default:
+                super.onLayout(z10, i7, i10, i11, i12);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f36394a) {
+            case 3:
+                if (getAlpha() <= 0.0f) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void setAlpha(float f10) {
+        switch (this.f36394a) {
+            case 1:
+                super.setAlpha(f10);
+                te teVar = this.f36395b.f32830z2;
+                if (teVar != null) {
+                    teVar.setTranslationX(teVar.f39910a);
                     return;
                 }
                 return;
             case 2:
-                this.f36439b.w1(z10, i7, 0, 0L, true);
+                super.setAlpha(f10);
+                te teVar2 = this.f36395b.f32830z2;
+                if (teVar2 != null) {
+                    teVar2.setTranslationX(teVar2.f39910a);
+                    return;
+                }
+                return;
+            case 3:
+                super.setAlpha(f10);
+                pe peVar = this.f36395b.f32636a1;
+                if (peVar != null) {
+                    peVar.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.setAlpha(f10);
                 return;
         }
     }
 
-    public void a(boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f36439b;
-        td tdVar = chatActivityEnterView.X1;
-        rg rgVar = chatActivityEnterView.E2;
-        if (rgVar != null) {
-            rgVar.invalidate();
-        }
-        if (!z10) {
-            yh.a aVar = chatActivityEnterView.T1;
-            if (aVar != null) {
-                zi0 zi0Var = chatActivityEnterView.f32604i1;
-                aVar.c(Math.round(Math.max(1.0f, (zi0Var.f42844w - zi0Var.f42839s) * zi0Var.f42837r)));
-            }
-            org.telegram.messenger.g0.r(tdVar);
-            org.telegram.messenger.g0.h3(tdVar, 300L);
+    @Override
+    public void setVisibility(int i7) {
+        switch (this.f36394a) {
+            case 3:
+                super.setVisibility(i7);
+                pe peVar = this.f36395b.f32636a1;
+                if (peVar != null) {
+                    peVar.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i7);
+                return;
         }
     }
 }

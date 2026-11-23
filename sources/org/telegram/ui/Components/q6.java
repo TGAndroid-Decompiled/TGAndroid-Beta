@@ -1,38 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.util.Property;
-public abstract class q6 extends Property {
-    public final int f38745a;
+import android.view.animation.OvershootInterpolator;
+public abstract class q6 {
+    public static final OvershootInterpolator f38710a = new OvershootInterpolator(1.9f);
+    public static final o6 f38711b = new o6("alpha", 0);
+    public static final org.telegram.ui.Cells.o8 f38712c;
+    public static final o6 d;
+    public static final o6 f38713e;
+    public static final org.telegram.ui.Cells.o8 f38714f;
+    public static final org.telegram.ui.Cells.o8 f38715g;
+    public static final org.telegram.ui.Cells.o8 h;
 
-    public q6(String str, int i7) {
-        super(Float.class, str);
-        this.f38745a = i7;
-        switch (i7) {
-            case 1:
-                super(Integer.class, str);
-                return;
-            default:
-                return;
-        }
-    }
-
-    public void a(Object obj, Float f10) {
-        c(obj, f10.floatValue());
-    }
-
-    public abstract void b(int i7, Object obj);
-
-    public abstract void c(Object obj, float f10);
-
-    @Override
-    public final void set(Object obj, Object obj2) {
-        switch (this.f38745a) {
-            case 0:
-                c(obj, ((Float) obj2).floatValue());
-                return;
-            default:
-                b(((Integer) obj2).intValue(), obj);
-                return;
-        }
+    static {
+        new o6("color", 1);
+        f38712c = new org.telegram.ui.Cells.o8("currentAlpha", 4);
+        d = new o6("alpha", 2);
+        f38713e = new o6("alpha", 3);
+        f38714f = new org.telegram.ui.Cells.o8("animationProgress", 5);
+        f38715g = new org.telegram.ui.Cells.o8("animationValue", 6);
+        h = new org.telegram.ui.Cells.o8("clipProgress", 7);
     }
 }

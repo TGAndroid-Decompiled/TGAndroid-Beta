@@ -3,15 +3,15 @@ package fh;
 import android.graphics.Bitmap;
 import android.graphics.NinePatch;
 public final class j {
-    public final NinePatch f11676a;
-    public final Bitmap f11677b;
-    public final int f11678c;
+    public final NinePatch f11675a;
+    public final Bitmap f11676b;
+    public final int f11677c;
     public final int d;
 
     public j(NinePatch ninePatch, Bitmap bitmap, int i7, int i10) {
-        this.f11676a = ninePatch;
-        this.f11677b = bitmap;
-        this.f11678c = i7;
+        this.f11675a = ninePatch;
+        this.f11676b = bitmap;
+        this.f11677c = i7;
         this.d = i10;
     }
 }

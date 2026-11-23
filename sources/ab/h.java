@@ -73,7 +73,7 @@ public abstract class h extends Service {
             this.d = i10;
             this.f934e++;
         }
-        Intent intent2 = (Intent) ((ArrayDeque) c0.s().f910e).poll();
+        Intent intent2 = (Intent) ((ArrayDeque) c0.v().f910e).poll();
         if (intent2 == null) {
             a(intent);
             return 2;

@@ -1,45 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class lw0 extends dk0 {
-    public final Context f37271c;
-    public final mw0 d;
-
-    public lw0(mw0 mw0Var, Activity activity) {
-        this.d = mw0Var;
-        this.f37271c = activity;
-    }
-
-    @Override
-    public final boolean D(v4.e1 e1Var) {
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.d.f37608c.size();
-    }
-
-    @Override
-    public final void t(v4.e1 e1Var, int i7) {
-        org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) e1Var.f59111a;
-        ArrayList arrayList = this.d.f37608c;
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i7);
-        boolean z10 = true;
-        if (i7 == arrayList.size() - 1) {
-            z10 = false;
-        }
-        vVar.b(stickerSetCovered, z10);
-    }
-
-    @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.Cells.v vVar = new org.telegram.ui.Cells.v(this.f37271c, false);
-        vVar.setLayoutParams(new v4.p0(-1, org.telegram.messenger.g0.L(82.0f)));
-        return new v4.e1(vVar);
-    }
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class lw0 extends AlertDialog$Builder {
+    public ArrayList f37245c;
+    public int d;
+    public org.telegram.ui.ActionBar.g2 f37246e;
 }

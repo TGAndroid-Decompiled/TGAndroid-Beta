@@ -1,9 +1,10 @@
 package ch;
 
+import ai.u0;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.ImageView;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.w10;
 public final class e extends ImageView {
     public long f5335a;
     public final f f5336b;
@@ -16,7 +17,7 @@ public final class e extends ImageView {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        y10 y10Var;
+        w10 w10Var;
         int action = motionEvent.getAction();
         f fVar = this.f5336b;
         if (action == 0) {
@@ -26,11 +27,11 @@ public final class e extends ImageView {
             this.f5335a = System.currentTimeMillis();
             fVar.f5343b = true;
             fVar.f5344c = false;
-            org.telegram.messenger.g0.h3(new ai.t0(fVar, 350, 5), 350);
+            org.telegram.messenger.g0.h3(new u0(fVar, 350, 5), 350);
         } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
             fVar.f5343b = false;
-            if (!fVar.f5344c && (y10Var = fVar.d) != null) {
-                y10Var.a(Boolean.FALSE);
+            if (!fVar.f5344c && (w10Var = fVar.d) != null) {
+                w10Var.a(Boolean.FALSE);
                 try {
                     fVar.f5342a.performHapticFeedback(3);
                 } catch (Exception unused) {

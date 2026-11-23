@@ -1,6 +1,6 @@
 package kg;
 
-import ai.o2;
+import ai.p2;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
@@ -11,135 +11,135 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import bi.n8;
 import c8.na;
-import hi.e7;
+import hi.y7;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.f3;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.np;
-import org.telegram.messenger.p10;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.n10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m5;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.b9;
-import org.telegram.ui.Components.c51;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n5;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.a9;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.dk0;
 import org.telegram.ui.Components.ek0;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.q9;
-import org.telegram.ui.Components.sa;
-import org.telegram.ui.zn0;
-public final class k0 extends sa {
-    public static final int f18363g2 = -1;
-    public static final int f18364h2 = -2;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.Components.p9;
+import org.telegram.ui.Components.ra;
+import org.telegram.ui.ao0;
+public final class k0 extends ra {
+    public static final int f18458g2 = -1;
+    public static final int f18459h2 = -2;
     public final TL_account.TL_connectedBot T1;
     public final TLRPC.User U1;
     public final b0 V1;
     public final LinearLayout W1;
     public final FrameLayout X1;
-    public final hi.d Y1;
-    public final hi.d Z1;
-    public c51 f18365a2;
-    public boolean f18366b2;
-    public Boolean f18367c2;
+    public final hi.e Y1;
+    public final hi.e Z1;
+    public b51 f18460a2;
+    public boolean f18461b2;
+    public Boolean f18462c2;
     public int d2;
-    public int f18368e2;
-    public int f18369f2;
+    public int f18463e2;
+    public int f18464f2;
 
-    public k0(Activity activity, TL_account.TL_connectedBot tL_connectedBot, zn0 zn0Var, h6 h6Var) {
-        super(2, (Context) activity, h6Var, false);
+    public k0(Activity activity, TL_account.TL_connectedBot tL_connectedBot, ao0 ao0Var, i6 i6Var) {
+        super(2, (Context) activity, i6Var, false);
         this.T1 = tL_connectedBot;
-        TLRPC.User c22 = np.u1(this.f30139a).c2(Long.valueOf(tL_connectedBot.bot_id));
+        TLRPC.User c22 = mp.u1(this.f30223a).c2(Long.valueOf(tL_connectedBot.bot_id));
         this.U1 = c22;
         this.F1 = org.telegram.messenger.g0.L(36.0f);
-        this.f39494v1 = 0.15f;
-        b0 b0Var = new b0(activity, this.f30139a, new hi.b0(this, 29), h6Var);
+        this.f39253v1 = 0.15f;
+        b0 b0Var = new b0(activity, this.f30223a, new i0(this, 0), i6Var);
         this.V1 = b0Var;
         TL_account.TL_businessBotRecipients tL_businessBotRecipients = tL_connectedBot.recipients;
-        this.f18366b2 = tL_businessBotRecipients.exclude_selected;
+        this.f18461b2 = tL_businessBotRecipients.exclude_selected;
         b0Var.i(tL_businessBotRecipients);
         LinearLayout linearLayout = new LinearLayout(activity);
         this.W1 = linearLayout;
         linearLayout.setOrientation(1);
-        b9 b9Var = new b9((h6) null);
-        q9 q9Var = new q9(activity);
-        q9Var.setRoundRadius(org.telegram.messenger.g0.L(40.0f));
-        b9Var.r(c22);
-        q9Var.f(c22, b9Var);
-        linearLayout.addView(q9Var, na.t(80, 80, 1, 0, 0, 0, 0));
+        a9 a9Var = new a9((i6) null);
+        p9 p9Var = new p9(activity);
+        p9Var.setRoundRadius(org.telegram.messenger.g0.L(40.0f));
+        a9Var.r(c22);
+        p9Var.f(c22, a9Var);
+        linearLayout.addView(p9Var, na.t(80, 80, 1, 0, 0, 0, 0));
         TextView textView = new TextView(activity);
         textView.setTextSize(1, 20.0f);
-        t6.U(textView, m6.G6, h6Var);
+        u6.U(textView, n6.G6, i6Var);
         textView.setGravity(17);
         textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setText(p10.q(c22));
+        textView.setText(n10.q(c22));
         linearLayout.addView(textView, na.s(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
-        this.f39488p1.setTitle(p10.q(c22));
+        this.f39247p1.setTitle(n10.q(c22));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        t6.U(textView2, m6.f29739y6, h6Var);
+        u6.U(textView2, n6.f29843y6, i6Var);
         f3.k(textView2, 17, null, 2131745364);
         linearLayout.addView(textView2, na.s(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
-        String o4 = p10.o(c22);
+        String o4 = n10.o(c22);
         if (!TextUtils.isEmpty(o4)) {
             TextView textView3 = new TextView(activity);
             textView3.setTextSize(1, 14.0f);
-            t6.U(textView3, m6.Xc, h6Var);
+            u6.U(textView3, n6.Xc, i6Var);
             textView3.setText("@" + o4);
             textView3.setGravity(17);
             linearLayout.addView(textView3, na.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i7 = m6.f29290a7;
-        v0(m6.w0(i7, this.J0));
+        int i7 = n6.f29394a7;
+        v0(n6.w0(i7, this.J0));
         Q(i7);
         this.d2 = this.H0;
-        ek0 ek0Var = this.f39487o1;
-        int i10 = this.f30177u0;
+        ek0 ek0Var = this.f39246o1;
+        int i10 = this.f30261u0;
         ek0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(72.0f));
-        this.f39487o1.r1();
-        this.f39487o1.setOnItemClickListener(new n8(this, 16));
+        this.f39246o1.r1();
+        this.f39246o1.setOnItemClickListener(new n8(this, 16));
         FrameLayout frameLayout = new FrameLayout(activity);
         this.X1 = frameLayout;
         frameLayout.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
-        frameLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{m6.r1(0.0f, m6.w0(i7, this.J0)), m6.w0(i7, this.J0), m6.w0(i7, this.J0)}));
-        hi.d dVar = new hi.d(activity, h6Var, true);
-        dVar.setRoundRadius(24);
-        this.Y1 = dVar;
-        int w02 = m6.w0(m6.nk, this.J0);
-        this.f18369f2 = w02;
-        dVar.setColor(w02);
-        dVar.setText(hd.N0(2131743964, null));
-        dVar.setOnClickListener(new ah.h(this, tL_connectedBot, zn0Var, 17));
-        frameLayout.addView(dVar, na.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
-        hi.d dVar2 = new hi.d(activity, h6Var, true);
-        dVar2.setRoundRadius(24);
-        this.Z1 = dVar2;
-        dVar2.setText(hd.N0(2131752773, null));
-        dVar2.setOnClickListener(new o2(25, this, tL_connectedBot));
-        frameLayout.addView(dVar2, na.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{n6.r1(0.0f, n6.w0(i7, this.J0)), n6.w0(i7, this.J0), n6.w0(i7, this.J0)}));
+        hi.e eVar = new hi.e(activity, i6Var, true);
+        eVar.setRoundRadius(24);
+        this.Y1 = eVar;
+        int w02 = n6.w0(n6.nk, this.J0);
+        this.f18464f2 = w02;
+        eVar.setColor(w02);
+        eVar.setText(gd.N0(2131743960, null));
+        eVar.setOnClickListener(new ah.h(this, tL_connectedBot, ao0Var, 17));
+        frameLayout.addView(eVar, na.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
+        hi.e eVar2 = new hi.e(activity, i6Var, true);
+        eVar2.setRoundRadius(24);
+        this.Z1 = eVar2;
+        eVar2.setText(gd.N0(2131752773, null));
+        eVar2.setOnClickListener(new p2(25, this, tL_connectedBot));
+        frameLayout.addView(eVar2, na.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         e1(false);
         FrameLayout.LayoutParams e10 = na.e(-1, -2, 80);
         int i11 = e10.leftMargin;
-        int i12 = this.f30177u0;
+        int i12 = this.f30261u0;
         e10.leftMargin = i11 + i12;
         e10.rightMargin += i12;
-        this.f30142b.addView(frameLayout, e10);
-        v4.k kVar = new v4.k();
-        kVar.f59139m = false;
-        kVar.C = false;
-        kVar.o(nr.h);
-        kVar.n(350L);
-        this.f39487o1.setItemAnimator(kVar);
-        c51 c51Var = this.f18365a2;
-        if (c51Var != null) {
-            c51Var.O(false);
+        this.f30226b.addView(frameLayout, e10);
+        v4.l lVar = new v4.l();
+        lVar.f59274m = false;
+        lVar.C = false;
+        lVar.o(kr.h);
+        lVar.n(350L);
+        this.f39246o1.setItemAnimator(lVar);
+        b51 b51Var = this.f18460a2;
+        if (b51Var != null) {
+            b51Var.O(false);
         }
     }
 
     @Override
-    public final boolean G() {
+    public final boolean F() {
         b0 b0Var = this.V1;
         if (b0Var != null) {
             b0Var.g();
@@ -148,20 +148,20 @@ public final class k0 extends sa {
     }
 
     @Override
-    public final boolean I() {
+    public final boolean H() {
         b0 b0Var = this.V1;
         if (b0Var != null && b0Var.g()) {
             return false;
         }
-        return this.f30148d0;
+        return this.f30232d0;
     }
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(ek0Var, getContext(), this.f30139a, 0, true, new e7(this, 9), this.J0);
-        this.f18365a2 = c51Var;
-        c51Var.f34026r = false;
-        return c51Var;
+        b51 b51Var = new b51(ek0Var, getContext(), this.f30223a, 0, true, new y7(this, 9), this.J0);
+        this.f18460a2 = b51Var;
+        b51Var.f33631r = false;
+        return b51Var;
     }
 
     @Override
@@ -171,7 +171,7 @@ public final class k0 extends sa {
 
     @Override
     public final void R0(float f10) {
-        m5 titleTextView = this.f39488p1.getTitleTextView();
+        n5 titleTextView = this.f39247p1.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.setAlpha(f10);
         }
@@ -195,14 +195,14 @@ public final class k0 extends sa {
         } else {
             z11 = false;
         }
-        Boolean bool = this.f18367c2;
+        Boolean bool = this.f18462c2;
         if (bool != null && bool.booleanValue() == z11) {
             return;
         }
-        this.f18367c2 = Boolean.valueOf(z11);
+        this.f18462c2 = Boolean.valueOf(z11);
         float f18 = 0.0f;
-        hi.d dVar = this.Y1;
-        hi.d dVar2 = this.Z1;
+        hi.e eVar = this.Y1;
+        hi.e eVar2 = this.Z1;
         float f19 = 0.8f;
         if (!z10) {
             if (z11) {
@@ -210,49 +210,49 @@ public final class k0 extends sa {
             } else {
                 i7 = 8;
             }
-            dVar2.setVisibility(i7);
-            dVar2.animate().cancel();
+            eVar2.setVisibility(i7);
+            eVar2.animate().cancel();
             if (z11) {
                 f14 = 1.0f;
             } else {
                 f14 = 0.0f;
             }
-            dVar2.setAlpha(f14);
+            eVar2.setAlpha(f14);
             if (z11) {
                 f15 = 1.0f;
             } else {
                 f15 = 0.8f;
             }
-            dVar2.setScaleX(f15);
+            eVar2.setScaleX(f15);
             if (z11) {
                 f16 = 1.0f;
             } else {
                 f16 = 0.8f;
             }
-            dVar2.setScaleY(f16);
+            eVar2.setScaleY(f16);
             if (z11) {
                 i10 = 8;
             }
-            dVar.setVisibility(i10);
-            dVar.animate().cancel();
+            eVar.setVisibility(i10);
+            eVar.animate().cancel();
             if (!z11) {
                 f18 = 1.0f;
             }
-            dVar.setAlpha(f18);
+            eVar.setAlpha(f18);
             if (!z11) {
                 f17 = 1.0f;
             } else {
                 f17 = 0.8f;
             }
-            dVar.setScaleX(f17);
+            eVar.setScaleX(f17);
             if (!z11) {
                 f19 = 1.0f;
             }
-            dVar.setScaleY(f19);
+            eVar.setScaleY(f19);
             return;
         }
-        dVar2.setVisibility(0);
-        ViewPropertyAnimator animate = dVar2.animate();
+        eVar2.setVisibility(0);
+        ViewPropertyAnimator animate = eVar2.animate();
         if (z11) {
             f10 = 1.0f;
         } else {
@@ -271,12 +271,12 @@ public final class k0 extends sa {
             f12 = 0.8f;
         }
         ViewPropertyAnimator duration = scaleX.scaleY(f12).setDuration(320L);
-        nr nrVar = nr.h;
-        duration.setInterpolator(nrVar).withEndAction(new Runnable(this) {
-            public final k0 f18356b;
+        kr krVar = kr.h;
+        duration.setInterpolator(krVar).withEndAction(new Runnable(this) {
+            public final k0 f18451b;
 
             {
-                this.f18356b = this;
+                this.f18451b = this;
             }
 
             @Override
@@ -284,7 +284,7 @@ public final class k0 extends sa {
                 switch (r3) {
                     case 0:
                         boolean z12 = z11;
-                        k0 k0Var = this.f18356b;
+                        k0 k0Var = this.f18451b;
                         if (!z12) {
                             k0Var.Z1.setVisibility(8);
                             return;
@@ -294,7 +294,7 @@ public final class k0 extends sa {
                         }
                     default:
                         boolean z13 = z11;
-                        k0 k0Var2 = this.f18356b;
+                        k0 k0Var2 = this.f18451b;
                         if (z13) {
                             k0Var2.Y1.setVisibility(8);
                             return;
@@ -305,8 +305,8 @@ public final class k0 extends sa {
                 }
             }
         }).start();
-        dVar.setVisibility(0);
-        ViewPropertyAnimator animate2 = dVar.animate();
+        eVar.setVisibility(0);
+        ViewPropertyAnimator animate2 = eVar.animate();
         if (!z11) {
             f18 = 1.0f;
         }
@@ -320,11 +320,11 @@ public final class k0 extends sa {
         if (!z11) {
             f19 = 1.0f;
         }
-        scaleX2.scaleY(f19).setDuration(320L).setInterpolator(nrVar).withEndAction(new Runnable(this) {
-            public final k0 f18356b;
+        scaleX2.scaleY(f19).setDuration(320L).setInterpolator(krVar).withEndAction(new Runnable(this) {
+            public final k0 f18451b;
 
             {
-                this.f18356b = this;
+                this.f18451b = this;
             }
 
             @Override
@@ -332,7 +332,7 @@ public final class k0 extends sa {
                 switch (r3) {
                     case 0:
                         boolean z12 = z11;
-                        k0 k0Var = this.f18356b;
+                        k0 k0Var = this.f18451b;
                         if (!z12) {
                             k0Var.Z1.setVisibility(8);
                             return;
@@ -342,7 +342,7 @@ public final class k0 extends sa {
                         }
                     default:
                         boolean z13 = z11;
-                        k0 k0Var2 = this.f18356b;
+                        k0 k0Var2 = this.f18451b;
                         if (z13) {
                             k0Var2.Y1.setVisibility(8);
                             return;
@@ -360,23 +360,23 @@ public final class k0 extends sa {
         int i7;
         try {
             super.s0();
-            int i10 = m6.f29290a7;
-            int w02 = m6.w0(i10, this.J0);
-            if (w02 != this.f18368e2) {
-                this.f18368e2 = w02;
+            int i10 = n6.f29394a7;
+            int w02 = n6.w0(i10, this.J0);
+            if (w02 != this.f18463e2) {
+                this.f18463e2 = w02;
                 v0(w02);
                 FrameLayout frameLayout = this.X1;
                 if (frameLayout != null) {
-                    frameLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{m6.r1(0.0f, w02), w02, w02}));
+                    frameLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{n6.r1(0.0f, w02), w02, w02}));
                 }
             }
-            int w03 = m6.w0(m6.nk, this.J0);
-            hi.d dVar = this.Y1;
-            if (dVar != null && w03 != this.f18369f2) {
-                this.f18369f2 = w03;
-                dVar.setColor(w03);
+            int w03 = n6.w0(n6.nk, this.J0);
+            hi.e eVar = this.Y1;
+            if (eVar != null && w03 != this.f18464f2) {
+                this.f18464f2 = w03;
+                eVar.setColor(w03);
             }
-            int w04 = m6.w0(i10, this.J0);
+            int w04 = n6.w0(i10, this.J0);
             if (this.G0 < 0 && (i7 = this.H0) == this.d2 && w04 != i7) {
                 this.H0 = w04;
                 this.d2 = w04;

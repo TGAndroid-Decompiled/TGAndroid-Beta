@@ -3,18 +3,18 @@ package bi;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.r10;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.p10;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_toncenter;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Wallet.WalletEngine2;
-import org.telegram.ui.ks0;
-import org.telegram.ui.nl0;
-import org.telegram.ui.p51;
-public final class r6 implements r10 {
+import org.telegram.ui.a31;
+import org.telegram.ui.is0;
+import org.telegram.ui.ll0;
+public final class r6 implements p10 {
     public final int f4030a;
     public final Object f4031b;
     public final Object f4032c;
@@ -28,14 +28,14 @@ public final class r6 implements r10 {
     private final void b(Object obj, Object obj2) {
         String str = (String) obj2;
         ((vf.b) this.f4031b).b();
-        ((nl0) this.f4032c).a((Boolean) obj);
+        ((ll0) this.f4032c).a((Boolean) obj);
     }
 
     private final void c(Object obj, Object obj2) {
         TLRPC.EmojiStatus emojiStatus;
         long longValue;
         PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f4031b;
-        ks0 ks0Var = (ks0) this.f4032c;
+        is0 is0Var = (is0) this.f4032c;
         Long l10 = (Long) obj;
         Integer num = (Integer) obj2;
         if (l10 == null) {
@@ -55,14 +55,14 @@ public final class r6 implements r10 {
         } else {
             longValue = l10.longValue();
         }
-        ks0Var.b(longValue, true);
+        is0Var.b(longValue, true);
     }
 
     private final void d(Object obj, Object obj2) {
         JSONArray jSONArray;
         String str;
         String str2 = (String) this.f4031b;
-        y10 y10Var = (y10) this.f4032c;
+        w10 w10Var = (w10) this.f4032c;
         TL_toncenter.apiResponse apiresponse = (TL_toncenter.apiResponse) obj;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
         byte[] bArr = null;
@@ -92,43 +92,43 @@ public final class r6 implements r10 {
                     bArr = Utilities.v(str.substring(2));
                 }
             } catch (Exception e10) {
-                org.telegram.ui.Wallet.u0.o("failed to get public key of " + str2, e10);
+                org.telegram.ui.Wallet.v0.o("failed to get public key of " + str2, e10);
             }
         }
-        y10Var.a(bArr);
+        w10Var.a(bArr);
     }
 
     private final void e(Object obj, Object obj2) {
         String str;
-        org.telegram.ui.Wallet.u0 u0Var = (org.telegram.ui.Wallet.u0) this.f4031b;
-        org.telegram.ui.Wallet.v8 v8Var = (org.telegram.ui.Wallet.v8) this.f4032c;
-        org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) obj;
+        org.telegram.ui.Wallet.v0 v0Var = (org.telegram.ui.Wallet.v0) this.f4031b;
+        org.telegram.ui.Wallet.w8 w8Var = (org.telegram.ui.Wallet.w8) this.f4032c;
+        org.telegram.ui.Wallet.s0 s0Var = (org.telegram.ui.Wallet.s0) obj;
         String str2 = (String) obj2;
         String str3 = "NULL_ERROR";
-        if (r0Var == null) {
+        if (s0Var == null) {
             if (str2 == null) {
                 str = "NULL_ERROR";
             } else {
                 str = str2;
             }
-            org.telegram.ui.Wallet.u0.n("enable backup: didnt get secret phrase: ".concat(str));
+            org.telegram.ui.Wallet.v0.n("enable backup: didnt get secret phrase: ".concat(str));
             if (str2 == null) {
                 str2 = "NULL_ERROR";
             }
-            v8Var.a(str2);
+            w8Var.a(str2);
             return;
         }
-        org.telegram.ui.Wallet.r0 b10 = r0Var.b();
-        p51 p51Var = new p51(3, b10, v8Var);
-        org.telegram.ui.Wallet.u0.P("enable backup: got secret phrase");
+        org.telegram.ui.Wallet.s0 b10 = s0Var.b();
+        a31 a31Var = new a31(4, b10, w8Var);
+        org.telegram.ui.Wallet.v0.P("enable backup: got secret phrase");
         try {
-            ConnectionsManager.getInstance(u0Var.f45093a).sendRequestTyped(new TL_wallet.getBackupHolderDcs(), new d3.b(1), new org.telegram.ui.Wallet.s(u0Var, p51Var, b10, WalletEngine2.secretPhraseToPublicKey(b10), 2));
+            ConnectionsManager.getInstance(v0Var.f45255a).sendRequestTyped(new TL_wallet.getBackupHolderDcs(), new d3.b(1), new org.telegram.ui.Wallet.t(v0Var, a31Var, b10, WalletEngine2.secretPhraseToPublicKey(b10), 2));
         } catch (Exception e10) {
-            org.telegram.ui.Wallet.u0.o("failed to get public key from secret phrase", e10);
+            org.telegram.ui.Wallet.v0.o("failed to get public key from secret phrase", e10);
             if (e10.getMessage() != null) {
                 str3 = e10.getMessage();
             }
-            p51Var.a(str3);
+            a31Var.a(str3);
         }
     }
 
@@ -137,9 +137,9 @@ public final class r6 implements r10 {
         throw new UnsupportedOperationException("Method not decompiled: bi.r6.a(java.lang.Object, java.lang.Object):void");
     }
 
-    public r6(org.telegram.ui.Wallet.u0 u0Var, String str, y10 y10Var) {
+    public r6(org.telegram.ui.Wallet.v0 v0Var, String str, w10 w10Var) {
         this.f4030a = 27;
         this.f4031b = str;
-        this.f4032c = y10Var;
+        this.f4032c = w10Var;
     }
 }

@@ -1,6 +1,19 @@
 package hi;
+public final class w7 {
+    public int f15680a;
+    public int f15681b;
 
-import org.telegram.tgnet.TLRPC;
-public interface w7 {
-    void j(o8 o8Var, boolean z10, boolean z11, boolean z12, boolean z13, TLRPC.InputPeer inputPeer, int i7, q1 q1Var, b0 b0Var);
+    public final int a() {
+        if (this.f15680a == 6) {
+            int i7 = this.f15681b;
+            if (i7 == 7) {
+                return 1;
+            }
+            if (i7 == 6) {
+                return 2;
+            }
+            return 0;
+        }
+        return 0;
+    }
 }

@@ -1,65 +1,63 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class jt implements org.telegram.ui.Components.nj0, org.telegram.ui.ActionBar.q1 {
-    public final mt f49062a;
+import android.content.Context;
+public final class jt extends org.telegram.ui.Components.qc {
+    public final org.telegram.ui.Components.ni0 f49204f0;
 
-    public jt(mt mtVar) {
-        this.f49062a = mtVar;
+    public jt(org.telegram.ui.Components.ni0 ni0Var, Context context, int i7, int[] iArr, int[] iArr2) {
+        super(context, i7, iArr, 1, iArr2);
+        this.f49204f0 = ni0Var;
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+    public final int c() {
+        return 216;
+    }
+
+    @Override
+    public final void d(int i7, boolean z10) {
         int i10;
-        int i11;
-        int i12;
-        mt mtVar = this.f49062a;
-        pt ptVar = mtVar.f49958w3;
-        ArrayList arrayList = mtVar.f49949n3;
-        arrayList.clear();
-        int i13 = 0;
-        while (true) {
-            lt[] ltVarArr = mtVar.f49950o3;
-            if (i13 >= ltVarArr.length) {
-                i10 = ((org.telegram.ui.ActionBar.g2) ptVar).currentAccount;
-                org.telegram.messenger.dz.e(i10).l(0);
-                i11 = ((org.telegram.ui.ActionBar.g2) ptVar).currentAccount;
-                org.telegram.messenger.dz.e(i11).l(1);
-                i12 = ((org.telegram.ui.ActionBar.g2) ptVar).currentAccount;
-                org.telegram.messenger.dz.e(i12).l(2);
-                mtVar.f49942f3 = true;
-                mtVar.C1();
-                mtVar.D1(true);
-                return;
-            }
-            lt ltVar = ltVarArr[i13];
-            if (ltVar.f38823c > 0) {
-                arrayList.add(Integer.valueOf(ltVar.d));
-            }
-            i13++;
-        }
-    }
-
-    @Override
-    public int run() {
-        mt mtVar = this.f49062a;
-        ArrayList arrayList = mtVar.f49946k3;
-        int i7 = 0;
-        while (true) {
-            if (i7 < arrayList.size()) {
-                if (((ht) arrayList.get(i7)).f56599a == 5) {
+        lt ltVar = (lt) this.f49204f0.f37836e;
+        if (!z10) {
+            ltVar.l1();
+        } else if (i7 >= 0 && i7 < ltVar.f49831o3.length) {
+            int i11 = 0;
+            while (true) {
+                kt[] ktVarArr = ltVar.f49831o3;
+                i10 = -1;
+                if (i11 < ktVarArr.length) {
+                    if (ktVarArr[i11].d == i7) {
+                        break;
+                    }
+                    i11++;
+                } else {
+                    i11 = -1;
                     break;
                 }
-                i7++;
+            }
+            int i12 = 0;
+            while (true) {
+                if (i12 < ltVar.f49827k3.size()) {
+                    gt gtVar = (gt) ltVar.f49827k3.get(i12);
+                    if (gtVar != null && gtVar.f56712a == 2 && gtVar.h == i11) {
+                        i10 = i12;
+                        break;
+                    }
+                    i12++;
+                } else {
+                    break;
+                }
+            }
+            if (i10 >= 0) {
+                ltVar.e1(new l2.u(i10, 3), 0, true);
             } else {
-                i7 = -1;
-                break;
+                ltVar.l1();
             }
         }
-        if (i7 < 0) {
-            return -1;
-        }
-        mtVar.f49944h3.h1(i7, org.telegram.messenger.g0.L(60.0f));
-        return i7;
+    }
+
+    @Override
+    public final int e() {
+        return 10;
     }
 }

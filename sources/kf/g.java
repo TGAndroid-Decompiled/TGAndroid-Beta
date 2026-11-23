@@ -2,11 +2,11 @@ package kf;
 
 import c8.g1;
 public final class g extends p {
-    public final int f18216g;
+    public final int f18315g;
 
     @Override
     public final void a(g1 g1Var) {
-        switch (this.f18216g) {
+        switch (this.f18315g) {
             case 0:
                 g1Var.e(this);
                 return;

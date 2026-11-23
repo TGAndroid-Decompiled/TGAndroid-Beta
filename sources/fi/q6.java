@@ -1,13 +1,13 @@
 package fi;
 
-import org.telegram.ui.Components.s10;
-public final class q6 extends s10 {
-    public int f12462n;
-    public int f12463o;
+import org.telegram.ui.Components.q10;
+public final class q6 extends q10 {
+    public int f12463n;
+    public int f12464o;
 
     @Override
     public final void e() {
-        d(org.telegram.ui.ActionBar.m6.x0(null, this.f12462n, false), org.telegram.ui.ActionBar.m6.x0(null, this.f12463o, false), 0, 0);
+        d(org.telegram.ui.ActionBar.n6.x0(null, this.f12463n, false), org.telegram.ui.ActionBar.n6.x0(null, this.f12464o, false), 0, 0);
         super.e();
     }
 }

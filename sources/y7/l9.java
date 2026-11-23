@@ -1,51 +1,156 @@
 package y7;
 
-import java.util.Set;
-public abstract class l9 extends h9 implements Set {
-    public transient k9 f60899b;
+import c8.ge;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+public abstract class l9 extends i9 implements List, RandomAccess {
+    public static final j9 f61011b = new j9(n9.f61030e, 0);
 
     @Override
-    public final boolean equals(Object obj) {
-        if (obj == this || obj == this) {
+    public final void add(int i7, Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean addAll(int i7, Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        if (indexOf(obj) >= 0) {
             return true;
-        }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
-            try {
-                if (size() == set.size()) {
-                    if (containsAll(set)) {
-                        return true;
-                    }
-                    return false;
-                }
-            } catch (ClassCastException | NullPointerException unused) {
-            }
         }
         return false;
     }
 
     @Override
-    public final int hashCode() {
-        int i7;
-        int i10 = 0;
-        for (Object obj : this) {
-            if (obj != null) {
-                i7 = obj.hashCode();
-            } else {
-                i7 = 0;
+    public final boolean equals(Object obj) {
+        Object next;
+        Object next2;
+        if (obj != this) {
+            if (obj instanceof List) {
+                List list = (List) obj;
+                int size = size();
+                if (size == list.size()) {
+                    if (list instanceof RandomAccess) {
+                        for (int i7 = 0; i7 < size; i7++) {
+                            Object obj2 = get(i7);
+                            Object obj3 = list.get(i7);
+                            if (obj2 == obj3 || (obj2 != null && obj2.equals(obj3))) {
+                            }
+                        }
+                        return true;
+                    }
+                    j9 listIterator = listIterator(0);
+                    Iterator it = list.iterator();
+                    while (true) {
+                        if (listIterator.hasNext()) {
+                            if (!it.hasNext() || ((next = listIterator.next()) != (next2 = it.next()) && (next == null || !next.equals(next2)))) {
+                                break;
+                            }
+                        } else if (!it.hasNext()) {
+                            return true;
+                        }
+                    }
+                }
             }
-            i10 += i7;
+            return false;
         }
-        return i10;
+        return true;
     }
 
-    public final k9 l() {
-        k9 k9Var = this.f60899b;
-        if (k9Var == null) {
-            n9 n9Var = new n9((a) this);
-            this.f60899b = n9Var;
-            return n9Var;
+    @Override
+    public int f(Object[] objArr) {
+        int size = size();
+        for (int i7 = 0; i7 < size; i7++) {
+            objArr[i7] = get(i7);
         }
-        return k9Var;
+        return size;
+    }
+
+    @Override
+    public final int hashCode() {
+        int size = size();
+        int i7 = 1;
+        for (int i10 = 0; i10 < size; i10++) {
+            i7 = (i7 * 31) + get(i10).hashCode();
+        }
+        return i7;
+    }
+
+    @Override
+    public final int indexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        int size = size();
+        for (int i7 = 0; i7 < size; i7++) {
+            if (obj.equals(get(i7))) {
+                return i7;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public l9 subList(int i7, int i10) {
+        ge.b(i7, i10, size());
+        int i11 = i10 - i7;
+        if (i11 == size()) {
+            return this;
+        }
+        if (i11 == 0) {
+            return n9.f61030e;
+        }
+        return new k9(this, i7, i11);
+    }
+
+    @Override
+    public final int lastIndexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        for (int size = size() - 1; size >= 0; size--) {
+            if (obj.equals(get(size))) {
+                return size;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final ListIterator listIterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public final j9 listIterator(int i7) {
+        int size = size();
+        if (i7 >= 0 && i7 <= size) {
+            if (isEmpty()) {
+                return f61011b;
+            }
+            return new j9(this, i7);
+        }
+        throw new IndexOutOfBoundsException(ge.c(i7, size, "index"));
+    }
+
+    @Override
+    public final Object remove(int i7) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final Object set(int i7, Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

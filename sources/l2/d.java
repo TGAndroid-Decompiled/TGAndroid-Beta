@@ -1,44 +1,71 @@
 package l2;
 
-import java.util.Locale;
+import android.media.MediaFormat;
+import j$.util.DesugarCollections;
+import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 public final class d {
-    public int f19271a;
-    public int f19272b;
-    public int f19273c;
-    public int d;
-    public int f19274e;
-    public int f19275f;
-    public int f19276g;
-    public int h;
-    public int f19277i;
-    public int f19278j;
-    public long f19279k;
-    public int f19280l;
+    public static final d f19370b = new d(new HashMap());
+    public final Map f19371a;
 
-    public final String toString() {
-        int i7 = this.f19271a;
-        int i10 = this.f19272b;
-        int i11 = this.f19273c;
-        int i12 = this.d;
-        int i13 = this.f19274e;
-        int i14 = this.f19275f;
-        int i15 = this.f19276g;
-        int i16 = this.h;
-        int i17 = this.f19277i;
-        int i18 = this.f19278j;
-        long j3 = this.f19279k;
-        int i19 = this.f19280l;
-        String str = h2.l0.f13778a;
-        Locale locale = Locale.US;
-        StringBuilder n10 = i5.c.n("DecoderCounters {\n decoderInits=", i7, ",\n decoderReleases=", i10, "\n queuedInputBuffers=");
-        i5.c.z(n10, i11, "\n skippedInputBuffers=", i12, "\n renderedOutputBuffers=");
-        i5.c.z(n10, i13, "\n skippedOutputBuffers=", i14, "\n droppedBuffers=");
-        i5.c.z(n10, i15, "\n droppedInputBuffers=", i16, "\n maxConsecutiveDroppedBuffers=");
-        i5.c.z(n10, i17, "\n droppedToKeyframeEvents=", i18, "\n totalVideoFrameProcessingOffsetUs=");
-        n10.append(j3);
-        n10.append("\n videoFrameProcessingOffsetCount=");
-        n10.append(i19);
-        n10.append("\n}");
-        return n10.toString();
+    public d(HashMap hashMap) {
+        this.f19371a = DesugarCollections.unmodifiableMap(hashMap);
+    }
+
+    public static c a(MediaFormat mediaFormat, Set set) {
+        c cVar = new c(0);
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            String str = (String) it.next();
+            if (mediaFormat.containsKey(str)) {
+                int valueTypeForKey = mediaFormat.getValueTypeForKey(str);
+                HashMap hashMap = cVar.f19363a;
+                if (valueTypeForKey != 1) {
+                    if (valueTypeForKey != 2) {
+                        if (valueTypeForKey != 3) {
+                            if (valueTypeForKey != 4) {
+                                if (valueTypeForKey == 5) {
+                                    ByteBuffer byteBuffer = mediaFormat.getByteBuffer(str);
+                                    if (byteBuffer == null) {
+                                        hashMap.put(str, null);
+                                    } else {
+                                        ByteBuffer allocate = ByteBuffer.allocate(byteBuffer.remaining());
+                                        allocate.put(byteBuffer.duplicate());
+                                        allocate.flip();
+                                        hashMap.put(str, allocate);
+                                    }
+                                }
+                            } else {
+                                hashMap.put(str, mediaFormat.getString(str));
+                            }
+                        } else {
+                            hashMap.put(str, Float.valueOf(mediaFormat.getFloat(str)));
+                        }
+                    } else {
+                        hashMap.put(str, Long.valueOf(mediaFormat.getLong(str)));
+                    }
+                } else {
+                    hashMap.put(str, Integer.valueOf(mediaFormat.getInteger(str)));
+                }
+            }
+        }
+        return cVar;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof d)) {
+            return false;
+        }
+        return this.f19371a.equals(((d) obj).f19371a);
+    }
+
+    public final int hashCode() {
+        return this.f19371a.hashCode();
     }
 }

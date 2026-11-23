@@ -3,10 +3,10 @@ package di;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class n0 implements TextWatcher {
-    public final o0 f9348a;
+    public final o0 f9344a;
 
     public n0(o0 o0Var) {
-        this.f9348a = o0Var;
+        this.f9344a = o0Var;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class n0 implements TextWatcher {
         if (!z10 && (indexOf = (obj = editable.toString()).indexOf(46)) >= 0 && (obj.length() - indexOf) - 1 > 2) {
             editable.delete(indexOf + 3, obj.length());
         }
-        o0 o0Var = this.f9348a;
+        o0 o0Var = this.f9344a;
         if (!z10) {
             j3 = cg.a.i(editable.toString(), o0Var.B1.f5266a);
         } else {

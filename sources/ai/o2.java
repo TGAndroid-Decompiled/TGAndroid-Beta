@@ -1,19 +1,19 @@
 package ai;
 
-import android.view.View;
-public final class o2 implements View.OnClickListener {
-    public final int f1439a;
-    public final Object f1440b;
-    public final Object f1441c;
+import org.telegram.messenger.w10;
+public final class o2 implements w10 {
+    public final int f1445a;
+    public final boolean f1446b;
+    public final Object f1447c;
 
-    public o2(int i7, Object obj, Object obj2) {
-        this.f1439a = i7;
-        this.f1440b = obj;
-        this.f1441c = obj2;
+    public o2(int i7, Object obj, boolean z10) {
+        this.f1445a = i7;
+        this.f1447c = obj;
+        this.f1446b = z10;
     }
 
     @Override
-    public final void onClick(android.view.View r15) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.o2.onClick(android.view.View):void");
+    public final void a(java.lang.Object r26) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.o2.a(java.lang.Object):void");
     }
 }

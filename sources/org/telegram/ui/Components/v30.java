@@ -1,23 +1,31 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class v30 {
-    public final TLObject f40621a;
-    public TLRPC.User f40622b;
-    public final int f40623c;
-    public final boolean d;
-    public boolean f40624e;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class v30 extends FrameLayout {
+    public View f40551a;
+    public TextView f40552b;
+    public qh0 f40553c;
+    public LinearLayout d;
 
-    public v30(int i7, TLObject tLObject) {
-        boolean z10;
-        this.f40621a = tLObject;
-        this.f40623c = i7;
-        if ((tLObject instanceof TLRPC.User) && ((TLRPC.User) tLObject).self) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.d = z10;
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
+    }
+
+    public void setGravity(int i7) {
+        this.f40552b.setGravity(i7);
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f40552b.setText(charSequence);
+    }
+
+    public void setTextColor(int i7) {
+        TextView textView = this.f40552b;
+        org.telegram.ui.ActionBar.u6.q(textView);
+        textView.setTextColor(i7);
     }
 }

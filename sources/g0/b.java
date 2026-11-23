@@ -11,28 +11,28 @@ import c8.ub;
 import e0.j0;
 import java.util.Arrays;
 public final class b {
-    public final c f13055a;
+    public final c f13054a;
 
     public b(Context context, ShortcutInfo shortcutInfo) {
         j0[] j0VarArr;
         String string;
         ?? obj = new Object();
-        this.f13055a = obj;
-        obj.f13056a = context;
-        obj.f13057b = shortcutInfo.getId();
+        this.f13054a = obj;
+        obj.f13055a = context;
+        obj.f13056b = shortcutInfo.getId();
         shortcutInfo.getPackage();
         Intent[] intents = shortcutInfo.getIntents();
-        obj.f13058c = (Intent[]) Arrays.copyOf(intents, intents.length);
+        obj.f13057c = (Intent[]) Arrays.copyOf(intents, intents.length);
         obj.d = shortcutInfo.getActivity();
-        obj.f13059e = shortcutInfo.getShortLabel();
-        obj.f13060f = shortcutInfo.getLongLabel();
-        obj.f13061g = shortcutInfo.getDisabledMessage();
+        obj.f13058e = shortcutInfo.getShortLabel();
+        obj.f13059f = shortcutInfo.getLongLabel();
+        obj.f13060g = shortcutInfo.getDisabledMessage();
         if (Build.VERSION.SDK_INT >= 28) {
             shortcutInfo.getDisabledReason();
         } else {
             shortcutInfo.isEnabled();
         }
-        obj.f13063j = shortcutInfo.getCategories();
+        obj.f13062j = shortcutInfo.getCategories();
         PersistableBundle extras = shortcutInfo.getExtras();
         f0.g gVar = null;
         if (extras != null && extras.containsKey("extraPersonCount")) {
@@ -50,19 +50,19 @@ public final class b {
                 boolean z10 = persistableBundle.getBoolean("isBot");
                 boolean z11 = persistableBundle.getBoolean("isImportant");
                 ?? obj2 = new Object();
-                obj2.f10223a = string2;
-                obj2.f10224b = null;
-                obj2.f10225c = string3;
+                obj2.f10221a = string2;
+                obj2.f10222b = null;
+                obj2.f10223c = string3;
                 obj2.d = string4;
-                obj2.f10226e = z10;
-                obj2.f10227f = z11;
+                obj2.f10224e = z10;
+                obj2.f10225f = z11;
                 j0VarArr[i10] = obj2;
                 i10 = i11;
             }
         } else {
             j0VarArr = 0;
         }
-        obj.f13062i = j0VarArr;
+        obj.f13061i = j0VarArr;
         shortcutInfo.getUserHandle();
         shortcutInfo.getLastChangedTimestamp();
         int i12 = Build.VERSION.SDK_INT;
@@ -75,7 +75,7 @@ public final class b {
         shortcutInfo.isImmutable();
         shortcutInfo.isEnabled();
         shortcutInfo.hasKeyFieldsOnly();
-        c cVar = this.f13055a;
+        c cVar = this.f13054a;
         if (i12 >= 29) {
             if (shortcutInfo.getLocusId() != null) {
                 LocusId locusId = shortcutInfo.getLocusId();
@@ -93,15 +93,15 @@ public final class b {
                 gVar = new f0.g(string);
             }
         }
-        cVar.f13064k = gVar;
-        this.f13055a.f13066m = shortcutInfo.getRank();
-        this.f13055a.f13067n = shortcutInfo.getExtras();
+        cVar.f13063k = gVar;
+        this.f13054a.f13065m = shortcutInfo.getRank();
+        this.f13054a.f13066n = shortcutInfo.getExtras();
     }
 
     public final c a() {
-        c cVar = this.f13055a;
-        if (!TextUtils.isEmpty(cVar.f13059e)) {
-            Intent[] intentArr = cVar.f13058c;
+        c cVar = this.f13054a;
+        if (!TextUtils.isEmpty(cVar.f13058e)) {
+            Intent[] intentArr = cVar.f13057c;
             if (intentArr != null && intentArr.length != 0) {
                 return cVar;
             }

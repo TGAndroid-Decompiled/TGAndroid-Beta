@@ -1,8 +1,8 @@
 package bi;
 
-import org.telegram.ui.Components.fb;
-import org.telegram.ui.Components.gc;
-public final class t implements fb {
+import org.telegram.ui.Components.eb;
+import org.telegram.ui.Components.fc;
+public final class t implements eb {
     public final int f4067a;
 
     public t(int i7) {
@@ -50,7 +50,7 @@ public final class t implements fb {
     }
 
     @Override
-    public final void b(gc gcVar) {
+    public final void b(fc fcVar) {
         int i7 = this.f4067a;
     }
 
@@ -60,7 +60,7 @@ public final class t implements fb {
     }
 
     @Override
-    public final void d(gc gcVar) {
+    public final void d(fc fcVar) {
         int i7 = this.f4067a;
     }
 
@@ -120,11 +120,11 @@ public final class t implements fb {
             case 4:
                 return 0;
             case 5:
-                i10 = org.telegram.messenger.g0.f24005n;
+                i10 = org.telegram.messenger.g0.f24221n;
                 L = org.telegram.messenger.g0.L(64.0f);
                 break;
             case 6:
-                i10 = org.telegram.messenger.g0.f24005n;
+                i10 = org.telegram.messenger.g0.f24221n;
                 L = org.telegram.messenger.g0.L(60.0f);
                 break;
             case 7:
@@ -136,7 +136,7 @@ public final class t implements fb {
             case 10:
                 return org.telegram.messenger.g0.L(80.0f);
             case 11:
-                i10 = org.telegram.messenger.g0.f24005n;
+                i10 = org.telegram.messenger.g0.f24221n;
                 L = org.telegram.messenger.g0.L(16.0f);
                 break;
             case 12:
@@ -199,19 +199,19 @@ public final class t implements fb {
             case 0:
                 return 0;
             case 1:
-                return org.telegram.messenger.g0.f24004m;
+                return org.telegram.messenger.g0.f24220m;
             case 2:
                 return 0;
             case 3:
                 return org.telegram.messenger.g0.L(56.0f);
             case 4:
-                return org.telegram.messenger.g0.f24004m;
+                return org.telegram.messenger.g0.f24220m;
             case 5:
                 return 0;
             case 6:
                 return 0;
             case 7:
-                return org.telegram.messenger.g0.f24004m;
+                return org.telegram.messenger.g0.f24220m;
             case 8:
                 return 0;
             case 9:
@@ -225,111 +225,111 @@ public final class t implements fb {
             case 13:
                 return 0;
             case 14:
-                return org.telegram.messenger.g0.f24004m;
+                return org.telegram.messenger.g0.f24220m;
             case 15:
-                return org.telegram.messenger.g0.f24004m;
+                return org.telegram.messenger.g0.f24220m;
             default:
                 return 0;
         }
     }
 
-    private final void A(gc gcVar) {
+    private final void A(fc fcVar) {
     }
 
-    private final void B(gc gcVar) {
+    private final void B(fc fcVar) {
     }
 
-    private final void C(gc gcVar) {
+    private final void C(fc fcVar) {
     }
 
-    private final void D(gc gcVar) {
+    private final void D(fc fcVar) {
     }
 
-    private final void E(gc gcVar) {
+    private final void E(fc fcVar) {
     }
 
-    private final void F(gc gcVar) {
+    private final void F(fc fcVar) {
     }
 
-    private final void G(gc gcVar) {
+    private final void G(fc fcVar) {
     }
 
-    private final void H(gc gcVar) {
+    private final void H(fc fcVar) {
     }
 
-    private final void I(gc gcVar) {
+    private final void I(fc fcVar) {
     }
 
-    private final void J(gc gcVar) {
+    private final void J(fc fcVar) {
     }
 
-    private final void K(gc gcVar) {
+    private final void K(fc fcVar) {
     }
 
-    private final void L(gc gcVar) {
+    private final void L(fc fcVar) {
     }
 
-    private final void M(gc gcVar) {
+    private final void M(fc fcVar) {
     }
 
-    private final void N(gc gcVar) {
+    private final void N(fc fcVar) {
     }
 
-    private final void O(gc gcVar) {
+    private final void O(fc fcVar) {
     }
 
-    private final void P(gc gcVar) {
+    private final void P(fc fcVar) {
     }
 
-    private final void Q(gc gcVar) {
+    private final void Q(fc fcVar) {
     }
 
-    private final void R(gc gcVar) {
+    private final void R(fc fcVar) {
     }
 
-    private final void S(gc gcVar) {
+    private final void S(fc fcVar) {
     }
 
-    private final void T(gc gcVar) {
+    private final void T(fc fcVar) {
     }
 
-    private final void U(gc gcVar) {
+    private final void U(fc fcVar) {
     }
 
-    private final void V(gc gcVar) {
+    private final void V(fc fcVar) {
     }
 
-    private final void W(gc gcVar) {
+    private final void W(fc fcVar) {
     }
 
-    private final void X(gc gcVar) {
+    private final void X(fc fcVar) {
     }
 
-    private final void Y(gc gcVar) {
+    private final void Y(fc fcVar) {
     }
 
-    private final void Z(gc gcVar) {
+    private final void Z(fc fcVar) {
     }
 
-    private final void a0(gc gcVar) {
+    private final void a0(fc fcVar) {
     }
 
-    private final void b0(gc gcVar) {
+    private final void b0(fc fcVar) {
     }
 
-    private final void c0(gc gcVar) {
+    private final void c0(fc fcVar) {
     }
 
-    private final void d0(gc gcVar) {
+    private final void d0(fc fcVar) {
     }
 
-    private final void e0(gc gcVar) {
+    private final void e0(fc fcVar) {
     }
 
-    private final void f0(gc gcVar) {
+    private final void f0(fc fcVar) {
     }
 
-    private final void g0(gc gcVar) {
+    private final void g0(fc fcVar) {
     }
 
     private final void i(float f10) {
@@ -383,6 +383,6 @@ public final class t implements fb {
     private final void y(float f10) {
     }
 
-    private final void z(gc gcVar) {
+    private final void z(fc fcVar) {
     }
 }

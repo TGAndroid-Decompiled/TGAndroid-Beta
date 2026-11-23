@@ -1,15 +1,19 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.concurrent.CountDownLatch;
 public final class aq implements Runnable {
-    public final int f22922a;
-    public final ur f22923b;
-    public final TLRPC.EncryptedChat f22924c;
+    public final int f23041a;
+    public final tr f23042b;
+    public final long f23043c;
+    public final boolean[] d;
+    public final CountDownLatch f23044e;
 
-    public aq(ur urVar, TLRPC.EncryptedChat encryptedChat, int i7) {
-        this.f22922a = i7;
-        this.f22923b = urVar;
-        this.f22924c = encryptedChat;
+    public aq(tr trVar, long j3, boolean[] zArr, CountDownLatch countDownLatch, int i7) {
+        this.f23041a = i7;
+        this.f23042b = trVar;
+        this.f23043c = j3;
+        this.d = zArr;
+        this.f23044e = countDownLatch;
     }
 
     @Override

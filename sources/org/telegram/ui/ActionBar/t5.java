@@ -2,12 +2,12 @@ package org.telegram.ui.ActionBar;
 
 import android.graphics.Point;
 import c8.ja;
-import org.telegram.messenger.ls;
+import org.telegram.messenger.ks;
 public final class t5 extends ja {
     @Override
     public final void b(int i7, int i10) {
         boolean z10;
-        Point point = org.telegram.messenger.g0.f24010q;
+        Point point = org.telegram.messenger.g0.f24226q;
         boolean z11 = true;
         if (point.x <= point.y) {
             z10 = true;
@@ -18,7 +18,7 @@ public final class t5 extends ja {
             z11 = false;
         }
         if (z10 == z11) {
-            ls.e().k(ls.C4, new Object[0]);
+            ks.e().k(ks.C4, new Object[0]);
         }
     }
 }

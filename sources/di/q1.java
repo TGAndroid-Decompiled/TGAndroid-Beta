@@ -3,36 +3,36 @@ package di;
 import android.graphics.Bitmap;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.ff;
-import org.telegram.messenger.gs;
-import org.telegram.messenger.np;
+import org.telegram.messenger.ef;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.p10;
 import org.telegram.messenger.r10;
-import org.telegram.messenger.t10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-public final class q1 implements t10 {
-    public final int f9555a;
-    public final gs f9556b;
+public final class q1 implements r10 {
+    public final int f9553a;
+    public final fs f9554b;
 
-    public q1(gs gsVar, int i7) {
-        this.f9555a = i7;
-        this.f9556b = gsVar;
+    public q1(fs fsVar, int i7) {
+        this.f9553a = i7;
+        this.f9554b = fsVar;
     }
 
     @Override
     public final void a(Object obj, Object obj2, Object obj3) {
         boolean z10;
         int i7;
-        hi.t tVar;
+        hi.c0 c0Var;
         float f10;
-        switch (this.f9555a) {
+        switch (this.f9553a) {
             case 0:
-                ((f6) this.f9556b).C2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
+                ((f6) this.f9554b).C2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
                 return;
             case 1:
-                f6 f6Var = (f6) this.f9556b;
+                f6 f6Var = (f6) this.f9554b;
                 ArrayList arrayList = (ArrayList) obj;
-                r10 r10Var = (r10) obj2;
+                p10 p10Var = (p10) obj2;
                 Runnable runnable = (Runnable) obj3;
                 bi.k8 k8Var = f6Var.S2;
                 if (k8Var != null) {
@@ -49,153 +49,153 @@ public final class q1 implements t10 {
                     tL_inputSavedStarGiftSlug.slug = ((TL_stars.StarGift) obj4).slug;
                     craftstargift.stargift.add(tL_inputSavedStarGiftSlug);
                 }
-                ConnectionsManager.getInstance(f6Var.f30139a).sendRequestTyped(craftstargift, new d3.b(1), new e2(f6Var, r10Var, arrayList, runnable, 0));
+                ConnectionsManager.getInstance(f6Var.f30223a).sendRequestTyped(craftstargift, new d3.b(1), new e2(f6Var, p10Var, arrayList, runnable, 0));
                 return;
             default:
-                hi.ta taVar = (hi.ta) this.f9556b;
+                hi.nb nbVar = (hi.nb) this.f9554b;
                 Boolean bool = (Boolean) obj;
                 ArrayList arrayList2 = (ArrayList) obj2;
                 ArrayList arrayList3 = (ArrayList) obj3;
-                if (taVar.f15409g0 == 0 && arrayList2 != null && !arrayList2.isEmpty() && taVar.f15439q2 == null && !taVar.X && taVar.I()) {
-                    taVar.I1 = null;
-                    taVar.J1 = null;
-                    taVar.K1 = null;
+                if (nbVar.f15076g0 == 0 && arrayList2 != null && !arrayList2.isEmpty() && nbVar.f15106q2 == null && !nbVar.X && nbVar.I()) {
+                    nbVar.I1 = null;
+                    nbVar.J1 = null;
+                    nbVar.K1 = null;
                     if (bool.booleanValue()) {
-                        if (arrayList2.size() + taVar.B0.getFilledCount() > taVar.B0.getTotalCount()) {
-                            int size2 = arrayList2.size() + taVar.B0.getFilledCount();
-                            ArrayList a10 = hi.t.a();
+                        if (arrayList2.size() + nbVar.B0.getFilledCount() > nbVar.B0.getTotalCount()) {
+                            int size2 = arrayList2.size() + nbVar.B0.getFilledCount();
+                            ArrayList a10 = hi.c0.a();
                             int size3 = a10.size();
                             int i11 = 0;
                             while (true) {
                                 if (i11 < size3) {
                                     Object obj5 = a10.get(i11);
                                     i11++;
-                                    tVar = (hi.t) obj5;
-                                    if (tVar.f15353e.size() >= size2) {
+                                    c0Var = (hi.c0) obj5;
+                                    if (c0Var.f14250e.size() >= size2) {
                                     }
                                 } else {
-                                    tVar = null;
+                                    c0Var = null;
                                 }
                             }
-                            if (tVar == null) {
-                                taVar.B0.o(null);
-                                taVar.B0.c();
-                                taVar.J0.setSelected((hi.t) null);
-                                hi.w9 w9Var = taVar.C0;
-                                if (w9Var != null) {
-                                    w9Var.recordHevc = !taVar.B0.j();
+                            if (c0Var == null) {
+                                nbVar.B0.o(null);
+                                nbVar.B0.c();
+                                nbVar.J0.setSelected((hi.c0) null);
+                                hi.qa qaVar = nbVar.C0;
+                                if (qaVar != null) {
+                                    qaVar.recordHevc = !nbVar.B0.j();
                                 }
-                                taVar.J0.a(false, true);
-                                taVar.l0(true);
+                                nbVar.J0.a(false, true);
+                                nbVar.l0(true);
                                 return;
                             }
-                            hi.ga gaVar = taVar.B0;
-                            taVar.A0 = tVar;
-                            gaVar.o(tVar);
-                            taVar.J0.setSelected(tVar);
-                            int indexOf = hi.t.a().indexOf(tVar);
+                            hi.ab abVar = nbVar.B0;
+                            nbVar.A0 = c0Var;
+                            abVar.o(c0Var);
+                            nbVar.J0.setSelected(c0Var);
+                            int indexOf = hi.c0.a().indexOf(c0Var);
                             if (indexOf >= 0) {
-                                taVar.J0.f15701a.v0(indexOf);
+                                nbVar.J0.f14567a.v0(indexOf);
                             }
-                            hi.w9 w9Var2 = taVar.C0;
-                            if (w9Var2 != null) {
-                                w9Var2.recordHevc = !taVar.B0.j();
+                            hi.qa qaVar2 = nbVar.C0;
+                            if (qaVar2 != null) {
+                                qaVar2.recordHevc = !nbVar.B0.j();
                             }
-                            taVar.H0.setDrawable(new hi.u(tVar, false));
-                            taVar.b0(taVar.I0, taVar.J0.f15704e, true);
-                            hi.e6 e6Var = taVar.P0;
-                            if (taVar.B0.j()) {
-                                f10 = taVar.B0.getFilledProgress();
+                            nbVar.H0.setDrawable(new hi.d0(c0Var, false));
+                            nbVar.b0(nbVar.I0, nbVar.J0.f14570e, true);
+                            hi.n6 n6Var = nbVar.P0;
+                            if (nbVar.B0.j()) {
+                                f10 = nbVar.B0.getFilledProgress();
                             } else {
                                 f10 = 0.0f;
                             }
-                            e6Var.e(true, f10);
+                            n6Var.e(true, f10);
                         }
                     }
-                    taVar.M1 = true;
+                    nbVar.M1 = true;
                     int i12 = 0;
                     while (true) {
                         if (i12 < arrayList2.size()) {
-                            hi.d7 l10 = hi.d7.l((ff) arrayList2.get(i12));
+                            hi.x7 l10 = hi.x7.l((ef) arrayList2.get(i12));
                             l10.M0 = (Bitmap) arrayList3.get(i12);
-                            l10.J0 = taVar.f15458w0;
-                            l10.K0 = taVar.f15462x0;
+                            l10.J0 = nbVar.f15125w0;
+                            l10.K0 = nbVar.f15129x0;
                             l10.A();
                             if (bool.booleanValue()) {
-                                if (taVar.B0.l(l10)) {
-                                    taVar.L1 = hi.d7.a(taVar.B0.getLayout(), taVar.B0.getContent());
+                                if (nbVar.B0.l(l10)) {
+                                    nbVar.L1 = hi.x7.a(nbVar.B0.getLayout(), nbVar.B0.getContent());
                                 } else {
                                     i12++;
                                 }
                             } else {
-                                if (taVar.L1 == null) {
-                                    taVar.L1 = l10;
+                                if (nbVar.L1 == null) {
+                                    nbVar.L1 = l10;
                                 } else {
-                                    if (taVar.I1 == null) {
+                                    if (nbVar.I1 == null) {
                                         ArrayList arrayList4 = new ArrayList();
-                                        taVar.I1 = arrayList4;
-                                        arrayList4.add(taVar.L1);
+                                        nbVar.I1 = arrayList4;
+                                        arrayList4.add(nbVar.L1);
                                     }
-                                    if (taVar.I1.size() < 10) {
-                                        taVar.I1.add(l10);
+                                    if (nbVar.I1.size() < 10) {
+                                        nbVar.I1.add(l10);
                                     }
                                 }
                                 i12++;
                             }
                         }
                     }
-                    if (taVar.I1 != null) {
-                        taVar.h0(false, true);
-                        taVar.R0.a(taVar.P1);
-                        hi.e6 e6Var2 = taVar.P0;
-                        if (taVar.P1 == 1) {
+                    if (nbVar.I1 != null) {
+                        nbVar.h0(false, true);
+                        nbVar.R0.a(nbVar.P1);
+                        hi.n6 n6Var2 = nbVar.P0;
+                        if (nbVar.P1 == 1) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
-                        e6Var2.f14529o0 = -1.0f;
-                        e6Var2.f14530p0 = z10;
-                        e6Var2.invalidate();
-                        taVar.J1 = new ArrayList();
-                        taVar.K1 = new ArrayList();
-                        for (int i13 = 0; i13 < taVar.I1.size(); i13 = com.google.android.gms.internal.vision.e2.f(i13, i13, 1, taVar.K1)) {
-                            taVar.J1.add(Integer.valueOf(i13));
+                        n6Var2.f15032o0 = -1.0f;
+                        n6Var2.f15033p0 = z10;
+                        n6Var2.invalidate();
+                        nbVar.J1 = new ArrayList();
+                        nbVar.K1 = new ArrayList();
+                        for (int i13 = 0; i13 < nbVar.I1.size(); i13 = com.google.android.gms.internal.vision.e2.f(i13, i13, 1, nbVar.K1)) {
+                            nbVar.J1.add(Integer.valueOf(i13));
                         }
-                        taVar.B0.n(null);
-                        taVar.J0.a(false, true);
-                        taVar.l0(true);
-                        taVar.e(false);
-                        taVar.J(1, true);
-                        hi.m9 m9Var = taVar.f15403e1;
-                        if (m9Var != null) {
-                            hi.b0 b0Var = m9Var.h;
-                            if (!m9Var.J && !m9Var.N && (i7 = np.g1().getInt("multistorieshint", 0)) < 3) {
-                                np.g1().edit().putInt("multistorieshint", i7 + 1).apply();
-                                org.telegram.messenger.g0.r(b0Var);
-                                m9Var.J = true;
-                                m9Var.invalidate();
-                                org.telegram.messenger.g0.h3(b0Var, 5500L);
+                        nbVar.B0.n(null);
+                        nbVar.J0.a(false, true);
+                        nbVar.l0(true);
+                        nbVar.e(false);
+                        nbVar.J(1, true);
+                        hi.ga gaVar = nbVar.f15070e1;
+                        if (gaVar != null) {
+                            hi.w wVar = gaVar.h;
+                            if (!gaVar.J && !gaVar.N && (i7 = mp.g1().getInt("multistorieshint", 0)) < 3) {
+                                mp.g1().edit().putInt("multistorieshint", i7 + 1).apply();
+                                org.telegram.messenger.g0.r(wVar);
+                                gaVar.J = true;
+                                gaVar.invalidate();
+                                org.telegram.messenger.g0.h3(wVar, 5500L);
                             }
                         }
-                        hi.g3 g3Var = taVar.N0;
-                        if (g3Var != null) {
-                            taVar.f15427m2 = g3Var.f14340e.e0();
-                            taVar.f15430n2 = taVar.N0.getSelectedAlbum();
+                        hi.p3 p3Var = nbVar.N0;
+                        if (p3Var != null) {
+                            nbVar.f15094m2 = p3Var.f14894e.e0();
+                            nbVar.f15097n2 = nbVar.N0.getSelectedAlbum();
                             return;
                         }
                         return;
                     }
-                    hi.d7 d7Var = taVar.L1;
-                    if (d7Var != null) {
-                        d7Var.B();
+                    hi.x7 x7Var = nbVar.L1;
+                    if (x7Var != null) {
+                        x7Var.B();
                     }
-                    taVar.J0.a(false, true);
-                    taVar.l0(true);
-                    taVar.e(false);
-                    hi.g3 g3Var2 = taVar.N0;
-                    if (g3Var2 != null) {
-                        taVar.f15427m2 = g3Var2.f14340e.e0();
-                        taVar.f15430n2 = taVar.N0.getSelectedAlbum();
+                    nbVar.J0.a(false, true);
+                    nbVar.l0(true);
+                    nbVar.e(false);
+                    hi.p3 p3Var2 = nbVar.N0;
+                    if (p3Var2 != null) {
+                        nbVar.f15094m2 = p3Var2.f14894e.e0();
+                        nbVar.f15097n2 = nbVar.N0.getSelectedAlbum();
                         return;
                     }
                     return;

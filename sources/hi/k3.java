@@ -1,332 +1,104 @@
 package hi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Outline;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import androidx.appcompat.widget.ActionBarContainer;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.xy0;
-public final class k3 extends Drawable {
-    public final int f14809a;
-    public Object f14810b;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
+import org.telegram.ui.Components.wc0;
+import org.telegram.ui.WallpapersListActivity;
+import org.telegram.ui.a80;
+import org.telegram.ui.an0;
+import org.telegram.ui.g50;
+import org.telegram.ui.io;
+import org.telegram.ui.kl0;
+import org.telegram.ui.mm;
+import org.telegram.ui.mn;
+import org.telegram.ui.rn;
+import org.telegram.ui.tj0;
+import org.telegram.ui.xn;
+import org.telegram.ui.za1;
+public final class k3 implements RequestDelegate {
+    public final int f14769a;
+    public final boolean f14770b;
+    public final Object f14771c;
 
-    public k3() {
-        this.f14809a = 3;
+    public k3(int i7, Object obj, boolean z10) {
+        this.f14769a = i7;
+        this.f14771c = obj;
+        this.f14770b = z10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f14809a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f14769a) {
             case 0:
-                canvas.save();
-                l3 l3Var = (l3) this.f14810b;
-                canvas.drawPath(l3Var.F0, l3Var.f14850c0);
-                canvas.restore();
+                org.telegram.messenger.g0.g3(new di.p6((l3) this.f14771c, tLObject, this.f14770b, 4));
                 return;
             case 1:
-                canvas.save();
-                canvas.translate(0.0f, org.telegram.messenger.g0.L(1.0f));
-                ki.s2 s2Var = (ki.s2) this.f14810b;
-                s2Var.N0.setBounds(getBounds());
-                s2Var.N0.draw(canvas);
-                canvas.restore();
+                ((VoIPService) this.f14771c).lambda$acknowledgeCall$13(this.f14770b, tLObject, tL_error);
                 return;
             case 2:
-                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f14810b;
-                if (actionBarContainer.h) {
-                    Drawable drawable = actionBarContainer.f1826f;
-                    if (drawable != null) {
-                        drawable.draw(canvas);
+                org.telegram.ui.j9 j9Var = (org.telegram.ui.j9) this.f14771c;
+                if (tLObject != null) {
+                    TLRPC.TL_messages_affectedFoundMessages tL_messages_affectedFoundMessages = (TLRPC.TL_messages_affectedFoundMessages) tLObject;
+                    TL_update.TL_updateDeleteMessages tL_updateDeleteMessages = new TL_update.TL_updateDeleteMessages();
+                    tL_updateDeleteMessages.messages = tL_messages_affectedFoundMessages.messages;
+                    tL_updateDeleteMessages.pts = tL_messages_affectedFoundMessages.pts;
+                    tL_updateDeleteMessages.pts_count = tL_messages_affectedFoundMessages.pts_count;
+                    TLRPC.TL_updates tL_updates = new TLRPC.TL_updates();
+                    tL_updates.updates.add(tL_updateDeleteMessages);
+                    j9Var.getMessagesController().V3(tL_updates, false);
+                    if (tL_messages_affectedFoundMessages.offset != 0) {
+                        TLRPC.TL_messages_deletePhoneCallHistory tL_messages_deletePhoneCallHistory = new TLRPC.TL_messages_deletePhoneCallHistory();
+                        boolean z10 = this.f14770b;
+                        tL_messages_deletePhoneCallHistory.revoke = z10;
+                        j9Var.getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new k3(2, j9Var, z10));
                         return;
                     }
                     return;
                 }
-                Drawable drawable2 = actionBarContainer.d;
-                if (drawable2 != null) {
-                    drawable2.draw(canvas);
-                }
-                Drawable drawable3 = actionBarContainer.f1825e;
-                if (drawable3 != null && actionBarContainer.f1827n) {
-                    drawable3.draw(canvas);
-                    return;
-                }
                 return;
             case 3:
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY() - org.telegram.messenger.g0.L(1.0f), (getBounds().width() - org.telegram.messenger.g0.L(8.0f)) / 2.0f, (Paint) this.f14810b);
+                org.telegram.messenger.g0.g3(new di.p6((mm) this.f14771c, tLObject, this.f14770b, 15));
                 return;
             case 4:
-                Drawable[] drawableArr = (Drawable[]) this.f14810b;
-                for (int i7 = 0; i7 < drawableArr.length; i7++) {
-                    drawableArr[i7].setBounds(getBounds());
-                    drawableArr[i7].draw(canvas);
+                rn rnVar = (rn) this.f14771c;
+                if (tLObject instanceof TLRPC.Updates) {
+                    rnVar.getMessagesController().V3((TLRPC.Updates) tLObject, false);
+                    org.telegram.messenger.g0.g3(new ch.k(21, rnVar, this.f14770b));
+                    return;
                 }
+                org.telegram.messenger.g0.g3(new mn(rnVar, 3));
                 return;
             case 5:
-                ug.a1 a1Var = (ug.a1) this.f14810b;
-                Rect bounds = getBounds();
-                a1Var.getClass();
-                a1Var.d(bounds.left, 0.0f, bounds.top, bounds.right, 0.0f, bounds.bottom);
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, a1Var.f58612f);
+                org.telegram.messenger.g0.g3(new xn((Object) ((io) this.f14771c), (Object) tL_error, (Object) tLObject, this.f14770b, 0));
                 return;
             case 6:
-                ImageReceiver imageReceiver = (ImageReceiver) this.f14810b;
-                imageReceiver.z0(getBounds());
-                imageReceiver.h(canvas, null);
+                org.telegram.messenger.g0.g3(new org.telegram.ui.Cells.fa((wc0) this.f14771c, tL_error, tLObject, this.f14770b));
                 return;
             case 7:
-                ((xy0) this.f14810b).c(getBounds().centerX() - (((xy0) this.f14810b).f42224c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.G6, false), canvas);
+                org.telegram.messenger.g0.g3(new xn((Object) ((g50) this.f14771c), (Object) tL_error, (Object) tLObject, this.f14770b, 9));
                 return;
             case 8:
-                canvas.save();
-                org.telegram.messenger.f6 f6Var = (org.telegram.messenger.f6) this.f14810b;
-                if (f6Var.getBounds() != null) {
-                    canvas.scale(0.8333333f, 0.8333333f, f6Var.getBounds().centerX(), f6Var.getBounds().centerY());
-                }
-                f6Var.draw(canvas);
-                canvas.restore();
+                org.telegram.messenger.g0.g3(new xn((Object) ((tj0) this.f14771c), (Object) tL_error, (Object) tLObject, this.f14770b, 10));
                 return;
-            default:
-                canvas.save();
-                canvas.translate(getBounds().left, getBounds().top);
-                ((w5) this.f14810b).draw(canvas);
-                canvas.restore();
-                return;
-        }
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f14809a) {
-            case 1:
-                return org.telegram.messenger.g0.L(20.0f);
-            case 4:
-                return ((Drawable[]) this.f14810b)[0].getIntrinsicHeight();
-            case 6:
-                return org.telegram.messenger.g0.L(30.0f);
             case 9:
-                return ((w5) this.f14810b).getHeight();
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f14809a) {
-            case 1:
-                return org.telegram.messenger.g0.L(20.0f);
-            case 4:
-                return ((Drawable[]) this.f14810b)[0].getIntrinsicWidth();
-            case 6:
-                return org.telegram.messenger.g0.L(30.0f);
-            case 9:
-                return ((w5) this.f14810b).getWidth();
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f14809a) {
-            case 0:
-                return -2;
-            case 1:
-                return -2;
-            case 2:
-                return 0;
-            case 3:
-                return 0;
-            case 4:
-                return -2;
-            case 5:
-                return -2;
-            case 6:
-                return -2;
-            case 7:
-                return -2;
-            case 8:
-                return ((org.telegram.messenger.f6) this.f14810b).getOpacity();
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public void getOutline(Outline outline) {
-        switch (this.f14809a) {
-            case 2:
-                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f14810b;
-                if (actionBarContainer.h) {
-                    if (actionBarContainer.f1826f != null) {
-                        actionBarContainer.d.getOutline(outline);
-                        return;
-                    }
-                    return;
-                }
-                Drawable drawable = actionBarContainer.d;
-                if (drawable != null) {
-                    drawable.getOutline(outline);
+                org.telegram.messenger.g0.g3(new xn((Object) ((kl0) this.f14771c), (Object) tL_error, (Object) tLObject, this.f14770b, 13));
+                return;
+            case 10:
+                an0 an0Var = (an0) this.f14771c;
+                if (tLObject != null) {
+                    org.telegram.messenger.g0.g3(new a80(an0Var, tLObject, this.f14770b, 4));
                     return;
                 }
                 return;
-            default:
-                super.getOutline(outline);
-                return;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        switch (this.f14809a) {
-            case 0:
-                return;
-            case 1:
-                ((ki.s2) this.f14810b).N0.setAlpha(i7);
-                return;
-            case 2:
-                return;
-            case 3:
-                ((Paint) this.f14810b).setAlpha(i7);
-                return;
-            case 4:
-                int i10 = 0;
-                while (true) {
-                    Drawable[] drawableArr = (Drawable[]) this.f14810b;
-                    if (i10 < drawableArr.length) {
-                        drawableArr[i10].setAlpha(i7);
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-            case 5:
-                return;
-            case 6:
-                ((ImageReceiver) this.f14810b).setAlpha(i7 / 255.0f);
-                return;
-            case 7:
-                return;
-            case 8:
-                ((org.telegram.messenger.f6) this.f14810b).setAlpha(i7);
+            case 11:
+                org.telegram.messenger.g0.g3(new xn((Object) ((za1) this.f14771c), (Object) tL_error, (Object) tLObject, this.f14770b, 14));
                 return;
             default:
+                org.telegram.messenger.g0.g3(new a80((WallpapersListActivity) this.f14771c, tLObject, this.f14770b, 13));
                 return;
         }
-    }
-
-    @Override
-    public void setBounds(Rect rect) {
-        switch (this.f14809a) {
-            case 8:
-                ((org.telegram.messenger.f6) this.f14810b).setBounds(rect);
-                return;
-            default:
-                super.setBounds(rect);
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f14809a) {
-            case 0:
-                return;
-            case 1:
-                ((ki.s2) this.f14810b).N0.setColorFilter(colorFilter);
-                return;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                return;
-            case 6:
-                ((ImageReceiver) this.f14810b).f22648p1 = colorFilter;
-                return;
-            case 7:
-                return;
-            case 8:
-                ((org.telegram.messenger.f6) this.f14810b).setColorFilter(colorFilter);
-                return;
-            default:
-                return;
-        }
-    }
-
-    public k3(Object obj, int i7) {
-        this.f14809a = i7;
-        this.f14810b = obj;
-    }
-
-    @Override
-    public void setBounds(int i7, int i10, int i11, int i12) {
-        switch (this.f14809a) {
-            case 8:
-                ((org.telegram.messenger.f6) this.f14810b).setBounds(i7, i10, i11, i12);
-                return;
-            default:
-                super.setBounds(i7, i10, i11, i12);
-                return;
-        }
-    }
-
-    public k3(ActionBarContainer actionBarContainer) {
-        this.f14809a = 2;
-        this.f14810b = actionBarContainer;
-    }
-
-    public k3(Context context) {
-        this.f14809a = 4;
-        this.f14810b = r0;
-        Drawable g10 = i5.c.g(context, 2131232793);
-        g10.setColorFilter(new PorterDuffColorFilter(-9063442, PorterDuff.Mode.MULTIPLY));
-        Drawable[] drawableArr = {g10, context.getResources().getDrawable(2131232794).mutate()};
-    }
-
-    public k3(String str) {
-        this.f14809a = 7;
-        this.f14810b = new xy0(str.substring(0, !str.isEmpty()), 14.0f, org.telegram.messenger.g0.o());
-    }
-
-    private final void a(int i7) {
-    }
-
-    private final void b(int i7) {
-    }
-
-    private final void c(int i7) {
-    }
-
-    private final void d(int i7) {
-    }
-
-    private final void e(int i7) {
-    }
-
-    private final void f(ColorFilter colorFilter) {
-    }
-
-    private final void g(ColorFilter colorFilter) {
-    }
-
-    private final void h(ColorFilter colorFilter) {
-    }
-
-    private final void i(ColorFilter colorFilter) {
-    }
-
-    private final void j(ColorFilter colorFilter) {
-    }
-
-    private final void k(ColorFilter colorFilter) {
-    }
-
-    private final void l(ColorFilter colorFilter) {
     }
 }

@@ -12,21 +12,20 @@ import android.util.Log;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.k;
 import com.google.android.gms.common.api.l;
-import m.o3;
 import q6.m;
 import q6.w;
 public final class a extends q6.h implements com.google.android.gms.common.api.c {
     public final boolean F;
-    public final o3 G;
+    public final ga.d G;
     public final Bundle H;
     public final Integer I;
 
-    public a(Context context, Looper looper, o3 o3Var, Bundle bundle, k kVar, l lVar) {
-        super(context, looper, 44, o3Var, kVar, lVar, 0);
+    public a(Context context, Looper looper, ga.d dVar, Bundle bundle, k kVar, l lVar) {
+        super(context, looper, 44, dVar, kVar, lVar, 0);
         this.F = true;
-        this.G = o3Var;
+        this.G = dVar;
         this.H = bundle;
-        this.I = (Integer) o3Var.f20160g;
+        this.I = (Integer) dVar.h;
     }
 
     public final void B(c cVar) {
@@ -82,11 +81,11 @@ public final class a extends q6.h implements com.google.android.gms.common.api.c
 
     @Override
     public final Bundle m() {
-        o3 o3Var = this.G;
-        boolean equals = this.h.getPackageName().equals((String) o3Var.d);
+        ga.d dVar = this.G;
+        boolean equals = this.h.getPackageName().equals((String) dVar.f13270a);
         Bundle bundle = this.H;
         if (!equals) {
-            bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) o3Var.d);
+            bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) dVar.f13270a);
         }
         return bundle;
     }

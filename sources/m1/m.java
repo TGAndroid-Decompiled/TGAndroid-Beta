@@ -1,30 +1,30 @@
 package m1;
 public final class m extends kd.j implements rd.p {
-    public final int f20378a;
-    public int f20379b;
-    public final b0 f20380c;
+    public final int f20474a;
+    public int f20475b;
+    public final b0 f20476c;
 
     public m(b0 b0Var, id.c cVar, int i7) {
         super(2, cVar);
-        this.f20378a = i7;
-        this.f20380c = b0Var;
+        this.f20474a = i7;
+        this.f20476c = b0Var;
     }
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        switch (this.f20378a) {
+        switch (this.f20474a) {
             case 0:
-                return new m(this.f20380c, cVar, 0);
+                return new m(this.f20476c, cVar, 0);
             case 1:
-                return new m(this.f20380c, cVar, 1);
+                return new m(this.f20476c, cVar, 1);
             default:
-                return new m(this.f20380c, cVar, 2);
+                return new m(this.f20476c, cVar, 2);
         }
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f20378a) {
+        switch (this.f20474a) {
             case 0:
                 return ((m) create((ce.d) obj, (id.c) obj2)).invokeSuspend(gd.k.f13480a);
             case 1:

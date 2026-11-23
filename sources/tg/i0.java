@@ -1,89 +1,34 @@
 package tg;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class i0 extends TLObject {
-    public static final int f57919j = 0;
-    public int f57920a;
-    public String f57921b;
-    public String f57922c;
-    public TLRPC.WebPage d;
-    public boolean f57923e;
-    public boolean f57924f = true;
-    public int f57925i;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.ViewGroup;
+import org.telegram.ui.vp0;
+public final class i0 extends d1 {
+    public final Path f57953o3;
+    public final vp0 f57954p3;
 
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        boolean z11;
-        int readInt32 = inputSerializedData.readInt32(z10);
-        this.f57920a = readInt32;
-        boolean z12 = false;
-        if ((readInt32 & 8) != 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.f57923e = z11;
-        if ((readInt32 & 16) != 0) {
-            z12 = true;
-        }
-        this.f57924f = z12;
-        this.f57922c = inputSerializedData.readString(z10);
-        if ((this.f57920a & 1) != 0) {
-            this.d = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-        }
-        if ((this.f57920a & 2) != 0) {
-            this.f57921b = inputSerializedData.readString(z10);
-        }
-        if ((this.f57920a & 4) != 0) {
-            this.f57925i = inputSerializedData.readInt32(z10);
-        }
+    public i0(vp0 vp0Var, Context context) {
+        super(context);
+        this.f57954p3 = vp0Var;
+        this.f57953o3 = new Path();
     }
 
     @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        int i7;
-        int i10;
-        int i11;
-        int i12;
-        outputSerializedData.writeInt32(-625858389);
-        if (this.d != null) {
-            i7 = this.f57920a | 1;
-        } else {
-            i7 = this.f57920a & (-2);
-        }
-        this.f57920a = i7;
-        if (!TextUtils.isEmpty(this.f57921b)) {
-            i10 = this.f57920a | 2;
-        } else {
-            i10 = this.f57920a & (-3);
-        }
-        this.f57920a = i10;
-        if (this.f57923e) {
-            i11 = i10 | 8;
-        } else {
-            i11 = i10 & (-9);
-        }
-        this.f57920a = i11;
-        if (this.f57924f) {
-            i12 = i11 | 16;
-        } else {
-            i12 = i11 & (-17);
-        }
-        this.f57920a = i12;
-        outputSerializedData.writeInt32(i12);
-        outputSerializedData.writeString(this.f57922c);
-        if ((this.f57920a & 1) != 0) {
-            this.d.serializeToStream(outputSerializedData);
-        }
-        if ((this.f57920a & 2) != 0) {
-            outputSerializedData.writeString(this.f57921b);
-        }
-        if ((this.f57920a & 4) != 0) {
-            outputSerializedData.writeInt32(this.f57925i);
-        }
+    public final void draw(Canvas canvas) {
+        ViewGroup barView;
+        vp0 vp0Var = this.f57954p3;
+        barView = vp0Var.getBarView();
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(org.telegram.messenger.g0.W1(vp0Var.f58058x1, barView.getLeft() - getLeft(), 0), org.telegram.messenger.g0.W1(vp0Var.f58058x1, barView.getTop() - getTop(), 0), org.telegram.messenger.g0.W1(vp0Var.f58058x1, barView.getRight() - getLeft(), getWidth()), org.telegram.messenger.g0.W1(vp0Var.f58058x1, barView.getBottom() - getTop(), getHeight()));
+        Path path = this.f57953o3;
+        path.rewind();
+        path.addRoundRect(rectF, org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f), Path.Direction.CW);
+        canvas.save();
+        canvas.clipPath(path);
+        super.draw(canvas);
+        canvas.restore();
     }
 }

@@ -9,26 +9,26 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.kr;
 public final class r4 extends Drawable {
-    public final Paint f9630a;
-    public final LinearGradient[] f9631b;
-    public final Matrix f9632c;
-    public final org.telegram.ui.Components.d6 d;
-    public final Path f9633e;
-    public final ec f9634f;
-    public int f9635g;
+    public final Paint f9627a;
+    public final LinearGradient[] f9628b;
+    public final Matrix f9629c;
+    public final org.telegram.ui.Components.c6 d;
+    public final Path f9630e;
+    public final ec f9631f;
+    public int f9632g;
     public int h;
 
     public r4() {
         Paint paint = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.f9630a = new Paint(1);
-        this.f9631b = new LinearGradient[2];
-        this.f9632c = new Matrix();
-        this.d = new org.telegram.ui.Components.d6(1.0f, new ca.r(this, 18), 0L, 420L, nr.h);
-        this.f9633e = new Path();
-        this.f9634f = new ec(1, 45);
+        this.f9627a = new Paint(1);
+        this.f9628b = new LinearGradient[2];
+        this.f9629c = new Matrix();
+        this.d = new org.telegram.ui.Components.c6(1.0f, new ca.r(this, 18), 0L, 420L, kr.h);
+        this.f9630e = new Path();
+        this.f9631f = new ec(1, 45);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setColor(117440511);
@@ -39,12 +39,12 @@ public final class r4 extends Drawable {
     }
 
     public final void a(int i7, int i10) {
-        if (this.f9635g == i7 && this.h == i10) {
+        if (this.f9632g == i7 && this.h == i10) {
             return;
         }
-        LinearGradient[] linearGradientArr = this.f9631b;
+        LinearGradient[] linearGradientArr = this.f9628b;
         linearGradientArr[0] = linearGradientArr[1];
-        this.f9635g = i7;
+        this.f9632g = i7;
         this.h = i10;
         linearGradientArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         this.d.e(true, 0.0f);
@@ -58,18 +58,18 @@ public final class r4 extends Drawable {
         int i7 = 0;
         float e10 = this.d.e(false, 1.0f);
         while (true) {
-            LinearGradient[] linearGradientArr = this.f9631b;
+            LinearGradient[] linearGradientArr = this.f9628b;
             if (i7 < linearGradientArr.length) {
                 if (linearGradientArr[i7] != null) {
                     float pow = (float) Math.pow(1.0f - Math.abs(i7 - e10), 0.5d);
                     if (pow > 0.0f) {
-                        Matrix matrix = this.f9632c;
+                        Matrix matrix = this.f9629c;
                         matrix.reset();
                         RectF rectF = org.telegram.messenger.g0.P;
                         matrix.postScale(rectF.width() / 100.0f, 1.0f);
                         linearGradientArr[i7].setLocalMatrix(matrix);
                         LinearGradient linearGradient = linearGradientArr[i7];
-                        Paint paint = this.f9630a;
+                        Paint paint = this.f9627a;
                         paint.setShader(linearGradient);
                         paint.setAlpha((int) (pow * 255.0f));
                         canvas.drawRoundRect(rectF, L, L, paint);
@@ -77,17 +77,17 @@ public final class r4 extends Drawable {
                 }
                 i7++;
             } else {
-                Path path = this.f9633e;
+                Path path = this.f9630e;
                 path.rewind();
                 RectF rectF2 = org.telegram.messenger.g0.P;
                 path.addRoundRect(rectF2, L, L, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(path);
-                ec ecVar = this.f9634f;
+                ec ecVar = this.f9631f;
                 ecVar.g(rectF2);
                 ecVar.h = 30.0f;
                 ecVar.d();
-                ecVar.a(canvas, org.telegram.ui.ActionBar.m6.r1(0.6f, -1));
+                ecVar.a(canvas, org.telegram.ui.ActionBar.n6.r1(0.6f, -1));
                 invalidateSelf();
                 canvas.restore();
                 org.telegram.messenger.g0.P(canvas, rectF2, L);

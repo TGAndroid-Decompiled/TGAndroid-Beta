@@ -10,7 +10,7 @@ public abstract class e {
 
     public static String a(i5.b bVar, String str) {
         g parent = bVar.getParent();
-        ArrayList arrayList = ((com.googlecode.mp4parser.e) parent).f7587b;
+        ArrayList arrayList = ((com.googlecode.mp4parser.e) parent).f7586b;
         int size = arrayList.size();
         int i7 = 0;
         int i10 = 0;

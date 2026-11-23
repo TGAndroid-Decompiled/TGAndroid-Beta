@@ -1,52 +1,28 @@
 package org.telegram.messenger;
-public final class sm implements Runnable {
-    public final int f26841a;
-    public final np f26842b;
-    public final long f26843c;
-    public final Runnable d;
 
-    public sm(np npVar, long j3, Runnable runnable, int i7) {
-        this.f26841a = i7;
-        this.f26842b = npVar;
-        this.f26843c = j3;
-        this.d = runnable;
+import org.telegram.tgnet.TLRPC;
+public final class sm implements Runnable {
+    public final int f26927a;
+    public final mp f26928b;
+    public final TLRPC.Updates f26929c;
+    public final boolean d;
+
+    public sm(mp mpVar, TLRPC.Updates updates, boolean z10, int i7) {
+        this.f26927a = i7;
+        this.f26928b = mpVar;
+        this.f26929c = updates;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26841a;
-        Runnable runnable = this.d;
-        long j3 = this.f26843c;
-        np npVar = this.f26842b;
-        switch (i7) {
+        switch (this.f26927a) {
             case 0:
-                if (runnable != null) {
-                    npVar.getClass();
-                    runnable.run();
-                }
-                npVar.getNotificationCenter().k(303, Long.valueOf(j3), 0L);
-                return;
-            case 1:
-                npVar.b3(0, j3, true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                Utilities.d.c(new sm(this.f26928b, this.f26929c, this.d, 1));
                 return;
             default:
-                npVar.b3(0, j3, true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                this.f26928b.V3(this.f26929c, this.d);
                 return;
         }
-    }
-
-    public sm(np npVar, Runnable runnable, long j3) {
-        this.f26841a = 0;
-        this.f26842b = npVar;
-        this.d = runnable;
-        this.f26843c = j3;
     }
 }

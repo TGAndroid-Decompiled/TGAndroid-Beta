@@ -41,7 +41,7 @@ public final class k extends ee.r {
         if (z10) {
             c cVar = this.f3143e;
             kotlin.jvm.internal.j.b(cVar);
-            cVar.B((this.f10940c * e.f3121b) + i7);
+            cVar.B((this.f10938c * e.f3121b) + i7);
         }
         i();
     }

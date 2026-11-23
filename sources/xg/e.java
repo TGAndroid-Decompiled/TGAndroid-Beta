@@ -7,28 +7,28 @@ import org.telegram.messenger.g0;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g2;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.dk0;
-import v4.e1;
+import v4.f1;
 import yg.c0;
 import yg.d0;
 import yg.r;
 import yg.t;
 public abstract class e extends dk0 {
-    public final h6 f60495c;
+    public final i6 f60613c;
     public boolean d;
-    public g2 f60496e;
-    public TLRPC.TL_payments_checkedGiftCode f60497f;
+    public g2 f60614e;
+    public TLRPC.TL_payments_checkedGiftCode f60615f;
     public String h;
-    public m2 f60498n;
+    public m2 f60616n;
 
-    public e(h6 h6Var) {
-        this.f60495c = h6Var;
+    public e(i6 i6Var) {
+        this.f60613c = i6Var;
     }
 
     @Override
-    public final boolean D(e1 e1Var) {
+    public final boolean D(f1 f1Var) {
         return false;
     }
 
@@ -63,36 +63,36 @@ public abstract class e extends dk0 {
     }
 
     @Override
-    public final void t(v4.e1 r23, int r24) {
-        throw new UnsupportedOperationException("Method not decompiled: xg.e.t(v4.e1, int):void");
+    public final void t(v4.f1 r22, int r23) {
+        throw new UnsupportedOperationException("Method not decompiled: xg.e.t(v4.f1, int):void");
     }
 
     @Override
-    public final e1 x(ViewGroup viewGroup, int i7) {
+    public final f1 x(ViewGroup viewGroup, int i7) {
         View tVar;
         Context context = viewGroup.getContext();
-        h6 h6Var = this.f60495c;
+        i6 i6Var = this.f60613c;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
                     if (i7 != 4) {
                         if (i7 != 5) {
-                            tVar = new r(context, h6Var);
+                            tVar = new r(context, i6Var);
                         } else {
                             tVar = new View(context);
                         }
                     } else {
-                        tVar = new yg.a(context, h6Var);
+                        tVar = new yg.a(context, i6Var);
                         tVar.setPadding(0, 0, 0, g0.L(14.0f));
                     }
                 } else {
-                    tVar = new d0(context, h6Var);
+                    tVar = new d0(context, i6Var);
                 }
             } else {
-                tVar = new c0(context, h6Var);
+                tVar = new c0(context, i6Var);
             }
         } else {
-            tVar = new t(context, h6Var);
+            tVar = new t(context, i6Var);
         }
         return i5.c.q(tVar, tVar, -1, -2);
     }

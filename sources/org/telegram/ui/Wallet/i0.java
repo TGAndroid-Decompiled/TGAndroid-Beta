@@ -1,44 +1,55 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.r10;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class i0 implements Runnable {
-    public volatile boolean f44332a;
-    public Runnable f44333b;
-    public final String f44334c;
-    public final TL_wallet.nftItem d;
-    public final String f44335e;
-    public final r10 f44336f;
-    public final u0 h;
+import java.util.ArrayList;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.ks;
+import org.telegram.ui.bd0;
+public final class i0 implements Runnable, fs {
+    public boolean f44455a;
+    public final ks f44456b;
+    public final bd0 f44457c;
+    public final v0 d;
 
-    public i0(u0 u0Var, String str, TL_wallet.nftItem nftitem, String str2, r10 r10Var) {
-        this.h = u0Var;
-        this.f44334c = str;
-        this.d = nftitem;
-        this.f44335e = str2;
-        this.f44336f = r10Var;
+    public i0(ks ksVar, bd0 bd0Var, v0 v0Var) {
+        this.f44456b = ksVar;
+        this.f44457c = bd0Var;
+        this.d = v0Var;
+    }
+
+    public final void a() {
+        if (!this.f44455a) {
+            v0 v0Var = this.d;
+            if (v0Var.f45258e != null) {
+                ArrayList arrayList = v0Var.J;
+                int size = arrayList.size();
+                int i7 = 0;
+                while (i7 < size) {
+                    Object obj = arrayList.get(i7);
+                    i7++;
+                    if (((r0) obj).d) {
+                        return;
+                    }
+                }
+                run();
+            }
+        }
     }
 
     @Override
-    public final synchronized void run() {
-        try {
-            try {
-                if (this.f44332a) {
-                    return;
-                }
-                WalletEngine2 walletEngine2 = this.h.f45094b;
-                String str = this.f44334c;
-                TL_wallet.nftItem nftitem = this.d;
-                String str2 = nftitem.address;
-                String str3 = this.f44335e;
-                this.f44333b = walletEngine2.emulateSendNFT(str, str2, str3, new s(this, nftitem, str3, this.f44336f, 4));
-            } catch (Throwable th2) {
-                th = th2;
-                throw th;
-            }
-        } catch (Throwable th3) {
-            th = th3;
-            throw th;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == ks.f25201d4) {
+            a();
         }
+    }
+
+    @Override
+    public final void run() {
+        if (this.f44455a) {
+            return;
+        }
+        this.f44455a = true;
+        org.telegram.messenger.g0.r(this);
+        this.f44456b.n(this, ks.f25201d4);
+        this.f44457c.run();
     }
 }

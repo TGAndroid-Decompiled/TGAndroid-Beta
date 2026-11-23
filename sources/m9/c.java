@@ -3,17 +3,17 @@ package m9;
 import java.util.concurrent.Executor;
 public final class c {
     public static final c d = new c();
-    public final Runnable f20919a;
-    public final Executor f20920b;
-    public c f20921c;
+    public final Runnable f21015a;
+    public final Executor f21016b;
+    public c f21017c;
 
     public c(Runnable runnable, Executor executor) {
-        this.f20919a = runnable;
-        this.f20920b = executor;
+        this.f21015a = runnable;
+        this.f21016b = executor;
     }
 
     public c() {
-        this.f20919a = null;
-        this.f20920b = null;
+        this.f21015a = null;
+        this.f21016b = null;
     }
 }

@@ -3,45 +3,45 @@ package h9;
 import a8.ma;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-public final class v0 extends h2 {
-    public int f14070a;
-    public Object f14071b;
-    public final int f14072c;
+public final class v0 extends g2 {
+    public int f14067a;
+    public Object f14068b;
+    public final int f14069c;
     public final Iterator d;
-    public final Object f14073e;
+    public final Object f14070e;
 
     public v0() {
-        this.f14070a = 2;
+        this.f14067a = 2;
     }
 
     @Override
     public final boolean hasNext() {
         boolean z10;
         Object next;
-        if (this.f14070a != 4) {
+        if (this.f14067a != 4) {
             z10 = true;
         } else {
             z10 = false;
         }
         ma.p(z10);
-        int c10 = p1.g.c(this.f14070a);
+        int c10 = p1.g.c(this.f14067a);
         if (c10 == 0) {
             return true;
         }
         if (c10 != 2) {
-            this.f14070a = 4;
-            switch (this.f14072c) {
+            this.f14067a = 4;
+            switch (this.f14069c) {
                 case 0:
                     do {
                         Iterator it = this.d;
                         if (it.hasNext()) {
                             next = it.next();
                         } else {
-                            this.f14070a = 3;
+                            this.f14067a = 3;
                             next = null;
                             break;
                         }
-                    } while (!((g9.l) this.f14073e).apply(next));
+                    } while (!((g9.l) this.f14070e).apply(next));
                     break;
                 default:
                     do {
@@ -49,16 +49,16 @@ public final class v0 extends h2 {
                         if (it2.hasNext()) {
                             next = it2.next();
                         } else {
-                            this.f14070a = 3;
+                            this.f14067a = 3;
                             next = null;
                             break;
                         }
-                    } while (!((c2) this.f14073e).f13977b.contains(next));
+                    } while (!((b2) this.f14070e).f13970b.contains(next));
                     break;
             }
-            this.f14071b = next;
-            if (this.f14070a != 3) {
-                this.f14070a = 1;
+            this.f14068b = next;
+            if (this.f14067a != 3) {
+                this.f14067a = 1;
                 return true;
             }
         }
@@ -68,9 +68,9 @@ public final class v0 extends h2 {
     @Override
     public final Object next() {
         if (hasNext()) {
-            this.f14070a = 2;
-            Object obj = this.f14071b;
-            this.f14071b = null;
+            this.f14067a = 2;
+            Object obj = this.f14068b;
+            this.f14068b = null;
             return obj;
         }
         throw new NoSuchElementException();
@@ -78,15 +78,15 @@ public final class v0 extends h2 {
 
     public v0(Iterator it, g9.l lVar) {
         this();
-        this.f14072c = 0;
+        this.f14069c = 0;
         this.d = it;
-        this.f14073e = lVar;
+        this.f14070e = lVar;
     }
 
-    public v0(c2 c2Var) {
+    public v0(b2 b2Var) {
         this();
-        this.f14072c = 1;
-        this.f14073e = c2Var;
-        this.d = c2Var.f13976a.iterator();
+        this.f14069c = 1;
+        this.f14070e = b2Var;
+        this.d = b2Var.f13969a.iterator();
     }
 }

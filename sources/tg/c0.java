@@ -1,27 +1,45 @@
 package tg;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import org.telegram.ui.wp0;
-public final class c0 extends sg.u0 {
-    public final Bitmap F;
-    public final wp0 G;
+import android.app.Activity;
+import org.telegram.messenger.i10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.bn;
+public final class c0 extends bn {
+    public final l0 f57860vd;
 
-    public c0(wp0 wp0Var, Context context, sg.i0 i0Var, Bitmap bitmap, Bitmap bitmap2) {
-        super(context, i0Var, bitmap, null, null);
-        this.G = wp0Var;
-        this.F = bitmap2;
+    public c0(l0 l0Var) {
+        super(null);
+        this.f57860vd = l0Var;
     }
 
     @Override
-    public final void g(sg.h hVar) {
-        int indexOf = sg.h.f57224a.indexOf(hVar);
-        int i7 = indexOf + 1;
-        if (i7 <= 1 || this.F != null) {
-            indexOf = i7;
-        }
-        wp0 wp0Var = this.G;
-        wp0Var.f57876d1.b(indexOf);
-        wp0Var.w(hVar);
+    public final boolean V9() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final Activity getParentActivity() {
+        return org.telegram.messenger.g0.W(this.f57860vd.getContext());
+    }
+
+    @Override
+    public final i6 getResourceProvider() {
+        return this.f57860vd.A1;
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.User j() {
+        return i10.i(this.currentAccount).f();
     }
 }

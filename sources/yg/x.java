@@ -3,32 +3,31 @@ package yg;
 import android.content.Context;
 import c8.na;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
+import org.telegram.messenger.gd;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Cells.o4;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.o6;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.Components.n6;
 public final class x extends o4 {
-    public final o6 f61292r;
+    public final n6 f61411r;
 
-    public x(Context context, h6 h6Var) {
-        super(context, h6Var);
+    public x(Context context, i6 i6Var) {
+        super(context, i6Var);
         int i7;
-        o6 o6Var = new o6(context, true, true, true);
-        this.f61292r = o6Var;
-        o6Var.b(0.45f, 240L, nr.h);
-        if (hd.f24408a0) {
+        n6 n6Var = new n6(context, true, true, true);
+        this.f61411r = n6Var;
+        n6Var.b(0.45f, 240L, kr.h);
+        if (gd.f24314a0) {
             i7 = 3;
         } else {
             i7 = 5;
         }
-        o6Var.setGravity(i7);
-        o6Var.setTextSize(g0.L(15.0f));
-        o6Var.setTypeface(g0.o());
-        t6.Y(o6Var, m6.L6, h6Var);
-        addView(o6Var, na.d(-2, 24.0f, (hd.f24408a0 ? 3 : 5) | 80, 24.0f, 0.0f, 24.0f, 0.0f));
-        t6.h(m6.f29420h5, this, h6Var);
+        n6Var.setGravity(i7);
+        n6Var.setTextSize(g0.L(15.0f));
+        n6Var.setTypeface(g0.o());
+        u6.Y(n6Var, org.telegram.ui.ActionBar.n6.L6, i6Var);
+        addView(n6Var, na.d(-2, 24.0f, (gd.f24314a0 ? 3 : 5) | 80, 24.0f, 0.0f, 24.0f, 0.0f));
+        u6.h(org.telegram.ui.ActionBar.n6.f29524h5, this, i6Var);
     }
 }

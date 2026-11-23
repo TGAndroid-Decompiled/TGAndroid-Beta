@@ -1,17 +1,18 @@
 package org.telegram.ui.Components;
-public abstract class wp extends c5.a {
-    public abstract int j();
 
-    public final int k(int i7) {
-        int size = ((gg0) this).f35527c.size();
-        int j3 = j();
-        if (i7 < j3) {
-            return ((size - (j3 * 2)) - ((j3 - i7) - 1)) - 1;
-        }
-        int i10 = size - j3;
-        if (i7 >= i10) {
-            return i7 - i10;
-        }
-        return i7 - j3;
+import android.content.Context;
+import android.widget.LinearLayout;
+public final class wp extends LinearLayout {
+    public final zp f41699a;
+
+    public wp(zp zpVar, Context context) {
+        super(context);
+        this.f41699a = zpVar;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        zp.J0(this.f41699a);
     }
 }

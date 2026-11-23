@@ -1,209 +1,239 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.ImageView;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.ImageReceiver;
-public class rh0 extends ImageView {
-    public HashMap f39185a;
-    public oh0 f39186b;
-    public ph0 f39187c;
-    public boolean d;
-    public boolean f39188e;
-    public boolean f39189f;
-    public Integer h;
-    public boolean f39190n;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+public final class rh0 {
+    public static DecelerateInterpolator A;
+    public final View f39302i;
+    public boolean f39304k;
+    public boolean f39305l;
+    public Drawable f39306m;
+    public Drawable f39307n;
+    public final Paint f39309p;
+    public boolean f39314u;
+    public long f39296a = 0;
+    public float f39297b = 0.0f;
+    public float f39298c = 0.0f;
+    public float d = 0.0f;
+    public long f39299e = 0;
+    public float f39300f = 0.0f;
+    public final RectF f39301g = new RectF();
+    public final RectF h = new RectF();
+    public float f39303j = 1.0f;
+    public int f39308o = -1;
+    public int f39310q = org.telegram.messenger.g0.L(4.0f);
+    public final boolean f39311r = true;
+    public final float f39312s = 1.0f;
+    public Paint f39313t = null;
+    public float v = 3000.0f;
+    public final Path f39315w = new Path();
+    public final Matrix f39316x = new Matrix();
+    public final PathMeasure f39317y = new PathMeasure();
+    public final Path f39318z = new Path();
 
-    public rh0(Context context) {
-        super(context);
+    public rh0(View view) {
+        if (A == null) {
+            A = new DecelerateInterpolator();
+        }
+        Paint paint = new Paint(1);
+        this.f39309p = paint;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint.setStrokeCap(cap);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
+        Paint paint2 = new Paint(1);
+        paint2.setStyle(style);
+        paint2.setStrokeCap(cap);
+        paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        new Paint(1);
+        this.f39302i = view;
     }
 
-    public final void a() {
-        oh0 oh0Var = this.f39186b;
-        if (oh0Var != null) {
-            oh0Var.stop();
-        }
-        ph0 ph0Var = this.f39187c;
-        if (ph0Var != null) {
-            ph0Var.R();
-            this.f39187c = null;
-        }
-        this.f39186b = null;
-        setImageDrawable(null);
-    }
-
-    public final boolean b() {
-        oh0 oh0Var = this.f39186b;
-        if (oh0Var != null && oh0Var.f38188l0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d() {
-        oh0 oh0Var = this.f39186b;
-        if (oh0Var != null || this.f39187c != null) {
-            this.f39189f = true;
-            if (this.f39188e) {
-                if (oh0Var != null) {
-                    oh0Var.start();
-                }
-                ph0 ph0Var = this.f39187c;
-                if (ph0Var != null) {
-                    ph0Var.P0(false);
-                }
+    public final void a(Canvas canvas) {
+        Paint paint;
+        Drawable drawable = this.f39307n;
+        RectF rectF = this.f39301g;
+        float f10 = this.f39312s;
+        if (drawable != null) {
+            if (this.f39311r) {
+                drawable.setAlpha((int) (this.f39303j * 255.0f * f10));
+            } else {
+                drawable.setAlpha((int) (f10 * 255.0f));
             }
+            this.f39307n.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            this.f39307n.draw(canvas);
         }
-    }
-
-    public final void e(int i7, int i10, int i11) {
-        f(i7, i10, i11, null);
-    }
-
-    public final void f(int i7, int i10, int i11, int[] iArr) {
-        setAnimation(new oh0(i7, org.telegram.messenger.g0.L(i10), org.telegram.messenger.g0.L(i11), false, iArr));
-    }
-
-    public final void g(int r19, int r20, org.telegram.tgnet.TLRPC.Document r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.rh0.g(int, int, org.telegram.tgnet.TLRPC$Document):void");
-    }
-
-    public oh0 getAnimatedDrawable() {
-        return this.f39186b;
-    }
-
-    public ImageReceiver getImageReceiver() {
-        return this.f39187c;
-    }
-
-    public final void h(int i7, String str) {
-        if (this.f39185a == null) {
-            this.f39185a = new HashMap();
-        }
-        this.f39185a.put(str, Integer.valueOf(i7));
-        oh0 oh0Var = this.f39186b;
-        if (oh0Var != null) {
-            oh0Var.Q(i7, str);
-        }
-    }
-
-    public final void i() {
-        oh0 oh0Var = this.f39186b;
-        if (oh0Var != null || this.f39187c != null) {
-            this.f39189f = false;
-            if (this.f39188e) {
-                if (oh0Var != null) {
-                    oh0Var.stop();
-                }
-                ph0 ph0Var = this.f39187c;
-                if (ph0Var != null) {
-                    ph0Var.Q0();
-                }
+        Drawable drawable2 = this.f39306m;
+        if (drawable2 != null) {
+            if (this.f39307n != null) {
+                drawable2.setAlpha((int) org.telegram.messenger.f3.A(1.0f, this.f39303j, 255.0f, f10));
+            } else {
+                drawable2.setAlpha((int) (f10 * 255.0f));
             }
+            this.f39306m.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            this.f39306m.draw(canvas);
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f39188e = true;
-        ph0 ph0Var = this.f39187c;
-        if (ph0Var != null) {
-            ph0Var.P();
-            if (this.f39189f) {
-                this.f39187c.P0(false);
-            }
-        }
-        oh0 oh0Var = this.f39186b;
-        if (oh0Var != null) {
-            oh0Var.setCallback(this);
-            if (this.f39189f) {
-                this.f39186b.start();
-            }
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f39188e = false;
-        oh0 oh0Var = this.f39186b;
-        if (oh0Var != null) {
-            oh0Var.stop();
-        }
-        ph0 ph0Var = this.f39187c;
-        if (ph0Var != null) {
-            ph0Var.R();
-        }
-    }
-
-    public void setAnimation(oh0 oh0Var) {
-        if (this.f39186b == oh0Var) {
+        if (!this.f39304k && !this.f39305l) {
+            g(false);
             return;
         }
-        ph0 ph0Var = this.f39187c;
-        if (ph0Var != null) {
-            ph0Var.R();
-            this.f39187c = null;
-        }
-        this.f39186b = oh0Var;
-        oh0Var.R(this);
-        if (this.d) {
-            this.f39186b.K(1);
-        }
-        HashMap hashMap = this.f39185a;
-        if (hashMap != null) {
-            this.f39186b.f38173a0 = true;
-            for (Map.Entry entry : hashMap.entrySet()) {
-                oh0 oh0Var2 = this.f39186b;
-                Integer num = (Integer) entry.getValue();
-                num.getClass();
-                oh0Var2.f38196s.put((String) entry.getKey(), num);
-                oh0Var2.G();
+        Paint paint2 = this.f39313t;
+        if (paint2 != null) {
+            paint = paint2;
+        } else {
+            int i7 = this.f39308o;
+            Paint paint3 = this.f39309p;
+            paint3.setColor(i7);
+            if (this.f39305l) {
+                paint3.setAlpha((int) (this.f39303j * 255.0f * f10));
+            } else {
+                paint3.setAlpha((int) (f10 * 255.0f));
             }
-            this.f39186b.o();
+            paint = paint3;
         }
-        this.f39186b.J(true);
-        setImageDrawable(this.f39186b);
+        float f11 = rectF.left;
+        float f12 = this.f39310q;
+        RectF rectF2 = this.h;
+        rectF2.set(f11 + f12, rectF.top + f12, rectF.right - f12, rectF.bottom - f12);
+        b(this.f39297b - 90.0f, Math.max(4.0f, this.f39300f * 360.0f), canvas, paint, rectF2);
+        g(true);
     }
 
-    public void setAutoRepeat(boolean z10) {
-        this.d = z10;
+    public final void b(float f10, float f11, Canvas canvas, Paint paint, RectF rectF) {
+        if (this.f39314u) {
+            float height = rectF.height() * 0.32f;
+            if (Math.abs(f11) == 360.0f) {
+                canvas.drawRoundRect(rectF, height, height, paint);
+                return;
+            }
+            float f12 = ((((int) f10) / 90) * 90) + 90;
+            float f13 = (-199.0f) + f12;
+            float f14 = ((f10 + f11) - f13) / 360.0f;
+            Path path = this.f39315w;
+            path.rewind();
+            path.addRoundRect(rectF, height, height, Path.Direction.CW);
+            Matrix matrix = this.f39316x;
+            matrix.reset();
+            matrix.postRotate(f12, rectF.centerX(), rectF.centerY());
+            path.transform(matrix);
+            PathMeasure pathMeasure = this.f39317y;
+            pathMeasure.setPath(path, false);
+            float length = pathMeasure.getLength();
+            Path path2 = this.f39318z;
+            path2.reset();
+            pathMeasure.getSegment(((f10 - f13) / 360.0f) * length, length * f14, path2, true);
+            path2.rLineTo(0.0f, 0.0f);
+            canvas.drawPath(path2, paint);
+            if (f14 > 1.0f) {
+                b(f10 + 90.0f, f11 - 90.0f, canvas, paint, rectF);
+                return;
+            }
+            return;
+        }
+        canvas.drawArc(rectF, f10, f11, false, paint);
     }
 
-    @Override
-    public void setImageResource(int i7) {
-        super.setImageResource(i7);
-        this.f39186b = null;
+    public final void c() {
+        int L = org.telegram.messenger.g0.L(2.0f);
+        RectF rectF = this.f39301g;
+        int i7 = ((int) rectF.left) - L;
+        int i10 = ((int) rectF.top) - L;
+        int i11 = L * 2;
+        this.f39302i.invalidate(i7, i10, ((int) rectF.right) + i11, ((int) rectF.bottom) + i11);
     }
 
-    public void setLayerNum(Integer num) {
-        this.h = num;
-        ph0 ph0Var = this.f39187c;
-        if (ph0Var != null) {
-            ph0Var.E0(num.intValue());
+    public final void d(Drawable drawable, boolean z10, boolean z11) {
+        Drawable drawable2;
+        this.f39296a = System.currentTimeMillis();
+        if (z11 && (drawable2 = this.f39306m) != drawable) {
+            this.f39307n = drawable2;
+            this.f39305l = this.f39304k;
+            this.f39303j = 1.0f;
+            e(z11, 1.0f);
+        } else {
+            this.f39307n = null;
+            this.f39305l = false;
+        }
+        this.f39304k = z10;
+        this.f39306m = drawable;
+        if (!z11) {
+            this.f39302i.invalidate();
+        } else {
+            c();
         }
     }
 
-    public void setOnAnimationEndListener(Runnable runnable) {
-        oh0 oh0Var = this.f39186b;
-        if (oh0Var != null) {
-            oh0Var.f38199u0 = runnable;
+    public final void e(boolean z10, float f10) {
+        if (f10 != 1.0f && this.f39303j != 0.0f && this.f39307n != null) {
+            this.f39303j = 0.0f;
+            this.f39307n = null;
         }
-    }
-
-    public void setOnlyLastFrame(boolean z10) {
-        this.f39190n = z10;
-    }
-
-    public void setProgress(float f10) {
-        oh0 oh0Var = this.f39186b;
-        if (oh0Var != null) {
-            oh0Var.T(true, f10);
+        if (!z10) {
+            this.f39300f = f10;
+            this.d = f10;
+        } else {
+            if (this.f39300f > f10) {
+                this.f39300f = f10;
+            }
+            this.d = this.f39300f;
         }
+        this.f39298c = f10;
+        this.f39299e = 0L;
+        c();
     }
 
-    public void c() {
+    public final void f(int i7, int i10, int i11, int i12) {
+        this.f39301g.set(i7, i10, i11, i12);
+    }
+
+    public final void g(boolean z10) {
+        long currentTimeMillis = System.currentTimeMillis();
+        long j3 = currentTimeMillis - this.f39296a;
+        this.f39296a = currentTimeMillis;
+        if (z10) {
+            if (this.f39300f != 1.0f) {
+                this.f39297b = (((float) (360 * j3)) / this.v) + this.f39297b;
+                float f10 = this.f39298c;
+                float f11 = this.d;
+                float f12 = f10 - f11;
+                if (f12 > 0.0f) {
+                    long j10 = this.f39299e + j3;
+                    this.f39299e = j10;
+                    if (j10 >= 300) {
+                        this.f39300f = f10;
+                        this.d = f10;
+                        this.f39299e = 0L;
+                    } else {
+                        this.f39300f = (A.getInterpolation(((float) j10) / 300.0f) * f12) + f11;
+                    }
+                }
+                c();
+            }
+            if (this.f39300f >= 1.0f && this.f39307n != null) {
+                float f13 = this.f39303j - (((float) j3) / 200.0f);
+                this.f39303j = f13;
+                if (f13 <= 0.0f) {
+                    this.f39303j = 0.0f;
+                    this.f39307n = null;
+                }
+                c();
+            }
+        } else if (this.f39307n != null) {
+            float f14 = this.f39303j - (((float) j3) / 200.0f);
+            this.f39303j = f14;
+            if (f14 <= 0.0f) {
+                this.f39303j = 0.0f;
+                this.f39307n = null;
+            }
+            c();
+        }
     }
 }

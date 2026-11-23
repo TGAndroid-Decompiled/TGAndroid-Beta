@@ -1,13 +1,12 @@
 package hi;
 
-import android.graphics.Bitmap;
-import org.telegram.ui.Components.nr;
-public final class ab {
-    public final Bitmap f14201a;
-    public final org.telegram.ui.Components.d6 f14202b;
+import android.app.Activity;
+import android.widget.FrameLayout;
+public final class ab extends n0 {
+    public final nb f14202z0;
 
-    public ab(bb bbVar, Bitmap bitmap) {
-        this.f14202b = new org.telegram.ui.Components.d6(0.0f, bbVar.f14244n, 0L, 240L, nr.h);
-        this.f14201a = bitmap;
+    public ab(nb nbVar, Activity activity, org.telegram.ui.Components.ba baVar, FrameLayout frameLayout, fi.b bVar) {
+        super(activity, baVar, frameLayout, bVar);
+        this.f14202z0 = nbVar;
     }
 }

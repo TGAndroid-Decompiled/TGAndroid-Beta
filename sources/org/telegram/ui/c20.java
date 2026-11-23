@@ -1,23 +1,15 @@
 package org.telegram.ui;
+public final class c20 extends org.telegram.ui.Components.gg0 {
+    public final e40 f46697t1;
 
-import org.telegram.tgnet.TLRPC;
-public final class c20 extends q4 {
-    public final f40 V;
-
-    public c20(f40 f40Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.V = f40Var;
+    public c20(e40 e40Var, LaunchActivity launchActivity, c30 c30Var, m30 m30Var, b20 b20Var) {
+        super(launchActivity, c30Var, m30Var, b20Var);
+        this.f46697t1 = e40Var;
     }
 
     @Override
-    public final void c() {
-        f40 f40Var = this.V;
-        org.telegram.messenger.c cVar = f40Var.f47488o1;
-        d20 d20Var = f40Var.f47479m1;
-        long dialogId = d20Var.getDialogId();
-        if (dialogId > 0) {
-            TLRPC.User c22 = org.telegram.messenger.np.u1(cVar.f23166a).c2(Long.valueOf(dialogId));
-            d20Var.H(null, org.telegram.messenger.gc.m(cVar.f23166a, 0, c22), org.telegram.messenger.gc.m(cVar.f23166a, 1, c22), false);
-        }
+    public final void invalidate() {
+        super.invalidate();
+        this.f46697t1.f30226b.invalidate();
     }
 }

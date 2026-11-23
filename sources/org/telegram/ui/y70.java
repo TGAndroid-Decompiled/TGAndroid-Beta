@@ -1,53 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class y70 implements org.telegram.messenger.y10 {
-    public final int f54049a;
-    public final LaunchActivity f54050b;
+import android.graphics.Point;
+import android.os.SystemClock;
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class y70 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final int f54293a;
+    public final Object f54294b;
 
-    public y70(LaunchActivity launchActivity, int i7) {
-        this.f54049a = i7;
-        this.f54050b = launchActivity;
+    public y70(Object obj, int i7) {
+        this.f54293a = i7;
+        this.f54294b = obj;
     }
 
     @Override
-    public final void a(Object obj) {
-        org.telegram.ui.ActionBar.g2 lastFragment;
-        int i7 = this.f54049a;
-        LaunchActivity launchActivity = this.f54050b;
+    public final void onGlobalLayout() {
+        int i7 = this.f54293a;
+        Object obj = this.f54294b;
         switch (i7) {
             case 0:
-                boolean booleanValue = ((Boolean) obj).booleanValue();
-                if (launchActivity.f43104p0 != null && booleanValue && org.telegram.messenger.qc.c() < 100 && (lastFragment = launchActivity.f43104p0.getLastFragment()) != null && !(lastFragment instanceof z90)) {
-                    int b10 = org.telegram.messenger.qc.b();
-                    org.telegram.ui.Components.lc b02 = org.telegram.ui.Components.lc.b0(lastFragment);
-                    org.telegram.ui.Components.s9 s9Var = new org.telegram.ui.Components.s9(b10 / 100.0f, lastFragment.getThemedColor(org.telegram.ui.ActionBar.m6.Y5));
-                    String N0 = org.telegram.messenger.hd.N0(2131748522, null);
-                    String a02 = org.telegram.messenger.hd.a0("LowPowerEnabledSubtitle", null, 2131748523, String.format("%d%%", Integer.valueOf(b10)));
-                    String N02 = org.telegram.messenger.hd.N0(2131751423, null);
-                    t60 t60Var = new t60(launchActivity, 11);
-                    b02.getClass();
-                    Context X = b02.X();
-                    org.telegram.ui.ActionBar.h6 h6Var = b02.f37119c;
-                    org.telegram.ui.Components.dc dcVar = new org.telegram.ui.Components.dc(X, h6Var);
-                    dcVar.f34429a.setImageDrawable(s9Var);
-                    dcVar.f34430b.setText(N0);
-                    dcVar.f34431c.setText(a02);
-                    org.telegram.ui.Components.ec ecVar = new org.telegram.ui.Components.ec(b02.X(), h6Var, true);
-                    ecVar.e(N02);
-                    ecVar.f34715b = t60Var;
-                    dcVar.setButton(ecVar);
-                    org.telegram.ui.Components.gc b11 = b02.b(dcVar, 2750);
-                    b11.f35489j = 5000;
-                    b11.j();
+                String str = LaunchActivity.C1;
+                int measuredHeight = ((View) obj).getMeasuredHeight();
+                StringBuilder m10 = i5.c.m(measuredHeight, "height = ", " displayHeight = ");
+                Point point = org.telegram.messenger.g0.f24226q;
+                i5.c.t(point.y, m10);
+                int i10 = (measuredHeight - org.telegram.messenger.g0.f24221n) - org.telegram.messenger.g0.f24220m;
+                if (i10 > org.telegram.messenger.g0.L(100.0f) && i10 < point.y && org.telegram.messenger.g0.L(100.0f) + i10 > point.y) {
+                    point.y = i10;
+                    if (org.telegram.messenger.s2.f26829a) {
+                        i5.c.t(point.y, new StringBuilder("fix display size y to "));
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                TLRPC.User user = (TLRPC.User) obj;
-                String str = LaunchActivity.C1;
-                org.telegram.messenger.np.u1(launchActivity.P).E3(null, user, null, 0, null, false, false);
+                v71 v71Var = (v71) obj;
+                v71Var.R = SystemClock.elapsedRealtime() + 1500;
+                v71Var.m0.invalidate();
                 return;
         }
     }

@@ -7,53 +7,53 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.na;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.ot;
-import org.telegram.ui.Wallet.i9;
+import org.telegram.messenger.gd;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.mt;
+import org.telegram.ui.Wallet.j9;
 public final class l extends LinearLayout {
-    public final ot f61252a;
-    public final TextView f61253b;
-    public k f61254c;
+    public final mt f61371a;
+    public final TextView f61372b;
+    public k f61373c;
 
-    public l(Context context, h6 h6Var) {
+    public l(Context context, i6 i6Var) {
         super(context);
         setOrientation(0);
-        ot otVar = new ot(context, h6Var);
-        this.f61252a = otVar;
-        otVar.setLines(1);
-        otVar.setSingleLine(true);
+        mt mtVar = new mt(context, i6Var);
+        this.f61371a = mtVar;
+        mtVar.setLines(1);
+        mtVar.setSingleLine(true);
         InputFilter[] inputFilterArr = {new j(this)};
-        otVar.setInputType(16384);
-        otVar.setFilters(inputFilterArr);
-        otVar.setTextSize(1, 16.0f);
-        t6.U(otVar, m6.Le, h6Var);
-        t6.G(otVar, m6.Yc, h6Var);
-        t6.C(otVar, m6.f29503lg, h6Var);
-        int i7 = m6.Me;
-        t6.l(otVar, 34, i7, h6Var);
-        t6.D(otVar, i7, h6Var);
-        t6.l(otVar, 30, m6.Ne, h6Var);
-        t6.l(otVar, 36, m6.f29520mg, h6Var);
-        otVar.setBackground(null);
-        otVar.setHint(hd.N0(2131753474, null));
-        otVar.addTextChangedListener(new i9(this, 7));
-        otVar.setImeOptions(6);
+        mtVar.setInputType(16384);
+        mtVar.setFilters(inputFilterArr);
+        mtVar.setTextSize(1, 16.0f);
+        u6.U(mtVar, n6.Le, i6Var);
+        u6.G(mtVar, n6.Yc, i6Var);
+        u6.C(mtVar, n6.f29607lg, i6Var);
+        int i7 = n6.Me;
+        u6.l(mtVar, 34, i7, i6Var);
+        u6.D(mtVar, i7, i6Var);
+        u6.l(mtVar, 30, n6.Ne, i6Var);
+        u6.l(mtVar, 36, n6.f29624mg, i6Var);
+        mtVar.setBackground(null);
+        mtVar.setHint(gd.N0(2131753474, null));
+        mtVar.addTextChangedListener(new j9(this, 8));
+        mtVar.setImeOptions(6);
         TextView textView = new TextView(context);
-        this.f61253b = textView;
+        this.f61372b = textView;
         textView.setTextSize(1, 16.0f);
-        t6.U(textView, m6.f29455j5, h6Var);
-        if (hd.f24408a0) {
+        u6.U(textView, n6.f29559j5, i6Var);
+        if (gd.f24314a0) {
             LinearLayout.LayoutParams t6 = na.t(-1, -2, 16, 20, 0, 36, 0);
             t6.weight = 1.0f;
-            addView(otVar, t6);
+            addView(mtVar, t6);
             addView(textView, na.t(-2, -2, 16, 0, 0, 20, 0));
             return;
         }
         addView(textView, na.t(-2, -2, 16, 20, 0, 0, 0));
-        addView(otVar, na.t(-1, -2, 16, 36, 0, 20, 0));
+        addView(mtVar, na.t(-1, -2, 16, 36, 0, 20, 0));
     }
 
     @Override
@@ -62,10 +62,10 @@ public final class l extends LinearLayout {
     }
 
     public void setAfterTextChangedListener(k kVar) {
-        this.f61254c = kVar;
+        this.f61373c = kVar;
     }
 
     public void setCount(int i7) {
-        this.f61253b.setText(String.valueOf(i7));
+        this.f61372b.setText(String.valueOf(i7));
     }
 }

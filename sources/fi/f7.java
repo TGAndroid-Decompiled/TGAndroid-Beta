@@ -1,13 +1,13 @@
 package fi;
 public final class f7 {
-    public long f11940a;
-    public boolean f11941b;
-    public Object f11942c;
+    public long f11951a;
+    public boolean f11952b;
+    public Object f11953c;
     public Object d;
-    public Object f11943e;
+    public Object f11954e;
 
     public void a() {
-        this.f11941b = true;
-        ((p6) this.f11942c).h0(this.f11940a, false);
+        this.f11952b = true;
+        ((p6) this.f11953c).h0(this.f11951a, false);
     }
 }

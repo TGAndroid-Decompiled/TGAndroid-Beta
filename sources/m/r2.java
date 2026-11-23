@@ -5,39 +5,39 @@ import android.widget.TextView;
 import androidx.appcompat.widget.SearchView;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class r2 implements TextView.OnEditorActionListener {
-    public final int f20193a;
-    public final Object f20194b;
+    public final int f20289a;
+    public final Object f20290b;
 
     public r2(Object obj, int i7) {
-        this.f20193a = i7;
-        this.f20194b = obj;
+        this.f20289a = i7;
+        this.f20290b = obj;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
-        switch (this.f20193a) {
+        switch (this.f20289a) {
             case 0:
-                ((SearchView) this.f20194b).p();
+                ((SearchView) this.f20290b).p();
                 return true;
             case 1:
                 if (i7 == 6) {
-                    ((org.telegram.ui.Cells.f) this.f20194b).run();
+                    ((org.telegram.ui.Cells.f) this.f20290b).run();
                     return true;
                 }
                 return false;
             case 2:
                 if (i7 == 6) {
-                    ((Runnable) this.f20194b).run();
+                    ((Runnable) this.f20290b).run();
                     return true;
                 }
                 return false;
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f20194b;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f20290b;
                 if (i7 == 4) {
-                    chatActivityEnterView.v1();
+                    chatActivityEnterView.w1();
                     return true;
-                } else if (keyEvent != null && i7 == 0 && !keyEvent.isShiftPressed() && (!chatActivityEnterView.f32674r3 ? keyEvent.isCtrlPressed() : !keyEvent.isCtrlPressed()) && keyEvent.getAction() == 0 && chatActivityEnterView.P2 == null) {
-                    chatActivityEnterView.v1();
+                } else if (keyEvent != null && i7 == 0 && !keyEvent.isShiftPressed() && (!chatActivityEnterView.f32772r3 ? keyEvent.isCtrlPressed() : !keyEvent.isCtrlPressed()) && keyEvent.getAction() == 0 && chatActivityEnterView.P2 == null) {
+                    chatActivityEnterView.w1();
                     return true;
                 } else {
                     return false;

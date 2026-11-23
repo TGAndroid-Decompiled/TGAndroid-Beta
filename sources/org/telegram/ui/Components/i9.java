@@ -1,38 +1,59 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public abstract class i9 {
-    public static void a(org.telegram.ui.bn bnVar, int i7, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j3, int i10, int i11) {
-        org.telegram.ui.ActionBar.r4 parentLayout;
-        TLRPC.TL_forumTopic tL_forumTopic2;
-        if ((chat != null || user != null) && (parentLayout = bnVar.getParentLayout()) != null) {
-            if (parentLayout.getPulledDialogs() == null) {
-                parentLayout.setPulledDialogs(new ArrayList());
-            }
-            for (h9 h9Var : parentLayout.getPulledDialogs()) {
-                if (tL_forumTopic != null || h9Var.f35788f != j3) {
-                    if (tL_forumTopic != null && (tL_forumTopic2 = h9Var.f35787e) != null && tL_forumTopic2.f28450id == tL_forumTopic.f28450id) {
-                        return;
-                    }
-                } else {
+import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.graphics.drawable.GradientDrawable;
+import org.telegram.messenger.Utilities;
+public final class i9 implements Runnable {
+    public final int f35963a = 0;
+    public final o9 f35964b;
+    public final Runnable[] f35965c;
+    public final f50 d;
+    public final int f35966e;
+    public final c8.ja[] f35967f;
+
+    public i9(o9 o9Var, f50 f50Var, Runnable[] runnableArr, int i7, c8.ja[] jaVarArr) {
+        this.f35964b = o9Var;
+        this.d = f50Var;
+        this.f35965c = runnableArr;
+        this.f35966e = i7;
+        this.f35967f = jaVarArr;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f35963a) {
+            case 0:
+                o9 o9Var = this.f35964b;
+                f50 f50Var = this.d;
+                Runnable[] runnableArr = this.f35965c;
+                int i7 = this.f35966e;
+                c8.ja[] jaVarArr = this.f35967f;
+                try {
+                    GradientDrawable.Orientation orientation = o9Var.getOrientation();
+                    int[] iArr = o9Var.f38069a;
+                    int i10 = f50Var.f35010a;
+                    int i11 = f50Var.f35011b;
+                    Rect e10 = o9.e(orientation, i10, i11);
+                    Bitmap createBitmap = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
+                    Utilities.drawDitheredGradient(createBitmap, iArr, e10.left, e10.top, e10.right, e10.bottom);
+                    org.telegram.messenger.g0.g3(new bg.m0(o9Var, runnableArr, createBitmap, f50Var, i7, jaVarArr, 8));
                     return;
+                } catch (Throwable th2) {
+                    org.telegram.messenger.g0.g3(new i9(o9Var, runnableArr, f50Var, i7, jaVarArr));
+                    throw th2;
                 }
-            }
-            ?? obj = new Object();
-            obj.f35784a = org.telegram.ui.bn.class;
-            obj.f35785b = i7;
-            obj.f35788f = j3;
-            obj.h = i11;
-            obj.f35789g = i10;
-            obj.f35786c = chat;
-            obj.d = user;
-            obj.f35787e = tL_forumTopic;
-            parentLayout.getPulledDialogs().add(obj);
+            default:
+                o9.a(this.f35964b, this.f35965c, null, this.d, this.f35966e, this.f35967f);
+                return;
         }
     }
 
-    public static org.telegram.ui.ActionBar.g1 b(org.telegram.ui.ActionBar.g2 r37, android.view.View r38, long r39, long r41, org.telegram.ui.ActionBar.h6 r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i9.b(org.telegram.ui.ActionBar.g2, android.view.View, long, long, org.telegram.ui.ActionBar.h6):org.telegram.ui.ActionBar.g1");
+    public i9(o9 o9Var, Runnable[] runnableArr, f50 f50Var, int i7, c8.ja[] jaVarArr) {
+        this.f35964b = o9Var;
+        this.f35965c = runnableArr;
+        this.d = f50Var;
+        this.f35966e = i7;
+        this.f35967f = jaVarArr;
     }
 }

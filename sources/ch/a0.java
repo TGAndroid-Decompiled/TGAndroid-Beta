@@ -10,12 +10,12 @@ import android.widget.FrameLayout;
 import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.xi0;
-public final class a0 extends FrameLayout implements b6 {
+public final class a0 extends FrameLayout implements c6 {
     public final Drawable f5274a;
     public final Rect f5275b;
     public final Paint f5276c;
@@ -44,20 +44,20 @@ public final class a0 extends FrameLayout implements b6 {
         this.f5280r = 0.0f;
         this.f5281s = 0.0f;
         this.f5282w = new Path();
-        Drawable mutate = context.getDrawable(2131232675).mutate();
+        Drawable mutate = context.getDrawable(2131232678).mutate();
         this.f5274a = mutate;
         int L = org.telegram.messenger.g0.L(7.0f);
         rect.bottom = L;
         rect.right = L;
         rect.top = L;
         rect.left = L;
-        int i7 = m6.Ke;
-        h6 h6Var = b0Var.f5305s;
-        t6.x(this, mutate, i7, h6Var, PorterDuff.Mode.MULTIPLY);
+        int i7 = n6.Ke;
+        i6 i6Var = b0Var.f5305s;
+        u6.x(this, mutate, i7, i6Var, PorterDuff.Mode.MULTIPLY);
         if (b0Var.f5310y == 2) {
             paint.setColor(i0.a.f(0.13f, -16777216, -1));
         } else {
-            paint.setColor(m6.w0(m6.G8, h6Var));
+            paint.setColor(n6.w0(n6.G8, i6Var));
         }
     }
 
@@ -71,10 +71,10 @@ public final class a0 extends FrameLayout implements b6 {
         super.invalidate();
         b0 b0Var = this.f5283x;
         xi0 xi0Var = b0Var.f5300n;
-        if (b0Var.f5310y != 1 && (xi0Var == null || xi0Var.getDelegate() == null || !xi0Var.getDelegate().E())) {
+        if (b0Var.f5310y != 1 && (xi0Var == null || xi0Var.getDelegate() == null || !xi0Var.getDelegate().t())) {
             return;
         }
-        b0Var.f5299m.f51418g0.invalidate();
+        b0Var.f5299m.f51243g0.invalidate();
     }
 
     @Override
@@ -88,7 +88,7 @@ public final class a0 extends FrameLayout implements b6 {
         try {
             b0 b0Var = this.f5283x;
             if (b0Var.f5310y != 2 && (paint = this.f5276c) != null) {
-                paint.setColor(m6.w0(m6.G8, b0Var.f5305s));
+                paint.setColor(n6.w0(n6.G8, b0Var.f5305s));
                 invalidate();
             }
         } catch (Exception e10) {

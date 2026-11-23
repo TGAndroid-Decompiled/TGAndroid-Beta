@@ -7,14 +7,13 @@ import android.os.IInterface;
 import android.os.Looper;
 import com.google.android.gms.common.api.k;
 import com.google.android.gms.common.api.l;
-import m.o3;
 import q6.h;
 import q6.q;
 public final class e extends h {
     public final q F;
 
-    public e(Context context, Looper looper, o3 o3Var, q qVar, k kVar, l lVar) {
-        super(context, looper, 270, o3Var, kVar, lVar, 0);
+    public e(Context context, Looper looper, ga.d dVar, q qVar, k kVar, l lVar) {
+        super(context, looper, 270, dVar, kVar, lVar, 0);
         this.F = qVar;
     }
 
@@ -37,7 +36,7 @@ public final class e extends h {
 
     @Override
     public final n6.c[] k() {
-        return n7.b.f21450c;
+        return n7.b.f21549c;
     }
 
     @Override
@@ -45,7 +44,7 @@ public final class e extends h {
         q qVar = this.F;
         qVar.getClass();
         Bundle bundle = new Bundle();
-        String str = qVar.f55959a;
+        String str = qVar.f56072a;
         if (str != null) {
             bundle.putString("api", str);
         }

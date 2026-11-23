@@ -23,7 +23,7 @@ public final class x implements Runnable {
             case 0:
                 b0 b0Var = this.f5827b;
                 b0Var.g();
-                b0Var.f5542a.c(b0Var);
+                b0Var.f5542a.e(b0Var);
                 return;
             case 1:
                 b0 b0Var2 = this.f5827b;
@@ -42,14 +42,14 @@ public final class x implements Runnable {
             case 2:
                 b0 b0Var3 = this.f5827b;
                 try {
-                    Context context = org.telegram.messenger.t0.f26895b;
+                    Context context = org.telegram.messenger.t0.f27013b;
                     ?? obj = new Object();
-                    obj.f7324a = 256;
+                    obj.f7323a = 256;
                     b0Var3.f5556j0 = new u8.n(new u2(context, (x1) obj));
                 } catch (Throwable th2) {
                     a8.g(th2, true);
                 }
-                b0Var3.f5557k0 = new d6.i(20);
+                b0Var3.f5557k0 = new d6.i(21);
                 return;
             default:
                 b0 b0Var4 = this.f5827b;

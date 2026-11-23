@@ -1,7 +1,10 @@
 package org.telegram.messenger;
+
+import android.graphics.RectF;
 public final class fz {
-    public float f23977a;
-    public float f23978b;
-    public float f23979c;
-    public float d;
+    public final RectF f24195a;
+
+    public fz(RectF rectF) {
+        this.f24195a = rectF;
+    }
 }

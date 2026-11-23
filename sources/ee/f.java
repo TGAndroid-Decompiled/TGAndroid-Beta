@@ -7,35 +7,35 @@ import zd.t0;
 import zd.v1;
 import zd.x;
 public final class f extends i0 implements kd.d, id.c {
-    public static final AtomicReferenceFieldUpdater f10920n = AtomicReferenceFieldUpdater.newUpdater(f.class, Object.class, "_reusableCancellableContinuation$volatile");
+    public static final AtomicReferenceFieldUpdater f10918n = AtomicReferenceFieldUpdater.newUpdater(f.class, Object.class, "_reusableCancellableContinuation$volatile");
     private volatile Object _reusableCancellableContinuation$volatile;
     public final x d;
-    public final kd.c f10921e;
-    public Object f10922f;
+    public final kd.c f10919e;
+    public Object f10920f;
     public final Object h;
 
     public f(x xVar, kd.c cVar) {
         super(-1);
         this.d = xVar;
-        this.f10921e = cVar;
-        this.f10922f = a.f10910b;
+        this.f10919e = cVar;
+        this.f10920f = a.f10908b;
         this.h = a.k(cVar.getContext());
     }
 
     @Override
     public final kd.d getCallerFrame() {
-        return this.f10921e;
+        return this.f10919e;
     }
 
     @Override
     public final id.h getContext() {
-        return this.f10921e.getContext();
+        return this.f10919e.getContext();
     }
 
     @Override
     public final Object j() {
-        Object obj = this.f10922f;
-        this.f10922f = a.f10910b;
+        Object obj = this.f10920f;
+        this.f10920f = a.f10908b;
         return obj;
     }
 
@@ -48,23 +48,23 @@ public final class f extends i0 implements kd.d, id.c {
         } else {
             vVar = new zd.v(a10, false);
         }
-        kd.c cVar = this.f10921e;
+        kd.c cVar = this.f10919e;
         id.h context = cVar.getContext();
         x xVar = this.d;
         if (xVar.d(context)) {
-            this.f10922f = vVar;
-            this.f61864c = 0;
+            this.f10920f = vVar;
+            this.f61983c = 0;
             xVar.c(cVar.getContext(), this);
             return;
         }
         t0 a11 = v1.a();
-        if (a11.f61897c >= 4294967296L) {
-            this.f10922f = vVar;
-            this.f61864c = 0;
-            hd.d dVar = a11.f61898e;
+        if (a11.f62016c >= 4294967296L) {
+            this.f10920f = vVar;
+            this.f61983c = 0;
+            hd.d dVar = a11.f62017e;
             if (dVar == null) {
                 dVar = new hd.d();
-                a11.f61898e = dVar;
+                a11.f62017e = dVar;
             }
             dVar.addLast(this);
             return;
@@ -85,7 +85,7 @@ public final class f extends i0 implements kd.d, id.c {
     }
 
     public final String toString() {
-        return "DispatchedContinuation[" + this.d + ", " + b0.v(this.f10921e) + ']';
+        return "DispatchedContinuation[" + this.d + ", " + b0.v(this.f10919e) + ']';
     }
 
     @Override

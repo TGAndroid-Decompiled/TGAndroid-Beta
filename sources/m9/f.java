@@ -6,8 +6,8 @@ public final class f extends t9 {
     public final boolean a(o oVar, c cVar, c cVar2) {
         synchronized (oVar) {
             try {
-                if (oVar.f20945b == cVar) {
-                    oVar.f20945b = cVar2;
+                if (oVar.f21041b == cVar) {
+                    oVar.f21041b = cVar2;
                     return true;
                 }
                 return false;
@@ -21,8 +21,8 @@ public final class f extends t9 {
     public final boolean b(o oVar, Object obj, Object obj2) {
         synchronized (oVar) {
             try {
-                if (oVar.f20944a == obj) {
-                    oVar.f20944a = obj2;
+                if (oVar.f21040a == obj) {
+                    oVar.f21040a = obj2;
                     return true;
                 }
                 return false;
@@ -36,8 +36,8 @@ public final class f extends t9 {
     public final boolean c(o oVar, n nVar, n nVar2) {
         synchronized (oVar) {
             try {
-                if (oVar.f20946c == nVar) {
-                    oVar.f20946c = nVar2;
+                if (oVar.f21042c == nVar) {
+                    oVar.f21042c = nVar2;
                     return true;
                 }
                 return false;
@@ -53,9 +53,9 @@ public final class f extends t9 {
         c cVar2 = c.d;
         synchronized (oVar) {
             try {
-                cVar = oVar.f20945b;
+                cVar = oVar.f21041b;
                 if (cVar != cVar2) {
-                    oVar.f20945b = cVar2;
+                    oVar.f21041b = cVar2;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -67,12 +67,12 @@ public final class f extends t9 {
     @Override
     public final n e(o oVar) {
         n nVar;
-        n nVar2 = n.f20939c;
+        n nVar2 = n.f21035c;
         synchronized (oVar) {
             try {
-                nVar = oVar.f20946c;
+                nVar = oVar.f21042c;
                 if (nVar != nVar2) {
-                    oVar.f20946c = nVar2;
+                    oVar.f21042c = nVar2;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -83,11 +83,11 @@ public final class f extends t9 {
 
     @Override
     public final void f(n nVar, n nVar2) {
-        nVar.f20941b = nVar2;
+        nVar.f21037b = nVar2;
     }
 
     @Override
     public final void g(n nVar, Thread thread) {
-        nVar.f20940a = thread;
+        nVar.f21036a = thread;
     }
 }

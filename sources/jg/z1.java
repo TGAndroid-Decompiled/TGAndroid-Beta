@@ -4,34 +4,34 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.telegram.messenger.k10;
-import org.telegram.messenger.ur;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.tr;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.po0;
+import org.telegram.ui.Components.oo0;
 public class z1 {
-    public y1 f17721a;
-    public ArrayList f17729k;
-    public ArrayList f17730l;
-    public String f17732n;
-    public final boolean f17733o;
-    public ArrayList f17735q;
-    public HashMap f17736r;
-    public final ArrayList f17722b = new ArrayList();
-    public String f17723c = null;
+    public y1 f17823a;
+    public ArrayList f17831k;
+    public ArrayList f17832l;
+    public String f17834n;
+    public final boolean f17835o;
+    public ArrayList f17837q;
+    public HashMap f17838r;
+    public final ArrayList f17824b = new ArrayList();
+    public String f17825c = null;
     public final ArrayList d = new ArrayList();
-    public final ArrayList f17724e = new ArrayList();
-    public final a0.h f17725f = new a0.h();
-    public final ArrayList f17726g = new ArrayList();
+    public final ArrayList f17826e = new ArrayList();
+    public final a0.h f17827f = new a0.h();
+    public final ArrayList f17828g = new ArrayList();
     public final a0.h h = new a0.h();
-    public final a0.h f17727i = new a0.h();
-    public final ArrayList f17728j = new ArrayList();
-    public final int f17731m = k10.f24932t0;
-    public boolean f17734p = true;
-    public boolean f17737s = false;
+    public final a0.h f17829i = new a0.h();
+    public final ArrayList f17830j = new ArrayList();
+    public final int f17833m = i10.f24637t0;
+    public boolean f17836p = true;
+    public boolean f17839s = false;
 
     public z1(boolean z10) {
-        this.f17733o = z10;
+        this.f17835o = z10;
     }
 
     public final void a(CharSequence charSequence) {
@@ -45,38 +45,38 @@ public class z1 {
                     start++;
                 }
                 String charSequence2 = charSequence.subSequence(start, end).toString();
-                if (this.f17736r == null) {
-                    this.f17736r = new HashMap();
-                    this.f17735q = new ArrayList();
+                if (this.f17838r == null) {
+                    this.f17838r = new HashMap();
+                    this.f17837q = new ArrayList();
                 }
-                x1 x1Var = (x1) this.f17736r.get(charSequence2);
+                x1 x1Var = (x1) this.f17838r.get(charSequence2);
                 if (x1Var == 0) {
                     x1Var = new Object();
-                    x1Var.f17710a = charSequence2;
-                    this.f17736r.put(charSequence2, x1Var);
+                    x1Var.f17812a = charSequence2;
+                    this.f17838r.put(charSequence2, x1Var);
                 } else {
-                    this.f17735q.remove((Object) x1Var);
+                    this.f17837q.remove((Object) x1Var);
                 }
-                x1Var.f17711b = (int) (System.currentTimeMillis() / 1000);
-                this.f17735q.add(0, x1Var);
+                x1Var.f17813b = (int) (System.currentTimeMillis() / 1000);
+                this.f17837q.add(0, x1Var);
                 z10 = true;
             }
             if (z10) {
-                ur.a0(this.f17731m).f27214a.c(new hi.q1(25, this, this.f17735q));
+                tr.a0(this.f17833m).f27149a.c(new hi.c(29, this, this.f17837q));
             }
         }
     }
 
     public final void b() {
-        this.f17724e.clear();
-        this.f17725f.b();
+        this.f17826e.clear();
+        this.f17827f.b();
         this.d.clear();
     }
 
     public final void c() {
-        this.f17735q = new ArrayList();
-        this.f17736r = new HashMap();
-        ur.a0(this.f17731m).f27214a.c(new w1(this, 0));
+        this.f17837q = new ArrayList();
+        this.f17838r = new HashMap();
+        tr.a0(this.f17833m).f27149a.c(new w1(this, 0));
     }
 
     public boolean d(TLObject tLObject) {
@@ -84,7 +84,7 @@ public class z1 {
     }
 
     public final boolean e() {
-        if (this.f17722b.size() > 0) {
+        if (this.f17824b.size() > 0) {
             return true;
         }
         return false;
@@ -95,9 +95,9 @@ public class z1 {
         int size2;
         Object obj;
         TLRPC.Chat chat;
-        this.f17729k = arrayList;
-        this.f17730l = arrayList2;
-        a0.h hVar = this.f17725f;
+        this.f17831k = arrayList;
+        this.f17832l = arrayList2;
+        a0.h hVar = this.f17827f;
         if (hVar.m() != 0) {
             if (arrayList != null || arrayList2 != null) {
                 if (arrayList == null) {
@@ -118,40 +118,40 @@ public class z1 {
                         obj = arrayList2.get(i10 - size);
                     }
                     if (obj instanceof g0) {
-                        obj = ((g0) obj).f17454a;
+                        obj = ((g0) obj).f17556a;
                     }
-                    if (obj instanceof po0) {
-                        obj = ((po0) obj).f38601b;
+                    if (obj instanceof oo0) {
+                        obj = ((oo0) obj).f38237b;
                     }
                     boolean z10 = obj instanceof TLRPC.User;
                     ArrayList arrayList3 = this.d;
-                    ArrayList arrayList4 = this.f17724e;
+                    ArrayList arrayList4 = this.f17826e;
                     if (z10) {
                         TLRPC.User user = (TLRPC.User) obj;
-                        TLRPC.User user2 = (TLRPC.User) hVar.f(user.f28547id);
+                        TLRPC.User user2 = (TLRPC.User) hVar.f(user.f28641id);
                         if (user2 != null) {
                             arrayList4.remove(user2);
                             arrayList3.remove(user2);
-                            hVar.l(user2.f28547id);
+                            hVar.l(user2.f28641id);
                         }
-                        long j3 = user.f28547id;
+                        long j3 = user.f28641id;
                         a0.h hVar2 = this.h;
                         TLObject tLObject = (TLObject) hVar2.f(j3);
                         if (tLObject != null) {
-                            this.f17726g.remove(tLObject);
-                            hVar2.l(user.f28547id);
+                            this.f17828g.remove(tLObject);
+                            hVar2.l(user.f28641id);
                         }
-                        long j10 = user.f28547id;
-                        a0.h hVar3 = this.f17727i;
+                        long j10 = user.f28641id;
+                        a0.h hVar3 = this.f17829i;
                         Object f10 = hVar3.f(j10);
                         if (f10 != null) {
-                            this.f17728j.remove(f10);
-                            hVar3.l(user.f28547id);
+                            this.f17830j.remove(f10);
+                            hVar3.l(user.f28641id);
                         }
-                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) hVar.f(-((TLRPC.Chat) obj).f28398id)) != null) {
+                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) hVar.f(-((TLRPC.Chat) obj).f28492id)) != null) {
                         arrayList4.remove(chat);
                         arrayList3.remove(chat);
-                        hVar.l(-chat.f28398id);
+                        hVar.l(-chat.f28492id);
                     }
                 }
             }
@@ -167,16 +167,16 @@ public class z1 {
     }
 
     public final void i() {
-        a0.h hVar = this.f17725f;
+        a0.h hVar = this.f17827f;
         if (hVar.m() != 0) {
             a0.h hVar2 = this.h;
             int m10 = hVar2.m();
             for (int i7 = 0; i7 < m10; i7++) {
                 TLRPC.User user = (TLRPC.User) hVar.f(hVar2.j(i7));
                 if (user != null) {
-                    this.f17724e.remove(user);
+                    this.f17826e.remove(user);
                     this.d.remove(user);
-                    hVar.l(user.f28547id);
+                    hVar.l(user.f28641id);
                 }
             }
         }

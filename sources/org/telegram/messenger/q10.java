@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 public interface q10 {
-    Object run();
+    Object d(Number number, Object obj);
 }

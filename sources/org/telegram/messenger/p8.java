@@ -1,9 +1,10 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class p8 {
-    public TLRPC.InputFileLocation f26252a;
-    public Object[] f26253b;
-    public String f26254c;
-    public boolean d;
+    public final String f26302a;
+    public final String f26303b;
+
+    public p8(String str, String str2) {
+        this.f26302a = str;
+        this.f26303b = str2;
+    }
 }

@@ -1,46 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class y01 extends Drawable {
-    public final Paint f42274a = new Paint(1);
-    public final RectF f42275b = new RectF();
-    public final int f42276c;
-    public final g11 d;
+import android.widget.EditText;
+import androidx.recyclerview.widget.RecyclerView;
+public final class y01 extends v4.u0 {
+    public final int f42274a;
+    public final long f42275b;
+    public final f11 f42276c;
 
-    public y01(g11 g11Var, int i7) {
-        this.d = g11Var;
-        this.f42276c = i7;
+    public y01(f11 f11Var, int i7, long j3) {
+        this.f42276c = f11Var;
+        this.f42274a = i7;
+        this.f42275b = j3;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f42275b;
-        rectF.set(bounds);
-        int i7 = this.f42276c;
-        rectF.inset(i7, i7);
-        float height = rectF.height() / 2.0f;
-        int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.O5, this.d.f35334e);
-        Paint paint = this.f42274a;
-        paint.setColor(w02);
-        canvas.drawRoundRect(rectF, height, height, paint);
+    public final void a(RecyclerView recyclerView, int i7) {
+        EditText editText = this.f42276c.f34970w;
+        if (i7 == 1 && editText.hasFocus()) {
+            org.telegram.messenger.g0.v1(editText);
+            editText.clearFocus();
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        f11 f11Var = this.f42276c;
+        f11Var.o();
+        v4.c0 c0Var = (v4.c0) recyclerView.getLayoutManager();
+        if (c0Var != null && c0Var.N0() >= f11Var.f34969s.f33317c.size() - 3) {
+            if (f11Var.j()) {
+                f11Var.k();
+                return;
+            }
+            boolean z10 = f11Var.d;
+            int i11 = this.f42274a;
+            if (z10) {
+                org.telegram.messenger.mp.u1(i11).I1().g(false);
+                return;
+            }
+            org.telegram.messenger.d00 d00Var = org.telegram.messenger.mp.u1(i11).f25864t7;
+            long j3 = -this.f42275b;
+            if (!d00Var.e(j3)) {
+                d00Var.o(j3);
+            }
+        }
     }
 }

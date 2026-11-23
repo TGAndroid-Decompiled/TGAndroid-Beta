@@ -5,9 +5,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class n3 extends FrameLayout {
-    public final TextView f50063a;
-    public final TextView f50064b;
-    public boolean f50065c;
+    public final TextView f50180a;
+    public final TextView f50181b;
+    public boolean f50182c;
     public final boolean d;
 
     public n3(g4 g4Var, Context context, boolean z10) {
@@ -16,18 +16,18 @@ public final class n3 extends FrameLayout {
         this.d = z10;
         setTag(90);
         TextView textView = new TextView(context);
-        this.f50063a = textView;
+        this.f50180a = textView;
         if (z10) {
             i7 = 2131746722;
         } else {
             i7 = 2131746723;
         }
-        org.telegram.messenger.o10.l(12.0f, i7, 1, textView, null);
+        org.telegram.messenger.m10.l(12.0f, i7, 1, textView, null);
         textView.setGravity(17);
         textView.setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);
         addView(textView, c8.na.d(-1, 34.0f, 51, 0.0f, 10.0f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f50064b = textView2;
+        this.f50181b = textView2;
         textView2.setTextSize(1, 12.0f);
         textView2.setGravity(19);
         textView2.setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);

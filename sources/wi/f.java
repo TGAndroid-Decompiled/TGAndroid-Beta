@@ -2,25 +2,25 @@ package wi;
 
 import java.util.ArrayList;
 public final class f implements r1.c {
-    public final ArrayList f59951a;
-    public final og.b f59952b;
+    public final ArrayList f60069a;
+    public final og.b f60070b;
 
     public f(og.b bVar, ArrayList arrayList) {
-        this.f59952b = bVar;
-        this.f59951a = arrayList;
+        this.f60070b = bVar;
+        this.f60069a = arrayList;
     }
 
     @Override
     public final void a(r1.g gVar, boolean z10, float f10, float f11) {
-        ArrayList arrayList = gVar.f56331k;
+        ArrayList arrayList = gVar.f56444k;
         int indexOf = arrayList.indexOf(this);
         if (indexOf >= 0) {
             arrayList.set(indexOf, null);
         }
-        ArrayList arrayList2 = this.f59951a;
+        ArrayList arrayList2 = this.f60069a;
         arrayList2.add(gVar);
         if (arrayList2.size() == 2) {
-            this.f59952b.b();
+            this.f60070b.b();
         }
     }
 }

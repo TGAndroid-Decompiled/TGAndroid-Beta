@@ -3,16 +3,16 @@ package e8;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.r;
 public final class d implements r {
-    public final Status f10867a;
-    public final p8.e f10868b;
+    public final Status f10865a;
+    public final p8.e f10866b;
 
     public d(Status status, p8.e eVar) {
-        this.f10867a = status;
-        this.f10868b = eVar;
+        this.f10865a = status;
+        this.f10866b = eVar;
     }
 
     @Override
     public final Status a() {
-        return this.f10867a;
+        return this.f10865a;
     }
 }

@@ -12,13 +12,13 @@ public final class o implements d {
     }
 
     @Override
-    public final void f() {
+    public final void b() {
         aa.g.b(this.f5134b, "There was a problem closing the Crashlytics log file.");
         this.f5134b = null;
     }
 
     @Override
-    public final java.lang.String n() {
-        throw new UnsupportedOperationException("Method not decompiled: ca.o.n():java.lang.String");
+    public final java.lang.String l() {
+        throw new UnsupportedOperationException("Method not decompiled: ca.o.l():java.lang.String");
     }
 }

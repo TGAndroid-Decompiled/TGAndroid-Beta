@@ -13,10 +13,10 @@ import android.view.MotionEvent;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public abstract class er extends EditTextBoldCursor {
-    public static final org.telegram.ui.Components.xt0 d2;
-    public static final org.telegram.ui.Components.xt0 f47326e2;
-    public static final org.telegram.ui.Components.xt0 f47327f2;
-    public static final org.telegram.ui.Components.xt0 f47328g2;
+    public static final org.telegram.ui.Components.wt0 d2;
+    public static final org.telegram.ui.Components.wt0 f47606e2;
+    public static final org.telegram.ui.Components.wt0 f47607f2;
+    public static final org.telegram.ui.Components.wt0 f47608g2;
     public float M1;
     public float N1;
     public float O1;
@@ -31,36 +31,36 @@ public abstract class er extends EditTextBoldCursor {
     public boolean X1;
     public Bitmap Y1;
     public Canvas Z1;
-    public ValueAnimator f47329a2;
-    public ValueAnimator f47330b2;
-    public boolean f47331c2;
+    public ValueAnimator f47609a2;
+    public ValueAnimator f47610b2;
+    public boolean f47611c2;
 
     static {
-        org.telegram.ui.Components.xt0 xt0Var = new org.telegram.ui.Components.xt0(new cr(0), new cr(1));
-        xt0Var.f42195c = 100.0f;
-        d2 = xt0Var;
-        org.telegram.ui.Components.xt0 xt0Var2 = new org.telegram.ui.Components.xt0(new cr(2), new cr(3));
-        xt0Var2.f42195c = 100.0f;
-        f47326e2 = xt0Var2;
-        org.telegram.ui.Components.xt0 xt0Var3 = new org.telegram.ui.Components.xt0(new cr(4), new cr(5));
-        xt0Var3.f42195c = 100.0f;
-        f47327f2 = xt0Var3;
-        org.telegram.ui.Components.xt0 xt0Var4 = new org.telegram.ui.Components.xt0(new cr(6), new cr(7));
-        xt0Var4.f42195c = 100.0f;
-        f47328g2 = xt0Var4;
+        org.telegram.ui.Components.wt0 wt0Var = new org.telegram.ui.Components.wt0(new cr(0), new cr(1));
+        wt0Var.f41732c = 100.0f;
+        d2 = wt0Var;
+        org.telegram.ui.Components.wt0 wt0Var2 = new org.telegram.ui.Components.wt0(new cr(2), new cr(3));
+        wt0Var2.f41732c = 100.0f;
+        f47606e2 = wt0Var2;
+        org.telegram.ui.Components.wt0 wt0Var3 = new org.telegram.ui.Components.wt0(new cr(4), new cr(5));
+        wt0Var3.f41732c = 100.0f;
+        f47607f2 = wt0Var3;
+        org.telegram.ui.Components.wt0 wt0Var4 = new org.telegram.ui.Components.wt0(new cr(6), new cr(7));
+        wt0Var4.f41732c = 100.0f;
+        f47608g2 = wt0Var4;
     }
 
     public static void C(r1.g gVar, float f10) {
-        r1.h hVar = gVar.f56333m;
-        if (hVar != null && f10 == ((float) hVar.f56341i)) {
+        r1.h hVar = gVar.f56446m;
+        if (hVar != null && f10 == ((float) hVar.f56454i)) {
             return;
         }
         gVar.d();
         r1.h hVar2 = new r1.h(f10);
         hVar2.b(400.0f);
         hVar2.a(1.0f);
-        hVar2.f56341i = f10;
-        gVar.f56333m = hVar2;
+        hVar2.f56454i = f10;
+        gVar.f56446m = hVar2;
         gVar.h();
     }
 
@@ -78,11 +78,11 @@ public abstract class er extends EditTextBoldCursor {
         gVar.d();
         if (f10 != 0.0f) {
             r1.h p10 = org.telegram.ui.Cells.c0.p(1.0f, 500.0f, 0.75f);
-            p10.f56341i = 100.0f;
-            gVar.f56333m = p10;
-            gVar.f56324b = 100.0f;
-            gVar.f56325c = true;
-            gVar.f56323a = 4000.0f;
+            p10.f56454i = 100.0f;
+            gVar.f56446m = p10;
+            gVar.f56437b = 100.0f;
+            gVar.f56438c = true;
+            gVar.f56436a = 4000.0f;
             gVar.h();
             return;
         }
@@ -109,10 +109,10 @@ public abstract class er extends EditTextBoldCursor {
             this.Z1.restore();
             this.W1 = 0.0f;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f47330b2 = ofFloat;
+            this.f47610b2 = ofFloat;
             ofFloat.addUpdateListener(new a3(this, 7));
-            this.f47330b2.setDuration(220L);
-            this.f47330b2.start();
+            this.f47610b2.setDuration(220L);
+            this.f47610b2.start();
         }
     }
 
@@ -154,7 +154,7 @@ public abstract class er extends EditTextBoldCursor {
         String str;
         int i7;
         if (motionEvent.getAction() == 0) {
-            this.f47331c2 = true;
+            this.f47611c2 = true;
             motionEvent.getX();
             motionEvent.getY();
         }
@@ -164,7 +164,7 @@ public abstract class er extends EditTextBoldCursor {
             } else {
                 brVar = null;
             }
-            if (motionEvent.getAction() == 1 && this.f47331c2) {
+            if (motionEvent.getAction() == 1 && this.f47611c2) {
                 if (isFocused() && brVar != null) {
                     ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(ClipboardManager.class);
                     if (clipboardManager == null || clipboardManager.getPrimaryClipDescription() == null || (primaryClipDescription = clipboardManager.getPrimaryClipDescription()) == null) {
@@ -193,9 +193,9 @@ public abstract class er extends EditTextBoldCursor {
                     org.telegram.messenger.g0.I3(this);
                 }
             }
-            this.f47331c2 = false;
+            this.f47611c2 = false;
         }
-        return this.f47331c2;
+        return this.f47611c2;
     }
 
     @Override

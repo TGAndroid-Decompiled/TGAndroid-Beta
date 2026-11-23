@@ -7,30 +7,30 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 public final class zd0 implements ViewSwitcher.ViewFactory {
-    public final int f54495a;
-    public final Object f54496b;
+    public final int f54595a;
+    public final Object f54596b;
 
     public zd0(Object obj, int i7) {
-        this.f54495a = i7;
-        this.f54496b = obj;
+        this.f54595a = i7;
+        this.f54596b = obj;
     }
 
     @Override
     public final View makeView() {
         int i7;
-        int i10 = this.f54495a;
-        Object obj = this.f54496b;
+        int i10 = this.f54595a;
+        Object obj = this.f54596b;
         switch (i10) {
             case 0:
                 TextView textView = new TextView((Context) obj);
                 textView.setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f));
                 textView.setTextSize(1, 16.0f);
-                org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.G6, null);
-                org.telegram.ui.ActionBar.t6.D(textView, org.telegram.ui.ActionBar.m6.H6, null);
+                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.G6, null);
+                org.telegram.ui.ActionBar.u6.D(textView, org.telegram.ui.ActionBar.n6.H6, null);
                 textView.setMaxLines(1);
                 textView.setSingleLine(true);
                 textView.setEllipsize(TextUtils.TruncateAt.END);
-                if (org.telegram.messenger.hd.f24408a0) {
+                if (org.telegram.messenger.gd.f24314a0) {
                     i7 = 5;
                 } else {
                     i7 = 3;
@@ -39,15 +39,15 @@ public final class zd0 implements ViewSwitcher.ViewFactory {
                 return textView;
             case 1:
                 TextView textView2 = new TextView((Context) obj);
-                org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.D6, null);
+                org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.D6, null);
                 textView2.setGravity(1);
                 textView2.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
                 textView2.setTextSize(1, 15.0f);
                 return textView2;
             default:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                Drawable[] drawableArr = PhotoViewer.Z8;
-                return new mq0(photoViewer.F, photoViewer.U1, photoViewer.R, new pn0(photoViewer, 0), new ud0(photoViewer, 1));
+                Drawable[] drawableArr = PhotoViewer.f43272f9;
+                return new lq0(photoViewer.F, photoViewer.U1, photoViewer.R, new rn0(photoViewer, 0), new td0(photoViewer, 1));
         }
     }
 }

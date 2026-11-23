@@ -65,7 +65,7 @@ public final class c {
                 this.f5314c = width - 0.1f;
             }
         }
-        g5.a aVar = Utilities.f22773c;
+        g5.a aVar = Utilities.f22876c;
         this.f5313b = e2.c(Math.abs(((int) aVar.nextLong()) % 100), 100.0f, rect.height() * 0.1f, rect.height() * 0.45f);
         if (z10) {
             float c12 = e2.c(Math.abs(((int) aVar.nextLong()) % 100), 100.0f, rect.width() * 0.1f, rect.width() * 0.05f);
@@ -92,12 +92,12 @@ public final class c {
         Rect rect = dVar.f5326b;
         if (dVar.f5329f) {
             float width = rect.width() * 1.5f;
-            return e2.c(Math.abs(((int) Utilities.f22773c.nextLong()) % 100), 100.0f, width, rect.width() * (-0.25f));
+            return e2.c(Math.abs(((int) Utilities.f22876c.nextLong()) % 100), 100.0f, width, rect.width() * (-0.25f));
         }
-        return (Math.abs(((int) Utilities.f22773c.nextLong()) % 100) / 100.0f) * rect.width();
+        return (Math.abs(((int) Utilities.f22876c.nextLong()) % 100) / 100.0f) * rect.width();
     }
 
     public final float c() {
-        return (Math.abs(((int) Utilities.f22773c.nextLong()) % 100) / 100.0f) * this.f5321l.f5326b.height() * 0.5f;
+        return (Math.abs(((int) Utilities.f22876c.nextLong()) % 100) / 100.0f) * this.f5321l.f5326b.height() * 0.5f;
     }
 }

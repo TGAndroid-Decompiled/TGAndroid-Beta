@@ -37,7 +37,7 @@ import java.util.concurrent.atomic.AtomicMarkableReference;
 import m.o3;
 import org.telegram.messenger.g0;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Dictation.DictationAsr;
 public final class f implements Runnable {
     public final int f81a;
@@ -71,35 +71,35 @@ public final class f implements Runnable {
         androidx.emoji2.text.r rVar = (androidx.emoji2.text.r) this.f82b;
         synchronized (rVar.d) {
             try {
-                if (rVar.f2247n == null) {
+                if (rVar.f2248n == null) {
                     return;
                 }
                 try {
                     o0.h d = rVar.d();
-                    int i7 = d.f21573e;
+                    int i7 = d.f21672e;
                     if (i7 == 2) {
                         synchronized (rVar.d) {
                         }
                     }
                     if (i7 == 0) {
-                        int i10 = n0.g.f21050a;
+                        int i10 = n0.g.f21146a;
                         Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
-                        qb.a aVar = rVar.f2244c;
-                        Context context = rVar.f2242a;
+                        qb.a aVar = rVar.f2245c;
+                        Context context = rVar.f2243a;
                         aVar.getClass();
                         o0.h[] hVarArr = {d};
-                        n0 n0Var = i0.e.f15889a;
+                        n0 n0Var = i0.e.f15984a;
                         le.a("TypefaceCompat.createFromFontInfo");
-                        Typeface b10 = i0.e.f15889a.b(context, hVarArr, 0);
+                        Typeface b10 = i0.e.f15984a.b(context, hVarArr, 0);
                         Trace.endSection();
-                        MappedByteBuffer e10 = o0.e(rVar.f2242a, d.f21570a);
+                        MappedByteBuffer e10 = o0.e(rVar.f2243a, d.f21669a);
                         if (e10 != null && b10 != null) {
                             Trace.beginSection("EmojiCompat.MetadataRepo.create");
                             c0 c0Var = new c0(b10, w6.a(e10));
                             Trace.endSection();
                             Trace.endSection();
                             synchronized (rVar.d) {
-                                v6 v6Var = rVar.f2247n;
+                                v6 v6Var = rVar.f2248n;
                                 if (v6Var != null) {
                                     v6Var.b(c0Var);
                                 }
@@ -113,7 +113,7 @@ public final class f implements Runnable {
                 } catch (Throwable th2) {
                     synchronized (rVar.d) {
                         try {
-                            v6 v6Var2 = rVar.f2247n;
+                            v6 v6Var2 = rVar.f2248n;
                             if (v6Var2 != null) {
                                 v6Var2.a(th2);
                             }
@@ -147,7 +147,7 @@ public final class f implements Runnable {
                 ((ah.c) this.f82b).f();
                 return;
             case 4:
-                ((ai.b) this.f82b).c(null, null);
+                ((ai.b) this.f82b).b(null, null);
                 return;
             case 5:
                 b();
@@ -156,17 +156,17 @@ public final class f implements Runnable {
                 g0.I3((EditText) this.f82b);
                 return;
             case 7:
-                DictationAsr.e0((ai.p) ((a0) this.f82b).f1675b, new Object());
+                DictationAsr.i0((ai.q) ((a0) this.f82b).f1676b, false, new Object());
                 return;
             case 8:
                 ((androidx.activity.l) this.f82b).invalidateOptionsMenu();
                 return;
             case 9:
                 androidx.activity.k kVar = (androidx.activity.k) this.f82b;
-                Runnable runnable = kVar.f1742b;
+                Runnable runnable = kVar.f1743b;
                 if (runnable != null) {
                     runnable.run();
-                    kVar.f1742b = null;
+                    kVar.f1743b = null;
                     return;
                 }
                 return;
@@ -183,7 +183,7 @@ public final class f implements Runnable {
                 this$0.a(null);
                 return;
             case 13:
-                Iterator it = ((j0) this.f82b).f2327n.iterator();
+                Iterator it = ((j0) this.f82b).f2328n.iterator();
                 if (!it.hasNext()) {
                     return;
                 }
@@ -191,12 +191,12 @@ public final class f implements Runnable {
                 throw new ClassCastException();
             case 14:
                 e0 e0Var = (e0) this.f82b;
-                androidx.lifecycle.v vVar = e0Var.f2472f;
-                if (e0Var.f2469b == 0) {
-                    e0Var.f2470c = true;
+                androidx.lifecycle.v vVar = e0Var.f2473f;
+                if (e0Var.f2470b == 0) {
+                    e0Var.f2471c = true;
                     vVar.e(androidx.lifecycle.m.ON_PAUSE);
                 }
-                if (e0Var.f2468a == 0 && e0Var.f2470c) {
+                if (e0Var.f2469a == 0 && e0Var.f2471c) {
                     vVar.e(androidx.lifecycle.m.ON_STOP);
                     e0Var.d = true;
                     return;
@@ -215,7 +215,7 @@ public final class f implements Runnable {
                 if (j3 > 0) {
                     long j10 = j3 - 1;
                     rVar.f3299b = j10;
-                    rVar.f3298a.i(j10);
+                    rVar.f3298a.g(j10);
                 }
                 if (rVar.f3299b <= 0) {
                     rVar.f3300c = false;
@@ -249,9 +249,9 @@ public final class f implements Runnable {
                 }
                 return;
             case 20:
-                c51 c51Var = ((p3) this.f82b).U1;
-                if (c51Var != null) {
-                    c51Var.O(false);
+                b51 b51Var = ((p3) this.f82b).U1;
+                if (b51Var != null) {
+                    b51Var.O(false);
                     return;
                 }
                 return;
@@ -285,16 +285,16 @@ public final class f implements Runnable {
                 ((a8) this.f82b).f3363c.a(Boolean.TRUE);
                 return;
             case 28:
-                ((c1.f) this.f82b).f().a(new w0.h(2, "Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context."));
+                ((c1.f) this.f82b).f().T(new w0.h(2, "Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context."));
                 return;
             default:
                 o3 o3Var = (o3) this.f82b;
-                synchronized (((AtomicMarkableReference) o3Var.f20160g)) {
+                synchronized (((AtomicMarkableReference) o3Var.h)) {
                     try {
                         z10 = false;
-                        if (((AtomicMarkableReference) o3Var.f20160g).isMarked()) {
-                            str = (String) ((AtomicMarkableReference) o3Var.f20160g).getReference();
-                            ((AtomicMarkableReference) o3Var.f20160g).set(str, false);
+                        if (((AtomicMarkableReference) o3Var.h).isMarked()) {
+                            str = (String) ((AtomicMarkableReference) o3Var.h).getReference();
+                            ((AtomicMarkableReference) o3Var.h).set(str, false);
                             z10 = true;
                         } else {
                             str = null;
@@ -304,7 +304,7 @@ public final class f implements Runnable {
                     }
                 }
                 if (z10) {
-                    ((ca.h) o3Var.f20155a).i((String) o3Var.f20157c, str);
+                    ((ca.h) o3Var.f20252a).i((String) o3Var.f20254c, str);
                     return;
                 }
                 return;

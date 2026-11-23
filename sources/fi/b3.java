@@ -12,12 +12,7 @@ public final class b3 implements wi0 {
     }
 
     @Override
-    public final boolean E() {
-        return false;
-    }
-
-    @Override
-    public final void g(View view, ch.p0 p0Var, boolean z10, boolean z11) {
+    public final void h(View view, ch.p0 p0Var, boolean z10, boolean z11) {
         di.a8 a8Var = new di.a8(this, p0Var, view, 2);
         if (!z10) {
             this.f11759a.l0(a8Var);
@@ -27,21 +22,26 @@ public final class b3 implements wi0 {
     }
 
     @Override
-    public final boolean o() {
+    public final boolean l() {
         return true;
     }
 
     @Override
-    public final boolean q() {
+    public final boolean n() {
         ((w8) this.f11759a.A1).b(false);
         return false;
     }
 
     @Override
-    public final void z() {
+    public final boolean t() {
+        return false;
     }
 
     @Override
-    public final void x(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
+    public final void r() {
+    }
+
+    @Override
+    public final void q(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
     }
 }

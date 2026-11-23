@@ -1,6 +1,6 @@
 package bi;
 
-import org.telegram.messenger.y10;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.TLObject;
 public final class q2 implements Runnable {
     public final int f3989a;
@@ -10,13 +10,13 @@ public final class q2 implements Runnable {
     public final Object f3992e;
     public final Object f3993f;
 
-    public q2(di.e0 e0Var, org.telegram.ui.ActionBar.t1 t1Var, TLObject tLObject, long j3, y10 y10Var) {
+    public q2(di.e0 e0Var, org.telegram.ui.ActionBar.t1 t1Var, TLObject tLObject, long j3, w10 w10Var) {
         this.f3989a = 1;
         this.d = e0Var;
         this.f3992e = t1Var;
         this.f3993f = tLObject;
         this.f3990b = j3;
-        this.f3991c = y10Var;
+        this.f3991c = w10Var;
     }
 
     @Override

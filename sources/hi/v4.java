@@ -1,44 +1,31 @@
 package hi;
-public final class v4 implements tg.m1 {
-    public final int f15523a;
-    public final Object f15524b;
-    public final float f15525c;
 
-    public v4(Object obj, float f10, int i7) {
-        this.f15523a = i7;
-        this.f15524b = obj;
-        this.f15525c = f10;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
+public final class v4 implements PopupWindow.OnDismissListener {
+    public final int f15551a;
+    public final FrameLayout f15552b;
+
+    public v4(int i7, FrameLayout frameLayout) {
+        this.f15551a = i7;
+        this.f15552b = frameLayout;
     }
 
     @Override
-    public float get() {
-        float baseFontSize;
-        float f10;
-        switch (this.f15523a) {
+    public final void onDismiss() {
+        switch (this.f15551a) {
             case 0:
-                baseFontSize = ((tg.n2) this.f15524b).getBaseFontSize();
-                f10 = this.f15525c;
-                break;
-            default:
-                baseFontSize = ((tg.n2) this.f15524b).getBaseFontSize();
-                f10 = this.f15525c;
-                break;
-        }
-        return baseFontSize / f10;
-    }
-
-    @Override
-    public void y1(float f10) {
-        switch (this.f15523a) {
-            case 0:
-                tg.n2 n2Var = (tg.n2) this.f15524b;
-                n2Var.A0 = true;
-                n2Var.setBaseFontSize((int) (this.f15525c * f10));
+                ((v5) this.f15552b).f15589s1.d();
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.n0 n0Var = ((org.telegram.ui.ActionBar.q0) this.f15552b).R;
+                if (n0Var != null) {
+                    n0Var.a();
+                    return;
+                }
                 return;
             default:
-                tg.n2 n2Var2 = (tg.n2) this.f15524b;
-                n2Var2.A0 = true;
-                n2Var2.setBaseFontSize((int) (this.f15525c * f10));
+                ((tg.l0) this.f15552b).C1.d();
                 return;
         }
     }

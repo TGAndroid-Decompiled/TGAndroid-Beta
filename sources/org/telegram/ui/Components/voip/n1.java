@@ -1,69 +1,89 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class n1 extends AnimatorListenerAdapter {
-    public final int f41169a;
-    public final float f41170b;
-    public final float f41171c;
-    public final Object d;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class n1 extends FrameLayout {
+    public int f41084a;
+    public int f41085b;
+    public int f41086c;
+    public int d;
+    public boolean f41087e;
 
-    public n1(Object obj, float f10, float f11, int i7) {
-        this.f41169a = i7;
-        this.d = obj;
-        this.f41170b = f10;
-        this.f41171c = f11;
+    public n1(Context context) {
+        super(context);
+        this.d = 68;
+        this.f41087e = true;
     }
 
-    public void a() {
-        te.c cVar = (te.c) this.d;
-        if (cVar.h) {
-            cVar.d(this.f41170b + this.f41171c, 1.0f);
-            if (cVar.h) {
-                cVar.h = false;
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        int i13;
+        if (this.f41087e) {
+            int childCount = (int) (((getChildCount() - this.f41084a) / 2.0f) * ((this.f41086c * 2) + this.f41085b));
+            for (int i14 = 0; i14 < getChildCount(); i14++) {
+                View childAt = getChildAt(i14);
+                if (childAt.getVisibility() != 8) {
+                    int i15 = this.f41086c;
+                    childAt.layout(childCount + i15, 0, childAt.getMeasuredWidth() + i15 + childCount, childAt.getMeasuredHeight());
+                    childCount = childAt.getMeasuredWidth() + (this.f41086c * 2) + childCount;
+                }
             }
-            cVar.f57668b.D(cVar.f57671f, cVar.f57667a);
+            return;
+        }
+        if (this.f41084a > 0) {
+            i13 = (getMeasuredWidth() - this.f41085b) / (this.f41084a - 1);
+        } else {
+            i13 = 0;
+        }
+        int i16 = 0;
+        for (int i17 = 0; i17 < getChildCount(); i17++) {
+            View childAt2 = getChildAt(i17);
+            if (childAt2.getVisibility() != 8) {
+                int i18 = i16 * i13;
+                childAt2.layout(i18, 0, childAt2.getMeasuredWidth() + i18, childAt2.getMeasuredHeight());
+                i16++;
+            }
         }
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f41169a) {
-            case 1:
-                a();
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final void onMeasure(int i7, int i10) {
+        int size = View.MeasureSpec.getSize(i7);
+        this.f41084a = 0;
+        for (int i11 = 0; i11 < getChildCount(); i11++) {
+            if (getChildAt(i11).getVisibility() != 8) {
+                this.f41084a++;
+            }
         }
+        this.f41085b = org.telegram.messenger.g0.L(this.d);
+        this.f41086c = ((size / getChildCount()) - this.f41085b) / 2;
+        int i12 = 0;
+        for (int i13 = 0; i13 < getChildCount(); i13++) {
+            if (getChildAt(i13).getVisibility() != 8) {
+                getChildAt(i13).measure(View.MeasureSpec.makeMeasureSpec(this.f41085b, 1073741824), i10);
+                if (getChildAt(i13).getMeasuredHeight() > i12) {
+                    i12 = getChildAt(i13).getMeasuredHeight();
+                }
+            }
+        }
+        setMeasuredDimension(size, Math.max(i12, org.telegram.messenger.g0.L(80.0f)));
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f41169a) {
-            case 0:
-                q1 q1Var = (q1) this.d;
-                q1Var.P = false;
-                q1Var.N = true;
-                q1Var.f41238a0 = this.f41170b;
-                q1Var.f41240b0 = this.f41171c;
-                q1Var.requestLayout();
-                return;
-            default:
-                a();
-                return;
-        }
+    public void setChildSize(int i7) {
+        this.d = i7;
     }
 
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f41169a) {
-            case 1:
-                ((te.c) this.d).getClass();
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public void setUseStartPadding(boolean z10) {
+        this.f41087e = z10;
     }
 }

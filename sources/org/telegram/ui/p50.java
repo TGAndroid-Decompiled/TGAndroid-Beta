@@ -10,23 +10,23 @@ public abstract class p50 {
     public int H;
     public org.telegram.ui.ActionBar.g1 I;
     public org.telegram.ui.ActionBar.w2 J;
-    public org.telegram.ui.Components.n80 f50725b;
+    public org.telegram.ui.Components.k80 f50839b;
     public z2 d;
-    public int f50727e;
-    public View f50728f;
+    public int f50841e;
+    public View f50842f;
     public boolean h;
-    public TLRPC.Chat f50729n;
-    public boolean f50730r;
-    public View f50731s;
-    public org.telegram.ui.Components.q80 f50732w;
-    public VideoPlayerHolderBase f50733x;
-    public v2 f50734y;
-    public int f50724a = 0;
-    public final n2.o0 f50726c = new n2.o0();
+    public TLRPC.Chat f50843n;
+    public boolean f50844r;
+    public View f50845s;
+    public org.telegram.ui.Components.n80 f50846w;
+    public VideoPlayerHolderBase f50847x;
+    public v2 f50848y;
+    public int f50838a = 0;
+    public final n2.p0 f50840c = new n2.p0();
     public final a0.h E = new a0.h();
     public ArrayList F = new ArrayList();
 
-    public abstract void a(e4 e4Var, org.telegram.ui.Components.bz0 bz0Var);
+    public abstract void a(e4 e4Var, org.telegram.ui.Components.az0 az0Var);
 
     public abstract boolean b(TL_iv.PageBlock pageBlock, e4 e4Var);
 }

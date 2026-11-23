@@ -1,71 +1,47 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-public final class k20 extends org.telegram.ui.Components.yt {
-    public final f40 W;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class k20 implements TextWatcher {
+    public final e40 f49283a;
 
-    public k20(f40 f40Var, LaunchActivity launchActivity, l30 l30Var, org.telegram.ui.ActionBar.g2 g2Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(launchActivity, l30Var, g2Var, 5, true, h6Var);
-        this.W = f40Var;
+    public k20(e40 e40Var) {
+        this.f49283a = e40Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == getEditText()) {
-            canvas.save();
-            f40 f40Var = this.W;
-            f40Var.C1.getEditText().setTranslationY(view.getMeasuredHeight() - f40Var.A5.f57671f);
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void f() {
-        super.f();
-        org.telegram.ui.Components.ty emojiView = getEmojiView();
-        if (emojiView != null) {
-            emojiView.f40136x0 = false;
-            emojiView.f40142y2 = false;
-            emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(this.W.f30142b.getPaddingBottom());
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        te.c cVar = this.W.A5;
-        if (cVar.f57671f == 0.0f) {
-            cVar.c(getMeasuredHeight());
-        } else {
-            cVar.a(getMeasuredHeight());
-        }
-    }
-
-    @Override
-    public final void p() {
+    public final void afterTextChanged(Editable editable) {
+        String str;
         int i7;
-        rh.h hVar = this.W.B3;
-        if (this.f42498e) {
-            i7 = Math.max(0, getEmojiPadding());
-        } else if (this.O) {
-            i7 = Math.max(0, getKeyboardHeight());
+        e40 e40Var = this.f49283a;
+        e40Var.f47433z5.a(TextUtils.isEmpty(editable), true);
+        int codePointCount = Character.codePointCount(editable, 0, editable.length());
+        int i10 = e40Var.Y1;
+        if (codePointCount + 25 > i10) {
+            str = "" + (i10 - codePointCount);
         } else {
-            i7 = 0;
+            str = null;
         }
-        if (i7 > 0) {
-            hVar.g(i7);
+        e40Var.H1.a();
+        e40Var.H1.setText(str);
+        org.telegram.ui.Components.n6 n6Var = e40Var.H1;
+        if (codePointCount >= i10) {
+            i7 = -1280137;
         } else {
-            hVar.i(false);
+            i7 = -1;
+        }
+        n6Var.setTextColor(i7);
+        if (codePointCount > i10) {
+            org.telegram.messenger.q2.APP_ERROR.a();
         }
     }
 
     @Override
-    public final void y() {
-        this.W.f30142b.requestApplyInsets();
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

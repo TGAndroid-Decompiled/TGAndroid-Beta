@@ -5,51 +5,51 @@ import android.net.Uri;
 import java.io.OutputStreamWriter;
 import org.telegram.ui.LaunchActivity;
 public final class n4 implements Runnable {
-    public final int f25687a;
-    public final String f25688b;
+    public final int f25977a;
+    public final String f25978b;
 
     public n4(String str, int i7) {
-        this.f25687a = i7;
-        this.f25688b = str;
+        this.f25977a = i7;
+        this.f25978b = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f25687a) {
+        switch (this.f25977a) {
             case 0:
-                Uri parse = Uri.parse(this.f25688b);
+                Uri parse = Uri.parse(this.f25978b);
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("last_time_contacted", Long.valueOf(System.currentTimeMillis()));
-                t0.f26895b.getContentResolver().update(parse, contentValues, null, null);
+                t0.f27013b.getContentResolver().update(parse, contentValues, null, null);
                 return;
             case 1:
-                String str = this.f25688b;
+                String str = this.f25978b;
                 try {
-                    OutputStreamWriter outputStreamWriter = a8.j().f22848a;
-                    outputStreamWriter.write(a8.j().f22849b.format(System.currentTimeMillis()) + " W/tmessages: " + str + "\n");
-                    a8.j().f22848a.flush();
+                    OutputStreamWriter outputStreamWriter = a8.j().f22952a;
+                    outputStreamWriter.write(a8.j().f22953b.format(System.currentTimeMillis()) + " W/tmessages: " + str + "\n");
+                    a8.j().f22952a.flush();
                     return;
                 } catch (Exception e10) {
                     e10.printStackTrace();
                     return;
                 }
             case 2:
-                String str2 = this.f25688b;
+                String str2 = this.f25978b;
                 try {
-                    OutputStreamWriter outputStreamWriter2 = a8.j().f22848a;
-                    outputStreamWriter2.write(a8.j().f22849b.format(System.currentTimeMillis()) + " E/tmessages: " + str2 + "\n");
-                    a8.j().f22848a.flush();
+                    OutputStreamWriter outputStreamWriter2 = a8.j().f22952a;
+                    outputStreamWriter2.write(a8.j().f22953b.format(System.currentTimeMillis()) + " E/tmessages: " + str2 + "\n");
+                    a8.j().f22952a.flush();
                     return;
                 } catch (Exception e11) {
                     e11.printStackTrace();
                     return;
                 }
             case 3:
-                String str3 = this.f25688b;
+                String str3 = this.f25978b;
                 try {
-                    OutputStreamWriter outputStreamWriter3 = a8.j().f22848a;
-                    outputStreamWriter3.write(a8.j().f22849b.format(System.currentTimeMillis()) + " D/tmessages: " + str3 + "\n");
-                    a8.j().f22848a.flush();
+                    OutputStreamWriter outputStreamWriter3 = a8.j().f22952a;
+                    outputStreamWriter3.write(a8.j().f22953b.format(System.currentTimeMillis()) + " D/tmessages: " + str3 + "\n");
+                    a8.j().f22952a.flush();
                     return;
                 } catch (Exception e12) {
                     e12.printStackTrace();
@@ -60,18 +60,18 @@ public final class n4 implements Runnable {
                     return;
                 }
             case 4:
-                String str4 = this.f25688b;
-                int i7 = GcmPushListenerService.f22613n;
-                if (s2.f26694a) {
+                String str4 = this.f25978b;
+                int i7 = GcmPushListenerService.f22716n;
+                if (s2.f26829a) {
                     a8.b("Refreshed FCM token: " + str4);
                 }
                 t0.w();
                 PushListenerController.sendRegistrationToServer(2, str4);
                 return;
             default:
-                String str5 = this.f25688b;
-                int i10 = SmsReceiver.f22770a;
-                ls.e().k(260, str5);
+                String str5 = this.f25978b;
+                int i10 = SmsReceiver.f22873a;
+                ks.e().k(260, str5);
                 return;
         }
     }

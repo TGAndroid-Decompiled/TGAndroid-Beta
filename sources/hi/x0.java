@@ -1,111 +1,45 @@
 package hi;
 
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.messenger.ur;
-import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.messenger.gd;
 public final class x0 implements Runnable {
-    public final int f15655a;
-    public final ur f15656b;
-    public final z0 f15657c;
+    public final int f15701a;
+    public final d1 f15702b;
 
-    public x0(ur urVar, z0 z0Var, int i7) {
-        this.f15655a = i7;
-        this.f15656b = urVar;
-        this.f15657c = z0Var;
+    public x0(d1 d1Var, int i7) {
+        this.f15701a = i7;
+        this.f15702b = d1Var;
     }
 
     @Override
     public final void run() {
-        SQLiteDatabase sQLiteDatabase;
-        SQLiteDatabase sQLiteDatabase2;
-        switch (this.f15655a) {
+        int i7 = this.f15701a;
+        d1 d1Var = this.f15702b;
+        switch (i7) {
             case 0:
-                ur urVar = this.f15656b;
-                z0 z0Var = this.f15657c;
-                SQLitePreparedStatement sQLitePreparedStatement = null;
-                try {
-                    try {
-                        sQLiteDatabase = urVar.f27216b;
-                    } catch (Exception e10) {
-                        org.telegram.messenger.a8.g(e10, true);
-                        if (sQLitePreparedStatement == null) {
-                            return;
-                        }
-                    }
-                    if (sQLiteDatabase != null) {
-                        sQLitePreparedStatement = sQLiteDatabase.executeFast("REPLACE INTO story_drafts VALUES (?, ?, ?, ?)");
-                        sQLitePreparedStatement.requery();
-                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(true);
-                        z0Var.b(nativeByteBuffer);
-                        NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(nativeByteBuffer.length());
-                        z0Var.b(nativeByteBuffer2);
-                        sQLitePreparedStatement.bindLong(1, z0Var.f15747a);
-                        int i7 = 2;
-                        sQLitePreparedStatement.bindLong(2, z0Var.f15749b);
-                        sQLitePreparedStatement.bindByteBuffer(3, nativeByteBuffer2);
-                        if (z0Var.G) {
-                            i7 = 1;
-                        } else if (!z0Var.M) {
-                            i7 = 0;
-                        }
-                        sQLitePreparedStatement.bindInteger(4, i7);
-                        sQLitePreparedStatement.step();
-                        nativeByteBuffer2.reuse();
-                        sQLitePreparedStatement.dispose();
-                        sQLitePreparedStatement.dispose();
-                        return;
-                    }
-                    return;
-                } catch (Throwable th2) {
-                    if (sQLitePreparedStatement != null) {
-                        sQLitePreparedStatement.dispose();
-                    }
-                    throw th2;
+                d1Var.b();
+                return;
+            case 1:
+                d1Var.f14299e = false;
+                a1 a1Var = d1Var.f14303s;
+                if (a1Var != null) {
+                    a1Var.a(true);
+                    d1Var.f14303s = null;
                 }
+                c1 c1Var = d1Var.f14301n;
+                if (c1Var != null) {
+                    c1Var.a();
+                }
+                d1Var.f14298c = false;
+                d1Var.d();
+                return;
             default:
-                ur urVar2 = this.f15656b;
-                z0 z0Var2 = this.f15657c;
-                SQLitePreparedStatement sQLitePreparedStatement2 = null;
-                try {
-                    try {
-                        sQLiteDatabase2 = urVar2.f27216b;
-                    } catch (Exception e11) {
-                        org.telegram.messenger.a8.g(e11, true);
-                        if (sQLitePreparedStatement2 == null) {
-                            return;
-                        }
-                    }
-                    if (sQLiteDatabase2 != null) {
-                        sQLitePreparedStatement2 = sQLiteDatabase2.executeFast("INSERT INTO story_drafts VALUES (?, ?, ?, ?)");
-                        sQLitePreparedStatement2.requery();
-                        NativeByteBuffer nativeByteBuffer3 = new NativeByteBuffer(true);
-                        z0Var2.b(nativeByteBuffer3);
-                        NativeByteBuffer nativeByteBuffer4 = new NativeByteBuffer(nativeByteBuffer3.length());
-                        z0Var2.b(nativeByteBuffer4);
-                        sQLitePreparedStatement2.bindLong(1, z0Var2.f15747a);
-                        int i10 = 2;
-                        sQLitePreparedStatement2.bindLong(2, z0Var2.f15749b);
-                        sQLitePreparedStatement2.bindByteBuffer(3, nativeByteBuffer4);
-                        if (z0Var2.G) {
-                            i10 = 1;
-                        } else if (!z0Var2.M) {
-                            i10 = 0;
-                        }
-                        sQLitePreparedStatement2.bindInteger(4, i10);
-                        sQLitePreparedStatement2.step();
-                        nativeByteBuffer4.reuse();
-                        sQLitePreparedStatement2.dispose();
-                        sQLitePreparedStatement2.dispose();
-                        return;
-                    }
+                if (d1Var.f14298c && d1Var.f14302r != null) {
+                    d1Var.f14301n.b(2131624012, 3500, gd.O0("VideoConvertFail"));
+                    d1Var.f14298c = false;
+                    d1Var.d();
                     return;
-                } catch (Throwable th3) {
-                    if (sQLitePreparedStatement2 != null) {
-                        sQLitePreparedStatement2.dispose();
-                    }
-                    throw th3;
                 }
+                return;
         }
     }
 }

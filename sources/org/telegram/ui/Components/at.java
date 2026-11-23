@@ -1,31 +1,25 @@
 package org.telegram.ui.Components;
 
+import android.os.Build;
+import android.widget.EdgeEffect;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-public final class at implements bt {
-    public final int f33617a;
-    public final Object f33618b;
-
-    public at(Object obj, int i7) {
-        this.f33617a = i7;
-        this.f33618b = obj;
-    }
+public final class at extends v4.m0 {
+    public final zs[] f33549a = new zs[4];
+    public final ArrayList f33550b = new ArrayList();
 
     @Override
-    public final void a(int i7, boolean z10) {
-        switch (this.f33617a) {
-            case 0:
-                ArrayList arrayList = ((dt) this.f33618b).f34547b;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((bt) obj).a(i7, z10);
-                }
-                return;
-            default:
-                ((Runnable) this.f33618b).run();
-                return;
+    public final EdgeEffect a(RecyclerView recyclerView, int i7) {
+        zs zsVar = new zs(recyclerView, i7, new xs(this, 0));
+        this.f33549a[i7] = zsVar;
+        return zsVar;
+    }
+
+    public final float b(int i7) {
+        zs zsVar = this.f33549a[i7];
+        if (Build.VERSION.SDK_INT >= 31 && zsVar != null && !zsVar.isFinished()) {
+            return zsVar.getDistance();
         }
+        return 0.0f;
     }
 }

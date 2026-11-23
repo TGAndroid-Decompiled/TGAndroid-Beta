@@ -1,16 +1,18 @@
 package l2;
-
-import java.util.ArrayList;
 public final class j0 {
-    public final ArrayList f19410a;
-    public final x2.i1 f19411b;
-    public final int f19412c;
-    public final long d;
+    public final p0 f19510a;
 
-    public j0(ArrayList arrayList, x2.i1 i1Var, int i7, long j3) {
-        this.f19410a = arrayList;
-        this.f19411b = i1Var;
-        this.f19412c = i7;
-        this.d = j3;
+    public j0(p0 p0Var) {
+        this.f19510a = p0Var;
+    }
+
+    public final void a() {
+        p0 p0Var = this.f19510a;
+        if (p0Var.U) {
+            p0Var.T.getClass();
+        } else if (!p0Var.f19601k0) {
+            return;
+        }
+        p0Var.f19603n.f(2);
     }
 }

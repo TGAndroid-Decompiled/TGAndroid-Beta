@@ -9,32 +9,32 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 public final class r0 implements Application.ActivityLifecycleCallbacks {
-    public static r0 f26500f;
-    public int f26501a;
-    public boolean f26502b = true;
-    public long f26503c = 0;
+    public static r0 f26613f;
+    public int f26614a;
+    public boolean f26615b = true;
+    public long f26616c = 0;
     public final CopyOnWriteArrayList d = new CopyOnWriteArrayList();
-    public final ArrayList f26504e = new ArrayList();
+    public final ArrayList f26617e = new ArrayList();
 
     public r0(t0 t0Var) {
-        f26500f = this;
+        f26613f = this;
         t0Var.registerActivityLifecycleCallbacks(this);
     }
 
     public final void a(Activity activity) {
-        int i7 = this.f26501a + 1;
-        this.f26501a = i7;
+        int i7 = this.f26614a + 1;
+        this.f26614a = i7;
         if (i7 == 1) {
-            if (SystemClock.elapsedRealtime() - this.f26503c < 200) {
-                this.f26502b = false;
+            if (SystemClock.elapsedRealtime() - this.f26616c < 200) {
+                this.f26615b = false;
             }
-            if (s2.f26694a) {
+            if (s2.f26829a) {
                 a8.b("switch to foreground");
             }
             Iterator it = this.d.iterator();
             while (it.hasNext()) {
                 try {
-                    ((org.telegram.ui.Components.l00) it.next()).b();
+                    ((org.telegram.ui.Components.j00) it.next()).b();
                 } catch (Exception e10) {
                     a8.g(e10, true);
                 }
@@ -43,7 +43,7 @@ public final class r0 implements Application.ActivityLifecycleCallbacks {
     }
 
     public final void b(Activity activity) {
-        ArrayList arrayList = this.f26504e;
+        ArrayList arrayList = this.f26617e;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             Activity activity2 = (Activity) ((WeakReference) arrayList.get(size)).get();
             if (activity2 == null || activity2 == activity) {
@@ -65,13 +65,13 @@ public final class r0 implements Application.ActivityLifecycleCallbacks {
     @Override
     public final void onActivityResumed(Activity activity) {
         b(activity);
-        this.f26504e.add(new WeakReference(activity));
+        this.f26617e.add(new WeakReference(activity));
     }
 
     @Override
     public final void onActivityStarted(Activity activity) {
         boolean z10;
-        if (this.f26501a == 0) {
+        if (this.f26614a == 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -84,18 +84,18 @@ public final class r0 implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public final void onActivityStopped(Activity activity) {
-        int i7 = this.f26501a - 1;
-        this.f26501a = i7;
+        int i7 = this.f26614a - 1;
+        this.f26614a = i7;
         if (i7 == 0) {
-            this.f26503c = SystemClock.elapsedRealtime();
-            this.f26502b = true;
-            if (s2.f26694a) {
+            this.f26616c = SystemClock.elapsedRealtime();
+            this.f26615b = true;
+            if (s2.f26829a) {
                 a8.b("switch to background");
             }
             Iterator it = this.d.iterator();
             while (it.hasNext()) {
                 try {
-                    ((org.telegram.ui.Components.l00) it.next()).a();
+                    ((org.telegram.ui.Components.j00) it.next()).a();
                 } catch (Exception e10) {
                     a8.g(e10, true);
                 }

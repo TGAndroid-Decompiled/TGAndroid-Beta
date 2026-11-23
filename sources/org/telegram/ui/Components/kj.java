@@ -1,22 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class kj extends v4.c0 {
-    public final kg.d0 f36888r;
+import j$.util.Objects;
+import org.telegram.tgnet.TLRPC;
+public final class kj {
+    public final int f36755a;
+    public final long f36756b;
 
-    public kj(kg.d0 d0Var, Context context) {
-        super(context);
-        this.f36888r = d0Var;
+    public kj(int i7, long j3) {
+        this.f36755a = i7;
+        this.f36756b = j3;
     }
 
-    @Override
-    public final int k(int i7, View view) {
-        return org.telegram.messenger.f3.B(8.0f, ((vj) this.f36888r.V).f40800s.getPaddingTop() - org.telegram.messenger.g0.f24004m, super.k(i7, view));
+    public static kj a(Object obj) {
+        if (obj instanceof org.telegram.messenger.f5) {
+            return new kj(2, ((org.telegram.messenger.f5) obj).f23948a);
+        }
+        if (obj instanceof TLRPC.User) {
+            return new kj(1, ((TLRPC.User) obj).f28641id);
+        }
+        return null;
     }
 
-    @Override
-    public final int m(int i7) {
-        return super.m(i7) * 2;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && kj.class == obj.getClass()) {
+                kj kjVar = (kj) obj;
+                if (this.f36756b == kjVar.f36756b && this.f36755a == kjVar.f36755a) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(p1.g.a(this.f36755a), Long.valueOf(this.f36756b));
     }
 }

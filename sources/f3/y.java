@@ -1,71 +1,106 @@
 package f3;
 
 import a8.ma;
-import h2.l0;
-public final class y implements b0 {
-    public final b3.j f11222a;
-    public final b3.j f11223b;
-    public long f11224c;
+import a8.p0;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.regex.Pattern;
+public final class y implements c4.m {
+    public final h2.x f11226a;
 
-    public y(long j3, long[] jArr, long[] jArr2) {
+    public y(int i7) {
+        switch (i7) {
+            case 1:
+                this.f11226a = new h2.x();
+                return;
+            default:
+                this.f11226a = new h2.x(10);
+                return;
+        }
+    }
+
+    @Override
+    public void E(byte[] bArr, int i7, int i10, c4.l lVar, h2.j jVar) {
         boolean z10;
-        if (jArr.length == jArr2.length) {
-            z10 = true;
-        } else {
-            z10 = false;
+        g2.b a10;
+        boolean z11;
+        h2.x xVar = this.f11226a;
+        xVar.L(i7 + i10, bArr);
+        xVar.N(i7);
+        ArrayList arrayList = new ArrayList();
+        while (xVar.a() > 0) {
+            if (xVar.a() >= 8) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            ma.e("Incomplete Mp4Webvtt Top Level box header found.", z10);
+            int m10 = xVar.m();
+            if (xVar.m() == 1987343459) {
+                int i11 = m10 - 8;
+                CharSequence charSequence = null;
+                g2.a aVar = null;
+                while (i11 > 0) {
+                    if (i11 >= 8) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    ma.e("Incomplete vtt cue box header found.", z11);
+                    int m11 = xVar.m();
+                    int m12 = xVar.m();
+                    int i12 = m11 - 8;
+                    byte[] bArr2 = xVar.f13828a;
+                    int i13 = xVar.f13829b;
+                    String str = h2.l0.f13778a;
+                    String str2 = new String(bArr2, i13, i12, StandardCharsets.UTF_8);
+                    xVar.O(i12);
+                    i11 = (i11 - 8) - i12;
+                    if (m12 == 1937011815) {
+                        l4.g gVar = new l4.g();
+                        l4.h.e(str2, gVar);
+                        aVar = gVar.a();
+                    } else if (m12 == 1885436268) {
+                        charSequence = l4.h.f(null, str2.trim(), Collections.EMPTY_LIST);
+                    }
+                }
+                if (charSequence == null) {
+                    charSequence = "";
+                }
+                if (aVar != null) {
+                    aVar.f13074a = charSequence;
+                    aVar.f13075b = null;
+                    a10 = aVar.a();
+                } else {
+                    Pattern pattern = l4.h.f19760a;
+                    l4.g gVar2 = new l4.g();
+                    gVar2.f19753c = charSequence;
+                    a10 = gVar2.a().a();
+                }
+                arrayList.add(a10);
+            } else {
+                xVar.O(m10 - 8);
+            }
         }
-        ma.f(z10);
-        int length = jArr2.length;
-        if (length > 0 && jArr2[0] > 0) {
-            int i7 = length + 1;
-            b3.j jVar = new b3.j(i7, 6);
-            this.f11222a = jVar;
-            b3.j jVar2 = new b3.j(i7, 6);
-            this.f11223b = jVar2;
-            jVar.c(0L);
-            jVar2.c(0L);
-        } else {
-            this.f11222a = new b3.j(length, 6);
-            this.f11223b = new b3.j(length, 6);
-        }
-        this.f11222a.d(jArr);
-        this.f11223b.d(jArr2);
-        this.f11224c = j3;
+        jVar.accept(new c4.a(-9223372036854775807L, -9223372036854775807L, arrayList));
     }
 
     @Override
-    public final boolean d() {
-        if (this.f11223b.f2872b > 0) {
-            return true;
-        }
-        return false;
+    public int N() {
+        return 2;
+    }
+
+    public e2.q0 a(f3.p r12, t3.g r13, int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: f3.y.a(f3.p, t3.g, int):e2.q0");
     }
 
     @Override
-    public final boolean e() {
-        return false;
+    public c4.d s(int i7, int i10, byte[] bArr) {
+        return p0.a(this, bArr, i10);
     }
 
     @Override
-    public final a0 f(long j3) {
-        b3.j jVar = this.f11223b;
-        if (jVar.f2872b == 0) {
-            c0 c0Var = c0.f11121c;
-            return new a0(c0Var, c0Var);
-        }
-        int c10 = l0.c(jVar, j3);
-        long m10 = jVar.m(c10);
-        b3.j jVar2 = this.f11222a;
-        c0 c0Var2 = new c0(m10, jVar2.m(c10));
-        if (m10 != j3 && c10 != jVar.f2872b - 1) {
-            int i7 = c10 + 1;
-            return new a0(c0Var2, new c0(jVar.m(i7), jVar2.m(i7)));
-        }
-        return new a0(c0Var2, c0Var2);
-    }
-
-    @Override
-    public final long h() {
-        return this.f11224c;
+    public void reset() {
     }
 }

@@ -1,95 +1,87 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.messenger.Utilities;
-public final class fe0 extends FrameLayout {
-    public final hi.db f35185a;
-    public final hi.d f35186b;
-    public final et f35187c;
-    public i61 d;
-    public long f35188e;
-    public float f35189f;
-    public hi.h3 h;
-    public org.telegram.messenger.y10 f35190n;
-    public Runnable f35191r;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class fe0 extends LinearLayout {
+    public final int f35112a = 0;
+    public final LinearLayout f35113b;
+    public final LinearLayout f35114c;
 
-    public fe0(Context context, org.telegram.ui.ActionBar.h6 h6Var, ca caVar) {
+    public fe0(Context context) {
         super(context);
-        this.f35188e = -1L;
-        this.f35189f = 1.39f;
-        org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, h6Var);
-        kVar.setBackButtonImage(2131231240);
-        kVar.setTitle(org.telegram.messenger.hd.N0(2131751193, null));
-        kVar.G(-1, false);
-        kVar.F(587202559, false);
-        kVar.setActionBarMenuOnItemClick(new org.telegram.ui.x7(this, 18));
-        addView(kVar, c8.na.e(-1, -2, 55));
-        hi.db dbVar = new hi.db(context, null, null, h6Var, caVar);
-        this.f35185a = dbVar;
-        dbVar.Y0 = true;
-        addView(dbVar, c8.na.d(-1, 388, 87, 0.0f, 0.0f, 0.0f, 74.0f));
-        hi.d dVar = new hi.d(context, h6Var, true);
-        this.f35186b = dVar;
-        dVar.i(org.telegram.messenger.hd.N0(2131751194, null), false, true);
-        dVar.f();
-        addView(dVar, c8.na.d(-1, 48.0f, 87, 16.0f, 10.0f, 16.0f, 16.0f));
-        et etVar = new et(context, org.telegram.messenger.hd.N0(2131751195, null));
-        this.f35187c = etVar;
-        etVar.setOnClickListener(new st(this, context, h6Var, 5));
-        addView(etVar, c8.na.d(-1, 32.0f, 87, 60.0f, 0.0f, 60.0f, 134.0f));
-        dbVar.setDelegate(new ji.k(this));
+        setOrientation(0);
+        setGravity(17);
+        setPadding(org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f));
+        LinearLayout a10 = a(2131232336, org.telegram.messenger.gd.N0(2131746075, null));
+        this.f35114c = a10;
+        addView(a10, c8.na.o(-2, -1));
+        LinearLayout a11 = a(2131231732, org.telegram.messenger.gd.N0(2131751323, null));
+        this.f35113b = a11;
+        addView(a11, c8.na.o(-2, -1));
     }
 
-    public final void a(org.telegram.messenger.ff ffVar, i61 i61Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        int i7;
-        hi.d dVar = this.f35186b;
-        dVar.f14295a = h6Var;
-        dVar.F = false;
-        dVar.updateColors();
-        int i10 = ffVar.F;
-        if (i10 > 0 && (i7 = ffVar.G) > 0) {
-            this.f35189f = Utilities.i(i7 / i10, 1.39f, 0.85f);
-        } else {
-            this.f35189f = 1.39f;
+    public LinearLayout a(int i7, String str) {
+        Context context = getContext();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(17);
+        linearLayout.setPadding(org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(7.0f));
+        linearLayout.addView(org.telegram.messenger.m10.e(context, i7), c8.na.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
+        TextView textView = new TextView(context);
+        textView.setGravity(16);
+        textView.setText(str);
+        textView.setTextSize(2, 14.0f);
+        textView.setSingleLine(true);
+        textView.setTextColor(-1);
+        linearLayout.addView(textView, c8.na.o(-2, -2));
+        c8.sa.a(linearLayout);
+        return linearLayout;
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        switch (this.f35112a) {
+            case 0:
+                LinearLayout linearLayout = this.f35113b;
+                ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+                ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
+                int size = View.MeasureSpec.getSize(i7);
+                int size2 = View.MeasureSpec.getSize(i10);
+                int paddingRight = getPaddingRight() + getPaddingLeft();
+                int paddingTop = getPaddingTop();
+                int max = Math.max(0, size - paddingRight);
+                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
+                int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
+                linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
+                LinearLayout linearLayout2 = this.f35114c;
+                linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
+                int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
+                layoutParams2.width = min;
+                layoutParams.width = min;
+                super.onMeasure(i7, i10);
+                return;
+            default:
+                int makeMeasureSpec3 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), Integer.MIN_VALUE);
+                int makeMeasureSpec4 = View.MeasureSpec.makeMeasureSpec(0, 0);
+                LinearLayout linearLayout3 = this.f35113b;
+                linearLayout3.measure(makeMeasureSpec3, makeMeasureSpec4);
+                LinearLayout linearLayout4 = this.f35114c;
+                if (linearLayout4 != null) {
+                    linearLayout4.measure(View.MeasureSpec.makeMeasureSpec(linearLayout3.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+                    setMeasuredDimension(linearLayout3.getMeasuredWidth(), linearLayout4.getMeasuredHeight() + linearLayout3.getMeasuredHeight());
+                    return;
+                }
+                setMeasuredDimension(linearLayout3.getMeasuredWidth(), linearLayout3.getMeasuredHeight());
+                return;
         }
-        this.d = i61Var;
-        long j3 = ffVar.d;
-        if (j3 >= 0) {
-            this.f35188e = j3;
-            i61Var.q0(j3, false);
-        } else {
-            this.f35188e = i61Var.S();
-        }
-        String path = i61Var.G.getPath();
-        long U = i61Var.U();
-        l2.f0 f0Var = i61Var.d;
-        f0Var.F1();
-        this.f35185a.o(false, path, U, f0Var.f19311b0);
-        long U2 = i61Var.U();
-        float max = 2.8f / ((float) Math.max(60L, U2));
-        float max2 = (1.0f - max) * (((float) this.f35188e) / ((float) Math.max(1L, i61Var.U())));
-        hi.db dbVar = this.f35185a;
-        dbVar.setVideoLeft(max2);
-        dbVar.setVideoRight(max2 + max);
-        dbVar.f14423a1 = 0L;
-        dbVar.f14426b1 = U2;
-        hi.ya yaVar = dbVar.h;
-        if (yaVar != null) {
-            hi.ya.a(yaVar, true);
-        }
-        dbVar.k();
     }
 
-    public long getTime() {
-        return this.f35188e;
-    }
-
-    public void setOnClose(Runnable runnable) {
-        this.f35191r = runnable;
-    }
-
-    public void setOnGalleryImage(org.telegram.messenger.y10 y10Var) {
-        this.f35190n = y10Var;
+    public fe0(Context context, LinearLayout linearLayout, LinearLayout linearLayout2) {
+        super(context);
+        this.f35113b = linearLayout;
+        this.f35114c = linearLayout2;
     }
 }

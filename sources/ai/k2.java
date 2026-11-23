@@ -1,85 +1,39 @@
 package ai;
 
-import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import c8.na;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
-public final class k2 extends LinearLayout {
-    public final int f1352a;
+import org.telegram.ui.ActionBar.w2;
+public final class k2 implements View.OnClickListener {
+    public final int f1324a;
+    public final w2[] f1325b;
 
-    public k2(Context context, int i7) {
-        super(context);
-        this.f1352a = i7;
+    public k2(w2[] w2VarArr, int i7) {
+        this.f1324a = i7;
+        this.f1325b = w2VarArr;
     }
 
     @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.f1352a) {
+    public final void onClick(View view) {
+        switch (this.f1324a) {
             case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(400.0f), View.MeasureSpec.getSize(i7)), 1073741824), i10);
+                w2 w2Var = this.f1325b[0];
+                if (w2Var != null) {
+                    w2Var.dismiss();
+                    return;
+                }
                 return;
             case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+                this.f1325b[0].dismiss();
                 return;
             case 2:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+                w2 w2Var2 = this.f1325b[0];
+                if (w2Var2 != null) {
+                    w2Var2.dismiss();
+                    return;
+                }
                 return;
-            case 3:
-            case 6:
-            case 7:
             default:
-                super.onMeasure(i7, i10);
-                return;
-            case 4:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-                return;
-            case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-                return;
-            case 8:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(220.0f), View.MeasureSpec.getSize(i7)), View.MeasureSpec.getMode(i7)), i10);
-                return;
-            case 9:
-                super.onMeasure(i7, i10);
-                setPivotY(0.0f);
-                setPivotX(0.0f);
-                return;
-            case 10:
-                super.onMeasure(i7, i10);
-                setPivotY(0.0f);
-                setPivotX(getMeasuredWidth());
-                return;
-            case 11:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(600.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(800.0f)), 1073741824));
+                this.f1325b[0].dismiss();
                 return;
         }
-    }
-
-    public k2(Context context) {
-        super(context);
-        this.f1352a = 12;
-        setOrientation(1);
-        setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 14.0f);
-        int i7 = m6.G6;
-        t6.U(textView, i7, null);
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setText(hd.N0(2131754944, null));
-        addView(textView);
-        TextView textView2 = new TextView(context);
-        textView2.setTextSize(1, 14.0f);
-        t6.U(textView2, i7, null);
-        textView2.setText(org.telegram.messenger.g0.W2(hd.N0(2131754946, null)));
-        addView(textView2, na.q(-1, -2, 0.0f, 0, 0, 0, 0, 0));
-        TextView textView3 = new TextView(context);
-        textView3.setTextSize(1, 14.0f);
-        t6.U(textView3, i7, null);
-        textView3.setText(org.telegram.messenger.g0.W2(hd.N0(2131754945, null)));
-        addView(textView3, na.q(-1, -2, 0.0f, 0, 0, 24, 0, 0));
     }
 }

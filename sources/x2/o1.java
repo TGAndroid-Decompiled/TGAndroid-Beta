@@ -1,34 +1,34 @@
 package x2;
 public final class o1 implements d1 {
-    public final d1 f60197a;
-    public final long f60198b;
+    public final d1 f60315a;
+    public final long f60316b;
 
     public o1(d1 d1Var, long j3) {
-        this.f60197a = d1Var;
-        this.f60198b = j3;
+        this.f60315a = d1Var;
+        this.f60316b = j3;
     }
 
     @Override
     public final void a() {
-        this.f60197a.a();
+        this.f60315a.a();
+    }
+
+    @Override
+    public final int b(jb.m mVar, k2.h hVar, int i7) {
+        int b10 = this.f60315a.b(mVar, hVar, i7);
+        if (b10 == -4) {
+            hVar.f18224e += this.f60316b;
+        }
+        return b10;
     }
 
     @Override
     public final boolean h() {
-        return this.f60197a.h();
+        return this.f60315a.h();
     }
 
     @Override
-    public final int j(long j3) {
-        return this.f60197a.j(j3 - this.f60198b);
-    }
-
-    @Override
-    public final int m(k8.a aVar, k2.h hVar, int i7) {
-        int m10 = this.f60197a.m(aVar, hVar, i7);
-        if (m10 == -4) {
-            hVar.f18122e += this.f60198b;
-        }
-        return m10;
+    public final int o(long j3) {
+        return this.f60315a.o(j3 - this.f60316b);
     }
 }

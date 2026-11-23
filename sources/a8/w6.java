@@ -43,10 +43,10 @@ public abstract class w6 {
                         duplicate.order(ByteOrder.LITTLE_ENDIAN);
                         int position = duplicate.position() + duplicate.getInt(duplicate.position());
                         xVar.d = duplicate;
-                        xVar.f56302a = position;
+                        xVar.f56415a = position;
                         int i14 = position - duplicate.getInt(position);
-                        xVar.f56303b = i14;
-                        xVar.f56304c = ((ByteBuffer) xVar.d).getShort(i14);
+                        xVar.f56416b = i14;
+                        xVar.f56417c = ((ByteBuffer) xVar.d).getShort(i14);
                         return xVar;
                     }
                 }

@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import c8.cc;
 import java.util.ArrayList;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.m10;
 public final class s7 implements org.telegram.ui.ActionBar.t4, yb.a {
     public boolean f4060a;
     public Object f4061b;
@@ -41,7 +41,7 @@ public final class s7 implements org.telegram.ui.ActionBar.t4, yb.a {
             zzb();
         }
         if (((a8.z0) this.f4063e) != null) {
-            int i7 = aVar.f58576e;
+            int i7 = aVar.f58691e;
             if (i7 != -1) {
                 if (i7 != 17) {
                     if (i7 != 35) {
@@ -57,11 +57,11 @@ public final class s7 implements org.telegram.ui.ActionBar.t4, yb.a {
                 q6.m.h(null);
                 throw null;
             }
-            Bitmap bitmap = aVar.f58573a;
+            Bitmap bitmap = aVar.f58688a;
             q6.m.h(bitmap);
             int i10 = aVar.d;
-            int i11 = aVar.f58574b;
-            int i12 = aVar.f58575c;
+            int i11 = aVar.f58689b;
+            int i12 = aVar.f58690c;
             if (i10 == 0) {
                 createBitmap = Bitmap.createBitmap(bitmap, 0, 0, i11, i12);
             } else {
@@ -112,11 +112,11 @@ public final class s7 implements org.telegram.ui.ActionBar.t4, yb.a {
     }
 
     @Override
-    public fh.g g(org.telegram.ui.ActionBar.j5 j5Var) {
+    public fh.g g(org.telegram.ui.ActionBar.k5 k5Var) {
         m8 m8Var = (m8) this.f4063e;
-        fh.g c10 = m8Var.getBaseSimpleGlass().d.c(j5Var, null, false);
+        fh.g c10 = m8Var.getBaseSimpleGlass().d.c(k5Var, null, false);
         c10.p(m8Var.N);
-        o10.s(c10, org.telegram.messenger.g0.L(23.0f), 6.0f);
+        m10.s(c10, org.telegram.messenger.g0.L(23.0f), 6.0f);
         return c10;
     }
 
@@ -162,10 +162,10 @@ public final class s7 implements org.telegram.ui.ActionBar.t4, yb.a {
     }
 
     @Override
-    public org.telegram.ui.ActionBar.h6 getMenuResourcesProvider() {
-        org.telegram.ui.ActionBar.h6 h6Var;
-        h6Var = ((org.telegram.ui.ActionBar.g2) ((m8) this.f4063e)).resourceProvider;
-        return h6Var;
+    public org.telegram.ui.ActionBar.i6 getMenuResourcesProvider() {
+        org.telegram.ui.ActionBar.i6 i6Var;
+        i6Var = ((org.telegram.ui.ActionBar.g2) ((m8) this.f4063e)).resourceProvider;
+        return i6Var;
     }
 
     @Override
@@ -179,18 +179,18 @@ public final class s7 implements org.telegram.ui.ActionBar.t4, yb.a {
     }
 
     @Override
-    public org.telegram.ui.ActionBar.j5 getOpenMenuOverlay() {
+    public org.telegram.ui.ActionBar.k5 getOpenMenuOverlay() {
         if (this.f4060a) {
-            return (org.telegram.ui.ActionBar.j5) this.d;
+            return (org.telegram.ui.ActionBar.k5) this.d;
         }
         return null;
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.j5 j5Var, org.telegram.ui.ActionBar.q0 q0Var) {
+    public void h(org.telegram.ui.ActionBar.k5 k5Var, org.telegram.ui.ActionBar.q0 q0Var) {
         boolean z10;
         int i7 = 0;
-        if (j5Var != null) {
+        if (k5Var != null) {
             z10 = true;
         } else {
             z10 = false;
@@ -205,7 +205,7 @@ public final class s7 implements org.telegram.ui.ActionBar.t4, yb.a {
 
     @Override
     public void setMenuGlassFrostedProgress(float f10) {
-        ui.d dVar = ((m8) this.f4063e).getBaseSimpleGlass().f56627e;
+        ui.d dVar = ((m8) this.f4063e).getBaseSimpleGlass().f56740e;
         if (dVar != null) {
             dVar.j(f10);
         }
@@ -219,7 +219,7 @@ public final class s7 implements org.telegram.ui.ActionBar.t4, yb.a {
         Log.d("LegacyLabelDelegate", "Try to load legacy label module.");
         if (((a8.z0) this.f4063e) == null) {
             try {
-                IBinder b10 = b7.f.c(context, b7.f.f2916b, str).b("com.google.android.gms.vision.label.ChimeraNativeImageLabelerCreator");
+                IBinder b10 = b7.f.c(context, b7.f.f2917b, str).b("com.google.android.gms.vision.label.ChimeraNativeImageLabelerCreator");
                 int i7 = a8.w2.f697b;
                 if (b10 == null) {
                     aVar = null;

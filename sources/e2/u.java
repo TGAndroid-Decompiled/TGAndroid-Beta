@@ -24,32 +24,32 @@ public final class u {
     public static final String X = Integer.toString(1, 36);
     public static final String Y = Integer.toString(2, 36);
     public static final String Z = Integer.toString(3, 36);
-    public static final String f10720a0 = Integer.toString(4, 36);
-    public static final String f10721b0 = Integer.toString(5, 36);
-    public static final String f10722c0 = Integer.toString(6, 36);
-    public static final String f10723d0 = Integer.toString(7, 36);
-    public static final String f10724e0;
-    public static final String f10725f0;
-    public static final String f10726g0;
-    public static final String f10727h0;
-    public static final String f10728i0;
-    public static final String f10729j0;
-    public static final String f10730k0;
-    public static final String f10731l0;
+    public static final String f10718a0 = Integer.toString(4, 36);
+    public static final String f10719b0 = Integer.toString(5, 36);
+    public static final String f10720c0 = Integer.toString(6, 36);
+    public static final String f10721d0 = Integer.toString(7, 36);
+    public static final String f10722e0;
+    public static final String f10723f0;
+    public static final String f10724g0;
+    public static final String f10725h0;
+    public static final String f10726i0;
+    public static final String f10727j0;
+    public static final String f10728k0;
+    public static final String f10729l0;
     public static final String m0;
-    public static final String f10732n0;
-    public static final String f10733o0;
-    public static final String f10734p0;
-    public static final String f10735q0;
-    public static final String f10736r0;
-    public static final String f10737s0;
-    public static final String f10738t0;
-    public static final String f10739u0;
-    public static final String f10740v0;
-    public static final String f10741w0;
-    public static final String f10742x0;
-    public static final String f10743y0;
-    public static final String f10744z0;
+    public static final String f10730n0;
+    public static final String f10731o0;
+    public static final String f10732p0;
+    public static final String f10733q0;
+    public static final String f10734r0;
+    public static final String f10735s0;
+    public static final String f10736t0;
+    public static final String f10737u0;
+    public static final String f10738v0;
+    public static final String f10739w0;
+    public static final String f10740x0;
+    public static final String f10741y0;
+    public static final String f10742z0;
     public final int A;
     public final int B;
     public final int C;
@@ -71,57 +71,57 @@ public final class u {
     public final int S;
     public final int T;
     public int U;
-    public final String f10745a;
-    public final String f10746b;
-    public final h9.i0 f10747c;
+    public final String f10743a;
+    public final String f10744b;
+    public final h9.i0 f10745c;
     public final String d;
-    public final int f10748e;
-    public final int f10749f;
-    public final int f10750g;
+    public final int f10746e;
+    public final int f10747f;
+    public final int f10748g;
     public final int h;
-    public final int f10751i;
-    public final int f10752j;
-    public final String f10753k;
-    public final q0 f10754l;
-    public final String f10755m;
-    public boolean f10756n;
-    public long f10757o;
-    public int f10758p;
-    public String f10759q;
-    public final String f10760r;
-    public final String f10761s;
-    public final int f10762t;
-    public final int f10763u;
+    public final int f10749i;
+    public final int f10750j;
+    public final String f10751k;
+    public final q0 f10752l;
+    public final String f10753m;
+    public boolean f10754n;
+    public long f10755o;
+    public int f10756p;
+    public String f10757q;
+    public final String f10758r;
+    public final String f10759s;
+    public final int f10760t;
+    public final int f10761u;
     public final List v;
-    public final r f10764w;
-    public final long f10765x;
-    public final boolean f10766y;
-    public final int f10767z;
+    public final r f10762w;
+    public final long f10763x;
+    public final boolean f10764y;
+    public final int f10765z;
 
     static {
         Integer.toString(8, 36);
-        f10724e0 = Integer.toString(9, 36);
-        f10725f0 = Integer.toString(10, 36);
-        f10726g0 = Integer.toString(11, 36);
-        f10727h0 = Integer.toString(12, 36);
-        f10728i0 = Integer.toString(13, 36);
-        f10729j0 = Integer.toString(14, 36);
-        f10730k0 = Integer.toString(15, 36);
-        f10731l0 = Integer.toString(16, 36);
+        f10722e0 = Integer.toString(9, 36);
+        f10723f0 = Integer.toString(10, 36);
+        f10724g0 = Integer.toString(11, 36);
+        f10725h0 = Integer.toString(12, 36);
+        f10726i0 = Integer.toString(13, 36);
+        f10727j0 = Integer.toString(14, 36);
+        f10728k0 = Integer.toString(15, 36);
+        f10729l0 = Integer.toString(16, 36);
         m0 = Integer.toString(17, 36);
-        f10732n0 = Integer.toString(18, 36);
-        f10733o0 = Integer.toString(19, 36);
-        f10734p0 = Integer.toString(20, 36);
-        f10735q0 = Integer.toString(21, 36);
-        f10736r0 = Integer.toString(22, 36);
-        f10737s0 = Integer.toString(23, 36);
-        f10738t0 = Integer.toString(24, 36);
-        f10739u0 = Integer.toString(25, 36);
-        f10740v0 = Integer.toString(26, 36);
-        f10741w0 = Integer.toString(27, 36);
-        f10742x0 = Integer.toString(28, 36);
-        f10743y0 = Integer.toString(29, 36);
-        f10744z0 = Integer.toString(30, 36);
+        f10730n0 = Integer.toString(18, 36);
+        f10731o0 = Integer.toString(19, 36);
+        f10732p0 = Integer.toString(20, 36);
+        f10733q0 = Integer.toString(21, 36);
+        f10734r0 = Integer.toString(22, 36);
+        f10735s0 = Integer.toString(23, 36);
+        f10736t0 = Integer.toString(24, 36);
+        f10737u0 = Integer.toString(25, 36);
+        f10738v0 = Integer.toString(26, 36);
+        f10739w0 = Integer.toString(27, 36);
+        f10740x0 = Integer.toString(28, 36);
+        f10741y0 = Integer.toString(29, 36);
+        f10742z0 = Integer.toString(30, 36);
         A0 = Integer.toString(31, 36);
         B0 = Integer.toString(32, 36);
         C0 = Integer.toString(33, 36);
@@ -135,15 +135,15 @@ public final class u {
         boolean z10;
         String str;
         boolean z11;
-        this.f10745a = tVar.f10694a;
+        this.f10743a = tVar.f10692a;
         String T = h2.l0.T(tVar.d);
         this.d = T;
-        if (tVar.f10696c.isEmpty() && tVar.f10695b != null) {
-            this.f10747c = h9.i0.u(new x(T, tVar.f10695b));
-            this.f10746b = tVar.f10695b;
-        } else if (!tVar.f10696c.isEmpty() && tVar.f10695b == null) {
-            h9.i0 i0Var = tVar.f10696c;
-            this.f10747c = i0Var;
+        if (tVar.f10694c.isEmpty() && tVar.f10693b != null) {
+            this.f10745c = h9.i0.u(new x(T, tVar.f10693b));
+            this.f10744b = tVar.f10693b;
+        } else if (!tVar.f10694c.isEmpty() && tVar.f10693b == null) {
+            h9.i0 i0Var = tVar.f10694c;
+            this.f10745c = i0Var;
             int size = i0Var.size();
             int i7 = 0;
             while (true) {
@@ -151,65 +151,65 @@ public final class u {
                     Object obj = i0Var.get(i7);
                     i7++;
                     x xVar = (x) obj;
-                    if (TextUtils.equals(xVar.f10788a, T)) {
-                        str = xVar.f10789b;
+                    if (TextUtils.equals(xVar.f10786a, T)) {
+                        str = xVar.f10787b;
                         break;
                     }
                 } else {
-                    str = ((x) i0Var.get(0)).f10789b;
+                    str = ((x) i0Var.get(0)).f10787b;
                     break;
                 }
             }
-            this.f10746b = str;
+            this.f10744b = str;
         } else {
-            if (!tVar.f10696c.isEmpty() || tVar.f10695b != null) {
-                for (int i10 = 0; i10 < tVar.f10696c.size(); i10++) {
-                    if (!((x) tVar.f10696c.get(i10)).f10789b.equals(tVar.f10695b)) {
+            if (!tVar.f10694c.isEmpty() || tVar.f10693b != null) {
+                for (int i10 = 0; i10 < tVar.f10694c.size(); i10++) {
+                    if (!((x) tVar.f10694c.get(i10)).f10787b.equals(tVar.f10693b)) {
                     }
                 }
                 z10 = false;
                 ma.p(z10);
-                this.f10747c = tVar.f10696c;
-                this.f10746b = tVar.f10695b;
+                this.f10745c = tVar.f10694c;
+                this.f10744b = tVar.f10693b;
             }
             z10 = true;
             ma.p(z10);
-            this.f10747c = tVar.f10696c;
-            this.f10746b = tVar.f10695b;
+            this.f10745c = tVar.f10694c;
+            this.f10744b = tVar.f10693b;
         }
-        this.f10748e = tVar.f10697e;
-        if (tVar.f10699g != 0 && (tVar.f10698f & 32768) == 0) {
+        this.f10746e = tVar.f10695e;
+        if (tVar.f10697g != 0 && (tVar.f10696f & 32768) == 0) {
             z11 = false;
         } else {
             z11 = true;
         }
         ma.o("Auxiliary track type must only be set to a value other than AUXILIARY_TRACK_TYPE_UNDEFINED only when ROLE_FLAG_AUXILIARY is set", z11);
-        this.f10749f = tVar.f10698f;
-        this.f10750g = tVar.f10699g;
+        this.f10747f = tVar.f10696f;
+        this.f10748g = tVar.f10697g;
         int i11 = tVar.h;
         this.h = i11;
-        int i12 = tVar.f10700i;
-        this.f10751i = i12;
-        this.f10752j = i12 != -1 ? i12 : i11;
-        this.f10753k = tVar.f10701j;
-        this.f10754l = tVar.f10702k;
-        this.f10755m = tVar.f10703l;
-        this.f10756n = tVar.f10704m;
-        this.f10757o = tVar.f10705n;
-        this.f10758p = tVar.f10707p;
-        this.f10759q = tVar.f10706o;
-        this.f10760r = tVar.f10708q;
-        this.f10761s = tVar.f10709r;
-        this.f10762t = tVar.f10710s;
-        this.f10763u = tVar.f10711t;
-        List list = tVar.f10712u;
+        int i12 = tVar.f10698i;
+        this.f10749i = i12;
+        this.f10750j = i12 != -1 ? i12 : i11;
+        this.f10751k = tVar.f10699j;
+        this.f10752l = tVar.f10700k;
+        this.f10753m = tVar.f10701l;
+        this.f10754n = tVar.f10702m;
+        this.f10755o = tVar.f10703n;
+        this.f10756p = tVar.f10705p;
+        this.f10757q = tVar.f10704o;
+        this.f10758r = tVar.f10706q;
+        this.f10759s = tVar.f10707r;
+        this.f10760t = tVar.f10708s;
+        this.f10761u = tVar.f10709t;
+        List list = tVar.f10710u;
         this.v = list == null ? Collections.EMPTY_LIST : list;
         r rVar = tVar.v;
-        this.f10764w = rVar;
-        this.f10765x = tVar.f10713w;
-        this.f10766y = tVar.f10714x;
-        this.f10767z = tVar.f10715y;
-        this.A = tVar.f10716z;
+        this.f10762w = rVar;
+        this.f10763x = tVar.f10711w;
+        this.f10764y = tVar.f10712x;
+        this.f10765z = tVar.f10713y;
+        this.A = tVar.f10714z;
         this.B = tVar.A;
         this.C = tVar.B;
         this.D = tVar.C;
@@ -249,8 +249,8 @@ public final class u {
         if (uVar == null) {
             return "null";
         }
-        int i10 = uVar.f10748e;
-        h9.i0 i0Var = uVar.f10747c;
+        int i10 = uVar.f10746e;
+        h9.i0 i0Var = uVar.f10745c;
         String str4 = uVar.d;
         int i11 = uVar.L;
         int i12 = uVar.K;
@@ -261,18 +261,18 @@ public final class u {
         int i14 = uVar.C;
         int i15 = uVar.B;
         int i16 = uVar.A;
-        int i17 = uVar.f10767z;
-        r rVar = uVar.f10764w;
-        String str5 = uVar.f10753k;
-        int i18 = uVar.f10752j;
-        String str6 = uVar.f10755m;
-        String str7 = uVar.f10760r;
-        int i19 = uVar.f10749f;
+        int i17 = uVar.f10765z;
+        r rVar = uVar.f10762w;
+        String str5 = uVar.f10751k;
+        int i18 = uVar.f10750j;
+        String str6 = uVar.f10753m;
+        String str7 = uVar.f10758r;
+        int i19 = uVar.f10747f;
         f5.g gVar = new f5.g(String.valueOf(','));
         StringBuilder m10 = e2.m("id=");
-        m10.append(uVar.f10745a);
+        m10.append(uVar.f10743a);
         m10.append(", mimeType=");
-        m10.append(uVar.f10761s);
+        m10.append(uVar.f10759s);
         if (str7 != null) {
             m10.append(", container=");
             m10.append(str7);
@@ -292,16 +292,16 @@ public final class u {
         if (rVar != null) {
             LinkedHashSet linkedHashSet = new LinkedHashSet();
             for (int i20 = 0; i20 < rVar.d; i20++) {
-                UUID uuid = rVar.f10676a[i20].f10627b;
-                if (uuid.equals(l.f10486c)) {
+                UUID uuid = rVar.f10674a[i20].f10625b;
+                if (uuid.equals(l.f10484c)) {
                     linkedHashSet.add("cenc");
                 } else if (uuid.equals(l.d)) {
                     linkedHashSet.add("clearkey");
-                } else if (uuid.equals(l.f10488f)) {
+                } else if (uuid.equals(l.f10486f)) {
                     linkedHashSet.add("playready");
-                } else if (uuid.equals(l.f10487e)) {
+                } else if (uuid.equals(l.f10485e)) {
                     linkedHashSet.add("widevine");
-                } else if (uuid.equals(l.f10485b)) {
+                } else if (uuid.equals(l.f10483b)) {
                     linkedHashSet.add("universal");
                 } else {
                     linkedHashSet.add("unknown (" + uuid + ")");
@@ -327,7 +327,7 @@ public final class u {
             m10.append(i14);
         }
         double d = f11;
-        int i21 = j9.c.f17330a;
+        int i21 = j9.c.f17430a;
         if (Math.copySign(d - 1.0d, 1.0d) > 0.001d && d != 1.0d && (!Double.isNaN(d) || !Double.isNaN(1.0d))) {
             m10.append(", par=");
             Object[] objArr = new Object[1];
@@ -336,14 +336,14 @@ public final class u {
             m10.append(String.format(Locale.US, "%.3f", objArr));
         }
         if (mVar != null) {
-            int i22 = mVar.f10513f;
-            int i23 = mVar.f10512e;
+            int i22 = mVar.f10511f;
+            int i23 = mVar.f10510e;
             if ((i23 != -1 && i22 != -1) || mVar.d()) {
                 m10.append(", color=");
                 if (mVar.d()) {
-                    String b10 = m.b(mVar.f10509a);
-                    String a10 = m.a(mVar.f10510b);
-                    String c11 = m.c(mVar.f10511c);
+                    String b10 = m.b(mVar.f10507a);
+                    String a10 = m.a(mVar.f10508b);
+                    String c11 = m.c(mVar.f10509c);
                     String str9 = h2.l0.f13778a;
                     Locale locale = Locale.US;
                     str2 = b10 + "/" + a10 + "/" + c11;
@@ -459,7 +459,7 @@ public final class u {
         }
         if ((i7 & 32768) != 0) {
             m10.append(", auxiliaryTrackType=");
-            int i24 = uVar.f10750g;
+            int i24 = uVar.f10748g;
             String str12 = h2.l0.f13778a;
             if (i24 != 0) {
                 if (i24 != 1) {
@@ -489,27 +489,27 @@ public final class u {
 
     public final t a() {
         ?? obj = new Object();
-        obj.f10694a = this.f10745a;
-        obj.f10695b = this.f10746b;
-        obj.f10696c = this.f10747c;
+        obj.f10692a = this.f10743a;
+        obj.f10693b = this.f10744b;
+        obj.f10694c = this.f10745c;
         obj.d = this.d;
-        obj.f10697e = this.f10748e;
-        obj.f10698f = this.f10749f;
+        obj.f10695e = this.f10746e;
+        obj.f10696f = this.f10747f;
         obj.h = this.h;
-        obj.f10700i = this.f10751i;
-        obj.f10701j = this.f10753k;
-        obj.f10702k = this.f10754l;
-        obj.f10703l = this.f10755m;
-        obj.f10708q = this.f10760r;
-        obj.f10709r = this.f10761s;
-        obj.f10710s = this.f10762t;
-        obj.f10711t = this.f10763u;
-        obj.f10712u = this.v;
-        obj.v = this.f10764w;
-        obj.f10713w = this.f10765x;
-        obj.f10714x = this.f10766y;
-        obj.f10715y = this.f10767z;
-        obj.f10716z = this.A;
+        obj.f10698i = this.f10749i;
+        obj.f10699j = this.f10751k;
+        obj.f10700k = this.f10752l;
+        obj.f10701l = this.f10753m;
+        obj.f10706q = this.f10758r;
+        obj.f10707r = this.f10759s;
+        obj.f10708s = this.f10760t;
+        obj.f10709t = this.f10761u;
+        obj.f10710u = this.v;
+        obj.v = this.f10762w;
+        obj.f10711w = this.f10763x;
+        obj.f10712x = this.f10764y;
+        obj.f10713y = this.f10765z;
+        obj.f10714z = this.A;
         obj.A = this.B;
         obj.B = this.C;
         obj.C = this.D;
@@ -529,10 +529,10 @@ public final class u {
         obj.Q = this.R;
         obj.R = this.S;
         obj.S = this.T;
-        obj.f10704m = this.f10756n;
-        obj.f10705n = this.f10757o;
-        obj.f10707p = this.f10758p;
-        obj.f10706o = this.f10759q;
+        obj.f10702m = this.f10754n;
+        obj.f10703n = this.f10755o;
+        obj.f10705p = this.f10756p;
+        obj.f10704o = this.f10757q;
         return obj;
     }
 
@@ -558,18 +558,18 @@ public final class u {
         if (this == uVar) {
             return this;
         }
-        int h = s0.h(this.f10761s);
-        String str3 = uVar.f10745a;
-        q0 q0Var = uVar.f10754l;
-        h9.i0 i0Var = uVar.f10747c;
+        int h = s0.h(this.f10759s);
+        String str3 = uVar.f10743a;
+        q0 q0Var = uVar.f10752l;
+        h9.i0 i0Var = uVar.f10745c;
         int i11 = uVar.R;
         int i12 = uVar.S;
-        String str4 = uVar.f10746b;
+        String str4 = uVar.f10744b;
         if (str4 == null) {
-            str4 = this.f10746b;
+            str4 = this.f10744b;
         }
         if (i0Var.isEmpty()) {
-            i0Var = this.f10747c;
+            i0Var = this.f10745c;
         }
         if ((h != 3 && h != 1) || (str = uVar.d) == null) {
             str = this.d;
@@ -578,22 +578,22 @@ public final class u {
         if (i13 == -1) {
             i13 = uVar.h;
         }
-        int i14 = this.f10751i;
+        int i14 = this.f10749i;
         if (i14 == -1) {
-            i14 = uVar.f10751i;
+            i14 = uVar.f10749i;
         }
-        String str5 = this.f10753k;
+        String str5 = this.f10751k;
         if (str5 == null) {
-            String w10 = h2.l0.w(h, uVar.f10753k);
+            String w10 = h2.l0.w(h, uVar.f10751k);
             if (h2.l0.d0(w10).length == 1) {
                 str5 = w10;
             }
         }
-        String str6 = this.f10755m;
+        String str6 = this.f10753m;
         if (str6 == null) {
-            str6 = uVar.f10755m;
+            str6 = uVar.f10753m;
         }
-        q0 q0Var2 = this.f10754l;
+        q0 q0Var2 = this.f10752l;
         if (q0Var2 != null) {
             q0Var = q0Var2.b(q0Var);
         }
@@ -601,21 +601,21 @@ public final class u {
         if (f10 == -1.0f && h == 2) {
             f10 = uVar.D;
         }
-        int i15 = this.f10748e | uVar.f10748e;
+        int i15 = this.f10746e | uVar.f10746e;
         h9.i0 i0Var2 = i0Var;
-        int i16 = uVar.f10749f | this.f10749f;
-        r rVar2 = uVar.f10764w;
+        int i16 = uVar.f10747f | this.f10747f;
+        r rVar2 = uVar.f10762w;
         ArrayList arrayList = new ArrayList();
         if (rVar2 != null) {
-            String str7 = rVar2.f10678c;
-            q[] qVarArr = rVar2.f10676a;
+            String str7 = rVar2.f10676c;
+            q[] qVarArr = rVar2.f10674a;
             int length = qVarArr.length;
             int i17 = 0;
             while (i17 < length) {
                 int i18 = i17;
                 q qVar = qVarArr[i18];
                 int i19 = length;
-                if (qVar.f10629e != null) {
+                if (qVar.f10627e != null) {
                     arrayList.add(qVar);
                 }
                 i17 = i18 + 1;
@@ -625,13 +625,13 @@ public final class u {
         } else {
             str2 = null;
         }
-        r rVar3 = this.f10764w;
+        r rVar3 = this.f10762w;
         if (rVar3 != null) {
             if (str2 == null) {
-                str2 = rVar3.f10678c;
+                str2 = rVar3.f10676c;
             }
             int size = arrayList.size();
-            q[] qVarArr2 = rVar3.f10676a;
+            q[] qVarArr2 = rVar3.f10674a;
             String str8 = str2;
             int length2 = qVarArr2.length;
             int i20 = 0;
@@ -639,14 +639,14 @@ public final class u {
                 int i21 = i20;
                 q qVar2 = qVarArr2[i21];
                 int i22 = length2;
-                if (qVar2.f10629e != null) {
-                    UUID uuid = qVar2.f10627b;
+                if (qVar2.f10627e != null) {
+                    UUID uuid = qVar2.f10625b;
                     i10 = i11;
                     int i23 = 0;
                     while (true) {
                         if (i23 < size) {
                             i7 = size;
-                            if (((q) arrayList.get(i23)).f10627b.equals(uuid)) {
+                            if (((q) arrayList.get(i23)).f10625b.equals(uuid)) {
                                 break;
                             }
                             i23++;
@@ -675,17 +675,17 @@ public final class u {
             rVar = new r(str2, arrayList);
         }
         t a10 = a();
-        a10.f10694a = str3;
-        a10.f10695b = str4;
-        a10.f10696c = h9.i0.q(i0Var2);
+        a10.f10692a = str3;
+        a10.f10693b = str4;
+        a10.f10694c = h9.i0.q(i0Var2);
         a10.d = str;
-        a10.f10697e = i15;
-        a10.f10698f = i16;
+        a10.f10695e = i15;
+        a10.f10696f = i16;
         a10.h = i13;
-        a10.f10700i = i14;
-        a10.f10701j = str5;
-        a10.f10702k = q0Var;
-        a10.f10703l = str6;
+        a10.f10698i = i14;
+        a10.f10699j = str5;
+        a10.f10700k = q0Var;
+        a10.f10701l = str6;
         a10.v = rVar;
         a10.C = f10;
         a10.Q = i24;
@@ -701,7 +701,7 @@ public final class u {
         if (obj != null && u.class == obj.getClass()) {
             u uVar = (u) obj;
             int i10 = this.U;
-            if ((i10 == 0 || (i7 = uVar.U) == 0 || i10 == i7) && this.f10748e == uVar.f10748e && this.f10749f == uVar.f10749f && this.f10750g == uVar.f10750g && this.h == uVar.h && this.f10751i == uVar.f10751i && this.f10762t == uVar.f10762t && this.f10765x == uVar.f10765x && this.f10767z == uVar.f10767z && this.A == uVar.A && this.B == uVar.B && this.C == uVar.C && this.E == uVar.E && this.H == uVar.H && this.J == uVar.J && this.K == uVar.K && this.L == uVar.L && this.M == uVar.M && this.N == uVar.N && this.O == uVar.O && this.P == uVar.P && this.R == uVar.R && this.S == uVar.S && this.T == uVar.T && Float.compare(this.D, uVar.D) == 0 && Float.compare(this.F, uVar.F) == 0 && Objects.equals(this.f10745a, uVar.f10745a) && Objects.equals(this.f10746b, uVar.f10746b) && this.f10747c.equals(uVar.f10747c) && Objects.equals(this.f10753k, uVar.f10753k) && Objects.equals(this.f10755m, uVar.f10755m) && Objects.equals(this.f10760r, uVar.f10760r) && Objects.equals(this.f10761s, uVar.f10761s) && Objects.equals(this.d, uVar.d) && Arrays.equals(this.G, uVar.G) && Objects.equals(this.f10754l, uVar.f10754l) && Objects.equals(this.I, uVar.I) && Objects.equals(this.f10764w, uVar.f10764w) && b(uVar)) {
+            if ((i10 == 0 || (i7 = uVar.U) == 0 || i10 == i7) && this.f10746e == uVar.f10746e && this.f10747f == uVar.f10747f && this.f10748g == uVar.f10748g && this.h == uVar.h && this.f10749i == uVar.f10749i && this.f10760t == uVar.f10760t && this.f10763x == uVar.f10763x && this.f10765z == uVar.f10765z && this.A == uVar.A && this.B == uVar.B && this.C == uVar.C && this.E == uVar.E && this.H == uVar.H && this.J == uVar.J && this.K == uVar.K && this.L == uVar.L && this.M == uVar.M && this.N == uVar.N && this.O == uVar.O && this.P == uVar.P && this.R == uVar.R && this.S == uVar.S && this.T == uVar.T && Float.compare(this.D, uVar.D) == 0 && Float.compare(this.F, uVar.F) == 0 && Objects.equals(this.f10743a, uVar.f10743a) && Objects.equals(this.f10744b, uVar.f10744b) && this.f10745c.equals(uVar.f10745c) && Objects.equals(this.f10751k, uVar.f10751k) && Objects.equals(this.f10753m, uVar.f10753m) && Objects.equals(this.f10758r, uVar.f10758r) && Objects.equals(this.f10759s, uVar.f10759s) && Objects.equals(this.d, uVar.d) && Arrays.equals(this.G, uVar.G) && Objects.equals(this.f10752l, uVar.f10752l) && Objects.equals(this.I, uVar.I) && Objects.equals(this.f10762w, uVar.f10762w) && b(uVar)) {
                 return true;
             }
             return false;
@@ -719,81 +719,81 @@ public final class u {
         int hashCode7;
         if (this.U == 0) {
             int i7 = 0;
-            String str = this.f10745a;
+            String str = this.f10743a;
             if (str == null) {
                 hashCode = 0;
             } else {
                 hashCode = str.hashCode();
             }
             int i10 = (527 + hashCode) * 31;
-            String str2 = this.f10746b;
+            String str2 = this.f10744b;
             if (str2 == null) {
                 hashCode2 = 0;
             } else {
                 hashCode2 = str2.hashCode();
             }
-            int hashCode8 = (this.f10747c.hashCode() + ((i10 + hashCode2) * 31)) * 31;
+            int hashCode8 = (this.f10745c.hashCode() + ((i10 + hashCode2) * 31)) * 31;
             String str3 = this.d;
             if (str3 == null) {
                 hashCode3 = 0;
             } else {
                 hashCode3 = str3.hashCode();
             }
-            int i11 = (((((((((((hashCode8 + hashCode3) * 31) + this.f10748e) * 31) + this.f10749f) * 31) + this.f10750g) * 31) + this.h) * 31) + this.f10751i) * 31;
-            String str4 = this.f10753k;
+            int i11 = (((((((((((hashCode8 + hashCode3) * 31) + this.f10746e) * 31) + this.f10747f) * 31) + this.f10748g) * 31) + this.h) * 31) + this.f10749i) * 31;
+            String str4 = this.f10751k;
             if (str4 == null) {
                 hashCode4 = 0;
             } else {
                 hashCode4 = str4.hashCode();
             }
             int i12 = (i11 + hashCode4) * 31;
-            q0 q0Var = this.f10754l;
+            q0 q0Var = this.f10752l;
             if (q0Var == null) {
                 hashCode5 = 0;
             } else {
                 hashCode5 = q0Var.hashCode();
             }
             int i13 = (i12 + hashCode5) * 961;
-            String str5 = this.f10755m;
+            String str5 = this.f10753m;
             if (str5 == null) {
                 hashCode6 = 0;
             } else {
                 hashCode6 = str5.hashCode();
             }
             int i14 = (i13 + hashCode6) * 31;
-            String str6 = this.f10760r;
+            String str6 = this.f10758r;
             if (str6 == null) {
                 hashCode7 = 0;
             } else {
                 hashCode7 = str6.hashCode();
             }
             int i15 = (i14 + hashCode7) * 31;
-            String str7 = this.f10761s;
+            String str7 = this.f10759s;
             if (str7 != null) {
                 i7 = str7.hashCode();
             }
-            this.U = ((((((((((((((((((((((Float.floatToIntBits(this.F) + ((((Float.floatToIntBits(this.D) + ((((((((((((((i15 + i7) * 31) + this.f10762t) * 31) + ((int) this.f10765x)) * 31) + this.f10767z) * 31) + this.A) * 31) + this.B) * 31) + this.C) * 31)) * 31) + this.E) * 31)) * 31) + this.H) * 31) + this.J) * 31) + this.K) * 31) + this.L) * 31) + this.M) * 31) + this.N) * 31) + this.O) * 31) + this.P) * 31) + this.R) * 31) + this.S) * 31) + this.T;
+            this.U = ((((((((((((((((((((((Float.floatToIntBits(this.F) + ((((Float.floatToIntBits(this.D) + ((((((((((((((i15 + i7) * 31) + this.f10760t) * 31) + ((int) this.f10763x)) * 31) + this.f10765z) * 31) + this.A) * 31) + this.B) * 31) + this.C) * 31)) * 31) + this.E) * 31)) * 31) + this.H) * 31) + this.J) * 31) + this.K) * 31) + this.L) * 31) + this.M) * 31) + this.N) * 31) + this.O) * 31) + this.P) * 31) + this.R) * 31) + this.S) * 31) + this.T;
         }
         return this.U;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Format(");
-        sb2.append(this.f10745a);
+        sb2.append(this.f10743a);
         sb2.append(", ");
-        sb2.append(this.f10746b);
+        sb2.append(this.f10744b);
         sb2.append(", ");
-        sb2.append(this.f10760r);
+        sb2.append(this.f10758r);
         sb2.append(", ");
-        sb2.append(this.f10761s);
+        sb2.append(this.f10759s);
         sb2.append(", ");
-        sb2.append(this.f10753k);
+        sb2.append(this.f10751k);
         sb2.append(", ");
-        sb2.append(this.f10752j);
+        sb2.append(this.f10750j);
         sb2.append(", ");
         sb2.append(this.d);
         sb2.append(", [");
-        sb2.append(this.f10767z);
+        sb2.append(this.f10765z);
         sb2.append(", ");
         sb2.append(this.A);
         sb2.append(", ");

@@ -1,19 +1,19 @@
 package jh;
 
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.gj;
+import org.telegram.messenger.fj;
 import org.telegram.ui.bj;
 public final class a {
-    public RecyclerView f17738a;
-    public int f17739b;
-    public long f17740c;
+    public RecyclerView f17840a;
+    public int f17841b;
+    public long f17842c;
     public int d;
-    public boolean f17741e;
+    public boolean f17843e;
 
-    public final boolean a(gj gjVar) {
-        if (gjVar != null) {
-            if (gjVar.e1() != this.f17739b) {
-                if (this.f17740c != 0 && gjVar.c1() == this.f17740c) {
+    public final boolean a(fj fjVar) {
+        if (fjVar != null) {
+            if (fjVar.e1() != this.f17841b) {
+                if (this.f17842c != 0 && fjVar.c1() == this.f17842c) {
                     return true;
                 }
                 return false;
@@ -24,17 +24,17 @@ public final class a {
     }
 
     public final boolean b() {
-        return this.f17741e;
+        return this.f17843e;
     }
 
     public final boolean c(int i7, long j3) {
-        if (this.f17739b == i7 && this.f17740c == j3) {
+        if (this.f17841b == i7 && this.f17842c == j3) {
             return false;
         }
-        this.f17739b = i7;
-        this.f17740c = j3;
+        this.f17841b = i7;
+        this.f17842c = j3;
         if (i7 == 0) {
-            this.f17741e = false;
+            this.f17843e = false;
             return true;
         }
         return true;
@@ -45,6 +45,6 @@ public final class a {
     }
 
     public final void e(bj bjVar) {
-        this.f17738a = bjVar;
+        this.f17840a = bjVar;
     }
 }

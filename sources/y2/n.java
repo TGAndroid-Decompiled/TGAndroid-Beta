@@ -2,9 +2,8 @@ package y2;
 
 import c8.t0;
 import e2.u;
-import f3.i0;
+import f3.j0;
 import j2.b0;
-import sg.h0;
 import x2.c1;
 public final class n extends a {
     public final int F;
@@ -21,23 +20,23 @@ public final class n extends a {
     @Override
     public final void a() {
         c1[] c1VarArr;
-        b0 b0Var = this.f60697r;
-        h0 h0Var = this.f60671y;
-        h0Var.getClass();
-        for (c1 c1Var : (c1[]) h0Var.f57227c) {
+        b0 b0Var = this.f60815r;
+        s2.e eVar = this.f60789y;
+        eVar.getClass();
+        for (c1 c1Var : (c1[]) eVar.f56893c) {
             if (c1Var.H != 0) {
                 c1Var.H = 0L;
                 c1Var.B = true;
             }
         }
-        i0 f10 = h0Var.f(this.F);
+        j0 f10 = eVar.f(this.F);
         f10.g(this.G);
         try {
-            long open = b0Var.open(this.f60692b.b(this.H));
+            long open = b0Var.open(this.f60810b.b(this.H));
             if (open != -1) {
                 open += this.H;
             }
-            f3.l lVar = new f3.l(this.f60697r, this.H, open);
+            f3.l lVar = new f3.l(this.f60815r, this.H, open);
             for (int i7 = 0; i7 != -1; i7 = f10.e(lVar, Integer.MAX_VALUE, true)) {
                 this.H += i7;
             }
@@ -56,6 +55,6 @@ public final class n extends a {
     }
 
     @Override
-    public final void A() {
+    public final void y() {
     }
 }

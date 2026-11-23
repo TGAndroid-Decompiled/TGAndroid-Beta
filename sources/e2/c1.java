@@ -6,87 +6,89 @@ import java.util.List;
 public interface c1 {
     long A();
 
-    Looper A0();
+    boolean A0();
 
-    int B();
+    long B();
 
-    void B0();
+    Looper B0();
 
-    x1 C();
+    int C();
 
     void C0();
 
-    void D(e eVar, boolean z10);
+    x1 D();
 
-    boolean D0();
+    void D0();
 
-    void E();
+    void E(e eVar, boolean z10);
 
-    q1 E0();
+    boolean E0();
 
-    float F();
+    void F();
 
-    long F0();
+    q1 F0();
 
-    void G();
+    float G();
 
-    void G0(int i7);
+    long G0();
 
-    e H();
+    void H();
 
-    void H0();
+    void H0(int i7);
 
-    void I(l0 l0Var);
+    e I();
 
-    void I0(a1 a1Var);
+    void I0();
 
-    void J(int i7, boolean z10);
+    void J(l0 l0Var);
 
-    void J0();
+    void J0(a1 a1Var);
 
-    o K();
+    void K(int i7, boolean z10);
 
-    void K0(o0 o0Var);
+    void K0();
 
-    void L();
+    o L();
 
-    void L0();
+    void L0(o0 o0Var);
 
-    void M(int i7, int i10);
+    void M();
 
-    o0 M0();
+    void M0();
 
-    void N(int i7);
+    void N(int i7, int i10);
 
-    void N0(List list);
+    o0 N0();
 
-    int O();
+    void O(int i7);
 
-    long O0();
+    void O0(List list);
 
-    boolean P();
+    int P();
 
-    boolean P0();
+    long P0();
 
-    void Q(int i7);
+    boolean Q();
 
-    void R(int i7, int i10);
+    boolean Q0();
 
-    void S(SurfaceHolder surfaceHolder);
+    void R(int i7);
 
-    void T(float f10);
+    void S(int i7, int i10);
 
-    void U();
+    void T(SurfaceHolder surfaceHolder);
 
-    void V(List list, int i7, long j3);
+    void U(float f10);
 
-    v0 W();
+    void V();
 
-    void X(boolean z10);
+    void W(List list, int i7, long j3);
 
-    void Y(int i7);
+    v0 X();
 
-    long Z();
+    void Y(boolean z10);
+
+    void Z(int i7);
 
     void a();
 
@@ -94,105 +96,103 @@ public interface c1 {
 
     void b();
 
-    void b0(int i7, List list);
+    long b0();
 
     void c(long j3);
 
-    void c0();
+    void c0(int i7, List list);
 
     void d(float f10);
 
-    long d0();
+    void d0();
 
     void e(w0 w0Var);
 
-    boolean e0();
+    long e0();
 
     void f();
 
-    void f0(l0 l0Var, long j3);
+    boolean f0();
 
     boolean g();
 
-    void g0();
+    void g0(l0 l0Var, long j3);
 
     long getDuration();
 
-    boolean h();
-
-    void h0(a1 a1Var);
+    void h0();
 
     int i();
 
-    void i0(int i7);
+    void i0(a1 a1Var);
 
-    w0 j();
+    boolean j();
 
-    s1 j0();
+    void j0(int i7);
 
     void k(int i7);
 
-    o0 k0();
+    s1 k0();
 
-    long l();
+    w0 l();
 
-    g2.c l0();
+    o0 l0();
 
     int m();
 
-    void m0(l0 l0Var);
+    g2.c m0();
 
-    int n();
+    long n();
 
-    int n0();
+    void n0(l0 l0Var);
 
-    void o(int i7, l0 l0Var);
+    int o();
 
     int o0();
 
-    boolean p();
+    void p(int i7, l0 l0Var);
 
-    boolean p0(int i7);
+    int p0();
 
-    long q();
+    boolean q();
 
-    void q0(q1 q1Var);
+    boolean q0(int i7);
 
     long r();
 
-    void r0(boolean z10);
+    void r0(q1 q1Var);
 
-    void s(int i7, long j3);
+    long s();
 
-    void s0(List list, int i7, int i10);
+    void s0(boolean z10);
 
     void stop();
 
-    y0 t();
+    void t(int i7, long j3);
 
-    void t0(int i7, int i10);
+    void t0(List list, int i7, int i10);
 
-    boolean u();
+    y0 u();
 
-    void u0(int i7, int i10, int i11);
+    void u0(int i7, int i10);
 
-    void v();
+    boolean v();
 
-    boolean v0();
+    void v0(int i7, int i10, int i11);
 
-    l0 w();
+    void w();
 
-    int w0();
+    boolean w0();
 
-    void x(boolean z10);
+    l0 x();
 
-    void x0(List list);
+    int x0();
 
-    int y();
+    void y(boolean z10);
 
-    l1 y0();
+    void y0(List list);
 
-    long z();
+    int z();
 
-    boolean z0();
+    l1 z0();
 }

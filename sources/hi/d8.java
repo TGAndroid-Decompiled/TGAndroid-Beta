@@ -1,75 +1,99 @@
 package hi;
 
-import android.os.SystemClock;
-import android.util.Pair;
-import org.telegram.messenger.k10;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.y10;
-import org.telegram.tgnet.ResultCallback;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lv0;
-public final class d8 implements y10 {
-    public final int f14415a;
-    public final long f14416b;
-    public final Object f14417c;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.n41;
+public final class d8 extends m41 {
+    public static final int f14318b = 0;
 
-    public d8(Object obj, long j3, int i7) {
-        this.f14415a = i7;
-        this.f14417c = obj;
-        this.f14416b = j3;
+    static {
+        m41.h(new m41());
     }
 
     @Override
-    public final void a(Object obj) {
-        long j3;
-        switch (this.f14415a) {
-            case 0:
-                l8 l8Var = (l8) this.f14417c;
-                TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) obj;
-                org.telegram.ui.ActionBar.t1 t1Var = l8Var.H;
-                if (t1Var != null) {
-                    t1Var.c(350L);
-                    l8Var.H = null;
-                }
-                if (tL_channels_channelParticipants != null && !tL_channels_channelParticipants.participants.isEmpty()) {
-                    TLRPC.TL_chatParticipants tL_chatParticipants = new TLRPC.TL_chatParticipants();
-                    for (int i7 = 0; i7 < tL_channels_channelParticipants.participants.size(); i7++) {
-                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i7);
-                        TLRPC.TL_chatParticipant tL_chatParticipant = new TLRPC.TL_chatParticipant();
-                        TLRPC.Peer peer = channelParticipant.peer;
-                        if (peer != null) {
-                            j3 = org.telegram.messenger.n5.o(peer);
-                            if (j3 < 0) {
-                            }
-                        } else {
-                            j3 = channelParticipant.user_id;
-                        }
-                        tL_chatParticipant.user_id = j3;
-                        tL_chatParticipants.participants.add(tL_chatParticipant);
-                    }
-                    l8Var.e(this.f14416b, tL_chatParticipants);
-                    return;
-                }
-                return;
-            case 1:
-                org.telegram.messenger.g0.h3(new q1(28, (ji.n) this.f14417c, (String) obj), Math.max(0L, (this.f14416b + 1200) - SystemClock.uptimeMillis()));
-                return;
-            case 2:
-                ResultCallback resultCallback = (ResultCallback) this.f14417c;
-                gg.a aVar = (gg.a) obj;
-                if (resultCallback != null) {
-                    resultCallback.onComplete(new Pair(Long.valueOf(this.f14416b), aVar));
-                    return;
-                }
-                return;
-            default:
-                lv0 lv0Var = (lv0) this.f14417c;
-                TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
-                if (tL_messages_emojiGroups != null) {
-                    ls.f(k10.f24932t0).d(new bi.s2(lv0Var, tL_messages_emojiGroups, this.f14416b, 26));
-                    return;
-                }
-                return;
+    public final void b(View view, n41 n41Var, boolean z10, b51 b51Var, g51 g51Var) {
+        TLRPC.WebPage webPage;
+        boolean z11;
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        String str;
+        e8 e8Var = (e8) view;
+        Object obj = n41Var.H;
+        if (obj instanceof TLRPC.WebPage) {
+            webPage = (TLRPC.WebPage) obj;
+        } else {
+            webPage = null;
         }
+        View.OnClickListener onClickListener = n41Var.E;
+        org.telegram.ui.Components.n6 n6Var = e8Var.f14403e;
+        org.telegram.ui.Components.n6 n6Var2 = e8Var.d;
+        ImageView imageView = e8Var.f14402c;
+        ImageView imageView2 = e8Var.f14401b;
+        if (webPage != null && !(webPage instanceof TLRPC.TL_webPagePending)) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        float f14 = 0.0f;
+        float f15 = 1.0f;
+        if (z11) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        imageView2.setAlpha(f10);
+        if (z11) {
+            f11 = 1.0f;
+        } else {
+            f11 = 0.4f;
+        }
+        imageView2.setScaleX(f11);
+        if (z11) {
+            f12 = 1.0f;
+        } else {
+            f12 = 0.4f;
+        }
+        imageView2.setScaleY(f12);
+        if (!z11) {
+            f14 = 1.0f;
+        }
+        imageView.setAlpha(f14);
+        if (z11) {
+            f13 = 0.4f;
+        } else {
+            f13 = 1.0f;
+        }
+        imageView.setScaleX(f13);
+        if (z11) {
+            f15 = 0.4f;
+        }
+        imageView.setScaleY(f15);
+        if (z11) {
+            if (TextUtils.isEmpty(webPage.site_name)) {
+                str = webPage.title;
+            } else {
+                str = webPage.site_name;
+            }
+            n6Var2.c(str, false, true);
+            n6Var.c(webPage.description, false, true);
+        } else {
+            n6Var2.c(e8Var.h, false, true);
+            n6Var.c(e8Var.f14405n, false, true);
+        }
+        e8Var.f14404f.setOnClickListener(onClickListener);
+    }
+
+    @Override
+    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        return new e8(context);
     }
 }

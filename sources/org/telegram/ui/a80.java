@@ -1,34 +1,26 @@
 package org.telegram.ui;
+public final class a80 implements Runnable {
+    public final int f45625a;
+    public final Object f45626b;
+    public final boolean f45627c;
+    public final Object d;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class a80 implements RequestDelegate {
-    public final int f45499a;
-    public final LaunchActivity f45500b;
-
-    public a80(LaunchActivity launchActivity, int i7) {
-        this.f45499a = i7;
-        this.f45500b = launchActivity;
+    public a80(Object obj, Object obj2, boolean z10, int i7) {
+        this.f45625a = i7;
+        this.f45626b = obj;
+        this.d = obj2;
+        this.f45627c = z10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f45499a;
-        LaunchActivity launchActivity = this.f45500b;
-        switch (i7) {
-            case 0:
-                String str = LaunchActivity.C1;
-                if (tLObject != null) {
-                    org.telegram.messenger.g0.g3(new o60(4, launchActivity, (TL_account.Password) tLObject));
-                    return;
-                }
-                return;
-            default:
-                String str2 = LaunchActivity.C1;
-                org.telegram.messenger.g0.g3(new o60(0, launchActivity, tLObject));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.a80.run():void");
+    }
+
+    public a80(Object obj, boolean z10, Object obj2, int i7) {
+        this.f45625a = i7;
+        this.f45626b = obj;
+        this.f45627c = z10;
+        this.d = obj2;
     }
 }

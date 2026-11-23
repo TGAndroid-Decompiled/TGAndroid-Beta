@@ -1,191 +1,145 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
-import android.os.Build;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class nm extends org.telegram.ui.pq0 {
-    public ArrayList f37857a = new ArrayList();
-    public final qm f37858b;
+public final class nm {
+    public long f37856i;
+    public jm f37858k;
+    public float f37861n;
+    public float f37862o;
+    public float f37863p;
+    public float f37864q;
+    public float f37865r;
+    public float f37866s;
+    public wy0 f37868u;
+    public long v;
+    public final org.telegram.ui.ActionBar.u4 f37870x;
+    public final m.b3 f37871y;
+    public final om f37872z;
+    public float f37850a = 0.0f;
+    public int f37851b = 0;
+    public long f37852c = 0;
+    public float d = 0.0f;
+    public float f37853e = 0.0f;
+    public float f37854f = 0.0f;
+    public float f37855g = 0.0f;
+    public final ArrayList h = new ArrayList();
+    public final kr f37857j = kr.f36861j;
+    public final int f37859l = org.telegram.messenger.g0.L(4.0f);
+    public final int f37860m = org.telegram.messenger.g0.L(2.0f) / 2;
+    public final RectF f37867t = new RectF();
+    public final Paint f37869w = new Paint(1);
 
-    public nm(qm qmVar) {
-        this.f37858b = qmVar;
+    public nm(om omVar) {
+        Drawable drawable;
+        this.f37872z = omVar;
+        org.telegram.ui.ActionBar.i6 i6Var = omVar.Q.f38509n;
+        if (i6Var != null) {
+            drawable = i6Var.getDrawable("drawableMsgOutMedia");
+        } else {
+            drawable = null;
+        }
+        this.f37870x = (org.telegram.ui.ActionBar.u4) (drawable == null ? org.telegram.ui.ActionBar.n6.R0("drawableMsgOutMedia") : drawable);
+        this.f37871y = new m.b3();
     }
 
-    @Override
-    public final void D() {
-        qm qmVar = this.f37858b;
-        qmVar.c();
-        qmVar.i(qmVar.Q.Q, false);
-    }
-
-    @Override
-    public final org.telegram.ui.xq0 E(org.telegram.messenger.gj gjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
-        org.telegram.messenger.ff ffVar;
-        ArrayList arrayList;
-        qm qmVar = this.f37858b;
-        ArrayList arrayList2 = qmVar.f38897b;
-        rm rmVar = qmVar.Q;
-        if (i7 >= 0 && i7 < this.f37857a.size() && x(i7) && (ffVar = (org.telegram.messenger.ff) this.f37857a.get(i7)) != null) {
-            int size = arrayList2.size();
-            pm pmVar = null;
-            om omVar = null;
-            for (int i10 = 0; i10 < size; i10++) {
-                pmVar = (pm) arrayList2.get(i10);
-                if (pmVar != null && (arrayList = pmVar.h) != null) {
-                    int size2 = arrayList.size();
-                    int i11 = 0;
-                    while (true) {
-                        if (i11 >= size2) {
-                            break;
-                        }
-                        om omVar2 = (om) arrayList.get(i11);
-                        if (omVar2 != null && omVar2.f38255b == ffVar && omVar2.f38262k > 0.5d) {
-                            omVar = (om) arrayList.get(i11);
-                            break;
-                        }
-                        i11++;
+    public static void a(nm nmVar, jm jmVar, boolean z10) {
+        long j3;
+        ArrayList arrayList = nmVar.h;
+        nmVar.f37858k = jmVar;
+        if (jmVar == null) {
+            return;
+        }
+        HashMap hashMap = (HashMap) jmVar.f36461g;
+        jmVar.a();
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j10 = elapsedRealtime - nmVar.f37852c;
+        long j11 = 200;
+        if (j10 < 200) {
+            float f10 = ((float) j10) / 200.0f;
+            nmVar.f37855g = org.telegram.messenger.g0.T1(nmVar.f37855g, nmVar.f37853e, f10);
+            nmVar.f37854f = org.telegram.messenger.g0.T1(nmVar.f37854f, nmVar.d, f10);
+        } else {
+            nmVar.f37855g = nmVar.f37853e;
+            nmVar.f37854f = nmVar.d;
+        }
+        nmVar.d = jmVar.f36457b / 1000.0f;
+        nmVar.f37853e = jmVar.f36456a;
+        if (z10) {
+            j3 = elapsedRealtime;
+        } else {
+            j3 = 0;
+        }
+        nmVar.f37852c = j3;
+        nmVar.f37856i = 0L;
+        ArrayList arrayList2 = new ArrayList(hashMap.keySet());
+        int size = arrayList2.size();
+        int i7 = 0;
+        while (true) {
+            mm mmVar = null;
+            if (i7 >= size) {
+                break;
+            }
+            org.telegram.messenger.ef efVar = (org.telegram.messenger.ef) arrayList2.get(i7);
+            org.telegram.messenger.xi xiVar = (org.telegram.messenger.xi) hashMap.get(efVar);
+            long j12 = j11;
+            int i10 = i7;
+            nmVar.f37856i = Math.max(nmVar.f37856i, efVar.N);
+            int size2 = arrayList.size();
+            int i11 = 0;
+            while (true) {
+                if (i11 >= size2) {
+                    break;
+                }
+                mm mmVar2 = (mm) arrayList.get(i11);
+                if (mmVar2.f37480b == efVar) {
+                    mmVar = mmVar2;
+                    break;
+                }
+                i11++;
+            }
+            if (mmVar == null) {
+                mm mmVar3 = new mm(nmVar);
+                mm.a(mmVar3, efVar);
+                mm.b(mmVar3, jmVar, xiVar, z10);
+                arrayList.add(mmVar3);
+            } else {
+                mm.b(mmVar, jmVar, xiVar, z10);
+            }
+            i7 = i10 + 1;
+            j11 = j12;
+        }
+        long j13 = j11;
+        int size3 = arrayList.size();
+        int i12 = 0;
+        while (i12 < size3) {
+            mm mmVar4 = (mm) arrayList.get(i12);
+            if (!hashMap.containsKey(mmVar4.f37480b)) {
+                if (mmVar4.f37487k <= 0.0f && mmVar4.h + j13 <= elapsedRealtime) {
+                    xh.e eVar = mmVar4.f37495s;
+                    if (eVar != null) {
+                        eVar.b(mmVar4.O.f37872z);
+                        mmVar4.f37495s = null;
                     }
-                    if (omVar != null) {
-                        break;
-                    }
+                    arrayList.remove(i12);
+                    i12--;
+                    size3--;
+                } else {
+                    mm.b(mmVar4, null, null, z10);
                 }
             }
-            if (pmVar != null && omVar != null) {
-                org.telegram.ui.xq0 xq0Var = new org.telegram.ui.xq0();
-                int[] iArr = new int[2];
-                qmVar.getLocationInWindow(iArr);
-                if (Build.VERSION.SDK_INT < 26) {
-                    iArr[0] = iArr[0] - rmVar.f37477b.T();
-                }
-                xq0Var.f53899b = iArr[0];
-                xq0Var.f53900c = iArr[1] + ((int) pmVar.f38571a);
-                xq0Var.f53906k = 1.0f;
-                xq0Var.d = qmVar;
-                ImageReceiver imageReceiver = omVar.f38256c;
-                xq0Var.f53898a = imageReceiver;
-                xq0Var.f53901e = imageReceiver.p();
-                xq0Var.h = r5;
-                RectF rectF = omVar.f38268q;
-                int[] iArr2 = {(int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom};
-                xq0Var.f53905j = (int) (-qmVar.getY());
-                xq0Var.f53904i = qmVar.getHeight() - ((int) (((-qmVar.getY()) + rmVar.f39235r.getHeight()) - rmVar.f37477b.a1()));
-                return xq0Var;
-            }
+            i12++;
         }
-        return null;
+        nmVar.f37872z.invalidate();
     }
 
-    @Override
-    public final int H() {
-        return this.f37858b.h.size();
-    }
-
-    @Override
-    public final int R(Object obj) {
-        int indexOf;
-        Integer valueOf = Integer.valueOf(((org.telegram.messenger.ff) obj).C);
-        qm qmVar = this.f37858b;
-        if (qmVar.h.size() <= 1 || (indexOf = qmVar.h.indexOf(valueOf)) < 0) {
-            return -1;
-        }
-        qmVar.h.remove(indexOf);
-        qmVar.c();
-        return indexOf;
-    }
-
-    @Override
-    public final int S(int i7) {
-        org.telegram.messenger.ff ffVar;
-        if (i7 < 0 || i7 >= this.f37857a.size() || (ffVar = (org.telegram.messenger.ff) this.f37857a.get(i7)) == null) {
-            return -1;
-        }
-        return this.f37858b.h.indexOf(Integer.valueOf(ffVar.C));
-    }
-
-    @Override
-    public final void X(int i7) {
-        org.telegram.messenger.ff ffVar;
-        ArrayList arrayList;
-        boolean z10;
-        if (i7 >= 0 && i7 < this.f37857a.size() && (ffVar = (org.telegram.messenger.ff) this.f37857a.get(i7)) != null) {
-            int i10 = ffVar.C;
-            qm qmVar = this.f37858b;
-            qmVar.invalidate();
-            for (int i11 = 0; i11 < qmVar.f38897b.size(); i11++) {
-                pm pmVar = (pm) qmVar.f38897b.get(i11);
-                if (pmVar != null && (arrayList = pmVar.h) != null) {
-                    for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                        om omVar = (om) arrayList.get(i12);
-                        if (omVar != null && omVar.f38255b.C == i10) {
-                            om.a(omVar, ffVar);
-                        }
-                    }
-                    lm lmVar = pmVar.f38579k;
-                    if (lmVar != null && ((ArrayList) lmVar.f37197f) != null) {
-                        z10 = false;
-                        for (int i13 = 0; i13 < ((ArrayList) pmVar.f38579k.f37197f).size(); i13++) {
-                            if (((org.telegram.messenger.ff) ((ArrayList) pmVar.f38579k.f37197f).get(i13)).C == i10) {
-                                ((ArrayList) pmVar.f38579k.f37197f).set(i13, ffVar);
-                                z10 = true;
-                            }
-                        }
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10) {
-                        pm.a(pmVar, pmVar.f38579k, true);
-                    }
-                }
-            }
-            qmVar.g();
-            qmVar.invalidate();
-        }
-    }
-
-    @Override
-    public final ArrayList c() {
-        return this.f37858b.h;
-    }
-
-    @Override
-    public final int k(int i7, org.telegram.messenger.f20 f20Var) {
-        if (i7 < 0 || i7 >= this.f37857a.size()) {
-            return -1;
-        }
-        Integer valueOf = Integer.valueOf(((org.telegram.messenger.ff) this.f37857a.get(i7)).C);
-        qm qmVar = this.f37858b;
-        int indexOf = qmVar.h.indexOf(valueOf);
-        if (indexOf >= 0) {
-            if (qmVar.h.size() <= 1) {
-                return -1;
-            }
-            qmVar.h.remove(indexOf);
-            qmVar.c();
-            return indexOf;
-        }
-        qmVar.h.add(valueOf);
-        qmVar.c();
-        return qmVar.h.size() - 1;
-    }
-
-    @Override
-    public final boolean u() {
-        return false;
-    }
-
-    @Override
-    public final HashMap v() {
-        return this.f37858b.d;
-    }
-
-    @Override
-    public final boolean x(int i7) {
-        if (i7 >= 0 && i7 < this.f37857a.size()) {
-            return this.f37858b.h.contains(Integer.valueOf(((org.telegram.messenger.ff) this.f37857a.get(i7)).C));
-        }
-        return false;
+    public final float b() {
+        Point point = org.telegram.messenger.g0.f24226q;
+        return this.f37872z.Q.getPreviewScale() * org.telegram.messenger.g0.T1(this.f37855g, this.f37853e, this.f37857j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.f37852c)) / 200.0f))) * Math.max(point.x, point.y) * 0.5f;
     }
 }

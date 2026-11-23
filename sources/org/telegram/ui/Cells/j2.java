@@ -5,33 +5,33 @@ import android.graphics.Canvas;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.m10;
 public final class j2 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.m5 f30865a;
-    public final ImageView f30866b;
-    public boolean f30867c;
+    public final org.telegram.ui.ActionBar.n5 f30954a;
+    public final ImageView f30955b;
+    public boolean f30956c;
     public int d;
 
-    public j2(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+    public j2(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
         int i10;
         this.d = i7;
-        org.telegram.ui.ActionBar.m5 m5Var = new org.telegram.ui.ActionBar.m5(context);
-        this.f30865a = m5Var;
-        m5Var.setTextSize(16);
-        if (hd.f24408a0) {
+        org.telegram.ui.ActionBar.n5 n5Var = new org.telegram.ui.ActionBar.n5(context);
+        this.f30954a = n5Var;
+        n5Var.setTextSize(16);
+        if (gd.f24314a0) {
             i10 = 5;
         } else {
             i10 = 3;
         }
-        m5Var.setGravity(i10);
-        int i11 = org.telegram.ui.ActionBar.m6.f29547o6;
-        org.telegram.ui.ActionBar.t6.X(m5Var, i11, h6Var);
-        m5Var.setTag(Integer.valueOf(i11));
-        addView(m5Var);
+        n5Var.setGravity(i10);
+        int i11 = org.telegram.ui.ActionBar.n6.f29651o6;
+        org.telegram.ui.ActionBar.u6.X(n5Var, i11, i6Var);
+        n5Var.setTag(Integer.valueOf(i11));
+        addView(n5Var);
         ImageView imageView = new ImageView(context);
-        this.f30866b = imageView;
+        this.f30955b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
         setWillNotDraw(false);
@@ -40,8 +40,8 @@ public final class j2 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f30867c) {
-            canvas.drawLine(org.telegram.messenger.g0.L(this.d), getMeasuredHeight() - 1, org.telegram.messenger.g0.L(23.0f) + getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.m6.f29470k0);
+        if (this.f30956c) {
+            canvas.drawLine(org.telegram.messenger.g0.L(this.d), getMeasuredHeight() - 1, org.telegram.messenger.g0.L(23.0f) + getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.n6.f29574k0);
         }
     }
 
@@ -52,12 +52,12 @@ public final class j2 extends FrameLayout {
         int measuredWidth;
         float f11;
         int i13 = i11 - i7;
-        org.telegram.ui.ActionBar.m5 m5Var = this.f30865a;
-        int textHeight = ((i12 - i10) - m5Var.getTextHeight()) / 2;
-        boolean z11 = hd.f24408a0;
-        ImageView imageView = this.f30866b;
+        org.telegram.ui.ActionBar.n5 n5Var = this.f30954a;
+        int textHeight = ((i12 - i10) - n5Var.getTextHeight()) / 2;
+        boolean z11 = gd.f24314a0;
+        ImageView imageView = this.f30955b;
         if (z11) {
-            int measuredWidth2 = getMeasuredWidth() - m5Var.getMeasuredWidth();
+            int measuredWidth2 = getMeasuredWidth() - n5Var.getMeasuredWidth();
             if (imageView.getVisibility() == 0) {
                 f11 = this.d;
             } else {
@@ -72,8 +72,8 @@ public final class j2 extends FrameLayout {
             }
             L = org.telegram.messenger.g0.L(f10);
         }
-        m5Var.layout(L, textHeight, m5Var.getMeasuredWidth() + L, m5Var.getMeasuredHeight() + textHeight);
-        if (!hd.f24408a0) {
+        n5Var.layout(L, textHeight, n5Var.getMeasuredWidth() + L, n5Var.getMeasuredHeight() + textHeight);
+        if (!gd.f24314a0) {
             measuredWidth = (org.telegram.messenger.g0.L(this.d) - imageView.getMeasuredWidth()) / 2;
         } else {
             measuredWidth = (i13 - imageView.getMeasuredWidth()) - org.telegram.messenger.g0.L(25.0f);
@@ -85,8 +85,8 @@ public final class j2 extends FrameLayout {
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i7);
         org.telegram.messenger.g0.L(48.0f);
-        this.f30865a.measure(o10.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(20.0f), 1073741824));
-        this.f30866b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f), 1073741824));
+        this.f30954a.measure(m10.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(20.0f), 1073741824));
+        this.f30955b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f), 1073741824));
         setMeasuredDimension(size, org.telegram.messenger.g0.L(50.0f));
     }
 }

@@ -1,3 +1,4 @@
 package org.telegram.ui.Components;
-public abstract class zt0 {
+public interface zt0 {
+    void d(Runnable runnable);
 }

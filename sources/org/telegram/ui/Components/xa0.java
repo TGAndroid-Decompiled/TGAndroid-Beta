@@ -1,86 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class xa0 implements View.OnClickListener {
-    public final int f41984a = 1;
-    public final boolean f41985b;
-    public final Object f41986c;
-    public final Object d;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
+public final class xa0 {
+    public SpannableStringBuilder f41959a;
+    public int f41960b;
+    public Drawable f41961c;
+    public float d;
+    public final int f41962e;
+    public final int f41963f;
+    public int f41964g = -1;
+    public int h = -1;
+    public float f41965i = 4.66f;
 
-    public xa0(pf pfVar, boolean z10, Runnable runnable) {
-        this.d = pfVar;
-        this.f41985b = z10;
-        this.f41986c = runnable;
+    public xa0(int i7, int i10) {
+        this.f41962e = i7;
+        this.f41963f = i10;
     }
 
-    @Override
-    public final void onClick(View view) {
-        String str;
-        switch (this.f41984a) {
-            case 0:
-                org.telegram.ui.o6 o6Var = (org.telegram.ui.o6) this.d;
-                Runnable runnable = (Runnable) this.f41986c;
-                org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
-                if (Q != null) {
-                    if (this.f41985b) {
-                        str = "lastseen";
-                    } else {
-                        str = "readtime";
-                    }
-                    Q.presentFragment(new PremiumPreviewFragment(0, str));
-                    o6Var.dismiss();
-                    if (runnable != null) {
-                        runnable.run();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                pf pfVar = (pf) this.d;
-                Runnable runnable2 = (Runnable) this.f41986c;
-                if (this.f41985b) {
-                    ((jt0) pfVar.f38544b).J.p();
-                }
-                runnable2.run();
-                return;
-            default:
-                ArrayList arrayList = (ArrayList) this.f41986c;
-                org.telegram.ui.ns nsVar = ((org.telegram.ui.js) this.d).f49052a;
-                if (nsVar.f50312w != null && nsVar.f50302l != null) {
-                    int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
-                    if (intValue == 0) {
-                        nsVar.f50302l.B(nsVar.W);
-                    } else if (intValue == 1) {
-                        nsVar.f50302l.t(nsVar.W);
-                    } else if (intValue == 2) {
-                        nsVar.f50302l.t(null);
-                    } else if (intValue == 3) {
-                        nsVar.f50302l.H(nsVar.W);
-                    } else if (intValue == 4) {
-                        nsVar.f50302l.p(nsVar.W);
-                    } else if (intValue == 5) {
-                        org.telegram.messenger.si.d0(nsVar.f50308r).d(2, nsVar.f50291b0, nsVar.W, (int) (System.currentTimeMillis() / 1000), this.f41985b);
-                    }
-                    nsVar.o();
-                    return;
-                }
-                return;
+    public final CharSequence a(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        int L;
+        int L2;
+        SpannableStringBuilder spannableStringBuilder = this.f41959a;
+        int i7 = this.f41963f;
+        if (spannableStringBuilder != null && this.f41961c != null && org.telegram.messenger.g0.f24225p == this.d) {
+            if (this.f41960b != org.telegram.ui.ActionBar.n6.w0(i7, i6Var)) {
+                Drawable drawable = this.f41961c;
+                int w02 = org.telegram.ui.ActionBar.n6.w0(i7, i6Var);
+                this.f41960b = w02;
+                drawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
+            }
+            return this.f41959a;
+        } else if (context == null) {
+            return null;
+        } else {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("v ");
+            this.d = org.telegram.messenger.g0.f24225p;
+            Drawable mutate = context.getResources().getDrawable(this.f41962e).mutate();
+            this.f41961c = mutate;
+            int w03 = org.telegram.ui.ActionBar.n6.w0(i7, i6Var);
+            this.f41960b = w03;
+            mutate.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
+            int i10 = this.f41964g;
+            if (i10 <= 0) {
+                L = this.f41961c.getIntrinsicWidth();
+            } else {
+                L = org.telegram.messenger.g0.L(i10);
+            }
+            int i11 = this.h;
+            if (i11 <= 0) {
+                L2 = this.f41961c.getIntrinsicHeight();
+            } else {
+                L2 = org.telegram.messenger.g0.L(i11);
+            }
+            int L3 = org.telegram.messenger.g0.L(this.f41965i);
+            this.f41961c.setBounds(0, L3, L, L2 + L3);
+            spannableStringBuilder2.setSpan(new ImageSpan(this.f41961c, 2), 0, 1, 33);
+            spannableStringBuilder2.setSpan(new org.telegram.ui.Cells.s2(org.telegram.messenger.g0.L(2.0f)), 1, 2, 33);
+            this.f41959a = spannableStringBuilder2;
+            return spannableStringBuilder2;
         }
-    }
-
-    public xa0(org.telegram.ui.js jsVar, ArrayList arrayList, boolean z10) {
-        this.d = jsVar;
-        this.f41986c = arrayList;
-        this.f41985b = z10;
-    }
-
-    public xa0(boolean z10, org.telegram.ui.o6 o6Var, Runnable runnable) {
-        this.f41985b = z10;
-        this.d = o6Var;
-        this.f41986c = runnable;
     }
 }

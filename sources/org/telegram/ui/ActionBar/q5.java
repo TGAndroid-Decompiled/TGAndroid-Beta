@@ -1,68 +1,36 @@
 package org.telegram.ui.ActionBar;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.os.SystemClock;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.gj;
-public final class q5 implements SensorEventListener {
-    @Override
-    public final void onSensorChanged(SensorEvent sensorEvent) {
-        float f10 = sensorEvent.values[0];
-        if (f10 <= 0.0f) {
-            f10 = 0.1f;
-        }
-        if (!org.telegram.messenger.t0.f26903x && org.telegram.messenger.t0.f26902w) {
-            if (f10 > 500.0f) {
-                m6.h = 1.0f;
-            } else {
-                m6.h = ((float) Math.ceil((Math.log(f10) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
-            }
-            long j3 = 1800;
-            if (m6.h <= m6.f29580q) {
-                MediaController B = MediaController.B();
-                if (B.J) {
-                    if (!B.J()) {
-                        gj gjVar = B.f22735v0;
-                        if (gjVar != null && (gj.R4(gjVar.f24177k) || B.f22735v0.h4())) {
-                            return;
-                        }
-                    } else {
-                        return;
-                    }
-                }
-                if (m6.f29450j) {
-                    m6.f29450j = false;
-                    org.telegram.messenger.g0.r(m6.f29488l);
-                }
-                if (!m6.f29469k) {
-                    m6.f29469k = true;
-                    androidx.emoji2.text.o oVar = m6.f29506m;
-                    if (Math.abs(m6.f29432i - SystemClock.elapsedRealtime()) < 12000) {
-                        j3 = 12000;
-                    }
-                    org.telegram.messenger.g0.h3(oVar, j3);
-                    return;
-                }
-                return;
-            }
-            if (m6.f29469k) {
-                m6.f29469k = false;
-                org.telegram.messenger.g0.r(m6.f29506m);
-            }
-            if (!m6.f29450j) {
-                m6.f29450j = true;
-                androidx.emoji2.text.o oVar2 = m6.f29488l;
-                if (Math.abs(m6.f29432i - SystemClock.elapsedRealtime()) < 12000) {
-                    j3 = 12000;
-                }
-                org.telegram.messenger.g0.h3(oVar2, j3);
-            }
-        }
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class q5 extends Drawable {
+    public final int f30008a;
+    public final int f30009b;
+
+    public q5(int i7, int i10) {
+        this.f30008a = i7;
+        this.f30009b = i10;
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int i7) {
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        int i7 = this.f30008a;
+        int i10 = this.f30009b;
+        canvas.drawCircle((bounds.centerX() - i7) + i10, bounds.centerY(), (Math.max(bounds.width(), bounds.height()) / 2) + i7 + i10, n6.f29855z);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

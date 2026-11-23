@@ -1,46 +1,50 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class kh implements Runnable {
-    public final int f25032a;
-    public final si f25033b;
-    public final ArrayList f25034c;
+    public final int f25126a = 2;
+    public final boolean f25127b;
+    public final boolean f25128c;
+    public final Object d;
+    public final Object f25129e;
+    public final Object f25130f;
+    public final Object h;
+    public final Object f25131n;
 
-    public kh(si siVar, ArrayList arrayList, int i7) {
-        this.f25032a = i7;
-        this.f25033b = siVar;
-        this.f25034c = arrayList;
+    public kh(af afVar, boolean z10, TLRPC.PhotoSize photoSize, fj fjVar, TLRPC.Photo photo, boolean z11, TLRPC.Document document) {
+        this.d = afVar;
+        this.f25127b = z10;
+        this.f25129e = photoSize;
+        this.f25130f = fjVar;
+        this.h = photo;
+        this.f25128c = z11;
+        this.f25131n = document;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f25032a;
-        ArrayList arrayList = this.f25034c;
-        si siVar = this.f25033b;
-        switch (i7) {
-            case 0:
-                siVar.getNotificationCenter().k(56, Long.valueOf(gj.B0(((gj) arrayList.get(0)).f24177k)), null, Boolean.TRUE, arrayList, null, 0, -1, Boolean.FALSE);
-                return;
-            default:
-                try {
-                    ArrayList arrayList2 = new ArrayList();
-                    ArrayList arrayList3 = new ArrayList();
-                    a0.h hVar = new a0.h();
-                    a0.h hVar2 = new a0.h();
-                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        try {
-                            ur.d((TLRPC.Message) arrayList.get(i10), hVar, hVar2);
-                        } catch (Exception e10) {
-                            siVar.getMessagesStorage().o(e10, true);
-                        }
-                    }
-                    siVar.getMessagesStorage().K0(hVar, hVar2, arrayList2, arrayList3, 0);
-                    return;
-                } catch (Exception e11) {
-                    a8.g(e11, true);
-                    return;
-                }
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.kh.run():void");
+    }
+
+    public kh(ri riVar, Integer num, ArrayList arrayList, boolean z10, boolean z11, ArrayList[] arrayListArr, Runnable runnable) {
+        this.d = riVar;
+        this.f25129e = num;
+        this.f25130f = arrayList;
+        this.f25127b = z10;
+        this.f25128c = z11;
+        this.h = arrayListArr;
+        this.f25131n = runnable;
+    }
+
+    public kh(mp mpVar, xo xoVar, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.g2 g2Var, TLObject tLObject, boolean z10, boolean z11) {
+        this.d = mpVar;
+        this.f25129e = xoVar;
+        this.f25130f = tL_error;
+        this.h = g2Var;
+        this.f25131n = tLObject;
+        this.f25127b = z10;
+        this.f25128c = z11;
     }
 }

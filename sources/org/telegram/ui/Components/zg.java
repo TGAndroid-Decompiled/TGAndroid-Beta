@@ -1,40 +1,73 @@
 package org.telegram.ui.Components;
-public final class zg {
-    public static final zg d;
-    public static final zg f42766e;
-    public static final zg[] f42767f;
-    public final yg f42768a;
-    public final yg f42769b;
-    public final int f42770c;
 
-    static {
-        yg ygVar = yg.f42407a;
-        yg ygVar2 = yg.f42408b;
-        zg zgVar = new zg("VOICE_TO_VIDEO", 0, ygVar, ygVar2, 2131624331);
-        d = zgVar;
-        yg ygVar3 = yg.f42409c;
-        yg ygVar4 = yg.d;
-        zg zgVar2 = new zg("STICKER_TO_KEYBOARD", 1, ygVar3, ygVar4, 2131624230);
-        yg ygVar5 = yg.f42410e;
-        zg zgVar3 = new zg("SMILE_TO_KEYBOARD", 2, ygVar5, ygVar4, 2131624197);
-        zg zgVar4 = new zg("VIDEO_TO_VOICE", 3, ygVar2, ygVar, 2131624331);
-        f42766e = zgVar4;
-        zg zgVar5 = new zg("KEYBOARD_TO_STICKER", 4, ygVar4, ygVar3, 2131624076);
-        yg ygVar6 = yg.f42411f;
-        f42767f = new zg[]{zgVar, zgVar2, zgVar3, zgVar4, zgVar5, new zg("KEYBOARD_TO_GIF", 5, ygVar4, ygVar6, 2131624074), new zg("KEYBOARD_TO_SMILE", 6, ygVar4, ygVar5, 2131624075), new zg("GIF_TO_KEYBOARD", 7, ygVar6, ygVar4, 2131624032), new zg("GIF_TO_SMILE", 8, ygVar6, ygVar5, 2131624033), new zg("SMILE_TO_GIF", 9, ygVar5, ygVar6, 2131624196), new zg("SMILE_TO_STICKER", 10, ygVar5, ygVar3, 2131624198), new zg("STICKER_TO_SMILE", 11, ygVar3, ygVar5, 2131624231)};
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+public class zg extends qh0 {
+    public final c6 E;
+    public final wg F;
+    public xg f42847r;
+    public yg f42848s;
+    public final int f42849w;
+    public boolean f42850x;
+    public Drawable f42851y;
+
+    public zg(Context context, int i7) {
+        super(context);
+        this.E = new c6(this, 0L, 320L, kr.h);
+        this.F = new wg(this, 0);
+        this.f42849w = i7;
     }
 
-    public zg(String str, int i7, yg ygVar, yg ygVar2, int i10) {
-        this.f42768a = ygVar;
-        this.f42769b = ygVar2;
-        this.f42770c = i10;
+    public xg getCurrentState() {
+        return this.f42847r;
     }
 
-    public static zg valueOf(String str) {
-        return (zg) Enum.valueOf(zg.class, str);
+    public final void j(org.telegram.ui.Components.xg r13, boolean r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.zg.j(org.telegram.ui.Components.xg, boolean):void");
     }
 
-    public static zg[] values() {
-        return (zg[]) f42767f.clone();
+    @Override
+    public void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float d = this.E.d(this.f42850x);
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        if (d < 1.0f) {
+            if (d > 0.0f) {
+                canvas2 = canvas;
+                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - d) * 255.0f), 31);
+            } else {
+                canvas2 = canvas;
+                canvas2.save();
+            }
+            float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, d, 0.6f, 0.4f);
+            canvas2.scale(z10, z10, width, height);
+            super.onDraw(canvas);
+            canvas2.restore();
+        } else {
+            canvas2 = canvas;
+        }
+        if (d > 0.0f) {
+            if (this.f42851y == null) {
+                this.f42851y = getContext().getResources().getDrawable(2131232121).mutate();
+            }
+            int intrinsicWidth = this.f42851y.getIntrinsicWidth() / 2;
+            int intrinsicHeight = this.f42851y.getIntrinsicHeight() / 2;
+            int i7 = (int) width;
+            int i10 = (int) height;
+            this.f42851y.setBounds(i7 - intrinsicWidth, i10 - intrinsicHeight, i7 + intrinsicWidth, i10 + intrinsicHeight);
+            this.f42851y.setColorFilter(getColorFilter());
+            this.f42851y.setAlpha((int) (255.0f * d));
+            canvas2.save();
+            float f10 = (d * 0.6f) + 0.4f;
+            canvas2.scale(f10, f10, width, height);
+            this.f42851y.draw(canvas2);
+            canvas2.restore();
+        }
+    }
+
+    public zg(Context context) {
+        this(context, 32);
     }
 }

@@ -1,65 +1,65 @@
 package t1;
 
-import android.text.InputFilter;
-import android.text.Selection;
-import android.text.Spannable;
-import android.widget.TextView;
+import ab.c0;
+import android.os.Bundle;
+import android.text.Editable;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputConnectionWrapper;
+import android.widget.EditText;
 import androidx.emoji2.text.l;
-import java.lang.ref.WeakReference;
-public final class c extends androidx.emoji2.text.i {
-    public final WeakReference f57534a;
-    public final WeakReference f57535b;
+import java.nio.ByteBuffer;
+import w7.s;
+public final class c extends InputConnectionWrapper {
+    public final EditText f57646a;
+    public final s f57647b;
 
-    public c(TextView textView, d dVar) {
-        this.f57534a = new WeakReference(textView);
-        this.f57535b = new WeakReference(dVar);
+    public c(EditText editText, InputConnection inputConnection, EditorInfo editorInfo) {
+        super(inputConnection, false);
+        int i7;
+        s sVar = new s(24);
+        this.f57646a = editText;
+        this.f57647b = sVar;
+        if (l.f2223j != null) {
+            l a10 = l.a();
+            if (a10.b() != 1 || editorInfo == null) {
+                return;
+            }
+            if (editorInfo.extras == null) {
+                editorInfo.extras = new Bundle();
+            }
+            androidx.emoji2.text.f fVar = a10.f2227e;
+            fVar.getClass();
+            Bundle bundle = editorInfo.extras;
+            s1.b bVar = (s1.b) ((c0) fVar.f2215c).f908b;
+            int a11 = bVar.a(4);
+            if (a11 != 0) {
+                i7 = ((ByteBuffer) bVar.d).getInt(a11 + bVar.f56415a);
+            } else {
+                i7 = 0;
+            }
+            bundle.putInt("android.support.text.emoji.emojiCompat_metadataVersion", i7);
+            editorInfo.extras.putBoolean("android.support.text.emoji.emojiCompat_replaceAll", false);
+        }
     }
 
     @Override
-    public final void a() {
-        InputFilter[] filters;
-        int length;
-        TextView textView = (TextView) this.f57534a.get();
-        InputFilter inputFilter = (InputFilter) this.f57535b.get();
-        if (inputFilter != null && textView != null && (filters = textView.getFilters()) != null) {
-            for (InputFilter inputFilter2 : filters) {
-                if (inputFilter2 == inputFilter) {
-                    if (textView.isAttachedToWindow()) {
-                        CharSequence text = textView.getText();
-                        l a10 = l.a();
-                        if (text == null) {
-                            length = 0;
-                        } else {
-                            a10.getClass();
-                            length = text.length();
-                        }
-                        CharSequence e10 = a10.e(0, length, text);
-                        if (text != e10) {
-                            int selectionStart = Selection.getSelectionStart(e10);
-                            int selectionEnd = Selection.getSelectionEnd(e10);
-                            textView.setText(e10);
-                            if (e10 instanceof Spannable) {
-                                Spannable spannable = (Spannable) e10;
-                                if (selectionStart >= 0 && selectionEnd >= 0) {
-                                    Selection.setSelection(spannable, selectionStart, selectionEnd);
-                                    return;
-                                } else if (selectionStart >= 0) {
-                                    Selection.setSelection(spannable, selectionStart);
-                                    return;
-                                } else if (selectionEnd >= 0) {
-                                    Selection.setSelection(spannable, selectionEnd);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-            }
+    public final boolean deleteSurroundingText(int i7, int i10) {
+        Editable editableText = this.f57646a.getEditableText();
+        this.f57647b.getClass();
+        if (!s.a0(this, editableText, i7, i10, false) && !super.deleteSurroundingText(i7, i10)) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final boolean deleteSurroundingTextInCodePoints(int i7, int i10) {
+        Editable editableText = this.f57646a.getEditableText();
+        this.f57647b.getClass();
+        if (s.a0(this, editableText, i7, i10, true) || super.deleteSurroundingTextInCodePoints(i7, i10)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -1,105 +1,110 @@
 package ki;
 
-import android.net.Uri;
-import android.text.TextUtils;
-import org.telegram.messenger.a8;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class e4 {
-    public int f18642a;
-    public long f18643b;
-    public long f18644c;
-    public long d;
-    public String f18645e;
-    public String f18646f;
-    public int f18647g;
-    public int h;
-    public long f18648i;
-    public TLRPC.BotApp f18649j;
-    public boolean f18650k;
-    public String f18651l;
-    public TLRPC.User f18652m;
-    public int f18653n;
-    public boolean f18654o;
-    public boolean f18655p;
-    public TLObject f18656q;
-    public long f18657r;
+import android.content.Context;
+import android.view.View;
+import c8.na;
+import hi.y7;
+import java.util.ArrayList;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.ks;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.cu0;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.n41;
+public final class e4 extends org.telegram.ui.ActionBar.g2 implements fs {
+    public final long f18736a;
+    public org.telegram.ui.ActionBar.x1 f18737b;
+    public g51 f18738c;
 
-    public static e4 b(int i7, long j3, long j10, String str, String str2, int i10, int i11, long j11, TLRPC.BotApp botApp, boolean z10, String str3, TLRPC.User user, int i12, boolean z11, boolean z12) {
-        ?? obj = new Object();
-        obj.f18642a = i7;
-        obj.f18643b = j3;
-        obj.f18644c = j10;
-        obj.f18645e = str;
-        obj.f18646f = str2;
-        obj.f18647g = i10;
-        obj.h = i11;
-        obj.f18648i = j11;
-        obj.f18649j = botApp;
-        obj.f18650k = z10;
-        obj.f18651l = str3;
-        obj.f18652m = user;
-        obj.f18653n = i12;
-        obj.f18654o = z11;
-        obj.f18655p = z12;
-        if (!z11 && !z12 && !TextUtils.isEmpty(str2)) {
-            try {
-                Uri parse = Uri.parse(str2);
-                obj.f18654o = TextUtils.equals(parse.getQueryParameter("mode"), "compact");
-                obj.f18655p = TextUtils.equals(parse.getQueryParameter("mode"), "fullscreen");
-                return obj;
-            } catch (Exception e10) {
-                a8.g(e10, true);
-            }
+    public e4(long j3) {
+        super(null);
+        this.f18736a = j3;
+    }
+
+    public final void Z(ArrayList arrayList, b51 b51Var) {
+        di.c0 e10 = di.e0.g(this.currentAccount).e(this.f18736a);
+        ArrayList arrayList2 = e10.f8573e;
+        for (int i7 = 0; i7 < arrayList2.size(); i7++) {
+            Object obj = arrayList2.get(i7);
+            int i10 = e3.f18735b;
+            n41 K = n41.K(e3.class);
+            K.H = obj;
+            K.f37661s = false;
+            arrayList.add(K);
         }
-        return obj;
+        if (e10.h) {
+            arrayList.add(n41.p(29));
+            arrayList.add(n41.p(29));
+            arrayList.add(n41.p(29));
+        }
     }
 
-    public final void a(TLObject tLObject) {
-        this.f18656q = tLObject;
-        this.f18657r = System.currentTimeMillis();
+    public final void a0(n41 n41Var) {
+        Object obj = n41Var.H;
+        if (obj instanceof TL_payments.starRefProgram) {
+            i3.J0(getParentActivity(), this.currentAccount, (TL_payments.starRefProgram) obj, this.f18736a, this.resourceProvider, false);
+        }
     }
 
-    public final boolean equals(Object obj) {
-        long j3;
-        long j10;
-        long j11;
-        if (obj instanceof e4) {
-            e4 e4Var = (e4) obj;
-            if (this.f18642a == e4Var.f18642a && this.f18643b == e4Var.f18643b && this.f18644c == e4Var.f18644c && TextUtils.equals(this.f18646f, e4Var.f18646f) && this.f18647g == e4Var.f18647g && this.h == e4Var.h) {
-                TLRPC.BotApp botApp = this.f18649j;
-                long j12 = 0;
-                if (botApp == null) {
-                    j3 = 0;
-                } else {
-                    j3 = botApp.f28395id;
-                }
-                TLRPC.BotApp botApp2 = e4Var.f18649j;
-                if (botApp2 == null) {
-                    j10 = 0;
-                } else {
-                    j10 = botApp2.f28395id;
-                }
-                if (j3 == j10 && this.f18650k == e4Var.f18650k && TextUtils.equals(this.f18651l, e4Var.f18651l)) {
-                    TLRPC.User user = this.f18652m;
-                    if (user == null) {
-                        j11 = 0;
-                    } else {
-                        j11 = user.f28547id;
-                    }
-                    TLRPC.User user2 = e4Var.f18652m;
-                    if (user2 != null) {
-                        j12 = user2.f28547id;
-                    }
-                    if (j11 == j12 && this.f18653n == e4Var.f18653n) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
+    @Override
+    public final View createView(Context context) {
+        org.telegram.ui.ActionBar.k kVar = this.actionBar;
+        org.telegram.ui.ActionBar.x1 x1Var = new org.telegram.ui.ActionBar.x1(false);
+        this.f18737b = x1Var;
+        kVar.setBackButtonDrawable(x1Var);
+        this.f18737b.f30314k = 240.0f;
+        this.actionBar.setActionBarMenuOnItemClick(new bi.w1(this, 16));
+        u6.h(n6.f29451d6, this.actionBar, null);
+        org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
+        int i7 = n6.G6;
+        u6.l(kVar2, 1, i7, null);
+        u6.b(this.actionBar, i7, null, true);
+        u6.l(this.actionBar, 3, n6.f29864z8, null);
+        u6.l(this.actionBar, 5, i7, null);
+        this.actionBar.setTitle(gd.N0(2131752459, null));
+        cu0 cu0Var = new cu0(context, null);
+        g51 g51Var = new g51(this, new y7(this, 22), new kg.f1(this, 6), null);
+        this.f18738c = g51Var;
+        cu0Var.addView(g51Var, na.e(-1, -1, 119));
+        this.fragmentView = cu0Var;
+        return cu0Var;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        g51 g51Var;
+        if (i7 == ks.N3 && ((Long) objArr[0]).longValue() == this.f18736a && (g51Var = this.f18738c) != null && (g51Var.getAdapter() instanceof b51)) {
+            ((b51) this.f18738c.getAdapter()).O(true);
+        }
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
+        if (getLastStoryViewer() == null || getLastStoryViewer().H0) {
+            int x02 = n6.x0(null, n6.f29451d6, false);
+            if (this.actionBar.x()) {
+                x02 = n6.x0(null, n6.f29807w8, false);
             }
-            return false;
+            if (i0.a.h(x02) > 0.699999988079071d) {
+                return true;
+            }
         }
         return false;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        ks.f(this.currentAccount).c(this, ks.N3);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        ks.f(this.currentAccount).n(this, ks.N3);
+        super.onFragmentDestroy();
     }
 }

@@ -2,7 +2,7 @@ package ee;
 
 import c8.z;
 public abstract class s {
-    public static final int f10941a = 0;
+    public static final int f10939a = 0;
 
     static {
         Object a10;

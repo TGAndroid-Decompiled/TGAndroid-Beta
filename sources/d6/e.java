@@ -12,14 +12,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import m.o3;
 public final class e extends q6.h {
     public final GoogleSignInOptions F;
 
-    public e(Context context, Looper looper, o3 o3Var, GoogleSignInOptions googleSignInOptions, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
-        super(context, looper, 91, o3Var, kVar, lVar, 0);
+    public e(Context context, Looper looper, ga.d dVar, GoogleSignInOptions googleSignInOptions, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
+        super(context, looper, 91, dVar, kVar, lVar, 0);
         c6.a aVar;
-        Set<Scope> set = (Set) o3Var.f20156b;
+        Set<Scope> set = (Set) dVar.f13272c;
         if (googleSignInOptions != null) {
             ?? obj = new Object();
             obj.f4455a = new HashSet();

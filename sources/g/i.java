@@ -14,28 +14,58 @@ import m.r3;
 import r0.i0;
 import r0.l1;
 public final class i implements r0.m, l.w {
-    public final s f12986a;
+    public final s f12985a;
 
     public i(s sVar) {
-        this.f12986a = sVar;
+        this.f12985a = sVar;
     }
 
     @Override
-    public boolean C(l.k kVar) {
-        Window.Callback callback;
-        if (kVar == kVar.k()) {
-            s sVar = this.f12986a;
-            if (sVar.P && (callback = sVar.f13021f.getCallback()) != null && !sVar.f13015a0) {
-                callback.onMenuOpened(108, kVar);
-                return true;
-            }
-            return true;
+    public void f(l.k kVar, boolean z10) {
+        boolean z11;
+        int i7;
+        r rVar;
+        l.k k10 = kVar.k();
+        int i10 = 0;
+        if (k10 != kVar) {
+            z11 = true;
+        } else {
+            z11 = false;
         }
-        return true;
+        if (z11) {
+            kVar = k10;
+        }
+        s sVar = this.f12985a;
+        r[] rVarArr = sVar.V;
+        if (rVarArr != null) {
+            i7 = rVarArr.length;
+        } else {
+            i7 = 0;
+        }
+        while (true) {
+            if (i10 < i7) {
+                rVar = rVarArr[i10];
+                if (rVar != null && rVar.h == kVar) {
+                    break;
+                }
+                i10++;
+            } else {
+                rVar = null;
+                break;
+            }
+        }
+        if (rVar != null) {
+            if (z11) {
+                sVar.f(rVar.f12997a, rVar, k10);
+                sVar.h(rVar, true);
+                return;
+            }
+            sVar.h(rVar, z10);
+        }
     }
 
     @Override
-    public l1 P0(View view, l1 l1Var) {
+    public l1 l1(View view, l1 l1Var) {
         boolean z10;
         l1 l1Var2;
         int b10;
@@ -43,8 +73,8 @@ public final class i implements r0.m, l.w {
         boolean z11;
         int color;
         int d = l1Var.d();
-        s sVar = this.f12986a;
-        Context context = sVar.f13019e;
+        s sVar = this.f12985a;
+        Context context = sVar.f13018e;
         int d2 = l1Var.d();
         ActionBarContextView actionBarContextView = sVar.E;
         int i7 = 8;
@@ -54,13 +84,13 @@ public final class i implements r0.m, l.w {
             if (sVar.E.isShown()) {
                 if (sVar.m0 == null) {
                     sVar.m0 = new Rect();
-                    sVar.f13030n0 = new Rect();
+                    sVar.f13029n0 = new Rect();
                 }
                 Rect rect = sVar.m0;
-                Rect rect2 = sVar.f13030n0;
+                Rect rect2 = sVar.f13029n0;
                 rect.set(l1Var.b(), l1Var.d(), l1Var.c(), l1Var.a());
                 ViewGroup viewGroup = sVar.K;
-                Method method = r3.f20195a;
+                Method method = r3.f20291a;
                 if (method != null) {
                     try {
                         method.invoke(viewGroup, rect, rect2);
@@ -72,7 +102,7 @@ public final class i implements r0.m, l.w {
                 int i11 = rect.left;
                 int i12 = rect.right;
                 ViewGroup viewGroup2 = sVar.K;
-                WeakHashMap weakHashMap = i0.f56254a;
+                WeakHashMap weakHashMap = i0.f56367a;
                 l1 a10 = r0.b0.a(viewGroup2);
                 if (a10 == null) {
                     b10 = 0;
@@ -161,46 +191,16 @@ public final class i implements r0.m, l.w {
     }
 
     @Override
-    public void d(l.k kVar, boolean z10) {
-        boolean z11;
-        int i7;
-        r rVar;
-        l.k k10 = kVar.k();
-        int i10 = 0;
-        if (k10 != kVar) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (z11) {
-            kVar = k10;
-        }
-        s sVar = this.f12986a;
-        r[] rVarArr = sVar.V;
-        if (rVarArr != null) {
-            i7 = rVarArr.length;
-        } else {
-            i7 = 0;
-        }
-        while (true) {
-            if (i10 < i7) {
-                rVar = rVarArr[i10];
-                if (rVar != null && rVar.h == kVar) {
-                    break;
-                }
-                i10++;
-            } else {
-                rVar = null;
-                break;
+    public boolean u(l.k kVar) {
+        Window.Callback callback;
+        if (kVar == kVar.k()) {
+            s sVar = this.f12985a;
+            if (sVar.P && (callback = sVar.f13020f.getCallback()) != null && !sVar.f13014a0) {
+                callback.onMenuOpened(108, kVar);
+                return true;
             }
+            return true;
         }
-        if (rVar != null) {
-            if (z11) {
-                sVar.g(rVar.f12998a, rVar, k10);
-                sVar.j(rVar, true);
-                return;
-            }
-            sVar.j(rVar, z10);
-        }
+        return true;
     }
 }

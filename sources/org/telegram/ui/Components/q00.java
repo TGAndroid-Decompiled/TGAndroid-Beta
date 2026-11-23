@@ -1,205 +1,251 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.MediaController;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class q00 implements View.OnLongClickListener {
-    public final int f38694a;
-    public final Object f38695b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class q00 extends AnimatorListenerAdapter {
+    public final int f38637a;
+    public final FragmentContextView f38638b;
 
-    public q00(Object obj, int i7) {
-        this.f38694a = i7;
-        this.f38695b = obj;
+    public q00(FragmentContextView fragmentContextView, int i7) {
+        this.f38637a = i7;
+        this.f38638b = fragmentContextView;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        int measuredHeight;
-        org.telegram.ui.bn bnVar;
-        int i7 = this.f38694a;
-        Object obj = this.f38695b;
-        switch (i7) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f38637a) {
             case 0:
-                final FragmentContextView fragmentContextView = (FragmentContextView) obj;
-                float[] fArr = FragmentContextView.X0;
-                final float C = MediaController.B().C(fragmentContextView.f32955a0);
-                fragmentContextView.J.e(false, C);
-                org.telegram.ui.ActionBar.u0 u0Var = fragmentContextView.J;
-                int i10 = org.telegram.ui.ActionBar.m6.G8;
-                org.telegram.ui.ActionBar.t6.h(i10, u0Var, fragmentContextView.f32977r0);
-                org.telegram.ui.ActionBar.u0 u0Var2 = fragmentContextView.J;
-                u0Var2.O = fragmentContextView.h instanceof org.telegram.ui.bn;
-                u0Var2.G.setShader(null);
-                u0Var2.h = null;
-                Bitmap bitmap = u0Var2.f30084f;
-                if (bitmap != null) {
-                    bitmap.recycle();
-                    u0Var2.f30084f = null;
+                FragmentContextView fragmentContextView = this.f38638b;
+                AnimatorSet animatorSet = fragmentContextView.f33061f;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    fragmentContextView.f33061f = null;
+                    return;
                 }
-                fragmentContextView.H.I(org.telegram.ui.ActionBar.m6.x0(null, i10, false));
-                fragmentContextView.H.W();
-                fragmentContextView.q(false);
-                fragmentContextView.H.setDimMenu(0.3f);
-                fragmentContextView.H.V(fragmentContextView.J, null);
-                fragmentContextView.H.setOnMenuDismiss(new org.telegram.messenger.y10() {
-                    @Override
-                    public final void a(Object obj2) {
-                        float[] fArr2 = FragmentContextView.X0;
-                        if (!((Boolean) obj2).booleanValue()) {
-                            MediaController B = MediaController.B();
-                            FragmentContextView fragmentContextView2 = FragmentContextView.this;
-                            fragmentContextView2.l(C, B.C(fragmentContextView2.f32955a0), false);
-                        }
-                    }
-                });
-                org.telegram.messenger.np.h1().edit().putInt("speedhint", -15).apply();
-                return true;
+                return;
             case 1:
-                qc0 qc0Var = (qc0) obj;
-                qc0Var.f38840r.setText("");
-                hi.y7.a(qc0Var.f38841s, true);
-                Drawable drawable = qc0Var.f38825a;
-                if (drawable instanceof cb0) {
-                    ((cb0) drawable).x();
+                FragmentContextView fragmentContextView2 = this.f38638b;
+                fragmentContextView2.f33080v0.e();
+                AnimatorSet animatorSet2 = fragmentContextView2.f33061f;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    fragmentContextView2.setVisibility(8);
+                    x00 x00Var = fragmentContextView2.f33073q0;
+                    if (x00Var != null) {
+                        ((ip0) x00Var).b(false);
+                    }
+                    fragmentContextView2.f33061f = null;
+                    if (fragmentContextView2.f33086y0) {
+                        fragmentContextView2.e(false);
+                    } else if (fragmentContextView2.f33084x0) {
+                        fragmentContextView2.a(false);
+                    } else if (fragmentContextView2.f33087z0) {
+                        fragmentContextView2.g(false);
+                    } else if (fragmentContextView2.A0) {
+                        fragmentContextView2.c(false);
+                    }
+                    fragmentContextView2.f33086y0 = false;
+                    fragmentContextView2.f33084x0 = false;
+                    fragmentContextView2.f33087z0 = false;
+                    fragmentContextView2.A0 = false;
+                    return;
                 }
-                return true;
+                return;
+            case 2:
+                FragmentContextView fragmentContextView3 = this.f38638b;
+                fragmentContextView3.f33080v0.e();
+                AnimatorSet animatorSet3 = fragmentContextView3.f33061f;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    x00 x00Var2 = fragmentContextView3.f33073q0;
+                    if (x00Var2 != null) {
+                        ((ip0) x00Var2).b(false);
+                    }
+                    fragmentContextView3.f33061f = null;
+                    if (fragmentContextView3.f33086y0) {
+                        fragmentContextView3.e(false);
+                    } else if (fragmentContextView3.f33084x0) {
+                        fragmentContextView3.a(false);
+                    } else if (fragmentContextView3.f33087z0) {
+                        fragmentContextView3.g(false);
+                    } else if (fragmentContextView3.A0) {
+                        fragmentContextView3.c(false);
+                    }
+                    fragmentContextView3.f33086y0 = false;
+                    fragmentContextView3.f33084x0 = false;
+                    fragmentContextView3.f33087z0 = false;
+                    fragmentContextView3.A0 = false;
+                    return;
+                }
+                return;
+            case 3:
+                FragmentContextView fragmentContextView4 = this.f38638b;
+                fragmentContextView4.f33080v0.e();
+                AnimatorSet animatorSet4 = fragmentContextView4.f33061f;
+                if (animatorSet4 != null && animatorSet4.equals(animator)) {
+                    fragmentContextView4.setVisibility(8);
+                    fragmentContextView4.f33061f = null;
+                    if (fragmentContextView4.f33086y0) {
+                        fragmentContextView4.e(false);
+                    } else if (fragmentContextView4.f33084x0) {
+                        fragmentContextView4.a(false);
+                    } else if (fragmentContextView4.f33087z0) {
+                        fragmentContextView4.g(false);
+                    } else if (fragmentContextView4.A0) {
+                        fragmentContextView4.c(false);
+                    }
+                    fragmentContextView4.f33086y0 = false;
+                    fragmentContextView4.f33084x0 = false;
+                    fragmentContextView4.f33087z0 = false;
+                    fragmentContextView4.A0 = false;
+                    return;
+                }
+                return;
+            case 4:
+                FragmentContextView fragmentContextView5 = this.f38638b;
+                fragmentContextView5.f33080v0.e();
+                AnimatorSet animatorSet5 = fragmentContextView5.f33061f;
+                if (animatorSet5 != null && animatorSet5.equals(animator)) {
+                    x00 x00Var3 = fragmentContextView5.f33073q0;
+                    if (x00Var3 != null) {
+                        ((ip0) x00Var3).b(false);
+                    }
+                    fragmentContextView5.f33061f = null;
+                    if (fragmentContextView5.f33086y0) {
+                        fragmentContextView5.e(false);
+                    } else if (fragmentContextView5.f33084x0) {
+                        fragmentContextView5.a(false);
+                    } else if (fragmentContextView5.f33087z0) {
+                        fragmentContextView5.g(false);
+                    } else if (fragmentContextView5.A0) {
+                        fragmentContextView5.c(false);
+                    }
+                    fragmentContextView5.f33086y0 = false;
+                    fragmentContextView5.f33084x0 = false;
+                    fragmentContextView5.f33087z0 = false;
+                    fragmentContextView5.A0 = false;
+                    return;
+                }
+                return;
+            case 5:
+                FragmentContextView fragmentContextView6 = this.f38638b;
+                fragmentContextView6.f33080v0.e();
+                AnimatorSet animatorSet6 = fragmentContextView6.f33061f;
+                if (animatorSet6 != null && animatorSet6.equals(animator)) {
+                    fragmentContextView6.setVisibility(8);
+                    fragmentContextView6.f33061f = null;
+                    if (fragmentContextView6.f33086y0) {
+                        fragmentContextView6.e(false);
+                    } else if (fragmentContextView6.f33084x0) {
+                        fragmentContextView6.a(false);
+                    } else if (fragmentContextView6.f33087z0) {
+                        fragmentContextView6.g(false);
+                    } else if (fragmentContextView6.A0) {
+                        fragmentContextView6.c(false);
+                    }
+                    fragmentContextView6.f33086y0 = false;
+                    fragmentContextView6.f33084x0 = false;
+                    fragmentContextView6.f33087z0 = false;
+                    fragmentContextView6.A0 = false;
+                    return;
+                }
+                return;
+            case 6:
+                FragmentContextView fragmentContextView7 = this.f38638b;
+                fragmentContextView7.f33080v0.e();
+                AnimatorSet animatorSet7 = fragmentContextView7.f33061f;
+                if (animatorSet7 != null && animatorSet7.equals(animator)) {
+                    fragmentContextView7.U = false;
+                    fragmentContextView7.f33061f = null;
+                    fragmentContextView7.e(false);
+                    return;
+                }
+                return;
+            case 7:
+                FragmentContextView fragmentContextView8 = this.f38638b;
+                fragmentContextView8.f33082w0.e();
+                AnimatorSet animatorSet8 = fragmentContextView8.f33061f;
+                if (animatorSet8 != null && animatorSet8.equals(animator)) {
+                    fragmentContextView8.f33061f = null;
+                }
+                if (fragmentContextView8.f33086y0) {
+                    fragmentContextView8.e(false);
+                } else if (fragmentContextView8.f33084x0) {
+                    fragmentContextView8.a(false);
+                } else if (fragmentContextView8.f33087z0) {
+                    fragmentContextView8.g(false);
+                } else if (fragmentContextView8.A0) {
+                    fragmentContextView8.c(false);
+                }
+                fragmentContextView8.f33086y0 = false;
+                fragmentContextView8.f33084x0 = false;
+                fragmentContextView8.f33087z0 = false;
+                fragmentContextView8.A0 = false;
+                fragmentContextView8.n();
+                return;
+            case 8:
+                FragmentContextView fragmentContextView9 = this.f38638b;
+                fragmentContextView9.f33080v0.e();
+                AnimatorSet animatorSet9 = fragmentContextView9.f33061f;
+                if (animatorSet9 != null && animatorSet9.equals(animator)) {
+                    fragmentContextView9.setVisibility(8);
+                    fragmentContextView9.f33061f = null;
+                    if (fragmentContextView9.f33086y0) {
+                        fragmentContextView9.e(false);
+                    } else if (fragmentContextView9.f33084x0) {
+                        fragmentContextView9.a(false);
+                    } else if (fragmentContextView9.f33087z0) {
+                        fragmentContextView9.g(false);
+                    } else if (fragmentContextView9.A0) {
+                        fragmentContextView9.c(false);
+                    }
+                    fragmentContextView9.f33086y0 = false;
+                    fragmentContextView9.f33084x0 = false;
+                    fragmentContextView9.f33087z0 = false;
+                    fragmentContextView9.A0 = false;
+                    return;
+                }
+                return;
+            case 9:
+                FragmentContextView fragmentContextView10 = this.f38638b;
+                fragmentContextView10.f33080v0.e();
+                AnimatorSet animatorSet10 = fragmentContextView10.f33061f;
+                if (animatorSet10 != null && animatorSet10.equals(animator)) {
+                    fragmentContextView10.U = false;
+                    fragmentContextView10.f33061f = null;
+                    fragmentContextView10.a(false);
+                    return;
+                }
+                return;
+            case 10:
+                FragmentContextView fragmentContextView11 = this.f38638b;
+                fragmentContextView11.f33082w0.e();
+                AnimatorSet animatorSet11 = fragmentContextView11.f33061f;
+                if (animatorSet11 != null && animatorSet11.equals(animator)) {
+                    fragmentContextView11.f33061f = null;
+                }
+                if (fragmentContextView11.f33086y0) {
+                    fragmentContextView11.e(false);
+                } else if (fragmentContextView11.f33084x0) {
+                    fragmentContextView11.a(false);
+                } else if (fragmentContextView11.f33087z0) {
+                    fragmentContextView11.g(false);
+                } else if (fragmentContextView11.A0) {
+                    fragmentContextView11.c(false);
+                }
+                fragmentContextView11.f33086y0 = false;
+                fragmentContextView11.f33084x0 = false;
+                fragmentContextView11.f33087z0 = false;
+                fragmentContextView11.A0 = false;
+                fragmentContextView11.n();
+                return;
             default:
-                final ap0 ap0Var = (ap0) obj;
-                oi.v1 v1Var = ap0Var.f33562p1;
-                boolean z10 = ap0Var.d2;
-                Activity activity = ap0Var.f33548c2;
-                if (activity == null) {
-                    return false;
+                FragmentContextView fragmentContextView12 = this.f38638b;
+                AnimatorSet animatorSet12 = fragmentContextView12.f33061f;
+                if (animatorSet12 != null && animatorSet12.equals(animator)) {
+                    fragmentContextView12.setVisibility(8);
+                    fragmentContextView12.f33061f = null;
+                    return;
                 }
-                LinearLayout linearLayout = new LinearLayout(ap0Var.getContext());
-                linearLayout.setOrientation(1);
-                if (ap0Var.J1 != null) {
-                    ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(activity, ap0Var.J0);
-                    if (z10) {
-                        org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.Wg, actionBarPopupWindow$ActionBarPopupWindowLayout, ap0Var.J0);
-                    }
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new ko0(ap0Var, 0));
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new wn0(ap0Var, 2));
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
-                    final org.telegram.ui.ActionBar.y0 y0Var = new org.telegram.ui.ActionBar.y0(1, ap0Var.getContext(), ap0Var.J0, true, false);
-                    if (z10) {
-                        y0Var.setTextColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29376eh, ap0Var.J0));
-                    }
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.a(y0Var, c8.na.o(-1, 48));
-                    y0Var.j(org.telegram.messenger.hd.N0(2131745135, null), 0, null);
-                    ap0Var.E2 = true;
-                    y0Var.setChecked(true);
-                    final org.telegram.ui.ActionBar.y0 y0Var2 = new org.telegram.ui.ActionBar.y0(1, ap0Var.getContext(), ap0Var.J0, false, true);
-                    if (z10) {
-                        y0Var2.setTextColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29376eh, ap0Var.J0));
-                    }
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.a(y0Var2, c8.na.o(-1, 48));
-                    y0Var2.j(org.telegram.messenger.hd.N0(2131749115, null), 0, null);
-                    y0Var2.setChecked(!ap0Var.E2);
-                    y0Var.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view2) {
-                            switch (r4) {
-                                case 0:
-                                    ap0 ap0Var2 = ap0Var;
-                                    ap0Var2.E2 = true;
-                                    y0Var.setChecked(true);
-                                    y0Var2.setChecked(!ap0Var2.E2);
-                                    return;
-                                default:
-                                    ap0 ap0Var3 = ap0Var;
-                                    ap0Var3.E2 = false;
-                                    y0Var.setChecked(false);
-                                    y0Var2.setChecked(!ap0Var3.E2);
-                                    return;
-                            }
-                        }
-                    });
-                    y0Var2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view2) {
-                            switch (r4) {
-                                case 0:
-                                    ap0 ap0Var2 = ap0Var;
-                                    ap0Var2.E2 = true;
-                                    y0Var.setChecked(true);
-                                    y0Var2.setChecked(!ap0Var2.E2);
-                                    return;
-                                default:
-                                    ap0 ap0Var3 = ap0Var;
-                                    ap0Var3.E2 = false;
-                                    y0Var.setChecked(false);
-                                    y0Var2.setChecked(!ap0Var3.E2);
-                                    return;
-                            }
-                        }
-                    });
-                    ap0.X0(actionBarPopupWindow$ActionBarPopupWindowLayout, org.telegram.ui.ActionBar.m6.I5, ap0Var.J0);
-                    linearLayout.addView(actionBarPopupWindow$ActionBarPopupWindowLayout, c8.na.k(0.0f, 0.0f, 0.0f, -8.0f, -1, -2));
-                }
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = new ActionBarPopupWindow$ActionBarPopupWindowLayout(activity, ap0Var.J0);
-                if (z10) {
-                    org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.Wg, actionBarPopupWindow$ActionBarPopupWindowLayout2, null);
-                }
-                actionBarPopupWindow$ActionBarPopupWindowLayout2.setAnimationEnabled(false);
-                actionBarPopupWindow$ActionBarPopupWindowLayout2.setOnTouchListener(new ko0(ap0Var, 1));
-                actionBarPopupWindow$ActionBarPopupWindowLayout2.setDispatchKeyEventListener(new wn0(ap0Var, 3));
-                actionBarPopupWindow$ActionBarPopupWindowLayout2.setShownFromBottom(false);
-                org.telegram.ui.ActionBar.y0 y0Var3 = new org.telegram.ui.ActionBar.y0(0, ap0Var.getContext(), ap0Var.J0, true, true);
-                if (z10) {
-                    y0Var3.setTextColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29376eh, ap0Var.J0));
-                    y0Var3.setIconColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.H6, ap0Var.J0));
-                }
-                y0Var3.j(org.telegram.messenger.hd.N0(2131745387, null), 2131231509, null);
-                y0Var3.setMinimumWidth(org.telegram.messenger.g0.L(196.0f));
-                actionBarPopupWindow$ActionBarPopupWindowLayout2.a(y0Var3, c8.na.o(-1, 48));
-                y0Var3.setOnClickListener(new vn0(ap0Var, 2));
-                org.telegram.ui.ActionBar.y0 y0Var4 = new org.telegram.ui.ActionBar.y0(0, ap0Var.getContext(), ap0Var.J0, true, true);
-                if (z10) {
-                    y0Var4.setTextColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29376eh, ap0Var.J0));
-                    y0Var4.setIconColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.H6, ap0Var.J0));
-                }
-                y0Var4.j(org.telegram.messenger.hd.N0(2131745405, null), 2131232360, null);
-                y0Var4.setMinimumWidth(org.telegram.messenger.g0.L(196.0f));
-                actionBarPopupWindow$ActionBarPopupWindowLayout2.a(y0Var4, c8.na.o(-1, 48));
-                y0Var4.setOnClickListener(new vn0(ap0Var, 3));
-                ap0.X0(actionBarPopupWindow$ActionBarPopupWindowLayout2, org.telegram.ui.ActionBar.m6.I5, ap0Var.J0);
-                linearLayout.addView(actionBarPopupWindow$ActionBarPopupWindowLayout2, c8.na.o(-1, -2));
-                org.telegram.ui.ActionBar.g1 g1Var = new org.telegram.ui.ActionBar.g1(linearLayout, -2, -2);
-                ap0Var.F2 = g1Var;
-                g1Var.f28941b = false;
-                g1Var.setAnimationStyle(2131755193);
-                ap0Var.F2.setOutsideTouchable(true);
-                ap0Var.F2.setClippingEnabled(true);
-                ap0Var.F2.setInputMethodMode(2);
-                ap0Var.F2.setSoftInputMode(0);
-                ap0Var.F2.getContentView().setFocusableInTouchMode(true);
-                int i11 = org.telegram.messenger.cz.f23354a;
-                SharedPreferences.Editor edit = org.telegram.messenger.np.g1().edit();
-                edit.putInt("scheduledOrNoSoundHintShows", 3);
-                edit.apply();
-                linearLayout.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(1000.0f), Integer.MIN_VALUE));
-                ap0Var.F2.setFocusable(true);
-                int[] iArr = new int[2];
-                v1Var.getLocationInWindow(iArr);
-                if (ap0Var.d && (bnVar = ap0Var.f33547b2) != null && bnVar.f46064m1.getMeasuredHeight() > org.telegram.messenger.g0.L(58.0f)) {
-                    measuredHeight = v1Var.getMeasuredHeight() + iArr[1];
-                } else {
-                    measuredHeight = (iArr[1] - linearLayout.getMeasuredHeight()) - org.telegram.messenger.g0.L(2.0f);
-                }
-                ap0Var.F2.showAtLocation(v1Var, 51, org.telegram.messenger.g0.L(8.0f) + ((v1Var.getMeasuredWidth() + iArr[0]) - linearLayout.getMeasuredWidth()), measuredHeight);
-                ap0Var.F2.b();
-                try {
-                    v1Var.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
-                }
-                return true;
+                return;
         }
     }
 }

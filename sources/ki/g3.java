@@ -1,30 +1,36 @@
 package ki;
 
 import android.content.Context;
-import c8.na;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Cells.o4;
-import org.telegram.ui.Components.m80;
-public final class g3 extends o4 {
-    public final m80 f18694r;
+import android.view.View;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.n41;
+public final class g3 extends m41 {
+    public static final int f18798b = 0;
 
-    public g3(Context context, h6 h6Var) {
-        super(context, h6Var);
-        int i7;
-        m80 m80Var = new m80(context, h6Var);
-        this.f18694r = m80Var;
-        m80Var.setTextSize(1, 14.0f);
-        t6.U(m80Var, m6.f29758z6, h6Var);
-        t6.G(m80Var, m6.L6, h6Var);
-        m80Var.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
-        if (hd.f24408a0) {
-            i7 = 3;
-        } else {
-            i7 = 5;
-        }
-        addView(m80Var, na.d(-2, -2.0f, i7 | 48, 10.0f, 14.0f, 10.0f, 0.0f));
+    static {
+        m41.h(new m41());
+    }
+
+    @Override
+    public final void b(View view, n41 n41Var, boolean z10, b51 b51Var, g51 g51Var) {
+        h3 h3Var = (h3) view;
+        CharSequence charSequence = n41Var.f37655m;
+        CharSequence charSequence2 = n41Var.f37656n;
+        h3Var.setText(charSequence);
+        h3Var.f18804r.setText(charSequence2);
+    }
+
+    @Override
+    public final View d(Context context, ek0 ek0Var, int i7, i6 i6Var) {
+        return new h3(context, i6Var);
+    }
+
+    @Override
+    public final boolean f() {
+        return false;
     }
 }

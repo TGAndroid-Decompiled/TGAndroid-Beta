@@ -1,44 +1,105 @@
 package l2;
 
-import android.media.MediaFormat;
-public final class a0 implements d3.v, i1 {
-    public d3.v f19243a;
-    public a0 f19244b;
+import android.graphics.SurfaceTexture;
+import android.view.Surface;
+import android.view.SurfaceHolder;
+import android.view.TextureView;
+import e2.w1;
+import java.util.ArrayList;
+import org.telegram.ui.Components.a61;
+import org.telegram.ui.Components.h61;
+public final class a0 implements d3.h0, n2.s, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
+    public final g0 f19342a;
 
-    @Override
-    public final void a(long j3, long j10, e2.u uVar, MediaFormat mediaFormat) {
-        d3.v vVar = this.f19243a;
-        if (vVar != null) {
-            vVar.a(j3, j10, uVar, mediaFormat);
-        }
-    }
-
-    public final void b() {
-        a0 a0Var = this.f19244b;
-        if (a0Var != null) {
-            a0Var.b();
-        }
+    public a0(g0 g0Var) {
+        this.f19342a = g0Var;
     }
 
     @Override
-    public final void c(int i7, Object obj) {
-        if (i7 != 7) {
-            if (i7 != 8) {
-                if (i7 != 10000 || obj == null) {
-                    return;
-                }
-                throw new ClassCastException();
-            }
-            this.f19244b = (a0) obj;
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
+        g0 g0Var = this.f19342a;
+        a61 a61Var = g0Var.f19446s0;
+        if (a61Var != null) {
+            a61Var.execute(new y(this, surfaceTexture, i7, i10, 0));
             return;
         }
-        this.f19243a = (d3.v) obj;
+        Surface surface = new Surface(surfaceTexture);
+        g0Var.x1(surface);
+        g0Var.U = surface;
+        g0Var.q1(i7, i10);
     }
 
-    public final void d() {
-        a0 a0Var = this.f19244b;
-        if (a0Var != null) {
-            a0Var.d();
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        g0 g0Var = this.f19342a;
+        ArrayList arrayList = g0Var.f19448t0;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            if (((h61) ((w1) obj)).K.onSurfaceDestroyed(surfaceTexture)) {
+                return false;
+            }
         }
+        a61 a61Var = g0Var.f19446s0;
+        if (a61Var != null) {
+            a61Var.execute(new kg.i0(this, surfaceTexture));
+            return true;
+        }
+        g0Var.x1(null);
+        g0Var.q1(0, 0);
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
+        g0 g0Var = this.f19342a;
+        a61 a61Var = g0Var.f19446s0;
+        if (a61Var != null) {
+            a61Var.execute(new jg.q(this, surfaceTexture, i7, i10));
+        } else {
+            g0Var.q1(i7, i10);
+        }
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        g0 g0Var = this.f19342a;
+        a61 a61Var = g0Var.f19446s0;
+        if (a61Var != null) {
+            a61Var.execute(new ji.f(19, this, surfaceTexture));
+            return;
+        }
+        ArrayList arrayList = g0Var.f19448t0;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            ((h61) ((w1) obj)).K.onSurfaceTextureUpdated(surfaceTexture);
+        }
+    }
+
+    @Override
+    public final void surfaceChanged(SurfaceHolder surfaceHolder, int i7, int i10, int i11) {
+        this.f19342a.q1(i10, i11);
+    }
+
+    @Override
+    public final void surfaceCreated(SurfaceHolder surfaceHolder) {
+        g0 g0Var = this.f19342a;
+        if (g0Var.W) {
+            g0Var.x1(surfaceHolder.getSurface());
+        }
+    }
+
+    @Override
+    public final void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        g0 g0Var = this.f19342a;
+        if (g0Var.W) {
+            g0Var.x1(null);
+        }
+        g0Var.q1(0, 0);
     }
 }

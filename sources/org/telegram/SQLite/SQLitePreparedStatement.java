@@ -15,7 +15,7 @@ public class SQLitePreparedStatement {
 
     public SQLitePreparedStatement(SQLiteDatabase sQLiteDatabase, String str) {
         this.sqliteStatementHandle = prepare(sQLiteDatabase.getSQLiteHandle(), str);
-        if (s2.f26694a) {
+        if (s2.f26829a) {
             this.query = str;
             this.startTime = SystemClock.elapsedRealtime();
         }
@@ -82,7 +82,7 @@ public class SQLitePreparedStatement {
 
     public void finalizeQuery() {
         if (!this.isFinalized) {
-            if (s2.f26694a) {
+            if (s2.f26829a) {
                 long elapsedRealtime = SystemClock.elapsedRealtime() - this.startTime;
                 if (elapsedRealtime > 500) {
                     StringBuilder sb2 = new StringBuilder("sqlite query ");
@@ -96,7 +96,7 @@ public class SQLitePreparedStatement {
                 this.isFinalized = true;
                 finalize(this.sqliteStatementHandle);
             } catch (SQLiteException e10) {
-                if (s2.f26694a) {
+                if (s2.f26829a) {
                     a8.e(e10.getMessage(), e10);
                 }
             }

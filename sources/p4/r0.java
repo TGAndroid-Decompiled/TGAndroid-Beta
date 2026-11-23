@@ -5,15 +5,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.List;
 import org.telegram.utils.code.highlight.PrismaHighlighter;
-public final class r0 implements h2.j, c1, b1, q2.l, androidx.car.app.utils.b {
-    public final int f55435a;
+public final class r0 implements h2.j, b1, a1, q2.l, androidx.car.app.utils.b {
+    public final int f55552a;
 
     public r0(int i7) {
-        this.f55435a = i7;
+        this.f55552a = i7;
     }
 
     public static qi.a b() {
-        InputStream open = org.telegram.messenger.t0.f26895b.getAssets().open("grammars.dat");
+        InputStream open = org.telegram.messenger.t0.f27013b.getAssets().open("grammars.dat");
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             byte[] bArr = new byte[8192];
@@ -41,32 +41,32 @@ public final class r0 implements h2.j, c1, b1, q2.l, androidx.car.app.utils.b {
     }
 
     @Override
-    public void a(i1 i1Var, v vVar, List list) {
-        switch (this.f55435a) {
+    public void a(h1 h1Var, v vVar, List list) {
+        switch (this.f55552a) {
             case 9:
-                i1Var.x0(list);
+                h1Var.y0(list);
                 return;
             default:
-                i1Var.x0(list);
+                h1Var.y0(list);
                 return;
         }
     }
 
     @Override
     public void accept(Object obj) {
-        i1 i1Var = (i1) obj;
-        switch (this.f55435a) {
+        h1 h1Var = (h1) obj;
+        switch (this.f55552a) {
             case 0:
-                i1Var.C0();
+                h1Var.D0();
                 return;
             case 1:
-                i1Var.L0();
+                h1Var.M0();
                 return;
             case 2:
-                i1Var.U();
+                h1Var.V();
                 return;
             case 3:
-                i1Var.E();
+                h1Var.F();
                 return;
             case 4:
             case 7:
@@ -75,28 +75,28 @@ public final class r0 implements h2.j, c1, b1, q2.l, androidx.car.app.utils.b {
             case 11:
             case 15:
             default:
-                i1Var.v();
+                h1Var.w();
                 return;
             case 5:
-                i1Var.J0();
+                h1Var.K0();
                 return;
             case 6:
-                i1Var.H0();
+                h1Var.I0();
                 return;
             case 8:
-                i1Var.L();
+                h1Var.M();
                 return;
             case 12:
-                i1Var.stop();
+                h1Var.stop();
                 return;
             case 13:
-                i1Var.c0();
+                h1Var.d0();
                 return;
             case 14:
-                i1Var.G();
+                h1Var.H();
                 return;
             case 16:
-                i1Var.a();
+                h1Var.a();
                 return;
         }
     }
@@ -107,16 +107,16 @@ public final class r0 implements h2.j, c1, b1, q2.l, androidx.car.app.utils.b {
     }
 
     @Override
-    public Object k(d0 d0Var, v vVar, int i7) {
-        switch (this.f55435a) {
+    public Object j(d0 d0Var, v vVar, int i7) {
+        switch (this.f55552a) {
             case 4:
                 d0Var.getClass();
                 throw new ClassCastException();
             case 7:
-                w7.s sVar = d0Var.f55191e;
+                w7.s sVar = d0Var.f55310e;
                 d0Var.s(vVar);
                 sVar.getClass();
-                return u9.b(new o1(-6));
+                return u9.b(new n1(-6));
             case 11:
                 d0Var.getClass();
                 throw new ClassCastException();
@@ -130,10 +130,10 @@ public final class r0 implements h2.j, c1, b1, q2.l, androidx.car.app.utils.b {
                 d0Var.getClass();
                 throw new ClassCastException();
             default:
-                w7.s sVar2 = d0Var.f55191e;
+                w7.s sVar2 = d0Var.f55310e;
                 d0Var.s(vVar);
                 sVar2.getClass();
-                return u9.b(new o1(-6));
+                return u9.b(new n1(-6));
         }
     }
 

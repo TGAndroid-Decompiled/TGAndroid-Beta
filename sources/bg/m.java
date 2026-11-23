@@ -6,14 +6,14 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
 import org.telegram.messenger.a8;
-import org.telegram.ui.da0;
+import org.telegram.ui.ca0;
 public final class m implements SensorEventListener {
     public float E;
     public boolean F;
     public float G;
     public boolean H;
     public long I;
-    public final da0 f3271a;
+    public final ca0 f3271a;
     public SensorManager f3272b;
     public Sensor f3273c;
     public Sensor d;
@@ -27,8 +27,8 @@ public final class m implements SensorEventListener {
     public boolean f3280x;
     public float f3281y;
 
-    public m(da0 da0Var) {
-        this.f3271a = da0Var;
+    public m(ca0 ca0Var) {
+        this.f3271a = ca0Var;
     }
 
     public final void a(Location location) {

@@ -14,26 +14,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class a implements m {
     public static final Pattern h = Pattern.compile("(?:(\\d+):)?(\\d+):(\\d+)[:.](\\d+)");
-    public final boolean f13151a;
-    public final e4.b f13152b;
+    public final boolean f13150a;
+    public final e4.b f13151b;
     public LinkedHashMap d;
-    public float f13154e = -3.4028235E38f;
-    public float f13155f = -3.4028235E38f;
-    public final x f13153c = new x();
+    public float f13153e = -3.4028235E38f;
+    public float f13154f = -3.4028235E38f;
+    public final x f13152c = new x();
 
     public a(List list) {
         if (list != null && !list.isEmpty()) {
-            this.f13151a = true;
+            this.f13150a = true;
             String r10 = l0.r((byte[]) list.get(0));
             ma.f(r10.startsWith("Format:"));
             e4.b b10 = e4.b.b(r10);
             b10.getClass();
-            this.f13152b = b10;
+            this.f13151b = b10;
             b(new x((byte[]) list.get(1)), StandardCharsets.UTF_8);
             return;
         }
-        this.f13151a = false;
-        this.f13152b = null;
+        this.f13150a = false;
+        this.f13151b = null;
     }
 
     public static int a(long j3, ArrayList arrayList, ArrayList arrayList2) {
@@ -75,23 +75,23 @@ public final class a implements m {
         return (Long.parseLong(matcher.group(4)) * 10000) + (Long.parseLong(matcher.group(3)) * 1000000) + (Long.parseLong(matcher.group(2)) * 60000000) + (Long.parseLong(group) * 3600000000L);
     }
 
+    @Override
+    public final void E(byte[] r44, int r45, int r46, c4.l r47, h2.j r48) {
+        throw new UnsupportedOperationException("Method not decompiled: g4.a.E(byte[], int, int, c4.l, h2.j):void");
+    }
+
+    @Override
+    public final int N() {
+        return 1;
+    }
+
     public final void b(h2.x r39, java.nio.charset.Charset r40) {
         throw new UnsupportedOperationException("Method not decompiled: g4.a.b(h2.x, java.nio.charset.Charset):void");
     }
 
     @Override
-    public final c4.d q(int i7, int i10, byte[] bArr) {
+    public final c4.d s(int i7, int i10, byte[] bArr) {
         return p0.a(this, bArr, i10);
-    }
-
-    @Override
-    public final void v(byte[] r44, int r45, int r46, c4.l r47, h2.j r48) {
-        throw new UnsupportedOperationException("Method not decompiled: g4.a.v(byte[], int, int, c4.l, h2.j):void");
-    }
-
-    @Override
-    public final int y() {
-        return 1;
     }
 
     @Override

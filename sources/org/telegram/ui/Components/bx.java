@@ -1,201 +1,143 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Point;
+import android.graphics.Canvas;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.os.SystemClock;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
-import android.view.ViewConfiguration;
-public class bx extends gl0 {
-    public float A0;
-    public boolean B0;
-    public boolean C0;
-    public VelocityTracker D0;
-    public final ty E0;
-    public final int f33897v0;
-    public boolean f33898w0;
-    public float f33899x0;
-    public boolean f33900y0;
-    public float f33901z0;
+import android.view.animation.OvershootInterpolator;
+import java.util.ArrayList;
+public final class bx extends us {
+    public int N;
+    public int O;
+    public ArrayList P;
+    public final ArrayList Q = new ArrayList();
+    public final OvershootInterpolator R = new OvershootInterpolator(3.0f);
+    public final dx S;
 
-    public bx(ty tyVar, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, h6Var, tyVar.f40094j2);
-        this.E0 = tyVar;
-        this.f33900y0 = true;
-        this.f33897v0 = ViewConfiguration.get(context).getScaledTouchSlop();
+    public bx(dx dxVar) {
+        this.S = dxVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f35588s != null) {
-            return super.onInterceptTouchEvent(motionEvent);
-        }
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        }
-        if (motionEvent.getAction() == 0) {
-            this.C0 = false;
-            this.B0 = false;
-            this.f33901z0 = motionEvent.getRawX();
-            this.A0 = motionEvent.getRawY();
-        } else if (!this.B0 && !this.C0) {
-            ty tyVar = this.E0;
-            if (tyVar.P0 != null && Math.abs(motionEvent.getRawY() - this.A0) >= this.f33897v0) {
-                this.B0 = true;
-                this.A0 = motionEvent.getRawY();
-                ((bg.w0) tyVar.P0).e();
-                if (this.f33898w0) {
-                    tyVar.h.i();
-                    this.f33898w0 = false;
-                }
-                return true;
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
+    public final void a(Canvas canvas, long j3, int i7, int i10, float f10) {
         boolean z10;
-        int i7;
-        ty tyVar = this.E0;
-        ik ikVar = tyVar.f40085g2;
-        jw jwVar = tyVar.h;
-        if (this.f35588s != null) {
-            return super.onTouchEvent(motionEvent);
+        boolean z11;
+        int i11;
+        dx dxVar = this.S;
+        qy qyVar = dxVar.f34478n3;
+        ArrayList arrayList = this.P;
+        if (arrayList == null) {
+            return;
         }
-        if (this.f33900y0) {
-            this.f33900y0 = false;
-            this.f33899x0 = motionEvent.getX();
+        boolean z12 = true;
+        if (arrayList.size() > 4 && org.telegram.messenger.bz.o() != 0 && org.telegram.messenger.pc.e(16388)) {
+            z10 = false;
+        } else {
+            z10 = true;
         }
-        if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
-            tyVar.X1 = motionEvent.getRawX();
-        }
-        if (motionEvent.getAction() == 0) {
-            this.C0 = false;
-            this.B0 = false;
-            this.f33901z0 = motionEvent.getRawX();
-            this.A0 = motionEvent.getRawY();
-        } else if (!this.B0 && !this.C0 && tyVar.P0 != null) {
-            float abs = Math.abs(motionEvent.getRawX() - this.f33901z0);
-            float f10 = this.f33897v0;
-            if (abs >= f10 && canScrollHorizontally((int) (this.f33901z0 - motionEvent.getRawX()))) {
-                this.C0 = true;
-                org.telegram.messenger.g0.r(ikVar);
-                tyVar.Y1 = true;
-                tyVar.Z();
-            } else if (Math.abs(motionEvent.getRawY() - this.A0) >= f10) {
-                this.B0 = true;
-                this.A0 = motionEvent.getRawY();
-                ((bg.w0) tyVar.P0).e();
-                if (this.f33898w0) {
-                    jwVar.i();
-                    this.f33898w0 = false;
-                }
-            }
-        }
-        if (tyVar.Y1 && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
-            org.telegram.messenger.g0.h3(ikVar, 1500L);
-        }
-        if (this.B0) {
-            if (this.D0 == null) {
-                this.D0 = VelocityTracker.obtain();
-            }
-            this.D0.addMovement(motionEvent);
-            if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-                ax axVar = tyVar.P0;
-                int round = Math.round(motionEvent.getRawY() - this.A0);
-                bg.w0 w0Var = (bg.w0) axVar;
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) w0Var.f3326c;
-                if (w0Var.d()) {
-                    Point point = org.telegram.messenger.g0.f24010q;
-                    if (point.x > point.y) {
-                        i7 = chatActivityEnterView.f32650o3;
-                    } else {
-                        i7 = chatActivityEnterView.f32642n3;
-                    }
-                    int max = Math.max(Math.min(round + w0Var.f3325b, 0), -(chatActivityEnterView.f32690t4 - i7));
-                    if (chatActivityEnterView.f32578e7 == null) {
-                        float f11 = max;
-                        chatActivityEnterView.V0.setTranslationY(f11);
-                        chatActivityEnterView.setTranslationY(f11);
-                    }
-                    chatActivityEnterView.f32684s4 = max / (-(chatActivityEnterView.f32690t4 - i7));
-                    chatActivityEnterView.f32557c2.invalidate();
-                }
+        if (!z10) {
+            if (qyVar.f39107w2 > 0 && SystemClock.elapsedRealtime() - qyVar.f39107w2 < dxVar.z1()) {
+                z11 = true;
             } else {
-                this.D0.computeCurrentVelocity(1000);
-                float yVelocity = this.D0.getYVelocity();
-                this.D0.recycle();
-                this.D0 = null;
-                if (motionEvent.getAction() == 1) {
-                    bg.w0 w0Var2 = (bg.w0) tyVar.P0;
-                    ChatActivityEnterView chatActivityEnterView2 = (ChatActivityEnterView) w0Var2.f3326c;
-                    if (w0Var2.d()) {
-                        chatActivityEnterView2.f32696u4 = false;
-                        if ((w0Var2.f3324a && yVelocity >= org.telegram.messenger.g0.L(200.0f)) || ((!w0Var2.f3324a && yVelocity <= org.telegram.messenger.g0.L(-200.0f)) || (((z10 = w0Var2.f3324a) && chatActivityEnterView2.f32684s4 <= 0.6f) || (!z10 && chatActivityEnterView2.f32684s4 >= 0.4f)))) {
-                            chatActivityEnterView2.Q1(!w0Var2.f3324a, true, true, true);
-                        } else {
-                            chatActivityEnterView2.Q1(z10, true, true, true);
-                        }
+                z11 = false;
+            }
+            for (int i12 = 0; i12 < this.P.size(); i12++) {
+                yx yxVar = (yx) this.P.get(i12);
+                if (yxVar.h != 0.0f || yxVar.f42583n != null || ((i11 = yxVar.f42578a) > qyVar.f39100u2 && i11 < qyVar.f39103v2 && z11)) {
+                    break;
+                }
+            }
+        }
+        z12 = z10;
+        if (z12) {
+            i(System.currentTimeMillis());
+            d(canvas, 1.0f);
+            k();
+            return;
+        }
+        super.a(canvas, j3, i7, i10, 1.0f);
+    }
+
+    @Override
+    public final void c(Canvas canvas) {
+        int i7 = 0;
+        while (true) {
+            ArrayList arrayList = this.Q;
+            if (i7 < arrayList.size()) {
+                yx yxVar = (yx) arrayList.get(i7);
+                o5 o5Var = yxVar.f42579b;
+                if (o5Var != null) {
+                    org.telegram.messenger.gc gcVar = yxVar.f42582f[this.L];
+                    fi.s2 s2Var = o5Var.f38028k;
+                    if (s2Var != null) {
+                        s2Var.setAlpha(o5Var.f38029l);
+                        o5Var.f38028k.h(canvas, gcVar);
                     }
+                }
+                i7++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void d(android.graphics.Canvas r20, float r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bx.d(android.graphics.Canvas, float):void");
+    }
+
+    @Override
+    public final void g() {
+        int i7 = 0;
+        while (true) {
+            ArrayList arrayList = this.Q;
+            if (i7 < arrayList.size()) {
+                org.telegram.messenger.gc[] gcVarArr = ((yx) arrayList.get(i7)).f42582f;
+                if (gcVarArr != null) {
+                    gcVarArr[this.L].a();
+                }
+                i7++;
+            } else {
+                this.S.f34478n3.Q.invalidate();
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void i(long j3) {
+        o5 o5Var;
+        PorterDuffColorFilter porterDuffColorFilter;
+        qy qyVar = this.S.f34478n3;
+        ArrayList arrayList = this.Q;
+        arrayList.clear();
+        for (int i7 = 0; i7 < this.P.size(); i7++) {
+            yx yxVar = (yx) this.P.get(i7);
+            x5 span = yxVar.getSpan();
+            org.telegram.messenger.gc[] gcVarArr = yxVar.f42582f;
+            if (span != null && (o5Var = (o5) qyVar.f39051e2.get(yxVar.d.getDocumentId())) != null && o5Var.f38028k != null) {
+                o5Var.s(j3);
+                fi.s2 s2Var = o5Var.f38028k;
+                int i10 = this.L;
+                org.telegram.messenger.gc f02 = s2Var.f0(gcVarArr[i10], i10);
+                gcVarArr[i10] = f02;
+                f02.f24293c = j3;
+                f02.f24292b = 1.0f;
+                o5Var.setAlpha(255);
+                int height = (int) (yxVar.getHeight() * 0.03f);
+                Rect rect = org.telegram.messenger.g0.Q;
+                rect.set((yxVar.getPaddingLeft() + yxVar.getLeft()) - this.O, height, (yxVar.getRight() - yxVar.getPaddingRight()) - this.O, ((yxVar.getMeasuredHeight() + height) - yxVar.getPaddingTop()) - yxVar.getPaddingBottom());
+                gcVarArr[i10].b(rect);
+                yxVar.f42579b = o5Var;
+                org.telegram.messenger.gc gcVar = gcVarArr[i10];
+                if (o5Var.c()) {
+                    porterDuffColorFilter = qyVar.f39055f2;
                 } else {
-                    bg.w0 w0Var3 = (bg.w0) tyVar.P0;
-                    ChatActivityEnterView chatActivityEnterView3 = (ChatActivityEnterView) w0Var3.f3326c;
-                    if (chatActivityEnterView3.f32643n4) {
-                        chatActivityEnterView3.f32696u4 = false;
-                        chatActivityEnterView3.Q1(w0Var3.f3324a, true, false, true);
-                    }
+                    porterDuffColorFilter = null;
                 }
-                this.f33900y0 = true;
-                this.C0 = false;
-                this.B0 = false;
-            }
-            cancelLongPress();
-            return true;
-        }
-        float translationX = getTranslationX();
-        if (getScrollX() == 0 && translationX == 0.0f) {
-            if (!this.f33898w0 && this.f33899x0 - motionEvent.getX() < 0.0f) {
-                if (!jwVar.N) {
-                    jwVar.f4436f0 = true;
-                    jwVar.setScrollState(1);
-                    jwVar.S = 0.0f;
-                    jwVar.U = 0.0f;
-                    VelocityTracker velocityTracker = jwVar.f4427a0;
-                    if (velocityTracker == null) {
-                        jwVar.f4427a0 = VelocityTracker.obtain();
-                    } else {
-                        velocityTracker.clear();
-                    }
-                    long uptimeMillis = SystemClock.uptimeMillis();
-                    MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 0, 0.0f, 0.0f, 0);
-                    jwVar.f4427a0.addMovement(obtain);
-                    obtain.recycle();
-                    this.f33898w0 = true;
-                    getTranslationX();
-                }
-            } else if (this.f33898w0 && this.f33899x0 - motionEvent.getX() > 0.0f && jwVar.f4436f0) {
-                jwVar.i();
-                this.f33898w0 = false;
+                gcVar.f24313z = porterDuffColorFilter;
+                arrayList.add(yxVar);
             }
         }
-        if (this.f33898w0) {
-            motionEvent.getX();
-        }
-        this.f33899x0 = motionEvent.getX();
-        if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            this.f33900y0 = true;
-            this.C0 = false;
-            this.B0 = false;
-            if (this.f33898w0) {
-                jwVar.i();
-                this.f33898w0 = false;
-            }
-        }
-        if (!this.f33898w0 && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
     }
 }

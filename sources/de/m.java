@@ -1,16 +1,16 @@
 package de;
 public final class m implements id.c, kd.d {
-    public final id.c f8352a;
-    public final id.h f8353b;
+    public final id.c f8351a;
+    public final id.h f8352b;
 
     public m(id.c cVar, id.h hVar) {
-        this.f8352a = cVar;
-        this.f8353b = hVar;
+        this.f8351a = cVar;
+        this.f8352b = hVar;
     }
 
     @Override
     public final kd.d getCallerFrame() {
-        id.c cVar = this.f8352a;
+        id.c cVar = this.f8351a;
         if (cVar instanceof kd.d) {
             return (kd.d) cVar;
         }
@@ -19,11 +19,11 @@ public final class m implements id.c, kd.d {
 
     @Override
     public final id.h getContext() {
-        return this.f8353b;
+        return this.f8352b;
     }
 
     @Override
     public final void resumeWith(Object obj) {
-        this.f8352a.resumeWith(obj);
+        this.f8351a.resumeWith(obj);
     }
 }

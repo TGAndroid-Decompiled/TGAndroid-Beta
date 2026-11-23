@@ -1,19 +1,42 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import android.widget.ImageView;
-public final class ep0 implements DialogInterface.OnDismissListener {
-    public final PhotoViewer f47325a;
+import android.content.Context;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class ep0 extends org.telegram.ui.Components.zo0 {
+    public final FrameLayout V2;
+    public final boolean W2;
+    public final PhotoViewer X2;
 
-    public ep0(PhotoViewer photoViewer) {
-        this.f47325a = photoViewer;
+    public ep0(PhotoViewer photoViewer, Context context, bn bnVar, ArrayList arrayList, String str, Integer num, FrameLayout frameLayout, boolean z10) {
+        super(context, bnVar, arrayList, null, null, false, str, null, false, true, false, num, null);
+        this.X2 = photoViewer;
+        this.V2 = frameLayout;
+        this.W2 = z10;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        ImageView imageView = this.f47325a.E3;
-        if (imageView != null) {
-            imageView.animate().alpha(0.0f).withEndAction(new hf0(this, 19)).setDuration(150L).start();
+    public final void L() {
+        super.L();
+        if (this.W2) {
+            org.telegram.messenger.g0.h3(new gf0(this, 20), 50L);
         }
+        PhotoViewer photoViewer = this.X2;
+        photoViewer.f43323e0.softInputMode = 272;
+        try {
+            ((WindowManager) photoViewer.E.getSystemService("window")).updateViewLayout(photoViewer.f43352h0, photoViewer.f43323e0);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        org.telegram.messenger.g0.h3(new org.telegram.ui.Components.kp0(this, this.V2, hVar, i7, 16), 250L);
     }
 }

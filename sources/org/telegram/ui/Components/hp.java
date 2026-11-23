@@ -1,45 +1,41 @@
 package org.telegram.ui.Components;
 
+import android.widget.Toast;
+import java.util.ArrayList;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-public final class hp implements org.telegram.ui.p71 {
-    public final np f35900a;
+public final class hp implements ResultCallback {
+    public final org.telegram.messenger.f4 f35782a;
+    public final kp f35783b;
 
-    public hp(np npVar) {
-        this.f35900a = npVar;
+    public hp(kp kpVar, org.telegram.messenger.f4 f4Var) {
+        this.f35783b = kpVar;
+        this.f35782a = f4Var;
     }
 
     @Override
-    public final boolean Y0() {
-        return true;
-    }
-
-    @Override
-    public final boolean d() {
-        return this.f35900a.H1;
-    }
-
-    @Override
-    public final void l1(boolean z10) {
-        TLRPC.WallPaper wallPaper;
-        np npVar = this.f35900a;
-        org.telegram.ui.bn bnVar = npVar.f37891v1;
-        npVar.H1 = !npVar.H1;
-        if (npVar.G1 != null) {
-            npVar.J1 = true;
-            bnVar.f46197w7 = true;
-            if (npVar.Q0()) {
-                wallPaper = null;
-            } else {
-                wallPaper = npVar.f37888s1.f54553g;
-            }
-            TLRPC.WallPaper wallPaper2 = wallPaper;
-            org.telegram.ui.ActionBar.s3 s3Var = npVar.G1.f37548a;
-            if (s3Var.f29949a) {
-                npVar.f37888s1.r(null, wallPaper2, z10, Boolean.valueOf(npVar.H1), false);
-            } else {
-                npVar.f37888s1.r(s3Var, wallPaper2, z10, Boolean.valueOf(npVar.H1), false);
-            }
-            bnVar.f46197w7 = false;
+    public final void onComplete(Object obj) {
+        int i7;
+        Void r62 = (Void) obj;
+        org.telegram.messenger.f4 f4Var = this.f35782a;
+        if (f4Var.f23945f.f19633c) {
+            i7 = 2;
+        } else {
+            i7 = 0;
         }
+        ArrayList e10 = f4Var.e(i7 | 5);
+        kp kpVar = this.f35783b;
+        org.telegram.messenger.ks.f(kpVar.f30223a).d(new xd(23, this, e10));
+        kpVar.V1 = false;
+    }
+
+    @Override
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.l.a(this, th2);
+    }
+
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f35783b.getContext(), tL_error.text, 0).show();
     }
 }

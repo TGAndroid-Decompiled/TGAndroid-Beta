@@ -1,10 +1,10 @@
 package fi;
 
 import org.telegram.tgnet.ConnectionsManager;
-public final class j6 implements f3.f0 {
-    public final int f12151a = 1;
-    public int f12152b;
-    public long f12153c;
+public final class j6 implements f3.g0 {
+    public final int f12160a = 1;
+    public int f12161b;
+    public long f12162c;
     public int d;
 
     public j6() {
@@ -13,10 +13,10 @@ public final class j6 implements f3.f0 {
     public boolean a(int i7, int i10) {
         int i11 = this.d;
         if (i11 != 1) {
-            if ((i11 == 2 || i11 == 3) && ConnectionsManager.getInstance(i7).getCurrentTime() >= this.f12153c) {
+            if ((i11 == 2 || i11 == 3) && ConnectionsManager.getInstance(i7).getCurrentTime() >= this.f12162c) {
                 return false;
             }
-        } else if (this.f12152b >= i10) {
+        } else if (this.f12161b >= i10) {
             return false;
         }
         return true;
@@ -34,12 +34,12 @@ public final class j6 implements f3.f0 {
     }
 
     public String toString() {
-        switch (this.f12151a) {
+        switch (this.f12160a) {
             case 3:
                 StringBuilder sb2 = new StringBuilder("AtomSizeTooSmall{type=");
-                sb2.append(h2.l0.e0(this.f12152b));
+                sb2.append(h2.l0.e0(this.f12161b));
                 sb2.append(", size=");
-                sb2.append(this.f12153c);
+                sb2.append(this.f12162c);
                 sb2.append(", minHeaderSize=");
                 return a8.p0.n(this.d, "}", sb2);
             default:
@@ -48,20 +48,20 @@ public final class j6 implements f3.f0 {
     }
 
     public j6(int i7, long j3, int i10) {
-        this.f12152b = i7;
-        this.f12153c = j3;
+        this.f12161b = i7;
+        this.f12162c = j3;
         this.d = i10;
     }
 
     public j6(long j3, int i7, int i10) {
-        this.f12153c = j3;
-        this.f12152b = i7;
+        this.f12162c = j3;
+        this.f12161b = i7;
         this.d = i10;
     }
 
     public j6(int i7, int i10, long j3) {
         this.d = i7;
-        this.f12153c = j3;
-        this.f12152b = i10;
+        this.f12162c = j3;
+        this.f12161b = i10;
     }
 }

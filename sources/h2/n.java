@@ -26,7 +26,7 @@ public final class n implements Handler.Callback {
                         e2.s d = qVar.f13803b.d();
                         qVar.f13803b = new ca.i();
                         qVar.f13804c = false;
-                        pVar.g(qVar.f13802a, d);
+                        pVar.f(qVar.f13802a, d);
                     }
                     i0 i0Var = rVar.f13806b;
                     i0Var.getClass();

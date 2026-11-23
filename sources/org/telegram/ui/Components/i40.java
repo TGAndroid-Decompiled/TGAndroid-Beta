@@ -1,23 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class i40 extends q40 {
-    public final c50 d;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+public final class i40 {
+    public final ByteBuffer[] f35900a = new ByteBuffer[10];
+    public final long[] f35901b = new long[10];
+    public final int[] f35902c = new int[10];
+    public int d;
+    public int f35903e;
+    public boolean f35904f;
 
-    public i40(c50 c50Var, Context context) {
-        super(c50Var, context);
-        this.d = c50Var;
-    }
-
-    @Override
-    public final void setAlpha(float f10) {
-        super.setAlpha(f10);
-        this.d.invalidate();
-    }
-
-    @Override
-    public final void setRotationY(float f10) {
-        super.setRotationY(f10);
-        this.d.invalidate();
+    public i40() {
+        for (int i7 = 0; i7 < 10; i7++) {
+            this.f35900a[i7] = ByteBuffer.allocateDirect(2048);
+            this.f35900a[i7].order(ByteOrder.nativeOrder());
+        }
     }
 }

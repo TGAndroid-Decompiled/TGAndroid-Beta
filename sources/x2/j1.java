@@ -5,19 +5,19 @@ import android.net.Uri;
 import java.util.Collections;
 import java.util.List;
 public final class j1 extends e2.l1 {
-    public static final Object f60127q = new Object();
-    public final long f60128e;
-    public final long f60129f;
-    public final long f60130g;
+    public static final Object f60245q = new Object();
+    public final long f60246e;
+    public final long f60247f;
+    public final long f60248g;
     public final long h;
-    public final long f60131i;
-    public final long f60132j;
-    public final boolean f60133k;
-    public final boolean f60134l;
-    public final boolean f60135m;
-    public final Object f60136n;
-    public final e2.l0 f60137o;
-    public final e2.f0 f60138p;
+    public final long f60249i;
+    public final long f60250j;
+    public final boolean f60251k;
+    public final boolean f60252l;
+    public final boolean f60253m;
+    public final Object f60254n;
+    public final e2.l0 f60255o;
+    public final e2.f0 f60256p;
 
     static {
         boolean z10;
@@ -25,23 +25,23 @@ public final class j1 extends e2.l1 {
         e2.z zVar = new e2.z();
         e2.c0 c0Var = new e2.c0();
         List list = Collections.EMPTY_LIST;
-        h9.t1 t1Var = h9.t1.f14066e;
+        h9.s1 s1Var = h9.s1.f14058e;
         e2.e0 e0Var = new e2.e0();
         e2.h0 h0Var = e2.h0.d;
         Uri uri = Uri.EMPTY;
-        if (c0Var.f10341b != null && c0Var.f10340a == null) {
+        if (c0Var.f10339b != null && c0Var.f10338a == null) {
             z10 = false;
         } else {
             z10 = true;
         }
         ma.p(z10);
         if (uri != null) {
-            if (c0Var.f10340a != null) {
+            if (c0Var.f10338a != null) {
                 d0Var = new e2.d0(c0Var);
             } else {
                 d0Var = null;
             }
-            new e2.g0(uri, null, d0Var, null, list, null, t1Var, -9223372036854775807L);
+            new e2.g0(uri, null, d0Var, null, list, null, s1Var, -9223372036854775807L);
         }
         new e2.a0(zVar);
         new e2.f0(e0Var);
@@ -49,24 +49,24 @@ public final class j1 extends e2.l1 {
     }
 
     public j1(long j3, long j10, long j11, long j12, long j13, long j14, boolean z10, boolean z11, boolean z12, nb.a aVar, e2.l0 l0Var, e2.f0 f0Var) {
-        this.f60128e = j3;
-        this.f60129f = j10;
-        this.f60130g = j11;
+        this.f60246e = j3;
+        this.f60247f = j10;
+        this.f60248g = j11;
         this.h = j12;
-        this.f60131i = j13;
-        this.f60132j = j14;
-        this.f60133k = z10;
-        this.f60134l = z11;
-        this.f60135m = z12;
-        this.f60136n = aVar;
+        this.f60249i = j13;
+        this.f60250j = j14;
+        this.f60251k = z10;
+        this.f60252l = z11;
+        this.f60253m = z12;
+        this.f60254n = aVar;
         l0Var.getClass();
-        this.f60137o = l0Var;
-        this.f60138p = f0Var;
+        this.f60255o = l0Var;
+        this.f60256p = f0Var;
     }
 
     @Override
     public final int b(Object obj) {
-        if (f60127q.equals(obj)) {
+        if (f60245q.equals(obj)) {
             return 0;
         }
         return -1;
@@ -77,14 +77,14 @@ public final class j1 extends e2.l1 {
         Object obj;
         ma.j(i7, 1);
         if (z10) {
-            obj = f60127q;
+            obj = f60245q;
         } else {
             obj = null;
         }
         Object obj2 = obj;
         i1Var.getClass();
-        e2.c cVar = e2.c.f10336c;
-        i1Var.h(null, obj2, 0, this.f60130g, -this.f60131i, cVar, false);
+        e2.c cVar = e2.c.f10334c;
+        i1Var.h(null, obj2, 0, this.f60248g, -this.f60249i, cVar, false);
         return i1Var;
     }
 
@@ -96,7 +96,7 @@ public final class j1 extends e2.l1 {
     @Override
     public final Object l(int i7) {
         ma.j(i7, 1);
-        return f60127q;
+        return f60245q;
     }
 
     @Override

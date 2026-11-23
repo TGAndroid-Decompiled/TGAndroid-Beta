@@ -12,8 +12,8 @@ public abstract class w9 {
             i7++;
             d9.t tVar = (d9.t) obj;
             Bundle bundle = new Bundle();
-            bundle.putInt("event_type", tVar.f7919a);
-            bundle.putLong("event_timestamp", tVar.f7920b);
+            bundle.putInt("event_type", tVar.f7918a);
+            bundle.putLong("event_timestamp", tVar.f7919b);
             arrayList2.add(bundle);
         }
         return arrayList2;

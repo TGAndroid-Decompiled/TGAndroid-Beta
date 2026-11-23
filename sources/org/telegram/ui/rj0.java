@@ -1,123 +1,108 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class rj0 implements TextWatcher {
-    public final int f51624a;
-    public final hk0 f51625b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class rj0 implements RequestDelegate {
+    public final int f51735a;
+    public final tj0 f51736b;
 
-    public rj0(hk0 hk0Var, int i7) {
-        this.f51624a = i7;
-        this.f51625b = hk0Var;
+    public rj0(tj0 tj0Var, int i7) {
+        this.f51735a = i7;
+        this.f51736b = tj0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        String str;
-        int indexOf;
-        int i7 = this.f51624a;
-        hk0 hk0Var = this.f51625b;
-        switch (i7) {
+    public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f51735a) {
             case 0:
-                if (!hk0Var.f48382a1 && hk0Var.U0 != 0 && hk0Var.Z[0].length() == hk0Var.U0) {
-                    hk0Var.M.callOnClick();
-                    return;
-                }
+                org.telegram.messenger.g0.g3(new sj0(this.f51736b, tLObject, tL_error));
                 return;
-            default:
-                ArrayList arrayList = hk0Var.V0;
-                HashMap hashMap = hk0Var.X0;
-                if (!hk0Var.f48382a1) {
-                    hk0Var.f48382a1 = true;
-                    String d = pf.b.d(hk0Var.Z[1].getText().toString(), false);
-                    hk0Var.Z[1].setText(d);
-                    org.telegram.ui.Components.j30 j30Var = (org.telegram.ui.Components.j30) hk0Var.Z[2];
-                    if (d.length() == 0) {
-                        j30Var.setHintText((String) null);
-                        j30Var.setHint(org.telegram.messenger.hd.N0(2131747178, null));
-                        hk0Var.Z[0].setText(org.telegram.messenger.hd.N0(2131752122, null));
-                    } else {
-                        int i10 = 4;
-                        if (d.length() > 4) {
-                            while (true) {
-                                if (i10 >= 1) {
-                                    String substring = d.substring(0, i10);
-                                    if (((String) hashMap.get(substring)) != null) {
-                                        hk0Var.Z[1].setText(substring);
-                                        str = d.substring(i10) + hk0Var.Z[2].getText().toString();
-                                        d = substring;
-                                        z10 = true;
-                                    } else {
-                                        i10--;
-                                    }
-                                } else {
-                                    z10 = false;
-                                    str = null;
+            case 1:
+                final tj0 tj0Var = this.f51736b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7;
+                        int i10;
+                        switch (r3) {
+                            case 0:
+                                tj0 tj0Var2 = tj0Var;
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                fk0 fk0Var = tj0Var2.f52419e;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i7 = ((org.telegram.ui.ActionBar.g2) fk0Var).currentAccount;
+                                    ConnectionsManager.getInstance(i7).sendRequest(getpassword, new rj0(tj0Var2, 4), 8);
+                                    return;
                                 }
-                            }
-                            if (!z10) {
-                                str = d.substring(1) + hk0Var.Z[2].getText().toString();
-                                EditTextBoldCursor editTextBoldCursor = hk0Var.Z[1];
-                                d = d.substring(0, 1);
-                                editTextBoldCursor.setText(d);
-                            }
-                        } else {
-                            z10 = false;
-                            str = null;
-                        }
-                        String str2 = (String) hashMap.get(d);
-                        if (str2 != null && (indexOf = arrayList.indexOf(str2)) != -1) {
-                            hk0Var.Z[0].setText((CharSequence) arrayList.get(indexOf));
-                            String str3 = (String) hk0Var.Y0.get(d);
-                            if (str3 != null) {
-                                j30Var.setHintText(str3.replace('X', (char) 8211));
-                                j30Var.setHint((CharSequence) null);
-                            }
-                        } else {
-                            j30Var.setHintText((String) null);
-                            j30Var.setHint(org.telegram.messenger.hd.N0(2131747178, null));
-                            hk0Var.Z[0].setText(org.telegram.messenger.hd.N0(2131742595, null));
-                        }
-                        if (!z10) {
-                            EditTextBoldCursor editTextBoldCursor2 = hk0Var.Z[1];
-                            editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
-                        }
-                        if (str != null) {
-                            j30Var.requestFocus();
-                            j30Var.setText(str);
-                            j30Var.setSelection(j30Var.length());
+                                if (fk0Var.E == null) {
+                                    fk0Var.E = new TL_account.authorizationForm();
+                                }
+                                tj0Var2.a();
+                                return;
+                            default:
+                                tj0 tj0Var3 = tj0Var;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
+                                    TL_account.getPassword getpassword2 = new TL_account.getPassword();
+                                    i10 = ((org.telegram.ui.ActionBar.g2) tj0Var3.f52419e).currentAccount;
+                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword2, new rj0(tj0Var3, 3), 8);
+                                    return;
+                                }
+                                Utilities.f22877e.c(new lc0(tj0Var3, tj0Var3.f52417b, tj0Var3.d, 14));
+                                return;
                         }
                     }
-                    hk0Var.f48382a1 = false;
-                    return;
-                }
+                });
+                return;
+            case 2:
+                final tj0 tj0Var2 = this.f51736b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7;
+                        int i10;
+                        switch (r3) {
+                            case 0:
+                                tj0 tj0Var22 = tj0Var2;
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                fk0 fk0Var = tj0Var22.f52419e;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i7 = ((org.telegram.ui.ActionBar.g2) fk0Var).currentAccount;
+                                    ConnectionsManager.getInstance(i7).sendRequest(getpassword, new rj0(tj0Var22, 4), 8);
+                                    return;
+                                }
+                                if (fk0Var.E == null) {
+                                    fk0Var.E = new TL_account.authorizationForm();
+                                }
+                                tj0Var22.a();
+                                return;
+                            default:
+                                tj0 tj0Var3 = tj0Var2;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
+                                    TL_account.getPassword getpassword2 = new TL_account.getPassword();
+                                    i10 = ((org.telegram.ui.ActionBar.g2) tj0Var3.f52419e).currentAccount;
+                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword2, new rj0(tj0Var3, 3), 8);
+                                    return;
+                                }
+                                Utilities.f22877e.c(new lc0(tj0Var3, tj0Var3.f52417b, tj0Var3.d, 14));
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 3:
+                org.telegram.messenger.g0.g3(new sj0(this.f51736b, tL_error, tLObject, 1));
+                return;
+            default:
+                org.telegram.messenger.g0.g3(new sj0(this.f51736b, tL_error, tLObject, 2));
                 return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f51624a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f51624a;
-    }
-
-    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

@@ -3,7 +3,7 @@ package q7;
 import j$.util.Objects;
 import java.util.Comparator;
 public abstract class p0 {
-    public static final Comparator f56047a;
+    public static final Comparator f56160a;
 
     static {
         Comparator comparator;
@@ -12,8 +12,8 @@ public abstract class p0 {
             Objects.requireNonNull(enumConstants);
             comparator = (Comparator) enumConstants[0];
         } catch (Throwable unused) {
-            comparator = o0.f56044a;
+            comparator = o0.f56157a;
         }
-        f56047a = comparator;
+        f56160a = comparator;
     }
 }

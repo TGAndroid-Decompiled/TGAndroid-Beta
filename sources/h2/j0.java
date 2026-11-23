@@ -23,7 +23,7 @@ public class j0 {
     public Object d;
 
     public j0(int[] iArr) {
-        SecureRandom secureRandom = rc.k.f56527a;
+        SecureRandom secureRandom = rc.k.f56640a;
         int i7 = Integer.MAX_VALUE;
         for (int i10 : iArr) {
             if (i10 < i7) {
@@ -160,15 +160,15 @@ public class j0 {
         }
         w0 w0Var = (w0) this.d;
         WeakReference weakReference = (WeakReference) this.f13766c;
-        if (w0Var.f20233m) {
-            w0Var.f20232l = typeface;
+        if (w0Var.f20329m) {
+            w0Var.f20328l = typeface;
             TextView textView = (TextView) weakReference.get();
             if (textView != null) {
-                WeakHashMap weakHashMap = r0.i0.f56254a;
+                WeakHashMap weakHashMap = r0.i0.f56367a;
                 if (textView.isAttachedToWindow()) {
-                    textView.post(new androidx.activity.g(textView, typeface, w0Var.f20230j, 4));
+                    textView.post(new androidx.activity.g(textView, typeface, w0Var.f20326j, 4));
                 } else {
-                    textView.setTypeface(typeface, w0Var.f20230j);
+                    textView.setTypeface(typeface, w0Var.f20326j);
                 }
             }
         }

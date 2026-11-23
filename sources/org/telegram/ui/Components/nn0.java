@@ -1,33 +1,28 @@
 package org.telegram.ui.Components;
+public final class nn0 implements hb {
+    public final fc f37873a;
+    public final ye f37874b;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class nn0 extends FrameLayout {
-    public final xe f37861a;
-
-    public nn0(xe xeVar, Context context) {
-        super(context);
-        this.f37861a = xeVar;
+    public nn0(ye yeVar, fc fcVar) {
+        this.f37874b = yeVar;
+        this.f37873a = fcVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        xe xeVar = this.f37861a;
-        View contentView = xeVar.getContentView();
-        contentView.getLocationInWindow(r3);
-        int[] iArr = {iArr[0] + xeVar.E, iArr[1] + xeVar.F};
-        int[] iArr2 = new int[2];
-        getLocationInWindow(iArr2);
-        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
-            motionEvent.offsetLocation(iArr2[0] - iArr[0], (org.telegram.messenger.g0.f24004m + iArr2[1]) - iArr[1]);
-            return contentView.dispatchTouchEvent(motionEvent);
-        }
-        if (!xeVar.A && !xeVar.D) {
-            xeVar.D = true;
-            xeVar.l(new r1.g[0]);
-        }
-        return true;
+    public final void a() {
+        this.f37874b.G.add(this.f37873a);
+    }
+
+    @Override
+    public final void b() {
+        this.f37874b.G.remove(this.f37873a);
+    }
+
+    @Override
+    public final void c(fc fcVar) {
+    }
+
+    @Override
+    public final void d() {
     }
 }

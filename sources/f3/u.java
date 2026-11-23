@@ -2,40 +2,39 @@ package f3;
 
 import e2.q0;
 import e2.s0;
-import h2.l0;
 import java.nio.ByteOrder;
 import java.util.Collections;
 public final class u {
-    public final int f11195a;
-    public final int f11196b;
-    public final int f11197c;
+    public final int f11199a;
+    public final int f11200b;
+    public final int f11201c;
     public final int d;
-    public final int f11198e;
-    public final int f11199f;
-    public final int f11200g;
+    public final int f11202e;
+    public final int f11203f;
+    public final int f11204g;
     public final int h;
-    public final int f11201i;
-    public final long f11202j;
-    public final wf.b f11203k;
-    public final q0 f11204l;
+    public final int f11205i;
+    public final long f11206j;
+    public final wf.b f11207k;
+    public final q0 f11208l;
 
     public u(byte[] bArr, int i7) {
         d4.f fVar = new d4.f(bArr, bArr.length);
         fVar.J(i7 * 8);
-        this.f11195a = fVar.j(16);
-        this.f11196b = fVar.j(16);
-        this.f11197c = fVar.j(24);
+        this.f11199a = fVar.j(16);
+        this.f11200b = fVar.j(16);
+        this.f11201c = fVar.j(24);
         this.d = fVar.j(24);
         int j3 = fVar.j(20);
-        this.f11198e = j3;
-        this.f11199f = d(j3);
-        this.f11200g = fVar.j(3) + 1;
+        this.f11202e = j3;
+        this.f11203f = d(j3);
+        this.f11204g = fVar.j(3) + 1;
         int j10 = fVar.j(5) + 1;
         this.h = j10;
-        this.f11201i = a(j10);
-        this.f11202j = fVar.l(36);
-        this.f11203k = null;
-        this.f11204l = null;
+        this.f11205i = a(j10);
+        this.f11206j = fVar.l(36);
+        this.f11207k = null;
+        this.f11208l = null;
     }
 
     public static int a(int i7) {
@@ -90,11 +89,11 @@ public final class u {
     }
 
     public final long b() {
-        long j3 = this.f11202j;
+        long j3 = this.f11206j;
         if (j3 == 0) {
             return -9223372036854775807L;
         }
-        return (j3 * 1000000) / this.f11198e;
+        return (j3 * 1000000) / this.f11202e;
     }
 
     public final e2.u c(byte[] bArr, q0 q0Var) {
@@ -103,34 +102,34 @@ public final class u {
         if (i7 <= 0) {
             i7 = -1;
         }
-        q0 q0Var2 = this.f11204l;
+        q0 q0Var2 = this.f11208l;
         if (q0Var2 != null) {
             q0Var = q0Var2.b(q0Var);
         }
         e2.t tVar = new e2.t();
-        tVar.f10709r = s0.n("audio/flac");
-        tVar.f10710s = i7;
-        tVar.J = this.f11200g;
-        tVar.K = this.f11198e;
-        String str = l0.f13778a;
-        tVar.L = l0.D(this.h, ByteOrder.LITTLE_ENDIAN);
-        tVar.f10712u = Collections.singletonList(bArr);
-        tVar.f10702k = q0Var;
+        tVar.f10707r = s0.n("audio/flac");
+        tVar.f10708s = i7;
+        tVar.J = this.f11204g;
+        tVar.K = this.f11202e;
+        String str = h2.l0.f13778a;
+        tVar.L = h2.l0.D(this.h, ByteOrder.LITTLE_ENDIAN);
+        tVar.f10710u = Collections.singletonList(bArr);
+        tVar.f10700k = q0Var;
         return new e2.u(tVar);
     }
 
     public u(int i7, int i10, int i11, int i12, int i13, int i14, int i15, long j3, wf.b bVar, q0 q0Var) {
-        this.f11195a = i7;
-        this.f11196b = i10;
-        this.f11197c = i11;
+        this.f11199a = i7;
+        this.f11200b = i10;
+        this.f11201c = i11;
         this.d = i12;
-        this.f11198e = i13;
-        this.f11199f = d(i13);
-        this.f11200g = i14;
+        this.f11202e = i13;
+        this.f11203f = d(i13);
+        this.f11204g = i14;
         this.h = i15;
-        this.f11201i = a(i15);
-        this.f11202j = j3;
-        this.f11203k = bVar;
-        this.f11204l = q0Var;
+        this.f11205i = a(i15);
+        this.f11206j = j3;
+        this.f11207k = bVar;
+        this.f11208l = q0Var;
     }
 }

@@ -9,19 +9,19 @@ import android.text.TextUtils;
 import android.util.TypedValue;
 import j$.util.Objects;
 import java.util.ArrayList;
-public class AnimatedPhoneNumberEditText extends j30 {
+public class AnimatedPhoneNumberEditText extends g30 {
     public final ArrayList P1;
     public final ArrayList Q1;
     public final TextPaint R1;
     public ObjectAnimator S1;
     public float T1;
     public String U1;
-    public final i6 V1;
+    public final h6 V1;
     public final ArrayList W1;
     public final ArrayList X1;
     public Boolean Y1;
     public String Z1;
-    public di.p6 f32534a2;
+    public di.p6 f32632a2;
 
     public AnimatedPhoneNumberEditText(Context context) {
         super(context);
@@ -29,7 +29,7 @@ public class AnimatedPhoneNumberEditText extends j30 {
         this.Q1 = new ArrayList();
         this.R1 = new TextPaint(1);
         this.U1 = "";
-        this.V1 = new i6(this, 0);
+        this.V1 = new h6(this, 0);
         this.W1 = new ArrayList();
         this.X1 = new ArrayList();
     }
@@ -106,7 +106,7 @@ public class AnimatedPhoneNumberEditText extends j30 {
         if (isEmpty) {
             int length = str2.length();
             di.p6 p6Var = new di.p6(this, z10, str, 18);
-            Runnable runnable = this.f32534a2;
+            Runnable runnable = this.f32632a2;
             if (runnable != null) {
                 removeCallbacks(runnable);
             }
@@ -125,15 +125,15 @@ public class AnimatedPhoneNumberEditText extends j30 {
                 r1.h hVar = new r1.h(f12);
                 hVar.b(500.0f);
                 hVar.a(1.0f);
-                hVar.f56341i = f12;
-                gVar.f56333m = hVar;
-                gVar.f56324b = 100.0f * f10;
-                gVar.f56325c = true;
+                hVar.f56454i = f12;
+                gVar.f56446m = hVar;
+                gVar.f56437b = 100.0f * f10;
+                gVar.f56438c = true;
                 arrayList2.add(gVar);
                 arrayList.add(Float.valueOf(f10));
                 postDelayed(new ng(gVar, 7), i10 * 5);
             }
-            this.f32534a2 = p6Var;
+            this.f32632a2 = p6Var;
             postDelayed(p6Var, (length * 5) + 150);
         }
     }
@@ -187,7 +187,7 @@ public class AnimatedPhoneNumberEditText extends j30 {
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", -1.0f, 0.0f);
                 this.S1 = ofFloat;
                 ofFloat.setDuration(150L);
-                this.S1.addListener(new y(this, 2));
+                this.S1.addListener(new x(this, 2));
                 this.S1.start();
             }
             this.U1 = str;

@@ -1,53 +1,48 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class lv extends FragmentContextView {
-    public final int Y0;
-    public final cx Z0;
+import android.view.View;
+public final class lv extends org.telegram.ui.Components.p6 {
+    public final int f49846b;
+    public final bx f49847c;
 
-    public lv(cx cxVar, Context context, cx cxVar2, int i7) {
-        super(context, cxVar2, true);
-        this.Y0 = i7;
+    public lv(bx bxVar, int i7) {
+        super("animationValue", 0);
+        this.f49846b = i7;
         switch (i7) {
             case 1:
-                this.Z0 = cxVar;
-                super(context, cxVar2, false);
+                this.f49847c = bxVar;
+                super("viewPagerTranslation", 0);
                 return;
             default:
-                this.Z0 = cxVar;
+                this.f49847c = bxVar;
                 return;
         }
     }
 
     @Override
-    public final void setVisibility(int i7) {
-        boolean z10;
-        boolean z11;
-        switch (this.Y0) {
+    public final void c(Object obj, float f10) {
+        switch (this.f49846b) {
             case 0:
-                cx cxVar = this.Z0;
-                org.telegram.ui.Components.es esVar = cxVar.L1;
-                FrameLayout frameLayout = cxVar.I1;
-                if (i7 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                esVar.j(frameLayout, z10, true);
+                ((bx) obj).W4(f10);
                 return;
             default:
-                cx cxVar2 = this.Z0;
-                org.telegram.ui.Components.es esVar2 = cxVar2.L1;
-                FrameLayout frameLayout2 = cxVar2.K1;
-                if (i7 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                esVar2.j(frameLayout2, z11, true);
+                bx bxVar = this.f49847c;
+                bxVar.J0 = f10;
+                ((View) obj).setTranslationY(bxVar.K0 + f10);
+                bxVar.R3();
                 return;
+        }
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        switch (this.f49846b) {
+            case 0:
+                bx bxVar = (bx) obj;
+                return Float.valueOf(this.f49847c.O);
+            default:
+                View view = (View) obj;
+                return Float.valueOf(this.f49847c.J0);
         }
     }
 }

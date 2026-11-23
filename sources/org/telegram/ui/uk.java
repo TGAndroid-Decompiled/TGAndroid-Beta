@@ -8,38 +8,38 @@ import android.graphics.Path;
 import android.graphics.drawable.ShapeDrawable;
 import android.text.TextPaint;
 import android.view.animation.OvershootInterpolator;
-public final class uk extends org.telegram.ui.Components.ez0 {
+public final class uk extends org.telegram.ui.Components.dz0 {
     public final bn L;
 
-    public uk(Activity activity, org.telegram.ui.ActionBar.h6 h6Var, bn bnVar) {
+    public uk(Activity activity, org.telegram.ui.ActionBar.i6 i6Var, bn bnVar) {
         super(activity);
         this.L = bnVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f35010b = textPaint;
+        this.f34499b = textPaint;
         Paint paint = new Paint(1);
-        this.f35011c = paint;
+        this.f34500c = paint;
         this.d = org.telegram.messenger.g0.L(24.0f);
-        this.f35012e = new OvershootInterpolator();
-        this.I = new org.telegram.ui.Components.cp0(this, 15);
+        this.f34501e = new OvershootInterpolator();
+        this.I = new org.telegram.ui.Components.bp0(this, 15);
         this.K = new Path();
-        int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.yj, h6Var);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.yj, i6Var);
         int alpha = Color.alpha(w02);
         textPaint.setTextSize(org.telegram.messenger.g0.L(15.0f));
         textPaint.setColor(w02);
         paint.setColor(w02);
         paint.setAlpha((int) (alpha * 0.14d));
         int L = org.telegram.messenger.g0.L(6.0f);
-        int i7 = org.telegram.ui.ActionBar.m6.wj;
-        ShapeDrawable d02 = org.telegram.ui.ActionBar.m6.d0(L, org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
-        org.telegram.ui.ActionBar.p6 M = org.telegram.ui.ActionBar.t6.M(i7);
+        int i7 = org.telegram.ui.ActionBar.n6.wj;
+        ShapeDrawable d02 = org.telegram.ui.ActionBar.n6.d0(L, org.telegram.ui.ActionBar.n6.w0(i7, i6Var));
+        org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i7);
         setBackground(d02);
-        org.telegram.ui.ActionBar.t6.j(this, d02, M, null, h6Var);
+        org.telegram.ui.ActionBar.u6.j(this, d02, M, null, i6Var);
     }
 
     public final void d() {
         int i7 = -(org.telegram.messenger.g0.L(16.0f) + getMeasuredHeight());
         bn bnVar = this.L;
-        int top = bnVar.f45903a0.getTop() - bnVar.f46064m1.getMeasuredHeight();
+        int top = bnVar.f46118a0.getTop() - bnVar.f46279m1.getMeasuredHeight();
         setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i7)));
     }
 

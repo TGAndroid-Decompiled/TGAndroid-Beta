@@ -13,18 +13,18 @@ import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.du0;
+import org.telegram.ui.Components.cu0;
 import org.telegram.ui.LaunchActivity;
 public final class x6 {
-    public static volatile x6[] f27814g = new x6[4];
+    public static volatile x6[] f27914g = new x6[4];
     public static final Object[] h = new Object[4];
-    public static org.telegram.ui.ActionBar.t1 f27815i;
-    public final int f27816a;
-    public final LongSparseArray f27817b = new LongSparseArray();
-    public final LongSparseArray f27818c = new LongSparseArray();
+    public static org.telegram.ui.ActionBar.t1 f27915i;
+    public final int f27916a;
+    public final LongSparseArray f27917b = new LongSparseArray();
+    public final LongSparseArray f27918c = new LongSparseArray();
     public final ArrayList d = new ArrayList();
-    public final a f27819e = new a(this, 7);
-    public boolean f27820f;
+    public final a f27919e = new a(this, 7);
+    public boolean f27920f;
 
     static {
         for (int i7 = 0; i7 < 4; i7++) {
@@ -33,18 +33,18 @@ public final class x6 {
     }
 
     public x6(int i7) {
-        this.f27816a = i7;
+        this.f27916a = i7;
     }
 
     public static x6 b(int i7) {
         x6 x6Var;
-        x6 x6Var2 = f27814g[i7];
+        x6 x6Var2 = f27914g[i7];
         if (x6Var2 == null) {
             synchronized (h[i7]) {
                 try {
-                    x6Var = f27814g[i7];
+                    x6Var = f27914g[i7];
                     if (x6Var == null) {
-                        x6[] x6VarArr = f27814g;
+                        x6[] x6VarArr = f27914g;
                         x6 x6Var3 = new x6(i7);
                         x6VarArr[i7] = x6Var3;
                         x6Var = x6Var3;
@@ -58,33 +58,33 @@ public final class x6 {
         return x6Var2;
     }
 
-    public final void a(gj gjVar, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10) {
+    public final void a(fj fjVar, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10) {
         TLRPC.TL_editFactCheck tL_editFactCheck;
         if (TextUtils.isEmpty(tL_textWithEntities.text)) {
             if (z10) {
                 return;
             }
             TLRPC.TL_deleteFactCheck tL_deleteFactCheck = new TLRPC.TL_deleteFactCheck();
-            tL_deleteFactCheck.peer = np.u1(this.f27816a).l1(gj.B0(gjVar.f24177k));
-            tL_deleteFactCheck.msg_id = gjVar.e1();
+            tL_deleteFactCheck.peer = mp.u1(this.f27916a).l1(fj.B0(fjVar.f24073k));
+            tL_deleteFactCheck.msg_id = fjVar.e1();
             tL_editFactCheck = tL_deleteFactCheck;
         } else {
             TLRPC.TL_editFactCheck tL_editFactCheck2 = new TLRPC.TL_editFactCheck();
-            tL_editFactCheck2.peer = np.u1(this.f27816a).l1(gj.B0(gjVar.f24177k));
-            tL_editFactCheck2.msg_id = gjVar.e1();
+            tL_editFactCheck2.peer = mp.u1(this.f27916a).l1(fj.B0(fjVar.f24073k));
+            tL_editFactCheck2.msg_id = fjVar.e1();
             tL_editFactCheck2.text = tL_textWithEntities;
             tL_editFactCheck = tL_editFactCheck2;
         }
         Context context = LaunchActivity.H1;
         if (context == null) {
-            context = t0.f26895b;
+            context = t0.f27013b;
         }
         org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, context, null);
         t1Var.r(320L);
-        ConnectionsManager.getInstance(this.f27816a).sendRequest(tL_editFactCheck, new di.j3(this, tL_textWithEntities, z10, t1Var, 2));
+        ConnectionsManager.getInstance(this.f27916a).sendRequest(tL_editFactCheck, new di.j3(this, tL_textWithEntities, z10, t1Var, 2));
     }
 
-    public final void c(Activity activity, org.telegram.ui.ActionBar.h6 h6Var, gj gjVar) {
+    public final void c(Activity activity, org.telegram.ui.ActionBar.i6 i6Var, fj fjVar) {
         final View view;
         boolean z10;
         AlertDialog$Builder alertDialog$Builder;
@@ -98,48 +98,48 @@ public final class x6 {
         } else {
             view = null;
         }
-        if (Q != null && (Q.getFragmentView() instanceof du0) && ((du0) Q.getFragmentView()).Q() > g0.L(20.0f)) {
+        if (Q != null && (Q.getFragmentView() instanceof cu0) && ((cu0) Q.getFragmentView()).Q() > g0.L(20.0f)) {
             z10 = true;
         } else {
             z10 = false;
         }
         org.telegram.ui.ActionBar.t1[] t1VarArr = new org.telegram.ui.ActionBar.t1[1];
         if (z10) {
-            alertDialog$Builder = new AlertDialog$Builder(0, activity, h6Var);
+            alertDialog$Builder = new AlertDialog$Builder(0, activity, i6Var);
         } else {
-            alertDialog$Builder = new AlertDialog$Builder(0, activity, h6Var);
+            alertDialog$Builder = new AlertDialog$Builder(0, activity, i6Var);
         }
         AlertDialog$Builder alertDialog$Builder2 = alertDialog$Builder;
         TextView[] textViewArr = new TextView[1];
-        if (gjVar != null && (message = gjVar.f24177k) != null && message.factcheck != null) {
+        if (fjVar != null && (message = fjVar.f24073k) != null && message.factcheck != null) {
             z11 = false;
         } else {
             z11 = true;
         }
-        String N0 = hd.N0(2131750840, null);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder2.f28743a;
+        String N0 = gd.N0(2131750840, null);
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder2.f28835a;
         t1Var.S = N0;
-        int i7 = this.f27816a;
-        int i10 = np.u1(i7).T5;
-        final t6 t6Var = new t6(activity, h6Var, i10, h6Var);
-        t6Var.f32938s0 = true;
+        int i7 = this.f27916a;
+        int i10 = mp.u1(i7).T5;
+        final t6 t6Var = new t6(activity, i6Var, i10, i6Var);
+        t6Var.f33036s0 = true;
         boolean z12 = z11;
-        t6Var.setOnEditorActionListener(new u6(this, t6Var, i10, gjVar, z12, t1VarArr, view));
-        si.d0(i7).O(g0.G0(), true);
+        t6Var.setOnEditorActionListener(new u6(this, t6Var, i10, fjVar, z12, t1VarArr, view));
+        ri.d0(i7).O(g0.G0(), true);
         t6Var.setTextSize(1, 18.0f);
-        org.telegram.ui.ActionBar.t6.U(t6Var, org.telegram.ui.ActionBar.m6.f29455j5, h6Var);
-        org.telegram.ui.ActionBar.t6.l(t6Var, 34, org.telegram.ui.ActionBar.m6.Oi, h6Var);
-        t6Var.setHintText(hd.N0(2131750837, null));
+        org.telegram.ui.ActionBar.u6.U(t6Var, org.telegram.ui.ActionBar.n6.f29559j5, i6Var);
+        org.telegram.ui.ActionBar.u6.l(t6Var, 34, org.telegram.ui.ActionBar.n6.Oi, i6Var);
+        t6Var.setHintText(gd.N0(2131750837, null));
         t6Var.setFocusable(true);
         t6Var.setInputType(147457);
-        org.telegram.ui.ActionBar.t6.F(t6Var, org.telegram.ui.ActionBar.m6.f29476k6, org.telegram.ui.ActionBar.m6.f29494l6, org.telegram.ui.ActionBar.m6.f29568p7, h6Var);
+        org.telegram.ui.ActionBar.u6.F(t6Var, org.telegram.ui.ActionBar.n6.f29580k6, org.telegram.ui.ActionBar.n6.f29598l6, org.telegram.ui.ActionBar.n6.f29672p7, i6Var);
         t6Var.setImeOptions(6);
         t6Var.setBackgroundDrawable(null);
         t6Var.setPadding(0, g0.L(6.0f), 0, g0.L(6.0f));
-        TLRPC.TL_factCheck R0 = gjVar.R0();
+        TLRPC.TL_factCheck R0 = fjVar.R0();
         if (R0 != null && (tL_textWithEntities = R0.text) != null) {
             SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(tL_textWithEntities.text);
-            gj.b(valueOf, R0.text.entities, false, true, false, false, 0);
+            fj.b(valueOf, R0.text.entities, false, true, false, false, 0);
             t6Var.setText(valueOf);
         }
         t6Var.addTextChangedListener(new v6(i10, t6Var, textViewArr, R0));
@@ -148,18 +148,18 @@ public final class x6 {
         linearLayout.addView(t6Var, c8.na.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder2.c();
         alertDialog$Builder2.o(linearLayout);
-        t1Var.f29976a = g0.L(292.0f);
-        alertDialog$Builder2.k(hd.N0(2131751342, null), new r6(this, t6Var, i10, gjVar, z12));
-        alertDialog$Builder2.h(hd.N0(2131752577, "Cancel"), new n2.a0(20));
+        t1Var.f30068a = g0.L(292.0f);
+        alertDialog$Builder2.k(gd.N0(2131751342, null), new r6(this, t6Var, i10, fjVar, z12));
+        alertDialog$Builder2.h(gd.N0(2131752577, "Cancel"), new n2.a0(20));
         if (z10) {
-            f27815i = t1Var;
+            f27915i = t1Var;
             t1VarArr[0] = t1Var;
             t1Var.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     switch (r1) {
                         case 0:
-                            x6.f27815i = null;
+                            x6.f27915i = null;
                             view.requestFocus();
                             return;
                         default:
@@ -168,7 +168,7 @@ public final class x6 {
                     }
                 }
             });
-            f27815i.setOnShowListener(new DialogInterface.OnShowListener() {
+            f27915i.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
                     switch (r2) {
@@ -185,7 +185,7 @@ public final class x6 {
                     }
                 }
             });
-            f27815i.r(250L);
+            f27915i.r(250L);
         } else {
             t1VarArr[0] = t1Var;
             t1Var.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -193,7 +193,7 @@ public final class x6 {
                 public final void onDismiss(DialogInterface dialogInterface) {
                     switch (r1) {
                         case 0:
-                            x6.f27815i = null;
+                            x6.f27915i = null;
                             t6Var.requestFocus();
                             return;
                         default:
@@ -222,7 +222,7 @@ public final class x6 {
             t1VarArr[0].show();
         }
         org.telegram.ui.ActionBar.t1 t1Var2 = t1VarArr[0];
-        t1Var2.f30001k0 = false;
+        t1Var2.f30093k0 = false;
         View d = t1Var2.d(-1);
         if (d instanceof TextView) {
             textViewArr[0] = (TextView) d;

@@ -1,7 +1,7 @@
 package ji;
 public final class c {
-    public int f17801a;
-    public int f17802b;
-    public long f17803c;
+    public int f17903a;
+    public int f17904b;
+    public long f17905c;
     public float d;
 }

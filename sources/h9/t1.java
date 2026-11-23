@@ -2,54 +2,35 @@ package h9;
 
 import a8.ma;
 import j$.util.Objects;
+import java.util.AbstractMap;
 public final class t1 extends i0 {
-    public static final t1 f14066e = new t1(0, new Object[0]);
-    public final transient Object[] f14067c;
-    public final transient int d;
+    public final u1 f14063c;
 
-    public t1(int i7, Object[] objArr) {
-        this.f14067c = objArr;
-        this.d = i7;
+    public t1(u1 u1Var) {
+        this.f14063c = u1Var;
     }
 
     @Override
     public final Object get(int i7) {
-        ma.j(i7, this.d);
-        Object obj = this.f14067c[i7];
+        u1 u1Var = this.f14063c;
+        ma.j(i7, u1Var.h);
+        Object[] objArr = u1Var.f14065e;
+        int i10 = i7 * 2;
+        int i11 = u1Var.f14066f;
+        Object obj = objArr[i10 + i11];
         Objects.requireNonNull(obj);
-        return obj;
-    }
-
-    @Override
-    public final int i(int i7, Object[] objArr) {
-        Object[] objArr2 = this.f14067c;
-        int i10 = this.d;
-        System.arraycopy(objArr2, 0, objArr, i7, i10);
-        return i7 + i10;
-    }
-
-    @Override
-    public final Object[] j() {
-        return this.f14067c;
-    }
-
-    @Override
-    public final int k() {
-        return this.d;
-    }
-
-    @Override
-    public final int l() {
-        return 0;
+        Object obj2 = objArr[i10 + (i11 ^ 1)];
+        Objects.requireNonNull(obj2);
+        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
     }
 
     @Override
     public final boolean m() {
-        return false;
+        return true;
     }
 
     @Override
     public final int size() {
-        return this.d;
+        return this.f14063c.h;
     }
 }

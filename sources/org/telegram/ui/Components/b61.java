@@ -1,11 +1,6 @@
 package org.telegram.ui.Components;
+public interface b61 {
+    boolean r();
 
-import java.util.concurrent.Executor;
-public final class b61 implements Executor {
-    public final org.telegram.messenger.r5 f33755a;
-
-    @Override
-    public final void execute(Runnable runnable) {
-        this.f33755a.postRunnable(runnable);
-    }
+    void w(boolean z10, float[] fArr);
 }

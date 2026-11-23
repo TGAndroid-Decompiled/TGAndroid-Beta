@@ -1,32 +1,48 @@
 package org.telegram.ui.Components;
-public final class do0 extends g.p {
-    public final int f34521c;
-    public final ap0 d;
 
-    public do0(ap0 ap0Var, int i7) {
-        this.f34521c = i7;
-        this.d = ap0Var;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class do0 extends v4.u0 {
+    public final int f34418a;
+    public final zo0 f34419b;
+
+    public do0(zo0 zo0Var, int i7) {
+        this.f34418a = i7;
+        this.f34419b = zo0Var;
     }
 
     @Override
-    public final int i(int i7) {
-        switch (this.f34521c) {
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        kb kbVar;
+        switch (this.f34418a) {
             case 0:
-                if (i7 == 0) {
-                    return this.d.D1.J;
+                zo0 zo0Var = this.f34419b;
+                if (i10 != 0) {
+                    zo0.J0(zo0Var);
+                    zo0Var.f42982m2 = zo0Var.f42980l2;
                 }
-                return 1;
+                fc fcVar = fc.f35083w;
+                if (fcVar != null && (kbVar = fcVar.f35087e) != null && (kbVar.getParent() instanceof View) && ((View) fc.f35083w.f35087e.getParent()).getParent() == zo0Var.f43002x1) {
+                    fc.e();
+                    return;
+                }
+                return;
             case 1:
-                xo0 xo0Var = this.d.I1;
-                if (i7 != xo0Var.f42161x && i7 != xo0Var.f42162y && i7 != xo0Var.E && i7 != xo0Var.G && xo0Var.d(i7) != 0) {
-                    return 1;
+                if (i10 != 0) {
+                    zo0 zo0Var2 = this.f34419b;
+                    zo0.J0(zo0Var2);
+                    zo0Var2.f42982m2 = zo0Var2.f42980l2;
+                    return;
                 }
-                return 4;
+                return;
             default:
-                if (i7 == 0) {
-                    return this.d.E1.J;
+                if (i10 != 0) {
+                    zo0 zo0Var3 = this.f34419b;
+                    zo0.J0(zo0Var3);
+                    zo0Var3.f42982m2 = zo0Var3.f42980l2;
+                    return;
                 }
-                return 1;
+                return;
         }
     }
 }

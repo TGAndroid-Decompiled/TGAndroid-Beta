@@ -6,17 +6,17 @@ import c8.cc;
 import q6.m;
 public final class e extends r6.a {
     public static final Parcelable.Creator<e> CREATOR = new m6.e(6);
-    public final String f20896a;
+    public final String f20992a;
 
     public e(String str) {
         m.i(str, "json must not be null");
-        this.f20896a = str;
+        this.f20992a = str;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = cc.r(parcel, 20293);
-        cc.l(parcel, 2, this.f20896a);
+        cc.l(parcel, 2, this.f20992a);
         cc.s(parcel, r10);
     }
 }

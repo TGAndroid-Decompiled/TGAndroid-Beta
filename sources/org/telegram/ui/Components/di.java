@@ -1,32 +1,80 @@
 package org.telegram.ui.Components;
 
+import android.content.Intent;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class di implements mj {
-    public final ui f34470a;
+public final class di implements bk {
+    public final ti f34350a;
 
-    public di(ui uiVar) {
-        this.f34470a = uiVar;
+    public di(ti tiVar) {
+        this.f34350a = tiVar;
     }
 
     @Override
-    public final void a(TLRPC.User user, boolean z10, int i7, long j3) {
-        org.telegram.ui.bn bnVar = (org.telegram.ui.bn) this.f34470a.f40352a2;
-        if (bnVar.u7()) {
-            org.telegram.messenger.yy g10 = org.telegram.messenger.yy.g(user, bnVar.f46056l6, bnVar.F5, bnVar.f46067m4, null, null, z10, i7, 0);
-            g10.K = bnVar.Y8();
-            g10.O = 0L;
-            g10.L = false;
-            g10.Q = j3;
-            g10.R = bnVar.j9();
-            g10.T = bnVar.f46221y5;
-            bnVar.getSendMessagesHelper().r0(g10);
-            bnVar.L6();
+    public final void A() {
+        ti tiVar = this.f34350a;
+        bk bkVar = tiVar.S1;
+        if (bkVar != null) {
+            bkVar.A();
+            return;
+        }
+        org.telegram.ui.ActionBar.g2 g2Var = tiVar.f39956a2;
+        if (g2Var instanceof bk) {
+            ((bk) g2Var).A();
+        } else if (g2Var instanceof org.telegram.ui.fk0) {
+            org.telegram.ui.fk0 fk0Var = (org.telegram.ui.fk0) g2Var;
+            try {
+                Intent intent = new Intent("android.intent.action.GET_CONTENT");
+                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
+                intent.setType("*/*");
+                fk0Var.startActivityForResult(intent, 21);
+            } catch (Exception e10) {
+                org.telegram.messenger.a8.g(e10, true);
+            }
         }
     }
 
     @Override
-    public final void b(ArrayList arrayList, String str, boolean z10, int i7, long j3, boolean z11) {
-        ((org.telegram.ui.bn) this.f34470a.f40352a2).Jb(arrayList, str, z10, i7, j3, z11);
+    public final void T() {
+        this.f34350a.q1(true);
+    }
+
+    @Override
+    public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i7, long j3, boolean z11, long j10) {
+        ti tiVar = this.f34350a;
+        bk bkVar = tiVar.S1;
+        if (bkVar != null) {
+            bkVar.n(arrayList, str, arrayList2, arrayList3, z10, i7, j3, z11, j10);
+            return;
+        }
+        org.telegram.ui.ActionBar.g2 g2Var = tiVar.f39956a2;
+        if (g2Var instanceof bk) {
+            ((bk) g2Var).n(arrayList, str, arrayList2, arrayList3, z10, i7, j3, z11, j10);
+        } else if (g2Var instanceof org.telegram.ui.fk0) {
+            org.telegram.ui.fk0 fk0Var = (org.telegram.ui.fk0) g2Var;
+            ArrayList arrayList4 = new ArrayList();
+            int size = arrayList.size();
+            for (int i10 = 0; i10 < size; i10++) {
+                ?? obj = new Object();
+                obj.f28311c = (String) arrayList.get(i10);
+                arrayList4.add(obj);
+            }
+            fk0Var.K1(arrayList4);
+        }
+    }
+
+    @Override
+    public final void p(ArrayList arrayList, boolean z10, int i7, long j3) {
+        ti tiVar = this.f34350a;
+        bk bkVar = tiVar.S1;
+        if (bkVar != null) {
+            bkVar.p(arrayList, z10, i7, j3);
+            return;
+        }
+        org.telegram.ui.ActionBar.g2 g2Var = tiVar.f39956a2;
+        if (g2Var instanceof org.telegram.ui.bn) {
+            ((org.telegram.ui.bn) g2Var).p(arrayList, z10, i7, j3);
+        } else if (g2Var instanceof org.telegram.ui.fk0) {
+            ((org.telegram.ui.fk0) g2Var).K1(arrayList);
+        }
     }
 }

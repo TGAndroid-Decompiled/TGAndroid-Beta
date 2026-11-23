@@ -1,8 +1,8 @@
 package org.telegram.ui.Cells;
 
-import org.telegram.messenger.np;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.cx;
+import org.telegram.ui.bx;
 public final class n2 extends fi.e7 {
     public final u2 S;
 
@@ -23,19 +23,19 @@ public final class n2 extends fi.e7 {
     public final boolean d(long j3) {
         u2 u2Var = this.S;
         int i7 = u2Var.G0;
-        cx cxVar = u2Var.E4;
-        if (cxVar != null && !u2Var.P0) {
+        bx bxVar = u2Var.E4;
+        if (bxVar != null && !u2Var.P0) {
             if (j3 > 0) {
-                TLRPC.User c22 = np.u1(i7).c2(Long.valueOf(j3));
+                TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(j3));
                 if (c22 != null && c22.linked_community_id != 0) {
-                    cxVar.showDialog(new li.d0(cxVar, c22.linked_community_id));
+                    bxVar.showDialog(new li.c0(bxVar, c22.linked_community_id));
                     return true;
                 }
                 return false;
             }
-            TLRPC.Chat O0 = np.u1(i7).O0(Long.valueOf(-j3));
+            TLRPC.Chat O0 = mp.u1(i7).O0(Long.valueOf(-j3));
             if (O0 != null && O0.linked_community_id != 0) {
-                cxVar.showDialog(new li.d0(cxVar, O0.linked_community_id));
+                bxVar.showDialog(new li.c0(bxVar, O0.linked_community_id));
                 return true;
             }
             return false;
@@ -46,7 +46,7 @@ public final class n2 extends fi.e7 {
     @Override
     public final void e() {
         u2 u2Var = this.S;
-        q2 q2Var = u2Var.f31908e0;
+        q2 q2Var = u2Var.f31992e0;
         if (q2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class n2 extends fi.e7 {
     @Override
     public final void f(long j3) {
         u2 u2Var = this.S;
-        q2 q2Var = u2Var.f31908e0;
+        q2 q2Var = u2Var.f31992e0;
         if (q2Var == null) {
             return;
         }

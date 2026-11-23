@@ -1,42 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class g40 extends AnimatorListenerAdapter {
-    public final int f35377a;
-    public final c50 f35378b;
+import android.animation.ValueAnimator;
+public final class g40 implements ValueAnimator.AnimatorUpdateListener {
+    public final boolean[] f35310a;
+    public final c40 f35311b;
+    public final z40 f35312c;
 
-    public g40(c50 c50Var, int i7) {
-        this.f35377a = i7;
-        this.f35378b = c50Var;
+    public g40(z40 z40Var, boolean[] zArr, c40 c40Var) {
+        this.f35312c = z40Var;
+        this.f35310a = zArr;
+        this.f35311b = c40Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35377a) {
-            case 0:
-                c50 c50Var = this.f35378b;
-                if (animator.equals(c50Var.L)) {
-                    c50Var.L = null;
-                    return;
-                }
-                return;
-            case 1:
-                c50 c50Var2 = this.f35378b;
-                if (c50Var2.l1 != null) {
-                    c50Var2.l1 = null;
-                    return;
-                }
-                return;
-            default:
-                c50 c50Var3 = this.f35378b;
-                if (animator.equals(c50Var3.f33988e0)) {
-                    c50Var3.d(true);
-                    c50Var3.f33994g1 = false;
-                    c50Var3.setVisibility(4);
-                    return;
-                }
-                return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (floatValue > 0.5f) {
+            boolean[] zArr = this.f35310a;
+            if (!zArr[0]) {
+                zArr[0] = true;
+                this.f35311b.run();
+            }
         }
+        if (floatValue >= 0.5f) {
+            floatValue -= 1.0f;
+        }
+        float f10 = floatValue * 180.0f;
+        z40 z40Var = this.f35312c;
+        z40Var.f42668f.setRotationY(f10);
+        z40Var.f42688r0.setRotationY(f10);
     }
 }

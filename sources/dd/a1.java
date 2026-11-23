@@ -6,24 +6,24 @@ public enum a1 extends b2 {
 
     @Override
     public final void d(l lVar, a aVar) {
-        e eVar = lVar.f8328n;
+        e eVar = lVar.f8327n;
         char i7 = aVar.i();
         if (i7 != 0) {
             if (i7 != '-') {
                 if (i7 != 65535) {
-                    eVar.f8303c.append(aVar.g('-', 0));
+                    eVar.f8302c.append(aVar.g('-', 0));
                     return;
                 }
                 lVar.l(this);
                 lVar.i();
-                lVar.f8319c = b2.f8266a;
+                lVar.f8318c = b2.f8265a;
                 return;
             }
-            lVar.a(b2.f8282l0);
+            lVar.a(b2.f8281l0);
             return;
         }
         lVar.m(this);
         aVar.a();
-        eVar.f8303c.append((char) 65533);
+        eVar.f8302c.append((char) 65533);
     }
 }

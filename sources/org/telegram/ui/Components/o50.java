@@ -1,23 +1,22 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class o50 extends v4.t0 {
-    public final v4.b0 f38074a;
-    public final a60 f38075b;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+public final class o50 extends d80 {
+    public final s50 N;
 
-    public o50(a60 a60Var, v4.b0 b0Var) {
-        this.f38075b = a60Var;
-        this.f38074a = b0Var;
+    public o50(s50 s50Var, Context context, org.telegram.ui.ActionBar.g2 g2Var, org.telegram.ui.ActionBar.w2 w2Var, boolean z10) {
+        super(context, g2Var, w2Var, false, z10);
+        this.N = s50Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        a60 a60Var = this.f38075b;
-        a60.J0(a60Var);
-        if (a60Var.M1 && !a60Var.L1) {
-            if (a60Var.N1 - this.f38074a.N0() < 10) {
-                a60Var.L0();
-            }
-        }
+    public final void e(SpannableStringBuilder spannableStringBuilder) {
+        x50 x50Var = this.N.f39500c;
+        org.telegram.ui.ActionBar.m2 m2Var = x50Var.f30229c;
+        int i7 = x50.f41828i2;
+        fc Q = new kc(m2Var, x50Var.J0).Q(2131624029, 36, spannableStringBuilder);
+        Q.f35099r = false;
+        Q.k(true);
     }
 }

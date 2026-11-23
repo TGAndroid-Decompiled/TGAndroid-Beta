@@ -21,26 +21,26 @@ import r0.q0;
 import r0.t0;
 import r0.v0;
 public final class d extends q {
-    public static final RectF f56607e;
-    public static final Rect f56608f;
-    public final ViewGroup f56609b;
-    public int f56610c;
+    public static final RectF f56720e;
+    public static final Rect f56721f;
+    public final ViewGroup f56722b;
+    public int f56723c;
     public final xe.b d = new xe.b();
 
     static {
         new PointF();
-        f56607e = new RectF();
-        f56608f = new Rect();
+        f56720e = new RectF();
+        f56721f = new Rect();
     }
 
     public d(FrameLayout frameLayout) {
-        this.f56609b = frameLayout;
-        WeakHashMap weakHashMap = i0.f56254a;
+        this.f56722b = frameLayout;
+        WeakHashMap weakHashMap = i0.f56367a;
         if (Build.VERSION.SDK_INT >= 30) {
             t0.g(frameLayout, this);
             return;
         }
-        PathInterpolator pathInterpolator = q0.f56279e;
+        PathInterpolator pathInterpolator = q0.f56392e;
         View.OnApplyWindowInsetsListener p0Var = new p0(frameLayout, this);
         frameLayout.setTag(2131296700, p0Var);
         if (frameLayout.getTag(2131296688) == null && frameLayout.getTag(2131296689) == null) {
@@ -50,9 +50,9 @@ public final class d extends q {
 
     public static l1 e1(l1 l1Var, View view, View view2) {
         if (view != null && view2 != null && l1Var != null) {
-            RectF rectF = f56607e;
+            RectF rectF = f56720e;
             if (k.c(view, view2, rectF)) {
-                Rect rect = f56608f;
+                Rect rect = f56721f;
                 rectF.round(rect);
                 int i7 = rect.left;
                 int i10 = rect.top;
@@ -61,7 +61,7 @@ public final class d extends q {
                 if (i7 == 0 && i10 == 0 && width == 0 && height == 0) {
                     return l1Var;
                 }
-                return l1Var.f56268a.m(Math.max(0, i7), Math.max(0, i10), Math.max(0, width), Math.max(0, height));
+                return l1Var.f56381a.m(Math.max(0, i7), Math.max(0, i10), Math.max(0, width), Math.max(0, height));
             }
             return null;
         }
@@ -70,12 +70,12 @@ public final class d extends q {
 
     @Override
     public final void V0() {
-        int i7 = this.f56610c - 1;
-        this.f56610c = i7;
+        int i7 = this.f56723c - 1;
+        this.f56723c = i7;
         if (i7 == 0) {
             Iterator it = this.d.iterator();
             while (it.hasNext()) {
-                ((c) it.next()).O();
+                ((c) it.next()).Q();
             }
         }
     }
@@ -85,13 +85,13 @@ public final class d extends q {
         Iterator it = list.iterator();
         int i7 = 0;
         while (it.hasNext()) {
-            i7 |= ((v0) it.next()).f56296a.c();
+            i7 |= ((v0) it.next()).f56409a.c();
         }
         if (ed.a(i7, 8)) {
             Iterator it2 = this.d.iterator();
             while (it2.hasNext()) {
                 c cVar = (c) it2.next();
-                l1 e12 = e1(l1Var, cVar.S(), this.f56609b);
+                l1 e12 = e1(l1Var, cVar.S(), this.f56722b);
                 if (e12 != null) {
                     cVar.m(e12);
                 }

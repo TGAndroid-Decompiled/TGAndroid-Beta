@@ -1,48 +1,72 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class mv extends org.telegram.ui.Components.q6 {
-    public final int f49969b;
-    public final cx f49970c;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.MotionEvent;
+import java.util.ArrayList;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class mv extends ChatActivityEnterView {
+    public final bx f50117t7;
 
-    public mv(cx cxVar, int i7) {
-        super("animationValue", 0);
-        this.f49969b = i7;
-        switch (i7) {
-            case 1:
-                this.f49970c = cxVar;
-                super("viewPagerTranslation", 0);
-                return;
-            default:
-                this.f49970c = cxVar;
-                return;
-        }
+    public mv(bx bxVar, Activity activity, uw uwVar) {
+        super(activity, uwVar, null, false, null);
+        this.f50117t7 = bxVar;
     }
 
     @Override
-    public final void c(Object obj, float f10) {
-        switch (this.f49969b) {
-            case 0:
-                ((cx) obj).W4(f10);
-                return;
-            default:
-                cx cxVar = this.f49970c;
-                cxVar.J0 = f10;
-                ((View) obj).setTranslationY(cxVar.K0 + f10);
-                cxVar.R3();
-                return;
-        }
+    public final void c1(float f10) {
+        bx bxVar = this.f50117t7;
+        bxVar.A1.setInputBubbleHeight(f10);
+        bxVar.E3();
+        bxVar.F3();
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.f49969b) {
-            case 0:
-                cx cxVar = (cx) obj;
-                return Float.valueOf(this.f49970c.O);
-            default:
-                View view = (View) obj;
-                return Float.valueOf(this.f49970c.J0);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        int i7;
+        if (motionEvent.getAction() == 0) {
+            bx bxVar = this.f50117t7;
+            Activity parentActivity = bxVar.getParentActivity();
+            i7 = ((org.telegram.ui.ActionBar.g2) bxVar).classGuid;
+            org.telegram.messenger.g0.Z2(parentActivity, i7);
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final int getMessagesCount() {
+        CharSequence fieldText;
+        bx bxVar = this.f50117t7;
+        int i7 = bxVar.U0;
+        mv mvVar = bxVar.D1;
+        if (mvVar == null) {
+            fieldText = "";
+        } else {
+            fieldText = mvVar.getFieldText();
+        }
+        return Math.max(1, i7 + (!TextUtils.isEmpty(fieldText) ? 1 : 0));
+    }
+
+    @Override
+    public final long getStarsPrice() {
+        bx bxVar = this.f50117t7;
+        ArrayList arrayList = bxVar.K2;
+        if (arrayList == null) {
+            return 0L;
+        }
+        int size = arrayList.size();
+        int i7 = 0;
+        long j3 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            long longValue = ((Long) obj).longValue();
+            long P1 = bxVar.getMessagesController().P1(longValue);
+            if (P1 <= 0 && longValue > 0) {
+                P1 = org.telegram.messenger.n5.k(bxVar.getMessagesController().P2(longValue));
+            }
+            j3 += P1;
+        }
+        return j3;
     }
 }

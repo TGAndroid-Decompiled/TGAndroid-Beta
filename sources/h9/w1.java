@@ -1,29 +1,24 @@
 package h9;
-public final class w1 extends t0 {
-    public final transient l0 d;
-    public final transient x1 f14080e;
 
-    public w1(l0 l0Var, x1 x1Var) {
-        this.d = l0Var;
-        this.f14080e = x1Var;
+import a8.ma;
+import j$.util.Objects;
+public final class w1 extends i0 {
+    public final transient Object[] f14076c;
+    public final transient int d;
+    public final transient int f14077e;
+
+    public w1(int i7, int i10, Object[] objArr) {
+        this.f14076c = objArr;
+        this.d = i7;
+        this.f14077e = i10;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (this.d.get(obj) != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final i0 f() {
-        return this.f14080e;
-    }
-
-    @Override
-    public final int i(int i7, Object[] objArr) {
-        return this.f14080e.i(i7, objArr);
+    public final Object get(int i7) {
+        ma.j(i7, this.f14077e);
+        Object obj = this.f14076c[(i7 * 2) + this.d];
+        Objects.requireNonNull(obj);
+        return obj;
     }
 
     @Override
@@ -32,12 +27,7 @@ public final class w1 extends t0 {
     }
 
     @Override
-    public final h2 n() {
-        return this.f14080e.listIterator(0);
-    }
-
-    @Override
     public final int size() {
-        return this.d.size();
+        return this.f14077e;
     }
 }

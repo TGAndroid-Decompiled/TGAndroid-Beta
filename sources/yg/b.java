@@ -7,46 +7,46 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.o10;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m5;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.oq;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.m10;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n5;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.lq;
 public final class b extends FrameLayout {
-    public final m5 f61217a;
-    public final ImageView f61218b;
+    public final n5 f61336a;
+    public final ImageView f61337b;
 
-    public b(Context context, h6 h6Var) {
+    public b(Context context, i6 i6Var) {
         super(context);
         int i7;
-        m5 m5Var = new m5(context);
-        this.f61217a = m5Var;
-        m5Var.setTextSize(16);
-        if (hd.f24408a0) {
+        n5 n5Var = new n5(context);
+        this.f61336a = n5Var;
+        n5Var.setTextSize(16);
+        if (gd.f24314a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        m5Var.setGravity(i7);
-        int i10 = m6.L6;
-        t6.X(m5Var, i10, h6Var);
-        m5Var.setTag(Integer.valueOf(i10));
-        addView(m5Var);
+        n5Var.setGravity(i7);
+        int i10 = n6.L6;
+        u6.X(n5Var, i10, i6Var);
+        n5Var.setTag(Integer.valueOf(i10));
+        addView(n5Var);
         ImageView imageView = new ImageView(context);
-        this.f61218b = imageView;
+        this.f61337b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
-        m5Var.k(hd.N0(2131753600, null));
-        Drawable drawable = getResources().getDrawable(2131232561);
-        Drawable drawable2 = getResources().getDrawable(2131232562);
-        int i11 = m6.N6;
+        n5Var.k(gd.N0(2131753600, null));
+        Drawable drawable = getResources().getDrawable(2131232564);
+        Drawable drawable2 = getResources().getDrawable(2131232565);
+        int i11 = n6.N6;
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        t6.x(this, drawable, i11, h6Var, mode);
-        t6.x(this, drawable2, m6.f29477k7, h6Var, mode);
-        imageView.setImageDrawable(new oq(drawable, drawable2));
-        t6.h(m6.f29420h5, this, h6Var);
+        u6.x(this, drawable, i11, i6Var, mode);
+        u6.x(this, drawable2, n6.f29581k7, i6Var, mode);
+        imageView.setImageDrawable(new lq(drawable, drawable2));
+        u6.h(n6.f29524h5, this, i6Var);
     }
 
     @Override
@@ -54,13 +54,13 @@ public final class b extends FrameLayout {
         int L;
         int measuredWidth;
         int i13 = i11 - i7;
-        m5 m5Var = this.f61217a;
-        int textHeight = ((i12 - i10) - m5Var.getTextHeight()) / 2;
-        boolean z11 = hd.f24408a0;
+        n5 n5Var = this.f61336a;
+        int textHeight = ((i12 - i10) - n5Var.getTextHeight()) / 2;
+        boolean z11 = gd.f24314a0;
         float f10 = 23.0f;
-        ImageView imageView = this.f61218b;
+        ImageView imageView = this.f61337b;
         if (z11) {
-            int measuredWidth2 = getMeasuredWidth() - m5Var.getMeasuredWidth();
+            int measuredWidth2 = getMeasuredWidth() - n5Var.getMeasuredWidth();
             if (imageView.getVisibility() == 0) {
                 f10 = 68.0f;
             }
@@ -71,8 +71,8 @@ public final class b extends FrameLayout {
             }
             L = g0.L(f10);
         }
-        m5Var.layout(L, textHeight, m5Var.getMeasuredWidth() + L, m5Var.getMeasuredHeight() + textHeight);
-        if (!hd.f24408a0) {
+        n5Var.layout(L, textHeight, n5Var.getMeasuredWidth() + L, n5Var.getMeasuredHeight() + textHeight);
+        if (!gd.f24314a0) {
             measuredWidth = g0.L(24.0f);
         } else {
             measuredWidth = (i13 - imageView.getMeasuredWidth()) - g0.L(24.0f);
@@ -83,8 +83,8 @@ public final class b extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i7);
-        this.f61217a.measure(o10.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(g0.L(20.0f), 1073741824));
-        this.f61218b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(g0.L(50.0f), 1073741824));
+        this.f61336a.measure(m10.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(g0.L(20.0f), 1073741824));
+        this.f61337b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(g0.L(50.0f), 1073741824));
         setMeasuredDimension(size, g0.L(50.0f));
     }
 }

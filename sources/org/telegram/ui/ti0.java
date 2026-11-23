@@ -1,114 +1,101 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ti0 implements TextView.OnEditorActionListener {
-    public final int f52285a;
-    public final hk0 f52286b;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ti0 implements View.OnClickListener {
+    public final int f52411a;
+    public final fk0 f52412b;
 
-    public ti0(hk0 hk0Var, int i7) {
-        this.f52285a = i7;
-        this.f52286b = hk0Var;
+    public ti0(fk0 fk0Var, int i7) {
+        this.f52411a = i7;
+        this.f52412b = fk0Var;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
-        switch (this.f52285a) {
+    public final void onClick(View view) {
+        int i7 = this.f52411a;
+        fk0 fk0Var = this.f52412b;
+        switch (i7) {
             case 0:
-                hk0 hk0Var = this.f52286b;
-                if (i7 == 5) {
-                    hk0Var.Z[2].requestFocus();
-                    return true;
-                } else if (i7 == 6) {
-                    hk0Var.M.callOnClick();
-                    return true;
-                } else {
-                    hk0Var.getClass();
-                    return false;
-                }
+                fk0Var.T0 = 2;
+                fk0Var.H1();
+                return;
             case 1:
-                hk0 hk0Var2 = this.f52286b;
-                hk0Var2.getClass();
-                if (i7 == 5) {
-                    int intValue = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr = hk0Var2.Z;
-                    if (intValue >= editTextBoldCursorArr.length) {
-                        return true;
-                    }
-                    if (editTextBoldCursorArr[intValue].isFocusable()) {
-                        hk0Var2.Z[intValue].requestFocus();
-                        return true;
-                    }
-                    hk0Var2.Z[intValue].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                    textView.clearFocus();
-                    org.telegram.messenger.g0.v1(textView);
-                    return true;
-                }
-                return false;
+                fk0Var.h1();
+                return;
             case 2:
-                hk0 hk0Var3 = this.f52286b;
-                hk0Var3.getClass();
-                if (i7 == 5) {
-                    int intValue2 = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr2 = hk0Var3.f48384b0;
-                    if (intValue2 >= editTextBoldCursorArr2.length) {
-                        return true;
-                    }
-                    if (editTextBoldCursorArr2[intValue2].isFocusable()) {
-                        hk0Var3.f48384b0[intValue2].requestFocus();
-                        return true;
-                    }
-                    hk0Var3.f48384b0[intValue2].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                    textView.clearFocus();
-                    org.telegram.messenger.g0.v1(textView);
-                    return true;
-                }
-                return false;
+                fk0Var.T0 = 3;
+                fk0Var.H1();
+                return;
             case 3:
-                hk0 hk0Var4 = this.f52286b;
-                hk0Var4.getClass();
-                if (i7 != 6 && i7 != 5) {
-                    return false;
-                }
-                hk0Var4.M.callOnClick();
-                return true;
+                fk0Var.T0 = 1;
+                fk0Var.H1();
+                return;
             case 4:
-                hk0 hk0Var5 = this.f52286b;
-                hk0Var5.getClass();
-                if (i7 == 5) {
-                    int intValue3 = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr3 = hk0Var5.Z;
-                    if (intValue3 >= editTextBoldCursorArr3.length) {
-                        return true;
-                    }
-                    if (editTextBoldCursorArr3[intValue3].isFocusable()) {
-                        hk0Var5.Z[intValue3].requestFocus();
-                        return true;
-                    }
-                    hk0Var5.Z[intValue3].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                    textView.clearFocus();
-                    org.telegram.messenger.g0.v1(textView);
-                    return true;
-                }
-                return false;
+                fk0Var.T0 = 4;
+                fk0Var.H1();
+                return;
             case 5:
-                hk0 hk0Var6 = this.f52286b;
-                hk0Var6.getClass();
-                if (i7 != 5 && i7 != 6) {
-                    return false;
+                if (fk0Var.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
+                    fk0Var.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 22);
+                    return;
                 }
-                hk0Var6.M.callOnClick();
-                return true;
+                t9 t9Var = new t9(0);
+                t9Var.N = new fj0(fk0Var);
+                fk0Var.presentFragment(t9Var);
+                return;
+            case 6:
+                fk0Var.f47865f = true;
+                fk0Var.M.callOnClick();
+                fk0Var.f47865f = false;
+                return;
+            case 7:
+                fk0Var.T0 = 0;
+                fk0Var.H1();
+                return;
+            case 8:
+                fk0Var.T0 = 4;
+                fk0Var.H1();
+                return;
+            case 9:
+                fk0Var.h1();
+                return;
+            case 10:
+                fk0.g0(fk0Var);
+                return;
+            case 11:
+                fk0.h0(fk0Var);
+                return;
+            case 12:
+                fk0Var.G1();
+                return;
+            case 13:
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(fk0Var.getParentActivity());
+                String N0 = org.telegram.messenger.gd.N0(2131743987, null);
+                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28835a;
+                t1Var.S = N0;
+                t1Var.U = org.telegram.messenger.gd.N0(2131743988, null);
+                alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131751586, null), new vi0(fk0Var, 5));
+                alertDialog$Builder.h(org.telegram.messenger.gd.N0(2131752577, null), null);
+                fk0Var.showDialog(t1Var);
+                TextView textView = (TextView) t1Var.d(-1);
+                if (textView != null) {
+                    org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29692q7, null);
+                    return;
+                }
+                return;
+            case 14:
+                fk0Var.G1();
+                return;
+            case 15:
+                fk0.a0(fk0Var);
+                return;
             default:
-                hk0 hk0Var7 = this.f52286b;
-                hk0Var7.getClass();
-                if (i7 != 6 && i7 != 5) {
-                    return false;
-                }
-                hk0Var7.M.callOnClick();
-                return true;
+                fk0Var.f47865f = true;
+                fk0Var.M.callOnClick();
+                fk0Var.f47865f = false;
+                return;
         }
     }
 }

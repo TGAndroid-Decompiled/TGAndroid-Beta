@@ -1,45 +1,50 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-public final class t2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f41329a;
-    public final u2 f41330b;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class t2 extends View {
+    public final TextPaint f41247a;
+    public final Paint f41248b;
+    public final float f41249c;
+    public final String d;
+    public volatile Bitmap f41250e;
 
-    public t2(u2 u2Var, int i7) {
-        this.f41329a = i7;
-        this.f41330b = u2Var;
+    public t2(Context context, String str) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f41247a = textPaint;
+        this.f41248b = new Paint(1);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
+        textPaint.setColor(-1);
+        textPaint.setTypeface(org.telegram.messenger.g0.o());
+        this.f41249c = textPaint.measureText(str);
+        this.d = str;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f41329a) {
-            case 0:
-                u2 u2Var = this.f41330b;
-                u2Var.getClass();
-                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                u2Var.d = intValue;
-                u2Var.f41356e = intValue;
-                u2Var.f41357f = intValue;
-                u2Var.h = intValue;
-                u2Var.f41358n = intValue;
-                u2Var.invalidate();
-                return;
-            default:
-                u2 u2Var2 = this.f41330b;
-                u2Var2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u2Var2.d = org.telegram.messenger.g0.W1(floatValue, u2Var2.G, org.telegram.messenger.g0.L(56.0f));
-                u2Var2.f41356e = org.telegram.messenger.g0.W1(floatValue, u2Var2.G, org.telegram.messenger.g0.L(36.0f));
-                u2Var2.f41357f = org.telegram.messenger.g0.W1(floatValue, u2Var2.G, org.telegram.messenger.g0.L(60.0f));
-                u2Var2.h = org.telegram.messenger.g0.W1(floatValue, u2Var2.G, org.telegram.messenger.g0.L(36.0f));
-                u2Var2.f41358n = org.telegram.messenger.g0.W1(floatValue, u2Var2.G, org.telegram.messenger.g0.L(64.0f));
-                u2Var2.f41359r = org.telegram.messenger.g0.W1(floatValue, 0, org.telegram.messenger.g0.L(50.0f));
-                u2Var2.f41360s = org.telegram.messenger.g0.W1(floatValue, 0, org.telegram.messenger.g0.L(20.0f));
-                u2Var2.f41361w = org.telegram.messenger.g0.W1(floatValue, 0, 0);
-                u2Var2.f41362x = org.telegram.messenger.g0.W1(floatValue, 0, org.telegram.messenger.g0.L(-20.0f));
-                u2Var2.f41363y = org.telegram.messenger.g0.W1(floatValue, 0, org.telegram.messenger.g0.L(-40.0f));
-                u2Var2.invalidate();
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f41250e != null) {
+            canvas.drawBitmap(this.f41250e, 0.0f, 0.0f, this.f41248b);
         }
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        if (z10) {
+            Utilities.f22877e.c(new oi.c2(this, 24));
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.f41249c), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
     }
 }

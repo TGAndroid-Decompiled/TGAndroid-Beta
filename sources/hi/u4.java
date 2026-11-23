@@ -1,17 +1,33 @@
 package hi;
-public final class u4 extends o3 {
-    public final v9 f15493m;
 
-    public u4(v9 v9Var, sa saVar, ai.r1 r1Var) {
-        super(saVar, false, r1Var);
-        this.f15493m = v9Var;
+import android.view.KeyEvent;
+import org.telegram.messenger.s10;
+import org.telegram.tgnet.TLRPC;
+public final class u4 implements org.telegram.ui.ActionBar.e1, s10 {
+    public final v5 f15519a;
+
+    public u4(v5 v5Var) {
+        this.f15519a = v5Var;
     }
 
     @Override
-    public final void b(boolean z10) {
-        super.b(z10);
-        if (z10) {
-            this.f15493m.M0(false);
+    public void l(Object obj, TLRPC.Document document, Boolean bool) {
+        v5 v5Var = this.f15519a;
+        v5Var.Z1 = true;
+        m5 m0 = v5Var.m0(obj, document);
+        if (bool.booleanValue()) {
+            m0.setScale(1.5f);
+        }
+        v5Var.c0(m0);
+    }
+
+    @Override
+    public void m(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.g1 g1Var;
+        v5 v5Var = this.f15519a;
+        v5Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g1Var = v5Var.f15587r1) != null && g1Var.isShowing()) {
+            v5Var.f15587r1.d(true);
         }
     }
 }

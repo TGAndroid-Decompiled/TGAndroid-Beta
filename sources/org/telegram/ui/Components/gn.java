@@ -1,46 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import java.util.ArrayList;
-public final class gn implements ck {
-    public final org.telegram.messenger.y10 f35597a;
-    public final fi.n2 f35598b;
-    public final org.telegram.ui.ActionBar.g2 f35599c;
+import android.content.Context;
+import android.view.View;
+public final class gn extends v4.d0 {
+    public final kg.d0 f35499r;
 
-    public gn(fi.n2 n2Var, org.telegram.messenger.y10 y10Var, org.telegram.ui.ActionBar.g2 g2Var) {
-        this.f35597a = y10Var;
-        this.f35598b = n2Var;
-        this.f35599c = g2Var;
+    public gn(kg.d0 d0Var, Context context) {
+        super(context);
+        this.f35499r = d0Var;
     }
 
     @Override
-    public final void A() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("*/*");
-            this.f35599c.getParentActivity().startActivityForResult(intent, 28);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final int k(int i7, View view) {
+        int i10;
+        qn qnVar = (qn) this.f35499r.V;
+        if (qnVar.W0) {
+            i7 = -1;
         }
-    }
-
-    @Override
-    public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i7, long j3, boolean z11, long j10) {
-        if (!arrayList.isEmpty()) {
-            this.f35597a.a(new th.c((String) arrayList.get(0)));
+        int k10 = super.k(i7, view);
+        if (qnVar.W0) {
+            k10 += org.telegram.messenger.g0.L(160.0f);
         }
-        this.f35598b.a(true);
-    }
-
-    @Override
-    public final void p(ArrayList arrayList, boolean z10, int i7, long j3) {
-        if (!arrayList.isEmpty()) {
-            this.f35597a.a(new th.d((org.telegram.messenger.zy) arrayList.get(0)));
+        if (!qnVar.W0) {
+            k10 = org.telegram.messenger.f3.B(7.0f, qnVar.S0 - org.telegram.messenger.g0.f24220m, k10);
         }
-        this.f35598b.a(true);
+        if (qnVar.W0 && k10 == 0 && (i10 = qnVar.X0) >= 0) {
+            qn.P(qnVar, i10);
+            qnVar.X0 = -1;
+        }
+        qnVar.W0 = false;
+        return k10;
     }
 
     @Override
-    public final void T() {
+    public final int m(int i7) {
+        return super.m(i7) * 2;
     }
 }

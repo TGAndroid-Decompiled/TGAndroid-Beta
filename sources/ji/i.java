@@ -1,106 +1,74 @@
 package ji;
 
+import ai.r2;
 import android.util.Log;
-import org.telegram.messenger.g0;
+import java.util.Locale;
+import org.telegram.ui.bn;
 public final class i implements Runnable {
-    public final int f17936a;
-    public final n f17937b;
+    public final int f18039a;
+    public final n f18040b;
 
     public i(n nVar, int i7) {
-        this.f17936a = i7;
-        this.f17937b = nVar;
+        this.f18039a = i7;
+        this.f18040b = nVar;
     }
 
     @Override
     public final void run() {
-        boolean z10;
         String str;
-        switch (this.f17936a) {
+        String str2;
+        switch (this.f18039a) {
             case 0:
-                n nVar = this.f17937b;
-                if (nVar.f17960c == 3) {
-                    if (!nVar.f17958b.c()) {
-                        nVar.g("draft gone", true);
-                        return;
-                    } else {
-                        g0.h3(this, 300L);
+                n nVar = this.f18040b;
+                if (nVar.f18062c == 2) {
+                    if (nVar.f18080y == 0) {
+                        Log.w("VoiceLive", "SELF-CHECK FAILED: no PCM from the recorder tap 1.5 s after lock (neither MediaController nor AudioCapture fed it)");
                         return;
                     }
+                    StringBuilder sb2 = new StringBuilder("self-check ok: chunks=");
+                    sb2.append(nVar.f18080y);
+                    sb2.append(" in=");
+                    sb2.append(nVar.f18078w);
+                    sb2.append("B out=");
+                    sb2.append(nVar.f18079x);
+                    sb2.append("B (ratio ");
+                    if (nVar.f18079x > 0) {
+                        str = String.format(Locale.US, "%.2f", Double.valueOf(nVar.f18078w / nVar.f18079x));
+                    } else {
+                        str = "-";
+                    }
+                    sb2.append(str);
+                    sb2.append(", expect 3.00 at 48 kHz) source=");
+                    int i7 = nVar.F;
+                    if (i7 == 1) {
+                        str2 = "MediaController";
+                    } else if (i7 == 2) {
+                        str2 = "AudioRecorderV2";
+                    } else {
+                        str2 = "none";
+                    }
+                    p5.c.t(sb2, str2, "VoiceLive");
+                    return;
                 }
                 return;
             case 1:
-                n nVar2 = this.f17937b;
-                float[] fArr = nVar2.V;
-                if (nVar2.f17960c == 4) {
-                    if (nVar2.f17958b.b(fArr)) {
-                        float f10 = fArr[0];
-                        boolean z11 = true;
-                        float f11 = fArr[1];
-                        if (fArr[2] > 0.5f) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        if (Math.abs(f10 - nVar2.P) > 5.0E-4f || Math.abs(f11 - nVar2.Q) > 5.0E-4f || z10 != nVar2.T) {
-                            if (z10 && !nVar2.T) {
-                                nVar2.R = nVar2.P;
-                                nVar2.S = nVar2.Q;
-                            }
-                            if (z10 != nVar2.T) {
-                                StringBuilder sb2 = new StringBuilder("field: trim ");
-                                if (z10) {
-                                    str = "drag";
-                                } else {
-                                    str = "release";
-                                }
-                                sb2.append(str);
-                                sb2.append(" l=");
-                                sb2.append(f10);
-                                sb2.append(" r=");
-                                sb2.append(f11);
-                                sb2.append(" total=");
-                                sb2.append(nVar2.O);
-                                sb2.append(" frozen=");
-                                if (nVar2.f17964e0 == null) {
-                                    z11 = false;
-                                }
-                                sb2.append(z11);
-                                Log.d("VoiceLive", sb2.toString());
-                            }
-                            nVar2.P = f10;
-                            nVar2.Q = f11;
-                            nVar2.T = z10;
-                            nVar2.o();
-                            if (!z10) {
-                                int i7 = 0;
-                                for (boolean z12 : nVar2.f(nVar2.c(), nVar2.P, nVar2.Q)) {
-                                    if (z12) {
-                                        i7++;
-                                    }
-                                }
-                                StringBuilder m10 = i5.c.m(i7, "field: trim applied, ", " of ");
-                                m10.append(nVar2.c().size());
-                                m10.append(" words cut, text ");
-                                m10.append(nVar2.f17973n.length());
-                                m10.append(" chars");
-                                Log.d("VoiceLive", m10.toString());
-                            }
-                        }
-                    }
-                    g0.h3(this, 50L);
+                n nVar2 = this.f18040b;
+                if (nVar2.f18062c == 2) {
+                    nVar2.s();
+                    return;
+                }
+                return;
+            case 2:
+                n nVar3 = this.f18040b;
+                nVar3.q();
+                bn bnVar = nVar3.f18060b.f38823a.F3;
+                if (bnVar != null) {
+                    bnVar.presentFragment(new r2());
                     return;
                 }
                 return;
             default:
-                n nVar3 = this.f17937b;
-                if (nVar3.f17960c != 0) {
-                    nVar3.s();
-                    if (nVar3.f17960c != 0) {
-                        g0.h3(this, 250L);
-                        return;
-                    }
-                    return;
-                }
+                this.f18040b.k("field send preview");
                 return;
         }
     }

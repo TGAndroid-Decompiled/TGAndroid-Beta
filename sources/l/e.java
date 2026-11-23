@@ -11,7 +11,7 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.ListAdapter;
 import android.widget.PopupWindow;
 import bi.x2;
-import hi.u5;
+import hi.u0;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 import m.f2;
@@ -31,36 +31,36 @@ public final class e extends s implements View.OnKeyListener, PopupWindow.OnDism
     public ViewTreeObserver O;
     public PopupWindow.OnDismissListener P;
     public boolean Q;
-    public final Context f19151b;
-    public final int f19152c;
+    public final Context f19250b;
+    public final int f19251c;
     public final int d;
-    public final boolean f19153e;
-    public final Handler f19154f;
+    public final boolean f19252e;
+    public final Handler f19253f;
     public final ArrayList h = new ArrayList();
-    public final ArrayList f19155n = new ArrayList();
-    public final androidx.mediarouter.app.i f19156r = new androidx.mediarouter.app.i(this, 1);
-    public final x2 f19157s = new x2(this, 7);
-    public final u5 f19158w = new u5(this, 9);
-    public int f19159x = 0;
-    public int f19160y = 0;
+    public final ArrayList f19254n = new ArrayList();
+    public final androidx.mediarouter.app.i f19255r = new androidx.mediarouter.app.i(this, 1);
+    public final x2 f19256s = new x2(this, 7);
+    public final u0 f19257w = new u0(this, 10);
+    public int f19258x = 0;
+    public int f19259y = 0;
     public boolean L = false;
 
     public e(Context context, View view, int i7, boolean z10) {
-        this.f19151b = context;
+        this.f19250b = context;
         this.E = view;
         this.d = i7;
-        this.f19153e = z10;
-        WeakHashMap weakHashMap = i0.f56254a;
+        this.f19252e = z10;
+        WeakHashMap weakHashMap = i0.f56367a;
         this.G = view.getLayoutDirection() == 1 ? 0 : 1;
         Resources resources = context.getResources();
-        this.f19152c = Math.max(resources.getDisplayMetrics().widthPixels / 2, resources.getDimensionPixelSize(2131165207));
-        this.f19154f = new Handler();
+        this.f19251c = Math.max(resources.getDisplayMetrics().widthPixels / 2, resources.getDimensionPixelSize(2131165207));
+        this.f19253f = new Handler();
     }
 
     @Override
     public final boolean a() {
-        ArrayList arrayList = this.f19155n;
-        if (arrayList.size() <= 0 || !((d) arrayList.get(0)).f19147a.P.isShowing()) {
+        ArrayList arrayList = this.f19254n;
+        if (arrayList.size() <= 0 || !((d) arrayList.get(0)).f19246a.P.isShowing()) {
             return false;
         }
         return true;
@@ -72,14 +72,54 @@ public final class e extends s implements View.OnKeyListener, PopupWindow.OnDism
     }
 
     @Override
-    public final void d(k kVar, boolean z10) {
+    public final void d() {
+        ArrayList arrayList = this.f19254n;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            ListAdapter adapter = ((d) obj).f19246a.f20130c.getAdapter();
+            if (adapter instanceof HeaderViewListAdapter) {
+                adapter = ((HeaderViewListAdapter) adapter).getWrappedAdapter();
+            }
+            ((h) adapter).notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        ArrayList arrayList = this.f19254n;
+        int size = arrayList.size();
+        if (size > 0) {
+            d[] dVarArr = (d[]) arrayList.toArray(new d[size]);
+            for (int i7 = size - 1; i7 >= 0; i7--) {
+                d dVar = dVarArr[i7];
+                if (dVar.f19246a.P.isShowing()) {
+                    dVar.f19246a.dismiss();
+                }
+            }
+        }
+    }
+
+    @Override
+    public final r1 e() {
+        ArrayList arrayList = this.f19254n;
+        if (arrayList.isEmpty()) {
+            return null;
+        }
+        return ((d) i5.c.h(1, arrayList)).f19246a.f20130c;
+    }
+
+    @Override
+    public final void f(k kVar, boolean z10) {
         int i7;
-        ArrayList arrayList = this.f19155n;
+        ArrayList arrayList = this.f19254n;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
             if (i10 < size) {
-                if (kVar == ((d) arrayList.get(i10)).f19148b) {
+                if (kVar == ((d) arrayList.get(i10)).f19247b) {
                     break;
                 }
                 i10++;
@@ -91,11 +131,11 @@ public final class e extends s implements View.OnKeyListener, PopupWindow.OnDism
         if (i10 >= 0) {
             int i11 = i10 + 1;
             if (i11 < arrayList.size()) {
-                ((d) arrayList.get(i11)).f19148b.c(false);
+                ((d) arrayList.get(i11)).f19247b.c(false);
             }
             d dVar = (d) arrayList.remove(i10);
-            k kVar2 = dVar.f19148b;
-            j2 j2Var = dVar.f19147a;
+            k kVar2 = dVar.f19247b;
+            j2 j2Var = dVar.f19246a;
             m.x xVar = j2Var.P;
             kVar2.r(this);
             if (this.Q) {
@@ -105,10 +145,10 @@ public final class e extends s implements View.OnKeyListener, PopupWindow.OnDism
             j2Var.dismiss();
             int size2 = arrayList.size();
             if (size2 > 0) {
-                this.G = ((d) arrayList.get(size2 - 1)).f19149c;
+                this.G = ((d) arrayList.get(size2 - 1)).f19248c;
             } else {
                 View view = this.E;
-                WeakHashMap weakHashMap = i0.f56254a;
+                WeakHashMap weakHashMap = i0.f56367a;
                 if (view.getLayoutDirection() == 1) {
                     i7 = 0;
                 } else {
@@ -120,61 +160,21 @@ public final class e extends s implements View.OnKeyListener, PopupWindow.OnDism
                 dismiss();
                 w wVar = this.N;
                 if (wVar != null) {
-                    wVar.d(kVar, true);
+                    wVar.f(kVar, true);
                 }
                 ViewTreeObserver viewTreeObserver = this.O;
                 if (viewTreeObserver != null) {
                     if (viewTreeObserver.isAlive()) {
-                        this.O.removeGlobalOnLayoutListener(this.f19156r);
+                        this.O.removeGlobalOnLayoutListener(this.f19255r);
                     }
                     this.O = null;
                 }
-                this.F.removeOnAttachStateChangeListener(this.f19157s);
+                this.F.removeOnAttachStateChangeListener(this.f19256s);
                 this.P.onDismiss();
             } else if (z10) {
-                ((d) arrayList.get(0)).f19148b.c(false);
+                ((d) arrayList.get(0)).f19247b.c(false);
             }
         }
-    }
-
-    @Override
-    public final void dismiss() {
-        ArrayList arrayList = this.f19155n;
-        int size = arrayList.size();
-        if (size > 0) {
-            d[] dVarArr = (d[]) arrayList.toArray(new d[size]);
-            for (int i7 = size - 1; i7 >= 0; i7--) {
-                d dVar = dVarArr[i7];
-                if (dVar.f19147a.P.isShowing()) {
-                    dVar.f19147a.dismiss();
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void e() {
-        ArrayList arrayList = this.f19155n;
-        int size = arrayList.size();
-        int i7 = 0;
-        while (i7 < size) {
-            Object obj = arrayList.get(i7);
-            i7++;
-            ListAdapter adapter = ((d) obj).f19147a.f20033c.getAdapter();
-            if (adapter instanceof HeaderViewListAdapter) {
-                adapter = ((HeaderViewListAdapter) adapter).getWrappedAdapter();
-            }
-            ((h) adapter).notifyDataSetChanged();
-        }
-    }
-
-    @Override
-    public final r1 f() {
-        ArrayList arrayList = this.f19155n;
-        if (arrayList.isEmpty()) {
-            return null;
-        }
-        return ((d) i5.c.h(1, arrayList)).f19147a.f20033c;
     }
 
     @Override
@@ -199,9 +199,9 @@ public final class e extends s implements View.OnKeyListener, PopupWindow.OnDism
                 ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
                 this.O = viewTreeObserver;
                 if (z10) {
-                    viewTreeObserver.addOnGlobalLayoutListener(this.f19156r);
+                    viewTreeObserver.addOnGlobalLayoutListener(this.f19255r);
                 }
-                this.F.addOnAttachStateChangeListener(this.f19157s);
+                this.F.addOnAttachStateChangeListener(this.f19256s);
             }
         }
     }
@@ -213,15 +213,15 @@ public final class e extends s implements View.OnKeyListener, PopupWindow.OnDism
 
     @Override
     public final boolean j(d0 d0Var) {
-        ArrayList arrayList = this.f19155n;
+        ArrayList arrayList = this.f19254n;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             d dVar = (d) obj;
-            if (d0Var == dVar.f19148b) {
-                dVar.f19147a.f20033c.requestFocus();
+            if (d0Var == dVar.f19247b) {
+                dVar.f19246a.f20130c.requestFocus();
                 return true;
             }
         }
@@ -231,14 +231,14 @@ public final class e extends s implements View.OnKeyListener, PopupWindow.OnDism
         l(d0Var);
         w wVar = this.N;
         if (wVar != null) {
-            wVar.C(d0Var);
+            wVar.u(d0Var);
         }
         return true;
     }
 
     @Override
     public final void l(k kVar) {
-        kVar.b(this, this.f19151b);
+        kVar.b(this, this.f19250b);
         if (a()) {
             u(kVar);
         } else {
@@ -250,9 +250,9 @@ public final class e extends s implements View.OnKeyListener, PopupWindow.OnDism
     public final void n(View view) {
         if (this.E != view) {
             this.E = view;
-            int i7 = this.f19159x;
-            WeakHashMap weakHashMap = i0.f56254a;
-            this.f19160y = Gravity.getAbsoluteGravity(i7, view.getLayoutDirection());
+            int i7 = this.f19258x;
+            WeakHashMap weakHashMap = i0.f56367a;
+            this.f19259y = Gravity.getAbsoluteGravity(i7, view.getLayoutDirection());
         }
     }
 
@@ -264,13 +264,13 @@ public final class e extends s implements View.OnKeyListener, PopupWindow.OnDism
     @Override
     public final void onDismiss() {
         d dVar;
-        ArrayList arrayList = this.f19155n;
+        ArrayList arrayList = this.f19254n;
         int size = arrayList.size();
         int i7 = 0;
         while (true) {
             if (i7 < size) {
                 dVar = (d) arrayList.get(i7);
-                if (!dVar.f19147a.P.isShowing()) {
+                if (!dVar.f19246a.P.isShowing()) {
                     break;
                 }
                 i7++;
@@ -280,7 +280,7 @@ public final class e extends s implements View.OnKeyListener, PopupWindow.OnDism
             }
         }
         if (dVar != null) {
-            dVar.f19148b.c(false);
+            dVar.f19247b.c(false);
         }
     }
 
@@ -295,11 +295,11 @@ public final class e extends s implements View.OnKeyListener, PopupWindow.OnDism
 
     @Override
     public final void p(int i7) {
-        if (this.f19159x != i7) {
-            this.f19159x = i7;
+        if (this.f19258x != i7) {
+            this.f19258x = i7;
             View view = this.E;
-            WeakHashMap weakHashMap = i0.f56254a;
-            this.f19160y = Gravity.getAbsoluteGravity(i7, view.getLayoutDirection());
+            WeakHashMap weakHashMap = i0.f56367a;
+            this.f19259y = Gravity.getAbsoluteGravity(i7, view.getLayoutDirection());
         }
     }
 

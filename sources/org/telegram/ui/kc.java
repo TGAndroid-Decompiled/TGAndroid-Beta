@@ -2,37 +2,37 @@ package org.telegram.ui;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class kc implements org.telegram.messenger.y10 {
-    public final int f49235a;
-    public final oc f49236b;
+public final class kc implements org.telegram.messenger.w10 {
+    public final int f49398a;
+    public final oc f49399b;
 
     public kc(oc ocVar, int i7) {
-        this.f49235a = i7;
-        this.f49236b = ocVar;
+        this.f49398a = i7;
+        this.f49399b = ocVar;
     }
 
     @Override
     public final void a(Object obj) {
         TLRPC.WallPaper wallPaper;
         View view = (View) obj;
-        switch (this.f49235a) {
+        switch (this.f49398a) {
             case 0:
-                oc ocVar = this.f49236b;
+                oc ocVar = this.f49399b;
                 ocVar.getClass();
-                if (view instanceof org.telegram.ui.Components.k01) {
-                    view.setBackgroundColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29438i5, ocVar.f50530b));
+                if (view instanceof org.telegram.ui.Components.j01) {
+                    view.setBackgroundColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29542i5, ocVar.f50641b));
                     return;
                 }
                 return;
             default:
-                if (view instanceof org.telegram.ui.Components.k01) {
-                    org.telegram.ui.Components.k01 k01Var = (org.telegram.ui.Components.k01) view;
-                    if (k01Var.H.f37548a.f29950b) {
+                if (view instanceof org.telegram.ui.Components.j01) {
+                    org.telegram.ui.Components.j01 j01Var = (org.telegram.ui.Components.j01) view;
+                    if (j01Var.H.f36472a.f30046b) {
                         wallPaper = null;
                     } else {
-                        wallPaper = this.f49236b.f50537w;
+                        wallPaper = this.f49399b.f50648w;
                     }
-                    k01Var.setFallbackWallpaper(wallPaper);
+                    j01Var.setFallbackWallpaper(wallPaper);
                     return;
                 }
                 return;

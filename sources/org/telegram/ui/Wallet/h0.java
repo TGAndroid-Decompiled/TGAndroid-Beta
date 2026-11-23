@@ -1,55 +1,30 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import org.telegram.messenger.gs;
-import org.telegram.messenger.ls;
-import org.telegram.ui.o60;
-public final class h0 implements Runnable, gs {
-    public boolean f44293a;
-    public final ls f44294b;
-    public final o60 f44295c;
-    public final u0 d;
+import org.telegram.messenger.p10;
+public final class h0 implements Runnable {
+    public volatile boolean f44410a;
+    public Runnable f44411b;
+    public final String f44412c;
+    public final long d;
+    public final String f44413e;
+    public final byte[] f44414f;
+    public final p10 h;
+    public final v0 f44415n;
 
-    public h0(ls lsVar, o60 o60Var, u0 u0Var) {
-        this.f44294b = lsVar;
-        this.f44295c = o60Var;
-        this.d = u0Var;
-    }
-
-    public final void a() {
-        if (!this.f44293a) {
-            u0 u0Var = this.d;
-            if (u0Var.f45096e != null) {
-                ArrayList arrayList = u0Var.J;
-                int size = arrayList.size();
-                int i7 = 0;
-                while (i7 < size) {
-                    Object obj = arrayList.get(i7);
-                    i7++;
-                    if (((q0) obj).d) {
-                        return;
-                    }
-                }
-                run();
-            }
-        }
+    public h0(v0 v0Var, String str, long j3, String str2, byte[] bArr, p10 p10Var) {
+        this.f44415n = v0Var;
+        this.f44412c = str;
+        this.d = j3;
+        this.f44413e = str2;
+        this.f44414f = bArr;
+        this.h = p10Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ls.f25260d4) {
-            a();
-        }
-    }
-
-    @Override
-    public final void run() {
-        if (this.f44293a) {
+    public final synchronized void run() {
+        if (this.f44410a) {
             return;
         }
-        this.f44293a = true;
-        org.telegram.messenger.g0.r(this);
-        this.f44294b.n(this, ls.f25260d4);
-        this.f44295c.run();
+        this.f44411b = this.f44415n.f45256b.emulateSend(this.f44412c, this.d, this.f44413e, this.f44414f, new f0(1, this, this.h));
     }
 }

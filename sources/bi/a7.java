@@ -16,8 +16,8 @@ public final class a7 implements Comparator {
         switch (this.f3359a) {
             case 0:
                 a8 a8Var = this.f3360b.d;
-                Integer num = (Integer) a8Var.f3373o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f28404id));
-                Integer num2 = (Integer) a8Var.f3373o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f28404id));
+                Integer num = (Integer) a8Var.f3373o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f28498id));
+                Integer num2 = (Integer) a8Var.f3373o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f28498id));
                 if (num == null) {
                     return 1;
                 }
@@ -38,8 +38,8 @@ public final class a7 implements Comparator {
                 return num4.intValue() - num3.intValue();
             default:
                 a8 a8Var3 = this.f3360b.d;
-                Integer num5 = (Integer) a8Var3.f3371m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f28404id));
-                Integer num6 = (Integer) a8Var3.f3371m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f28404id));
+                Integer num5 = (Integer) a8Var3.f3371m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f28498id));
+                Integer num6 = (Integer) a8Var3.f3371m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f28498id));
                 if (num5 == null) {
                     return 1;
                 }

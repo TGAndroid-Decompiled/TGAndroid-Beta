@@ -1,53 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import java.nio.ByteBuffer;
-public final class d61 extends l2.j {
-    public final i61 d;
+import android.net.Uri;
+import java.util.Map;
+import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
+public final class d61 implements j2.h {
+    public final j2.h f34224a;
+    public final long f34225b;
 
-    public d61(Context context, i61 i61Var) {
-        super(context);
-        this.d = i61Var;
+    public d61(ExtendedDefaultDataSource extendedDefaultDataSource, long j3) {
+        this.f34224a = extendedDefaultDataSource;
+        this.f34225b = j3;
     }
 
     @Override
-    public final n2.r0 a(Context context) {
-        fi.y3 y3Var = new fi.y3(context, 1);
-        ?? obj = new Object();
-        obj.f21969f = this.d;
-        ?? obj2 = new Object();
-        obj2.f5583e = new float[0];
-        obj2.f5580a = 3;
-        obj2.d = new float[513];
-        obj2.f5581b = new float[1024];
-        obj2.f5582c = new float[1024];
-        int[] iArr = new int[1024];
-        obj2.f5584f = iArr;
-        iArr[0] = 0;
-        int i7 = 512;
-        int i10 = 1;
-        while (i10 < 1024) {
-            for (int i11 = 0; i11 < i10; i11++) {
-                int[] iArr2 = (int[]) obj2.f5584f;
-                iArr2[i11 + i10] = iArr2[i11] + i7;
-            }
-            i10 <<= 1;
-            i7 >>= 1;
-        }
-        obj2.f5585g = new float[1024];
-        obj2.h = new float[1024];
-        for (int i12 = 0; i12 < 1024; i12++) {
-            double d = (-3.1415927f) / i12;
-            ((float[]) obj2.f5585g)[i12] = (float) Math.sin(d);
-            ((float[]) obj2.h)[i12] = (float) Math.cos(d);
-        }
-        obj.f21967c = obj2;
-        obj.d = new float[1024];
-        obj.f21965a = 0;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
-        obj.f21968e = allocateDirect;
-        allocateDirect.position(0);
-        y3Var.d = new h6.m(new f2.n[]{new n2.y0(obj)});
-        return y3Var.a();
+    public final void addTransferListener(j2.c0 c0Var) {
+        this.f34224a.addTransferListener(c0Var);
+    }
+
+    @Override
+    public final void close() {
+        this.f34224a.close();
+    }
+
+    @Override
+    public final Map getResponseHeaders() {
+        return this.f34224a.getResponseHeaders();
+    }
+
+    @Override
+    public final Uri getUri() {
+        return this.f34224a.getUri();
+    }
+
+    @Override
+    public final long open(j2.m mVar) {
+        j2.l a10 = mVar.a();
+        a10.f17270b = mVar.f17279e + this.f34225b;
+        return this.f34224a.open(a10.d());
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i7, int i10) {
+        return this.f34224a.read(bArr, i7, i10);
     }
 }

@@ -1,4 +1,34 @@
 package sg;
-public interface j1 {
-    void u();
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
+public final class j1 {
+    public i1 f57386a;
+    public final HashMap f57387b = new HashMap();
+    public final ArrayList f57388c = new ArrayList();
+
+    public final boolean a() {
+        return !this.f57388c.isEmpty();
+    }
+
+    public final void b(UUID uuid, Runnable runnable) {
+        this.f57387b.put(uuid, runnable);
+        this.f57388c.add(uuid);
+        org.telegram.messenger.g0.g3(new org.telegram.ui.web.z0(this, 14));
+    }
+
+    public final void c() {
+        ArrayList arrayList = this.f57388c;
+        if (arrayList.size() == 0) {
+            return;
+        }
+        int size = arrayList.size() - 1;
+        UUID uuid = (UUID) arrayList.get(size);
+        HashMap hashMap = this.f57387b;
+        hashMap.remove(uuid);
+        arrayList.remove(size);
+        ((Runnable) hashMap.get(uuid)).run();
+        org.telegram.messenger.g0.g3(new org.telegram.ui.web.z0(this, 14));
+    }
 }

@@ -10,8 +10,8 @@ public final class l5 extends AbstractThreadedSyncAdapter {
     @Override
     public final void onPerformSync(Account account, Bundle bundle, String str, ContentProviderClient contentProviderClient, SyncResult syncResult) {
         try {
-            l5 l5Var = ContactsSyncAdapterService.f22607a;
-            if (s2.f26694a) {
+            l5 l5Var = ContactsSyncAdapterService.f22710a;
+            if (s2.f26829a) {
                 a8.b("performSync: " + account.toString());
             }
         } catch (OperationCanceledException e10) {

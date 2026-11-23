@@ -6,7 +6,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.o5;
 public final class w0 {
     public TLRPC.Document A;
     public TL_stars.TL_starGiftUnique B;
@@ -17,8 +17,8 @@ public final class w0 {
     public boolean G;
     public int f5803a;
     public Drawable[] f5804b;
-    public p5 f5805c;
-    public p5 d;
+    public o5 f5805c;
+    public o5 d;
     public Bitmap f5806e;
     public Bitmap f5807f;
     public long f5808g;

@@ -1,51 +1,38 @@
 package org.telegram.ui.Components;
+public final class iu0 implements Runnable {
+    public final int f36175a;
+    public final ku0 f36176b;
 
-import android.os.Bundle;
-import android.widget.LinearLayout;
-public abstract class iu0 extends LinearLayout {
-    public boolean a() {
-        return this instanceof org.telegram.ui.pb0;
+    public iu0(ku0 ku0Var, int i7) {
+        this.f36175a = i7;
+        this.f36176b = ku0Var;
     }
 
-    public boolean b() {
-        return this instanceof org.telegram.ui.pb0;
-    }
-
-    public boolean c(boolean z10) {
-        return true;
-    }
-
-    public String getHeaderName() {
-        return "";
-    }
-
-    public void h(String str) {
-    }
-
-    public void k(Bundle bundle) {
-    }
-
-    public void l(Bundle bundle) {
-    }
-
-    public void d() {
-    }
-
-    public void f() {
-    }
-
-    public void g() {
-    }
-
-    public void i() {
-    }
-
-    public void j() {
-    }
-
-    public void updateColors() {
-    }
-
-    public void m(Bundle bundle, boolean z10) {
+    @Override
+    public final void run() {
+        switch (this.f36175a) {
+            case 0:
+                ku0 ku0Var = this.f36176b;
+                ku0Var.W0 = false;
+                if (!ku0Var.Z0 && ku0Var.X0) {
+                    ku0Var.C(true);
+                    return;
+                }
+                return;
+            case 1:
+                this.f36176b.W0 = false;
+                return;
+            case 2:
+                ku0 ku0Var2 = this.f36176b;
+                ku0Var2.Z0 = false;
+                if (!ku0Var2.W0 && ku0Var2.X0) {
+                    ku0Var2.C(true);
+                    return;
+                }
+                return;
+            default:
+                this.f36176b.Z0 = false;
+                return;
+        }
     }
 }

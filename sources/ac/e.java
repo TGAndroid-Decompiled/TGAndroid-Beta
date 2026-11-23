@@ -23,14 +23,14 @@ public final class e implements tf {
 
     @Override
     public xa zza() {
-        ga.d dVar = new ga.d(1);
-        dVar.d = db.TYPE_THIN;
+        ?? obj = new Object();
+        obj.f13272c = db.TYPE_THIN;
         a0 a0Var = new a0(18, false);
         a0Var.d = ((f) this.f1021b).f1025e.a();
-        a0Var.f1675b = (eb) this.f1022c;
-        a0Var.f1676c = Long.valueOf((SystemClock.elapsedRealtime() - this.f1020a) & Long.MAX_VALUE);
-        dVar.f13275f = new de(a0Var);
-        return new xa(dVar, 0);
+        a0Var.f1676b = (eb) this.f1022c;
+        a0Var.f1677c = Long.valueOf((SystemClock.elapsedRealtime() - this.f1020a) & Long.MAX_VALUE);
+        obj.f13273e = new de(a0Var);
+        return new xa((ga.d) obj, 0);
     }
 
     public e(File file, long j3, byte[] bArr) {

@@ -1,7 +1,7 @@
 package b7;
 public abstract class h {
-    public static ClassLoader f2927a;
-    public static Thread f2928b;
+    public static ClassLoader f2928a;
+    public static Thread f2929b;
 
     public static gd.c a(rd.a aVar) {
         gd.d[] dVarArr = gd.d.f13468a;

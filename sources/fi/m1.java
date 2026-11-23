@@ -10,67 +10,67 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.oh0;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.Components.nh0;
 public final class m1 extends View {
-    public final int f12247a;
-    public final RectF f12248b;
-    public final org.telegram.ui.Components.n6 f12249c;
+    public final int f12260a;
+    public final RectF f12261b;
+    public final org.telegram.ui.Components.m6 f12262c;
     public final k1 d;
-    public final ArrayList f12250e;
-    public final int[] f12251f;
+    public final ArrayList f12263e;
+    public final int[] f12264f;
     public final ArrayList h;
-    public float f12252n;
-    public ValueAnimator f12253r;
-    public boolean f12254s;
+    public float f12265n;
+    public ValueAnimator f12266r;
+    public boolean f12267s;
 
     public m1(Context context, int i7) {
         super(context);
-        this.f12248b = new RectF();
-        nr nrVar = nr.f37917f;
-        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, false, false);
-        this.f12249c = n6Var;
-        this.f12250e = new ArrayList();
-        this.f12251f = new int[]{2131624220, 2131624221, 2131624222, 2131624223, 2131624224};
+        this.f12261b = new RectF();
+        kr krVar = kr.f36858f;
+        org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(false, false, false);
+        this.f12262c = m6Var;
+        this.f12263e = new ArrayList();
+        this.f12264f = new int[]{2131624220, 2131624221, 2131624222, 2131624223, 2131624224};
         this.h = new ArrayList();
-        this.f12254s = true;
-        this.f12247a = i7;
-        n6Var.setCallback(this);
-        n6Var.r(false, true);
-        n6Var.w(org.telegram.messenger.g0.L(40.0f));
-        n6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
-        n6Var.s(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(3.5f), 0);
-        n6Var.N = org.telegram.messenger.g0.f24010q.x;
-        n6Var.u(-1);
-        n6Var.f37751b = 17;
+        this.f12267s = true;
+        this.f12260a = i7;
+        m6Var.setCallback(this);
+        m6Var.r(false, true);
+        m6Var.w(org.telegram.messenger.g0.L(40.0f));
+        m6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
+        m6Var.s(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(3.5f), 0);
+        m6Var.N = org.telegram.messenger.g0.f24226q.x;
+        m6Var.u(-1);
+        m6Var.f37394b = 17;
         this.d = new k1(this, 0);
     }
 
     public final void a(float f10, k1 k1Var) {
-        ValueAnimator valueAnimator = this.f12253r;
+        ValueAnimator valueAnimator = this.f12266r;
         if (valueAnimator != null) {
-            this.f12253r = null;
+            this.f12266r = null;
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f12252n, f10);
-        this.f12253r = ofFloat;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f12265n, f10);
+        this.f12266r = ofFloat;
         ofFloat.addUpdateListener(new ah.g(this, 18));
-        this.f12253r.addListener(new di.j6(this, f10, k1Var, 1));
-        this.f12253r.setInterpolator(nr.h);
-        this.f12253r.setDuration(320L);
-        this.f12253r.start();
+        this.f12266r.addListener(new di.j6(this, f10, k1Var, 1));
+        this.f12266r.setInterpolator(kr.h);
+        this.f12266r.setDuration(320L);
+        this.f12266r.start();
     }
 
     public final void b() {
-        this.f12254s = true;
+        this.f12267s = true;
         org.telegram.messenger.g0.r(this.d);
-        this.f12249c.t("", true, true);
+        this.f12262c.t("", true, true);
         invalidate();
         a(0.0f, new k1(this, 1));
     }
 
     public final void c(n1 n1Var) {
-        this.f12248b.set(n1Var.getX() - getX(), n1Var.getY() - getY(), (n1Var.getX() - getX()) + n1Var.getWidth(), (n1Var.getY() - getY()) + n1Var.getHeight());
+        this.f12261b.set(n1Var.getX() - getX(), n1Var.getY() - getY(), (n1Var.getX() - getX()) + n1Var.getWidth(), (n1Var.getY() - getY()) + n1Var.getHeight());
     }
 
     @Override
@@ -82,29 +82,29 @@ public final class m1 extends View {
         m1 m1Var = this;
         Canvas canvas2 = canvas;
         float f12 = 1.0f;
-        float T1 = org.telegram.messenger.g0.T1(1.0f, 1.8f, m1Var.f12252n);
+        float T1 = org.telegram.messenger.g0.T1(1.0f, 1.8f, m1Var.f12265n);
         float f13 = 90.0f;
         int L = (int) (org.telegram.messenger.g0.L(90.0f) * T1);
         boolean z10 = false;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = m1Var.f12250e;
+            ArrayList arrayList = m1Var.f12263e;
             int size = arrayList.size();
             f10 = 255.0f;
             f11 = 2.0f;
-            rectF = m1Var.f12248b;
+            rectF = m1Var.f12261b;
             if (i10 >= size) {
                 break;
             }
-            oh0 oh0Var = (oh0) arrayList.get(i10);
-            if (oh0Var.f38175b0 >= oh0Var.f38179e[0]) {
+            nh0 nh0Var = (nh0) arrayList.get(i10);
+            if (nh0Var.f37801b0 >= nh0Var.f37805e[0]) {
                 arrayList.remove(i10);
                 i10--;
             } else {
                 float f14 = L / 2.0f;
-                oh0Var.setBounds((int) (((org.telegram.messenger.g0.L(15.0f) * T1) + rectF.left) - f14), (int) (rectF.centerY() - f14), (int) p5.c.e(org.telegram.messenger.g0.L(15.0f), T1, rectF.left, f14), (int) (rectF.centerY() + f14));
-                oh0Var.setAlpha((int) (m1Var.f12252n * 255.0f));
-                oh0Var.draw(canvas2);
+                nh0Var.setBounds((int) (((org.telegram.messenger.g0.L(15.0f) * T1) + rectF.left) - f14), (int) (rectF.centerY() - f14), (int) p5.c.e(org.telegram.messenger.g0.L(15.0f), T1, rectF.left, f14), (int) (rectF.centerY() + f14));
+                nh0Var.setAlpha((int) (m1Var.f12265n * 255.0f));
+                nh0Var.draw(canvas2);
             }
             i10++;
         }
@@ -115,24 +115,24 @@ public final class m1 extends View {
             ArrayList arrayList2 = m1Var.h;
             if (i11 < arrayList2.size()) {
                 l1 l1Var = (l1) arrayList2.get(i11);
-                float f15 = l1Var.f12200c;
-                float f16 = l1Var.f12199b;
-                ImageReceiver imageReceiver = l1Var.f12202f;
-                float e10 = l1Var.f12204i.e(z10, f12);
-                float d = l1Var.f12205j.d(l1Var.h);
+                float f15 = l1Var.f12212c;
+                float f16 = l1Var.f12211b;
+                ImageReceiver imageReceiver = l1Var.f12214f;
+                float e10 = l1Var.f12216i.e(z10, f12);
+                float d = l1Var.f12217j.d(l1Var.h);
                 float f17 = f13;
-                float L2 = org.telegram.messenger.g0.L(23.0f) + l1Var.f12203g.f42224c;
+                float L2 = org.telegram.messenger.g0.L(23.0f) + l1Var.f12215g.f41763c;
                 float L3 = org.telegram.messenger.g0.L(18.0f);
                 float f18 = f10;
                 float f19 = f11;
                 float f20 = f12;
                 float T12 = org.telegram.messenger.g0.T1(0.0f, org.telegram.messenger.g0.T1(f12, 0.0f, d), Utilities.l(Math.min(org.telegram.messenger.g0.z1(e10, f12, 0.85f), org.telegram.messenger.g0.z1(e10, 0.0f, 0.12f))));
-                Paint paint = l1Var.f12201e;
+                Paint paint = l1Var.f12213e;
                 int i12 = (int) (T12 * f18);
                 paint.setAlpha(i12);
-                oh0 oh0Var2 = l1Var.d;
-                if (oh0Var2 != null) {
-                    oh0Var2.setAlpha(i12);
+                nh0 nh0Var2 = l1Var.d;
+                if (nh0Var2 != null) {
+                    nh0Var2.setAlpha(i12);
                 }
                 imageReceiver.setAlpha(T12);
                 canvas2.save();
@@ -153,10 +153,10 @@ public final class m1 extends View {
                 canvas2.drawRoundRect(0.0f, 0.0f, L2, L3, f23, f23, paint);
                 imageReceiver.h(canvas2, null);
                 Canvas canvas3 = canvas2;
-                l1Var.f12203g.c(org.telegram.messenger.g0.L(18.0f), f23, T12, -1, canvas3);
+                l1Var.f12215g.c(org.telegram.messenger.g0.L(18.0f), f23, T12, -1, canvas3);
                 canvas2 = canvas3;
                 canvas2.restore();
-                if (oh0Var2 != null) {
+                if (nh0Var2 != null) {
                     canvas2.save();
                     canvas2.translate(org.telegram.messenger.g0.L(4.0f) * f21, 0.0f);
                     canvas2.rotate(f22);
@@ -165,14 +165,14 @@ public final class m1 extends View {
                     int L4 = org.telegram.messenger.g0.L(f17);
                     int i14 = (-L4) / 2;
                     int i15 = L4 / 2;
-                    oh0Var2.setBounds(i14, org.telegram.messenger.g0.L(8.0f) + i14, i15, org.telegram.messenger.g0.L(8.0f) + i15);
-                    oh0Var2.draw(canvas2);
+                    nh0Var2.setBounds(i14, org.telegram.messenger.g0.L(8.0f) + i14, i15, org.telegram.messenger.g0.L(8.0f) + i15);
+                    nh0Var2.draw(canvas2);
                     canvas2.restore();
                 }
                 if (e10 < 1.0f && d < 1.0f) {
                     i7 = i13;
                 } else {
-                    ((l1) arrayList2.get(i13)).f12202f.R();
+                    ((l1) arrayList2.get(i13)).f12214f.S();
                     arrayList2.remove(i13);
                     i7 = i13 - 1;
                 }
@@ -192,7 +192,7 @@ public final class m1 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f12249c && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f12262c && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

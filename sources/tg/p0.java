@@ -1,343 +1,118 @@
 package tg;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.os.Build;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.graphics.PointF;
+import android.view.ViewGroup;
 import c8.na;
-import java.util.ArrayList;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.r5;
-import org.telegram.messenger.xe;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.BubbleActivity;
-import org.telegram.ui.Components.jn;
-import org.telegram.ui.Components.pf;
-import org.telegram.ui.Components.yt0;
-public abstract class p0 extends FrameLayout {
-    public boolean E;
-    public float F;
-    public float G;
-    public boolean H;
-    public float I;
-    public final ArrayList J;
-    public final Rect K;
-    public final int f58079a;
-    public final sg.k1 f58080b;
-    public final r5 f58081c;
-    public final xe d;
-    public final sg.u0 f58082e;
-    public final Bitmap f58083f;
-    public final int h;
-    public final boolean f58084n;
-    public final FrameLayout f58085r;
-    public final TextView f58086s;
-    public final TextView f58087w;
-    public final n1 f58088x;
-    public yt0 f58089y;
+import org.telegram.messenger.m10;
+import org.telegram.ui.Components.aj0;
+public final class p0 extends n {
+    public final n0 f58164s0;
+    public int f58165t0;
+    public int f58166u0;
+    public boolean f58167v0;
+    public m0 f58168w0;
 
-    public p0(Context context, int i7, Bitmap bitmap, Bitmap bitmap2, int i10, xe xeVar) {
-        super(context);
-        m1 jnVar = new jn(this, 20);
-        this.J = new ArrayList();
-        this.K = new Rect();
-        this.f58079a = i7;
-        this.f58084n = context instanceof BubbleActivity;
-        sg.k1 k1Var = new sg.k1();
-        this.f58080b = k1Var;
-        k1Var.f57281a = new qb.a(25);
-        r5 r5Var = new r5("MaskPaint", true);
-        this.f58081c = r5Var;
-        this.d = xeVar;
-        this.f58083f = bitmap;
-        this.h = i10;
-        sg.i0 i0Var = new sg.i0(getPaintingSize(), bitmap2, i10, null);
-        i0Var.G = true;
-        sg.u0 u0Var = new sg.u0(context, i0Var, bitmap, null, null);
-        this.f58082e = u0Var;
-        u0Var.setAlpha(0.0f);
-        u0Var.setDelegate(new pf(this, 20));
-        u0Var.setUndoStore(k1Var);
-        u0Var.setQueue(r5Var);
-        u0Var.setVisibility(4);
-        u0Var.setBrush(new Object());
-        u0Var.setBrushSize(jnVar.get());
-        u0Var.setColor(-65536);
-        addView(u0Var, na.e(-1, -1, 51));
-        n1 n1Var = new n1(context);
-        this.f58088x = n1Var;
-        n1Var.b(0.05f, 1.0f);
-        n1Var.setBrushWeight(jnVar.get());
-        n1Var.setRenderView(u0Var);
-        n1Var.setValueOverride(jnVar);
-        n1Var.setTranslationX(-org.telegram.messenger.g0.L(18.0f));
-        n1Var.setAlpha(0.0f);
-        addView(n1Var, na.c(-1.0f, -1));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f58085r = frameLayout;
-        frameLayout.setAlpha(0.0f);
-        frameLayout.setVisibility(8);
-        addView(frameLayout, na.e(-1, 44, 80));
-        TextView textView = new TextView(context);
-        this.f58086s = textView;
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setBackground(m6.h0(m6.r1(0.15f, -1), 3, -1));
-        textView.setPadding(org.telegram.messenger.g0.L(28.0f), 0, org.telegram.messenger.g0.L(28.0f), 0);
-        textView.setText(hd.N0(2131752577, null).toUpperCase());
-        textView.setTextColor(-1);
-        textView.setGravity(17);
-        TextView m10 = org.telegram.ui.Cells.c0.m(frameLayout, textView, na.d(-2, 44.0f, 3, -8.0f, 0.0f, 0.0f, 0.0f), context);
-        this.f58087w = m10;
-        i5.c.x(m10, 1, 15.0f);
-        int i11 = m6.f29596qg;
-        org.telegram.ui.Cells.y h02 = m6.h0(m6.r1(0.15f, m6.x0(null, i11, false)), 3, -1);
-        p6 K = t6.K(0.15f, i11);
-        m10.setBackground(h02);
-        t6.j(m10, h02, null, K, null);
-        m10.setPadding(org.telegram.messenger.g0.L(28.0f), 0, org.telegram.messenger.g0.L(28.0f), 0);
-        m10.setText(hd.N0(2131745750, null).toUpperCase());
-        t6.U(m10, i11, null);
-        m10.setGravity(17);
-        frameLayout.addView(m10, na.d(-2, 44.0f, 5, 0.0f, 0.0f, -8.0f, 0.0f));
-    }
-
-    private yt0 getPaintingSize() {
-        float f10;
-        float f11;
-        yt0 yt0Var = this.f58089y;
-        if (yt0Var != null) {
-            return yt0Var;
-        }
-        Bitmap bitmap = this.f58083f;
-        yt0 yt0Var2 = new yt0(bitmap.getWidth(), bitmap.getHeight());
-        float f12 = 1280;
-        yt0Var2.f42506a = f12;
-        float floor = (float) Math.floor((f12 * f11) / f10);
-        yt0Var2.f42507b = floor;
-        if (floor > f12) {
-            yt0Var2.f42507b = f12;
-            yt0Var2.f42506a = (float) Math.floor((f12 * f10) / f11);
-        }
-        this.f58089y = yt0Var2;
-        return yt0Var2;
-    }
-
-    public final void a(MotionEvent motionEvent) {
-        float x10 = motionEvent.getX();
-        sg.u0 u0Var = this.f58082e;
-        float translationX = ((x10 - u0Var.getTranslationX()) - (getMeasuredWidth() / 2.0f)) / u0Var.getScaleX();
-        float y10 = ((motionEvent.getY() - u0Var.getTranslationY()) - (getMeasuredHeight() / 2.0f)) / u0Var.getScaleY();
-        double d = translationX;
-        double radians = (float) Math.toRadians(-u0Var.getRotation());
-        double d2 = y10;
-        float measuredWidth = (u0Var.getMeasuredWidth() / 2.0f) + ((float) ((Math.cos(radians) * d) - (Math.sin(radians) * d2)));
-        float measuredHeight = (u0Var.getMeasuredHeight() / 2.0f) + ((float) i5.c.c(radians, d2, Math.sin(radians) * d));
-        MotionEvent obtain = MotionEvent.obtain(motionEvent);
-        obtain.setLocation(measuredWidth, measuredHeight);
-        u0Var.e(obtain);
-        obtain.recycle();
-    }
-
-    public final void b(float f10, float f11, float f12, float f13, float f14, float f15) {
-        float f16;
-        float f17;
-        float f18;
-        float f19;
-        this.F = f11;
-        float f20 = 0.0f + f12;
-        this.G = f20;
-        float f21 = 1.0f;
-        sg.u0 u0Var = this.f58082e;
-        xe xeVar = this.d;
-        if (xeVar != null) {
-            float f22 = xeVar.f27840c * 1.0f;
-            int measuredWidth = u0Var.getMeasuredWidth();
-            int measuredHeight = u0Var.getMeasuredHeight();
-            if (measuredWidth != 0 && measuredHeight != 0) {
-                int i7 = xeVar.f27845k;
-                if (i7 == 90 || i7 == 270) {
-                    measuredHeight = measuredWidth;
-                    measuredWidth = measuredHeight;
-                }
-                float max = Math.max(f14 / ((int) (xeVar.f27841e * f18)), f15 / ((int) (xeVar.f27842f * f19)));
-                f16 = f22 * max;
-                float D = com.google.android.gms.internal.vision.e2.D(xeVar.f27838a, measuredWidth, f10, max);
-                float f23 = xeVar.f27840c;
-                f11 += D * f23;
-                f20 += xeVar.f27839b * measuredHeight * f10 * max * f23;
-                f17 = xeVar.d + i7 + f13;
-            } else {
-                return;
-            }
-        } else {
-            f16 = this.I * 1.0f;
-            f17 = f13;
-        }
-        float f24 = f10 * f16;
-        if (!Float.isNaN(f24)) {
-            f21 = f24;
-        }
-        u0Var.setScaleX(f21);
-        u0Var.setScaleY(f21);
-        u0Var.setTranslationX(f11);
-        u0Var.setTranslationY(f20);
-        u0Var.setRotation(f17);
-        u0Var.invalidate();
-        invalidate();
+    public p0(Context context, PointF pointF, int i7, m0 m0Var, float f10, int i10) {
+        super(context, pointF);
+        n0 n0Var = new n0(context, f10);
+        this.f58164s0 = n0Var;
+        n0Var.setMaxWidth(i10);
+        this.f58168w0 = m0Var;
+        n0Var.b(i7, m0Var, false);
+        m();
+        this.f58166u0 = 3;
+        n0Var.c(3, this.f58165t0);
+        addView(n0Var, na.e(-2, -2, 51));
+        setClipChildren(false);
+        setClipToPadding(false);
+        k();
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        xe xeVar;
-        int i7 = 0;
-        if (view == this.f58082e && (xeVar = this.d) != null) {
-            canvas.save();
-            if (!this.f58084n) {
-                i7 = org.telegram.messenger.g0.f24004m;
-            }
-            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i7;
-            int measuredWidth = view.getMeasuredWidth();
-            int measuredHeight = view.getMeasuredHeight();
-            int i10 = xeVar.f27845k;
-            if (i10 == 90 || i10 == 270) {
-                measuredHeight = measuredWidth;
-                measuredWidth = measuredHeight;
-            }
-            int scaleX = (int) ((view.getScaleX() * (measuredWidth * xeVar.f27841e)) / xeVar.f27840c);
-            int scaleY = (int) ((view.getScaleY() * (measuredHeight * xeVar.f27842f)) / xeVar.f27840c);
-            float ceil = ((float) Math.ceil((getMeasuredWidth() - scaleX) / 2.0f)) + this.F;
-            float additionalBottom = (((getAdditionalBottom() + ((getMeasuredHeight() - currentActionBarHeight) - org.telegram.messenger.g0.L(48.0f))) - scaleY) / 2.0f) + org.telegram.messenger.g0.L(8.0f) + i7 + this.G;
-            canvas.clipRect(Math.max(0.0f, ceil), Math.max(0.0f, additionalBottom), Math.min(ceil + scaleX, getMeasuredWidth()), Math.min(getMeasuredHeight(), additionalBottom + scaleY));
-            i7 = 1;
+    public final m a() {
+        return new o0(this, getContext());
+    }
+
+    public int getColor() {
+        return this.f58165t0;
+    }
+
+    @Override
+    public float getMaxScale() {
+        return 1.5f;
+    }
+
+    public int getNextType() {
+        int i7 = this.f58166u0 + 1;
+        if (i7 == 4) {
+            return !this.f58167v0 ? 1 : 0;
         }
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        if (i7 != 0) {
-            canvas.restore();
+        return i7;
+    }
+
+    @Override
+    public aj0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
         }
-        return drawChild;
+        float scaleX = viewGroup.getScaleX();
+        float scale = getScale();
+        float L = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale * getMeasuredWidth());
+        float scale2 = getScale();
+        float L2 = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
+        float y10 = m10.y(L, 2.0f, getPositionX(), scaleX);
+        return new aj0(y10, m10.y(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + y10) - y10, L2 * scaleX);
     }
 
-    public int getAdditionalBottom() {
-        return 0;
+    @Override
+    public float getStickyPaddingBottom() {
+        return this.f58164s0.h;
     }
 
-    public int getAdditionalTop() {
-        return 0;
+    @Override
+    public float getStickyPaddingLeft() {
+        return this.f58164s0.f58123f;
     }
 
-    public Bitmap getBitmap() {
-        Bitmap c10 = this.f58082e.c(false, false);
-        int i7 = this.h;
-        if (i7 != 0) {
-            int width = c10.getWidth();
-            int height = c10.getHeight();
-            if ((i7 / 90) % 2 != 0) {
-                width = c10.getHeight();
-                height = c10.getWidth();
-            }
-            Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(createBitmap);
-            canvas.translate(width / 2.0f, height / 2.0f);
-            canvas.rotate(-i7);
-            RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set((-c10.getWidth()) / 2.0f, (-c10.getHeight()) / 2.0f, c10.getWidth() / 2.0f, c10.getHeight() / 2.0f);
-            canvas.drawBitmap(c10, (Rect) null, rectF, new Paint(3));
-            c10.recycle();
-            return createBitmap;
-        }
-        return c10;
+    @Override
+    public float getStickyPaddingRight() {
+        return this.f58164s0.f58123f;
     }
 
-    public sg.u0 getRenderView() {
-        return this.f58082e;
+    @Override
+    public float getStickyPaddingTop() {
+        return this.f58164s0.h;
+    }
+
+    public int getType() {
+        return this.f58166u0;
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        int i13 = i11 - i7;
-        int i14 = i12 - i10;
-        if (!this.f58084n) {
-            Typeface typeface = org.telegram.messenger.g0.f23982a;
-        }
-        sg.u0 u0Var = this.f58082e;
-        int ceil = (int) Math.ceil((i13 - u0Var.getMeasuredWidth()) / 2.0f);
-        int measuredHeight = (i14 - u0Var.getMeasuredHeight()) / 2;
-        u0Var.layout(ceil, measuredHeight, u0Var.getMeasuredWidth() + ceil, u0Var.getMeasuredHeight() + measuredHeight);
-        FrameLayout frameLayout = this.f58085r;
-        frameLayout.layout(0, i14 - frameLayout.getMeasuredHeight(), frameLayout.getMeasuredWidth(), i14);
+        k();
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        float f10;
-        float f11;
-        this.H = true;
-        int size = View.MeasureSpec.getSize(i7);
-        int size2 = View.MeasureSpec.getSize(i10);
-        setMeasuredDimension(size, size2);
-        int i11 = org.telegram.messenger.g0.f24010q.y;
-        Bitmap bitmap = this.f58083f;
-        if (bitmap != null) {
-            f11 = bitmap.getWidth();
-            f10 = bitmap.getHeight();
-        } else {
-            f10 = size2;
-            f11 = size;
-        }
-        float f12 = size;
-        float floor = (float) Math.floor((f12 * f10) / f11);
-        float f13 = i11;
-        if (floor > f13) {
-            f12 = (float) Math.floor((f11 * f13) / f10);
-            floor = f13;
-        }
-        this.f58082e.measure(View.MeasureSpec.makeMeasureSpec((int) f12, 1073741824), View.MeasureSpec.makeMeasureSpec((int) floor, 1073741824));
-        this.I = 1.0f;
-        measureChild(this.f58088x, i7, i10);
-        measureChild(this.f58085r, i7, i10);
-        this.H = false;
-        if (Build.VERSION.SDK_INT >= 29) {
-            ArrayList arrayList = this.J;
-            arrayList.clear();
-            Rect rect = this.K;
-            arrayList.add(rect);
-            int measuredHeight = (int) (getMeasuredHeight() * 0.3f);
-            rect.set(0, (getMeasuredHeight() - measuredHeight) / 2, org.telegram.messenger.g0.L(20.0f), (getMeasuredHeight() + measuredHeight) / 2);
-            setSystemGestureExclusionRects(arrayList);
-        }
+        super.onMeasure(i7, i10);
+        k();
     }
 
-    @Override
-    public final void requestLayout() {
-        if (this.H) {
-            return;
-        }
-        super.requestLayout();
+    public void setColor(int i7) {
+        this.f58167v0 = true;
+        this.f58165t0 = i7;
     }
 
-    public void setEraser(boolean z10) {
-        ?? r22;
-        if (this.E == z10) {
-            return;
-        }
-        this.E = z10;
-        if (z10) {
-            r22 = new Object();
-        } else {
-            r22 = new Object();
-        }
-        this.f58082e.setBrush(r22);
+    public void setMaxWidth(int i7) {
+        this.f58164s0.setMaxWidth(i7);
+    }
+
+    public void setType(int i7) {
+        this.f58166u0 = i7;
+        this.f58164s0.c(i7, this.f58165t0);
     }
 }

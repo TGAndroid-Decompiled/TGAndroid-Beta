@@ -1,53 +1,75 @@
 package ai;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.ui.Components.rf;
-public final class v implements l0, bi.a1 {
-    public final int f1548a;
-    public final k0 f1549b;
+import android.media.AudioRecord;
+import java.util.Arrays;
+public final class v {
+    public final Object f1552a = new Object();
+    public byte[] f1553b = new byte[320000];
+    public int f1554c;
+    public boolean d;
+    public AudioRecord f1555e;
+    public Thread f1556f;
+    public volatile q1 f1557g;
+    public double h;
+    public int f1558i;
 
-    public v(k0 k0Var, int i7) {
-        this.f1548a = i7;
-        this.f1549b = k0Var;
-    }
-
-    @Override
-    public void a(Canvas canvas) {
-        switch (this.f1548a) {
-            case 1:
-                int[] iArr = new int[2];
-                int[] iArr2 = new int[2];
-                k0 k0Var = this.f1549b;
-                rf rfVar = k0Var.f1322f;
-                rfVar.f39132a.f32557c2.getLocationInWindow(iArr);
-                k0Var.f1342w.getLocationInWindow(iArr2);
-                canvas.save();
-                canvas.translate(iArr[0] - iArr2[0], iArr[1] - iArr2[1]);
-                rfVar.a(canvas);
-                canvas.restore();
-                return;
-            default:
-                int[] iArr3 = new int[2];
-                int[] iArr4 = new int[2];
-                k0 k0Var2 = this.f1549b;
-                rf rfVar2 = k0Var2.f1322f;
-                rfVar2.f39132a.f32557c2.getLocationInWindow(iArr3);
-                k0Var2.f1342w.getLocationInWindow(iArr4);
-                canvas.save();
-                canvas.translate(iArr3[0] - iArr4[0], iArr3[1] - iArr4[1]);
-                rfVar2.a(canvas);
-                canvas.restore();
-                return;
+    public final void a(int i7, byte[] bArr) {
+        synchronized (this.f1552a) {
+            try {
+                int i10 = this.f1554c + i7;
+                if (i10 > 19200000) {
+                    return;
+                }
+                byte[] bArr2 = this.f1553b;
+                if (i10 > bArr2.length) {
+                    this.f1553b = Arrays.copyOf(bArr2, Math.min(19200000, Math.max(bArr2.length * 2, i10)));
+                }
+                System.arraycopy(bArr, 0, this.f1553b, this.f1554c, i7);
+                this.f1554c += i7;
+                this.f1552a.notifyAll();
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
     }
 
-    public int b(float f10, float f11) {
-        k0 k0Var = this.f1549b;
-        RectF rectF = k0Var.f1346y;
-        if (k0Var.m(rectF)) {
-            return k0Var.f1344x.a(f10, f11, rectF);
+    public final byte[] b(int i7, int i10) {
+        byte[] copyOfRange;
+        synchronized (this.f1552a) {
+            int max = Math.max(0, Math.min(i7, this.f1554c));
+            copyOfRange = Arrays.copyOfRange(this.f1553b, max, Math.max(max, Math.min(i10, this.f1554c)));
         }
-        return 0;
+        return copyOfRange;
+    }
+
+    public final int c() {
+        int i7;
+        synchronized (this.f1552a) {
+            i7 = this.f1554c;
+        }
+        return i7;
+    }
+
+    public final void d() {
+        synchronized (this.f1552a) {
+            this.d = true;
+            this.f1552a.notifyAll();
+        }
+        AudioRecord audioRecord = this.f1555e;
+        if (audioRecord != null) {
+            try {
+                audioRecord.stop();
+            } catch (Exception unused) {
+            }
+            try {
+                Thread thread = this.f1556f;
+                if (thread != null) {
+                    thread.join(300L);
+                }
+            } catch (InterruptedException unused2) {
+            }
+            this.f1555e.release();
+            this.f1555e = null;
+        }
     }
 }

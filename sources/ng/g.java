@@ -1,8 +1,8 @@
 package ng;
 
 import android.widget.TextView;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
 public final class g extends e {
     public TextView N;
     public TextView O;
@@ -14,7 +14,7 @@ public final class g extends e {
             return;
         }
         super.b();
-        t6.U(textView, m6.f29455j5, null);
+        u6.U(textView, n6.f29559j5, null);
     }
 
     @Override

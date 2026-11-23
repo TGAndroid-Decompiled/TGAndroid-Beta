@@ -9,11 +9,11 @@ public abstract class a0 extends l0 {
 
     @Override
     public final d0 f() {
-        s1 s1Var = ((s1) this).f14062n;
-        t0 t0Var = s1Var.f14012b;
+        r1 r1Var = ((r1) this).f14049n;
+        t0 t0Var = r1Var.f14009b;
         if (t0Var == null) {
-            w1 d = s1Var.d();
-            s1Var.f14012b = d;
+            v1 d = r1Var.d();
+            r1Var.f14009b = d;
             return d;
         }
         return t0Var;
@@ -21,11 +21,11 @@ public abstract class a0 extends l0 {
 
     @Override
     public final Collection values() {
-        s1 s1Var = ((s1) this).f14062n;
-        t0 t0Var = s1Var.f14012b;
+        r1 r1Var = ((r1) this).f14049n;
+        t0 t0Var = r1Var.f14009b;
         if (t0Var == null) {
-            w1 d = s1Var.d();
-            s1Var.f14012b = d;
+            v1 d = r1Var.d();
+            r1Var.f14009b = d;
             return d;
         }
         return t0Var;

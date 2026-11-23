@@ -4,12 +4,12 @@ import java.util.Comparator;
 public final class u extends w {
     public static w f(int i7) {
         if (i7 < 0) {
-            return w.f14077b;
+            return w.f14073b;
         }
         if (i7 > 0) {
-            return w.f14078c;
+            return w.f14074c;
         }
-        return w.f14076a;
+        return w.f14072a;
     }
 
     @Override

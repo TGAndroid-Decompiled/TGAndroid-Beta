@@ -5,35 +5,35 @@ import c8.td;
 import ee.t;
 import java.util.Locale;
 import org.telegram.messenger.g0;
-import org.telegram.ui.Cells.c5;
+import org.telegram.ui.ActionBar.i5;
+import org.telegram.ui.Components.i61;
 import org.telegram.ui.f;
-import org.telegram.ui.hf0;
-import org.telegram.ui.md0;
-import org.telegram.ui.ml0;
+import org.telegram.ui.gf0;
+import org.telegram.ui.kl0;
 import tc.g;
 public final class a extends AsyncTask {
-    public final String f57149a;
-    public final uc.a f57150b;
-    public final f f57151c;
-    public final c5 d;
+    public final String f57263a;
+    public final uc.a f57264b;
+    public final f f57265c;
+    public final i5 d;
 
-    public a(c5 c5Var, String str, uc.a aVar, f fVar) {
-        this.d = c5Var;
-        this.f57149a = str;
-        this.f57150b = aVar;
-        this.f57151c = fVar;
+    public a(i5 i5Var, String str, uc.a aVar, f fVar) {
+        this.d = i5Var;
+        this.f57263a = str;
+        this.f57264b = aVar;
+        this.f57265c = fVar;
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
         Void[] voidArr = (Void[]) objArr;
-        c5 c5Var = this.d;
+        i5 i5Var = this.d;
         try {
-            md0 c10 = vc.b.c(td.a(this.f57150b), new t(this.f57149a, 2));
-            Object obj = c5Var.f30474a;
+            i61 c10 = vc.b.c(td.a(this.f57264b), new t(this.f57263a, 2));
+            Object obj = i5Var.f29095a;
             return new b(c10, null);
         } catch (g e10) {
-            Object obj2 = c5Var.f30474a;
+            Object obj2 = i5Var.f29095a;
             return new b(null, e10);
         }
     }
@@ -41,23 +41,23 @@ public final class a extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         b bVar = (b) obj;
-        Object obj2 = this.d.f30474a;
-        md0 md0Var = bVar.f57152a;
-        f fVar = this.f57151c;
-        if (md0Var != null) {
-            ml0 ml0Var = (ml0) fVar.f47394b;
-            if (ml0Var.R0) {
+        Object obj2 = this.d.f29095a;
+        i61 i61Var = bVar.f57266a;
+        f fVar = this.f57265c;
+        if (i61Var != null) {
+            kl0 kl0Var = (kl0) fVar.f47651b;
+            if (kl0Var.R0) {
                 return;
             }
-            ml0Var.f49906x0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) md0Var.f49830b, (String) md0Var.d);
-            g0.g3(new hf0(fVar, 11));
+            kl0Var.f49492x0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) i61Var.f35959c, (String) i61Var.f35958b);
+            g0.g3(new gf0(fVar, 11));
             return;
         }
-        Exception exc = bVar.f57153b;
+        Exception exc = bVar.f57267b;
         if (exc != null) {
-            fVar.y1(exc);
+            fVar.v1(exc);
         } else {
-            fVar.y1(new RuntimeException("Somehow got neither a token response or an error response"));
+            fVar.v1(new RuntimeException("Somehow got neither a token response or an error response"));
         }
     }
 }

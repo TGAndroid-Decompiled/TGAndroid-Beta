@@ -1,47 +1,82 @@
 package y7;
 
 import c8.ge;
-public final class j9 extends k9 {
-    public final transient int f60876c;
-    public final transient int d;
-    public final k9 f60877e;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+public final class j9 extends a8.i0 implements ListIterator {
+    public final int f60988b;
+    public int f60989c;
+    public final l9 d;
 
-    public j9(k9 k9Var, int i7, int i10) {
-        this.f60877e = k9Var;
-        this.f60876c = i7;
-        this.d = i10;
+    public j9(l9 l9Var, int i7) {
+        super(9);
+        int size = l9Var.size();
+        if (i7 >= 0 && i7 <= size) {
+            this.f60988b = size;
+            this.f60989c = i7;
+            this.d = l9Var;
+            return;
+        }
+        throw new IndexOutOfBoundsException(ge.c(i7, size, "index"));
+    }
+
+    public final Object a(int i7) {
+        return this.d.get(i7);
     }
 
     @Override
-    public final Object get(int i7) {
-        ge.a(i7, this.d);
-        return this.f60877e.get(i7 + this.f60876c);
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final int i() {
-        return this.f60877e.j() + this.f60876c + this.d;
+    public final boolean hasNext() {
+        if (this.f60989c < this.f60988b) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final int j() {
-        return this.f60877e.j() + this.f60876c;
+    public final boolean hasPrevious() {
+        if (this.f60989c > 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final Object[] k() {
-        return this.f60877e.k();
+    public final Object next() {
+        if (hasNext()) {
+            int i7 = this.f60989c;
+            this.f60989c = i7 + 1;
+            return a(i7);
+        }
+        throw new NoSuchElementException();
     }
 
     @Override
-    public final k9 subList(int i7, int i10) {
-        ge.b(i7, i10, this.d);
-        int i11 = this.f60876c;
-        return this.f60877e.subList(i7 + i11, i10 + i11);
+    public final int nextIndex() {
+        return this.f60989c;
     }
 
     @Override
-    public final int size() {
-        return this.d;
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i7 = this.f60989c - 1;
+            this.f60989c = i7;
+            return a(i7);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.f60989c - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

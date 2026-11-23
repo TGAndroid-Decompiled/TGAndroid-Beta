@@ -1,35 +1,62 @@
 package org.telegram.ui;
 
-import android.content.ComponentName;
-import android.content.Context;
-public enum z80 {
-    DEFAULT("DefaultIcon", 2131231490, 2131558426, 2131754234, false),
-    VINTAGE("VintageIcon", 2131231485, 2131558419, 2131754230, false),
-    AQUA("AquaIcon", 2131231479, 2131558426, 2131754236, false),
-    PREMIUM("PremiumIcon", 2131231476, 2131558407, 2131754232, true),
-    TURBO("TurboIcon", 2131231482, 2131558414, 2131754231, true),
-    NOX("NoxIcon", 2131558402, 2131558426, 2131754233, true);
-    
-    public final String f54457a;
-    public final int f54458b;
-    public final int f54459c;
-    public final int d;
-    public final boolean f54460e;
-    public ComponentName f54461f;
+import java.util.ArrayList;
+public final class z80 implements org.telegram.ui.Components.z4, org.telegram.ui.ActionBar.q1, org.telegram.ui.Components.fu0 {
+    public final int f54549a;
+    public final j90 f54550b;
 
-    z80(String str, int i7, int i10, int i11, boolean z10) {
-        this.f54457a = str;
-        this.f54458b = i7;
-        this.f54459c = i10;
-        this.d = i11;
-        this.f54460e = z10;
+    public z80(j90 j90Var, int i7) {
+        this.f54549a = i7;
+        this.f54550b = j90Var;
     }
 
-    public final ComponentName a(Context context) {
-        if (this.f54461f == null) {
-            String packageName = context.getPackageName();
-            this.f54461f = new ComponentName(packageName, "org.telegram.messenger." + this.f54457a);
+    @Override
+    public void I(int i7, int i10, boolean z10) {
+        this.f54550b.a0(i7);
+    }
+
+    @Override
+    public void i(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        j90 j90Var = this.f54550b;
+        j90Var.T.a(j90Var.f49062e);
+        j90Var.finishFragment();
+    }
+
+    @Override
+    public void n(int i7) {
+        switch (this.f54549a) {
+            case 2:
+                j90 j90Var = this.f54550b;
+                ArrayList arrayList = j90Var.P;
+                if (i7 < arrayList.size()) {
+                    j90Var.f49068x.setText(org.telegram.messenger.gd.s(j90Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i7)).intValue(), false));
+                    return;
+                }
+                j90Var.f49068x.setText("");
+                return;
+            default:
+                j90 j90Var2 = this.f54550b;
+                j90Var2.G.clearFocus();
+                j90Var2.O = true;
+                ArrayList arrayList2 = j90Var2.R;
+                if (i7 < arrayList2.size()) {
+                    j90Var2.G.setText(((Integer) arrayList2.get(i7)).toString());
+                } else {
+                    j90Var2.G.setText("");
+                }
+                j90Var2.O = false;
+                return;
         }
-        return this.f54461f;
+    }
+
+    @Override
+    public void o() {
+        int i7 = this.f54549a;
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
     }
 }

@@ -2,18 +2,18 @@ package org.telegram.ui.Components;
 
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-public final class fn0 extends sb {
-    public int f35243c;
+public final class fn0 extends rb {
+    public int f35166c;
 
     @Override
     public final void updateColors() {
         super.updateColors();
         try {
-            int themedColor = getThemedColor(org.telegram.ui.ActionBar.m6.yj);
-            q9 q9Var = this.f39499a;
-            if (q9Var != null && themedColor != this.f35243c) {
-                this.f35243c = themedColor;
-                q9Var.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN));
+            int themedColor = getThemedColor(org.telegram.ui.ActionBar.n6.yj);
+            p9 p9Var = this.f39267a;
+            if (p9Var != null && themedColor != this.f35166c) {
+                this.f35166c = themedColor;
+                p9Var.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN));
             }
             invalidate();
         } catch (Exception e10) {

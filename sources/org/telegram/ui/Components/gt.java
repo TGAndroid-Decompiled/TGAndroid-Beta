@@ -1,23 +1,24 @@
 package org.telegram.ui.Components;
-public final class gt extends n6 {
-    public final int f35626e0;
-    public final ot f35627f0;
 
-    public gt(ot otVar, int i7) {
-        super(false, false, false);
-        this.f35626e0 = i7;
-        this.f35627f0 = otVar;
+import android.text.Editable;
+public final class gt implements org.telegram.messenger.w10 {
+    public final mt f35533a;
+    public final int f35534b;
+    public final int f35535c;
+
+    public gt(mt mtVar, int i7, int i10) {
+        this.f35533a = mtVar;
+        this.f35534b = i7;
+        this.f35535c = i10;
     }
 
     @Override
-    public final void invalidateSelf() {
-        switch (this.f35626e0) {
-            case 0:
-                this.f35627f0.invalidate();
-                return;
-            default:
-                this.f35627f0.invalidate();
-                return;
-        }
+    public final void a(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        mt mtVar = this.f35533a;
+        Editable text = mtVar.getText();
+        int i7 = this.f35534b;
+        text.replace(i7, this.f35535c, charSequence);
+        mtVar.setSelection(i7, charSequence.length() + i7);
     }
 }

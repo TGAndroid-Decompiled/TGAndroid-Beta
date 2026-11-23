@@ -5,8 +5,8 @@ public final class r8 {
     public final p7 f622c;
 
     public r8(android.support.v4.media.session.a0 a0Var) {
-        this.f620a = (s7) a0Var.f1675b;
-        this.f621b = (u8) a0Var.f1676c;
+        this.f620a = (s7) a0Var.f1676b;
+        this.f621b = (u8) a0Var.f1677c;
         this.f622c = (p7) a0Var.d;
     }
 }

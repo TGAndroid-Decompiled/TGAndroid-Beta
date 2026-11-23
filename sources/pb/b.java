@@ -1,7 +1,7 @@
 package pb;
 
 import a8.r7;
-import ai.g0;
+import ai.h0;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Paint;
@@ -17,11 +17,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import e2.u;
-import f3.b0;
-import h9.g1;
-import hi.u5;
-import hi.x4;
+import f3.c0;
+import hi.u0;
 import j$.util.DesugarCollections;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -37,48 +34,48 @@ import java.util.Set;
 import java.util.concurrent.Executors;
 import org.json.JSONObject;
 import org.telegram.messenger.IMapsProvider;
+import org.telegram.messenger.aa;
+import org.telegram.messenger.ab;
 import org.telegram.messenger.ba;
-import org.telegram.messenger.bb;
-import org.telegram.messenger.ca;
-import org.telegram.messenger.dj;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.j10;
+import org.telegram.messenger.cj;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.h10;
 import org.telegram.messenger.p2;
+import org.telegram.messenger.sa;
 import org.telegram.messenger.ta;
 import org.telegram.messenger.ua;
 import org.telegram.messenger.va;
 import org.telegram.messenger.wa;
 import org.telegram.messenger.xa;
 import org.telegram.messenger.ya;
-import org.telegram.messenger.za;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.g2;
-import org.telegram.ui.Cells.c0;
-import org.telegram.ui.Cells.k9;
+import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Cells.m1;
 import org.telegram.ui.Cells.r1;
 import org.telegram.ui.Cells.s0;
 import org.telegram.ui.Cells.u2;
 import org.telegram.ui.Cells.v0;
 import org.telegram.ui.Components.pm0;
-import org.telegram.ui.Components.y5;
-import org.telegram.ui.gr0;
+import org.telegram.ui.Components.x5;
+import org.telegram.ui.fr0;
 import org.xml.sax.Attributes;
-public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.google.android.gms.common.api.internal.q, u9.d, q5.b, IMapsProvider, gh.a, m1, s0, OnFailureListener, s2.t, u4.c, x5.a {
-    public final int f55526a;
+import s2.u;
+public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.google.android.gms.common.api.internal.q, u9.d, q5.b, IMapsProvider, gh.a, m1, s0, OnFailureListener, u, u4.c, x5.a {
+    public final int f55639a;
 
     public b(int i7) {
-        this.f55526a = i7;
+        this.f55639a = i7;
     }
 
-    public static ia.b D0(w7.s sVar) {
+    public static ia.b u0(w7.s sVar) {
         return new ia.b(System.currentTimeMillis() + 3600000, new b7.l(8), new ia.a(true, false, false), 10.0d, 1.2d, 60);
     }
 
-    public static bg.o E0(Editable editable, int i7) {
+    public static bg.o w0(Editable editable, int i7) {
         Object[] objArr = (bg.o[]) editable.getSpans(0, editable.length(), bg.o.class);
         if (objArr.length != 0) {
             for (int length = objArr.length; length > 0; length--) {
@@ -95,7 +92,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
         return null;
     }
 
-    public static boolean G0(boolean z10, String str, Editable editable, Attributes attributes) {
+    public static boolean y0(boolean z10, String str, Editable editable, Attributes attributes) {
         int i7;
         boolean z11 = false;
         Object obj = null;
@@ -103,11 +100,11 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
             if (z10) {
                 String a10 = bg.n.a("data-document-id", attributes);
                 if (a10 != null) {
-                    editable.setSpan(new y5(Long.parseLong(a10), (Paint.FontMetricsInt) null), editable.length(), editable.length(), 17);
+                    editable.setSpan(new x5(Long.parseLong(a10), (Paint.FontMetricsInt) null), editable.length(), editable.length(), 17);
                     return true;
                 }
             } else {
-                Object[] spans = editable.getSpans(0, editable.length(), y5.class);
+                Object[] spans = editable.getSpans(0, editable.length(), x5.class);
                 if (spans.length != 0) {
                     int length = spans.length;
                     while (true) {
@@ -122,7 +119,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
                         length--;
                     }
                 }
-                Object obj2 = (y5) obj;
+                Object obj2 = (x5) obj;
                 if (obj2 != null) {
                     int spanStart = editable.getSpanStart(obj2);
                     editable.removeSpan(obj2);
@@ -139,12 +136,12 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
                 editable.setSpan(new bg.o(0), editable.length(), editable.length(), 17);
                 return true;
             }
-            Object E0 = E0(editable, 0);
-            if (E0 != null) {
-                int spanStart2 = editable.getSpanStart(E0);
-                editable.removeSpan(E0);
+            Object w02 = w0(editable, 0);
+            if (w02 != null) {
+                int spanStart2 = editable.getSpanStart(w02);
+                editable.removeSpan(w02);
                 if (spanStart2 != editable.length()) {
-                    editable.setSpan(E0, spanStart2, editable.length(), 33);
+                    editable.setSpan(w02, spanStart2, editable.length(), 33);
                     return true;
                 }
                 return true;
@@ -162,12 +159,12 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
                 editable.setSpan(new bg.o(a11), editable.length(), editable.length(), 17);
                 return true;
             }
-            Object E02 = E0(editable, 1);
-            if (E02 != null) {
-                int spanStart3 = editable.getSpanStart(E02);
-                editable.removeSpan(E02);
+            Object w03 = w0(editable, 1);
+            if (w03 != null) {
+                int spanStart3 = editable.getSpanStart(w03);
+                editable.removeSpan(w03);
                 if (spanStart3 != editable.length()) {
-                    editable.setSpan(E02, spanStart3, editable.length(), 33);
+                    editable.setSpan(w03, spanStart3, editable.length(), 33);
                     return true;
                 }
                 return true;
@@ -211,12 +208,12 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
                     editable.setSpan(new bg.o(3), editable.length(), editable.length(), 17);
                     return true;
                 }
-                Object E03 = E0(editable, 3);
-                if (E03 != null) {
-                    int spanStart5 = editable.getSpanStart(E03);
-                    editable.removeSpan(E03);
+                Object w04 = w0(editable, 3);
+                if (w04 != null) {
+                    int spanStart5 = editable.getSpanStart(w04);
+                    editable.removeSpan(w04);
                     if (spanStart5 != editable.length()) {
-                        editable.setSpan(E03, spanStart5, editable.length(), 33);
+                        editable.setSpan(w04, spanStart5, editable.length(), 33);
                     }
                     return true;
                 }
@@ -226,22 +223,37 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void A() {
-        Log.d("ProfileInstaller", "DIAGNOSTIC_PROFILE_IS_COMPRESSED");
-    }
-
-    @Override
     public float A1() {
         return 0.0f;
     }
 
     @Override
-    public int A2() {
+    public g2 B() {
+        return null;
+    }
+
+    @Override
+    public j9 B2() {
+        return null;
+    }
+
+    @Override
+    public String D(long j3) {
+        return null;
+    }
+
+    @Override
+    public int D0() {
         return 0;
     }
 
     @Override
-    public void C(int i7, Object obj) {
+    public int D1() {
+        return 0;
+    }
+
+    @Override
+    public void E(int i7, Object obj) {
         String str;
         switch (i7) {
             case 1:
@@ -287,17 +299,27 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public int D1() {
-        return 0;
+    public void E0(ShortBuffer shortBuffer, int i7, ShortBuffer shortBuffer2, int i10) {
+        eg.a aVar;
+        if (i7 == 6) {
+            aVar = eg.a.f10954p;
+        } else if (i7 > i10) {
+            aVar = eg.a.f10951l;
+        } else if (i7 < i10) {
+            aVar = eg.a.f10952m;
+        } else {
+            aVar = eg.a.f10953o;
+        }
+        aVar.E0(shortBuffer, i7, shortBuffer2, i10);
     }
 
     @Override
-    public g2 G() {
-        return null;
+    public boolean F0(fj fjVar) {
+        return true;
     }
 
     @Override
-    public boolean H(u uVar) {
+    public boolean G(e2.u uVar) {
         return false;
     }
 
@@ -307,8 +329,8 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public b3.r J(s2.p pVar, s2.m mVar) {
-        return new s2.s(pVar, mVar);
+    public int I(e2.u uVar) {
+        return 1;
     }
 
     @Override
@@ -317,48 +339,28 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public boolean L0(long j3) {
-        return false;
-    }
-
-    @Override
-    public int M0() {
-        return 0;
-    }
-
-    @Override
     public int M1(int i7, int i10, int i11) {
         eg.a aVar;
         if (i10 == 6) {
-            aVar = eg.a.f10956p;
+            aVar = eg.a.f10954p;
         } else if (i10 > i11) {
-            aVar = eg.a.f10953l;
+            aVar = eg.a.f10951l;
         } else if (i10 < i11) {
-            aVar = eg.a.f10954m;
+            aVar = eg.a.f10952m;
         } else {
-            aVar = eg.a.f10955o;
+            aVar = eg.a.f10953o;
         }
         return aVar.M1(i7, i10, i11);
     }
 
     @Override
-    public int O(u uVar) {
-        return 1;
+    public c0 N() {
+        return new f3.t(-9223372036854775807L);
     }
 
     @Override
-    public void P0(ShortBuffer shortBuffer, int i7, ShortBuffer shortBuffer2, int i10) {
-        eg.a aVar;
-        if (i7 == 6) {
-            aVar = eg.a.f10956p;
-        } else if (i7 > i10) {
-            aVar = eg.a.f10953l;
-        } else if (i7 < i10) {
-            aVar = eg.a.f10954m;
-        } else {
-            aVar = eg.a.f10955o;
-        }
-        aVar.P0(shortBuffer, i7, shortBuffer2, i10);
+    public int Q0() {
+        return 0;
     }
 
     @Override
@@ -367,67 +369,52 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
+    public boolean R0(long j3) {
+        return false;
+    }
+
+    @Override
     public CharacterStyle R1(r1 r1Var) {
         return null;
     }
 
     @Override
-    public boolean S(r1 r1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        return false;
-    }
-
-    @Override
-    public boolean T() {
-        return false;
-    }
-
-    @Override
-    public boolean T1(r1 r1Var, gj gjVar) {
-        return false;
-    }
-
-    @Override
-    public boolean U(r1 r1Var) {
-        return false;
-    }
-
-    @Override
-    public int U0() {
-        return 0;
-    }
-
-    @Override
-    public boolean V0(r1 r1Var, boolean z10) {
-        return false;
-    }
-
-    @Override
-    public boolean W() {
-        return false;
-    }
-
-    @Override
-    public int W1() {
-        return 0;
-    }
-
-    @Override
-    public float Y0() {
+    public float T0() {
         return -1.0f;
     }
 
     @Override
-    public int Z() {
-        return 0;
+    public boolean T1(r1 r1Var, fj fjVar) {
+        return false;
     }
 
     @Override
-    public float Z0() {
+    public b3.r U() {
+        return new s2.t(s2.q.f56980n, null);
+    }
+
+    @Override
+    public float V0() {
         return -1.0f;
     }
 
     @Override
-    public boolean Z1(r1 r1Var, TLRPC.PollAnswer pollAnswer) {
+    public boolean X(r1 r1Var, TLRPC.TodoItem todoItem, boolean z10) {
+        return false;
+    }
+
+    @Override
+    public int X1() {
+        return 0;
+    }
+
+    @Override
+    public boolean Y() {
+        return false;
+    }
+
+    @Override
+    public boolean Z(r1 r1Var) {
         return false;
     }
 
@@ -437,16 +424,26 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
+    public long a0(f3.p pVar) {
+        return -1L;
+    }
+
+    @Override
+    public boolean a2(r1 r1Var, TLRPC.PollAnswer pollAnswer) {
+        return false;
+    }
+
+    @Override
     public void accept(Object obj, Object obj2) {
         m7.d dVar = (m7.d) ((m7.e) obj).n();
         e7.b bVar = new e7.b(1, (TaskCompletionSource) obj2);
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.auth.api.phone.internal.ISmsRetrieverApiService");
-        int i7 = m7.c.f20881a;
+        int i7 = m7.c.f20977a;
         obtain.writeStrongBinder(bVar);
         Parcel obtain2 = Parcel.obtain();
         try {
-            dVar.f20882a.transact(1, obtain, obtain2, 0);
+            dVar.f20978a.transact(1, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();
@@ -455,36 +452,21 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public boolean b() {
-        return false;
-    }
-
-    @Override
-    public jh.a c0() {
-        return null;
-    }
-
-    @Override
-    public gr0 c2() {
-        return null;
-    }
-
-    @Override
-    public long d() {
+    public long b() {
         return 0L;
     }
 
     @Override
-    public boolean d0(r1 r1Var) {
+    public boolean b0() {
         return false;
     }
 
     @Override
-    public Object e(r7 r7Var) {
+    public Object c(r7 r7Var) {
         a aVar = new a();
         androidx.emoji2.text.o oVar = new androidx.emoji2.text.o(9);
-        ReferenceQueue referenceQueue = aVar.f55524a;
-        Set set = aVar.f55525b;
+        ReferenceQueue referenceQueue = aVar.f55637a;
+        Set set = aVar.f55638b;
         set.add(new m(aVar, referenceQueue, set, oVar));
         Thread thread = new Thread(new l(0, referenceQueue, set), "MlKitCleaner");
         thread.setDaemon(true);
@@ -493,282 +475,32 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public boolean e0(r1 r1Var, TLRPC.User user) {
+    public boolean c1(r1 r1Var, boolean z10) {
         return false;
     }
 
     @Override
-    public b0 f() {
-        return new f3.t(-9223372036854775807L);
-    }
-
-    @Override
-    public b3.r f0() {
-        return new s2.s(s2.p.f56864n, null);
-    }
-
-    @Override
-    public boolean f1(gj gjVar) {
-        return c0.a(gjVar);
-    }
-
-    @Override
-    public boolean f2(long j3) {
-        return false;
-    }
-
-    @Override
-    public ia.b g(w7.s sVar, JSONObject jSONObject) {
-        return D0(sVar);
-    }
-
-    @Override
-    public Object mo24get() {
-        switch (this.f55526a) {
-            case 16:
-                return new o5.p(Executors.newSingleThreadExecutor());
-            default:
-                qb.a aVar = new qb.a(28);
-                HashMap hashMap = new HashMap();
-                Set set = Collections.EMPTY_SET;
-                if (set != null) {
-                    hashMap.put(l5.d.f19669a, new u5.b(30000L, 86400000L, set));
-                    if (set != null) {
-                        hashMap.put(l5.d.f19671c, new u5.b(1000L, 86400000L, set));
-                        if (set != null) {
-                            Set unmodifiableSet = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(u5.c.f58434b)));
-                            if (unmodifiableSet != null) {
-                                hashMap.put(l5.d.f19670b, new u5.b(86400000L, 86400000L, unmodifiableSet));
-                                if (hashMap.keySet().size() >= l5.d.values().length) {
-                                    new HashMap();
-                                    return new u5.a(aVar, hashMap);
-                                }
-                                throw new IllegalStateException("Not all priorities have been configured");
-                            }
-                            throw new NullPointerException("Null flags");
-                        }
-                        throw new NullPointerException("Null flags");
-                    }
-                    throw new NullPointerException("Null flags");
-                }
-                throw new NullPointerException("Null flags");
-        }
-    }
-
-    @Override
-    public int getInstallMapsString() {
-        return 2131749003;
-    }
-
-    @Override
-    public String getMapsAppPackageName() {
-        return "com.google.android.apps.maps";
-    }
-
-    @Override
-    public boolean h() {
-        switch (this.f55526a) {
-            case 19:
-                return true;
-            default:
-                return true;
-        }
-    }
-
-    @Override
-    public boolean h2(r1 r1Var, TLRPC.TodoItem todoItem) {
-        return false;
-    }
-
-    @Override
-    public String i(r1 r1Var) {
+    public fr0 c2() {
         return null;
     }
 
     @Override
-    public boolean i0() {
+    public boolean d() {
         return false;
     }
 
     @Override
-    public void initializeMaps(Context context) {
-        synchronized (k8.b.class) {
-            k8.b.a(context);
-        }
-    }
-
-    @Override
-    public c4.m j(u uVar) {
-        throw new IllegalStateException("This SubtitleParser.Factory doesn't support any formats.");
-    }
-
-    @Override
-    public int k0(r1 r1Var) {
+    public int e0() {
         return 0;
     }
 
     @Override
-    public xa loadRawResourceStyle(Context context, int i7) {
-        InputStream openRawResource = context.getResources().openRawResource(i7);
-        try {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            byte[] bArr = new byte[1024];
-            while (true) {
-                int read = openRawResource.read(bArr, 0, 1024);
-                if (read != -1) {
-                    byteArrayOutputStream.write(bArr, 0, read);
-                } else {
-                    x6.b.a(openRawResource);
-                    x6.b.a(byteArrayOutputStream);
-                    m8.e eVar = new m8.e(new String(byteArrayOutputStream.toByteArray(), "UTF-8"));
-                    ?? obj = new Object();
-                    obj.f23848a = eVar;
-                    return obj;
-                }
-            }
-        } catch (IOException e10) {
-            String obj2 = e10.toString();
-            throw new Resources.NotFoundException("Failed to read resource " + i7 + ": " + obj2);
-        }
+    public c4.m f(e2.u uVar) {
+        throw new IllegalStateException("This SubtitleParser.Factory doesn't support any formats.");
     }
 
     @Override
-    public long m0(f3.p pVar) {
-        return -1L;
-    }
-
-    @Override
-    public boolean n0() {
-        return false;
-    }
-
-    @Override
-    public ta newCameraUpdateLatLng(bb bbVar) {
-        LatLng latLng = new LatLng(bbVar.f23030a, bbVar.f23031b);
-        try {
-            l8.a aVar = e1.f4541a;
-            q6.m.i(aVar, "CameraUpdateFactory is not initialized");
-            Parcel p12 = aVar.p1();
-            v7.b.b(p12, latLng);
-            Parcel o12 = aVar.o1(p12, 8);
-            a7.a m12 = a7.b.m1(o12.readStrongBinder());
-            o12.recycle();
-            return new ba(new x4(m12));
-        } catch (RemoteException e10) {
-            throw new RuntimeException(e10);
-        }
-    }
-
-    @Override
-    public ta newCameraUpdateLatLngBounds(va vaVar, int i7) {
-        LatLngBounds latLngBounds = ((ca) vaVar).f23212a;
-        try {
-            l8.a aVar = e1.f4541a;
-            q6.m.i(aVar, "CameraUpdateFactory is not initialized");
-            Parcel p12 = aVar.p1();
-            v7.b.b(p12, latLngBounds);
-            p12.writeInt(i7);
-            Parcel o12 = aVar.o1(p12, 10);
-            a7.a m12 = a7.b.m1(o12.readStrongBinder());
-            o12.recycle();
-            return new ba(new x4(m12));
-        } catch (RemoteException e10) {
-            throw new RuntimeException(e10);
-        }
-    }
-
-    @Override
-    public ta newCameraUpdateLatLngZoom(bb bbVar, float f10) {
-        LatLng latLng = new LatLng(bbVar.f23030a, bbVar.f23031b);
-        try {
-            l8.a aVar = e1.f4541a;
-            q6.m.i(aVar, "CameraUpdateFactory is not initialized");
-            Parcel p12 = aVar.p1();
-            v7.b.b(p12, latLng);
-            p12.writeFloat(f10);
-            Parcel o12 = aVar.o1(p12, 9);
-            a7.a m12 = a7.b.m1(o12.readStrongBinder());
-            o12.recycle();
-            return new ba(new x4(m12));
-        } catch (RemoteException e10) {
-            throw new RuntimeException(e10);
-        }
-    }
-
-    @Override
-    public ua onCreateCircleOptions() {
-        x4 x4Var = new x4(23, false);
-        ?? obj = new Object();
-        obj.f20884a = null;
-        obj.f20885b = 0.0d;
-        obj.f20886c = 10.0f;
-        obj.d = -16777216;
-        obj.f20887e = 0;
-        obj.f20888f = 0.0f;
-        obj.h = true;
-        obj.f20889n = false;
-        obj.f20890r = null;
-        x4Var.f15680b = obj;
-        return x4Var;
-    }
-
-    @Override
-    public wa onCreateLatLngBoundsBuilder() {
-        u5 u5Var = new u5(26);
-        m8.d dVar = new m8.d(0);
-        dVar.f20893b = Double.POSITIVE_INFINITY;
-        dVar.f20894c = Double.NEGATIVE_INFINITY;
-        dVar.d = Double.NaN;
-        dVar.f20895e = Double.NaN;
-        u5Var.f15495b = dVar;
-        return u5Var;
-    }
-
-    @Override
-    public ya onCreateMapView(Context context) {
-        r7 r7Var = new r7(13, (byte) 0);
-        r7Var.f616b = new g0(r7Var, context);
-        return r7Var;
-    }
-
-    @Override
-    public za onCreateMarkerOptions() {
-        g1 g1Var = new g1(24);
-        ?? obj = new Object();
-        obj.f20901e = 0.5f;
-        obj.f20902f = 1.0f;
-        obj.f20903n = true;
-        obj.f20904r = false;
-        obj.f20905s = 0.0f;
-        obj.f20906w = 0.5f;
-        obj.f20907x = 0.0f;
-        obj.f20908y = 1.0f;
-        g1Var.f13993b = obj;
-        return g1Var;
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        Log.e("OptionalModuleUtils", "Failed to check feature availability", exc);
-    }
-
-    @Override
-    public boolean p0(y5 y5Var) {
-        return false;
-    }
-
-    @Override
-    public boolean p2(r1 r1Var, TL_iv.PageBlock pageBlock) {
-        return false;
-    }
-
-    @Override
-    public long r() {
-        return SystemClock.elapsedRealtime();
-    }
-
-    @Override
-    public void r0(ShortBuffer shortBuffer, int i7, ShortBuffer shortBuffer2, int i10, int i11) {
+    public void f0(ShortBuffer shortBuffer, int i7, ShortBuffer shortBuffer2, int i10, int i11) {
         if (i7 <= i10) {
             if (i11 != 1 && i11 != 2) {
                 throw new IllegalArgumentException(i5.c.i(i11, "Illegal use of UpsampleAudioResampler. Channels:"));
@@ -802,17 +534,282 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public boolean s0(v0 v0Var, float f10, float f11) {
+    public boolean f2(long j3) {
         return false;
     }
 
     @Override
-    public int t0() {
+    public ia.b g(w7.s sVar, JSONObject jSONObject) {
+        return u0(sVar);
+    }
+
+    @Override
+    public boolean g0(v0 v0Var, float f10, float f11) {
+        return false;
+    }
+
+    @Override
+    public boolean g1(fj fjVar) {
+        return org.telegram.ui.Cells.c0.a(fjVar);
+    }
+
+    @Override
+    public Object mo23get() {
+        switch (this.f55639a) {
+            case 16:
+                return new o5.q(Executors.newSingleThreadExecutor());
+            default:
+                qb.a aVar = new qb.a(28);
+                HashMap hashMap = new HashMap();
+                Set set = Collections.EMPTY_SET;
+                if (set != null) {
+                    hashMap.put(l5.d.f19769a, new u5.b(30000L, 86400000L, set));
+                    if (set != null) {
+                        hashMap.put(l5.d.f19771c, new u5.b(1000L, 86400000L, set));
+                        if (set != null) {
+                            Set unmodifiableSet = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(u5.c.f58549b)));
+                            if (unmodifiableSet != null) {
+                                hashMap.put(l5.d.f19770b, new u5.b(86400000L, 86400000L, unmodifiableSet));
+                                if (hashMap.keySet().size() >= l5.d.values().length) {
+                                    new HashMap();
+                                    return new u5.a(aVar, hashMap);
+                                }
+                                throw new IllegalStateException("Not all priorities have been configured");
+                            }
+                            throw new NullPointerException("Null flags");
+                        }
+                        throw new NullPointerException("Null flags");
+                    }
+                    throw new NullPointerException("Null flags");
+                }
+                throw new NullPointerException("Null flags");
+        }
+    }
+
+    @Override
+    public int getInstallMapsString() {
+        return 2131749003;
+    }
+
+    @Override
+    public String getMapsAppPackageName() {
+        return "com.google.android.apps.maps";
+    }
+
+    @Override
+    public jh.a h0() {
+        return null;
+    }
+
+    @Override
+    public boolean i() {
+        switch (this.f55639a) {
+            case 19:
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public int i0() {
         return 0;
     }
 
     @Override
-    public boolean v2(int i7) {
+    public void initializeMaps(Context context) {
+        synchronized (k8.a.class) {
+            k8.a.a(context);
+        }
+    }
+
+    @Override
+    public boolean j0(r1 r1Var) {
+        return false;
+    }
+
+    @Override
+    public boolean j2(r1 r1Var, TLRPC.TodoItem todoItem) {
+        return false;
+    }
+
+    @Override
+    public String k(r1 r1Var) {
+        return null;
+    }
+
+    @Override
+    public boolean k0(r1 r1Var, TLRPC.User user) {
+        return false;
+    }
+
+    @Override
+    public wa loadRawResourceStyle(Context context, int i7) {
+        InputStream openRawResource = context.getResources().openRawResource(i7);
+        try {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            byte[] bArr = new byte[1024];
+            while (true) {
+                int read = openRawResource.read(bArr, 0, 1024);
+                if (read != -1) {
+                    byteArrayOutputStream.write(bArr, 0, read);
+                } else {
+                    x6.b.a(openRawResource);
+                    x6.b.a(byteArrayOutputStream);
+                    m8.e eVar = new m8.e(new String(byteArrayOutputStream.toByteArray(), "UTF-8"));
+                    ?? obj = new Object();
+                    obj.f23780a = eVar;
+                    return obj;
+                }
+            }
+        } catch (IOException e10) {
+            String obj2 = e10.toString();
+            throw new Resources.NotFoundException("Failed to read resource " + i7 + ": " + obj2);
+        }
+    }
+
+    @Override
+    public boolean n0() {
+        return false;
+    }
+
+    @Override
+    public sa newCameraUpdateLatLng(ab abVar) {
+        LatLng latLng = new LatLng(abVar.f22962a, abVar.f22963b);
+        try {
+            l8.a aVar = e1.f4541a;
+            q6.m.i(aVar, "CameraUpdateFactory is not initialized");
+            Parcel p12 = aVar.p1();
+            v7.b.b(p12, latLng);
+            Parcel o12 = aVar.o1(p12, 8);
+            a7.a m12 = a7.b.m1(o12.readStrongBinder());
+            o12.recycle();
+            return new aa(new h6.o(m12));
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
+        }
+    }
+
+    @Override
+    public sa newCameraUpdateLatLngBounds(ua uaVar, int i7) {
+        LatLngBounds latLngBounds = ((ba) uaVar).f23176a;
+        try {
+            l8.a aVar = e1.f4541a;
+            q6.m.i(aVar, "CameraUpdateFactory is not initialized");
+            Parcel p12 = aVar.p1();
+            v7.b.b(p12, latLngBounds);
+            p12.writeInt(i7);
+            Parcel o12 = aVar.o1(p12, 10);
+            a7.a m12 = a7.b.m1(o12.readStrongBinder());
+            o12.recycle();
+            return new aa(new h6.o(m12));
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
+        }
+    }
+
+    @Override
+    public sa newCameraUpdateLatLngZoom(ab abVar, float f10) {
+        LatLng latLng = new LatLng(abVar.f22962a, abVar.f22963b);
+        try {
+            l8.a aVar = e1.f4541a;
+            q6.m.i(aVar, "CameraUpdateFactory is not initialized");
+            Parcel p12 = aVar.p1();
+            v7.b.b(p12, latLng);
+            p12.writeFloat(f10);
+            Parcel o12 = aVar.o1(p12, 9);
+            a7.a m12 = a7.b.m1(o12.readStrongBinder());
+            o12.recycle();
+            return new aa(new h6.o(m12));
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
+        }
+    }
+
+    @Override
+    public long o() {
+        return SystemClock.elapsedRealtime();
+    }
+
+    @Override
+    public ta onCreateCircleOptions() {
+        h6.o oVar = new h6.o(25, false);
+        ?? obj = new Object();
+        obj.f20980a = null;
+        obj.f20981b = 0.0d;
+        obj.f20982c = 10.0f;
+        obj.d = -16777216;
+        obj.f20983e = 0;
+        obj.f20984f = 0.0f;
+        obj.h = true;
+        obj.f20985n = false;
+        obj.f20986r = null;
+        oVar.f13936b = obj;
+        return oVar;
+    }
+
+    @Override
+    public va onCreateLatLngBoundsBuilder() {
+        u0 u0Var = new u0(27);
+        m8.d dVar = new m8.d(0);
+        dVar.f20989b = Double.POSITIVE_INFINITY;
+        dVar.f20990c = Double.NEGATIVE_INFINITY;
+        dVar.d = Double.NaN;
+        dVar.f20991e = Double.NaN;
+        u0Var.f15482b = dVar;
+        return u0Var;
+    }
+
+    @Override
+    public xa onCreateMapView(Context context) {
+        r7 r7Var = new r7(13, (byte) 0);
+        r7Var.f616b = new h0(r7Var, context);
+        return r7Var;
+    }
+
+    @Override
+    public ya onCreateMarkerOptions() {
+        j6.r rVar = new j6.r(21);
+        ?? obj = new Object();
+        obj.f20997e = 0.5f;
+        obj.f20998f = 1.0f;
+        obj.f20999n = true;
+        obj.f21000r = false;
+        obj.f21001s = 0.0f;
+        obj.f21002w = 0.5f;
+        obj.f21003x = 0.0f;
+        obj.f21004y = 1.0f;
+        rVar.f17372b = obj;
+        return rVar;
+    }
+
+    @Override
+    public void onFailure(Exception exc) {
+        Log.e("OptionalModuleUtils", "Failed to check feature availability", exc);
+    }
+
+    @Override
+    public int p0(r1 r1Var) {
+        return 0;
+    }
+
+    @Override
+    public boolean p2(r1 r1Var, TL_iv.PageBlock pageBlock) {
+        return false;
+    }
+
+    @Override
+    public boolean r0() {
+        return false;
+    }
+
+    @Override
+    public void u() {
+        Log.d("ProfileInstaller", "DIAGNOSTIC_PROFILE_IS_COMPRESSED");
+    }
+
+    @Override
+    public boolean v0(x5 x5Var) {
         return false;
     }
 
@@ -822,13 +819,18 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public boolean y0(gj gjVar) {
-        return true;
+    public int x2() {
+        return 0;
     }
 
     @Override
-    public String z(long j3) {
-        return null;
+    public boolean y2(int i7) {
+        return false;
+    }
+
+    @Override
+    public b3.r z(s2.q qVar, s2.n nVar) {
+        return new s2.t(qVar, nVar);
     }
 
     @Override
@@ -836,17 +838,12 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
         return false;
     }
 
-    @Override
-    public k9 z2() {
-        return null;
-    }
-
     public b(m7.a aVar) {
-        this.f55526a = 14;
+        this.f55639a = 14;
     }
 
     @Override
-    public void A0() {
+    public void H0() {
     }
 
     @Override
@@ -854,7 +851,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void c() {
+    public void e() {
     }
 
     @Override
@@ -862,27 +859,31 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void i1() {
+    public void k1() {
     }
 
     @Override
-    public void m() {
+    public void p() {
     }
 
     @Override
-    public void s2() {
+    public void u2() {
     }
 
     @Override
-    public void v() {
+    public void x() {
     }
 
     @Override
-    public void x2() {
+    public void z2() {
     }
 
     @Override
-    public void B(r1 r1Var) {
+    public void A(r1 r1Var) {
+    }
+
+    @Override
+    public void C(r1 r1Var) {
     }
 
     @Override
@@ -890,31 +891,23 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void D(v0 v0Var) {
+    public void F(r1 r1Var) {
     }
 
     @Override
-    public void E(r1 r1Var) {
+    public void G0(r1 r1Var) {
     }
 
     @Override
-    public void F(u2 u2Var) {
+    public void H(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
     }
 
     @Override
-    public void F0(r1 r1Var) {
+    public void J(r1 r1Var) {
     }
 
     @Override
-    public void I0(r1 r1Var) {
-    }
-
-    @Override
-    public void K(r1 r1Var) {
-    }
-
-    @Override
-    public void L(dj djVar) {
+    public void L0(r1 r1Var) {
     }
 
     @Override
@@ -922,7 +915,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void M(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    public void M(r1 r1Var) {
     }
 
     @Override
@@ -930,64 +923,68 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void O1(gj gjVar) {
+    public void O(cj cjVar) {
     }
 
     @Override
-    public void P(r1 r1Var) {
+    public void O1(fj fjVar) {
     }
 
     @Override
-    public void R(gj gjVar) {
+    public void Q(long j3) {
     }
 
     @Override
-    public void V(long j3) {
+    public void R(r1 r1Var) {
     }
 
     @Override
-    public void W0(r1 r1Var) {
+    public void S(v0 v0Var) {
     }
 
     @Override
-    public void X0(r1 r1Var) {
+    public void S0(r1 r1Var) {
     }
 
     @Override
-    public void Y(r1 r1Var) {
+    public void W(fj fjVar) {
     }
 
     @Override
-    public void a0(v0 v0Var) {
+    public void d0(r1 r1Var) {
     }
 
     @Override
-    public void h0(int i7) {
+    public void e1(r1 r1Var) {
     }
 
     @Override
-    public void j2(r1 r1Var) {
+    public void f1(r1 r1Var) {
     }
 
     @Override
-    public long k(long j3) {
+    public long h(long j3) {
         return j3;
     }
 
     @Override
-    public void l0(r1 r1Var) {
+    public void k2(r1 r1Var) {
     }
 
     @Override
-    public void o(float f10) {
+    public void l(v0 v0Var) {
     }
 
     @Override
-    public void o0(String str) {
+    public void l0(long j3) {
     }
 
     @Override
-    public void q(r1 r1Var) {
+    public void m0(int i7) {
+    }
+
+    @Override
+    public void q0(r1 r1Var) {
     }
 
     @Override
@@ -995,39 +992,35 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
+    public void r(v0 v0Var) {
+    }
+
+    @Override
     public void s(r1 r1Var) {
     }
 
     @Override
-    public void t(v0 v0Var) {
+    public void t(r1 r1Var) {
     }
 
     @Override
-    public void v0(long j3) {
+    public void t0(String str) {
     }
 
     @Override
-    public void w(r1 r1Var) {
+    public void v(float f10) {
     }
 
     @Override
-    public void x(v0 v0Var) {
+    public void w(v0 v0Var) {
     }
 
     @Override
-    public void y(r1 r1Var) {
-    }
-
-    @Override
-    public void z0(r1 r1Var) {
+    public void y(u2 u2Var) {
     }
 
     @Override
     public void F1(r1 r1Var, boolean z10) {
-    }
-
-    @Override
-    public void I(r1 r1Var, p2 p2Var) {
     }
 
     @Override
@@ -1039,15 +1032,23 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void O0(r1 r1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+    public void L(r1 r1Var, p2 p2Var) {
     }
 
     @Override
-    public void X1(r1 r1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    public void V(v0 v0Var, String str) {
     }
 
     @Override
-    public void a2(r1 r1Var, j10 j10Var) {
+    public void W0(r1 r1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+    }
+
+    @Override
+    public void Y1(r1 r1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    }
+
+    @Override
+    public void b2(r1 r1Var, h10 h10Var) {
     }
 
     @Override
@@ -1055,11 +1056,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void g0(v0 v0Var, String str) {
-    }
-
-    @Override
-    public void k1(r1 r1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void j(v0 v0Var, int i7) {
     }
 
     @Override
@@ -1067,7 +1064,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void n(v0 v0Var, int i7) {
+    public void m1(r1 r1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
@@ -1075,7 +1072,7 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void B0(r1 r1Var, TLObject tLObject, boolean z10) {
+    public void A2(r1 r1Var, int i7, int i10) {
     }
 
     @Override
@@ -1083,35 +1080,39 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void C0(r1 r1Var, float f10, float f11) {
+    public void I0(r1 r1Var, TLObject tLObject, boolean z10) {
     }
 
     @Override
-    public void H0(r1 r1Var, boolean z10, boolean z11) {
+    public void J0(r1 r1Var, float f10, float f11) {
     }
 
     @Override
-    public void N(r1 r1Var, TLRPC.Document document, RectF rectF) {
+    public void K(v0 v0Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
     }
 
     @Override
-    public void Q(v0 v0Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
+    public void M0(r1 r1Var, boolean z10, boolean z11) {
     }
 
     @Override
-    public void T0(r1 r1Var, CharacterStyle characterStyle, boolean z10) {
+    public void P(r1 r1Var, TLRPC.Document document, RectF rectF) {
     }
 
     @Override
-    public void b0(v0 v0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
+    public void T(v0 v0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
     }
 
     @Override
-    public void j0(r1 r1Var, float f10, float f11) {
+    public void a1(r1 r1Var, CharacterStyle characterStyle, boolean z10) {
     }
 
     @Override
-    public void q0(r1 r1Var, float f10, float f11) {
+    public void n(v0 v0Var, int i7, int i10) {
+    }
+
+    @Override
+    public void o0(r1 r1Var, float f10, float f11) {
     }
 
     @Override
@@ -1119,27 +1120,23 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void u(v0 v0Var, int i7, int i10) {
+    public void x0(r1 r1Var, float f10, float f11) {
     }
 
     @Override
-    public void y2(r1 r1Var, int i7, int i10) {
+    public void A0(r1 r1Var, TLRPC.User user, float f10, float f11) {
     }
 
     @Override
-    public void Y1(r1 r1Var, TLRPC.User user, TLRPC.Document document, String str) {
+    public void C0(r1 r1Var, float f10, float f11, boolean z10) {
     }
 
     @Override
-    public void p(r1 r1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i7) {
+    public void Z1(r1 r1Var, TLRPC.User user, TLRPC.Document document, String str) {
     }
 
     @Override
-    public void u0(r1 r1Var, TLRPC.User user, float f10, float f11) {
-    }
-
-    @Override
-    public void w0(r1 r1Var, float f10, float f11, boolean z10) {
+    public void q(r1 r1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i7) {
     }
 
     @Override
@@ -1147,22 +1144,22 @@ public final class b implements a4.h, c4.k, eg.a, f3.g, fg.a, ia.d, pm0, com.goo
     }
 
     @Override
-    public void l(r1 r1Var, ArrayList arrayList, int i7, int i10, int i11) {
+    public void m(r1 r1Var, ArrayList arrayList, int i7, int i10, int i11) {
     }
 
     @Override
-    public void t2(r1 r1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f10, float f11) {
+    public void s0(v0 v0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f10, float f11) {
     }
 
     @Override
-    public void x0(v0 v0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f10, float f11) {
+    public void w2(r1 r1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f10, float f11) {
     }
 
     @Override
-    public void X(r1 r1Var, TLRPC.Chat chat, int i7, float f10, float f11, boolean z10) {
+    public void c0(r1 r1Var, TLRPC.Chat chat, int i7, float f10, float f11, boolean z10) {
     }
 
     @Override
-    public void S1(gj gjVar, String str, String str2, String str3, String str4, int i7, int i10) {
+    public void S1(fj fjVar, String str, String str2, String str3, String str4, int i7, int i10) {
     }
 }

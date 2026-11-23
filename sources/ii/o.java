@@ -1,38 +1,38 @@
 package ii;
 
-import org.telegram.ui.Components.pt0;
-public final class o implements te.b, pt0 {
-    public final int f16319a;
-    public final t f16320b;
+import org.telegram.ui.Components.ot0;
+public final class o implements te.b, ot0 {
+    public final int f16416a;
+    public final t f16417b;
 
     public o(t tVar, int i7) {
-        this.f16319a = i7;
-        this.f16320b = tVar;
+        this.f16416a = i7;
+        this.f16417b = tVar;
     }
 
     @Override
-    public void D(float f10, int i7) {
-        int i10 = this.f16319a;
+    public void G(float f10, int i7) {
+        int i10 = this.f16416a;
     }
 
     @Override
-    public void H(int i7, float f10, float f11, te.c cVar) {
-        switch (this.f16319a) {
+    public void K(int i7, float f10, float f11, te.c cVar) {
+        switch (this.f16416a) {
             case 0:
-                this.f16320b.H0();
+                this.f16417b.H0();
                 return;
             case 1:
-                this.f16320b.H0();
+                this.f16417b.H0();
                 return;
             default:
-                this.f16320b.X.setAlpha(f10);
+                this.f16417b.X.setAlpha(f10);
                 return;
         }
     }
 
     @Override
     public int b() {
-        return this.f16320b.f16329b0;
+        return this.f16417b.f16426b0;
     }
 
     private final void a(float f10, int i7) {

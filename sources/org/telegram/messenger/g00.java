@@ -1,24 +1,52 @@
 package org.telegram.messenger;
-public final class g00 implements oc, nc {
-    public final a10 f24019a;
-    public final gj f24020b;
-    public final f3.s f24021c;
-    public final di.p9 d;
 
-    public g00(a10 a10Var, gj gjVar, f3.s sVar, di.p9 p9Var) {
-        this.f24019a = a10Var;
-        this.f24020b = gjVar;
-        this.f24021c = sVar;
-        this.d = p9Var;
+import android.icu.text.Collator;
+import java.util.Comparator;
+import java.util.List;
+public final class g00 implements Comparator {
+    public final int f24235a;
+    public final Object f24236b;
+
+    public g00(Object obj, int i7) {
+        this.f24235a = i7;
+        this.f24236b = obj;
     }
 
     @Override
-    public void a(String str) {
-        g0.g3(new gn(this.f24019a, this.f24020b, str, this.f24021c, this.d, 18));
-    }
-
-    @Override
-    public void q(Exception exc) {
-        g0.g3(new ul(this.f24019a, this.f24020b, this.f24021c, this.d, 27));
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f24235a) {
+            case 0:
+                return y00.a((Collator) this.f24236b, (r00) obj, (r00) obj2);
+            default:
+                cd cdVar = (cd) this.f24236b;
+                cd cdVar2 = (cd) obj;
+                cd cdVar3 = (cd) obj2;
+                if (cdVar2 != cdVar) {
+                    if (cdVar3 != cdVar) {
+                        List list = y00.N;
+                        int indexOf = list.indexOf(cdVar2.f23447f);
+                        int indexOf2 = list.indexOf(cdVar3.f23447f);
+                        if (indexOf >= 0 && indexOf2 >= 0) {
+                            return indexOf - indexOf2;
+                        }
+                        if (indexOf < 0) {
+                            if (indexOf2 < 0) {
+                                int i7 = cdVar2.f23451k;
+                                int i10 = cdVar3.f23451k;
+                                if (i7 == i10) {
+                                    return cdVar2.f23443a.compareTo(cdVar3.f23443a);
+                                }
+                                if (i7 <= i10) {
+                                    if (i7 >= i10) {
+                                        return 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    return 1;
+                }
+                return -1;
+        }
     }
 }

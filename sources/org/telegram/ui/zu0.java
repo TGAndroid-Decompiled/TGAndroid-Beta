@@ -1,50 +1,18 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class zu0 implements kp {
-    public final TLRPC.Chat f54601a;
-    public final np f54602b;
-    public final ProfileActivity f54603c;
+import android.content.Context;
+public final class zu0 extends org.telegram.ui.Components.gg0 {
+    public final ProfileActivity f54728t1;
 
-    public zu0(ProfileActivity profileActivity, TLRPC.Chat chat, np npVar) {
-        this.f54603c = profileActivity;
-        this.f54601a = chat;
-        this.f54602b = npVar;
+    public zu0(ProfileActivity profileActivity, Context context, long j3, org.telegram.ui.ActionBar.k kVar, pu0 pu0Var, yu0 yu0Var, org.telegram.ui.Components.cg0 cg0Var, org.telegram.ui.Components.yf0 yf0Var) {
+        super(context, j3, kVar, pu0Var, yu0Var, cg0Var, yf0Var);
+        this.f54728t1 = profileActivity;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        int i7;
-        ProfileActivity profileActivity = this.f54603c;
-        UndoView undoView = profileActivity.M;
-        long j3 = -profileActivity.f43558f1;
-        if (profileActivity.F2.megagroup) {
-            i7 = 10;
-        } else {
-            i7 = 9;
-        }
-        undoView.m(j3, user, i7);
-    }
-
-    @Override
-    public final void b(int i7, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.Chat chat;
-        ProfileActivity profileActivity = this.f54603c;
-        profileActivity.removeSelfFromStack();
-        TLRPC.User c22 = profileActivity.getMessagesController().c2(Long.valueOf(profileActivity.f43550e1));
-        if (c22 != null && (chat = this.f54601a) != null && profileActivity.f43550e1 != 0) {
-            np npVar = this.f54602b;
-            if (npVar.R && npVar.getParentLayout() != null) {
-                for (org.telegram.ui.ActionBar.g2 g2Var : npVar.getParentLayout().getFragmentStack()) {
-                    if (g2Var instanceof lb) {
-                        lb lbVar = (lb) g2Var;
-                        lbVar.a1();
-                        org.telegram.messenger.g0.g3(new mc0(lbVar, c22, chat, 28));
-                        return;
-                    }
-                }
-            }
-        }
+    public final void setCustomAvatarProgress(float f10) {
+        ProfileActivity profileActivity = this.f54728t1;
+        profileActivity.f43773t5 = f10;
+        profileActivity.Q3();
     }
 }

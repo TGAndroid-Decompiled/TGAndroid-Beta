@@ -1,27 +1,43 @@
 package org.telegram.ui.Wallet;
-
-import org.telegram.tgnet.tl.TL_wallet;
 public final class r3 implements Runnable {
-    public final int f44884a;
-    public final org.telegram.ui.ActionBar.g2 f44885b;
-    public final TL_wallet.card f44886c;
+    public final int f44989a;
+    public final x3 f44990b;
 
-    public r3(org.telegram.ui.ActionBar.g2 g2Var, TL_wallet.card cardVar, int i7) {
-        this.f44884a = i7;
-        this.f44885b = g2Var;
-        this.f44886c = cardVar;
+    public r3(x3 x3Var, int i7) {
+        this.f44989a = i7;
+        this.f44990b = x3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f44884a) {
+        switch (this.f44989a) {
             case 0:
-                org.telegram.ui.ActionBar.g2 g2Var = this.f44885b;
-                g2Var.presentFragment(new da(g2Var.getCurrentAccount(), this.f44886c.address));
+                x3 x3Var = this.f44990b;
+                if (!x3Var.T && !x3Var.S) {
+                    ih.d.c(x3Var.F, x3Var.h);
+                    x3Var.G.d();
+                    y6 y6Var = x3Var.f45378r;
+                    r3 r3Var = new r3(x3Var, 1);
+                    t6 t6Var = y6Var.E;
+                    if (t6Var != null) {
+                        if (t6Var.f45168b != null) {
+                            r3Var.run();
+                            return;
+                        } else {
+                            t6Var.d = r3Var;
+                            return;
+                        }
+                    }
+                    r3Var.run();
+                    return;
+                }
                 return;
             default:
-                org.telegram.ui.ActionBar.g2 g2Var2 = this.f44885b;
-                g2Var2.presentFragment(new da(g2Var2.getCurrentAccount(), this.f44886c.address));
+                x3 x3Var2 = this.f44990b;
+                if (!x3Var2.T && !x3Var2.S) {
+                    x3Var2.a(1.0f);
+                    return;
+                }
                 return;
         }
     }

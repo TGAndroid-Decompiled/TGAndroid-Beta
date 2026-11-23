@@ -1,28 +1,11 @@
 package org.telegram.ui;
 
-import android.view.TextureView;
-public final class v20 implements er0 {
-    public final f40 f52694a;
+import android.content.Context;
+public final class v20 extends org.telegram.ui.Components.voip.x0 {
+    public final e40 F;
 
-    public v20(f40 f40Var) {
-        this.f52694a = f40Var;
-    }
-
-    @Override
-    public final void G0(org.telegram.messenger.gj gjVar) {
-        f40 f40Var = this.f52694a;
-        f40Var.L1.I0(true);
-        f40Var.f47439b4.f48103f.K0(org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), 0, 0);
-        f40Var.f30142b.invalidate();
-    }
-
-    @Override
-    public final void H(org.telegram.messenger.gj gjVar) {
-        this.f52694a.f30142b.invalidate();
-    }
-
-    @Override
-    public final TextureView f0() {
-        return null;
+    public v20(e40 e40Var, Context context, boolean z10) {
+        super(context, z10);
+        this.F = e40Var;
     }
 }

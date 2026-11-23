@@ -1,31 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class ox extends h51 {
-    public ox(Context context, int i7, org.telegram.messenger.r10 r10Var, org.telegram.messenger.w10 w10Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, i7, -1, false, r10Var, w10Var, null, h6Var, -1, 0);
-        this.f34881z2 = true;
-        setOverScrollMode(2);
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+public final class ox implements ey {
+    public final px f38273a;
+
+    public ox(px pxVar) {
+        this.f38273a = pxVar;
     }
 
-    public final void L1(View view) {
-        int i7;
-        if (view != null) {
-            float L = org.telegram.messenger.g0.L(92.0f);
-            float width = getWidth() - L;
-            float x10 = view.getX();
-            float width2 = view.getWidth() + x10;
-            if (x10 < L) {
-                i7 = (int) (x10 - L);
-            } else if (width2 > width) {
-                i7 = (int) (width2 - width);
-            } else {
-                i7 = 0;
-            }
-            if (i7 != 0) {
-                org.telegram.messenger.g0.J(this, new f21(this, view, i7, 23));
-            }
+    @Override
+    public final void e() {
+        px pxVar = this.f38273a;
+        if (pxVar.G.W.G) {
+            return;
+        }
+        ArrayList arrayList = new ArrayList();
+        pxVar.G.W.e(true);
+        px.E(pxVar, new bt(7, this, arrayList), arrayList, true);
+    }
+
+    @Override
+    public final void run() {
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        String str = this.f38273a.f38607w;
+        bt btVar = new bt(6, this, str);
+        if (org.telegram.messenger.j6.d(str)) {
+            kv0.G3.c(org.telegram.messenger.i10.f24637t0, str, new ph(4, linkedHashSet, btVar));
+        } else {
+            btVar.run();
         }
     }
 }

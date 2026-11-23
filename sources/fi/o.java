@@ -1,30 +1,30 @@
 package fi;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.tv;
+import org.telegram.ui.sv;
 public final class o implements Runnable {
-    public final int f12310a;
-    public final p f12311b;
+    public final int f12322a;
+    public final p f12323b;
 
     public o(p pVar, int i7) {
-        this.f12310a = i7;
-        this.f12311b = pVar;
+        this.f12322a = i7;
+        this.f12323b = pVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f12310a) {
+        switch (this.f12322a) {
             case 0:
-                tv tvVar = this.f12311b.f12352c0;
-                ValueAnimator valueAnimator = tvVar.f12419k0;
+                sv svVar = this.f12323b.f12364c0;
+                ValueAnimator valueAnimator = svVar.f12429k0;
                 if (valueAnimator != null) {
                     valueAnimator.start();
                 }
-                tvVar.f12420l0 = null;
+                svVar.f12430l0 = null;
                 return;
             default:
-                p pVar = this.f12311b;
-                pVar.f12359x = false;
+                p pVar = this.f12323b;
+                pVar.f12371x = false;
                 pVar.invalidate();
                 return;
         }

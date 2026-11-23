@@ -1,49 +1,40 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class x8 extends FragmentContextView {
-    public final int Y0 = 0;
-    public final org.telegram.ui.ActionBar.g2 Z0;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class x8 extends v4.u0 {
+    public boolean f53880a;
+    public final j9 f53881b;
 
-    public x8(i9 i9Var, Context context, i9 i9Var2, v8 v8Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, i9Var2, v8Var, false, h6Var);
-        this.Z0 = i9Var;
+    public x8(j9 j9Var) {
+        this.f53881b = j9Var;
     }
 
     @Override
-    public final void setVisibility(int i7) {
-        boolean z10;
-        boolean z11;
-        switch (this.Y0) {
-            case 0:
-                i9 i9Var = (i9) this.Z0;
-                org.telegram.ui.Components.es esVar = i9Var.I;
-                FrameLayout frameLayout = i9Var.J;
-                if (i7 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                esVar.j(frameLayout, z10, true);
-                return;
-            default:
-                y91 y91Var = (y91) this.Z0;
-                org.telegram.ui.Components.es esVar2 = y91Var.V0;
-                FrameLayout frameLayout2 = y91Var.G0;
-                if (i7 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                esVar2.j(frameLayout2, z11, true);
-                return;
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        int abs;
+        j9 j9Var = this.f53881b;
+        ArrayList arrayList = j9Var.f49057x;
+        int L0 = j9Var.f49049b.L0();
+        boolean z10 = false;
+        if (L0 == -1) {
+            abs = 0;
+        } else {
+            abs = Math.abs(j9Var.f49049b.N0() - L0) + 1;
         }
-    }
-
-    public x8(y91 y91Var, Context context, y91 y91Var2) {
-        super(context, y91Var2, null, false, null);
-        this.Z0 = y91Var;
+        if (abs > 0) {
+            int size = j9Var.f49050c.f35323g3.E.size();
+            if (!j9Var.F && !j9Var.f49058y && !arrayList.isEmpty() && L0 + abs >= size - 5) {
+                org.telegram.messenger.g0.g3(new u5(3, this, (g9) i5.c.h(1, arrayList)));
+            }
+        }
+        if (i10 != 0 && this.f53880a) {
+            org.telegram.ui.Components.a10 a10Var = j9Var.f49052f;
+            if (i10 < 0) {
+                z10 = true;
+            }
+            a10Var.e(z10, true);
+        }
+        this.f53880a = true;
     }
 }

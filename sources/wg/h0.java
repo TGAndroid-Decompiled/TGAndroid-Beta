@@ -1,32 +1,63 @@
 package wg;
 
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.text.TextPaint;
 import android.view.View;
+import android.widget.FrameLayout;
+import c8.na;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.m6;
-public final class h0 extends View implements b6 {
-    public TextPaint f59775a;
-    public int f59776b;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.a9;
+import org.telegram.ui.Components.p9;
+public final class h0 extends FrameLayout implements c6 {
+    public static final int f59875f = 0;
+    public final p9 f59876a;
+    public final g0 f59877b;
+    public final Paint f59878c;
+    public boolean d;
+    public final a9 f59879e;
+
+    public h0(Context context, float f10) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f59878c = paint;
+        this.d = true;
+        this.f59879e = new a9((i6) null);
+        p9 p9Var = new p9(getContext());
+        this.f59876a = p9Var;
+        p9Var.setRoundRadius(org.telegram.messenger.g0.L(f10));
+        ?? view = new View(context);
+        TextPaint textPaint = new TextPaint(1);
+        view.f59873a = textPaint;
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        int i7 = n6.f29394a7;
+        textPaint.setColor(n6.x0(null, i7, false));
+        textPaint.setTextSize(org.telegram.messenger.g0.L(11.5f));
+        textPaint.setTypeface(org.telegram.messenger.g0.o());
+        this.f59877b = view;
+        view.setAlpha(0.0f);
+        addView(p9Var, na.d(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
+        addView((View) view, na.d(26, 26.0f, 85, 0.0f, 0.0f, 1.0f, 3.0f));
+        paint.setColor(n6.x0(null, i7, false));
+    }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float measuredWidth = getMeasuredWidth() / 2.0f;
-        float measuredHeight = getMeasuredHeight() / 2.0f;
-        TextPaint textPaint = this.f59775a;
-        canvas.drawCircle(measuredWidth, measuredHeight, getMeasuredWidth() / 2.0f, textPaint);
-        ia.e.d().f(-org.telegram.messenger.g0.L(10.0f), 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawCircle(measuredWidth, measuredHeight, (getMeasuredWidth() / 2.0f) - org.telegram.messenger.g0.L(1.5f), ia.e.d().e());
-        float descent = textPaint.descent();
-        canvas.drawText("+" + this.f59776b, measuredWidth, (int) (measuredHeight - ((textPaint.ascent() + descent) / 2.0f)), textPaint);
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.d) {
+            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - org.telegram.messenger.g0.L(2.0f), this.f59878c);
+        }
+        super.dispatchDraw(canvas);
     }
 
     @Override
     public final void updateColors() {
         try {
-            this.f59775a.setColor(m6.x0(null, m6.f29290a7, false));
+            this.f59878c.setColor(n6.x0(null, n6.f29394a7, false));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

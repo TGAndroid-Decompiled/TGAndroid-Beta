@@ -3,10 +3,10 @@ package i2;
 import e2.n0;
 import e2.p0;
 public final class b implements p0 {
-    public final int f15913a;
+    public final int f16008a;
 
     public b(int i7) {
-        this.f15913a = i7;
+        this.f16008a = i7;
     }
 
     @Override
@@ -23,18 +23,18 @@ public final class b implements p0 {
         if (this == obj) {
             return true;
         }
-        if ((obj instanceof b) && this.f15913a == ((b) obj).f15913a) {
+        if ((obj instanceof b) && this.f16008a == ((b) obj).f16008a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f15913a;
+        return this.f16008a;
     }
 
     public final String toString() {
-        return "Mp4AlternateGroup: " + this.f15913a;
+        return "Mp4AlternateGroup: " + this.f16008a;
     }
 
     @Override

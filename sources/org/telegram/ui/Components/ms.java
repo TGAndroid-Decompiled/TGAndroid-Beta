@@ -1,64 +1,79 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public abstract class ms extends c51 {
-    public final int Q;
-    public final int R;
-    public final ArrayList S;
-    public final ArrayList T;
-    public final ArrayList U;
-    public final ArrayList V;
-    public boolean W;
-    public boolean X;
-    public final ArrayList Y;
-    public boolean Z;
-    public boolean f37577a0;
-    public boolean f37578b0;
-    public int f37579c0;
-    public int f37580d0;
-    public String f37581e0;
-    public final oo f37582f0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class ms extends AnimatorListenerAdapter {
+    public final int f37531a = 1;
+    public final v4.f1 f37532b;
+    public final View f37533c;
+    public final ViewPropertyAnimator d;
+    public final qs f37534e;
 
-    public ms(ek0 ek0Var, Context context, int i7, int i10) {
-        super(ek0Var, context, i7, 0, false, null, null);
-        this.S = new ArrayList();
-        this.T = new ArrayList();
-        this.U = new ArrayList();
-        this.V = new ArrayList();
-        this.Y = new ArrayList();
-        om0 om0Var = (om0) this;
-        this.f37582f0 = new oo(om0Var, 8);
-        this.f34028w = new d(om0Var, 10);
-        this.Q = i7;
-        this.R = i10;
-        O(false);
+    public ms(qs qsVar, v4.f1 f1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
+        this.f37534e = qsVar;
+        this.f37532b = f1Var;
+        this.d = viewPropertyAnimator;
+        this.f37533c = view;
     }
 
-    public final void W(boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ms.W(boolean):void");
-    }
-
-    public final void X() {
-        ArrayList arrayList = new ArrayList();
-        int i7 = this.Q;
-        ArrayList arrayList2 = org.telegram.messenger.np.u1(i7).f25972y;
-        int size = arrayList2.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList2.get(i10);
-            i10++;
-            TLRPC.Chat O0 = org.telegram.messenger.np.u1(i7).O0(Long.valueOf(-((TLRPC.Dialog) obj).f28402id));
-            if (O0 != null && org.telegram.messenger.v3.V(O0) && org.telegram.messenger.v3.t0(O0) && !org.telegram.messenger.v3.r0(O0)) {
-                arrayList.add(O0);
-                if (arrayList.size() >= 100) {
-                    break;
-                }
-            }
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f37531a) {
+            case 1:
+                this.f37533c.setAlpha(1.0f);
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        ArrayList arrayList3 = this.Y;
-        arrayList3.clear();
-        arrayList3.addAll(arrayList);
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37531a) {
+            case 0:
+                this.d.setListener(null);
+                this.f37533c.setAlpha(1.0f);
+                qs qsVar = this.f37534e;
+                v4.f1 f1Var = this.f37532b;
+                qsVar.d(f1Var);
+                qsVar.f38992x.remove(f1Var);
+                qsVar.A();
+                return;
+            default:
+                this.d.setListener(null);
+                qs qsVar2 = this.f37534e;
+                v4.f1 f1Var2 = this.f37532b;
+                qsVar2.u(f1Var2);
+                qsVar2.v.remove(f1Var2);
+                qsVar2.A();
+                View view = f1Var2.f59245a;
+                if (view instanceof org.telegram.ui.Cells.u2) {
+                    ((org.telegram.ui.Cells.u2) view).setMoving(false);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f37531a) {
+            case 0:
+                this.f37534e.y();
+                return;
+            default:
+                this.f37534e.getClass();
+                return;
+        }
+    }
+
+    public ms(qs qsVar, v4.f1 f1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
+        this.f37534e = qsVar;
+        this.f37532b = f1Var;
+        this.f37533c = view;
+        this.d = viewPropertyAnimator;
     }
 }

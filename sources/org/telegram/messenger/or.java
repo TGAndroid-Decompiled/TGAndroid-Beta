@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 public interface or {
-    void a(int i7);
+    void run(long j3);
 }

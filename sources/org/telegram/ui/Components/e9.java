@@ -1,92 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.view.View;
-import org.telegram.tgnet.TLObject;
-public class e9 extends View {
-    public final d9 f34690a;
-    public ug.a1 f34691b;
-    public xy0 f34692c;
-    public Paint d;
+import org.telegram.messenger.ImageReceiver;
+public final class e9 implements te.f, we.a {
+    public final ImageReceiver f34668a;
+    public final a9 f34669b;
+    public long f34670c;
+    public boolean d;
+    public final f9 f34671e;
 
-    public e9(Context context, boolean z10) {
-        super(context);
-        this.f34690a = new d9(this, z10);
-    }
-
-    public final void a(boolean z10) {
-        this.f34690a.a(z10, true);
-    }
-
-    public final void b(int i7, int i10, TLObject tLObject) {
-        this.f34690a.j(i7, i10, tLObject);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f34690a.e();
+    public e9(f9 f9Var, View view) {
+        this.f34671e = f9Var;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.f34668a = imageReceiver;
+        imageReceiver.K0(f9Var.f35059e / 2);
+        a9 a9Var = new a9((org.telegram.ui.ActionBar.i6) null);
+        this.f34669b = a9Var;
+        a9Var.u(org.telegram.messenger.g0.L(22.0f));
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f34690a.f();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        this.f34690a.g(canvas);
-        if (this.f34692c != null) {
-            RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(getWidth() - org.telegram.messenger.g0.L(22.0f), getHeight() - org.telegram.messenger.g0.L(22.0f), getWidth() - org.telegram.messenger.g0.L(0.0f), getHeight() - org.telegram.messenger.g0.L(0.0f));
-            this.f34691b.e(rectF);
-            canvas.drawCircle(rectF.centerX(), rectF.centerY(), (rectF.width() / 2.0f) + org.telegram.messenger.g0.L(1.33f), this.d);
-            canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f34691b.f58612f);
-            this.f34692c.c(rectF.centerX() - (this.f34692c.f42224c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
+    public final void a() {
+        if (this.d) {
+            this.d = false;
+            this.f34668a.S();
         }
+        this.f34670c = 0L;
     }
 
     @Override
-    public void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        int measuredWidth = getMeasuredWidth();
-        d9 d9Var = this.f34690a;
-        d9Var.f34400p = measuredWidth;
-        d9Var.f34399o = getMeasuredHeight();
+    public final int b(boolean z10) {
+        if (z10) {
+            return 0;
+        }
+        return -this.f34671e.f35060f;
     }
 
-    public void setAvatarsTextSize(int i7) {
-        this.f34690a.h(i7);
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof e9) || this.f34670c != ((e9) obj).f34670c) {
+            return false;
+        }
+        return true;
     }
 
-    public void setCentered(boolean z10) {
-        this.f34690a.f34396l = z10;
+    @Override
+    public final int getHeight() {
+        return this.f34671e.f35059e;
     }
 
-    public void setCount(int i7) {
-        this.f34690a.i(i7);
-    }
-
-    public void setDelegate(Runnable runnable) {
-        this.f34690a.f34394j = runnable;
-    }
-
-    public void setSize(int i7) {
-        this.f34690a.f34403s = i7;
-    }
-
-    public void setStepFactor(float f10) {
-        this.f34690a.f34404t = f10;
-    }
-
-    public void setStyle(int i7) {
-        d9 d9Var = this.f34690a;
-        d9Var.f34395k = i7;
-        d9Var.d();
+    @Override
+    public final int getWidth() {
+        return this.f34671e.f35059e;
     }
 }

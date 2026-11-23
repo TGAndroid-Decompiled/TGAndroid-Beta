@@ -14,7 +14,7 @@ public final class r implements u9.d {
     }
 
     @Override
-    public final Object e(r7 r7Var) {
+    public final Object c(r7 r7Var) {
         switch (this.f990a) {
             case 0:
                 return FirebaseMessagingRegistrar.a(this.f991b, r7Var);

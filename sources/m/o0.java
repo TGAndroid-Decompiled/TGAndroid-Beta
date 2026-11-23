@@ -13,11 +13,11 @@ public interface o0 {
 
     void dismiss();
 
-    Drawable e();
+    Drawable f();
 
-    void i(CharSequence charSequence);
+    void h(CharSequence charSequence);
 
-    void j(Drawable drawable);
+    void i(Drawable drawable);
 
     void k(int i7);
 
@@ -25,7 +25,7 @@ public interface o0 {
 
     void m(int i7, int i10);
 
-    int o();
+    int n();
 
-    void p(ListAdapter listAdapter);
+    void o(ListAdapter listAdapter);
 }

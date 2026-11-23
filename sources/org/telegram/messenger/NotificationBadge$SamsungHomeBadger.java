@@ -8,9 +8,9 @@ import android.net.Uri;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-public class NotificationBadge$SamsungHomeBadger implements xr {
-    public static final String[] f22758a = {"_id", "class"};
-    public static NotificationBadge$DefaultBadger f22759b;
+public class NotificationBadge$SamsungHomeBadger implements wr {
+    public static final String[] f22861a = {"_id", "class"};
+    public static NotificationBadge$DefaultBadger f22862b;
 
     public static ContentValues c(ComponentName componentName, int i7, boolean z10) {
         ContentValues contentValues = new ContentValues();
@@ -25,35 +25,35 @@ public class NotificationBadge$SamsungHomeBadger implements xr {
     @Override
     public final void a(int i7) {
         try {
-            if (f22759b == null) {
-                f22759b = new NotificationBadge$DefaultBadger();
+            if (f22862b == null) {
+                f22862b = new NotificationBadge$DefaultBadger();
             }
-            f22759b.a(i7);
+            f22862b.a(i7);
         } catch (Exception unused) {
         }
         Uri parse = Uri.parse("content://com.sec.badge/apps?notify=true");
-        ContentResolver contentResolver = t0.f26895b.getContentResolver();
+        ContentResolver contentResolver = t0.f27013b.getContentResolver();
         Cursor cursor = null;
         try {
-            cursor = contentResolver.query(parse, f22758a, "package=?", new String[]{as.d.getPackageName()}, null);
+            cursor = contentResolver.query(parse, f22861a, "package=?", new String[]{zr.d.getPackageName()}, null);
             if (cursor != null) {
-                String className = as.d.getClassName();
+                String className = zr.d.getClassName();
                 boolean z10 = false;
                 while (cursor.moveToNext()) {
-                    contentResolver.update(parse, c(as.d, i7, false), "_id=?", new String[]{String.valueOf(cursor.getInt(0))});
+                    contentResolver.update(parse, c(zr.d, i7, false), "_id=?", new String[]{String.valueOf(cursor.getInt(0))});
                     if (className.equals(cursor.getString(cursor.getColumnIndex("class")))) {
                         z10 = true;
                     }
                 }
                 if (!z10) {
-                    contentResolver.insert(parse, c(as.d, i7, true));
+                    contentResolver.insert(parse, c(zr.d, i7, true));
                 }
             }
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }
         } catch (Throwable th2) {
-            LinkedList linkedList = as.f22928a;
+            LinkedList linkedList = zr.f28437a;
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }

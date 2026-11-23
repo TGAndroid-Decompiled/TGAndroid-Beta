@@ -9,7 +9,7 @@ import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import bi.x2;
-import org.telegram.ui.Components.oo;
+import org.telegram.ui.Components.lo;
 public abstract class h extends Drawable {
     public final int f219a;
     public Object f220b;
@@ -280,7 +280,7 @@ public abstract class h extends Drawable {
         if (view != null) {
             view.addOnAttachStateChangeListener(new x2(this, 13));
             if (view.isAttachedToWindow()) {
-                view.post(new oo(this, 3));
+                view.post(new lo(this, 3));
             }
         }
     }

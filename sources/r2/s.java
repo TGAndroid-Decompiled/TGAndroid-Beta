@@ -3,13 +3,14 @@ package r2;
 import android.text.TextUtils;
 import e2.s0;
 import e2.t0;
+import f3.j0;
 import f3.t;
 import h2.k0;
 import h2.l0;
 import h2.x;
 import h9.g0;
 import h9.i0;
-import h9.t1;
+import h9.s1;
 import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -17,46 +18,46 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class s implements f3.o {
-    public static final Pattern f56454i = Pattern.compile("LOCAL:([^,]+)");
-    public static final Pattern f56455j = Pattern.compile("MPEGTS:(-?\\d+)");
-    public final String f56456a;
-    public final k0 f56457b;
+    public static final Pattern f56567i = Pattern.compile("LOCAL:([^,]+)");
+    public static final Pattern f56568j = Pattern.compile("MPEGTS:(-?\\d+)");
+    public final String f56569a;
+    public final k0 f56570b;
     public final c4.k d;
-    public final boolean f56459e;
-    public f3.q f56460f;
+    public final boolean f56572e;
+    public f3.q f56573f;
     public int h;
-    public final x f56458c = new x();
-    public byte[] f56461g = new byte[1024];
+    public final x f56571c = new x();
+    public byte[] f56574g = new byte[1024];
 
     public s(String str, k0 k0Var, c4.k kVar, boolean z10) {
-        this.f56456a = str;
-        this.f56457b = k0Var;
+        this.f56569a = str;
+        this.f56570b = k0Var;
         this.d = kVar;
-        this.f56459e = z10;
+        this.f56572e = z10;
     }
 
     @Override
     public final boolean b(f3.p pVar) {
         f3.l lVar = (f3.l) pVar;
-        lVar.g(this.f56461g, 0, 6, false);
-        byte[] bArr = this.f56461g;
-        x xVar = this.f56458c;
+        lVar.k(this.f56574g, 0, 6, false);
+        byte[] bArr = this.f56574g;
+        x xVar = this.f56571c;
         xVar.L(6, bArr);
         if (l4.i.a(xVar)) {
             return true;
         }
-        lVar.g(this.f56461g, 6, 3, false);
-        xVar.L(9, this.f56461g);
+        lVar.k(this.f56574g, 6, 3, false);
+        xVar.L(9, this.f56574g);
         return l4.i.a(xVar);
     }
 
     @Override
     public final void c(f3.q qVar) {
-        if (this.f56459e) {
+        if (this.f56572e) {
             qVar = new ab.q(qVar, this.d);
         }
-        this.f56460f = qVar;
-        qVar.j(new t(-9223372036854775807L));
+        this.f56573f = qVar;
+        qVar.h(new t(-9223372036854775807L));
     }
 
     @Override
@@ -66,27 +67,27 @@ public final class s implements f3.o {
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f13998b;
-        return t1.f14066e;
+        g0 g0Var = i0.f13995b;
+        return s1.f14058e;
     }
 
     @Override
     public final int f(f3.p pVar, f3.s sVar) {
         String n10;
         int length;
-        this.f56460f.getClass();
+        this.f56573f.getClass();
         int length2 = (int) pVar.getLength();
         int i7 = this.h;
-        byte[] bArr = this.f56461g;
+        byte[] bArr = this.f56574g;
         if (i7 == bArr.length) {
             if (length2 != -1) {
                 length = length2;
             } else {
                 length = bArr.length;
             }
-            this.f56461g = Arrays.copyOf(bArr, (length * 3) / 2);
+            this.f56574g = Arrays.copyOf(bArr, (length * 3) / 2);
         }
-        byte[] bArr2 = this.f56461g;
+        byte[] bArr2 = this.f56574g;
         int i10 = this.h;
         int read = pVar.read(bArr2, i10, bArr2.length - i10);
         if (read != -1) {
@@ -96,7 +97,7 @@ public final class s implements f3.o {
                 return 0;
             }
         }
-        x xVar = new x(this.f56461g);
+        x xVar = new x(this.f56574g);
         l4.i.d(xVar);
         String n11 = xVar.n(StandardCharsets.UTF_8);
         long j3 = 0;
@@ -105,9 +106,9 @@ public final class s implements f3.o {
             Matcher matcher = null;
             if (!TextUtils.isEmpty(n11)) {
                 if (n11.startsWith("X-TIMESTAMP-MAP")) {
-                    Matcher matcher2 = f56454i.matcher(n11);
+                    Matcher matcher2 = f56567i.matcher(n11);
                     if (matcher2.find()) {
-                        Matcher matcher3 = f56455j.matcher(n11);
+                        Matcher matcher3 = f56568j.matcher(n11);
                         if (matcher3.find()) {
                             String group = matcher2.group(1);
                             group.getClass();
@@ -130,14 +131,14 @@ public final class s implements f3.o {
                     String n12 = xVar.n(StandardCharsets.UTF_8);
                     if (n12 == null) {
                         break;
-                    } else if (l4.i.f19663a.matcher(n12).matches()) {
+                    } else if (l4.i.f19763a.matcher(n12).matches()) {
                         do {
                             n10 = xVar.n(StandardCharsets.UTF_8);
                             if (n10 != null) {
                             }
                         } while (!n10.isEmpty());
                     } else {
-                        Matcher matcher4 = l4.h.f19660a.matcher(n12);
+                        Matcher matcher4 = l4.h.f19760a.matcher(n12);
                         if (matcher4.matches()) {
                             matcher = matcher4;
                             break;
@@ -152,11 +153,11 @@ public final class s implements f3.o {
                 group3.getClass();
                 long c10 = l4.i.c(group3);
                 String str2 = l0.f13778a;
-                long b10 = this.f56457b.b(l0.a0((j3 + c10) - j10, 90000L, 1000000L, RoundingMode.DOWN) % 8589934592L);
-                f3.i0 g10 = g(b10 - c10);
-                byte[] bArr3 = this.f56461g;
+                long b10 = this.f56570b.b(l0.a0((j3 + c10) - j10, 90000L, 1000000L, RoundingMode.DOWN) % 8589934592L);
+                j0 g10 = g(b10 - c10);
+                byte[] bArr3 = this.f56574g;
                 int i12 = this.h;
-                x xVar2 = this.f56458c;
+                x xVar2 = this.f56571c;
                 xVar2.L(i12, bArr3);
                 g10.b(this.h, xVar2);
                 g10.c(b10, 1, this.h, 0, null);
@@ -165,14 +166,14 @@ public final class s implements f3.o {
         }
     }
 
-    public final f3.i0 g(long j3) {
-        f3.i0 d2 = this.f56460f.d2(0, 3);
+    public final j0 g(long j3) {
+        j0 d2 = this.f56573f.d2(0, 3);
         e2.t tVar = new e2.t();
-        tVar.f10709r = s0.n("text/vtt");
-        tVar.d = this.f56456a;
-        tVar.f10713w = j3;
+        tVar.f10707r = s0.n("text/vtt");
+        tVar.d = this.f56569a;
+        tVar.f10711w = j3;
         p5.c.r(tVar, d2);
-        this.f56460f.d1();
+        this.f56573f.Z0();
         return d2;
     }
 

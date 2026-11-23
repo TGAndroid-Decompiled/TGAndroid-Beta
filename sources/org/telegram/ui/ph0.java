@@ -1,26 +1,36 @@
 package org.telegram.ui;
 
-import android.widget.ImageView;
-public final class ph0 extends org.telegram.ui.Cells.n8 {
-    public ImageView f50854a0;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class ph0 implements Runnable {
+    public final int f51025a;
+    public final qh0 f51026b;
+    public final String f51027c;
 
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        int L;
-        super.onLayout(z10, i7, i10, i11, i12);
-        int i13 = i11 - i7;
-        if (org.telegram.messenger.hd.f24408a0) {
-            L = org.telegram.messenger.g0.L(17.0f);
-        } else {
-            L = i13 - org.telegram.messenger.g0.L(41.0f);
-        }
-        int z11 = org.telegram.messenger.o10.z(24.0f, i12 - i10, 2);
-        this.f50854a0.layout(L, z11, org.telegram.messenger.g0.L(24.0f) + L, org.telegram.messenger.g0.L(24.0f) + z11);
+    public ph0(qh0 qh0Var, String str, int i7) {
+        this.f51025a = i7;
+        this.f51026b = qh0Var;
+        this.f51027c = str;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        this.f50854a0.measure(i7, i10);
+    public final void run() {
+        switch (this.f51025a) {
+            case 0:
+                qh0 qh0Var = this.f51026b;
+                String str = this.f51027c;
+                qh0Var.getClass();
+                org.telegram.messenger.g0.g3(new ph0(qh0Var, str, 1));
+                return;
+            default:
+                qh0 qh0Var2 = this.f51026b;
+                String str2 = this.f51027c;
+                jg.z1 z1Var = qh0Var2.h;
+                int i7 = qh0Var2.f51461n.f43243s;
+                boolean z10 = true;
+                z1Var.g(str2, true, (i7 == 1 || i7 == 3) ? false : false, true, false, 0L, false, 0, 0);
+                Utilities.f22879g.c(new lc0(qh0Var2, str2, new ArrayList(qh0Var2.f51461n.f43245x), 10));
+                return;
+        }
     }
 }

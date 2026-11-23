@@ -1,22 +1,7 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.view.View;
-public final class w30 extends org.telegram.ui.Cells.g4 {
-    public final z30 f52923h0;
-
-    public w30(z30 z30Var, Context context) {
-        super(context);
-        this.f52923h0 = z30Var;
-    }
-
-    @Override
-    public final void d(org.telegram.ui.Cells.g4 g4Var) {
-        f40 f40Var = this.f52923h0.N;
-        f40 f40Var2 = f40.C5;
-        f40Var.M1(g4Var);
-    }
-
+public final class w30 extends org.telegram.ui.Cells.z3 {
     @Override
     public final void onMeasure(int i7, int i10) {
         if (org.telegram.messenger.g0.Q1()) {

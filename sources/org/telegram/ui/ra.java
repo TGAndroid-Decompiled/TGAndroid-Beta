@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class ra implements org.telegram.ui.Components.gj0, ri.m {
-    public final lb f51559a;
+    public final lb f51676a;
 
     @Override
-    public void i() {
-        this.f51559a.h1();
+    public void f() {
+        this.f51676a.h1();
     }
 
     @Override
-    public void l(int i7) {
-        lb.c0(this.f51559a, i7);
+    public void k(int i7) {
+        lb.c0(this.f51676a, i7);
     }
 }

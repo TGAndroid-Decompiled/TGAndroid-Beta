@@ -1,43 +1,23 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class f41 implements iw0 {
-    public final TLRPC.InputStickerSet f35064a;
-    public final k41 f35065b;
+import android.animation.ValueAnimator;
+public final class f41 implements ValueAnimator.AnimatorUpdateListener {
+    public int f34999a = 0;
+    public final int f35000b;
+    public final j41 f35001c;
 
-    public f41(k41 k41Var, TLRPC.InputStickerSet inputStickerSet) {
-        this.f35065b = k41Var;
-        this.f35064a = inputStickerSet;
+    public f41(j41 j41Var, int i7) {
+        this.f35001c = j41Var;
+        this.f35000b = i7;
     }
 
     @Override
-    public final void a() {
-        k41 k41Var = this.f35065b;
-        v4.h0 adapter = k41Var.f36738n.getAdapter();
-        j41 j41Var = k41Var.f36740s;
-        TLRPC.InputStickerSet inputStickerSet = this.f35064a;
-        int i7 = 0;
-        if (adapter == j41Var) {
-            while (i7 < j41Var.f36353e.size()) {
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) j41Var.f36353e.get(i7);
-                if (stickerSetCovered.set.f28425id == inputStickerSet.f28418id) {
-                    j41Var.F(stickerSetCovered, null);
-                    return;
-                }
-                i7++;
-            }
-            return;
-        }
-        jg.c2 c2Var = k41Var.f36741w;
-        ArrayList arrayList = c2Var.F;
-        while (i7 < arrayList.size()) {
-            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i7);
-            if (stickerSetCovered2.set.f28425id == inputStickerSet.f28418id) {
-                c2Var.F(stickerSetCovered2, null);
-                return;
-            }
-            i7++;
-        }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f35000b);
+        j41 j41Var = this.f35001c;
+        j41Var.O = true;
+        j41Var.f36265n.scrollBy(0, floatValue - this.f34999a);
+        j41Var.O = false;
+        this.f34999a = floatValue;
     }
 }

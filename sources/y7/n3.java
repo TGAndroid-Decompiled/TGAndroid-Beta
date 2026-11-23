@@ -1,9 +1,9 @@
 package y7;
 public final class n3 implements na.d {
-    public static final n3 f60913a = new Object();
+    public static final n3 f61025a = new Object();
 
     static {
-        p5.c.u(p5.c.o(h.class, p5.c.p(p5.c.o(h.class, new e(1)), 2)));
+        p5.c.u(p5.c.o(h.class, new e(1)));
     }
 
     @Override

@@ -1,30 +1,44 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class oj implements Runnable {
-    public final int f26092a;
-    public final np f26093b;
-    public final int f26094c;
-    public final ArrayList d;
-    public final boolean f26095e;
-    public final TLRPC.TL_messages_peerDialogs f26096f;
-    public final a0.h h;
-    public final TLRPC.TL_messages_dialogs f26097n;
+    public final int f26159a;
+    public final mp f26160b;
+    public final TLRPC.Chat f26161c;
 
-    public oj(np npVar, int i7, ArrayList arrayList, boolean z10, TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs, a0.h hVar, TLRPC.TL_messages_dialogs tL_messages_dialogs, int i10) {
-        this.f26092a = i10;
-        this.f26093b = npVar;
-        this.f26094c = i7;
-        this.d = arrayList;
-        this.f26095e = z10;
-        this.f26096f = tL_messages_peerDialogs;
-        this.h = hVar;
-        this.f26097n = tL_messages_dialogs;
+    public oj(mp mpVar, TLRPC.Chat chat, int i7) {
+        this.f26159a = i7;
+        this.f26160b = mpVar;
+        this.f26161c = chat;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.oj.run():void");
+        int i7 = this.f26159a;
+        TLRPC.Chat chat = this.f26161c;
+        mp mpVar = this.f26160b;
+        switch (i7) {
+            case 0:
+                mpVar.j(chat);
+                return;
+            case 1:
+                mpVar.getNotificationCenter().k(90, chat);
+                return;
+            case 2:
+                mpVar.getClass();
+                mpVar.G(chat.f28492id, true);
+                return;
+            case 3:
+                mpVar.getNotificationCenter().k(90, chat);
+                return;
+            case 4:
+                mpVar.getNotificationCenter().k(323, Long.valueOf(chat.f28492id), Boolean.valueOf(chat.forum), Boolean.valueOf(chat.forum_tabs), Boolean.valueOf(chat.forum_sidebar));
+                return;
+            default:
+                mpVar.f5(null);
+                mpVar.getNotificationCenter().k(351, Long.valueOf(chat.f28492id), Boolean.valueOf(chat.collapsed_in_dialogs));
+                mpVar.getNotificationCenter().k(3, new Object[0]);
+                return;
+        }
     }
 }

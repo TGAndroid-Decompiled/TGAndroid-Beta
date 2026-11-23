@@ -29,7 +29,7 @@ public abstract class u9 {
 
     public static m9.w b(Object obj) {
         if (obj == null) {
-            return m9.w.f20954b;
+            return m9.w.f21050b;
         }
         return new m9.w(obj);
     }
@@ -37,9 +37,9 @@ public abstract class u9 {
     public static m9.p c(m9.y yVar, g9.k kVar) {
         ?? obj = new Object();
         yVar.getClass();
-        obj.f20947n = yVar;
-        obj.f20948r = kVar;
-        yVar.b(obj, m9.r.f20949a);
+        obj.f21043n = yVar;
+        obj.f21044r = kVar;
+        yVar.b(obj, m9.r.f21045a);
         return obj;
     }
 }

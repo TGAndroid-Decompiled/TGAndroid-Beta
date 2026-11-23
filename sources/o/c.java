@@ -2,14 +2,14 @@ package o;
 
 import java.util.Map;
 public final class c implements Map.Entry {
-    public final Object f21543a;
-    public final Object f21544b;
-    public c f21545c;
+    public final Object f21642a;
+    public final Object f21643b;
+    public c f21644c;
     public c d;
 
     public c(Object obj, Object obj2) {
-        this.f21543a = obj;
-        this.f21544b = obj2;
+        this.f21642a = obj;
+        this.f21643b = obj2;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class c implements Map.Entry {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f21543a.equals(cVar.f21543a) && this.f21544b.equals(cVar.f21544b)) {
+        if (this.f21642a.equals(cVar.f21642a) && this.f21643b.equals(cVar.f21643b)) {
             return true;
         }
         return false;
@@ -29,17 +29,17 @@ public final class c implements Map.Entry {
 
     @Override
     public final Object getKey() {
-        return this.f21543a;
+        return this.f21642a;
     }
 
     @Override
     public final Object getValue() {
-        return this.f21544b;
+        return this.f21643b;
     }
 
     @Override
     public final int hashCode() {
-        return this.f21543a.hashCode() ^ this.f21544b.hashCode();
+        return this.f21642a.hashCode() ^ this.f21643b.hashCode();
     }
 
     @Override
@@ -48,6 +48,6 @@ public final class c implements Map.Entry {
     }
 
     public final String toString() {
-        return this.f21543a + "=" + this.f21544b;
+        return this.f21642a + "=" + this.f21643b;
     }
 }

@@ -1,52 +1,46 @@
 package hi;
 
-import org.telegram.messenger.hd;
+import java.io.File;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.fs;
+import org.telegram.tgnet.TLRPC;
 public final class p9 implements Runnable {
-    public final int f15199a = 1;
-    public final q9 f15200b;
-    public final Runnable f15201c;
-    public final boolean d;
+    public final int f15190a;
+    public final fs f15191b;
+    public final Object f15192c;
+    public final int d;
+    public final int f15193e;
+    public final Object f15194f;
+    public final boolean h;
+    public final boolean f15195n;
+    public final Object f15196r;
 
-    public p9(q9 q9Var, Runnable runnable, boolean z10) {
-        this.f15200b = q9Var;
-        this.f15201c = runnable;
-        this.d = z10;
+    public p9(nb nbVar, pa paVar, int i7, int i10, x7 x7Var, boolean z10, boolean z11, Runnable runnable, int i11) {
+        this.f15190a = i11;
+        this.f15191b = nbVar;
+        this.f15192c = paVar;
+        this.d = i7;
+        this.f15193e = i10;
+        this.f15194f = x7Var;
+        this.h = z10;
+        this.f15195n = z11;
+        this.f15196r = runnable;
     }
 
     @Override
     public final void run() {
-        int i7;
-        int i10 = this.f15199a;
-        boolean z10 = this.d;
-        Runnable runnable = this.f15201c;
-        q9 q9Var = this.f15200b;
-        switch (i10) {
-            case 0:
-                q9Var.g(runnable, z10);
-                return;
-            default:
-                runnable.run();
-                ta taVar = q9Var.f15255a;
-                i3 i3Var = taVar.U0;
-                if (z10) {
-                    i7 = 2131744419;
-                } else {
-                    i7 = 2131744420;
-                }
-                i3Var.f14717a.t(hd.N0(i7, null), false, true);
-                i3Var.invalidate();
-                taVar.g(true, true);
-                taVar.c0(true);
-                taVar.J0.a(false, true);
-                taVar.K0.b(true, true);
-                taVar.h0(true, true);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: hi.p9.run():void");
     }
 
-    public p9(q9 q9Var, boolean z10, Runnable runnable) {
-        this.f15200b = q9Var;
-        this.d = z10;
-        this.f15201c = runnable;
+    public p9(MediaController mediaController, File file, File file2, TLRPC.TL_document tL_document, int i7, boolean z10, int i10, boolean z11) {
+        this.f15190a = 2;
+        this.f15191b = mediaController;
+        this.f15192c = file;
+        this.f15194f = file2;
+        this.f15196r = tL_document;
+        this.d = i7;
+        this.h = z10;
+        this.f15193e = i10;
+        this.f15195n = z11;
     }
 }

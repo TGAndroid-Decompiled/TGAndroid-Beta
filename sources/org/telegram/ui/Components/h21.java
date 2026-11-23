@@ -1,50 +1,54 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
-import android.text.TextUtils;
-import java.util.HashMap;
-import org.telegram.tgnet.TLRPC;
-public final class h21 {
-    public final Integer f35712a;
-    public final org.telegram.messenger.gj f35713b;
-    public final int f35714c;
-    public final long d;
-    public final long f35715e;
+import android.text.TextPaint;
+public final class h21 extends Drawable {
+    public final nh0 f35622a;
+    public int f35623b;
+    public final TextPaint f35624c;
 
-    public h21(Integer num, org.telegram.messenger.gj gjVar, int i7, long j3, long j10) {
-        this.f35712a = num;
-        this.f35713b = gjVar;
-        this.f35714c = i7;
-        this.d = j3;
-        this.f35715e = j10;
+    public h21(TextPaint textPaint) {
+        a5.b bVar = new a5.b(this, 8);
+        this.f35624c = textPaint;
+        float textSize = textPaint.getTextSize() * 0.89f;
+        nh0 nh0Var = new nh0(2131624001, (int) textSize, (int) (textSize * 1.25f));
+        this.f35622a = nh0Var;
+        nh0Var.setCallback(bVar);
+        nh0Var.K(1);
+        nh0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
+        nh0Var.J(true);
+        nh0Var.start();
     }
 
-    public final void a(String str, int[] iArr, boolean z10) {
-        if (z10) {
-            HashMap hashMap = j21.S;
-            Integer num = this.f35712a;
-            hashMap.remove(num);
-            j21.R.remove(num);
+    @Override
+    public final void draw(Canvas canvas) {
+        int color = this.f35624c.getColor();
+        int i7 = this.f35623b;
+        nh0 nh0Var = this.f35622a;
+        if (color != i7) {
+            nh0Var.f37799a0 = true;
+            nh0Var.Q(color, "Comp 1");
+            nh0Var.o();
+            nh0Var.J(true);
+            nh0Var.V(0L);
+            this.f35623b = color;
         }
-        org.telegram.messenger.gj gjVar = this.f35713b;
-        if (str == null) {
-            j21.n(gjVar);
-            return;
-        }
-        TLRPC.Message message = gjVar.f24177k;
-        if (!z10) {
-            if (TextUtils.isEmpty(str)) {
-                return;
-            }
-            message.voiceTranscription = str;
-            message.voiceTranscriptionWords = iArr;
-            message.voiceTranscriptionLocal = true;
-            message.voiceTranscriptionFinal = false;
-            message.voiceTranscriptionOpen = true;
-            j21.q(gjVar);
-            org.telegram.messenger.ls.f(this.f35714c).k(org.telegram.messenger.ls.A1, gjVar, null, null, Boolean.TRUE, Boolean.FALSE);
-            return;
-        }
-        org.telegram.messenger.g0.h3(new bi.s4(gjVar, message, str, iArr, this.f35714c, this.d), Math.max(0L, 350 - (SystemClock.elapsedRealtime() - this.f35715e)));
+        nh0Var.draw(canvas);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

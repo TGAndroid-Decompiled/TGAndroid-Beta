@@ -5,12 +5,12 @@ import com.google.android.gms.internal.vision.e2;
 import e2.s0;
 import e2.t;
 import e2.u;
-import f3.i0;
+import f3.j0;
 import h2.l0;
 import h2.x;
 import java.io.EOFException;
-public final class o implements i0 {
-    public final i0 f4394a;
+public final class o implements j0 {
+    public final j0 f4394a;
     public final k f4395b;
     public m f4399g;
     public u h;
@@ -20,8 +20,8 @@ public final class o implements i0 {
     public byte[] f4398f = l0.f13779b;
     public final x f4396c = new x();
 
-    public o(i0 i0Var, k kVar) {
-        this.f4394a = i0Var;
+    public o(j0 j0Var, k kVar) {
+        this.f4394a = j0Var;
         this.f4395b = kVar;
     }
 
@@ -42,8 +42,8 @@ public final class o implements i0 {
     }
 
     @Override
-    public final void c(long r9, int r11, int r12, int r13, f3.h0 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: c4.o.c(long, int, int, int, f3.h0):void");
+    public final void c(long r9, int r11, int r12, int r13, f3.i0 r14) {
+        throw new UnsupportedOperationException("Method not decompiled: c4.o.c(long, int, int, int, f3.i0):void");
     }
 
     @Override
@@ -72,8 +72,8 @@ public final class o implements i0 {
     public final void g(u uVar) {
         boolean z10;
         m mVar;
-        uVar.f10761s.getClass();
-        String str = uVar.f10761s;
+        uVar.f10759s.getClass();
+        String str = uVar.f10759s;
         if (s0.h(str) == 3) {
             z10 = true;
         } else {
@@ -84,25 +84,25 @@ public final class o implements i0 {
         k kVar = this.f4395b;
         if (!equals) {
             this.h = uVar;
-            if (kVar.H(uVar)) {
-                mVar = kVar.j(uVar);
+            if (kVar.G(uVar)) {
+                mVar = kVar.f(uVar);
             } else {
                 mVar = null;
             }
             this.f4399g = mVar;
         }
         m mVar2 = this.f4399g;
-        i0 i0Var = this.f4394a;
+        j0 j0Var = this.f4394a;
         if (mVar2 == null) {
-            i0Var.g(uVar);
+            j0Var.g(uVar);
             return;
         }
         t a10 = uVar.a();
-        a10.f10709r = s0.n("application/x-media3-cues");
-        a10.f10701j = str;
-        a10.f10713w = Long.MAX_VALUE;
-        a10.P = kVar.O(uVar);
-        p5.c.r(a10, i0Var);
+        a10.f10707r = s0.n("application/x-media3-cues");
+        a10.f10699j = str;
+        a10.f10711w = Long.MAX_VALUE;
+        a10.P = kVar.I(uVar);
+        p5.c.r(a10, j0Var);
     }
 
     public final void h(int i7) {

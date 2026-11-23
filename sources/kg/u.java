@@ -1,19 +1,19 @@
 package kg;
 
 import android.text.TextUtils;
-import org.telegram.messenger.si;
+import org.telegram.messenger.ri;
 import org.telegram.tgnet.tl.TL_account;
 public final class u {
-    public TL_account.TL_businessChatLink f18489a;
+    public TL_account.TL_businessChatLink f18584a;
 
     public final boolean equals(Object obj) {
-        TL_account.TL_businessChatLink tL_businessChatLink = this.f18489a;
+        TL_account.TL_businessChatLink tL_businessChatLink = this.f18584a;
         if (this == obj) {
             return true;
         }
         if (obj != null && u.class == obj.getClass()) {
-            TL_account.TL_businessChatLink tL_businessChatLink2 = ((u) obj).f18489a;
-            if (tL_businessChatLink.views == tL_businessChatLink2.views && TextUtils.equals(tL_businessChatLink.link, tL_businessChatLink2.link) && TextUtils.equals(tL_businessChatLink.title, tL_businessChatLink2.title) && TextUtils.equals(tL_businessChatLink.message, tL_businessChatLink2.message) && si.M(tL_businessChatLink.entities, tL_businessChatLink2.entities)) {
+            TL_account.TL_businessChatLink tL_businessChatLink2 = ((u) obj).f18584a;
+            if (tL_businessChatLink.views == tL_businessChatLink2.views && TextUtils.equals(tL_businessChatLink.link, tL_businessChatLink2.link) && TextUtils.equals(tL_businessChatLink.title, tL_businessChatLink2.title) && TextUtils.equals(tL_businessChatLink.message, tL_businessChatLink2.message) && ri.M(tL_businessChatLink.entities, tL_businessChatLink2.entities)) {
                 return true;
             }
         }

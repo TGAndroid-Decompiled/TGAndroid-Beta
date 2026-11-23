@@ -1,10 +1,10 @@
 package bi;
 
 import android.animation.ValueAnimator;
-import hi.v9;
-import org.telegram.messenger.r10;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.wp0;
+import hi.pa;
+import org.telegram.messenger.p10;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.vp0;
 public final class u8 implements q0.a {
     public final int f4128a;
     public final Object f4129b;
@@ -23,14 +23,14 @@ public final class u8 implements q0.a {
         switch (i7) {
             case 0:
                 f9 f9Var = (f9) obj2;
-                if (((f5.f) obj).f11278a == 0) {
+                if (((f5.f) obj).f11277a == 0) {
                     org.telegram.messenger.g0.g3(new t8(f9Var, 1));
                     return;
                 }
                 return;
             case 1:
-                r10 r10Var = (r10) obj2;
-                int i10 = ((f5.f) obj).f11278a;
+                p10 p10Var = (p10) obj2;
+                int i10 = ((f5.f) obj).f11277a;
                 if (i10 != 0) {
                     z10 = false;
                 }
@@ -40,66 +40,66 @@ public final class u8 implements q0.a {
                     j3 = org.telegram.messenger.r1.j(i10);
                 }
                 org.telegram.messenger.a8.b("StarsController.buy onResult " + z10 + " " + j3);
-                org.telegram.messenger.g0.g3(new di.p6(r10Var, z10, j3, 0));
+                org.telegram.messenger.g0.g3(new di.p6(p10Var, z10, j3, 0));
                 return;
             case 2:
-                hi.l5.Y((v9) obj2, (Integer) obj);
+                hi.v5.X((pa) obj2, (Integer) obj);
                 return;
             case 3:
                 ((jg.m) obj2).S.T4(((Float) obj).floatValue());
                 return;
             case 4:
-                ki.s2 s2Var = (ki.s2) obj2;
+                ki.t2 t2Var = (ki.t2) obj2;
                 Float f10 = (Float) obj;
-                s2Var.F.setLoadProgressAnimated(f10.floatValue());
+                t2Var.F.setLoadProgressAnimated(f10.floatValue());
                 if (f10.floatValue() == 1.0f) {
                     ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration.setInterpolator(nr.f37917f);
-                    duration.addUpdateListener(new ki.r1(s2Var, 1));
-                    duration.addListener(new ai.f0(s2Var, 29));
+                    duration.setInterpolator(kr.f36858f);
+                    duration.addUpdateListener(new ki.r1(t2Var, 1));
+                    duration.addListener(new ai.g0(t2Var, 29));
                     duration.start();
                     return;
                 }
                 return;
             case 5:
-                ki.s3 s3Var = (ki.s3) obj2;
+                ki.t3 t3Var = (ki.t3) obj2;
                 Float f11 = (Float) obj;
-                s3Var.J.setLoadProgressAnimated(f11.floatValue());
+                t3Var.J.setLoadProgressAnimated(f11.floatValue());
                 if (f11.floatValue() == 1.0f) {
                     ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration2.setInterpolator(nr.f37917f);
-                    duration2.addUpdateListener(new ki.k3(s3Var, 1));
-                    duration2.addListener(new ki.m3(s3Var, 0));
+                    duration2.setInterpolator(kr.f36858f);
+                    duration2.addUpdateListener(new ki.l3(t3Var, 1));
+                    duration2.addListener(new ki.n3(t3Var, 0));
                     duration2.start();
-                    s3Var.Q();
+                    t3Var.Q();
                     return;
                 }
                 return;
             default:
                 androidx.activity.n nVar = (androidx.activity.n) obj2;
                 int intValue = ((Integer) obj).intValue();
-                switch (nVar.f1757a) {
+                switch (nVar.f1758a) {
                     case 1:
-                        v9 v9Var = (v9) nVar.d;
-                        v9Var.F0(false);
-                        sg.k0 k0Var = (sg.k0) nVar.f1759c;
-                        k0Var.h(intValue, true);
-                        k0Var.g();
-                        v9Var.setNewColor(intValue);
-                        hi.t4 t4Var = v9Var.f14894g1;
-                        t4Var.setSelectedColorIndex(k0Var.d());
-                        t4Var.getAdapter().f();
+                        pa paVar = (pa) nVar.d;
+                        paVar.I0(false);
+                        sg.j0 j0Var = (sg.j0) nVar.f1760c;
+                        j0Var.h(intValue, true);
+                        j0Var.g();
+                        paVar.setNewColor(intValue);
+                        hi.d5 d5Var = paVar.f15564g1;
+                        d5Var.setSelectedColorIndex(j0Var.d());
+                        d5Var.getAdapter().f();
                         return;
                     default:
-                        wp0 wp0Var = (wp0) nVar.d;
-                        wp0Var.w0(false);
-                        sg.k0 k0Var2 = wp0Var.F1;
-                        k0Var2.h(intValue, true);
-                        k0Var2.g();
-                        wp0Var.setNewColor(intValue);
-                        tg.e0 e0Var = wp0Var.f57893q1;
-                        e0Var.setSelectedColorIndex(k0Var2.d());
-                        e0Var.getAdapter().f();
+                        vp0 vp0Var = (vp0) nVar.d;
+                        vp0Var.z0(false);
+                        sg.j0 j0Var2 = vp0Var.F1;
+                        j0Var2.h(intValue, true);
+                        j0Var2.g();
+                        vp0Var.setNewColor(intValue);
+                        tg.i0 i0Var = vp0Var.f58044q1;
+                        i0Var.setSelectedColorIndex(j0Var2.d());
+                        i0Var.getAdapter().f();
                         return;
                 }
         }

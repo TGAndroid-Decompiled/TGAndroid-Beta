@@ -55,27 +55,27 @@ public final class EncryptedFileDataSource extends c {
 
     @Override
     public long open(m mVar) {
-        this.uri = mVar.f17179a;
-        File file = new File(mVar.f17179a.getPath());
+        this.uri = mVar.f17276a;
+        File file = new File(mVar.f17276a.getPath());
         String name = file.getName();
         Pattern pattern = w7.J;
-        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(t0.f26895b.getCacheDir(), p5.c.v(name, ".key")));
+        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(t0.f27013b.getCacheDir(), p5.c.v(name, ".key")));
         this.fileInputStream = encryptedFileInputStream;
-        encryptedFileInputStream.skip(mVar.f17182e);
+        encryptedFileInputStream.skip(mVar.f17279e);
         int length = (int) file.length();
         transferInitializing(mVar);
-        long j3 = mVar.f17182e;
+        long j3 = mVar.f17279e;
         long j10 = length;
         if (j3 <= j10) {
             int i7 = (int) (j10 - j3);
             this.bytesRemaining = i7;
-            long j11 = mVar.f17183f;
+            long j11 = mVar.f17280f;
             if (j11 != -1) {
                 this.bytesRemaining = (int) Math.min(i7, j11);
             }
             this.opened = true;
             transferStarted(mVar);
-            long j12 = mVar.f17183f;
+            long j12 = mVar.f17280f;
             if (j12 != -1) {
                 return j12;
             }

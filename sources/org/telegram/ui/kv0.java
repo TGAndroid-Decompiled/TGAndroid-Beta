@@ -1,116 +1,23 @@
 package org.telegram.ui;
+public final class kv0 extends oq0 {
+    public final ProfileActivity f49533a;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class kv0 implements kp {
-    public final int f49365a;
-    public final TLRPC.ChatParticipant f49366b;
-    public final boolean f49367c;
-    public final boolean[] d;
-    public final ProfileActivity f49368e;
-
-    public kv0(ProfileActivity profileActivity, int i7, TLRPC.ChatParticipant chatParticipant, boolean z10, boolean[] zArr) {
-        this.f49368e = profileActivity;
-        this.f49365a = i7;
-        this.f49366b = chatParticipant;
-        this.f49367c = z10;
-        this.d = zArr;
+    public kv0(ProfileActivity profileActivity) {
+        this.f49533a = profileActivity;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        int i7;
-        ProfileActivity profileActivity = this.f49368e;
-        UndoView undoView = profileActivity.M;
-        long j3 = -profileActivity.f43558f1;
-        if (profileActivity.F2.megagroup) {
-            i7 = 10;
-        } else {
-            i7 = 9;
-        }
-        undoView.m(j3, user, i7);
+    public final org.telegram.ui.wq0 E(org.telegram.messenger.fj r17, org.telegram.tgnet.TLRPC.FileLocation r18, int r19, boolean r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kv0.E(org.telegram.messenger.fj, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.wq0");
     }
 
     @Override
-    public final void b(int i7, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.ChatFull chatFull;
-        boolean z10;
-        TLRPC.ChatParticipant tL_chatParticipant;
-        int i10 = 0;
-        TLRPC.ChatParticipant chatParticipant = this.f49366b;
-        ProfileActivity profileActivity = this.f49368e;
-        int i11 = this.f49365a;
-        if (i11 == 0) {
-            if (chatParticipant instanceof TLRPC.TL_chatChannelParticipant) {
-                TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = (TLRPC.TL_chatChannelParticipant) chatParticipant;
-                if (i7 == 1) {
-                    TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
-                    tL_chatChannelParticipant.channelParticipant = tL_channelParticipantAdmin;
-                    tL_channelParticipantAdmin.flags |= 4;
-                } else {
-                    tL_chatChannelParticipant.channelParticipant = new TLRPC.TL_channelParticipant();
-                }
-                tL_chatChannelParticipant.channelParticipant.inviter_id = profileActivity.getUserConfig().e();
-                tL_chatChannelParticipant.channelParticipant.peer = new TLRPC.TL_peerUser();
-                TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
-                channelParticipant.peer.user_id = chatParticipant.user_id;
-                channelParticipant.date = chatParticipant.date;
-                channelParticipant.banned_rights = tL_chatBannedRights;
-                channelParticipant.admin_rights = tL_chatAdminRights;
-                channelParticipant.rank = str;
-            } else if (chatParticipant != null) {
-                if (i7 == 1) {
-                    tL_chatParticipant = new TLRPC.TL_chatParticipantAdmin();
-                } else {
-                    tL_chatParticipant = new TLRPC.TL_chatParticipant();
-                }
-                tL_chatParticipant.user_id = chatParticipant.user_id;
-                tL_chatParticipant.date = chatParticipant.date;
-                tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
-                int indexOf = profileActivity.f43667v2.participants.participants.indexOf(chatParticipant);
-                if (indexOf >= 0) {
-                    profileActivity.f43667v2.participants.participants.set(indexOf, tL_chatParticipant);
-                }
-            }
-            if (i7 == 1 && !this.f49367c) {
-                this.d[0] = true;
-            }
-        } else if (i11 == 1 && i7 == 0 && profileActivity.F2.megagroup && (chatFull = profileActivity.f43667v2) != null && chatFull.participants != null) {
-            int i12 = 0;
-            while (true) {
-                if (i12 < profileActivity.f43667v2.participants.participants.size()) {
-                    if (org.telegram.messenger.gj.B1(((TLRPC.TL_chatChannelParticipant) profileActivity.f43667v2.participants.participants.get(i12)).channelParticipant.peer) == chatParticipant.user_id) {
-                        TLRPC.ChatFull chatFull2 = profileActivity.f43667v2;
-                        chatFull2.participants_count--;
-                        chatFull2.participants.participants.remove(i12);
-                        z10 = true;
-                        break;
-                    }
-                    i12++;
-                } else {
-                    z10 = false;
-                    break;
-                }
-            }
-            TLRPC.ChatFull chatFull3 = profileActivity.f43667v2;
-            if (chatFull3 != null && chatFull3.participants != null) {
-                while (true) {
-                    if (i10 >= profileActivity.f43667v2.participants.participants.size()) {
-                        break;
-                    } else if (profileActivity.f43667v2.participants.participants.get(i10).user_id == chatParticipant.user_id) {
-                        profileActivity.f43667v2.participants.participants.remove(i10);
-                        z10 = true;
-                        break;
-                    } else {
-                        i10++;
-                    }
-                }
-            }
-            if (z10) {
-                profileActivity.K5(true);
-                profileActivity.N5();
-                profileActivity.d.f();
-            }
-        }
+    public final void G() {
+        this.f49533a.f43673f0.getImageReceiver().P0(true, true);
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z10) {
+        this.f49533a.f43754r0.p(str, str2, z10);
     }
 }

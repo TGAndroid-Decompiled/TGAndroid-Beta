@@ -18,18 +18,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import q6.m;
 public final class b {
-    public static final ReentrantLock f7853c = new ReentrantLock();
+    public static final ReentrantLock f7852c = new ReentrantLock();
     public static b d;
-    public final ReentrantLock f7854a = new ReentrantLock();
-    public final SharedPreferences f7855b;
+    public final ReentrantLock f7853a = new ReentrantLock();
+    public final SharedPreferences f7854b;
 
     public b(Context context) {
-        this.f7855b = context.getSharedPreferences("com.google.android.gms.signin", 0);
+        this.f7854b = context.getSharedPreferences("com.google.android.gms.signin", 0);
     }
 
     public static b a(Context context) {
         m.h(context);
-        ReentrantLock reentrantLock = f7853c;
+        ReentrantLock reentrantLock = f7852c;
         reentrantLock.lock();
         try {
             if (d == null) {
@@ -151,20 +151,20 @@ public final class b {
     }
 
     public final void d(String str, String str2) {
-        ReentrantLock reentrantLock = this.f7854a;
+        ReentrantLock reentrantLock = this.f7853a;
         reentrantLock.lock();
         try {
-            this.f7855b.edit().putString(str, str2).apply();
+            this.f7854b.edit().putString(str, str2).apply();
         } finally {
             reentrantLock.unlock();
         }
     }
 
     public final String e(String str) {
-        ReentrantLock reentrantLock = this.f7854a;
+        ReentrantLock reentrantLock = this.f7853a;
         reentrantLock.lock();
         try {
-            return this.f7855b.getString(str, null);
+            return this.f7854b.getString(str, null);
         } finally {
             reentrantLock.unlock();
         }

@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-public final class j extends o {
+public final class j extends p {
     public final int f13924r;
     public final h f13925s;
     public final Object f13926t;
@@ -25,16 +25,16 @@ public final class j extends o {
         h hVar = this.f13925s;
         switch (i7) {
             case 0:
-                j6.m mVar = hVar.f13916c;
-                j6.n o4 = o();
+                j6.n nVar = hVar.f13916c;
+                j6.o o4 = o();
                 int[] iArr = (int[]) obj;
-                mVar.getClass();
+                nVar.getClass();
                 JSONObject jSONObject = new JSONObject();
-                long b10 = mVar.b();
+                long b10 = nVar.b();
                 try {
                     jSONObject.put("requestId", b10);
                     jSONObject.put("type", "QUEUE_GET_ITEMS");
-                    jSONObject.put("mediaSessionId", mVar.p());
+                    jSONObject.put("mediaSessionId", nVar.p());
                     JSONArray jSONArray = new JSONArray();
                     for (int i10 : iArr) {
                         jSONArray.put(i10);
@@ -42,40 +42,40 @@ public final class j extends o {
                     jSONObject.put("itemIds", jSONArray);
                 } catch (JSONException unused) {
                 }
-                mVar.c(b10, jSONObject.toString());
-                mVar.f17258s.a(b10, o4);
+                nVar.c(b10, jSONObject.toString());
+                nVar.f17358s.a(b10, o4);
                 return;
             case 1:
-                j6.m mVar2 = hVar.f13916c;
-                j6.n o10 = o();
+                j6.n nVar2 = hVar.f13916c;
+                j6.o o10 = o();
                 f6.k kVar = (f6.k) obj;
-                mVar2.getClass();
-                MediaInfo mediaInfo = kVar.f11400a;
-                f6.n nVar = kVar.f11401b;
-                if (mediaInfo == null && nVar == null) {
+                nVar2.getClass();
+                MediaInfo mediaInfo = kVar.f11399a;
+                f6.n nVar3 = kVar.f11400b;
+                if (mediaInfo == null && nVar3 == null) {
                     throw new IllegalArgumentException("MediaInfo and MediaQueueData should not be both null");
                 }
-                long[] jArr = kVar.f11404f;
+                long[] jArr = kVar.f11403f;
                 JSONObject jSONObject2 = new JSONObject();
                 try {
-                    MediaInfo mediaInfo2 = kVar.f11400a;
+                    MediaInfo mediaInfo2 = kVar.f11399a;
                     if (mediaInfo2 != null) {
                         jSONObject2.put("media", mediaInfo2.b());
                     }
-                    if (nVar != null) {
-                        jSONObject2.put("queueData", nVar.b());
+                    if (nVar3 != null) {
+                        jSONObject2.put("queueData", nVar3.b());
                     }
-                    jSONObject2.putOpt("autoplay", kVar.f11402c);
+                    jSONObject2.putOpt("autoplay", kVar.f11401c);
                     long j3 = kVar.d;
                     if (j3 != -1) {
-                        Pattern pattern = j6.a.f17233a;
+                        Pattern pattern = j6.a.f17330a;
                         jSONObject2.put("currentTime", j3 / 1000.0d);
                     }
-                    jSONObject2.put("playbackRate", kVar.f11403e);
-                    jSONObject2.putOpt("credentials", kVar.f11406r);
-                    jSONObject2.putOpt("credentialsType", kVar.f11407s);
-                    jSONObject2.putOpt("atvCredentials", kVar.f11408w);
-                    jSONObject2.putOpt("atvCredentialsType", kVar.f11409x);
+                    jSONObject2.put("playbackRate", kVar.f11402e);
+                    jSONObject2.putOpt("credentials", kVar.f11405r);
+                    jSONObject2.putOpt("credentialsType", kVar.f11406s);
+                    jSONObject2.putOpt("atvCredentials", kVar.f11407w);
+                    jSONObject2.putOpt("atvCredentialsType", kVar.f11408x);
                     if (jArr != null) {
                         JSONArray jSONArray2 = new JSONArray();
                         for (int i11 = 0; i11 < jArr.length; i11++) {
@@ -83,40 +83,40 @@ public final class j extends o {
                         }
                         jSONObject2.put("activeTrackIds", jSONArray2);
                     }
-                    jSONObject2.putOpt("customData", kVar.f11405n);
-                    jSONObject2.put("requestId", kVar.f11410y);
+                    jSONObject2.putOpt("customData", kVar.f11404n);
+                    jSONObject2.put("requestId", kVar.f11409y);
                 } catch (JSONException e10) {
                     j6.b bVar = f6.k.E;
-                    Log.e(bVar.f17235a, bVar.d("Error transforming MediaLoadRequestData into JSONObject", e10));
+                    Log.e(bVar.f17332a, bVar.d("Error transforming MediaLoadRequestData into JSONObject", e10));
                     jSONObject2 = new JSONObject();
                 }
-                long b11 = mVar2.b();
+                long b11 = nVar2.b();
                 try {
                     jSONObject2.put("requestId", b11);
                     jSONObject2.put("type", "LOAD");
                 } catch (JSONException unused2) {
                 }
-                mVar2.c(b11, jSONObject2.toString());
-                mVar2.f17249j.a(b11, o10);
+                nVar2.c(b11, jSONObject2.toString());
+                nVar2.f17349j.a(b11, o10);
                 return;
             default:
-                j6.m mVar3 = hVar.f13916c;
-                j6.n o11 = o();
-                mVar3.getClass();
+                j6.n nVar4 = hVar.f13916c;
+                j6.o o11 = o();
+                nVar4.getClass();
                 JSONObject jSONObject3 = new JSONObject();
-                long b12 = mVar3.b();
-                long j10 = ((f6.p) obj).f11434a;
+                long b12 = nVar4.b();
+                long j10 = ((f6.p) obj).f11433a;
                 try {
                     jSONObject3.put("requestId", b12);
                     jSONObject3.put("type", "SEEK");
-                    jSONObject3.put("mediaSessionId", mVar3.p());
-                    Pattern pattern2 = j6.a.f17233a;
+                    jSONObject3.put("mediaSessionId", nVar4.p());
+                    Pattern pattern2 = j6.a.f17330a;
                     jSONObject3.put("currentTime", j10 / 1000.0d);
                 } catch (JSONException unused3) {
                 }
-                mVar3.c(b12, jSONObject3.toString());
-                mVar3.f17247g = Long.valueOf(j10);
-                mVar3.f17252m.a(b12, new wf.b(mVar3, o11, false, 27));
+                nVar4.c(b12, jSONObject3.toString());
+                nVar4.f17347g = Long.valueOf(j10);
+                nVar4.f17352m.a(b12, new wf.b(nVar4, o11, false, 28));
                 return;
         }
     }

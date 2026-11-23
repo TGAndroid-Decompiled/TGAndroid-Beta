@@ -1,28 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class x10 extends AnimatorListenerAdapter {
-    public final int f41901a;
-    public final c20 f41902b;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
+public final class x10 implements Runnable {
+    public final y10 f41806a;
 
-    public x10(c20 c20Var, int i7) {
-        this.f41901a = i7;
-        this.f41902b = c20Var;
+    public x10(y10 y10Var) {
+        this.f41806a = y10Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f41901a) {
-            case 0:
-                c20 c20Var = this.f41902b;
-                c20Var.f33949b.setVisibility(8);
-                c20Var.F = false;
-                c20Var.G = 0.0f;
-                return;
-            default:
-                this.f41902b.f33954e.setVisibility(8);
-                return;
+    public final void run() {
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && sharedInstance.isMicMute()) {
+            TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) sharedInstance.groupCall.d.f(sharedInstance.getSelfId());
+            if (groupCallParticipant == null || groupCallParticipant.can_self_unmute || !groupCallParticipant.muted || org.telegram.messenger.v3.w(14, sharedInstance.getChat())) {
+                y10 y10Var = this.f41806a;
+                org.telegram.messenger.g0.h3(y10Var.f42292f, 90L);
+                try {
+                    y10Var.performHapticFeedback(3, 2);
+                } catch (Exception unused) {
+                }
+                y10Var.f42290c = true;
+            }
         }
     }
 }

@@ -9,16 +9,16 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import androidx.appcompat.view.menu.ExpandedMenuView;
 public final class g implements x, AdapterView.OnItemClickListener {
-    public Context f19163a;
-    public LayoutInflater f19164b;
-    public k f19165c;
+    public Context f19262a;
+    public LayoutInflater f19263b;
+    public k f19264c;
     public ExpandedMenuView d;
-    public w f19166e;
-    public f f19167f;
+    public w f19265e;
+    public f f19266f;
 
     public g(ContextWrapper contextWrapper) {
-        this.f19163a = contextWrapper;
-        this.f19164b = LayoutInflater.from(contextWrapper);
+        this.f19262a = contextWrapper;
+        this.f19263b = LayoutInflater.from(contextWrapper);
     }
 
     @Override
@@ -32,18 +32,18 @@ public final class g implements x, AdapterView.OnItemClickListener {
     }
 
     @Override
-    public final void d(k kVar, boolean z10) {
-        w wVar = this.f19166e;
-        if (wVar != null) {
-            wVar.d(kVar, z10);
+    public final void d() {
+        f fVar = this.f19266f;
+        if (fVar != null) {
+            fVar.notifyDataSetChanged();
         }
     }
 
     @Override
-    public final void e() {
-        f fVar = this.f19167f;
-        if (fVar != null) {
-            fVar.notifyDataSetChanged();
+    public final void f(k kVar, boolean z10) {
+        w wVar = this.f19265e;
+        if (wVar != null) {
+            wVar.f(kVar, z10);
         }
     }
 
@@ -54,14 +54,14 @@ public final class g implements x, AdapterView.OnItemClickListener {
 
     @Override
     public final void i(Context context, k kVar) {
-        if (this.f19163a != null) {
-            this.f19163a = context;
-            if (this.f19164b == null) {
-                this.f19164b = LayoutInflater.from(context);
+        if (this.f19262a != null) {
+            this.f19262a = context;
+            if (this.f19263b == null) {
+                this.f19263b = LayoutInflater.from(context);
             }
         }
-        this.f19165c = kVar;
-        f fVar = this.f19167f;
+        this.f19264c = kVar;
+        f fVar = this.f19266f;
         if (fVar != null) {
             fVar.notifyDataSetChanged();
         }
@@ -70,42 +70,42 @@ public final class g implements x, AdapterView.OnItemClickListener {
     @Override
     public final boolean j(d0 d0Var) {
         boolean hasVisibleItems = d0Var.hasVisibleItems();
-        Context context = d0Var.f19174a;
+        Context context = d0Var.f19273a;
         if (!hasVisibleItems) {
             return false;
         }
         ?? obj = new Object();
-        obj.f19195a = d0Var;
+        obj.f19294a = d0Var;
         b3.j jVar = new b3.j(context);
-        g.b bVar = (g.b) jVar.f2873c;
-        g gVar = new g((ContextThemeWrapper) bVar.f12924c);
-        obj.f19197c = gVar;
-        gVar.f19166e = obj;
+        g.b bVar = (g.b) jVar.f2874c;
+        g gVar = new g((ContextThemeWrapper) bVar.f12923c);
+        obj.f19296c = gVar;
+        gVar.f19265e = obj;
         d0Var.b(gVar, context);
-        g gVar2 = obj.f19197c;
-        if (gVar2.f19167f == null) {
-            gVar2.f19167f = new f(gVar2);
+        g gVar2 = obj.f19296c;
+        if (gVar2.f19266f == null) {
+            gVar2.f19266f = new f(gVar2);
         }
-        bVar.f12931l = gVar2.f19167f;
-        bVar.f12932m = obj;
-        View view = d0Var.f19186o;
+        bVar.f12930l = gVar2.f19266f;
+        bVar.f12931m = obj;
+        View view = d0Var.f19285o;
         if (view != null) {
             bVar.h = view;
         } else {
-            bVar.f12925e = d0Var.f19185n;
-            bVar.f12926f = d0Var.f19184m;
+            bVar.f12924e = d0Var.f19284n;
+            bVar.f12925f = d0Var.f19283m;
         }
-        bVar.f12930k = obj;
-        g.f g10 = jVar.g();
-        obj.f19196b = g10;
-        g10.setOnDismissListener(obj);
-        WindowManager.LayoutParams attributes = obj.f19196b.getWindow().getAttributes();
+        bVar.f12929k = obj;
+        g.f f10 = jVar.f();
+        obj.f19295b = f10;
+        f10.setOnDismissListener(obj);
+        WindowManager.LayoutParams attributes = obj.f19295b.getWindow().getAttributes();
         attributes.type = 1003;
         attributes.flags |= 131072;
-        obj.f19196b.show();
-        w wVar = this.f19166e;
+        obj.f19295b.show();
+        w wVar = this.f19265e;
         if (wVar != null) {
-            wVar.C(d0Var);
+            wVar.u(d0Var);
             return true;
         }
         return true;
@@ -118,6 +118,6 @@ public final class g implements x, AdapterView.OnItemClickListener {
 
     @Override
     public final void onItemClick(AdapterView adapterView, View view, int i7, long j3) {
-        this.f19165c.q(this.f19167f.getItem(i7), this, 0);
+        this.f19264c.q(this.f19266f.getItem(i7), this, 0);
     }
 }

@@ -1,33 +1,33 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class b10 implements DialogInterface.OnDismissListener {
-    public final int f45693a;
-    public final f40 f45694b;
+import android.graphics.RectF;
+import android.view.View;
+public final class b10 implements View.OnClickListener {
+    public final int f45876a;
+    public final org.telegram.ui.Cells.d2[] f45877b;
 
-    public b10(f40 f40Var, int i7) {
-        this.f45693a = i7;
-        this.f45694b = f40Var;
+    public b10(org.telegram.ui.Cells.d2[] d2VarArr, int i7) {
+        this.f45876a = i7;
+        this.f45877b = d2VarArr;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f45693a) {
+    public final void onClick(View view) {
+        int i7 = this.f45876a;
+        org.telegram.ui.Cells.d2[] d2VarArr = this.f45877b;
+        switch (i7) {
             case 0:
-                org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
-                if (this.f45694b.f47508s2 && (T instanceof bn)) {
-                    ((bn) T).wa(true, true);
-                    return;
-                }
+                Integer num = (Integer) view.getTag();
+                d2VarArr[num.intValue()].c(!d2VarArr[num.intValue()].b(), true);
                 return;
             case 1:
-                this.f45694b.dismiss();
-                return;
-            case 2:
-                this.f45694b.D3 = null;
+                org.telegram.ui.Cells.d2 d2Var = d2VarArr[0];
+                d2Var.c(!d2Var.b(), true);
                 return;
             default:
-                this.f45694b.f47480m2 = null;
+                RectF rectF = ProfileActivity.Z6;
+                org.telegram.ui.Cells.d2 d2Var2 = d2VarArr[0];
+                d2Var2.c(!d2Var2.b(), true);
                 return;
         }
     }

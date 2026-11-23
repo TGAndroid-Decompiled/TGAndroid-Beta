@@ -1,216 +1,89 @@
 package org.telegram.ui.Components;
 
-import android.graphics.BlendMode;
-import android.graphics.Paint;
-import android.os.Build;
-public final class yu0 {
-    public static final int[] T = {-10504961, -13056257, -9445121, -5841665, -11544336, -7362817, -8468225, -3870977};
-    public static final int[] U = {-15233051, -14054705, -14776080, -14575888, -15233051, -14975018, -13984526, -11554059};
-    public final boolean[] A;
-    public int B;
-    public int C;
-    public int D;
-    public final float[] E;
-    public final float[] F;
-    public final int[] G = new int[72];
-    public final int[] H = new int[72];
-    public final short[] I;
-    public int J;
-    public final Paint K;
-    public final Paint L;
-    public boolean M;
-    public long N;
-    public float O;
-    public int P;
-    public float Q;
-    public float R;
-    public float S;
-    public int[] f42510a;
-    public final int f42511b;
-    public final float[] f42512c;
-    public final float[] d;
-    public final float[] f42513e;
-    public final float[] f42514f;
-    public final float[] f42515g;
-    public final float[] h;
-    public final float[] f42516i;
-    public final float[] f42517j;
-    public final float[] f42518k;
-    public final float[] f42519l;
-    public final float[] f42520m;
-    public final float[] f42521n;
-    public final byte[] f42522o;
-    public final byte[] f42523p;
-    public final byte[] f42524q;
-    public final boolean[] f42525r;
-    public boolean f42526s;
-    public int[] f42527t;
-    public float f42528u;
-    public final float[] v;
-    public final float[] f42529w;
-    public final float[] f42530x;
-    public final float[] f42531y;
-    public final float[] f42532z;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
+public abstract class yu0 {
+    public static final Layout.Alignment[] f42564a = Layout.Alignment.values();
 
-    public yu0(int i7) {
-        Paint paint = new Paint(1);
-        this.K = paint;
-        Paint paint2 = new Paint(1);
-        this.L = paint2;
-        this.P = 49734321;
-        this.Q = org.telegram.messenger.g0.L(16.0f);
-        this.f42511b = i7;
-        this.f42512c = new float[i7];
-        this.d = new float[i7];
-        this.f42513e = new float[i7];
-        this.f42514f = new float[i7];
-        this.f42515g = new float[i7];
-        this.h = new float[i7];
-        this.f42516i = new float[i7];
-        this.f42517j = new float[i7];
-        this.f42518k = new float[i7];
-        this.f42519l = new float[i7];
-        this.f42520m = new float[i7];
-        this.f42521n = new float[i7];
-        this.f42522o = new byte[i7];
-        this.f42523p = new byte[i7];
-        this.f42524q = new byte[i7];
-        this.f42525r = new boolean[i7];
-        this.I = new short[i7];
-        int i10 = i7 * 2;
-        this.E = new float[i10];
-        this.F = new float[i10];
-        this.v = new float[i10];
-        this.f42529w = new float[i7];
-        this.f42530x = new float[i7];
-        this.f42531y = new float[i7];
-        this.f42532z = new float[i7];
-        this.A = new boolean[i7];
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        paint2.setStrokeCap(cap);
-    }
-
-    public final void a() {
-        for (int i7 = 0; i7 < this.f42511b; i7++) {
-            this.h[i7] = 0.0f;
+    public static Layout.Alignment a() {
+        Layout.Alignment[] alignmentArr = f42564a;
+        if (alignmentArr.length >= 5) {
+            return alignmentArr[4];
         }
-        this.D = 0;
-        this.N = 0L;
+        return Layout.Alignment.ALIGN_OPPOSITE;
     }
 
-    public final boolean b(android.graphics.Canvas r55, float r56) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yu0.b(android.graphics.Canvas, float):boolean");
+    public static StaticLayout b(CharSequence charSequence, TextPaint textPaint, int i7, float f10, int i10, int i11) {
+        return c(charSequence, textPaint, i7, Layout.Alignment.ALIGN_NORMAL, f10, TextUtils.TruncateAt.END, i10, i11, true);
     }
 
-    public final void c(float f10, float f11, int i7) {
-        int i10;
-        this.h[i7] = Math.max(0.05f, f10);
-        this.f42515g[i7] = -f11;
-        this.f42516i[i7] = d() * 6.2832f;
-        this.f42517j[i7] = d() * 8.0f;
-        int i11 = 0;
-        this.f42525r[i7] = false;
-        float d = d();
-        if (d < 0.5f) {
-            i10 = 0;
-        } else if (d < 0.86f) {
-            i10 = 1;
+    public static StaticLayout c(CharSequence charSequence, TextPaint textPaint, int i7, Layout.Alignment alignment, float f10, TextUtils.TruncateAt truncateAt, int i10, int i11, boolean z10) {
+        boolean z11;
+        int offsetForHorizontal;
+        TextUtils.TruncateAt truncateAt2;
+        SpannableStringBuilder spannableStringBuilder = charSequence;
+        if (i11 == 1) {
+            try {
+                int indexOf = TextUtils.indexOf(spannableStringBuilder, "\n") - 1;
+                if (indexOf > 0) {
+                    spannableStringBuilder = SpannableStringBuilder.valueOf(spannableStringBuilder.subSequence(0, indexOf)).append((CharSequence) "…");
+                }
+                CharSequence ellipsize = TextUtils.ellipsize(spannableStringBuilder, textPaint, i10, TextUtils.TruncateAt.END);
+                return new StaticLayout(ellipsize, 0, ellipsize.length(), textPaint, i7, alignment, 1.0f, f10, false);
+            } catch (Exception e10) {
+                e = e10;
+                z11 = true;
+            }
         } else {
-            i10 = 2;
-        }
-        this.f42522o[i7] = (byte) i10;
-        if (d() < 0.07f) {
-            i11 = 1;
-        }
-        this.f42523p[i7] = (byte) i11;
-    }
-
-    public final float d() {
-        int i7 = this.P;
-        int i10 = i7 ^ (i7 << 13);
-        int i11 = i10 ^ (i10 >>> 17);
-        int i12 = i11 ^ (i11 << 5);
-        this.P = i12;
-        return (i12 >>> 8) / 1.6777216E7f;
-    }
-
-    public final void e(boolean z10) {
-        this.M = z10;
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.L.setBlendMode(z10 ? BlendMode.PLUS : BlendMode.SRC_OVER);
-        }
-    }
-
-    public final int f() {
-        int i7 = this.C;
-        this.C = (i7 + 1) % this.f42511b;
-        if (this.h[i7] <= 0.0f) {
-            this.D++;
-        }
-        return i7;
-    }
-
-    public final void g(float f10, float f11, float f12, float f13, float f14, float f15) {
-        int f16 = f();
-        this.f42512c[f16] = f10;
-        this.d[f16] = f11;
-        this.f42513e[f16] = f12;
-        this.f42514f[f16] = f13;
-        this.f42524q[f16] = 0;
-        c(f14, f15, f16);
-    }
-
-    public final void h(float f10, float f11, float f12, float f13, float f14) {
-        int f15 = f();
-        this.f42512c[f15] = f10;
-        this.f42520m[f15] = f10;
-        this.f42521n[f15] = f11;
-        this.d[f15] = f11;
-        this.f42518k[f15] = f12;
-        this.f42519l[f15] = f13;
-        this.f42514f[f15] = 0.0f;
-        this.f42513e[f15] = 0.0f;
-        this.f42524q[f15] = 1;
-        c(f14, 0.0f, f15);
-    }
-
-    public final void i(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17) {
-        int i7;
-        int f18 = f();
-        this.f42512c[f18] = f10;
-        this.f42520m[f18] = f10;
-        this.d[f18] = f11;
-        this.f42521n[f18] = f11;
-        this.f42518k[f18] = f14;
-        this.f42519l[f18] = f15;
-        this.f42513e[f18] = f12;
-        this.f42514f[f18] = f13;
-        this.f42524q[f18] = 2;
-        c(f16, f17, f18);
-        this.f42530x[f18] = 0.0f;
-        this.f42529w[f18] = 0.0f;
-        this.A[f18] = false;
-        if (this.f42526s) {
-            if (d() < this.f42528u) {
-                i7 = 1;
-            } else {
-                i7 = 0;
-            }
-            byte b10 = (byte) i7;
-            this.f42523p[f18] = b10;
-            if (b10 != 0) {
-                this.f42522o[f18] = 0;
+            try {
+                StaticLayout build = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), textPaint, i7).setAlignment(alignment).setLineSpacing(f10, 1.0f).setIncludePad(false).setEllipsize(null).setEllipsizedWidth(i10).setMaxLines(i11).setBreakStrategy(1).setHyphenationFrequency(0).build();
+                int i12 = 0;
+                while (true) {
+                    if (i12 >= build.getLineCount()) {
+                        break;
+                    } else if (build.getLineRight(i12) > i7) {
+                        build = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), textPaint, i7).setAlignment(alignment).setLineSpacing(f10, 1.0f).setIncludePad(false).setEllipsize(null).setEllipsizedWidth(i10).setMaxLines(i11).setBreakStrategy(0).setHyphenationFrequency(0).build();
+                        break;
+                    } else {
+                        i12++;
+                    }
+                }
+                if (build.getLineCount() <= i11) {
+                    return build;
+                }
+                int i13 = i11 - 1;
+                float lineLeft = build.getLineLeft(i13);
+                float lineWidth = build.getLineWidth(i13);
+                if (lineLeft != 0.0f) {
+                    offsetForHorizontal = build.getOffsetForHorizontal(i13, lineLeft);
+                } else {
+                    offsetForHorizontal = build.getOffsetForHorizontal(i13, lineWidth);
+                }
+                if (lineWidth < i10 - org.telegram.messenger.g0.L(10.0f)) {
+                    offsetForHorizontal += 3;
+                }
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder.subSequence(0, Math.max(0, offsetForHorizontal - 3)));
+                spannableStringBuilder2.append((CharSequence) "…");
+                StaticLayout.Builder includePad = StaticLayout.Builder.obtain(spannableStringBuilder2, 0, spannableStringBuilder2.length(), textPaint, i7).setAlignment(alignment).setLineSpacing(f10, 1.0f).setIncludePad(false);
+                if (((x5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), x5.class)).length > 0) {
+                    truncateAt2 = null;
+                } else {
+                    truncateAt2 = truncateAt;
+                }
+                return includePad.setEllipsize(truncateAt2).setEllipsizedWidth(i10).setMaxLines(i11).setBreakStrategy(z10 ? 1 : 0).setHyphenationFrequency(0).build();
+            } catch (Exception e11) {
+                e = e11;
+                z11 = true;
             }
         }
+        org.telegram.messenger.a8.g(e, z11);
+        return null;
     }
 
-    public final void j(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, int i7) {
-        i(f10, f11, f12, f13, f14, f15, f16, f17);
-        int i10 = this.C;
-        int i11 = this.f42511b;
-        int i12 = ((i10 + i11) - 1) % i11;
-        this.f42517j[i12] = Math.max(0, Math.min(7, i7));
-        this.f42525r[i12] = true;
+    public static StaticLayout d(CharSequence charSequence, TextPaint textPaint, boolean z10, int i7, int i10) {
+        return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i7).setAlignment(Layout.Alignment.ALIGN_CENTER).setLineSpacing(0.0f, 1.0f).setIncludePad(z10).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(i7).setMaxLines(i10).setBreakStrategy(1).setHyphenationFrequency(0).build();
     }
 }

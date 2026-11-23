@@ -2,16 +2,16 @@ package pe;
 
 import c8.h9;
 public final class a {
-    public static final a f55580a;
-    public static final a[] f55581b;
+    public static final a f55693a;
+    public static final a[] f55694b;
 
     static {
         Enum r02 = new Enum("NONE", 0);
         Enum r12 = new Enum("ALL_JSON_OBJECTS", 1);
         ?? r32 = new Enum("POLYMORPHIC", 2);
-        f55580a = r32;
+        f55693a = r32;
         a[] aVarArr = {r02, r12, r32};
-        f55581b = aVarArr;
+        f55694b = aVarArr;
         h9.a(aVarArr);
     }
 
@@ -20,6 +20,6 @@ public final class a {
     }
 
     public static a[] values() {
-        return (a[]) f55581b.clone();
+        return (a[]) f55694b.clone();
     }
 }

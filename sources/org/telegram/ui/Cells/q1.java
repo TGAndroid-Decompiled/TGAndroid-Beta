@@ -4,66 +4,66 @@ import android.graphics.drawable.Drawable;
 import android.text.StaticLayout;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.xy0;
+import org.telegram.ui.Components.wy0;
 public final class q1 {
     public StaticLayout A;
-    public org.telegram.ui.Components.u5 B;
+    public org.telegram.ui.Components.t5 B;
     public int C;
     public int D;
     public final r1 E;
-    public int f31262a;
-    public int f31263b;
-    public int f31264c;
+    public int f31352a;
+    public int f31353b;
+    public int f31354c;
     public int d;
-    public float f31265e;
-    public int f31266f;
-    public float f31267g;
+    public float f31355e;
+    public int f31356f;
+    public float f31357g;
     public float h;
-    public boolean f31268i;
-    public int f31269j;
-    public boolean f31270k;
-    public boolean f31271l;
-    public float f31272m;
-    public float f31273n;
-    public boolean f31274o;
-    public StaticLayout f31275p;
-    public xy0 f31276q;
-    public org.telegram.ui.Components.u5 f31277r;
-    public TLRPC.PollAnswer f31278s;
-    public TLRPC.TodoItem f31279t;
-    public boolean f31280u;
+    public boolean f31358i;
+    public int f31359j;
+    public boolean f31360k;
+    public boolean f31361l;
+    public float f31362m;
+    public float f31363n;
+    public boolean f31364o;
+    public StaticLayout f31365p;
+    public wy0 f31366q;
+    public org.telegram.ui.Components.t5 f31367r;
+    public TLRPC.PollAnswer f31368s;
+    public TLRPC.TodoItem f31369t;
+    public boolean f31370u;
     public int v;
-    public Drawable f31281w;
-    public uh.b f31282x;
-    public org.telegram.ui.Components.b9 f31283y;
-    public ImageReceiver f31284z;
+    public Drawable f31371w;
+    public uh.b f31372x;
+    public org.telegram.ui.Components.a9 f31373y;
+    public ImageReceiver f31374z;
 
     public q1(r1 r1Var) {
         this.E = r1Var;
     }
 
     public final void a() {
-        ImageReceiver imageReceiver = this.f31284z;
+        ImageReceiver imageReceiver = this.f31374z;
         if (imageReceiver != null) {
-            imageReceiver.P();
+            imageReceiver.Q();
         }
-        uh.b bVar = this.f31282x;
+        uh.b bVar = this.f31372x;
         if (bVar != null) {
-            bVar.f58984b.a();
-            bVar.f58985c.P();
+            bVar.f59101b.a();
+            bVar.f59102c.Q();
             bVar.F.e();
         }
     }
 
     public final void b() {
-        ImageReceiver imageReceiver = this.f31284z;
+        ImageReceiver imageReceiver = this.f31374z;
         if (imageReceiver != null) {
-            imageReceiver.R();
+            imageReceiver.S();
         }
-        uh.b bVar = this.f31282x;
+        uh.b bVar = this.f31372x;
         if (bVar != null) {
-            bVar.f58984b.b();
-            bVar.f58985c.R();
+            bVar.f59101b.b();
+            bVar.f59102c.S();
             bVar.F.f();
         }
     }

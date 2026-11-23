@@ -4,18 +4,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import c8.cc;
 import java.util.Arrays;
-import org.telegram.ui.md0;
+import org.telegram.ui.Components.i61;
 public final class k extends l {
     public static final Parcelable.Creator<k> CREATOR = new t0(6);
-    public final r f11522a;
-    public final String f11523b;
-    public final int f11524c;
+    public final r f11521a;
+    public final String f11522b;
+    public final int f11523c;
 
     public k(int i7, int i10, String str) {
         try {
-            this.f11522a = r.a(i7);
-            this.f11523b = str;
-            this.f11524c = i10;
+            this.f11521a = r.a(i7);
+            this.f11522b = str;
+            this.f11523c = i10;
         } catch (q e10) {
             throw new IllegalArgumentException(e10);
         }
@@ -26,40 +26,40 @@ public final class k extends l {
             return false;
         }
         k kVar = (k) obj;
-        if (!q6.m.l(this.f11522a, kVar.f11522a) || !q6.m.l(this.f11523b, kVar.f11523b) || !q6.m.l(Integer.valueOf(this.f11524c), Integer.valueOf(kVar.f11524c))) {
+        if (!q6.m.l(this.f11521a, kVar.f11521a) || !q6.m.l(this.f11522b, kVar.f11522b) || !q6.m.l(Integer.valueOf(this.f11523c), Integer.valueOf(kVar.f11523c))) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f11522a, this.f11523b, Integer.valueOf(this.f11524c)});
+        return Arrays.hashCode(new Object[]{this.f11521a, this.f11522b, Integer.valueOf(this.f11523c)});
     }
 
     public final String toString() {
-        md0 md0Var = new md0(getClass().getSimpleName(), 10);
-        String valueOf = String.valueOf(this.f11522a.f11553a);
-        md0 md0Var2 = new md0(9, false);
-        ((md0) md0Var.f49831c).f49831c = md0Var2;
-        md0Var.f49831c = md0Var2;
-        md0Var2.f49830b = valueOf;
-        md0Var2.d = "errorCode";
-        String str = this.f11523b;
+        i61 i61Var = new i61(getClass().getSimpleName());
+        String valueOf = String.valueOf(this.f11521a.f11552a);
+        i61 i61Var2 = new i61(11, false);
+        ((i61) i61Var.d).d = i61Var2;
+        i61Var.d = i61Var2;
+        i61Var2.f35959c = valueOf;
+        i61Var2.f35958b = "errorCode";
+        String str = this.f11522b;
         if (str != null) {
-            md0Var.L(str, "errorMessage");
+            i61Var.R(str, "errorMessage");
         }
-        return md0Var.toString();
+        return i61Var.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = cc.r(parcel, 20293);
-        int i10 = this.f11522a.f11553a;
+        int i10 = this.f11521a.f11552a;
         cc.q(parcel, 2, 4);
         parcel.writeInt(i10);
-        cc.l(parcel, 3, this.f11523b);
+        cc.l(parcel, 3, this.f11522b);
         cc.q(parcel, 4, 4);
-        parcel.writeInt(this.f11524c);
+        parcel.writeInt(this.f11523c);
         cc.s(parcel, r10);
     }
 }

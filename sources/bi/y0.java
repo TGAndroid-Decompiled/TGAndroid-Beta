@@ -2,12 +2,13 @@ package bi;
 
 import android.animation.AnimatorSet;
 import java.util.LinkedList;
-import org.telegram.ui.Components.cb0;
-import org.telegram.ui.Components.gh;
-import org.telegram.ui.Components.lb;
+import org.telegram.ui.Cells.fa;
+import org.telegram.ui.Components.fh;
+import org.telegram.ui.Components.kb;
 import org.telegram.ui.Components.ng;
-import org.telegram.ui.Components.qc0;
-import org.telegram.ui.Components.ui;
+import org.telegram.ui.Components.oc0;
+import org.telegram.ui.Components.ti;
+import org.telegram.ui.Components.za0;
 public final class y0 implements r1.c {
     public final int f4244a;
     public final Object f4245b;
@@ -27,67 +28,67 @@ public final class y0 implements r1.c {
                 ((a3.f) this.f4246c).run();
                 return;
             case 1:
-                ki.r3 r3Var = (ki.r3) this.f4245b;
+                ki.s3 s3Var = (ki.s3) this.f4245b;
                 Runnable runnable = (Runnable) this.f4246c;
-                if (gVar == r3Var.H) {
-                    r3Var.H = null;
+                if (gVar == s3Var.H) {
+                    s3Var.H = null;
                     if (runnable != null) {
                         runnable.run();
                     }
-                    Runnable runnable2 = r3Var.F;
+                    Runnable runnable2 = s3Var.F;
                     if (runnable2 != null) {
                         runnable2.run();
                     }
-                    float f12 = r3Var.h;
+                    float f12 = s3Var.h;
                     if (f12 != -1.0f) {
-                        boolean z11 = r3Var.f18877s;
-                        r3Var.f18877s = true;
-                        r3Var.setOffsetY(f12);
-                        r3Var.h = -1.0f;
-                        r3Var.f18877s = z11;
+                        boolean z11 = s3Var.f18997s;
+                        s3Var.f18997s = true;
+                        s3Var.setOffsetY(f12);
+                        s3Var.h = -1.0f;
+                        s3Var.f18997s = z11;
                     }
-                    r3Var.f18875n = -2.1474836E9f;
+                    s3Var.f18995n = -2.1474836E9f;
                     return;
                 }
                 return;
             case 2:
                 ng ngVar = (ng) this.f4246c;
-                ((lb) this.f4245b).setInOutOffset(0.0f);
+                ((kb) this.f4245b).setInOutOffset(0.0f);
                 if (!z10) {
                     ngVar.run();
                     return;
                 }
                 return;
             case 3:
-                org.telegram.ui.Components.g gVar2 = (org.telegram.ui.Components.g) this.f4246c;
-                AnimatorSet animatorSet = ((ui) this.f4245b).A0;
+                fa faVar = (fa) this.f4246c;
+                AnimatorSet animatorSet = ((ti) this.f4245b).A0;
                 if (animatorSet != null && !animatorSet.isRunning()) {
-                    gVar2.run();
+                    faVar.run();
                     return;
                 }
                 return;
             case 4:
-                ui uiVar = (ui) ((di.a4) this.f4245b).d;
-                uiVar.f40429x2.setTranslationY(0.0f);
-                uiVar.f40429x2.m(uiVar.f40379j4);
-                uiVar.Y0.g();
-                uiVar.f30142b.invalidate();
-                ((gh) this.f4246c).run();
-                uiVar.Q1(0);
+                ti tiVar = (ti) ((di.a4) this.f4245b).d;
+                tiVar.f40033x2.setTranslationY(0.0f);
+                tiVar.f40033x2.m(tiVar.f39983j4);
+                tiVar.Y0.g();
+                tiVar.f30226b.invalidate();
+                ((fh) this.f4246c).run();
+                tiVar.Q1(0);
                 return;
             default:
-                qc0 qc0Var = (qc0) this.f4245b;
-                cb0 cb0Var = (cb0) this.f4246c;
-                LinkedList linkedList = qc0Var.V;
-                qc0Var.U = null;
-                cb0Var.D = null;
-                cb0Var.y();
+                oc0 oc0Var = (oc0) this.f4245b;
+                za0 za0Var = (za0) this.f4246c;
+                LinkedList linkedList = oc0Var.V;
+                oc0Var.U = null;
+                za0Var.D = null;
+                za0Var.y();
                 if (!z10) {
-                    cb0Var.h = 1.0f;
-                    cb0Var.y();
+                    za0Var.h = 1.0f;
+                    za0Var.y();
                     if (!linkedList.isEmpty()) {
                         ((Runnable) linkedList.poll()).run();
-                        qc0Var.W.poll();
+                        oc0Var.W.poll();
                         return;
                     }
                     return;

@@ -1,4 +1,4 @@
 package fi;
 public interface x6 {
-    void b(boolean z10);
+    void c(boolean z10);
 }

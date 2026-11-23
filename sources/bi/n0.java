@@ -22,7 +22,7 @@ public final class n0 extends FrameLayout {
         super.dispatchDraw(canvas);
         t0 t0Var = this.f3865c;
         o0 o0Var = t0Var.W1;
-        FrameLayout frameLayout = o0Var.f10108b;
+        FrameLayout frameLayout = o0Var.f10106b;
         RectF rectF = this.f3863a;
         if (jh.k.c(frameLayout, this, rectF)) {
             TextView textView = t0Var.X1;
@@ -34,7 +34,7 @@ public final class n0 extends FrameLayout {
                     canvas.save();
                     canvas.translate(L, centerY);
                     canvas.scale(org.telegram.messenger.g0.L(32.0f) / rectF.width(), org.telegram.messenger.g0.L(32.0f) / rectF.height());
-                    o0Var.f10108b.draw(canvas);
+                    o0Var.f10106b.draw(canvas);
                     canvas.restore();
                 }
             }

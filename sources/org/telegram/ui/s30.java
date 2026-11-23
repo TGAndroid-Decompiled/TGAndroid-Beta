@@ -1,195 +1,52 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import java.util.ArrayList;
+import android.animation.ValueAnimator;
 import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-public final class s30 {
-    public final int f51876a;
-    public org.telegram.messenger.f6 f51878c;
-    public org.telegram.ui.Components.p5 d;
-    public boolean f51879e;
-    public boolean f51880f;
-    public long f51881g;
-    public String f51885l;
-    public final Drawable[] f51877b = new Drawable[6];
-    public final h6.m h = new h6.m(29);
-    public final HashSet f51882i = new HashSet();
-    public boolean f51883j = false;
-    public final r30 f51884k = new r30(this, 0);
-    public final RectF f51886m = new RectF();
+public final class s30 extends v4.l {
+    public float F;
+    public ValueAnimator G;
+    public final HashSet H = new HashSet();
+    public final HashSet I = new HashSet();
+    public float J;
+    public float K;
+    public final e40 L;
 
-    public s30(int i7) {
-        int i10 = 0;
-        this.f51876a = i7;
-        while (true) {
-            Drawable[] drawableArr = this.f51877b;
-            if (i10 < drawableArr.length) {
-                drawableArr[i10] = org.telegram.messenger.j6.g(f40.M0());
-                i10++;
-            } else {
-                this.f51881g = System.currentTimeMillis();
-                return;
-            }
-        }
+    public s30(e40 e40Var) {
+        this.L = e40Var;
     }
 
-    public final void a() {
-        boolean isEmpty = this.f51882i.isEmpty();
-        boolean z10 = !isEmpty;
-        if (this.f51883j != z10) {
-            this.f51883j = z10;
-            r30 r30Var = this.f51884k;
-            if (!isEmpty) {
-                org.telegram.ui.Components.p5 p5Var = this.d;
-                if (p5Var != null) {
-                    p5Var.b(r30Var);
-                    return;
-                }
-                return;
-            }
-            org.telegram.ui.Components.p5 p5Var2 = this.d;
-            if (p5Var2 != null) {
-                p5Var2.o(r30Var);
-            }
-        }
+    @Override
+    public final void g() {
+        super.g();
+        this.I.clear();
+        this.H.clear();
+        this.K = Float.MAX_VALUE;
+        this.L.L1.invalidate();
     }
 
-    public final boolean b(Canvas canvas, RectF rectF, float f10) {
-        long j3;
-        float f11;
-        float L = org.telegram.messenger.g0.L(6.0f);
-        RectF rectF2 = this.f51886m;
-        rectF2.set(rectF);
-        float f12 = -L;
-        rectF2.inset(f12, f12);
-        canvas.saveLayerAlpha(rectF2.left, rectF2.top, rectF2.right, rectF2.bottom, 255, 31);
-        long currentTimeMillis = (this.f51876a * 45) + System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.f51881g;
-        float f13 = ((float) j10) / 180.0f;
-        float min = Math.min(1.0f, f13);
-        boolean z10 = this.f51880f;
-        Drawable[] drawableArr = this.f51877b;
-        boolean z11 = false;
-        if (z10 && this.d != null && this.f51878c != null && this.f51879e) {
-            rectF2.set(rectF);
-            rectF2.offset(0.0f, (min - 1.0f) * (rectF.height() + L));
-            if (f10 < 1.0f) {
-                canvas.save();
-                f11 = 0.0f;
-                j3 = j10;
-                this.f51878c.setBounds(0, 0, (int) rectF2.width(), (int) rectF2.height());
-                canvas.translate(rectF2.left, rectF2.top);
-                this.f51878c.setAlpha((int) ((1.0f - f10) * 255.0f));
-                this.f51878c.draw(canvas);
-                this.f51878c.setAlpha(255);
-                canvas.restore();
-            } else {
-                j3 = j10;
-                f11 = 0.0f;
-            }
-            if (f10 > f11) {
-                canvas.save();
-                rectF2.inset(org.telegram.messenger.g0.L(-4.0f), org.telegram.messenger.g0.L(-4.0f));
-                this.d.setBounds(0, 0, (int) rectF2.width(), (int) rectF2.height());
-                canvas.translate(rectF2.left, rectF2.top);
-                this.d.setAlpha((int) (f10 * 255.0f));
-                this.d.draw(canvas);
-                this.d.setAlpha(255);
-                canvas.restore();
-            }
-        } else {
-            j3 = j10;
-            canvas.save();
-            rectF2.set(rectF);
-            rectF2.offset(0.0f, (rectF.height() + L) * (min - 1.0f));
-            canvas.translate(rectF2.left, rectF2.top);
-            drawableArr[1].setBounds(0, 0, (int) rectF2.width(), (int) rectF2.height());
-            drawableArr[1].setAlpha(127);
-            drawableArr[1].draw(canvas);
-            drawableArr[1].setAlpha(255);
-            canvas.restore();
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f59297p.isEmpty();
+        boolean isEmpty2 = this.f59299r.isEmpty();
+        boolean isEmpty3 = this.f59298q.isEmpty();
+        ValueAnimator valueAnimator = this.G;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.G = null;
         }
-        rectF2.set(rectF);
-        rectF2.offset(0.0f, (rectF.height() + L) * min);
-        canvas.save();
-        canvas.translate(rectF2.left, rectF2.top);
-        drawableArr[0].setBounds(0, 0, (int) rectF2.width(), (int) rectF2.height());
-        drawableArr[0].setAlpha(127);
-        drawableArr[0].draw(canvas);
-        drawableArr[0].setAlpha(255);
-        canvas.restore();
-        if (f13 >= 1.0f) {
-            if (this.f51880f && this.f51879e) {
-                z11 = true;
-            } else {
-                this.f51881g = currentTimeMillis - (j3 % 180);
-                int i7 = 0;
-                while (i7 < drawableArr.length - 1) {
-                    int i10 = i7 + 1;
-                    drawableArr[i7] = drawableArr[i10];
-                    i7 = i10;
-                }
-                drawableArr[drawableArr.length - 1] = org.telegram.messenger.j6.g(f40.M0());
-                if (this.f51880f) {
-                    this.f51879e = true;
-                }
-            }
+        if (!isEmpty || !isEmpty2 || !isEmpty3) {
+            this.F = 0.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.G = ofFloat;
+            ofFloat.addUpdateListener(new a3(this, 14));
+            this.G.addListener(new zx(this, 2));
+            this.G.setDuration(350L);
+            this.G.setInterpolator(org.telegram.ui.Components.kr.f36858f);
+            this.G.start();
+            e40 e40Var = this.L;
+            e40Var.L1.invalidate();
+            e40Var.Z3.invalidate();
         }
-        rectF2.set(rectF);
-        float f14 = (int) f12;
-        rectF2.inset(f14, f14);
-        float f15 = rectF2.left;
-        float f16 = rectF2.top;
-        rectF2.set(f15, f16, rectF2.right, f16 + L);
-        h6.m mVar = this.h;
-        mVar.n(canvas, rectF2, 1, 1.0f);
-        rectF2.set(rectF);
-        rectF2.inset(f14, f14);
-        float f17 = rectF2.left;
-        float f18 = rectF2.bottom;
-        rectF2.set(f17, f18 - L, rectF2.right, f18);
-        mVar.n(canvas, rectF2, 3, 1.0f);
-        canvas.restore();
-        return !z11;
-    }
-
-    public final void c() {
-        TLRPC.Document document;
-        if (this.d != null && this.f51885l != null) {
-            int l10 = org.telegram.messenger.k10.l();
-            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-            tL_inputStickerSetShortName.short_name = "StaticEmoji";
-            TLRPC.TL_messages_stickerSet n02 = org.telegram.messenger.si.d0(l10).n0(tL_inputStickerSetShortName, 0, false, true, new r3(this, 8));
-            if (n02 != null) {
-                String replace = this.f51885l.replace("️", "");
-                ArrayList<TLRPC.Document> arrayList = n02.documents;
-                int size = arrayList.size();
-                int i7 = 0;
-                while (true) {
-                    document = null;
-                    if (i7 >= size) {
-                        break;
-                    }
-                    TLRPC.Document document2 = arrayList.get(i7);
-                    i7++;
-                    TLRPC.Document document3 = document2;
-                    if (TextUtils.equals(org.telegram.messenger.gj.V(document3, null, null).replace("️", ""), replace)) {
-                        document = document3;
-                        break;
-                    }
-                }
-                if (document != null) {
-                    org.telegram.ui.Components.p5 p5Var = this.d;
-                    p5Var.f38452e = document;
-                    p5Var.i(false);
-                    return;
-                }
-                org.telegram.messenger.a8.d("emoji \"" + this.f51885l + "\" not found in addemoji/" + tL_inputStickerSetShortName.short_name);
-            }
-        }
+        super.m();
     }
 }

@@ -1,27 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-public final class b70 implements DialogInterface.OnCancelListener {
-    public final int f33759a;
-    public final org.telegram.messenger.c f33760b;
-    public final int f33761c;
+import android.content.Context;
+public final class b70 extends ek0 {
+    public final f70 f33676f3;
 
-    public b70(org.telegram.messenger.c cVar, int i7, int i10) {
-        this.f33759a = i10;
-        this.f33760b = cVar;
-        this.f33761c = i7;
+    public b70(f70 f70Var, Context context) {
+        super(context, null);
+        this.f33676f3 = f70Var;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f33759a) {
-            case 0:
-                ConnectionsManager.getInstance(this.f33760b.f23166a).cancelRequest(this.f33761c, true);
-                return;
-            default:
-                ConnectionsManager.getInstance(this.f33760b.f23166a).cancelRequest(this.f33761c, true);
-                return;
+    public final void requestLayout() {
+        if (this.f33676f3.f35034u1) {
+            return;
         }
+        super.requestLayout();
     }
 }

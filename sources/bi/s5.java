@@ -6,16 +6,16 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import org.telegram.ui.Components.eq0;
 import org.telegram.ui.Components.fq0;
-import org.telegram.ui.Components.gq0;
-import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.hq0;
 import org.telegram.ui.Components.iq0;
+import org.telegram.ui.Components.it0;
 import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.jq0;
-import org.telegram.ui.Components.jt0;
-import org.telegram.ui.Components.nq;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.kq;
 import org.telegram.ui.ProfileActivity;
-public final class s5 extends j71 {
+public final class s5 extends k71 {
     public final int W;
     public Object f4054a0;
     public final FrameLayout f4055b0;
@@ -31,17 +31,17 @@ public final class s5 extends j71 {
     public void a() {
         switch (this.W) {
             case 0:
-                gq0 gq0Var = (gq0) this.f4055b0;
-                i71 i71Var = gq0Var.f4153n;
-                if (gq0Var.b() && i71Var != null) {
-                    if (gq0Var.K == null) {
+                fq0 fq0Var = (fq0) this.f4055b0;
+                j71 j71Var = fq0Var.f4153n;
+                if (fq0Var.b() && j71Var != null) {
+                    if (fq0Var.K == null) {
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(i5.c.k(2131750081, null, new StringBuilder("+ ")));
-                        nq nqVar = new nq(2131232562, 0);
-                        nqVar.H = 0.8f;
-                        spannableStringBuilder.setSpan(nqVar, 0, 1, 33);
-                        gq0Var.K = spannableStringBuilder;
+                        kq kqVar = new kq(2131232565, 0);
+                        kqVar.H = 0.8f;
+                        spannableStringBuilder.setSpan(kqVar, 0, 1, 33);
+                        fq0Var.K = spannableStringBuilder;
                     }
-                    i71Var.a(-1, gq0Var.K);
+                    j71Var.a(-1, fq0Var.K);
                     return;
                 }
                 return;
@@ -55,10 +55,10 @@ public final class s5 extends j71 {
         boolean g10;
         switch (this.W) {
             case 0:
-                g10 = ((gq0) this.f4055b0).g();
+                g10 = ((fq0) this.f4055b0).g();
                 break;
             case 1:
-                g10 = ((fq0) this.f4055b0).H.F1;
+                g10 = ((eq0) this.f4055b0).H.F1;
                 break;
             default:
                 return super.b(motionEvent);
@@ -67,11 +67,11 @@ public final class s5 extends j71 {
     }
 
     @Override
-    public final void s(boolean z10) {
+    public final void t(boolean z10) {
         switch (this.W) {
             case 0:
-                gq0 gq0Var = (gq0) this.f4055b0;
-                gq0Var.l();
+                fq0 fq0Var = (fq0) this.f4055b0;
+                fq0Var.l();
                 org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f4054a0;
                 if (g2Var instanceof ProfileActivity) {
                     ((ProfileActivity) g2Var).W();
@@ -80,32 +80,32 @@ public final class s5 extends j71 {
                         fragmentView.invalidate();
                     }
                 }
-                gq0Var.p();
+                fq0Var.p();
                 return;
             case 1:
-                fq0 fq0Var = (fq0) this.f4055b0;
-                String currentLang = fq0Var.getCurrentLang();
+                eq0 eq0Var = (eq0) this.f4055b0;
+                String currentLang = eq0Var.getCurrentLang();
                 if (!TextUtils.equals((String) this.f4054a0, currentLang)) {
                     this.f4054a0 = currentLang;
-                    fq0Var.H.Y0();
+                    eq0Var.H.Y0();
                     return;
                 }
                 return;
             default:
-                ((iq0) this.f4054a0).d.V0(((jq0) this.f4055b0).f50351b.getAnimatingIndicatorProgress());
+                ((hq0) this.f4054a0).d.V0(((iq0) this.f4055b0).f49870b.getAnimatingIndicatorProgress());
                 return;
         }
     }
 
     @Override
-    public void u(int i7) {
+    public void v(int i7) {
         switch (this.W) {
             case 1:
-                fq0 fq0Var = (fq0) this.f4055b0;
-                String currentLang = fq0Var.getCurrentLang();
+                eq0 eq0Var = (eq0) this.f4055b0;
+                String currentLang = eq0Var.getCurrentLang();
                 if (!TextUtils.equals((String) this.f4054a0, currentLang)) {
                     this.f4054a0 = currentLang;
-                    fq0Var.H.Y0();
+                    eq0Var.H.Y0();
                     return;
                 }
                 return;
@@ -115,29 +115,29 @@ public final class s5 extends j71 {
     }
 
     @Override
-    public void v(int i7, boolean z10) {
+    public void w(int i7, boolean z10) {
         switch (this.W) {
             case 2:
-                int i10 = ((jq0) this.f4055b0).f50351b.f36153c0.get(i7, -1);
-                jt0 jt0Var = ((iq0) this.f4054a0).d;
+                int i10 = ((iq0) this.f4055b0).f49870b.f36327c0.get(i7, -1);
+                it0 it0Var = ((hq0) this.f4054a0).d;
                 if (i10 <= 0) {
-                    jt0.t(jt0Var, 8, z10);
+                    it0.t(it0Var, 8, z10);
                     return;
                 } else {
-                    jt0.t(jt0Var, jt0Var.x1(i10).f36266a, z10);
+                    it0.t(it0Var, it0Var.x1(i10).f35816a, z10);
                     return;
                 }
             default:
-                super.v(i7, z10);
+                super.w(i7, z10);
                 return;
         }
     }
 
     @Override
-    public final void w(int i7) {
+    public final void x(int i7) {
         switch (this.W) {
             case 0:
-                ((gq0) this.f4055b0).l();
+                ((fq0) this.f4055b0).l();
                 org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f4054a0;
                 if (g2Var instanceof ProfileActivity) {
                     ((ProfileActivity) g2Var).W();
@@ -145,24 +145,24 @@ public final class s5 extends j71 {
                 }
                 return;
             case 1:
-                fq0 fq0Var = (fq0) this.f4055b0;
-                String currentLang = fq0Var.getCurrentLang();
+                eq0 eq0Var = (eq0) this.f4055b0;
+                String currentLang = eq0Var.getCurrentLang();
                 if (!TextUtils.equals((String) this.f4054a0, currentLang)) {
                     this.f4054a0 = currentLang;
-                    fq0Var.H.Y0();
+                    eq0Var.H.Y0();
                     return;
                 }
                 return;
             default:
-                ((jq0) this.f4055b0).f50351b.f36153c0.get(i7, -1);
-                ((iq0) this.f4054a0).d.V0(1.0f);
+                ((iq0) this.f4055b0).f49870b.f36327c0.get(i7, -1);
+                ((hq0) this.f4054a0).d.V0(1.0f);
                 return;
         }
     }
 
-    public s5(fq0 fq0Var, Context context) {
+    public s5(eq0 eq0Var, Context context) {
         super(context, null);
         this.W = 1;
-        this.f4055b0 = fq0Var;
+        this.f4055b0 = eq0Var;
     }
 }

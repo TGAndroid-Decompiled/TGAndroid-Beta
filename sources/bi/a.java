@@ -11,7 +11,7 @@ public final class a implements qj0 {
     }
 
     @Override
-    public final void c(int i7, View view) {
+    public final void b(int i7, View view) {
         switch (this.f3343a) {
             case 0:
                 int i10 = e.W1;
@@ -26,10 +26,10 @@ public final class a implements qj0 {
                 }
                 return;
             case 3:
-                boolean z10 = ChatAttachAlertPhotoLayout.f32764r1;
-                if (view instanceof org.telegram.ui.Cells.s5) {
-                    org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-                    s5Var.f31762y.e(s5Var);
+                boolean z10 = ChatAttachAlertPhotoLayout.f32862r1;
+                if (view instanceof org.telegram.ui.Cells.r5) {
+                    org.telegram.ui.Cells.r5 r5Var = (org.telegram.ui.Cells.r5) view;
+                    r5Var.f31795y.d(r5Var);
                     return;
                 }
                 return;

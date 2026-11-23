@@ -6,46 +6,46 @@ import android.text.TextPaint;
 import java.util.Locale;
 import org.json.JSONObject;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.cz;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.messenger.bz;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.Components.rk0;
 public abstract class q1 {
-    public static final int[] f54923a = {m6.f29610ra, m6.Vc, m6.f29373ee, m6.Xc, m6.Nd};
-    public static final int[] f54924b = {m6.f29611rb, m6.Wc, m6.f29462jc, m6.Yc, m6.Tb};
-    public static final int[] f54925c = {m6.f29668ub, m6.f29687vb, m6.f29706wb};
+    public static final int[] f55039a = {n6.f29714ra, n6.Vc, n6.f29477ee, n6.Xc, n6.Nd};
+    public static final int[] f55040b = {n6.f29715rb, n6.Wc, n6.f29566jc, n6.Yc, n6.Tb};
+    public static final int[] f55041c = {n6.f29772ub, n6.f29791vb, n6.f29810wb};
 
-    public static String a(h6 h6Var, boolean z10) {
+    public static String a(i6 i6Var, boolean z10) {
         boolean q10;
         int[] iArr;
         int i7;
         Object obj;
         String str = "light";
-        if (h6Var != null) {
-            q10 = h6Var.d();
+        if (i6Var != null) {
+            q10 = i6Var.b();
         } else {
-            q10 = m6.I.q();
+            q10 = n6.I.q();
         }
         if (z10) {
-            iArr = f54924b;
+            iArr = f55040b;
         } else {
-            iArr = f54923a;
+            iArr = f55039a;
         }
         try {
-            int b10 = b(h6Var, z10);
+            int b10 = b(i6Var, z10);
             if (q10) {
                 i7 = -16777216;
             } else {
                 i7 = -1;
             }
-            int w10 = m6.w(i7, b10);
-            int w02 = m6.w0(iArr[1], h6Var);
-            int w03 = m6.w0(iArr[2], h6Var);
-            int w04 = m6.w0(iArr[3], h6Var);
-            int w05 = m6.w0(iArr[4], h6Var);
-            int w06 = m6.w0(m6.Fi, h6Var);
-            int w07 = m6.w0(m6.Ji, h6Var);
-            int w11 = m6.w(w10, m6.r1(0.1f, w05));
+            int w10 = n6.w(i7, b10);
+            int w02 = n6.w0(iArr[1], i6Var);
+            int w03 = n6.w0(iArr[2], i6Var);
+            int w04 = n6.w0(iArr[3], i6Var);
+            int w05 = n6.w0(iArr[4], i6Var);
+            int w06 = n6.w0(n6.Fi, i6Var);
+            int w07 = n6.w0(n6.Ji, i6Var);
+            int w11 = n6.w(w10, n6.r1(0.1f, w05));
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("bg_color", c(w10, w10));
             jSONObject.put("text_color", c(w02, w10));
@@ -56,10 +56,10 @@ public abstract class q1 {
             jSONObject.put("secondary_bg_color", c(w11, w10));
             jSONObject.put("accent_text_color", c(w05, w10));
             jSONObject.put("subtitle_text_color", c(w03, w10));
-            jSONObject.put("destructive_text_color", c(m6.w0(m6.f29568p7, h6Var), w10));
+            jSONObject.put("destructive_text_color", c(n6.w0(n6.f29672p7, i6Var), w10));
             jSONObject.put("section_bg_color", c(w10, w10));
             jSONObject.put("section_header_text_color", c(w05, w10));
-            jSONObject.put("section_separator_color", c(m6.r1(0.12f, w02), w10));
+            jSONObject.put("section_separator_color", c(n6.r1(0.12f, w02), w10));
             jSONObject.put("header_bg_color", c(w11, w10));
             jSONObject.put("bottom_bar_bg_color", c(w11, w10));
             JSONObject jSONObject2 = new JSONObject();
@@ -85,23 +85,23 @@ public abstract class q1 {
         }
     }
 
-    public static int b(h6 h6Var, boolean z10) {
+    public static int b(i6 i6Var, boolean z10) {
         int i7;
         int i10;
         int i11;
         if (z10) {
-            i7 = f54924b[0];
+            i7 = f55040b[0];
         } else {
-            i7 = f54923a[0];
+            i7 = f55039a[0];
         }
-        int w02 = m6.w0(i7, h6Var);
+        int w02 = n6.w0(i7, i6Var);
         if (z10) {
-            int[] iArr = f54925c;
+            int[] iArr = f55041c;
             int i12 = iArr[0];
-            if (h6Var != null) {
-                i10 = h6Var.m(i12);
+            if (i6Var != null) {
+                i10 = i6Var.k(i12);
             } else {
-                i10 = m6.lm.get(i12);
+                i10 = n6.lm.get(i12);
             }
             if (i10 != 0) {
                 int red = Color.red(w02);
@@ -109,10 +109,10 @@ public abstract class q1 {
                 int blue = Color.blue(w02);
                 int i13 = 1;
                 for (int i14 : iArr) {
-                    if (h6Var != null) {
-                        i11 = h6Var.m(i14);
+                    if (i6Var != null) {
+                        i11 = i6Var.k(i14);
                     } else {
-                        i11 = m6.lm.get(i14);
+                        i11 = n6.lm.get(i14);
                     }
                     if (i11 != 0) {
                         int red2 = Color.red(i11) + red;
@@ -130,7 +130,7 @@ public abstract class q1 {
     }
 
     public static String c(int i7, int i10) {
-        int w10 = m6.w(i10, i7);
+        int w10 = n6.w(i10, i7);
         return String.format(Locale.US, "#%02x%02x%02x", Integer.valueOf(Color.red(w10)), Integer.valueOf(Color.green(w10)), Integer.valueOf(Color.blue(w10)));
     }
 
@@ -145,38 +145,38 @@ public abstract class q1 {
         return a8.p0.s(sb2, str, "\"}");
     }
 
-    public static int e(h6 h6Var, boolean z10) {
+    public static int e(i6 i6Var, boolean z10) {
         int i7;
         int[] iArr;
         int[] iArr2;
         int i10;
         int i11 = 0;
-        if (h6Var == null ? m6.I.q() : h6Var.d()) {
+        if (i6Var == null ? n6.I.q() : i6Var.b()) {
             i7 = 1;
         } else {
             i7 = 0;
         }
         if (z10) {
-            iArr = f54924b;
+            iArr = f55040b;
         } else {
-            iArr = f54923a;
+            iArr = f55039a;
         }
         for (int i12 : iArr) {
-            i7 = (i7 * 31) + m6.w0(i12, h6Var);
+            i7 = (i7 * 31) + n6.w0(i12, i6Var);
         }
         if (z10) {
-            for (int i13 : f54925c) {
+            for (int i13 : f55041c) {
                 int i14 = i7 * 31;
-                if (h6Var != null) {
-                    i10 = h6Var.m(i13);
+                if (i6Var != null) {
+                    i10 = i6Var.k(i13);
                 } else {
-                    i10 = m6.lm.get(i13);
+                    i10 = n6.lm.get(i13);
                 }
                 i7 = i14 + i10;
             }
         }
-        int w02 = (((m6.w0(m6.f29568p7, h6Var) + ((m6.w0(m6.Ji, h6Var) + ((m6.w0(m6.Fi, h6Var) + (i7 * 31)) * 31)) * 31)) * 31) + cz.W0) * 31;
-        TextPaint textPaint = m6.f29544o2;
+        int w02 = (((n6.w0(n6.f29672p7, i6Var) + ((n6.w0(n6.Ji, i6Var) + ((n6.w0(n6.Fi, i6Var) + (i7 * 31)) * 31)) * 31)) * 31) + bz.W0) * 31;
+        TextPaint textPaint = n6.f29648o2;
         if (textPaint != null) {
             i11 = Float.floatToIntBits(textPaint.getTextSize());
         }
@@ -185,13 +185,13 @@ public abstract class q1 {
 
     public static JSONObject f() {
         JSONObject jSONObject = new JSONObject();
-        jSONObject.put("fontSize", cz.W0);
-        TextPaint textPaint = m6.f29544o2;
+        jSONObject.put("fontSize", bz.W0);
+        TextPaint textPaint = n6.f29648o2;
         if (textPaint != null && textPaint.getTextSize() > 0.0f) {
             Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
             jSONObject.put("lineHeight", Math.round(Math.max(1.0f, Math.min(3.0f, ((fontMetrics.descent - fontMetrics.ascent) + fontMetrics.leading) / textPaint.getTextSize())) * 100.0f) / 100.0d);
         }
-        int round = Math.round(rk0.j0() / org.telegram.messenger.g0.f24009p);
+        int round = Math.round(rk0.j0() / org.telegram.messenger.g0.f24225p);
         jSONObject.put("padding", "8px " + round + "px");
         return jSONObject;
     }

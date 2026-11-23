@@ -2,8 +2,8 @@ package org.telegram.tgnet;
 
 import j$.util.Objects;
 import java.util.ArrayList;
-import org.telegram.messenger.y10;
-import org.telegram.messenger.z10;
+import org.telegram.messenger.w10;
+import org.telegram.messenger.x10;
 import org.telegram.tgnet.TLObject;
 public class Vector<T extends TLObject> extends TLObject {
     public static final int constructor = 481674261;
@@ -120,7 +120,7 @@ public class Vector<T extends TLObject> extends TLObject {
         return strings;
     }
 
-    private static <T> ArrayList<T> deserialize(InputSerializedData inputSerializedData, z10 z10Var, boolean z10) {
+    private static <T> ArrayList<T> deserialize(InputSerializedData inputSerializedData, x10 x10Var, boolean z10) {
         int readInt32 = inputSerializedData.readInt32(z10);
         if (readInt32 != 481674261) {
             TLParseException.doThrowOrLog(inputSerializedData, "Vector", readInt32, z10);
@@ -133,29 +133,29 @@ public class Vector<T extends TLObject> extends TLObject {
         }
         ArrayList<T> arrayList = (ArrayList<T>) new ArrayList(readInt322);
         for (int i7 = 0; i7 < readInt322; i7++) {
-            arrayList.add(z10Var.a(Boolean.valueOf(z10)));
+            arrayList.add(x10Var.a(Boolean.valueOf(z10)));
         }
         return arrayList;
     }
 
     public static ArrayList<byte[]> deserializeByteArray(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new w(inputSerializedData, 3), z10);
+        return deserialize(inputSerializedData, new v(inputSerializedData, 3), z10);
     }
 
     public static ArrayList<Integer> deserializeInt(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new w(inputSerializedData, 1), z10);
+        return deserialize(inputSerializedData, new v(inputSerializedData, 1), z10);
     }
 
     public static ArrayList<java.lang.Long> deserializeLong(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new w(inputSerializedData, 0), z10);
+        return deserialize(inputSerializedData, new v(inputSerializedData, 0), z10);
     }
 
     public static ArrayList<String> deserializeString(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new w(inputSerializedData, 2), z10);
+        return deserialize(inputSerializedData, new v(inputSerializedData, 2), z10);
     }
 
     public static <T extends TLObject> void serialize(OutputSerializedData outputSerializedData, ArrayList<T> arrayList) {
@@ -168,22 +168,22 @@ public class Vector<T extends TLObject> extends TLObject {
 
     public static void serializeByteArray(OutputSerializedData outputSerializedData, ArrayList<byte[]> arrayList) {
         Objects.requireNonNull(outputSerializedData);
-        serialize(outputSerializedData, new x(outputSerializedData, 2), arrayList);
+        serialize(outputSerializedData, new w(outputSerializedData, 2), arrayList);
     }
 
     public static void serializeInt(OutputSerializedData outputSerializedData, ArrayList<Integer> arrayList) {
         Objects.requireNonNull(outputSerializedData);
-        serialize(outputSerializedData, new x(outputSerializedData, 1), arrayList);
+        serialize(outputSerializedData, new w(outputSerializedData, 1), arrayList);
     }
 
     public static void serializeLong(OutputSerializedData outputSerializedData, ArrayList<java.lang.Long> arrayList) {
         Objects.requireNonNull(outputSerializedData);
-        serialize(outputSerializedData, new x(outputSerializedData, 0), arrayList);
+        serialize(outputSerializedData, new w(outputSerializedData, 0), arrayList);
     }
 
     public static void serializeString(OutputSerializedData outputSerializedData, ArrayList<String> arrayList) {
         Objects.requireNonNull(outputSerializedData);
-        serialize(outputSerializedData, new x(outputSerializedData, 3), arrayList);
+        serialize(outputSerializedData, new w(outputSerializedData, 3), arrayList);
     }
 
     private static boolean validateSize(int i7, int i10, int i11) {
@@ -222,11 +222,11 @@ public class Vector<T extends TLObject> extends TLObject {
         return arrayList;
     }
 
-    public static <T> void serialize(OutputSerializedData outputSerializedData, y10 y10Var, ArrayList<T> arrayList) {
+    public static <T> void serialize(OutputSerializedData outputSerializedData, w10 w10Var, ArrayList<T> arrayList) {
         outputSerializedData.writeInt32(481674261);
         outputSerializedData.writeInt32(arrayList.size());
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            y10Var.a(arrayList.get(i7));
+            w10Var.a(arrayList.get(i7));
         }
     }
 

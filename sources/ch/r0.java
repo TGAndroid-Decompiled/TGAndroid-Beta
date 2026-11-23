@@ -3,7 +3,7 @@ package ch;
 import android.os.Bundle;
 import org.telegram.ui.ActionBar.g2;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.c51;
+import org.telegram.ui.b51;
 public final class r0 implements Runnable {
     public final int f5498a = 1;
     public final long f5499b;
@@ -19,7 +19,7 @@ public final class r0 implements Runnable {
         switch (this.f5498a) {
             case 0:
                 g2 g2Var = this.f5500c;
-                g2Var.presentFragment(c51.g0(g2Var.getMessagesController().O0(Long.valueOf(-this.f5499b)), true));
+                g2Var.presentFragment(b51.g0(g2Var.getMessagesController().O0(Long.valueOf(-this.f5499b)), true));
                 return;
             default:
                 Bundle bundle = new Bundle();

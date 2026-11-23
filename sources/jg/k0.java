@@ -2,13 +2,13 @@ package jg;
 
 import android.view.View;
 import android.view.ViewPropertyAnimator;
-public final class k0 extends v4.k {
+public final class k0 extends v4.l {
     @Override
-    public final void D(v4.e1 e1Var) {
-        View view = e1Var.f59111a;
+    public final void D(v4.f1 f1Var) {
+        View view = f1Var.f59245a;
         ViewPropertyAnimator animate = view.animate();
-        this.A.add(e1Var);
-        animate.setDuration(this.d).alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setListener(new j0(this, e1Var, animate, view, 0)).start();
+        this.A.add(f1Var);
+        animate.setDuration(this.d).alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setListener(new j0(this, f1Var, animate, view, 0)).start();
     }
 
     @Override
@@ -32,9 +32,9 @@ public final class k0 extends v4.k {
     }
 
     @Override
-    public final void p(v4.e1 e1Var) {
-        super.p(e1Var);
-        View view = e1Var.f59111a;
+    public final void p(v4.f1 f1Var) {
+        super.p(f1Var);
+        View view = f1Var.f59245a;
         view.setScaleX(0.0f);
         view.setScaleY(0.0f);
     }

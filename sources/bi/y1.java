@@ -23,7 +23,7 @@ public final class y1 extends ReplacementSpan {
         textPaint.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
         textPaint.setColor(i7);
-        paint.setColor(org.telegram.ui.ActionBar.m6.r1(0.08f, i7));
+        paint.setColor(org.telegram.ui.ActionBar.n6.r1(0.08f, i7));
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class y1 extends ReplacementSpan {
         canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), this.f4248b);
         if (this.d) {
             int color = textPaint.getColor();
-            int r12 = org.telegram.ui.ActionBar.m6.r1(0.0f, color);
+            int r12 = org.telegram.ui.ActionBar.n6.r1(0.0f, color);
             float L = f10 + org.telegram.messenger.g0.L(4.0f);
             textPaint.setShader(new LinearGradient(L, 0.0f, L + measureText, 0.0f, new int[]{color, r12, r12, color}, new float[]{0.17f, 0.41f, 0.59f, 0.87f}, Shader.TileMode.CLAMP));
         }

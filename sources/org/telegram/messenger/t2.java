@@ -1,10 +1,10 @@
 package org.telegram.messenger;
 public final class t2 {
-    public final long f26911a;
-    public int f26912b;
+    public final long f27031a;
+    public int f27032b;
 
     public t2(long j3, int i7) {
-        this.f26911a = j3;
-        this.f26912b = i7;
+        this.f27031a = j3;
+        this.f27032b = i7;
     }
 }

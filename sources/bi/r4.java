@@ -44,8 +44,8 @@ public final class r4 implements Runnable {
                 });
                 return;
             default:
-                int i12 = ChatActivityEnterView.f32535s7;
-                ((ChatActivityEnterView) obj).w1(this.f4024b, this.f4025c, this.d, this.f4026e, false);
+                int i12 = ChatActivityEnterView.f32633s7;
+                ((ChatActivityEnterView) obj).x1(this.f4024b, this.f4025c, this.d, this.f4026e, false);
                 return;
         }
     }

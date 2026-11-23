@@ -3,11 +3,11 @@ package ai;
 import android.text.TextUtils;
 import bi.r6;
 import di.f6;
-import org.telegram.messenger.r10;
+import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.lc;
-public final class a implements r10 {
+import org.telegram.ui.Components.kc;
+public final class a implements p10 {
     public final int f1111a = 0;
     public final long f1112b;
     public final Object f1113c;
@@ -31,14 +31,14 @@ public final class a implements r10 {
                 b bVar = (b) this.f1114e;
                 TLRPC.TL_composedMessageWithAI tL_composedMessageWithAI = (TLRPC.TL_composedMessageWithAI) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                ((d) this.f1113c).f1160b = -1;
+                ((d) this.f1113c).f1158b = -1;
                 if (!zArr[0]) {
                     zArr[0] = true;
                     if (tL_composedMessageWithAI != null && (tL_textWithEntities = tL_composedMessageWithAI.result_text) != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
                         org.telegram.messenger.g0.h3(new a1.e(8, bVar, tL_composedMessageWithAI), Math.max(0L, 900 - (System.currentTimeMillis() - this.f1112b)));
                         return;
                     } else {
-                        bVar.c(tL_error, null);
+                        bVar.b(tL_error, null);
                         return;
                     }
                 }
@@ -51,13 +51,13 @@ public final class a implements r10 {
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (stargiftdepositpayload == null) {
                     t1Var.dismiss();
-                    new lc(f2Var.f30145c, f6Var.J0).g0(tL_error2, false);
+                    new kc(f2Var.f30229c, f6Var.J0).g0(tL_error2, false);
                     return;
                 }
-                di.o2 o2Var = new di.o2(f6Var, new boolean[1], t1Var, f2Var, this.f1112b, stargiftdepositpayload);
-                c1.c cVar = new c1.c(29, r11, o2Var);
-                org.telegram.messenger.g0.h3(cVar, 5000L);
-                Runnable[] runnableArr = {org.telegram.ui.Wallet.u0.D(f6Var.f30139a).k(stargiftdepositpayload, new r6(1, cVar, o2Var))};
+                di.p2 p2Var = new di.p2(f6Var, new boolean[1], t1Var, f2Var, this.f1112b, stargiftdepositpayload);
+                di.f2 f2Var2 = new di.f2(1, r11, p2Var);
+                org.telegram.messenger.g0.h3(f2Var2, 5000L);
+                Runnable[] runnableArr = {org.telegram.ui.Wallet.v0.D(f6Var.f30223a).k(stargiftdepositpayload, new r6(1, f2Var2, p2Var))};
                 return;
             default:
                 boolean[] zArr2 = (boolean[]) this.d;

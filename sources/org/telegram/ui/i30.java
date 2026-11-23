@@ -1,116 +1,102 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.os.Build;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class i30 extends v4.o {
-    public final f40 f48539b;
+public final class i30 implements org.telegram.ui.Components.wi0 {
+    public final Path f48699a = new Path();
+    public final Paint f48700b;
+    public final e40 f48701c;
 
-    public i30(f40 f40Var) {
-        this.f48539b = f40Var;
+    public i30(e40 e40Var) {
+        this.f48701c = e40Var;
+        Paint paint = new Paint(1);
+        this.f48700b = paint;
+        paint.setColor(-14603467);
     }
 
     @Override
-    public final boolean a(int i7, int i10) {
-        return true;
+    public final void h(View view, ch.p0 p0Var, boolean z10, boolean z11) {
+        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
+        String str = p0Var.f5470f;
+        if (str == null) {
+            str = "👍";
+        }
+        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+        tL_textWithEntities.text = str;
+        long j3 = p0Var.f5471g;
+        if (j3 != 0) {
+            tL_messageEntityCustomEmoji.document_id = j3;
+            tL_messageEntityCustomEmoji.offset = 0;
+            tL_messageEntityCustomEmoji.length = str.length();
+            tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
+        }
+        e40 e40Var = this.f48701c;
+        e40Var.G1(tL_textWithEntities);
+        j20 j20Var = e40Var.C1;
+        if (j20Var.m()) {
+            j20Var.j();
+        } else {
+            j20Var.d();
+        }
+        ch.b0 reactionsWindow = e40Var.F1.getReactionsWindow();
+        if (reactionsWindow != null && !reactionsWindow.f5303q) {
+            e40Var.F1.getReactionsWindow().e();
+            e40Var.F1.n();
+        }
     }
 
     @Override
-    public final boolean b(int i7, int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        f40 f40Var = this.f48539b;
-        z30 z30Var = f40Var.K1;
-        int i16 = z30Var.f54361x;
-        if (i16 >= 0) {
-            int i17 = f40Var.f47459g5;
-            if (i7 == i17 && i10 == i16) {
-                return true;
-            }
-            if ((i7 == i17 && i10 != i16) || (i7 != i17 && i10 == i16)) {
-                return false;
-            }
-        }
-        int i18 = z30Var.f54362y;
-        if (i18 >= 0) {
-            int i19 = f40Var.f47515t5;
-            if (i7 == i19 && i10 == i18) {
-                return true;
-            }
-            if ((i7 == i19 && i10 != i18) || (i7 != i19 && i10 == i18)) {
-                return false;
-            }
-        }
-        int i20 = z30Var.E;
-        if (i20 >= 0) {
-            int i21 = f40Var.f47520u5;
-            if (i7 == i21 && i10 == i20) {
-                return true;
-            }
-            if ((i7 == i21 && i10 != i20) || (i7 != i21 && i10 == i20)) {
-                return false;
-            }
-        }
-        int i22 = z30Var.L;
-        if (i22 >= 0) {
-            int i23 = f40Var.f47455f5;
-            if (i7 == i23 && i10 == i22) {
-                return true;
-            }
-            if ((i7 == i23 && i10 != i22) || (i7 != i23 && i10 == i22)) {
-                return false;
-            }
-        }
-        int i24 = z30Var.K;
-        if (i24 >= 0) {
-            int i25 = f40Var.s5;
-            if (i7 == i25 && i10 == i24) {
-                return true;
-            }
-            if ((i7 == i25 && i10 != i24) || (i7 != i25 && i10 == i24)) {
-                return false;
-            }
-        }
-        int i26 = z30Var.J;
-        if (i26 >= 0 && i26 == i10 && i7 == f40Var.f47506r5) {
-            return true;
-        }
-        int i27 = f40Var.D2;
-        if (i7 == i27 - 1 && i10 == z30Var.G - 1) {
-            return true;
-        }
-        if (i7 != i27 - 1 && i10 != z30Var.G - 1) {
-            if (i10 >= z30Var.H && i10 < z30Var.I && i7 >= (i15 = f40Var.f47496p5) && i7 < f40Var.f47501q5) {
-                return ((org.telegram.messenger.u3) f40Var.f47542z2.get(i7 - i15)).equals((org.telegram.messenger.u3) f40Var.f47475l2.get(i10 - f40Var.K1.H));
-            }
-            if (i10 >= z30Var.d && i10 < z30Var.f54355e && i7 >= (i14 = f40Var.f47463h5) && i7 < f40Var.f47467i5) {
-                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) f40Var.f47537y2.get(i7 - i14);
-                if (org.telegram.messenger.gj.B1(groupCallParticipant.peer) != org.telegram.messenger.gj.B1(((TLRPC.GroupCallParticipant) f40Var.V2.f26918g.get(i10 - f40Var.K1.d)).peer) || (i7 != i10 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
-                    return false;
-                }
-                return true;
-            } else if (i10 >= z30Var.f54356f && i10 < z30Var.h && i7 >= (i13 = f40Var.f47470j5) && i7 < f40Var.f47474k5) {
-                return ((Long) f40Var.A2.get(i7 - i13)).equals((Long) f40Var.V2.f26920j.get(i10 - f40Var.K1.f54356f));
-            } else {
-                if (i10 >= z30Var.f54357n && i10 < z30Var.f54358r && i7 >= (i12 = f40Var.f47478l5) && i7 < f40Var.f47483m5) {
-                    return ((Long) f40Var.B2.get(i7 - i12)).equals((Long) f40Var.V2.f26923m.get(i10 - f40Var.K1.f54357n));
-                }
-                if (i10 >= z30Var.f54359s && i10 < z30Var.f54360w && i7 >= (i11 = f40Var.f47487n5) && i7 < f40Var.f47491o5) {
-                    return ((Long) f40Var.C2.get(i7 - i11)).equals((Long) f40Var.V2.f26922l.get(i10 - f40Var.K1.f54359s));
-                }
-            }
-        }
+    public final boolean l() {
         return false;
     }
 
     @Override
-    public final int d() {
-        return this.f48539b.K1.G;
+    public final boolean n() {
+        return false;
     }
 
     @Override
-    public final int e() {
-        return this.f48539b.D2;
+    public final void q(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
+        int i10 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
+        Paint paint = this.f48700b;
+        if (i10 > 0) {
+            canvas.drawRoundRect(rectF, f10, f10, paint);
+        } else {
+            canvas.drawRect(rectF, paint);
+        }
+        if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
+            e40 e40Var = this.f48701c;
+            if (e40Var.P4 != null) {
+                canvas.save();
+                if (i10 > 0) {
+                    Path path = this.f48699a;
+                    path.rewind();
+                    path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
+                    path.close();
+                    canvas.clipPath(path);
+                } else {
+                    canvas.clipRect(rectF);
+                }
+                canvas.translate(-e40Var.F1.getX(), -e40Var.F1.getY());
+                float f13 = e40Var.Q4;
+                canvas.scale(f13, f13);
+                canvas.drawRenderNode(e40Var.P4);
+                canvas.restore();
+            }
+        }
+    }
+
+    @Override
+    public final boolean t() {
+        return true;
+    }
+
+    @Override
+    public final void r() {
     }
 }

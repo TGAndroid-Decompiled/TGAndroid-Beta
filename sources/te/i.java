@@ -2,5 +2,5 @@ package te;
 public interface i {
     void a();
 
-    void f(j jVar);
+    void g(j jVar);
 }

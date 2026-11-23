@@ -1,440 +1,344 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.text.method.PasswordTransformationMethod;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.app.Dialog;
+import android.text.SpannableStringBuilder;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ub0 extends org.telegram.ui.Components.iu0 {
-    public boolean E;
-    public int F;
-    public int G;
-    public final de0 H;
-    public final org.telegram.ui.Components.yb0[] f52508a;
-    public final EditTextBoldCursor[] f52509b;
-    public final TextView f52510c;
-    public final TextView d;
-    public final TextView f52511e;
-    public final ImageView f52512f;
-    public String h;
-    public String f52513n;
-    public String f52514r;
-    public TL_account.Password f52515s;
-    public Bundle f52516w;
-    public boolean f52517x;
-    public final int f52518y;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ub0 implements RequestDelegate {
+    public final int f52618a;
+    public final wb0 f52619b;
 
-    public ub0(de0 de0Var, Context context, int i7) {
-        super(context);
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        boolean z10;
-        this.H = de0Var;
-        this.f52518y = i7;
-        setOrientation(1);
-        if (i7 == 1) {
-            i10 = 1;
-        } else {
-            i10 = 2;
-        }
-        this.f52509b = new EditTextBoldCursor[i10];
-        this.f52508a = new org.telegram.ui.Components.yb0[i10];
-        TextView textView = new TextView(context);
-        this.f52510c = textView;
-        float f10 = 18.0f;
-        textView.setTextSize(1, 18.0f);
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        float f11 = 2.0f;
-        textView.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
-        textView.setGravity(49);
-        textView.setText(org.telegram.messenger.hd.N0(2131745326, null));
-        if (org.telegram.messenger.g0.O1()) {
-            i11 = 16;
-        } else {
-            i11 = 72;
-        }
-        addView(textView, c8.na.t(-2, -2, 1, 8, i11, 8, 0));
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setTextSize(1, 16.0f);
-        textView2.setGravity(1);
-        textView2.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
-        addView(textView2, c8.na.t(-2, -2, 1, 8, 6, 8, 16));
-        final int i14 = 0;
-        while (i14 < this.f52509b.length) {
-            org.telegram.ui.Components.yb0 yb0Var = new org.telegram.ui.Components.yb0(context, null);
-            this.f52508a[i14] = yb0Var;
-            if (i7 == 0) {
-                if (i14 == 0) {
-                    i12 = 2131747016;
-                } else {
-                    i12 = 2131747014;
-                }
-            } else {
-                i12 = 2131747248;
-            }
-            yb0Var.setText(org.telegram.messenger.hd.N0(i12, null));
-            this.f52509b[i14] = new EditTextBoldCursor(context);
-            this.f52509b[i14].setCursorSize(org.telegram.messenger.g0.L(20.0f));
-            this.f52509b[i14].setCursorWidth(1.5f);
-            this.f52509b[i14].setImeOptions(268435461);
-            this.f52509b[i14].setTextSize(1, f10);
-            this.f52509b[i14].setMaxLines(1);
-            this.f52509b[i14].setBackground(null);
-            int L = org.telegram.messenger.g0.L(16.0f);
-            this.f52509b[i14].setPadding(L, L, L, L);
-            if (i7 == 0) {
-                this.f52509b[i14].setInputType(129);
-                this.f52509b[i14].setTransformationMethod(PasswordTransformationMethod.getInstance());
-            }
-            this.f52509b[i14].setTypeface(Typeface.DEFAULT);
-            EditTextBoldCursor editTextBoldCursor = this.f52509b[i14];
-            if (org.telegram.messenger.hd.f24408a0) {
-                i13 = 5;
-            } else {
-                i13 = 3;
-            }
-            editTextBoldCursor.setGravity(i13);
-            EditTextBoldCursor editTextBoldCursor2 = this.f52509b[i14];
-            if (i14 == 0 && i7 == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            float f12 = f11;
-            editTextBoldCursor2.addTextChangedListener(new bi.y5(this, z10));
-            this.f52509b[i14].setOnFocusChangeListener(new ed(yb0Var, 3));
-            if (z10) {
-                LinearLayout linearLayout = new LinearLayout(context);
-                linearLayout.setOrientation(0);
-                linearLayout.setGravity(16);
-                linearLayout.addView(this.f52509b[i14], c8.na.l(1.0f, 0, -2));
-                ImageView imageView = new ImageView(context);
-                this.f52512f = imageView;
-                imageView.setImageResource(2131232226);
-                org.telegram.messenger.g0.X3(imageView, true, 0.1f, true, false);
-                imageView.setOnClickListener(new View.OnClickListener(this) {
-                    public final ub0 f51569b;
+    public ub0(wb0 wb0Var, int i7) {
+        this.f52618a = i7;
+        this.f52619b = wb0Var;
+    }
 
-                    {
-                        this.f51569b = this;
-                    }
-
+    @Override
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f52618a) {
+            case 0:
+                final wb0 wb0Var = this.f52619b;
+                org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
-                    public final void onClick(View view) {
-                        int i15;
-                        int i16;
-                        switch (r2) {
+                    public final void run() {
+                        String G;
+                        String G2;
+                        int i7;
+                        int i10 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        wb0 wb0Var2 = wb0Var;
+                        switch (i10) {
                             case 0:
-                                ub0 ub0Var = this.f51569b;
-                                ImageView imageView2 = ub0Var.f52512f;
-                                EditTextBoldCursor[] editTextBoldCursorArr = ub0Var.f52509b;
-                                ub0Var.E = !ub0Var.E;
-                                for (int i17 = 0; i17 < editTextBoldCursorArr.length; i17++) {
-                                    int selectionStart = editTextBoldCursorArr[i17].getSelectionStart();
-                                    int selectionEnd = editTextBoldCursorArr[i17].getSelectionEnd();
-                                    EditTextBoldCursor editTextBoldCursor3 = editTextBoldCursorArr[i17];
-                                    if (ub0Var.E) {
-                                        i16 = 144;
-                                    } else {
-                                        i16 = 128;
-                                    }
-                                    editTextBoldCursor3.setInputType(i16 | 1);
-                                    editTextBoldCursorArr[i17].setSelection(selectionStart, selectionEnd);
+                                wb0Var2.getClass();
+                                if (tL_error2 == null) {
+                                    wb0Var2.f53283n = (TL_account.Password) tLObject2;
+                                    wb0Var2.h(null);
+                                    return;
                                 }
-                                imageView2.setTag(Boolean.valueOf(ub0Var.E));
-                                if (ub0Var.E) {
-                                    i15 = org.telegram.ui.ActionBar.m6.f29494l6;
-                                } else {
-                                    i15 = org.telegram.ui.ActionBar.m6.H6;
-                                }
-                                org.telegram.ui.ActionBar.t6.s(imageView2, i15, null, PorterDuff.Mode.SRC_ATOP);
                                 return;
-                            default:
-                                ub0 ub0Var2 = this.f51569b;
-                                if (ub0Var2.f52518y == 0) {
-                                    ub0Var2.n(null, null);
+                            case 1:
+                                de0 de0Var = wb0Var2.E;
+                                de0Var.C1(false, true);
+                                if (tL_error2 == null) {
+                                    TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject2;
+                                    if (de0Var.getParentActivity() != null) {
+                                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(de0Var.getParentActivity());
+                                        String str = tL_auth_passwordRecovery.email_pattern;
+                                        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str);
+                                        int indexOf = str.indexOf(42);
+                                        int lastIndexOf = str.lastIndexOf(42);
+                                        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
+                                            ?? obj = new Object();
+                                            obj.f34924a |= 256;
+                                            obj.f34925b = indexOf;
+                                            int i11 = lastIndexOf + 1;
+                                            obj.f34926c = i11;
+                                            valueOf.setSpan(new org.telegram.ui.Components.fz0(obj, 0), indexOf, i11, 0);
+                                        }
+                                        SpannableStringBuilder m0 = org.telegram.messenger.g0.m0(org.telegram.messenger.gd.N0(2131745884, null), valueOf);
+                                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28835a;
+                                        t1Var.U = m0;
+                                        t1Var.S = org.telegram.messenger.gd.N0(2131745882, "RestoreEmailSentTitle");
+                                        alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131751759, null), new zs(23, wb0Var2, tL_auth_passwordRecovery));
+                                        Dialog showDialog = de0Var.showDialog(t1Var);
+                                        if (showDialog != null) {
+                                            showDialog.setCanceledOnTouchOutside(false);
+                                            showDialog.setCancelable(false);
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                    int intValue = Utilities.z(tL_error2.text).intValue();
+                                    if (intValue < 60) {
+                                        G = org.telegram.messenger.gd.G(intValue, "Seconds", new Object[0]);
+                                    } else {
+                                        G = org.telegram.messenger.gd.G(intValue / 60, "Minutes", new Object[0]);
+                                    }
+                                    de0Var.D1(org.telegram.messenger.gd.N0(2131742589, null), org.telegram.messenger.gd.a0("FloodWaitTime", null, 2131750669, G));
                                     return;
                                 } else {
-                                    ub0Var2.n(ub0Var2.f52513n, null);
+                                    de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), tL_error2.text);
                                     return;
+                                }
+                            default:
+                                de0 de0Var2 = wb0Var2.E;
+                                wb0Var2.h = false;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i7 = ((org.telegram.ui.ActionBar.g2) de0Var2).currentAccount;
+                                    ConnectionsManager.getInstance(i7).sendRequest(getpassword, new ub0(wb0Var2, 0), 8);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_auth_authorization) {
+                                    de0Var2.N1(false, true);
+                                    wb0Var2.postDelayed(new i50(22, wb0Var2, tLObject2), 150L);
+                                    return;
+                                } else {
+                                    de0Var2.C1(false, true);
+                                    if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
+                                        if (de0Var2.getParentActivity() != null) {
+                                            wb0Var2.f53278a.setText("");
+                                            de0.c1(de0Var2, wb0Var2.f53288y, true);
+                                            return;
+                                        }
+                                        return;
+                                    } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                        int intValue2 = Utilities.z(tL_error2.text).intValue();
+                                        if (intValue2 < 60) {
+                                            G2 = org.telegram.messenger.gd.G(intValue2, "Seconds", new Object[0]);
+                                        } else {
+                                            G2 = org.telegram.messenger.gd.G(intValue2 / 60, "Minutes", new Object[0]);
+                                        }
+                                        de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.a0("FloodWaitTime", null, 2131750669, G2));
+                                        return;
+                                    } else {
+                                        de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), tL_error2.text);
+                                        return;
+                                    }
                                 }
                         }
                     }
                 });
-                linearLayout.addView(imageView, c8.na.u(24.0f, 24.0f, 0, 0.0f, 0.0f, 14.0f, 0.0f));
-                yb0Var.addView(linearLayout, c8.na.c(-2.0f, -1));
-            } else {
-                yb0Var.addView(this.f52509b[i14], c8.na.c(-2.0f, -1));
-            }
-            yb0Var.e(this.f52509b[i14]);
-            addView(yb0Var, c8.na.t(-1, -2, 1, 16, 16, 16, 0));
-            this.f52509b[i14].setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                @Override
-                public final boolean onEditorAction(TextView textView3, int i15, KeyEvent keyEvent) {
-                    ub0 ub0Var = ub0.this;
-                    if (i14 == 0) {
-                        EditTextBoldCursor[] editTextBoldCursorArr = ub0Var.f52509b;
-                        if (editTextBoldCursorArr.length == 2) {
-                            editTextBoldCursorArr[1].requestFocus();
-                            return true;
+                return;
+            case 1:
+                final wb0 wb0Var2 = this.f52619b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        String G;
+                        String G2;
+                        int i7;
+                        int i10 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        wb0 wb0Var22 = wb0Var2;
+                        switch (i10) {
+                            case 0:
+                                wb0Var22.getClass();
+                                if (tL_error2 == null) {
+                                    wb0Var22.f53283n = (TL_account.Password) tLObject2;
+                                    wb0Var22.h(null);
+                                    return;
+                                }
+                                return;
+                            case 1:
+                                de0 de0Var = wb0Var22.E;
+                                de0Var.C1(false, true);
+                                if (tL_error2 == null) {
+                                    TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject2;
+                                    if (de0Var.getParentActivity() != null) {
+                                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(de0Var.getParentActivity());
+                                        String str = tL_auth_passwordRecovery.email_pattern;
+                                        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str);
+                                        int indexOf = str.indexOf(42);
+                                        int lastIndexOf = str.lastIndexOf(42);
+                                        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
+                                            ?? obj = new Object();
+                                            obj.f34924a |= 256;
+                                            obj.f34925b = indexOf;
+                                            int i11 = lastIndexOf + 1;
+                                            obj.f34926c = i11;
+                                            valueOf.setSpan(new org.telegram.ui.Components.fz0(obj, 0), indexOf, i11, 0);
+                                        }
+                                        SpannableStringBuilder m0 = org.telegram.messenger.g0.m0(org.telegram.messenger.gd.N0(2131745884, null), valueOf);
+                                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28835a;
+                                        t1Var.U = m0;
+                                        t1Var.S = org.telegram.messenger.gd.N0(2131745882, "RestoreEmailSentTitle");
+                                        alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131751759, null), new zs(23, wb0Var22, tL_auth_passwordRecovery));
+                                        Dialog showDialog = de0Var.showDialog(t1Var);
+                                        if (showDialog != null) {
+                                            showDialog.setCanceledOnTouchOutside(false);
+                                            showDialog.setCancelable(false);
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                    int intValue = Utilities.z(tL_error2.text).intValue();
+                                    if (intValue < 60) {
+                                        G = org.telegram.messenger.gd.G(intValue, "Seconds", new Object[0]);
+                                    } else {
+                                        G = org.telegram.messenger.gd.G(intValue / 60, "Minutes", new Object[0]);
+                                    }
+                                    de0Var.D1(org.telegram.messenger.gd.N0(2131742589, null), org.telegram.messenger.gd.a0("FloodWaitTime", null, 2131750669, G));
+                                    return;
+                                } else {
+                                    de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), tL_error2.text);
+                                    return;
+                                }
+                            default:
+                                de0 de0Var2 = wb0Var22.E;
+                                wb0Var22.h = false;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i7 = ((org.telegram.ui.ActionBar.g2) de0Var2).currentAccount;
+                                    ConnectionsManager.getInstance(i7).sendRequest(getpassword, new ub0(wb0Var22, 0), 8);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_auth_authorization) {
+                                    de0Var2.N1(false, true);
+                                    wb0Var22.postDelayed(new i50(22, wb0Var22, tLObject2), 150L);
+                                    return;
+                                } else {
+                                    de0Var2.C1(false, true);
+                                    if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
+                                        if (de0Var2.getParentActivity() != null) {
+                                            wb0Var22.f53278a.setText("");
+                                            de0.c1(de0Var2, wb0Var22.f53288y, true);
+                                            return;
+                                        }
+                                        return;
+                                    } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                        int intValue2 = Utilities.z(tL_error2.text).intValue();
+                                        if (intValue2 < 60) {
+                                            G2 = org.telegram.messenger.gd.G(intValue2, "Seconds", new Object[0]);
+                                        } else {
+                                            G2 = org.telegram.messenger.gd.G(intValue2 / 60, "Minutes", new Object[0]);
+                                        }
+                                        de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.a0("FloodWaitTime", null, 2131750669, G2));
+                                        return;
+                                    } else {
+                                        de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), tL_error2.text);
+                                        return;
+                                    }
+                                }
                         }
                     }
-                    if (i15 == 5) {
-                        ub0Var.h(null);
-                        return true;
-                    }
-                    ub0Var.getClass();
-                    return false;
-                }
-            });
-            i14++;
-            f11 = f12;
-            f10 = 18.0f;
-        }
-        float f13 = f11;
-        if (i7 == 0) {
-            this.d.setText(org.telegram.messenger.hd.N0(2131747015, "PleaseEnterNewFirstPasswordLogin"));
-        } else {
-            this.d.setText(org.telegram.messenger.hd.N0(2131747246, "PasswordHintTextLogin"));
-        }
-        TextView textView3 = new TextView(context);
-        this.f52511e = textView3;
-        textView3.setGravity(19);
-        textView3.setTextSize(1, 15.0f);
-        textView3.setLineSpacing(org.telegram.messenger.g0.L(f13), 1.0f);
-        textView3.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
-        textView3.setText(org.telegram.messenger.hd.N0(2131742553, null));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.addView(textView3, c8.na.d(-1, 56.0f, 80, 0.0f, 0.0f, 0.0f, 32.0f));
-        addView(frameLayout, c8.na.r(-1, -1, 80));
-        h6.m.i(textView3);
-        textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final ub0 f51569b;
-
-            {
-                this.f51569b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                int i15;
-                int i16;
-                switch (r2) {
-                    case 0:
-                        ub0 ub0Var = this.f51569b;
-                        ImageView imageView2 = ub0Var.f52512f;
-                        EditTextBoldCursor[] editTextBoldCursorArr = ub0Var.f52509b;
-                        ub0Var.E = !ub0Var.E;
-                        for (int i17 = 0; i17 < editTextBoldCursorArr.length; i17++) {
-                            int selectionStart = editTextBoldCursorArr[i17].getSelectionStart();
-                            int selectionEnd = editTextBoldCursorArr[i17].getSelectionEnd();
-                            EditTextBoldCursor editTextBoldCursor3 = editTextBoldCursorArr[i17];
-                            if (ub0Var.E) {
-                                i16 = 144;
-                            } else {
-                                i16 = 128;
-                            }
-                            editTextBoldCursor3.setInputType(i16 | 1);
-                            editTextBoldCursorArr[i17].setSelection(selectionStart, selectionEnd);
+                });
+                return;
+            default:
+                final wb0 wb0Var3 = this.f52619b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        String G;
+                        String G2;
+                        int i7;
+                        int i10 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        wb0 wb0Var22 = wb0Var3;
+                        switch (i10) {
+                            case 0:
+                                wb0Var22.getClass();
+                                if (tL_error2 == null) {
+                                    wb0Var22.f53283n = (TL_account.Password) tLObject2;
+                                    wb0Var22.h(null);
+                                    return;
+                                }
+                                return;
+                            case 1:
+                                de0 de0Var = wb0Var22.E;
+                                de0Var.C1(false, true);
+                                if (tL_error2 == null) {
+                                    TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject2;
+                                    if (de0Var.getParentActivity() != null) {
+                                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(de0Var.getParentActivity());
+                                        String str = tL_auth_passwordRecovery.email_pattern;
+                                        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str);
+                                        int indexOf = str.indexOf(42);
+                                        int lastIndexOf = str.lastIndexOf(42);
+                                        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
+                                            ?? obj = new Object();
+                                            obj.f34924a |= 256;
+                                            obj.f34925b = indexOf;
+                                            int i11 = lastIndexOf + 1;
+                                            obj.f34926c = i11;
+                                            valueOf.setSpan(new org.telegram.ui.Components.fz0(obj, 0), indexOf, i11, 0);
+                                        }
+                                        SpannableStringBuilder m0 = org.telegram.messenger.g0.m0(org.telegram.messenger.gd.N0(2131745884, null), valueOf);
+                                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28835a;
+                                        t1Var.U = m0;
+                                        t1Var.S = org.telegram.messenger.gd.N0(2131745882, "RestoreEmailSentTitle");
+                                        alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131751759, null), new zs(23, wb0Var22, tL_auth_passwordRecovery));
+                                        Dialog showDialog = de0Var.showDialog(t1Var);
+                                        if (showDialog != null) {
+                                            showDialog.setCanceledOnTouchOutside(false);
+                                            showDialog.setCancelable(false);
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                    int intValue = Utilities.z(tL_error2.text).intValue();
+                                    if (intValue < 60) {
+                                        G = org.telegram.messenger.gd.G(intValue, "Seconds", new Object[0]);
+                                    } else {
+                                        G = org.telegram.messenger.gd.G(intValue / 60, "Minutes", new Object[0]);
+                                    }
+                                    de0Var.D1(org.telegram.messenger.gd.N0(2131742589, null), org.telegram.messenger.gd.a0("FloodWaitTime", null, 2131750669, G));
+                                    return;
+                                } else {
+                                    de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), tL_error2.text);
+                                    return;
+                                }
+                            default:
+                                de0 de0Var2 = wb0Var22.E;
+                                wb0Var22.h = false;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i7 = ((org.telegram.ui.ActionBar.g2) de0Var2).currentAccount;
+                                    ConnectionsManager.getInstance(i7).sendRequest(getpassword, new ub0(wb0Var22, 0), 8);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_auth_authorization) {
+                                    de0Var2.N1(false, true);
+                                    wb0Var22.postDelayed(new i50(22, wb0Var22, tLObject2), 150L);
+                                    return;
+                                } else {
+                                    de0Var2.C1(false, true);
+                                    if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
+                                        if (de0Var2.getParentActivity() != null) {
+                                            wb0Var22.f53278a.setText("");
+                                            de0.c1(de0Var2, wb0Var22.f53288y, true);
+                                            return;
+                                        }
+                                        return;
+                                    } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                        int intValue2 = Utilities.z(tL_error2.text).intValue();
+                                        if (intValue2 < 60) {
+                                            G2 = org.telegram.messenger.gd.G(intValue2, "Seconds", new Object[0]);
+                                        } else {
+                                            G2 = org.telegram.messenger.gd.G(intValue2 / 60, "Minutes", new Object[0]);
+                                        }
+                                        de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.a0("FloodWaitTime", null, 2131750669, G2));
+                                        return;
+                                    } else {
+                                        de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), tL_error2.text);
+                                        return;
+                                    }
+                                }
                         }
-                        imageView2.setTag(Boolean.valueOf(ub0Var.E));
-                        if (ub0Var.E) {
-                            i15 = org.telegram.ui.ActionBar.m6.f29494l6;
-                        } else {
-                            i15 = org.telegram.ui.ActionBar.m6.H6;
-                        }
-                        org.telegram.ui.ActionBar.t6.s(imageView2, i15, null, PorterDuff.Mode.SRC_ATOP);
-                        return;
-                    default:
-                        ub0 ub0Var2 = this.f51569b;
-                        if (ub0Var2.f52518y == 0) {
-                            ub0Var2.n(null, null);
-                            return;
-                        } else {
-                            ub0Var2.n(ub0Var2.f52513n, null);
-                            return;
-                        }
-                }
-            }
-        });
-    }
-
-    @Override
-    public final boolean b() {
-        return true;
-    }
-
-    @Override
-    public final boolean c(boolean z10) {
-        this.H.C1(true, true);
-        this.f52516w = null;
-        this.f52517x = false;
-        return true;
-    }
-
-    @Override
-    public final void d() {
-        this.f52517x = false;
-    }
-
-    @Override
-    public String getHeaderName() {
-        return org.telegram.messenger.hd.N0(2131748073, "NewPassword");
-    }
-
-    @Override
-    public final void h(String str) {
-        if (!this.f52517x) {
-            EditTextBoldCursor[] editTextBoldCursorArr = this.f52509b;
-            String obj = editTextBoldCursorArr[0].getText().toString();
-            int length = obj.length();
-            de0 de0Var = this.H;
-            if (length == 0) {
-                if (de0Var.getParentActivity() != null) {
-                    try {
-                        editTextBoldCursorArr[0].performHapticFeedback(3, 2);
-                    } catch (Exception unused) {
                     }
-                    org.telegram.messenger.g0.D3(editTextBoldCursorArr[0]);
-                }
-            } else if (this.f52518y == 0) {
-                if (!obj.equals(editTextBoldCursorArr[1].getText().toString())) {
-                    if (de0Var.getParentActivity() == null) {
-                        return;
-                    }
-                    try {
-                        editTextBoldCursorArr[1].performHapticFeedback(3, 2);
-                    } catch (Exception unused2) {
-                    }
-                    org.telegram.messenger.g0.D3(editTextBoldCursorArr[1]);
-                    return;
-                }
-                Bundle bundle = new Bundle();
-                bundle.putString("emailCode", this.h);
-                bundle.putString("new_password", obj);
-                bundle.putString("password", this.f52514r);
-                de0Var.M1(10, true, bundle, false);
-            } else {
-                this.f52517x = true;
-                de0Var.F1(0, true);
-                n(this.f52513n, obj);
-            }
-        }
-    }
-
-    @Override
-    public final void j() {
-        org.telegram.messenger.g0.h3(new lz(this, 21), de0.A0);
-    }
-
-    @Override
-    public final void k(Bundle bundle) {
-        Bundle bundle2 = bundle.getBundle("recoveryview_params" + this.f52518y);
-        this.f52516w = bundle2;
-        if (bundle2 != null) {
-            m(bundle2, true);
-        }
-    }
-
-    @Override
-    public final void l(Bundle bundle) {
-        if (this.f52516w != null) {
-            bundle.putBundle("recoveryview_params" + this.f52518y, this.f52516w);
-        }
-    }
-
-    @Override
-    public final void m(Bundle bundle, boolean z10) {
-        EditTextBoldCursor[] editTextBoldCursorArr;
-        if (bundle == null) {
-            return;
-        }
-        int i7 = 0;
-        while (true) {
-            editTextBoldCursorArr = this.f52509b;
-            if (i7 >= editTextBoldCursorArr.length) {
-                break;
-            }
-            editTextBoldCursorArr[i7].setText("");
-            i7++;
-        }
-        this.f52516w = bundle;
-        this.h = bundle.getString("emailCode");
-        String string = this.f52516w.getString("password");
-        this.f52514r = string;
-        if (string != null) {
-            SerializedData serializedData = new SerializedData(Utilities.v(string));
-            TL_account.Password TLdeserialize = TL_account.Password.TLdeserialize(serializedData, serializedData.readInt32(false), false);
-            this.f52515s = TLdeserialize;
-            TwoStepVerificationActivity.r0(TLdeserialize);
-        }
-        this.f52513n = this.f52516w.getString("new_password");
-        de0.b1(this.H, editTextBoldCursorArr[0]);
-        editTextBoldCursorArr[0].requestFocus();
-    }
-
-    public final void n(String str, String str2) {
-        String str3;
-        TLRPC.TL_auth_recoverPassword tL_auth_recoverPassword = new TLRPC.TL_auth_recoverPassword();
-        tL_auth_recoverPassword.code = this.h;
-        if (!TextUtils.isEmpty(str)) {
-            tL_auth_recoverPassword.flags |= 1;
-            TL_account.passwordInputSettings passwordinputsettings = new TL_account.passwordInputSettings();
-            tL_auth_recoverPassword.new_settings = passwordinputsettings;
-            passwordinputsettings.flags |= 1;
-            if (str2 != null) {
-                str3 = str2;
-            } else {
-                str3 = "";
-            }
-            passwordinputsettings.hint = str3;
-            passwordinputsettings.new_algo = this.f52515s.new_algo;
-        }
-        Utilities.f22774e.c(new org.telegram.ui.Components.q20(this, str, str2, tL_auth_recoverPassword, 24));
-    }
-
-    @Override
-    public final void updateColors() {
-        EditTextBoldCursor[] editTextBoldCursorArr;
-        int i7;
-        this.f52510c.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.G6, false));
-        this.d.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.D6, false));
-        for (EditTextBoldCursor editTextBoldCursor : this.f52509b) {
-            editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.G6, false));
-            editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29494l6, false));
-        }
-        for (org.telegram.ui.Components.yb0 yb0Var : this.f52508a) {
-            yb0Var.f();
-        }
-        this.f52511e.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29587q6, false));
-        ImageView imageView = this.f52512f;
-        if (imageView != null) {
-            if (this.E) {
-                i7 = org.telegram.ui.ActionBar.m6.f29494l6;
-            } else {
-                i7 = org.telegram.ui.ActionBar.m6.H6;
-            }
-            int x02 = org.telegram.ui.ActionBar.m6.x0(null, i7, false);
-            de0.u1(imageView, x02, this.F, PorterDuff.Mode.SRC_ATOP);
-            this.F = x02;
-            int themedColor = this.H.getThemedColor(org.telegram.ui.ActionBar.m6.f29439i6);
-            de0.v1(imageView, themedColor, this.G);
-            this.G = themedColor;
+                });
+                return;
         }
     }
 }

@@ -2,17 +2,17 @@ package fi;
 
 import android.content.Context;
 import di.jc;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.w10;
 public final class s extends jc {
-    public final y10[] f12505n0;
+    public final w10[] f12515n0;
 
-    public s(Context context, b bVar, y10[] y10VarArr) {
+    public s(Context context, b bVar, w10[] w10VarArr) {
         super(context, bVar);
-        this.f12505n0 = y10VarArr;
+        this.f12515n0 = w10VarArr;
     }
 
     @Override
     public final void e(int i7) {
-        this.f12505n0[0].a(Integer.valueOf(i7));
+        this.f12515n0[0].a(Integer.valueOf(i7));
     }
 }

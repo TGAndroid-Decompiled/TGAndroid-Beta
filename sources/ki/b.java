@@ -4,22 +4,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class b implements RequestDelegate {
-    public final int f18573a;
-    public final j f18574b;
-    public final org.telegram.ui.ActionBar.t1 f18575c;
+    public final int f18674a;
+    public final j f18675b;
+    public final org.telegram.ui.ActionBar.t1 f18676c;
 
     public b(j jVar, org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        this.f18573a = i7;
-        this.f18574b = jVar;
-        this.f18575c = t1Var;
+        this.f18674a = i7;
+        this.f18675b = jVar;
+        this.f18676c = t1Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f18573a) {
+        switch (this.f18674a) {
             case 0:
-                final j jVar = this.f18574b;
-                final org.telegram.ui.ActionBar.t1 t1Var = this.f18575c;
+                final j jVar = this.f18675b;
+                final org.telegram.ui.ActionBar.t1 t1Var = this.f18676c;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -35,8 +35,8 @@ public final class b implements RequestDelegate {
                 });
                 return;
             default:
-                final j jVar2 = this.f18574b;
-                final org.telegram.ui.ActionBar.t1 t1Var2 = this.f18575c;
+                final j jVar2 = this.f18675b;
+                final org.telegram.ui.ActionBar.t1 t1Var2 = this.f18676c;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {

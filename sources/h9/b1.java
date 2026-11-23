@@ -2,23 +2,23 @@ package h9;
 
 import java.util.AbstractList;
 import java.util.ListIterator;
-public final class b1 extends g2 implements ListIterator {
-    public final int f13969b;
-    public final AbstractList f13970c;
+public final class b1 extends f2 implements ListIterator {
+    public final int f13967b;
+    public final AbstractList f13968c;
 
     public b1(AbstractList abstractList, ListIterator listIterator, int i7) {
         super(listIterator);
-        this.f13969b = i7;
-        this.f13970c = abstractList;
+        this.f13967b = i7;
+        this.f13968c = abstractList;
     }
 
     @Override
     public final Object a(Object obj) {
-        switch (this.f13969b) {
+        switch (this.f13967b) {
             case 0:
-                return ((c1) this.f13970c).f13975b.apply(obj);
+                return ((c1) this.f13968c).f13974b.apply(obj);
             default:
-                return ((d1) this.f13970c).f13982b.apply(obj);
+                return ((d1) this.f13968c).f13981b.apply(obj);
         }
     }
 
@@ -29,22 +29,22 @@ public final class b1 extends g2 implements ListIterator {
 
     @Override
     public final boolean hasPrevious() {
-        return ((ListIterator) this.f13994a).hasPrevious();
+        return ((ListIterator) this.f13988a).hasPrevious();
     }
 
     @Override
     public final int nextIndex() {
-        return ((ListIterator) this.f13994a).nextIndex();
+        return ((ListIterator) this.f13988a).nextIndex();
     }
 
     @Override
     public final Object previous() {
-        return a(((ListIterator) this.f13994a).previous());
+        return a(((ListIterator) this.f13988a).previous());
     }
 
     @Override
     public final int previousIndex() {
-        return ((ListIterator) this.f13994a).previousIndex();
+        return ((ListIterator) this.f13988a).previousIndex();
     }
 
     @Override

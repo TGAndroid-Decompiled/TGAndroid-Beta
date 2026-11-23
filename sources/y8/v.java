@@ -11,11 +11,11 @@ import com.google.android.gms.wallet.MaskedWallet;
 import com.google.android.gms.wallet.wobs.CommonWalletObject;
 import java.util.ArrayList;
 public final class v implements Parcelable.Creator {
-    public final int f61131a;
+    public final int f61250a;
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f61131a) {
+        switch (this.f61250a) {
             case 0:
                 int z10 = bc.z(parcel);
                 String str = null;
@@ -72,17 +72,17 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z10);
                 ?? obj = new Object();
-                obj.f7379a = str;
-                obj.f7380b = str2;
-                obj.f7381c = rVar;
+                obj.f7378a = str;
+                obj.f7379b = str2;
+                obj.f7380c = rVar;
                 obj.d = str3;
-                obj.f7382e = qVar;
-                obj.f7383f = qVar2;
+                obj.f7381e = qVar;
+                obj.f7382f = qVar2;
                 obj.h = strArr;
-                obj.f7384n = userAddress;
-                obj.f7385r = userAddress2;
-                obj.f7386s = dVarArr;
-                obj.f7387w = kVar;
+                obj.f7383n = userAddress;
+                obj.f7384r = userAddress2;
+                obj.f7385s = dVarArr;
+                obj.f7386w = kVar;
                 return obj;
             case 1:
                 int z11 = bc.z(parcel);
@@ -108,9 +108,9 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z11);
                 ?? obj2 = new Object();
-                obj2.f61059a = str4;
-                obj2.f61060b = str5;
-                obj2.f61061c = i7;
+                obj2.f61178a = str4;
+                obj2.f61179b = str5;
+                obj2.f61180c = i7;
                 return obj2;
             case 2:
                 int z12 = bc.z(parcel);
@@ -149,12 +149,12 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z12);
                 ?? obj3 = new Object();
-                obj3.f61062a = arrayList;
-                obj3.f61063b = str8;
-                obj3.f61064c = str6;
+                obj3.f61181a = arrayList;
+                obj3.f61182b = str8;
+                obj3.f61183c = str6;
                 obj3.d = arrayList2;
-                obj3.f61065e = z13;
-                obj3.f61066f = str7;
+                obj3.f61184e = z13;
+                obj3.f61185f = str7;
                 return obj3;
             case 3:
                 int z14 = bc.z(parcel);
@@ -260,19 +260,19 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z14);
                 ?? obj4 = new Object();
-                obj4.f61067a = str9;
-                obj4.f61068b = str20;
-                obj4.f61069c = str12;
+                obj4.f61186a = str9;
+                obj4.f61187b = str20;
+                obj4.f61188c = str12;
                 obj4.d = str13;
-                obj4.f61070e = str14;
-                obj4.f61071f = str15;
+                obj4.f61189e = str14;
+                obj4.f61190f = str15;
                 obj4.h = str16;
-                obj4.f61072n = str17;
-                obj4.f61073r = str11;
-                obj4.f61074s = str10;
-                obj4.f61075w = i10;
-                obj4.f61076x = arrayList3;
-                obj4.f61077y = fVar;
+                obj4.f61191n = str17;
+                obj4.f61192r = str11;
+                obj4.f61193s = str10;
+                obj4.f61194w = i10;
+                obj4.f61195x = arrayList3;
+                obj4.f61196y = fVar;
                 obj4.E = arrayList6;
                 obj4.F = str18;
                 obj4.G = str19;
@@ -339,17 +339,17 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z16);
                 ?? obj5 = new Object();
-                obj5.f7388a = str21;
-                obj5.f7389b = str22;
-                obj5.f7390c = strArr2;
+                obj5.f7387a = str21;
+                obj5.f7388b = str22;
+                obj5.f7389c = strArr2;
                 obj5.d = str23;
-                obj5.f7391e = qVar3;
-                obj5.f7392f = qVar4;
+                obj5.f7390e = qVar3;
+                obj5.f7391f = qVar4;
                 obj5.h = fVarArr;
-                obj5.f7393n = gVarArr;
-                obj5.f7394r = userAddress3;
-                obj5.f7395s = userAddress4;
-                obj5.f7396w = dVarArr2;
+                obj5.f7392n = gVarArr;
+                obj5.f7393r = userAddress3;
+                obj5.f7394s = userAddress4;
+                obj5.f7395w = dVarArr2;
                 return obj5;
             case 5:
                 int z17 = bc.z(parcel);
@@ -393,7 +393,7 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z18);
                 ?? obj6 = new Object();
-                obj6.f61081a = pendingIntent;
+                obj6.f61200a = pendingIntent;
                 return obj6;
             case 7:
                 int z19 = bc.z(parcel);
@@ -486,19 +486,19 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z19);
                 ?? obj7 = new Object();
-                obj7.f7397a = str26;
-                obj7.f7398b = str35;
-                obj7.f7399c = str29;
+                obj7.f7396a = str26;
+                obj7.f7397b = str35;
+                obj7.f7398c = str29;
                 obj7.d = str30;
-                obj7.f7400e = str31;
-                obj7.f7401f = str32;
+                obj7.f7399e = str31;
+                obj7.f7400f = str32;
                 obj7.h = str33;
-                obj7.f7402n = str27;
-                obj7.f7403r = i12;
-                obj7.f7404s = arrayList11;
-                obj7.f7405w = fVar3;
-                obj7.f7406x = arrayList12;
-                obj7.f7407y = str28;
+                obj7.f7401n = str27;
+                obj7.f7402r = i12;
+                obj7.f7403s = arrayList11;
+                obj7.f7404w = fVar3;
+                obj7.f7405x = arrayList12;
+                obj7.f7406y = str28;
                 obj7.E = str34;
                 obj7.F = arrayList14;
                 obj7.G = z20;
@@ -525,8 +525,8 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z21);
                 ?? obj8 = new Object();
-                obj8.f61782a = str37;
-                obj8.f61783b = str38;
+                obj8.f61901a = str37;
+                obj8.f61902b = str38;
                 return obj8;
             case 9:
                 int z22 = bc.z(parcel);
@@ -552,9 +552,9 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z22);
                 ?? obj9 = new Object();
-                obj9.f61784a = str39;
-                obj9.f61785b = str40;
-                obj9.f61786c = arrayList18;
+                obj9.f61903a = str39;
+                obj9.f61904b = str40;
+                obj9.f61905c = arrayList18;
                 return obj9;
             case 10:
                 int z23 = bc.z(parcel);
@@ -592,12 +592,12 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z23);
                 ?? obj10 = new Object();
-                obj10.f61790a = i13;
-                obj10.f61791b = str41;
-                obj10.f61792c = d;
+                obj10.f61909a = i13;
+                obj10.f61910b = str41;
+                obj10.f61911c = d;
                 obj10.d = str42;
-                obj10.f61793e = j3;
-                obj10.f61794f = i14;
+                obj10.f61912e = j3;
+                obj10.f61913f = i14;
                 return obj10;
             case 11:
                 int z24 = bc.z(parcel);
@@ -623,9 +623,9 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z24);
                 ?? obj11 = new Object();
-                obj11.f61787a = str43;
-                obj11.f61788b = dVar;
-                obj11.f61789c = fVar4;
+                obj11.f61906a = str43;
+                obj11.f61907b = dVar;
+                obj11.f61908c = fVar4;
                 return obj11;
             case 12:
                 int z25 = bc.z(parcel);
@@ -646,8 +646,8 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z25);
                 ?? obj12 = new Object();
-                obj12.f61795a = str44;
-                obj12.f61796b = str45;
+                obj12.f61914a = str44;
+                obj12.f61915b = str45;
                 return obj12;
             case 13:
                 int z26 = bc.z(parcel);
@@ -668,8 +668,8 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z26);
                 ?? obj13 = new Object();
-                obj13.f61797a = j10;
-                obj13.f61798b = j11;
+                obj13.f61916a = j10;
+                obj13.f61917b = j11;
                 return obj13;
             case 14:
                 int z27 = bc.z(parcel);
@@ -690,8 +690,8 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z27);
                 ?? obj14 = new Object();
-                obj14.f61799a = str46;
-                obj14.f61800b = str47;
+                obj14.f61918a = str46;
+                obj14.f61919b = str47;
                 return obj14;
             default:
                 int z28 = bc.z(parcel);
@@ -727,18 +727,18 @@ public final class v implements Parcelable.Creator {
                 }
                 bc.m(parcel, z28);
                 ?? obj15 = new Object();
-                obj15.f61801a = str48;
-                obj15.f61802b = str49;
-                obj15.f61803c = fVar5;
+                obj15.f61920a = str48;
+                obj15.f61921b = str49;
+                obj15.f61922c = fVar5;
                 obj15.d = gVar;
-                obj15.f61804e = gVar2;
+                obj15.f61923e = gVar2;
                 return obj15;
         }
     }
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f61131a) {
+        switch (this.f61250a) {
             case 0:
                 return new FullWallet[i7];
             case 1:

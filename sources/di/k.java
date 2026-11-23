@@ -3,33 +3,33 @@ package di;
 import android.app.Activity;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.a10;
-import org.telegram.messenger.r10;
+import org.telegram.messenger.p10;
+import org.telegram.messenger.ri;
 import org.telegram.messenger.si;
-import org.telegram.messenger.ti;
-import org.telegram.messenger.w00;
+import org.telegram.messenger.u00;
+import org.telegram.messenger.y00;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class k implements Runnable {
-    public final int f9119a = 0;
-    public final long f9120b;
-    public final boolean f9121c;
+    public final int f9115a = 0;
+    public final long f9116b;
+    public final boolean f9117c;
     public final Object d;
-    public final Object f9122e;
-    public final Object f9123f;
+    public final Object f9118e;
+    public final Object f9119f;
     public final Object h;
-    public final Object f9124n;
+    public final Object f9120n;
 
     public k(t tVar, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j3, TLObject tLObject) {
         this.d = tVar;
-        this.f9122e = tL_error;
-        this.f9123f = twoStepVerificationActivity;
+        this.f9118e = tL_error;
+        this.f9119f = twoStepVerificationActivity;
         this.h = activity;
-        this.f9121c = z10;
-        this.f9120b = j3;
-        this.f9124n = tLObject;
+        this.f9117c = z10;
+        this.f9116b = j3;
+        this.f9120n = tLObject;
     }
 
     @Override
@@ -37,43 +37,43 @@ public final class k implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: di.k.run():void");
     }
 
-    public k(y8 y8Var, r10 r10Var, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10) {
+    public k(y8 y8Var, p10 p10Var, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10) {
         this.d = y8Var;
-        this.f9122e = r10Var;
-        this.f9123f = tL_payments_paymentFormStarGift;
+        this.f9118e = p10Var;
+        this.f9119f = tL_payments_paymentFormStarGift;
         this.h = starGift;
-        this.f9120b = j3;
-        this.f9124n = tL_textWithEntities;
-        this.f9121c = z10;
+        this.f9116b = j3;
+        this.f9120n = tL_textWithEntities;
+        this.f9117c = z10;
     }
 
-    public k(si siVar, ArrayList arrayList, boolean z10, ArrayList arrayList2, ArrayList arrayList3, a0.h hVar, long j3) {
-        this.d = siVar;
-        this.f9122e = arrayList;
-        this.f9121c = z10;
-        this.f9123f = arrayList2;
+    public k(ri riVar, ArrayList arrayList, boolean z10, ArrayList arrayList2, ArrayList arrayList3, a0.h hVar, long j3) {
+        this.d = riVar;
+        this.f9118e = arrayList;
+        this.f9117c = z10;
+        this.f9119f = arrayList2;
         this.h = arrayList3;
-        this.f9124n = hVar;
-        this.f9120b = j3;
+        this.f9120n = hVar;
+        this.f9116b = j3;
     }
 
-    public k(ti tiVar, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z10, long j3, x3 x3Var) {
-        this.d = tiVar;
-        this.f9122e = tL_error;
-        this.f9124n = tLObject;
-        this.f9123f = tL_chatInviteImporter;
-        this.f9121c = z10;
-        this.f9120b = j3;
+    public k(si siVar, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z10, long j3, x3 x3Var) {
+        this.d = siVar;
+        this.f9118e = tL_error;
+        this.f9120n = tLObject;
+        this.f9119f = tL_chatInviteImporter;
+        this.f9117c = z10;
+        this.f9116b = j3;
         this.h = x3Var;
     }
 
-    public k(a10 a10Var, w00 w00Var, TLObject tLObject, boolean z10, TLRPC.TL_error tL_error, long j3, HashSet hashSet) {
-        this.d = a10Var;
-        this.f9123f = w00Var;
-        this.f9124n = tLObject;
-        this.f9121c = z10;
-        this.f9122e = tL_error;
-        this.f9120b = j3;
+    public k(y00 y00Var, u00 u00Var, TLObject tLObject, boolean z10, TLRPC.TL_error tL_error, long j3, HashSet hashSet) {
+        this.d = y00Var;
+        this.f9119f = u00Var;
+        this.f9120n = tLObject;
+        this.f9117c = z10;
+        this.f9118e = tL_error;
+        this.f9116b = j3;
         this.h = hashSet;
     }
 }

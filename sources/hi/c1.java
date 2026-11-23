@@ -1,358 +1,309 @@
 package hi;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Matrix;
-import android.graphics.PointF;
-import android.graphics.SurfaceTexture;
-import android.hardware.Camera;
-import android.os.Build;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.view.MotionEvent;
-import org.telegram.messenger.camera.CameraSessionWrapper;
-import org.telegram.messenger.camera.CameraView;
-import org.telegram.messenger.cz;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.k10;
-import org.telegram.messenger.np;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public abstract class c1 extends CameraView {
-    public static final int[] f14251b0 = {1893745684, -215458996, -862041025, -1258375037, -1320049076, -215749424, 1901578030, -215451421, 1908491424, -1321491332, -1155551678, 1908524435, 976847578, -1489198134, 1910814392, -713271737, -2010722764, 1407170066, -821405251, -1394190955, -1394190055, 1407170066, 1407159934, 1407172057, 1231389747, -2076538925, 41497626, 846150482, -1198092731, -251277614, -2073158771, 1273004781};
-    public final Matrix E;
+import android.view.View;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.m10;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.Components.nh0;
+public final class c1 extends View {
+    public float E;
     public boolean F;
-    public boolean G;
+    public final org.telegram.ui.Components.c6 G;
     public boolean H;
-    public boolean I;
-    public float J;
-    public float K;
-    public long L;
-    public final Matrix M;
-    public b1 N;
-    public b1 O;
-    public final float[] P;
-    public float Q;
-    public float R;
-    public float S;
-    public float T;
-    public float U;
-    public final float[] V;
-    public float[] W;
-    public boolean f14252a;
-    public float[] f14253a0;
-    public final PointF f14254b;
-    public final PointF f14255c;
-    public float d;
-    public double f14256e;
-    public boolean f14257f;
-    public boolean h;
-    public final Matrix f14258n;
-    public final Matrix f14259r;
-    public boolean f14260s;
-    public float f14261w;
-    public boolean f14262x;
-    public final Matrix f14263y;
+    public float I;
+    public final org.telegram.ui.Components.c6 J;
+    public final org.telegram.ui.Components.c6 K;
+    public final RectF L;
+    public final RectF M;
+    public final RectF N;
+    public final RectF O;
+    public boolean P;
+    public b1 Q;
+    public Runnable R;
+    public final Paint f14251a;
+    public final TextPaint f14252b;
+    public final TextPaint f14253c;
+    public final Paint d;
+    public final Paint f14254e;
+    public final Paint f14255f;
+    public final org.telegram.ui.Components.lc h;
+    public nh0 f14256n;
+    public final StaticLayout f14257r;
+    public final float f14258s;
+    public final float f14259w;
+    public StaticLayout f14260x;
+    public float f14261y;
 
-    public c1(Context context, boolean z10) {
-        super(context, z10, false);
-        this.f14254b = new PointF();
-        this.f14255c = new PointF();
-        this.f14258n = new Matrix();
-        this.f14259r = new Matrix();
-        this.f14263y = new Matrix();
-        this.E = new Matrix();
+    public c1(Context context, String str) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f14251a = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.f14252b = textPaint;
+        TextPaint textPaint2 = new TextPaint(1);
+        this.f14253c = textPaint2;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        Paint paint3 = new Paint(1);
+        this.f14254e = paint3;
+        Paint paint4 = new Paint(1);
+        this.f14255f = paint4;
+        this.h = new org.telegram.ui.Components.lc(this);
+        this.F = false;
+        this.G = new org.telegram.ui.Components.c6(0.0f, this, 0L, 350L, kr.h);
+        this.H = true;
+        this.I = 0.0f;
+        this.J = new org.telegram.ui.Components.c6(this);
+        this.K = new org.telegram.ui.Components.c6(this);
+        this.L = new RectF();
+        this.M = new RectF();
+        this.N = new RectF();
+        this.O = new RectF();
+        paint.setColor(1509949440);
+        textPaint.setColor(-1);
+        textPaint2.setColor(-1);
+        paint2.setColor(-869783512);
+        paint3.setColor(-1);
+        paint4.setColor(872415231);
+        Paint.Style style = Paint.Style.STROKE;
+        paint3.setStyle(style);
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint3.setStrokeCap(cap);
+        paint3.setStrokeWidth(org.telegram.messenger.g0.L(4.0f));
+        paint4.setStyle(style);
+        paint4.setStrokeCap(cap);
+        paint4.setStrokeWidth(org.telegram.messenger.g0.L(4.0f));
+        textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
+        textPaint2.setTextSize(org.telegram.messenger.g0.N(14.66f));
+        StaticLayout staticLayout = new StaticLayout(str, textPaint, org.telegram.messenger.g0.f24226q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f14257r = staticLayout;
+        this.f14258s = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
+        this.f14259w = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(0) : 0.0f;
         this.F = true;
-        this.M = new Matrix();
-        this.P = new float[2];
-        new Matrix();
-        this.V = new float[2];
-        this.f14252a = q(context);
+        invalidate();
     }
 
-    private Matrix getSavedDualMatrix() {
-        String string = np.g1().getString("dualmatrix", null);
-        if (string != null) {
-            String[] split = string.split(";");
-            if (split.length == 9) {
-                float[] fArr = new float[9];
-                for (int i7 = 0; i7 < split.length; i7++) {
-                    try {
-                        fArr[i7] = Float.parseFloat(split[i7]);
-                    } catch (Exception e10) {
-                        org.telegram.messenger.a8.g(e10, true);
-                        return null;
-                    }
-                }
-                Matrix matrix = new Matrix();
-                matrix.setValues(fArr);
-                return matrix;
-            }
+    public final void a() {
+        b1 b1Var = this.Q;
+        if (b1Var != null) {
+            org.telegram.messenger.g0.r(b1Var);
+            this.Q = null;
         }
-        return null;
+        this.F = false;
+        invalidate();
     }
 
-    public static boolean p(Context context, boolean z10) {
-        boolean z11;
-        boolean z12;
-        int i7 = 0;
-        boolean z13 = true;
-        if (cz.o() >= 1 && Camera.getNumberOfCameras() > 1 && cz.b()) {
-            z11 = true;
+    public final void b(int i7, int i10, CharSequence charSequence) {
+        float f10;
+        nh0 nh0Var = this.f14256n;
+        if (nh0Var != null) {
+            nh0Var.setCallback(null);
+            this.f14256n.C(true);
+        }
+        nh0 nh0Var2 = new nh0(i7, org.telegram.messenger.g0.L(36.0f), org.telegram.messenger.g0.L(36.0f));
+        this.f14256n = nh0Var2;
+        nh0Var2.setCallback(this);
+        this.f14256n.start();
+        StaticLayout staticLayout = new StaticLayout(charSequence, this.f14253c, org.telegram.messenger.g0.f24226q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f14260x = staticLayout;
+        float f11 = 0.0f;
+        if (staticLayout.getLineCount() > 0) {
+            f10 = this.f14260x.getLineWidth(0);
         } else {
-            z11 = false;
+            f10 = 0.0f;
         }
-        if (z11) {
-            if (context != null && context.getPackageManager().hasSystemFeature("android.hardware.camera.concurrent")) {
-                z12 = true;
-            } else {
-                z12 = false;
-            }
-            if (!z12 && z10) {
-                int hashCode = (Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase().hashCode();
-                while (true) {
-                    if (i7 < 32) {
-                        if (f14251b0[i7] == hashCode) {
-                            break;
-                        }
-                        i7++;
-                    } else {
-                        z13 = z12;
-                        break;
-                    }
-                }
-                if (!z13) {
-                    (Build.MANUFACTURER + Build.MODEL).toUpperCase().getClass();
-                }
-                return z13;
-            }
-            return z12;
+        this.f14261y = f10;
+        if (this.f14260x.getLineCount() > 0) {
+            f11 = this.f14260x.getLineLeft(0);
         }
-        return z11;
-    }
-
-    public static boolean q(Context context) {
-        return np.g1().getBoolean("dual_available", p(context, true));
-    }
-
-    public static void t(boolean z10) {
-        int i7 = 0;
-        boolean p10 = p(org.telegram.messenger.t0.f26895b, false);
-        if (np.u1(k10.f24932t0).L3) {
-            try {
-                TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
-                TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
-                tL_inputAppEvent.time = ConnectionsManager.getInstance(k10.f24932t0).getCurrentTime();
-                tL_inputAppEvent.type = "android_dual_camera";
-                TLRPC.TL_jsonObject tL_jsonObject = new TLRPC.TL_jsonObject();
-                TLRPC.TL_jsonObjectValue tL_jsonObjectValue = new TLRPC.TL_jsonObjectValue();
-                tL_jsonObjectValue.key = "device";
-                TLRPC.TL_jsonString tL_jsonString = new TLRPC.TL_jsonString();
-                tL_jsonString.value = "" + Build.MANUFACTURER + Build.MODEL;
-                tL_jsonObjectValue.value = tL_jsonString;
-                tL_jsonObject.value.add(tL_jsonObjectValue);
-                tL_inputAppEvent.data = tL_jsonObject;
-                if (p10) {
-                    i7 = 2;
-                }
-                tL_inputAppEvent.peer = (z10 ? 1 : 0) | i7;
-                tL_help_saveAppLog.events.add(tL_inputAppEvent);
-                ConnectionsManager.getInstance(k10.f24932t0).sendRequest(tL_help_saveAppLog, new fi.k5(4));
-            } catch (Exception unused) {
-            }
+        this.E = f11;
+        this.H = false;
+        invalidate();
+        b1 b1Var = this.Q;
+        if (b1Var != null) {
+            org.telegram.messenger.g0.r(b1Var);
         }
-        org.telegram.messenger.t0.f26894a.getClass();
+        b1 b1Var2 = new b1(this, 1);
+        this.Q = b1Var2;
+        org.telegram.messenger.g0.h3(b1Var2, i10);
     }
 
     @Override
-    public final void destroy(boolean z10, Runnable runnable) {
-        v();
-        super.destroy(z10, runnable);
-    }
-
-    @Override
-    public final void onDualCameraSuccess() {
-        int i7;
-        v();
-        if (this.I) {
-            w9 w9Var = (w9) this;
-            if (np.g1().getInt("storysvddualhint", 0) < 2) {
-                org.telegram.messenger.g0.h3(new b0(w9Var, 19), 340L);
-            }
-            ta taVar = w9Var.f15643c0;
-            taVar.G0.setValue(w9Var.isDual());
-            fb fbVar = taVar.G0;
-            if (w9Var.isDual()) {
-                i7 = 2131754886;
-            } else {
-                i7 = 2131754887;
-            }
-            fbVar.setContentDescription(hd.N0(i7, null));
-        }
-        t(true);
-    }
-
-    @Override
-    public final void onError(int i7, Camera camera, CameraSessionWrapper cameraSessionWrapper) {
-        if (isDual()) {
-            if (!p(getContext(), false)) {
-                SharedPreferences.Editor edit = np.g1().edit();
-                this.f14252a = false;
-                edit.putBoolean("dual_available", false).apply();
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-                String N0 = hd.N0(2131751328, null);
-                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
-                t1Var.S = N0;
-                t1Var.U = hd.N0(2131751329, null);
-                org.telegram.messenger.f3.m(null, 2131747637, alertDialog$Builder, null);
-            }
-            t(false);
-            toggleDual();
-        }
-        if (getCameraSession(0) != null && getCameraSession(0).equals(cameraSessionWrapper)) {
-            resetCamera();
-        }
-        np.g1().edit().putBoolean("dualcam", false).remove("dualmatrix").apply();
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && s(motionEvent.getX(), motionEvent.getY())) {
-            return x(motionEvent);
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        Matrix matrix = this.f14263y;
-        matrix.reset();
-        matrix.postTranslate(1.0f, -1.0f);
-        matrix.postScale(getMeasuredWidth() / 2.0f, (-getMeasuredHeight()) / 2.0f);
-        matrix.invert(this.E);
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
+    public final void onDraw(Canvas canvas) {
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        float f14;
+        RectF rectF;
+        float f15;
+        int saveCount = canvas.getSaveCount();
         if (this.F) {
-            if (q(getContext()) && np.g1().getBoolean("dualcam", p(org.telegram.messenger.t0.f26895b, false))) {
-                this.I = true;
-                w();
-                this.dual = true;
-            }
-            this.F = false;
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
         }
-        super.onSurfaceTextureAvailable(surfaceTexture, i7, i10);
+        float e10 = this.G.e(false, f10);
+        if (this.H) {
+            f11 = 0.0f;
+        } else {
+            f11 = 1.0f;
+        }
+        float e11 = this.J.e(false, f11);
+        float f16 = 1.0f - e11;
+        Paint paint = this.f14251a;
+        paint.setAlpha((int) (90.0f * f16 * e10));
+        Canvas canvas2 = canvas;
+        canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
+        float max = Math.max(this.f14258s, org.telegram.messenger.g0.L(54.0f)) + org.telegram.messenger.g0.L(42.0f);
+        int L = org.telegram.messenger.g0.L(111.0f);
+        StaticLayout staticLayout = this.f14257r;
+        float height = staticLayout.getHeight() + L;
+        RectF rectF2 = this.L;
+        rectF2.set((getWidth() - max) / 2.0f, (getHeight() - height) / 2.0f, (getWidth() + max) / 2.0f, (getHeight() + height) / 2.0f);
+        float L2 = org.telegram.messenger.g0.L(74.0f) + this.f14261y;
+        float L3 = org.telegram.messenger.g0.L(48.0f);
+        RectF rectF3 = this.M;
+        rectF3.set((getWidth() - L2) / 2.0f, (getHeight() - L3) / 2.0f, (getWidth() + L2) / 2.0f, (getHeight() + L3) / 2.0f);
+        RectF rectF4 = this.N;
+        org.telegram.messenger.g0.Z1(rectF2, rectF3, e11, rectF4);
+        int i7 = (e10 > 1.0f ? 1 : (e10 == 1.0f ? 0 : -1));
+        if (i7 < 0 && this.H) {
+            f12 = 42.0f;
+            RectF rectF5 = this.O;
+            rectF5.set(getWidth() / 2.0f, getHeight() / 2.0f, getWidth() / 2.0f, getHeight() / 2.0f);
+            org.telegram.messenger.g0.Z1(rectF5, rectF4, e10, rectF4);
+        } else {
+            f12 = 42.0f;
+        }
+        if (i7 < 0 && !this.H) {
+            canvas2.scale(org.telegram.messenger.g0.T1(0.8f, 1.0f, e10), org.telegram.messenger.g0.T1(0.8f, 1.0f, e10), rectF4.centerX(), rectF4.centerY());
+        }
+        Paint paint2 = this.d;
+        paint2.setAlpha((int) (204.0f * e10));
+        canvas2.drawRoundRect(rectF4, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), paint2);
+        canvas2.save();
+        canvas2.clipRect(rectF4);
+        if (e11 < 1.0f) {
+            float f17 = f16 * e10;
+            float e12 = this.K.e(false, this.I);
+            float centerX = rectF2.centerX();
+            float L4 = rectF2.top + org.telegram.messenger.g0.L(48.0f);
+            float L5 = org.telegram.messenger.g0.L(25.0f);
+            Paint paint3 = this.f14255f;
+            paint3.setAlpha((int) (51.0f * f17));
+            canvas2.drawCircle(centerX, L4, L5, paint3);
+            RectF rectF6 = org.telegram.messenger.g0.P;
+            f15 = 255.0f;
+            rectF6.set(centerX - L5, L4 - L5, centerX + L5, L5 + L4);
+            int i10 = (int) (f17 * 255.0f);
+            Paint paint4 = this.f14254e;
+            paint4.setAlpha(i10);
+            paint4.setStrokeWidth(org.telegram.messenger.g0.L(4.0f));
+            f13 = e10;
+            f14 = 2.0f;
+            rectF = rectF3;
+            canvas.drawArc(rectF6, -90.0f, 360.0f * e12, false, paint4);
+            float a10 = this.h.a(0.15f);
+            canvas.save();
+            canvas.scale(a10, a10, centerX, L4);
+            paint4.setStrokeWidth(org.telegram.messenger.g0.L(3.4f));
+            canvas.drawLine(centerX - org.telegram.messenger.g0.L(7.0f), L4 - org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(7.0f) + centerX, org.telegram.messenger.g0.L(7.0f) + L4, paint4);
+            canvas2 = canvas;
+            canvas2.drawLine(centerX - org.telegram.messenger.g0.L(7.0f), L4 + org.telegram.messenger.g0.L(7.0f), centerX + org.telegram.messenger.g0.L(7.0f), L4 - org.telegram.messenger.g0.L(7.0f), paint4);
+            canvas2.restore();
+            canvas2.save();
+            canvas2.translate((rectF2.left + org.telegram.messenger.g0.L(21.0f)) - this.f14259w, (rectF2.bottom - org.telegram.messenger.g0.L(18.0f)) - staticLayout.getHeight());
+            this.f14252b.setAlpha(i10);
+            staticLayout.draw(canvas2);
+            canvas2.restore();
+        } else {
+            f13 = e10;
+            f14 = 2.0f;
+            rectF = rectF3;
+            f15 = 255.0f;
+        }
+        if (e11 > 0.0f) {
+            float f18 = f13 * e11;
+            nh0 nh0Var = this.f14256n;
+            if (nh0Var != null) {
+                nh0Var.setAlpha((int) (f18 * f15));
+                this.f14256n.setBounds((int) (rectF.left + org.telegram.messenger.g0.L(9.0f)), (int) (rectF.top + org.telegram.messenger.g0.L(6.0f)), (int) (rectF.left + org.telegram.messenger.g0.L(45.0f)), (int) (rectF.top + org.telegram.messenger.g0.L(f12)));
+                this.f14256n.draw(canvas2);
+            }
+            if (this.f14260x != null) {
+                canvas2.save();
+                m10.k(this.f14260x.getHeight(), f14, rectF.centerY(), (rectF.left + org.telegram.messenger.g0.L(52.0f)) - this.E, canvas2);
+                this.f14253c.setAlpha((int) (f18 * f15));
+                this.f14260x.draw(canvas2);
+                canvas2.restore();
+            }
+        }
+        canvas2.restoreToCount(saveCount);
+        if (f13 <= 0.0f && !this.F && !this.P) {
+            this.P = true;
+            post(new b1(this, 0));
+        }
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean x10 = x(motionEvent);
-        if (!super.onTouchEvent(motionEvent) && !x10) {
+        boolean contains = this.N.contains(motionEvent.getX(), motionEvent.getY());
+        int action = motionEvent.getAction();
+        org.telegram.ui.Components.lc lcVar = this.h;
+        if (action == 0 && (this.H || contains)) {
+            lcVar.c(contains);
+            return true;
+        }
+        if (motionEvent.getAction() == 1) {
+            if (lcVar.f37109i) {
+                if (contains) {
+                    if (this.H) {
+                        Runnable runnable = this.R;
+                        if (runnable != null) {
+                            runnable.run();
+                        }
+                    } else {
+                        a();
+                    }
+                }
+                lcVar.c(false);
+                return true;
+            }
+        } else if (motionEvent.getAction() == 3) {
+            lcVar.c(false);
+            return true;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    public void setOnCancelListener(Runnable runnable) {
+        this.R = runnable;
+    }
+
+    public void setProgress(float f10) {
+        this.I = f10;
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f14256n && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;
     }
 
-    public final void r(Matrix matrix) {
-        float[] fArr = this.P;
-        fArr[0] = 0.0f;
-        fArr[1] = 0.0f;
-        matrix.mapPoints(fArr);
-        this.Q = fArr[0];
-        this.R = fArr[1];
-        fArr[0] = 1.0f;
-        fArr[1] = 0.0f;
-        matrix.mapPoints(fArr);
-        this.S = (float) Math.toDegrees(Math.atan2(fArr[1] - this.R, fArr[0] - this.Q));
-        this.T = a8.x9.a(this.Q, this.R, fArr[0], fArr[1]) * 2.0f;
-        fArr[0] = 0.0f;
-        fArr[1] = 1.0f;
-        matrix.mapPoints(fArr);
-        this.U = a8.x9.a(this.Q, this.R, fArr[0], fArr[1]) * 2.0f;
-    }
-
-    public final boolean s(float f10, float f11) {
-        float f12;
-        if (!isDual()) {
-            return false;
-        }
-        float[] fArr = this.V;
-        fArr[0] = f10;
-        fArr[1] = f11;
-        this.E.mapPoints(fArr);
-        Matrix dualPosition = getDualPosition();
-        Matrix matrix = this.M;
-        dualPosition.invert(matrix);
-        matrix.mapPoints(fArr);
-        int dualShape = getDualShape() % 3;
-        if (dualShape != 0 && dualShape != 1 && dualShape != 3) {
-            f12 = 1.0f;
-        } else {
-            f12 = 0.5625f;
-        }
-        float f13 = fArr[0];
-        if (f13 >= -1.0f && f13 <= 1.0f) {
-            float f14 = fArr[1];
-            if (f14 >= (-f12) && f14 <= f12) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void toggleDual() {
-        if (!isDual() && !this.f14252a) {
-            return;
-        }
-        if (!isDual()) {
-            w();
-        } else {
-            np.g1().edit().putBoolean("dualcam", false).remove("dualmatrix").apply();
-        }
-        super.toggleDual();
-    }
-
-    public abstract void u(boolean z10);
-
-    public final void v() {
-        SharedPreferences.Editor edit = np.g1().edit();
-        edit.putBoolean("dualcam", isDual());
-        if (isDual()) {
-            float[] fArr = new float[9];
-            getDualPosition().getValues(fArr);
-            StringBuilder sb2 = new StringBuilder(108);
-            sb2.append(fArr[0]);
-            for (int i7 = 1; i7 < 9; i7++) {
-                sb2.append(";");
-                sb2.append(fArr[i7]);
-            }
-            edit.putString("dualmatrix", sb2.toString());
-        } else {
-            edit.remove("dualmatrix");
-        }
-        edit.apply();
-    }
-
-    public final void w() {
-        Matrix dualPosition = getDualPosition();
-        dualPosition.reset();
-        Matrix savedDualMatrix = getSavedDualMatrix();
-        if (savedDualMatrix != null) {
-            dualPosition.set(savedDualMatrix);
-        } else {
-            dualPosition.postConcat(this.f14263y);
-            float measuredWidth = getMeasuredWidth() * 0.43f;
-            float min = Math.min(getMeasuredWidth(), getMeasuredWidth()) * 0.025f;
-            dualPosition.postScale(measuredWidth / getMeasuredWidth(), (getMeasuredHeight() * 0.43f) / getMeasuredHeight());
-            dualPosition.postTranslate((getMeasuredWidth() - min) - measuredWidth, min);
-            dualPosition.postConcat(this.E);
-        }
-        updateDualPosition();
-    }
-
-    public final boolean x(android.view.MotionEvent r52) {
-        throw new UnsupportedOperationException("Method not decompiled: hi.c1.x(android.view.MotionEvent):boolean");
+    public c1(Context context) {
+        this(context, gd.N0(2131746724, null));
     }
 }

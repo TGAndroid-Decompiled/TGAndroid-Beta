@@ -1,13 +1,13 @@
 package fi;
 
-import org.telegram.ui.Components.fb;
-import org.telegram.ui.Components.gc;
-public final class s8 implements fb {
-    public final float[] f12547a = new float[2];
-    public final t8 f12548b;
+import org.telegram.ui.Components.eb;
+import org.telegram.ui.Components.fc;
+public final class s8 implements eb {
+    public final float[] f12558a = new float[2];
+    public final t8 f12559b;
 
     public s8(t8 t8Var) {
-        this.f12548b = t8Var;
+        this.f12559b = t8Var;
     }
 
     @Override
@@ -22,15 +22,15 @@ public final class s8 implements fb {
 
     @Override
     public final int f(int i7) {
-        t8 t8Var = this.f12548b;
-        f9 f9Var = t8Var.f12599s0;
+        t8 t8Var = this.f12559b;
+        f9 f9Var = t8Var.f12608s0;
         z3 z10 = f9Var.z();
         if (z10 == null) {
             return 0;
         }
         c3 c3Var = z10.M0;
-        t8 t8Var2 = f9Var.f11987s;
-        float[] fArr = this.f12547a;
+        t8 t8Var2 = f9Var.f11998s;
+        float[] fArr = this.f12558a;
         org.telegram.messenger.g0.r1(c3Var, t8Var2, fArr);
         return (int) (t8Var.getMeasuredHeight() - (fArr[1] + c3Var.getMeasuredHeight()));
     }
@@ -46,7 +46,7 @@ public final class s8 implements fb {
     }
 
     @Override
-    public final void b(gc gcVar) {
+    public final void b(fc fcVar) {
     }
 
     @Override
@@ -54,6 +54,6 @@ public final class s8 implements fb {
     }
 
     @Override
-    public final void d(gc gcVar) {
+    public final void d(fc fcVar) {
     }
 }

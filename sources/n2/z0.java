@@ -1,86 +1,204 @@
 package n2;
 
+import android.os.Handler;
 import java.nio.ByteBuffer;
+import oi.b6;
+import org.telegram.ui.Components.b61;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.sh0;
+import org.telegram.ui.Components.v51;
 public final class z0 extends f2.o {
-    public static final int f21288i = Float.floatToIntBits(Float.NaN);
+    public final b6 f21387i;
 
-    public static void m(int i7, ByteBuffer byteBuffer) {
-        int floatToIntBits = Float.floatToIntBits((float) (i7 * 4.656612875245797E-10d));
-        if (floatToIntBits == f21288i) {
-            floatToIntBits = Float.floatToIntBits(0.0f);
-        }
-        byteBuffer.putInt(floatToIntBits);
+    public z0(b6 b6Var) {
+        this.f21387i = b6Var;
     }
 
     @Override
     public final void c(ByteBuffer byteBuffer) {
-        ByteBuffer l10;
-        int position = byteBuffer.position();
-        int limit = byteBuffer.limit();
-        int i7 = limit - position;
-        int i10 = this.f11050b.f11046c;
-        if (i10 != 2) {
-            if (i10 != 1342177280) {
-                if (i10 != 1610612736) {
-                    if (i10 != 1879048192) {
-                        if (i10 != 21) {
-                            if (i10 == 22) {
-                                l10 = l(i7);
-                                while (position < limit) {
-                                    m((byteBuffer.get(position) & 255) | ((byteBuffer.get(position + 1) & 255) << 8) | ((byteBuffer.get(position + 2) & 255) << 16) | ((byteBuffer.get(position + 3) & 255) << 24), l10);
-                                    position += 4;
+        float f10;
+        float f11;
+        float[] fArr;
+        int remaining = byteBuffer.remaining();
+        if (remaining == 0) {
+            return;
+        }
+        String str = h2.l0.f13778a;
+        ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
+        b6 b6Var = this.f21387i;
+        float[] fArr2 = (float[]) b6Var.d;
+        ci.b1 b1Var = (ci.b1) b6Var.f22096c;
+        ByteBuffer byteBuffer2 = (ByteBuffer) b6Var.f22097e;
+        h61 h61Var = (h61) b6Var.f22098f;
+        b61 b61Var = h61Var.L;
+        Handler handler = h61Var.f35654b0;
+        if (b61Var != null) {
+            if (order != f2.n.f11047a && h61Var.J) {
+                if (b61Var.r()) {
+                    int limit = order.limit();
+                    int i7 = 0;
+                    if (limit > 8192) {
+                        handler.removeCallbacksAndMessages(null);
+                        h61Var.L.w(false, null);
+                    } else {
+                        byteBuffer2.put(order);
+                        int i10 = b6Var.f22094a + limit;
+                        b6Var.f22094a = i10;
+                        if (i10 >= 1024) {
+                            byteBuffer2.position(0);
+                            for (int i11 = 0; i11 < 1024; i11++) {
+                                fArr2[i11] = byteBuffer2.getShort() / 32768.0f;
+                            }
+                            byteBuffer2.rewind();
+                            b6Var.f22094a = 0;
+                            b1Var.getClass();
+                            float f12 = 0.0f;
+                            if (fArr2.length != 1024) {
+                                f10 = 0.0f;
+                                f11 = 1.0f;
+                            } else {
+                                for (int i12 = 0; i12 < 1024; i12++) {
+                                    ((float[]) b1Var.f5581b)[i12] = fArr2[((int[]) b1Var.f5584f)[i12]];
+                                    ((float[]) b1Var.f5582c)[i12] = 0.0f;
+                                }
+                                int i13 = 1;
+                                while (i13 < ((float[]) b1Var.f5581b).length) {
+                                    float f13 = ((float[]) b1Var.h)[i13];
+                                    float f14 = ((float[]) b1Var.f5585g)[i13];
+                                    float f15 = f12;
+                                    int i14 = i7;
+                                    float f16 = 1.0f;
+                                    while (i14 < i13) {
+                                        float f17 = f12;
+                                        int i15 = i14;
+                                        while (true) {
+                                            float[] fArr3 = (float[]) b1Var.f5581b;
+                                            if (i15 < fArr3.length) {
+                                                int i16 = i15 + i13;
+                                                float f18 = fArr3[i16];
+                                                float[] fArr4 = (float[]) b1Var.f5582c;
+                                                float f19 = fArr4[i16];
+                                                float f20 = (f16 * f18) - (f15 * f19);
+                                                float f21 = (f18 * f15) + (f19 * f16);
+                                                fArr3[i16] = fArr3[i15] - f20;
+                                                fArr4[i16] = fArr4[i15] - f21;
+                                                fArr3[i15] = fArr3[i15] + f20;
+                                                fArr4[i15] = fArr4[i15] + f21;
+                                                i15 += i13 * 2;
+                                            }
+                                        }
+                                        f15 = (f15 * f13) + (f16 * f14);
+                                        i14++;
+                                        f16 = (f16 * f13) - (f15 * f14);
+                                        f12 = f17;
+                                    }
+                                    i13 *= 2;
+                                    i7 = 0;
+                                }
+                                f10 = f12;
+                                f11 = 1.0f;
+                                int i17 = 0;
+                                while (true) {
+                                    fArr = (float[]) b1Var.d;
+                                    if (i17 >= fArr.length) {
+                                        break;
+                                    }
+                                    float f22 = ((float[]) b1Var.f5581b)[i17];
+                                    float f23 = ((float[]) b1Var.f5582c)[i17];
+                                    fArr[i17] = (float) Math.sqrt((f23 * f23) + (f22 * f22));
+                                    i17++;
+                                }
+                                if (b1Var.f5580a == 1) {
+                                    int length = fArr.length / ((float[]) b1Var.f5583e).length;
+                                    for (int i18 = 0; i18 < ((float[]) b1Var.f5583e).length; i18++) {
+                                        float f24 = f10;
+                                        int i19 = 0;
+                                        while (i19 < length) {
+                                            int i20 = (i18 * length) + i19;
+                                            float[] fArr5 = (float[]) b1Var.d;
+                                            if (i20 < fArr5.length) {
+                                                f24 += fArr5[i20];
+                                                i19++;
+                                            }
+                                        }
+                                        ((float[]) b1Var.f5583e)[i18] = f24 / (i19 + 1);
+                                    }
+                                }
+                            }
+                            float f25 = f10;
+                            for (int i21 = 0; i21 < 1024; i21++) {
+                                float f26 = ((float[]) b1Var.f5581b)[i21];
+                                float f27 = ((float[]) b1Var.f5582c)[i21];
+                                float sqrt = ((float) Math.sqrt((f27 * f27) + (f26 * f26))) / 30.0f;
+                                if (sqrt > f11) {
+                                    sqrt = f11;
+                                } else if (sqrt < f10) {
+                                    sqrt = f10;
+                                }
+                                f25 += sqrt * sqrt;
+                            }
+                            float sqrt2 = (float) Math.sqrt(f25 / 1024);
+                            float[] fArr6 = new float[7];
+                            fArr6[6] = sqrt2;
+                            if (sqrt2 < 0.4f) {
+                                for (int i22 = 0; i22 < 7; i22++) {
+                                    fArr6[i22] = f10;
                                 }
                             } else {
-                                throw new IllegalStateException();
+                                for (int i23 = 0; i23 < 6; i23++) {
+                                    int i24 = 170 * i23;
+                                    float f28 = ((float[]) b1Var.f5581b)[i24];
+                                    float f29 = ((float[]) b1Var.f5582c)[i24];
+                                    float sqrt3 = (float) (Math.sqrt((f29 * f29) + (f28 * f28)) / 30.0d);
+                                    fArr6[i23] = sqrt3;
+                                    if (sqrt3 > f11) {
+                                        fArr6[i23] = f11;
+                                    } else if (sqrt3 < f10) {
+                                        fArr6[i23] = f10;
+                                    }
+                                }
                             }
-                        } else {
-                            l10 = l((i7 / 3) * 4);
-                            while (position < limit) {
-                                m(((byteBuffer.get(position) & 255) << 8) | ((byteBuffer.get(position + 1) & 255) << 16) | ((byteBuffer.get(position + 2) & 255) << 24), l10);
-                                position += 3;
+                            if (System.currentTimeMillis() - b6Var.f22095b >= 64) {
+                                b6Var.f22095b = System.currentTimeMillis();
+                                handler.postDelayed(new sh0(25, b6Var, fArr6), 130L);
                             }
                         }
-                    } else {
-                        l10 = l(i7 / 2);
-                        while (position < limit) {
-                            l10.putFloat((float) byteBuffer.getDouble(position));
-                            position += 8;
-                        }
-                    }
-                } else {
-                    l10 = l(i7);
-                    while (position < limit) {
-                        m((byteBuffer.get(position + 3) & 255) | ((byteBuffer.get(position + 2) & 255) << 8) | ((byteBuffer.get(position + 1) & 255) << 16) | ((byteBuffer.get(position) & 255) << 24), l10);
-                        position += 4;
                     }
                 }
             } else {
-                l10 = l((i7 / 3) * 4);
-                while (position < limit) {
-                    m(((byteBuffer.get(position + 2) & 255) << 8) | ((byteBuffer.get(position + 1) & 255) << 16) | ((byteBuffer.get(position) & 255) << 24), l10);
-                    position += 3;
-                }
-            }
-        } else {
-            l10 = l(i7 * 2);
-            while (position < limit) {
-                m(((byteBuffer.get(position) & 255) << 16) | ((byteBuffer.get(position + 1) & 255) << 24), l10);
-                position += 2;
+                handler.postDelayed(new v51(b6Var, 2), 80L);
             }
         }
-        byteBuffer.position(byteBuffer.limit());
-        l10.flip();
+        l(remaining).put(byteBuffer).flip();
+    }
+
+    @Override
+    public final void i() {
+        m();
+    }
+
+    @Override
+    public final void j() {
+        m();
+    }
+
+    @Override
+    public final void k() {
+        m();
+    }
+
+    public final void m() {
+        if (isActive()) {
+            f2.k kVar = this.f11048b;
+            int i7 = kVar.f11042a;
+            int i10 = kVar.f11043b;
+            int i11 = kVar.f11044c;
+            this.f21387i.getClass();
+        }
     }
 
     @Override
     public final f2.k h(f2.k kVar) {
-        int i7 = kVar.f11046c;
-        if (!h2.l0.L(i7) && i7 != 2) {
-            throw new f2.m(kVar);
-        }
-        if (i7 != 4) {
-            return new f2.k(kVar.f11044a, kVar.f11045b, 4);
-        }
-        return f2.k.f11043e;
+        return kVar;
     }
 }

@@ -1,24 +1,19 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.TextView;
-public final class v10 extends TextView {
-    public final RectF f52681a;
-    public final f40 f52682b;
+import org.telegram.ui.Components.UndoView;
+public final class v10 extends UndoView {
+    public final e40 f52784k0;
 
-    public v10(f40 f40Var, Context context) {
-        super(context);
-        this.f52682b = f40Var;
-        this.f52681a = new RectF();
+    public v10(e40 e40Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f52784k0 = e40Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        RectF rectF = this.f52681a;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), this.f52682b.f47438b3);
-        super.onDraw(canvas);
+    public final void k(long j3, int i7, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
+        if (this.f52784k0.f47405u2 != null) {
+            return;
+        }
+        super.k(j3, i7, obj, obj2, runnable, runnable2);
     }
 }

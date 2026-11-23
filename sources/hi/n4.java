@@ -1,23 +1,34 @@
 package hi;
 
-import android.content.DialogInterface;
-public final class n4 implements DialogInterface.OnDismissListener {
-    public final int f15069a;
-    public final l5 f15070b;
+import android.animation.ValueAnimator;
+public final class n4 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f15008a;
+    public final v5 f15009b;
 
-    public n4(l5 l5Var, int i7) {
-        this.f15069a = i7;
-        this.f15070b = l5Var;
+    public n4(v5 v5Var, int i7) {
+        this.f15008a = i7;
+        this.f15009b = v5Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f15069a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f15008a) {
             case 0:
-                this.f15070b.w0(false);
+                v5 v5Var = this.f15009b;
+                v5Var.getClass();
+                v5Var.d2.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 1:
+                v5 v5Var2 = this.f15009b;
+                v5Var2.getClass();
+                v5Var2.d2.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                this.f15070b.w0(false);
+                v5 v5Var3 = this.f15009b;
+                v5Var3.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v5Var3.L1 = floatValue;
+                v5Var3.J1.setTransitionProgress(floatValue);
                 return;
         }
     }

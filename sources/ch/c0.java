@@ -3,7 +3,7 @@ package ch;
 import android.text.TextUtils;
 import android.view.View;
 import di.u0;
-import oi.z5;
+import oi.a6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.t4;
 public final class c0 implements View.OnFocusChangeListener {
@@ -43,17 +43,17 @@ public final class c0 implements View.OnFocusChangeListener {
                 return;
             case 2:
                 di.r0 r0Var = (di.r0) this.f5323b;
-                r0Var.f9608q1.c(z10, !TextUtils.isEmpty(r0Var.f9609r1.getText()));
+                r0Var.f9604q1.c(z10, !TextUtils.isEmpty(r0Var.f9605r1.getText()));
                 return;
             case 3:
                 u0 u0Var = (u0) this.f5323b;
-                u0Var.f9829m1.c(z10, !TextUtils.isEmpty(u0Var.n1.getText()));
+                u0Var.f9828m1.c(z10, !TextUtils.isEmpty(u0Var.n1.getText()));
                 return;
             case 4:
-                z5.a((z5) this.f5323b, z10);
+                a6.a((a6) this.f5323b, z10);
                 return;
             case 5:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) ((t4) this.f5323b).f52158f;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) ((t4) this.f5323b).f52239f;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;

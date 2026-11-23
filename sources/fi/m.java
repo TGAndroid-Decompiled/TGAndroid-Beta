@@ -2,18 +2,18 @@ package fi;
 
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.ui.tv;
+import org.telegram.ui.sv;
 public final class m extends rg.b {
     public final boolean d;
-    public final tv f12235e;
+    public final sv f12248e;
 
-    public m(tv tvVar, boolean z10) {
-        this.f12235e = tvVar;
+    public m(sv svVar, boolean z10) {
+        this.f12248e = svVar;
         this.d = z10;
     }
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
+    public final boolean D(v4.f1 f1Var) {
         return false;
     }
 
@@ -21,36 +21,36 @@ public final class m extends rg.b {
     public final int b() {
         ArrayList arrayList;
         boolean z10 = this.d;
-        tv tvVar = this.f12235e;
+        sv svVar = this.f12248e;
         if (z10) {
-            arrayList = tvVar.E;
+            arrayList = svVar.E;
         } else {
-            arrayList = tvVar.f12437y;
+            arrayList = svVar.f12447y;
         }
         return arrayList.size();
     }
 
     @Override
-    public final void t(v4.e1 e1Var, int i7) {
-        p pVar = (p) e1Var.f59111a;
-        pVar.f12349b = i7;
+    public final void t(v4.f1 f1Var, int i7) {
+        p pVar = (p) f1Var.f59245a;
+        pVar.f12361b = i7;
         boolean z10 = this.d;
-        tv tvVar = this.f12235e;
+        sv svVar = this.f12248e;
         if (z10) {
-            pVar.setDialogId(((n) tvVar.E.get(i7)).f12274c);
+            pVar.setDialogId(((n) svVar.E.get(i7)).f12282c);
         } else {
-            pVar.setDialogId(((n) tvVar.f12437y.get(i7)).f12274c);
+            pVar.setDialogId(((n) svVar.f12447y.get(i7)).f12282c);
         }
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        p pVar = new p(this.f12235e, viewGroup.getContext());
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        p pVar = new p(this.f12248e, viewGroup.getContext());
         boolean z10 = this.d;
         pVar.O = z10;
         if (z10) {
             pVar.d(1.0f, 1.0f, 0.0f, false);
         }
-        return new v4.e1(pVar);
+        return new v4.f1(pVar);
     }
 }

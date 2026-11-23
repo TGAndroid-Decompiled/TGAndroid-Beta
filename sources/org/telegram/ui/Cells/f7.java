@@ -1,79 +1,67 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.k10;
-import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.w70;
-public final class f7 extends FrameLayout {
-    public final org.telegram.ui.Components.q9 f30616a;
-    public final c7 f30617b;
-    public final TextView f30618c;
-    public long d;
-    public long f30619e;
-    public final int f30620f;
-    public final org.telegram.ui.ActionBar.h6 h;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.ve;
+import org.telegram.messenger.x10;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.n41;
+public final class f7 extends m41 {
+    public static final int f30707b = 0;
 
-    public f7(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context);
-        this.f30620f = k10.f24932t0;
-        this.h = h6Var;
-        setWillNotDraw(false);
-        org.telegram.ui.Components.q9 q9Var = new org.telegram.ui.Components.q9(context);
-        this.f30616a = q9Var;
-        q9Var.setRoundRadius(org.telegram.messenger.g0.L(28.0f));
-        addView(q9Var, c8.na.d(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.f30618c = textView;
-        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29455j5, h6Var);
-        textView.setTextSize(1, 12.0f);
-        textView.setMaxLines(2);
-        textView.setGravity(49);
-        textView.setLines(2);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(textView, c8.na.d(-1, -2.0f, 51, 6.0f, 66.0f, 6.0f, 0.0f));
-        this.f30617b = new c7(this, h6Var, 1);
-        int i7 = org.telegram.ui.ActionBar.m6.f29439i6;
-        Drawable a02 = org.telegram.ui.ActionBar.m6.a0(org.telegram.ui.ActionBar.m6.x0(null, i7, false), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
-        org.telegram.ui.ActionBar.p6 M = org.telegram.ui.ActionBar.t6.M(i7);
-        setBackground(a02);
-        org.telegram.ui.ActionBar.t6.j(this, a02, null, M, null);
+    static {
+        m41.h(new m41());
     }
 
-    public long getCurrentDialog() {
-        return this.d;
-    }
-
-    public long getCurrentTopic() {
-        return this.f30619e;
+    public static n41 i(ve veVar, x10 x10Var) {
+        n41 K = n41.K(f7.class);
+        K.H = veVar;
+        K.I = x10Var;
+        return K;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(103.0f), 1073741824));
+    public final void b(View view, n41 n41Var, boolean z10, b51 b51Var, g51 g51Var) {
+        g7 g7Var = (g7) view;
+        Object obj = n41Var.H;
+        if (obj instanceof fj) {
+            g7Var.f((fj) obj, z10);
+        } else if (obj instanceof ve) {
+            ve veVar = (ve) obj;
+            g7Var.setTag(veVar);
+            g7Var.f(veVar.f27454e, z10);
+        }
+        Object obj2 = n41Var.I;
+        if (obj2 instanceof x10) {
+            g7Var.setNeedPlayMessageListener((x10) obj2);
+        }
+        g7Var.e(n41Var.f37648e, false);
     }
 
-    public void setAsNewBotForumTopic(boolean z10) {
-        int i7;
-        if (z10) {
-            i7 = 2131745239;
-        } else {
-            i7 = 2131745238;
+    @Override
+    public final boolean c(n41 n41Var, n41 n41Var2) {
+        if (n41Var.d == n41Var2.d && n41Var.H == n41Var2.H) {
+            return true;
         }
-        this.f30618c.setText(hd.N0(i7, null));
-        org.telegram.ui.Components.q9 q9Var = this.f30616a;
-        q9Var.setAnimatedEmojiDrawable(null);
-        qg.a aVar = new qg.a(qg.a.f56142k[0]);
-        w70 w70Var = new w70(1, null);
-        w70Var.a("");
-        w70Var.f41662i = 1.8f;
-        oq oqVar = new oq(aVar, w70Var, 0, 0);
-        oqVar.f38309x = true;
-        q9Var.setImageDrawable(oqVar);
+        return false;
+    }
+
+    @Override
+    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        g7 g7Var = new g7(0, context, i6Var);
+        g7Var.setCheckForButtonPress(true);
+        return g7Var;
+    }
+
+    @Override
+    public final boolean e(n41 n41Var, n41 n41Var2) {
+        if (n41Var.d == n41Var2.d && n41Var.H == n41Var2.H) {
+            return true;
+        }
+        return false;
     }
 }

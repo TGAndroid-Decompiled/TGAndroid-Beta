@@ -1,19 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class m8 implements View.OnClickListener {
-    public final int f37407a;
-    public final Object f37408b;
-    public final Object f37409c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class m8 extends AnimatorListenerAdapter {
+    public final int f37427a;
+    public final x8 f37428b;
 
-    public m8(int i7, Object obj, Object obj2) {
-        this.f37407a = i7;
-        this.f37408b = obj;
-        this.f37409c = obj2;
+    public m8(x8 x8Var, int i7) {
+        this.f37427a = i7;
+        this.f37428b = x8Var;
     }
 
     @Override
-    public final void onClick(android.view.View r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m8.onClick(android.view.View):void");
+    public final void onAnimationEnd(Animator animator) {
+        float f10;
+        switch (this.f37427a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                this.f37428b.f41925f = false;
+                return;
+            default:
+                x8 x8Var = this.f37428b;
+                if (x8Var.G) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                x8Var.n0(false, f10);
+                x8Var.G = false;
+                return;
+        }
     }
 }

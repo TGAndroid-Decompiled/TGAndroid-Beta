@@ -1,47 +1,55 @@
 package org.telegram.ui.Components.voip;
-public final class u0 implements c5.h {
-    public int f41343a = 0;
-    public int f41344b;
-    public final w0 f41345c;
 
-    public u0(w0 w0Var) {
-        this.f41345c = w0Var;
-    }
+import android.graphics.SurfaceTexture;
+import org.telegram.messenger.voip.VideoCapturerDevice;
+import org.telegram.ui.Components.h40;
+import org.webrtc.EglBase;
+import org.webrtc.EglRenderer;
+import org.webrtc.GlRectDrawer;
+import org.webrtc.VideoFrame;
+import org.webrtc.VideoSink;
+public final class u0 implements VideoSink {
+    public final EglRenderer f41253a;
+    public SurfaceTexture f41254b;
+    public boolean f41255c;
 
-    @Override
-    public final void a(int i7) {
-        int i10 = this.f41343a;
-        w0 w0Var = this.f41345c;
-        if (i10 == 0) {
-            if (i7 <= w0Var.E) {
-                w0Var.f41382n = 1;
-            } else {
-                w0Var.f41382n = 2;
+    public u0(wi.o oVar) {
+        EglRenderer eglRenderer = new EglRenderer("pip-egl");
+        this.f41253a = eglRenderer;
+        eglRenderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), EglBase.CONFIG_PLAIN, new GlRectDrawer());
+        oVar.setSurfaceTextureListener(new h40(this, 3));
+        SurfaceTexture surfaceTexture = oVar.getSurfaceTexture();
+        if (surfaceTexture != null && oVar.f60121a != null) {
+            int width = oVar.getWidth();
+            int height = oVar.getHeight();
+            if (!this.f41255c && this.f41254b != surfaceTexture) {
+                this.f41254b = surfaceTexture;
+                if (width > 0 && height > 0) {
+                    eglRenderer.setLayoutAspectRatio(width / height);
+                }
+                eglRenderer.createEglSurface(surfaceTexture);
             }
-            w0.a(w0Var);
-        } else if (i7 <= w0Var.E) {
-            this.f41344b = 1;
-        } else {
-            this.f41344b = 2;
+        }
+    }
+
+    public final void a() {
+        if (this.f41255c) {
+            return;
+        }
+        this.f41255c = true;
+        this.f41253a.release();
+        this.f41254b = null;
+    }
+
+    @Override
+    public final void onFrame(VideoFrame videoFrame) {
+        if (!this.f41255c) {
+            this.f41253a.onFrame(videoFrame);
         }
     }
 
     @Override
-    public final void b(float f10, int i7, int i10) {
-        w0 w0Var = this.f41345c;
-        w0Var.f41387y = i7;
-        w0Var.f41386x = f10;
-        w0Var.d();
-    }
-
-    @Override
-    public final void c(int i7) {
-        this.f41343a = i7;
-        if (i7 == 0) {
-            int i10 = this.f41344b;
-            w0 w0Var = this.f41345c;
-            w0Var.f41382n = i10;
-            w0.a(w0Var);
-        }
+    public final void setParentSink(VideoSink videoSink) {
+        org.webrtc.d0.a(this, videoSink);
     }
 }

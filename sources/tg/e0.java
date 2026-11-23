@@ -1,34 +1,28 @@
 package tg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.ViewGroup;
-import org.telegram.ui.wp0;
-public final class e0 extends z0 {
-    public final Path f57802o3;
-    public final wp0 f57803p3;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class e0 extends AnimatorListenerAdapter {
+    public final int f57885a;
+    public final l0 f57886b;
 
-    public e0(wp0 wp0Var, Context context) {
-        super(context);
-        this.f57803p3 = wp0Var;
-        this.f57802o3 = new Path();
+    public e0(l0 l0Var, int i7) {
+        this.f57885a = i7;
+        this.f57886b = l0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        ViewGroup barView;
-        wp0 wp0Var = this.f57803p3;
-        barView = wp0Var.getBarView();
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(org.telegram.messenger.g0.W1(wp0Var.f57907x1, barView.getLeft() - getLeft(), 0), org.telegram.messenger.g0.W1(wp0Var.f57907x1, barView.getTop() - getTop(), 0), org.telegram.messenger.g0.W1(wp0Var.f57907x1, barView.getRight() - getLeft(), getWidth()), org.telegram.messenger.g0.W1(wp0Var.f57907x1, barView.getBottom() - getTop(), getHeight()));
-        Path path = this.f57802o3;
-        path.rewind();
-        path.addRoundRect(rectF, org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f), Path.Direction.CW);
-        canvas.save();
-        canvas.clipPath(path);
-        super.draw(canvas);
-        canvas.restore();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f57885a) {
+            case 0:
+                this.f57886b.T1.setTranslationY(0.0f);
+                return;
+            default:
+                l0 l0Var = this.f57886b;
+                l0Var.W1 = false;
+                l0Var.T1.setTranslationY(0.0f);
+                l0Var.o0();
+                return;
+        }
     }
 }

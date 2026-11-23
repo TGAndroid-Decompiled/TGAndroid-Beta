@@ -1,14 +1,6 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-public final class ma0 {
-    public long f49802a;
-    public TLRPC.Message f49803b;
-    public TLRPC.User f49804c;
-    public TLRPC.Chat d;
-    public org.telegram.messenger.da f49805e;
-    public org.telegram.messenger.da f49806f;
-    public boolean f49807g;
-    public ImageReceiver h;
+public interface ma0 {
+    void d(TLRPC.MessageMedia messageMedia, int i7, boolean z10, int i10, long j3);
 }

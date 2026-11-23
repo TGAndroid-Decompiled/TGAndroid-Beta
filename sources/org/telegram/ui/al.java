@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-public final class al extends hi.l3 {
+public final class al extends hi.u3 {
     public final bn X0;
 
     public al(bn bnVar, Activity activity) {

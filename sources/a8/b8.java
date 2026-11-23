@@ -25,10 +25,10 @@ import c8.oc;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.telegram.messenger.pd;
-import org.telegram.messenger.wy;
-import org.telegram.messenger.yr;
-import org.telegram.ui.Components.jw0;
+import org.telegram.messenger.od;
+import org.telegram.messenger.vy;
+import org.telegram.messenger.xr;
+import org.telegram.ui.Components.iw0;
 public class b8 {
     public Object f341a;
     public Object f342b;
@@ -63,32 +63,32 @@ public class b8 {
 
     public static ColorStateList e(Context context, int i7) {
         int c10 = m.z2.c(context, 2130968728);
-        return new ColorStateList(new int[][]{m.z2.f20275b, m.z2.d, m.z2.f20276c, m.z2.f20278f}, new int[]{m.z2.b(context, 2130968726), i0.a.k(c10, i7), i0.a.k(c10, i7), i7});
+        return new ColorStateList(new int[][]{m.z2.f20371b, m.z2.d, m.z2.f20372c, m.z2.f20374f}, new int[]{m.z2.b(context, 2130968726), i0.a.k(c10, i7), i0.a.k(c10, i7), i7});
     }
 
     public static x2.g0 f(e2.c1 c1Var, h9.i0 i0Var, x2.g0 g0Var, e2.i1 i1Var) {
         Object l10;
         int i7;
-        e2.l1 y02 = c1Var.y0();
-        int B = c1Var.B();
-        if (y02.p()) {
+        e2.l1 z02 = c1Var.z0();
+        int C = c1Var.C();
+        if (z02.p()) {
             l10 = null;
         } else {
-            l10 = y02.l(B);
+            l10 = z02.l(C);
         }
-        if (!c1Var.p() && !y02.p()) {
-            i7 = y02.f(B, i1Var, false).b(h2.l0.S(c1Var.l()) - i1Var.f10429e);
+        if (!c1Var.q() && !z02.p()) {
+            i7 = z02.f(C, i1Var, false).b(h2.l0.S(c1Var.n()) - i1Var.f10427e);
         } else {
             i7 = -1;
         }
         int i10 = i7;
         for (int i11 = 0; i11 < i0Var.size(); i11++) {
             x2.g0 g0Var2 = (x2.g0) i0Var.get(i11);
-            if (i(g0Var2, l10, c1Var.p(), c1Var.n0(), c1Var.O(), i10)) {
+            if (i(g0Var2, l10, c1Var.q(), c1Var.o0(), c1Var.P(), i10)) {
                 return g0Var2;
             }
         }
-        if (!i0Var.isEmpty() || g0Var == null || !i(g0Var, l10, c1Var.p(), c1Var.n0(), c1Var.O(), i10)) {
+        if (!i0Var.isEmpty() || g0Var == null || !i(g0Var, l10, c1Var.q(), c1Var.o0(), c1Var.P(), i10)) {
             return null;
         }
         return g0Var;
@@ -130,13 +130,13 @@ public class b8 {
     }
 
     public static boolean i(x2.g0 g0Var, Object obj, boolean z10, int i7, int i10, int i11) {
-        Object obj2 = g0Var.f60098a;
-        int i12 = g0Var.f60099b;
+        Object obj2 = g0Var.f60216a;
+        int i12 = g0Var.f60217b;
         if (!obj2.equals(obj)) {
             return false;
         }
-        if (!z10 || i12 != i7 || g0Var.f60100c != i10) {
-            if (z10 || i12 != -1 || g0Var.f60101e != i11) {
+        if (!z10 || i12 != i7 || g0Var.f60218c != i10) {
+            if (z10 || i12 != -1 || g0Var.f60219e != i11) {
                 return false;
             }
             return true;
@@ -146,12 +146,12 @@ public class b8 {
 
     public static void n(Drawable drawable, int i7, PorterDuff.Mode mode) {
         PorterDuffColorFilter h;
-        int[] iArr = m.l1.f20113a;
+        int[] iArr = m.l1.f20210a;
         Drawable mutate = drawable.mutate();
         if (mode == null) {
-            mode = m.q.f20176b;
+            mode = m.q.f20272b;
         }
-        PorterDuff.Mode mode2 = m.q.f20176b;
+        PorterDuff.Mode mode2 = m.q.f20272b;
         synchronized (m.q.class) {
             h = m.m2.h(i7, mode);
         }
@@ -160,13 +160,13 @@ public class b8 {
 
     public void a(xa xaVar, x2.g0 g0Var, e2.l1 l1Var) {
         if (g0Var != null) {
-            if (l1Var.b(g0Var.f60098a) != -1) {
-                xaVar.w(g0Var, l1Var);
+            if (l1Var.b(g0Var.f60216a) != -1) {
+                xaVar.u(g0Var, l1Var);
                 return;
             }
-            e2.l1 l1Var2 = (e2.l1) ((h9.y1) this.f343c).get(g0Var);
+            e2.l1 l1Var2 = (e2.l1) ((h9.x1) this.f343c).get(g0Var);
             if (l1Var2 != null) {
-                xaVar.w(g0Var, l1Var2);
+                xaVar.u(g0Var, l1Var2);
             }
         }
     }
@@ -209,8 +209,8 @@ public class b8 {
     }
 
     public void d() {
-        ((LocationManager) this.f342b).removeUpdates((pd) this.f343c);
-        ((LocationManager) this.f342b).removeUpdates((pd) this.d);
+        ((LocationManager) this.f342b).removeUpdates((od) this.f343c);
+        ((LocationManager) this.f342b).removeUpdates((od) this.d);
         this.f345f = null;
         this.f344e = null;
     }
@@ -227,19 +227,19 @@ public class b8 {
             int[] iArr2 = new int[3];
             ColorStateList d = m.z2.d(context, 2130968734);
             if (d != null && d.isStateful()) {
-                int[] iArr3 = m.z2.f20275b;
+                int[] iArr3 = m.z2.f20371b;
                 iArr[0] = iArr3;
                 iArr2[0] = d.getColorForState(iArr3, 0);
-                iArr[1] = m.z2.f20277e;
+                iArr[1] = m.z2.f20373e;
                 iArr2[1] = m.z2.c(context, 2130968727);
-                iArr[2] = m.z2.f20278f;
+                iArr[2] = m.z2.f20374f;
                 iArr2[2] = d.getDefaultColor();
             } else {
-                iArr[0] = m.z2.f20275b;
+                iArr[0] = m.z2.f20371b;
                 iArr2[0] = m.z2.b(context, 2130968734);
-                iArr[1] = m.z2.f20277e;
+                iArr[1] = m.z2.f20373e;
                 iArr2[1] = m.z2.c(context, 2130968727);
-                iArr[2] = m.z2.f20278f;
+                iArr[2] = m.z2.f20374f;
                 iArr2[2] = m.z2.c(context, 2130968734);
             }
             return new ColorStateList(iArr, iArr2);
@@ -346,15 +346,15 @@ public class b8 {
 
     public void o() {
         if (((LocationManager) this.f342b) == null) {
-            this.f342b = (LocationManager) org.telegram.messenger.t0.f26895b.getSystemService("location");
+            this.f342b = (LocationManager) org.telegram.messenger.t0.f27013b.getSystemService("location");
         }
         try {
-            ((LocationManager) this.f342b).requestLocationUpdates("gps", 1L, 0.0f, (pd) this.f343c);
+            ((LocationManager) this.f342b).requestLocationUpdates("gps", 1L, 0.0f, (od) this.f343c);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
         try {
-            ((LocationManager) this.f342b).requestLocationUpdates("network", 1L, 0.0f, (pd) this.d);
+            ((LocationManager) this.f342b).requestLocationUpdates("network", 1L, 0.0f, (od) this.d);
         } catch (Exception e11) {
             org.telegram.messenger.a8.g(e11, true);
         }
@@ -367,22 +367,22 @@ public class b8 {
         } catch (Exception e12) {
             org.telegram.messenger.a8.g(e12, true);
         }
-        yr yrVar = (yr) this.f344e;
-        if (yrVar != null) {
-            org.telegram.messenger.g0.r(yrVar);
+        xr xrVar = (xr) this.f344e;
+        if (xrVar != null) {
+            org.telegram.messenger.g0.r(xrVar);
         }
-        yr yrVar2 = new yr(this, 14);
-        this.f344e = yrVar2;
-        org.telegram.messenger.g0.h3(yrVar2, 5000L);
+        xr xrVar2 = new xr(this, 14);
+        this.f344e = xrVar2;
+        org.telegram.messenger.g0.h3(xrVar2, 5000L);
     }
 
     public void p() {
         if (((LocationManager) this.f342b) == null) {
             return;
         }
-        yr yrVar = (yr) this.f344e;
-        if (yrVar != null) {
-            org.telegram.messenger.g0.r(yrVar);
+        xr xrVar = (xr) this.f344e;
+        if (xrVar != null) {
+            org.telegram.messenger.g0.r(xrVar);
         }
         d();
     }
@@ -395,7 +395,7 @@ public class b8 {
             ((ValueAnimator) arrayList3.get(i7)).cancel();
             if (z10) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(((Float) ((ArrayList) this.d).get(i7)).floatValue(), 0.0f);
-                ofFloat.addUpdateListener(new jw0(this, i7, 0));
+                ofFloat.addUpdateListener(new iw0(this, i7, 0));
                 ofFloat.setDuration(100L);
                 ofFloat.start();
             }
@@ -404,7 +404,7 @@ public class b8 {
             ((ValueAnimator) arrayList2.get(i10)).cancel();
             if (z10) {
                 ValueAnimator ofFloat2 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.f344e).get(i10)).floatValue(), 0.0f);
-                ofFloat2.addUpdateListener(new jw0(this, i10, 1));
+                ofFloat2.addUpdateListener(new iw0(this, i10, 1));
                 ofFloat2.setDuration(100L);
                 ofFloat2.start();
             }
@@ -413,7 +413,7 @@ public class b8 {
             ((ValueAnimator) arrayList.get(i11)).cancel();
             if (z10) {
                 ValueAnimator ofFloat3 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.f345f).get(i11)).floatValue(), 0.0f);
-                ofFloat3.addUpdateListener(new jw0(this, i11, 2));
+                ofFloat3.addUpdateListener(new iw0(this, i11, 2));
                 ofFloat3.setDuration(100L);
                 ofFloat3.start();
             }
@@ -508,9 +508,9 @@ public class b8 {
         this.f345f = jVar;
     }
 
-    public b8(wy wyVar) {
-        this.f343c = new pd(this, 1);
-        this.d = new pd(this, 1);
-        this.f341a = wyVar;
+    public b8(vy vyVar) {
+        this.f343c = new od(this, 1);
+        this.d = new od(this, 1);
+        this.f341a = vyVar;
     }
 }

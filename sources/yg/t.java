@@ -9,85 +9,85 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import c8.na;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.gz0;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.q6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.fz0;
 public final class t extends FrameLayout {
-    public final xh.l f61275a;
-    public final FrameLayout f61276b;
-    public String f61277c;
+    public final xh.l f61394a;
+    public final FrameLayout f61395b;
+    public String f61396c;
     public String d;
-    public final ImageView f61278e;
+    public final ImageView f61397e;
 
-    public t(Context context, h6 h6Var) {
+    public t(Context context, i6 i6Var) {
         super(context);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f61276b = frameLayout;
+        this.f61395b = frameLayout;
         xh.l lVar = new xh.l(context);
-        this.f61275a = lVar;
+        this.f61394a = lVar;
         lVar.setPadding(g0.L(18.0f), g0.L(13.0f), g0.L(50.0f), g0.L(13.0f));
         lVar.setTextSize(1, 16.0f);
         lVar.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         lVar.setSingleLine(true);
-        t6.U(lVar, m6.G6, h6Var);
-        lVar.f60610r = false;
+        u6.U(lVar, n6.G6, i6Var);
+        lVar.f60728r = false;
         frameLayout.addView(lVar, na.e(-2, -2, 17));
         int L = g0.L(8.0f);
-        int i7 = m6.f29367e7;
-        int w02 = m6.w0(i7, h6Var);
-        int i10 = m6.f29439i6;
-        int o4 = i0.a.o(m6.w0(i10, h6Var), 76);
-        org.telegram.ui.Cells.y k02 = m6.k0(L, L, L, L, w02, o4, o4);
-        p6 M = t6.M(i7);
-        p6 g10 = t6.g(i10, 76);
+        int i7 = n6.f29471e7;
+        int w02 = n6.w0(i7, i6Var);
+        int i10 = n6.f29543i6;
+        int o4 = i0.a.o(n6.w0(i10, i6Var), 76);
+        org.telegram.ui.Cells.y k02 = n6.k0(L, L, L, L, w02, o4, o4);
+        q6 M = u6.M(i7);
+        q6 g10 = u6.g(i10, 76);
         frameLayout.setBackground(k02);
-        t6.j(frameLayout, k02, M, g10, h6Var);
+        u6.j(frameLayout, k02, M, g10, i6Var);
         addView(frameLayout, na.d(-1, -2.0f, 0, 14.0f, 0.0f, 14.0f, 0.0f));
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final t f61274b;
+            public final t f61393b;
 
             {
-                this.f61274b = this;
+                this.f61393b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        g0.g(this.f61274b.d);
+                        g0.g(this.f61393b.d);
                         return;
                     default:
-                        g0.g(this.f61274b.d);
+                        g0.g(this.f61393b.d);
                         return;
                 }
             }
         });
         ImageView imageView = new ImageView(getContext());
-        this.f61278e = imageView;
-        imageView.setImageResource(2131231783);
-        t6.s(imageView, m6.f29455j5, h6Var, PorterDuff.Mode.SRC_ATOP);
+        this.f61397e = imageView;
+        imageView.setImageResource(2131231786);
+        u6.s(imageView, n6.f29559j5, i6Var, PorterDuff.Mode.SRC_ATOP);
         imageView.setPadding(g0.L(8.0f), g0.L(8.0f), g0.L(8.0f), g0.L(8.0f));
         int L2 = g0.L(20.0f);
-        int o10 = i0.a.o(m6.w0(i10, h6Var), 76);
-        imageView.setBackground(m6.k0(L2, L2, L2, L2, 0, o10, o10));
+        int o10 = i0.a.o(n6.w0(i10, i6Var), 76);
+        imageView.setBackground(n6.k0(L2, L2, L2, L2, 0, o10, o10));
         addView(imageView, na.d(40, 40.0f, 21, 15.0f, 0.0f, 17.0f, 0.0f));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final t f61274b;
+            public final t f61393b;
 
             {
-                this.f61274b = this;
+                this.f61393b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        g0.g(this.f61274b.d);
+                        g0.g(this.f61393b.d);
                         return;
                     default:
-                        g0.g(this.f61274b.d);
+                        g0.g(this.f61393b.d);
                         return;
                 }
             }
@@ -95,27 +95,27 @@ public final class t extends FrameLayout {
     }
 
     public final void a(Runnable runnable) {
-        this.f61278e.setVisibility(4);
+        this.f61397e.setVisibility(4);
         int L = g0.L(18.0f);
         int L2 = g0.L(14.0f);
         int L3 = g0.L(14.0f);
         int L4 = g0.L(18.0f);
-        xh.l lVar = this.f61275a;
+        xh.l lVar = this.f61394a;
         lVar.setPadding(L, L2, L3, L4);
         ?? obj = new Object();
-        obj.f35299a |= 256;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.f61277c);
-        if (this.f61277c == null) {
+        obj.f34924a |= 256;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.f61396c);
+        if (this.f61396c == null) {
             spannableStringBuilder.append((CharSequence) "1234567891011123654897566536223");
         }
-        spannableStringBuilder.setSpan(new gz0(obj, 0), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new fz0(obj, 0), 0, spannableStringBuilder.length(), 33);
         lVar.setText(spannableStringBuilder);
-        this.f61276b.setOnClickListener(new bi.d0(6, runnable));
+        this.f61395b.setOnClickListener(new bi.d0(6, runnable));
     }
 
     public void setSlug(String str) {
-        this.f61277c = str;
+        this.f61396c = str;
         this.d = p5.c.k("https://t.me/giftcode/", str);
-        this.f61275a.setText("t.me/giftcode/" + str);
+        this.f61394a.setText("t.me/giftcode/" + str);
     }
 }

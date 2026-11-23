@@ -1,42 +1,76 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-public final class ov implements Runnable {
-    public final int f26153a;
-    public final qv f26154b;
+import org.telegram.tgnet.TLRPC;
+public final class ov {
+    public long f26201a;
+    public boolean f26202b;
+    public int f26203c;
+    public fj d;
+    public int f26204e;
+    public long f26205f;
+    public long f26206g;
+    public long h;
+    public boolean f26207i;
+    public int f26208j;
+    public int f26209k;
 
-    public ov(qv qvVar, int i7) {
-        this.f26153a = i7;
-        this.f26154b = qvVar;
+    public static ov a(int i7, TLRPC.Message message) {
+        ?? obj = new Object();
+        obj.f26201a = fj.Q1(i10.i(i7).e(), message);
+        obj.f26202b = false;
+        obj.f26203c = message.f28513id;
+        obj.d = new fj(i7, message, null, null, null, null, null, false, false, 0L, false, false, true, 0);
+        return obj;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f26153a) {
-            case 0:
-                this.f26154b.g(false);
-                return;
-            case 1:
-                this.f26154b.f26478o = false;
-                return;
-            case 2:
-                qv qvVar = this.f26154b;
-                qvVar.f26478o = false;
-                qvVar.f26475l = false;
-                return;
-            case 3:
-                this.f26154b.l();
-                return;
-            default:
-                qv qvVar2 = this.f26154b;
-                if (!qvVar2.f26478o) {
-                    qvVar2.f26478o = true;
-                    ArrayList arrayList = new ArrayList(qvVar2.f26473j);
-                    ur a02 = ur.a0(qvVar2.f26466a);
-                    a02.f27214a.c(new lg(qvVar2, a02, arrayList, 24));
-                    return;
+    public static ov b(int i7, TLRPC.savedDialog saveddialog, ArrayList arrayList) {
+        TLRPC.Message message;
+        ?? obj = new Object();
+        obj.f26201a = n5.o(saveddialog.peer);
+        obj.f26202b = saveddialog.pinned;
+        obj.f26203c = saveddialog.top_message;
+        obj.f26205f = saveddialog.unread_count;
+        obj.f26206g = saveddialog.read_inbox_max_id;
+        obj.h = saveddialog.read_outbox_max_id;
+        int i10 = 0;
+        while (true) {
+            if (i10 < arrayList.size()) {
+                message = (TLRPC.Message) arrayList.get(i10);
+                if (obj.f26203c == message.f28513id) {
+                    break;
                 }
-                return;
+                i10++;
+            } else {
+                message = null;
+                break;
+            }
         }
+        TLRPC.Message message2 = message;
+        if (message2 != null) {
+            obj.d = new fj(i7, message2, null, null, null, null, null, false, false, 0L, false, false, true, 0);
+        }
+        return obj;
+    }
+
+    public final int c() {
+        TLRPC.Message message;
+        fj fjVar = this.d;
+        if (fjVar != null && (message = fjVar.f24073k) != null) {
+            if ((message.flags & 32768) != 0) {
+                return message.edit_date;
+            }
+            return message.date;
+        }
+        return this.f26208j;
+    }
+
+    public final boolean d() {
+        TLRPC.Message message;
+        fj fjVar = this.d;
+        if (fjVar != null && (message = fjVar.f24073k) != null && (message.action instanceof TLRPC.TL_messageActionHistoryClear)) {
+            return true;
+        }
+        return false;
     }
 }

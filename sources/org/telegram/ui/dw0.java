@@ -1,25 +1,20 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-public final class dw0 extends URLSpan {
-    public final String f47027a;
-    public final lw0 f47028b;
+import android.content.Context;
+import android.graphics.RectF;
+public final class dw0 extends org.telegram.ui.Cells.x8 {
+    public final jw0 f47240r;
 
-    public dw0(lw0 lw0Var, String str, String str2) {
-        super(str);
-        this.f47028b = lw0Var;
-        this.f47027a = str2;
+    public dw0(jw0 jw0Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10, boolean z11) {
+        super(18, context, i6Var, z10, z11);
+        this.f47240r = jw0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        vf.c.t(this.f47028b.f49684e.getParentActivity(), this.f47027a);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(true);
+    public final int a(int i7) {
+        ProfileActivity profileActivity = this.f47240r.f49218e;
+        RectF rectF = ProfileActivity.Z6;
+        profileActivity.getClass();
+        return i7;
     }
 }

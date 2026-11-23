@@ -1,132 +1,418 @@
 package ai;
 
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import java.util.ArrayList;
-import org.telegram.messenger.np;
-public abstract class q0 {
-    public static boolean d;
-    public static int f1492e;
-    public static final String[] f1489a = {"hue", "chroma", "light", "haloW", "haloS", "lift", "rimW", "rimB", "speed", "spread", "buttonLean", "iconTint"};
-    public static final float[] f1490b = {150.0f, 0.26f, 0.82f, 1.0f, 1.1f, 0.6f, 1.0f, 1.15f, 1.0f, 40.0f, 0.0f, 0.25f};
-    public static int f1491c = 1;
-    public static final float[] f1493f = new float[12];
-    public static final ArrayList f1494g = new ArrayList();
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.RuntimeShader;
+import android.os.Build;
+import android.os.SystemClock;
+import java.util.Random;
+import org.telegram.messenger.m10;
+import org.telegram.ui.Components.xu0;
+public final class q0 {
+    public static float U;
+    public final int[] A;
+    public final int[] B;
+    public float C;
+    public float D;
+    public float E;
+    public float F;
+    public float G;
+    public float H;
+    public final float[] I;
+    public final float[] J;
+    public final float[] K;
+    public final float[] L;
+    public final float[] M;
+    public final float[] N;
+    public final float[] O;
+    public final float[] P;
+    public final int[] Q;
+    public final boolean[] R;
+    public final boolean[] S;
+    public float T;
+    public final Paint f1464a;
+    public final Object f1465b;
+    public final Paint f1466c;
+    public final Paint d;
+    public final Matrix f1467e;
+    public final Paint f1468f;
+    public final RectF f1469g;
+    public boolean h;
+    public final long f1470i;
+    public final float[] f1471j;
+    public final float[] f1472k;
+    public final float[] f1473l;
+    public final float[] f1474m;
+    public final float[] f1475n;
+    public final float[] f1476o;
+    public final float[] f1477p;
+    public final float[] f1478q;
+    public final int[] f1479r;
+    public final boolean[] f1480s;
+    public final Random f1481t;
+    public long f1482u;
+    public float v;
+    public float f1483w;
+    public final Path f1484x;
+    public final RectF f1485y;
+    public final float[] f1486z;
 
-    public static int a(float f10, float f11, float f12) {
+    public q0() {
+        Paint paint = new Paint(1);
+        this.f1464a = paint;
+        this.f1466c = new Paint(1);
+        this.d = new Paint(1);
+        this.f1467e = new Matrix();
+        this.f1468f = new Paint(1);
+        this.f1469g = new RectF();
+        this.h = true;
+        this.f1470i = SystemClock.uptimeMillis();
+        this.f1471j = new float[140];
+        this.f1472k = new float[140];
+        this.f1473l = new float[140];
+        this.f1474m = new float[140];
+        this.f1475n = new float[140];
+        this.f1476o = new float[140];
+        this.f1477p = new float[140];
+        this.f1478q = new float[140];
+        this.f1479r = new int[140];
+        this.f1480s = new boolean[140];
+        this.f1481t = new Random();
+        this.f1484x = new Path();
+        this.f1485y = new RectF();
+        this.f1486z = new float[]{0.08f, 0.73f, 0.76f, 0.1f, 0.74f, 0.52f, 0.19f, 0.6f, 0.93f, 0.72f, 0.98f, 0.9f};
+        this.A = new int[]{-15420490, -14699385, -13787165};
+        this.B = new int[7];
+        this.C = -1.0f;
+        this.E = 1.0f;
+        this.F = 1.0f;
+        this.G = 1.0f;
+        this.I = new float[140];
+        this.J = new float[140];
+        this.K = new float[140];
+        this.L = new float[140];
+        this.M = new float[140];
+        this.N = new float[140];
+        this.O = new float[140];
+        this.P = new float[140];
+        this.Q = new int[140];
+        this.R = new boolean[140];
+        this.S = new boolean[140];
+        if (Build.VERSION.SDK_INT >= 33) {
+            try {
+                p0.c();
+                RuntimeShader a10 = p0.a();
+                this.f1465b = a10;
+                paint.setShader(a10);
+            } catch (Throwable unused) {
+                this.f1465b = null;
+            }
+        }
+        Paint paint2 = this.f1466c;
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        this.d.setStyle(style);
+    }
+
+    public static boolean c(int i7) {
+        if (org.telegram.messenger.g0.B(i7) < 0.5f) {
+            return true;
+        }
+        return false;
+    }
+
+    public static int d(int i7) {
+        if (U == 0.0f) {
+            return i7;
+        }
+        Color.colorToHSV(i7, r0);
+        float[] fArr = {(((U + 205.0f) % 360.0f) + 360.0f) % 360.0f};
+        return Color.HSVToColor(Color.alpha(i7), fArr);
+    }
+
+    public static int e(int i7) {
+        if (U == 0.0f) {
+            return i7;
+        }
+        Color.colorToHSV(i7, r0);
+        float[] fArr = {(((fArr[0] + U) % 360.0f) + 360.0f) % 360.0f};
+        return Color.HSVToColor(Color.alpha(i7), fArr);
+    }
+
+    public static void h(int i7) {
+        float f10 = 0.0f;
+        if (i7 != 0) {
+            float[] fArr = new float[3];
+            Color.colorToHSV(i7 | (-16777216), fArr);
+            if (fArr[1] >= 0.25f && fArr[2] >= 0.25f) {
+                float f11 = fArr[0] - 205.0f;
+                while (f11 > 180.0f) {
+                    f11 -= 360.0f;
+                }
+                while (f11 < -180.0f) {
+                    f11 += 360.0f;
+                }
+                if (Math.abs(f11) >= 12.0f) {
+                    f10 = f11;
+                }
+            }
+        }
+        U = f10;
+    }
+
+    public static int[] k(boolean z10) {
+        int[] iArr;
+        if (U == 0.0f) {
+            return null;
+        }
+        if (z10) {
+            iArr = (int[]) xu0.T.clone();
+        } else {
+            iArr = (int[]) xu0.U.clone();
+        }
+        for (int i7 = 0; i7 < iArr.length; i7++) {
+            iArr[i7] = e(iArr[i7]);
+        }
+        return iArr;
+    }
+
+    public final int a(float f10, float f11, RectF rectF) {
+        float c10;
+        float f12;
         float f13;
-        float f14 = ((f12 % 360.0f) + 360.0f) % 360.0f;
-        if (f14 >= 70.0f && f14 <= 135.0f) {
-            if (f14 < 85.0f) {
-                f13 = (f14 - 70.0f) / 15.0f;
-            } else if (f14 > 120.0f) {
-                f13 = (135.0f - f14) / 15.0f;
-            } else {
-                f13 = 1.0f;
-            }
+        float f14;
+        float f15;
+        float f16;
+        float f17;
+        float f18;
+        float f19;
+        float f20;
+        if (rectF == null || rectF.width() <= 0.0f || rectF.height() <= 0.0f) {
+            return 0;
+        }
+        float uptimeMillis = ((float) ((SystemClock.uptimeMillis() - this.f1470i) % 3600000)) / 1000.0f;
+        if (this.h) {
+            c10 = 1.0f;
         } else {
-            f13 = 0.0f;
+            c10 = r0.c(8);
         }
-        if (f13 <= 0.0f) {
-            return g(f10, f11, f12);
-        }
-        return g(f10 - (0.04f * f13), com.google.android.gms.internal.vision.e2.C(f13, 0.4f, 1.0f, f11), (f13 * 12.0f) + f12);
-    }
-
-    public static int b(double d2) {
-        double pow;
-        double max = Math.max(0.0d, Math.min(1.0d, d2));
-        if (max <= 0.0031308d) {
-            pow = max * 12.92d;
+        float f21 = uptimeMillis * c10;
+        float atan2 = (float) Math.atan2((f11 - rectF.centerY()) / Math.max(rectF.height() / 2.0f, 1.0f), (f10 - rectF.centerX()) / Math.max(rectF.width() / 2.0f, 1.0f));
+        float max = (f10 - rectF.left) / Math.max(rectF.height(), 1.0f);
+        if (this.h) {
+            f18 = 0.12f;
+            f19 = 0.22f;
+            f20 = 0.33f;
+            f15 = 1.0f;
+            f14 = 0.86f;
+            f16 = 0.43f;
+            f12 = 0.4f;
+            f17 = 1.0f;
+            f13 = 1.0f;
         } else {
-            pow = (Math.pow(max, 0.4166666666666667d) * 1.055d) - 0.055d;
+            float[] fArr = this.f1486z;
+            float f22 = fArr[0];
+            f12 = fArr[1];
+            f13 = fArr[2];
+            float f23 = fArr[3];
+            f14 = fArr[4];
+            f15 = fArr[5];
+            f16 = fArr[6];
+            float f24 = fArr[7];
+            f17 = fArr[8];
+            f18 = f22;
+            f19 = f23;
+            f20 = f24;
         }
-        return (int) Math.round(pow * 255.0d);
+        float sin = (((float) Math.sin((0.9f * f21) + atan2)) * 0.5f) + 0.5f;
+        float sin2 = (((float) Math.sin((1.3f * max) + ((atan2 * 2.0f) - (f21 * 0.6f)))) * 0.5f) + 0.5f;
+        float z10 = com.google.android.gms.internal.vision.e2.z(f19, f18, sin, f18);
+        float z11 = com.google.android.gms.internal.vision.e2.z(f14, f12, sin, f12);
+        float z12 = com.google.android.gms.internal.vision.e2.z(f15, f13, sin, f13);
+        int rgb = Color.rgb(Math.round(Math.min(1.0f, com.google.android.gms.internal.vision.e2.z(f16, z10, sin2, z10)) * 255.0f), Math.round(Math.min(1.0f, com.google.android.gms.internal.vision.e2.z(f20, z11, sin2, z11)) * 255.0f), Math.round(Math.min(1.0f, com.google.android.gms.internal.vision.e2.z(f17, z12, sin2, z12)) * 255.0f));
+        if (this.h) {
+            return e(rgb);
+        }
+        return rgb;
     }
 
-    public static float c(int i7) {
-        f();
-        return f1493f[i7];
+    public final void b(float r54, float r55, float r56, float r57, android.graphics.Canvas r58, android.graphics.RectF r59) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.q0.b(float, float, float, float, android.graphics.Canvas, android.graphics.RectF):void");
     }
 
-    public static float d(float f10) {
+    public final void f() {
+        for (int i7 = 0; i7 < 140; i7++) {
+            this.R[i7] = false;
+        }
+        for (int i10 = 0; i10 < 140; i10++) {
+            this.f1480s[i10] = false;
+        }
+    }
+
+    public final void g(int i7, int i10) {
+        float[] i11;
+        boolean z10;
+        char c10;
+        char c11;
+        float f10;
         float f11;
-        float f12 = ((f10 % 360.0f) + 360.0f) % 360.0f;
-        if (f12 >= 145.0f && f12 <= 205.0f) {
-            if (f12 < 160.0f) {
-                f11 = (f12 - 145.0f) / 15.0f;
-            } else if (f12 > 190.0f) {
-                f11 = (205.0f - f12) / 15.0f;
-            } else {
-                f11 = 1.0f;
-            }
+        float f12;
+        float f13;
+        float f14;
+        float f15;
+        float f16;
+        r0.f();
+        float[] fArr = r0.f1505f;
+        float f17 = fArr[2];
+        float f18 = fArr[1];
+        float f19 = r0.i(i7)[0];
+        float h = r0.h(i7);
+        float h7 = r0.h(i10);
+        if (((float) Math.hypot(i11[1], i11[2])) < 0.035f) {
+            z10 = true;
         } else {
-            f11 = 0.0f;
+            z10 = false;
         }
-        return f10 - (f11 * 14.0f);
-    }
-
-    public static double e(double d2) {
-        if (d2 <= 0.04045d) {
-            return d2 / 12.92d;
+        int i12 = r0.f1504e;
+        if (i12 != 1) {
+            if (i12 != 2) {
+                if (i12 != 3) {
+                    if (i12 != 4) {
+                        float f20 = fArr[9];
+                        if (z10) {
+                            f16 = h7;
+                        } else {
+                            f16 = h;
+                        }
+                        float f21 = f16 - (0.7f * f20);
+                        float f22 = (f20 * 0.6f) + f16;
+                        f14 = r0.d(f16);
+                        f15 = r0.d(f21);
+                        f12 = r0.d(f22);
+                        c10 = 1;
+                        f17 = m10.A(f19, 0.16f, 0.95f, f17);
+                    } else {
+                        c10 = 1;
+                        f15 = h7 - 28.0f;
+                        f12 = h7 + 28.0f;
+                        c11 = 4;
+                        f10 = h7;
+                        f11 = f15;
+                    }
+                } else {
+                    c10 = 1;
+                    f14 = 30.0f;
+                    f15 = 350.0f;
+                    f12 = 60.0f;
+                }
+                c11 = 4;
+            } else {
+                c10 = 1;
+                f14 = 160.0f;
+                f15 = 285.0f;
+                c11 = 4;
+                f12 = 205.0f;
+            }
+            f10 = f14;
+            f11 = f15;
+        } else {
+            c10 = 1;
+            c11 = 4;
+            f10 = 230.0f;
+            f11 = 200.0f;
+            f12 = 255.0f;
         }
-        return Math.pow((d2 + 0.055d) / 1.055d, 2.4d);
-    }
-
-    public static void f() {
-        if (!d) {
-            d = true;
-            SharedPreferences g12 = np.g1();
-            f1492e = g12.getInt("dict_glow_day2_preset", 0);
-            g12.getBoolean("dict_glow_day2_contrast", true);
-            f1491c = g12.getInt("dict_glow_day2_rimMode", 1);
-            for (int i7 = 0; i7 < 12; i7++) {
-                f1493f[i7] = g12.getFloat("dict_glow_day2_" + f1489a[i7], f1490b[i7]);
+        int a10 = r0.a(f17, f18, f10);
+        int[] iArr = this.B;
+        iArr[0] = a10;
+        iArr[c10] = r0.a(f17, f18, f11);
+        iArr[2] = r0.a(f17, f18, f12);
+        iArr[3] = r0.g(Math.min(0.98f, f17 + 0.12f), 0.5f * f18, f10);
+        if (r0.f1504e != 0) {
+            f13 = Math.min(0.62f, f17 - 0.1f);
+        } else {
+            f18 = 0.2f;
+            f13 = 0.55f;
+            if (!z10) {
+                int i13 = r0.f1503c;
+                if (i13 == 0) {
+                    f10 = fArr[0] + h;
+                } else if (i13 != 2) {
+                    f13 = Math.max(0.42f, Math.min(0.58f, f19 - 0.12f));
+                    f18 = 0.24f;
+                    f10 = h;
+                }
+            }
+            f10 = h7;
+        }
+        iArr[c11] = r0.g(f13, f18, f10);
+        float max = Math.max(205.0f, Math.min(235.0f, ((((((h - h7) % 360.0f) + 540.0f) % 360.0f) - 180.0f) * fArr[10]) + h7));
+        iArr[5] = r0.g(0.62f, 0.16f, max - 12.0f);
+        iArr[6] = r0.g(0.58f, 0.18f, max + 4.0f);
+        int i14 = 0;
+        while (true) {
+            float[] fArr2 = this.f1486z;
+            if (i14 < 3) {
+                int i15 = i14 * 3;
+                fArr2[i15] = Color.red(iArr[i14]) / 255.0f;
+                fArr2[i15 + 1] = Color.green(iArr[i14]) / 255.0f;
+                fArr2[i15 + 2] = Color.blue(iArr[i14]) / 255.0f;
+                this.A[i14] = iArr[i14];
+                i14++;
+            } else {
+                fArr2[9] = Color.red(iArr[3]) / 255.0f;
+                fArr2[10] = Color.green(iArr[3]) / 255.0f;
+                fArr2[11] = Color.blue(iArr[3]) / 255.0f;
+                return;
             }
         }
     }
 
-    public static int g(float f10, float f11, float f12) {
-        double radians = Math.toRadians(((f12 % 360.0f) + 360.0f) % 360.0f);
-        double d2 = f11;
-        for (int i7 = 0; i7 < 24; i7++) {
-            double cos = Math.cos(radians) * d2;
-            double sin = Math.sin(radians) * d2;
-            double d10 = f10;
-            double d11 = (0.2158037573d * sin) + (0.3963377774d * cos) + d10;
-            double d12 = (d10 - (0.1055613458d * cos)) - (0.0638541728d * sin);
-            double d13 = (d10 - (cos * 0.0894841775d)) - (sin * 1.291485548d);
-            double d14 = d11 * d11 * d11;
-            double d15 = d12 * d12 * d12;
-            double d16 = d13 * d13 * d13;
-            double d17 = (0.2309699292d * d16) + ((4.0767416621d * d14) - (3.3077115913d * d15));
-            double d18 = ((2.6097574011d * d15) + ((-1.2684380046d) * d14)) - (0.3413193965d * d16);
-            double d19 = (d16 * 1.707614701d) + ((d14 * (-0.0041960863d)) - (d15 * 0.7034186147d));
-            if (d17 >= -0.001d && d17 <= 1.001d && d18 >= -0.001d && d18 <= 1.001d && d19 >= -0.001d && d19 <= 1.001d) {
-                return Color.rgb(b(d17), b(d18), b(d19));
+    public final void i() {
+        this.E = 0.7f;
+        this.F = 0.6f;
+        this.G = 0.85f;
+    }
+
+    public final void j(float f10, float f11, float f12, float f13, float f14, float f15) {
+        float[] fArr;
+        float[] fArr2;
+        boolean[] zArr;
+        int i7 = 0;
+        float f16 = -1.0f;
+        int i10 = 0;
+        while (true) {
+            fArr = this.f1475n;
+            fArr2 = this.f1476o;
+            zArr = this.f1480s;
+            if (i7 < 140) {
+                if (!zArr[i7]) {
+                    break;
+                }
+                float f17 = fArr2[i7] / fArr[i7];
+                if (f17 > f16) {
+                    i10 = i7;
+                    f16 = f17;
+                }
+                i7++;
+            } else {
+                i7 = i10;
+                break;
             }
-            d2 *= 0.9d;
         }
-        int b10 = b(f10 * f10 * f10);
-        return Color.rgb(b10, b10, b10);
-    }
-
-    public static float h(int i7) {
-        float[] i10 = i(i7);
-        float degrees = (float) Math.toDegrees(Math.atan2(i10[2], i10[1]));
-        if (degrees < 0.0f) {
-            return degrees + 360.0f;
-        }
-        return degrees;
-    }
-
-    public static float[] i(int i7) {
-        double e10 = e(Color.red(i7) / 255.0d);
-        double e11 = e(Color.green(i7) / 255.0d);
-        double e12 = e(Color.blue(i7) / 255.0d);
-        double cbrt = Math.cbrt((0.0514459929d * e12) + (0.5363325363d * e11) + (0.4122214708d * e10));
-        double cbrt2 = Math.cbrt((0.1073969566d * e12) + (0.6806995451d * e11) + (0.2119034982d * e10));
-        double cbrt3 = Math.cbrt((e12 * 0.6299787005d) + (e11 * 0.2817188376d) + (e10 * 0.0883024619d));
-        return new float[]{(float) (((0.793617785d * cbrt2) + (0.2104542553d * cbrt)) - (0.0040720468d * cbrt3)), (float) ((0.4505937099d * cbrt3) + ((1.9779984951d * cbrt) - (2.428592205d * cbrt2))), (float) (((cbrt2 * 0.7827717662d) + (cbrt * 0.0259040371d)) - (cbrt3 * 0.808675766d))};
+        this.f1471j[i7] = f10;
+        this.f1472k[i7] = f11;
+        this.f1473l[i7] = f12;
+        this.f1474m[i7] = f13;
+        fArr[i7] = f14;
+        fArr2[i7] = 0.0f;
+        this.f1477p[i7] = org.telegram.messenger.g0.L(f15);
+        Random random = this.f1481t;
+        this.f1478q[i7] = random.nextFloat() * 6.28f;
+        this.f1479r[i7] = random.nextInt(3);
+        zArr[i7] = true;
     }
 }

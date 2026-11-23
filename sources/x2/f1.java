@@ -1,8 +1,8 @@
 package x2;
 public interface f1 {
-    boolean c(l2.s0 s0Var);
+    boolean d(l2.t0 t0Var);
 
-    long e();
+    long f();
 
     boolean g();
 

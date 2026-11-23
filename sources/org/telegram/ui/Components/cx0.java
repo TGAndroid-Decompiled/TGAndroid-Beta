@@ -1,39 +1,95 @@
 package org.telegram.ui.Components;
 
-import android.text.StaticLayout;
-import java.util.ArrayList;
-public final class cx0 {
-    public final org.telegram.ui.ActionBar.h6 f34281a;
-    public StaticLayout f34282b;
-    public final ArrayList f34283c = new ArrayList(2);
-    public int d;
-    public int f34284e;
-    public int f34285f;
-    public int f34286g;
-    public int h;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class cx0 extends Drawable {
+    public boolean f34160a;
+    public final c6 f34161b;
+    public final Drawable f34162c;
+    public final Drawable d;
+    public int f34163e = 255;
 
-    public cx0(org.telegram.ui.ActionBar.h6 h6Var) {
-        this.f34281a = h6Var;
+    public cx0(org.telegram.ui.Cells.r1 r1Var) {
+        this.f34161b = new c6(r1Var, 420L, kr.h);
+        this.f34162c = r1Var.getContext().getResources().getDrawable(2131232774);
+        this.d = r1Var.getContext().getResources().getDrawable(2131232775);
     }
 
-    public static void c(StringBuilder sb2, int i7, boolean z10) {
-        if (sb2.length() > 0) {
-            if (z10) {
-                sb2.append(' ');
-                sb2.append(org.telegram.messenger.hd.N0(2131744104, null));
-                sb2.append(' ');
-            } else {
-                sb2.append(", ");
-            }
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        Drawable drawable = this.d;
+        drawable.setBounds(bounds);
+        drawable.setAlpha(this.f34163e);
+        drawable.draw(canvas);
+        float d = this.f34161b.d(this.f34160a);
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        float width = getBounds().width();
+        canvas.save();
+        if (d < 0.5f) {
+            float abs = Math.abs(d - 0.5f) + 0.5f;
+            canvas.scale(abs, abs, centerX, centerY);
         }
-        sb2.append(org.telegram.messenger.hd.N0(i7, null));
+        canvas.save();
+        int i7 = (d > 0.5f ? 1 : (d == 0.5f ? 0 : -1));
+        if (i7 > 0) {
+            float abs2 = Math.abs(d - 0.5f) + 0.5f;
+            float f10 = -abs2;
+            float f11 = width * 0.32f;
+            canvas.scale(f10, f10, getBounds().left + f11, getBounds().bottom - f11);
+            float f12 = 1.0f - abs2;
+            canvas.translate((-width) * f12 * 0.4f, f12 * width * 0.4f);
+        }
+        Rect bounds2 = getBounds();
+        Drawable drawable2 = this.f34162c;
+        drawable2.setBounds(bounds2);
+        drawable2.setAlpha(this.f34163e);
+        drawable2.draw(canvas);
+        canvas.restore();
+        canvas.save();
+        if (i7 > 0) {
+            float f13 = -(Math.abs(d - 0.5f) + 0.5f);
+            float f14 = 0.32f * width;
+            canvas.scale(f13, f13, getBounds().right - f14, getBounds().top + f14);
+        }
+        canvas.rotate(180.0f, centerX, centerY);
+        if (i7 > 0) {
+            float abs3 = 1.0f - (Math.abs(d - 0.5f) + 0.5f);
+            canvas.translate((-width) * abs3 * 0.4f, width * abs3 * 0.4f);
+        }
+        drawable2.setBounds(getBounds());
+        drawable2.setAlpha(this.f34163e);
+        drawable2.draw(canvas);
+        canvas.restore();
+        canvas.restore();
     }
 
-    public final int a() {
-        return this.f34286g;
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f34162c.getIntrinsicHeight();
     }
 
-    public final void b(org.telegram.messenger.gj r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.cx0.b(org.telegram.messenger.gj):void");
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f34162c.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.f34163e = i7;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f34162c.setColorFilter(colorFilter);
+        this.d.setColorFilter(colorFilter);
     }
 }

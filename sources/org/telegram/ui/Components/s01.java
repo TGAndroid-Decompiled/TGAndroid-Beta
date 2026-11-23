@@ -1,52 +1,38 @@
 package org.telegram.ui.Components;
+public final class s01 implements Runnable {
+    public final int f39448a;
+    public final f11 f39449b;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class s01 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39393a;
-    public final g11 f39394b;
-
-    public s01(g11 g11Var, int i7) {
-        this.f39393a = i7;
-        this.f39394b = g11Var;
+    public s01(f11 f11Var, int i7) {
+        this.f39448a = i7;
+        this.f39449b = f11Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7;
-        switch (this.f39393a) {
+    public final void run() {
+        v4.c0 c0Var;
+        switch (this.f39448a) {
             case 0:
-                g11 g11Var = this.f39394b;
-                g11Var.getClass();
-                g11Var.c(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g11 g11Var2 = this.f39394b;
-                g11Var2.f35328a0 = floatValue;
-                org.telegram.ui.f61 f61Var = g11Var2.S;
-                if (floatValue > 0.0f) {
-                    i7 = 0;
-                } else {
-                    i7 = 8;
-                }
-                f61Var.setVisibility(i7);
-                f61Var.setAlpha(floatValue);
-                f61Var.setTranslationY((1.0f - floatValue) * (-org.telegram.messenger.g0.L(8.0f)));
-                g11Var2.c(floatValue);
-                int L = org.telegram.messenger.g0.L(100.0f) + org.telegram.messenger.g0.f24004m + ((int) (org.telegram.messenger.g0.L(36.0f) * floatValue));
-                ((FrameLayout.LayoutParams) g11Var2.f35349r.getLayoutParams()).topMargin = L;
-                View view = g11Var2.F;
-                if (view != null) {
-                    ((FrameLayout.LayoutParams) view.getLayoutParams()).topMargin = L;
-                }
-                g11Var2.h.requestLayout();
+                f11 f11Var = this.f39449b;
+                f11Var.P = null;
+                f11Var.k();
                 return;
             default:
-                g11 g11Var3 = this.f39394b;
-                g11Var3.getClass();
-                g11Var3.setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                f11 f11Var2 = this.f39449b;
+                long j3 = f11Var2.f34948b;
+                if (!f11Var2.d && f11Var2.f34972y > 0.0f && (c0Var = (v4.c0) f11Var2.f34968r.getLayoutManager()) != null && c0Var.N0() >= f11Var2.f34969s.f33317c.size() - 3) {
+                    if (f11Var2.j()) {
+                        f11Var2.k();
+                        return;
+                    }
+                    org.telegram.messenger.d00 d00Var = org.telegram.messenger.mp.u1(f11Var2.f34946a).f25864t7;
+                    long j10 = -j3;
+                    if (!d00Var.e(j10)) {
+                        d00Var.o(j10);
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }

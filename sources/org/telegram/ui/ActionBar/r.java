@@ -1,17 +1,17 @@
 package org.telegram.ui.ActionBar;
 
-import org.telegram.ui.ox;
-public final class r extends ox {
-    public final ActionBarLayout f29917a;
+import org.telegram.ui.nx;
+public final class r extends nx {
+    public final ActionBarLayout f30013a;
 
     public r(ActionBarLayout actionBarLayout) {
         super(null);
-        this.f29917a = actionBarLayout;
+        this.f30013a = actionBarLayout;
     }
 
     @Override
     public final void updateSheetsVisibility() {
         super.updateSheetsVisibility();
-        this.f29917a.invalidate();
+        this.f30013a.invalidate();
     }
 }

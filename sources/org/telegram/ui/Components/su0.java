@@ -1,68 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.animation.TimeAnimator;
-import android.animation.ValueAnimator;
-public final class su0 extends TimeAnimator {
-    public int f39645a;
-    public int f39646b;
-    public ValueAnimator.AnimatorUpdateListener f39647c;
-    public Float d;
-    public float[] f39648e;
+import android.content.Context;
+public final class su0 extends ra {
+    public hs T1;
 
-    @Override
-    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
-        this.f39647c = animatorUpdateListener;
+    public su0(Context context) {
+        super(context, null, true, false, null);
+        O();
+        this.f39257z1 = true;
+        this.f39256y1 = true;
+        Z0();
+        ek0 ek0Var = this.f39246o1;
+        int i7 = this.f30261u0;
+        ek0Var.setPadding(i7, 0, i7, 0);
+        this.f39246o1.j(new na(this, 20));
+        this.f39246o1.setOnItemClickListener(new n(this, 14));
     }
 
     @Override
-    public final void end() {
-        this.f39647c = null;
-        super.end();
+    public final dk0 M0(ek0 ek0Var) {
+        hs hsVar = new hs(ek0Var, getContext(), this.f30223a, 0, true, this.J0);
+        this.T1 = hsVar;
+        hsVar.f33631r = false;
+        return hsVar;
     }
 
     @Override
-    public final Object getAnimatedValue() {
-        return this.d;
-    }
-
-    @Override
-    public final void setFloatValues(float[] fArr) {
-        super.setFloatValues(fArr);
-        this.f39648e = fArr;
-    }
-
-    @Override
-    public final void start() {
-        setTimeListener(new TimeAnimator.TimeListener() {
-            @Override
-            public final void onTimeUpdate(TimeAnimator timeAnimator, long j3, long j10) {
-                int i7;
-                su0 su0Var = su0.this;
-                int i10 = su0Var.f39645a;
-                if (i10 > 0 && (i7 = su0Var.f39646b) > 0) {
-                    int i11 = i10 - 1;
-                    su0Var.f39645a = i11;
-                    if (su0Var.f39647c != null) {
-                        float[] fArr = su0Var.f39648e;
-                        if (fArr != null && fArr.length == 2) {
-                            float interpolation = su0Var.getInterpolator().getInterpolation(1.0f - (i11 / i7));
-                            float[] fArr2 = su0Var.f39648e;
-                            float f10 = fArr2[0];
-                            su0Var.d = Float.valueOf(((fArr2[1] - f10) * interpolation) + f10);
-                            su0Var.f39647c.onAnimationUpdate(su0Var);
-                            return;
-                        }
-                        su0Var.end();
-                        return;
-                    }
-                    return;
-                }
-                su0Var.end();
-            }
-        });
-        int duration = (int) (((float) getDuration()) / org.telegram.messenger.g0.f24013t);
-        this.f39645a = duration;
-        this.f39646b = duration;
-        super.start();
+    public final CharSequence P0() {
+        return org.telegram.messenger.gd.N0(2131745625, null);
     }
 }

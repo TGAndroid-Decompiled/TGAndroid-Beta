@@ -1,54 +1,54 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.widget.TextView;
-import org.telegram.tgnet.TLRPC;
-public final class z81 implements zh.c, org.telegram.messenger.yo, r0.m, org.telegram.ui.Components.tj0 {
-    public final y91 f54462a;
+import androidx.recyclerview.widget.RecyclerView;
+public final class z81 extends v4.c0 {
+    public boolean I;
+    public final w91 J;
 
-    public z81(y91 y91Var) {
-        this.f54462a = y91Var;
+    public z81(w91 w91Var) {
+        this.J = w91Var;
     }
 
     @Override
-    public r0.l1 P0(View view, r0.l1 l1Var) {
-        int i7 = l1Var.f56268a.f(519).d;
-        y91 y91Var = this.f54462a;
-        y91Var.f54095h1 = i7;
-        u91 u91Var = y91Var.f54116s0;
-        if (u91Var != null) {
-            u91Var.setPadding(0, 0, 0, i7);
+    public final void b0(v4.x0 x0Var, v4.c1 c1Var) {
+        boolean z10 = org.telegram.messenger.s2.f26829a;
+        try {
+            super.b0(x0Var, c1Var);
+        } catch (IndexOutOfBoundsException e10) {
+            org.telegram.messenger.a8.g(e10, true);
+            org.telegram.messenger.g0.g3(new qu0(this, 21));
         }
-        u81 u81Var = y91Var.f54104n;
-        if (u81Var != null) {
-            ((TextView) u81Var.d).setTranslationY((-y91Var.f54095h1) - y91Var.f54093g1);
+    }
+
+    @Override
+    public final void b1(View view, View view2, int i7, int i10) {
+        this.I = true;
+        super.b1(view, view2, i7, i10);
+        this.I = false;
+    }
+
+    @Override
+    public final void h1(int i7, int i10) {
+        if (this.I) {
+            i10 -= this.J.O.getPaddingTop();
         }
-        y91Var.h.setTranslationY(((-y91Var.Y0) - y91Var.f54095h1) - y91Var.f54093g1);
-        y91Var.F0();
-        return r0.l1.f56267b;
+        super.h1(i7, i10);
     }
 
     @Override
-    public boolean e(TLRPC.TL_error tL_error) {
-        return y91.Z(this.f54462a, tL_error);
+    public final int o0(int r19, v4.x0 r20, v4.c1 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.z81.o0(int, v4.x0, v4.c1):int");
     }
 
     @Override
-    public boolean mo23f(float f10, float f11, int i7, View view) {
-        return y91.b0(this.f54462a, view, f10);
-    }
-
-    @Override
-    public void g(boolean z10, boolean z11) {
-        y91 y91Var = this.f54462a;
-        y91Var.V0.j(y91Var.S0.b(), z10, z11);
-    }
-
-    @Override
-    public void r(float f10) {
-    }
-
-    @Override
-    public void j() {
+    public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
+        if (this.J.f53265y > 0 && i7 == 1) {
+            super.v0(recyclerView, c1Var, i7);
+            return;
+        }
+        pi.l lVar = new pi.l(recyclerView.getContext(), 0);
+        lVar.f59190a = i7;
+        w0(lVar);
     }
 }

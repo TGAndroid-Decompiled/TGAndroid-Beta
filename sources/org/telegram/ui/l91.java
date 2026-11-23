@@ -1,31 +1,28 @@
 package org.telegram.ui;
-public final class l91 implements Runnable {
-    public final int f49505a;
-    public final m91 f49506b;
 
-    public l91(m91 m91Var, int i7) {
-        this.f49505a = i7;
-        this.f49506b = m91Var;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class l91 extends v4.u0 {
+    public final int f49658a;
+    public final w91 f49659b;
+
+    public l91(w91 w91Var, int i7) {
+        this.f49658a = i7;
+        this.f49659b = w91Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f49505a) {
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        w91 w91Var;
+        dh.g gVar;
+        switch (this.f49658a) {
             case 0:
-                m91 m91Var = this.f49506b;
-                m91Var.F = null;
-                if (m91Var.G != -1) {
-                    m91Var.H.getNotificationCenter().j(m91Var.G);
-                    m91Var.G = -1;
-                    return;
-                }
+                this.f49659b.C0();
                 return;
             default:
-                m91 m91Var2 = this.f49506b;
-                m91Var2.F = null;
-                if (m91Var2.G != -1) {
-                    m91Var2.H.getNotificationCenter().j(m91Var2.G);
-                    m91Var2.G = -1;
+                if (Build.VERSION.SDK_INT >= 31 && (gVar = (w91Var = this.f49659b).f53238i1) != null) {
+                    gVar.f(i7, i10);
+                    w91Var.B0();
                     return;
                 }
                 return;

@@ -82,13 +82,13 @@ public abstract class l implements Iterator {
                 throw new ConcurrentModificationException();
             default:
                 h9.s sVar = (h9.s) this.f521e;
-                if (sVar.f14055e == this.f519b) {
+                if (sVar.f14054e == this.f519b) {
                     if (hasNext()) {
                         int i13 = this.f520c;
                         this.d = i13;
                         Object a10 = a(i13);
                         int i14 = this.f520c + 1;
-                        if (i14 >= sVar.f14056f) {
+                        if (i14 >= sVar.f14055f) {
                             i14 = -1;
                         }
                         this.f520c = i14;
@@ -154,7 +154,7 @@ public abstract class l implements Iterator {
                 throw new ConcurrentModificationException();
             default:
                 h9.s sVar = (h9.s) this.f521e;
-                if (sVar.f14055e == this.f519b) {
+                if (sVar.f14054e == this.f519b) {
                     if (this.d >= 0) {
                         z12 = true;
                     } else {
@@ -180,7 +180,7 @@ public abstract class l implements Iterator {
 
     public l(h9.s sVar) {
         this.f521e = sVar;
-        this.f519b = sVar.f14055e;
+        this.f519b = sVar.f14054e;
         this.f520c = sVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }

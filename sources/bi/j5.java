@@ -6,24 +6,24 @@ import di.p9;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.i00;
-import org.telegram.ui.Components.lc;
-import org.telegram.ui.on0;
-public final class j5 implements y10 {
+import org.telegram.ui.Components.fc;
+import org.telegram.ui.Components.g00;
+import org.telegram.ui.Components.kc;
+import org.telegram.ui.pn0;
+public final class j5 implements w10 {
     public final int f3723a;
     public final int f3724b;
     public final Object f3725c;
     public final Object d;
 
-    public j5(int i7, org.telegram.tgnet.m mVar, aa.c0 c0Var) {
+    public j5(int i7, oi.c2 c2Var, aa.c0 c0Var) {
         this.f3723a = 3;
         this.f3724b = i7;
-        this.f3725c = mVar;
+        this.f3725c = c2Var;
         this.d = c0Var;
     }
 
@@ -43,14 +43,14 @@ public final class j5 implements y10 {
                 TL_stars.TL_starGiftCollection c10 = n8Var.c(i7);
                 if (c10 != null) {
                     if (arrayList.size() > 1) {
-                        gc R = lc.b0(g2Var).R(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), org.telegram.messenger.g0.W2(hd.K("Gift2AddedToCollectionMany", arrayList.size(), ',', c10.title)));
-                        R.f35497r = false;
+                        fc R = kc.b0(g2Var).R(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), org.telegram.messenger.g0.W2(gd.K("Gift2AddedToCollectionMany", arrayList.size(), ',', c10.title)));
+                        R.f35099r = false;
                         R.j();
                         return;
                     } else if (arrayList.size() == 1) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
-                        gc R2 = lc.b0(g2Var).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.W2(hd.a0(null, null, 2131750376, di.f6.F1(savedStarGift.gift), c10.title)));
-                        R2.f35497r = false;
+                        fc R2 = kc.b0(g2Var).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.W2(gd.a0(null, null, 2131750376, di.f6.F1(savedStarGift.gift), c10.title)));
+                        R2.f35099r = false;
                         R2.j();
                         return;
                     } else {
@@ -59,31 +59,31 @@ public final class j5 implements y10 {
                 }
                 return;
             case 1:
-                org.telegram.messenger.g0.g3(new ai.w0((TLRPC.UserFull) obj, (org.telegram.ui.web.o) this.f3725c, this.f3724b, (TLRPC.User) this.d, 11));
+                org.telegram.messenger.g0.g3(new ai.x0((TLRPC.UserFull) obj, (org.telegram.ui.web.o) this.f3725c, this.f3724b, (TLRPC.User) this.d, 11));
                 return;
             case 2:
                 org.telegram.ui.ActionBar.g2 g2Var2 = (org.telegram.ui.ActionBar.g2) this.f3725c;
                 TLRPC.Chat chat = (TLRPC.Chat) this.d;
                 TLRPC.Chat chat2 = (TLRPC.Chat) obj;
-                g2Var2.showDialog(new ni.a(g2Var2.getContext(), chat, -chat2.f28398id, new p9(g2Var2, this.f3724b, chat2, chat, 3)));
+                g2Var2.showDialog(new ni.a(g2Var2.getContext(), chat, -chat2.f28492id, new p9(g2Var2, this.f3724b, chat2, chat, 3)));
                 return;
             case 3:
-                org.telegram.messenger.g0.g3(new ai.w0(this.f3724b, (org.telegram.tgnet.m) this.f3725c, (SparseIntArray) obj, (aa.c0) this.d, 14));
+                org.telegram.messenger.g0.g3(new ai.x0(this.f3724b, (oi.c2) this.f3725c, (SparseIntArray) obj, (aa.c0) this.d, 14));
                 return;
             case 4:
                 float f10 = this.f3724b;
-                ((org.telegram.ui.m6) this.f3725c).a(Float.valueOf((m9.a(((Float) obj).floatValue(), 0.0f, 1.0f) * (1.0f / f10)) + (((int[]) this.d)[0] / f10)), Boolean.FALSE);
+                ((org.telegram.ui.n6) this.f3725c).a(Float.valueOf((m9.a(((Float) obj).floatValue(), 0.0f, 1.0f) * (1.0f / f10)) + (((int[]) this.d)[0] / f10)), Boolean.FALSE);
                 return;
             case 5:
-                i00 i00Var = (i00) this.f3725c;
+                g00 g00Var = (g00) this.f3725c;
                 int i10 = this.f3724b;
-                i00Var.getClass();
-                i00Var.f36043w2 = ((Boolean) obj).booleanValue();
-                i00Var.dismiss();
-                ((y10) this.d).a(Integer.valueOf(i10));
+                g00Var.getClass();
+                g00Var.f35265w2 = ((Boolean) obj).booleanValue();
+                g00Var.dismiss();
+                ((w10) this.d).a(Integer.valueOf(i10));
                 return;
             default:
-                Utilities.f22777i.c(new ai.c1((tg.f2) this.f3725c, this.f3724b, (List) obj, new ArrayList(), (on0) this.d, 27));
+                Utilities.f22880i.c(new ai.d1((tg.i2) this.f3725c, this.f3724b, (List) obj, new ArrayList(), (pn0) this.d, 27));
                 return;
         }
     }

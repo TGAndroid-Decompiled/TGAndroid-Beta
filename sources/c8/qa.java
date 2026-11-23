@@ -6,8 +6,8 @@ public final class qa {
     public final Integer f4927b;
 
     public qa(wf.b bVar) {
-        this.f4926a = (pa) bVar.f59680b;
-        this.f4927b = (Integer) bVar.f59681c;
+        this.f4926a = (pa) bVar.f59800b;
+        this.f4927b = (Integer) bVar.f59801c;
     }
 
     public final boolean equals(Object obj) {

@@ -3,5 +3,5 @@ package f3;
 import android.net.Uri;
 import java.util.Map;
 public interface r {
-    o[] e(Uri uri, Map map);
+    o[] c(Uri uri, Map map);
 }

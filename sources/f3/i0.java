@@ -1,16 +1,33 @@
 package f3;
-public interface i0 {
-    void a(h2.x xVar, int i7, int i10);
 
-    void b(int i7, h2.x xVar);
+import java.util.Arrays;
+public final class i0 {
+    public final int f11160a;
+    public final byte[] f11161b;
+    public final int f11162c;
+    public final int d;
 
-    void c(long j3, int i7, int i10, int i11, h0 h0Var);
+    public i0(int i7, int i10, int i11, byte[] bArr) {
+        this.f11160a = i7;
+        this.f11161b = bArr;
+        this.f11162c = i10;
+        this.d = i11;
+    }
 
-    void d(long j3);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && i0.class == obj.getClass()) {
+            i0 i0Var = (i0) obj;
+            if (this.f11160a == i0Var.f11160a && this.f11162c == i0Var.f11162c && this.d == i0Var.d && Arrays.equals(this.f11161b, i0Var.f11161b)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    int e(e2.n nVar, int i7, boolean z10);
-
-    int f(e2.n nVar, int i7, boolean z10);
-
-    void g(e2.u uVar);
+    public final int hashCode() {
+        return ((((Arrays.hashCode(this.f11161b) + (this.f11160a * 31)) * 31) + this.f11162c) * 31) + this.d;
+    }
 }

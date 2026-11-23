@@ -12,7 +12,7 @@ public abstract class q6 {
         String str = j0Var.d;
         String str2 = j0Var2.d;
         if (str == null && str2 == null) {
-            if (Objects.equals(Objects.toString(j0Var.f10223a), Objects.toString(j0Var2.f10223a)) && Objects.equals(j0Var.f10225c, j0Var2.f10225c) && Boolean.valueOf(j0Var.f10226e).equals(Boolean.valueOf(j0Var2.f10226e)) && Boolean.valueOf(j0Var.f10227f).equals(Boolean.valueOf(j0Var2.f10227f))) {
+            if (Objects.equals(Objects.toString(j0Var.f10221a), Objects.toString(j0Var2.f10221a)) && Objects.equals(j0Var.f10223c, j0Var2.f10223c) && Boolean.valueOf(j0Var.f10224e).equals(Boolean.valueOf(j0Var2.f10224e)) && Boolean.valueOf(j0Var.f10225f).equals(Boolean.valueOf(j0Var2.f10225f))) {
                 return true;
             }
             return false;
@@ -28,6 +28,6 @@ public abstract class q6 {
         if (str != null) {
             return str.hashCode();
         }
-        return Objects.hash(j0Var.f10223a, j0Var.f10225c, Boolean.valueOf(j0Var.f10226e), Boolean.valueOf(j0Var.f10227f));
+        return Objects.hash(j0Var.f10221a, j0Var.f10223c, Boolean.valueOf(j0Var.f10224e), Boolean.valueOf(j0Var.f10225f));
     }
 }

@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.attribute.FileAttribute;
 public final class q {
-    public static m1.b0 a(m1.y0 y0Var, h9.g1 g1Var, ee.c cVar, rd.a aVar) {
+    public static m1.b0 a(m1.y0 y0Var, j6.r rVar, ee.c cVar, rd.a aVar) {
         hd.n nVar = hd.n.f14140a;
         try {
             System.loadLibrary("datastore_shared_counter");
-            return new m1.b0(new m1.f0(y0Var, new m1.y(cVar, 1), aVar), c8.g0.a(new be.l(nVar, (id.c) null, 8)), g1Var, cVar);
+            return new m1.b0(new m1.f0(y0Var, new m1.y(cVar, 1), aVar), c8.g0.a(new be.l(nVar, (id.c) null, 8)), rVar, cVar);
         } catch (SecurityException | UnsatisfiedLinkError unused) {
-            return new m1.b0(new m1.f0(y0Var, m1.e0.f20321b, aVar), c8.g0.a(new be.l(nVar, (id.c) null, 8)), g1Var, cVar);
+            return new m1.b0(new m1.f0(y0Var, m1.e0.f20417b, aVar), c8.g0.a(new be.l(nVar, (id.c) null, 8)), rVar, cVar);
         }
     }
 

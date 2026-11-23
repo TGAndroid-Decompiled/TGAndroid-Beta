@@ -1,107 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import java.util.ArrayList;
-public final class s implements TextWatcher {
-    public final ImageView f39384a;
-    public final int f39385b;
-    public final int f39386c;
-    public final LinearLayout d;
-    public final ArrayList f39387e;
-    public final TextView f39388f;
-    public final ScrollView h;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_aicompose;
+public final class s implements View.OnClickListener {
+    public final int f39442a;
+    public final v f39443b;
 
-    public s(ImageView imageView, int i7, int i10, LinearLayout linearLayout, ArrayList arrayList, TextView textView, ScrollView scrollView) {
-        this.f39384a = imageView;
-        this.f39385b = i7;
-        this.f39386c = i10;
-        this.d = linearLayout;
-        this.f39387e = arrayList;
-        this.f39388f = textView;
-        this.h = scrollView;
+    public s(v vVar, int i7) {
+        this.f39442a = i7;
+        this.f39443b = vVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i7;
-        LinearLayout linearLayout;
-        int i10;
-        boolean z10;
-        int i11;
-        String str;
-        int i12;
-        String lowerCase = editable.toString().trim().toLowerCase();
-        boolean isEmpty = lowerCase.isEmpty();
-        int i13 = 8;
-        if (editable.length() > 0) {
-            i7 = 0;
-        } else {
-            i7 = 8;
+    public final void onClick(View view) {
+        switch (this.f39442a) {
+            case 0:
+                this.f39443b.dismiss();
+                return;
+            default:
+                v vVar = this.f39443b;
+                TL_aicompose.AiComposeTone aiComposeTone = vVar.T1;
+                if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
+                    int i7 = vVar.d2 + 1;
+                    vVar.d2 = i7;
+                    TL_aicompose.aiComposeToneExample[] aicomposetoneexampleArr = vVar.f40519e2;
+                    if (i7 >= aicomposetoneexampleArr.length) {
+                        vVar.d2 = 0;
+                    }
+                    int i10 = vVar.d2;
+                    if (aicomposetoneexampleArr[i10] == null) {
+                        TL_aicompose.getToneExample gettoneexample = new TL_aicompose.getToneExample();
+                        gettoneexample.tone = TL_aicompose.InputAiComposeTone.from(aiComposeTone);
+                        gettoneexample.num = i10;
+                        ConnectionsManager.getInstance(vVar.f30223a).sendRequestTyped(gettoneexample, new d3.b(1), new t(vVar, i10, 0));
+                    }
+                    vVar.f40518c2.O(true);
+                    return;
+                }
+                return;
         }
-        this.f39384a.setVisibility(i7);
-        int i14 = this.f39385b;
-        while (true) {
-            linearLayout = this.d;
-            i10 = this.f39386c;
-            if (i14 >= i10) {
-                break;
-            }
-            View childAt = linearLayout.getChildAt(i14);
-            if (!isEmpty) {
-                i12 = 8;
-            } else {
-                i12 = 0;
-            }
-            childAt.setVisibility(i12);
-            i14++;
-        }
-        int i15 = 0;
-        int i16 = 0;
-        while (true) {
-            ArrayList arrayList = this.f39387e;
-            if (i15 >= arrayList.size() || i10 + i15 >= linearLayout.getChildCount()) {
-                break;
-            }
-            org.telegram.messenger.t00 t00Var = (org.telegram.messenger.t00) arrayList.get(i15);
-            String str2 = t00Var.d;
-            if (str2 == null) {
-                str2 = (t00Var.f26906b + " " + t00Var.f26907c).toLowerCase();
-            }
-            if (!isEmpty && !str2.contains(lowerCase) && ((str = t00Var.f26905a) == null || !str.toLowerCase().startsWith(lowerCase))) {
-                z10 = false;
-            } else {
-                z10 = true;
-            }
-            View childAt2 = linearLayout.getChildAt(i10 + i15);
-            if (z10) {
-                i11 = 0;
-            } else {
-                i11 = 8;
-            }
-            childAt2.setVisibility(i11);
-            if (z10) {
-                i16++;
-            }
-            i15++;
-        }
-        if (!isEmpty && i16 == 0) {
-            i13 = 0;
-        }
-        this.f39388f.setVisibility(i13);
-        this.h.scrollTo(0, 0);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

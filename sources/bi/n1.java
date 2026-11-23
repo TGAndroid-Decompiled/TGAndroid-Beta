@@ -21,9 +21,9 @@ public final class n1 implements Runnable {
                 String str = f2Var.f3538l2;
                 if (!TextUtils.isEmpty(str)) {
                     TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
-                    tL_contacts_search.f28444q = str;
+                    tL_contacts_search.f28538q = str;
                     tL_contacts_search.limit = 50;
-                    f2Var.f3539m2 = ConnectionsManager.getInstance(f2Var.f30139a).sendRequest(tL_contacts_search, new o1(0, f2Var, str));
+                    f2Var.f3539m2 = ConnectionsManager.getInstance(f2Var.f30223a).sendRequest(tL_contacts_search, new o1(0, f2Var, str));
                     return;
                 }
                 return;
@@ -34,10 +34,10 @@ public final class n1 implements Runnable {
                 this.f3867b.f3536j2.O(false);
                 return;
             default:
-                org.telegram.ui.ActionBar.g2 g2Var = this.f3867b.f39491s1;
+                org.telegram.ui.ActionBar.g2 g2Var = this.f3867b.f39250s1;
                 if (g2Var != 0) {
                     ?? obj = new Object();
-                    obj.f28871a = true;
+                    obj.f28948a = true;
                     g2Var.showAsSheet(new PrivacyControlActivity(11, false), obj);
                     return;
                 }

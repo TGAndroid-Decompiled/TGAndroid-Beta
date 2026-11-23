@@ -1,157 +1,62 @@
 package org.telegram.messenger;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-import org.telegram.tgnet.TLObject;
-public final class bv extends MetricAffectingSpan {
-    public final fv f23148a;
-    public final int f23149b;
-    public final boolean f23150c;
-    public boolean d;
-    public int f23151e;
+import android.view.View;
+import java.util.ArrayList;
+public final class bv implements Runnable {
+    public final int f23258a = 0;
+    public final dv f23259b;
+    public final ev f23260c;
+    public final View d;
 
-    public bv(fv fvVar, int i7, boolean z10) {
-        this.f23148a = fvVar;
-        this.f23149b = i7;
-        this.f23150c = z10;
+    public bv(dv dvVar, View view, ev evVar) {
+        this.f23259b = dvVar;
+        this.d = view;
+        this.f23260c = evVar;
     }
 
-    public final void a(TextPaint textPaint) {
-        boolean z10;
-        Typeface typeface;
-        int L;
-        int i7;
-        int w02;
-        int i10;
-        int i11;
-        int i12 = this.f23149b;
-        int i13 = i12 & 15;
-        if (i13 == 8) {
-            typeface = Typeface.MONOSPACE;
-        } else if (i13 == 11) {
-            typeface = g0.o();
-        } else if (i13 >= 1 && i13 <= 6) {
-            if (TLObject.hasFlag(i12, 32)) {
-                typeface = g0.o1("fonts/rmediumitalic.ttf");
-            } else {
-                typeface = g0.o();
-            }
-        } else if (TLObject.hasFlag(i12, 256)) {
-            typeface = Typeface.MONOSPACE;
-        } else {
-            boolean hasFlag = TLObject.hasFlag(i12, 16);
-            if (!TLObject.hasFlag(i12, 32) && i13 != 12) {
-                z10 = false;
-            } else {
-                z10 = true;
-            }
-            if (hasFlag && z10) {
-                typeface = g0.o1("fonts/rmediumitalic.ttf");
-            } else if (hasFlag) {
-                typeface = g0.o();
-            } else if (z10) {
-                typeface = g0.o1("fonts/ritalic.ttf");
-            } else {
-                typeface = null;
-            }
-        }
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
-        int i14 = cz.W0;
-        if (i13 == 14 && this.d) {
-            L = g0.L(i14);
-        } else {
-            switch (i13) {
-                case 1:
-                    L = g0.L(i14 + 4);
-                    break;
-                case 2:
-                    L = g0.L(i14 + 2);
-                    break;
-                case 3:
-                    L = g0.L(i14 + 1);
-                    break;
-                case 4:
-                case 5:
-                case 6:
-                    L = g0.L(i14);
-                    break;
-                case 7:
-                case 13:
-                    L = g0.L(i14 - 2);
-                    break;
-                case 8:
-                    int i15 = i14 - 2;
-                    L = g0.L(Math.max(Math.min(10, i15), i15 - this.f23151e));
-                    break;
-                case 9:
-                case 11:
-                case 12:
-                    L = g0.L(i14 - 2);
-                    break;
-                case 10:
-                    L = g0.L(i14 - 2);
-                    break;
-                case 14:
-                    L = g0.L(Math.max(8, i14 - 2));
-                    break;
-                case 15:
-                    L = g0.L(i14 - 2);
-                    break;
-                default:
-                    L = g0.L(i14);
-                    break;
-            }
-        }
-        if (TLObject.hasFlag(i12, 6144)) {
-            L -= g0.L(4.0f);
-        }
-        textPaint.setTextSize(L);
-        if (!this.f23150c) {
-            textPaint.setFlags(TLObject.setFlag(TLObject.setFlag(textPaint.getFlags(), 8, TLObject.hasFlag(i12, 64)), 16, TLObject.hasFlag(i12, 128)));
-            if (i13 != 8) {
-                fv fvVar = this.f23148a;
-                if (i13 == 11) {
-                    if (fvVar.E()) {
-                        i11 = org.telegram.ui.ActionBar.m6.Tb;
-                    } else {
-                        i11 = org.telegram.ui.ActionBar.m6.Nd;
-                    }
-                    w02 = org.telegram.ui.ActionBar.m6.w0(i11, fvVar.D);
-                } else if (i13 == 10) {
-                    if (fvVar.E()) {
-                        i10 = org.telegram.ui.ActionBar.m6.Wc;
-                    } else {
-                        i10 = org.telegram.ui.ActionBar.m6.Vc;
-                    }
-                    w02 = org.telegram.ui.ActionBar.m6.r1(0.5f, org.telegram.ui.ActionBar.m6.w0(i10, fvVar.D));
-                } else {
-                    if (fvVar.E()) {
-                        i7 = org.telegram.ui.ActionBar.m6.Wc;
-                    } else {
-                        i7 = org.telegram.ui.ActionBar.m6.Vc;
-                    }
-                    w02 = org.telegram.ui.ActionBar.m6.w0(i7, fvVar.D);
+    @Override
+    public final void run() {
+        switch (this.f23258a) {
+            case 0:
+                dv dvVar = this.f23259b;
+                dvVar.getClass();
+                View view = this.d;
+                if (view != null) {
+                    view.post(new bv(dvVar, this.f23260c, view));
+                    return;
                 }
-                textPaint.setColor(w02);
-            }
-        }
-        if (TLObject.hasFlag(i12, 4096)) {
-            textPaint.baselineShift -= g0.L(6.0f);
-        } else if (TLObject.hasFlag(i12, 2048)) {
-            textPaint.baselineShift = g0.L(2.0f) + textPaint.baselineShift;
+                return;
+            default:
+                dv dvVar2 = this.f23259b;
+                ev evVar = this.f23260c;
+                if (evVar != null) {
+                    dvVar2.getClass();
+                    fj fjVar = evVar.f23873b;
+                    if (fjVar != null) {
+                        fjVar.N0 = true;
+                    }
+                    ArrayList arrayList = evVar.f23883n;
+                    int size = arrayList.size();
+                    int i7 = 0;
+                    while (i7 < size) {
+                        Object obj = arrayList.get(i7);
+                        i7++;
+                        org.telegram.ui.Cells.t9 t9Var = (org.telegram.ui.Cells.t9) obj;
+                        if (t9Var instanceof dv) {
+                            ((dv) t9Var).f23714x.clear();
+                        }
+                    }
+                } else {
+                    dvVar2.f23714x.clear();
+                }
+                this.d.invalidate();
+                return;
         }
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        a(textPaint);
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        a(textPaint);
+    public bv(dv dvVar, ev evVar, View view) {
+        this.f23259b = dvVar;
+        this.f23260c = evVar;
+        this.d = view;
     }
 }

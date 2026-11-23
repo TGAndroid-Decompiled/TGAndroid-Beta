@@ -1,211 +1,222 @@
 package org.telegram.messenger;
 
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.Shader;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
+import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import android.view.MotionEvent;
-public abstract class wu extends au {
-    public final ev X;
-    public final ev Y;
-    public final ev[] Z;
-    public final boolean f27768a0;
+import android.view.View;
+import org.telegram.ui.wg0;
+public final class wu extends zt {
+    public final dv X;
+    public final dv[] Y;
+    public int Z;
+    public LinearGradient f27856a0;
+    public final Matrix f27857b0;
+    public final Paint f27858c0;
 
-    public wu(fv fvVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2, Layout.Alignment alignment) {
-        super(fvVar, rect, i7);
-        boolean z10;
-        ev evVar;
-        if (alignment == Layout.Alignment.ALIGN_CENTER) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f27768a0 = z10;
-        ev evVar2 = new ev(fvVar, spannableStringBuilder, this.f22934c, alignment);
-        this.X = evVar2;
-        if (!TextUtils.isEmpty(spannableStringBuilder2)) {
-            evVar = new ev(fvVar, spannableStringBuilder2, this.f22934c, alignment);
-        } else {
-            evVar = null;
-        }
-        this.Y = evVar;
-        this.Z = evVar == null ? new ev[]{evVar2} : new ev[]{evVar2, evVar};
+    public wu(ev evVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder) {
+        super(evVar, rect, i7);
+        this.f27857b0 = new Matrix();
+        this.f27858c0 = new Paint(1);
+        dv dvVar = new dv(evVar, spannableStringBuilder, this.f28443c);
+        this.X = dvVar;
+        this.Y = r2;
+        dv[] dvVarArr = {dvVar};
     }
 
     @Override
     public final int I() {
-        int i7;
-        Rect rect = this.f22933b;
-        int i02 = i0() + this.X.f23734b.getHeight() + rect.top;
-        ev evVar = this.Y;
-        if (evVar != null) {
-            i7 = evVar.f23734b.getHeight();
-        } else {
-            i7 = 0;
-        }
-        return i02 + i7 + rect.bottom;
+        Rect rect = this.f28442b;
+        return this.X.f23706b.getHeight() + rect.top + rect.bottom;
     }
 
     @Override
     public final int J() {
-        ev evVar = this.Y;
-        if (evVar == null) {
-            evVar = this.X;
-        }
-        Rect rect = this.f22933b;
-        return evVar.q() + rect.left + rect.right;
+        Rect rect = this.f28442b;
+        return this.X.q() + rect.left + rect.right;
     }
 
     @Override
     public final int K() {
-        int i7;
-        Rect rect = this.f22933b;
-        int i10 = rect.left;
-        int r10 = this.X.r();
-        ev evVar = this.Y;
-        if (evVar != null) {
-            i7 = evVar.r();
-        } else {
-            i7 = 0;
-        }
-        return Math.max(r10, i7) + i10 + rect.right;
+        Rect rect = this.f28442b;
+        return this.X.r() + rect.left + rect.right;
     }
 
     @Override
-    public final org.telegram.ui.Cells.u9[] L() {
-        return this.Z;
+    public final org.telegram.ui.Cells.t9[] L() {
+        return this.Y;
     }
 
     @Override
     public final void T() {
         this.X.i(this.W);
-        ev evVar = this.Y;
-        if (evVar != null) {
-            evVar.i(this.W);
-        }
     }
 
     @Override
     public final void V() {
         this.X.f(this.W);
-        ev evVar = this.Y;
-        if (evVar != null) {
-            evVar.f(this.W);
-        }
     }
 
     @Override
     public final void W(Canvas canvas) {
-        canvas.save();
-        ev evVar = this.X;
-        canvas.translate(j0(evVar), 0.0f);
-        evVar.d(canvas, evVar.T);
-        canvas.restore();
-        ev evVar2 = this.Y;
-        if (evVar2 != null) {
+        ev evVar = this.f28441a;
+        canvas.saveLayerAlpha(0.0f, 0.0f, evVar.C, I(), 255, 31);
+        int i02 = i0();
+        dv dvVar = this.X;
+        if (i02 != 0) {
+            dvVar.f23707c = (this.f28442b.left + i02) - dvVar.f23709f;
             canvas.save();
-            canvas.translate(j0(evVar2), i0() + evVar.f23734b.getHeight());
-            evVar2.d(canvas, evVar2.T);
+            canvas.translate(i02, 0.0f);
+        }
+        dvVar.d(canvas, dvVar.T);
+        if (evVar.F()) {
+            canvas.save();
+            canvas.translate(-dvVar.f23709f, 0.0f);
+            org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, dvVar.f23706b, dvVar.F, 0.0f, dvVar.f23714x, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
+        }
+        if (i02 != 0) {
+            canvas.restore();
+        }
+        j0();
+        Matrix matrix = this.f27857b0;
+        matrix.reset();
+        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f28443c, 0.0f);
+        this.f27856a0.setLocalMatrix(matrix);
+        canvas.drawRect(0.0f, 0.0f, evVar.C, I(), this.f27858c0);
+        canvas.restore();
+        View view = this.W;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    @Override
+    public final void X(Canvas canvas, int i7, float f10) {
+        int i10;
+        ev evVar = this.f28441a;
+        int i11 = evVar.C;
+        TextPaint textPaint = evVar.f23891w;
+        canvas.saveLayerAlpha(0.0f, 0.0f, i11, I(), 255, 31);
+        int i02 = i0();
+        dv dvVar = this.X;
+        if (i02 != 0) {
+            dvVar.f23707c = (this.f28442b.left + i02) - dvVar.f23709f;
+        }
+        canvas.save();
+        canvas.translate(i02 - dvVar.f23709f, 0.0f);
+        int color = textPaint.getColor();
+        textPaint.setColor(-1);
+        if (evVar.E()) {
+            i10 = org.telegram.ui.ActionBar.n6.Yc;
+        } else {
+            i10 = org.telegram.ui.ActionBar.n6.Xc;
+        }
+        textPaint.linkColor = org.telegram.ui.ActionBar.n6.w0(i10, evVar.D);
+        wg0.b(canvas, dvVar.f23706b, i7, f10, new o(5, this, this.W));
+        canvas.restore();
+        textPaint.setColor(color);
+        j0();
+        Matrix matrix = this.f27857b0;
+        matrix.reset();
+        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f28443c, 0.0f);
+        this.f27856a0.setLocalMatrix(matrix);
+        canvas.drawRect(0.0f, 0.0f, evVar.C, I(), this.f27858c0);
+        canvas.restore();
+        View view = this.W;
+        if (view != null) {
+            view.invalidate();
         }
     }
 
     @Override
     public final boolean Y(MotionEvent motionEvent) {
-        int i7;
-        ev evVar = this.X;
-        int height = evVar.f23734b.getHeight();
-        float y10 = motionEvent.getY();
-        int i10 = 0;
-        if (y10 >= 0.0f && y10 < height) {
-            i7 = j0(evVar);
-        } else {
-            evVar = this.Y;
-            if (evVar == null || y10 < i0() + height) {
-                return false;
-            }
-            int j02 = j0(evVar);
-            i10 = i0() + height;
-            i7 = j02;
+        int i02 = i0();
+        dv dvVar = this.X;
+        if (i02 == 0) {
+            return dvVar.t(motionEvent);
         }
-        motionEvent.offsetLocation(-i7, -i10);
-        boolean t6 = evVar.t(motionEvent);
-        motionEvent.offsetLocation(i7, i10);
+        motionEvent.offsetLocation(-i02, 0.0f);
+        boolean t6 = dvVar.t(motionEvent);
+        motionEvent.offsetLocation(i02, 0.0f);
         return t6;
     }
 
     @Override
     public final void Z(int i7, int i10, int i11) {
-        ev evVar = this.X;
-        evVar.f23735c = (j0(evVar) + i7) - evVar.f23737f;
-        evVar.d = i10;
-        evVar.f23736e = i11;
-        ev evVar2 = this.Y;
-        if (evVar2 != null) {
-            evVar2.f23735c = (j0(evVar2) + i7) - evVar2.f23737f;
-            evVar2.d = i0() + evVar.f23734b.getHeight() + i10;
-            evVar2.f23736e = i11;
+        super.Z(i7, i10, i11);
+        int i02 = i0();
+        if (i02 != 0) {
+            int i12 = i7 + i02;
+            dv dvVar = this.X;
+            dvVar.f23707c = i12 - dvVar.f23709f;
         }
     }
 
     @Override
     public final Layout a() {
-        return this.X.f23734b;
+        return this.X.f23706b;
     }
 
     public final int i0() {
-        if (this.Y != null) {
-            return g0.L(2.0f);
+        ev evVar = this.f28441a;
+        if (!evVar.I()) {
+            return 0;
         }
-        return 0;
+        int L = (evVar.C + evVar.T) - g0.L(14.0f);
+        Rect rect = this.f28442b;
+        return ((L - rect.right) - rect.left) - this.X.r();
     }
 
-    public final int j0(ev evVar) {
-        int L;
-        int r10;
-        boolean z10 = this.f27768a0;
-        Rect rect = this.f22933b;
-        fv fvVar = this.f22932a;
-        if (z10) {
-            L = (((fvVar.C + fvVar.T) - fvVar.S) - evVar.r()) / 2;
-            r10 = rect.left;
-        } else if (!fvVar.I()) {
-            return 0;
+    public final void j0() {
+        int i7;
+        ev evVar = this.f28441a;
+        if (evVar.E()) {
+            i7 = org.telegram.ui.ActionBar.n6.Wc;
         } else {
-            L = (((fvVar.C + fvVar.T) - g0.L(14.0f)) - rect.right) - rect.left;
-            r10 = evVar.r();
+            i7 = org.telegram.ui.ActionBar.n6.Vc;
         }
-        return L - r10;
+        int w02 = org.telegram.ui.ActionBar.n6.w0(i7, evVar.D);
+        if (this.f27856a0 != null && this.Z == w02) {
+            return;
+        }
+        this.Z = w02;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.f28443c, 0.0f, new int[]{org.telegram.ui.ActionBar.n6.r1(0.7f, w02), org.telegram.ui.ActionBar.n6.r1(0.25f, w02), org.telegram.ui.ActionBar.n6.r1(0.7f, w02)}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.REPEAT);
+        this.f27856a0 = linearGradient;
+        Paint paint = this.f27858c0;
+        paint.setShader(linearGradient);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     }
 
     @Override
     public final void k(SpannableStringBuilder spannableStringBuilder) {
-        au.l(spannableStringBuilder, null, this.Z);
+        zt.l(spannableStringBuilder, this.X, this.Y);
     }
 
     @Override
-    public final boolean u(CharacterStyle characterStyle, int i7, rt rtVar) {
-        ev evVar = this.X;
-        boolean o4 = evVar.o(characterStyle, rtVar);
-        Rect rect = this.f22933b;
-        if (o4) {
-            rtVar.f26625e = (j0(evVar) + rect.left) - evVar.f23737f;
-            rtVar.f26626f = i7 + rect.top;
-            return true;
-        }
-        ev evVar2 = this.Y;
-        if (evVar2 != null && evVar2.o(characterStyle, rtVar)) {
-            rtVar.f26625e = (j0(evVar2) + rect.left) - evVar2.f23737f;
-            rtVar.f26626f = i0() + evVar.f23734b.getHeight() + i7 + rect.top;
-            return true;
-        }
+    public final boolean s(Canvas canvas, ColorFilter colorFilter) {
         return false;
     }
 
     @Override
-    public final boolean v() {
-        return this.f27768a0;
+    public final boolean u(CharacterStyle characterStyle, int i7, qt qtVar) {
+        dv dvVar = this.X;
+        if (dvVar.o(characterStyle, qtVar)) {
+            Rect rect = this.f28442b;
+            qtVar.f26562e = (i0() + rect.left) - dvVar.f23709f;
+            qtVar.f26563f = i7 + rect.top;
+            return true;
+        }
+        return false;
     }
 }

@@ -1,10 +1,10 @@
 package e5;
 public abstract class k {
-    public static final b f10856a;
-    public static final b f10857b;
-    public static final b f10858c;
+    public static final b f10854a;
+    public static final b f10855b;
+    public static final b f10856c;
     public static final b d;
-    public static final b f10859e;
+    public static final b f10857e;
 
     static {
         new b(0, "VISUAL_STATE_CALLBACK", "VISUAL_STATE_CALLBACK");
@@ -35,7 +35,7 @@ public abstract class k {
         new b(4, "SAFE_BROWSING_RESPONSE_SHOW_INTERSTITIAL", "SAFE_BROWSING_RESPONSE_SHOW_INTERSTITIAL");
         new b(0, "WEB_MESSAGE_PORT_POST_MESSAGE", "WEB_MESSAGE_PORT_POST_MESSAGE");
         new b(0, "WEB_MESSAGE_PORT_CLOSE", "WEB_MESSAGE_PORT_CLOSE");
-        f10856a = new b(2, "WEB_MESSAGE_ARRAY_BUFFER", "WEB_MESSAGE_ARRAY_BUFFER");
+        f10854a = new b(2, "WEB_MESSAGE_ARRAY_BUFFER", "WEB_MESSAGE_ARRAY_BUFFER");
         new b(0, "WEB_MESSAGE_PORT_SET_MESSAGE_CALLBACK", "WEB_MESSAGE_PORT_SET_MESSAGE_CALLBACK");
         new b(0, "CREATE_WEB_MESSAGE_CHANNEL", "CREATE_WEB_MESSAGE_CHANNEL");
         new b(0, "POST_WEB_MESSAGE", "POST_WEB_MESSAGE");
@@ -51,10 +51,10 @@ public abstract class k {
         new b(6, "WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE", "WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE");
         new i();
         new b(2, "PROXY_OVERRIDE", "PROXY_OVERRIDE:3");
-        f10857b = new b(2, "MULTI_PROCESS", "MULTI_PROCESS_QUERY");
+        f10855b = new b(2, "MULTI_PROCESS", "MULTI_PROCESS_QUERY");
         new b(6, "FORCE_DARK", "FORCE_DARK");
         new b(2, "FORCE_DARK_STRATEGY", "FORCE_DARK_BEHAVIOR");
-        f10858c = new b(2, "WEB_MESSAGE_LISTENER", "WEB_MESSAGE_LISTENER");
+        f10856c = new b(2, "WEB_MESSAGE_LISTENER", "WEB_MESSAGE_LISTENER");
         d = new b(2, "DOCUMENT_START_SCRIPT", "DOCUMENT_START_SCRIPT:1");
         new b(2, "PROXY_OVERRIDE_REVERSE_BYPASS", "PROXY_OVERRIDE_REVERSE_BYPASS");
         new b(2, "GET_VARIATIONS_HEADER", "GET_VARIATIONS_HEADER");
@@ -77,7 +77,7 @@ public abstract class k {
         new b(2, "SPECULATIVE_LOADING_CONFIG_V2", "SPECULATIVE_LOADING_CONFIG_V2");
         new b(2, "SAVE_STATE", "SAVE_STATE");
         new b(2, "WEB_VIEW_NAVIGATION_CLIENT_BASIC_USAGE", "WEB_VIEW_NAVIGATION_CLIENT_BASIC_USAGE");
-        f10859e = new b(2, "CACHE_PROVIDER", "PROVIDER_WEAKLY_REF_WEBVIEW");
+        f10857e = new b(2, "CACHE_PROVIDER", "PROVIDER_WEAKLY_REF_WEBVIEW");
         new b(2, "PAYMENT_REQUEST", "PAYMENT_REQUEST");
         new b(2, "WEBVIEW_BUILDER", "WEBVIEW_BUILDER");
     }

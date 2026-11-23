@@ -1,39 +1,30 @@
 package org.telegram.messenger;
 
-import org.telegram.ui.Components.a70;
+import android.net.Uri;
 public final class fe implements Runnable {
-    public final int f23873a;
-    public final float f23874b;
-    public final gs f23875c;
-    public final Object d;
+    public final int f23991a;
+    public final w10 f23992b;
+    public final Uri f23993c;
 
-    public fe(gs gsVar, Object obj, float f10, int i7) {
-        this.f23873a = i7;
-        this.f23875c = gsVar;
-        this.d = obj;
-        this.f23874b = f10;
+    public fe(w10 w10Var, Uri uri, int i7) {
+        this.f23991a = i7;
+        this.f23992b = w10Var;
+        this.f23993c = uri;
     }
 
     @Override
     public final void run() {
-        switch (this.f23873a) {
+        int i7 = this.f23991a;
+        Uri uri = this.f23993c;
+        w10 w10Var = this.f23992b;
+        switch (i7) {
             case 0:
-                MediaController mediaController = (MediaController) this.f23875c;
-                gj gjVar = (gj) this.d;
-                if (mediaController.f22711j0 != null && mediaController.f22735v0 != null && !mediaController.f22707h0) {
-                    if (mediaController.L(gjVar)) {
-                        mediaController.i0(mediaController.f22735v0, this.f23874b);
-                    }
-                    mediaController.f22711j0.h0();
-                    return;
-                }
+                String[] strArr = MediaController.W1;
+                w10Var.a(uri);
                 return;
             default:
-                org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f23875c;
-                a70 a70Var = (a70) this.d;
-                g4Var.f47908i0.N.c(true, 0.0f);
-                a70Var.f33357p = new org.telegram.ui.a0(g4Var, this.f23874b, 0);
-                a70Var.a0();
+                String[] strArr2 = MediaController.W1;
+                w10Var.a(uri);
                 return;
         }
     }

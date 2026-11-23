@@ -13,12 +13,12 @@ import android.graphics.SweepGradient;
 import android.os.Build;
 import android.text.StaticLayout;
 import com.google.android.gms.internal.vision.e2;
-import org.telegram.messenger.cz;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.messenger.bz;
+import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.Cells.r1;
-import org.telegram.ui.Components.fb0;
-import org.telegram.ui.Components.mc;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.cb0;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.n80;
 public final class b1 {
     public static float f5578i;
     public static float f5579j;
@@ -36,7 +36,7 @@ public final class b1 {
         this.f5582c = new Rect();
         this.f5585g = new RectF();
         this.f5581b = r1Var;
-        this.d = new mc(r1Var, 0.8f, 1.4f);
+        this.d = new lc(r1Var, 0.8f, 1.4f);
     }
 
     public void a(float f10, float f11, int i7, Canvas canvas, RectF rectF) {
@@ -198,31 +198,31 @@ public final class b1 {
             ((org.telegram.ui.Cells.y) this.f5583e).draw(canvas);
         }
         if (z10) {
-            q80 q80Var = (q80) this.h;
-            if (q80Var == null) {
-                q80 q80Var2 = new q80();
-                this.h = q80Var2;
-                q80Var2.D = true;
-            } else if (q80Var.c() || ((q80) this.h).d()) {
-                q80 q80Var3 = (q80) this.h;
-                q80Var3.f38767b = -1L;
-                q80Var3.f38768c = -1L;
+            n80 n80Var = (n80) this.h;
+            if (n80Var == null) {
+                n80 n80Var2 = new n80();
+                this.h = n80Var2;
+                n80Var2.D = true;
+            } else if (n80Var.c() || ((n80) this.h).d()) {
+                n80 n80Var3 = (n80) this.h;
+                n80Var3.f37710b = -1L;
+                n80Var3.f37711c = -1L;
             }
         } else {
-            q80 q80Var4 = (q80) this.h;
-            if (q80Var4 != null && !q80Var4.d() && !((q80) this.h).c()) {
-                ((q80) this.h).a();
+            n80 n80Var4 = (n80) this.h;
+            if (n80Var4 != null && !n80Var4.d() && !((n80) this.h).c()) {
+                ((n80) this.h).a();
             }
         }
         canvas.restore();
-        q80 q80Var5 = (q80) this.h;
-        if (q80Var5 != null && !q80Var5.c()) {
-            q80 q80Var6 = (q80) this.h;
-            q80Var6.f38787y = path;
-            q80Var6.g(m6.r1(0.7f, this.f5580a), m6.r1(1.3f, this.f5580a), m6.r1(1.5f, this.f5580a), m6.r1(2.0f, this.f5580a));
-            ((q80) this.h).setBounds(rect);
+        n80 n80Var5 = (n80) this.h;
+        if (n80Var5 != null && !n80Var5.c()) {
+            n80 n80Var6 = (n80) this.h;
+            n80Var6.f37730y = path;
+            n80Var6.g(n6.r1(0.7f, this.f5580a), n6.r1(1.3f, this.f5580a), n6.r1(1.5f, this.f5580a), n6.r1(2.0f, this.f5580a));
+            ((n80) this.h).setBounds(rect);
             canvas.save();
-            ((q80) this.h).draw(canvas);
+            ((n80) this.h).draw(canvas);
             canvas.restore();
             ((r1) this.f5581b).invalidate();
         }
@@ -233,10 +233,10 @@ public final class b1 {
         float f10;
         float L;
         RectF rectF = (RectF) this.f5585g;
-        int textSize = (((int) m6.X2.getTextSize()) * 2) + org.telegram.messenger.g0.L(4.0f);
-        float max = Math.max(0, Math.min(6, cz.Y0) - 1);
-        float min = Math.min(9, cz.Y0);
-        float min2 = Math.min(3, cz.Y0);
+        int textSize = (((int) n6.X2.getTextSize()) * 2) + org.telegram.messenger.g0.L(4.0f);
+        float max = Math.max(0, Math.min(6, bz.Y0) - 1);
+        float min = Math.min(9, bz.Y0);
+        float min2 = Math.min(3, bz.Y0);
         float f11 = -org.telegram.messenger.g0.L(e2.c(min, 9.0f, 2.66f, 4.0f));
         float f12 = -org.telegram.messenger.g0.L(3.0f);
         float L2 = org.telegram.messenger.g0.L(5.0f) + textSize;
@@ -245,7 +245,7 @@ public final class b1 {
         Path path = (Path) this.f5584f;
         path.rewind();
         if (!z10) {
-            max = cz.Y0 / 2.0f;
+            max = bz.Y0 / 2.0f;
         }
         float L3 = org.telegram.messenger.g0.L(max) * 2;
         rectF.set(f11, f12, f11 + L3, L3 + f12);
@@ -302,9 +302,9 @@ public final class b1 {
         if (this.f5580a != i7) {
             org.telegram.ui.Cells.y yVar = (org.telegram.ui.Cells.y) this.f5583e;
             if (yVar == null) {
-                this.f5583e = m6.h0(i7, 2, -1);
+                this.f5583e = n6.h0(i7, 2, -1);
             } else {
-                m6.H1(yVar, i7, true);
+                n6.H1(yVar, i7, true);
             }
             ((org.telegram.ui.Cells.y) this.f5583e).setCallback((r1) this.f5581b);
             this.f5580a = i7;
@@ -316,7 +316,7 @@ public final class b1 {
         Rect rect = (Rect) this.f5582c;
         float centerX = rect.centerX();
         float centerY = rect.centerY();
-        ((mc) this.d).c(z10);
+        ((lc) this.d).c(z10);
         if (z10 && (yVar = (org.telegram.ui.Cells.y) this.f5583e) != null) {
             yVar.setHotspot(centerX, centerY);
         }
@@ -333,9 +333,9 @@ public final class b1 {
                 Paint paint = new Paint();
                 this.f5581b = paint;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                this.f5582c = new fb0(tileMode);
-                this.d = new fb0(tileMode);
-                this.f5583e = new fb0(Shader.TileMode.REPEAT);
+                this.f5582c = new cb0(tileMode);
+                this.d = new cb0(tileMode);
+                this.f5583e = new cb0(Shader.TileMode.REPEAT);
                 this.f5584f = new Object();
                 this.f5585g = new Object();
                 this.h = new float[4];

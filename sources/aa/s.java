@@ -23,11 +23,11 @@ public final class s implements Callable {
                 pVar.getClass();
                 ba.e.a();
                 wf.b bVar = pVar.f832c;
-                ga.d dVar = (ga.d) bVar.f59681c;
-                String str = (String) bVar.f59680b;
+                ga.d dVar = (ga.d) bVar.f59801c;
+                String str = (String) bVar.f59800b;
                 dVar.getClass();
                 boolean z10 = true;
-                if (!new File((File) dVar.d, str).exists()) {
+                if (!new File((File) dVar.f13272c, str).exists()) {
                     String g10 = pVar.g();
                     if (g10 == null || !pVar.f837j.c(g10)) {
                         z10 = false;
@@ -36,34 +36,34 @@ public final class s implements Callable {
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Found previous crash marker.", null);
                     }
-                    ga.d dVar2 = (ga.d) bVar.f59681c;
+                    ga.d dVar2 = (ga.d) bVar.f59801c;
                     dVar2.getClass();
-                    new File((File) dVar2.d, str).delete();
+                    new File((File) dVar2.f13272c, str).delete();
                 }
                 return Boolean.valueOf(z10);
             case 1:
                 return new e5.f((JsReplyProxyBoundaryInterface) this.f852b);
             default:
-                ia.c cVar = (ia.c) ((q4.q) this.f852b).f55837c;
-                f5.g gVar = (f5.g) cVar.f16186f;
-                ia.e eVar = (ia.e) cVar.f16183b;
-                String str2 = gVar.f11281a;
+                ia.c cVar = (ia.c) ((q4.q) this.f852b).f55950c;
+                ee.t tVar = (ee.t) cVar.f16283f;
+                ia.e eVar = (ia.e) cVar.f16280b;
+                String str2 = tVar.f10941b;
                 ba.e.b();
                 try {
-                    HashMap c10 = f5.g.c(eVar);
-                    android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(str2, c10);
+                    HashMap b10 = ee.t.b(eVar);
+                    android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(str2, b10);
                     a0Var.m("User-Agent", "Crashlytics Android SDK/20.1.1");
                     a0Var.m("X-CRASHLYTICS-DEVELOPER-TOKEN", "470fa2b4ae81cd56ecbcda9735803434cec591fa");
-                    f5.g.b(a0Var, eVar);
+                    ee.t.a(a0Var, eVar);
                     String str3 = "Requesting settings from " + str2;
                     if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                         Log.d("FirebaseCrashlytics", str3, null);
                     }
-                    String str4 = "Settings query params were: " + c10;
+                    String str4 = "Settings query params were: " + b10;
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", str4, null);
                     }
-                    return gVar.d(a0Var.h());
+                    return tVar.c(a0Var.h());
                 } catch (IOException e10) {
                     Log.e("FirebaseCrashlytics", "Settings request failed.", e10);
                     return null;

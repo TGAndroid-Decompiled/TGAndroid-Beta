@@ -1,21 +1,14 @@
 package s2;
 
-import h9.g0;
-import h9.i0;
-import h9.t1;
-import java.util.List;
-public final class j extends k {
-    public final String f56822x;
-    public final i0 f56823y;
+import android.net.Uri;
+public final class j {
+    public final Uri f56935a;
+    public final long f56936b;
+    public final int f56937c;
 
-    public j(String str, long j3, long j10, String str2, String str3) {
-        this(str, null, "", 0L, -1, -9223372036854775807L, null, str2, str3, j3, j10, false, t1.f14066e);
-        g0 g0Var = i0.f13998b;
-    }
-
-    public j(String str, j jVar, String str2, long j3, int i7, long j10, e2.r rVar, String str3, String str4, long j11, long j12, boolean z10, List list) {
-        super(str, jVar, j3, i7, j10, rVar, str3, str4, j11, j12, z10);
-        this.f56822x = str2;
-        this.f56823y = i0.q(list);
+    public j(Uri uri, long j3, int i7) {
+        this.f56935a = uri;
+        this.f56936b = j3;
+        this.f56937c = i7;
     }
 }

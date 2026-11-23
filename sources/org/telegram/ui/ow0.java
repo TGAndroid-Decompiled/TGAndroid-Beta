@@ -1,146 +1,88 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.view.View;
-public final class ow0 extends View {
-    public final RectF f50646a;
-    public final TextPaint f50647b;
-    public final Paint f50648c;
-    public final ValueAnimator d;
-    public final float[] f50649e;
-    public final c5.a f50650f;
-    public boolean h;
-    public final ProfileActivity f50651n;
+import java.util.Comparator;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class ow0 implements Comparator {
+    public final int f50778a;
 
-    public ow0(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.f50651n = profileActivity;
-        this.f50646a = new RectF();
-        this.f50649e = new float[]{0.0f, 1.0f};
-        c5.a adapter = profileActivity.f43617o0.getAdapter();
-        this.f50650f = adapter;
-        setVisibility(8);
-        TextPaint textPaint = new TextPaint(1);
-        this.f50647b = textPaint;
-        textPaint.setColor(-1);
-        textPaint.setTypeface(Typeface.SANS_SERIF);
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTextSize(org.telegram.messenger.g0.N(15.0f));
-        Paint paint = new Paint(1);
-        this.f50648c = paint;
-        paint.setColor(637534208);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.d = ofFloat;
-        ofFloat.setInterpolator(org.telegram.ui.Components.nr.f37920j);
-        ofFloat.addUpdateListener(new a3(this, 27));
-        ofFloat.addListener(new c30(6, this, profileActivity.n1));
-        profileActivity.f43617o0.b(new nw0(this));
-        adapter.f4401a.registerObserver(new c5.i(this, 3));
+    public ow0(int i7) {
+        this.f50778a = i7;
     }
 
-    public final void a(boolean z10) {
-        org.telegram.ui.ActionBar.k kVar;
+    @Override
+    public final int compare(Object obj, Object obj2) {
         int i7;
-        org.telegram.ui.ActionBar.k kVar2;
-        ProfileActivity profileActivity = this.f50651n;
-        if (z10) {
-            mw0 mw0Var = profileActivity.N;
-            mw0Var.K = mw0Var.M;
-            mw0Var.L = mw0Var.N;
-            mw0Var.O = 0.0f;
-            mw0Var.P = 1;
+        int i10;
+        switch (this.f50778a) {
+            case 0:
+                if (obj instanceof tw0) {
+                    i7 = ((tw0) obj).f52494g;
+                } else if (obj instanceof org.telegram.messenger.yo) {
+                    i7 = ((org.telegram.messenger.yo) obj).d;
+                } else {
+                    i7 = 0;
+                }
+                if (obj2 instanceof tw0) {
+                    i10 = ((tw0) obj2).f52494g;
+                } else if (obj2 instanceof org.telegram.messenger.yo) {
+                    i10 = ((org.telegram.messenger.yo) obj2).d;
+                } else {
+                    i10 = 0;
+                }
+                if (i7 < i10) {
+                    return -1;
+                }
+                if (i7 <= i10) {
+                    return 0;
+                }
+                return 1;
+            case 1:
+                int i11 = (org.telegram.messenger.i10.i(((Integer) obj).intValue()).Z > org.telegram.messenger.i10.i(((Integer) obj2).intValue()).Z ? 1 : (org.telegram.messenger.i10.i(((Integer) obj).intValue()).Z == org.telegram.messenger.i10.i(((Integer) obj2).intValue()).Z ? 0 : -1));
+                if (i11 > 0) {
+                    return 1;
+                }
+                if (i11 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 2:
+                return Integer.compare(((org.telegram.ui.ActionBar.m6) obj).W, ((org.telegram.ui.ActionBar.m6) obj2).W);
+            case 3:
+                int i12 = (org.telegram.messenger.i10.i(((Integer) obj).intValue()).Z > org.telegram.messenger.i10.i(((Integer) obj2).intValue()).Z ? 1 : (org.telegram.messenger.i10.i(((Integer) obj).intValue()).Z == org.telegram.messenger.i10.i(((Integer) obj2).intValue()).Z ? 0 : -1));
+                if (i12 > 0) {
+                    return 1;
+                }
+                if (i12 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 4:
+                return Integer.compare(((org.telegram.ui.Wallet.r0) obj2).f44978b, ((org.telegram.ui.Wallet.r0) obj).f44978b);
+            case 5:
+                return Integer.compare(((TL_wallet.walletTransaction) obj2).date, ((TL_wallet.walletTransaction) obj).date);
+            case 6:
+                int i13 = (org.telegram.messenger.i10.i(((Integer) obj).intValue()).Z > org.telegram.messenger.i10.i(((Integer) obj2).intValue()).Z ? 1 : (org.telegram.messenger.i10.i(((Integer) obj).intValue()).Z == org.telegram.messenger.i10.i(((Integer) obj2).intValue()).Z ? 0 : -1));
+                if (i13 > 0) {
+                    return 1;
+                }
+                if (i13 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 7:
+                return (int) (((org.telegram.ui.web.j) obj2).f53405c - ((org.telegram.ui.web.j) obj).f53405c);
+            case 8:
+                return (int) (((org.telegram.ui.web.j) obj2).f53405c - ((org.telegram.ui.web.j) obj).f53405c);
+            case 9:
+                return Long.compare(((org.telegram.utils.twidget.k0) obj2).f54947y, ((org.telegram.utils.twidget.k0) obj).f54947y);
+            case 10:
+                return ((v4.f1) obj2).f59245a.getTop() - ((v4.f1) obj).f59245a.getTop();
+            case 11:
+                return ((s2.f) obj).f56894a.compareTo(((s2.f) obj2).f56894a);
+            case 12:
+                return (int) ((((ug.l1) obj).f58878a * 100.0f) - (((ug.l1) obj2).f58878a * 100.0f));
+            default:
+                return ((String) obj).compareTo((String) obj2);
         }
-        profileActivity.N.invalidate();
-        float measureText = this.f50647b.measureText(((String) this.f50650f.d(profileActivity.f43617o0.getCurrentItem())).toString());
-        float measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(54.0f);
-        RectF rectF = this.f50646a;
-        rectF.right = measuredWidth;
-        rectF.left = measuredWidth - (org.telegram.messenger.g0.N(16.0f) + measureText);
-        kVar = ((org.telegram.ui.ActionBar.g2) profileActivity).actionBar;
-        if (kVar != null) {
-            kVar2 = ((org.telegram.ui.ActionBar.g2) profileActivity).actionBar;
-            if (kVar2.getOccupyStatusBar()) {
-                i7 = org.telegram.messenger.g0.f24004m;
-                float L = org.telegram.messenger.g0.L(15.0f) + i7;
-                rectF.top = L;
-                rectF.bottom = L + org.telegram.messenger.g0.L(26.0f);
-                setPivotX(rectF.centerX());
-                setPivotY(rectF.centerY());
-                invalidate();
-            }
-        }
-        i7 = 0;
-        float L2 = org.telegram.messenger.g0.L(15.0f) + i7;
-        rectF.top = L2;
-        rectF.bottom = L2 + org.telegram.messenger.g0.L(26.0f);
-        setPivotX(rectF.centerX());
-        setPivotY(rectF.centerY());
-        invalidate();
-    }
-
-    public final void b(float f10) {
-        boolean z10;
-        ProfileActivity profileActivity = this.f50651n;
-        if (profileActivity.f43632q2 && profileActivity.f43617o0.getRealCount() > 20) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z10 != this.h) {
-            this.h = z10;
-            ValueAnimator valueAnimator = this.d;
-            valueAnimator.cancel();
-            float animatedFraction = valueAnimator.getAnimatedFraction();
-            float[] fArr = this.f50649e;
-            float U1 = org.telegram.messenger.g0.U1(animatedFraction, fArr);
-            float f11 = 0.0f;
-            if (f10 <= 0.0f) {
-                valueAnimator.setDuration(0L);
-            } else if (z10) {
-                valueAnimator.setDuration(((1.0f - U1) * 250.0f) / f10);
-            } else {
-                valueAnimator.setDuration((250.0f * U1) / f10);
-            }
-            fArr[0] = U1;
-            if (z10) {
-                f11 = 1.0f;
-            }
-            fArr[1] = f11;
-            valueAnimator.start();
-        }
-    }
-
-    public final void c() {
-        bv0 bv0Var;
-        ProfileActivity profileActivity = this.f50651n;
-        if (profileActivity.T0 != null && (bv0Var = profileActivity.f43617o0) != null && profileActivity.f43632q2) {
-            if (bv0Var.getRealPosition() == 0) {
-                profileActivity.T0.u(33);
-                profileActivity.T0.T(36);
-                return;
-            }
-            profileActivity.T0.T(33);
-            profileActivity.T0.u(36);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float N = org.telegram.messenger.g0.N(12.0f);
-        Paint paint = this.f50648c;
-        RectF rectF = this.f50646a;
-        canvas.drawRoundRect(rectF, N, N, paint);
-        canvas.drawText(((String) this.f50650f.d(this.f50651n.f43617o0.getCurrentItem())).toString(), rectF.centerX(), org.telegram.messenger.g0.N(18.5f) + rectF.top, this.f50647b);
-    }
-
-    @Override
-    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
-        a(false);
     }
 }

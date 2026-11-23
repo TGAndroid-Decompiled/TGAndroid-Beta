@@ -1,113 +1,73 @@
 package org.telegram.messenger;
 
-import java.io.Serializable;
+import android.graphics.Typeface;
+import android.text.TextUtils;
+import android.util.LruCache;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class l10 implements Runnable {
-    public final int f25151a;
-    public final Object f25152b;
-    public final Serializable f25153c;
-    public final Object d;
-    public final Object f25154e;
+public final class l10 {
+    public final int f25438a;
+    public final LruCache f25439b = new LruCache(100);
+    public final HashMap f25440c = new HashMap();
 
-    public l10(Object obj, Serializable serializable, Object obj2, Object obj3, int i7) {
-        this.f25151a = i7;
-        this.f25152b = obj;
-        this.f25153c = serializable;
-        this.d = obj2;
-        this.f25154e = obj3;
+    public l10(int i7) {
+        this.f25438a = i7;
     }
 
-    @Override
-    public final void run() {
-        org.telegram.ui.ActionBar.g2 Q;
-        int i7 = this.f25151a;
-        int i10 = 0;
-        Object obj = this.f25154e;
-        Object obj2 = this.d;
-        Serializable serializable = this.f25153c;
-        Object obj3 = this.f25152b;
-        switch (i7) {
-            case 0:
-                n10 n10Var = (n10) obj3;
-                String str = (String) serializable;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                TLObject tLObject = (TLObject) obj;
-                int i11 = n10Var.f25681a;
-                ArrayList arrayList = (ArrayList) n10Var.f25683c.remove(str);
-                if (arrayList != null) {
-                    if (tL_error != null) {
-                        String str2 = tL_error.text;
-                        if (str2 != null && "STARREF_EXPIRED".equals(str2)) {
-                            while (i10 < arrayList.size()) {
-                                ((y10) arrayList.get(i10)).a(Long.MAX_VALUE);
-                                i10++;
-                            }
-                            return;
-                        }
-                        while (i10 < arrayList.size()) {
-                            ((y10) arrayList.get(i10)).a(null);
-                            i10++;
-                        }
-                        String str3 = tL_error.text;
-                        if (str3 != null && str3.contains("FLOOD_WAIT") && (Q = LaunchActivity.Q()) != null) {
-                            f3.o(null, 2131750670, org.telegram.ui.Components.lc.b0(Q), null);
-                            return;
-                        }
-                        return;
-                    }
-                    TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
-                    np.u1(i11).f4(tL_contacts_resolvedPeer.users, false);
-                    np.u1(i11).Z3(tL_contacts_resolvedPeer.chats, false);
-                    ur.a0(i11).m1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
-                    long B1 = gj.B1(tL_contacts_resolvedPeer.peer);
-                    n10Var.f25682b.put(str, new m10(B1));
-                    while (i10 < arrayList.size()) {
-                        ((y10) arrayList.get(i10)).a(Long.valueOf(B1));
-                        i10++;
-                    }
-                    return;
+    public final l7 a(String str, String str2, w10 w10Var) {
+        TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername;
+        if (TextUtils.isEmpty(str2)) {
+            LruCache lruCache = this.f25439b;
+            k10 k10Var = (k10) lruCache.get(str);
+            if (k10Var != null) {
+                long j3 = k10Var.f25066a;
+                if (System.currentTimeMillis() - k10Var.f25067b < 3600000) {
+                    w10Var.a(Long.valueOf(j3));
+                    a8.b("resolve username from cache " + str + " " + j3);
+                    return null;
                 }
-                return;
-            default:
-                h10 h10Var = (h10) obj3;
-                HashSet hashSet = (HashSet) obj2;
-                ArrayList arrayList2 = (ArrayList) obj;
-                int i12 = h10Var.f24322a;
-                np.u1(i12).f4((ArrayList) serializable, true);
-                ArrayList arrayList3 = h10Var.f24323b;
-                boolean isEmpty = arrayList3.isEmpty();
-                int i13 = 0;
-                while (i13 < arrayList3.size()) {
-                    g10 g10Var = (g10) arrayList3.get(i13);
-                    if (g10Var != null) {
-                        h10 h10Var2 = g10Var.f24030i;
-                        if ((ConnectionsManager.getInstance(h10Var2.f24322a).getCurrentTime() + np.u1(h10Var2.f24322a).f25902q4) - g10Var.d > 0 && !hashSet.contains(Long.valueOf(g10Var.f24026b))) {
-                            i13++;
-                        }
-                    }
-                    arrayList3.remove(i13);
-                    i13--;
-                    i13++;
-                }
-                arrayList3.addAll(arrayList2);
-                boolean isEmpty2 = arrayList3.isEmpty();
-                h10Var.f24324c = true;
-                h10Var.d = false;
-                if (isEmpty != isEmpty2) {
-                    ls.f(i12).k(201, new Object[0]);
-                }
-                h10Var.e();
-                if (h10Var.f24325e) {
-                    h10Var.f24325e = false;
-                    h10Var.d();
-                    return;
-                }
-                return;
+                lruCache.remove(str);
+            }
+        }
+        HashMap hashMap = this.f25440c;
+        ArrayList arrayList = (ArrayList) hashMap.get(str);
+        if (arrayList != null) {
+            arrayList.add(w10Var);
+            return null;
+        }
+        ArrayList arrayList2 = new ArrayList();
+        arrayList2.add(w10Var);
+        hashMap.put(str, arrayList2);
+        Typeface typeface = g0.f24198a;
+        try {
+            Double.parseDouble(str);
+            TLRPC.TL_contacts_resolvePhone tL_contacts_resolvePhone = new TLRPC.TL_contacts_resolvePhone();
+            tL_contacts_resolvePhone.phone = str;
+            tL_contacts_resolveUsername = tL_contacts_resolvePhone;
+        } catch (NumberFormatException unused) {
+            TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername2 = new TLRPC.TL_contacts_resolveUsername();
+            tL_contacts_resolveUsername2.username = str;
+            if (!TextUtils.isEmpty(str2)) {
+                tL_contacts_resolveUsername2.flags |= 1;
+                tL_contacts_resolveUsername2.referer = str2;
+            }
+            tL_contacts_resolveUsername = tL_contacts_resolveUsername2;
+        }
+        return new l7(this, str, ConnectionsManager.getInstance(this.f25438a).sendRequest(tL_contacts_resolveUsername, new t4(10, this, str)), 23);
+    }
+
+    public final void b(TLRPC.User user, TLRPC.User user2) {
+        String str;
+        if (user != null && user2 != null && (str = user.username) != null && !TextUtils.equals(str, user2.username)) {
+            String str2 = user.username;
+            LruCache lruCache = this.f25439b;
+            lruCache.remove(str2);
+            String str3 = user2.username;
+            if (str3 != null) {
+                lruCache.put(str3, new k10(user2.f28641id));
+            }
         }
     }
 }

@@ -1,168 +1,204 @@
 package hi;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
 import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.style.ImageSpan;
+import android.text.Spanned;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hd;
-import org.telegram.ui.Components.nr;
-public final class o5 extends View {
-    public final Paint f15117a;
-    public final Paint f15118b;
-    public final StaticLayout f15119c;
-    public final float d;
-    public final float f15120e;
-    public final int f15121f;
-    public final int h;
-    public final boolean f15122n;
-    public final org.telegram.ui.Components.d6 f15123r;
-    public boolean f15124s;
-    public float f15125w;
-    public ValueAnimator f15126x;
-    public final p5 f15127y;
+import java.util.ArrayList;
+import org.telegram.messenger.bj;
+import org.telegram.messenger.gd;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.j41;
+import org.telegram.ui.Components.qx;
+public final class o5 implements qx {
+    public final v5 f15156a;
 
-    public o5(p5 p5Var, Context context, String str, boolean z10) {
-        super(context);
-        CharSequence upperCase;
-        float f10;
-        this.f15127y = p5Var;
-        TextPaint textPaint = new TextPaint(1);
-        Paint paint = new Paint(1);
-        this.f15117a = paint;
-        Paint paint2 = new Paint(1);
-        this.f15118b = paint2;
-        this.f15123r = new org.telegram.ui.Components.d6(this, 0L, 220L, nr.h);
-        this.f15124s = true;
-        this.f15122n = z10;
-        paint.setColor(-15098625);
-        paint2.setColor(1610612736);
-        textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
-        textPaint.setColor(-1);
-        textPaint.setTypeface(org.telegram.messenger.g0.o());
-        if (z10) {
-            SpannableString spannableString = new SpannableString(">");
-            Drawable mutate = getResources().getDrawable(2131230875).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-            mutate.setBounds(0, 0, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
-            spannableString.setSpan(new ImageSpan(mutate, 2), 0, spannableString.length(), 33);
-            if (hd.f24408a0) {
-                upperCase = new SpannableStringBuilder(spannableString).append((CharSequence) "\u2009").append((CharSequence) str.toUpperCase());
-            } else {
-                upperCase = new SpannableStringBuilder(str.toUpperCase()).append((CharSequence) "\u2009").append((CharSequence) spannableString);
-            }
-        } else {
-            upperCase = str.toUpperCase();
-        }
-        StaticLayout staticLayout = new StaticLayout(upperCase, textPaint, org.telegram.messenger.g0.L(180.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f15119c = staticLayout;
-        if (staticLayout.getLineCount() > 0) {
-            f10 = staticLayout.getLineLeft(0);
-        } else {
-            f10 = 0.0f;
-        }
-        this.d = f10;
-        float lineWidth = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
-        this.f15120e = lineWidth;
-        int L = org.telegram.messenger.g0.L(48.0f) + ((int) lineWidth);
-        this.f15121f = L;
-        if (!z10) {
-            this.f15121f = Math.max(org.telegram.messenger.g0.L(80.0f), L);
-        }
-        this.h = org.telegram.messenger.g0.L(40.0f);
-        setOnClickListener(new p4(this, 1));
+    public o5(v5 v5Var) {
+        this.f15156a = v5Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f10;
-        float f11 = 0.0f;
-        if (isPressed()) {
-            float f12 = this.f15125w;
-            if (f12 != 1.0f) {
-                float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f24011r) / 80.0f) + f12;
-                this.f15125w = min;
-                this.f15125w = Utilities.i(min, 1.0f, 0.0f);
-                invalidate();
-            }
-        }
-        if (this.f15124s) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.5f;
-        }
-        float e10 = this.f15123r.e(false, f10);
-        int saveCount = canvas.getSaveCount();
-        if (e10 < 1.0f) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (e10 * 255.0f), 31);
-        }
-        float f13 = ((1.0f - this.f15125w) * 0.1f) + 0.9f;
-        canvas.save();
-        canvas.scale(f13, f13, getWidth() / 2.0f, getHeight() / 2.0f);
-        canvas.drawRect(org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(4.0f), getWidth() - org.telegram.messenger.g0.L(25.0f), getHeight() - org.telegram.messenger.g0.L(4.0f), this.f15118b);
-        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(4.0f), getWidth() - org.telegram.messenger.g0.L(10.0f), getHeight() - org.telegram.messenger.g0.L(4.0f));
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f), this.f15117a);
-        canvas.save();
-        float f14 = (this.f15121f - this.f15120e) / 2.0f;
-        if (this.f15122n) {
-            f11 = 3.0f;
-        }
-        float L = (f14 + org.telegram.messenger.g0.L(f11)) - this.d;
-        int height = getHeight();
-        StaticLayout staticLayout = this.f15119c;
-        canvas.translate(L, (height - staticLayout.getHeight()) / 2.0f);
-        staticLayout.draw(canvas);
-        canvas.restore();
-        canvas.restoreToCount(saveCount);
+    public final boolean A() {
+        return false;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Button");
+    public final long a() {
+        return 0L;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f15121f, 1073741824), View.MeasureSpec.makeMeasureSpec(this.h, 1073741824));
+    public final boolean b() {
+        return false;
     }
 
     @Override
-    public final void setPressed(boolean z10) {
-        ValueAnimator valueAnimator;
-        if (isPressed() != z10) {
-            super.setPressed(z10);
-            invalidate();
-            if (z10 && (valueAnimator = this.f15126x) != null) {
-                valueAnimator.removeAllListeners();
-                this.f15126x.cancel();
-            }
-            if (!z10) {
-                float f10 = this.f15125w;
-                if (f10 != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
-                    this.f15126x = ofFloat;
-                    ofFloat.addUpdateListener(new j3(this, 3));
-                    this.f15126x.addListener(new ai.f0(this, 24));
-                    org.telegram.ui.Cells.c0.q(1.5f, this.f15126x);
-                    this.f15126x.setDuration(350L);
-                    this.f15126x.start();
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        tg.f editText = ((tg.q2) this.f15156a.f15590t0).getEditText();
+        if (editText == null || editText.length() == 0) {
+            return false;
+        }
+        editText.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
+    }
+
+    @Override
+    public final void l(String str) {
+        tg.q2 q2Var;
+        tg.f editText;
+        org.telegram.messenger.g6[] g6VarArr;
+        tg.n nVar = this.f15156a.f15590t0;
+        if (!(nVar instanceof tg.q2) || (editText = (q2Var = (tg.q2) nVar).getEditText()) == null) {
+            return;
+        }
+        int selectionEnd = editText.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            CharSequence m10 = org.telegram.messenger.j6.m(str, q2Var.getFontMetricsInt(), false, null, 0);
+            if ((m10 instanceof Spanned) && (g6VarArr = (org.telegram.messenger.g6[]) ((Spanned) m10).getSpans(0, m10.length(), org.telegram.messenger.g6.class)) != null) {
+                for (org.telegram.messenger.g6 g6Var : g6VarArr) {
+                    g6Var.f24275b = 0.85f;
                 }
             }
+            editText.setText(editText.getText().insert(selectionEnd, m10));
+            int length = selectionEnd + m10.length();
+            editText.setSelection(length, length);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        } catch (Throwable th2) {
+            throw th2;
         }
+    }
+
+    @Override
+    public final void n() {
+        v5 v5Var = this.f15156a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, v5Var.getContext(), v5Var.f15585q1);
+        String N0 = gd.N0(2131752056, null);
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28835a;
+        t1Var.S = N0;
+        t1Var.U = gd.N0(2131752057, null);
+        alertDialog$Builder.k(gd.N0(2131752087, null), new di.v6(this, 24));
+        alertDialog$Builder.h(gd.N0(2131752577, null), null);
+        alertDialog$Builder.p();
+    }
+
+    @Override
+    public final float p() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
+        org.telegram.ui.Components.x5 x5Var;
+        tg.f editText = ((tg.q2) this.f15156a.f15590t0).getEditText();
+        if (editText == null) {
+            return;
+        }
+        int selectionEnd = editText.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            SpannableString spannableString = new SpannableString(str);
+            if (document != null) {
+                x5Var = new org.telegram.ui.Components.x5(document.f28498id, 1.0f, editText.getPaint().getFontMetricsInt());
+                x5Var.document = document;
+            } else {
+                x5Var = new org.telegram.ui.Components.x5(j3, 1.0f, editText.getPaint().getFontMetricsInt());
+            }
+            spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
+            editText.setText(editText.getText().insert(selectionEnd, spannableString));
+            int length = selectionEnd + spannableString.length();
+            editText.setSelection(length, length);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        } catch (Throwable th2) {
+            throw th2;
+        }
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void i(int i7) {
+    }
+
+    @Override
+    public final void o(j41 j41Var) {
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void s(int i7) {
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j3) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, bj bjVar, boolean z10, int i7) {
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i7, int i10) {
     }
 }

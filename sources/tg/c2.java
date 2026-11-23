@@ -1,67 +1,74 @@
 package tg;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.ui.Components.d6;
-import org.telegram.ui.Components.nr;
-public final class c2 {
-    public boolean f57755b;
-    public int f57756c;
-    public Bitmap d;
-    public Bitmap f57757e;
-    public Bitmap f57758f;
-    public Bitmap f57759g;
-    public float f57761j;
-    public float f57762k;
-    public int f57765n;
-    public float[] f57766o;
-    public final Paint f57769r;
-    public final Paint f57770s;
-    public final f2 f57771t;
-    public final d6 f57754a = new d6(0.0f, (View) null, 0, 320, nr.h);
-    public final RectF h = new RectF();
-    public final RectF f57760i = new RectF();
-    public final Path f57763l = new Path();
-    public final Path f57764m = new Path();
-    public final Paint f57767p = new Paint(1);
-    public final Paint f57768q = new Paint(1);
+import android.animation.ValueAnimator;
+import org.telegram.ui.Components.Premium.LimitPreviewView;
+public final class c2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f57864a;
+    public final Object f57865b;
 
-    public c2(f2 f2Var) {
-        this.f57771t = f2Var;
-        new Paint(1);
-        this.f57769r = new Paint(1);
-        this.f57770s = new Paint(1);
+    public c2(Object obj, int i7) {
+        this.f57864a = i7;
+        this.f57865b = obj;
     }
 
-    public final Bitmap a() {
-        Bitmap bitmap = this.f57759g;
-        if (bitmap != null) {
-            return bitmap;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float f10;
+        int i7 = this.f57864a;
+        Object obj = this.f57865b;
+        switch (i7) {
+            case 0:
+                i2 i2Var = (i2) obj;
+                i2Var.getClass();
+                i2Var.S = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 1:
+                o2 o2Var = (o2) obj;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o2Var.E = floatValue;
+                ai.l2 l2Var = o2Var.f58154c;
+                l2Var.setAlpha(floatValue);
+                l2Var.setScaleX(org.telegram.messenger.g0.T1(0.9f, 1.0f, o2Var.E));
+                l2Var.setScaleY(org.telegram.messenger.g0.T1(0.9f, 1.0f, o2Var.E));
+                o2Var.f58153b.invalidate();
+                return;
+            case 2:
+                LimitPreviewView limitPreviewView = (LimitPreviewView) obj;
+                int i10 = LimitPreviewView.f33123p0;
+                limitPreviewView.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (floatValue2 < 0.5f) {
+                    f10 = (floatValue2 / 0.5f) * (-7.0f);
+                } else {
+                    f10 = (1.0f - ((floatValue2 - 0.5f) / 0.5f)) * (-7.0f);
+                }
+                limitPreviewView.f33129c0 = f10;
+                return;
+            case 3:
+                ug.r0 r0Var = (ug.r0) obj;
+                r0Var.P = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r0Var.f58984f.invalidate();
+                ug.q0 q0Var = r0Var.h;
+                if (q0Var != null) {
+                    q0Var.invalidate();
+                    return;
+                }
+                return;
+            case 4:
+                ((ug.t1) obj).f59038a.f59023o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 5:
+                ((vg.e) obj).f59541a.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 6:
+                wg.b bVar = (wg.b) obj;
+                bVar.getClass();
+                bVar.f59829b = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                bVar.invalidate();
+                return;
+            default:
+                ((wi.h) obj).f60084m.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
-        return this.f57758f;
-    }
-
-    public final Bitmap b() {
-        Bitmap bitmap = this.f57757e;
-        if (bitmap != null) {
-            return bitmap;
-        }
-        return this.d;
-    }
-
-    public final Bitmap c() {
-        Bitmap createBitmap = Bitmap.createBitmap(b().getWidth(), b().getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        canvas.drawColor(-16777216);
-        Paint paint = new Paint(3);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        canvas.drawBitmap(b(), 0.0f, 0.0f, paint);
-        return createBitmap;
     }
 }

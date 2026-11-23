@@ -4,16 +4,16 @@ import a8.ma;
 import h2.l0;
 import h9.g0;
 import h9.i0;
-import h9.o1;
-import h9.t1;
+import h9.n1;
+import h9.s1;
 import java.util.List;
 public final class b implements d {
-    public static final h9.n f4370c = new h9.n(new a3.l(25), o1.f14028b);
+    public static final h9.n f4370c = new h9.n(new a3.l(25), n1.f14019b);
     public final i0 f4371a;
     public final long[] f4372b;
 
-    public b(h9.t1 r19) {
-        throw new UnsupportedOperationException("Method not decompiled: c4.b.<init>(h9.t1):void");
+    public b(h9.s1 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: c4.b.<init>(h9.s1):void");
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class b implements d {
     }
 
     @Override
-    public final long h(int i7) {
+    public final long i(int i7) {
         boolean z10;
         if (i7 < this.f4371a.size()) {
             z10 = true;
@@ -38,17 +38,17 @@ public final class b implements d {
     }
 
     @Override
-    public final List m(long j3) {
+    public final List k(long j3) {
         int f10 = l0.f(this.f4372b, j3, false);
         if (f10 == -1) {
-            g0 g0Var = i0.f13998b;
-            return t1.f14066e;
+            g0 g0Var = i0.f13995b;
+            return s1.f14058e;
         }
         return (i0) this.f4371a.get(f10);
     }
 
     @Override
-    public final int p() {
+    public final int m() {
         return this.f4371a.size();
     }
 }

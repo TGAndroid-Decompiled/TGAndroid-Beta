@@ -3,14 +3,14 @@ package hh;
 import android.graphics.Color;
 import gh.e;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
 public final class b extends e {
-    public final h6 f14157s;
+    public final i6 f14157s;
 
-    public b(h6 h6Var, h6 h6Var2) {
-        super(h6Var);
-        this.f14157s = h6Var2;
+    public b(i6 i6Var, i6 i6Var2) {
+        super(i6Var);
+        this.f14157s = i6Var2;
     }
 
     @Override
@@ -19,45 +19,45 @@ public final class b extends e {
     }
 
     @Override
+    public final int D0() {
+        i6 i6Var = this.f14157s;
+        if (n6.i1(i6Var)) {
+            return n6.w0(n6.f29809wa, i6Var);
+        }
+        return 0;
+    }
+
+    @Override
     public final int D1() {
-        h6 h6Var = this.f14157s;
-        if (m6.i1(h6Var)) {
-            return m6.w0(m6.ya, h6Var);
+        i6 i6Var = this.f14157s;
+        if (n6.i1(i6Var)) {
+            return n6.w0(n6.ya, i6Var);
         }
         return 0;
     }
 
     @Override
-    public final int M0() {
-        h6 h6Var = this.f14157s;
-        if (m6.i1(h6Var)) {
-            return m6.w0(m6.f29705wa, h6Var);
-        }
-        return 0;
-    }
-
-    @Override
-    public final int U0() {
+    public final int Q0() {
         int a10 = a(this.d);
-        h6 h6Var = this.f14157s;
-        if (m6.i1(h6Var) && Color.alpha(m6.w0(m6.f29705wa, h6Var)) != 0) {
+        i6 i6Var = this.f14157s;
+        if (n6.i1(i6Var) && Color.alpha(n6.w0(n6.f29809wa, i6Var)) != 0) {
             return 0;
         }
         return a10;
     }
 
     @Override
-    public final int W1() {
-        h6 h6Var = this.f14157s;
-        if (m6.i1(h6Var)) {
-            return m6.w0(m6.f29724xa, h6Var);
+    public final int X1() {
+        i6 i6Var = this.f14157s;
+        if (n6.i1(i6Var)) {
+            return n6.w0(n6.f29828xa, i6Var);
         }
         return a(this.f13618b);
     }
 
     @Override
     public final float b() {
-        if (m6.i1(this.f14157s)) {
+        if (n6.i1(this.f14157s)) {
             return g0.N(1.0f);
         }
         return this.f13623r;
@@ -65,17 +65,17 @@ public final class b extends e {
 
     @Override
     public final float c() {
-        if (m6.i1(this.f14157s)) {
+        if (n6.i1(this.f14157s)) {
             return g0.N(2.25f);
         }
         return this.f13622n;
     }
 
     @Override
-    public final int t0() {
+    public final int i0() {
         int a10 = a(this.f13619c);
-        h6 h6Var = this.f14157s;
-        if (m6.i1(h6Var) && Color.alpha(m6.w0(m6.f29705wa, h6Var)) != 0) {
+        i6 i6Var = this.f14157s;
+        if (n6.i1(i6Var) && Color.alpha(n6.w0(n6.f29809wa, i6Var)) != 0) {
             return 0;
         }
         return a10;

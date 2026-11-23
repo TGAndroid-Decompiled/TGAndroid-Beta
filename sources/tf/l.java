@@ -2,9 +2,9 @@ package tf;
 
 import java.util.logging.Logger;
 public final class l extends rf.a {
-    public static final Logger f57732r = Logger.getLogger(l.class.getName());
+    public static final Logger f57846r = Logger.getLogger(l.class.getName());
 
-    public l(java.io.BufferedInputStream r25, long r26) {
+    public l(java.io.BufferedInputStream r26, long r27) {
         throw new UnsupportedOperationException("Method not decompiled: tf.l.<init>(java.io.BufferedInputStream, long):void");
     }
 

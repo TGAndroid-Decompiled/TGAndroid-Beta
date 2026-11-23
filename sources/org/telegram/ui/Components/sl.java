@@ -1,67 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
-public final class sl implements Runnable {
-    public final int f39569a;
-    public final ChatAttachAlertPhotoLayout f39570b;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.telegram.tgnet.TLRPC;
+public final class sl implements Comparator {
+    public final int f39636a;
+    public final Object f39637b;
 
-    public sl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i7) {
-        this.f39569a = i7;
-        this.f39570b = chatAttachAlertPhotoLayout;
+    public sl(Object obj, int i7) {
+        this.f39636a = i7;
+        this.f39637b = obj;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f39569a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f39570b;
+    public final int compare(Object obj, Object obj2) {
+        int indexOf;
+        int indexOf2;
+        int i7 = this.f39636a;
+        Object obj3 = this.f39637b;
         switch (i7) {
             case 0:
-                boolean z10 = ChatAttachAlertPhotoLayout.f32764r1;
-                chatAttachAlertPhotoLayout.f37477b.f30145c.removeView(chatAttachAlertPhotoLayout.Q);
-                chatAttachAlertPhotoLayout.Q = null;
-                return;
-            case 1:
-                boolean z11 = ChatAttachAlertPhotoLayout.f32764r1;
-                chatAttachAlertPhotoLayout.w0(false);
-                chatAttachAlertPhotoLayout.f32795o0 = null;
-                return;
-            case 2:
-                boolean z12 = ChatAttachAlertPhotoLayout.f32764r1;
-                chatAttachAlertPhotoLayout.w0(false);
-                chatAttachAlertPhotoLayout.f32795o0 = null;
-                return;
-            case 3:
-                chatAttachAlertPhotoLayout.f32810x.setVisibility(8);
-                return;
-            case 4:
-                chatAttachAlertPhotoLayout.H.f();
-                return;
-            case 5:
-                boolean z13 = ChatAttachAlertPhotoLayout.f32764r1;
-                ui uiVar = chatAttachAlertPhotoLayout.f37477b;
-                if (f0.d.b(uiVar.f40352a2.getParentActivity(), "android.permission.CAMERA") != 0) {
-                    try {
-                        uiVar.f40352a2.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 18);
-                        return;
-                    } catch (Exception unused) {
-                        return;
+                ArrayList arrayList = (ArrayList) obj3;
+                org.telegram.messenger.ue ueVar = (org.telegram.messenger.ue) obj;
+                org.telegram.messenger.ue ueVar2 = (org.telegram.messenger.ue) obj2;
+                boolean z10 = ChatAttachAlertPhotoLayout.f32862r1;
+                int i10 = ueVar.f27259a;
+                if (i10 != 0 || ueVar2.f27259a == 0) {
+                    if ((i10 != 0 && ueVar2.f27259a == 0) || (indexOf = arrayList.indexOf(ueVar)) > (indexOf2 = arrayList.indexOf(ueVar2))) {
+                        return 1;
+                    }
+                    if (indexOf >= indexOf2) {
+                        return 0;
                     }
                 }
-                chatAttachAlertPhotoLayout.l0();
-                return;
+                return -1;
             default:
-                boolean z14 = ChatAttachAlertPhotoLayout.f32764r1;
-                ui uiVar2 = chatAttachAlertPhotoLayout.f37477b;
-                try {
-                    if (Build.VERSION.SDK_INT >= 33) {
-                        uiVar2.f40352a2.getParentActivity().requestPermissions(new String[]{"android.permission.READ_MEDIA_VIDEO", "android.permission.READ_MEDIA_IMAGES"}, 4);
-                    } else {
-                        uiVar2.f40352a2.getParentActivity().requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
-                    }
-                    return;
-                } catch (Exception unused2) {
-                    return;
+                qy qyVar = ((ew) obj3).H0;
+                int indexOf3 = qyVar.f39050e1.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf4 = qyVar.f39050e1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                if (indexOf3 < 0 || indexOf4 < 0) {
+                    return 0;
                 }
+                return indexOf3 - indexOf4;
         }
     }
 }

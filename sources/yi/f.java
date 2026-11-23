@@ -1,6 +1,6 @@
 package yi;
 public interface f {
-    void D0(String str);
+    void B(String str, Throwable th2);
 
-    void F(String str, Throwable th2);
+    void u0(String str);
 }

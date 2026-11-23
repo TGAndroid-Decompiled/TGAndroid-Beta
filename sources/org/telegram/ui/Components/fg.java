@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
-public final class fg implements org.telegram.ui.vq0 {
-    public boolean f35206a;
-    public final Object f35207b;
-    public final Object f35208c;
-    public final org.telegram.messenger.ff d;
-    public final hg f35209e;
+public final class fg implements org.telegram.ui.uq0 {
+    public boolean f35124a;
+    public final Object f35125b;
+    public final Object f35126c;
+    public final org.telegram.messenger.ef d;
+    public final hg f35127e;
 
-    public fg(hg hgVar, Object obj, Object obj2, org.telegram.messenger.ff ffVar) {
-        this.f35209e = hgVar;
-        this.f35207b = obj;
-        this.f35208c = obj2;
-        this.d = ffVar;
+    public fg(hg hgVar, Object obj, Object obj2, org.telegram.messenger.ef efVar) {
+        this.f35127e = hgVar;
+        this.f35125b = obj;
+        this.f35126c = obj2;
+        this.d = efVar;
     }
 
     @Override
     public final boolean A() {
-        return this.f35206a;
+        return this.f35124a;
     }
 
     @Override
@@ -29,13 +29,13 @@ public final class fg implements org.telegram.ui.vq0 {
     }
 
     @Override
-    public final org.telegram.ui.xq0 E(org.telegram.messenger.gj gjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
+    public final org.telegram.ui.wq0 E(org.telegram.messenger.fj fjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
         return null;
     }
 
     @Override
     public final void F(boolean z10) {
-        this.f35206a = z10;
+        this.f35124a = z10;
     }
 
     @Override
@@ -99,7 +99,7 @@ public final class fg implements org.telegram.ui.vq0 {
     }
 
     @Override
-    public final org.telegram.messenger.gj V() {
+    public final org.telegram.messenger.fj V() {
         return null;
     }
 
@@ -135,12 +135,12 @@ public final class fg implements org.telegram.ui.vq0 {
 
     @Override
     public final void d() {
-        hi.g gVar;
+        hi.h hVar;
         yc b12 = PhotoViewer.p1().b1();
-        if (b12 != null && (gVar = b12.f14971f) != null) {
-            tt ttVar = gVar.f42495a;
-            ttVar.requestFocus();
-            org.telegram.messenger.g0.I3(ttVar);
+        if (b12 != null && (hVar = b12.f14936f) != null) {
+            rt rtVar = hVar.f41719a;
+            rtVar.requestFocus();
+            org.telegram.messenger.g0.I3(rtVar);
         }
     }
 
@@ -155,12 +155,12 @@ public final class fg implements org.telegram.ui.vq0 {
     }
 
     @Override
-    public final org.telegram.messenger.ic j(int i7) {
+    public final org.telegram.messenger.hc j(int i7) {
         return null;
     }
 
     @Override
-    public final int k(int i7, org.telegram.messenger.f20 f20Var) {
+    public final int k(int i7, org.telegram.messenger.d20 d20Var) {
         return 0;
     }
 
@@ -170,8 +170,8 @@ public final class fg implements org.telegram.ui.vq0 {
     }
 
     @Override
-    public final void o(int i7, org.telegram.messenger.f20 f20Var, boolean z10, int i10, int i11, boolean z11) {
-        this.f35209e.B(null, this.f35207b, null, this.f35208c, z10, i10, i11, this.d, this.f35206a);
+    public final void o(int i7, org.telegram.messenger.d20 d20Var, boolean z10, int i10, int i11, boolean z11) {
+        this.f35127e.B(null, this.f35125b, null, this.f35126c, z10, i10, i11, this.d, this.f35124a);
     }
 
     @Override
@@ -229,7 +229,7 @@ public final class fg implements org.telegram.ui.vq0 {
     }
 
     @Override
-    public final void M(org.telegram.messenger.f20 f20Var) {
+    public final void M(org.telegram.messenger.d20 d20Var) {
     }
 
     @Override

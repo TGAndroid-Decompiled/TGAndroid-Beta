@@ -1,38 +1,45 @@
 package vg;
-public final class l implements Runnable {
-    public final int f59463a;
-    public final m f59464b;
 
-    public l(m mVar, int i7) {
-        this.f59463a = i7;
-        this.f59464b = mVar;
+import android.graphics.SurfaceTexture;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.g0;
+public final class l extends Thread {
+    public final SurfaceTexture f59585a;
+    public volatile boolean f59586b;
+    public boolean f59587c;
+    public final m d;
+
+    public l(m mVar, SurfaceTexture surfaceTexture) {
+        this.d = mVar;
+        this.f59585a = surfaceTexture;
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: vg.l.a():void");
     }
 
     @Override
     public final void run() {
-        switch (this.f59463a) {
-            case 0:
-                m mVar = this.f59464b;
-                if (mVar.d.K == mVar) {
-                    mVar.d.f59469a0 = false;
-                    mVar.d.f59471b0 = null;
-                    mVar.d.i();
+        synchronized (this.d.d) {
+            try {
+                if (this.f59586b) {
                     return;
                 }
-                return;
-            default:
-                m mVar2 = this.f59464b;
-                if (mVar2.d.K == mVar2 && !mVar2.f59466b) {
-                    mVar2.d.f59469a0 = true;
-                    Runnable runnable = mVar2.d.f59471b0;
-                    mVar2.d.f59471b0 = null;
-                    if (runnable != null) {
-                        runnable.run();
-                        return;
+                m mVar = this.d;
+                mVar.f59592c = this.f59585a;
+                mVar.I = true;
+                try {
+                    a();
+                } catch (Exception e10) {
+                    if (!this.f59586b) {
+                        a8.g(e10, true);
+                        g0.g3(new k(this, 0));
                     }
-                    return;
                 }
-                return;
+                m.b(this.d);
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
     }
 }

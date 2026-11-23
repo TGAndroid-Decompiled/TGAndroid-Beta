@@ -1,121 +1,65 @@
 package org.telegram.ui.Components;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import org.telegram.messenger.Utilities;
-public final class vb extends GestureDetector.SimpleOnGestureListener {
-    public final lb f40713a;
-    public final za f40714b;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+public final class vb extends FrameLayout {
+    public final c6 f40617a;
+    public final c6 f40618b;
+    public final Paint f40619c;
+    public final RectF d;
+    public final long f40620e;
+    public final wb f40621f;
 
-    public vb(za zaVar, lb lbVar) {
-        this.f40714b = zaVar;
-        this.f40713a = lbVar;
+    public vb(wb wbVar, Activity activity) {
+        super(activity);
+        this.f40621f = wbVar;
+        kr krVar = kr.h;
+        this.f40617a = new c6(this, 320L, krVar);
+        this.f40618b = new c6(this, 320L, krVar);
+        Paint paint = new Paint(1);
+        this.f40619c = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(268435455);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.66f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        this.d = new RectF();
+        this.f40620e = System.currentTimeMillis();
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        za zaVar = this.f40714b;
-        if (zaVar.f42707s) {
-            return false;
-        }
-        lb lbVar = this.f40713a;
-        zaVar.f42708w = lb.access$1600(lbVar, true);
-        zaVar.f42709x = lb.access$1600(lbVar, false);
-        return true;
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        boolean z10 = false;
-        if (Math.abs(f10) <= 2000.0f) {
-            return false;
-        }
-        int i7 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
-        za zaVar = this.f40714b;
-        if ((i7 < 0 && zaVar.f42708w) || (f10 > 0.0f && zaVar.f42709x)) {
+    public final void onDraw(Canvas canvas) {
+        boolean z10;
+        int i7;
+        wb wbVar = this.f40621f;
+        float e10 = this.f40617a.e(false, wbVar.f41567a);
+        if (wbVar.f41567a >= 1.0f) {
             z10 = true;
+        } else {
+            z10 = false;
         }
-        float signum = Math.signum(f10);
-        lb lbVar = this.f40713a;
-        r1.g gVar = new r1.g(lbVar, r1.g.f56316o, signum * lbVar.getWidth() * 2.0f);
-        if (!z10) {
-            gVar.a(new r1.c(this) {
-                public final vb f39767b;
-
-                {
-                    this.f39767b = this;
-                }
-
-                @Override
-                public final void a(r1.g gVar2, boolean z11, float f12, float f13) {
-                    switch (r2) {
-                        case 0:
-                            this.f39767b.f40714b.E.b();
-                            return;
-                        default:
-                            this.f39767b.f40714b.E.b();
-                            return;
-                    }
-                }
-            });
-            gVar.b(new j7(lbVar, 2));
+        float d = this.f40618b.d(z10);
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        RectF rectF = this.d;
+        rectF.set(width - org.telegram.messenger.g0.N(13.0f), height - org.telegram.messenger.g0.N(13.0f), org.telegram.messenger.g0.N(13.0f) + width, org.telegram.messenger.g0.N(13.0f) + height);
+        float currentTimeMillis = (((float) (System.currentTimeMillis() - this.f40620e)) * 0.45f) % 5400.0f;
+        float max = Math.max(0.0f, ((1520.0f * currentTimeMillis) / 5400.0f) - 20.0f);
+        for (int i10 = 0; i10 < 4; i10++) {
+            x1.a aVar = rp.h;
+            aVar.getInterpolation((currentTimeMillis - (i10 * 1350)) / 667.0f);
+            max += aVar.getInterpolation((currentTimeMillis - (i7 + 667)) / 667.0f) * 250.0f;
         }
-        gVar.f56333m.a(1.0f);
-        gVar.f56333m.b(100.0f);
-        gVar.f56323a = f10;
-        gVar.h();
-        if (z10) {
-            r1.g gVar2 = new r1.g((Object) lbVar, (r1.e) r1.g.v, 0.0f);
-            gVar2.a(new r1.c(this) {
-                public final vb f39767b;
-
-                {
-                    this.f39767b = this;
-                }
-
-                @Override
-                public final void a(r1.g gVar22, boolean z11, float f12, float f13) {
-                    switch (r2) {
-                        case 0:
-                            this.f39767b.f40714b.E.b();
-                            return;
-                        default:
-                            this.f39767b.f40714b.E.b();
-                            return;
-                    }
-                }
-            });
-            gVar2.b(new Object());
-            gVar.f56333m.a(1.0f);
-            gVar.f56333m.b(10.0f);
-            gVar.f56323a = f10;
-            gVar2.h();
+        int r12 = org.telegram.ui.ActionBar.n6.r1((1.0f - d) * 1.0f, -1);
+        Paint paint = this.f40619c;
+        paint.setColor(r12);
+        canvas.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, e10) * (-360.0f), false, paint);
+        if (e10 < 1.0f && d < 1.0f) {
+            invalidate();
         }
-        zaVar.f42707s = true;
-        return true;
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        za zaVar = this.f40714b;
-        float f12 = zaVar.h + f10;
-        zaVar.h = f12;
-        float f13 = zaVar.f42705n + f11;
-        zaVar.f42705n = f13;
-        if (Utilities.t(0.0f, 0.0f, f12, f13) > org.telegram.messenger.g0.f23989e) {
-            zaVar.f42706r = true;
-        }
-        if (!zaVar.d) {
-            return false;
-        }
-        float f14 = zaVar.f42704f - f10;
-        zaVar.f42704f = f14;
-        lb lbVar = this.f40713a;
-        lbVar.setTranslationX(f14);
-        float f15 = zaVar.f42704f;
-        if (f15 == 0.0f || ((f15 < 0.0f && zaVar.f42708w) || (f15 > 0.0f && zaVar.f42709x))) {
-            lbVar.setAlpha(1.0f - (Math.abs(f15) / lbVar.getWidth()));
-        }
-        return true;
+        super.onDraw(canvas);
     }
 }

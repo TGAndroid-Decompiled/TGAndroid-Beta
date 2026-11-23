@@ -1,64 +1,43 @@
 package sg;
 
-import android.graphics.SurfaceTexture;
-import android.view.TextureView;
-import org.telegram.ui.Components.ca;
-public final class q0 implements TextureView.SurfaceTextureListener {
-    public final ca f57335a;
-    public final u0 f57336b;
+import android.os.Looper;
+import org.telegram.ui.Wallet.o5;
+public final class q0 implements Runnable {
+    public final int f57445a;
+    public final r0 f57446b;
 
-    public q0(u0 u0Var, ca caVar) {
-        this.f57336b = u0Var;
-        this.f57335a = caVar;
+    public q0(r0 r0Var, int i7) {
+        this.f57445a = i7;
+        this.f57446b = r0Var;
     }
 
     @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
-        if (surfaceTexture != null) {
-            u0 u0Var = this.f57336b;
-            if (u0Var.d == null) {
-                s0 s0Var = new s0(u0Var, surfaceTexture, this.f57335a);
-                u0Var.d = s0Var;
-                s0Var.f57352n = i7;
-                s0Var.f57353r = i10;
-                u0Var.i();
-                u0Var.post(new p0(this, 1));
-                i0 i0Var = u0Var.f57368c;
-                if (i0Var.v) {
-                    i0Var.f57235f.f(new f0(i0Var, i0Var.f57250w, 0));
-                    i0Var.f57250w = null;
-                    i0Var.v = false;
+    public final void run() {
+        switch (this.f57445a) {
+            case 0:
+                r0 r0Var = this.f57446b;
+                o5 o5Var = r0Var.f57462x;
+                q0 q0Var = r0Var.f57460s;
+                if (q0Var != null) {
+                    r0Var.cancelRunnable(q0Var);
+                    r0Var.f57460s = null;
                 }
-            }
+                r0Var.cancelRunnable(o5Var);
+                r0Var.postRunnable(o5Var);
+                return;
+            case 1:
+                r0 r0Var2 = this.f57446b;
+                r0Var2.f57460s = null;
+                r0Var2.f57462x.run();
+                return;
+            default:
+                this.f57446b.finish();
+                Looper myLooper = Looper.myLooper();
+                if (myLooper != null) {
+                    myLooper.quit();
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        u0 u0Var = this.f57336b;
-        if (u0Var.d != null && !u0Var.E) {
-            i0 i0Var = u0Var.f57368c;
-            i0Var.f57235f.f(new p4.o0(8, i0Var, new p0(this, 2)));
-        }
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
-        u0 u0Var = this.f57336b;
-        s0 s0Var = u0Var.d;
-        if (s0Var == null) {
-            return;
-        }
-        s0Var.f57352n = i7;
-        s0Var.f57353r = i10;
-        u0Var.i();
-        s0 s0Var2 = u0Var.d;
-        s0Var2.postRunnable(s0Var2.f57356x);
-        u0Var.d.postRunnable(new p0(this, 0));
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

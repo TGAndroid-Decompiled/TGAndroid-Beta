@@ -1,66 +1,28 @@
 package org.telegram.messenger;
+public final class uz implements Runnable {
+    public final int f27403a;
+    public final d00 f27404b;
+    public final long f27405c;
 
-import java.util.ArrayList;
-public final class uz {
-    public final String f27261b;
-    public int f27260a = 0;
-    public final ArrayList d = new ArrayList();
-    public final long f27262c = System.currentTimeMillis();
-
-    public uz(String str) {
-        this.f27261b = str;
+    public uz(d00 d00Var, long j3, int i7) {
+        this.f27403a = i7;
+        this.f27404b = d00Var;
+        this.f27405c = j3;
     }
 
-    public static void a(tz tzVar) {
-        if (tzVar != null) {
-            if (tzVar.f27099b < 0) {
-                uz uzVar = tzVar.f27101e;
-                int i7 = uzVar.f27260a;
-                uzVar.f27260a = i7 - 1;
-                tzVar.d = i7;
-            }
-            tzVar.f27099b = System.currentTimeMillis();
+    @Override
+    public final void run() {
+        int i7 = this.f27403a;
+        long j3 = this.f27405c;
+        d00 d00Var = this.f27404b;
+        switch (i7) {
+            case 0:
+                d00Var.f23572c.put(j3, 0);
+                d00Var.getNotificationCenter().k(322, Long.valueOf(j3), Boolean.FALSE);
+                return;
+            default:
+                d00Var.n(0, j3, false);
+                return;
         }
-    }
-
-    public static void b(uz uzVar) {
-        if (uzVar != null) {
-            ArrayList arrayList = uzVar.d;
-            long currentTimeMillis = System.currentTimeMillis() - uzVar.f27262c;
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(uzVar.f27261b);
-            sb2.append(" total=");
-            sb2.append(currentTimeMillis);
-            sb2.append("ms\n");
-            for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                if (arrayList.get(i7) != null) {
-                    sb2.append("#");
-                    sb2.append(i7);
-                    int i10 = ((tz) arrayList.get(i7)).d;
-                    for (int i11 = 0; i11 < i10; i11++) {
-                        sb2.append(" ");
-                    }
-                    sb2.append(" ");
-                    sb2.append(arrayList.get(i7));
-                    sb2.append("\n");
-                }
-            }
-            a8.b(sb2.toString());
-        }
-    }
-
-    public static void c(uz uzVar, String str) {
-        if (uzVar != null) {
-            uzVar.d.add(new tz(uzVar, str));
-        }
-    }
-
-    public static tz d(uz uzVar, String str) {
-        if (uzVar != null) {
-            tz tzVar = new tz(uzVar, str);
-            uzVar.d.add(tzVar);
-            return tzVar;
-        }
-        return null;
     }
 }

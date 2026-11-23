@@ -2,10 +2,10 @@ package fi;
 
 import android.text.StaticLayout;
 public final class t7 {
-    public org.telegram.ui.Components.u5 f12583a;
-    public StaticLayout f12584b;
-    public float f12585c;
+    public org.telegram.ui.Components.t5 f12592a;
+    public StaticLayout f12593b;
+    public float f12594c;
     public float d;
-    public float f12586e;
-    public float f12587f;
+    public float f12595e;
+    public float f12596f;
 }

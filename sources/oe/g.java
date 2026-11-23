@@ -3,14 +3,14 @@ package oe;
 import c8.x9;
 import java.util.List;
 public final class g implements me.d {
-    public final me.d f21791a;
-    public final me.d f21792b;
+    public final me.d f21891a;
+    public final me.d f21892b;
 
     public g(me.d keyDesc, me.d valueDesc) {
         kotlin.jvm.internal.j.e(keyDesc, "keyDesc");
         kotlin.jvm.internal.j.e(valueDesc, "valueDesc");
-        this.f21791a = keyDesc;
-        this.f21792b = valueDesc;
+        this.f21891a = keyDesc;
+        this.f21892b = valueDesc;
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class g implements me.d {
         if (this != obj) {
             if (obj instanceof g) {
                 g gVar = (g) obj;
-                if (!kotlin.jvm.internal.j.a(this.f21791a, gVar.f21791a) || !kotlin.jvm.internal.j.a(this.f21792b, gVar.f21792b)) {
+                if (!kotlin.jvm.internal.j.a(this.f21891a, gVar.f21891a) || !kotlin.jvm.internal.j.a(this.f21892b, gVar.f21892b)) {
                     return false;
                 }
                 return true;
@@ -76,7 +76,7 @@ public final class g implements me.d {
     }
 
     public final int hashCode() {
-        return this.f21792b.hashCode() + ((this.f21791a.hashCode() + 710441009) * 31);
+        return this.f21892b.hashCode() + ((this.f21891a.hashCode() + 710441009) * 31);
     }
 
     @Override
@@ -85,11 +85,11 @@ public final class g implements me.d {
             int i10 = i7 % 2;
             if (i10 != 0) {
                 if (i10 == 1) {
-                    return this.f21792b;
+                    return this.f21892b;
                 }
                 throw new IllegalStateException("Unreached");
             }
-            return this.f21791a;
+            return this.f21891a;
         }
         throw new IllegalArgumentException(i5.c.j(i7, "Illegal index ", ", kotlin.collections.LinkedHashMap expects only non-negative indices").toString());
     }
@@ -108,6 +108,6 @@ public final class g implements me.d {
     }
 
     public final String toString() {
-        return "kotlin.collections.LinkedHashMap(" + this.f21791a + ", " + this.f21792b + ')';
+        return "kotlin.collections.LinkedHashMap(" + this.f21891a + ", " + this.f21892b + ')';
     }
 }

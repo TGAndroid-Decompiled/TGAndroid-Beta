@@ -3,10 +3,10 @@ package cg;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.messenger.i0;
-import org.telegram.messenger.k10;
-import org.telegram.messenger.np;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.tl.TL_stars;
 public final class a {
     public final b f5266a;
@@ -46,11 +46,11 @@ public final class a {
     public static a k(double d, b bVar) {
         b bVar2 = b.f5269b;
         if (bVar == bVar2) {
-            return new a((long) ((d / ((i0) np.u1(k10.f24932t0).A7.f26195l.f15680b).f24529a) * 1000000000), bVar2).o(2);
+            return new a((long) ((d / ((i0) mp.u1(i10.f24637t0).A7.f26246l.f13936b).f24630a) * 1000000000), bVar2).o(2);
         }
         b bVar3 = b.f5268a;
         if (bVar == bVar3) {
-            return new a((long) (((d * 100000.0d) / np.u1(k10.f24932t0).f25801e6) * 1000000000), bVar3).o(0);
+            return new a((long) (((d * 100000.0d) / mp.u1(i10.f24637t0).f25733e6) * 1000000000), bVar3).o(0);
         }
         return h(0L, bVar);
     }
@@ -93,7 +93,7 @@ public final class a {
     }
 
     public final String d() {
-        StringBuilder sb2 = new StringBuilder(hd.E(a(), ','));
+        StringBuilder sb2 = new StringBuilder(gd.E(a(), ','));
         long j3 = this.f5267b % 1000000000;
         if (j3 == 0) {
             return sb2.toString();
@@ -134,10 +134,10 @@ public final class a {
         b bVar = b.f5268a;
         b bVar2 = this.f5266a;
         if (bVar2 == bVar) {
-            return ((c() / 1000.0d) * np.u1(k10.f24932t0).f25801e6) / 100.0d;
+            return ((c() / 1000.0d) * mp.u1(i10.f24637t0).f25733e6) / 100.0d;
         }
         if (bVar2 == b.f5269b) {
-            return c() * ((i0) np.u1(k10.f24932t0).A7.f26195l.f15680b).f24529a;
+            return c() * ((i0) mp.u1(i10.f24637t0).A7.f26246l.f13936b).f24630a;
         }
         return 0.0d;
     }
@@ -149,20 +149,20 @@ public final class a {
             int ordinal = bVar.ordinal();
             if (ordinal != 0) {
                 if (ordinal == 1) {
-                    return hd.H(' ', "TonCount", (int) a());
+                    return gd.H(' ', "TonCount", (int) a());
                 }
                 return "";
             }
-            return hd.H(' ', "StarsCount", (int) a());
+            return gd.H(' ', "StarsCount", (int) a());
         }
         int ordinal2 = bVar.ordinal();
         if (ordinal2 != 0) {
             if (ordinal2 != 1) {
                 return "";
             }
-            return hd.a0(null, null, 2131743809, b());
+            return gd.a0(null, null, 2131743805, b());
         }
-        return hd.a0(null, null, 2131744872, b());
+        return gd.a0(null, null, 2131744872, b());
     }
 
     public final boolean l() {

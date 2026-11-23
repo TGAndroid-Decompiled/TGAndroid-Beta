@@ -2,7 +2,7 @@ package org.telegram.ui.ActionBar;
 
 import android.app.Dialog;
 import android.view.View;
-import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.kc;
 public interface c2 {
     void a(boolean z10);
 
@@ -20,7 +20,7 @@ public interface c2 {
 
     boolean j();
 
-    lc k();
+    kc k();
 
     void n(Runnable runnable);
 

@@ -1,99 +1,61 @@
 package org.telegram.ui;
 
-import android.util.SparseIntArray;
-import java.util.ArrayList;
+import android.content.Context;
+import android.widget.LinearLayout;
 import org.telegram.tgnet.TLRPC;
-public final class xe0 extends v4.o {
-    public int f53787b;
-    public int f53788c;
-    public int d;
-    public int f53789e;
-    public int f53790f;
-    public int f53791g;
-    public int h;
-    public final SparseIntArray f53792i = new SparseIntArray();
-    public final SparseIntArray f53793j = new SparseIntArray();
-    public final ArrayList f53794k = new ArrayList();
-    public final ArrayList f53795l = new ArrayList();
-    public final ff0 f53796m;
+public final class xe0 extends LinearLayout implements org.telegram.messenger.fs {
+    public final org.telegram.ui.Components.p9 f53956a;
+    public final int f53957b;
 
-    public xe0(ff0 ff0Var) {
-        this.f53796m = ff0Var;
+    public xe0(Context context) {
+        super(context);
+        this.f53957b = org.telegram.messenger.i10.f24637t0;
+        setPadding(0, org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f));
+        setOrientation(1);
+        org.telegram.ui.Components.p9 p9Var = new org.telegram.ui.Components.p9(context);
+        this.f53956a = p9Var;
+        addView(p9Var, c8.na.t(104, 104, 49, 0, 2, 0, 0));
     }
 
-    public static void g(int i7, int i10, SparseIntArray sparseIntArray) {
-        if (i10 >= 0) {
-            sparseIntArray.put(i10, i7);
+    public final void a() {
+        boolean z10;
+        int i7 = this.f53957b;
+        TLRPC.TL_messages_stickerSet r02 = org.telegram.messenger.ri.d0(i7).r0("tg_placeholders_android");
+        if (r02 == null) {
+            r02 = org.telegram.messenger.ri.d0(i7).p0("tg_placeholders_android");
+        }
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = r02;
+        if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 4) {
+            TLRPC.Document document = tL_messages_stickerSet.documents.get(3);
+            this.f53956a.k(org.telegram.messenger.fc.b(document), "104_104", "tgs", org.telegram.messenger.u5.f(document, org.telegram.ui.ActionBar.n6.f29394a7, 1.0f, null), tL_messages_stickerSet);
+            return;
+        }
+        org.telegram.messenger.ri d02 = org.telegram.messenger.ri.d0(i7);
+        if (tL_messages_stickerSet == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        d02.f1("tg_placeholders_android", false, z10);
+    }
+
+    @Override
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == org.telegram.messenger.ks.f25324y0 && "tg_placeholders_android".equals((String) objArr[0])) {
+            a();
         }
     }
 
     @Override
-    public final boolean a(int i7, int i10) {
-        return b(i7, i10);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
+        org.telegram.messenger.ks.f(this.f53957b).c(this, org.telegram.messenger.ks.f25324y0);
     }
 
     @Override
-    public final boolean b(int i7, int i10) {
-        int i11;
-        int i12;
-        TLRPC.TL_chatInviteExported tL_chatInviteExported;
-        TLRPC.TL_chatInviteExported tL_chatInviteExported2;
-        int i13 = this.f53788c;
-        ff0 ff0Var = this.f53796m;
-        if (((i7 >= i13 && i7 < this.d) || (i7 >= this.f53789e && i7 < this.f53790f)) && ((i10 >= (i12 = ff0Var.E) && i10 < ff0Var.F) || (i10 >= ff0Var.I && i10 < ff0Var.J))) {
-            if (i10 >= i12 && i10 < ff0Var.F) {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ff0Var.f47670j0.get(i10 - i12);
-            } else {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ff0Var.f47671k0.get(i10 - ff0Var.I);
-            }
-            int i14 = this.f53788c;
-            if (i7 >= i14 && i7 < this.d) {
-                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f53794k.get(i7 - i14);
-            } else {
-                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f53795l.get(i7 - this.f53789e);
-            }
-            return tL_chatInviteExported2.link.equals(tL_chatInviteExported.link);
-        }
-        int i15 = this.f53791g;
-        if (i7 >= i15 && i7 < this.h && i10 >= (i11 = ff0Var.V) && i10 < ff0Var.W) {
-            if (i7 - i15 != i10 - i11) {
-                return false;
-            }
-            return true;
-        }
-        int i16 = this.f53792i.get(i7, -1);
-        int i17 = this.f53793j.get(i10, -1);
-        if (i16 < 0 || i16 != i17) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int d() {
-        return this.f53796m.Y;
-    }
-
-    @Override
-    public final int e() {
-        return this.f53787b;
-    }
-
-    public final void f(SparseIntArray sparseIntArray) {
-        sparseIntArray.clear();
-        ff0 ff0Var = this.f53796m;
-        g(1, ff0Var.f47678r, sparseIntArray);
-        g(2, ff0Var.f47680s, sparseIntArray);
-        g(3, ff0Var.f47684w, sparseIntArray);
-        g(4, ff0Var.f47685x, sparseIntArray);
-        g(5, ff0Var.f47686y, sparseIntArray);
-        g(6, ff0Var.M, sparseIntArray);
-        g(7, ff0Var.O, sparseIntArray);
-        g(8, ff0Var.P, sparseIntArray);
-        g(9, ff0Var.R, sparseIntArray);
-        g(10, ff0Var.S, sparseIntArray);
-        g(11, ff0Var.T, sparseIntArray);
-        g(12, ff0Var.Q, sparseIntArray);
-        g(13, ff0Var.G, sparseIntArray);
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.messenger.ks.f(this.f53957b).n(this, org.telegram.messenger.ks.f25324y0);
     }
 }

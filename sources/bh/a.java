@@ -26,7 +26,7 @@ public final class a extends Drawable {
         textPaint.setTypeface(g0.o());
         textPaint.setTextSize(g0.L(12.0f));
         textPaint2.setColor(-6915073);
-        this.d = context.getDrawable(2131231929);
+        this.d = context.getDrawable(2131231932);
     }
 
     @Override

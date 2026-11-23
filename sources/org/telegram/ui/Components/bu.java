@@ -1,24 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class bu implements Runnable {
-    public final int f33888a;
-    public final View f33889b;
+import android.content.DialogInterface;
+public final class bu implements DialogInterface.OnShowListener {
+    public final gu f33815a;
 
-    public bu(int i7, View view) {
-        this.f33888a = i7;
-        this.f33889b = view;
+    public bu(gu guVar) {
+        this.f33815a = guVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33888a) {
-            case 0:
-                this.f33889b.callOnClick();
-                return;
-            default:
-                this.f33889b.invalidate();
-                return;
+    public final void onShow(DialogInterface dialogInterface) {
+        gu guVar = this.f33815a;
+        a81 a81Var = guVar.n1;
+        if (guVar.N0() && a81Var.f()) {
+            a81Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.ActionBar.h1(this, 2));
         }
     }
 }

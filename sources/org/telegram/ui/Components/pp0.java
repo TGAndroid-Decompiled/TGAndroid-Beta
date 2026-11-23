@@ -1,58 +1,27 @@
 package org.telegram.ui.Components;
-
-import android.content.Context;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class pp0 implements Runnable {
-    public final int f38603a = 0;
-    public final jt0 f38604b;
-    public final org.telegram.ui.ActionBar.h6 f38605c;
-    public final org.telegram.messenger.gj d;
-    public final int f38606e;
+    public final int f38538a;
+    public final ds0 f38539b;
+    public final int f38540c;
 
-    public pp0(jt0 jt0Var, org.telegram.ui.ActionBar.h6 h6Var, int i7, org.telegram.messenger.gj gjVar) {
-        this.f38604b = jt0Var;
-        this.f38605c = h6Var;
-        this.f38606e = i7;
-        this.d = gjVar;
+    public pp0(ds0 ds0Var, int i7, int i10) {
+        this.f38538a = i10;
+        this.f38539b = ds0Var;
+        this.f38540c = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f38603a) {
+        switch (this.f38538a) {
             case 0:
-                org.telegram.ui.ActionBar.t1[] t1VarArr = {new org.telegram.ui.ActionBar.t1(3, this.f38604b.getContext(), this.f38605c)};
-                int i7 = this.f38606e;
-                int w02 = org.telegram.messenger.az.C(i7).w0(this.d, null, new fs(t1VarArr, 1));
-                if (w02 != 0) {
-                    org.telegram.messenger.g0.h3(new aq0(t1VarArr, i7, w02, 0), 500L);
-                    return;
-                }
+                this.f38539b.h.scrollBy(0, this.f38540c);
+                return;
+            case 1:
+                this.f38539b.h.scrollBy(0, this.f38540c);
                 return;
             default:
-                jt0 jt0Var = this.f38604b;
-                Context context = jt0Var.getContext();
-                org.telegram.ui.ActionBar.h6 h6Var = this.f38605c;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, h6Var);
-                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
-                t1Var.Q0 = false;
-                org.telegram.messenger.gj gjVar = this.d;
-                if (gjVar.c4()) {
-                    t1Var.S = org.telegram.messenger.hd.N0(2131744583, null);
-                    t1Var.U = org.telegram.messenger.hd.N0(2131744584, null);
-                } else {
-                    t1Var.S = org.telegram.messenger.hd.N0(2131744588, null);
-                    t1Var.U = org.telegram.messenger.hd.N0(2131744589, null);
-                }
-                alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131744600, null), new bg.g0(jt0Var, h6Var, gjVar, this.f38606e, 5));
-                i5.c.y(null, 2131752577, alertDialog$Builder, null);
+                this.f38539b.h.scrollBy(0, this.f38540c);
                 return;
         }
-    }
-
-    public pp0(jt0 jt0Var, org.telegram.ui.ActionBar.h6 h6Var, org.telegram.messenger.gj gjVar, int i7) {
-        this.f38604b = jt0Var;
-        this.f38605c = h6Var;
-        this.d = gjVar;
-        this.f38606e = i7;
     }
 }

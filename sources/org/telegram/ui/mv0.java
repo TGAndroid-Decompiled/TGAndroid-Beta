@@ -1,23 +1,71 @@
 package org.telegram.ui;
-public final class mv0 extends pq0 {
-    public final ProfileActivity f49971a;
 
-    public mv0(ProfileActivity profileActivity) {
-        this.f49971a = profileActivity;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
+public final class mv0 extends AnimatorListenerAdapter {
+    public final int f50118a;
+    public final boolean f50119b;
+    public final ProfileActivity f50120c;
+
+    public mv0(ProfileActivity profileActivity, boolean z10, int i7) {
+        this.f50118a = i7;
+        this.f50120c = profileActivity;
+        this.f50119b = z10;
     }
 
     @Override
-    public final org.telegram.ui.xq0 E(org.telegram.messenger.gj r17, org.telegram.tgnet.TLRPC.FileLocation r18, int r19, boolean r20, boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mv0.E(org.telegram.messenger.gj, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.xq0");
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f50118a) {
+            case 1:
+                this.f50120c.f43680g0 = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
     }
 
     @Override
-    public final void G() {
-        this.f49971a.f43557f0.getImageReceiver().O0(true, true);
-    }
-
-    @Override
-    public final void f(String str, String str2, boolean z10) {
-        this.f49971a.f43638r0.p(str, str2, z10);
+    public final void onAnimationEnd(Animator animator) {
+        int i7;
+        org.telegram.ui.Cells.c4 c4Var;
+        switch (this.f50118a) {
+            case 0:
+                ProfileActivity profileActivity = this.f50120c;
+                boolean z10 = this.f50119b;
+                ProfileActivity.y1(profileActivity, z10);
+                profileActivity.Y.setClickable(true);
+                if (z10) {
+                    org.telegram.ui.ActionBar.g5 g5Var = profileActivity.U0;
+                    if (g5Var.G.getWidth() != 0 && !g5Var.f29964e.isFocused()) {
+                        g5Var.f29964e.requestFocus();
+                        org.telegram.messenger.g0.I3(g5Var.f29964e);
+                    }
+                }
+                profileActivity.B4(true);
+                profileActivity.W1 = null;
+                profileActivity.fragmentView.invalidate();
+                if (z10) {
+                    profileActivity.Y4 = true;
+                    profileActivity.W4();
+                    Activity parentActivity = profileActivity.getParentActivity();
+                    i7 = ((org.telegram.ui.ActionBar.g2) profileActivity).classGuid;
+                    org.telegram.messenger.g0.Z2(parentActivity, i7);
+                    profileActivity.P.setPreventMoving(false);
+                    return;
+                }
+                return;
+            default:
+                ProfileActivity profileActivity2 = this.f50120c;
+                if (profileActivity2.f43680g0 != null && (c4Var = profileActivity2.f43687h0) != null) {
+                    if (!this.f50119b) {
+                        c4Var.setVisibility(4);
+                    }
+                    profileActivity2.f43680g0 = null;
+                    return;
+                }
+                return;
+        }
     }
 }

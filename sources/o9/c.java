@@ -8,24 +8,24 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 public final class c implements ua.b {
-    public final int f21745a;
-    public final Object f21746b;
-    public final Object f21747c;
+    public final int f21845a;
+    public final Object f21846b;
+    public final Object f21847c;
 
     public c(int i7, Object obj, Object obj2) {
-        this.f21745a = i7;
-        this.f21747c = obj;
-        this.f21746b = obj2;
+        this.f21845a = i7;
+        this.f21847c = obj;
+        this.f21846b = obj2;
     }
 
     @Override
     public final Object get() {
         ApplicationInfo applicationInfo;
         Bundle bundle;
-        switch (this.f21745a) {
+        switch (this.f21845a) {
             case 0:
-                g gVar = (g) this.f21747c;
-                Context context = (Context) this.f21746b;
+                g gVar = (g) this.f21847c;
+                Context context = (Context) this.f21846b;
                 String d = gVar.d();
                 ra.a aVar = (ra.a) gVar.d.a(ra.a.class);
                 ?? obj = new Object();
@@ -50,19 +50,19 @@ public final class c implements ua.b {
                     } catch (PackageManager.NameNotFoundException unused) {
                     }
                 }
-                obj.f61806a = z10;
+                obj.f61925a = z10;
                 return obj;
             case 1:
-                return new sa.h((Context) this.f21746b, (String) this.f21747c);
+                return new sa.h((Context) this.f21846b, (String) this.f21847c);
             default:
-                u9.a aVar2 = (u9.a) this.f21746b;
-                return aVar2.f58542f.e(new r7(aVar2, (u9.f) this.f21747c));
+                u9.a aVar2 = (u9.a) this.f21846b;
+                return aVar2.f58657f.c(new r7(aVar2, (u9.f) this.f21847c));
         }
     }
 
     public c(Context context, String str) {
-        this.f21745a = 1;
-        this.f21746b = context;
-        this.f21747c = str;
+        this.f21845a = 1;
+        this.f21846b = context;
+        this.f21847c = str;
     }
 }

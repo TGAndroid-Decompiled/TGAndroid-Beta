@@ -14,7 +14,7 @@ public final class c1 extends kd.j implements rd.p {
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        jd.a aVar = jd.a.f17375a;
+        jd.a aVar = jd.a.f17478a;
         c8.z.b(obj);
         return gd.k.f13480a;
     }

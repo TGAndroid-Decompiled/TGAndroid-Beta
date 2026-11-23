@@ -1,7 +1,9 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class o8 {
-    public TLObject f26061a;
-    public long f26062b;
+    public TLRPC.InputFileLocation f26139a;
+    public Object[] f26140b;
+    public String f26141c;
+    public boolean d;
 }

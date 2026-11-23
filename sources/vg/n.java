@@ -1,601 +1,110 @@
 package vg;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.SurfaceTexture;
-import android.opengl.GLUtils;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.TextureView;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
-import com.google.android.gms.internal.vision.e2;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import javax.microedition.khronos.egl.EGL10;
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.egl.EGLContext;
-import javax.microedition.khronos.egl.EGLDisplay;
-import javax.microedition.khronos.egl.EGLSurface;
-import javax.microedition.khronos.opengles.GL10;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.cz;
-import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.voip.h0;
-import ug.t1;
-public class n extends TextureView implements TextureView.SurfaceTextureListener, b6 {
-    public volatile int E;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.FloatBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public final class n {
+    public static final String[] f59608e0 = {"models/star.binobj"};
+    public static final String[] f59609f0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/coin_logo.binobj", "models/coin_stars.binobj"};
+    public static final String[] f59610g0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/deal_logo.binobj", "models/coin_stars.binobj"};
+    public int E;
     public int F;
-    public int G;
-    public volatile boolean H;
-    public volatile boolean I;
     public boolean J;
-    public volatile m K;
+    public final int K;
     public final int L;
-    public final long M;
-    public boolean N;
+    public final int M;
+    public final int N;
     public final int O;
-    public int P;
-    public final ArrayList Q;
-    public boolean R;
-    public t1 S;
+    public final int P;
+    public final int Q;
+    public final int R;
+    public final int S;
     public final int T;
-    public volatile boolean U;
-    public final int[] V;
-    public final int[] W;
-    public boolean f59468a;
-    public volatile boolean f59469a0;
-    public g f59470b;
-    public volatile Runnable f59471b0;
-    public SurfaceTexture f59472c;
-    public final GestureDetector f59473c0;
-    public final Object d;
-    public ValueAnimator f59474d0;
-    public g f59475e;
-    public AnimatorSet f59476e0;
-    public EGLDisplay f59477f;
-    public final j f59478f0;
-    public final h f59479g0;
-    public EGLSurface h;
-    public final h f59480h0;
-    public final h f59481i0;
-    public EGLContext f59482n;
-    public EGL10 f59483r;
-    public EGLConfig f59484s;
-    public GL10 f59485w;
-    public long f59486x;
-    public volatile int f59487y;
+    public final int U;
+    public final int V;
+    public final int W;
+    public final int X;
+    public final Bitmap Y;
+    public Bitmap Z;
+    public a f59611a;
+    public final int f59612a0;
+    public float f59613b;
+    public final int f59614b0;
+    public float f59615c;
+    public final int[] f59616c0;
+    public float d;
+    public final int f59619f;
+    public final int f59620g;
+    public final int h;
+    public final FloatBuffer[] f59621i;
+    public final FloatBuffer[] f59622j;
+    public final FloatBuffer[] f59623k;
+    public final int f59624l;
+    public final int f59625m;
+    public final int f59626n;
+    public final int f59627o;
+    public final int f59628p;
+    public final int f59629q;
+    public final int f59630r;
+    public final int f59631s;
+    public final int f59632t;
+    public final int f59633u;
+    public final int v;
+    public final int f59634w;
+    public float f59635x;
+    public final int[] f59636y;
+    public float f59618e = 1.0f;
+    public float f59637z = 0.0f;
+    public float A = 1.0f;
+    public float B = 2.0f;
+    public float C = 0.13f;
+    public final float D = 1.0f;
+    public final float G = 0.2f;
+    public final int H = -1;
+    public final int I = -1;
+    public float f59617d0 = 0.0f;
 
-    public n(Context context, int i7, int i10) {
-        super(context);
-        int i11;
-        long j3;
-        this.d = new Object();
-        this.H = true;
-        int i12 = 0;
-        this.I = false;
-        this.J = false;
-        this.N = true;
-        this.Q = new ArrayList();
-        this.V = new int[1];
-        this.W = new int[1];
-        this.f59476e0 = new AnimatorSet();
-        this.f59478f0 = new j(this, 0);
-        this.f59479g0 = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final n f59456b;
-
-            {
-                this.f59456b = this;
-            }
-
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                switch (r2) {
-                    case 0:
-                        this.f59456b.f59470b.f59435e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    case 1:
-                        this.f59456b.f59470b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    default:
-                        this.f59456b.f59470b.f59438i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                }
-            }
-        };
-        this.f59480h0 = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final n f59456b;
-
-            {
-                this.f59456b = this;
-            }
-
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                switch (r2) {
-                    case 0:
-                        this.f59456b.f59470b.f59435e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    case 1:
-                        this.f59456b.f59470b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    default:
-                        this.f59456b.f59470b.f59438i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                }
-            }
-        };
-        this.f59481i0 = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final n f59456b;
-
-            {
-                this.f59456b = this;
-            }
-
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                switch (r2) {
-                    case 0:
-                        this.f59456b.f59470b.f59435e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    case 1:
-                        this.f59456b.f59470b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    default:
-                        this.f59456b.f59470b.f59438i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                }
-            }
-        };
-        this.T = i10;
-        if (i10 != 1 && i10 != 4 && i10 != 3) {
-            i11 = 5;
-        } else {
-            i11 = 1;
-        }
-        this.O = i11;
-        if (i10 == 4) {
-            j3 = 0;
-        } else {
-            j3 = 2000;
-        }
-        this.M = j3;
-        setOpaque(false);
-        setRenderer(new g(context, i7, i10));
-        this.L = (int) g0.f24011r;
-        setSurfaceTextureListener(this);
-        GestureDetector gestureDetector = new GestureDetector(context, new i(this, i10));
-        this.f59473c0 = gestureDetector;
-        gestureDetector.setIsLongpressEnabled(true);
-        while (i12 < this.O) {
-            i12 = e2.f(i12, i12, 1, this.Q);
-        }
-        Collections.shuffle(this.Q);
+    public n(android.content.Context r30, int r31) {
+        throw new UnsupportedOperationException("Method not decompiled: vg.n.<init>(android.content.Context, int):void");
     }
 
-    public static void a(n nVar, float f10) {
-        int i7;
-        synchronized (nVar) {
-            try {
-                nVar.e();
-                if (nVar.f59470b != null) {
-                    int i10 = nVar.E;
-                    int i11 = nVar.f59487y;
-                    if (nVar.U) {
-                        nVar.f59483r.eglQuerySurface(nVar.f59477f, nVar.h, 12375, nVar.V);
-                        nVar.f59483r.eglQuerySurface(nVar.f59477f, nVar.h, 12374, nVar.W);
-                        int i12 = nVar.V[0];
-                        if (i12 > 0 && (i7 = nVar.W[0]) > 0 && (i12 != i10 || i7 != i11)) {
-                            nVar.f59472c.setDefaultBufferSize(i10, i11);
-                            i10 = nVar.V[0];
-                            i11 = nVar.W[0];
-                        }
-                    }
-                    if (i10 != nVar.F || i11 != nVar.G) {
-                        nVar.F = i10;
-                        nVar.G = i11;
-                        nVar.f59470b.onSurfaceChanged(nVar.f59485w, i10, i11);
-                    }
-                    g gVar = nVar.f59470b;
-                    gVar.G = f10;
-                    gVar.onDrawFrame(nVar.f59485w);
-                }
-                nVar.g();
-                if (!nVar.f59483r.eglSwapBuffers(nVar.f59477f, nVar.h) && nVar.T == 4) {
-                    throw new IllegalStateException("Diamond buffer swap failed: " + nVar.f59483r.eglGetError());
-                }
-            } finally {
-            }
-        }
-    }
-
-    public static void b(vg.n r6) {
-        throw new UnsupportedOperationException("Method not decompiled: vg.n.b(vg.n):void");
-    }
-
-    public static void c(n nVar, g gVar) {
-        synchronized (nVar) {
-            if (gVar != null) {
-                nVar.f59475e = gVar;
-                gVar.onSurfaceCreated(nVar.f59485w, nVar.f59484s);
-                nVar.F = nVar.E;
-                int i7 = nVar.f59487y;
-                nVar.G = i7;
-                gVar.onSurfaceChanged(nVar.f59485w, nVar.F, i7);
-            }
-        }
-    }
-
-    public final void d() {
-        ValueAnimator valueAnimator = this.f59474d0;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f59474d0.cancel();
-            this.f59474d0 = null;
-        }
-        AnimatorSet animatorSet = this.f59476e0;
-        if (animatorSet != null) {
-            animatorSet.removeAllListeners();
-            this.f59476e0.cancel();
-            this.f59476e0 = null;
-        }
-    }
-
-    public final void e() {
-        if (this.f59482n.equals(this.f59483r.eglGetCurrentContext()) && this.h.equals(this.f59483r.eglGetCurrentSurface(12377))) {
-            return;
-        }
-        f();
-        EGL10 egl10 = this.f59483r;
-        EGLDisplay eGLDisplay = this.f59477f;
-        EGLSurface eGLSurface = this.h;
-        if (egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.f59482n)) {
-            f();
-            return;
-        }
-        throw new RuntimeException("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.f59483r.eglGetError()));
-    }
-
-    public final void f() {
-        if (this.f59483r.eglGetError() != 12288) {
-            a8.d("cannot swap buffers!");
-        }
-    }
-
-    public final void g() {
-        int glGetError = this.f59485w.glGetError();
-        if (glGetError != 0 && this.T == 4) {
-            throw new IllegalStateException("Diamond GL error: 0x" + Integer.toHexString(glGetError));
-        }
-    }
-
-    public int getMaxFrameRate() {
-        if (this.T == 4) {
-            if (cz.o() == 2) {
-                return 60;
-            }
-            return 30;
-        }
-        return this.L;
-    }
-
-    public int getMsaaSamples() {
-        return 4;
-    }
-
-    public float getRenderScale() {
-        return 1.0f;
-    }
-
-    public final void j(long j3) {
-        j jVar = this.f59478f0;
-        g0.r(jVar);
-        if (!this.J && this.N) {
-            g0.h3(jVar, j3);
-        }
-    }
-
-    public final void k(SurfaceTexture surfaceTexture, int i7, int i10) {
-        boolean z10;
-        float renderScale = getRenderScale();
-        int i11 = (renderScale > 1.0f ? 1 : (renderScale == 1.0f ? 0 : -1));
-        if (i11 < 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.U = z10;
-        if (i11 < 0 && i7 > 0 && i10 > 0) {
-            i7 = Math.max(1, Math.round(i7 * renderScale));
-            i10 = Math.max(1, Math.round(i10 * renderScale));
-            surfaceTexture.setDefaultBufferSize(i7, i10);
-        }
-        this.E = i7;
-        this.f59487y = i10;
-    }
-
-    public final void l() {
-        d();
-        g gVar = this.f59470b;
-        float f10 = gVar.d;
-        float f11 = gVar.f59438i;
-        float f12 = gVar.f59435e;
-        float f13 = f10 + f11;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-        this.f59474d0 = ofFloat;
-        ofFloat.addUpdateListener(new h0(this, f10, f12, f11, 2));
-        this.f59474d0.setDuration(600L);
-        this.f59474d0.setInterpolator(new OvershootInterpolator());
-        this.f59474d0.start();
-        t1 t1Var = this.S;
-        if (t1Var != null) {
-            t1Var.b(Math.abs(f13));
-        }
-        j(this.M);
-    }
-
-    public final void m(long j3) {
-        g gVar = this.f59470b;
-        if (gVar != null) {
-            gVar.d = -180.0f;
-            g0.h3(new j(this, 1), j3);
-        }
-    }
-
-    public void n() {
-        int i7;
-        if (this.R && this.N) {
-            int i10 = this.P;
-            ArrayList arrayList = this.Q;
-            int intValue = ((Integer) arrayList.get(i10)).intValue();
-            int i11 = this.P + 1;
-            this.P = i11;
-            if (i11 >= arrayList.size()) {
-                Collections.shuffle(arrayList);
-                this.P = 0;
-            }
-            h hVar = this.f59481i0;
-            h hVar2 = this.f59480h0;
-            if (intValue == 0) {
-                int abs = Math.abs(Utilities.f22772b.nextInt() % 4);
-                this.f59476e0 = new AnimatorSet();
-                int i12 = this.T;
-                if (i12 == 4) {
-                    float f10 = this.f59470b.d;
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 360.0f + f10);
-                    ofFloat.addUpdateListener(hVar2);
-                    ofFloat.setDuration(12000L);
-                    ofFloat.setInterpolator(new LinearInterpolator());
-                    this.f59476e0.playTogether(ofFloat);
-                } else if (abs == 0 && i12 != 1 && i12 != 3) {
-                    float f11 = 48;
-                    ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f59470b.f59438i, f11);
-                    ofFloat2.addUpdateListener(hVar);
-                    ofFloat2.setDuration(2300L);
-                    ofFloat2.setInterpolator(nr.h);
-                    ValueAnimator ofFloat3 = ValueAnimator.ofFloat(f11, 0.0f);
-                    ofFloat3.addUpdateListener(hVar);
-                    ofFloat3.setDuration(500L);
-                    ofFloat3.setStartDelay(2300L);
-                    ofFloat3.setInterpolator(g0.H);
-                    this.f59476e0.playTogether(ofFloat2, ofFloat3);
-                } else {
-                    if (i12 != 1 && i12 != 3) {
-                        i7 = 485;
-                    } else {
-                        i7 = 360;
-                    }
-                    if (abs == 2) {
-                        i7 = -i7;
-                    }
-                    float f12 = i7;
-                    ValueAnimator ofFloat4 = ValueAnimator.ofFloat(this.f59470b.f59438i, f12);
-                    ofFloat4.addUpdateListener(hVar2);
-                    ofFloat4.setDuration(3000L);
-                    ofFloat4.setInterpolator(nr.h);
-                    ValueAnimator ofFloat5 = ValueAnimator.ofFloat(f12, 0.0f);
-                    ofFloat5.addUpdateListener(hVar2);
-                    ofFloat5.setDuration(1000L);
-                    ofFloat5.setStartDelay(3000L);
-                    ofFloat5.setInterpolator(g0.H);
-                    this.f59476e0.playTogether(ofFloat4, ofFloat5);
-                }
-                this.f59476e0.addListener(new k(this, 1));
-                this.f59476e0.start();
-            } else if (intValue == 1) {
-                this.f59476e0 = new AnimatorSet();
-                ValueAnimator ofFloat6 = ValueAnimator.ofFloat(this.f59470b.d, 360.0f);
-                ofFloat6.addUpdateListener(hVar2);
-                ofFloat6.setDuration(8000L);
-                ofFloat6.setInterpolator(nr.f37917f);
-                this.f59476e0.playTogether(ofFloat6);
-                this.f59476e0.addListener(new k(this, 0));
-                this.f59476e0.start();
-            } else if (intValue == 2) {
-                this.f59476e0 = new AnimatorSet();
-                ValueAnimator ofFloat7 = ValueAnimator.ofFloat(this.f59470b.d, 184.0f);
-                ofFloat7.addUpdateListener(hVar2);
-                ofFloat7.setDuration(600L);
-                nr nrVar = nr.f37918g;
-                ofFloat7.setInterpolator(nrVar);
-                ValueAnimator ofFloat8 = ValueAnimator.ofFloat(this.f59470b.f59438i, 50.0f);
-                ofFloat8.addUpdateListener(hVar);
-                ofFloat8.setDuration(600L);
-                ofFloat8.setInterpolator(nrVar);
-                ValueAnimator ofFloat9 = ValueAnimator.ofFloat(180.0f, 0.0f);
-                ofFloat9.addUpdateListener(hVar2);
-                ofFloat9.setDuration(800L);
-                ofFloat9.setStartDelay(10000L);
-                OvershootInterpolator overshootInterpolator = g0.H;
-                ofFloat9.setInterpolator(overshootInterpolator);
-                ValueAnimator ofFloat10 = ValueAnimator.ofFloat(60.0f, 0.0f);
-                ofFloat10.addUpdateListener(hVar);
-                ofFloat10.setDuration(800L);
-                ofFloat10.setStartDelay(10000L);
-                ofFloat10.setInterpolator(overshootInterpolator);
-                ValueAnimator ofFloat11 = ValueAnimator.ofFloat(0.0f, 2.0f, -3.0f, 2.0f, -1.0f, 2.0f, -3.0f, 2.0f, -1.0f, 0.0f);
-                ofFloat11.addUpdateListener(this.f59479g0);
-                ofFloat11.setDuration(10000L);
-                ofFloat11.setInterpolator(new LinearInterpolator());
-                this.f59476e0.playTogether(ofFloat7, ofFloat8, ofFloat9, ofFloat10, ofFloat11);
-                this.f59476e0.addListener(new k(this, 3));
-                this.f59476e0.start();
-            } else {
-                this.f59476e0 = new AnimatorSet();
-                ValueAnimator ofFloat12 = ValueAnimator.ofFloat(this.f59470b.d, 180.0f);
-                ofFloat12.addUpdateListener(hVar2);
-                ofFloat12.setDuration(600L);
-                nr nrVar2 = nr.f37917f;
-                ofFloat12.setInterpolator(nrVar2);
-                ValueAnimator ofFloat13 = ValueAnimator.ofFloat(180.0f, 360.0f);
-                ofFloat13.addUpdateListener(hVar2);
-                ofFloat13.setDuration(600L);
-                ofFloat13.setStartDelay(2000L);
-                ofFloat13.setInterpolator(nrVar2);
-                this.f59476e0.playTogether(ofFloat12, ofFloat13);
-                this.f59476e0.addListener(new k(this, 2));
-                this.f59476e0.start();
-            }
-        }
-    }
-
-    public final void o() {
-        m mVar = this.K;
-        this.K = null;
-        this.f59469a0 = false;
-        if (mVar != null) {
-            mVar.f59466b = true;
-            mVar.interrupt();
-        }
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.R = true;
-        this.I = true;
-        j(this.M);
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        d();
-        g gVar = this.f59470b;
-        if (gVar != null) {
-            gVar.d = 0.0f;
-            gVar.f59438i = 0.0f;
-            gVar.f59435e = 0.0f;
-        }
-        this.R = false;
-    }
-
-    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
-        o();
-        this.f59469a0 = false;
-        this.K = new m(this, surfaceTexture);
-        k(surfaceTexture, i7, i10);
-        this.f59486x = 1000000000 / Math.max(1, Math.min(this.L, getMaxFrameRate()));
-        this.K.start();
-    }
-
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        this.f59469a0 = false;
-        o();
-        return true;
-    }
-
-    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
-        k(surfaceTexture, i7, i10);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            this.f59468a = false;
-            l();
-            getParent().requestDisallowInterceptTouchEvent(false);
-        }
-        return this.f59473c0.onTouchEvent(motionEvent);
-    }
-
-    public void setBackgroundBitmap(Bitmap bitmap) {
-        g gVar = this.f59470b;
-        o oVar = gVar.f59434c;
-        if (oVar != null && oVar.f59491a == null) {
-            oVar.Z = bitmap;
-        }
-        gVar.f59447r = bitmap;
-    }
-
-    public void setDialogVisible(boolean z10) {
-        this.J = z10;
-        if (z10) {
-            g0.r(this.f59478f0);
-            l();
-            return;
-        }
-        j(this.M);
-    }
-
-    public void setIdleAnimationEnabled(boolean z10) {
-        this.N = z10;
-        if (z10) {
-            j(this.M);
-            return;
-        }
-        g0.r(this.f59478f0);
-        d();
-    }
-
-    public void setPaused(boolean z10) {
-        boolean z11 = this.H;
-        this.H = z10;
-        if (z11 && !z10 && this.K != null) {
-            this.K.interrupt();
-        }
-    }
-
-    public synchronized void setRenderer(g gVar) {
-        this.f59470b = gVar;
-        this.I = true;
-    }
-
-    public void setStarParticlesView(t1 t1Var) {
-        this.S = t1Var;
-    }
-
-    @Override
-    public final void updateColors() {
+    public static String a(Context context, String str) {
+        StringBuilder sb2 = new StringBuilder();
         try {
-            g gVar = this.f59470b;
-            if (gVar != null) {
-                gVar.b();
+            InputStream open = context.getAssets().open(str);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(open, StandardCharsets.UTF_8));
+            while (true) {
+                String readLine = bufferedReader.readLine();
+                if (readLine == null) {
+                    break;
+                }
+                sb2.append(readLine);
+                sb2.append("\n");
             }
-        } catch (Exception e10) {
-            a8.g(e10, true);
+            bufferedReader.close();
+            open.close();
+        } catch (IOException e10) {
+            e10.printStackTrace();
         }
+        return sb2.toString();
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-    }
-
-    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-    }
-
-    public void h() {
-    }
-
-    public void i() {
+    public static String b(String str) {
+        Matcher matcher = Pattern.compile("RGB#([0-9a-fA-F]{6})").matcher(str);
+        StringBuffer stringBuffer = new StringBuffer();
+        while (matcher.find()) {
+            String group = matcher.group(1);
+            matcher.appendReplacement(stringBuffer, String.format(Locale.US, "vec3(%.3f, %.3f, %.3f)", Double.valueOf(Integer.parseInt(group.substring(0, 2), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(2, 4), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(4, 6), 16) / 255.0d)));
+        }
+        matcher.appendTail(stringBuffer);
+        return stringBuffer.toString();
     }
 }

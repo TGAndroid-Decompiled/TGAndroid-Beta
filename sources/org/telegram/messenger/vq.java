@@ -1,41 +1,33 @@
 package org.telegram.messenger;
+
+import org.telegram.tgnet.TLRPC;
 public final class vq implements Runnable {
-    public final int f27535a;
-    public final ur f27536b;
-    public final int f27537c;
-    public final long d;
-    public final long f27538e;
+    public final int f27676a;
+    public final tr f27677b;
+    public final TLRPC.TL_chatFull f27678c;
 
-    public vq(int i7, long j3, long j10, ur urVar) {
-        this.f27535a = 2;
-        this.f27536b = urVar;
-        this.d = j3;
-        this.f27537c = i7;
-        this.f27538e = j10;
-    }
-
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.vq.a():void");
+    public vq(tr trVar, TLRPC.TL_chatFull tL_chatFull, int i7) {
+        this.f27676a = i7;
+        this.f27677b = trVar;
+        this.f27678c = tL_chatFull;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.vq.run():void");
-    }
-
-    public vq(ur urVar, int i7, long j3, long j10, int i10) {
-        this.f27535a = i10;
-        this.f27536b = urVar;
-        this.f27537c = i7;
-        this.d = j3;
-        this.f27538e = j10;
-    }
-
-    public vq(ur urVar, long j3, long j10, int i7, int i10) {
-        this.f27535a = i10;
-        this.f27536b = urVar;
-        this.d = j3;
-        this.f27538e = j10;
-        this.f27537c = i7;
+        int i7 = this.f27676a;
+        TLRPC.TL_chatFull tL_chatFull = this.f27678c;
+        tr trVar = this.f27677b;
+        switch (i7) {
+            case 0:
+                ks notificationCenter = trVar.getNotificationCenter();
+                Boolean bool = Boolean.FALSE;
+                notificationCenter.k(30, tL_chatFull, 0, bool, bool);
+                return;
+            default:
+                ks notificationCenter2 = trVar.getNotificationCenter();
+                Boolean bool2 = Boolean.FALSE;
+                notificationCenter2.k(30, tL_chatFull, 0, bool2, bool2);
+                return;
+        }
     }
 }

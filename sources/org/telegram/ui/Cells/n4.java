@@ -4,13 +4,13 @@ import android.graphics.Canvas;
 import android.view.View;
 import android.widget.TextView;
 public final class n4 extends TextView {
-    public boolean f31109a;
+    public boolean f31212a;
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f31109a) {
-            canvas.drawLine(0.0f, getHeight() - 1, getWidth(), getHeight() - 1, org.telegram.ui.ActionBar.m6.f29470k0);
+        if (this.f31212a) {
+            canvas.drawLine(0.0f, getHeight() - 1, getWidth(), getHeight() - 1, org.telegram.ui.ActionBar.n6.f29574k0);
         }
     }
 
@@ -20,6 +20,6 @@ public final class n4 extends TextView {
     }
 
     public void setNeedDivider(boolean z10) {
-        this.f31109a = z10;
+        this.f31212a = z10;
     }
 }

@@ -2,7 +2,7 @@ package gi;
 
 import android.content.Context;
 import fi.h6;
-import org.telegram.ui.Components.nv0;
+import org.telegram.ui.Components.mv0;
 public final class h extends l {
     public final m f13632w;
 
@@ -19,15 +19,15 @@ public final class h extends l {
         if (mVar.f13650r.getVisibility() == 0) {
             mVar.f13653x.f();
         }
-        nv0 nv0Var = mVar.E;
-        if (nv0Var != null) {
+        mv0 mv0Var = mVar.E;
+        if (mv0Var != null) {
             h6 h6Var = this.f13637e;
             if (h6Var != null && h6Var.k()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            nv0Var.e(z10, true);
+            mv0Var.e(z10, true);
         }
     }
 }

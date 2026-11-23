@@ -2,25 +2,26 @@ package li;
 
 import android.view.View;
 import java.io.Serializable;
-import org.telegram.messenger.sr;
-import org.telegram.messenger.w10;
-import org.telegram.ui.Components.o41;
-public final class b implements w10, sr {
-    public final g f19886a;
+import ki.n2;
+import org.telegram.messenger.rr;
+import org.telegram.messenger.u10;
+import org.telegram.ui.Components.n41;
+public final class b implements u10, rr {
+    public final f f19991a;
 
     @Override
     public void a(String str) {
-        g gVar = this.f19886a;
-        gVar.getMessagesController().O0(Long.valueOf(-gVar.f19926b));
-        gVar.showDialog(new ni.a(gVar.getParentActivity(), null, gVar.f19926b, new d(1, gVar, str)));
+        f fVar = this.f19991a;
+        fVar.getMessagesController().O0(Long.valueOf(-fVar.f20023b));
+        fVar.showDialog(new ni.a(fVar.getParentActivity(), null, fVar.f20023b, new n2(2, fVar, str)));
     }
 
     @Override
-    public void l(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
         View view = (View) obj2;
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        g.Z(this.f19886a, (o41) obj);
+        f.Z(this.f19991a, (n41) obj);
     }
 }

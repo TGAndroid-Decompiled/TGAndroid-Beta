@@ -62,7 +62,7 @@ public final class p0 implements Runnable {
                 z0.s(iArr, bArr, i7);
                 createBitmap2.setPixels(iArr, 0, i12, 0, 0, i12, i12);
                 createBitmap2.prepareToDraw();
-                org.telegram.messenger.g0.g3(new ai.w0(z0Var, createBitmap2, iArr, i7, 3));
+                org.telegram.messenger.g0.g3(new ai.x0(z0Var, createBitmap2, iArr, i7, 3));
                 return;
             case 1:
                 this.f5738b.F0(this.f5739c);

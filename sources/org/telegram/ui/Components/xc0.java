@@ -1,169 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import java.util.ArrayList;
-public final class xc0 {
-    public Path f41995a;
-    public float f41996b;
-    public float f41997c;
-    public float d;
-    public float f41998e;
-    public float f41999f;
-    public ArrayList f42000g;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+public final class xc0 implements org.telegram.ui.ActionBar.q1 {
+    public final int f41981a;
+    public final Activity f41982b;
 
-    public final void a(String str, float f10) {
-        float f11 = this.f41998e;
-        float f12 = this.d;
-        float f13 = this.f41997c;
-        try {
-            ?? obj = new Object();
-            obj.f40299a = new ArrayList();
-            obj.f40300b = f10 * this.f41999f;
-            String[] split = str.split(" ");
-            int i7 = 0;
-            while (i7 < split.length) {
-                char charAt = split[i7].charAt(0);
-                if (charAt != 'C') {
-                    if (charAt != 'L') {
-                        if (charAt == 'M') {
-                            ?? obj2 = new Object();
-                            obj2.f41749a = (Float.parseFloat(split[i7 + 1]) + f12) * f13;
-                            i7 += 2;
-                            obj2.f41750b = (Float.parseFloat(split[i7]) + f11) * f13;
-                            obj.f40299a.add(obj2);
-                        }
-                    } else {
-                        ?? obj3 = new Object();
-                        obj3.f40748a = (Float.parseFloat(split[i7 + 1]) + f12) * f13;
-                        i7 += 2;
-                        obj3.f40749b = (Float.parseFloat(split[i7]) + f11) * f13;
-                        obj.f40299a.add(obj3);
-                    }
-                } else {
-                    ?? obj4 = new Object();
-                    obj4.f39819c = (Float.parseFloat(split[i7 + 1]) + f12) * f13;
-                    obj4.d = (Float.parseFloat(split[i7 + 2]) + f11) * f13;
-                    obj4.f39820e = (Float.parseFloat(split[i7 + 3]) + f12) * f13;
-                    obj4.f39821f = (Float.parseFloat(split[i7 + 4]) + f11) * f13;
-                    obj4.f39817a = (Float.parseFloat(split[i7 + 5]) + f12) * f13;
-                    i7 += 6;
-                    obj4.f39818b = (Float.parseFloat(split[i7]) + f11) * f13;
-                    obj.f40299a.add(obj4);
-                }
-                i7++;
-            }
-            this.f42000g.add(obj);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
+    public xc0(Activity activity, int i7) {
+        this.f41981a = i7;
+        this.f41982b = activity;
     }
 
-    public final void b(Canvas canvas, Paint paint, float f10) {
-        uc0 uc0Var;
-        uc0 uc0Var2;
-        Object obj;
-        float f11;
-        ArrayList arrayList = this.f42000g;
-        Path path = this.f41995a;
-        if (this.f41996b != f10) {
-            this.f41996b = f10;
-            int size = arrayList.size();
-            uc0 uc0Var3 = null;
-            uc0 uc0Var4 = null;
-            for (int i7 = 0; i7 < size; i7++) {
-                uc0 uc0Var5 = (uc0) arrayList.get(i7);
-                if ((uc0Var4 == null || uc0Var4.f40300b < uc0Var5.f40300b) && uc0Var5.f40300b <= f10) {
-                    uc0Var4 = uc0Var5;
-                }
-                if ((uc0Var3 == null || uc0Var3.f40300b > uc0Var5.f40300b) && uc0Var5.f40300b >= f10) {
-                    uc0Var3 = uc0Var5;
-                }
-            }
-            if (uc0Var3 == uc0Var4) {
-                uc0Var4 = null;
-            }
-            if (uc0Var4 != null && uc0Var3 == null) {
-                uc0Var = uc0Var4;
-                uc0Var2 = null;
-            } else {
-                uc0Var = uc0Var3;
-                uc0Var2 = uc0Var4;
-            }
-            if (uc0Var != null) {
-                ArrayList arrayList2 = uc0Var.f40299a;
-                if (uc0Var2 == null || uc0Var2.f40299a.size() == arrayList2.size()) {
-                    path.reset();
-                    int size2 = arrayList2.size();
-                    for (int i10 = 0; i10 < size2; i10++) {
-                        if (uc0Var2 != null) {
-                            obj = uc0Var2.f40299a.get(i10);
-                        } else {
-                            obj = null;
-                        }
-                        Object obj2 = arrayList2.get(i10);
-                        if (obj == null || obj.getClass() == obj2.getClass()) {
-                            if (uc0Var2 != null) {
-                                float f12 = uc0Var2.f40300b;
-                                f11 = (f10 - f12) / (uc0Var.f40300b - f12);
-                            } else {
-                                f11 = 1.0f;
-                            }
-                            if (obj2 instanceof wc0) {
-                                wc0 wc0Var = (wc0) obj2;
-                                wc0 wc0Var2 = (wc0) obj;
-                                if (wc0Var2 != null) {
-                                    float f13 = wc0Var2.f41749a;
-                                    float N = org.telegram.messenger.g0.N(((wc0Var.f41749a - f13) * f11) + f13);
-                                    float f14 = wc0Var2.f41750b;
-                                    path.moveTo(N, org.telegram.messenger.g0.N(((wc0Var.f41750b - f14) * f11) + f14));
-                                } else {
-                                    path.moveTo(org.telegram.messenger.g0.N(wc0Var.f41749a), org.telegram.messenger.g0.N(wc0Var.f41750b));
-                                }
-                            } else if (obj2 instanceof vc0) {
-                                vc0 vc0Var = (vc0) obj2;
-                                vc0 vc0Var2 = (vc0) obj;
-                                if (vc0Var2 != null) {
-                                    float f15 = vc0Var2.f40748a;
-                                    float N2 = org.telegram.messenger.g0.N(((vc0Var.f40748a - f15) * f11) + f15);
-                                    float f16 = vc0Var2.f40749b;
-                                    path.lineTo(N2, org.telegram.messenger.g0.N(((vc0Var.f40749b - f16) * f11) + f16));
-                                } else {
-                                    path.lineTo(org.telegram.messenger.g0.N(vc0Var.f40748a), org.telegram.messenger.g0.N(vc0Var.f40749b));
-                                }
-                            } else if (obj2 instanceof tc0) {
-                                tc0 tc0Var = (tc0) obj2;
-                                tc0 tc0Var2 = (tc0) obj;
-                                if (tc0Var2 != null) {
-                                    float f17 = tc0Var2.f39819c;
-                                    float N3 = org.telegram.messenger.g0.N(((tc0Var.f39819c - f17) * f11) + f17);
-                                    float f18 = tc0Var2.d;
-                                    float N4 = org.telegram.messenger.g0.N(((tc0Var.d - f18) * f11) + f18);
-                                    float f19 = tc0Var2.f39820e;
-                                    float N5 = org.telegram.messenger.g0.N(((tc0Var.f39820e - f19) * f11) + f19);
-                                    float f20 = tc0Var2.f39821f;
-                                    float N6 = org.telegram.messenger.g0.N(((tc0Var.f39821f - f20) * f11) + f20);
-                                    float f21 = tc0Var2.f39817a;
-                                    float N7 = org.telegram.messenger.g0.N(((tc0Var.f39817a - f21) * f11) + f21);
-                                    float f22 = tc0Var2.f39818b;
-                                    path.cubicTo(N3, N4, N5, N6, N7, org.telegram.messenger.g0.N(((tc0Var.f39818b - f22) * f11) + f22));
-                                } else {
-                                    path.cubicTo(org.telegram.messenger.g0.N(tc0Var.f39819c), org.telegram.messenger.g0.N(tc0Var.d), org.telegram.messenger.g0.N(tc0Var.f39820e), org.telegram.messenger.g0.N(tc0Var.f39821f), org.telegram.messenger.g0.N(tc0Var.f39817a), org.telegram.messenger.g0.N(tc0Var.f39818b));
-                                }
-                            }
-                        } else {
-                            return;
-                        }
-                    }
-                    path.close();
-                } else {
+    @Override
+    public final void i(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f41981a) {
+            case 0:
+                Activity activity = this.f41982b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f27013b.getPackageName()));
+                    activity.startActivity(intent);
+                    return;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
                     return;
                 }
-            } else {
-                return;
-            }
+            default:
+                Activity activity2 = this.f41982b;
+                try {
+                    Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent2.setData(Uri.parse("package:" + org.telegram.messenger.t0.f27013b.getPackageName()));
+                    activity2.startActivity(intent2);
+                    return;
+                } catch (Exception e11) {
+                    org.telegram.messenger.a8.g(e11, true);
+                    return;
+                }
         }
-        canvas.drawPath(path, paint);
     }
 }

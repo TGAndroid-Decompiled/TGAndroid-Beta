@@ -1,35 +1,29 @@
 package ki;
 
-import org.telegram.messenger.j9;
-public final class l3 implements org.telegram.ui.ActionBar.q1, q3, j9 {
-    public final s3 f18767a;
+import android.animation.ValueAnimator;
+public final class l3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f18870a;
+    public final t3 f18871b;
 
-    public l3(s3 s3Var) {
-        this.f18767a = s3Var;
+    public l3(t3 t3Var, int i7) {
+        this.f18870a = i7;
+        this.f18871b = t3Var;
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        this.f18767a.f37477b.dismiss();
-    }
-
-    @Override
-    public Object m(Object obj) {
-        boolean z10;
-        Void r22 = (Void) obj;
-        if (this.f18767a.f37477b.f40398p3.getKeyboardHeight() >= org.telegram.messenger.g0.L(20.0f)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        return Boolean.valueOf(z10);
-    }
-
-    @Override
-    public void s(boolean z10) {
-        s3 s3Var = this.f18767a;
-        if (!s3Var.P()) {
-            s3Var.K.e(0.0f);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f18870a) {
+            case 0:
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                k2 k2Var = this.f18871b.f19053n;
+                if (k2Var.getWebView() != null) {
+                    k2Var.getWebView().setScrollY(intValue);
+                    return;
+                }
+                return;
+            default:
+                this.f18871b.J.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
     }
 }

@@ -4,14 +4,14 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import org.telegram.messenger.np;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 public final class a8 implements di.q8 {
     public final int f3361a;
     public final long f3362b;
-    public final y10 f3363c;
+    public final w10 f3363c;
     public int f3364e;
     public long f3367i;
     public String f3375q;
@@ -37,10 +37,10 @@ public final class a8 implements di.q8 {
     public boolean f3383z = false;
     public int A = -1;
 
-    public a8(int i7, long j3, y10 y10Var) {
+    public a8(int i7, long j3, w10 w10Var) {
         this.f3361a = i7;
         this.f3362b = j3;
-        this.f3363c = y10Var;
+        this.f3363c = w10Var;
         j();
         for (int size = m8.U.size() - 1; size >= 0; size--) {
             ArrayList arrayList = m8.U;
@@ -74,7 +74,7 @@ public final class a8 implements di.q8 {
     public final boolean f() {
         if (!this.f3381x && !this.v) {
             int i7 = this.f3361a;
-            if (((org.telegram.messenger.h0) np.u1(i7).A7.f26210t.f13993b).f24305c && ((org.telegram.messenger.h0) np.u1(i7).A7.f26203p0.f13993b).f24305c) {
+            if (((org.telegram.messenger.h0) mp.u1(i7).A7.f26261t.f17372b).f24439c && ((org.telegram.messenger.h0) mp.u1(i7).A7.f26254p0.f17372b).f24439c) {
                 return true;
             }
             return false;
@@ -83,7 +83,7 @@ public final class a8 implements di.q8 {
     }
 
     public final boolean g() {
-        return !"hidden".equals(org.telegram.messenger.p0.i(np.u1(this.f3361a).A7.v));
+        return !"hidden".equals(org.telegram.messenger.p0.i(mp.u1(this.f3361a).A7.v));
     }
 
     @Override
@@ -92,7 +92,7 @@ public final class a8 implements di.q8 {
     }
 
     public final boolean h() {
-        return !"hidden".equals(org.telegram.messenger.p0.i(np.u1(this.f3361a).A7.f26215w));
+        return !"hidden".equals(org.telegram.messenger.p0.i(mp.u1(this.f3361a).A7.f26266w));
     }
 
     public final void i() {
@@ -109,9 +109,9 @@ public final class a8 implements di.q8 {
     }
 
     public final void j() {
-        org.telegram.messenger.p0 p0Var = np.u1(this.f3361a).A7;
+        org.telegram.messenger.p0 p0Var = mp.u1(this.f3361a).A7;
         this.f3376r = "default".equals(org.telegram.messenger.p0.i(p0Var.v));
-        this.f3377s = "default".equals(org.telegram.messenger.p0.i(p0Var.f26215w));
+        this.f3377s = "default".equals(org.telegram.messenger.p0.i(p0Var.f26266w));
         boolean f10 = f();
         this.f3378t = f10;
         if (!this.f3376r && !this.f3377s && !f10) {
@@ -224,9 +224,9 @@ public final class a8 implements di.q8 {
                             Object obj = arrayList4.get(i11);
                             i11++;
                             TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj;
-                            if (!hashSet.contains(Long.valueOf(stargiftattributemodel.document.f28404id))) {
+                            if (!hashSet.contains(Long.valueOf(stargiftattributemodel.document.f28498id))) {
                                 TL_stars.starGiftAttributeIdModel stargiftattributeidmodel = new TL_stars.starGiftAttributeIdModel();
-                                stargiftattributeidmodel.document_id = stargiftattributemodel.document.f28404id;
+                                stargiftattributeidmodel.document_id = stargiftattributemodel.document.f28498id;
                                 getresalestargifts.attributes.add(stargiftattributeidmodel);
                             }
                         }
@@ -251,9 +251,9 @@ public final class a8 implements di.q8 {
                             Object obj3 = arrayList2.get(i7);
                             i7++;
                             TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj3;
-                            if (!hashSet2.contains(Long.valueOf(stargiftattributepattern.document.f28404id))) {
+                            if (!hashSet2.contains(Long.valueOf(stargiftattributepattern.document.f28498id))) {
                                 TL_stars.starGiftAttributeIdPattern stargiftattributeidpattern = new TL_stars.starGiftAttributeIdPattern();
-                                stargiftattributeidpattern.document_id = stargiftattributepattern.document.f28404id;
+                                stargiftattributeidpattern.document_id = stargiftattributepattern.document.f28498id;
                                 getresalestargifts.attributes.add(stargiftattributeidpattern);
                             }
                         }
@@ -269,9 +269,9 @@ public final class a8 implements di.q8 {
         this.f3375q = null;
         this.d.clear();
         l(true);
-        y10 y10Var = this.f3363c;
-        if (y10Var != null) {
-            y10Var.a(Boolean.TRUE);
+        w10 w10Var = this.f3363c;
+        if (w10Var != null) {
+            w10Var.a(Boolean.TRUE);
         }
     }
 
@@ -296,9 +296,9 @@ public final class a8 implements di.q8 {
         if (i10 > 0) {
             this.f3364e = i10 - 1;
         }
-        y10 y10Var = this.f3363c;
-        if (y10Var != null) {
-            y10Var.a(Boolean.FALSE);
+        w10 w10Var = this.f3363c;
+        if (w10Var != null) {
+            w10Var.a(Boolean.FALSE);
         }
     }
 

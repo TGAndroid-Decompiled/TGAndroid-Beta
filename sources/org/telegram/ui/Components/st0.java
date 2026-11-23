@@ -1,8 +1,922 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
+import android.content.Context;
 import android.graphics.RectF;
+import android.os.SystemClock;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
-public interface st0 {
-    void a(Canvas canvas, RectF rectF, RecyclerView recyclerView);
+import java.util.ArrayList;
+public class st0 extends FrameLayout implements r0.l {
+    public static final int m0 = 0;
+    public final fk0 E;
+    public RecyclerView F;
+    public RecyclerView G;
+    public RecyclerView H;
+    public k71 I;
+    public View J;
+    public View K;
+    public View L;
+    public View M;
+    public pt0 N;
+    public ot0 O;
+    public qt0 P;
+    public View Q;
+    public int R;
+    public int S;
+    public int T;
+    public int U;
+    public float V;
+    public float W;
+    public boolean f39697a;
+    public float f39698a0;
+    public int f39699b;
+    public float f39700b0;
+    public int f39701c;
+    public float f39702c0;
+    public long d;
+    public boolean f39703d0;
+    public long f39704e;
+    public boolean f39705e0;
+    public long f39706f;
+    public boolean f39707f0;
+    public boolean f39708g0;
+    public long h;
+    public boolean f39709h0;
+    public boolean f39710i0;
+    public final nd0 f39711j0;
+    public final na f39712k0;
+    public final fl f39713l0;
+    public int f39714n;
+    public int f39715r;
+    public final RectF f39716s;
+    public final bi.g3 f39717w;
+    public final e2.r0 f39718x;
+    public final int[] f39719y;
+
+    public st0(Context context) {
+        super(context);
+        this.f39716s = new RectF();
+        this.f39718x = new Object();
+        this.f39719y = new int[2];
+        this.E = new Object();
+        this.f39711j0 = new nd0(this, 3);
+        this.f39712k0 = new na(this, 19);
+        this.f39713l0 = new fl(3, this);
+        setClipChildren(false);
+        setClipToPadding(false);
+        bi.g3 g3Var = new bi.g3(this, context);
+        this.f39717w = g3Var;
+        addView(g3Var, new FrameLayout.LayoutParams(-1, -1));
+    }
+
+    public static String h(View view) {
+        int b10;
+        if (view == null) {
+            return "null";
+        }
+        String str = view.getClass().getSimpleName() + "@" + Integer.toHexString(System.identityHashCode(view)) + "(x=" + view.getTranslationX() + ",y=" + view.getTranslationY() + ",w=" + view.getWidth() + ",visibility=" + view.getVisibility() + ",attached=" + view.isAttachedToWindow() + ",top=" + view.getTop() + ",height=" + view.getHeight() + ",layoutRequested=" + view.isLayoutRequested();
+        if (view instanceof RecyclerView) {
+            RecyclerView recyclerView = (RecyclerView) view;
+            StringBuilder n10 = p5.c.n(str, ",scrollState=");
+            n10.append(recyclerView.getScrollState());
+            n10.append(",up=");
+            n10.append(recyclerView.canScrollVertically(-1));
+            n10.append(",down=");
+            n10.append(recyclerView.canScrollVertically(1));
+            n10.append(",layout=");
+            n10.append(recyclerView.c0());
+            n10.append(",pendingUpdates=");
+            n10.append(recyclerView.Z());
+            n10.append(",animating=");
+            n10.append(recyclerView.b0());
+            n10.append(",paddingTop=");
+            n10.append(recyclerView.getPaddingTop());
+            n10.append(",count=");
+            if (recyclerView.getAdapter() == null) {
+                b10 = 0;
+            } else {
+                b10 = recyclerView.getAdapter().b();
+            }
+            n10.append(b10);
+            str = n10.toString();
+        }
+        return p5.c.v(str, ")");
+    }
+
+    private void setBleed(RecyclerView recyclerView) {
+        ViewGroup.LayoutParams layoutParams = recyclerView.getLayoutParams();
+        if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+            int i7 = marginLayoutParams.topMargin;
+            int i10 = this.T;
+            if (i7 == (-i10) && marginLayoutParams.bottomMargin == (-this.U)) {
+                return;
+            }
+            marginLayoutParams.topMargin = -i10;
+            marginLayoutParams.bottomMargin = -this.U;
+            recyclerView.setLayoutParams(marginLayoutParams);
+        }
+    }
+
+    private void setTabsPinned(boolean z10) {
+        String str;
+        if (this.f39707f0 == z10) {
+            return;
+        }
+        this.f39707f0 = z10;
+        if (z10) {
+            str = "TABS_PINNED";
+        } else {
+            str = "TABS_UNPINNED";
+        }
+        f(str, this.F, 0, 0, true);
+        this.N.E(z10);
+    }
+
+    public static void v(RecyclerView recyclerView, int i7, int i10) {
+        View view;
+        int b10;
+        if (recyclerView.getPaddingTop() != i7 || recyclerView.getPaddingBottom() != i10) {
+            v4.p0 layoutManager = recyclerView.getLayoutManager();
+            int i11 = 0;
+            if (layoutManager != null && layoutManager.r() != 0) {
+                view = layoutManager.q(0);
+            } else {
+                view = null;
+            }
+            if (view == null) {
+                b10 = -1;
+            } else {
+                layoutManager.getClass();
+                b10 = ((v4.q0) view.getLayoutParams()).b();
+            }
+            if (view != null) {
+                layoutManager.getClass();
+                i11 = (v4.p0.z(view) - recyclerView.getPaddingTop()) - ((ViewGroup.MarginLayoutParams) ((v4.q0) view.getLayoutParams())).topMargin;
+            }
+            recyclerView.setPadding(recyclerView.getPaddingLeft(), i7, recyclerView.getPaddingRight(), i10);
+            if (b10 != -1 && (layoutManager instanceof v4.c0)) {
+                ((v4.c0) layoutManager).h1(b10, i11);
+            }
+        }
+    }
+
+    public final void A() {
+        View[] viewPages;
+        f("STOP_SCROLLING", null, 0, 0, true);
+        RecyclerView recyclerView = this.F;
+        if (recyclerView != null) {
+            recyclerView.C0();
+        }
+        k71 k71Var = this.I;
+        if (k71Var != null && this.P != null) {
+            for (View view : k71Var.getViewPages()) {
+                if (view != null) {
+                    this.P.l(view).C0();
+                }
+            }
+        }
+    }
+
+    public final void B() {
+        View[] viewPages;
+        float j3;
+        View view;
+        fk0 fk0Var = this.E;
+        if (!this.f39703d0 && this.N != null) {
+            boolean z10 = true;
+            this.f39703d0 = true;
+            try {
+                float f10 = this.f39700b0;
+                C();
+                RecyclerView recyclerView = this.F;
+                if (recyclerView != null && !this.f39710i0) {
+                    setBleed(recyclerView);
+                    RecyclerView recyclerView2 = this.F;
+                    int i7 = this.T;
+                    this.N.getClass();
+                    v(recyclerView2, i7, this.U);
+                }
+                k71 k71Var = this.I;
+                if (k71Var != null && this.P != null && this.K != null) {
+                    for (View view2 : k71Var.getViewPages()) {
+                        if (view2 != null && view2.getParent() == this.I) {
+                            b(this.P.l(view2));
+                        }
+                    }
+                    q();
+                    float n10 = n();
+                    boolean isInfinite = Float.isInfinite(n10);
+                    bi.g3 g3Var = this.f39717w;
+                    float f11 = 0.0f;
+                    if (isInfinite) {
+                        this.f39700b0 = Float.POSITIVE_INFINITY;
+                        this.J.setVisibility(4);
+                        this.K.setVisibility(4);
+                        RecyclerView recyclerView3 = this.F;
+                        if (recyclerView3 != null) {
+                            recyclerView3.setTranslationY(0.0f);
+                        }
+                        setTabsPinned(false);
+                        if (f10 != this.f39700b0) {
+                            g3Var.invalidate();
+                        }
+                        this.f39703d0 = false;
+                        return;
+                    }
+                    float f12 = this.V;
+                    if (n10 > f12 + 0.5f) {
+                        f12 = n10;
+                    }
+                    this.f39698a0 = f12;
+                    this.J.setVisibility(0);
+                    this.K.setVisibility(0);
+                    if (this.f39705e0) {
+                        this.f39700b0 = fk0Var.b();
+                        this.f39702c0 = Math.max(fk0Var.d, fk0Var.b());
+                        View view3 = this.L;
+                        float max = Math.max(0.0f, fk0Var.f35152a - fk0Var.d);
+                        if (!fk0Var.f35156f) {
+                            f11 = fk0Var.b() - fk0Var.f35153b;
+                        }
+                        w(view3, max + f11);
+                        w(this.M, Math.max(fk0Var.d, fk0Var.b()) - fk0Var.d);
+                    } else {
+                        RecyclerView recyclerView4 = this.G;
+                        if (recyclerView4 == null) {
+                            j3 = 0.0f;
+                        } else {
+                            j3 = this.P.j(recyclerView4);
+                        }
+                        float max2 = this.f39698a0 - Math.max(0.0f, Math.min(j3, Math.max(0.0f, this.V - this.W)));
+                        this.f39700b0 = max2;
+                        this.f39702c0 = Math.max(this.V, max2);
+                        w(this.I.getCurrentView(), Math.max(0.0f, this.f39698a0 - this.V));
+                    }
+                    this.F.setTranslationY(this.f39700b0 - n10);
+                    this.K.setTranslationY(this.f39702c0 - view.getTop());
+                    if (this.f39702c0 > this.V + 0.5f) {
+                        z10 = false;
+                    }
+                    setTabsPinned(z10);
+                    this.N.getClass();
+                    if (f10 != this.f39700b0) {
+                        g3Var.invalidate();
+                    }
+                    this.f39703d0 = false;
+                }
+            } finally {
+                this.f39703d0 = false;
+            }
+        }
+    }
+
+    public final void C() {
+        boolean z10;
+        pt0 pt0Var = this.N;
+        if (pt0Var == null) {
+            return;
+        }
+        float K0 = pt0Var.K0();
+        this.N.getClass();
+        if (!Float.isNaN(K0) && !Float.isInfinite(K0) && !Float.isNaN(0.0f) && !Float.isInfinite(0.0f) && K0 >= 0.0f) {
+            if (this.f39708g0 && (K0 != this.V || 0.0f != this.W)) {
+                float n10 = n();
+                if (!Float.isInfinite(n10)) {
+                    float f10 = this.V;
+                    if (n10 > 0.5f + f10 && n10 >= K0) {
+                        z10 = false;
+                    } else {
+                        z10 = true;
+                    }
+                    if (z10 && K0 != f10) {
+                        this.f39709h0 = true;
+                    }
+                    if (this.f39705e0) {
+                        fk0 fk0Var = this.E;
+                        float f11 = fk0Var.f35155e;
+                        if (z10) {
+                            n10 = K0;
+                        }
+                        qt0 qt0Var = this.P;
+                        fk0Var.a(n10, qt0Var.j(qt0Var.l(this.L)), K0, 0.0f);
+                        fk0Var.f35155e = Math.max(0.0f, Math.min(1.0f, f11));
+                        this.f39717w.invalidate();
+                    }
+                }
+            }
+            this.V = K0;
+            this.W = 0.0f;
+            this.f39708g0 = true;
+            return;
+        }
+        throw new IllegalArgumentException("Require finite 0 <= commonHiddenTop <= tabsPinnedTop");
+    }
+
+    public final void a() {
+        ot0 ot0Var;
+        f("ALIGN_BOUNDARY", this.F, 0, 0, true);
+        if (this.F != null && (ot0Var = this.O) != null && this.N != null) {
+            int b10 = ot0Var.b();
+            v4.p0 layoutManager = this.F.getLayoutManager();
+            if (b10 != -1 && (layoutManager instanceof v4.c0)) {
+                C();
+                ((v4.c0) layoutManager).h1(b10, (Math.round(this.V) - this.F.getTop()) - this.F.getPaddingTop());
+                this.f39709h0 = true;
+                requestLayout();
+            }
+        }
+    }
+
+    public final void b(RecyclerView recyclerView) {
+        int i7;
+        if (this.N != null && recyclerView != null) {
+            C();
+            View view = this.K;
+            if (view == null) {
+                i7 = 0;
+            } else if (view.getHeight() > 0) {
+                i7 = this.K.getHeight();
+            } else {
+                i7 = this.K.getLayoutParams().height;
+            }
+            setBleed(recyclerView);
+            v(recyclerView, Math.max(0, i7) + Math.round(this.V) + this.T, this.N.T0() + this.U);
+            if (!recyclerView.isNestedScrollingEnabled()) {
+                recyclerView.setNestedScrollingEnabled(true);
+            }
+        }
+    }
+
+    public final boolean c() {
+        k71 k71Var = this.I;
+        if (k71Var != null && k71Var.getCurrentView() != null && !Float.isInfinite(n()) && this.f39702c0 < getHeight()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d(android.graphics.Canvas r6, android.graphics.RectF r7, org.telegram.ui.Components.rt0 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.st0.d(android.graphics.Canvas, android.graphics.RectF, org.telegram.ui.Components.rt0):void");
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        String str;
+        if (motionEvent.getActionMasked() == 0) {
+            if (this.f39697a) {
+                this.f39714n++;
+                this.f39704e = 0L;
+                f("TOUCH_DOWN", null, 0, 0, true);
+            }
+            A();
+        } else if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
+            if (motionEvent.getActionMasked() == 1) {
+                str = "TOUCH_UP";
+            } else {
+                str = "TOUCH_CANCEL";
+            }
+            f(str, null, 0, 0, true);
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public final void e(String str, View view, int i7, int i10) {
+        String str2;
+        if (this.f39697a) {
+            long uptimeMillis = SystemClock.uptimeMillis();
+            if (uptimeMillis - this.f39704e < 250) {
+                return;
+            }
+            this.f39704e = uptimeMillis;
+            if (i10 == 0) {
+                str2 = "_TOUCH";
+            } else {
+                str2 = "_NON_TOUCH";
+            }
+            f(str.concat(str2), view, i7, i7, true);
+        }
+    }
+
+    public final void f(String str, View view, int i7, int i10, boolean z10) {
+        View view2;
+        View view3;
+        long j3;
+        int b10;
+        v4.p0 layoutManager;
+        int top;
+        int height;
+        float f10;
+        qt0 qt0Var;
+        if (this.f39697a) {
+            long uptimeMillis = SystemClock.uptimeMillis();
+            if (!z10) {
+                if (uptimeMillis - this.d < 250) {
+                    return;
+                }
+                this.d = uptimeMillis;
+            }
+            k71 k71Var = this.I;
+            int i11 = 0;
+            View view4 = null;
+            if (k71Var == null) {
+                view2 = null;
+            } else {
+                view2 = k71Var.getViewPages()[0];
+            }
+            k71 k71Var2 = this.I;
+            if (k71Var2 == null) {
+                view3 = null;
+            } else {
+                view3 = k71Var2.getViewPages()[1];
+            }
+            StringBuilder sb2 = new StringBuilder("root=");
+            sb2.append(Integer.toHexString(System.identityHashCode(this)));
+            sb2.append(" gesture=");
+            sb2.append(this.f39714n);
+            sb2.append(" transition=");
+            sb2.append(this.f39715r);
+            sb2.append(" event=");
+            sb2.append(str);
+            sb2.append(" target=");
+            sb2.append(h(view));
+            sb2.append(" dy=");
+            sb2.append(i7);
+            sb2.append(" used=");
+            sb2.append(i10);
+            sb2.append(" transitioning=");
+            sb2.append(this.f39705e0);
+            sb2.append(" progress=");
+            sb2.append(this.E.f35155e);
+            sb2.append(" ageMs=");
+            long j10 = 0;
+            if (this.f39705e0) {
+                j3 = uptimeMillis - this.f39706f;
+            } else {
+                j3 = 0;
+            }
+            sb2.append(j3);
+            sb2.append(" unchangedMs=");
+            if (this.f39705e0) {
+                j10 = uptimeMillis - this.h;
+            }
+            sb2.append(j10);
+            sb2.append(" depth=");
+            sb2.append(this.R);
+            sb2.append(" updating=");
+            sb2.append(this.f39703d0);
+            sb2.append(" callback=");
+            sb2.append(h(this.Q));
+            sb2.append(" common=");
+            sb2.append(h(this.F));
+            sb2.append(" active=");
+            sb2.append(h(this.G));
+            sb2.append(" current=");
+            sb2.append(h(view2));
+            sb2.append(" other=");
+            sb2.append(h(view3));
+            sb2.append(" source=");
+            sb2.append(h(this.L));
+            sb2.append(" incoming=");
+            sb2.append(h(this.M));
+            sb2.append(" boundary=");
+            sb2.append(n());
+            sb2.append(" pin=");
+            sb2.append(this.V);
+            sb2.append(" tail=");
+            sb2.append(this.f39700b0);
+            sb2.append(" alignPending=");
+            sb2.append(this.f39709h0);
+            ot0 ot0Var = this.O;
+            int i12 = -1;
+            if (ot0Var == null) {
+                b10 = -1;
+            } else {
+                b10 = ot0Var.b();
+            }
+            RecyclerView recyclerView = this.F;
+            if (recyclerView == null) {
+                layoutManager = null;
+            } else {
+                layoutManager = recyclerView.getLayoutManager();
+            }
+            if (layoutManager != null && b10 != -1) {
+                view4 = layoutManager.m(b10);
+            }
+            StringBuilder m10 = i5.c.m(b10, " row=", " anchor=");
+            m10.append(h(view4));
+            m10.append(" anchorTop=");
+            if (view4 == null) {
+                top = 0;
+            } else {
+                top = view4.getTop();
+            }
+            m10.append(top);
+            m10.append(" anchorHeight=");
+            if (view4 == null) {
+                height = 0;
+            } else {
+                height = view4.getHeight();
+            }
+            m10.append(height);
+            m10.append(" decoratedTop=");
+            if (view4 != null) {
+                layoutManager.getClass();
+                i11 = v4.p0.z(view4);
+            }
+            m10.append(i11);
+            m10.append(" adapterPosition=");
+            if (view4 != null) {
+                this.F.getClass();
+                i12 = RecyclerView.R(view4);
+            }
+            m10.append(i12);
+            m10.append(" pageOffset=");
+            RecyclerView recyclerView2 = this.G;
+            if (recyclerView2 != null && (qt0Var = this.P) != null) {
+                f10 = qt0Var.j(recyclerView2);
+            } else {
+                f10 = 0.0f;
+            }
+            m10.append(f10);
+            m10.append(" tabsTop=");
+            m10.append(this.f39702c0);
+            m10.append(" draw=");
+            m10.append(this.f39701c);
+            sb2.append(m10.toString());
+            Log.d("SiblingScroll", sb2.toString());
+        }
+    }
+
+    public final void g(String str) {
+        f(str, this.I, 0, 0, true);
+    }
+
+    public int getBottomBleed() {
+        return this.U;
+    }
+
+    @Override
+    public int getNestedScrollAxes() {
+        return this.f39718x.b();
+    }
+
+    public float getTabsTop() {
+        return this.f39702c0;
+    }
+
+    public int getTopBleed() {
+        return this.T;
+    }
+
+    public final void i(String str) {
+        st0 st0Var;
+        if (this.f39697a) {
+            st0Var = this;
+            st0Var.f("TRANSITION_END_".concat(str), null, 0, 0, true);
+        } else {
+            st0Var = this;
+        }
+        st0Var.f39705e0 = false;
+        st0Var.M = null;
+        st0Var.L = null;
+        st0Var.f39717w.invalidate();
+    }
+
+    public final boolean j(float r4, float r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.st0.j(float, float):boolean");
+    }
+
+    @Override
+    public final void k(int i7, View view) {
+        String str;
+        if (i7 == 0) {
+            str = "NESTED_STOP_TOUCH";
+        } else {
+            str = "NESTED_STOP_NON_TOUCH";
+        }
+        f(str, view, 0, 0, true);
+        e2.r0 r0Var = this.f39718x;
+        if (i7 == 1) {
+            r0Var.f10678b = 0;
+        } else {
+            r0Var.f10677a = 0;
+        }
+    }
+
+    @Override
+    public final void l(View view, int i7, int i10, int i11, int i12, int i13, int[] iArr) {
+        RecyclerView recyclerView;
+        boolean z10;
+        if (this.R == 0 && (view == (recyclerView = this.F) || view == this.G)) {
+            if (this.f39705e0) {
+                e("POST_BLOCKED", view, i12, i13);
+                iArr[1] = iArr[1] + i12;
+                return;
+            }
+            this.Q = view;
+            try {
+                nd0 nd0Var = this.f39711j0;
+                int i14 = 0;
+                if (view == recyclerView) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (z10 && i10 > 0 && i12 > 0) {
+                    st0 st0Var = (st0) nd0Var.f37766b;
+                    ot0 ot0Var = st0Var.O;
+                    if (ot0Var != null && ot0Var.b() != -1) {
+                        i14 = st0Var.t(st0Var.G, i12);
+                    }
+                } else if (!z10 && i12 < 0) {
+                    st0 st0Var2 = (st0) nd0Var.f37766b;
+                    i14 = st0Var2.t(st0Var2.F, i12);
+                }
+                iArr[1] = iArr[1] + i14;
+                f("POST", view, i12, i14, false);
+                return;
+            } finally {
+                this.Q = null;
+                B();
+            }
+        }
+        f("POST_IGNORED", view, i12, 0, false);
+    }
+
+    @Override
+    public final void m(View view, int i7, int i10, int i11, int i12, int i13) {
+        int[] iArr = this.f39719y;
+        iArr[1] = 0;
+        iArr[0] = 0;
+        l(view, i7, i10, i11, i12, i13, iArr);
+    }
+
+    public final float n() {
+        View m10;
+        RecyclerView recyclerView = this.F;
+        if (recyclerView != null && this.O != null && recyclerView.getLayoutManager() != null) {
+            v4.p0 layoutManager = this.F.getLayoutManager();
+            int b10 = this.O.b();
+            if (b10 != -1 && (m10 = layoutManager.m(b10)) != null) {
+                return (v4.p0.z(m10) + this.F.getTop()) - ((ViewGroup.MarginLayoutParams) ((v4.q0) m10.getLayoutParams())).topMargin;
+            }
+            return Float.POSITIVE_INFINITY;
+        }
+        return Float.POSITIVE_INFINITY;
+    }
+
+    @Override
+    public final boolean o(View view, View view2, int i7, int i10) {
+        boolean z10;
+        String str;
+        boolean z11 = false;
+        if ((i7 & 2) != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (this.R == 0 && z10 && (view2 == this.F || view2 == this.G)) {
+            z11 = true;
+        }
+        if (this.f39697a) {
+            StringBuilder sb2 = new StringBuilder();
+            if (z11) {
+                str = "NESTED_START";
+            } else {
+                str = "NESTED_REJECT";
+            }
+            sb2.append(str);
+            sb2.append("_axes=");
+            sb2.append(i7);
+            sb2.append("_type=");
+            sb2.append(i10);
+            f(sb2.toString(), view2, 0, 0, true);
+        }
+        return z11;
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        getViewTreeObserver().addOnPreDrawListener(this.f39713l0);
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        A();
+        getViewTreeObserver().removeOnPreDrawListener(this.f39713l0);
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final boolean onNestedFling(View view, float f10, float f11, boolean z10) {
+        return false;
+    }
+
+    @Override
+    public final boolean onNestedPreFling(View view, float f10, float f11) {
+        return false;
+    }
+
+    @Override
+    public final void onNestedPreScroll(View view, int i7, int i10, int[] iArr) {
+        s(view, i7, i10, iArr, 0);
+    }
+
+    @Override
+    public final void onNestedScroll(View view, int i7, int i10, int i11, int i12) {
+        m(view, i7, i10, i11, i12, 0);
+    }
+
+    @Override
+    public final void onNestedScrollAccepted(View view, View view2, int i7) {
+        r(view, view2, i7, 0);
+    }
+
+    @Override
+    public final boolean onStartNestedScroll(View view, View view2, int i7) {
+        return o(view, view2, i7, 0);
+    }
+
+    @Override
+    public final void onStopNestedScroll(View view) {
+        k(0, view);
+    }
+
+    public final void p() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.st0.p():void");
+    }
+
+    public final void q() {
+        RecyclerView recyclerView;
+        k71 k71Var = this.I;
+        if (k71Var != null && this.P != null && k71Var.getCurrentView() != null) {
+            recyclerView = this.P.l(this.I.getCurrentView());
+        } else {
+            recyclerView = null;
+        }
+        RecyclerView recyclerView2 = recyclerView;
+        if (recyclerView2 != this.G) {
+            f("ACTIVE_CHANGE", recyclerView2, 0, 0, true);
+            RecyclerView recyclerView3 = this.G;
+            na naVar = this.f39712k0;
+            if (recyclerView3 != null) {
+                recyclerView3.C0();
+                ArrayList arrayList = this.G.f2792x0;
+                if (arrayList != null) {
+                    arrayList.remove(naVar);
+                }
+            }
+            this.G = recyclerView2;
+            if (recyclerView2 != null) {
+                recyclerView2.j(naVar);
+            }
+        }
+    }
+
+    @Override
+    public final void r(View view, View view2, int i7, int i10) {
+        e2.r0 r0Var = this.f39718x;
+        if (i10 == 1) {
+            r0Var.f10678b = i7;
+        } else {
+            r0Var.f10677a = i7;
+        }
+    }
+
+    @Override
+    public final void s(android.view.View r12, int r13, int r14, int[] r15, int r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.st0.s(android.view.View, int, int, int[], int):void");
+    }
+
+    public void setCommonInsetsManagedExternally(boolean z10) {
+        if (this.f39710i0 == z10) {
+            return;
+        }
+        this.f39710i0 = z10;
+        B();
+        requestLayout();
+    }
+
+    public void setDebugLoggingEnabled(boolean z10) {
+        this.f39697a = z10;
+        if (z10) {
+            this.d = 0L;
+            this.f39704e = 0L;
+            long uptimeMillis = SystemClock.uptimeMillis();
+            this.f39706f = uptimeMillis;
+            this.h = uptimeMillis;
+            f("DEBUG_ENABLED", null, 0, 0, true);
+        }
+    }
+
+    public void setGeometry(pt0 pt0Var) {
+        this.N = pt0Var;
+        requestLayout();
+        B();
+    }
+
+    public final int t(RecyclerView recyclerView, int i7) {
+        int min;
+        String str;
+        if (recyclerView != null && i7 != 0) {
+            if (recyclerView != this.Q) {
+                RecyclerView recyclerView2 = this.H;
+                int i10 = this.S;
+                this.H = recyclerView;
+                this.S = 0;
+                this.R++;
+                try {
+                    recyclerView.scrollBy(0, i7);
+                    int i11 = this.S;
+                    if (i7 > 0) {
+                        min = Math.max(0, Math.min(i7, i11));
+                    } else {
+                        min = Math.min(0, Math.max(i7, i11));
+                    }
+                    int i12 = min;
+                    if (i11 == 0) {
+                        str = "TRANSFER_ZERO";
+                    } else {
+                        str = "TRANSFER";
+                    }
+                    f(str, recyclerView, i7, i12, false);
+                    return i12;
+                } finally {
+                    this.R--;
+                    this.H = recyclerView2;
+                    this.S = i10;
+                }
+            }
+            f("TRANSFER_REENTRY", recyclerView, i7, 0, true);
+            throw new IllegalStateException("Reentrant scrollBy on nested source");
+        }
+        if (i7 != 0) {
+            f("TRANSFER_NO_TARGET", recyclerView, i7, 0, false);
+        }
+        return 0;
+    }
+
+    public final void u(ek0 ek0Var, ot0 ot0Var) {
+        RecyclerView recyclerView = this.F;
+        bi.g3 g3Var = this.f39717w;
+        na naVar = this.f39712k0;
+        if (recyclerView != null) {
+            recyclerView.C0();
+            ArrayList arrayList = this.F.f2792x0;
+            if (arrayList != null) {
+                arrayList.remove(naVar);
+            }
+            g3Var.removeView(this.F);
+        }
+        this.F = ek0Var;
+        this.O = ot0Var;
+        g3Var.addView(ek0Var, new FrameLayout.LayoutParams(-1, -1));
+        ek0Var.j(naVar);
+        ek0Var.setNestedScrollingEnabled(true);
+        B();
+    }
+
+    public final void w(View view, float f10) {
+        if (view == null) {
+            return;
+        }
+        RecyclerView l10 = this.P.l(view);
+        float f11 = this.V;
+        l10.setTranslationY((f10 + f11) - Math.round(f11));
+    }
+
+    public final void x(View view, k71 k71Var, qt0 qt0Var) {
+        View view2 = this.J;
+        if (view2 != null) {
+            removeView(view2);
+        }
+        this.J = view;
+        this.I = k71Var;
+        this.P = qt0Var;
+        addView(view, 0, new FrameLayout.LayoutParams(-1, -1));
+        B();
+    }
+
+    public final void y(View view) {
+        View view2 = this.K;
+        if (view2 != null) {
+            removeView(view2);
+        }
+        this.K = view;
+        addView(view, new FrameLayout.LayoutParams(-1, -2, 48));
+        B();
+    }
+
+    public final void z(int i7, int i10) {
+        this.T = Math.max(0, i7);
+        this.U = Math.max(0, i10);
+        requestLayout();
+        B();
+    }
 }

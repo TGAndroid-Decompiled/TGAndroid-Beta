@@ -4,20 +4,20 @@ import a8.ma;
 import java.util.Iterator;
 import java.util.ListIterator;
 public final class h0 extends i0 {
-    public final transient int f13996c;
+    public final transient int f13991c;
     public final transient int d;
-    public final i0 f13997e;
+    public final i0 f13992e;
 
     public h0(i0 i0Var, int i7, int i10) {
-        this.f13997e = i0Var;
-        this.f13996c = i7;
+        this.f13992e = i0Var;
+        this.f13991c = i7;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i7) {
         ma.j(i7, this.d);
-        return this.f13997e.get(i7 + this.f13996c);
+        return this.f13992e.get(i7 + this.f13991c);
     }
 
     @Override
@@ -27,17 +27,17 @@ public final class h0 extends i0 {
 
     @Override
     public final Object[] j() {
-        return this.f13997e.j();
+        return this.f13992e.j();
     }
 
     @Override
     public final int k() {
-        return this.f13997e.l() + this.f13996c + this.d;
+        return this.f13992e.l() + this.f13991c + this.d;
     }
 
     @Override
     public final int l() {
-        return this.f13997e.l() + this.f13996c;
+        return this.f13992e.l() + this.f13991c;
     }
 
     @Override
@@ -58,8 +58,8 @@ public final class h0 extends i0 {
     @Override
     public final i0 subList(int i7, int i10) {
         ma.n(i7, i10, this.d);
-        int i11 = this.f13996c;
-        return this.f13997e.subList(i7 + i11, i10 + i11);
+        int i11 = this.f13991c;
+        return this.f13992e.subList(i7 + i11, i10 + i11);
     }
 
     @Override

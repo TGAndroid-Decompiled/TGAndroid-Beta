@@ -3,7 +3,7 @@ package m2;
 import android.media.AudioDescriptor;
 import h2.o;
 public final class c implements o {
-    public final int f20481a;
+    public final int f20577a;
 
     public static AudioDescriptor a(Object obj) {
         return (AudioDescriptor) obj;
@@ -12,7 +12,7 @@ public final class c implements o {
     @Override
     public void invoke(Object obj) {
         b bVar = (b) obj;
-        switch (this.f20481a) {
+        switch (this.f20577a) {
             case 0:
                 bVar.getClass();
                 return;
@@ -95,6 +95,6 @@ public final class c implements o {
     }
 
     public c(a aVar, Object obj, Object obj2, int i7) {
-        this.f20481a = i7;
+        this.f20577a = i7;
     }
 }

@@ -3,60 +3,55 @@ package org.telegram.ui;
 import android.content.SharedPreferences;
 import java.util.ArrayList;
 public final class sk implements ll {
-    public final bn f52032a;
-    public final bn f52033b;
+    public final bn f52098a;
+    public final bn f52099b;
 
     public sk(bn bnVar, bn bnVar2) {
-        this.f52033b = bnVar;
-        this.f52032a = bnVar2;
+        this.f52099b = bnVar;
+        this.f52098a = bnVar2;
     }
 
     @Override
-    public final void K0(int i7) {
-        this.f52033b.l(i7, 0, true, 0, true, 0);
-    }
-
-    @Override
-    public final void V(boolean z10, boolean z11) {
+    public final void N(boolean z10, boolean z11) {
         int c92;
         ArrayList arrayList;
-        org.telegram.ui.Components.ob obVar;
+        org.telegram.ui.Components.nb nbVar;
         int i7;
-        bn bnVar = this.f52033b;
+        bn bnVar = this.f52099b;
         if (z10) {
             ArrayList arrayList2 = new ArrayList(bnVar.V4);
             ArrayList arrayList3 = new ArrayList(bnVar.X4.values());
-            org.telegram.ui.Components.gc gcVar = null;
+            org.telegram.ui.Components.fc fcVar = null;
             if (z11) {
                 i7 = ((org.telegram.ui.ActionBar.g2) bnVar).currentAccount;
-                SharedPreferences sharedPreferences = org.telegram.messenger.np.u1(i7).f25821g7;
+                SharedPreferences sharedPreferences = org.telegram.messenger.mp.u1(i7).f25753g7;
                 if (bnVar.V4.isEmpty()) {
                     SharedPreferences.Editor edit = sharedPreferences.edit();
-                    edit.remove("pin_" + bnVar.f46056l6).commit();
+                    edit.remove("pin_" + bnVar.f46271l6).commit();
                 } else {
                     SharedPreferences.Editor edit2 = sharedPreferences.edit();
-                    edit2.putInt("pin_" + bnVar.f46056l6, ((Integer) bnVar.V4.get(0)).intValue()).commit();
+                    edit2.putInt("pin_" + bnVar.f46271l6, ((Integer) bnVar.V4.get(0)).intValue()).commit();
                 }
                 bnVar.gd(0, true);
             } else {
-                bnVar.getNotificationCenter().k(org.telegram.messenger.ls.f25349t0, Long.valueOf(bnVar.f46056l6), arrayList2, Boolean.FALSE, 0, 0, 0, 0, Boolean.TRUE);
+                bnVar.getNotificationCenter().k(org.telegram.messenger.ks.f25290t0, Long.valueOf(bnVar.f46271l6), arrayList2, Boolean.FALSE, 0, 0, 0, 0, Boolean.TRUE);
             }
-            org.telegram.ui.Components.gc gcVar2 = bnVar.P3;
-            if (gcVar2 != null) {
-                gcVar2.b();
+            org.telegram.ui.Components.fc fcVar2 = bnVar.P3;
+            if (fcVar2 != null) {
+                fcVar2.b();
             }
             bnVar.Q3 = true;
             int i10 = bnVar.R3 + 1;
             bnVar.R3 = i10;
-            boolean z12 = bnVar.f46207x4;
-            bn bnVar2 = this.f52032a;
+            boolean z12 = bnVar.f46422x4;
+            bn bnVar2 = this.f52098a;
             if (z12) {
                 c92 = bnVar2.c9();
             } else {
                 c92 = bnVar.c9();
             }
             int i11 = c92;
-            if (bnVar.f46207x4) {
+            if (bnVar.f46422x4) {
                 arrayList = bnVar2.V4;
             } else {
                 arrayList = bnVar.V4;
@@ -69,35 +64,40 @@ public final class sk implements ll {
                 l0Var.run();
             } else {
                 if (z11) {
-                    ?? dcVar = new org.telegram.ui.Components.dc(bnVar.getParentActivity(), zmVar);
-                    dcVar.c(2131624061, 28, 28, "Pin", "Line");
-                    dcVar.f34430b.setText(org.telegram.messenger.hd.N0(2131747030, null));
-                    dcVar.f34431c.setText(org.telegram.messenger.hd.N0(2131747029, null));
-                    obVar = dcVar;
+                    ?? ccVar = new org.telegram.ui.Components.cc(bnVar.getParentActivity(), zmVar);
+                    ccVar.c(2131624061, 28, 28, "Pin", "Line");
+                    ccVar.f34013b.setText(org.telegram.messenger.gd.N0(2131747030, null));
+                    ccVar.f34014c.setText(org.telegram.messenger.gd.N0(2131747029, null));
+                    nbVar = ccVar;
                 } else {
-                    org.telegram.ui.Components.ob obVar2 = new org.telegram.ui.Components.ob(bnVar.getParentActivity(), zmVar);
-                    obVar2.c(2131624061, 28, 28, "Pin", "Line");
-                    obVar2.f38124b.setText(org.telegram.messenger.hd.G(i11, "MessagesUnpinned", new Object[0]));
-                    obVar = obVar2;
+                    org.telegram.ui.Components.nb nbVar2 = new org.telegram.ui.Components.nb(bnVar.getParentActivity(), zmVar);
+                    nbVar2.c(2131624061, 28, 28, "Pin", "Line");
+                    nbVar2.f37752b.setText(org.telegram.messenger.gd.G(i11, "MessagesUnpinned", new Object[0]));
+                    nbVar = nbVar2;
                 }
-                org.telegram.ui.Components.ec ecVar = new org.telegram.ui.Components.ec(bnVar.getParentActivity(), zmVar, true);
-                ecVar.f34715b = rkVar;
-                ecVar.f34716c = l0Var;
-                obVar.setButton(ecVar);
-                gcVar = org.telegram.ui.Components.gc.g(bnVar, obVar, 5000);
+                org.telegram.ui.Components.dc dcVar = new org.telegram.ui.Components.dc(bnVar.getParentActivity(), zmVar, true);
+                dcVar.f34267b = rkVar;
+                dcVar.f34268c = l0Var;
+                nbVar.setButton(dcVar);
+                fcVar = org.telegram.ui.Components.fc.g(bnVar, nbVar, 5000);
             }
-            bnVar.P3 = gcVar;
+            bnVar.P3 = fcVar;
             return;
         }
-        org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) bnVar.X4.get(Integer.valueOf(bnVar.Z4));
-        if (gjVar == null) {
-            gjVar = (org.telegram.messenger.gj) bnVar.G6[0].get(bnVar.Z4);
+        org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) bnVar.X4.get(Integer.valueOf(bnVar.Z4));
+        if (fjVar == null) {
+            fjVar = (org.telegram.messenger.fj) bnVar.G6[0].get(bnVar.Z4);
         }
-        bnVar.Kc(gjVar);
+        bnVar.Kc(fjVar);
     }
 
     @Override
-    public final void x0(String str) {
-        this.f52033b.Ga(str, false);
+    public final void i0(String str) {
+        this.f52099b.Ga(str, false);
+    }
+
+    @Override
+    public final void z0(int i7) {
+        this.f52099b.l(i7, 0, true, 0, true, 0);
     }
 }

@@ -1,58 +1,51 @@
 package org.telegram.ui;
-public final class l90 implements Runnable {
-    public final int f49502a;
-    public final s90 f49503b;
-    public final String f49504c;
 
-    public l90(s90 s90Var, String str, int i7) {
-        this.f49502a = i7;
-        this.f49503b = s90Var;
-        this.f49504c = str;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class l90 implements org.telegram.messenger.p10 {
+    public final int f49655a;
+    public final r90 f49656b;
+    public final String f49657c;
+
+    public l90(r90 r90Var, String str, int i7) {
+        this.f49655a = i7;
+        this.f49656b = r90Var;
+        this.f49657c = str;
     }
 
     @Override
-    public final void run() {
-        switch (this.f49502a) {
+    public final void a(Object obj, Object obj2) {
+        int i7 = this.f49655a;
+        String str = this.f49657c;
+        r90 r90Var = this.f49656b;
+        switch (i7) {
             case 0:
-                s90 s90Var = this.f49503b;
-                s90Var.getClass();
-                String str = this.f49504c;
-                if ("disable".equalsIgnoreCase(str)) {
-                    s90Var.x("disablePasscodeRow");
-                }
-                if ("change".equalsIgnoreCase(str)) {
-                    s90Var.x("changePasscodeRow");
-                }
-                if ("auto-lock".equalsIgnoreCase(str)) {
-                    s90Var.x("autoLockRow");
-                }
-                if ("fingerprint".equalsIgnoreCase(str)) {
-                    s90Var.x("fingerprintRow");
-                    return;
-                }
-                return;
-            case 1:
-                this.f49503b.w(this.f49504c);
-                return;
-            case 2:
-                s90 s90Var2 = this.f49503b;
-                s90Var2.getClass();
-                String str2 = this.f49504c;
-                if ("disable".equalsIgnoreCase(str2)) {
-                    s90Var2.x("turnPasswordOffRow");
-                }
-                if ("change".equalsIgnoreCase(str2)) {
-                    s90Var2.x("changePasswordRow");
-                }
-                if ("change-email".equalsIgnoreCase(str2)) {
-                    s90Var2.x("emailRow");
+                TL_account.Passkeys passkeys = (TL_account.Passkeys) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                r90Var.c();
+                if (passkeys != null) {
+                    r90Var.u(new PasskeysActivity(passkeys.passkeys), false);
+                    if ("create".equalsIgnoreCase(str)) {
+                        r90Var.x("addPasskeyRow");
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                s90 s90Var3 = this.f49503b;
-                if (s90Var3.a()) {
-                    s90Var3.w(this.f49504c);
+                org.telegram.ui.Wallet.h2 h2Var = (org.telegram.ui.Wallet.h2) obj;
+                String str2 = (String) obj2;
+                r90Var.c();
+                if (h2Var == null) {
+                    if (str2 == null) {
+                        str2 = org.telegram.messenger.gd.N0(2131742720, null);
+                    }
+                    org.telegram.ui.Components.kc.c0(str2);
+                    return;
+                }
+                org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
+                if (T != null && T.getContext() != null) {
+                    org.telegram.ui.Wallet.m2.D(T.getContext(), r90Var.f51668b, h2Var, null, T.getResourceProvider(), null, new k90(r90Var, str, 1));
                     return;
                 }
                 return;

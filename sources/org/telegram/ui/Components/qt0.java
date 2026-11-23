@@ -1,8 +1,11 @@
 package org.telegram.ui.Components;
+
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 public interface qt0 {
-    void G(boolean z10);
+    float j(RecyclerView recyclerView);
 
-    float U0();
+    RecyclerView l(View view);
 
-    int j1();
+    void r(RecyclerView recyclerView);
 }

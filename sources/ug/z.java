@@ -9,28 +9,28 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import android.util.Pair;
 import java.util.HashMap;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.k10;
-import org.telegram.messenger.np;
-import org.telegram.messenger.qc;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.pc;
 import org.telegram.messenger.v3;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g2;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Components.ec;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.ob;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.dc;
+import org.telegram.ui.Components.fc;
+import org.telegram.ui.Components.nb;
 import org.telegram.ui.LaunchActivity;
-public final class z implements y10 {
-    public final int f58974a;
-    public final Object f58975b;
+public final class z implements w10 {
+    public final int f59091a;
+    public final Object f59092b;
 
     public z(Object obj, int i7) {
-        this.f58974a = i7;
-        this.f58975b = obj;
+        this.f59091a = i7;
+        this.f59092b = obj;
     }
 
     @Override
@@ -39,8 +39,8 @@ public final class z implements y10 {
         boolean z10;
         float f10;
         float f11;
-        int i7 = this.f58974a;
-        Object obj2 = this.f58975b;
+        int i7 = this.f59091a;
+        Object obj2 = this.f59092b;
         switch (i7) {
             case 0:
                 ((k0) obj2).z1((HashMap) obj);
@@ -48,9 +48,9 @@ public final class z implements y10 {
             case 1:
                 t1 t1Var = (t1) obj2;
                 Boolean bool = (Boolean) obj;
-                boolean e10 = qc.e(131072);
-                if (t1Var.f58926e != e10) {
-                    t1Var.f58926e = e10;
+                boolean e10 = pc.e(131072);
+                if (t1Var.f59041e != e10) {
+                    t1Var.f59041e = e10;
                     t1Var.invalidate();
                     return;
                 }
@@ -59,9 +59,9 @@ public final class z implements y10 {
                 vh.g.e1((vh.g) obj2, (Pair) obj);
                 return;
             case 3:
-                gj gjVar = (gj) obj2;
+                fj fjVar = (fj) obj2;
                 TLRPC.payments_GiveawayInfo payments_giveawayinfo = (TLRPC.payments_GiveawayInfo) obj;
-                TLRPC.MessageMedia messageMedia = gjVar.f24177k.media;
+                TLRPC.MessageMedia messageMedia = fjVar.f24073k.media;
                 if (messageMedia instanceof TLRPC.TL_messageMediaGiveawayResults) {
                     TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = (TLRPC.TL_messageMediaGiveawayResults) messageMedia;
                     tL_messageMediaGiveaway = new TLRPC.TL_messageMediaGiveaway();
@@ -78,43 +78,43 @@ public final class z implements y10 {
                     tL_messageMediaGiveaway = (TLRPC.TL_messageMediaGiveaway) messageMedia;
                 }
                 TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway2 = tL_messageMediaGiveaway;
-                long j3 = 1000 * gjVar.f24177k.date;
+                long j3 = 1000 * fjVar.f24073k.date;
                 g2 Q = LaunchActivity.Q();
                 if (Q != null) {
-                    String b10 = wg.h.b(gjVar);
-                    TLRPC.Chat O0 = np.u1(k10.f24932t0).O0(Long.valueOf(-gjVar.Z0()));
+                    String b10 = wg.h.b(fjVar);
+                    TLRPC.Chat O0 = mp.u1(i10.f24637t0).O0(Long.valueOf(-fjVar.Z0()));
                     if (O0 != null && v3.V(O0)) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    ob obVar = new ob(Q.getParentActivity(), Q.getResourceProvider());
+                    nb nbVar = new nb(Q.getParentActivity(), Q.getResourceProvider());
                     if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfoResults) {
-                        obVar.c(2131623982, 30, 30, new String[0]);
-                        obVar.f38124b.setText(hd.N0(2131753368, null));
+                        nbVar.c(2131623982, 30, 30, new String[0]);
+                        nbVar.f37752b.setText(gd.N0(2131753368, null));
                     } else if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfo) {
                         if (((TLRPC.TL_payments_giveawayInfo) payments_giveawayinfo).participating) {
-                            obVar.c(2131624029, 30, 30, new String[0]);
-                            obVar.f38124b.setText(hd.N0(2131753366, null));
+                            nbVar.c(2131624029, 30, 30, new String[0]);
+                            nbVar.f37752b.setText(gd.N0(2131753366, null));
                         } else {
-                            obVar.c(2131623982, 30, 30, new String[0]);
-                            obVar.f38124b.setText(hd.N0(2131753367, null));
+                            nbVar.c(2131623982, 30, 30, new String[0]);
+                            nbVar.f37752b.setText(gd.N0(2131753367, null));
                         }
                     }
-                    obVar.f38124b.setSingleLine(false);
-                    obVar.f38124b.setMaxLines(2);
-                    ec ecVar = new ec(Q.getParentActivity(), Q.getResourceProvider(), true);
-                    ecVar.e(hd.N0(2131748817, null));
-                    ecVar.f34715b = new ai.e(payments_giveawayinfo, z10, b10, j3, tL_messageMediaGiveaway2, Q);
-                    obVar.setButton(ecVar);
-                    gc.g(Q, obVar, 2750).j();
+                    nbVar.f37752b.setSingleLine(false);
+                    nbVar.f37752b.setMaxLines(2);
+                    dc dcVar = new dc(Q.getParentActivity(), Q.getResourceProvider(), true);
+                    dcVar.e(gd.N0(2131748817, null));
+                    dcVar.f34267b = new ai.e(payments_giveawayinfo, z10, b10, j3, tL_messageMediaGiveaway2, Q);
+                    nbVar.setButton(dcVar);
+                    fc.g(Q, nbVar, 2750).j();
                     return;
                 }
                 return;
             case 4:
-                wg.q0 q0Var = (wg.q0) obj2;
-                q0Var.W1.setLoading(false);
-                wg.h.j(q0Var.getContext(), (TLRPC.TL_error) obj);
+                wg.p0 p0Var = (wg.p0) obj2;
+                p0Var.W1.setLoading(false);
+                wg.h.j(p0Var.getContext(), (TLRPC.TL_error) obj);
                 return;
             case 5:
                 wh.h hVar = (wh.h) obj2;
@@ -132,13 +132,13 @@ public final class z implements y10 {
                 hVar.M = paint;
                 paint.setShader(hVar.K);
                 ColorMatrix colorMatrix = new ColorMatrix();
-                if (m6.I.q()) {
+                if (n6.I.q()) {
                     f10 = 0.08f;
                 } else {
                     f10 = 1.25f;
                 }
                 org.telegram.messenger.g0.i(colorMatrix, f10);
-                if (m6.I.q()) {
+                if (n6.I.q()) {
                     f11 = 0.02f;
                 } else {
                     f11 = -0.15f;
@@ -150,7 +150,7 @@ public final class z implements y10 {
                 hVar.K.setLocalMatrix(matrix);
                 return;
             case 6:
-                HashMap hashMap = ((xg.b) obj2).f60489x;
+                HashMap hashMap = ((xg.b) obj2).f60607x;
                 hashMap.clear();
                 hashMap.putAll((HashMap) obj);
                 return;
@@ -158,7 +158,7 @@ public final class z implements y10 {
                 ((xg.e) obj2).F((TLObject) obj);
                 return;
             default:
-                HashMap hashMap2 = ((xg.h) obj2).f60515r;
+                HashMap hashMap2 = ((xg.h) obj2).f60633r;
                 hashMap2.clear();
                 hashMap2.putAll((HashMap) obj);
                 return;

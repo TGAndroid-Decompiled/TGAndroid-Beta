@@ -1,22 +1,44 @@
 package l2;
-public final class b0 implements x0 {
-    public final Object f19260a;
-    public final x2.b0 f19261b;
-    public e2.l1 f19262c;
 
-    public b0(Object obj, x2.b0 b0Var) {
-        this.f19260a = obj;
-        this.f19261b = b0Var;
-        this.f19262c = b0Var.f60046o;
+import android.media.MediaFormat;
+public final class b0 implements d3.v, j1 {
+    public d3.v f19357a;
+    public b0 f19358b;
+
+    @Override
+    public final void a(long j3, long j10, e2.u uVar, MediaFormat mediaFormat) {
+        d3.v vVar = this.f19357a;
+        if (vVar != null) {
+            vVar.a(j3, j10, uVar, mediaFormat);
+        }
+    }
+
+    public final void b() {
+        b0 b0Var = this.f19358b;
+        if (b0Var != null) {
+            b0Var.b();
+        }
     }
 
     @Override
-    public final Object a() {
-        return this.f19260a;
+    public final void c(int i7, Object obj) {
+        if (i7 != 7) {
+            if (i7 != 8) {
+                if (i7 != 10000 || obj == null) {
+                    return;
+                }
+                throw new ClassCastException();
+            }
+            this.f19358b = (b0) obj;
+            return;
+        }
+        this.f19357a = (d3.v) obj;
     }
 
-    @Override
-    public final e2.l1 b() {
-        return this.f19262c;
+    public final void d() {
+        b0 b0Var = this.f19358b;
+        if (b0Var != null) {
+            b0Var.d();
+        }
     }
 }

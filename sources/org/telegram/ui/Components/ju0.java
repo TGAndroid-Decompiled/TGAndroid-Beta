@@ -1,37 +1,39 @@
 package org.telegram.ui.Components;
-public final class ju0 implements Runnable {
-    public final int f36652a;
-    public final lu0 f36653b;
 
-    public ju0(lu0 lu0Var, int i7) {
-        this.f36652a = i7;
-        this.f36653b = lu0Var;
+import org.telegram.tgnet.TLRPC;
+public final class ju0 implements Runnable {
+    public final int f36516a;
+    public final TLRPC.Document f36517b;
+    public final int f36518c;
+    public final org.telegram.messenger.fj d;
+    public final org.telegram.ui.Cells.r1 f36519e;
+    public final TLRPC.TL_messages_stickerSet f36520f;
+
+    public ju0(TLRPC.Document document, int i7, org.telegram.messenger.fj fjVar, org.telegram.ui.Cells.r1 r1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10) {
+        this.f36516a = i10;
+        this.f36517b = document;
+        this.f36518c = i7;
+        this.d = fjVar;
+        this.f36519e = r1Var;
+        this.f36520f = tL_messages_stickerSet;
     }
 
     @Override
     public final void run() {
-        switch (this.f36652a) {
+        switch (this.f36516a) {
             case 0:
-                lu0 lu0Var = this.f36653b;
-                lu0Var.W0 = false;
-                if (!lu0Var.Z0 && lu0Var.X0) {
-                    lu0Var.C(true);
-                    return;
-                }
-                return;
-            case 1:
-                this.f36653b.W0 = false;
-                return;
-            case 2:
-                lu0 lu0Var2 = this.f36653b;
-                lu0Var2.Z0 = false;
-                if (!lu0Var2.W0 && lu0Var2.X0) {
-                    lu0Var2.C(true);
-                    return;
-                }
+                TLRPC.Document document = this.f36517b;
+                String r10 = org.telegram.messenger.w7.r(null, document);
+                int i7 = this.f36518c;
+                org.telegram.messenger.a6.q(i7).a(r10, this.d, this.f36519e);
+                org.telegram.messenger.w7.G(i7).W(document, this.f36520f, 1, 1);
                 return;
             default:
-                this.f36653b.Z0 = false;
+                TLRPC.Document document2 = this.f36517b;
+                String r11 = org.telegram.messenger.w7.r(null, document2);
+                int i10 = this.f36518c;
+                org.telegram.messenger.a6.q(i10).a(r11, this.d, this.f36519e);
+                org.telegram.messenger.w7.G(i10).W(document2, this.f36520f, 1, 1);
                 return;
         }
     }

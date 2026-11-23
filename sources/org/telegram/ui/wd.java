@@ -11,37 +11,37 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 public final class wd extends FrameLayout {
-    public final org.telegram.ui.ActionBar.h6 f53042a;
-    public final org.telegram.ui.Components.x5 f53043b;
-    public final TextView f53044c;
+    public final org.telegram.ui.ActionBar.i6 f53299a;
+    public final org.telegram.ui.Components.w5 f53300b;
+    public final TextView f53301c;
     public final TextView d;
-    public final DecimalFormat f53045e;
-    public boolean f53046f;
+    public final DecimalFormat f53302e;
+    public boolean f53303f;
 
-    public wd(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+    public wd(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
-        this.f53042a = h6Var;
+        this.f53299a = i6Var;
         LinearLayout g10 = org.telegram.messenger.f3.g(context, 1);
         addView(g10, c8.na.d(-1, -2.0f, 119, 17.0f, 9.0f, 130.0f, 9.0f));
         TextView textView = new TextView(context);
-        this.f53044c = textView;
+        this.f53301c = textView;
         textView.setTextSize(1, 16.0f);
-        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.G6, h6Var);
+        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.G6, i6Var);
         g10.addView(textView, c8.na.o(-1, -2));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 13.0f);
-        org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.f29739y6, h6Var);
+        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29843y6, i6Var);
         g10.addView(textView2, c8.na.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2));
-        org.telegram.ui.Components.x5 x5Var = new org.telegram.ui.Components.x5(context);
-        this.f53043b = x5Var;
-        x5Var.setTypeface(org.telegram.messenger.g0.o());
-        x5Var.setTextSize(1, 13.0f);
-        addView(x5Var, c8.na.d(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
+        org.telegram.ui.Components.w5 w5Var = new org.telegram.ui.Components.w5(context);
+        this.f53300b = w5Var;
+        w5Var.setTypeface(org.telegram.messenger.g0.o());
+        w5Var.setTextSize(1, 13.0f);
+        addView(w5Var, c8.na.d(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
         DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
         decimalFormatSymbols.setDecimalSeparator('.');
         DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-        this.f53045e = decimalFormat;
+        this.f53302e = decimalFormat;
         decimalFormat.setMinimumFractionDigits(2);
         decimalFormat.setMaximumFractionDigits(12);
         decimalFormat.setGroupingUsed(false);
@@ -53,16 +53,16 @@ public final class wd extends FrameLayout {
         float L;
         int i7;
         super.onDraw(canvas);
-        if (this.f53046f) {
-            org.telegram.ui.ActionBar.h6 h6Var = this.f53042a;
-            if (h6Var != null) {
-                paint = h6Var.g("paintDivider");
+        if (this.f53303f) {
+            org.telegram.ui.ActionBar.i6 i6Var = this.f53299a;
+            if (i6Var != null) {
+                paint = i6Var.e("paintDivider");
             } else {
-                paint = org.telegram.ui.ActionBar.m6.f29470k0;
+                paint = org.telegram.ui.ActionBar.n6.f29574k0;
             }
             Paint paint2 = paint;
             if (paint2 != null) {
-                if (org.telegram.messenger.hd.f24408a0) {
+                if (org.telegram.messenger.gd.f24314a0) {
                     L = 0.0f;
                 } else {
                     L = org.telegram.messenger.g0.L(17.0f);
@@ -70,7 +70,7 @@ public final class wd extends FrameLayout {
                 float f10 = L;
                 float measuredHeight = getMeasuredHeight() - 1;
                 int measuredWidth = getMeasuredWidth();
-                if (org.telegram.messenger.hd.f24408a0) {
+                if (org.telegram.messenger.gd.f24314a0) {
                     i7 = org.telegram.messenger.g0.L(17.0f);
                 } else {
                     i7 = 0;

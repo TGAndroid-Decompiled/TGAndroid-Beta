@@ -1,11 +1,11 @@
 package zd;
 public final class w implements id.g {
-    public final rd.l f61907a;
-    public final id.g f61908b;
+    public final rd.l f62026a;
+    public final id.g f62027b;
 
     public w(id.g baseKey, rd.l lVar) {
         kotlin.jvm.internal.j.e(baseKey, "baseKey");
-        this.f61907a = lVar;
-        this.f61908b = baseKey instanceof w ? ((w) baseKey).f61908b : baseKey;
+        this.f62026a = lVar;
+        this.f62027b = baseKey instanceof w ? ((w) baseKey).f62027b : baseKey;
     }
 }

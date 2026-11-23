@@ -35,15 +35,15 @@ import com.google.android.gms.internal.vision.e2;
 import di.ua;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.cz;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.ls;
+import org.telegram.messenger.bz;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.ks;
 import org.telegram.messenger.s2;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.g2;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Components.m80;
-import org.telegram.ui.hi0;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.j80;
+import org.telegram.ui.fi0;
 import org.telegram.ui.t9;
 public class j0 extends g2 {
     public boolean E;
@@ -135,8 +135,8 @@ public class j0 extends g2 {
         boolean z10 = !j0Var.E;
         int i7 = j0Var.currentAccount;
         j0Var.Z = i7;
-        j0Var.X = ls.f(i7).q(null, -1, z10);
-        j0Var.Y = ls.e().q(null, -1, z10);
+        j0Var.X = ks.f(i7).q(null, -1, z10);
+        j0Var.Y = ks.e().q(null, -1, z10);
         animatorSet.start();
     }
 
@@ -156,13 +156,13 @@ public class j0 extends g2 {
                 p3Var.f3947q2 = uaVar2;
                 viewGroup.addView(uaVar2, indexOfChild, na.c(-1.0f, -1));
             }
-            m80 m80Var = p3Var.f3948r2;
-            if (m80Var != null) {
-                String N0 = hd.N0(2131750271, null);
+            j80 j80Var = p3Var.f3948r2;
+            if (j80Var != null) {
+                String N0 = gd.N0(2131750271, null);
                 w2 w2Var = p3Var.f3936f2;
                 w2Var.setText(N0);
                 w2Var.setBreakStrategy(2);
-                m80Var.setVisibility(8);
+                j80Var.setVisibility(8);
             }
             p3Var.U1.O(false);
         }
@@ -290,9 +290,9 @@ public class j0 extends g2 {
             this.d.setScanHidden(true);
             b0 b0Var = new b0(getParentActivity(), rectF, rectF2, new ob.c(this, 11));
             this.G = b0Var;
-            b0Var.setButtonLabel(hd.N0(2131746274, null));
+            b0Var.setButtonLabel(gd.N0(2131746274, null));
             b0 b0Var2 = this.G;
-            b0Var2.setOnGallery(new c1.c(14, this, b0Var2));
+            b0Var2.setOnGallery(new c1.a(16, this, b0Var2));
             this.f5674f.addView(this.G, na.c(-1.0f, -1));
         }
     }
@@ -403,14 +403,14 @@ public class j0 extends g2 {
         z0 z0Var;
         Activity parentActivity = getParentActivity();
         if (parentActivity != null && (z0Var = this.d) != null && z0Var.getCurrentLink() != null) {
-            if ((Build.VERSION.SDK_INT <= 28 || s2.f26695b) && parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
+            if ((Build.VERSION.SDK_INT <= 28 || s2.f26830b) && parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
                 this.F = true;
                 parentActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 4);
                 return;
             }
             Bitmap T0 = this.d.T0();
             if (T0 != null) {
-                Utilities.f22774e.c(new c1.c(13, this, T0));
+                Utilities.f22877e.c(new c1.a(15, this, T0));
             }
         }
     }
@@ -437,7 +437,7 @@ public class j0 extends g2 {
                 return;
             }
             try {
-                getParentActivity().startActivity(Intent.createChooser(intent, hd.N0(2131748977, null)));
+                getParentActivity().startActivity(Intent.createChooser(intent, gd.N0(2131748977, null)));
             } catch (ActivityNotFoundException e10) {
                 a8.g(e10, true);
             }
@@ -517,10 +517,10 @@ public class j0 extends g2 {
 
     public final void l0() {
         if (this.X >= 0) {
-            ls.f(this.Z).j(this.X);
+            ks.f(this.Z).j(this.X);
         }
         if (this.Y >= 0) {
-            ls.e().j(this.Y);
+            ks.e().j(this.Y);
         }
         this.Y = -1;
         this.X = -1;
@@ -604,7 +604,7 @@ public class j0 extends g2 {
             animatorSet.setDuration(j3);
             animatorSet.setInterpolator(new LinearInterpolator());
             animatorSet.addListener(new androidx.fragment.app.g(this, z10, runnable, 3));
-            org.telegram.messenger.g0.g3(new c1.c(12, this, animatorSet));
+            org.telegram.messenger.g0.g3(new c1.a(14, this, animatorSet));
             return animatorSet;
         }
         return null;
@@ -630,7 +630,7 @@ public class j0 extends g2 {
         }
         this.f5667b = j10;
         Bundle bundle3 = this.arguments;
-        if (bundle3 != null && bundle3.getBoolean("immediate") && cz.o() == 2) {
+        if (bundle3 != null && bundle3.getBoolean("immediate") && bz.o() == 2) {
             z10 = true;
         } else {
             z10 = false;
@@ -648,9 +648,9 @@ public class j0 extends g2 {
         l0();
         org.telegram.ui.f fVar = this.f5669c;
         if (fVar != null) {
-            hi0 hi0Var = (hi0) fVar.f47394b;
-            if (hi0Var.f48373b.remove(fVar)) {
-                hi0Var.a();
+            fi0 fi0Var = (fi0) fVar.f47651b;
+            if (fi0Var.f47845b.remove(fVar)) {
+                fi0Var.a();
             }
             this.f5669c = null;
         }
@@ -720,11 +720,11 @@ public class j0 extends g2 {
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-            alertDialog$Builder.f28743a.U = org.telegram.messenger.g0.W2(hd.N0(2131746307, null));
-            alertDialog$Builder.k(hd.N0(2131747106, null), new c0(this));
-            alertDialog$Builder.h(hd.N0(2131751760, null), null);
-            int i10 = m6.L5;
-            alertDialog$Builder.m(2131624117, 72, m6.x0(null, i10, false), null);
+            alertDialog$Builder.f28835a.U = org.telegram.messenger.g0.W2(gd.N0(2131746307, null));
+            alertDialog$Builder.k(gd.N0(2131747106, null), new c0(this));
+            alertDialog$Builder.h(gd.N0(2131751760, null), null);
+            int i10 = n6.L5;
+            alertDialog$Builder.m(2131624117, 72, n6.x0(null, i10, false), null);
             alertDialog$Builder.n(i10, null);
             alertDialog$Builder.p();
         }
@@ -752,7 +752,7 @@ public class j0 extends g2 {
         if (z10 && !z11 && this.f5674f != null) {
             float f10 = f.S;
             long j3 = 0;
-            if (Build.VERSION.SDK_INT >= 29 && cz.o() == 2) {
+            if (Build.VERSION.SDK_INT >= 29 && bz.o() == 2) {
                 j3 = Math.max(0L, Math.round(c1.f5607b[51]) - 860);
             }
             FrameLayout frameLayout = this.f5674f;

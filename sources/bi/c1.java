@@ -22,9 +22,9 @@ public final class c1 implements Runnable {
                 if (h1Var != null) {
                     h1Var.setTranslationY(-hVar.d());
                 }
-                org.telegram.ui.Components.o6 o6Var = k1Var.f3744w1;
-                if (o6Var != null) {
-                    o6Var.setTranslationY(-hVar.d());
+                org.telegram.ui.Components.n6 n6Var = k1Var.f3744w1;
+                if (n6Var != null) {
+                    n6Var.setTranslationY(-hVar.d());
                 }
                 k1Var.J0();
                 return;
@@ -32,7 +32,7 @@ public final class c1 implements Runnable {
                 this.f3428b.C1.performClick();
                 return;
             case 2:
-                this.f3428b.f3740s1.j1();
+                this.f3428b.f3740s1.k1();
                 return;
             default:
                 this.f3428b.dismiss();

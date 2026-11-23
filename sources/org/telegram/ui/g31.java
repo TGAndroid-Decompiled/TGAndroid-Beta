@@ -1,16 +1,9 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class g31 extends ww0 {
-    public final o31 H;
-
-    public g31(o31 o31Var, o31 o31Var2, Context context) {
-        super(context, o31Var2);
-        this.H = o31Var;
-    }
-
+import android.view.MotionEvent;
+public final class g31 extends org.telegram.ui.Components.kg0 {
     @Override
-    public final void f() {
-        this.H.f50444c.f35742g3.O(true);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 }

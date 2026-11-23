@@ -1,23 +1,28 @@
 package org.telegram.ui;
-public final class a6 implements Runnable {
-    public final int f45474a;
-    public final org.telegram.messenger.y10 f45475b;
-    public final long f45476c;
 
-    public a6(int i7, long j3, org.telegram.messenger.y10 y10Var) {
-        this.f45474a = i7;
-        this.f45475b = y10Var;
-        this.f45476c = j3;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
+public final class a6 implements org.telegram.ui.Components.rt0 {
+    public final int f45593a;
+    public final FrameLayout f45594b;
+
+    public a6(int i7, FrameLayout frameLayout) {
+        this.f45593a = i7;
+        this.f45594b = frameLayout;
     }
 
     @Override
-    public final void run() {
-        switch (this.f45474a) {
+    public final void a(Canvas canvas, RectF rectF, RecyclerView recyclerView) {
+        switch (this.f45593a) {
             case 0:
-                this.f45475b.a(Long.valueOf(this.f45476c));
+                org.telegram.ui.Components.ek0 ek0Var = (org.telegram.ui.Components.ek0) recyclerView;
+                ih.d.a(ek0Var, canvas, rectF, ek0Var, this.f45594b);
                 return;
             default:
-                this.f45475b.a(Long.valueOf(this.f45476c));
+                org.telegram.ui.Components.ek0 ek0Var2 = (org.telegram.ui.Components.ek0) recyclerView;
+                ih.d.a(ek0Var2, canvas, rectF, ek0Var2, this.f45594b);
                 return;
         }
     }

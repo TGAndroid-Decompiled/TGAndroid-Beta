@@ -1,79 +1,187 @@
 package ai;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.os.SystemClock;
-import java.lang.reflect.Array;
-public abstract class c2 {
-    public static final Paint f1152a;
-    public static final LinearGradient f1153b;
-    public static final Matrix f1154c;
-    public static final RectF d;
-    public static int f1155e;
-    public static int f1156f;
-    public static final ColorFilter[][] f1157g;
+import android.util.Log;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Locale;
+public final class c2 {
+    public static final HashSet h = new HashSet(Arrays.asList("a", "an", "and", "the", "but", "so", "or", "to", "of", "in", "on", "at", "for", "with", "it", "it's", "that", "this", "these", "those", "then", "than", "also", "because", "which", "who", "if", "when", "while", "just", "like", "is", "are", "was", "were", "be", "been", "we", "you", "they", "he", "she", "my", "our", "your", "their", "his", "her", "not", "as", "what", "how", "why", "where", "there", "here", "now", "do", "does", "did", "have", "has", "had", "will", "would", "can", "could", "should", "maybe", "really", "very", "too", "и", "а", "но", "что", "как", "это", "в", "во", "на", "с", "со", "к", "по", "за", "из", "у", "о", "об", "от", "до", "для", "что-то", "где", "почему", "зачем", "сейчас", "не", "ни", "же", "ли", "бы", "то", "так", "там", "тут", "вот", "ну", "или", "если", "когда", "потому", "чтобы", "мы", "вы", "он", "она", "они", "оно", "ты", "я", "мой", "моя", "мне", "меня", "его", "её", "их", "был", "была", "было", "были", "будет", "уже", "ещё", "еще", "тоже", "очень", "просто", "наверное", "может"));
+    public boolean d;
+    public boolean f1154f;
+    public a3.l f1155g;
+    public final StringBuilder f1150a = new StringBuilder();
+    public String f1151b = "";
+    public String f1152c = "";
+    public int f1153e = -1;
 
-    static {
-        Paint paint = new Paint(1);
-        f1152a = paint;
-        Paint paint2 = new Paint(1);
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, 16777215, -1, tileMode);
-        f1153b = linearGradient;
-        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{-637534209, 872415231, 234881023, 654311423}, new float[]{0.0f, 0.4f, 0.75f, 1.0f}, tileMode);
-        f1154c = new Matrix();
-        d = new RectF();
-        paint.setShader(linearGradient);
-        paint2.setShader(linearGradient2);
-        paint2.setStyle(Paint.Style.STROKE);
-        f1155e = -16733772;
-        f1156f = -14774554;
-        f1157g = (ColorFilter[][]) Array.newInstance(ColorFilter.class, 2, 49);
+    public static String b(String str) {
+        if (str == null) {
+            return "null";
+        }
+        return "<" + str.length() + " chars>";
     }
 
-    public static void a(Canvas canvas, float f10, float f11, float f12, float f13, float f14, boolean z10, float f15, float f16) {
-        float f17;
-        int f18;
-        if (f15 <= 0.01f) {
+    public static java.lang.String d(java.lang.String r7, java.lang.String r8) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.c2.d(java.lang.String, java.lang.String):java.lang.String");
+    }
+
+    public static String e(int i7, String str) {
+        String[] split = str.trim().split("\\s+");
+        int i10 = 0;
+        int i11 = 0;
+        while (i10 < split.length && i11 < i7) {
+            if (!j(split[i10]).isEmpty()) {
+                i11++;
+            }
+            i10++;
+        }
+        StringBuilder sb2 = new StringBuilder();
+        while (i10 < split.length) {
+            if (sb2.length() > 0) {
+                sb2.append(' ');
+            }
+            sb2.append(split[i10]);
+            i10++;
+        }
+        return sb2.toString();
+    }
+
+    public static String h(String str, String str2) {
+        String trim;
+        String str3 = "";
+        if (str == null) {
+            trim = "";
+        } else {
+            trim = str.trim();
+        }
+        if (str2 != null) {
+            str3 = str2.trim();
+        }
+        if (trim.isEmpty()) {
+            return str3;
+        }
+        if (str3.isEmpty()) {
+            return trim;
+        }
+        boolean z10 = true;
+        char charAt = trim.charAt(trim.length() - 1);
+        if (charAt != '.' && charAt != '?' && charAt != '!' && charAt != 8230) {
+            z10 = false;
+        }
+        int codePointAt = str3.codePointAt(0);
+        if (z10) {
+            if (Character.isLowerCase(codePointAt)) {
+                str3 = new String(Character.toChars(Character.toUpperCase(codePointAt))) + str3.substring(Character.charCount(codePointAt));
+            }
+        } else if (Character.isUpperCase(codePointAt)) {
+            int i7 = 0;
+            while (true) {
+                if ((i7 >= str3.length() || !Character.isLetter(str3.charAt(i7))) && (i7 >= str3.length() || str3.charAt(i7) != '\'')) {
+                    break;
+                }
+                i7++;
+            }
+            String substring = str3.substring(0, i7);
+            Locale locale = Locale.ROOT;
+            String lowerCase = substring.toLowerCase(locale);
+            if (str3.substring(Character.charCount(codePointAt), i7).equals(str3.substring(Character.charCount(codePointAt), i7).toLowerCase(locale)) && h.contains(lowerCase)) {
+                str3 = new String(Character.toChars(Character.toLowerCase(codePointAt))) + str3.substring(Character.charCount(codePointAt));
+            }
+        }
+        return a8.p0.E(trim, " ", str3);
+    }
+
+    public static String j(String str) {
+        StringBuilder sb2 = new StringBuilder();
+        for (int i7 = 0; i7 < str.length(); i7++) {
+            char charAt = str.charAt(i7);
+            if (Character.isLetterOrDigit(charAt) || charAt == '\'') {
+                sb2.append(Character.toLowerCase(charAt));
+            }
+        }
+        return sb2.toString();
+    }
+
+    public static boolean k(String str, String str2) {
+        if (str.length() < 3 || str2.length() < 3 || !str.regionMatches(0, str2, 0, Math.min(3, Math.min(str.length(), str2.length()))) || Math.abs(str.length() - str2.length()) > 4) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean l(ArrayList arrayList, ArrayList arrayList2, int i7) {
+        if (i7 > 0 && arrayList.size() >= i7 && arrayList2.size() >= i7) {
+            for (int i10 = 0; i10 < i7; i10++) {
+                if (((String) arrayList.get(i10)).equals(arrayList2.get(i10))) {
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static ArrayList n(String str) {
+        ArrayList arrayList = new ArrayList();
+        if (str != null) {
+            for (String str2 : str.trim().split("\\s+")) {
+                String j3 = j(str2);
+                if (!j3.isEmpty()) {
+                    arrayList.add(j3);
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    public final void a(java.lang.String r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.c2.a(java.lang.String, boolean):void");
+    }
+
+    public final void c(String str) {
+        String h7 = h(this.f1151b, this.f1152c);
+        this.f1151b = "";
+        this.f1152c = "";
+        this.d = false;
+        this.f1154f = false;
+        if (!h7.isEmpty()) {
+            StringBuilder sb2 = this.f1150a;
+            String d = d(sb2.toString(), h7);
+            if (!d.isEmpty()) {
+                String h10 = h(sb2.toString(), d);
+                sb2.setLength(0);
+                sb2.append(h10);
+            }
+            i("session " + this.f1153e + " close(" + str + ") +\"" + b(d) + "\" → " + sb2.length() + " chars");
             return;
         }
-        int round = Math.round(((((float) Math.sin(((SystemClock.uptimeMillis() / 1000.0d) * 0.9d) + 1.3d)) * 0.5f) + 0.5f) * 48.0f);
-        ColorFilter[][] colorFilterArr = f1157g;
-        ColorFilter colorFilter = colorFilterArr[z10 ? 1 : 0][round];
-        if (colorFilter == null) {
-            float f19 = round / 48.0f;
-            if (z10) {
-                f18 = p0.e(i0.a.f(f19, -14717953, -7447553));
-            } else {
-                f18 = i0.a.f(f19, f1155e, f1156f);
-            }
-            ColorFilter[] colorFilterArr2 = colorFilterArr[z10 ? 1 : 0];
-            colorFilter = new PorterDuffColorFilter(f18, PorterDuff.Mode.SRC_IN);
-            colorFilterArr2[round] = colorFilter;
+        i("session " + this.f1153e + " close(" + str + ") empty");
+    }
+
+    public final void f(int i7, String str) {
+        if (!g(i7)) {
+            i("session " + i7 + " end(" + str + ") for a closed session ignored");
+            return;
         }
-        Paint paint = f1152a;
-        paint.setColorFilter(colorFilter);
-        float f20 = f13 - f11;
-        Matrix matrix = f1154c;
-        matrix.setScale(1.0f, 0.65f * f20);
-        matrix.postTranslate(0.0f, (f20 * 0.35f) + f11);
-        f1153b.setLocalMatrix(matrix);
-        float f21 = f15 * 255.0f;
-        if (z10) {
-            f17 = 0.26f;
-        } else {
-            f17 = 0.2f;
+        c(str);
+    }
+
+    public final boolean g(int i7) {
+        if (this.f1154f && i7 == this.f1153e) {
+            return true;
         }
-        paint.setAlpha((int) (Math.min(1.0f, (f16 * 0.11f) + f17) * f21));
-        RectF rectF = d;
-        rectF.set(f10, f11, f12, f13);
-        canvas.drawRoundRect(rectF, f14, f14, paint);
+        return false;
+    }
+
+    public final void i(String str) {
+        a3.l lVar = this.f1155g;
+        if (lVar != null) {
+            lVar.getClass();
+            Log.d("Dictation", str);
+        }
+    }
+
+    public final String m() {
+        return h(h(this.f1150a.toString(), this.f1151b), this.f1152c);
     }
 }

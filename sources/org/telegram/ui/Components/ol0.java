@@ -1,29 +1,29 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-public final class ol0 extends v4.o {
-    public final int f38246b;
-    public final int f38247c;
+public final class ol0 extends v4.p {
+    public final int f38199b;
+    public final int f38200c;
     public final int d;
-    public final int f38248e;
-    public final int f38249f;
-    public final ArrayList f38250g;
+    public final int f38201e;
+    public final int f38202f;
+    public final ArrayList f38203g;
     public final int h;
-    public final int f38251i;
-    public final ArrayList f38252j;
-    public final sl0 f38253k;
+    public final int f38204i;
+    public final ArrayList f38205j;
+    public final sl0 f38206k;
 
     public ol0(sl0 sl0Var, int i7, int i10, int i11, int i12, int i13, ArrayList arrayList, int i14, int i15, ArrayList arrayList2) {
-        this.f38253k = sl0Var;
-        this.f38246b = i7;
-        this.f38247c = i10;
+        this.f38206k = sl0Var;
+        this.f38199b = i7;
+        this.f38200c = i10;
         this.d = i11;
-        this.f38248e = i12;
-        this.f38249f = i13;
-        this.f38250g = arrayList;
+        this.f38201e = i12;
+        this.f38202f = i13;
+        this.f38203g = arrayList;
         this.h = i14;
-        this.f38251i = i15;
-        this.f38252j = arrayList2;
+        this.f38204i = i15;
+        this.f38205j = arrayList2;
     }
 
     @Override
@@ -33,38 +33,38 @@ public final class ol0 extends v4.o {
 
     @Override
     public final boolean b(int i7, int i10) {
-        org.telegram.messenger.gj gjVar;
-        sl0 sl0Var = this.f38253k;
+        org.telegram.messenger.fj fjVar;
+        sl0 sl0Var = this.f38206k;
         if (i7 >= 0 && i10 >= 0) {
-            if (i7 == this.f38247c && i10 == sl0Var.f39578s) {
+            if (i7 == this.f38200c && i10 == sl0Var.f39645s) {
                 return true;
             }
-            if (i7 == this.d && i10 == sl0Var.f39581y) {
+            if (i7 == this.d && i10 == sl0Var.f39648y) {
                 return true;
             }
         }
-        org.telegram.messenger.gj gjVar2 = null;
-        int i11 = this.f38248e;
-        if (i7 >= i11 && i7 < this.f38249f) {
-            gjVar = (org.telegram.messenger.gj) this.f38250g.get(i7 - i11);
+        org.telegram.messenger.fj fjVar2 = null;
+        int i11 = this.f38201e;
+        if (i7 >= i11 && i7 < this.f38202f) {
+            fjVar = (org.telegram.messenger.fj) this.f38203g.get(i7 - i11);
         } else {
             int i12 = this.h;
-            if (i7 >= i12 && i7 < this.f38251i) {
-                gjVar = (org.telegram.messenger.gj) this.f38252j.get(i7 - i12);
+            if (i7 >= i12 && i7 < this.f38204i) {
+                fjVar = (org.telegram.messenger.fj) this.f38205j.get(i7 - i12);
             } else {
-                gjVar = null;
+                fjVar = null;
             }
         }
-        int i13 = sl0Var.f39579w;
-        if (i10 >= i13 && i10 < sl0Var.f39580x) {
-            gjVar2 = (org.telegram.messenger.gj) sl0Var.f39574e.get(i10 - i13);
+        int i13 = sl0Var.f39646w;
+        if (i10 >= i13 && i10 < sl0Var.f39647x) {
+            fjVar2 = (org.telegram.messenger.fj) sl0Var.f39641e.get(i10 - i13);
         } else {
             int i14 = sl0Var.E;
             if (i10 >= i14 && i10 < sl0Var.F) {
-                gjVar2 = (org.telegram.messenger.gj) sl0Var.f39575f.get(i10 - i14);
+                fjVar2 = (org.telegram.messenger.fj) sl0Var.f39642f.get(i10 - i14);
             }
         }
-        if (gjVar2 != null && gjVar != null && gjVar2.F0() != null && gjVar.F0() != null && gjVar2.F0().f28404id == gjVar.F0().f28404id) {
+        if (fjVar2 != null && fjVar != null && fjVar2.F0() != null && fjVar.F0() != null && fjVar2.F0().f28498id == fjVar.F0().f28498id) {
             return true;
         }
         return false;
@@ -72,11 +72,11 @@ public final class ol0 extends v4.o {
 
     @Override
     public final int d() {
-        return this.f38253k.f39577r;
+        return this.f38206k.f39644r;
     }
 
     @Override
     public final int e() {
-        return this.f38246b;
+        return this.f38199b;
     }
 }

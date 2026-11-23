@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class cd0 implements Runnable {
-    public final int f46505a;
+    public final int f46766a;
 
     public cd0(int i7) {
-        this.f46505a = i7;
+        this.f46766a = i7;
     }
 
     @Override

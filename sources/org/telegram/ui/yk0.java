@@ -1,16 +1,56 @@
 package org.telegram.ui;
+public final class yk0 extends org.telegram.ui.ActionBar.j {
+    public final kl0 f54394a;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.webkit.WebView;
-public final class yk0 extends WebView {
-    public yk0(Context context) {
-        super(context);
+    public yk0(kl0 kl0Var) {
+        this.f54394a = kl0Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        getParent().requestDisallowInterceptTouchEvent(true);
-        return super.onTouchEvent(motionEvent);
+    public final void b(int i7) {
+        kl0 kl0Var = this.f54394a;
+        if (i7 == -1) {
+            if (!kl0Var.Q0) {
+                kl0Var.finishFragment();
+            }
+        } else if (i7 == 1 && !kl0Var.Q0) {
+            if (kl0Var.f49488v0 != 3) {
+                org.telegram.messenger.g0.v1(kl0Var.getParentActivity().getCurrentFocus());
+            }
+            int i10 = kl0Var.f49488v0;
+            if (i10 != 0) {
+                int i11 = 0;
+                if (i10 != 1) {
+                    if (i10 != 2) {
+                        if (i10 != 3) {
+                            if (i10 == 6) {
+                                kl0Var.G0(false);
+                                return;
+                            }
+                            return;
+                        }
+                        kl0.p0(kl0Var);
+                        return;
+                    }
+                    kl0.o0(kl0Var);
+                    return;
+                }
+                while (true) {
+                    org.telegram.ui.Cells.i6[] i6VarArr = kl0Var.h;
+                    if (i11 >= i6VarArr.length) {
+                        break;
+                    } else if (i6VarArr[i11].f30917b.f33193f) {
+                        kl0Var.H0 = kl0Var.F0.shipping_options.get(i11);
+                        break;
+                    } else {
+                        i11++;
+                    }
+                }
+                kl0Var.z0();
+                return;
+            }
+            kl0Var.J0(true);
+            kl0.r0(kl0Var);
+        }
     }
 }

@@ -1,22 +1,31 @@
 package org.telegram.ui.Components;
-public final class af implements r1.d {
-    public boolean f33473a = false;
-    public final float f33474b;
-    public final ut0 f33475c;
 
-    public af(float f10, ut0 ut0Var) {
-        this.f33474b = f10;
-        this.f33475c = ut0Var;
+import android.app.Dialog;
+import android.view.ViewTreeObserver;
+public final class af implements ViewTreeObserver.OnPreDrawListener {
+    public final int f33468a;
+    public final Dialog f33469b;
+    public final ChatActivityEnterView f33470c;
+
+    public af(ChatActivityEnterView chatActivityEnterView, Dialog dialog, int i7) {
+        this.f33468a = i7;
+        this.f33470c = chatActivityEnterView;
+        this.f33469b = dialog;
     }
 
     @Override
-    public final void a(r1.g gVar, float f10, float f11) {
-        if (!this.f33473a && f10 >= this.f33474b) {
-            this.f33473a = true;
-            try {
-                this.f33475c.performHapticFeedback(3, 2);
-            } catch (Exception unused) {
-            }
+    public final boolean onPreDraw() {
+        switch (this.f33468a) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = this.f33470c;
+                chatActivityEnterView.f32760q0.getViewTreeObserver().removeOnPreDrawListener(this);
+                chatActivityEnterView.f32760q0.postDelayed(new ng(this.f33469b, 20), 100L);
+                return true;
+            default:
+                ChatActivityEnterView chatActivityEnterView2 = this.f33470c;
+                chatActivityEnterView2.f32760q0.getViewTreeObserver().removeOnPreDrawListener(this);
+                chatActivityEnterView2.f32760q0.postDelayed(new ng(this.f33469b, 20), 100L);
+                return true;
         }
     }
 }

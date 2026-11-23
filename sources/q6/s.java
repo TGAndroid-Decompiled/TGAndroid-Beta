@@ -9,8 +9,8 @@ import c8.aa;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class s {
-    public static final a0.l f55964a = new a0.l(0);
-    public static Locale f55965b;
+    public static final a0.l f56077a = new a0.l(0);
+    public static Locale f56078b;
 
     public static String a(Context context, int i7) {
         Resources resources = context.getResources();
@@ -122,7 +122,7 @@ public abstract class s {
     public static String d(Context context) {
         String packageName = context.getPackageName();
         try {
-            Context context2 = z6.b.a(context).f1933a;
+            Context context2 = z6.b.a(context).f1934a;
             return context2.getPackageManager().getApplicationLabel(context2.getPackageManager().getApplicationInfo(packageName, 0)).toString();
         } catch (PackageManager.NameNotFoundException | NullPointerException unused) {
             String str = context.getApplicationInfo().name;
@@ -144,19 +144,19 @@ public abstract class s {
 
     public static String f(Context context, String str) {
         Resources resources;
-        a0.l lVar = f55964a;
+        a0.l lVar = f56077a;
         synchronized (lVar) {
             try {
-                Locale locale = aa.a(context.getResources().getConfiguration()).f21045a.get(0);
-                if (!locale.equals(f55965b)) {
+                Locale locale = aa.a(context.getResources().getConfiguration()).f21141a.get(0);
+                if (!locale.equals(f56078b)) {
                     lVar.clear();
-                    f55965b = locale;
+                    f56078b = locale;
                 }
                 String str2 = (String) lVar.get(str);
                 if (str2 != null) {
                     return str2;
                 }
-                AtomicBoolean atomicBoolean = n6.g.f21430a;
+                AtomicBoolean atomicBoolean = n6.g.f21529a;
                 try {
                     resources = context.getPackageManager().getResourcesForApplication("com.google.android.gms");
                 } catch (PackageManager.NameNotFoundException unused) {

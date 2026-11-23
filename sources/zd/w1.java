@@ -4,8 +4,8 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 public final class w1 extends e1 {
     public static final AtomicIntegerFieldUpdater h = AtomicIntegerFieldUpdater.newUpdater(w1.class, "_state$volatile");
     private volatile int _state$volatile;
-    public final Thread f61910e = Thread.currentThread();
-    public l0 f61911f;
+    public final Thread f62029e = Thread.currentThread();
+    public l0 f62030f;
 
     public static void l(int i7) {
         throw new IllegalStateException(("Illegal state " + i7).toString());
@@ -31,7 +31,7 @@ public final class w1 extends e1 {
                 return;
             }
         } while (!atomicIntegerFieldUpdater.compareAndSet(this, i7, 2));
-        this.f61910e.interrupt();
+        this.f62029e.interrupt();
         atomicIntegerFieldUpdater.set(this, 3);
     }
 
@@ -50,7 +50,7 @@ public final class w1 extends e1 {
                     }
                 }
             } else if (atomicIntegerFieldUpdater.compareAndSet(this, i7, 1)) {
-                l0 l0Var = this.f61911f;
+                l0 l0Var = this.f62030f;
                 if (l0Var != null) {
                     l0Var.dispose();
                     return;

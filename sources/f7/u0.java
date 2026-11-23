@@ -6,12 +6,12 @@ import c8.cc;
 import java.util.Arrays;
 public final class u0 extends r6.a {
     public static final Parcelable.Creator<u0> CREATOR = new t0(2);
-    public final q7.s0 f11564a;
-    public final q7.s0 f11565b;
+    public final q7.s0 f11563a;
+    public final q7.s0 f11564b;
 
     public u0(q7.s0 s0Var, q7.s0 s0Var2) {
-        this.f11564a = s0Var;
-        this.f11565b = s0Var2;
+        this.f11563a = s0Var;
+        this.f11564b = s0Var2;
     }
 
     public final boolean equals(Object obj) {
@@ -19,14 +19,14 @@ public final class u0 extends r6.a {
             return false;
         }
         u0 u0Var = (u0) obj;
-        if (!q6.m.l(this.f11564a, u0Var.f11564a) || !q6.m.l(this.f11565b, u0Var.f11565b)) {
+        if (!q6.m.l(this.f11563a, u0Var.f11563a) || !q6.m.l(this.f11564b, u0Var.f11564b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f11564a, this.f11565b});
+        return Arrays.hashCode(new Object[]{this.f11563a, this.f11564b});
     }
 
     @Override
@@ -34,14 +34,14 @@ public final class u0 extends r6.a {
         byte[] p10;
         int r10 = cc.r(parcel, 20293);
         byte[] bArr = null;
-        q7.s0 s0Var = this.f11564a;
+        q7.s0 s0Var = this.f11563a;
         if (s0Var == null) {
             p10 = null;
         } else {
             p10 = s0Var.p();
         }
         cc.c(parcel, 1, p10);
-        q7.s0 s0Var2 = this.f11565b;
+        q7.s0 s0Var2 = this.f11564b;
         if (s0Var2 != null) {
             bArr = s0Var2.p();
         }

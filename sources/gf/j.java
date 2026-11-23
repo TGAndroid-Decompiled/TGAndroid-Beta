@@ -15,12 +15,12 @@ public final class j extends mf.a {
     @Override
     public final void a(CharSequence charSequence) {
         b3.j jVar = this.d;
-        StringBuilder sb2 = (StringBuilder) jVar.f2873c;
-        if (jVar.f2872b != 0) {
+        StringBuilder sb2 = (StringBuilder) jVar.f2874c;
+        if (jVar.f2873b != 0) {
             sb2.append('\n');
         }
         sb2.append(charSequence);
-        jVar.f2872b++;
+        jVar.f2873b++;
         Pattern pattern = this.f13562b;
         if (pattern != null && pattern.matcher(charSequence).find()) {
             this.f13563c = true;
@@ -29,7 +29,7 @@ public final class j extends mf.a {
 
     @Override
     public final void d() {
-        this.f13561a.f18222g = ((StringBuilder) this.d.f2873c).toString();
+        this.f13561a.f18321g = ((StringBuilder) this.d.f2874c).toString();
         this.d = null;
     }
 

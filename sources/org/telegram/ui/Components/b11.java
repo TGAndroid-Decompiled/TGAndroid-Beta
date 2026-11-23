@@ -1,48 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class b11 extends dk0 {
-    public final ArrayList f33682c = new ArrayList();
-    public String d;
-    public final g11 f33683e;
+import org.telegram.tgnet.TLRPC;
+public final class b11 {
+    public TLRPC.TL_forumTopic f33601a;
+    public org.telegram.messenger.ov f33602b;
+    public final f11 f33603c;
 
-    public b11(g11 g11Var) {
-        this.f33683e = g11Var;
+    public b11(f11 f11Var) {
+        this.f33603c = f11Var;
     }
 
-    @Override
-    public final boolean D(v4.e1 e1Var) {
-        return true;
-    }
-
-    public final void E(ArrayList arrayList, boolean z10) {
-        ek0 ek0Var = this.f33683e.f35349r;
-        if (!z10) {
-            f();
-            return;
+    public final long a() {
+        org.telegram.messenger.ov ovVar = this.f33602b;
+        if (ovVar != null) {
+            return ovVar.f26201a;
         }
-        boolean canScrollVertically = ek0Var.canScrollVertically(-1);
-        v4.o.c(new jg.g(this, arrayList, 3), true).c(this);
-        if (!canScrollVertically) {
-            ek0Var.v0(0);
+        TLRPC.TL_forumTopic tL_forumTopic = this.f33601a;
+        if (tL_forumTopic == null) {
+            return 0L;
         }
-    }
-
-    @Override
-    public final int b() {
-        return this.f33682c.size();
-    }
-
-    @Override
-    public final void t(v4.e1 r35, int r36) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.b11.t(v4.e1, int):void");
-    }
-
-    @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        f11 f11Var = new f11(this.f33683e, viewGroup.getContext());
-        f11Var.setLayoutParams(new v4.p0(-1, -2));
-        return new v4.e1(f11Var);
+        if (this.f33603c.f34950c) {
+            return org.telegram.messenger.n5.o(tL_forumTopic.from_id);
+        }
+        return tL_forumTopic.f28544id;
     }
 }

@@ -1,38 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.widget.TextView;
-public final class yk implements TextWatcher {
-    public boolean f42421a;
-    public final TextView f42422b;
+import android.location.Location;
+import android.view.View;
+public final class yk implements Runnable {
+    public final int f42501a;
+    public final kl f42502b;
 
-    public yk(kg.a1 a1Var, TextView textView) {
-        this.f42422b = textView;
-        this.f42421a = TextUtils.isEmpty(a1Var.getText());
+    public yk(kl klVar, int i7) {
+        this.f42501a = i7;
+        this.f42502b = klVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i7;
-        boolean isEmpty = TextUtils.isEmpty(editable);
-        if (isEmpty != this.f42421a) {
-            this.f42421a = isEmpty;
-            if (isEmpty) {
-                i7 = 2131746125;
-            } else {
-                i7 = 2131754483;
-            }
-            this.f42422b.setText(org.telegram.messenger.hd.N0(i7, null));
+    public final void run() {
+        Location location;
+        switch (this.f42501a) {
+            case 0:
+                kl.T(this.f42502b);
+                return;
+            case 1:
+                kl.V(this.f42502b);
+                return;
+            case 2:
+                kl klVar = this.f42502b;
+                double[] dArr = klVar.f37135b.f40039y4;
+                klVar.h0(dArr[0], dArr[1]);
+                return;
+            case 3:
+                org.telegram.messenger.g0.g3(new yk(this.f42502b, 6));
+                return;
+            case 4:
+                kl klVar2 = this.f42502b;
+                jg.r0 r0Var = klVar2.L;
+                if (klVar2.f36783l0) {
+                    klVar2.f36783l0 = false;
+                    return;
+                }
+                org.telegram.messenger.da daVar = klVar2.E;
+                if (daVar != null && (location = klVar2.f36781j0) != null) {
+                    location.setLatitude(((org.telegram.messenger.ab) daVar.d().f14540b).f22962a);
+                    klVar2.f36781j0.setLongitude(((org.telegram.messenger.ab) klVar2.E.d().f14540b).f22963b);
+                }
+                r0Var.L(klVar2.f36781j0);
+                r0Var.H();
+                return;
+            case 5:
+                View view = this.f42502b.J;
+                if (view.getTag() == null) {
+                    view.animate().alpha(0.0f).setDuration(180L).start();
+                    return;
+                }
+                return;
+            case 6:
+                View view2 = this.f42502b.J;
+                view2.setTag(1);
+                view2.animate().alpha(0.0f).setDuration(180L).start();
+                return;
+            default:
+                this.f42502b.h0(0.0d, 0.0d);
+                return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

@@ -1,7 +1,6 @@
 package gb;
 
 import android.content.Context;
-import c8.j1;
 import java.io.File;
 public final class p implements rd.a {
     public final int f13388a;
@@ -16,11 +15,11 @@ public final class p implements rd.a {
     public final Object invoke() {
         switch (this.f13388a) {
             case 0:
-                File a10 = j1.a(this.f13389b, "firebaseSessions/sessionConfigsDataStore.data");
+                File a10 = c8.j1.a(this.f13389b, "firebaseSessions/sessionConfigsDataStore.data");
                 q.b(a10);
                 return a10;
             default:
-                File a11 = j1.a(this.f13389b, "firebaseSessions/sessionDataStore.data");
+                File a11 = c8.j1.a(this.f13389b, "firebaseSessions/sessionDataStore.data");
                 q.b(a11);
                 return a11;
         }

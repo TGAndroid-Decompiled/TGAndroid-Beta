@@ -10,7 +10,7 @@ public final class d extends u0 implements Executor {
 
     static {
         l lVar = l.f13513c;
-        int i7 = u.f10944a;
+        int i7 = u.f10942a;
         if (64 >= i7) {
             i7 = 64;
         }
@@ -29,7 +29,7 @@ public final class d extends u0 implements Executor {
 
     @Override
     public final void execute(Runnable runnable) {
-        c(id.i.f16220a, runnable);
+        c(id.i.f16317a, runnable);
     }
 
     @Override

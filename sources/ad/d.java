@@ -29,7 +29,7 @@ public final class d extends g1 {
 
     public static Map a(i iVar) {
         boolean z10;
-        cd.c cVar = iVar.f8312k;
+        cd.c cVar = iVar.f8311k;
         int i7 = cVar.f5189a;
         if (i7 > 0) {
             HashMap hashMap = new HashMap(i7);

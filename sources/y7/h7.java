@@ -1,10 +1,4 @@
 package y7;
-
-import java.util.logging.Logger;
-public abstract class h7 {
-    public static final int f60841a = 0;
-
-    static {
-        Logger.getLogger(h7.class.getName());
-    }
+public final class h7 {
+    public Object f60952a;
 }

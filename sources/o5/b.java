@@ -1,10 +1,10 @@
 package o5;
 public final class b implements na.d {
-    public static final b f21682a = new Object();
-    public static final na.c f21683b = new na.c("storageMetrics", i5.c.p(i5.c.o(qa.d.class, new qa.a(1))));
+    public static final b f21781a = new Object();
+    public static final na.c f21782b = new na.c("storageMetrics", i5.c.p(i5.c.o(qa.d.class, new qa.a(1))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((na.e) obj2).a(f21683b, ((r5.b) obj).f56473a);
+        ((na.e) obj2).a(f21782b, ((r5.b) obj).f56586a);
     }
 }

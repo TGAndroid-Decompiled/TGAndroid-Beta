@@ -3,22 +3,22 @@ package h9;
 import java.util.Arrays;
 import java.util.Collection;
 public abstract class b0 extends c0 {
-    public Object[] f13966a;
-    public int f13967b;
-    public boolean f13968c;
+    public Object[] f13964a;
+    public int f13965b;
+    public boolean f13966c;
 
     public b0(int i7) {
         o.g(i7, "initialCapacity");
-        this.f13966a = new Object[i7];
-        this.f13967b = 0;
+        this.f13964a = new Object[i7];
+        this.f13965b = 0;
     }
 
     public final void c(Object obj) {
         obj.getClass();
         e(1);
-        Object[] objArr = this.f13966a;
-        int i7 = this.f13967b;
-        this.f13967b = i7 + 1;
+        Object[] objArr = this.f13964a;
+        int i7 = this.f13965b;
+        this.f13965b = i7 + 1;
         objArr[i7] = obj;
     }
 
@@ -27,7 +27,7 @@ public abstract class b0 extends c0 {
             Collection collection = (Collection) iterable;
             e(collection.size());
             if (collection instanceof d0) {
-                this.f13967b = ((d0) collection).i(this.f13967b, this.f13966a);
+                this.f13965b = ((d0) collection).i(this.f13965b, this.f13964a);
                 return;
             }
         }
@@ -37,12 +37,12 @@ public abstract class b0 extends c0 {
     }
 
     public final void e(int i7) {
-        Object[] objArr = this.f13966a;
-        int b10 = c0.b(objArr.length, this.f13967b + i7);
-        if (b10 <= objArr.length && !this.f13968c) {
+        Object[] objArr = this.f13964a;
+        int b10 = c0.b(objArr.length, this.f13965b + i7);
+        if (b10 <= objArr.length && !this.f13966c) {
             return;
         }
-        this.f13966a = Arrays.copyOf(this.f13966a, b10);
-        this.f13968c = false;
+        this.f13964a = Arrays.copyOf(this.f13964a, b10);
+        this.f13966c = false;
     }
 }

@@ -10,12 +10,12 @@ public class d1 extends c1 {
 
     @Override
     public l1 a() {
-        return l1.h(null, this.f56233c.consumeDisplayCutout());
+        return l1.h(null, this.f56346c.consumeDisplayCutout());
     }
 
     @Override
     public h e() {
-        DisplayCutout displayCutout = this.f56233c.getDisplayCutout();
+        DisplayCutout displayCutout = this.f56346c.getDisplayCutout();
         if (displayCutout == null) {
             return null;
         }
@@ -31,7 +31,7 @@ public class d1 extends c1 {
             return false;
         }
         d1 d1Var = (d1) obj;
-        if (Objects.equals(this.f56233c, d1Var.f56233c) && Objects.equals(this.f56236g, d1Var.f56236g) && b1.B(this.h, d1Var.h)) {
+        if (Objects.equals(this.f56346c, d1Var.f56346c) && Objects.equals(this.f56349g, d1Var.f56349g) && b1.B(this.h, d1Var.h)) {
             return true;
         }
         return false;
@@ -39,6 +39,6 @@ public class d1 extends c1 {
 
     @Override
     public int hashCode() {
-        return this.f56233c.hashCode();
+        return this.f56346c.hashCode();
     }
 }

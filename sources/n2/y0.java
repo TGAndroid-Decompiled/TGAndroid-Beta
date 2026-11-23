@@ -1,205 +1,167 @@
 package n2;
 
-import android.os.Handler;
-import ci.b1;
-import java.nio.ByteBuffer;
-import oi.a6;
-import org.telegram.ui.Components.c61;
-import org.telegram.ui.Components.i61;
-import org.telegram.ui.Components.jn0;
-import org.telegram.ui.Components.w51;
-public final class y0 extends f2.o {
-    public final a6 f21280i;
+import android.media.AudioDescriptor;
+import android.media.AudioDeviceInfo;
+import android.media.AudioProfile;
+import android.os.Build;
+import c8.ba;
+import h9.s1;
+import j$.util.Comparator$CC;
+import j$.util.Comparator$EL;
+import j$.util.List;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeSet;
+public abstract class y0 {
+    public static final s1 f21379a = h9.i0.u(12);
 
-    public y0(a6 a6Var) {
-        this.f21280i = a6Var;
+    public static h9.i0 a(AudioDeviceInfo audioDeviceInfo) {
+        List<AudioProfile> audioProfiles = audioDeviceInfo.getAudioProfiles();
+        TreeSet treeSet = new TreeSet(Comparator$EL.reversed(Comparator$CC.comparing(new aa.l(2))));
+        for (AudioProfile audioProfile : audioProfiles) {
+            if (audioProfile.getEncapsulationType() != 1 && h2.l0.M(audioProfile.getFormat())) {
+                for (int i7 : audioProfile.getChannelMasks()) {
+                    treeSet.add(Integer.valueOf(i7));
+                }
+            }
+        }
+        return h9.i0.q(treeSet);
     }
 
-    @Override
-    public final void c(ByteBuffer byteBuffer) {
-        float f10;
-        float f11;
-        float[] fArr;
-        int remaining = byteBuffer.remaining();
-        if (remaining == 0) {
-            return;
-        }
-        String str = h2.l0.f13778a;
-        ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
-        a6 a6Var = this.f21280i;
-        float[] fArr2 = (float[]) a6Var.d;
-        b1 b1Var = (b1) a6Var.f21967c;
-        ByteBuffer byteBuffer2 = (ByteBuffer) a6Var.f21968e;
-        i61 i61Var = (i61) a6Var.f21969f;
-        c61 c61Var = i61Var.L;
-        Handler handler = i61Var.f36112b0;
-        if (c61Var != null) {
-            if (order != f2.n.f11049a && i61Var.J) {
-                if (c61Var.t()) {
-                    int limit = order.limit();
-                    int i7 = 0;
-                    if (limit > 8192) {
-                        handler.removeCallbacksAndMessages(null);
-                        i61Var.L.x(false, null);
-                    } else {
-                        byteBuffer2.put(order);
-                        int i10 = a6Var.f21965a + limit;
-                        a6Var.f21965a = i10;
-                        if (i10 >= 1024) {
-                            byteBuffer2.position(0);
-                            for (int i11 = 0; i11 < 1024; i11++) {
-                                fArr2[i11] = byteBuffer2.getShort() / 32768.0f;
-                            }
-                            byteBuffer2.rewind();
-                            a6Var.f21965a = 0;
-                            b1Var.getClass();
-                            float f12 = 0.0f;
-                            if (fArr2.length != 1024) {
-                                f10 = 0.0f;
-                                f11 = 1.0f;
-                            } else {
-                                for (int i12 = 0; i12 < 1024; i12++) {
-                                    ((float[]) b1Var.f5581b)[i12] = fArr2[((int[]) b1Var.f5584f)[i12]];
-                                    ((float[]) b1Var.f5582c)[i12] = 0.0f;
-                                }
-                                int i13 = 1;
-                                while (i13 < ((float[]) b1Var.f5581b).length) {
-                                    float f13 = ((float[]) b1Var.h)[i13];
-                                    float f14 = ((float[]) b1Var.f5585g)[i13];
-                                    float f15 = f12;
-                                    int i14 = i7;
-                                    float f16 = 1.0f;
-                                    while (i14 < i13) {
-                                        float f17 = f12;
-                                        int i15 = i14;
-                                        while (true) {
-                                            float[] fArr3 = (float[]) b1Var.f5581b;
-                                            if (i15 < fArr3.length) {
-                                                int i16 = i15 + i13;
-                                                float f18 = fArr3[i16];
-                                                float[] fArr4 = (float[]) b1Var.f5582c;
-                                                float f19 = fArr4[i16];
-                                                float f20 = (f16 * f18) - (f15 * f19);
-                                                float f21 = (f18 * f15) + (f19 * f16);
-                                                fArr3[i16] = fArr3[i15] - f20;
-                                                fArr4[i16] = fArr4[i15] - f21;
-                                                fArr3[i15] = fArr3[i15] + f20;
-                                                fArr4[i15] = fArr4[i15] + f21;
-                                                i15 += i13 * 2;
+    public static h9.i0 b(AudioDeviceInfo audioDeviceInfo) {
+        int type;
+        h9.i0 i0Var;
+        int speakerLayoutChannelMask;
+        boolean a10 = ba.a(audioDeviceInfo.getType());
+        s1 s1Var = f21379a;
+        if (!a10) {
+            if (audioDeviceInfo.getType() == 1) {
+                return h9.i0.u(4);
+            }
+            if (audioDeviceInfo.getType() == 2) {
+                if (Build.VERSION.SDK_INT >= 36 && (speakerLayoutChannelMask = audioDeviceInfo.getSpeakerLayoutChannelMask()) != 0 && speakerLayoutChannelMask != 1) {
+                    return h9.i0.u(Integer.valueOf(speakerLayoutChannelMask));
+                }
+                h2.a.l("SpeakerLayoutUtil", "Built-in speaker's getSpeakerLayoutChannelMask not usable, defaulting to stereo.");
+                return s1Var;
+            }
+            int i7 = Build.VERSION.SDK_INT;
+            if (i7 >= 31 && audioDeviceInfo.getType() == 10) {
+                h9.i0 a11 = a(audioDeviceInfo);
+                if (!a11.isEmpty()) {
+                    return a11;
+                }
+                h9.i0 c10 = bg.o0.c(audioDeviceInfo.getAudioDescriptors());
+                if (!c10.isEmpty()) {
+                    return c10;
+                }
+            } else {
+                if (i7 >= 31) {
+                    int type2 = audioDeviceInfo.getType();
+                    if (i7 >= 31 && type2 == 29) {
+                        h9.i0 a12 = a(audioDeviceInfo);
+                        if (!a12.isEmpty()) {
+                            return a12;
+                        }
+                        List<AudioDescriptor> audioDescriptors = audioDeviceInfo.getAudioDescriptors();
+                        if (i7 >= 34) {
+                            if (i7 >= 34 && audioDescriptors != null) {
+                                ArrayList arrayList = new ArrayList();
+                                for (AudioDescriptor audioDescriptor : audioDescriptors) {
+                                    AudioDescriptor a13 = m2.c.a(audioDescriptor);
+                                    if (a13.getStandard() == 2) {
+                                        byte[] descriptor = a13.getDescriptor();
+                                        if (descriptor.length != 3) {
+                                            h2.a.l("AudioDescriptorUtil", "Invalid SADB length: " + descriptor.length);
+                                        } else {
+                                            int i10 = 0;
+                                            if (Build.VERSION.SDK_INT >= 34 && descriptor.length == 3) {
+                                                byte b10 = descriptor[0];
+                                                if ((b10 & 1) != 0) {
+                                                    i10 = 12;
+                                                }
+                                                if ((b10 & 2) != 0) {
+                                                    i10 |= 32;
+                                                }
+                                                if ((b10 & 4) != 0) {
+                                                    i10 |= 16;
+                                                }
+                                                if ((b10 & 8) != 0) {
+                                                    i10 |= 192;
+                                                }
+                                                if ((b10 & 16) != 0) {
+                                                    i10 |= 1024;
+                                                }
+                                                if ((b10 & 32) != 0) {
+                                                    i10 |= 768;
+                                                }
+                                                if ((b10 & 128) != 0) {
+                                                    i10 |= 201326592;
+                                                }
+                                                byte b11 = descriptor[1];
+                                                if ((b11 & 1) != 0) {
+                                                    i10 |= 81920;
+                                                }
+                                                if ((b11 & 2) != 0) {
+                                                    i10 |= 8192;
+                                                }
+                                                if ((b11 & 4) != 0) {
+                                                    i10 |= 32768;
+                                                }
+                                                if ((b11 & 8) != 0) {
+                                                    i10 |= 6144;
+                                                }
+                                                if ((b11 & 16) != 0) {
+                                                    i10 |= 33554432;
+                                                }
+                                                if ((b11 & 32) != 0) {
+                                                    i10 |= 262144;
+                                                }
+                                                if ((b11 & 64) != 0) {
+                                                    i10 |= 6144;
+                                                }
+                                                if ((b11 & 128) != 0) {
+                                                    i10 |= 3145728;
+                                                }
+                                                byte b12 = descriptor[2];
+                                                if ((b12 & 1) != 0) {
+                                                    i10 |= 655360;
+                                                }
+                                                if ((b12 & 2) != 0) {
+                                                    i10 = 8388608 | i10;
+                                                }
+                                                if ((b12 & 4) != 0) {
+                                                    i10 |= 20971520;
+                                                }
                                             }
+                                            arrayList.add(Integer.valueOf(i10));
                                         }
-                                        f15 = (f15 * f13) + (f16 * f14);
-                                        i14++;
-                                        f16 = (f16 * f13) - (f15 * f14);
-                                        f12 = f17;
-                                    }
-                                    i13 *= 2;
-                                    i7 = 0;
-                                }
-                                f10 = f12;
-                                f11 = 1.0f;
-                                int i17 = 0;
-                                while (true) {
-                                    fArr = (float[]) b1Var.d;
-                                    if (i17 >= fArr.length) {
-                                        break;
-                                    }
-                                    float f22 = ((float[]) b1Var.f5581b)[i17];
-                                    float f23 = ((float[]) b1Var.f5582c)[i17];
-                                    fArr[i17] = (float) Math.sqrt((f23 * f23) + (f22 * f22));
-                                    i17++;
-                                }
-                                if (b1Var.f5580a == 1) {
-                                    int length = fArr.length / ((float[]) b1Var.f5583e).length;
-                                    for (int i18 = 0; i18 < ((float[]) b1Var.f5583e).length; i18++) {
-                                        float f24 = f10;
-                                        int i19 = 0;
-                                        while (i19 < length) {
-                                            int i20 = (i18 * length) + i19;
-                                            float[] fArr5 = (float[]) b1Var.d;
-                                            if (i20 < fArr5.length) {
-                                                f24 += fArr5[i20];
-                                                i19++;
-                                            }
-                                        }
-                                        ((float[]) b1Var.f5583e)[i18] = f24 / (i19 + 1);
                                     }
                                 }
-                            }
-                            float f25 = f10;
-                            for (int i21 = 0; i21 < 1024; i21++) {
-                                float f26 = ((float[]) b1Var.f5581b)[i21];
-                                float f27 = ((float[]) b1Var.f5582c)[i21];
-                                float sqrt = ((float) Math.sqrt((f27 * f27) + (f26 * f26))) / 30.0f;
-                                if (sqrt > f11) {
-                                    sqrt = f11;
-                                } else if (sqrt < f10) {
-                                    sqrt = f10;
-                                }
-                                f25 += sqrt * sqrt;
-                            }
-                            float sqrt2 = (float) Math.sqrt(f25 / 1024);
-                            float[] fArr6 = new float[7];
-                            fArr6[6] = sqrt2;
-                            if (sqrt2 < 0.4f) {
-                                for (int i22 = 0; i22 < 7; i22++) {
-                                    fArr6[i22] = f10;
-                                }
+                                List.EL.sort(arrayList, new jg.w(7));
+                                i0Var = h9.i0.q(arrayList);
                             } else {
-                                for (int i23 = 0; i23 < 6; i23++) {
-                                    int i24 = 170 * i23;
-                                    float f28 = ((float[]) b1Var.f5581b)[i24];
-                                    float f29 = ((float[]) b1Var.f5582c)[i24];
-                                    float sqrt3 = (float) (Math.sqrt((f29 * f29) + (f28 * f28)) / 30.0d);
-                                    fArr6[i23] = sqrt3;
-                                    if (sqrt3 > f11) {
-                                        fArr6[i23] = f11;
-                                    } else if (sqrt3 < f10) {
-                                        fArr6[i23] = f10;
-                                    }
-                                }
+                                h9.g0 g0Var = h9.i0.f13995b;
+                                i0Var = s1.f14058e;
                             }
-                            if (System.currentTimeMillis() - a6Var.f21966b >= 64) {
-                                a6Var.f21966b = System.currentTimeMillis();
-                                handler.postDelayed(new jn0(21, a6Var, fArr6), 130L);
+                            if (!i0Var.isEmpty()) {
+                                return i0Var;
                             }
+                        }
+                        h9.i0 c11 = bg.o0.c(audioDescriptors);
+                        if (!c11.isEmpty()) {
+                            return c11;
                         }
                     }
                 }
-            } else {
-                handler.postDelayed(new w51(a6Var, 2), 80L);
+                if (i7 >= 31 && ((type = audioDeviceInfo.getType()) == 11 || type == 12 || (i7 >= 31 && type == 22))) {
+                    h9.i0 a14 = a(audioDeviceInfo);
+                    if (!a14.isEmpty()) {
+                        return a14;
+                    }
+                }
             }
         }
-        l(remaining).put(byteBuffer).flip();
-    }
-
-    @Override
-    public final void i() {
-        m();
-    }
-
-    @Override
-    public final void j() {
-        m();
-    }
-
-    @Override
-    public final void k() {
-        m();
-    }
-
-    public final void m() {
-        if (isActive()) {
-            f2.k kVar = this.f11050b;
-            int i7 = kVar.f11044a;
-            int i10 = kVar.f11045b;
-            int i11 = kVar.f11046c;
-            this.f21280i.getClass();
-        }
-    }
-
-    @Override
-    public final f2.k h(f2.k kVar) {
-        return kVar;
+        return s1Var;
     }
 }

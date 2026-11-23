@@ -13,35 +13,35 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
-import org.telegram.messenger.gs;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.k10;
-import org.telegram.messenger.kk;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.np;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.jk;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.m10;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.dk0;
 import org.telegram.ui.Components.ek0;
-import org.telegram.ui.Components.i71;
-import org.telegram.ui.Components.lc;
-import org.telegram.ui.Components.m80;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.o41;
-import org.telegram.ui.Components.sa;
-import org.telegram.ui.Components.wy;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.j80;
+import org.telegram.ui.Components.kc;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.Components.n41;
+import org.telegram.ui.Components.ra;
+import org.telegram.ui.Components.ty;
 import org.telegram.ui.LaunchActivity;
-public final class p3 extends sa implements gs {
+public final class p3 extends ra implements fs {
     public static final int F2 = 0;
-    public final i71 A2;
+    public final j71 A2;
     public final ArrayList B2;
     public boolean C2;
     public int D2;
     public boolean E2;
     public final int T1;
-    public c51 U1;
+    public b51 U1;
     public List V1;
     public TLRPC.DisallowedGiftsSettings W1;
     public final long X1;
@@ -50,7 +50,7 @@ public final class p3 extends sa implements gs {
     public final v2 f3932a2;
     public final FrameLayout f3933b2;
     public final LinearLayout f3934c2;
-    public final wy d2;
+    public final ty d2;
     public final z2 f3935e2;
     public final w2 f3936f2;
     public final w2 f3937g2;
@@ -64,7 +64,7 @@ public final class p3 extends sa implements gs {
     public boolean f3945o2;
     public boolean f3946p2;
     public ua f3947q2;
-    public final m80 f3948r2;
+    public final j80 f3948r2;
     public final TextView f3949s2;
     public final TextView f3950t2;
     public boolean f3951u2;
@@ -72,7 +72,7 @@ public final class p3 extends sa implements gs {
     public final te.a f3953w2;
     public final View f3954x2;
     public final View f3955y2;
-    public final ai.g0 f3956z2;
+    public final ai.h0 f3956z2;
 
     public p3(LaunchActivity launchActivity, int i7, long j3) {
         this(launchActivity, i7, j3, null, null);
@@ -80,18 +80,18 @@ public final class p3 extends sa implements gs {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39487o1, getContext(), this.T1, 0, true, new b(this, 6), this.J0);
-        this.U1 = c51Var;
-        c51Var.f34026r = false;
-        return c51Var;
+        b51 b51Var = new b51(this.f39246o1, getContext(), this.T1, 0, true, new b(this, 6), this.J0);
+        this.U1 = b51Var;
+        b51Var.f33631r = false;
+        return b51Var;
     }
 
     @Override
     public final CharSequence P0() {
         if (this.Y1) {
-            return hd.N0(2131749922, null);
+            return gd.N0(2131749922, null);
         }
-        return org.telegram.messenger.j6.m(hd.a0(null, null, 2131749831, this.Z1), null, false, null, 0);
+        return org.telegram.messenger.j6.m(gd.a0(null, null, 2131749831, this.Z1), null, false, null, 0);
     }
 
     @Override
@@ -110,23 +110,23 @@ public final class p3 extends sa implements gs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        c51 c51Var;
+        b51 b51Var;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        if (i7 == ls.f25312m5) {
+        if (i7 == ks.f25253m5) {
             h1();
-        } else if (i7 == ls.H3) {
-            c51 c51Var2 = this.U1;
-            if (c51Var2 != null) {
-                c51Var2.O(true);
+        } else if (i7 == ks.H3) {
+            b51 b51Var2 = this.U1;
+            if (b51Var2 != null) {
+                b51Var2.O(true);
             }
-        } else if (i7 == ls.E0) {
+        } else if (i7 == ks.E0) {
             if (!this.J) {
                 long longValue = ((Long) objArr[0]).longValue();
                 long j3 = this.X1;
                 if (longValue == j3 && j3 > 0) {
                     int i11 = this.T1;
-                    TLRPC.UserFull d2 = np.u1(i11).d2(j3);
-                    if (j3 != k10.i(i11).e() && d2 != null) {
+                    TLRPC.UserFull d2 = mp.u1(i11).d2(j3);
+                    if (j3 != i10.i(i11).e() && d2 != null) {
                         disallowedGiftsSettings = d2.disallowed_stargifts;
                     } else {
                         disallowedGiftsSettings = null;
@@ -136,36 +136,36 @@ public final class p3 extends sa implements gs {
                         dismiss();
                         org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
                         if (T != null) {
-                            o10.u(hd.a0(null, null, 2131743499, org.telegram.messenger.n5.t(j3)), lc.b0(T), 2131624012, 36);
+                            m10.u(gd.a0(null, null, 2131743495, org.telegram.messenger.n5.t(j3)), kc.b0(T), 2131624012, 36);
                             return;
                         }
                         return;
                     }
-                    c51 c51Var3 = this.U1;
-                    if (c51Var3 != null) {
-                        c51Var3.O(true);
+                    b51 b51Var3 = this.U1;
+                    if (b51Var3 != null) {
+                        b51Var3.O(true);
                     }
                 }
                 ArrayList arrayList = this.f3938h2;
                 if (arrayList == null || arrayList.isEmpty()) {
                     h1();
-                    c51 c51Var4 = this.U1;
-                    if (c51Var4 != null) {
-                        c51Var4.O(true);
+                    b51 b51Var4 = this.U1;
+                    if (b51Var4 != null) {
+                        b51Var4.O(true);
                     }
                 }
             }
-        } else if (i7 == ls.K3) {
+        } else if (i7 == ks.K3) {
             if (!this.J) {
                 TL_stars.StarGift starGift = (TL_stars.StarGift) objArr[0];
-                new lc(this.f30145c, this.J0).s(starGift.sticker, hd.N0(2131749950, null), org.telegram.messenger.g0.W2(hd.H(',', "Gift2SoldOutCount", starGift.availability_total))).j();
-                c51 c51Var5 = this.U1;
-                if (c51Var5 != null) {
-                    c51Var5.O(true);
+                new kc(this.f30229c, this.J0).s(starGift.sticker, gd.N0(2131749950, null), org.telegram.messenger.g0.W2(gd.H(',', "Gift2SoldOutCount", starGift.availability_total))).j();
+                b51 b51Var5 = this.U1;
+                if (b51Var5 != null) {
+                    b51Var5.O(true);
                 }
             }
-        } else if (i7 == ls.I3 && objArr[1] == this.f3939i2 && (c51Var = this.U1) != null) {
-            c51Var.O(true);
+        } else if (i7 == ks.I3 && objArr[1] == this.f3939i2 && (b51Var = this.U1) != null) {
+            b51Var.O(true);
         }
     }
 
@@ -173,14 +173,14 @@ public final class p3 extends sa implements gs {
     public final void dismiss() {
         super.dismiss();
         int i7 = this.T1;
-        ls.f(i7).n(this, ls.f25312m5);
-        ls.f(i7).n(this, ls.H3);
-        ls.f(i7).n(this, ls.E0);
-        ls.f(i7).n(this, ls.K3);
-        ls.f(i7).n(this, ls.I3);
+        ks.f(i7).n(this, ks.f25253m5);
+        ks.f(i7).n(this, ks.H3);
+        ks.f(i7).n(this, ks.E0);
+        ks.f(i7).n(this, ks.K3);
+        ks.f(i7).n(this, ks.I3);
     }
 
-    public final void e1(ArrayList arrayList, c51 c51Var) {
+    public final void e1(ArrayList arrayList, b51 b51Var) {
         long j3;
         boolean z10;
         ArrayList arrayList2;
@@ -209,9 +209,9 @@ public final class p3 extends sa implements gs {
             j3 = 0;
             z10 = false;
         } else {
-            arrayList.add(o41.k(v2Var));
+            arrayList.add(n41.k(v2Var));
             this.f3951u2 = true;
-            arrayList.add(o41.k(this.f3933b2));
+            arrayList.add(n41.k(this.f3933b2));
             ArrayList arrayList3 = this.f3938h2;
             if (arrayList3 != null && !arrayList3.isEmpty()) {
                 int size = arrayList3.size();
@@ -220,7 +220,7 @@ public final class p3 extends sa implements gs {
                     Object obj = arrayList3.get(i7);
                     i7++;
                     int i10 = h3.f3636b;
-                    o41 K = o41.K(h3.class);
+                    n41 K = n41.K(h3.class);
                     K.v = 1;
                     K.H = (ug.j) obj;
                     arrayList.add(K);
@@ -229,13 +229,13 @@ public final class p3 extends sa implements gs {
                 j3 = j11;
             } else {
                 j3 = 0;
-                o41 q10 = o41.q(1, 34);
+                n41 q10 = n41.q(1, 34);
                 q10.v = 1;
                 arrayList.add(q10);
-                o41 q11 = o41.q(2, 34);
+                n41 q11 = n41.q(2, 34);
                 q11.v = 1;
                 arrayList.add(q11);
-                o41 q12 = o41.q(3, 34);
+                n41 q12 = n41.q(3, 34);
                 q12.v = 1;
                 arrayList.add(q12);
             }
@@ -249,16 +249,16 @@ public final class p3 extends sa implements gs {
             arrayList2 = y10.I;
         }
         if (this.W1 != null) {
-            arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new ki.h1(this, 2)).collect(Collectors.toCollection(new kk(1)));
+            arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new ki.h1(this, 2)).collect(Collectors.toCollection(new jk(1)));
         }
         int i12 = (j10 > j3 ? 1 : (j10 == j3 ? 0 : -1));
         if (i12 < 0) {
-            arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new aa.m(3)).collect(Collectors.toCollection(new kk(1)));
+            arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new aa.m(3)).collect(Collectors.toCollection(new jk(1)));
         }
-        int i13 = (j10 > k10.i(i11).e() ? 1 : (j10 == k10.i(i11).e() ? 0 : -1));
+        int i13 = (j10 > i10.i(i11).e() ? 1 : (j10 == i10.i(i11).e() ? 0 : -1));
         di.p8 p8Var = this.f3939i2;
         if (i13 != 0 && p8Var != null) {
-            ArrayList arrayList4 = p8Var.f9515l;
+            ArrayList arrayList4 = p8Var.f9513l;
             int size2 = arrayList4.size();
             int i14 = 0;
             while (i14 < size2) {
@@ -273,13 +273,13 @@ public final class p3 extends sa implements gs {
         }
         z11 = false;
         float f14 = 300.0f;
-        if (!np.u1(i11).f25773b6 && (!arrayList2.isEmpty() || ((disallowedGiftsSettings3 = this.W1) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && p8Var != null && !p8Var.f9515l.isEmpty()))) {
+        if (!mp.u1(i11).f25705b6 && (!arrayList2.isEmpty() || ((disallowedGiftsSettings3 = this.W1) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && p8Var != null && !p8Var.f9513l.isEmpty()))) {
             if (!z10) {
-                arrayList.add(o41.k(v2Var));
+                arrayList.add(n41.k(v2Var));
             } else {
-                arrayList.add(o41.D(org.telegram.messenger.g0.L(16.0f)));
+                arrayList.add(n41.D(org.telegram.messenger.g0.L(16.0f)));
             }
-            arrayList.add(o41.k(this.f3934c2));
+            arrayList.add(n41.k(this.f3934c2));
             TreeSet treeSet = new TreeSet();
             TLRPC.DisallowedGiftsSettings disallowedGiftsSettings5 = this.W1;
             if (disallowedGiftsSettings5 == null || !disallowedGiftsSettings5.disallow_unique_stargifts) {
@@ -292,39 +292,39 @@ public final class p3 extends sa implements gs {
             this.f3940j2 = -1;
             if (!arrayList2.isEmpty()) {
                 this.f3940j2 = arrayList5.size();
-                arrayList5.add(hd.N0(2131749933, null));
+                arrayList5.add(gd.N0(2131749933, null));
             }
             TLRPC.DisallowedGiftsSettings disallowedGiftsSettings6 = this.W1;
             if ((disallowedGiftsSettings6 == null || !disallowedGiftsSettings6.disallow_unique_stargifts) && z11) {
                 this.f3941k2 = arrayList5.size();
-                arrayList5.add(hd.N0(2131749929, null));
+                arrayList5.add(gd.N0(2131749929, null));
             }
             this.f3942l2 = arrayList5.size();
-            arrayList5.add(hd.N0(2131749932, null));
+            arrayList5.add(gd.N0(2131749932, null));
             if (this.f3945o2 && !this.f3946p2) {
                 this.f3946p2 = true;
                 this.f3943m2 = this.f3942l2;
             }
-            arrayList.add(o41.n(this.f3955y2, 52));
+            arrayList.add(n41.n(this.f3955y2, 52));
             this.C2 = true;
-            i71 i71Var = this.A2;
+            j71 j71Var = this.A2;
             float f15 = 1.0f;
-            if (i71Var != null) {
+            if (j71Var != null) {
                 ArrayList arrayList6 = this.B2;
                 if (!arrayList6.equals(arrayList5)) {
                     arrayList6.clear();
                     arrayList6.addAll(arrayList5);
-                    i71Var.c();
+                    j71Var.c();
                     for (int i16 = 0; i16 < arrayList5.size(); i16++) {
-                        i71Var.a(i16, (CharSequence) arrayList5.get(i16));
+                        j71Var.a(i16, (CharSequence) arrayList5.get(i16));
                     }
-                    i71Var.f36176y.f();
+                    j71Var.f36350y.f();
                     this.f3956z2.requestLayout();
                 }
-                int currentTabId = i71Var.getCurrentTabId();
+                int currentTabId = j71Var.getCurrentTabId();
                 int i17 = this.f3943m2;
                 if (currentTabId != i17) {
-                    i71Var.g(1.0f, i17);
+                    j71Var.g(1.0f, i17);
                 }
             }
             if (this.f3943m2 == this.f3942l2 && !z17 && i12 >= 0) {
@@ -354,8 +354,8 @@ public final class p3 extends sa implements gs {
                     f12 = 0.85f;
                 }
                 ViewPropertyAnimator duration = scaleX.scaleY(f12).setDuration(380L);
-                nr nrVar = nr.h;
-                duration.setInterpolator(nrVar).start();
+                kr krVar = kr.h;
+                duration.setInterpolator(krVar).start();
                 ViewPropertyAnimator animate2 = this.f3937g2.animate();
                 if (z12) {
                     f16 = 1.0f;
@@ -370,11 +370,11 @@ public final class p3 extends sa implements gs {
                 if (!z12) {
                     f15 = 0.85f;
                 }
-                scaleX2.scaleY(f15).setDuration(380L).setInterpolator(nrVar).start();
+                scaleX2.scaleY(f15).setDuration(380L).setInterpolator(krVar).start();
             }
             if (p8Var != null && this.f3943m2 == this.f3941k2) {
                 arrayList2 = new ArrayList();
-                ArrayList arrayList7 = p8Var.f9515l;
+                ArrayList arrayList7 = p8Var.f9513l;
                 int size3 = arrayList7.size();
                 int i18 = 0;
                 while (i18 < size3) {
@@ -403,7 +403,7 @@ public final class p3 extends sa implements gs {
                         } else {
                             z16 = false;
                         }
-                        o41 i22 = h3.i(i21, starGift4, z15, z16, false, false, false);
+                        n41 i22 = h3.i(i21, starGift4, z15, z16, false, false, false);
                         starGift = starGift4;
                         arrayList.add(i22);
                         i19++;
@@ -427,37 +427,37 @@ public final class p3 extends sa implements gs {
             }
             int i24 = this.f3943m2;
             int i25 = this.f3941k2;
-            if (i24 == i25 && p8Var != null && !p8Var.f9513j) {
+            if (i24 == i25 && p8Var != null && !p8Var.f9511j) {
                 p8Var.a();
-                o41 q13 = o41.q(4, 34);
+                n41 q13 = n41.q(4, 34);
                 q13.v = 1;
                 arrayList.add(q13);
-                o41 q14 = o41.q(5, 34);
+                n41 q14 = n41.q(5, 34);
                 q14.v = 1;
                 arrayList.add(q14);
-                o41 q15 = o41.q(6, 34);
+                n41 q15 = n41.q(6, 34);
                 q15.v = 1;
                 arrayList.add(q15);
             } else if (i24 != i25 && y10.C) {
-                o41 q16 = o41.q(4, 34);
+                n41 q16 = n41.q(4, 34);
                 q16.v = 1;
                 arrayList.add(q16);
-                o41 q17 = o41.q(5, 34);
+                n41 q17 = n41.q(5, 34);
                 q17.v = 1;
                 arrayList.add(q17);
-                o41 q18 = o41.q(6, 34);
+                n41 q18 = n41.q(6, 34);
                 q18.v = 1;
                 arrayList.add(q18);
             }
             if (i19 >= 9) {
                 f14 = 40.0f;
             }
-            arrayList.add(o41.D(org.telegram.messenger.g0.L(f14)));
+            arrayList.add(n41.D(org.telegram.messenger.g0.L(f14)));
             return;
         }
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings7 = this.W1;
         if (disallowedGiftsSettings7 != null && !disallowedGiftsSettings7.disallow_unique_stargifts && arrayList2.isEmpty()) {
-            arrayList.add(o41.D(org.telegram.messenger.g0.L(300.0f)));
+            arrayList.add(n41.D(org.telegram.messenger.g0.L(300.0f)));
         }
     }
 
@@ -465,7 +465,7 @@ public final class p3 extends sa implements gs {
         int i7 = 0;
         float f10 = Float.MAX_VALUE;
         while (true) {
-            ek0 ek0Var = this.f39487o1;
+            ek0 ek0Var = this.f39246o1;
             if (i7 < ek0Var.getChildCount()) {
                 View childAt = ek0Var.getChildAt(i7);
                 int R = RecyclerView.R(childAt);
@@ -520,8 +520,8 @@ public final class p3 extends sa implements gs {
                         }
                     } else if (jVar.h() != null && org.telegram.messenger.r1.i().k()) {
                         f5.a aVar = new f5.a();
-                        aVar.f11240c = "inapp";
-                        aVar.f11239b = jVar.h();
+                        aVar.f11239c = "inapp";
+                        aVar.f11238b = jVar.h();
                         arrayList2.add(aVar.a());
                     }
                 }
@@ -532,7 +532,7 @@ public final class p3 extends sa implements gs {
                 while (i7 < size2) {
                     Object obj = arrayList.get(i7);
                     i7++;
-                    ((ug.j) obj).f58716g = j3;
+                    ((ug.j) obj).f58831g = j3;
                 }
             } else if (!arrayList2.isEmpty()) {
                 System.currentTimeMillis();
@@ -540,7 +540,7 @@ public final class p3 extends sa implements gs {
             }
         }
         if (arrayList.isEmpty()) {
-            wg.s.j(this.T1, null, new i2(this, 1));
+            wg.r.j(this.T1, null, new i2(this, 1));
         }
     }
 
@@ -556,7 +556,7 @@ public final class p3 extends sa implements gs {
     @Override
     public final void show() {
         int i7 = this.T1;
-        if (np.u1(i7).A2()) {
+        if (mp.u1(i7).A2()) {
             org.telegram.ui.b.b(i7);
             return;
         }
@@ -564,7 +564,7 @@ public final class p3 extends sa implements gs {
         if (disallowedGiftsSettings != null && disallowedGiftsSettings.disallow_premium_gifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts) {
             org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
             if (T != null) {
-                o10.u(hd.a0(null, null, 2131743499, org.telegram.messenger.n5.t(this.X1)), lc.b0(T), 2131624012, 36);
+                m10.u(gd.a0(null, null, 2131743495, org.telegram.messenger.n5.t(this.X1)), kc.b0(T), 2131624012, 36);
                 return;
             }
             return;
@@ -572,7 +572,7 @@ public final class p3 extends sa implements gs {
         super.show();
     }
 
-    public p3(final android.content.Context r33, final int r34, final long r35, java.util.List r37, final org.telegram.messenger.y10 r38) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.p3.<init>(android.content.Context, int, long, java.util.List, org.telegram.messenger.y10):void");
+    public p3(final android.content.Context r33, final int r34, final long r35, java.util.List r37, final org.telegram.messenger.w10 r38) {
+        throw new UnsupportedOperationException("Method not decompiled: bi.p3.<init>(android.content.Context, int, long, java.util.List, org.telegram.messenger.w10):void");
     }
 }

@@ -1,8 +1,7 @@
 package org.telegram.ui.Components;
-public interface is0 {
-    void I();
-
-    org.telegram.ui.ActionBar.y0 K(String str);
-
-    org.telegram.ui.ActionBar.y0 i0(int i7, Runnable runnable, String str, boolean z10, boolean z11);
+public final class is0 {
+    public String f36084a;
+    public int f36085b;
+    public int f36086c;
+    public int d;
 }

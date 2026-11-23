@@ -1,213 +1,107 @@
 package org.telegram.messenger;
 
-import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.tgnet.NativeByteBuffer;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class k9 implements Runnable {
-    public final int f25005a;
-    public final long f25006b;
-    public final long f25007c;
+import org.telegram.tgnet.tl.TL_stars;
+public final class k9 implements p10 {
+    public final int f25110a;
+    public final c1 f25111b;
+    public final Object f25112c;
     public final Object d;
-    public final Object f25008e;
-    public final Object f25009f;
+    public final Object f25113e;
 
-    public k9(Object obj, Serializable serializable, long j3, long j10, Object obj2, int i7) {
-        this.f25005a = i7;
-        this.d = obj;
-        this.f25008e = serializable;
-        this.f25006b = j3;
-        this.f25007c = j10;
-        this.f25009f = obj2;
+    public k9(c1 c1Var, Object obj, Object obj2, Object obj3, int i7) {
+        this.f25110a = i7;
+        this.f25111b = c1Var;
+        this.f25112c = obj;
+        this.d = obj2;
+        this.f25113e = obj3;
     }
 
     @Override
-    public final void run() {
-        int i7 = 0;
-        switch (this.f25005a) {
+    public final void a(Object obj, Object obj2) {
+        Integer num;
+        int i7 = this.f25110a;
+        Object obj3 = this.f25113e;
+        Object obj4 = this.d;
+        Object obj5 = this.f25112c;
+        c1 c1Var = this.f25111b;
+        switch (i7) {
             case 0:
-                v9 v9Var = (v9) this.d;
-                bi.n nVar = (bi.n) this.f25008e;
-                long j3 = this.f25006b;
-                bi.x xVar = (bi.x) this.f25009f;
-                long j10 = this.f25007c;
-                if (!di.y8.y(v9Var.currentAccount, false).f10051e) {
-                    nVar.a(Boolean.FALSE, "NO_BALANCE");
+                u9 u9Var = (u9) c1Var;
+                bi.n nVar = (bi.n) obj5;
+                r9 r9Var = (r9) obj4;
+                TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = (TLRPC.TL_payments_getPaymentForm) obj3;
+                TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (tL_error != null) {
+                    nVar.a(Boolean.FALSE, tL_error.text);
+                    r9Var.f26662f = false;
+                    return;
+                } else if (!(paymentForm instanceof TLRPC.TL_payments_paymentFormStarGift)) {
+                    nVar.a(Boolean.FALSE, "NO_PAYMENT_FORM");
+                    r9Var.f26662f = false;
                     return;
                 } else {
-                    v9Var.k(j3, xVar, j10, nVar);
+                    TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
+                    tL_payments_sendStarsForm.form_id = ((TLRPC.TL_payments_paymentFormStarGift) paymentForm).form_id;
+                    tL_payments_sendStarsForm.invoice = tL_payments_getPaymentForm.invoice;
+                    u9Var.getConnectionsManager().sendRequestTyped(tL_payments_sendStarsForm, new d3.b(1), new l9(u9Var, r9Var, nVar));
                     return;
                 }
             case 1:
-                f00 f00Var = (f00) this.d;
-                TLObject tLObject = (TLObject) this.f25008e;
-                TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) this.f25009f;
-                long j11 = this.f25006b;
-                long j12 = this.f25007c;
-                if (tLObject != null) {
-                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                    tL_forumTopic.totalMessagesCount = messages_messages.count;
-                    f00Var.getMessagesStorage().f2(j11, tL_forumTopic, 16);
-                    if (messages_messages.count == 0 && f00Var.getMessagesController().E2(j11)) {
-                        ur messagesStorage = f00Var.getMessagesStorage();
-                        messagesStorage.f27214a.c(new op(1, j11, j12, messagesStorage));
-                        f00Var.s(-j11, j12);
+                ri riVar = (ri) c1Var;
+                pi piVar = (pi) obj5;
+                qi qiVar = (qi) obj4;
+                w10 w10Var = (w10) obj3;
+                TLRPC.messages_FoundStickers messages_foundstickers = (TLRPC.messages_FoundStickers) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                riVar.S1.remove(piVar);
+                if (qiVar == null) {
+                    qiVar = new qi();
+                }
+                ArrayList arrayList = qiVar.f26519a;
+                if (messages_foundstickers instanceof TLRPC.TL_messages_foundStickers) {
+                    TLRPC.TL_messages_foundStickers tL_messages_foundStickers = (TLRPC.TL_messages_foundStickers) messages_foundstickers;
+                    arrayList.addAll(tL_messages_foundStickers.stickers);
+                    if ((tL_messages_foundStickers.flags & 1) != 0) {
+                        num = Integer.valueOf(tL_messages_foundStickers.next_offset);
+                    } else {
+                        num = null;
                     }
-                    ls.f(f00Var.currentAccount).k(322, Long.valueOf(-j11), Boolean.TRUE);
-                    return;
+                    qiVar.f26520b = num;
                 }
-                return;
-            case 2:
-                i7 i7Var = (i7) this.d;
-                long[] jArr = (long[]) this.f25008e;
-                long j13 = this.f25006b;
-                long j14 = this.f25007c;
-                CountDownLatch countDownLatch = (CountDownLatch) this.f25009f;
-                try {
-                    jArr[0] = i7Var.h(j13, j14, i7Var.M);
-                } catch (Throwable th2) {
-                    a8.g(th2, true);
-                    jArr[0] = 0;
-                }
-                if (i7Var.Y == 3) {
-                    jArr[1] = 1;
-                }
-                countDownLatch.countDown();
-                return;
-            case 3:
-                MediaController mediaController = (MediaController) this.d;
-                oe oeVar = (oe) this.f25008e;
-                long j15 = this.f25006b;
-                long j16 = this.f25007c;
-                org.telegram.ui.Components.ng ngVar = (org.telegram.ui.Components.ng) this.f25009f;
-                if (MediaController.cropOpusFile(mediaController.f22714k1.getAbsolutePath(), oeVar.getAbsolutePath(), j15, j16)) {
-                    File file = mediaController.f22714k1;
-                    if (file != null) {
-                        file.delete();
-                    }
-                    mediaController.f22714k1 = oeVar;
-                    mediaController.l1 = j16 - j15;
-                    g0.g3(ngVar);
-                    return;
-                }
-                return;
-            case 4:
-                ((si) this.d).getNotificationCenter().k(73, Long.valueOf(this.f25006b), (ArrayList) this.f25008e, (ArrayList) this.f25009f, Long.valueOf(this.f25007c));
-                return;
-            case 5:
-                ur urVar = (ur) this.d;
-                long j17 = this.f25006b;
-                long j18 = this.f25007c;
-                AtomicReference atomicReference = (AtomicReference) this.f25008e;
-                CountDownLatch countDownLatch2 = (CountDownLatch) this.f25009f;
-                urVar.getClass();
-                SQLiteCursor sQLiteCursor = null;
-                try {
-                    try {
-                        SQLiteDatabase sQLiteDatabase = urVar.f27216b;
-                        sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT data FROM messages_v2 WHERE uid = " + j17 + " AND mid = " + j18 + " LIMIT 1", new Object[0]);
-                        while (sQLiteCursor.next()) {
-                            NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
-                            if (byteBufferValue != null) {
-                                TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                byteBufferValue.reuse();
-                                atomicReference.set(TLdeserialize);
-                            }
-                        }
-                        sQLiteCursor.dispose();
-                    } catch (Throwable th3) {
-                        if (sQLiteCursor != null) {
-                            sQLiteCursor.dispose();
-                        }
-                        countDownLatch2.countDown();
-                        throw th3;
-                    }
-                } catch (Exception e10) {
-                    urVar.o(e10, true);
-                    if (sQLiteCursor != null) {
-                        sQLiteCursor.dispose();
-                    }
-                }
-                countDownLatch2.countDown();
-                return;
-            case 6:
-                ((ur) this.d).S1(this.f25006b, this.f25007c, (ArrayList) this.f25008e, (ArrayList) this.f25009f);
+                riVar.T1.put(piVar, qiVar);
+                w10Var.a(arrayList);
                 return;
             default:
-                f00 f00Var2 = (f00) this.d;
-                long j19 = this.f25006b;
-                ArrayList arrayList = (ArrayList) this.f25008e;
-                long j20 = this.f25007c;
-                d3.e0 e0Var = (d3.e0) this.f25009f;
-                f00Var2.getClass();
-                if (s2.f26694a) {
-                    StringBuilder t6 = a8.p0.t(j19, "loaded from cache ", " topics_count=");
-                    if (arrayList != null) {
-                        i7 = arrayList.size();
-                    }
-                    i5.c.t(i7, t6);
+                ri riVar2 = (ri) c1Var;
+                w10 w10Var2 = (w10) obj4;
+                TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) obj3;
+                Boolean bool = (Boolean) obj;
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
+                riVar2.J0.remove((String) obj5);
+                if (w10Var2 != null) {
+                    w10Var2.a(tL_messages_stickerSet);
                 }
-                f00Var2.u(j19, arrayList, null, true, 0, -1);
-                f00Var2.y(j19, true);
-                if (f00Var2.f(j19, j20) != null) {
-                    e0Var.run();
+                if (tL_messages_stickerSet != null) {
+                    TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
+                    if (stickerSet != null) {
+                        riVar2.J.k(tL_messages_stickerSet, stickerSet.f28519id);
+                        riVar2.O.put(tL_messages_stickerSet.set.short_name.toLowerCase(), tL_messages_stickerSet);
+                        boolean z10 = inputStickerSet instanceof TLRPC.TL_inputStickerSetEmojiDefaultStatuses;
+                        if (z10) {
+                            riVar2.P = tL_messages_stickerSet;
+                        }
+                        if (z10) {
+                            riVar2.Q = tL_messages_stickerSet;
+                        }
+                    }
+                    riVar2.Z1(tL_messages_stickerSet);
+                    riVar2.getNotificationCenter().k(64, Long.valueOf(tL_messages_stickerSet.set.f28519id), tL_messages_stickerSet);
                     return;
                 }
-                ArrayList arrayList2 = new ArrayList();
-                new TLRPC.TL_forumTopic().f28450id = (int) j20;
-                f00Var2.v(j19, arrayList2, e0Var);
                 return;
         }
-    }
-
-    public k9(v9 v9Var, bi.n nVar, long j3, bi.x xVar, long j10) {
-        this.f25005a = 0;
-        this.d = v9Var;
-        this.f25008e = nVar;
-        this.f25006b = j3;
-        this.f25009f = xVar;
-        this.f25007c = j10;
-    }
-
-    public k9(si siVar, long j3, ArrayList arrayList, ArrayList arrayList2, long j10) {
-        this.f25005a = 4;
-        this.d = siVar;
-        this.f25006b = j3;
-        this.f25008e = arrayList;
-        this.f25009f = arrayList2;
-        this.f25007c = j10;
-    }
-
-    public k9(ur urVar, long j3, long j10, Serializable serializable, Object obj, int i7) {
-        this.f25005a = i7;
-        this.d = urVar;
-        this.f25006b = j3;
-        this.f25007c = j10;
-        this.f25008e = serializable;
-        this.f25009f = obj;
-    }
-
-    public k9(f00 f00Var, long j3, ArrayList arrayList, long j10, d3.e0 e0Var) {
-        this.f25005a = 7;
-        this.d = f00Var;
-        this.f25006b = j3;
-        this.f25008e = arrayList;
-        this.f25007c = j10;
-        this.f25009f = e0Var;
-    }
-
-    public k9(f00 f00Var, TLObject tLObject, TLRPC.TL_forumTopic tL_forumTopic, long j3, long j10) {
-        this.f25005a = 1;
-        this.d = f00Var;
-        this.f25008e = tLObject;
-        this.f25009f = tL_forumTopic;
-        this.f25006b = j3;
-        this.f25007c = j10;
     }
 }

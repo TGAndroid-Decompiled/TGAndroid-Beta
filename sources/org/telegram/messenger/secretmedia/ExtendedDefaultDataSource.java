@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import org.telegram.messenger.s8;
+import org.telegram.messenger.r8;
 import q4.q;
 public final class ExtendedDefaultDataSource implements h {
     private static final String SCHEME_ASSET = "asset";
@@ -40,7 +40,7 @@ public final class ExtendedDefaultDataSource implements h {
     private final LongSparseArray<Uri> mtprotoUris;
     private h rawResourceDataSource;
     private h rtmpDataSource;
-    private s8 streamLoadOperation;
+    private r8 streamLoadOperation;
     private final List<c0> transferListeners;
 
     public ExtendedDefaultDataSource(Context context, String str, boolean z10) {
@@ -127,9 +127,9 @@ public final class ExtendedDefaultDataSource implements h {
 
     private h getStreamDataSource() {
         if (this.streamLoadOperation == null) {
-            s8 s8Var = new s8();
-            this.streamLoadOperation = s8Var;
-            addListenersToDataSource(s8Var);
+            r8 r8Var = new r8();
+            this.streamLoadOperation = r8Var;
+            addListenersToDataSource(r8Var);
         }
         return this.streamLoadOperation;
     }
@@ -191,11 +191,11 @@ public final class ExtendedDefaultDataSource implements h {
             z10 = false;
         }
         ma.p(z10);
-        Uri uri = mVar.f17179a;
+        Uri uri = mVar.f17276a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(mVar.f17179a.toString().substring(8)));
+            uri = this.mtprotoUris.get(Long.parseLong(mVar.f17276a.toString().substring(8)));
             l a10 = mVar.a();
-            a10.f17175e = uri;
+            a10.f17272e = uri;
             mVar = a10.d();
         }
         String scheme = uri.getScheme();
@@ -238,7 +238,7 @@ public final class ExtendedDefaultDataSource implements h {
     }
 
     public ExtendedDefaultDataSource(Context context, String str, int i7, int i10, boolean z10) {
-        this(context, new r(str, i7, i10, z10, new q(28)), (LongSparseArray<Uri>) null);
+        this(context, new r(str, i7, i10, z10, new q(29)), (LongSparseArray<Uri>) null);
     }
 
     public ExtendedDefaultDataSource(Context context, h hVar, LongSparseArray<Uri> longSparseArray) {

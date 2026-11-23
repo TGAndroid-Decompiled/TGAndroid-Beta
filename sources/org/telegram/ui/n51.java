@@ -1,40 +1,37 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-public final class n51 implements org.telegram.ui.Components.nj0, org.telegram.ui.ActionBar.q1 {
-    public final int f50087a;
-    public final ThemeActivity f50088b;
+import android.location.Address;
+import android.location.Geocoder;
+import java.util.List;
+import java.util.Locale;
+public final class n51 implements Runnable {
+    public final int f50232a;
+    public final ThemeActivity f50233b;
 
     public n51(ThemeActivity themeActivity, int i7) {
-        this.f50087a = i7;
-        this.f50088b = themeActivity;
+        this.f50232a = i7;
+        this.f50233b = themeActivity;
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f50087a) {
-            case 1:
-                ThemeActivity themeActivity = this.f50088b;
-                if (themeActivity.getParentActivity() != null) {
-                    try {
-                        themeActivity.getParentActivity().startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
-                    } catch (Exception unused) {
-                        return;
+    public final void run() {
+        switch (this.f50232a) {
+            case 0:
+                ThemeActivity themeActivity = this.f50233b;
+                String str = null;
+                try {
+                    List<Address> fromLocation = new Geocoder(org.telegram.messenger.t0.f27013b, Locale.getDefault()).getFromLocation(org.telegram.ui.ActionBar.n6.f29817x, org.telegram.ui.ActionBar.n6.f29836y, 1);
+                    if (fromLocation.size() > 0) {
+                        str = fromLocation.get(0).getLocality();
                     }
+                } catch (Exception unused) {
                 }
+                org.telegram.messenger.g0.g3(new iy0(11, themeActivity, str));
                 return;
             default:
-                ThemeActivity themeActivity2 = this.f50088b;
-                themeActivity2.getClass();
-                org.telegram.ui.Components.c5.T(themeActivity2, 0, null, null);
+                ThemeActivity themeActivity2 = this.f50233b;
+                themeActivity2.f43958b.e1(new m51(themeActivity2, 0), 700, true);
                 return;
         }
-    }
-
-    @Override
-    public int run() {
-        int i7;
-        i7 = this.f50088b.sensitiveContentRow;
-        return i7;
     }
 }

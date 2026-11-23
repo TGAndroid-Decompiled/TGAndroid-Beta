@@ -4,10 +4,10 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 public final class hq implements q0.a {
-    public final int f48477a;
+    public final int f48608a;
 
     public hq(int i7) {
-        this.f48477a = i7;
+        this.f48608a = i7;
     }
 
     @Override
@@ -16,36 +16,36 @@ public final class hq implements q0.a {
         boolean z11;
         long j3;
         boolean z12 = true;
-        switch (this.f48477a) {
+        switch (this.f48608a) {
             case 0:
                 TLRPC.User user = (TLRPC.User) obj;
                 return;
             case 1:
                 View view = (View) obj;
-                boolean z13 = ChatAttachAlertPhotoLayout.f32764r1;
-                if (view instanceof org.telegram.ui.Cells.s5) {
-                    org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-                    if (s5Var.getPhotoEntry() != null && s5Var.getPhotoEntry().M) {
+                boolean z13 = ChatAttachAlertPhotoLayout.f32862r1;
+                if (view instanceof org.telegram.ui.Cells.r5) {
+                    org.telegram.ui.Cells.r5 r5Var = (org.telegram.ui.Cells.r5) view;
+                    if (r5Var.getPhotoEntry() != null && r5Var.getPhotoEntry().M) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    s5Var.c(z10, Float.valueOf(250.0f));
-                    if (s5Var.getPhotoEntry() != null && s5Var.getPhotoEntry().c()) {
+                    r5Var.c(z10, Float.valueOf(250.0f));
+                    if (r5Var.getPhotoEntry() != null && r5Var.getPhotoEntry().c()) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    s5Var.setHighQuality(z11);
-                    if (s5Var.getPhotoEntry() != null) {
-                        j3 = s5Var.getPhotoEntry().N;
+                    r5Var.setHighQuality(z11);
+                    if (r5Var.getPhotoEntry() != null) {
+                        j3 = r5Var.getPhotoEntry().N;
                     } else {
                         j3 = 0;
                     }
-                    if (ChatAttachAlertPhotoLayout.f32766t1.size() <= 1) {
+                    if (ChatAttachAlertPhotoLayout.f32864t1.size() <= 1) {
                         z12 = false;
                     }
-                    s5Var.f(j3, z12);
+                    r5Var.f(j3, z12);
                     return;
                 }
                 return;

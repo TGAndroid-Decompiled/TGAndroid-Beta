@@ -7,10 +7,10 @@ import android.view.View;
 import com.google.android.gms.internal.vision.e2;
 import fi.s2;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.o5;
 public final class l extends View {
     public final int f5697a;
-    public p5 f5698b;
+    public o5 f5698b;
     public final Paint f5699c;
     public long d;
     public TLRPC.Document f5700e;
@@ -36,18 +36,18 @@ public final class l extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        p5 p5Var = this.f5698b;
-        if (p5Var != null) {
-            p5Var.a(this);
+        o5 o5Var = this.f5698b;
+        if (o5Var != null) {
+            o5Var.a(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        p5 p5Var = this.f5698b;
-        if (p5Var != null) {
-            p5Var.n(this);
+        o5 o5Var = this.f5698b;
+        if (o5Var != null) {
+            o5Var.n(this);
         }
     }
 
@@ -74,14 +74,14 @@ public final class l extends View {
             float width = getWidth() * 0.78f * f13;
             float width2 = getWidth() / 2.0f;
             float height = getHeight() / 2.0f;
-            p5 p5Var = this.f5698b;
-            if (p5Var == null || (s2Var = p5Var.f38457k) == null || !s2Var.I()) {
+            o5 o5Var = this.f5698b;
+            if (o5Var == null || (s2Var = o5Var.f38028k) == null || !s2Var.J()) {
                 canvas.drawCircle(width2, height, 0.42f * width, this.f5699c);
             }
-            p5 p5Var2 = this.f5698b;
-            if (p5Var2 != null) {
+            o5 o5Var2 = this.f5698b;
+            if (o5Var2 != null) {
                 float f14 = width / 2.0f;
-                p5Var2.setBounds((int) (width2 - f14), (int) (height - f14), (int) (width2 + f14), (int) (height + f14));
+                o5Var2.setBounds((int) (width2 - f14), (int) (height - f14), (int) (width2 + f14), (int) (height + f14));
                 s.b(canvas, this.f5698b);
             }
         }
@@ -94,7 +94,7 @@ public final class l extends View {
     }
 
     public void set(TLRPC.Document document) {
-        long j3 = document.f28404id;
+        long j3 = document.f28498id;
         if (j3 == 0) {
             if (this.f5698b != null && isAttachedToWindow()) {
                 this.f5698b.n(this);
@@ -109,14 +109,14 @@ public final class l extends View {
             if (this.f5698b != null && isAttachedToWindow()) {
                 this.f5698b.n(this);
             }
-            this.d = document.f28404id;
+            this.d = document.f28498id;
             this.f5700e = document;
-            this.f5701f = "c:" + document.f28404id;
-            this.f5698b = p5.l(this.f5697a, 2, document);
+            this.f5701f = "c:" + document.f28498id;
+            this.f5698b = o5.l(this.f5697a, 2, document);
             if (isAttachedToWindow()) {
                 this.f5698b.a(this);
             }
-            setContentDescription(document.f28404id + "");
+            setContentDescription(document.f28498id + "");
             invalidate();
         }
     }

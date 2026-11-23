@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.PointF;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.Components.ek0;
-public final class d9 extends v4.n0 {
+public final class d9 extends v4.o0 {
     public final PointF f3472a = new PointF();
     public final f9 f3473b;
 
@@ -21,7 +21,7 @@ public final class d9 extends v4.n0 {
         f9 f9Var = this.f3473b;
         z8 z8Var = f9Var.f3592p2;
         y8 y8Var = f9Var.d2;
-        ek0 ek0Var = f9Var.f39487o1;
+        ek0 ek0Var = f9Var.f39246o1;
         PointF pointF = this.f3472a;
         float f11 = 0.0f;
         if (jh.k.b(y8Var, ek0Var, pointF)) {

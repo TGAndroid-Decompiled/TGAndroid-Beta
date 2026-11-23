@@ -17,7 +17,7 @@ public final class m implements ua.b {
     public final Object get() {
         switch (this.f969a) {
             case 0:
-                ob.c cVar = FirebaseMessaging.f7551m;
+                ob.c cVar = FirebaseMessaging.f7550m;
                 return null;
             case 1:
                 return Collections.EMPTY_SET;
@@ -26,13 +26,13 @@ public final class m implements ua.b {
             case 3:
                 return ExecutorsRegistrar.a();
             case 4:
-                u9.m mVar = ExecutorsRegistrar.f7542a;
-                return new v9.f(Executors.newFixedThreadPool(Math.max(2, Runtime.getRuntime().availableProcessors()), new v9.a("Firebase Lite", 0, new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build())), (ScheduledExecutorService) ExecutorsRegistrar.d.get());
+                u9.m mVar = ExecutorsRegistrar.f7541a;
+                return new v9.g(Executors.newFixedThreadPool(Math.max(2, Runtime.getRuntime().availableProcessors()), new v9.a("Firebase Lite", 0, new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build())), (ScheduledExecutorService) ExecutorsRegistrar.d.get());
             case 5:
-                u9.m mVar2 = ExecutorsRegistrar.f7542a;
-                return new v9.f(Executors.newCachedThreadPool(new v9.a("Firebase Blocking", 11, null)), (ScheduledExecutorService) ExecutorsRegistrar.d.get());
+                u9.m mVar2 = ExecutorsRegistrar.f7541a;
+                return new v9.g(Executors.newCachedThreadPool(new v9.a("Firebase Blocking", 11, null)), (ScheduledExecutorService) ExecutorsRegistrar.d.get());
             default:
-                u9.m mVar3 = ExecutorsRegistrar.f7542a;
+                u9.m mVar3 = ExecutorsRegistrar.f7541a;
                 return Executors.newSingleThreadScheduledExecutor(new v9.a("Firebase Scheduler", 0, null));
         }
     }

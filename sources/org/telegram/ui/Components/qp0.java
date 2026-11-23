@@ -1,27 +1,17 @@
 package org.telegram.ui.Components;
 public final class qp0 implements Runnable {
-    public final int f38921a;
-    public final ds0 f38922b;
-    public final int f38923c;
+    public final int f38976a;
+    public final boolean f38977b;
+    public final Object f38978c;
 
-    public qp0(ds0 ds0Var, int i7, int i10) {
-        this.f38921a = i10;
-        this.f38922b = ds0Var;
-        this.f38923c = i7;
+    public qp0(int i7, Object obj, boolean z10) {
+        this.f38976a = i7;
+        this.f38978c = obj;
+        this.f38977b = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f38921a) {
-            case 0:
-                this.f38922b.h.scrollBy(0, this.f38923c);
-                return;
-            case 1:
-                this.f38922b.h.scrollBy(0, this.f38923c);
-                return;
-            default:
-                this.f38922b.h.scrollBy(0, this.f38923c);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qp0.run():void");
     }
 }

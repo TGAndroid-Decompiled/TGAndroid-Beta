@@ -8,28 +8,28 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import c8.lc;
 public final class b extends lc {
-    public final boolean f57486a;
-    public final Paint f57487b = new Paint();
-    public final Paint f57488c;
+    public final boolean f57597a;
+    public final Paint f57598b = new Paint();
+    public final Paint f57599c;
     public final Paint d;
-    public int f57489e;
-    public int f57490f;
-    public final f f57491g;
+    public int f57600e;
+    public int f57601f;
+    public final f f57602g;
 
     public b(f fVar, boolean z10) {
-        this.f57491g = fVar;
+        this.f57602g = fVar;
         Paint paint = new Paint(1);
-        this.f57488c = paint;
+        this.f57599c = paint;
         this.d = new Paint(1);
-        this.f57489e = -1;
-        this.f57490f = -1;
-        this.f57486a = z10;
+        this.f57600e = -1;
+        this.f57601f = -1;
+        this.f57597a = z10;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
     }
 
     @Override
     public final void b() {
-        this.f57489e = -1;
+        this.f57600e = -1;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class b extends lc {
         f fVar;
         float f10;
         float f11;
-        f fVar2 = this.f57491g;
+        f fVar2 = this.f57602g;
         Rect bounds = fVar2.getBounds();
         int width = bounds.width();
         int height = bounds.height();
@@ -49,20 +49,20 @@ public final class b extends lc {
         int ceil = (int) Math.ceil(f12 / 5.0f);
         float f13 = height;
         int ceil2 = (int) Math.ceil(f13 / 5.0f);
-        boolean z13 = this.f57486a;
+        boolean z13 = this.f57597a;
         if (z13) {
-            z10 = fVar2.f57514w;
+            z10 = fVar2.f57625w;
         } else {
-            z10 = fVar2.f57515x;
+            z10 = fVar2.f57626x;
         }
-        Paint paint2 = this.f57488c;
+        Paint paint2 = this.f57599c;
         Paint paint3 = this.d;
-        if (!z10 && this.f57489e == width && this.f57490f == height) {
+        if (!z10 && this.f57600e == width && this.f57601f == height) {
             fVar = fVar2;
             paint = paint3;
             z11 = z13;
         } else {
-            int i7 = fVar2.f57516y;
+            int i7 = fVar2.f57627y;
             if (i7 != 1 && i7 != 4) {
                 f13 = f12;
             }
@@ -87,29 +87,29 @@ public final class b extends lc {
                 fVar = fVar2;
                 paint.setShader(f.k(fVar2, gVar3, f13, 0, fVar2.K, 5));
             }
-            this.f57489e = width;
-            this.f57490f = height;
+            this.f57600e = width;
+            this.f57601f = height;
             if (z11) {
-                fVar.f57514w = z12;
+                fVar.f57625w = z12;
             } else {
-                fVar.f57515x = z12;
+                fVar.f57626x = z12;
             }
         }
         canvas.save();
         canvas.scale(5.0f, 5.0f);
         float f15 = ceil;
         float f16 = ceil2;
-        int saveLayer = canvas.saveLayer(0.0f, 0.0f, f15, f16, this.f57487b);
+        int saveLayer = canvas.saveLayer(0.0f, 0.0f, f15, f16, this.f57598b);
         if (z11) {
             canvas.drawColor((fVar.I & 16777215) | (-16777216));
             canvas.save();
             canvas.scale(0.2f, 0.2f);
             float f17 = fVar.d;
             float f18 = bounds.left + f17;
-            float f19 = fVar.f56682e;
+            float f19 = fVar.f56795e;
             float f20 = bounds.top + f19;
             canvas.translate(-f18, -f20);
-            fVar.f57510f.o(f18, f20, bounds.right + f17, f19 + bounds.bottom, canvas);
+            fVar.f57621f.z(f18, f20, bounds.right + f17, f19 + bounds.bottom, canvas);
             canvas.restore();
             f10 = f15;
             f11 = f16;
@@ -130,7 +130,7 @@ public final class b extends lc {
 
     @Override
     public final void e(float f10) {
-        this.f57487b.setAlpha(Math.round(f10 * 255.0f));
+        this.f57598b.setAlpha(Math.round(f10 * 255.0f));
     }
 
     @Override

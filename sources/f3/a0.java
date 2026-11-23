@@ -1,43 +1,80 @@
 package f3;
 
-import a8.p0;
+import java.io.Serializable;
 public final class a0 {
-    public final c0 f11091a;
-    public final c0 f11092b;
+    public int f11089a;
+    public int f11090b;
+    public int f11091c;
+    public int d;
+    public int f11092e;
+    public int f11093f;
+    public Serializable f11094g;
 
-    public a0(c0 c0Var, c0 c0Var2) {
-        this.f11091a = c0Var;
-        this.f11092b = c0Var2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public boolean a(int i7) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        if ((i7 & (-2097152)) != -2097152 || (i10 = (i7 >>> 19) & 3) == 1 || (i11 = (i7 >>> 17) & 3) == 0 || (i12 = (i7 >>> 12) & 15) == 0 || i12 == 15 || (i13 = (i7 >>> 10) & 3) == 3) {
+            return false;
         }
-        if (obj != null && a0.class == obj.getClass()) {
-            a0 a0Var = (a0) obj;
-            if (this.f11091a.equals(a0Var.f11091a) && this.f11092b.equals(a0Var.f11092b)) {
-                return true;
+        this.f11089a = i10;
+        this.f11094g = b.f11111s[3 - i11];
+        int i16 = b.f11112t[i13];
+        this.f11091c = i16;
+        int i17 = 2;
+        if (i10 == 2) {
+            this.f11091c = i16 / 2;
+        } else if (i10 == 0) {
+            this.f11091c = i16 / 4;
+        }
+        int i18 = (i7 >>> 9) & 1;
+        int i19 = 1152;
+        if (i11 != 1) {
+            if (i11 != 2) {
+                if (i11 == 3) {
+                    i19 = 384;
+                } else {
+                    throw new IllegalArgumentException();
+                }
+            }
+        } else if (i10 != 3) {
+            i19 = 576;
+        }
+        this.f11093f = i19;
+        if (i11 == 3) {
+            if (i10 == 3) {
+                i15 = b.f11113u[i12 - 1];
+            } else {
+                i15 = b.v[i12 - 1];
+            }
+            this.f11092e = i15;
+            this.f11090b = (((i15 * 12) / this.f11091c) + i18) * 4;
+        } else {
+            int i20 = 144;
+            if (i10 == 3) {
+                if (i11 == 2) {
+                    i14 = b.f11114w[i12 - 1];
+                } else {
+                    i14 = b.f11115x[i12 - 1];
+                }
+                this.f11092e = i14;
+                this.f11090b = ((i14 * 144) / this.f11091c) + i18;
+            } else {
+                int i21 = b.f11116y[i12 - 1];
+                this.f11092e = i21;
+                if (i11 == 1) {
+                    i20 = 72;
+                }
+                this.f11090b = ((i20 * i21) / this.f11091c) + i18;
             }
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.f11092b.hashCode() + (this.f11091a.hashCode() * 31);
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder("[");
-        c0 c0Var = this.f11091a;
-        sb2.append(c0Var);
-        c0 c0Var2 = this.f11092b;
-        if (c0Var.equals(c0Var2)) {
-            str = "";
-        } else {
-            str = ", " + c0Var2;
+        if (((i7 >> 6) & 3) == 3) {
+            i17 = 1;
         }
-        return p0.s(sb2, str, "]");
+        this.d = i17;
+        return true;
     }
 }

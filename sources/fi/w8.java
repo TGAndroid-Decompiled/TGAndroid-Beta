@@ -10,16 +10,16 @@ import j$.util.concurrent.ConcurrentHashMap;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class w8 implements s3 {
-    public final h6 f12706a;
-    public final ArrayList f12707b;
-    public final Context f12708c;
+    public final h6 f12718a;
+    public final ArrayList f12719b;
+    public final Context f12720c;
     public final f9 d;
 
     public w8(f9 f9Var, h6 h6Var, ArrayList arrayList, Context context) {
         this.d = f9Var;
-        this.f12706a = h6Var;
-        this.f12707b = arrayList;
-        this.f12708c = context;
+        this.f12718a = h6Var;
+        this.f12719b = arrayList;
+        this.f12720c = context;
     }
 
     public final void a(int i7, long j3) {
@@ -34,9 +34,9 @@ public final class w8 implements s3 {
     public final void b(boolean z10) {
         int i7;
         f9 f9Var = this.d;
-        org.telegram.ui.ActionBar.g2 g2Var = f9Var.f11961f;
-        if (f9Var.f11950b) {
-            if (!f9Var.f11953c) {
+        org.telegram.ui.ActionBar.g2 g2Var = f9Var.f11972f;
+        if (f9Var.f11961b) {
+            if (!f9Var.f11964c) {
                 if (z10) {
                     org.telegram.messenger.g0.Y2(g2Var.getParentActivity(), g2Var.getClassGuid());
                     return;
@@ -47,7 +47,7 @@ public final class w8 implements s3 {
             }
             return;
         }
-        WindowManager.LayoutParams layoutParams = f9Var.f11984r;
+        WindowManager.LayoutParams layoutParams = f9Var.f11995r;
         if (z10) {
             i7 = 48;
         } else {
@@ -55,7 +55,7 @@ public final class w8 implements s3 {
         }
         layoutParams.softInputMode = i7;
         try {
-            f9Var.f11976n.updateViewLayout(f9Var.f11987s, layoutParams);
+            f9Var.f11987n.updateViewLayout(f9Var.f11998s, layoutParams);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
@@ -85,25 +85,25 @@ public final class w8 implements s3 {
             if (equals && (e9Var = f9Var.A0) != null) {
                 if (equals) {
                     f9Var.G0 = y3Var;
-                    y3Var.f12767c = e9Var;
-                    y3Var.f12766b = null;
+                    y3Var.f12777c = e9Var;
+                    y3Var.f12776b = null;
                     e9Var.setSpeed(f9.B1);
                     y3 y3Var2 = f9Var.G0;
-                    y3Var2.f12765a = f9Var.A0.firstFrameRendered;
-                    y3Var2.f12768e = f9Var.f12003z0;
-                    y3Var2.f12769f = f9Var.C0;
+                    y3Var2.f12775a = f9Var.A0.firstFrameRendered;
+                    y3Var2.f12778e = f9Var.f12014z0;
+                    y3Var2.f12779f = f9Var.C0;
                     y3Var2.d = f9Var.D0;
                     org.telegram.messenger.a8.b("StoryViewer requestPlayer: same url");
                 }
             } else {
                 f9Var.F0 = uri;
-                hi.q3 q3Var = f9Var.E0;
-                if (q3Var != null) {
-                    q3Var.b(0L, null);
+                hi.z3 z3Var = f9Var.E0;
+                if (z3Var != null) {
+                    z3Var.b(0L, null);
                 }
                 c1 c1Var = f9Var.B0;
                 if (c1Var != null) {
-                    if (c1Var.f11790n) {
+                    if (c1Var.f11803n) {
                         c1Var.s(null);
                     } else {
                         c1Var.e();
@@ -117,11 +117,11 @@ public final class w8 implements s3 {
                 }
                 y3 y3Var3 = f9Var.G0;
                 if (y3Var3 != null) {
-                    y3Var3.f12767c = null;
-                    y3Var3.f12766b = null;
-                    y3Var3.f12765a = false;
-                    y3Var3.f12768e = null;
-                    y3Var3.f12769f = null;
+                    y3Var3.f12777c = null;
+                    y3Var3.f12776b = null;
+                    y3Var3.f12775a = false;
+                    y3Var3.f12778e = null;
+                    y3Var3.f12779f = null;
                     y3Var3.d = null;
                     y3Var3.b();
                     f9Var.G0 = null;
@@ -149,32 +149,32 @@ public final class w8 implements s3 {
                     e9Var4.setSpeed(f9.B1);
                     y3 y3Var4 = f9Var.G0;
                     e9 e9Var5 = f9Var.A0;
-                    y3Var4.f12767c = e9Var5;
-                    y3Var4.f12765a = false;
-                    y3Var4.f12768e = f9Var.f12003z0;
-                    y3Var4.f12769f = f9Var.C0;
+                    y3Var4.f12777c = e9Var5;
+                    y3Var4.f12775a = false;
+                    y3Var4.f12778e = f9Var.f12014z0;
+                    y3Var4.f12779f = f9Var.C0;
                     y3Var4.d = f9Var.D0;
-                    y3Var4.f12766b = null;
+                    y3Var4.f12776b = null;
                     TLRPC.Document document2 = e9Var5.document;
                     if (document2 != null) {
-                        org.telegram.messenger.s8.J.put(Long.valueOf(document2.f28404id), 3);
+                        org.telegram.messenger.r8.J.put(Long.valueOf(document2.f28498id), 3);
                     } else {
-                        ConcurrentHashMap concurrentHashMap = org.telegram.messenger.s8.I;
+                        ConcurrentHashMap concurrentHashMap = org.telegram.messenger.r8.I;
                     }
                     org.telegram.messenger.w7.G(f9Var.h).h(3, f9Var.A0.document, null, null, null, null);
                     if (j3 == 0) {
-                        long j11 = f9Var.f11991t1;
+                        long j11 = f9Var.f12002t1;
                         if (j11 != 0) {
-                            f9Var.G0.f12765a = true;
+                            f9Var.G0.f12775a = true;
                             j10 = j11;
                             org.telegram.messenger.a8.b("StoryViewer requestPlayer: currentPlayerScope.player start " + uri);
-                            ((e9) f9Var.G0.f12767c).start(false, f9Var.C(), uri, j10, f9.D1, f9.B1);
+                            ((e9) f9Var.G0.f12777c).start(false, f9Var.C(), uri, j10, f9.D1, f9.B1);
                             f9Var.G0.b();
                         }
                     }
                     j10 = j3;
                     org.telegram.messenger.a8.b("StoryViewer requestPlayer: currentPlayerScope.player start " + uri);
-                    ((e9) f9Var.G0.f12767c).start(false, f9Var.C(), uri, j10, f9.D1, f9.B1);
+                    ((e9) f9Var.G0.f12777c).start(false, f9Var.C(), uri, j10, f9.D1, f9.B1);
                     f9Var.G0.b();
                 } else {
                     org.telegram.messenger.a8.b("StoryViewer requestPlayer: url is null (1)");
@@ -184,17 +184,17 @@ public final class w8 implements s3 {
                 z10 = false;
             }
             i(false, z10);
-            f9Var.f11991t1 = 0L;
+            f9Var.f12002t1 = 0L;
             f9Var.V();
             return;
         }
-        hi.q3 q3Var2 = f9Var.E0;
-        if (q3Var2 != null) {
-            q3Var2.b(0L, null);
+        hi.z3 z3Var2 = f9Var.E0;
+        if (z3Var2 != null) {
+            z3Var2.b(0L, null);
         }
         c1 c1Var2 = f9Var.B0;
         if (c1Var2 != null) {
-            if (c1Var2.f11790n) {
+            if (c1Var2.f11803n) {
                 c1Var2.s(null);
             } else {
                 c1Var2.e();
@@ -202,30 +202,30 @@ public final class w8 implements s3 {
             f9Var.B0 = null;
         }
         org.telegram.messenger.a8.b("StoryViewer requestPlayer ignored, because closed: " + f9Var.H0 + ", " + f9Var.V);
-        y3Var.f12765a = false;
-        y3Var.f12767c = null;
-        y3Var.f12766b = null;
+        y3Var.f12775a = false;
+        y3Var.f12777c = null;
+        y3Var.f12776b = null;
     }
 
     public final void d(float f10) {
         f9 f9Var = this.d;
-        if (f9Var.f11988s0 != f10) {
-            f9Var.f11988s0 = f10;
-            f9Var.f11996w.invalidate();
+        if (f9Var.f11999s0 != f10) {
+            f9Var.f11999s0 = f10;
+            f9Var.f12007w.invalidate();
         }
     }
 
     public final void e() {
-        this.d.f11975m1 = false;
+        this.d.f11986m1 = false;
     }
 
     public final void f(boolean z10) {
         e9 e9Var;
         f9 f9Var = this.d;
-        if (!f9Var.f11963f1 && z10 && f9Var.f11974l0) {
-            f9Var.f11974l0 = false;
+        if (!f9Var.f11974f1 && z10 && f9Var.f11985l0) {
+            f9Var.f11985l0 = false;
             y3 y3Var = f9Var.G0;
-            if (y3Var != null && (e9Var = (e9) y3Var.f12767c) != null) {
+            if (y3Var != null && (e9Var = (e9) y3Var.f12777c) != null) {
                 e9Var.setSeeking(false);
             }
             z3 z11 = f9Var.z();
@@ -233,7 +233,7 @@ public final class w8 implements s3 {
                 z11.invalidate();
             }
         }
-        f9Var.f11963f1 = z10;
+        f9Var.f11974f1 = z10;
         f9Var.V();
     }
 
@@ -251,15 +251,15 @@ public final class w8 implements s3 {
         int i7;
         int i10;
         f9 f9Var = this.d;
-        hi.q3 q3Var = f9Var.E0;
+        hi.z3 z3Var = f9Var.E0;
         int i11 = 8;
-        if (q3Var != null) {
+        if (z3Var != null) {
             if (z10) {
                 i10 = 0;
             } else {
                 i10 = 8;
             }
-            q3Var.setVisibility(i10);
+            z3Var.setVisibility(i10);
         }
         SurfaceView surfaceView = f9Var.D0;
         if (surfaceView != null) {
@@ -284,38 +284,38 @@ public final class w8 implements s3 {
     public final void j() {
         int indexOf;
         f9 f9Var = this.d;
-        h6 h6Var = this.f12706a;
+        h6 h6Var = this.f12718a;
         if (h6Var != null) {
-            if (f9Var.f11978o0.f12301y0 == null) {
+            if (f9Var.f11989o0.f12313y0 == null) {
                 return;
             }
-            ArrayList arrayList = new ArrayList(f9Var.f11978o0.f12301y0);
-            if (f9Var.f11978o0.getCurrentPeerView() == null) {
+            ArrayList arrayList = new ArrayList(f9Var.f11989o0.f12313y0);
+            if (f9Var.f11989o0.getCurrentPeerView() == null) {
                 indexOf = -1;
             } else {
-                indexOf = arrayList.indexOf(f9Var.f11978o0.getCurrentPeerView().getCurrentDay());
+                indexOf = arrayList.indexOf(f9Var.f11989o0.getCurrentPeerView().getCurrentDay());
             }
             if (indexOf >= 0) {
                 arrayList.remove(indexOf);
-                if (!f9Var.f11978o0.E(true)) {
+                if (!f9Var.f11989o0.E(true)) {
                     f9Var.u(false);
                     return;
                 }
-                f9Var.f11978o0.H0 = new di.a8(this, h6Var, arrayList, 8);
+                f9Var.f11989o0.H0 = new di.a8(this, h6Var, arrayList, 8);
                 return;
             }
             f9Var.u(false);
             return;
         }
-        ArrayList arrayList2 = new ArrayList(this.f12707b);
-        int indexOf2 = arrayList2.indexOf(Long.valueOf(f9Var.f11978o0.getCurrentPeerView().getCurrentPeer()));
+        ArrayList arrayList2 = new ArrayList(this.f12719b);
+        int indexOf2 = arrayList2.indexOf(Long.valueOf(f9Var.f11989o0.getCurrentPeerView().getCurrentPeer()));
         if (indexOf2 >= 0) {
             arrayList2.remove(indexOf2);
-            if (!f9Var.f11978o0.E(true)) {
+            if (!f9Var.f11989o0.E(true)) {
                 f9Var.u(false);
                 return;
             }
-            f9Var.f11978o0.H0 = new ai.d1(this, arrayList2, indexOf2, 11);
+            f9Var.f11989o0.H0 = new ai.e1(this, arrayList2, indexOf2, 11);
             return;
         }
         f9Var.u(false);

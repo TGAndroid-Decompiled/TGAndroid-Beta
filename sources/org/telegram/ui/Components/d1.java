@@ -1,30 +1,47 @@
 package org.telegram.ui.Components;
+public final class d1 implements org.telegram.ui.ActionBar.q1 {
+    public final int f34181a;
+    public final Runnable f34182b;
 
-import android.content.DialogInterface;
-public final class d1 implements DialogInterface.OnShowListener {
-    public final int f34305a;
-    public final b5 f34306b;
-
-    public d1(int i7, b5 b5Var) {
-        this.f34305a = i7;
-        this.f34306b = b5Var;
+    public d1(int i7, Runnable runnable) {
+        this.f34181a = i7;
+        this.f34182b = runnable;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f34305a) {
+    public final void i(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f34181a) {
             case 0:
-                b5 b5Var = this.f34306b;
-                b5Var.requestFocus();
-                org.telegram.messenger.g0.I3(b5Var);
+                Runnable runnable = this.f34182b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
             case 1:
-                b5 b5Var2 = this.f34306b;
-                b5Var2.requestFocus();
-                org.telegram.messenger.g0.I3(b5Var2);
+                Runnable runnable2 = this.f34182b;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
+                return;
+            case 2:
+                this.f34182b.run();
+                return;
+            case 3:
+                this.f34182b.run();
+                return;
+            case 4:
+                this.f34182b.run();
+                t1Var.dismiss();
                 return;
             default:
-                org.telegram.messenger.g0.g3(new ng(this.f34306b, 2));
+                t1Var.dismiss();
+                Runnable runnable3 = this.f34182b;
+                if (runnable3 != null) {
+                    runnable3.run();
+                    return;
+                }
                 return;
         }
     }

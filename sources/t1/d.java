@@ -1,43 +1,65 @@
 package t1;
 
 import android.text.InputFilter;
-import android.text.Spanned;
+import android.text.Selection;
+import android.text.Spannable;
 import android.widget.TextView;
 import androidx.emoji2.text.l;
-public final class d implements InputFilter {
-    public final TextView f57536a;
-    public c f57537b;
+import java.lang.ref.WeakReference;
+public final class d extends androidx.emoji2.text.i {
+    public final WeakReference f57648a;
+    public final WeakReference f57649b;
 
-    public d(TextView textView) {
-        this.f57536a = textView;
+    public d(TextView textView, e eVar) {
+        this.f57648a = new WeakReference(textView);
+        this.f57649b = new WeakReference(eVar);
     }
 
     @Override
-    public final CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
-        TextView textView = this.f57536a;
-        if (!textView.isInEditMode()) {
-            int b10 = l.a().b();
-            if (b10 != 0) {
-                if (b10 != 1) {
-                    if (b10 != 3) {
-                        return charSequence;
+    public final void a() {
+        InputFilter[] filters;
+        int length;
+        TextView textView = (TextView) this.f57648a.get();
+        InputFilter inputFilter = (InputFilter) this.f57649b.get();
+        if (inputFilter != null && textView != null && (filters = textView.getFilters()) != null) {
+            for (InputFilter inputFilter2 : filters) {
+                if (inputFilter2 == inputFilter) {
+                    if (textView.isAttachedToWindow()) {
+                        CharSequence text = textView.getText();
+                        l a10 = l.a();
+                        if (text == null) {
+                            length = 0;
+                        } else {
+                            a10.getClass();
+                            length = text.length();
+                        }
+                        CharSequence e10 = a10.e(0, length, text);
+                        if (text != e10) {
+                            int selectionStart = Selection.getSelectionStart(e10);
+                            int selectionEnd = Selection.getSelectionEnd(e10);
+                            textView.setText(e10);
+                            if (e10 instanceof Spannable) {
+                                Spannable spannable = (Spannable) e10;
+                                if (selectionStart >= 0 && selectionEnd >= 0) {
+                                    Selection.setSelection(spannable, selectionStart, selectionEnd);
+                                    return;
+                                } else if (selectionStart >= 0) {
+                                    Selection.setSelection(spannable, selectionStart);
+                                    return;
+                                } else if (selectionEnd >= 0) {
+                                    Selection.setSelection(spannable, selectionEnd);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            }
+                            return;
+                        }
+                        return;
                     }
-                } else if ((i12 != 0 || i11 != 0 || spanned.length() != 0 || charSequence != textView.getText()) && charSequence != null) {
-                    if (i7 != 0 || i10 != charSequence.length()) {
-                        charSequence = charSequence.subSequence(i7, i10);
-                    }
-                    return l.a().e(0, charSequence.length(), charSequence);
-                } else {
-                    return charSequence;
+                    return;
                 }
             }
-            l a10 = l.a();
-            if (this.f57537b == null) {
-                this.f57537b = new c(textView, this);
-            }
-            a10.f(this.f57537b);
-            return charSequence;
         }
-        return charSequence;
     }
 }

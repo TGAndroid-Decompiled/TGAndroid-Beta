@@ -5,12 +5,12 @@ import java.util.Comparator;
 import java.util.SortedMap;
 import java.util.SortedSet;
 public class h extends lb implements SortedMap {
-    public SortedSet f13995f;
-    public final l1 h;
+    public SortedSet f13990f;
+    public final k1 h;
 
-    public h(l1 l1Var, SortedMap sortedMap) {
-        super(l1Var, sortedMap, 2);
-        this.h = l1Var;
+    public h(k1 k1Var, SortedMap sortedMap) {
+        super(k1Var, sortedMap, 2);
+        this.h = k1Var;
     }
 
     public SortedSet c() {
@@ -24,10 +24,10 @@ public class h extends lb implements SortedMap {
 
     @Override
     public SortedSet keySet() {
-        SortedSet sortedSet = this.f13995f;
+        SortedSet sortedSet = this.f13990f;
         if (sortedSet == null) {
             SortedSet c10 = c();
-            this.f13995f = c10;
+            this.f13990f = c10;
             return c10;
         }
         return sortedSet;

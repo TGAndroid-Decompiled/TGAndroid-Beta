@@ -6,14 +6,14 @@ import androidx.lifecycle.z;
 import ca.i;
 import d6.d;
 public final class a extends z {
-    public final d f61350l;
-    public t f61351m;
-    public i f61352n;
+    public final d f61469l;
+    public t f61470m;
+    public i f61471n;
 
     public a(d dVar) {
-        this.f61350l = dVar;
-        if (dVar.f7859a == null) {
-            dVar.f7859a = this;
+        this.f61469l = dVar;
+        if (dVar.f7858a == null) {
+            dVar.f7858a = this;
             return;
         }
         throw new IllegalStateException("There is already a listener registered");
@@ -21,29 +21,29 @@ public final class a extends z {
 
     @Override
     public final void f() {
-        d dVar = this.f61350l;
-        dVar.f7860b = true;
+        d dVar = this.f61469l;
+        dVar.f7859b = true;
         dVar.d = false;
-        dVar.f7861c = false;
-        dVar.f7865i.drainPermits();
+        dVar.f7860c = false;
+        dVar.f7864i.drainPermits();
         dVar.c();
     }
 
     @Override
     public final void g() {
-        this.f61350l.f7860b = false;
+        this.f61469l.f7859b = false;
     }
 
     @Override
     public final void i(a0 a0Var) {
         super.i(a0Var);
-        this.f61351m = null;
-        this.f61352n = null;
+        this.f61470m = null;
+        this.f61471n = null;
     }
 
     public final void k() {
-        t tVar = this.f61351m;
-        i iVar = this.f61352n;
+        t tVar = this.f61470m;
+        i iVar = this.f61471n;
         if (tVar != null && iVar != null) {
             super.i(iVar);
             d(tVar, iVar);
@@ -55,7 +55,7 @@ public final class a extends z {
         sb2.append("LoaderInfo{");
         sb2.append(Integer.toHexString(System.identityHashCode(this)));
         sb2.append(" #0 : ");
-        Class<?> cls = this.f61350l.getClass();
+        Class<?> cls = this.f61469l.getClass();
         sb2.append(cls.getSimpleName());
         sb2.append("{");
         sb2.append(Integer.toHexString(System.identityHashCode(cls)));

@@ -1,80 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.WindowManager;
-public final class pb extends xi0 {
-    public final int n1 = 0;
-    public final Object f38501o1;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class pb implements wi0 {
+    public final qb f38443a;
 
-    public pb(org.telegram.ui.ns nsVar, Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(4, i7, context, null, h6Var);
-        this.f38501o1 = nsVar;
+    public pb(qb qbVar) {
+        this.f38443a = qbVar;
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        gc gcVar;
-        switch (this.n1) {
-            case 0:
-                rb rbVar = (rb) this.f38501o1;
-                if (motionEvent.getAction() == 0) {
-                    gc gcVar2 = rbVar.f39097n;
-                    if (gcVar2 != null) {
-                        gcVar2.i(false);
-                    }
-                } else if (motionEvent.getAction() == 1 && (gcVar = rbVar.f39097n) != null) {
-                    gcVar.i(true);
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
+    public final void h(View view, ch.p0 p0Var, boolean z10, boolean z11) {
+        boolean z12;
+        qb qbVar = this.f38443a;
+        org.telegram.ui.ActionBar.g2 g2Var = qbVar.f38754f;
+        if (qbVar.f38753e == null) {
+            return;
         }
+        long e10 = org.telegram.messenger.i10.i(g2Var.getCurrentAccount()).e();
+        if ((g2Var instanceof org.telegram.ui.bn) && ((org.telegram.ui.bn) g2Var).a() == e10) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        int i7 = 0;
+        for (int i10 = 0; i10 < qbVar.f38753e.size(); i10++) {
+            int keyAt = qbVar.f38753e.keyAt(i10);
+            TLRPC.Message message = new TLRPC.Message();
+            message.dialog_id = g2Var.getUserConfig().e();
+            message.f28513id = keyAt;
+            org.telegram.messenger.fj fjVar = new org.telegram.messenger.fj(g2Var.getCurrentAccount(), message, false, false);
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(p0Var);
+            g2Var.getSendMessagesHelper().s0(fjVar, arrayList, p0Var, false, false, qbVar.f38754f, null);
+            i7 = message.f28513id;
+        }
+        qbVar.f();
+        fc.e();
+        org.telegram.messenger.g0.h3(new bi.w4(this, p0Var, !z12, g2Var.getCurrentAccount(), i7), 300L);
     }
 
     @Override
-    public void j() {
-        switch (this.n1) {
-            case 1:
-                super.j();
-                org.telegram.ui.ns nsVar = (org.telegram.ui.ns) this.f38501o1;
-                if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = nsVar.f50313x;
-                    layoutParams.flags &= -131073;
-                    layoutParams.softInputMode = 16;
-                } else {
-                    nsVar.f50313x.flags |= 131072;
-                }
-                try {
-                    ((WindowManager) nsVar.f50312w.getSystemService("window")).updateViewLayout(nsVar.f50314y, nsVar.f50313x);
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    return;
-                }
-            default:
-                super.j();
-                return;
-        }
+    public final boolean l() {
+        return true;
     }
 
     @Override
-    public void m() {
-        switch (this.n1) {
-            case 0:
-                gc gcVar = gc.f35481w;
-                if (gcVar != null) {
-                    gcVar.i(false);
-                }
-                ((rb) this.f38501o1).d.getReactionsWindow().f5291c.setOnClickListener(new o0(this, 3));
-                return;
-            default:
-                return;
-        }
+    public final boolean n() {
+        return false;
     }
 
-    public pb(rb rbVar, org.telegram.ui.ActionBar.g2 g2Var, Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(3, i7, context, g2Var, h6Var);
-        this.f38501o1 = rbVar;
+    @Override
+    public final boolean t() {
+        return false;
+    }
+
+    @Override
+    public final void r() {
+    }
+
+    @Override
+    public final void q(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
     }
 }

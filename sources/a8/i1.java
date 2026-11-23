@@ -9,11 +9,11 @@ import java.util.Locale;
 import org.telegram.ui.Dictation.DictationAsr;
 public abstract class i1 {
     public static boolean a(Context context) {
-        if (context != null && DictationAsr.B()) {
+        if (context != null && DictationAsr.F()) {
             ArrayList arrayList = new ArrayList();
-            HashMap hashMap = ai.r0.f1507a;
+            HashMap hashMap = ai.s0.f1519a;
             LinkedHashMap linkedHashMap = new LinkedHashMap();
-            ai.r0.b(linkedHashMap, context);
+            ai.s0.b(linkedHashMap, context);
             ArrayList arrayList2 = new ArrayList(linkedHashMap.values());
             int size = arrayList2.size();
             int i7 = 0;
@@ -33,7 +33,7 @@ public abstract class i1 {
             while (i10 < size2) {
                 Object obj2 = arrayList.get(i10);
                 i10++;
-                if (DictationAsr.I((String) obj2) != null) {
+                if (DictationAsr.M((String) obj2) != null) {
                     return true;
                 }
             }

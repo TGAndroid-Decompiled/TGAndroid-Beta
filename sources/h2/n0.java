@@ -5,17 +5,17 @@ import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.mb;
-import org.telegram.messenger.pb;
+import org.telegram.messenger.lb;
+import org.telegram.messenger.ob;
 import org.telegram.messenger.t7;
+import org.telegram.messenger.w10;
 import org.telegram.messenger.w7;
-import org.telegram.messenger.y10;
-import org.telegram.messenger.y8;
+import org.telegram.messenger.x8;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Cells.f2;
 import org.telegram.ui.Cells.i2;
-import org.telegram.ui.Wallet.u0;
-import org.telegram.ui.Wallet.z0;
+import org.telegram.ui.Wallet.a1;
+import org.telegram.ui.Wallet.v0;
 public final class n0 implements Runnable {
     public final int f13793a;
     public final boolean f13794b;
@@ -33,8 +33,8 @@ public final class n0 implements Runnable {
 
     @Override
     public final void run() {
-        y8 y8Var;
-        y8 y8Var2;
+        x8 x8Var;
+        x8 x8Var2;
         switch (this.f13793a) {
             case 0:
                 o0 o0Var = (o0) this.d;
@@ -50,31 +50,31 @@ public final class n0 implements Runnable {
                 String str = (String) this.f13796e;
                 boolean z13 = this.f13795c;
                 if (z12) {
-                    t7Var.d.f27662n.remove(str);
+                    t7Var.d.f27747n.remove(str);
                 } else {
                     t7Var.d.h.remove(str);
                 }
-                pb pbVar = t7Var.d.F;
-                if (pbVar != null) {
-                    Utilities.d.c(new mb(pbVar, pbVar.f26258a, str, z12));
+                ob obVar = t7Var.d.F;
+                if (obVar != null) {
+                    Utilities.d.c(new lb(obVar, obVar.f26145a, str, z12));
                 }
                 if (z13) {
                     w7 w7Var = t7Var.d;
-                    int i7 = w7Var.f27664s - 1;
-                    w7Var.f27664s = i7;
-                    if (i7 < 1 && (y8Var2 = (y8) w7Var.f27661f.poll()) != null) {
-                        t7Var.d.f27664s++;
-                        y8Var2.c();
+                    int i7 = w7Var.f27749s - 1;
+                    w7Var.f27749s = i7;
+                    if (i7 < 1 && (x8Var2 = (x8) w7Var.f27746f.poll()) != null) {
+                        t7Var.d.f27749s++;
+                        x8Var2.c();
                         return;
                     }
                     return;
                 }
                 w7 w7Var2 = t7Var.d;
-                int i10 = w7Var2.f27663r - 1;
-                w7Var2.f27663r = i10;
-                if (i10 < 1 && (y8Var = (y8) w7Var2.f27660e.poll()) != null) {
-                    t7Var.d.f27663r++;
-                    y8Var.c();
+                int i10 = w7Var2.f27748r - 1;
+                w7Var2.f27748r = i10;
+                if (i10 < 1 && (x8Var = (x8) w7Var2.f27745e.poll()) != null) {
+                    t7Var.d.f27748r++;
+                    x8Var.c();
                     return;
                 }
                 return;
@@ -85,27 +85,27 @@ public final class n0 implements Runnable {
                 String str2 = (String) this.f13796e;
                 boolean z14 = this.f13794b;
                 boolean z15 = this.f13795c;
-                i2 i2Var = ((f2) this.d).f30598b;
-                i2Var.f30785f0 = false;
-                i2Var.f30786g0 = str2;
+                i2 i2Var = ((f2) this.d).f30684b;
+                i2Var.f30875f0 = false;
+                i2Var.f30876g0 = str2;
                 if (str2 == null) {
-                    i2Var.f30786g0 = "";
+                    i2Var.f30876g0 = "";
                 }
-                i2Var.f30787h0 = z14;
+                i2Var.f30877h0 = z14;
                 i2Var.f(z15, true);
                 return;
             default:
-                u0 u0Var = (u0) this.d;
-                y10 y10Var = (y10) this.f13796e;
+                v0 v0Var = (v0) this.d;
+                w10 w10Var = (w10) this.f13796e;
                 boolean z16 = this.f13794b;
                 boolean z17 = this.f13795c;
-                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) u0Var.f45096e;
-                z0 z0Var = u0Var.f45095c;
-                if (z0Var != null && TextUtils.equals(z0Var.f45347c, tL_walletState.address) && u0Var.f45095c.f(tL_walletState.public_key)) {
-                    y10Var.a(null);
+                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) v0Var.f45258e;
+                a1 a1Var = v0Var.f45257c;
+                if (a1Var != null && TextUtils.equals(a1Var.f44039c, tL_walletState.address) && v0Var.f45257c.f(tL_walletState.public_key)) {
+                    w10Var.a(null);
                     return;
                 } else {
-                    u0Var.F(z16, z17, false, new org.telegram.ui.Wallet.j((Object) u0Var, (Object) y10Var, (Object) tL_walletState, 2));
+                    v0Var.F(z16, z17, false, new org.telegram.ui.Wallet.j((Object) v0Var, (Object) w10Var, (Object) tL_walletState, 2));
                     return;
                 }
         }

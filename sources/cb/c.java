@@ -2,7 +2,7 @@ package cb;
 
 import a8.sa;
 import aa.p;
-import ai.m0;
+import ai.n0;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +18,8 @@ import androidx.fragment.app.s;
 import androidx.lifecycle.a0;
 import bi.p3;
 import com.android.billingclient.api.ProxyBillingActivityV2;
-import com.google.android.gms.common.api.internal.h1;
+import com.google.android.gms.common.api.internal.g1;
+import com.google.android.gms.common.api.internal.p0;
 import com.google.android.gms.common.api.internal.q;
 import com.google.android.gms.common.api.internal.q0;
 import com.google.android.gms.internal.cast.t;
@@ -28,7 +29,6 @@ import com.google.android.gms.tasks.SuccessContinuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
-import d9.o;
 import di.pb;
 import e5.n;
 import f5.g;
@@ -36,13 +36,14 @@ import f6.d0;
 import f6.e0;
 import fi.z3;
 import g6.j;
-import gb.d1;
+import ga.d;
+import gb.e1;
 import gb.l;
-import gb.w0;
+import gb.x0;
 import h6.m;
 import j$.util.DesugarCollections;
 import j6.f;
-import j6.x;
+import j6.y;
 import java.nio.BufferOverflowException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -56,16 +57,15 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.Lock;
 import m.i1;
-import m.o3;
 import org.chromium.support_lib_boundary.StaticsBoundaryInterface;
 import org.chromium.support_lib_boundary.WebViewProviderBoundaryInterface;
 import org.chromium.support_lib_boundary.WebViewProviderFactoryBoundaryInterface;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.qo0;
-import org.telegram.ui.Components.qt0;
-import org.telegram.ui.p11;
-import org.telegram.ui.r00;
-public final class c implements SuccessContinuation, m0, a0, androidx.activity.result.b, h71, p11, q0, qt0, n, q, qo0, i1, OnCompleteListener, ib.b {
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.po0;
+import org.telegram.ui.Components.pt0;
+import org.telegram.ui.o11;
+import org.telegram.ui.q00;
+public final class c implements SuccessContinuation, n0, a0, androidx.activity.result.b, i71, o11, p0, pt0, n, q, po0, i1, OnCompleteListener, ib.b {
     public static volatile c f5144c;
     public final int f5145a;
     public Object f5146b;
@@ -75,11 +75,42 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
         this.f5146b = obj;
     }
 
-    public static int B(int i7) {
-        return C(i7 << 3);
+    public static int B(long j3) {
+        if (((-128) & j3) == 0) {
+            return 1;
+        }
+        if (((-16384) & j3) == 0) {
+            return 2;
+        }
+        if (((-2097152) & j3) == 0) {
+            return 3;
+        }
+        if (((-268435456) & j3) == 0) {
+            return 4;
+        }
+        if (((-34359738368L) & j3) == 0) {
+            return 5;
+        }
+        if (((-4398046511104L) & j3) == 0) {
+            return 6;
+        }
+        if (((-562949953421312L) & j3) == 0) {
+            return 7;
+        }
+        if (((-72057594037927936L) & j3) == 0) {
+            return 8;
+        }
+        if ((j3 & Long.MIN_VALUE) == 0) {
+            return 9;
+        }
+        return 10;
     }
 
     public static int C(int i7) {
+        return D(i7 << 3);
+    }
+
+    public static int D(int i7) {
         if ((i7 & (-128)) == 0) {
             return 1;
         }
@@ -95,7 +126,7 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
         return 5;
     }
 
-    public static int q(CharSequence charSequence) {
+    public static int r(CharSequence charSequence) {
         int length = charSequence.length();
         int i7 = 0;
         int i10 = 0;
@@ -144,13 +175,13 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
         throw new IllegalArgumentException(sb3.toString());
     }
 
-    public static int v(int i7, String str) {
-        int B = B(i7);
-        int q10 = q(str);
-        return C(q10) + q10 + B;
+    public static int x(int i7, String str) {
+        int C = C(i7);
+        int r10 = r(str);
+        return D(r10) + r10 + C;
     }
 
-    public static void x(CharSequence charSequence, ByteBuffer byteBuffer) {
+    public static void z(CharSequence charSequence, ByteBuffer byteBuffer) {
         int i7;
         char charAt;
         if (!byteBuffer.isReadOnly()) {
@@ -275,72 +306,35 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
         throw new ReadOnlyBufferException();
     }
 
-    public static int z(long j3) {
-        if (((-128) & j3) == 0) {
-            return 1;
+    public void A(long j3) {
+        while (((-128) & j3) != 0) {
+            v((((int) j3) & 127) | 128);
+            j3 >>>= 7;
         }
-        if (((-16384) & j3) == 0) {
-            return 2;
-        }
-        if (((-2097152) & j3) == 0) {
-            return 3;
-        }
-        if (((-268435456) & j3) == 0) {
-            return 4;
-        }
-        if (((-34359738368L) & j3) == 0) {
-            return 5;
-        }
-        if (((-4398046511104L) & j3) == 0) {
-            return 6;
-        }
-        if (((-562949953421312L) & j3) == 0) {
-            return 7;
-        }
-        if (((-72057594037927936L) & j3) == 0) {
-            return 8;
-        }
-        if ((j3 & Long.MIN_VALUE) == 0) {
-            return 9;
-        }
-        return 10;
+        v((int) j3);
     }
 
     @Override
-    public void A(Object obj) {
-        CharSequence charSequence = (CharSequence) obj;
-        g0 g0Var = (g0) this.f5146b;
-        Handler handler = g0Var.B0;
-        sa saVar = g0Var.C0;
-        handler.removeCallbacks(saVar);
-        TextView textView = g0Var.H0;
-        if (textView != null) {
-            textView.setText(charSequence);
-        }
-        handler.postDelayed(saVar, 2000L);
-    }
-
-    @Override
-    public void D0() {
-        z3.h0((z3) this.f5146b);
-    }
-
-    @Override
-    public void G(boolean z10) {
+    public void E(boolean z10) {
         pb pbVar = (pb) this.f5146b;
         te.a aVar = pbVar.Z;
         if (aVar != null) {
             aVar.a(z10, true);
         }
-        r00 r00Var = pbVar.f51841s;
-        if (r00Var != null) {
-            r00Var.invalidate();
+        q00 q00Var = pbVar.f51574s;
+        if (q00Var != null) {
+            q00Var.invalidate();
         }
     }
 
     @Override
-    public float U0() {
-        return i5.c.d(9.66f, ri.a.d(((pb) this.f5146b).f9531c0), 0);
+    public float K0() {
+        return i5.c.d(9.66f, ri.a.d(((pb) this.f5146b).f9529c0), 0);
+    }
+
+    @Override
+    public int T0() {
+        return ((pb) this.f5146b).f9530d0;
     }
 
     @Override
@@ -356,20 +350,20 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
 
     @Override
     public void accept(Object obj, Object obj2) {
-        x xVar = (x) obj;
-        f fVar = (f) xVar.n();
-        d0 d0Var = ((e0) this.f5146b).f11376l;
+        y yVar = (y) obj;
+        f fVar = (f) yVar.n();
+        d0 d0Var = ((e0) this.f5146b).f11375l;
         Parcel p12 = fVar.p1();
         t.d(p12, d0Var);
         fVar.u1(p12, 18);
-        f fVar2 = (f) xVar.n();
+        f fVar2 = (f) yVar.n();
         fVar2.u1(fVar2.p1(), 17);
         ((TaskCompletionSource) obj2).setResult(null);
     }
 
     @Override
-    public boolean b() {
-        return true;
+    public String[] b() {
+        return ((WebViewProviderFactoryBoundaryInterface) this.f5146b).getSupportedFeatures();
     }
 
     @Override
@@ -378,29 +372,29 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
     }
 
     @Override
-    public String[] d() {
-        return ((WebViewProviderFactoryBoundaryInterface) this.f5146b).getSupportedFeatures();
+    public boolean d() {
+        return true;
     }
 
-    public void e(StringBuilder sb2, Iterator it) {
+    public void f(StringBuilder sb2, Iterator it) {
         g gVar = (g) this.f5146b;
         if (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
-            sb2.append(g.f(entry.getKey()));
+            sb2.append(g.c(entry.getKey()));
             sb2.append("=");
-            sb2.append(g.f(entry.getValue()));
+            sb2.append(g.c(entry.getValue()));
             while (it.hasNext()) {
-                sb2.append((CharSequence) gVar.f11281a);
+                sb2.append((CharSequence) gVar.f11280a);
                 Map.Entry entry2 = (Map.Entry) it.next();
-                sb2.append(g.f(entry2.getKey()));
+                sb2.append(g.c(entry2.getKey()));
                 sb2.append("=");
-                sb2.append(g.f(entry2.getValue()));
+                sb2.append(g.c(entry2.getValue()));
             }
         }
     }
 
     @Override
-    public void f(Object obj) {
+    public void g(Object obj) {
         Bundle extras;
         switch (this.f5145a) {
             case 7:
@@ -411,21 +405,21 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
                     Log.w("FragmentManager", "No IntentSenders were started for " + this);
                     return;
                 }
-                String str = f0Var.f2304a;
-                int i7 = f0Var.f2305b;
-                s o4 = j0Var.f2318c.o(str);
+                String str = f0Var.f2305a;
+                int i7 = f0Var.f2306b;
+                s o4 = j0Var.f2319c.o(str);
                 if (o4 == null) {
                     Log.w("FragmentManager", "Intent Sender result delivered for unknown Fragment " + str);
                     return;
                 }
-                o4.x(i7, aVar.f1770a, aVar.f1771b);
+                o4.x(i7, aVar.f1771a, aVar.f1772b);
                 return;
             default:
                 ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f5146b;
                 androidx.activity.result.a aVar2 = (androidx.activity.result.a) obj;
                 proxyBillingActivityV2.getClass();
-                Intent intent = aVar2.f1771b;
-                int i10 = u.e("ProxyBillingActivityV2", intent).f11278a;
+                Intent intent = aVar2.f1772b;
+                int i10 = u.e("ProxyBillingActivityV2", intent).f11277a;
                 ResultReceiver resultReceiver = proxyBillingActivityV2.O;
                 if (resultReceiver != null) {
                     if (intent == null) {
@@ -435,7 +429,7 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
                     }
                     resultReceiver.send(i10, extras);
                 }
-                int i11 = aVar2.f1770a;
+                int i11 = aVar2.f1771a;
                 if (i11 != -1 || i10 != 0) {
                     u.h("ProxyBillingActivityV2", "External offer dialog finished with resultCode: " + i11 + " and billing's responseCode: " + i10);
                 }
@@ -445,12 +439,12 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
     }
 
     @Override
-    public Object mo24get() {
+    public Object mo23get() {
         switch (this.f5145a) {
-            case 27:
-                return new l((ua.b) ((o) this.f5146b).f7917a);
+            case 28:
+                return new l((ua.b) ((e.a) this.f5146b).f10170a);
             default:
-                return new w0((d1) ((ib.c) this.f5146b).mo24get());
+                return new x0((e1) ((ib.c) this.f5146b).mo23get());
         }
     }
 
@@ -460,50 +454,45 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
     }
 
     @Override
-    public boolean h(int i7) {
-        return false;
+    public void h(n6.a aVar) {
+        g1 g1Var = (g1) this.f5146b;
+        g1Var.f6283o.lock();
+        try {
+            g1Var.f6280l = aVar;
+            g1Var.j();
+        } finally {
+            g1Var.f6283o.unlock();
+        }
     }
 
     @Override
-    public void i(n6.a aVar) {
-        h1 h1Var = (h1) this.f5146b;
-        h1Var.f6287o.lock();
-        try {
-            h1Var.f6284l = aVar;
-            h1Var.j();
-        } finally {
-            h1Var.f6287o.unlock();
-        }
+    public boolean i(int i7) {
+        return false;
     }
 
     @Override
     public void j(int i7) {
         n6.a aVar;
-        h1 h1Var = (h1) this.f5146b;
-        Lock lock = h1Var.f6287o;
-        Lock lock2 = h1Var.f6287o;
+        g1 g1Var = (g1) this.f5146b;
+        Lock lock = g1Var.f6283o;
+        Lock lock2 = g1Var.f6283o;
         lock.lock();
         try {
-            if (!h1Var.f6286n && (aVar = h1Var.f6285m) != null && aVar.c()) {
-                h1Var.f6286n = true;
-                h1Var.f6279e.onConnectionSuspended(i7);
+            if (!g1Var.f6282n && (aVar = g1Var.f6281m) != null && aVar.c()) {
+                g1Var.f6282n = true;
+                g1Var.f6275e.onConnectionSuspended(i7);
                 return;
             }
-            h1Var.f6286n = false;
-            h1Var.f6277b.j(i7);
-            h1Var.f6285m = null;
-            h1Var.f6284l = null;
+            g1Var.f6282n = false;
+            g1Var.f6273b.j(i7);
+            g1Var.f6281m = null;
+            g1Var.f6280l = null;
         } finally {
             lock2.unlock();
         }
     }
 
-    @Override
-    public int j1() {
-        return ((pb) this.f5146b).f9532d0;
-    }
-
-    public Set l() {
+    public Set k() {
         Set unmodifiableSet;
         synchronized (((HashSet) this.f5146b)) {
             unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f5146b);
@@ -511,22 +500,17 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
         return unmodifiableSet;
     }
 
-    @Override
-    public void m(Bundle bundle) {
-        h1 h1Var = (h1) this.f5146b;
-        h1Var.f6287o.lock();
-        try {
-            Bundle bundle2 = h1Var.f6283k;
-            if (bundle2 == null) {
-                h1Var.f6283k = bundle;
-            } else if (bundle != null) {
-                bundle2.putAll(bundle);
-            }
-            h1Var.f6284l = n6.a.f21414f;
-            h1Var.j();
-        } finally {
-            h1Var.f6287o.unlock();
+    public boolean l() {
+        q0 q0Var = ((com.google.android.gms.common.api.internal.e0) this.f5146b).d;
+        if (q0Var != null && q0Var.g()) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public void l0() {
+        z3.h0((z3) this.f5146b);
     }
 
     public void n() {
@@ -534,40 +518,58 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
     }
 
     @Override
-    public void onComplete(Task task) {
-        g6.c.h((g6.c) ((j) this.f5146b).f13222c, "launchApplication", task);
+    public void o(Bundle bundle) {
+        g1 g1Var = (g1) this.f5146b;
+        g1Var.f6283o.lock();
+        try {
+            Bundle bundle2 = g1Var.f6279k;
+            if (bundle2 == null) {
+                g1Var.f6279k = bundle;
+            } else if (bundle != null) {
+                bundle2.putAll(bundle);
+            }
+            g1Var.f6280l = n6.a.f21513f;
+            g1Var.j();
+        } finally {
+            g1Var.f6283o.unlock();
+        }
     }
 
-    public void p(m mVar) {
-        o3 o3Var = (o3) this.f5146b;
-        o3Var.f20156b = mVar;
-        Iterator it = ((LinkedList) o3Var.f20157c).iterator();
+    @Override
+    public void onComplete(Task task) {
+        g6.c.h((g6.c) ((j) this.f5146b).f13221c, "launchApplication", task);
+    }
+
+    public void q(m mVar) {
+        d dVar = (d) this.f5146b;
+        dVar.f13270a = mVar;
+        Iterator it = ((LinkedList) dVar.f13271b).iterator();
         while (it.hasNext()) {
             ((a7.c) it.next()).b();
         }
-        ((LinkedList) o3Var.f20157c).clear();
+        ((LinkedList) dVar.f13271b).clear();
     }
 
-    public void r(int i7, String str) {
+    public void s(int i7, String str) {
         ByteBuffer byteBuffer = (ByteBuffer) this.f5146b;
-        w(i7, 2);
+        y(i7, 2);
         try {
-            int C = C(str.length());
-            if (C == C(str.length() * 3)) {
+            int D = D(str.length());
+            if (D == D(str.length() * 3)) {
                 int position = byteBuffer.position();
-                if (byteBuffer.remaining() >= C) {
-                    byteBuffer.position(position + C);
-                    x(str, byteBuffer);
+                if (byteBuffer.remaining() >= D) {
+                    byteBuffer.position(position + D);
+                    z(str, byteBuffer);
                     int position2 = byteBuffer.position();
                     byteBuffer.position(position);
-                    u((position2 - position) - C);
+                    w((position2 - position) - D);
                     byteBuffer.position(position2);
                     return;
                 }
-                throw new androidx.datastore.preferences.protobuf.l(position + C, byteBuffer.limit());
+                throw new androidx.datastore.preferences.protobuf.l(position + D, byteBuffer.limit());
             }
-            u(q(str));
-            x(str, byteBuffer);
+            w(r(str));
+            z(str, byteBuffer);
         } catch (BufferOverflowException e10) {
             androidx.datastore.preferences.protobuf.l lVar = new androidx.datastore.preferences.protobuf.l(byteBuffer.position(), byteBuffer.limit());
             lVar.initCause(e10);
@@ -575,23 +577,13 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
         }
     }
 
-    public void s(int i7, byte[] bArr) {
-        w(i7, 2);
-        u(bArr.length);
+    public void t(int i7, byte[] bArr) {
+        y(i7, 2);
+        w(bArr.length);
         int length = bArr.length;
         ByteBuffer byteBuffer = (ByteBuffer) this.f5146b;
         if (byteBuffer.remaining() >= length) {
             byteBuffer.put(bArr, 0, length);
-            return;
-        }
-        throw new androidx.datastore.preferences.protobuf.l(byteBuffer.position(), byteBuffer.limit());
-    }
-
-    public void t(int i7) {
-        byte b10 = (byte) i7;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f5146b;
-        if (byteBuffer.hasRemaining()) {
-            byteBuffer.put(b10);
             return;
         }
         throw new androidx.datastore.preferences.protobuf.l(byteBuffer.position(), byteBuffer.limit());
@@ -608,28 +600,44 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
         return Tasks.whenAll(p.b(pVar), pVar.f840m.h(null, pVar.f833e.f3058a));
     }
 
-    public void u(int i7) {
+    @Override
+    public void u(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        g0 g0Var = (g0) this.f5146b;
+        Handler handler = g0Var.B0;
+        sa saVar = g0Var.C0;
+        handler.removeCallbacks(saVar);
+        TextView textView = g0Var.H0;
+        if (textView != null) {
+            textView.setText(charSequence);
+        }
+        handler.postDelayed(saVar, 2000L);
+    }
+
+    public void v(int i7) {
+        byte b10 = (byte) i7;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f5146b;
+        if (byteBuffer.hasRemaining()) {
+            byteBuffer.put(b10);
+            return;
+        }
+        throw new androidx.datastore.preferences.protobuf.l(byteBuffer.position(), byteBuffer.limit());
+    }
+
+    public void w(int i7) {
         while ((i7 & (-128)) != 0) {
-            t((i7 & 127) | 128);
+            v((i7 & 127) | 128);
             i7 >>>= 7;
         }
-        t(i7);
+        v(i7);
     }
 
-    public void w(int i7, int i10) {
-        u((i7 << 3) | i10);
-    }
-
-    public void y(long j3) {
-        while (((-128) & j3) != 0) {
-            t((((int) j3) & 127) | 128);
-            j3 >>>= 7;
-        }
-        t((int) j3);
+    public void y(int i7, int i10) {
+        w((i7 << 3) | i10);
     }
 
     public c(byte[] bArr, int i7) {
-        this.f5145a = 14;
+        this.f5145a = 15;
         ByteBuffer wrap = ByteBuffer.wrap(bArr, 0, i7);
         this.f5146b = wrap;
         wrap.order(ByteOrder.LITTLE_ENDIAN);
@@ -644,7 +652,7 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
             case 10:
                 this.f5146b = new q4.q[cg.b.values().length];
                 return;
-            case 19:
+            case 20:
                 return;
             default:
                 this.f5146b = new HashSet();
@@ -658,22 +666,22 @@ public final class c implements SuccessContinuation, m0, a0, androidx.activity.r
     }
 
     @Override
-    public void Q() {
+    public void K() {
     }
 
     @Override
-    public void c() {
+    public void e() {
     }
 
     @Override
-    public void o() {
+    public void p() {
     }
 
     @Override
-    public void g(float f10) {
+    public void c(float f10) {
     }
 
     @Override
-    public void k(ArrayList arrayList) {
+    public void m(ArrayList arrayList) {
     }
 }

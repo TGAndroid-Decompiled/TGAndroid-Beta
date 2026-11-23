@@ -90,8 +90,8 @@ public abstract class ma {
         throw new NullPointerException(str);
     }
 
-    public static void l(l2.u0 u0Var) {
-        u0Var.getClass();
+    public static void l(l2.v0 v0Var) {
+        v0Var.getClass();
     }
 
     public static void m(int i7, int i10) {

@@ -2,16 +2,16 @@ package jg;
 
 import a8.b8;
 public final class y0 extends b8 {
-    public final h1 f17715g;
+    public final h1 f17817g;
 
     public y0(h1 h1Var, x0 x0Var) {
         super(x0Var);
-        this.f17715g = h1Var;
+        this.f17817g = h1Var;
     }
 
     @Override
     public final void p() {
         super.p();
-        this.f17715g.A0 = null;
+        this.f17817g.A0 = null;
     }
 }

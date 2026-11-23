@@ -42,7 +42,7 @@ public final class v implements Thread.UncaughtExceptionHandler {
         try {
             try {
                 if (a(thread, th2)) {
-                    this.f871a.L(this.f872b, thread, th2);
+                    this.f871a.A(this.f872b, thread, th2);
                 } else if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "Uncaught exception will not be recorded by Crashlytics.", null);
                 }
@@ -59,7 +59,7 @@ public final class v implements Thread.UncaughtExceptionHandler {
                 }
                 atomicBoolean.set(false);
             } catch (Exception e10) {
-                x9.b bVar = x9.b.f60437a;
+                x9.b bVar = x9.b.f60555a;
                 if (bVar.a(6)) {
                     Log.e("FirebaseCrashlytics", "An error occurred in the uncaught exception handler", e10);
                 }

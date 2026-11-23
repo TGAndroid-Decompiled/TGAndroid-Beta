@@ -1,5 +1,7 @@
 package mg;
+
+import jb.m;
 public final class d extends b {
-    public long[] f20988l;
-    public k8.a f20989m;
+    public long[] f21084l;
+    public m f21085m;
 }

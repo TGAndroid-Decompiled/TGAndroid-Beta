@@ -1,11 +1,11 @@
 package q7;
 public final class h1 implements g1 {
-    public static final d9.o f56012a;
+    public static final e.a f56125a;
 
     static {
-        int i7 = o.f56042c;
-        Object[] objArr = y.f56069r;
+        int i7 = o.f56155c;
+        Object[] objArr = y.f56182r;
         new b0("FIDO");
-        f56012a = new d9.o(Boolean.FALSE);
+        f56125a = new e.a(Boolean.FALSE);
     }
 }

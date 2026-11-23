@@ -1,170 +1,195 @@
 package li;
 
+import a8.n7;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import di.za;
-import org.telegram.messenger.hd;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Wallet.b3;
-import org.telegram.ui.Wallet.d3;
-import org.telegram.ui.lm0;
-import org.telegram.ui.mt;
-import org.telegram.ui.pt;
-public final class x extends b71 {
-    public final int f20006a;
-    public final Object f20007b;
+import android.widget.LinearLayout;
+import bi.v1;
+import bi.w1;
+import c8.na;
+import hi.z4;
+import org.telegram.messenger.f3;
+import org.telegram.messenger.gd;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.o6;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.g51;
+public final class x extends a0 {
+    public final int h;
+    public final c0 f20105n;
 
-    public x(Object obj, int i7) {
-        this.f20006a = i7;
-        this.f20007b = obj;
-    }
-
-    @Override
-    public final void b(View view, int i7, int i10) {
-        boolean z10;
-        switch (this.f20006a) {
-            case 0:
-                ((b0) view).getClass();
-                return;
+    public x(c0 c0Var, Context context, int i7) {
+        super(c0Var, context);
+        int i10;
+        this.h = i7;
+        switch (i7) {
             case 1:
-                mt mtVar = (mt) view;
-                mtVar.f49943g3 = i7;
-                mtVar.f49949n3.clear();
-                if (mtVar.z1(6) + mtVar.B1(6) <= 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                mtVar.f49956u3 = z10;
-                mtVar.C1();
-                mtVar.D1(false);
-                mtVar.v0(0);
-                return;
-            case 2:
-                return;
-            case 3:
-                if (view instanceof b3) {
-                    ((b3) view).getClass();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final View d(int i7) {
-        switch (this.f20006a) {
-            case 0:
-                d0 d0Var = (d0) this.f20007b;
-                if (i7 == 2) {
-                    return d0Var.f19908x1;
-                }
-                if (i7 == 0) {
-                    return d0Var.f19906v1;
-                }
-                return d0Var.f19907w1;
-            case 1:
-                pt ptVar = (pt) this.f20007b;
-                mt mtVar = new mt(ptVar, ptVar.getParentActivity());
-                ptVar.f50914e.add(mtVar);
-                return mtVar;
-            case 2:
-                lm0 lm0Var = (lm0) this.f20007b;
-                if (i7 == 1) {
-                    return lm0Var.h;
-                }
-                if (i7 == 0) {
-                    return lm0Var.f49633n;
-                }
-                return null;
-            case 3:
-                return (View) ((d3) this.f20007b).n1.get(i7);
-            default:
-                za zaVar = (za) this.f20007b;
-                if (i7 != 1) {
-                    if (i7 != 2) {
-                        return (sg.o) zaVar.f10168b;
+                this.f20105n = c0Var;
+                super(c0Var, context);
+                g51 g51Var = new g51(context, c0Var.f30223a, 0, false, new s(c0Var, 5), new t(c0Var, 5), null, c0Var.J0);
+                this.d = g51Var;
+                g51Var.r1();
+                g51 g51Var2 = this.d;
+                g51Var2.f35323g3.f33631r = false;
+                g51Var2.setClipToPadding(false);
+                this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f24221n);
+                this.d.j(new v1(this, 26));
+                this.f19988c.addView(this.d, 0, na.c(-1.0f, -1));
+                org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, c0Var.J0);
+                this.f19986a = kVar;
+                kVar.setOccupyStatusBar(false);
+                org.telegram.ui.ActionBar.k kVar2 = this.f19986a;
+                int i11 = n6.G6;
+                u6.l(kVar2, 5, i11, c0Var.J0);
+                u6.l(this.f19986a, 3, n6.f29864z8, c0Var.J0);
+                this.f19986a.setBackButtonImage(2131231243);
+                u6.l(this.f19986a, 1, n6.f29845y8, c0Var.J0);
+                this.f19986a.setTitle(gd.N0(2131751874, null));
+                this.f19986a.getTitleTextView().setTranslationX(-org.telegram.messenger.g0.L(18.0f));
+                this.f19986a.setActionBarMenuOnItemClick(new w1(this, 22));
+                this.f19988c.addView(this.f19986a, na.e(-1, 56, 48));
+                LinearLayout g10 = f3.g(context, 0);
+                g10.setPadding(org.telegram.messenger.g0.L(7.0f), 0, org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(12.0f));
+                hi.e eVar = new hi.e(context, c0Var.J0, true);
+                eVar.e();
+                int i12 = n6.f29451d6;
+                eVar.setColor(i0.a.f(0.125f, n6.w0(i12, c0Var.J0), n6.w0(i11, c0Var.J0)));
+                eVar.setText(gd.N0(2131751888, null));
+                eVar.f();
+                if (eVar.getBackground() != null) {
+                    Drawable background = eVar.getBackground();
+                    i6 i6Var = c0Var.J0;
+                    eVar.setBackground(background);
+                    p6 o4 = u6.o(eVar, true);
+                    o4.d = background;
+                    o4.f29953e = null;
+                    o4.f29954f = null;
+                    if (background != null) {
+                        o6 o6Var = new o6();
+                        o4.f29953e = o6Var;
+                        o6Var.c(i12, i11, 3, 0.125f, i6Var);
+                        o6Var.f29906g = u6.t(background);
                     }
-                    return (sg.p) zaVar.d;
                 }
-                return (sg.n) zaVar.f10169c;
-        }
-    }
+                eVar.setOnClickListener(new View.OnClickListener(this) {
+                    public final x f19993b;
 
-    @Override
-    public final int e() {
-        switch (this.f20006a) {
-            case 0:
-                if (((d0) this.f20007b).I1) {
-                    return 1;
-                }
-                return 3;
-            case 1:
-                return 4;
-            case 2:
-                return 2;
-            case 3:
-                return ((d3) this.f20007b).n1.size();
-            default:
-                return 3;
-        }
-    }
+                    {
+                        this.f19993b = this;
+                    }
 
-    @Override
-    public CharSequence g(int i7) {
-        switch (this.f20006a) {
-            case 1:
-                if (i7 != 0) {
-                    if (i7 != 1) {
-                        if (i7 != 2) {
-                            if (i7 != 3) {
-                                return "";
-                            }
-                            return hd.N0(2131748102, null);
+                    @Override
+                    public final void onClick(View view) {
+                        switch (r2) {
+                            case 0:
+                                this.f19993b.f20105n.H1.f(false, true);
+                                return;
+                            default:
+                                this.f19993b.f20105n.H1.f(true, true);
+                                return;
                         }
-                        return hd.N0(2131748100, null);
                     }
-                    return hd.N0(2131748103, null);
-                }
-                return hd.N0(2131748104, null);
-            case 4:
-                if (i7 != 1) {
-                    if (i7 != 2) {
-                        return hd.N0(2131747475, null).toUpperCase();
+                });
+                g10.addView(eVar, na.q(0, 48, 1.0f, 0, 4, 0, 4, 0));
+                hi.e eVar2 = new hi.e(context, c0Var.J0, true);
+                eVar2.setText(gd.N0(2131751890, null));
+                eVar2.f();
+                eVar2.setOnClickListener(new View.OnClickListener(this) {
+                    public final x f19993b;
+
+                    {
+                        this.f19993b = this;
                     }
-                    return hd.N0(2131747474, null).toUpperCase();
-                }
-                return hd.N0(2131747469, null).toUpperCase();
+
+                    @Override
+                    public final void onClick(View view) {
+                        switch (r2) {
+                            case 0:
+                                this.f19993b.f20105n.H1.f(false, true);
+                                return;
+                            default:
+                                this.f19993b.f20105n.H1.f(true, true);
+                                return;
+                        }
+                    }
+                });
+                g10.addView(eVar2, na.q(0, 48, 1.0f, 0, 4, 0, 4, 0));
+                this.f19988c.addView(g10, na.f(-2.0f, -1, 80, 0, 0, 0, org.telegram.messenger.g0.f24221n));
+                a();
+                return;
             default:
-                return super.g(i7);
+                this.f20105n = c0Var;
+                org.telegram.messenger.g0.E2(this.f19987b);
+                g51 g51Var3 = new g51(context, c0Var.f30223a, 0, false, new s(c0Var, 3), new t(c0Var, 2), null, c0Var.J0);
+                this.d = g51Var3;
+                g51Var3.r1();
+                g51 g51Var4 = this.d;
+                g51Var4.f35323g3.f33631r = false;
+                g51Var4.setClipToPadding(false);
+                this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f24221n);
+                this.f19988c.addView(c0Var.B1, na.g());
+                this.f19988c.addView(this.d, 0, na.c(-1.0f, -1));
+                this.f19988c.addView(c0Var.D1, na.g());
+                org.telegram.ui.ActionBar.k kVar3 = new org.telegram.ui.ActionBar.k(context, c0Var.J0);
+                this.f19986a = kVar3;
+                kVar3.setOccupyStatusBar(false);
+                u6.l(this.f19986a, 5, n6.G6, c0Var.J0);
+                u6.l(this.f19986a, 3, n6.f29864z8, c0Var.J0);
+                org.telegram.ui.ActionBar.k kVar4 = this.f19986a;
+                boolean z10 = c0Var.I1;
+                if (z10) {
+                    i10 = 2131231244;
+                } else {
+                    i10 = 2131231243;
+                }
+                kVar4.setBackButtonImage(i10);
+                u6.l(this.f19986a, 1, n6.f29845y8, c0Var.J0);
+                this.f19986a.setTitle(gd.N0(2131751976, null));
+                this.f19986a.getTitleTextView().setTranslationX(-org.telegram.messenger.g0.L(18.0f));
+                this.f19986a.setActionBarMenuOnItemClick(new w1(this, 20));
+                this.f19988c.addView(this.f19986a, na.e(-1, 56, 48));
+                this.f19988c.addView(c0Var.f20007z1, na.d(-1, 40.0f, 48, 11.0f, 0.0f, 11.0f, 0.0f));
+                org.telegram.ui.ActionBar.y s5 = this.f19986a.s();
+                s5.setGlassMode(true);
+                s5.setTranslationX(-org.telegram.messenger.g0.L(7.0f));
+                s5.a(3, 2131232491);
+                hi.e eVar3 = new hi.e(getContext(), c0Var.J0, true);
+                c0Var.f20001t1 = eVar3;
+                eVar3.f();
+                c0Var.f20001t1.setText(gd.N0(2131747637, null));
+                c0Var.f20001t1.setOnClickListener(new z4(this, 14));
+                if (z10) {
+                    c0Var.f20001t1.setVisibility(8);
+                }
+                this.f19988c.addView(c0Var.f20001t1, na.f(48.0f, -1, 80, org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f) + org.telegram.messenger.g0.f24221n));
+                a();
+                return;
         }
     }
 
     @Override
-    public int h(int i7) {
-        switch (this.f20006a) {
+    public float b() {
+        switch (this.h) {
             case 0:
-                if (((d0) this.f20007b).I1 || i7 == 2) {
-                    return 2;
-                }
-                if (i7 == 0) {
-                    return 0;
-                }
-                return 1;
-            case 1:
+                return n7.a(this.f20105n.n1.f57779e) * super.b();
             default:
-                return super.h(i7);
-            case 2:
-            case 3:
-            case 4:
-                return i7;
+                return super.b();
         }
     }
 
-    private final void i(View view, int i7, int i10) {
-    }
-
-    private final void j(View view, int i7, int i10) {
+    @Override
+    public void c() {
+        switch (this.h) {
+            case 0:
+                super.c();
+                this.f20105n.f20007z1.setTranslationY(Math.max(org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.f24220m, b() + org.telegram.messenger.g0.L(4.0f)));
+                return;
+            default:
+                super.c();
+                return;
+        }
     }
 }

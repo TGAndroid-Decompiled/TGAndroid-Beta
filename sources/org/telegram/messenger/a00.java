@@ -1,33 +1,17 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class a00 implements RequestDelegate {
-    public final long f22798a;
-    public final int f22799b;
-    public final f00 f22800c;
-
-    public a00(f00 f00Var, long j3, int i7) {
-        this.f22800c = f00Var;
-        this.f22798a = j3;
-        this.f22799b = i7;
-    }
-
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (tL_error == null) {
-            TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
-            f00 f00Var = this.f22800c;
-            np messagesController = f00Var.getMessagesController();
-            int i7 = tL_messages_affectedHistory.pts;
-            int i10 = tL_messages_affectedHistory.pts_count;
-            long j3 = this.f22798a;
-            messagesController.S3(i7, i10, j3);
-            int i11 = tL_messages_affectedHistory.offset;
-            if (i11 > 0) {
-                f00Var.c(this.f22799b, i11, j3);
-            }
-        }
-    }
+public final class a00 {
+    public int f22901a = -1;
+    public long f22902b;
+    public long f22903c;
+    public int d;
+    public int f22904e;
+    public int f22905f;
+    public TLRPC.Message f22906g;
+    public ArrayList h;
+    public boolean f22907i;
+    public boolean f22908j;
+    public boolean f22909k;
 }

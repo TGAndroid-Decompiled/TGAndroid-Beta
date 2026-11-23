@@ -1,44 +1,16 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class e01 extends g.p {
-    public final int f47066c;
-    public final r11 d;
+import android.content.Context;
+public final class e01 extends t01 {
+    public final q11 f47289n3;
 
-    public e01(r11 r11Var, int i7) {
-        this.f47066c = i7;
-        this.d = r11Var;
+    public e01(q11 q11Var, Context context) {
+        super(q11Var, context);
+        this.f47289n3 = q11Var;
     }
 
     @Override
-    public final int i(int i7) {
-        int i10;
-        ArrayList arrayList;
-        int i11;
-        switch (this.f47066c) {
-            case 0:
-                r11 r11Var = this.d;
-                if (r11Var.f51454x0.indexOfKey(i7) < 0 && r11Var.A0.indexOfKey(i7) < 0 && i7 != r11Var.f51415f && i7 != r11Var.E && i7 != r11Var.f51430n && i7 != r11Var.h && i7 != r11Var.f51450w && i7 != r11Var.f51400a && i7 != r11Var.f51456y) {
-                    if ((i7 >= r11Var.F && i7 < r11Var.G) || r11Var.R) {
-                        return 8;
-                    }
-                    return 5;
-                }
-                return r11Var.f51442s0.J;
-            default:
-                r11 r11Var2 = this.d;
-                c11 c11Var = r11Var2.f51439r0;
-                int d = c11Var.d(i7);
-                if (d == 6) {
-                    return r11Var2.f51442s0.J;
-                }
-                if (d != 5) {
-                    r11 r11Var3 = c11Var.f46378s;
-                    if (r11Var3.f51401a0 != 14 ? i7 <= (i10 = c11Var.f46373c) || (i7 - i10) - 1 >= r11Var3.E1.size() : (arrayList = r11Var3.D1) == null || i7 < (i11 = c11Var.f46373c) || i7 - i11 >= arrayList.size()) {
-                        return 5;
-                    }
-                }
-                return 8;
-        }
+    public final void l0(int i7) {
+        this.f47289n3.h();
     }
 }

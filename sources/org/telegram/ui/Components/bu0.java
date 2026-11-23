@@ -1,5 +1,4 @@
 package org.telegram.ui.Components;
-
-import android.graphics.Canvas;
-public abstract class bu0 extends Canvas {
+public interface bu0 {
+    void L(int i7, boolean z10);
 }

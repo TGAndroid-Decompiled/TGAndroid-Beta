@@ -7,8 +7,8 @@ import android.view.View;
 public final class zn extends org.telegram.ui.Components.vm0 {
     public final io O;
 
-    public zn(io ioVar, Context context, org.telegram.ui.Components.um0 um0Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, um0Var, h6Var, false);
+    public zn(io ioVar, Context context, org.telegram.ui.Components.um0 um0Var, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, um0Var, i6Var, false);
         this.O = ioVar;
     }
 

@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 public interface i9 {
-    boolean run();
+    Object h(Object obj);
 }

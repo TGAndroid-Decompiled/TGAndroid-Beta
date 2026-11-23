@@ -1,169 +1,65 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-public final class v51 extends View {
-    public final n6 f40638a;
-    public final n6 f40639b;
-    public final Paint f40640c;
-    public final Paint d;
-    public final Paint f40641e;
-    public boolean f40642f;
-    public final d6 h;
-    public final int[] f40643n;
+import android.view.TextureView;
+import java.util.ArrayList;
+public final class v51 implements Runnable {
+    public final int f40565a;
+    public final Object f40566b;
 
-    public v51(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f40640c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        Paint paint3 = new Paint(1);
-        this.f40641e = paint3;
-        nr nrVar = nr.h;
-        this.h = new d6(this, 0L, 300L, nrVar);
-        this.f40643n = new int[]{144, 240, 360, 480, 720, 1080, 1440, 2160};
-        n6 n6Var = new n6(true, false, false);
-        this.f40638a = n6Var;
-        n6Var.n(0.4f, 360L, nrVar);
-        n6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
-        n6Var.u(-1);
-        n6Var.w(org.telegram.messenger.g0.N(10.6f));
-        n6Var.setCallback(this);
-        n6Var.f37751b = 17;
-        n6 n6Var2 = new n6(true, false, false);
-        this.f40639b = n6Var2;
-        n6Var2.n(0.2f, 360L, nrVar);
-        n6Var2.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
-        n6Var2.u(-1);
-        n6Var2.w(org.telegram.messenger.g0.N(8.6f));
-        n6Var2.setCallback(this);
-        n6Var2.f37751b = 5;
-        PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
-        n6Var2.f37749a.setXfermode(new PorterDuffXfermode(mode));
-        n6Var2.N = org.telegram.messenger.g0.f24010q.x;
-        paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint2.setColor(-1);
-        paint3.setXfermode(new PorterDuffXfermode(mode));
+    public v51(Object obj, int i7) {
+        this.f40565a = i7;
+        this.f40566b = obj;
     }
 
-    public final void a(int i7, boolean z10, boolean z11) {
-        boolean z12;
-        String str;
-        if (z10 && !z11) {
-            z12 = false;
-        } else {
-            z12 = true;
-        }
-        this.f40642f = z12;
-        n6 n6Var = this.f40638a;
-        n6 n6Var2 = this.f40639b;
-        if (z11) {
-            n6Var.t("GIF", true, true);
-            n6Var2.t("", true, true);
-        } else {
-            if (i7 >= 720) {
-                str = "HD";
-            } else {
-                str = "SD";
-            }
-            n6Var.t(str, true, true);
-            int[] iArr = this.f40643n;
-            int length = iArr.length - 1;
-            while (true) {
-                if (length >= 0) {
-                    if (i7 >= iArr[length]) {
-                        break;
-                    }
-                    length--;
-                } else {
-                    length = -1;
-                    break;
+    @Override
+    public final void run() {
+        switch (this.f40565a) {
+            case 0:
+                bz bzVar = ((x51) this.f40566b).f41850b;
+                if (bzVar != null) {
+                    bzVar.c(false, true, false);
+                    return;
                 }
-            }
-            if (length < 0) {
-                n6Var2.t("", true, true);
-            } else if (length == 6) {
-                n6Var2.t("2K", TextUtils.isEmpty(n6Var2.f37758i), true);
-            } else if (length == 7) {
-                n6Var2.t("4K", TextUtils.isEmpty(n6Var2.f37758i), true);
-            } else {
-                n6Var2.t("" + iArr[length], TextUtils.isEmpty(n6Var2.f37758i), true);
-            }
+                return;
+            case 1:
+                h61 h61Var = (h61) this.f40566b;
+                l2.g0 g0Var = h61Var.d;
+                if (g0Var != null) {
+                    TextureView textureView = h61Var.f35666n;
+                    g0Var.F1();
+                    if (textureView != null && textureView == g0Var.X) {
+                        g0Var.F1();
+                        g0Var.s1();
+                        g0Var.x1(null);
+                        g0Var.q1(0, 0);
+                    }
+                    h61Var.d.z1(h61Var.f35666n);
+                    ArrayList arrayList = h61Var.O;
+                    if (arrayList != null) {
+                        h61Var.k0(arrayList, h61Var.P);
+                    } else if (h61Var.V) {
+                        h61Var.l0(h61Var.R, h61Var.T, h61Var.S, h61Var.U);
+                    } else {
+                        h61Var.j0(h61Var.R, h61Var.T);
+                    }
+                    h61Var.h0();
+                    return;
+                }
+                return;
+            case 2:
+                h61 h61Var2 = (h61) ((oi.b6) this.f40566b).f22098f;
+                h61Var2.f35654b0.removeCallbacksAndMessages(null);
+                h61Var2.L.w(false, null);
+                return;
+            case 3:
+                ((l61) this.f40566b).f37054g = false;
+                return;
+            case 4:
+                ((a81) ((h40) ((org.telegram.ui.ActionBar.h1) this.f40566b).f29053b).f35630b).f33417w.b();
+                return;
+            default:
+                ((w71) this.f40566b).d(false, true);
+                return;
         }
-        setClickable(!this.f40642f);
-        invalidate();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        float C = com.google.android.gms.internal.vision.e2.C(this.h.d(this.f40642f), 0.35f, 1.0f, 255.0f);
-        int i7 = (int) C;
-        Paint paint = this.f40640c;
-        paint.setAlpha(i7);
-        paint.setStrokeWidth(org.telegram.messenger.g0.N(1.33f));
-        float N = org.telegram.messenger.g0.N(21.33f);
-        float N2 = org.telegram.messenger.g0.N(6.0f);
-        n6 n6Var = this.f40638a;
-        float max = Math.max(N, n6Var.c() + N2);
-        float N3 = org.telegram.messenger.g0.N(17.33f);
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set((getWidth() - max) / 2.0f, (getHeight() - N3) / 2.0f, (getWidth() + max) / 2.0f, (getHeight() + N3) / 2.0f);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.N(4.0f), org.telegram.messenger.g0.N(4.0f), paint);
-        Rect rect = org.telegram.messenger.g0.Q;
-        rect.set(0, (int) ((getHeight() - N3) / 2.0f), getWidth(), (int) ((getHeight() + N3) / 2.0f));
-        n6Var.setBounds(rect);
-        n6Var.C = i7;
-        n6Var.draw(canvas);
-        n6 n6Var2 = this.f40639b;
-        float c10 = n6Var2.c() + (org.telegram.messenger.g0.N(2.0f) * n6Var2.i());
-        float N4 = org.telegram.messenger.g0.N(8.33f);
-        rect.set((int) ((org.telegram.messenger.g0.N(16.0f) + (getWidth() / 2.0f)) - c10), (int) ((getHeight() / 2.0f) - org.telegram.messenger.g0.N(14.0f)), (int) (org.telegram.messenger.g0.N(16.0f) + (getWidth() / 2.0f)), (int) (((getHeight() / 2.0f) - org.telegram.messenger.g0.N(14.0f)) + N4));
-        rectF.set(rect);
-        rectF.inset(-org.telegram.messenger.g0.N(1.33f), -org.telegram.messenger.g0.N(1.33f));
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.N(1.66f), org.telegram.messenger.g0.N(1.66f), this.f40641e);
-        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        rectF.set(rect);
-        Paint paint2 = this.d;
-        paint2.setAlpha((int) (n6Var2.i() * C));
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.N(1.66f), org.telegram.messenger.g0.N(1.66f), paint2);
-        rect.offset((int) (-org.telegram.messenger.g0.N(1.33f)), 0);
-        canvas.save();
-        n6Var2.setBounds(rect);
-        n6Var2.draw(canvas);
-        canvas.restore();
-        canvas.restore();
-        canvas.restore();
-    }
-
-    public void setPhotoState(boolean z10) {
-        String str;
-        this.f40642f = false;
-        if (z10) {
-            str = "HD";
-        } else {
-            str = "SD";
-        }
-        this.f40638a.t(str, true, true);
-        this.f40639b.t("", false, true);
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f40638a != drawable && this.f40639b != drawable && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

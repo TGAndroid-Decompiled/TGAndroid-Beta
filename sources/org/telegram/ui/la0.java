@@ -1,17 +1,14 @@
 package org.telegram.ui;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class la0 extends org.telegram.ui.ActionBar.g1 {
-    public final qa0 f49518o;
-
-    public la0(qa0 qa0Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f49518o = qa0Var;
-    }
-
-    @Override
-    public final void dismiss() {
-        d(true);
-        this.f49518o.P0 = null;
-    }
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class la0 {
+    public long f49671a;
+    public TLRPC.Message f49672b;
+    public TLRPC.User f49673c;
+    public TLRPC.Chat d;
+    public org.telegram.messenger.ca f49674e;
+    public org.telegram.messenger.ca f49675f;
+    public boolean f49676g;
+    public ImageReceiver h;
 }

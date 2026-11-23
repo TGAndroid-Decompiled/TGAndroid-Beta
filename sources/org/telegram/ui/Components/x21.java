@@ -1,69 +1,10 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.view.MotionEvent;
-public final class x21 extends o6 {
-    public final Paint f41912s;
-    public final n2.o0 f41913w;
-    public final z21 f41914x;
-
-    public x21(z21 z21Var, Context context) {
-        super(context, false, false, false);
-        this.f41914x = z21Var;
-        this.f41912s = new Paint(1);
-        this.f41913w = new n2.o0();
-    }
-
+import android.view.View;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class x21 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (org.telegram.messenger.hd.f24408a0) {
-            org.telegram.messenger.g0.P.set(getWidth() - d(), (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, getWidth(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
-        } else {
-            org.telegram.messenger.g0.P.set(0.0f, (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, d(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
-        }
-        b31 b31Var = this.f41914x.f42617n;
-        int i7 = org.telegram.ui.ActionBar.m6.Gj;
-        String[] strArr = b31.S1;
-        int r12 = org.telegram.ui.ActionBar.m6.r1(0.1175f, org.telegram.ui.ActionBar.m6.w0(i7, b31Var.J0));
-        Paint paint = this.f41912s;
-        paint.setColor(r12);
-        canvas.drawRoundRect(org.telegram.messenger.g0.P, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint);
-        if (this.f41913w.h(canvas)) {
-            invalidate();
-        }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        b31 b31Var = this.f41914x.f42617n;
-        int action = motionEvent.getAction();
-        n2.o0 o0Var = this.f41913w;
-        if (action == 0) {
-            String[] strArr = b31.S1;
-            n80 n80Var = new n80(null, b31Var.J0, motionEvent.getX(), motionEvent.getY(), 0);
-            n80Var.d(org.telegram.ui.ActionBar.m6.r1(0.1175f, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Gj, b31Var.J0)));
-            h80 b10 = n80Var.b();
-            if (org.telegram.messenger.hd.f24408a0) {
-                org.telegram.messenger.g0.P.set(getWidth() - d(), (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, getWidth(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
-            } else {
-                org.telegram.messenger.g0.P.set(0.0f, (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, d(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
-            }
-            b10.addRect(org.telegram.messenger.g0.P, Path.Direction.CW);
-            o0Var.b(n80Var, null);
-            invalidate();
-            return true;
-        }
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (motionEvent.getAction() == 1) {
-                performClick();
-            }
-            o0Var.f(true);
-            invalidate();
-        }
-        return super.onTouchEvent(motionEvent);
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24226q.y * 0.33f), View.MeasureSpec.getSize(i10)), 1073741824));
     }
 }

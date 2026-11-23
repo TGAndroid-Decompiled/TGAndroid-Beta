@@ -2,9 +2,10 @@ package h2;
 
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.Arrays;
-import org.telegram.messenger.k10;
-import org.telegram.messenger.ls;
-import v4.b1;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.ks;
+import v4.c1;
+import v4.p0;
 public final class f {
     public int f13747a;
     public int f13748b;
@@ -12,7 +13,7 @@ public final class f {
     public int[] d;
 
     public f(int[] iArr) {
-        this.f13747a = k10.f24932t0;
+        this.f13747a = i10.f24637t0;
         this.f13748b = -1;
         this.f13749c = -1;
         this.d = iArr;
@@ -74,19 +75,19 @@ public final class f {
         if (iArr != null) {
             Arrays.fill(iArr, -1);
         }
-        v4.o0 o0Var = recyclerView.f2792y;
-        if (recyclerView.f2790x != null && o0Var != null && o0Var.h) {
+        p0 p0Var = recyclerView.f2793y;
+        if (recyclerView.f2791x != null && p0Var != null && p0Var.h) {
             if (z10) {
                 if (!recyclerView.d.g()) {
-                    int b10 = recyclerView.f2790x.b();
-                    v4.b0 b0Var = (v4.b0) o0Var;
-                    v4.a0 a0Var = b0Var.B;
-                    if (a0Var != null && (i7 = a0Var.f59052a) >= 0) {
-                        z11 = a0Var.f59054c;
+                    int b10 = recyclerView.f2791x.b();
+                    v4.c0 c0Var = (v4.c0) p0Var;
+                    v4.b0 b0Var = c0Var.B;
+                    if (b0Var != null && (i7 = b0Var.f59187a) >= 0) {
+                        z11 = b0Var.f59189c;
                     } else {
-                        b0Var.f1();
-                        z11 = b0Var.v;
-                        i7 = b0Var.f59073y;
+                        c0Var.f1();
+                        z11 = c0Var.v;
+                        i7 = c0Var.f59208y;
                         if (i7 == -1) {
                             i7 = z11 ? b10 - 1 : 0;
                         }
@@ -94,7 +95,7 @@ public final class f {
                     if (!z11) {
                         i10 = 1;
                     }
-                    for (int i11 = 0; i11 < b0Var.E && i7 >= 0 && i7 < b10; i11++) {
+                    for (int i11 = 0; i11 < c0Var.E && i7 >= 0 && i7 < b10; i11++) {
                         b(i7, 0);
                         i7 += i10;
                     }
@@ -102,44 +103,44 @@ public final class f {
             } else if (!recyclerView.Z()) {
                 int i12 = this.f13747a;
                 int i13 = this.f13748b;
-                b1 b1Var = recyclerView.f2787v0;
-                v4.b0 b0Var2 = (v4.b0) o0Var;
-                if (b0Var2.f59064o != 0) {
+                c1 c1Var = recyclerView.f2788v0;
+                v4.c0 c0Var2 = (v4.c0) p0Var;
+                if (c0Var2.f59199o != 0) {
                     i12 = i13;
                 }
-                if (b0Var2.r() != 0 && i12 != 0) {
-                    b0Var2.G0();
+                if (c0Var2.r() != 0 && i12 != 0) {
+                    c0Var2.G0();
                     if (i12 > 0) {
                         i10 = 1;
                     }
-                    b0Var2.m1(i10, Math.abs(i12), true, b1Var);
-                    b0Var2.A0(b1Var, b0Var2.f59065p, this);
+                    c0Var2.m1(i10, Math.abs(i12), true, c1Var);
+                    c0Var2.A0(c1Var, c0Var2.f59200p, this);
                 }
             }
             int i14 = this.f13749c;
-            if (i14 > o0Var.f59202i) {
-                o0Var.f59202i = i14;
-                o0Var.f59203j = z10;
-                recyclerView.f2761b.l();
+            if (i14 > p0Var.f59337i) {
+                p0Var.f59337i = i14;
+                p0Var.f59338j = z10;
+                recyclerView.f2762b.l();
             }
         }
     }
 
     public void d() {
         int[] iArr = this.d;
-        int i7 = k10.f24932t0;
+        int i7 = i10.f24637t0;
         if (this.f13747a != i7) {
-            ls.f(i7).j(this.f13748b);
+            ks.f(i7).j(this.f13748b);
             this.f13748b = -1;
             this.f13747a = i7;
         }
-        this.f13748b = ls.f(i7).q(iArr, this.f13748b, true);
-        this.f13749c = ls.e().q(iArr, this.f13749c, true);
+        this.f13748b = ks.f(i7).q(iArr, this.f13748b, true);
+        this.f13749c = ks.e().q(iArr, this.f13749c, true);
     }
 
     public void e() {
-        ls.f(this.f13747a).j(this.f13748b);
-        ls.e().j(this.f13749c);
+        ks.f(this.f13747a).j(this.f13748b);
+        ks.e().j(this.f13749c);
     }
 
     public f(int i7) {

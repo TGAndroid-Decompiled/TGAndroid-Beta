@@ -5,7 +5,7 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.ur;
+import org.telegram.messenger.tr;
 public final class c implements Runnable {
     public final int f3165a = 0;
     public final int f3166b;
@@ -35,8 +35,8 @@ public final class c implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: bg.c.run():void");
     }
 
-    public c(ur urVar, int i7, ArrayList arrayList, int i10, a0.h hVar, a0.h hVar2, ArrayList arrayList2, ArrayList arrayList3, CountDownLatch countDownLatch) {
-        this.f3168e = urVar;
+    public c(tr trVar, int i7, ArrayList arrayList, int i10, a0.h hVar, a0.h hVar2, ArrayList arrayList2, ArrayList arrayList3, CountDownLatch countDownLatch) {
+        this.f3168e = trVar;
         this.f3166b = i7;
         this.f3167c = arrayList;
         this.d = i10;

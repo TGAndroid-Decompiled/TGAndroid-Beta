@@ -1,31 +1,17 @@
 package org.telegram.messenger;
+public final class hh implements Runnable {
+    public final int f24539a;
+    public final ri f24540b;
+    public final String f24541c;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class hh implements y10 {
-    public final int f24450a;
-    public final si f24451b;
-    public final TLRPC.StickerSet f24452c;
-
-    public hh(si siVar, TLRPC.StickerSet stickerSet, int i7) {
-        this.f24450a = i7;
-        this.f24451b = siVar;
-        this.f24452c = stickerSet;
+    public hh(ri riVar, String str, int i7) {
+        this.f24539a = i7;
+        this.f24540b = riVar;
+        this.f24541c = str;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f24450a;
-        ArrayList arrayList = (ArrayList) obj;
-        si siVar = this.f24451b;
-        siVar.getClass();
-        switch (i7) {
-            case 0:
-                siVar.i1(this.f24452c.f28425id, false);
-                return;
-            default:
-                siVar.j1(this.f24452c.f28425id, false);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.hh.run():void");
     }
 }

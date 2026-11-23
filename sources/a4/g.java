@@ -25,7 +25,7 @@ public final class g {
         x xVar = this.f175g;
         xVar.K(27);
         try {
-            z11 = pVar.g(xVar.f13828a, 0, 27, z10);
+            z11 = pVar.k(xVar.f13828a, 0, 27, z10);
         } catch (EOFException e10) {
             if (z10) {
                 z11 = false;
@@ -49,7 +49,7 @@ public final class g {
                 this.d = A + 27;
                 xVar.K(A);
                 try {
-                    z12 = pVar.g(xVar.f13828a, 0, this.f172c, z10);
+                    z12 = pVar.k(xVar.f13828a, 0, this.f172c, z10);
                 } catch (EOFException e11) {
                     if (z10) {
                         z12 = false;
@@ -88,7 +88,7 @@ public final class g {
                 break;
             }
             try {
-                z11 = pVar.g(xVar.f13828a, 0, 4, true);
+                z11 = pVar.k(xVar.f13828a, 0, 4, true);
             } catch (EOFException unused) {
                 z11 = false;
             }
@@ -97,10 +97,10 @@ public final class g {
             }
             xVar.N(0);
             if (xVar.C() == 1332176723) {
-                pVar.n();
+                pVar.o();
                 return true;
             }
-            pVar.r(1);
+            pVar.q(1);
         }
         do {
             if (i7 != 0 && pVar.getPosition() >= j3) {

@@ -16,9 +16,8 @@ import f5.x;
 import j$.util.Objects;
 import java.lang.ref.WeakReference;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.k10;
-import org.telegram.messenger.np;
-import tg.y;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.mp;
 import vf.c;
 import wf.b;
 import zf.d;
@@ -33,28 +32,28 @@ public final class a implements ServiceConnection {
 
     @Override
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        y yVar;
+        t1.a aVar;
         e eVar = null;
         g gVar = null;
         switch (this.f1051a) {
             case 0:
-                int i7 = d.f61935a;
+                int i7 = d.f62053a;
                 if (iBinder != null) {
                     IInterface queryLocalInterface = iBinder.queryLocalInterface("android.support.customtabs.ICustomTabsService");
                     if (queryLocalInterface != null && (queryLocalInterface instanceof e)) {
                         eVar = (e) queryLocalInterface;
                     } else {
                         ?? obj = new Object();
-                        obj.f61934a = iBinder;
+                        obj.f62052a = iBinder;
                         eVar = obj;
                     }
                 }
-                y yVar2 = new y(10, eVar, componentName);
+                t1.a aVar2 = new t1.a(11, eVar, componentName);
                 if (((vf.a) ((WeakReference) this.f1052b).get()) != null) {
-                    c.f59383b = yVar2;
-                    if (np.u1(k10.f24932t0).U2() && (yVar = c.f59383b) != null) {
+                    c.f59505b = aVar2;
+                    if (mp.u1(i10.f24637t0).U2() && (aVar = c.f59505b) != null) {
                         try {
-                            ((zf.c) ((e) yVar.f58189b)).i1();
+                            ((zf.c) ((e) aVar.f57641b)).i1();
                             return;
                         } catch (RemoteException unused) {
                             return;
@@ -68,13 +67,13 @@ public final class a implements ServiceConnection {
                 return;
             case 1:
                 d9.c cVar = (d9.c) this.f1052b;
-                cVar.f7886b.b("ServiceConnectionImpl.onServiceConnected(%s)", componentName);
+                cVar.f7885b.b("ServiceConnectionImpl.onServiceConnected(%s)", componentName);
                 cVar.a().post(new d9.a(this, iBinder));
                 return;
             default:
                 u.g("BillingClientTesting", "Billing Override Service connected.");
                 w wVar = (w) this.f1052b;
-                int i10 = f.f7004b;
+                int i10 = f.f7003b;
                 if (iBinder != null) {
                     IInterface queryLocalInterface2 = iBinder.queryLocalInterface("com.google.android.apps.play.billingtestcompanion.aidl.IBillingOverrideService");
                     if (queryLocalInterface2 instanceof g) {
@@ -85,13 +84,13 @@ public final class a implements ServiceConnection {
                 }
                 wVar.E = gVar;
                 wVar.D = 2;
-                int i11 = x.f11319a;
+                int i11 = x.f11318a;
                 i3 c10 = x.c(26, m3.BROADCAST_ACTION_UNSPECIFIED);
                 Objects.requireNonNull(c10, "ApiSuccess should not be null");
                 b bVar = wVar.h;
                 bVar.getClass();
                 try {
-                    bVar.e0(c10, (p3) bVar.f59680b);
+                    bVar.g0(c10, (p3) bVar.f59800b);
                     return;
                 } catch (Throwable th2) {
                     u.i("BillingLogger", "Unable to log.", th2);
@@ -105,13 +104,13 @@ public final class a implements ServiceConnection {
         switch (this.f1051a) {
             case 0:
                 if (((vf.a) ((WeakReference) this.f1052b).get()) != null) {
-                    c.f59383b = null;
+                    c.f59505b = null;
                     return;
                 }
                 return;
             case 1:
                 d9.c cVar = (d9.c) this.f1052b;
-                cVar.f7886b.b("ServiceConnectionImpl.onServiceDisconnected(%s)", componentName);
+                cVar.f7885b.b("ServiceConnectionImpl.onServiceDisconnected(%s)", componentName);
                 cVar.a().post(new d9.b(this, 0));
                 return;
             default:

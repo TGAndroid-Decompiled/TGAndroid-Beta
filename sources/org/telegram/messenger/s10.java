@@ -1,4 +1,6 @@
 package org.telegram.messenger;
+
+import org.telegram.tgnet.TLRPC;
 public interface s10 {
-    Object g(Number number, Object obj);
+    void l(Object obj, TLRPC.Document document, Boolean bool);
 }

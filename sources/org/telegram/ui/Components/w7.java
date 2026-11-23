@@ -1,45 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
 import android.content.Context;
-import android.os.SystemClock;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class w7 extends FrameLayout {
-    public final q9[] f41648a;
-    public int f41649b;
-    public AnimatorSet f41650c;
-    public long d;
-    public final f8 f41651e;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.widget.TextView;
+public final class w7 extends z7 {
+    public final int E;
+    public final Context F;
+    public final KeyEvent.Callback G;
 
-    public w7(f8 f8Var, Context context) {
+    public w7(KeyEvent.Callback callback, Context context, Context context2, int i7) {
         super(context);
-        this.f41651e = f8Var;
-        this.f41648a = new q9[2];
-        for (int i7 = 0; i7 < 2; i7++) {
-            this.f41648a[i7] = new q9(context);
-            this.f41648a[i7].getImageReceiver().f22634h1 = new ai.m1(this, i7, 7);
-            this.f41648a[i7].setRoundRadius(org.telegram.messenger.g0.L(4.0f));
-            if (i7 == 1) {
-                this.f41648a[i7].setVisibility(8);
-            }
-            addView(this.f41648a[i7], c8.na.c(-1.0f, -1));
-        }
+        this.E = i7;
+        this.G = callback;
+        this.F = context2;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        f8 f8Var = this.f41651e;
-        if (action == 0) {
-            if (this.f41648a[this.f41649b].getImageReceiver().I()) {
-                f8Var.X0(true, true);
-                this.d = SystemClock.elapsedRealtime();
-                return true;
-            }
-        } else if (action != 2 && SystemClock.elapsedRealtime() - this.d >= 400) {
-            f8Var.X0(false, true);
+    public final TextView a() {
+        switch (this.E) {
+            case 0:
+                b90 b90Var = new b90(this.F);
+                org.telegram.ui.ActionBar.u6.U(b90Var, org.telegram.ui.ActionBar.n6.Fj, ((e8) this.G).J0);
+                b90Var.setTextSize(1, 17.0f);
+                b90Var.setTypeface(org.telegram.messenger.g0.o());
+                b90Var.setEllipsize(TextUtils.TruncateAt.END);
+                b90Var.setSingleLine(true);
+                return b90Var;
+            case 1:
+                b90 b90Var2 = new b90(this.F);
+                int i7 = org.telegram.ui.ActionBar.n6.Jj;
+                e8 e8Var = (e8) this.G;
+                org.telegram.ui.ActionBar.u6.U(b90Var2, i7, e8Var.J0);
+                b90Var2.setTextSize(1, 13.0f);
+                b90Var2.setEllipsize(TextUtils.TruncateAt.END);
+                b90Var2.setSingleLine(true);
+                b90Var2.setPadding(org.telegram.messenger.g0.L(6.0f), 0, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(1.0f));
+                int i10 = org.telegram.ui.ActionBar.n6.f29543i6;
+                org.telegram.ui.Cells.y a02 = org.telegram.ui.ActionBar.n6.a0(org.telegram.ui.ActionBar.n6.w0(i10, e8Var.J0), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
+                org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i10);
+                org.telegram.ui.ActionBar.i6 i6Var = e8Var.J0;
+                b90Var2.setBackground(a02);
+                org.telegram.ui.ActionBar.u6.j(b90Var2, a02, null, M, i6Var);
+                b90Var2.setOnClickListener(new oi.i1(29, this, b90Var2));
+                return b90Var2;
+            default:
+                b90 b90Var3 = new b90(this.F);
+                org.telegram.ui.ActionBar.u6.U(b90Var3, org.telegram.ui.ActionBar.n6.Jj, ((an0) this.G).O);
+                b90Var3.setTextSize(1, 12.0f);
+                b90Var3.setEllipsize(TextUtils.TruncateAt.END);
+                b90Var3.setSingleLine(true);
+                b90Var3.setPadding(org.telegram.messenger.g0.L(0.0f), 0, org.telegram.messenger.g0.L(0.0f), org.telegram.messenger.g0.L(0.0f));
+                return b90Var3;
         }
-        return true;
     }
 }

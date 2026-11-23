@@ -1,108 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.view.View;
-public final class y61 extends AnimatorListenerAdapter {
-    public final int f42309a;
-    public final j71 f42310b;
+public final class y61 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f42372a;
+    public final k71 f42373b;
 
-    public y61(j71 j71Var, int i7) {
-        this.f42309a = i7;
-        this.f42310b = j71Var;
+    public y61(k71 k71Var, int i7) {
+        this.f42372a = i7;
+        this.f42373b = k71Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f42309a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f42372a) {
             case 0:
-                j71 j71Var = this.f42310b;
-                View[] viewArr = j71Var.f36393e;
-                View[] viewArr2 = j71Var.f36393e;
-                if (viewArr[1] != null) {
-                    j71Var.C();
-                    j71Var.h.put(j71Var.f36394f[1], viewArr2[1]);
-                    j71Var.removeView(viewArr2[1]);
-                    j71Var.B(viewArr2[0], 0.0f);
-                    viewArr2[1] = null;
-                }
-                j71Var.T = null;
-                j71Var.t(true);
-                z61 z61Var = j71Var.N;
-                if (z61Var != null) {
-                    z61Var.f36174w.invalidate();
-                    j71Var.N.f36174w.g1();
-                    j71Var.N.invalidate();
-                }
-                j71Var.q();
-                j71Var.K.e();
-                return;
-            case 1:
-                j71 j71Var2 = this.f42310b;
-                j71Var2.f36399x = null;
-                View[] viewArr3 = j71Var2.f36393e;
-                if (viewArr3[1] != null) {
-                    if (!j71Var2.G) {
-                        j71Var2.C();
-                    }
-                    j71Var2.h.put(j71Var2.f36394f[1], viewArr3[1]);
-                    j71Var2.removeView(viewArr3[1]);
-                    viewArr3[1].setVisibility(8);
-                    viewArr3[1] = null;
-                }
-                j71Var2.f36400y = false;
-                j71Var2.J = false;
-                z61 z61Var2 = j71Var2.N;
-                if (z61Var2 != null) {
-                    z61Var2.setEnabled(true);
-                }
-                j71Var2.t(false);
-                j71Var2.q();
-                j71Var2.K.e();
-                return;
-            case 2:
-                j71 j71Var3 = this.f42310b;
-                j71Var3.f36399x = null;
-                View[] viewArr4 = j71Var3.f36393e;
-                View view = viewArr4[1];
+                k71 k71Var = this.f42373b;
+                k71Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View[] viewArr = k71Var.f36665e;
+                View view = viewArr[1];
                 if (view != null) {
-                    j71Var3.removeView(view);
-                    viewArr4[1] = null;
-                }
-                j71Var3.f36400y = false;
-                z61 z61Var3 = j71Var3.N;
-                if (z61Var3 != null) {
-                    z61Var3.setEnabled(true);
-                    z61 z61Var4 = j71Var3.N;
-                    z61Var4.K = false;
-                    z61Var4.f36148a = 1.0f;
-                    z61Var4.f36174w.g1();
-                    j71Var3.N.invalidate();
+                    if (k71Var.E) {
+                        k71Var.D(view, (1.0f - floatValue) * viewArr[0].getMeasuredWidth());
+                        View view2 = viewArr[0];
+                        k71Var.D(view2, (-view2.getMeasuredWidth()) * floatValue);
+                    } else {
+                        k71Var.D(view, (1.0f - floatValue) * (-viewArr[0].getMeasuredWidth()));
+                        View view3 = viewArr[0];
+                        k71Var.D(view3, view3.getMeasuredWidth() * floatValue);
+                    }
+                    k71Var.f36664c = floatValue;
+                    k71Var.u(true);
+                    a71 a71Var = k71Var.N;
+                    if (a71Var != null) {
+                        a71Var.f36348w.invalidate();
+                        k71Var.N.f36348w.g1();
+                        k71Var.N.invalidate();
+                        return;
+                    }
                     return;
                 }
                 return;
+            case 1:
+                k71 k71Var2 = this.f42373b;
+                k71Var2.getClass();
+                k71Var2.U = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 2:
+                k71 k71Var3 = this.f42373b;
+                k71Var3.O.onAnimationUpdate(valueAnimator);
+                k71Var3.N.f36322a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k71Var3.N.f36348w.g1();
+                k71Var3.N.invalidate();
+                return;
             default:
-                j71 j71Var4 = this.f42310b;
-                j71Var4.f36399x = null;
-                View[] viewArr5 = j71Var4.f36393e;
-                if (viewArr5[1] != null) {
-                    if (!j71Var4.G) {
-                        j71Var4.C();
-                    }
-                    j71Var4.h.put(j71Var4.f36394f[1], viewArr5[1]);
-                    j71Var4.removeView(viewArr5[1]);
-                    viewArr5[1].setVisibility(8);
-                    viewArr5[1] = null;
-                }
-                j71Var4.f36400y = false;
-                j71Var4.J = false;
-                z61 z61Var5 = j71Var4.N;
-                if (z61Var5 != null) {
-                    z61Var5.setEnabled(true);
-                }
-                j71Var4.t(false);
-                j71Var4.q();
-                j71Var4.K.e();
+                k71 k71Var4 = this.f42373b;
+                k71Var4.getClass();
+                k71Var4.U = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
         }
     }

@@ -2,45 +2,45 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class kb extends c8.ra {
-    public org.telegram.messenger.gj f49227a;
-    public int f49228b = 0;
-    public boolean f49229c = true;
+    public org.telegram.messenger.fj f49384a;
+    public int f49385b = 0;
+    public boolean f49386c = true;
     public int d = 0;
-    public int f49230e;
-    public final lb f49231f;
+    public int f49387e;
+    public final lb f49388f;
 
     public kb(lb lbVar) {
-        this.f49231f = lbVar;
+        this.f49388f = lbVar;
     }
 
     @Override
     public final void a() {
-        org.telegram.messenger.gj gjVar = this.f49227a;
-        lb lbVar = this.f49231f;
-        if (gjVar != null) {
-            int indexOf = lbVar.f49539p0.indexOf(gjVar) + lbVar.F.f48697f;
+        org.telegram.messenger.fj fjVar = this.f49384a;
+        lb lbVar = this.f49388f;
+        if (fjVar != null) {
+            int indexOf = lbVar.f49698p0.indexOf(fjVar) + lbVar.F.f48770f;
             if (indexOf >= 0) {
-                lbVar.f49552y.i1(indexOf, this.f49230e, false);
+                lbVar.f49711y.i1(indexOf, this.f49387e, false);
             }
         } else {
-            lbVar.f49552y.i1(this.f49228b, this.d, this.f49229c);
+            lbVar.f49711y.i1(this.f49385b, this.d, this.f49386c);
         }
-        this.f49227a = null;
+        this.f49384a = null;
         lbVar.W = true;
         lbVar.i1();
-        org.telegram.messenger.g0.g3(new iq0(this, 21));
+        org.telegram.messenger.g0.g3(new hq0(this, 21));
     }
 
     @Override
     public final void c() {
-        lb lbVar = this.f49231f;
+        lb lbVar = this.f49388f;
         lbVar.L0 = lbVar.getNotificationCenter().q(lb.S0, lbVar.L0, true);
     }
 
     @Override
     public final void d(View view) {
         if (view instanceof org.telegram.ui.Cells.r1) {
-            this.f49231f.h.add((org.telegram.ui.Cells.r1) view);
+            this.f49388f.h.add((org.telegram.ui.Cells.r1) view);
         }
     }
 }

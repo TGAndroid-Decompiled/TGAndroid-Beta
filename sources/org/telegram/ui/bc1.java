@@ -1,19 +1,38 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class bc1 extends org.telegram.ui.Components.voip.c1 {
-    public final hc1 W;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.LinearLayout;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.messenger.voip.VoIPServiceState;
+public final class bc1 extends LinearLayout {
+    public final fc1 f46017a;
 
-    public bc1(hc1 hc1Var, Context context, float f10, float f11) {
-        super(context, f10, f11);
-        this.W = hc1Var;
+    public bc1(fc1 fc1Var, Activity activity) {
+        super(activity);
+        this.f46017a = fc1Var;
     }
 
     @Override
-    public final int[] getFloatingViewLocation() {
-        int[] iArr = new int[2];
-        hc1 hc1Var = this.W;
-        hc1Var.Z.getLocationOnScreen(iArr);
-        return new int[]{iArr[0], iArr[1], hc1Var.Z.getMeasuredWidth()};
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        VoIPServiceState sharedState = VoIPService.getSharedState();
+        CharSequence text = this.f46017a.F.getText();
+        if (sharedState != null && !TextUtils.isEmpty(text)) {
+            StringBuilder sb2 = new StringBuilder(text);
+            sb2.append(", ");
+            if (sharedState.getPrivateCall() != null && sharedState.getPrivateCall().video) {
+                sb2.append(org.telegram.messenger.gd.N0(2131743047, null));
+            } else {
+                sb2.append(org.telegram.messenger.gd.N0(2131743050, null));
+            }
+            long callDuration = sharedState.getCallDuration();
+            if (callDuration > 0) {
+                sb2.append(", ");
+                sb2.append(org.telegram.messenger.gd.z((int) (callDuration / 1000)));
+            }
+            accessibilityNodeInfo.setText(sb2);
+        }
     }
 }

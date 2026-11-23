@@ -19,11 +19,11 @@ public final class h0 {
 
     public final synchronized g0 a() {
         g0 g0Var;
-        String I = this.f936b.I();
+        String H = this.f936b.H();
         Pattern pattern = g0.d;
         g0Var = null;
-        if (!TextUtils.isEmpty(I)) {
-            String[] split = I.split("!", -1);
+        if (!TextUtils.isEmpty(H)) {
+            String[] split = H.split("!", -1);
             if (split.length == 2) {
                 g0Var = new g0(split[0], split[1]);
             }
@@ -32,10 +32,10 @@ public final class h0 {
     }
 
     public final synchronized void b() {
-        this.f936b = r7.l(this.f935a, this.f937c);
+        this.f936b = r7.s(this.f935a, this.f937c);
     }
 
     public final synchronized void c(g0 g0Var) {
-        this.f936b.K(g0Var.f930c);
+        this.f936b.J(g0Var.f930c);
     }
 }

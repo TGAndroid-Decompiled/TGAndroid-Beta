@@ -1,277 +1,33 @@
 package hi;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.util.SparseIntArray;
-import org.telegram.messenger.cz;
-public class d5 implements org.telegram.ui.ActionBar.h6 {
-    public final int f14356a;
-    public Object f14357b;
-    public Object f14358c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.ViewGroup;
+public final class d5 extends tg.d1 {
+    public final Path f14312o3;
+    public final pa f14313p3;
 
-    public d5() {
-        this.f14356a = 1;
+    public d5(pa paVar, Context context) {
+        super(context);
+        this.f14313p3 = paVar;
+        this.f14312o3 = new Path();
     }
 
     @Override
-    public final boolean d() {
-        switch (this.f14356a) {
-            case 0:
-                return true;
-            case 1:
-            default:
-                return org.telegram.ui.ActionBar.m6.I.q();
-        }
-    }
-
-    @Override
-    public final void e(float f10, float f11, int i7, int i10) {
-        switch (this.f14356a) {
-            case 0:
-                org.telegram.ui.ActionBar.m6.r(f10, f11, i7, i10);
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.m6.r(f10, f11, i7, i10);
-                return;
-            default:
-                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14358c;
-                if (h6Var == null) {
-                    org.telegram.ui.ActionBar.m6.r(f10, f11, i7, i10);
-                    return;
-                } else {
-                    h6Var.e(f10, f11, i7, i10);
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public final ColorFilter f() {
-        switch (this.f14356a) {
-            case 0:
-                if (((PorterDuffColorFilter) this.f14357b) == null) {
-                    this.f14357b = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-                }
-                return (PorterDuffColorFilter) this.f14357b;
-            case 1:
-                return org.telegram.ui.ActionBar.m6.f29679v3;
-            default:
-                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14358c;
-                if (h6Var == null) {
-                    return org.telegram.ui.ActionBar.m6.f29679v3;
-                }
-                return h6Var.f();
-        }
-    }
-
-    @Override
-    public final Paint g(String str) {
-        switch (this.f14356a) {
-            case 0:
-                return ((org.telegram.ui.ActionBar.h6) this.f14358c).g(str);
-            case 1:
-                return org.telegram.ui.ActionBar.m6.V0(str);
-            default:
-                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14358c;
-                if (h6Var == null) {
-                    return org.telegram.ui.ActionBar.m6.V0(str);
-                }
-                return h6Var.g(str);
-        }
-    }
-
-    @Override
-    public final Drawable getDrawable(String str) {
-        switch (this.f14356a) {
-            case 0:
-                return null;
-            case 1:
-                return null;
-            default:
-                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14358c;
-                if (h6Var == null) {
-                    return org.telegram.ui.ActionBar.m6.R0(str);
-                }
-                return h6Var.getDrawable(str);
-        }
-    }
-
-    @Override
-    public final boolean h() {
-        switch (this.f14356a) {
-            case 0:
-                return cz.H0;
-            case 1:
-                return cz.H0;
-            default:
-                return cz.H0;
-        }
-    }
-
-    @Override
-    public final int i(int i7) {
-        switch (this.f14356a) {
-            case 0:
-                return k(i7);
-            case 1:
-                return k(i7);
-            default:
-                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14358c;
-                if (h6Var == null) {
-                    return org.telegram.ui.ActionBar.m6.x0(null, i7, false);
-                }
-                return h6Var.i(i7);
-        }
-    }
-
-    @Override
-    public final boolean j() {
-        switch (this.f14356a) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            default:
-                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14358c;
-                if (h6Var == null) {
-                    return org.telegram.ui.ActionBar.m6.d1();
-                }
-                return h6Var.j();
-        }
-    }
-
-    @Override
-    public final int k(int i7) {
-        switch (this.f14356a) {
-            case 0:
-                if (i7 == org.telegram.ui.ActionBar.m6.G8) {
-                    return -14145495;
-                }
-                if (i7 != org.telegram.ui.ActionBar.m6.E8) {
-                    if (i7 == org.telegram.ui.ActionBar.m6.f29420h5) {
-                        return -14737633;
-                    }
-                    if (i7 == org.telegram.ui.ActionBar.m6.f29455j5) {
-                        return -592138;
-                    }
-                    if (i7 == org.telegram.ui.ActionBar.m6.f29605r5) {
-                        return -8553091;
-                    }
-                    if (i7 == org.telegram.ui.ActionBar.m6.f29767zf) {
-                        return -16777216;
-                    }
-                    if (i7 == org.telegram.ui.ActionBar.m6.Cf) {
-                        return -1610612736;
-                    }
-                    if (i7 == org.telegram.ui.ActionBar.m6.Ff || i7 == org.telegram.ui.ActionBar.m6.Jf || i7 == org.telegram.ui.ActionBar.m6.Ef) {
-                        return -9539985;
-                    }
-                    if (i7 != org.telegram.ui.ActionBar.m6.G6) {
-                        int i10 = org.telegram.ui.ActionBar.m6.Di;
-                        if (i7 == i10) {
-                            return -11754001;
-                        }
-                        if (i7 == org.telegram.ui.ActionBar.m6.f29439i6) {
-                            return 536870911;
-                        }
-                        if (i7 != org.telegram.ui.ActionBar.m6.f29712wi && i7 != org.telegram.ui.ActionBar.m6.f29693vi && i7 != org.telegram.ui.ActionBar.m6.f29731xi) {
-                            if (i7 == org.telegram.ui.ActionBar.m6.f29750yi) {
-                                return 352321535;
-                            }
-                            if (i7 != org.telegram.ui.ActionBar.m6.Bf && i7 != i10) {
-                                if (i7 == org.telegram.ui.ActionBar.m6.Af) {
-                                    return 780633991;
-                                }
-                                if (i7 == org.telegram.ui.ActionBar.m6.f29290a7) {
-                                    return -15921907;
-                                }
-                                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14358c;
-                                if (h6Var != null) {
-                                    return h6Var.k(i7);
-                                }
-                                return org.telegram.ui.ActionBar.m6.v0(i7);
-                            }
-                            return -7895161;
-                        }
-                    }
-                }
-                return -1;
-            case 1:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f14357b;
-                int indexOfKey = sparseIntArray.indexOfKey(i7);
-                if (indexOfKey >= 0) {
-                    return sparseIntArray.valueAt(indexOfKey);
-                }
-                return org.telegram.ui.ActionBar.m6.v0(i7);
-            default:
-                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f14357b;
-                int indexOfKey2 = sparseIntArray2.indexOfKey(i7);
-                if (indexOfKey2 >= 0) {
-                    return sparseIntArray2.valueAt(indexOfKey2);
-                }
-                org.telegram.ui.ActionBar.h6 h6Var2 = (org.telegram.ui.ActionBar.h6) this.f14358c;
-                if (h6Var2 == null) {
-                    return org.telegram.ui.ActionBar.m6.v0(i7);
-                }
-                return h6Var2.k(i7);
-        }
-    }
-
-    @Override
-    public final void l(int i7, int i10) {
-        switch (this.f14356a) {
-            case 0:
-            case 1:
-                return;
-            default:
-                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14358c;
-                if (h6Var != null) {
-                    h6Var.l(i7, i10);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final int m(int i7) {
-        switch (this.f14356a) {
-            case 0:
-                return k(i7);
-            case 1:
-                return ((SparseIntArray) this.f14357b).get(i7);
-            default:
-                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14358c;
-                if (h6Var == null) {
-                    return org.telegram.ui.ActionBar.m6.x0(null, i7, false);
-                }
-                return h6Var.m(i7);
-        }
-    }
-
-    public d5(int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        this.f14356a = i7;
-        switch (i7) {
-            case 2:
-                this.f14357b = new SparseIntArray();
-                this.f14358c = h6Var;
-                a();
-                return;
-            default:
-                this.f14358c = h6Var;
-                return;
-        }
-    }
-
-    public void a() {
-    }
-
-    private final void b(int i7, int i10) {
-    }
-
-    private final void c(int i7, int i10) {
+    public final void draw(Canvas canvas) {
+        ViewGroup barView;
+        pa paVar = this.f14313p3;
+        barView = paVar.getBarView();
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(org.telegram.messenger.g0.W1(paVar.n1, barView.getLeft() - getLeft(), 0), org.telegram.messenger.g0.W1(paVar.n1, barView.getTop() - getTop(), 0), org.telegram.messenger.g0.W1(paVar.n1, barView.getRight() - getLeft(), getWidth()), org.telegram.messenger.g0.W1(paVar.n1, barView.getBottom() - getTop(), getHeight()));
+        Path path = this.f14312o3;
+        path.rewind();
+        path.addRoundRect(rectF, org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f), Path.Direction.CW);
+        canvas.save();
+        canvas.clipPath(path);
+        super.draw(canvas);
+        canvas.restore();
     }
 }

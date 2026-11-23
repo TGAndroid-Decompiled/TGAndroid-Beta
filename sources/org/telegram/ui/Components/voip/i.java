@@ -1,23 +1,23 @@
 package org.telegram.ui.Components.voip;
 public final class i implements Runnable {
-    public final int f41012a;
-    public final k f41013b;
+    public final int f40925a;
+    public final k f40926b;
 
     public i(k kVar, int i7) {
-        this.f41012a = i7;
-        this.f41013b = kVar;
+        this.f40925a = i7;
+        this.f40926b = kVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f41012a) {
+        switch (this.f40925a) {
             case 0:
-                k kVar = this.f41013b;
-                kVar.f41067x = false;
+                k kVar = this.f40926b;
+                kVar.f40985x = false;
                 kVar.c();
                 return;
             default:
-                this.f41013b.f41058a.setVisibility(4);
+                this.f40926b.f40976a.setVisibility(4);
                 return;
         }
     }

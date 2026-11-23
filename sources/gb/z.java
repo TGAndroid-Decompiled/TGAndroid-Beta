@@ -1,68 +1,36 @@
 package gb;
-public final class z implements oe.e {
-    public static final z f13437a;
-    private static final me.d descriptor;
+
+import c8.h9;
+public final class z implements pa.f {
+    public static final z f13436b;
+    public static final z[] f13437c;
+    public final int f13438a;
 
     static {
-        ?? obj = new Object();
-        f13437a = obj;
-        oe.m mVar = new oe.m("com.google.firebase.sessions.ProcessData", obj, 2);
-        mVar.k("pid", false);
-        mVar.k("uuid", false);
-        descriptor = mVar;
+        z zVar = new z("LOG_ENVIRONMENT_UNKNOWN", 0, 0);
+        z zVar2 = new z("LOG_ENVIRONMENT_AUTOPUSH", 1, 1);
+        z zVar3 = new z("LOG_ENVIRONMENT_STAGING", 2, 2);
+        z zVar4 = new z("LOG_ENVIRONMENT_PROD", 3, 3);
+        f13436b = zVar4;
+        z[] zVarArr = {zVar, zVar2, zVar3, zVar4};
+        f13437c = zVarArr;
+        h9.a(zVarArr);
+    }
+
+    public z(String str, int i7, int i10) {
+        this.f13438a = i10;
+    }
+
+    public static z valueOf(String str) {
+        return (z) Enum.valueOf(z.class, str);
+    }
+
+    public static z[] values() {
+        return (z[]) f13437c.clone();
     }
 
     @Override
-    public final void a(qe.h hVar, Object obj) {
-        b0 value = (b0) obj;
-        kotlin.jvm.internal.j.e(value, "value");
-        me.d dVar = descriptor;
-        qe.h a10 = hVar.a(dVar);
-        int i7 = value.f13286a;
-        a10.b(dVar, 0);
-        a10.c(i7);
-        a10.k(dVar, 1, value.f13287b);
-        a10.l(dVar);
-    }
-
-    @Override
-    public final Object b(h2.c decoder) {
-        kotlin.jvm.internal.j.e(decoder, "decoder");
-        me.d dVar = descriptor;
-        h2.c c10 = decoder.c(dVar);
-        String str = null;
-        boolean z10 = true;
-        int i7 = 0;
-        int i10 = 0;
-        while (z10) {
-            int d = c10.d(dVar);
-            if (d != -1) {
-                if (d != 0) {
-                    if (d == 1) {
-                        str = c10.n(dVar, 1);
-                        i7 |= 2;
-                    } else {
-                        throw new ke.d(d);
-                    }
-                } else {
-                    i10 = c10.f(dVar, 0);
-                    i7 |= 1;
-                }
-            } else {
-                z10 = false;
-            }
-        }
-        c10.p(dVar);
-        return new b0(i7, i10, str);
-    }
-
-    @Override
-    public final ke.a[] c() {
-        return new ke.a[]{oe.f.f21789a, oe.p.f21816a};
-    }
-
-    @Override
-    public final me.d d() {
-        return descriptor;
+    public final int a() {
+        return this.f13438a;
     }
 }

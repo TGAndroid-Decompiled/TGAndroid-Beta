@@ -9,23 +9,23 @@ import h2.x;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 public final class a implements p0 {
-    public final int f56462a;
-    public final String f56463b;
-    public final String f56464c;
+    public final int f56575a;
+    public final String f56576b;
+    public final String f56577c;
     public final int d;
-    public final int f56465e;
-    public final int f56466f;
-    public final int f56467g;
+    public final int f56578e;
+    public final int f56579f;
+    public final int f56580g;
     public final byte[] h;
 
     public a(int i7, String str, String str2, int i10, int i11, int i12, int i13, byte[] bArr) {
-        this.f56462a = i7;
-        this.f56463b = str;
-        this.f56464c = str2;
+        this.f56575a = i7;
+        this.f56576b = str;
+        this.f56577c = str2;
         this.d = i10;
-        this.f56465e = i11;
-        this.f56466f = i12;
-        this.f56467g = i13;
+        this.f56578e = i11;
+        this.f56579f = i12;
+        this.f56580g = i13;
         this.h = bArr;
     }
 
@@ -50,7 +50,7 @@ public final class a implements p0 {
 
     @Override
     public final void b(n0 n0Var) {
-        n0Var.a(this.f56462a, this.h);
+        n0Var.a(this.f56575a, this.h);
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class a implements p0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f56462a == aVar.f56462a && this.f56463b.equals(aVar.f56463b) && this.f56464c.equals(aVar.f56464c) && this.d == aVar.d && this.f56465e == aVar.f56465e && this.f56466f == aVar.f56466f && this.f56467g == aVar.f56467g && Arrays.equals(this.h, aVar.h)) {
+            if (this.f56575a == aVar.f56575a && this.f56576b.equals(aVar.f56576b) && this.f56577c.equals(aVar.f56577c) && this.d == aVar.d && this.f56578e == aVar.f56578e && this.f56579f == aVar.f56579f && this.f56580g == aVar.f56580g && Arrays.equals(this.h, aVar.h)) {
                 return true;
             }
         }
@@ -72,10 +72,10 @@ public final class a implements p0 {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.h) + ((((((((e2.h(e2.h((527 + this.f56462a) * 31, 31, this.f56463b), 31, this.f56464c) + this.d) * 31) + this.f56465e) * 31) + this.f56466f) * 31) + this.f56467g) * 31);
+        return Arrays.hashCode(this.h) + ((((((((e2.h(e2.h((527 + this.f56575a) * 31, 31, this.f56576b), 31, this.f56577c) + this.d) * 31) + this.f56578e) * 31) + this.f56579f) * 31) + this.f56580g) * 31);
     }
 
     public final String toString() {
-        return "Picture: mimeType=" + this.f56463b + ", description=" + this.f56464c;
+        return "Picture: mimeType=" + this.f56576b + ", description=" + this.f56577c;
     }
 }

@@ -5,27 +5,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
-public final class zh0 extends v4.h0 {
-    public final int f42799c;
+public final class zh0 extends v4.i0 {
+    public final int f42863c;
     public final Context d;
-    public final org.telegram.ui.ActionBar.h6 f42800e;
-    public final boolean f42801f;
+    public final org.telegram.ui.ActionBar.i6 f42864e;
+    public final boolean f42865f;
     public final gi0 h;
 
-    public zh0(gi0 gi0Var, int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
+    public zh0(gi0 gi0Var, int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
         this.h = gi0Var;
-        this.f42799c = i7;
+        this.f42863c = i7;
         this.d = context;
-        this.f42800e = h6Var;
-        this.f42801f = z10;
+        this.f42864e = i6Var;
+        this.f42865f = z10;
     }
 
     @Override
     public final int b() {
         int i7;
         gi0 gi0Var = this.h;
-        int size = gi0Var.f35544n.size();
-        if (!gi0Var.I.isEmpty() && !org.telegram.messenger.np.u1(this.f42799c).K3()) {
+        int size = gi0Var.f35445n.size();
+        if (!gi0Var.I.isEmpty() && !org.telegram.messenger.mp.u1(this.f42863c).K3()) {
             i7 = 1;
         } else {
             i7 = 0;
@@ -35,41 +35,41 @@ public final class zh0 extends v4.h0 {
 
     @Override
     public final int d(int i7) {
-        if (i7 < this.h.f35544n.size()) {
+        if (i7 < this.h.f35445n.size()) {
             return 0;
         }
         return 1;
     }
 
     @Override
-    public final void t(v4.e1 e1Var, int i7) {
-        if (e1Var.f59115f == 0) {
-            ((org.telegram.ui.Cells.n6) e1Var.f59111a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f35544n.get(i7));
+    public final void t(v4.f1 f1Var, int i7) {
+        if (f1Var.f59249f == 0) {
+            ((org.telegram.ui.Cells.m6) f1Var.f59245a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f35445n.get(i7));
         }
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        FrameLayout n6Var;
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        FrameLayout m6Var;
         if (i7 != 0) {
             gi0 gi0Var = this.h;
-            aa0 aa0Var = gi0Var.K;
-            if (aa0Var != null) {
-                if (aa0Var.getParent() != null) {
+            x90 x90Var = gi0Var.K;
+            if (x90Var != null) {
+                if (x90Var.getParent() != null) {
                     ((ViewGroup) gi0Var.K.getParent()).removeView(gi0Var.K);
                 }
             } else {
                 gi0Var.i();
             }
             Context context = this.d;
-            n6Var = new FrameLayout(context);
+            m6Var = new FrameLayout(context);
             View view = new View(context);
-            org.telegram.ui.ActionBar.t6.i(view, org.telegram.ui.ActionBar.t6.K(0.06f, org.telegram.ui.ActionBar.m6.E8), this.f42800e);
-            n6Var.addView(view, c8.na.c(8.0f, -1));
-            n6Var.addView(gi0Var.K, c8.na.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
+            org.telegram.ui.ActionBar.u6.i(view, org.telegram.ui.ActionBar.u6.K(0.06f, org.telegram.ui.ActionBar.n6.E8), this.f42864e);
+            m6Var.addView(view, c8.na.c(8.0f, -1));
+            m6Var.addView(gi0Var.K, c8.na.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
         } else {
-            n6Var = new org.telegram.ui.Cells.n6(0, this.f42799c, this.d, this.f42800e, true, this.f42801f);
+            m6Var = new org.telegram.ui.Cells.m6(0, this.f42863c, this.d, this.f42864e, true, this.f42865f);
         }
-        return new v4.e1(n6Var);
+        return new v4.f1(m6Var);
     }
 }

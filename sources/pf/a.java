@@ -3,9 +3,9 @@ package pf;
 import a8.p0;
 import java.util.ArrayList;
 public final class a {
-    public String f55585a;
-    public ArrayList f55586b;
-    public ArrayList f55587c;
+    public String f55698a;
+    public ArrayList f55699b;
+    public ArrayList f55700c;
     public ArrayList d;
 
     public final String a(String str) {
@@ -13,11 +13,11 @@ public final class a {
         String str3;
         String str4;
         String str5 = null;
-        if (str.startsWith(this.f55585a)) {
-            str4 = this.f55585a;
+        if (str.startsWith(this.f55698a)) {
+            str4 = this.f55698a;
             str3 = str.substring(str4.length());
         } else {
-            ArrayList arrayList = this.f55586b;
+            ArrayList arrayList = this.f55699b;
             int size = arrayList.size();
             int i7 = 0;
             while (true) {

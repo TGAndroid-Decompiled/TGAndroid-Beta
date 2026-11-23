@@ -1,58 +1,52 @@
 package org.telegram.messenger;
 
-import android.app.Activity;
-import android.content.Context;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class vv implements Runnable {
-    public final int f27589a;
-    public final yv f27590b;
-    public final Context f27591c;
-    public final org.telegram.ui.ActionBar.t1 d;
+    public final int f27697a;
+    public final xv f27698b;
+    public final ArrayList f27699c;
 
-    public vv(yv yvVar, Context context, org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        this.f27589a = i7;
-        this.f27590b = yvVar;
-        this.f27591c = context;
-        this.d = t1Var;
+    public vv(xv xvVar, ArrayList arrayList, int i7) {
+        this.f27697a = i7;
+        this.f27698b = xvVar;
+        this.f27699c = arrayList;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f27589a;
-        org.telegram.ui.ActionBar.t1 t1Var = this.d;
-        Context context = this.f27591c;
-        yv yvVar = this.f27590b;
-        switch (i7) {
+        switch (this.f27697a) {
             case 0:
-                yvVar.f28188n = false;
-                if (!((Activity) context).isFinishing()) {
-                    try {
-                        t1Var.dismiss();
-                        return;
-                    } catch (Exception e10) {
-                        a8.g(e10, true);
+                xv xvVar = this.f27698b;
+                xvVar.getClass();
+                int i7 = 0;
+                while (true) {
+                    ArrayList arrayList = this.f27699c;
+                    if (i7 < arrayList.size()) {
+                        fj fjVar = new fj(xvVar.currentAccount, (TLRPC.Message) arrayList.get(i7), false, true);
+                        fjVar.C0 = true;
+                        xvVar.getSendMessagesHelper().k0(0L, fjVar, true);
+                        i7++;
+                    } else {
                         return;
                     }
                 }
-                return;
             default:
-                if (!((Activity) context).isFinishing()) {
-                    yvVar.f28188n = false;
-                    try {
-                        t1Var.dismiss();
-                    } catch (Exception e11) {
-                        a8.g(e11, true);
+                xv xvVar2 = this.f27698b;
+                xvVar2.getClass();
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f27699c;
+                    if (i10 < arrayList2.size()) {
+                        fj fjVar2 = (fj) xvVar2.getMessagesController().T.f(((Long) arrayList2.get(i10)).longValue());
+                        if (fjVar2 != null) {
+                            fjVar2.Z = true;
+                        }
+                        i10++;
+                    } else {
+                        return;
                     }
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-                    String N0 = hd.N0(2131689472, null);
-                    org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28743a;
-                    t1Var2.S = N0;
-                    t1Var2.U = hd.N0(2131751738, null);
-                    alertDialog$Builder.k(hd.N0(2131747637, null), null);
-                    alertDialog$Builder.p().setCanceledOnTouchOutside(true);
-                    return;
                 }
-                return;
         }
     }
 }

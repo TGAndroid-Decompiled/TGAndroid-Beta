@@ -1,63 +1,43 @@
 package t1;
 
-import android.text.Editable;
-import android.text.method.KeyListener;
-import android.text.method.MetaKeyKeyListener;
-import android.view.KeyEvent;
-import android.view.View;
-public final class e implements KeyListener {
-    public final KeyListener f57538a;
-    public final nb.a f57539b;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.widget.TextView;
+import androidx.emoji2.text.l;
+public final class e implements InputFilter {
+    public final TextView f57650a;
+    public d f57651b;
 
-    public e(KeyListener keyListener) {
-        nb.a aVar = new nb.a(25);
-        this.f57538a = keyListener;
-        this.f57539b = aVar;
+    public e(TextView textView) {
+        this.f57650a = textView;
     }
 
     @Override
-    public final void clearMetaKeyState(View view, Editable editable, int i7) {
-        this.f57538a.clearMetaKeyState(view, editable, i7);
-    }
-
-    @Override
-    public final int getInputType() {
-        return this.f57538a.getInputType();
-    }
-
-    @Override
-    public final boolean onKeyDown(View view, Editable editable, int i7, KeyEvent keyEvent) {
-        boolean s5;
-        boolean z10;
-        this.f57539b.getClass();
-        if (i7 != 67) {
-            if (i7 != 112) {
-                s5 = false;
-            } else {
-                s5 = wf.b.s(editable, keyEvent, true);
+    public final CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
+        TextView textView = this.f57650a;
+        if (!textView.isInEditMode()) {
+            int b10 = l.a().b();
+            if (b10 != 0) {
+                if (b10 != 1) {
+                    if (b10 != 3) {
+                        return charSequence;
+                    }
+                } else if ((i12 != 0 || i11 != 0 || spanned.length() != 0 || charSequence != textView.getText()) && charSequence != null) {
+                    if (i7 != 0 || i10 != charSequence.length()) {
+                        charSequence = charSequence.subSequence(i7, i10);
+                    }
+                    return l.a().e(0, charSequence.length(), charSequence);
+                } else {
+                    return charSequence;
+                }
             }
-        } else {
-            s5 = wf.b.s(editable, keyEvent, false);
+            l a10 = l.a();
+            if (this.f57651b == null) {
+                this.f57651b = new d(textView, this);
+            }
+            a10.f(this.f57651b);
+            return charSequence;
         }
-        if (s5) {
-            MetaKeyKeyListener.adjustMetaAfterKeypress(editable);
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z10 || this.f57538a.onKeyDown(view, editable, i7, keyEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onKeyOther(View view, Editable editable, KeyEvent keyEvent) {
-        return this.f57538a.onKeyOther(view, editable, keyEvent);
-    }
-
-    @Override
-    public final boolean onKeyUp(View view, Editable editable, int i7, KeyEvent keyEvent) {
-        return this.f57538a.onKeyUp(view, editable, i7, keyEvent);
+        return charSequence;
     }
 }

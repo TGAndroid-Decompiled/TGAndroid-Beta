@@ -1,20 +1,20 @@
 package z7;
 public final class f7 {
-    public final Long f61549a;
-    public final e7 f61550b;
-    public final z6 f61551c;
+    public final Long f61668a;
+    public final e7 f61669b;
+    public final z6 f61670c;
     public final Integer d;
-    public final Integer f61552e;
-    public final Integer f61553f;
-    public final Integer f61554g;
+    public final Integer f61671e;
+    public final Integer f61672f;
+    public final Integer f61673g;
 
-    public f7(m.o3 o3Var) {
-        this.f61549a = (Long) o3Var.f20155a;
-        this.f61550b = (e7) o3Var.f20156b;
-        this.f61551c = (z6) o3Var.f20157c;
-        this.d = (Integer) o3Var.d;
-        this.f61552e = (Integer) o3Var.f20158e;
-        this.f61553f = (Integer) o3Var.f20159f;
-        this.f61554g = (Integer) o3Var.f20160g;
+    public f7(ga.d dVar) {
+        this.f61668a = (Long) dVar.f13270a;
+        this.f61669b = (e7) dVar.f13271b;
+        this.f61670c = (z6) dVar.f13272c;
+        this.d = (Integer) dVar.d;
+        this.f61671e = (Integer) dVar.f13273e;
+        this.f61672f = (Integer) dVar.f13274f;
+        this.f61673g = (Integer) dVar.h;
     }
 }

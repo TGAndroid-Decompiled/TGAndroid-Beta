@@ -11,41 +11,41 @@ import c8.na;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.o10;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.m10;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.x1;
-public class e extends FrameLayout implements b6 {
+public class e extends FrameLayout implements c6 {
     public int f1064a;
-    public final h6 f1065b;
+    public final i6 f1065b;
     public final ImageView f1066c;
     public final TextView d;
     public Runnable f1067e;
     public final x1 f1068f;
     public final Paint h;
 
-    public e(Context context, h6 h6Var) {
+    public e(Context context, i6 i6Var) {
         super(context);
         int i7;
         float f10;
         float f11;
         this.h = new Paint(1);
-        this.f1065b = h6Var;
+        this.f1065b = i6Var;
         TextView textView = new TextView(context);
         this.d = textView;
-        o10.p(textView, 1, 20.0f);
-        if (hd.f24408a0) {
+        m10.p(textView, 1, 20.0f);
+        if (gd.f24314a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7);
-        int i10 = m6.f29455j5;
-        t6.U(textView, i10, h6Var);
-        boolean z10 = hd.f24408a0;
+        int i10 = n6.f29559j5;
+        u6.U(textView, i10, i6Var);
+        boolean z10 = gd.f24314a0;
         if (z10) {
             f10 = 16.0f;
         } else {
@@ -62,19 +62,19 @@ public class e extends FrameLayout implements b6 {
         x1 x1Var = new x1(false);
         this.f1068f = x1Var;
         imageView.setImageDrawable(x1Var);
-        int w02 = m6.w0(i10, h6Var);
+        int w02 = n6.w0(i10, i6Var);
         this.f1064a = w02;
         x1Var.a(w02);
-        x1Var.b(m6.w0(i10, h6Var));
-        x1Var.f30221k = 220.0f;
-        addView(imageView, na.d(24, 24.0f, (hd.f24408a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        x1Var.b(n6.w0(i10, i6Var));
+        x1Var.f30314k = 220.0f;
+        addView(imageView, na.d(24, 24.0f, (gd.f24314a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new d(this, 0));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        int w02 = m6.w0(m6.f29348d7, this.f1065b);
+        int w02 = n6.w0(n6.f29452d7, this.f1065b);
         Paint paint = this.h;
         paint.setColor(w02);
         canvas.drawRect(0.0f, getHeight() - g0.f1(), getWidth(), getHeight(), paint);
@@ -103,7 +103,7 @@ public class e extends FrameLayout implements b6 {
             i7 = 8;
         }
         this.f1066c.setVisibility(i7);
-        boolean z11 = hd.f24408a0;
+        boolean z11 = gd.f24314a0;
         if (!z11 && z10) {
             f10 = 53.0f;
         } else {
@@ -130,7 +130,7 @@ public class e extends FrameLayout implements b6 {
         x1 x1Var = this.f1068f;
         if (x1Var != null) {
             try {
-                int w02 = m6.w0(m6.f29455j5, this.f1065b);
+                int w02 = n6.w0(n6.f29559j5, this.f1065b);
                 if (w02 != this.f1064a) {
                     this.f1064a = w02;
                     x1Var.a(w02);

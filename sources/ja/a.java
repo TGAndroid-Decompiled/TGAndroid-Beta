@@ -1,4 +1,4 @@
 package ja;
 public interface a {
-    StackTraceElement[] o(StackTraceElement[] stackTraceElementArr);
+    StackTraceElement[] h(StackTraceElement[] stackTraceElementArr);
 }

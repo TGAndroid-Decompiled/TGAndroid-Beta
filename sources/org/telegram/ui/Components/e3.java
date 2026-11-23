@@ -1,15 +1,37 @@
 package org.telegram.ui.Components;
-public final class e3 implements org.telegram.ui.ActionBar.q1 {
-    public final int f34658a;
-    public final org.telegram.ui.ActionBar.g2 f34659b;
 
-    public e3(int i7, org.telegram.ui.ActionBar.g2 g2Var) {
-        this.f34658a = i7;
-        this.f34659b = g2Var;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class e3 implements View.OnClickListener {
+    public final int f34555a;
+    public final org.telegram.ui.ActionBar.w2 f34556b;
+
+    public e3(org.telegram.ui.ActionBar.w2 w2Var, int i7) {
+        this.f34555a = i7;
+        this.f34556b = w2Var;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.t1 r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.e3.h(org.telegram.ui.ActionBar.t1, int):void");
+    public final void onClick(View view) {
+        switch (this.f34555a) {
+            case 0:
+                this.f34556b.dismiss();
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
+                if (Q != null) {
+                    Q.presentFragment(new PremiumPreviewFragment(0, "contact"));
+                    this.f34556b.dismiss();
+                    return;
+                }
+                return;
+            case 2:
+                this.f34556b.dismiss();
+                return;
+            default:
+                this.f34556b.dismiss();
+                return;
+        }
     }
 }

@@ -34,7 +34,7 @@ public final class k {
             }
         }
         if (z10) {
-            if (c0.s().y(context)) {
+            if (c0.v().A(context)) {
                 m0.c(context, p0Var, intent);
             } else {
                 p0Var.b(intent);

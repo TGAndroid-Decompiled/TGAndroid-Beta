@@ -1,59 +1,33 @@
 package hi;
 
-import org.telegram.ui.xv0;
-public final class ma extends oa {
-    public final int f15023g;
-    public final Object h;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ma extends AnimatorListenerAdapter {
+    public final int f14916a;
+    public final int f14917b;
+    public final int f14918c;
+    public final nb d;
 
-    public ma(Object obj, int i7) {
-        this.f15023g = i7;
-        this.h = obj;
+    public ma(nb nbVar, int i7, int i10, int i11) {
+        this.f14916a = i11;
+        this.d = nbVar;
+        this.f14917b = i7;
+        this.f14918c = i10;
     }
 
     @Override
-    public final void e() {
-        switch (this.f15023g) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f14916a) {
             case 0:
-                xv0 xv0Var = (xv0) this.h;
-                xv0Var.R = false;
-                xv0Var.invalidate();
-                return;
-            case 1:
-                fi.z3 z10 = ((fi.f9) this.h).z();
-                if (z10 != null) {
-                    z10.k0(true);
-                    return;
-                }
+                this.d.M(this.f14917b, this.f14918c);
                 return;
             default:
-                org.telegram.ui.Components.q9 q9Var = (org.telegram.ui.Components.q9) this.h;
-                q9Var.post(new b0(q9Var, 20));
-                return;
-        }
-    }
-
-    @Override
-    public final void f(boolean z10) {
-        switch (this.f15023g) {
-            case 0:
-                xv0 xv0Var = (xv0) this.h;
-                xv0Var.R = true;
-                xv0Var.invalidate();
-                return;
-            case 1:
-                fi.z3 z11 = ((fi.f9) this.h).z();
-                if (z11 != null) {
-                    z11.k0(false);
-                }
-                fi.c3 c3Var = this.f15161f;
-                if (c3Var != null) {
-                    c3Var.setTranslationX(0.0f);
-                    this.f15161f.setTranslationY(0.0f);
+                int i7 = this.f14917b;
+                int i10 = this.f14918c;
+                if (i7 != i10) {
+                    this.d.P(i7, i10);
                     return;
                 }
-                return;
-            default:
-                ((org.telegram.ui.Components.q9) this.h).setVisibility(0);
                 return;
         }
     }

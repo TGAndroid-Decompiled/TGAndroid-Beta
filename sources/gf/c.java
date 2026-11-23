@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.View;
 import com.google.android.gms.internal.vision.u2;
 import java.util.ArrayList;
-import org.telegram.ui.Components.jn;
+import org.telegram.ui.Components.nd0;
 public final class c {
     public int f13522a;
     public boolean f13523b;
@@ -23,21 +23,21 @@ public final class c {
         boolean z10;
         ?? obj = new Object();
         int i7 = this.f13524c;
-        obj.f60428a = i7;
+        obj.f60546a = i7;
         int i10 = this.f13522a;
-        obj.f60429b = i10;
+        obj.f60547b = i10;
         boolean z11 = false;
-        obj.f60430c = 0;
+        obj.f60548c = 0;
         obj.d = false;
-        obj.f60431e = this.f13523b;
-        obj.f60432f = -1.0f;
+        obj.f60549e = this.f13523b;
+        obj.f60550f = -1.0f;
         if (i7 != 2 && i10 == 2) {
             Log.e("FaceDetector", "Contour is not supported for non-SELFIE mode.");
             z10 = false;
         } else {
             z10 = true;
         }
-        if (obj.f60429b == 2 && obj.f60430c == 1) {
+        if (obj.f60547b == 2 && obj.f60548c == 1) {
             Log.e("FaceDetector", "Classification is not supported with contour.");
         } else {
             z11 = z10;
@@ -76,6 +76,6 @@ public final class c {
     }
 
     public c(View view, ArrayList arrayList, xh.j jVar) {
-        this.d = new jn(view.getContext(), new xh.i(this, view, arrayList, jVar));
+        this.d = new nd0(view.getContext(), new xh.i(this, view, arrayList, jVar));
     }
 }

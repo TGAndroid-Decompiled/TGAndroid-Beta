@@ -5,7 +5,7 @@ public abstract class v8 {
     public String toString() {
         switch (this.f682a) {
             case 1:
-                return ((com.google.android.gms.internal.cast.k4) this).f6560b.toString();
+                return ((com.google.android.gms.internal.cast.k4) this).f6559b.toString();
             default:
                 return super.toString();
         }

@@ -8,14 +8,14 @@ import k2.f;
 import k2.h;
 import k2.l;
 public final class b extends l implements c4.e {
-    public final String f61355o;
-    public final m f61356p;
+    public final String f61474o;
+    public final m f61475p;
 
     public b(String str, m mVar) {
         super(new i[2], new j[2]);
-        this.f61355o = str;
+        this.f61474o = str;
         o(1024);
-        this.f61356p = mVar;
+        this.f61475p = mVar;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class b extends l implements c4.e {
 
     @Override
     public final String getName() {
-        return this.f61355o;
+        return this.f61474o;
     }
 
     @Override
@@ -43,19 +43,19 @@ public final class b extends l implements c4.e {
         i iVar = (i) hVar;
         j jVar2 = (j) jVar;
         try {
-            ByteBuffer byteBuffer = iVar.f18121c;
+            ByteBuffer byteBuffer = iVar.f18223c;
             byteBuffer.getClass();
             byte[] array = byteBuffer.array();
             int limit = byteBuffer.limit();
-            m mVar = this.f61356p;
+            m mVar = this.f61475p;
             if (z10) {
                 mVar.reset();
             }
-            c4.d q10 = mVar.q(0, limit, array);
-            long j3 = iVar.f18122e;
+            c4.d s5 = mVar.s(0, limit, array);
+            long j3 = iVar.f18224e;
             long j10 = iVar.f4384r;
             jVar2.timeUs = j3;
-            jVar2.f4385a = q10;
+            jVar2.f4385a = s5;
             if (j10 != Long.MAX_VALUE) {
                 j3 = j10;
             }

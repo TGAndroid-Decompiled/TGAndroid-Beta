@@ -1,21 +1,21 @@
 package org.telegram.ui;
 
 import android.text.style.CharacterStyle;
-public final class ne implements org.telegram.messenger.r10 {
-    public final int f50168a;
-    public final Object f50169b;
-    public final Object f50170c;
+public final class ne implements org.telegram.messenger.p10 {
+    public final int f50298a;
+    public final Object f50299b;
+    public final Object f50300c;
     public final Object d;
-    public final Object f50171e;
-    public final Object f50172f;
+    public final Object f50301e;
+    public final Object f50302f;
 
     public ne(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7) {
-        this.f50168a = i7;
-        this.f50169b = obj;
+        this.f50298a = i7;
+        this.f50299b = obj;
         this.d = obj2;
-        this.f50170c = obj3;
-        this.f50171e = obj4;
-        this.f50172f = obj5;
+        this.f50300c = obj3;
+        this.f50301e = obj4;
+        this.f50302f = obj5;
     }
 
     @Override
@@ -24,11 +24,11 @@ public final class ne implements org.telegram.messenger.r10 {
     }
 
     public ne(bn bnVar, gi giVar, org.telegram.ui.Cells.r1 r1Var, String str, CharacterStyle characterStyle) {
-        this.f50168a = 1;
-        this.f50169b = bnVar;
-        this.f50170c = giVar;
+        this.f50298a = 1;
+        this.f50299b = bnVar;
+        this.f50300c = giVar;
         this.d = r1Var;
-        this.f50171e = str;
-        this.f50172f = characterStyle;
+        this.f50301e = str;
+        this.f50302f = characterStyle;
     }
 }

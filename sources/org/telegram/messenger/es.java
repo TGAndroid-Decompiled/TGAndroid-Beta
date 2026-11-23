@@ -1,7 +1,10 @@
 package org.telegram.messenger;
-
-import android.os.SystemClock;
 public final class es {
-    public int[] f23724a;
-    public final long f23725b = SystemClock.elapsedRealtime();
+    public final int f23865a;
+    public final Object[] f23866b;
+
+    public es(int i7, Object[] objArr) {
+        this.f23865a = i7;
+        this.f23866b = objArr;
+    }
 }

@@ -13,7 +13,7 @@ public final class m1 extends View {
         l1 l1Var = new l1();
         this.f3829a = l1Var;
         l1Var.f3788r = this;
-        l1Var.d.H0(this);
+        l1Var.d.I0(this);
     }
 
     public l1 getDrawable() {
@@ -27,15 +27,15 @@ public final class m1 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f3829a.d.P();
+        this.f3829a.d.Q();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         l1 l1Var = this.f3829a;
-        l1Var.d.R();
-        org.telegram.ui.Components.y5.release((View) null, l1Var.f3787q);
+        l1Var.d.S();
+        org.telegram.ui.Components.x5.release((View) null, l1Var.f3787q);
         l1Var.f3787q = null;
     }
 

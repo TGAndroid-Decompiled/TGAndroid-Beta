@@ -1,7 +1,7 @@
 package bi;
 
-import org.telegram.messenger.r10;
-public final class h0 implements r10 {
+import org.telegram.messenger.p10;
+public final class h0 implements p10 {
     public final int f3631a;
     public final Object f3632b;
     public final Object f3633c;

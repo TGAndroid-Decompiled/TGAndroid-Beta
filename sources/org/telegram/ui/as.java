@@ -1,32 +1,32 @@
 package org.telegram.ui;
 public final class as implements Runnable {
-    public final int f45641a;
-    public final ns f45642b;
+    public final int f45801a;
+    public final ns f45802b;
 
     public as(ns nsVar, int i7) {
-        this.f45641a = i7;
-        this.f45642b = nsVar;
+        this.f45801a = i7;
+        this.f45802b = nsVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f45641a) {
+        switch (this.f45801a) {
             case 0:
-                this.f45642b.f50293c0 = null;
+                this.f45802b.f50405c0 = null;
                 return;
             case 1:
-                ns nsVar = this.f45642b;
-                nsVar.A.w0(null);
-                org.telegram.ui.Components.ec0 ec0Var = nsVar.C;
-                if (ec0Var != null) {
-                    ec0Var.a();
-                    nsVar.f50315z.removeView(nsVar.C);
+                ns nsVar = this.f45802b;
+                nsVar.A.x0(null);
+                org.telegram.ui.Components.cc0 cc0Var = nsVar.C;
+                if (cc0Var != null) {
+                    cc0Var.a();
+                    nsVar.f50427z.removeView(nsVar.C);
                     nsVar.C = null;
                     return;
                 }
                 return;
             default:
-                this.f45642b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.nr.h).start();
+                this.f45802b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.kr.h).start();
                 return;
         }
     }

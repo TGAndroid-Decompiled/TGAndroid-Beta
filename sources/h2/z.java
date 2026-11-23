@@ -13,8 +13,8 @@ import e2.x1;
 import e2.y0;
 import e2.z0;
 import java.util.List;
-import org.telegram.ui.Components.b50;
-import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.y40;
 import zi.u0;
 public final class z implements a1 {
     public final int f13834a;
@@ -36,11 +36,11 @@ public final class z implements a1 {
             case 0:
                 return;
             case 1:
-                i61 i61Var = (i61) this.f13835b;
-                if (!i61Var.I && i7 == 3) {
-                    i61Var.I = true;
-                    if (i61Var.H && i61Var.J) {
-                        i61Var.h0();
+                h61 h61Var = (h61) this.f13835b;
+                if (!h61Var.I && i7 == 3) {
+                    h61Var.I = true;
+                    if (h61Var.H && h61Var.J) {
+                        h61Var.h0();
                         return;
                     }
                     return;
@@ -108,21 +108,21 @@ public final class z implements a1 {
             case 2:
                 yi.j jVar = (yi.j) this.f13835b;
                 yi.d dVar = jVar.E;
-                Handler handler = jVar.f61333i;
-                if (jVar.f61345u != z10) {
-                    jVar.f61345u = z10;
+                Handler handler = jVar.f61452i;
+                if (jVar.f61464u != z10) {
+                    jVar.f61464u = z10;
                     handler.removeCallbacks(dVar);
                     if (z10) {
                         handler.post(dVar);
                     }
-                    jVar.f61331f.getClass();
+                    jVar.f61450f.getClass();
                     jVar.m();
                     return;
                 }
                 return;
             default:
                 u0 u0Var = (u0) this.f13835b;
-                if (u0Var.f62320a0 == 5) {
+                if (u0Var.f62440a0 == 5) {
                     u0Var.z(z10);
                     return;
                 }
@@ -131,7 +131,17 @@ public final class z implements a1 {
     }
 
     @Override
-    public final void a(x1 x1Var) {
+    public final void a(int i7) {
+        int i10 = this.f13834a;
+    }
+
+    @Override
+    public final void b(x1 x1Var) {
+        int i7 = this.f13834a;
+    }
+
+    @Override
+    public final void c(boolean z10) {
         int i7 = this.f13834a;
     }
 
@@ -161,47 +171,37 @@ public final class z implements a1 {
     }
 
     @Override
-    public final void i(int i7) {
+    public final void j(int i7, boolean z10) {
         int i10 = this.f13834a;
     }
 
     @Override
-    public final void j(boolean z10) {
-        int i7 = this.f13834a;
-    }
-
-    @Override
-    public final void k(int i7, boolean z10) {
-        int i10 = this.f13834a;
-    }
-
-    @Override
-    public final void l(float f10) {
+    public final void k(float f10) {
         int i7 = this.f13834a;
     }
 
     @Override
     public final void m(int i7) {
-        l2.f0 f0Var;
-        l2.f0 f0Var2;
+        l2.g0 g0Var;
+        l2.g0 g0Var2;
         switch (this.f13834a) {
             case 0:
             case 1:
                 return;
             case 2:
                 yi.j jVar = (yi.j) this.f13835b;
-                if (i7 == 4 && jVar.G == 5 && (f0Var = jVar.A) != null) {
-                    f0Var.Z0(5, jVar.f61342r);
+                if (i7 == 4 && jVar.G == 5 && (g0Var = jVar.A) != null) {
+                    g0Var.Z0(5, jVar.f61461r);
                     jVar.A.b();
                     return;
                 }
                 return;
             default:
                 u0 u0Var = (u0) this.f13835b;
-                zi.o oVar = u0Var.f62331m;
+                zi.o oVar = u0Var.f62451m;
                 oVar.b("preview playback state=" + i7);
-                if (u0Var.f62320a0 == 5 && i7 == 4 && (f0Var2 = u0Var.W) != null) {
-                    f0Var2.Z0(5, u0Var.K);
+                if (u0Var.f62440a0 == 5 && i7 == 4 && (g0Var2 = u0Var.W) != null) {
+                    g0Var2.Z0(5, u0Var.K);
                     u0Var.W.f();
                     return;
                 }
@@ -228,8 +228,8 @@ public final class z implements a1 {
                 return;
             default:
                 u0 u0Var = (u0) this.f13835b;
-                if (u0Var.f62320a0 == 5) {
-                    b50.o((b50) u0Var.d.f38544b);
+                if (u0Var.f62440a0 == 5) {
+                    y40.o((y40) u0Var.d.f30491b);
                     return;
                 }
                 return;
@@ -282,8 +282,8 @@ public final class z implements a1 {
                 return;
             default:
                 u0 u0Var = (u0) this.f13835b;
-                zi.o oVar = u0Var.f62331m;
-                oVar.b("preview player error: code=" + v0Var.f10775a);
+                zi.o oVar = u0Var.f62451m;
+                oVar.b("preview player error: code=" + v0Var.f10773a);
                 u0Var.h(v0Var);
                 return;
         }
@@ -460,16 +460,10 @@ public final class z implements a1 {
     private final void a0(z0 z0Var) {
     }
 
-    private final void b(e2.e eVar) {
-    }
-
     private final void b0(z0 z0Var) {
     }
 
     private final void b1(int i7) {
-    }
-
-    private final void c(e2.e eVar) {
     }
 
     private final void c0(boolean z10) {
@@ -496,6 +490,9 @@ public final class z implements a1 {
     private final void h0(boolean z10) {
     }
 
+    private final void i(e2.e eVar) {
+    }
+
     private final void i0(boolean z10) {
     }
 
@@ -506,6 +503,9 @@ public final class z implements a1 {
     }
 
     private final void k1(int i7) {
+    }
+
+    private final void l(e2.e eVar) {
     }
 
     private final void l0(boolean z10) {

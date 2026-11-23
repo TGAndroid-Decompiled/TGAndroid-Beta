@@ -8,16 +8,16 @@ public enum e implements Parcelable {
     DIRECT("direct");
     
     public static final Parcelable.Creator<e> CREATOR = new db.k(24);
-    public final String f11489a;
+    public final String f11488a;
 
     e(String str) {
-        this.f11489a = str;
+        this.f11488a = str;
     }
 
     public static e a(String str) {
         e[] values;
         for (e eVar : values()) {
-            if (str.equals(eVar.f11489a)) {
+            if (str.equals(eVar.f11488a)) {
                 return eVar;
             }
         }
@@ -31,11 +31,11 @@ public enum e implements Parcelable {
 
     @Override
     public final String toString() {
-        return this.f11489a;
+        return this.f11488a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        parcel.writeString(this.f11489a);
+        parcel.writeString(this.f11488a);
     }
 }

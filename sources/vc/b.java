@@ -15,7 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import tc.g;
 public abstract class b {
-    public static final c f59374a = new c();
+    public static final c f59496a = new c();
 
     public static HttpURLConnection a(String str, t tVar) {
         Throwable th2;
@@ -28,7 +28,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = tVar.f10943b;
+        String str2 = tVar.f10941b;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -44,7 +44,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f59374a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f59496a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -76,8 +76,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f59372a;
-            String str2 = aVar.f59373b;
+            String str = aVar.f59494a;
+            String str2 = aVar.f59495b;
             if (str == null) {
                 encode = null;
             } else {
@@ -93,8 +93,8 @@ public abstract class b {
         return sb2.toString();
     }
 
-    public static org.telegram.ui.md0 c(java.util.HashMap r7, ee.t r8) {
-        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, ee.t):org.telegram.ui.md0");
+    public static org.telegram.ui.Components.i61 c(java.util.HashMap r7, ee.t r8) {
+        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, ee.t):org.telegram.ui.Components.i61");
     }
 
     public static LinkedList d(String str, Map map) {

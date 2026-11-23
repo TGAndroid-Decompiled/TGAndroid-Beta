@@ -1,9 +1,9 @@
 package bi;
 
 import android.view.View;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.o10;
-import org.telegram.ui.Components.lc;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.m10;
+import org.telegram.ui.Components.kc;
 public final class m implements View.OnClickListener {
     public final int f3815a;
     public final y f3816b;
@@ -26,7 +26,7 @@ public final class m implements View.OnClickListener {
                 int e10 = (int) yVar.f4229h2.e();
                 if (value < e10) {
                     org.telegram.messenger.g0.D3(yVar.W1);
-                    o10.u(hd.G(e10, "Gift2AuctionMinimumBidIncreased", new Object[0]), new lc(yVar.f30145c, yVar.J0), 2131624068, 36);
+                    m10.u(gd.G(e10, "Gift2AuctionMinimumBidIncreased", new Object[0]), new kc(yVar.f30229c, yVar.J0), 2131624068, 36);
                     return;
                 }
                 yVar.h1(value);

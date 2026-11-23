@@ -2,59 +2,51 @@ package oi;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class q extends ReplacementSpan {
-    public static final int h = 0;
-    public final String f22277a;
-    public final Bitmap f22278b;
-    public final int f22279c;
+import org.telegram.messenger.a8;
+import ru.noties.jlatexmath.JLatexMathAndroid;
+import ru.noties.jlatexmath.JLatexMathDrawable;
+public final class q {
+    public static volatile boolean f22383e = false;
+    public final Bitmap f22384a;
+    public final int f22385b;
+    public final int f22386c;
     public final int d;
-    public final int f22280e;
-    public final Paint f22281f;
 
-    public q(String str, Bitmap bitmap, int i7, int i10, int i11, int i12) {
-        Paint paint = new Paint(3);
-        this.f22281f = paint;
-        this.f22277a = str;
-        this.f22278b = bitmap;
-        this.f22279c = i7;
-        this.d = i10;
-        this.f22280e = i12;
-        paint.setColor(i11);
+    public q(Bitmap bitmap, int i7, int i10, int i11) {
+        this.f22384a = bitmap;
+        this.f22385b = i7;
+        this.f22386c = i10;
+        this.d = i11;
     }
 
-    public static q a(String str, int i7, float f10) {
-        p a10;
-        if (str != null && !str.isEmpty() && (a10 = p.a(str, f10, true)) != null) {
-            return new q(str, a10.f22256a, a10.f22257b, a10.f22258c, i7, a10.d);
+    public static q a(String str, float f10, boolean z10) {
+        if (str != null && !str.isEmpty()) {
+            try {
+                if (!f22383e) {
+                    synchronized (q.class) {
+                        if (!f22383e) {
+                            JLatexMathAndroid.init(org.telegram.messenger.t0.f27013b);
+                            f22383e = true;
+                        }
+                    }
+                }
+                JLatexMathDrawable build = JLatexMathDrawable.builder(str).textSize(f10).build();
+                int intrinsicWidth = build.getIntrinsicWidth();
+                int intrinsicHeight = build.getIntrinsicHeight();
+                if (intrinsicWidth > 0 && intrinsicHeight > 0) {
+                    Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ALPHA_8);
+                    int i7 = 0;
+                    build.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
+                    build.draw(new Canvas(createBitmap));
+                    if (z10) {
+                        i7 = build.icon().getIconDepth();
+                    }
+                    return new q(createBitmap, intrinsicWidth, intrinsicHeight, i7);
+                }
+            } catch (Throwable th2) {
+                a8.g(th2, true);
+            }
         }
         return null;
-    }
-
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        Bitmap bitmap = this.f22278b;
-        if (bitmap == null) {
-            return;
-        }
-        int color = paint.getColor();
-        Paint paint2 = this.f22281f;
-        paint2.setColor(color);
-        canvas.drawBitmap(bitmap, f10, i12 - (this.d - this.f22280e), paint2);
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt != null) {
-            int i11 = this.d;
-            int i12 = this.f22280e;
-            int i13 = -(i11 - i12);
-            fontMetricsInt.ascent = i13;
-            fontMetricsInt.top = i13;
-            fontMetricsInt.descent = i12;
-            fontMetricsInt.bottom = i12;
-        }
-        return this.f22279c;
     }
 }

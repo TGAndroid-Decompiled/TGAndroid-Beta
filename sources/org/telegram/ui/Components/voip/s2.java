@@ -1,50 +1,160 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.TextPaint;
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class s2 extends View {
-    public final TextPaint f41313a;
-    public final Paint f41314b;
-    public final float f41315c;
-    public final String d;
-    public volatile Bitmap f41316e;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.WindowInsets;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.Cells.x9;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.fc1;
+import org.webrtc.OrientationHelper;
+public abstract class s2 extends FrameLayout {
+    public Activity f41222a;
+    public boolean f41223b;
+    public h2.f f41224c;
+    public VelocityTracker d;
+    public boolean f41225e;
+    public boolean f41226f;
+    public float h;
+    public float f41227n;
+    public boolean f41228r;
 
-    public s2(Context context, String str) {
-        super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.f41313a = textPaint;
-        this.f41314b = new Paint(1);
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
-        textPaint.setColor(-1);
-        textPaint.setTypeface(org.telegram.messenger.g0.o());
-        this.f41315c = textPaint.measureText(str);
-        this.d = str;
+    public static WindowManager.LayoutParams a() {
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.height = -1;
+        layoutParams.format = -2;
+        layoutParams.width = -1;
+        layoutParams.gravity = 51;
+        layoutParams.type = 99;
+        layoutParams.screenOrientation = 1;
+        org.telegram.messenger.g0.m(layoutParams);
+        layoutParams.flags = -2144665216;
+        return layoutParams;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.f41316e != null) {
-            canvas.drawBitmap(this.f41316e, 0.0f, 0.0f, this.f41314b);
+    public final void b() {
+        c(330L);
+    }
+
+    public final void c(long j3) {
+        if (!this.f41226f) {
+            this.f41226f = true;
+            if (fc1.f47751m1 != null) {
+                if (VoIPService.getSharedInstance() != null) {
+                    int measuredHeight = fc1.f47751m1.f47790u0.getMeasuredHeight();
+                    if (fc1.f47751m1.D0 && !VoIPService.getSharedInstance().isConverting()) {
+                        fc1 fc1Var = fc1.f47751m1;
+                        i2.f(fc1Var.f47755b, fc1Var.f47752a, fc1Var.f47790u0.getMeasuredWidth(), measuredHeight, 0);
+                        WindowInsets windowInsets = fc1.f47751m1.f47786r0;
+                        if (windowInsets != null) {
+                            i2.W = windowInsets.getSystemWindowInsetTop();
+                            fc1.f47751m1.f47786r0.getSystemWindowInsetBottom();
+                        }
+                    }
+                }
+                fc1.f47751m1.f47761d0.d.release();
+                fc1.f47751m1.f47764e0.d.release();
+                fc1.f47751m1.f47759c0.release();
+                fc1.f47751m1.c();
+            }
+            fc1.f47751m1 = null;
+            j2.d();
+            if (this.f41223b) {
+                try {
+                    ((WindowManager) this.f41222a.getSystemService("window")).removeView(this);
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
+            }
+            this.f41224c.d();
+            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new x9(this, 19)).setDuration(j3).setInterpolator(kr.f36858f).start();
+        }
+    }
+
+    public final void d() {
+        if (getParent() != null) {
+            org.telegram.messenger.g0.O3(this.f41222a);
+            setVisibility(8);
+            ((WindowManager) this.f41222a.getSystemService("window")).removeView(this);
+            OrientationHelper.cameraRotationDisabled = false;
         }
     }
 
     @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        super.onLayout(z10, i7, i10, i11, i12);
-        if (z10) {
-            Utilities.f22774e.c(new org.telegram.tgnet.m(this, 23));
-        }
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return onTouchEvent(motionEvent);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.f41315c), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
+        super.onMeasure(i7, i10);
+        if (!this.f41225e) {
+            this.f41225e = true;
+            if (!this.f41223b) {
+                setTranslationY(getMeasuredHeight());
+                setAlpha(0.0f);
+                animate().translationY(0.0f).alpha(1.0f).setDuration(330L).setInterpolator(kr.f36858f).start();
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f41223b) {
+            if (motionEvent.getAction() == 0) {
+                this.h = motionEvent.getX();
+                this.f41227n = motionEvent.getY();
+                if (this.d == null) {
+                    this.d = VelocityTracker.obtain();
+                }
+                this.d.clear();
+                return false;
+            }
+            float f10 = 0.0f;
+            if (motionEvent.getAction() == 2) {
+                float x10 = motionEvent.getX() - this.h;
+                float y10 = motionEvent.getY() - this.f41227n;
+                if (!this.f41228r && Math.abs(y10) > org.telegram.messenger.g0.a1(true, 0.4f) && Math.abs(y10) / 3.0f > x10) {
+                    this.f41227n = motionEvent.getY();
+                    this.f41228r = true;
+                    y10 = 0.0f;
+                }
+                if (this.f41228r) {
+                    if (y10 >= 0.0f) {
+                        f10 = y10;
+                    }
+                    if (this.d == null) {
+                        this.d = VelocityTracker.obtain();
+                    }
+                    this.d.addMovement(motionEvent);
+                    setTranslationY(f10);
+                }
+                return this.f41228r;
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                float translationY = getTranslationY();
+                if (this.d == null) {
+                    this.d = VelocityTracker.obtain();
+                }
+                this.d.computeCurrentVelocity(1000);
+                float xVelocity = this.d.getXVelocity();
+                float yVelocity = this.d.getYVelocity();
+                if (translationY < getMeasuredHeight() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
+                    animate().translationY(0.0f).start();
+                } else {
+                    c(Math.max((int) ((200.0f / getMeasuredHeight()) * (getMeasuredHeight() - getTranslationY())), 50));
+                }
+                this.f41228r = false;
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public void setLockOnScreen(boolean z10) {
+        this.f41223b = z10;
     }
 }

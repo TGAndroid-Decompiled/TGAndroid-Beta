@@ -6,8 +6,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.j71;
-public final class h4 extends j71 {
+import org.telegram.ui.Components.k71;
+public final class h4 extends k71 {
     public final f6 W;
 
     public h4(f6 f6Var, Context context) {
@@ -16,7 +16,7 @@ public final class h4 extends j71 {
     }
 
     @Override
-    public final void B(View view, float f10) {
+    public final void D(View view, float f10) {
         View view2;
         bi.b3 b3Var;
         bi.b3 b3Var2;
@@ -29,7 +29,7 @@ public final class h4 extends j71 {
         }
         float i7 = Utilities.i(f10 / getMeasuredWidth(), 1.0f, -1.0f);
         f6 f6Var = this.W;
-        view.setTranslationX(((-i7) * 2.0f * f6Var.f30177u0) + f10);
+        view.setTranslationX(((-i7) * 2.0f * f6Var.f30261u0) + f10);
         float f11 = 0.0f;
         if (i7 <= 0.0f) {
             f11 = view.getMeasuredWidth();
@@ -43,14 +43,14 @@ public final class h4 extends j71 {
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
                 b3Var = f6Var.Y1;
-                if (b3Var != null && view2 == b3Var.U1 && (k4Var3 = b3Var.f8757a2) != null) {
+                if (b3Var != null && view2 == b3Var.U1 && (k4Var3 = b3Var.f8756a2) != null) {
                     k4Var3.invalidate();
                 }
-                if (view2 == f6Var.U1 && (k4Var2 = f6Var.f8757a2) != null) {
+                if (view2 == f6Var.U1 && (k4Var2 = f6Var.f8756a2) != null) {
                     k4Var2.invalidate();
                 }
                 b3Var2 = f6Var.Z1;
-                if (b3Var2 == null && view2 == b3Var2.U1 && (k4Var = b3Var2.f8757a2) != null) {
+                if (b3Var2 == null && view2 == b3Var2.U1 && (k4Var = b3Var2.f8756a2) != null) {
                     k4Var.invalidate();
                     return;
                 }
@@ -71,13 +71,13 @@ public final class h4 extends j71 {
     }
 
     @Override
-    public final void C() {
-        super.C();
-        int i7 = this.f36391b;
+    public final void E() {
+        super.E();
+        int i7 = this.f36663b;
         f6 f6Var = this.W;
         boolean z10 = false;
         if (i7 != f6Var.N1(false)) {
-            if (this.f36391b > f6Var.N1(false)) {
+            if (this.f36663b > f6Var.N1(false)) {
                 z10 = true;
             }
             org.telegram.messenger.g0.g3(new ch.k(3, this, z10));
@@ -97,13 +97,13 @@ public final class h4 extends j71 {
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
         f6 f6Var = this.W;
-        canvas.clipRect(f6Var.f30177u0, -getHeight(), getWidth() - f6Var.f30177u0, getHeight() * 2);
+        canvas.clipRect(f6Var.f30261u0, -getHeight(), getWidth() - f6Var.f30261u0, getHeight() * 2);
         super.dispatchDraw(canvas);
         canvas.restore();
     }
 
     @Override
     public final float getAvailableTranslationX() {
-        return Math.max(1, getMeasuredWidth() - (this.W.f30177u0 * 2));
+        return Math.max(1, getMeasuredWidth() - (this.W.f30261u0 * 2));
     }
 }

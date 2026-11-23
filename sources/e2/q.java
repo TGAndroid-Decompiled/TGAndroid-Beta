@@ -8,24 +8,24 @@ import java.util.Arrays;
 import java.util.UUID;
 public final class q implements Parcelable {
     public static final Parcelable.Creator<q> CREATOR = new p(1);
-    public int f10626a;
-    public final UUID f10627b;
-    public final String f10628c;
+    public int f10624a;
+    public final UUID f10625b;
+    public final String f10626c;
     public final String d;
-    public final byte[] f10629e;
+    public final byte[] f10627e;
 
     public q(UUID uuid, String str, String str2, byte[] bArr) {
         uuid.getClass();
-        this.f10627b = uuid;
-        this.f10628c = str;
+        this.f10625b = uuid;
+        this.f10626c = str;
         str2.getClass();
         this.d = s0.n(str2);
-        this.f10629e = bArr;
+        this.f10627e = bArr;
     }
 
     public final boolean a(UUID uuid) {
-        UUID uuid2 = l.f10485b;
-        UUID uuid3 = this.f10627b;
+        UUID uuid2 = l.f10483b;
+        UUID uuid3 = this.f10625b;
         if (!uuid2.equals(uuid3) && !uuid.equals(uuid3)) {
             return false;
         }
@@ -45,7 +45,7 @@ public final class q implements Parcelable {
             return true;
         }
         q qVar = (q) obj;
-        if (!Objects.equals(this.f10628c, qVar.f10628c) || !Objects.equals(this.d, qVar.d) || !Objects.equals(this.f10627b, qVar.f10627b) || !Arrays.equals(this.f10629e, qVar.f10629e)) {
+        if (!Objects.equals(this.f10626c, qVar.f10626c) || !Objects.equals(this.d, qVar.d) || !Objects.equals(this.f10625b, qVar.f10625b) || !Arrays.equals(this.f10627e, qVar.f10627e)) {
             return false;
         }
         return true;
@@ -53,35 +53,35 @@ public final class q implements Parcelable {
 
     public final int hashCode() {
         int hashCode;
-        if (this.f10626a == 0) {
-            int hashCode2 = this.f10627b.hashCode() * 31;
-            String str = this.f10628c;
+        if (this.f10624a == 0) {
+            int hashCode2 = this.f10625b.hashCode() * 31;
+            String str = this.f10626c;
             if (str == null) {
                 hashCode = 0;
             } else {
                 hashCode = str.hashCode();
             }
-            this.f10626a = Arrays.hashCode(this.f10629e) + e2.h((hashCode2 + hashCode) * 31, 31, this.d);
+            this.f10624a = Arrays.hashCode(this.f10627e) + e2.h((hashCode2 + hashCode) * 31, 31, this.d);
         }
-        return this.f10626a;
+        return this.f10624a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        UUID uuid = this.f10627b;
+        UUID uuid = this.f10625b;
         parcel.writeLong(uuid.getMostSignificantBits());
         parcel.writeLong(uuid.getLeastSignificantBits());
-        parcel.writeString(this.f10628c);
+        parcel.writeString(this.f10626c);
         parcel.writeString(this.d);
-        parcel.writeByteArray(this.f10629e);
+        parcel.writeByteArray(this.f10627e);
     }
 
     public q(Parcel parcel) {
-        this.f10627b = new UUID(parcel.readLong(), parcel.readLong());
-        this.f10628c = parcel.readString();
+        this.f10625b = new UUID(parcel.readLong(), parcel.readLong());
+        this.f10626c = parcel.readString();
         String readString = parcel.readString();
         String str = h2.l0.f13778a;
         this.d = readString;
-        this.f10629e = parcel.createByteArray();
+        this.f10627e = parcel.createByteArray();
     }
 }

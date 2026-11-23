@@ -1,10 +1,12 @@
 package tg;
 public interface h1 {
-    void A();
+    void D();
 
     void a();
 
-    void w(sg.h hVar);
+    void b();
 
-    sg.k0 x();
+    void c(int i7);
+
+    void t();
 }

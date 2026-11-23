@@ -1,7 +1,7 @@
 package b3;
 
 import a8.p0;
-import ai.c0;
+import ai.d0;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.SurfaceTexture;
@@ -22,7 +22,8 @@ import androidx.appcompat.app.AlertController$RecycleListView;
 import c8.u9;
 import com.google.android.gms.internal.play_billing.h4;
 import e2.o0;
-import f3.f0;
+import f3.g0;
+import f5.v;
 import f5.w;
 import f5.z;
 import h2.l0;
@@ -38,39 +39,41 @@ import java.util.regex.Pattern;
 import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocketFactory;
 import m9.y;
-import org.telegram.messenger.g0;
-import org.telegram.messenger.np;
-import org.telegram.messenger.vr;
-import org.telegram.tgnet.v;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.ur;
 import org.telegram.ui.ActionBar.g2;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.i61;
-import org.telegram.ui.j9;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.k9;
 import org.telegram.ui.s9;
-public final class j implements s9, g61, h2.d, u2.u, f0 {
-    public final int f2871a;
-    public int f2872b;
-    public Object f2873c;
+public final class j implements s9, f61, h2.d, u2.u, g0 {
+    public final int f2872a;
+    public int f2873b;
+    public Object f2874c;
 
     public j(int i7, Object obj, int i10) {
-        this.f2871a = i10;
-        this.f2872b = i7;
-        this.f2873c = obj;
+        this.f2872a = i10;
+        this.f2873b = i7;
+        this.f2874c = obj;
     }
 
     @Override
-    public void J(String str) {
+    public void H(String str) {
         String c10 = vf.c.c(str);
         if (TextUtils.isEmpty(c10)) {
-            g0.g3(new ai.i(7));
+            org.telegram.messenger.g0.g3(new ai.k(7));
         } else {
-            np.u1(this.f2872b).f2().a(c10, null, new c0((g2) this.f2873c, 7));
+            mp.u1(this.f2873b).f2().a(c10, null, new d0((g2) this.f2874c, 7));
         }
     }
 
     @Override
-    public String J0() {
-        return null;
+    public y I(o0 o0Var) {
+        y I = ((h2.d) this.f2874c).I(o0Var);
+        if (I == null) {
+            return null;
+        }
+        return u9.c(I, new org.telegram.tgnet.g(this, 21));
     }
 
     @Override
@@ -79,25 +82,26 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
     }
 
     @Override
-    public y O(o0 o0Var) {
-        y O = ((h2.d) this.f2873c).O(o0Var);
-        if (O == null) {
-            return null;
+    public int P1() {
+        if (((MediaCodecInfo[]) this.f2874c) == null) {
+            this.f2874c = new MediaCodecList(this.f2873b).getCodecInfos();
         }
-        return u9.c(O, new v(this, 19));
+        return ((MediaCodecInfo[]) this.f2874c).length;
     }
 
     @Override
-    public int P1() {
-        if (((MediaCodecInfo[]) this.f2873c) == null) {
-            this.f2873c = new MediaCodecList(this.f2872b).getCodecInfos();
-        }
-        return ((MediaCodecInfo[]) this.f2873c).length;
+    public y V(byte[] bArr) {
+        return u9.c(((h2.d) this.f2874c).V(bArr), new org.telegram.tgnet.g(this, 21));
+    }
+
+    @Override
+    public boolean Z0(String str, k9 k9Var) {
+        return false;
     }
 
     public Object a() {
-        Object[] objArr = (Object[]) this.f2873c;
-        int i7 = this.f2872b;
+        Object[] objArr = (Object[]) this.f2874c;
+        int i7 = this.f2873b;
         if (i7 <= 0) {
             return null;
         }
@@ -105,156 +109,151 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
         Object obj = objArr[i10];
         kotlin.jvm.internal.j.c(obj, "null cannot be cast to non-null type T of androidx.core.util.Pools.SimplePool");
         objArr[i10] = null;
-        this.f2872b--;
+        this.f2873b--;
         return obj;
     }
 
     public void b(int i7, int i10, int i11) {
         if (i11 != 0 && i7 < i10) {
-            int i12 = this.f2872b;
+            int i12 = this.f2873b;
             if (i12 >= 3) {
-                int[] iArr = (int[]) this.f2873c;
+                int[] iArr = (int[]) this.f2874c;
                 if (iArr[i12 - 1] == i11 && iArr[i12 - 2] == i7) {
                     iArr[i12 - 2] = i10;
                     return;
                 }
             }
             int i13 = i12 + 3;
-            int[] iArr2 = (int[]) this.f2873c;
+            int[] iArr2 = (int[]) this.f2874c;
             if (i13 > iArr2.length) {
-                this.f2873c = Arrays.copyOf(iArr2, iArr2.length * 2);
+                this.f2874c = Arrays.copyOf(iArr2, iArr2.length * 2);
             }
-            int[] iArr3 = (int[]) this.f2873c;
-            int i14 = this.f2872b;
+            int[] iArr3 = (int[]) this.f2874c;
+            int i14 = this.f2873b;
             int i15 = i14 + 1;
-            this.f2872b = i15;
+            this.f2873b = i15;
             iArr3[i14] = i7;
             int i16 = i14 + 2;
-            this.f2872b = i16;
+            this.f2873b = i16;
             iArr3[i15] = i10;
-            this.f2872b = i14 + 3;
+            this.f2873b = i14 + 3;
             iArr3[i16] = i11;
         }
     }
 
     public void c(long j3) {
-        int i7 = this.f2872b;
-        long[] jArr = (long[]) this.f2873c;
+        int i7 = this.f2873b;
+        long[] jArr = (long[]) this.f2874c;
         if (i7 == jArr.length) {
-            this.f2873c = Arrays.copyOf(jArr, i7 * 2);
+            this.f2874c = Arrays.copyOf(jArr, i7 * 2);
         }
-        int i10 = this.f2872b;
-        this.f2872b = i10 + 1;
-        ((long[]) this.f2873c)[i10] = j3;
-    }
-
-    @Override
-    public boolean c1(String str, j9 j9Var) {
-        return false;
+        int i10 = this.f2873b;
+        this.f2873b = i10 + 1;
+        ((long[]) this.f2874c)[i10] = j3;
     }
 
     public void d(long[] jArr) {
-        int length = this.f2872b + jArr.length;
-        long[] jArr2 = (long[]) this.f2873c;
+        int length = this.f2873b + jArr.length;
+        long[] jArr2 = (long[]) this.f2874c;
         if (length > jArr2.length) {
-            this.f2873c = Arrays.copyOf(jArr2, Math.max(jArr2.length * 2, length));
+            this.f2874c = Arrays.copyOf(jArr2, Math.max(jArr2.length * 2, length));
         }
-        System.arraycopy(jArr, 0, (long[]) this.f2873c, this.f2872b, jArr.length);
-        this.f2872b = length;
+        System.arraycopy(jArr, 0, (long[]) this.f2874c, this.f2873b, jArr.length);
+        this.f2873b = length;
     }
 
     public int e(int i7, int i10) {
         int o4 = o();
-        if (o4 >= 0 && o4 <= i7 && o4 * i10 * 4 <= ((org.telegram.utils.twidget.j) this.f2873c).d - this.f2872b) {
+        if (o4 >= 0 && o4 <= i7 && o4 * i10 * 4 <= ((org.telegram.utils.twidget.j) this.f2874c).d - this.f2873b) {
             return o4;
         }
         throw org.telegram.utils.twidget.j.a();
     }
 
-    @Override
-    public MediaCodecInfo f(int i7) {
-        if (((MediaCodecInfo[]) this.f2873c) == null) {
-            this.f2873c = new MediaCodecList(this.f2872b).getCodecInfos();
-        }
-        return ((MediaCodecInfo[]) this.f2873c)[i7];
-    }
-
-    public g.f g() {
+    public g.f f() {
         int i7;
         Message message;
-        g.b bVar = (g.b) this.f2873c;
-        g.f fVar = new g.f((ContextThemeWrapper) bVar.f12924c, this.f2872b);
+        g.b bVar = (g.b) this.f2874c;
+        g.f fVar = new g.f((ContextThemeWrapper) bVar.f12923c, this.f2873b);
         View view = (View) bVar.h;
-        g.e eVar = fVar.f12980f;
+        g.e eVar = fVar.f12979f;
         if (view != null) {
-            eVar.f12972r = view;
+            eVar.f12971r = view;
         } else {
-            CharSequence charSequence = (CharSequence) bVar.f12926f;
+            CharSequence charSequence = (CharSequence) bVar.f12925f;
             if (charSequence != null) {
                 eVar.d = charSequence;
-                TextView textView = eVar.f12970p;
+                TextView textView = eVar.f12969p;
                 if (textView != null) {
                     textView.setText(charSequence);
                 }
             }
-            Drawable drawable = (Drawable) bVar.f12925e;
+            Drawable drawable = (Drawable) bVar.f12924e;
             if (drawable != null) {
-                eVar.f12968n = drawable;
-                ImageView imageView = eVar.f12969o;
+                eVar.f12967n = drawable;
+                ImageView imageView = eVar.f12968o;
                 if (imageView != null) {
                     imageView.setVisibility(0);
-                    eVar.f12969o.setImageDrawable(drawable);
+                    eVar.f12968o.setImageDrawable(drawable);
                 }
             }
         }
-        CharSequence charSequence2 = (CharSequence) bVar.f12927g;
+        CharSequence charSequence2 = (CharSequence) bVar.f12926g;
         if (charSequence2 != null) {
-            androidx.biometric.y yVar = (androidx.biometric.y) bVar.f12929j;
+            androidx.biometric.y yVar = (androidx.biometric.y) bVar.f12928j;
             eVar.getClass();
             if (yVar != null) {
-                message = eVar.f12979z.obtainMessage(-2, yVar);
+                message = eVar.f12978z.obtainMessage(-2, yVar);
             } else {
                 message = null;
             }
-            eVar.f12964j = charSequence2;
-            eVar.f12965k = message;
+            eVar.f12963j = charSequence2;
+            eVar.f12964k = message;
         }
-        if (bVar.f12931l != null) {
+        if (bVar.f12930l != null) {
             AlertController$RecycleListView alertController$RecycleListView = (AlertController$RecycleListView) ((LayoutInflater) bVar.d).inflate(eVar.v, (ViewGroup) null);
-            if (bVar.f12922a) {
-                i7 = eVar.f12976w;
+            if (bVar.f12921a) {
+                i7 = eVar.f12975w;
             } else {
-                i7 = eVar.f12977x;
+                i7 = eVar.f12976x;
             }
-            Object obj = bVar.f12931l;
+            Object obj = bVar.f12930l;
             ArrayAdapter arrayAdapter = obj;
             if (obj == null) {
-                arrayAdapter = new ArrayAdapter((ContextThemeWrapper) bVar.f12924c, i7, 16908308, (Object[]) null);
+                arrayAdapter = new ArrayAdapter((ContextThemeWrapper) bVar.f12923c, i7, 16908308, (Object[]) null);
             }
-            eVar.f12973s = arrayAdapter;
-            eVar.f12974t = bVar.f12923b;
-            if (((DialogInterface.OnClickListener) bVar.f12932m) != null) {
+            eVar.f12972s = arrayAdapter;
+            eVar.f12973t = bVar.f12922b;
+            if (((DialogInterface.OnClickListener) bVar.f12931m) != null) {
                 alertController$RecycleListView.setOnItemClickListener(new g.a(bVar, eVar));
             }
-            if (bVar.f12922a) {
+            if (bVar.f12921a) {
                 alertController$RecycleListView.setChoiceMode(1);
             }
-            eVar.f12960e = alertController$RecycleListView;
+            eVar.f12959e = alertController$RecycleListView;
         }
-        View view2 = bVar.f12928i;
+        View view2 = bVar.f12927i;
         if (view2 != null) {
-            eVar.f12961f = view2;
-            eVar.f12962g = false;
+            eVar.f12960f = view2;
+            eVar.f12961g = false;
         }
         fVar.setCancelable(true);
         fVar.setCanceledOnTouchOutside(true);
         fVar.setOnCancelListener(null);
         fVar.setOnDismissListener(null);
-        l.l lVar = (l.l) bVar.f12930k;
+        l.l lVar = (l.l) bVar.f12929k;
         if (lVar != null) {
             fVar.setOnKeyListener(lVar);
         }
         return fVar;
+    }
+
+    @Override
+    public MediaCodecInfo g(int i7) {
+        if (((MediaCodecInfo[]) this.f2874c) == null) {
+            this.f2874c = new MediaCodecList(this.f2873b).getCodecInfos();
+        }
+        return ((MediaCodecInfo[]) this.f2874c)[i7];
     }
 
     public rc.u h(String str) {
@@ -265,7 +264,7 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
         String str3;
         int i7;
         SocketFactory socketFactory;
-        int i10 = this.f2872b;
+        int i10 = this.f2873b;
         if (str != null) {
             if (i10 >= 0) {
                 URI create = URI.create(str);
@@ -273,7 +272,7 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
                     if (i10 >= 0) {
                         String scheme = create.getScheme();
                         String userInfo = create.getUserInfo();
-                        SecureRandom secureRandom = rc.k.f56527a;
+                        SecureRandom secureRandom = rc.k.f56640a;
                         String host = create.getHost();
                         if (host == null) {
                             String rawAuthority = create.getRawAuthority();
@@ -316,7 +315,7 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
                                             } else {
                                                 i7 = 80;
                                             }
-                                            ((qb.a) this.f2873c).getClass();
+                                            ((qb.a) this.f2874c).getClass();
                                             if (z10) {
                                                 socketFactory = SSLSocketFactory.getDefault();
                                             } else {
@@ -324,8 +323,8 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
                                             }
                                             rc.s sVar = new rc.s(socketFactory, new rc.a(str2, i7), i10, null, null);
                                             sVar.d = 1;
-                                            sVar.f56544e = 250;
-                                            sVar.f56545f = true;
+                                            sVar.f56657e = 250;
+                                            sVar.f56658f = true;
                                             if (port >= 0) {
                                                 str2 = str2 + ":" + port;
                                             }
@@ -359,11 +358,11 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
 
     public void i(int i7) {
         ByteBuffer allocate = ByteBuffer.allocate(i7);
-        int position = ((ByteBuffer) this.f2873c).position();
-        ((ByteBuffer) this.f2873c).position(0);
-        allocate.put((ByteBuffer) this.f2873c);
+        int position = ((ByteBuffer) this.f2874c).position();
+        ((ByteBuffer) this.f2874c).position(0);
+        allocate.put((ByteBuffer) this.f2874c);
         allocate.position(position);
-        this.f2873c = allocate;
+        this.f2874c = allocate;
     }
 
     public float j() {
@@ -381,18 +380,18 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
     }
 
     public byte l(int i7) {
-        if (i7 >= 0 && this.f2872b > i7) {
-            return ((ByteBuffer) this.f2873c).get(i7);
+        if (i7 >= 0 && this.f2873b > i7) {
+            return ((ByteBuffer) this.f2874c).get(i7);
         }
-        throw new IndexOutOfBoundsException(String.format("Bad index: index=%d, length=%d", Integer.valueOf(i7), Integer.valueOf(this.f2872b)));
+        throw new IndexOutOfBoundsException(String.format("Bad index: index=%d, length=%d", Integer.valueOf(i7), Integer.valueOf(this.f2873b)));
     }
 
     public long m(int i7) {
-        if (i7 >= 0 && i7 < this.f2872b) {
-            return ((long[]) this.f2873c)[i7];
+        if (i7 >= 0 && i7 < this.f2873b) {
+            return ((long[]) this.f2874c)[i7];
         }
         StringBuilder m10 = i5.c.m(i7, "Invalid index ", ", size is ");
-        m10.append(this.f2872b);
+        m10.append(this.f2873b);
         throw new IndexOutOfBoundsException(m10.toString());
     }
 
@@ -405,12 +404,12 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
     }
 
     public int o() {
-        int i7 = this.f2872b;
+        int i7 = this.f2873b;
         int i10 = i7 + 4;
-        org.telegram.utils.twidget.j jVar = (org.telegram.utils.twidget.j) this.f2873c;
+        org.telegram.utils.twidget.j jVar = (org.telegram.utils.twidget.j) this.f2874c;
         if (i10 <= jVar.d) {
-            int i11 = jVar.f54800a.getInt(i7);
-            this.f2872b += 4;
+            int i11 = jVar.f54916a.getInt(i7);
+            this.f2873b += 4;
             return i11;
         }
         throw org.telegram.utils.twidget.j.a();
@@ -422,7 +421,7 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
 
     @Override
     public void onStateChanged(boolean z10, int i7) {
-        g0.g3(new jg.q(this, this.f2872b, i7, 3));
+        org.telegram.messenger.g0.g3(new jg.q(this, this.f2873b, i7, 3));
     }
 
     @Override
@@ -431,23 +430,23 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
     }
 
     public void p(int i7) {
-        int capacity = ((ByteBuffer) this.f2873c).capacity();
-        int i10 = this.f2872b;
+        int capacity = ((ByteBuffer) this.f2874c).capacity();
+        int i10 = this.f2873b;
         if (capacity < i10 + 1) {
             i(i10 + 1024);
         }
-        ((ByteBuffer) this.f2873c).put((byte) i7);
-        this.f2872b++;
+        ((ByteBuffer) this.f2874c).put((byte) i7);
+        this.f2873b++;
     }
 
     public void q(byte[] bArr) {
-        int capacity = ((ByteBuffer) this.f2873c).capacity();
-        int i7 = this.f2872b;
+        int capacity = ((ByteBuffer) this.f2874c).capacity();
+        int i7 = this.f2873b;
         if (capacity < bArr.length + i7) {
             i(i7 + bArr.length + 1024);
         }
-        ((ByteBuffer) this.f2873c).put(bArr);
-        this.f2872b += bArr.length;
+        ((ByteBuffer) this.f2874c).put(bArr);
+        this.f2873b += bArr.length;
     }
 
     public int r(int[] iArr, int i7) {
@@ -467,9 +466,9 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
     }
 
     public long s(f3.l lVar) {
-        x xVar = (x) this.f2873c;
+        x xVar = (x) this.f2874c;
         int i7 = 0;
-        lVar.g(xVar.f13828a, 0, 1, false);
+        lVar.k(xVar.f13828a, 0, 1, false);
         int i10 = xVar.f13828a[0] & 255;
         if (i10 == 0) {
             return Long.MIN_VALUE;
@@ -481,45 +480,50 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
             i12++;
         }
         int i13 = i10 & (~i11);
-        lVar.g(xVar.f13828a, 1, i12, false);
+        lVar.k(xVar.f13828a, 1, i12, false);
         while (i7 < i12) {
             i7++;
             i13 = (xVar.f13828a[i7] & 255) + (i13 << 8);
         }
-        this.f2872b = i12 + 1 + this.f2872b;
+        this.f2873b = i12 + 1 + this.f2873b;
         return i13;
     }
 
+    @Override
+    public boolean s0(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+        return codecCapabilities.isFeatureSupported(str);
+    }
+
+    @Override
+    public boolean s2() {
+        return true;
+    }
+
     public void t(Object instance) {
-        Object[] objArr = (Object[]) this.f2873c;
+        Object[] objArr = (Object[]) this.f2874c;
         kotlin.jvm.internal.j.e(instance, "instance");
-        int i7 = this.f2872b;
+        int i7 = this.f2873b;
         for (int i10 = 0; i10 < i7; i10++) {
             if (objArr[i10] == instance) {
                 throw new IllegalStateException("Already in the pool!");
             }
         }
-        int i11 = this.f2872b;
+        int i11 = this.f2873b;
         if (i11 < objArr.length) {
             objArr[i11] = instance;
-            this.f2872b = i11 + 1;
+            this.f2873b = i11 + 1;
         }
     }
 
-    @Override
-    public y t0(byte[] bArr) {
-        return u9.c(((h2.d) this.f2873c).t0(bArr), new v(this, 19));
-    }
-
     public String toString() {
-        switch (this.f2871a) {
+        switch (this.f2872a) {
             case 19:
-                l9.a aVar = (l9.a) this.f2873c;
-                ArrayList arrayList = new ArrayList(aVar.f19699b);
-                for (int i7 = 0; i7 < aVar.f19699b; i7++) {
+                l9.a aVar = (l9.a) this.f2874c;
+                ArrayList arrayList = new ArrayList(aVar.f19799b);
+                for (int i7 = 0; i7 < aVar.f19799b; i7++) {
                     arrayList.add(l0.e0(aVar.b(i7)));
                 }
-                return "UnsupportedBrands{major=" + l0.e0(this.f2872b) + ", compatible=" + arrayList + "}";
+                return "UnsupportedBrands{major=" + l0.e0(this.f2873b) + ", compatible=" + arrayList + "}";
             default:
                 return super.toString();
         }
@@ -527,25 +531,20 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
 
     public byte[] u(int i7, int i10) {
         int i11 = i10 - i7;
-        if (i11 >= 0 && i7 >= 0 && this.f2872b >= i10) {
+        if (i11 >= 0 && i7 >= 0 && this.f2873b >= i10) {
             byte[] bArr = new byte[i11];
             if (i11 != 0) {
-                System.arraycopy(((ByteBuffer) this.f2873c).array(), i7, bArr, 0, i11);
+                System.arraycopy(((ByteBuffer) this.f2874c).array(), i7, bArr, 0, i11);
             }
             return bArr;
         }
-        throw new IllegalArgumentException(String.format("Bad range: beginIndex=%d, endIndex=%d, length=%d", Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(this.f2872b)));
-    }
-
-    @Override
-    public boolean u2() {
-        return true;
+        throw new IllegalArgumentException(String.format("Bad range: beginIndex=%d, endIndex=%d, length=%d", Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(this.f2873b)));
     }
 
     public String v(h4 h4Var) {
         String str;
-        w wVar = (w) this.f2873c;
-        int i7 = this.f2872b;
+        w wVar = (w) this.f2874c;
+        int i7 = this.f2873b;
         try {
             if (wVar.E != null) {
                 com.google.android.gms.internal.play_billing.g gVar = wVar.E;
@@ -571,12 +570,12 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
                 } else {
                     str = "LAUNCH_BILLING_FLOW";
                 }
-                f5.v vVar = new f5.v(h4Var);
+                v vVar = new v(h4Var);
                 com.google.android.gms.internal.play_billing.e eVar = (com.google.android.gms.internal.play_billing.e) gVar;
                 Parcel v12 = eVar.v1();
                 v12.writeString(packageName);
                 v12.writeString(str);
-                int i10 = com.google.android.gms.internal.play_billing.d.f6982a;
+                int i10 = com.google.android.gms.internal.play_billing.d.f6981a;
                 v12.writeStrongBinder(vVar);
                 eVar.f306b.transact(1, v12, null, 1);
                 v12.recycle();
@@ -584,7 +583,7 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
             }
             throw null;
         } catch (Exception e10) {
-            wVar.G(95, 28, z.f11334p);
+            wVar.G(95, 28, z.f11333p);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e10);
             h4Var.a(0);
             return "billingOverrideService.getBillingOverride";
@@ -592,12 +591,12 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
     }
 
     @Override
-    public boolean x0(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        return codecCapabilities.isFeatureSupported(str);
+    public String w0() {
+        return null;
     }
 
     public j(int i7, boolean z10, boolean z11) {
-        this.f2871a = i7;
+        this.f2872a = i7;
     }
 
     @Override
@@ -605,63 +604,63 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
     }
 
     public j(Object obj, int i7, int i10) {
-        this.f2871a = i10;
-        this.f2873c = obj;
-        this.f2872b = i7;
+        this.f2872a = i10;
+        this.f2874c = obj;
+        this.f2873b = i7;
     }
 
     public j(int i7, short s5) {
-        this.f2871a = i7;
+        this.f2872a = i7;
         switch (i7) {
             case 15:
-                this.f2873c = new qb.a();
+                this.f2874c = new qb.a();
                 return;
             case 16:
             default:
-                this.f2872b = 0;
-                this.f2873c = new StringBuilder();
+                this.f2873b = 0;
+                this.f2874c = new StringBuilder();
                 return;
             case 17:
-                this.f2873c = new x(8);
+                this.f2874c = new x(8);
                 return;
         }
     }
 
     public j(int i7, int i10) {
-        this.f2871a = i10;
+        this.f2872a = i10;
         switch (i10) {
             case 11:
                 if (i7 > 0) {
-                    this.f2873c = new Object[i7];
+                    this.f2874c = new Object[i7];
                     return;
                 }
                 throw new IllegalArgumentException("The max pool size must be > 0");
             case 12:
             default:
-                this.f2873c = new long[i7];
+                this.f2874c = new long[i7];
                 return;
             case 13:
-                this.f2873c = ByteBuffer.allocate(i7);
-                this.f2872b = 0;
+                this.f2874c = ByteBuffer.allocate(i7);
+                this.f2873b = 0;
                 return;
             case 14:
-                this.f2873c = new CountDownLatch(1);
-                this.f2872b = i7;
+                this.f2874c = new CountDownLatch(1);
+                this.f2873b = i7;
                 return;
         }
     }
 
     public j(int[] iArr, int i7) {
         l9.a aVar;
-        this.f2871a = 19;
-        this.f2872b = i7;
+        this.f2872a = 19;
+        this.f2873b = i7;
         if (iArr != null) {
-            l9.a aVar2 = l9.a.f19697c;
-            aVar = iArr.length == 0 ? l9.a.f19697c : new l9.a(Arrays.copyOf(iArr, iArr.length));
+            l9.a aVar2 = l9.a.f19797c;
+            aVar = iArr.length == 0 ? l9.a.f19797c : new l9.a(Arrays.copyOf(iArr, iArr.length));
         } else {
-            aVar = l9.a.f19697c;
+            aVar = l9.a.f19797c;
         }
-        this.f2873c = aVar;
+        this.f2874c = aVar;
     }
 
     @Override
@@ -669,20 +668,13 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
     }
 
     public j(org.telegram.utils.twidget.j jVar) {
-        this.f2871a = 9;
-        this.f2873c = jVar;
-        this.f2872b = 20;
-    }
-
-    public j(Context context) {
-        this.f2871a = 3;
-        int e10 = g.f.e(context, 0);
-        this.f2873c = new g.b(new ContextThemeWrapper(context, g.f.e(context, e10)));
-        this.f2872b = e10;
+        this.f2872a = 9;
+        this.f2874c = jVar;
+        this.f2873b = 20;
     }
 
     @Override
-    public void S0(vr vrVar) {
+    public void E0(ur urVar) {
     }
 
     @Override
@@ -697,13 +689,20 @@ public final class j implements s9, g61, h2.d, u2.u, f0 {
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 
+    public j(Context context) {
+        this.f2872a = 3;
+        int e10 = g.f.e(context, 0);
+        this.f2874c = new g.b(new ContextThemeWrapper(context, g.f.e(context, e10)));
+        this.f2873b = e10;
+    }
+
     public j(boolean z10, boolean z11, boolean z12) {
-        this.f2871a = 16;
-        this.f2872b = (z10 || z11 || z12) ? 1 : 0;
+        this.f2872a = 16;
+        this.f2873b = (z10 || z11 || z12) ? 1 : 0;
     }
 
     @Override
-    public void onError(i61 i61Var, Exception exc) {
+    public void onError(h61 h61Var, Exception exc) {
     }
 
     @Override

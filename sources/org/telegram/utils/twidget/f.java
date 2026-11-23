@@ -2,11 +2,11 @@ package org.telegram.utils.twidget;
 
 import android.media.AudioRecordingConfiguration;
 import android.os.Bundle;
-public final class f implements p4.c0, p4.c1, h2.j {
-    public final int f54735a;
+public final class f implements p4.c0, p4.b1, h2.j {
+    public final int f54851a;
 
     public f(int i7) {
-        this.f54735a = i7;
+        this.f54851a = i7;
     }
 
     public static AudioRecordingConfiguration a(Object obj) {
@@ -15,23 +15,23 @@ public final class f implements p4.c0, p4.c1, h2.j {
 
     @Override
     public void accept(Object obj) {
-        p4.i1 i1Var = (p4.i1) obj;
-        switch (this.f54735a) {
+        p4.h1 h1Var = (p4.h1) obj;
+        switch (this.f54851a) {
             case 26:
-                i1Var.B0();
+                h1Var.C0();
                 return;
             case 27:
-                i1Var.b();
+                h1Var.b();
                 return;
             default:
-                i1Var.g0();
+                h1Var.h0();
                 return;
         }
     }
 
     @Override
     public void b(p4.u uVar, int i7) {
-        switch (this.f54735a) {
+        switch (this.f54851a) {
             case 21:
                 uVar.getClass();
                 return;
@@ -45,8 +45,8 @@ public final class f implements p4.c0, p4.c1, h2.j {
     }
 
     @Override
-    public Object k(p4.d0 d0Var, p4.v vVar, int i7) {
-        switch (this.f54735a) {
+    public Object j(p4.d0 d0Var, p4.v vVar, int i7) {
+        switch (this.f54851a) {
             case 24:
                 d0Var.getClass();
                 throw new ClassCastException();
@@ -59,14 +59,14 @@ public final class f implements p4.c0, p4.c1, h2.j {
     }
 
     public f(Object obj, int i7) {
-        this.f54735a = i7;
+        this.f54851a = i7;
     }
 
     public f(String str, int i7, int i10, p4.q qVar) {
-        this.f54735a = 25;
+        this.f54851a = 25;
     }
 
-    public f(boolean z10, p4.k1 k1Var, Bundle bundle) {
-        this.f54735a = 29;
+    public f(boolean z10, p4.j1 j1Var, Bundle bundle) {
+        this.f54851a = 29;
     }
 }

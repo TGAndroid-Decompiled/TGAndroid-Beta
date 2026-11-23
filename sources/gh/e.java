@@ -1,10 +1,10 @@
 package gh;
 
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
 public class e implements a {
-    public final h6 f13617a;
+    public final i6 f13617a;
     public d f13618b;
     public d f13619c;
     public d d;
@@ -14,8 +14,8 @@ public class e implements a {
     public float f13622n;
     public float f13623r;
 
-    public e(h6 h6Var) {
-        this.f13617a = h6Var;
+    public e(i6 i6Var) {
+        this.f13617a = i6Var;
         float N = g0.N(1.0f);
         float N2 = g0.N(0.33333334f);
         this.f13622n = N;
@@ -32,8 +32,8 @@ public class e implements a {
     }
 
     @Override
-    public final int A2() {
-        return a(this.f13620e);
+    public int D0() {
+        return 0;
     }
 
     @Override
@@ -42,28 +42,23 @@ public class e implements a {
     }
 
     @Override
-    public int M0() {
-        return 0;
-    }
-
-    @Override
-    public int U0() {
+    public int Q0() {
         return a(this.d);
     }
 
     @Override
-    public int W1() {
+    public final float T0() {
+        return -1.0f;
+    }
+
+    @Override
+    public final float V0() {
+        return -1.0f;
+    }
+
+    @Override
+    public int X1() {
         return a(this.f13618b);
-    }
-
-    @Override
-    public final float Y0() {
-        return -1.0f;
-    }
-
-    @Override
-    public final float Z0() {
-        return -1.0f;
     }
 
     public final int a(d dVar) {
@@ -71,11 +66,11 @@ public class e implements a {
         if (dVar == null) {
             return 0;
         }
-        h6 h6Var = this.f13617a;
-        if ((h6Var instanceof fi.b) || (h6Var == null ? m6.I.q() : h6Var.d())) {
+        i6 i6Var = this.f13617a;
+        if ((i6Var instanceof fi.b) || (i6Var == null ? n6.I.q() : i6Var.b())) {
             z10 = true;
         }
-        return dVar.j(h6Var, z10);
+        return dVar.f(i6Var, z10);
     }
 
     public float b() {
@@ -99,7 +94,12 @@ public class e implements a {
     }
 
     @Override
-    public int t0() {
+    public int i0() {
         return a(this.f13619c);
+    }
+
+    @Override
+    public final int x2() {
+        return a(this.f13620e);
     }
 }

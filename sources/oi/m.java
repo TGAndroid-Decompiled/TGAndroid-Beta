@@ -1,60 +1,86 @@
 package oi;
 
-import android.content.Intent;
 import java.util.ArrayList;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.gj;
+import java.util.HashMap;
+import org.telegram.messenger.ef;
+import org.telegram.messenger.ks;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ck;
-import org.telegram.ui.Components.ui;
-public final class m implements ck {
-    public final ui f22189a;
-    public final o f22190b;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.Components.fh;
+import org.telegram.ui.Components.ri;
+import org.telegram.ui.Components.ti;
+public final class m implements ri {
+    public final ti f22296a;
+    public final p f22297b;
 
-    public m(o oVar, ui uiVar) {
-        this.f22190b = oVar;
-        this.f22189a = uiVar;
+    public m(p pVar, ti tiVar) {
+        this.f22297b = pVar;
+        this.f22296a = tiVar;
     }
 
     @Override
-    public final void A() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("*/*");
-            this.f22190b.f37477b.f40352a2.startActivityForResult(intent, 21);
-        } catch (Exception e10) {
-            a8.g(e10, true);
-        }
+    public final void S(fh fhVar) {
+        ks.f(this.f22297b.f22366n).d(fhVar);
     }
 
     @Override
-    public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i7, long j3, boolean z11, long j10) {
-        String str2;
-        s3 s3Var = this.f22190b.f22237r;
-        if (!arrayList.isEmpty()) {
-            s3Var.f2((String) arrayList.get(0));
-        } else if (!arrayList3.isEmpty()) {
-            gj gjVar = (gj) arrayList3.get(0);
-            s3Var.getClass();
-            if (gjVar != null && gjVar.F0() != null) {
-                TLRPC.Document F0 = gjVar.F0();
-                TLRPC.Message message = gjVar.f24177k;
-                if (message != null) {
-                    str2 = message.attachPath;
-                } else {
-                    str2 = null;
+    public final boolean T() {
+        return false;
+    }
+
+    @Override
+    public final boolean V1() {
+        return false;
+    }
+
+    @Override
+    public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
+        ti tiVar = this.f22296a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f39967e2;
+        t3 t3Var = this.f22297b.f22367r;
+        if (i7 == 7 || i7 == 8) {
+            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
+            a aVar = t3Var.f22488j4;
+            t3Var.f22488j4 = null;
+            int i12 = 0;
+            while (true) {
+                if (i12 >= selectedPhotosOrder.size()) {
+                    break;
                 }
-                s3Var.g2(F0, str2);
+                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i12));
+                if (obj instanceof ef) {
+                    if (aVar != null) {
+                        t3Var.X1(aVar, (ef) obj);
+                    } else {
+                        t3Var.i2((ef) obj);
+                    }
+                } else {
+                    i12++;
+                }
             }
         }
-        this.f22189a.a(true);
+        t3Var.f22488j4 = null;
+        tiVar.a(true);
     }
 
     @Override
-    public final void T() {
+    public final void B0() {
     }
 
     @Override
-    public final void p(ArrayList arrayList, boolean z10, int i7, long j3) {
+    public final void l0() {
+    }
+
+    @Override
+    public final void O0(Object obj) {
+    }
+
+    @Override
+    public final void h1(TLRPC.User user) {
+    }
+
+    @Override
+    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i7, int i10, long j3, boolean z11, long j10) {
     }
 }

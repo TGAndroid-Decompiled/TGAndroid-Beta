@@ -3,9 +3,9 @@ package gh;
 import e2.a1;
 import h2.j;
 import h2.o;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 import p4.c0;
-import p4.i1;
+import p4.h1;
 import p4.u;
 public final class c implements d, o, c0, j {
     public final int f13614a;
@@ -22,10 +22,10 @@ public final class c implements d, o, c0, j {
     public void accept(Object obj) {
         switch (this.f13614a) {
             case 4:
-                ((i1) obj).M(this.f13615b, this.f13616c);
+                ((h1) obj).N(this.f13615b, this.f13616c);
                 return;
             default:
-                ((i1) obj).t0(this.f13615b, this.f13616c);
+                ((h1) obj).u0(this.f13615b, this.f13616c);
                 return;
         }
     }
@@ -33,6 +33,14 @@ public final class c implements d, o, c0, j {
     @Override
     public void b(u uVar, int i7) {
         uVar.d(i7, this.f13615b, this.f13616c);
+    }
+
+    @Override
+    public int f(i6 i6Var, boolean z10) {
+        if (z10) {
+            return this.f13615b;
+        }
+        return this.f13616c;
     }
 
     @Override
@@ -45,13 +53,5 @@ public final class c implements d, o, c0, j {
                 ((a1) obj).J(this.f13615b, this.f13616c);
                 return;
         }
-    }
-
-    @Override
-    public int j(h6 h6Var, boolean z10) {
-        if (z10) {
-            return this.f13615b;
-        }
-        return this.f13616c;
     }
 }

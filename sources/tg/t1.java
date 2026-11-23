@@ -1,210 +1,158 @@
 package tg;
 
-import android.content.Context;
+import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PointF;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.view.TextureView;
+import android.graphics.RectF;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import c8.na;
-import org.telegram.messenger.f3;
-import org.telegram.messenger.o10;
-import org.telegram.ui.Components.aj0;
-import org.telegram.ui.Components.d6;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.yt0;
-public final class t1 extends j {
-    public final Path A0;
-    public boolean B0;
-    public boolean C0;
-    public final d6 D0;
-    public final int f58142r0;
-    public boolean f58143s0;
-    public final d6 f58144t0;
-    public final yt0 f58145u0;
-    public final TextureView f58146v0;
-    public final Bitmap f58147w0;
-    public final Rect f58148x0;
-    public final Rect f58149y0;
-    public float f58150z0;
+import hi.s3;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.b30;
+public abstract class t1 extends View {
+    public Bitmap f58244a;
+    public Paint f58245b;
+    public Paint f58246c;
+    public Paint d;
+    public float f58247e;
+    public float f58248f;
+    public Path h;
+    public Rect f58249n;
+    public RectF f58250r;
+    public int f58251s;
+    public boolean f58252w;
+    public q0.a f58253x;
+    public float f58254y;
 
-    public t1(Context context, PointF pointF, yt0 yt0Var, String str) {
-        super(context, pointF);
-        this.f58142r0 = -1;
-        this.f58143s0 = false;
-        Rect rect = new Rect();
-        this.f58148x0 = rect;
-        this.f58149y0 = new Rect();
-        this.f58150z0 = 1.0f;
-        this.A0 = new Path();
-        this.B0 = true;
-        this.C0 = true;
-        nr nrVar = nr.h;
-        this.D0 = new d6(this, 0L, 350L, nrVar);
-        new Paint(1).setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        setRotation(0.0f);
-        setScale(1.0f);
-        this.f58145u0 = yt0Var;
-        Bitmap decodeFile = BitmapFactory.decodeFile(str);
-        this.f58147w0 = decodeFile;
-        if (decodeFile != null) {
-            this.f58150z0 = decodeFile.getWidth() / decodeFile.getHeight();
-            rect.set(0, 0, decodeFile.getWidth(), decodeFile.getHeight());
+    public final void a(boolean z10) {
+        if (this.f58252w) {
+            return;
         }
-        TextureView textureView = new TextureView(context);
-        this.f58146v0 = textureView;
-        addView(textureView, na.c(-1.0f, -1));
-        this.f58144t0 = new d6(this, 0L, 500L, nrVar);
-        k();
-        setWillNotDraw(false);
+        this.f58252w = true;
+        ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
+        duration.setInterpolator(kr.f36858f);
+        duration.addUpdateListener(new s3(this, 28));
+        duration.addListener(new b30(15, this, z10));
+        duration.start();
     }
 
     @Override
-    public final i a() {
-        return new r1(this, getContext());
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        ((sg.i) this).E.f57443s1.d();
+        this.f58244a.recycle();
+        this.f58244a = null;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        Rect rect;
+    public final void onDraw(Canvas canvas) {
         Bitmap bitmap;
-        Path path;
-        boolean drawChild;
-        if (!this.B0) {
-            return false;
-        }
-        if (view == this.f58146v0) {
+        int i7;
+        float f10;
+        Rect rect = this.f58249n;
+        Paint paint = this.f58245b;
+        RectF rectF = this.f58250r;
+        Path path = this.h;
+        super.onDraw(canvas);
+        float min = Math.min(getWidth(), getHeight()) * 0.2f;
+        float width = this.f58247e * getWidth();
+        float height = this.f58248f * getHeight();
+        int round = Math.round(this.f58247e * this.f58244a.getWidth());
+        int round2 = Math.round(this.f58248f * this.f58244a.getHeight());
+        int pixel = this.f58244a.getPixel(Utilities.j(round, bitmap.getWidth() - 1, 0), Utilities.j(round2, this.f58244a.getHeight() - 1, 0));
+        this.f58251s = pixel;
+        Paint paint2 = this.d;
+        paint2.setColor(pixel);
+        float f11 = this.f58254y;
+        if (f11 != 0.0f && f11 != 1.0f) {
+            RectF rectF2 = org.telegram.messenger.g0.P;
+            f10 = 1.0f;
+            i7 = round;
+            rectF2.set(width - min, height - min, width + min, height + min);
+            canvas.saveLayerAlpha(rectF2, (int) (this.f58254y * 255.0f), 31);
+        } else {
+            i7 = round;
+            f10 = 1.0f;
             canvas.save();
-            float d = this.f58144t0.d(this.f58143s0);
-            canvas.scale(1.0f - (d * 2.0f), 1.0f, getMeasuredWidth() / 2.0f, 0.0f);
-            canvas.skew(0.0f, f3.A(1.0f, d, 4.0f * d, 0.25f));
-            float d2 = this.D0.d(this.C0);
-            float width = (view.getWidth() / 2.0f) + view.getX();
-            float height = (view.getHeight() / 2.0f) + view.getY();
-            float min = Math.min(view.getWidth() / 2.0f, view.getHeight() / 2.0f);
-            int i7 = (d2 > 1.0f ? 1 : (d2 == 1.0f ? 0 : -1));
-            Rect rect2 = this.f58148x0;
-            Rect rect3 = this.f58149y0;
-            Bitmap bitmap2 = this.f58147w0;
-            Path path2 = this.A0;
-            if (i7 < 0) {
-                rect = rect3;
-                bitmap = bitmap2;
-                canvas.saveLayerAlpha(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight(), 128, 31);
-                path2.rewind();
-                path = path2;
-                path.addCircle(width, height, min, Path.Direction.CW);
-                canvas.clipPath(path);
-                if (bitmap != null) {
-                    rect.set(0, 0, view.getWidth(), view.getHeight());
-                    canvas.drawBitmap(bitmap, rect2, rect, (Paint) null);
+        }
+        float f12 = (this.f58254y * 0.5f) + 0.5f;
+        canvas.scale(f12, f12, width, height);
+        path.rewind();
+        Path.Direction direction = Path.Direction.CW;
+        path.addCircle(width, height, min, direction);
+        canvas.clipPath(path);
+        int round3 = Math.round(3.5f);
+        rect.set(i7 - round3, round2 - round3, i7 + round3, round2 + round3);
+        rectF.set(width - min, height - min, width + min, height + min);
+        canvas.drawBitmap(this.f58244a, rect, rectF, (Paint) null);
+        float strokeWidth = min - (paint2.getStrokeWidth() / 2.0f);
+        canvas.drawCircle(width, height, strokeWidth, paint2);
+        float strokeWidth2 = (strokeWidth - (paint2.getStrokeWidth() / 2.0f)) - (paint.getStrokeWidth() / 2.0f);
+        canvas.drawCircle(width, height, strokeWidth2, paint);
+        float strokeWidth3 = strokeWidth2 - (paint.getStrokeWidth() / 2.0f);
+        path.rewind();
+        path.addCircle(width, height, strokeWidth3, direction);
+        canvas.clipPath(path);
+        float f13 = (strokeWidth3 * 2.0f) / 8.0f;
+        path.rewind();
+        for (float f14 = -3.5f; f14 < 4.5f; f14 += f10) {
+            float f15 = (f14 * f13) + width;
+            path.moveTo(f15, height - strokeWidth3);
+            path.lineTo(f15, height + strokeWidth3);
+        }
+        for (float f16 = -3.5f; f16 < 4.5f; f16 += f10) {
+            float f17 = (f16 * f13) + height;
+            path.moveTo(width - strokeWidth3, f17);
+            path.lineTo(width + strokeWidth3, f17);
+        }
+        canvas.drawPath(path, this.f58246c);
+        float f18 = f13 / 2.0f;
+        rectF.set(width - f18, height - f18, width + f18, height + f18);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(f10), org.telegram.messenger.g0.L(f10), paint);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
+        super.onSizeChanged(i7, i10, i11, i12);
+        if (i7 != 0 && i10 != 0 && i11 != 0 && i12 != 0 && isLaidOut()) {
+            this.f58247e = (i11 * this.f58247e) / i7;
+            this.f58248f = (i12 * this.f58248f) / i10;
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked != 0) {
+            if (actionMasked != 1) {
+                if (actionMasked != 2) {
+                    if (actionMasked != 3) {
+                        return true;
+                    }
+                    a(false);
+                    return true;
                 }
-                super.drawChild(canvas, view, j3);
-                canvas.restore();
-            } else {
-                rect = rect3;
-                bitmap = bitmap2;
-                path = path2;
+                this.f58247e = motionEvent.getX() / getWidth();
+                this.f58248f = motionEvent.getY() / getHeight();
+                invalidate();
+                return true;
             }
-            canvas.save();
-            path.rewind();
-            path.addCircle(width, height, min * d2, Path.Direction.CW);
-            canvas.clipPath(path);
-            if (bitmap != null) {
-                rect.set(0, 0, view.getWidth(), view.getHeight());
-                canvas.drawBitmap(bitmap, rect2, rect, (Paint) null);
-            }
-            if ((getParent() instanceof d) && ((d) getParent()).f57772a) {
-                drawChild = true;
-            } else {
-                drawChild = super.drawChild(canvas, view, j3);
-            }
-            canvas.restore();
-            canvas.restore();
-            return drawChild;
+            a(true);
+            return true;
         }
-        return super.drawChild(canvas, view, j3);
+        this.f58247e = motionEvent.getX() / getWidth();
+        this.f58248f = motionEvent.getY() / getHeight();
+        invalidate();
+        getParent().requestDisallowInterceptTouchEvent(true);
+        return true;
     }
 
-    public int getAnchor() {
-        return this.f58142r0;
-    }
-
-    public yt0 getBaseSize() {
-        return this.f58145u0;
-    }
-
-    @Override
-    public aj0 getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new Object();
-        }
-        float scaleX = viewGroup.getScaleX();
-        float scale = getScale();
-        float L = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale * getMeasuredWidth());
-        float scale2 = getScale();
-        float L2 = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float y10 = o10.y(L, 2.0f, getPositionX(), scaleX);
-        return new aj0(y10, o10.y(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + y10) - y10, L2 * scaleX);
-    }
-
-    @Override
-    public final void k() {
-        yt0 yt0Var = this.f58145u0;
-        setX(getPositionX() - (yt0Var.f42506a / 2.0f));
-        setY(getPositionY() - (yt0Var.f42507b / 2.0f));
-        m();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        TextureView textureView = this.f58146v0;
-        if (textureView != null) {
-            int measuredHeight = ((i12 - i10) - textureView.getMeasuredHeight()) / 2;
-            int measuredWidth = ((i11 - i7) - textureView.getMeasuredWidth()) / 2;
-            textureView.layout(measuredWidth, measuredHeight, textureView.getMeasuredWidth() + measuredWidth, textureView.getMeasuredHeight() + measuredHeight);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        int i11;
-        int i12;
-        yt0 yt0Var = this.f58145u0;
-        int i13 = (int) yt0Var.f42506a;
-        int i14 = (int) yt0Var.f42507b;
-        TextureView textureView = this.f58146v0;
-        if (textureView != null) {
-            float f10 = this.f58150z0;
-            if (f10 >= 1.0f) {
-                i11 = (int) (f10 * i14);
-            } else {
-                i11 = i13;
-            }
-            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
-            float f11 = this.f58150z0;
-            if (f11 >= 1.0f) {
-                i12 = i14;
-            } else {
-                i12 = (int) (i13 / f11);
-            }
-            textureView.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i12, 1073741824));
-        }
-        setMeasuredDimension(i13, i14);
-    }
-
-    public void setDraw(boolean z10) {
-        if (this.B0 != z10) {
-            this.B0 = z10;
-            invalidate();
-        }
+    public void setColorListener(q0.a aVar) {
+        this.f58253x = aVar;
     }
 }

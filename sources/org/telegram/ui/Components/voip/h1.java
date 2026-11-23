@@ -1,95 +1,64 @@
 package org.telegram.ui.Components.voip;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import java.nio.ByteBuffer;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.gc;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.b9;
-import org.webrtc.JavaI420Buffer;
+import android.os.SystemClock;
 import org.webrtc.VideoFrame;
-public final class h1 {
-    public final ImageReceiver f40998a;
-    public VideoFrame f40999b;
+import org.webrtc.VideoSink;
+public final class h1 implements VideoSink {
+    public volatile u0 f40913a;
+    public volatile n2 f40914b;
+    public volatile int f40915c;
+    public volatile int d;
+    public volatile long f40916e;
+    public final oi.c2 f40917f = new oi.c2(this, 19);
+    public final k1 h;
 
-    public h1() {
-        TLRPC.Chat chat;
-        ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f40998a = imageReceiver;
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null) {
-            chat = sharedInstance.getChat();
-        } else {
-            chat = null;
-        }
-        b9 b9Var = new b9((h6) null);
-        if (chat != null) {
-            sharedInstance.getAccount();
-            b9Var.q(chat);
-            imageReceiver.d = sharedInstance.getAccount();
-        }
-        imageReceiver.J0(60);
-        imageReceiver.f22634h1 = new org.telegram.tgnet.v(this, 9);
-        imageReceiver.P();
-        imageReceiver.q0(chat != null ? gc.a(1, chat) : null, "100_100", b9Var, null, chat, 0);
-        a();
+    public h1(k1 k1Var) {
+        this.h = k1Var;
     }
 
-    public final void a() {
-        ByteBuffer byteBuffer;
-        Bitmap createBitmap = Bitmap.createBitmap(640, 360, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        canvas.drawColor(-14999773);
-        ImageReceiver imageReceiver = this.f40998a;
-        imageReceiver.y0(260.0f, 120.0f, 120.0f, 120.0f);
-        imageReceiver.h(canvas, null);
-        int width = createBitmap.getWidth();
-        int height = createBitmap.getHeight();
-        int[] iArr = new int[width * height];
-        createBitmap.getPixels(iArr, 0, width, 0, 0, width, height);
-        JavaI420Buffer allocate = JavaI420Buffer.allocate(width, height);
-        ByteBuffer dataY = allocate.getDataY();
-        ByteBuffer dataU = allocate.getDataU();
-        ByteBuffer dataV = allocate.getDataV();
-        int strideY = allocate.getStrideY();
-        int strideU = allocate.getStrideU();
-        int strideV = allocate.getStrideV();
-        for (int i7 = 0; i7 < height; i7++) {
-            int i10 = 0;
-            while (i10 < width) {
-                int i11 = iArr[(i7 * width) + i10];
-                Bitmap bitmap = createBitmap;
-                int i12 = (i11 >> 16) & 255;
-                int i13 = (i11 >> 8) & 255;
-                int i14 = i11 & 255;
-                int[] iArr2 = iArr;
-                int i15 = width;
-                dataY.put((i7 * strideY) + i10, (byte) (((((i14 * 25) + ((i13 * 129) + (i12 * 66))) + 128) >> 8) + 16));
-                if ((i7 & 1) == 0 && (i10 & 1) == 0) {
-                    int i16 = i7 >> 1;
-                    int i17 = i10 >> 1;
-                    byteBuffer = dataY;
-                    dataU.put((i16 * strideU) + i17, (byte) (((((i14 * 112) + ((i12 * (-38)) - (i13 * 74))) + 128) >> 8) + 128));
-                    dataV.put((i16 * strideV) + i17, (byte) ((((((i12 * 112) - (i13 * 94)) - (i14 * 18)) + 128) >> 8) + 128));
-                } else {
-                    byteBuffer = dataY;
-                }
-                i10++;
-                createBitmap = bitmap;
-                iArr = iArr2;
-                width = i15;
-                dataY = byteBuffer;
+    public final boolean a(long j3) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (this.f40916e < j3) {
+            if (elapsedRealtime - j3 >= 700) {
+                return false;
             }
+            return true;
+        } else if (elapsedRealtime - this.f40916e >= 5000) {
+            return false;
+        } else {
+            return true;
         }
-        VideoFrame videoFrame = new VideoFrame(allocate, 0, 0L);
-        createBitmap.recycle();
-        VideoFrame videoFrame2 = this.f40999b;
-        if (videoFrame2 != null) {
-            videoFrame2.release();
+    }
+
+    @Override
+    public final void onFrame(VideoFrame videoFrame) {
+        boolean z10;
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (elapsedRealtime - this.f40916e > 5000) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        this.f40999b = videoFrame;
+        this.f40916e = elapsedRealtime;
+        int rotatedWidth = videoFrame.getRotatedWidth();
+        int rotatedHeight = videoFrame.getRotatedHeight();
+        if (rotatedWidth != this.f40915c || rotatedHeight != this.d || z10) {
+            this.f40915c = rotatedWidth;
+            this.d = rotatedHeight;
+            org.telegram.messenger.g0.g3(this.f40917f);
+        }
+        u0 u0Var = this.f40913a;
+        n2 n2Var = this.f40914b;
+        if (u0Var != null) {
+            u0Var.onFrame(videoFrame);
+        }
+        if (n2Var != null) {
+            n2Var.onFrame(videoFrame);
+        }
+    }
+
+    @Override
+    public final void setParentSink(VideoSink videoSink) {
+        org.webrtc.d0.a(this, videoSink);
     }
 }

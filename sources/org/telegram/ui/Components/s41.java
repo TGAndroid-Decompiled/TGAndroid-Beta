@@ -1,56 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
 import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.tgnet.TLObject;
-public class s41 extends URLSpan {
-    public final boolean f39438a;
-    public final fz0 f39439b;
-    public TLObject f39440c;
-    public String d;
-
+public final class s41 extends r41 {
     public s41(String str) {
-        this(str, (fz0) null);
+        super(str != null ? str.replace((char) 8238, ' ') : str, (ez0) null);
     }
 
     @Override
-    public void onClick(View view) {
-        String url = getURL();
-        if (url.startsWith("@")) {
-            vf.c.q(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
-            return;
-        }
-        vf.c.t(view.getContext(), url);
-    }
-
-    @Override
-    public void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int i7 = textPaint.linkColor;
-        int color = textPaint.getColor();
+    public final void updateDrawState(TextPaint textPaint) {
         super.updateDrawState(textPaint);
-        fz0 fz0Var = this.f39439b;
-        if (fz0Var != null) {
-            fz0Var.a(textPaint);
-        }
-        if (i7 == color && !this.f39438a) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        textPaint.setUnderlineText(z10);
-    }
-
-    public s41(String str, int i7) {
-        this(str, (fz0) null);
-        this.f39438a = true;
-    }
-
-    public s41(String str, fz0 fz0Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f39438a = false;
-        this.f39439b = fz0Var;
+        textPaint.setTypeface(org.telegram.messenger.g0.o());
+        textPaint.setUnderlineText(false);
     }
 }

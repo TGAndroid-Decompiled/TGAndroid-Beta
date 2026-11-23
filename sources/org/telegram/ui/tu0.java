@@ -1,44 +1,30 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.RectF;
-public final class tu0 extends v4.k {
-    public int F = -1;
-    public final ProfileActivity G;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class tu0 implements RequestDelegate {
+    public final int f52482a;
+    public final vu0 f52483b;
 
-    public tu0(ProfileActivity profileActivity) {
-        this.G = profileActivity;
+    public tu0(vu0 vu0Var, int i7) {
+        this.f52482a = i7;
+        this.f52483b = vu0Var;
     }
 
     @Override
-    public final long K(long j3, long j10, long j11) {
-        return 0L;
-    }
-
-    @Override
-    public final void N() {
-        org.telegram.messenger.g0.g3(new su0(this, 0));
-    }
-
-    @Override
-    public final void P(v4.e1 e1Var) {
-        RectF rectF = ProfileActivity.Z6;
-        this.G.s5();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f59162p.isEmpty();
-        boolean isEmpty2 = this.f59164r.isEmpty();
-        boolean isEmpty3 = this.f59165s.isEmpty();
-        boolean isEmpty4 = this.f59163q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new a3(this, 24));
-            ofFloat.setDuration(this.f59184e);
-            ofFloat.start();
-            this.F = this.G.getNotificationCenter().q(null, this.F, true);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f52482a) {
+            case 0:
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                vu0 vu0Var = this.f52483b;
+                vu0Var.f53035c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new tu0(vu0Var, 1));
+                return;
+            default:
+                this.f52483b.f53035c.getMessagesController().X2(true);
+                return;
         }
-        super.m();
     }
 }

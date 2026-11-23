@@ -1,76 +1,47 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import androidx.core.widget.NestedScrollView;
-public final class yp extends NestedScrollView {
-    public boolean f42447a0;
-    public final cq f42448b0;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class yp extends FrameLayout {
+    public final View f42533a;
+    public final TextView f42534b;
 
-    public yp(cq cqVar, Context context) {
+    public yp(Context context) {
         super(context);
-        this.f42448b0 = cqVar;
+        View view = new View(context);
+        this.f42533a = view;
+        int L = org.telegram.messenger.g0.L(4.0f);
+        int i7 = org.telegram.ui.ActionBar.n6.Fi;
+        int v02 = org.telegram.ui.ActionBar.n6.v0(i7);
+        int i10 = org.telegram.ui.ActionBar.n6.Hi;
+        int v03 = org.telegram.ui.ActionBar.n6.v0(i10);
+        Drawable k02 = org.telegram.ui.ActionBar.n6.k0(L, L, L, L, v02, v03, v03);
+        org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i7);
+        org.telegram.ui.ActionBar.q6 M2 = org.telegram.ui.ActionBar.u6.M(i10);
+        view.setBackground(k02);
+        org.telegram.ui.ActionBar.u6.j(view, k02, M, M2, null);
+        addView(view, c8.na.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
+        TextView textView = new TextView(context);
+        this.f42534b = textView;
+        textView.setLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setGravity(17);
+        org.telegram.messenger.f3.l(textView, org.telegram.ui.ActionBar.n6.Ji, null, 1, 14.0f);
+        addView(textView, c8.na.e(-2, -2, 17));
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        cq cqVar = this.f42448b0;
-        int scrollY = (int) ((getScrollY() + (cqVar.f34242r1 - cqVar.f30176t0)) - getTranslationY());
-        Drawable drawable = cqVar.f34238m1;
-        drawable.setBounds(0, scrollY, getMeasuredWidth(), org.telegram.messenger.g0.L(19.0f) + cqVar.f34239o1.getMeasuredHeight() + scrollY + cqVar.f30176t0);
-        drawable.draw(canvas);
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
     }
 
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            cq cqVar = this.f42448b0;
-            if (cqVar.f34242r1 != 0 && motionEvent.getY() < cqVar.f34242r1) {
-                cqVar.dismiss();
-                return true;
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        super.onLayout(z10, i7, i10, i11, i12);
-        cq.J0(this.f42448b0);
-    }
-
-    @Override
-    public final void onMeasure(int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yp.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final void onScrollChanged(int i7, int i10, int i11, int i12) {
-        super.onScrollChanged(i7, i10, i11, i12);
-        cq.J0(this.f42448b0);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f42448b0.J && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f42447a0) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    public final void setTranslationY(float f10) {
-        super.setTranslationY(f10);
-        cq.J0(this.f42448b0);
+    public void setText(CharSequence charSequence) {
+        this.f42534b.setText(charSequence);
     }
 }

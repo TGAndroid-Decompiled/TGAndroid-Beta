@@ -26,9 +26,9 @@ public final class l {
         }
         String str2 = this.f13585e;
         ?? pVar = new kf.p();
-        pVar.f18226g = str2;
+        pVar.f18325g = str2;
         pVar.h = a10;
-        pVar.f18227i = str;
+        pVar.f18326i = str;
         this.f13584c.add(pVar);
         this.d = null;
         this.f13588i = false;

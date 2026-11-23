@@ -1,22 +1,24 @@
 package zi;
-public final class j0 implements Runnable {
-    public final int f62125a;
-    public final k0 f62126b;
-    public final Exception f62127c;
 
-    public j0(k0 k0Var, Exception exc, int i7) {
-        this.f62125a = i7;
-        this.f62126b = k0Var;
-        this.f62127c = exc;
+import y7.h7;
+public final class j0 implements Runnable {
+    public final int f62243a;
+    public final h7 f62244b;
+    public final Exception f62245c;
+
+    public j0(h7 h7Var, Exception exc, int i7) {
+        this.f62243a = i7;
+        this.f62244b = h7Var;
+        this.f62245c = exc;
     }
 
     @Override
     public final void run() {
-        switch (this.f62125a) {
+        switch (this.f62243a) {
             case 0:
-                u0 u0Var = (u0) this.f62126b.f62193a;
-                u0Var.f62331m.a("recording segment interrupted in state=".concat(yi.i.e(u0Var.f62320a0)), this.f62127c);
-                int i7 = u0Var.f62320a0;
+                u0 u0Var = (u0) this.f62244b.f60952a;
+                u0Var.f62451m.a("recording segment interrupted in state=".concat(yi.i.e(u0Var.f62440a0)), this.f62245c);
+                int i7 = u0Var.f62440a0;
                 if (i7 == 3) {
                     u0Var.q();
                     return;
@@ -27,7 +29,7 @@ public final class j0 implements Runnable {
                     return;
                 }
             default:
-                ((u0) this.f62126b.f62193a).h(this.f62127c);
+                ((u0) this.f62244b.f60952a).h(this.f62245c);
                 return;
         }
     }

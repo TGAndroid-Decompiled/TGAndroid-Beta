@@ -3,7 +3,7 @@ package m;
 import android.widget.AbsListView;
 import java.lang.reflect.Field;
 public abstract class q1 {
-    public static final Field f20179a;
+    public static final Field f20275a;
 
     static {
         Field field = null;
@@ -13,6 +13,6 @@ public abstract class q1 {
         } catch (NoSuchFieldException e10) {
             e10.printStackTrace();
         }
-        f20179a = field;
+        f20275a = field;
     }
 }

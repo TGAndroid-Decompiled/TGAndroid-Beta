@@ -15,27 +15,27 @@ public enum q2 {
     SELECTION_CHANGE(new long[]{1}, new int[]{65}, new long[]{30}),
     APP_ERROR(new long[]{30, 10, 150, 10}, new int[]{0, 100, 0, 100}, new long[]{40, 60, 40, 60, 65, 60, 40});
     
-    public final long[] f26355a;
-    public final int[] f26356b;
-    public final long[] f26357c;
+    public final long[] f26446a;
+    public final int[] f26447b;
+    public final long[] f26448c;
     public Object d;
 
     q2(long[] jArr, int[] iArr, long[] jArr2) {
-        this.f26355a = jArr;
-        this.f26356b = iArr;
-        this.f26357c = jArr2;
+        this.f26446a = jArr;
+        this.f26447b = iArr;
+        this.f26448c = jArr2;
     }
 
     public final void a() {
         int i7 = Build.VERSION.SDK_INT;
-        long[] jArr = this.f26357c;
+        long[] jArr = this.f26448c;
         if (i7 >= 26) {
             Vibrator p12 = g0.p1();
             if (this.d == null) {
                 if (!g0.p1().hasAmplitudeControl()) {
                     this.d = VibrationEffect.createWaveform(jArr, -1);
                 } else {
-                    this.d = VibrationEffect.createWaveform(this.f26355a, this.f26356b, -1);
+                    this.d = VibrationEffect.createWaveform(this.f26446a, this.f26447b, -1);
                 }
             }
             p12.vibrate((VibrationEffect) this.d);

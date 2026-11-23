@@ -1,98 +1,72 @@
 package li;
 
-import android.content.Context;
-import android.widget.TextView;
-import bi.e4;
-import java.util.ArrayList;
-import org.telegram.messenger.gs;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.np;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t1;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.c5;
-import org.telegram.ui.bn;
-public final class m implements Runnable {
-    public final int f19968a;
-    public final boolean f19969b;
-    public final boolean f19970c;
-    public final long d;
-    public final gs f19971e;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.fj;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.p9;
+import org.telegram.ui.oq0;
+import org.telegram.ui.wq0;
+public final class m extends oq0 {
+    public final o f20069a;
 
-    public m(gs gsVar, boolean z10, boolean z11, long j3, int i7) {
-        this.f19968a = i7;
-        this.f19971e = gsVar;
-        this.f19969b = z10;
-        this.f19970c = z11;
-        this.d = j3;
+    public m(o oVar) {
+        this.f20069a = oVar;
     }
 
     @Override
-    public final void run() {
-        ArrayList arrayList;
-        int i7 = this.f19968a;
-        int i10 = 2131751902;
-        boolean z10 = this.f19970c;
-        boolean z11 = this.f19969b;
-        long j3 = this.d;
-        gs gsVar = this.f19971e;
-        switch (i7) {
-            case 0:
-                p pVar = (p) gsVar;
-                String N0 = hd.N0(2131751903, null);
-                if (z11) {
-                    i10 = 2131751905;
-                } else if (z10) {
-                    i10 = 2131751904;
-                }
-                c5.s0(pVar, N0, hd.N0(i10, null), hd.N0(2131746125, null), true, new h(pVar, j3, 0));
-                return;
-            case 1:
-                d0 d0Var = (d0) gsVar;
-                Context context = d0Var.getContext();
-                h6 h6Var = d0Var.J0;
-                String N02 = hd.N0(2131751903, null);
-                if (z11) {
-                    i10 = 2131751905;
-                } else if (z10) {
-                    i10 = 2131751904;
-                }
-                t1 M = c5.M(context, h6Var, N02, hd.N0(i10, null), hd.N0(2131746125, null), new e4(d0Var, j3, 12));
-                M.show();
-                TextView textView = (TextView) M.d(-1);
-                if (textView != null) {
-                    t6.U(textView, m6.f29588q7, null);
-                    return;
-                }
-                return;
-            case 2:
-                np npVar = (np) gsVar;
-                if (z11) {
-                    arrayList = npVar.f25953w0;
-                } else {
-                    arrayList = npVar.f25943v0;
-                }
-                if (z10) {
-                    if (!arrayList.contains(Long.valueOf(j3))) {
-                        arrayList.add(Long.valueOf(j3));
-                        return;
-                    }
-                    return;
-                }
-                arrayList.remove(Long.valueOf(j3));
-                return;
-            default:
-                bn.y1((bn) gsVar, j3, z11, z10);
-                return;
+    public final wq0 E(fj fjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
+        TLRPC.FileLocation fileLocation2;
+        TLRPC.ChatPhoto chatPhoto;
+        if (fileLocation != null) {
+            o oVar = this.f20069a;
+            TLRPC.Chat O0 = oVar.getMessagesController().O0(Long.valueOf(oVar.f20073c));
+            if (O0 == null || (chatPhoto = O0.photo) == null || (fileLocation2 = chatPhoto.photo_big) == null) {
+                fileLocation2 = null;
+            }
+            if (fileLocation2 != null && fileLocation2.local_id == fileLocation.local_id && fileLocation2.volume_id == fileLocation.volume_id && fileLocation2.dc_id == fileLocation.dc_id) {
+                int[] iArr = new int[2];
+                oVar.f20080x.getLocationInWindow(iArr);
+                wq0 wq0Var = new wq0();
+                wq0Var.f53727b = iArr[0];
+                wq0Var.f53728c = iArr[1];
+                p9 p9Var = oVar.f20080x;
+                wq0Var.d = p9Var;
+                ImageReceiver imageReceiver = p9Var.getImageReceiver();
+                wq0Var.f53726a = imageReceiver;
+                wq0Var.f53730f = -oVar.f20073c;
+                wq0Var.f53729e = imageReceiver.p();
+                wq0Var.f53731g = -1L;
+                wq0Var.h = oVar.f20080x.getImageReceiver().F();
+                wq0Var.f53734k = 1.0f;
+                wq0Var.f53739p = true;
+                return wq0Var;
+            }
         }
+        return null;
     }
 
-    public m(bn bnVar, long j3, boolean z10, boolean z11) {
-        this.f19968a = 3;
-        this.f19971e = bnVar;
-        this.d = j3;
-        this.f19969b = z10;
-        this.f19970c = z11;
+    @Override
+    public final void G() {
+        this.f20069a.f20080x.getImageReceiver().P0(true, true);
+    }
+
+    @Override
+    public final boolean N() {
+        return true;
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z10) {
+        this.f20069a.G.p(str, str2, z10);
+    }
+
+    @Override
+    public final boolean t() {
+        return false;
+    }
+
+    @Override
+    public final int y() {
+        return 1;
     }
 }

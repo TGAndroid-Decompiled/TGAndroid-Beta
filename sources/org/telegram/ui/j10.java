@@ -1,39 +1,8 @@
 package org.telegram.ui;
+public final class j10 {
+    public final e40 f48968a;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class j10 extends v4.n0 {
-    public final f40 f48877a;
-
-    public j10(f40 f40Var) {
-        this.f48877a = f40Var;
-    }
-
-    @Override
-    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.b1 b1Var) {
-        int i7;
-        int R = RecyclerView.R(view);
-        if (R >= 0) {
-            rect.setEmpty();
-            z30 z30Var = this.f48877a.K1;
-            int i10 = z30Var.H;
-            if (R >= i10 && R < z30Var.I) {
-                int i11 = R - i10;
-                if (f40.E5) {
-                    i7 = 6;
-                } else {
-                    i7 = 2;
-                }
-                int i12 = i11 % i7;
-                if (i12 == 0) {
-                    rect.right = org.telegram.messenger.g0.L(2.0f);
-                } else if (i12 == i7 - 1) {
-                    rect.left = org.telegram.messenger.g0.L(2.0f);
-                } else {
-                    rect.left = org.telegram.messenger.g0.L(1.0f);
-                }
-            }
-        }
+    public j10(e40 e40Var) {
+        this.f48968a = e40Var;
     }
 }

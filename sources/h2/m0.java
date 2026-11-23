@@ -1,10 +1,10 @@
 package h2;
 
-import org.telegram.messenger.r10;
+import org.telegram.messenger.p10;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.voip.VoipAudioManager;
-import org.telegram.ui.Components.ty;
+import org.telegram.ui.Components.qy;
 public final class m0 implements Runnable {
     public final int f13788a;
     public final boolean f13789b;
@@ -31,10 +31,10 @@ public final class m0 implements Runnable {
                 ((NativeInstance) this.d).lambda$onNetworkStateUpdated$0(this.f13789b, this.f13790c);
                 return;
             case 3:
-                VoipAudioManager.lambda$isBluetoothAndSpeakerOnAsync$3((r10) this.d, this.f13789b, this.f13790c);
+                VoipAudioManager.lambda$isBluetoothAndSpeakerOnAsync$3((p10) this.d, this.f13789b, this.f13790c);
                 return;
             default:
-                ((ty) this.d).Q(false, this.f13789b, this.f13790c);
+                ((qy) this.d).Q(false, this.f13789b, this.f13790c);
                 return;
         }
     }

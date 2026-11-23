@@ -25,11 +25,11 @@ public abstract class n7 extends c5.l {
     public int P0;
     public final ArrayList Q0;
     public float R0;
-    public long f12300x0;
-    public ArrayList f12301y0;
-    public int f12302z0;
+    public long f12312x0;
+    public ArrayList f12313y0;
+    public int f12314z0;
 
-    public n7(int i7, Context context, f9 f9Var, org.telegram.ui.ActionBar.h6 h6Var) {
+    public n7(int i7, Context context, f9 f9Var, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
         boolean z10;
         this.B0 = new ArrayList();
@@ -38,10 +38,10 @@ public abstract class n7 extends c5.l {
         this.N0 = new sa(wVar, 25);
         this.P0 = -1;
         this.Q0 = new ArrayList();
-        this.f12302z0 = i7;
+        this.f12314z0 = i7;
         this.I0 = new w3(context);
         this.O0 = f9Var;
-        k7 k7Var = new k7(wVar, context, f9Var, h6Var);
+        k7 k7Var = new k7(wVar, context, f9Var, i6Var);
         this.A0 = k7Var;
         setAdapter(k7Var);
         di.v6 v6Var = new di.v6(wVar, 10);
@@ -83,7 +83,7 @@ public abstract class n7 extends c5.l {
         while (true) {
             if (i7 < getChildCount()) {
                 m7 m7Var = (m7) getChildAt(i7);
-                if (m7Var.d && !m7Var.f12269a.f12888y1.d()) {
+                if (m7Var.d && !m7Var.f12277a.f12899y1.d()) {
                     break;
                 }
                 i7++;
@@ -103,15 +103,15 @@ public abstract class n7 extends c5.l {
                     if (!m7Var.d) {
                         this.P0 = -1;
                         m7Var.a(true);
-                        if (this.f12301y0 != null) {
-                            z3 z3Var = m7Var.f12269a;
-                            long j3 = m7Var.f12270b;
-                            ArrayList arrayList = m7Var.f12271c;
+                        if (this.f12313y0 != null) {
+                            z3 z3Var = m7Var.f12277a;
+                            long j3 = m7Var.f12278b;
+                            ArrayList arrayList = m7Var.f12279c;
                             z3Var.l1 = j3;
-                            z3Var.f12832j1 = arrayList;
+                            z3Var.f12843j1 = arrayList;
                             z3Var.m0(0);
                         } else {
-                            m7Var.f12269a.S0(0, m7Var.f12270b);
+                            m7Var.f12277a.S0(0, m7Var.f12278b);
                         }
                     }
                 }
@@ -128,13 +128,13 @@ public abstract class n7 extends c5.l {
         boolean z11 = false;
         if (z10) {
             int currentItem = getCurrentItem();
-            ArrayList arrayList = this.f12301y0;
+            ArrayList arrayList = this.f12313y0;
             if (arrayList == null) {
                 arrayList = this.B0;
             }
             if (currentItem < arrayList.size() - 1) {
                 int currentItem2 = getCurrentItem() + 1;
-                if (f9Var.f11947a && Build.VERSION.SDK_INT < 33) {
+                if (f9Var.f11958a && Build.VERSION.SDK_INT < 33) {
                     z11 = true;
                 }
                 x(currentItem2, !z11);
@@ -145,7 +145,7 @@ public abstract class n7 extends c5.l {
             return false;
         }
         int currentItem3 = getCurrentItem() - 1;
-        if (f9Var.f11947a && Build.VERSION.SDK_INT < 33) {
+        if (f9Var.f11958a && Build.VERSION.SDK_INT < 33) {
             z11 = true;
         }
         x(currentItem3, !z11);
@@ -166,8 +166,8 @@ public abstract class n7 extends c5.l {
     }
 
     public long getCurrentDialogId() {
-        if (this.f12301y0 != null) {
-            return this.f12300x0;
+        if (this.f12313y0 != null) {
+            return this.f12312x0;
         }
         if (getCurrentItem() < this.B0.size()) {
             return ((Long) this.B0.get(getCurrentItem())).longValue();

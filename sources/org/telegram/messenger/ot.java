@@ -1,47 +1,43 @@
 package org.telegram.messenger;
 
-import android.text.TextUtils;
-import org.telegram.messenger.PushListenerController;
-public final class ot implements PushListenerController.IPushListenerServiceProvider {
-    public static final ot f26129b = new Object();
-    public Boolean f26130a;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import org.telegram.tgnet.SerializedData;
+public abstract class ot {
+    public static final long[] f26200a;
 
-    @Override
-    public final String getLogTitle() {
-        return "Google Play Services";
-    }
-
-    @Override
-    public final int getPushType() {
-        return 2;
-    }
-
-    @Override
-    public final boolean hasServices() {
-        boolean z10;
-        if (this.f26130a == null) {
+    static {
+        try {
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(t0.f27013b.getResources().getAssets().open("lottie_meta.bin"));
             try {
-                if (n6.d.f21425e.d(t0.f26895b, n6.e.f21427a) == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+                int available = bufferedInputStream.available();
+                if (available % 8 == 0) {
+                    int i7 = available / 8;
+                    long[] jArr = new long[i7];
+                    SerializedData serializedData = new SerializedData(bufferedInputStream);
+                    for (int i10 = 0; i10 < i7; i10++) {
+                        jArr[i10] = serializedData.readInt64(true);
+                    }
+                    bufferedInputStream.close();
+                    f26200a = jArr;
+                    return;
                 }
-                this.f26130a = Boolean.valueOf(z10);
-            } catch (Exception e10) {
-                a8.g(e10, true);
-                this.f26130a = Boolean.FALSE;
+                throw new IllegalStateException("lottie_meta.bin has invalid size: " + available);
+            } catch (Throwable th2) {
+                try {
+                    bufferedInputStream.close();
+                } catch (Throwable th3) {
+                    th2.addSuppressed(th3);
+                }
+                throw th2;
             }
+        } catch (IOException e10) {
+            throw new RuntimeException("Unable to load lottie_meta.bin", e10);
+        } catch (RuntimeException e11) {
+            if (s2.f26829a) {
+                a8.e("Unable to load lottie_meta.bin", e11);
+            }
+            throw e11;
         }
-        return this.f26130a.booleanValue();
-    }
-
-    @Override
-    public final void onRequestPushToken() {
-        if (!TextUtils.isEmpty(cz.f23371g)) {
-            boolean z10 = s2.f26694a;
-        } else if (s2.f26694a) {
-            a8.b("FCM Registration not found.");
-        }
-        Utilities.f22774e.c(new yr(this, 3));
     }
 }

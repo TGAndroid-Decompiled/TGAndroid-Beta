@@ -2,42 +2,42 @@ package da;
 
 import java.util.List;
 public final class e0 {
-    public int f7993a;
-    public String f7994b;
-    public int f7995c;
+    public int f7992a;
+    public String f7993b;
+    public int f7994c;
     public int d;
-    public long f7996e;
-    public long f7997f;
-    public long f7998g;
+    public long f7995e;
+    public long f7996f;
+    public long f7997g;
     public String h;
-    public List f7999i;
-    public byte f8000j;
+    public List f7998i;
+    public byte f7999j;
 
     public final f0 a() {
         String str;
-        if (this.f8000j == 63 && (str = this.f7994b) != null) {
-            return new f0(this.f7993a, str, this.f7995c, this.d, this.f7996e, this.f7997f, this.f7998g, this.h, this.f7999i);
+        if (this.f7999j == 63 && (str = this.f7993b) != null) {
+            return new f0(this.f7992a, str, this.f7994c, this.d, this.f7995e, this.f7996f, this.f7997g, this.h, this.f7998i);
         }
         StringBuilder sb2 = new StringBuilder();
-        if ((this.f8000j & 1) == 0) {
+        if ((this.f7999j & 1) == 0) {
             sb2.append(" pid");
         }
-        if (this.f7994b == null) {
+        if (this.f7993b == null) {
             sb2.append(" processName");
         }
-        if ((this.f8000j & 2) == 0) {
+        if ((this.f7999j & 2) == 0) {
             sb2.append(" reasonCode");
         }
-        if ((this.f8000j & 4) == 0) {
+        if ((this.f7999j & 4) == 0) {
             sb2.append(" importance");
         }
-        if ((this.f8000j & 8) == 0) {
+        if ((this.f7999j & 8) == 0) {
             sb2.append(" pss");
         }
-        if ((this.f8000j & 16) == 0) {
+        if ((this.f7999j & 16) == 0) {
             sb2.append(" rss");
         }
-        if ((this.f8000j & 32) == 0) {
+        if ((this.f7999j & 32) == 0) {
             sb2.append(" timestamp");
         }
         throw new IllegalStateException(a8.p0.q("Missing required properties:", sb2));

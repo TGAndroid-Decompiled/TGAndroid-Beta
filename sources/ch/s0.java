@@ -6,18 +6,18 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import org.telegram.messenger.k10;
+import org.telegram.messenger.i10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.g2;
-import org.telegram.ui.Components.p5;
-import org.telegram.ui.Components.y5;
+import org.telegram.ui.Components.o5;
+import org.telegram.ui.Components.x5;
 import org.telegram.ui.LaunchActivity;
 public abstract class s0 {
     public static void a(TLRPC.TL_availableReaction tL_availableReaction, LinkedHashMap linkedHashMap, ArrayList arrayList, SpannableStringBuilder spannableStringBuilder, n nVar, Paint.FontMetricsInt fontMetricsInt) {
         TLRPC.Document document = tL_availableReaction.activate_animation;
-        long j3 = document.f28404id;
-        y5 e10 = e(document, Long.valueOf(j3), fontMetricsInt);
+        long j3 = document.f28498id;
+        x5 e10 = e(document, Long.valueOf(j3), fontMetricsInt);
         linkedHashMap.put(Long.valueOf(j3), e10);
         arrayList.add(Long.valueOf(j3));
         SpannableString spannableString = new SpannableString(tL_availableReaction.reaction);
@@ -82,22 +82,22 @@ public abstract class s0 {
         return false;
     }
 
-    public static y5 e(TLRPC.Document document, Long l10, Paint.FontMetricsInt fontMetricsInt) {
-        y5 y5Var;
+    public static x5 e(TLRPC.Document document, Long l10, Paint.FontMetricsInt fontMetricsInt) {
+        x5 x5Var;
         if (document != null) {
-            y5Var = new y5(document.f28404id, 1.0f, fontMetricsInt);
-            y5Var.document = document;
+            x5Var = new x5(document.f28498id, 1.0f, fontMetricsInt);
+            x5Var.document = document;
         } else {
-            y5Var = new y5(l10.longValue(), 1.0f, fontMetricsInt);
+            x5Var = new x5(l10.longValue(), 1.0f, fontMetricsInt);
         }
-        y5Var.cacheType = p5.f();
-        return y5Var;
+        x5Var.cacheType = o5.f();
+        return x5Var;
     }
 
     public static void f(long j3, int i7, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         g2 Q = LaunchActivity.Q();
         if (Q != null && tL_premium_boostsStatus != null) {
-            ug.k0 k0Var = new ug.k0(21, k10.f24932t0, Q.getContext(), Q, Q.getResourceProvider());
+            ug.k0 k0Var = new ug.k0(21, i10.f24637t0, Q.getContext(), Q, Q.getResourceProvider());
             k0Var.N2 = i7;
             k0Var.A1(tL_premium_boostsStatus, true);
             k0Var.C1(j3);

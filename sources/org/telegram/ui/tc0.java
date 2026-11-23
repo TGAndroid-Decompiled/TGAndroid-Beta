@@ -1,130 +1,344 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class tc0 implements Runnable {
-    public final int f52248a;
-    public final gd0 f52249b;
+import android.os.Bundle;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class tc0 implements RequestDelegate {
+    public final int f52356a;
+    public final gd0 f52357b;
+    public final TLRPC.TL_auth_signIn f52358c;
 
-    public tc0(gd0 gd0Var, int i7) {
-        this.f52248a = i7;
-        this.f52249b = gd0Var;
+    public tc0(gd0 gd0Var, TLRPC.TL_auth_signIn tL_auth_signIn, int i7) {
+        this.f52356a = i7;
+        this.f52357b = gd0Var;
+        this.f52358c = tL_auth_signIn;
     }
 
     @Override
-    public final void run() {
-        er[] erVarArr;
-        View view;
-        int i7 = this.f52248a;
-        int i10 = 0;
-        gd0 gd0Var = this.f52249b;
-        switch (i7) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f52356a) {
             case 0:
-                org.telegram.ui.Components.rh0 rh0Var = gd0Var.H;
-                br brVar = gd0Var.f48009f;
-                int i11 = gd0Var.f48013i0;
-                if (i11 != 3 && (erVarArr = brVar.f46275f) != null) {
-                    for (int length = erVarArr.length - 1; length >= 0; length--) {
-                        if (length == 0 || brVar.f46275f[length].length() != 0) {
-                            brVar.f46275f[length].requestFocus();
-                            er erVar = brVar.f46275f[length];
-                            erVar.setSelection(erVar.length());
-                            de0.b1(gd0Var.f48028v0, brVar.f46275f[length]);
+                final gd0 gd0Var = this.f52357b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn = this.f52358c;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7;
+                        int i10;
+                        int i11;
+                        int i12;
+                        int i13 = r5;
+                        TLRPC.TL_auth_signIn tL_auth_signIn2 = tL_auth_signIn;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        final gd0 gd0Var2 = gd0Var;
+                        switch (i13) {
+                            case 0:
+                                int i14 = gd0Var2.f48260i0;
+                                de0 de0Var = gd0Var2.f48275v0;
+                                gd0Var2.y(false);
+                                if (tL_error2 == null) {
+                                    gd0Var2.f48258g0 = false;
+                                    de0Var.N1(false, true);
+                                    gd0Var2.u();
+                                    gd0Var2.t();
+                                    if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
+                                        TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
+                                        if (tL_help_termsOfService != null) {
+                                            de0Var.f47074s0 = tL_help_termsOfService;
+                                        }
+                                        final Bundle bundle = new Bundle();
+                                        bundle.putString("phoneFormated", gd0Var2.d);
+                                        bundle.putString("phoneHash", gd0Var2.f48251c);
+                                        bundle.putString("code", tL_auth_signIn2.phone_code);
+                                        gd0Var2.p(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                switch (r3) {
+                                                    case 0:
+                                                        gd0Var2.f48275v0.M1(5, true, bundle, false);
+                                                        return;
+                                                    default:
+                                                        gd0Var2.f48275v0.M1(6, true, bundle, false);
+                                                        return;
+                                                }
+                                            }
+                                        });
+                                    } else {
+                                        gd0Var2.p(new i50(29, gd0Var2, tLObject2));
+                                    }
+                                } else {
+                                    String str = tL_error2.text;
+                                    gd0Var2.f48259h0 = str;
+                                    if (str.contains("SESSION_PASSWORD_NEEDED")) {
+                                        TL_account.getPassword getpassword = new TL_account.getPassword();
+                                        i12 = ((org.telegram.ui.ActionBar.g2) de0Var).currentAccount;
+                                        ConnectionsManager.getInstance(i12).sendRequest(getpassword, new tc0(gd0Var2, tL_auth_signIn2, 1), 10);
+                                        gd0Var2.u();
+                                        gd0Var2.t();
+                                    } else {
+                                        gd0Var2.f48258g0 = false;
+                                        de0Var.N1(false, true);
+                                        if ((i14 == 3 && ((i11 = gd0Var2.f48261j0) == 4 || i11 == 2 || i11 == 17 || i11 == 16)) || ((i14 == 2 && ((i10 = gd0Var2.f48261j0) == 4 || i10 == 3)) || (i14 == 4 && ((i7 = gd0Var2.f48261j0) == 2 || i7 == 17 || i7 == 16)))) {
+                                            gd0Var2.s();
+                                        }
+                                        if (i14 == 15) {
+                                            org.telegram.messenger.ks.e().b(gd0Var2, 260);
+                                        } else if (i14 == 2) {
+                                            org.telegram.messenger.g0.C3(true);
+                                            org.telegram.messenger.ks.e().b(gd0Var2, 260);
+                                        } else if (i14 == 3) {
+                                            org.telegram.messenger.g0.B3(true);
+                                            org.telegram.messenger.ks.e().b(gd0Var2, 261);
+                                            org.telegram.messenger.g0.g3(new org.telegram.ui.Components.ne(29));
+                                        }
+                                        gd0Var2.f48257f0 = true;
+                                        if (i14 != 3) {
+                                            if (tL_error2.text.contains("PHONE_NUMBER_INVALID")) {
+                                                de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131748986, "InvalidPhoneNumber"));
+                                            } else if (!tL_error2.text.contains("PHONE_CODE_EMPTY") && !tL_error2.text.contains("PHONE_CODE_INVALID")) {
+                                                if (tL_error2.text.contains("PHONE_CODE_EXPIRED")) {
+                                                    gd0Var2.c(true);
+                                                    de0Var.M1(0, true, null, true);
+                                                    de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131752009, "CodeExpired"));
+                                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                                    de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131750670, "FloodWait"));
+                                                } else {
+                                                    String N0 = org.telegram.messenger.gd.N0(2131745875, null);
+                                                    StringBuilder sb2 = new StringBuilder();
+                                                    org.telegram.ui.Cells.c0.u("ErrorOccurred", 2131751093, sb2, "\n");
+                                                    sb2.append(tL_error2.text);
+                                                    de0Var.D1(N0, sb2.toString());
+                                                }
+                                            } else {
+                                                gd0Var2.w();
+                                                return;
+                                            }
+                                            int i15 = 0;
+                                            while (true) {
+                                                br brVar = gd0Var2.f48256f;
+                                                er[] erVarArr = brVar.f46491f;
+                                                if (i15 < erVarArr.length) {
+                                                    erVarArr[i15].setText("");
+                                                    i15++;
+                                                } else {
+                                                    brVar.f46490e = false;
+                                                    erVarArr[0].requestFocus();
+                                                    return;
+                                                }
+                                            }
+                                        } else {
+                                            return;
+                                        }
+                                    }
+                                }
+                                if (i14 == 3) {
+                                    org.telegram.messenger.g0.T();
+                                    org.telegram.messenger.g0.B3(false);
+                                    return;
+                                }
+                                return;
+                            default:
+                                gd0Var2.f48258g0 = false;
+                                de0 de0Var2 = gd0Var2.f48275v0;
+                                de0Var2.N1(false, true);
+                                if (tL_error2 == null) {
+                                    TL_account.Password password = (TL_account.Password) tLObject2;
+                                    if (!TwoStepVerificationActivity.n0(password, true)) {
+                                        org.telegram.ui.Components.b5.u0(de0Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743573, "UpdateAppAlert"), true);
+                                        return;
+                                    }
+                                    final Bundle bundle2 = new Bundle();
+                                    SerializedData serializedData = new SerializedData(password.getObjectSize());
+                                    password.serializeToStream(serializedData);
+                                    bundle2.putString("password", Utilities.f(serializedData.toByteArray()));
+                                    bundle2.putString("phoneFormated", gd0Var2.d);
+                                    bundle2.putString("phoneHash", gd0Var2.f48251c);
+                                    bundle2.putString("code", tL_auth_signIn2.phone_code);
+                                    gd0Var2.p(new Runnable() {
+                                        @Override
+                                        public final void run() {
+                                            switch (r3) {
+                                                case 0:
+                                                    gd0Var2.f48275v0.M1(5, true, bundle2, false);
+                                                    return;
+                                                default:
+                                                    gd0Var2.f48275v0.M1(6, true, bundle2, false);
+                                                    return;
+                                            }
+                                        }
+                                    });
+                                    return;
+                                }
+                                de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), tL_error2.text);
+                                return;
                         }
                     }
-                }
-                org.telegram.ui.Components.oh0 oh0Var = gd0Var.f48000a;
-                if (oh0Var != null) {
-                    oh0Var.start();
-                }
-                if (i11 == 15) {
-                    rh0Var.getAnimatedDrawable().N(0, false, false);
-                    rh0Var.getAnimatedDrawable().start();
-                    return;
-                }
+                });
                 return;
-            case 1:
-                org.telegram.messenger.g0.g3(new tc0(gd0Var, 6));
-                return;
-            case 2:
-                ob0 ob0Var = gd0Var.f48030x;
-                gd0Var.f48026t0 = false;
-                while (true) {
-                    er[] erVarArr2 = gd0Var.f48009f.f46275f;
-                    if (i10 < erVarArr2.length) {
-                        erVarArr2[i10].A(0.0f);
-                        i10++;
-                    } else {
-                        if (gd0Var.f48013i0 == 15) {
-                            view = gd0Var.G;
-                        } else {
-                            view = gd0Var.E;
-                        }
-                        if (ob0Var.getCurrentView() != view) {
-                            ob0Var.showNext();
-                            return;
-                        }
-                        return;
-                    }
-                }
-            case 3:
-                org.telegram.messenger.g0.g3(new tc0(gd0Var, 4));
-                return;
-            case 4:
-                org.telegram.ui.Components.rh0 rh0Var2 = gd0Var.f48024s;
-                rh0Var2.setAutoRepeat(true);
-                org.telegram.ui.Components.oh0 oh0Var2 = gd0Var.R;
-                oh0Var2.N(0, false, false);
-                oh0Var2.K(1);
-                rh0Var2.setAnimation(oh0Var2);
-                rh0Var2.d();
-                return;
-            case 5:
-                try {
-                    gd0Var.f48028v0.fragmentView.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
-                }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(gd0Var.getContext());
-                String N0 = org.telegram.messenger.hd.N0(2131742534, null);
-                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
-                t1Var.S = N0;
-                t1Var.U = org.telegram.messenger.hd.a0(null, null, 2131752522, org.telegram.messenger.o10.h(new StringBuilder("+"), gd0Var.d, pf.b.c()));
-                alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131747637, null), null);
-                t1Var.setOnDismissListener(new bd0(gd0Var, 1));
-                alertDialog$Builder.p();
-                return;
-            case 6:
-                org.telegram.ui.Components.oh0 oh0Var3 = gd0Var.S;
-                oh0Var3.f38199u0 = new tc0(gd0Var, 8);
-                org.telegram.ui.Components.rh0 rh0Var3 = gd0Var.f48024s;
-                rh0Var3.setAutoRepeat(false);
-                oh0Var3.N(0, false, false);
-                rh0Var3.setAnimation(oh0Var3);
-                rh0Var3.d();
-                return;
-            case 7:
-                gd0Var.postDelayed(new tc0(gd0Var, 9), 150L);
-                return;
-            case 8:
-                org.telegram.messenger.g0.g3(new tc0(gd0Var, 10));
-                return;
-            case 9:
-                br brVar2 = gd0Var.f48009f;
-                brVar2.f46274e = false;
-                brVar2.f46275f[0].requestFocus();
-                while (true) {
-                    er[] erVarArr3 = brVar2.f46275f;
-                    if (i10 < erVarArr3.length) {
-                        erVarArr3[i10].A(0.0f);
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
             default:
-                org.telegram.ui.Components.rh0 rh0Var4 = gd0Var.f48024s;
-                rh0Var4.setAutoRepeat(false);
-                rh0Var4.setAnimation(gd0Var.f48000a);
+                final gd0 gd0Var2 = this.f52357b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn2 = this.f52358c;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7;
+                        int i10;
+                        int i11;
+                        int i12;
+                        int i13 = r5;
+                        TLRPC.TL_auth_signIn tL_auth_signIn22 = tL_auth_signIn2;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        final gd0 gd0Var22 = gd0Var2;
+                        switch (i13) {
+                            case 0:
+                                int i14 = gd0Var22.f48260i0;
+                                de0 de0Var = gd0Var22.f48275v0;
+                                gd0Var22.y(false);
+                                if (tL_error2 == null) {
+                                    gd0Var22.f48258g0 = false;
+                                    de0Var.N1(false, true);
+                                    gd0Var22.u();
+                                    gd0Var22.t();
+                                    if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
+                                        TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
+                                        if (tL_help_termsOfService != null) {
+                                            de0Var.f47074s0 = tL_help_termsOfService;
+                                        }
+                                        final Bundle bundle = new Bundle();
+                                        bundle.putString("phoneFormated", gd0Var22.d);
+                                        bundle.putString("phoneHash", gd0Var22.f48251c);
+                                        bundle.putString("code", tL_auth_signIn22.phone_code);
+                                        gd0Var22.p(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                switch (r3) {
+                                                    case 0:
+                                                        gd0Var22.f48275v0.M1(5, true, bundle, false);
+                                                        return;
+                                                    default:
+                                                        gd0Var22.f48275v0.M1(6, true, bundle, false);
+                                                        return;
+                                                }
+                                            }
+                                        });
+                                    } else {
+                                        gd0Var22.p(new i50(29, gd0Var22, tLObject2));
+                                    }
+                                } else {
+                                    String str = tL_error2.text;
+                                    gd0Var22.f48259h0 = str;
+                                    if (str.contains("SESSION_PASSWORD_NEEDED")) {
+                                        TL_account.getPassword getpassword = new TL_account.getPassword();
+                                        i12 = ((org.telegram.ui.ActionBar.g2) de0Var).currentAccount;
+                                        ConnectionsManager.getInstance(i12).sendRequest(getpassword, new tc0(gd0Var22, tL_auth_signIn22, 1), 10);
+                                        gd0Var22.u();
+                                        gd0Var22.t();
+                                    } else {
+                                        gd0Var22.f48258g0 = false;
+                                        de0Var.N1(false, true);
+                                        if ((i14 == 3 && ((i11 = gd0Var22.f48261j0) == 4 || i11 == 2 || i11 == 17 || i11 == 16)) || ((i14 == 2 && ((i10 = gd0Var22.f48261j0) == 4 || i10 == 3)) || (i14 == 4 && ((i7 = gd0Var22.f48261j0) == 2 || i7 == 17 || i7 == 16)))) {
+                                            gd0Var22.s();
+                                        }
+                                        if (i14 == 15) {
+                                            org.telegram.messenger.ks.e().b(gd0Var22, 260);
+                                        } else if (i14 == 2) {
+                                            org.telegram.messenger.g0.C3(true);
+                                            org.telegram.messenger.ks.e().b(gd0Var22, 260);
+                                        } else if (i14 == 3) {
+                                            org.telegram.messenger.g0.B3(true);
+                                            org.telegram.messenger.ks.e().b(gd0Var22, 261);
+                                            org.telegram.messenger.g0.g3(new org.telegram.ui.Components.ne(29));
+                                        }
+                                        gd0Var22.f48257f0 = true;
+                                        if (i14 != 3) {
+                                            if (tL_error2.text.contains("PHONE_NUMBER_INVALID")) {
+                                                de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131748986, "InvalidPhoneNumber"));
+                                            } else if (!tL_error2.text.contains("PHONE_CODE_EMPTY") && !tL_error2.text.contains("PHONE_CODE_INVALID")) {
+                                                if (tL_error2.text.contains("PHONE_CODE_EXPIRED")) {
+                                                    gd0Var22.c(true);
+                                                    de0Var.M1(0, true, null, true);
+                                                    de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131752009, "CodeExpired"));
+                                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                                    de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131750670, "FloodWait"));
+                                                } else {
+                                                    String N0 = org.telegram.messenger.gd.N0(2131745875, null);
+                                                    StringBuilder sb2 = new StringBuilder();
+                                                    org.telegram.ui.Cells.c0.u("ErrorOccurred", 2131751093, sb2, "\n");
+                                                    sb2.append(tL_error2.text);
+                                                    de0Var.D1(N0, sb2.toString());
+                                                }
+                                            } else {
+                                                gd0Var22.w();
+                                                return;
+                                            }
+                                            int i15 = 0;
+                                            while (true) {
+                                                br brVar = gd0Var22.f48256f;
+                                                er[] erVarArr = brVar.f46491f;
+                                                if (i15 < erVarArr.length) {
+                                                    erVarArr[i15].setText("");
+                                                    i15++;
+                                                } else {
+                                                    brVar.f46490e = false;
+                                                    erVarArr[0].requestFocus();
+                                                    return;
+                                                }
+                                            }
+                                        } else {
+                                            return;
+                                        }
+                                    }
+                                }
+                                if (i14 == 3) {
+                                    org.telegram.messenger.g0.T();
+                                    org.telegram.messenger.g0.B3(false);
+                                    return;
+                                }
+                                return;
+                            default:
+                                gd0Var22.f48258g0 = false;
+                                de0 de0Var2 = gd0Var22.f48275v0;
+                                de0Var2.N1(false, true);
+                                if (tL_error2 == null) {
+                                    TL_account.Password password = (TL_account.Password) tLObject2;
+                                    if (!TwoStepVerificationActivity.n0(password, true)) {
+                                        org.telegram.ui.Components.b5.u0(de0Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743573, "UpdateAppAlert"), true);
+                                        return;
+                                    }
+                                    final Bundle bundle2 = new Bundle();
+                                    SerializedData serializedData = new SerializedData(password.getObjectSize());
+                                    password.serializeToStream(serializedData);
+                                    bundle2.putString("password", Utilities.f(serializedData.toByteArray()));
+                                    bundle2.putString("phoneFormated", gd0Var22.d);
+                                    bundle2.putString("phoneHash", gd0Var22.f48251c);
+                                    bundle2.putString("code", tL_auth_signIn22.phone_code);
+                                    gd0Var22.p(new Runnable() {
+                                        @Override
+                                        public final void run() {
+                                            switch (r3) {
+                                                case 0:
+                                                    gd0Var22.f48275v0.M1(5, true, bundle2, false);
+                                                    return;
+                                                default:
+                                                    gd0Var22.f48275v0.M1(6, true, bundle2, false);
+                                                    return;
+                                            }
+                                        }
+                                    });
+                                    return;
+                                }
+                                de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), tL_error2.text);
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

@@ -9,9 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.k10;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -20,79 +20,79 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.a70;
-import org.telegram.ui.Components.f21;
+import org.telegram.ui.Components.e21;
+import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.hi0;
-import org.telegram.ui.Components.jr;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.tb0;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.Components.qb0;
+import org.telegram.ui.Components.x60;
 public final class z9 implements View.OnClickListener {
-    public final int f10162a = 1;
-    public final int f10163b;
-    public final Object f10164c;
+    public final int f10160a = 1;
+    public final int f10161b;
+    public final Object f10162c;
     public final Object d;
-    public final Object f10165e;
-    public final Object f10166f;
+    public final Object f10163e;
+    public final Object f10164f;
     public final Object h;
 
-    public z9(int i7, org.telegram.ui.ActionBar.w2 w2Var, org.telegram.ui.ActionBar.h6 h6Var, LinearLayout linearLayout, long[] jArr, ai.c1 c1Var) {
-        this.f10163b = i7;
-        this.f10164c = w2Var;
-        this.d = h6Var;
-        this.f10165e = linearLayout;
-        this.f10166f = jArr;
-        this.h = c1Var;
+    public z9(int i7, org.telegram.ui.ActionBar.w2 w2Var, org.telegram.ui.ActionBar.i6 i6Var, LinearLayout linearLayout, long[] jArr, ai.d1 d1Var) {
+        this.f10161b = i7;
+        this.f10162c = w2Var;
+        this.d = i6Var;
+        this.f10163e = linearLayout;
+        this.f10164f = jArr;
+        this.h = d1Var;
     }
 
     @Override
     public final void onClick(View view) {
         long j3;
         boolean z10;
-        int i7 = this.f10162a;
-        int i10 = this.f10163b;
+        int i7 = this.f10160a;
+        int i10 = this.f10161b;
         Object obj = this.h;
-        Object obj2 = this.f10166f;
-        Object obj3 = this.f10165e;
+        Object obj2 = this.f10164f;
+        Object obj3 = this.f10163e;
         Object obj4 = this.d;
-        Object obj5 = this.f10164c;
+        Object obj5 = this.f10162c;
         switch (i7) {
             case 0:
-                hi.d dVar = (hi.d) obj5;
+                hi.e eVar = (hi.e) obj5;
                 TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) obj4;
                 org.telegram.ui.ActionBar.w2[] w2VarArr = (org.telegram.ui.ActionBar.w2[]) obj3;
                 TLObject tLObject = (TLObject) obj2;
                 String str = (String) obj;
-                if (!dVar.R) {
-                    dVar.setLoading(true);
+                if (!eVar.R) {
+                    eVar.setLoading(true);
                     TL_stars.TL_changeStarsSubscription tL_changeStarsSubscription = new TL_stars.TL_changeStarsSubscription();
                     tL_changeStarsSubscription.canceled = Boolean.FALSE;
                     tL_changeStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
-                    tL_changeStarsSubscription.subscription_id = starsSubscription.f28628id;
-                    int i11 = this.f10163b;
-                    ConnectionsManager.getInstance(i11).sendRequest(tL_changeStarsSubscription, new bg.l0(dVar, w2VarArr, i11, tLObject, str, 2));
+                    tL_changeStarsSubscription.subscription_id = starsSubscription.f28722id;
+                    int i11 = this.f10161b;
+                    ConnectionsManager.getInstance(i11).sendRequest(tL_changeStarsSubscription, new bg.l0(eVar, w2VarArr, i11, tLObject, str, 2));
                     return;
                 }
                 return;
             case 1:
                 org.telegram.ui.ActionBar.w2 w2Var = (org.telegram.ui.ActionBar.w2) obj5;
-                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj4;
+                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) obj4;
                 LinearLayout linearLayout = (LinearLayout) obj3;
                 long[] jArr = (long[]) obj2;
-                ai.c1 c1Var = (ai.c1) obj;
+                ai.d1 d1Var = (ai.d1) obj;
                 e0 g10 = e0.g(i10);
                 g10.n();
                 g10.o();
                 ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = g10.f8689j;
+                ArrayList arrayList2 = g10.f8687j;
                 if (arrayList2 != null) {
                     arrayList.addAll(arrayList2);
                 }
-                ArrayList arrayList3 = g10.f8691l;
+                ArrayList arrayList3 = g10.f8689l;
                 if (arrayList3 != null) {
                     arrayList.addAll(arrayList3);
                 }
-                arrayList.add(0, k10.i(i10).f());
-                a70 a70Var = new a70(w2Var.f30142b, h6Var, linearLayout, false, false, true);
+                arrayList.add(0, i10.i(i10).f());
+                x60 x60Var = new x60(w2Var.f30226b, i6Var, linearLayout, false, false, true);
                 int size = arrayList.size();
                 int i12 = 0;
                 while (i12 < size) {
@@ -100,11 +100,11 @@ public final class z9 implements View.OnClickListener {
                     i12++;
                     TLObject tLObject2 = (TLObject) obj6;
                     if (tLObject2 instanceof TLRPC.User) {
-                        j3 = ((TLRPC.User) tLObject2).f28547id;
+                        j3 = ((TLRPC.User) tLObject2).f28641id;
                     } else if (tLObject2 instanceof TLRPC.Chat) {
                         TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
                         if (org.telegram.messenger.v3.V(chat)) {
-                            j3 = -chat.f28398id;
+                            j3 = -chat.f28492id;
                         }
                     }
                     long j10 = j3;
@@ -114,14 +114,14 @@ public final class z9 implements View.OnClickListener {
                         z10 = false;
                     }
                     long[] jArr2 = jArr;
-                    a70Var.g(tLObject2, z10, new bi.s2(jArr2, j10, c1Var, 12));
+                    x60Var.g(tLObject2, z10, new bi.s2(jArr2, j10, d1Var, 12));
                     jArr = jArr2;
                 }
-                a70Var.f33365t = false;
-                a70Var.f33363s = 0;
-                a70Var.W(5);
-                a70Var.b0(org.telegram.messenger.g0.L(24.0f), 0.0f);
-                a70Var.a0();
+                x60Var.f41894t = false;
+                x60Var.f41892s = 0;
+                x60Var.W(5);
+                x60Var.b0(org.telegram.messenger.g0.L(24.0f), 0.0f);
+                x60Var.a0();
                 return;
             case 2:
                 c5.l lVar = (c5.l) obj5;
@@ -137,46 +137,46 @@ public final class z9 implements View.OnClickListener {
                     float scrollX = horizontalScrollView.getScrollX();
                     float x10 = hi0Var.getX() - ((horizontalScrollView.getWidth() - hi0Var.getWidth()) / 2.0f);
                     ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-                    duration.setInterpolator(nr.f37917f);
+                    duration.setInterpolator(kr.f36858f);
                     duration.addUpdateListener(new org.telegram.ui.Cells.b(horizontalScrollView, scrollX, x10, hi0Var2, hi0Var));
                     duration.start();
                     return;
                 }
                 return;
             case 3:
-                tb0 tb0Var = (tb0) obj3;
-                hi.x4 x4Var = (hi.x4) obj2;
-                y10 y10Var = (y10) obj;
+                qb0 qb0Var = (qb0) obj3;
+                h6.o oVar = (h6.o) obj2;
+                w10 w10Var = (w10) obj;
                 TL_account.TL_birthday tL_birthday = new TL_account.TL_birthday();
-                tL_birthday.day = ((tb0) obj5).getValue();
-                tL_birthday.month = ((tb0) obj4).getValue() + 1;
-                if (tb0Var.getValue() != i10) {
+                tL_birthday.day = ((qb0) obj5).getValue();
+                tL_birthday.month = ((qb0) obj4).getValue() + 1;
+                if (qb0Var.getValue() != i10) {
                     tL_birthday.flags |= 1;
-                    tL_birthday.year = tb0Var.getValue();
+                    tL_birthday.year = qb0Var.getValue();
                 }
-                ((org.telegram.ui.ActionBar.w2) x4Var.f15680b).f30184y0.run();
-                y10Var.a(tL_birthday);
+                ((org.telegram.ui.ActionBar.w2) oVar.f13936b).f30268y0.run();
+                w10Var.a(tL_birthday);
                 return;
             case 4:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, (Context) obj3, (fi.b) obj2);
-                String N0 = hd.N0(2131748605, null);
-                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
+                String N0 = gd.N0(2131748605, null);
+                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28835a;
                 t1Var.S = N0;
-                t1Var.U = hd.N0(2131748606, null);
-                alertDialog$Builder.k(hd.N0(2131745828, null), new bg.g0((jr) obj4, (hi.d) obj5, (TL_phone.getGroupCallStreamRtmpUrl) obj, this.f10163b, 3));
-                alertDialog$Builder.h(hd.N0(2131752577, null), null);
+                t1Var.U = gd.N0(2131748606, null);
+                alertDialog$Builder.k(gd.N0(2131745828, null), new bg.g0((gr) obj4, (hi.e) obj5, (TL_phone.getGroupCallStreamRtmpUrl) obj, this.f10161b, 3));
+                alertDialog$Builder.h(gd.N0(2131752577, null), null);
                 alertDialog$Builder.d(-1);
                 alertDialog$Builder.p();
                 return;
             default:
-                org.telegram.ui.ActionBar.h6 h6Var2 = (org.telegram.ui.ActionBar.h6) obj4;
+                org.telegram.ui.ActionBar.i6 i6Var2 = (org.telegram.ui.ActionBar.i6) obj4;
                 TL_wallet.walletTransaction[] wallettransactionArr = (TL_wallet.walletTransaction[]) obj2;
                 Context context = (Context) obj;
-                a70 G = a70.G(((org.telegram.ui.Wallet.e3[]) obj5)[0].f30145c, h6Var2, (ImageView) obj3);
+                x60 G = x60.G(((org.telegram.ui.Wallet.f3[]) obj5)[0].f30229c, i6Var2, (ImageView) obj3);
                 if (!TextUtils.isEmpty(wallettransactionArr[0].tx_hash)) {
-                    G.c(2131232356, hd.N0(2131742699, null), new f21(context, i10, wallettransactionArr, 18), false);
+                    G.c(2131232359, gd.N0(2131742692, null), new e21(context, i10, wallettransactionArr, 18), false);
                 }
-                G.c(2131232822, hd.N0(2131742697, null), new a(2, context, h6Var2), false);
+                G.c(2131232825, gd.N0(2131742690, null), new a(2, context, i6Var2), false);
                 G.b0(0.0f, -org.telegram.messenger.g0.L(48.0f));
                 G.a0();
                 return;
@@ -184,47 +184,47 @@ public final class z9 implements View.OnClickListener {
     }
 
     public z9(c5.l lVar, int i7, LinearLayout linearLayout, AtomicBoolean atomicBoolean, HorizontalScrollView horizontalScrollView, hi0 hi0Var) {
-        this.f10164c = lVar;
-        this.f10163b = i7;
+        this.f10162c = lVar;
+        this.f10161b = i7;
         this.d = linearLayout;
-        this.f10165e = atomicBoolean;
-        this.f10166f = horizontalScrollView;
+        this.f10163e = atomicBoolean;
+        this.f10164f = horizontalScrollView;
         this.h = hi0Var;
     }
 
-    public z9(hi.d dVar, TL_stars.StarsSubscription starsSubscription, int i7, org.telegram.ui.ActionBar.w2[] w2VarArr, TLObject tLObject, String str) {
-        this.f10164c = dVar;
+    public z9(hi.e eVar, TL_stars.StarsSubscription starsSubscription, int i7, org.telegram.ui.ActionBar.w2[] w2VarArr, TLObject tLObject, String str) {
+        this.f10162c = eVar;
         this.d = starsSubscription;
-        this.f10163b = i7;
-        this.f10165e = w2VarArr;
-        this.f10166f = tLObject;
+        this.f10161b = i7;
+        this.f10163e = w2VarArr;
+        this.f10164f = tLObject;
         this.h = str;
     }
 
-    public z9(jr jrVar, Context context, fi.b bVar, hi.d dVar, TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, int i7) {
-        this.d = jrVar;
-        this.f10165e = context;
-        this.f10166f = bVar;
-        this.f10164c = dVar;
+    public z9(gr grVar, Context context, fi.b bVar, hi.e eVar, TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, int i7) {
+        this.d = grVar;
+        this.f10163e = context;
+        this.f10164f = bVar;
+        this.f10162c = eVar;
         this.h = getgroupcallstreamrtmpurl;
-        this.f10163b = i7;
+        this.f10161b = i7;
     }
 
-    public z9(tb0 tb0Var, tb0 tb0Var2, tb0 tb0Var3, int i7, hi.x4 x4Var, y10 y10Var) {
-        this.f10164c = tb0Var;
-        this.d = tb0Var2;
-        this.f10165e = tb0Var3;
-        this.f10163b = i7;
-        this.f10166f = x4Var;
-        this.h = y10Var;
+    public z9(qb0 qb0Var, qb0 qb0Var2, qb0 qb0Var3, int i7, h6.o oVar, w10 w10Var) {
+        this.f10162c = qb0Var;
+        this.d = qb0Var2;
+        this.f10163e = qb0Var3;
+        this.f10161b = i7;
+        this.f10164f = oVar;
+        this.h = w10Var;
     }
 
-    public z9(org.telegram.ui.Wallet.e3[] e3VarArr, org.telegram.ui.ActionBar.h6 h6Var, ImageView imageView, TL_wallet.walletTransaction[] wallettransactionArr, Context context, int i7) {
-        this.f10164c = e3VarArr;
-        this.d = h6Var;
-        this.f10165e = imageView;
-        this.f10166f = wallettransactionArr;
+    public z9(org.telegram.ui.Wallet.f3[] f3VarArr, org.telegram.ui.ActionBar.i6 i6Var, ImageView imageView, TL_wallet.walletTransaction[] wallettransactionArr, Context context, int i7) {
+        this.f10162c = f3VarArr;
+        this.d = i6Var;
+        this.f10163e = imageView;
+        this.f10164f = wallettransactionArr;
         this.h = context;
-        this.f10163b = i7;
+        this.f10161b = i7;
     }
 }

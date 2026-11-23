@@ -5,15 +5,15 @@ import com.google.android.gms.common.api.internal.u;
 import com.google.android.gms.common.api.j;
 import com.google.android.gms.identitycredentials.GetCredentialRequest;
 import com.google.android.gms.tasks.Task;
-import h9.g1;
+import j6.r;
 public final class g extends j {
-    public static final com.google.android.gms.common.api.e f18175l = new com.google.android.gms.common.api.e("IdentityCredentials.API", new a9.e(7), new Object());
+    public static final com.google.android.gms.common.api.e f18277l = new com.google.android.gms.common.api.e("IdentityCredentials.API", new a9.e(7), new Object());
 
     public final Task f(GetCredentialRequest getCredentialRequest) {
         t b10 = u.b();
-        b10.d = new n6.c[]{t7.b.f57629a};
-        b10.f6349c = new g1(getCredentialRequest, 5);
-        b10.f6347a = 32701;
+        b10.d = new n6.c[]{t7.b.f57743a};
+        b10.f6348c = new r(getCredentialRequest, 2);
+        b10.f6346a = 32701;
         Task e10 = e(0, b10.a());
         kotlin.jvm.internal.j.d(e10, "doRead(...)");
         return e10;

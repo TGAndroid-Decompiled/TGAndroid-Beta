@@ -2,10 +2,10 @@ package bi;
 
 import android.view.View;
 import java.io.Serializable;
-import org.telegram.messenger.w10;
+import org.telegram.messenger.u10;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.o41;
-public final class g7 implements di.m4, w10 {
+import org.telegram.ui.Components.n41;
+public final class g7 implements di.m4, u10 {
     public final m8 f3620a;
 
     @Override
@@ -14,11 +14,11 @@ public final class g7 implements di.m4, w10 {
     }
 
     @Override
-    public void l(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
         View view = (View) obj2;
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        m8.e0(this.f3620a, (o41) obj);
+        m8.e0(this.f3620a, (n41) obj);
     }
 }

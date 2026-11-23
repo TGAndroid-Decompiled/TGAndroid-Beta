@@ -1,7 +1,7 @@
 package bi;
 
 import android.content.Context;
-import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.kc;
 public final class a3 extends f9 {
     public final p3 f3350v2;
 
@@ -11,8 +11,8 @@ public final class a3 extends f9 {
     }
 
     @Override
-    public final lc f1() {
+    public final kc f1() {
         p3 p3Var = this.f3350v2;
-        return new lc(p3Var.f30145c, p3Var.J0);
+        return new kc(p3Var.f30229c, p3Var.J0);
     }
 }

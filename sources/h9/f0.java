@@ -6,8 +6,8 @@ public final class f0 extends b0 {
         return this;
     }
 
-    public final t1 f() {
-        this.f13968c = true;
-        return i0.o(this.f13967b, this.f13966a);
+    public final s1 f() {
+        this.f13966c = true;
+        return i0.o(this.f13965b, this.f13964a);
     }
 }

@@ -6,7 +6,7 @@ public interface k {
 
     void N(int i7, g0 g0Var, int i10);
 
-    void c(int i7, g0 g0Var, nb.a aVar);
+    void l(int i7, g0 g0Var, nb.a aVar);
 
     void w(int i7, g0 g0Var);
 

@@ -1,73 +1,72 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import android.os.CancellationSignal;
+import android.content.SharedPreferences;
 import java.util.ArrayList;
-import org.json.JSONObject;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ud0;
-public abstract class kt {
-    public static void a(boolean[] zArr, ud0 ud0Var, boolean z10, androidx.emoji2.text.n nVar, Context context, int i7, Runnable[] runnableArr, TL_account.passkeyLoginOptions passkeyloginoptions, TLRPC.TL_error tL_error) {
-        if (!zArr[0]) {
-            if (tL_error != null) {
-                ud0Var.a(0L, null, tL_error.text);
-                return;
-            }
-            try {
-                v0.p pVar = new v0.p(new JSONObject(passkeyloginoptions.options.data).getJSONObject("publicKey").toString());
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(pVar);
-                v0.m mVar = new v0.m(hd.f.l(arrayList), !z10);
-                try {
-                    CancellationSignal cancellationSignal = new CancellationSignal();
-                    nVar.d(context, mVar, cancellationSignal, context.getMainExecutor(), new ht(ud0Var, context, i7));
-                    runnableArr[0] = new a(cancellationSignal, 11);
-                } catch (Exception e10) {
-                    ud0Var.a(0L, null, e10.getMessage());
+public final class kt implements fs {
+    public static final kt f25352c;
+    public static final List d;
+    public boolean f25353a;
+    public xr f25354b;
+
+    static {
+        ?? obj = new Object();
+        obj.f25354b = new xr((Object) obj, 2);
+        f25352c = obj;
+        d = Arrays.asList(5, 10, 15, 30, 60);
+    }
+
+    public final void a() {
+        this.f25353a = false;
+        if (bz.f23272a1) {
+            ArrayList arrayList = new ArrayList(bz.f23341z1);
+            Collections.sort(arrayList, new dl(12));
+            int size = arrayList.size();
+            int i7 = 0;
+            while (i7 < size) {
+                Object obj = arrayList.get(i7);
+                i7++;
+                az azVar = (az) obj;
+                if (azVar != bz.B1 && !azVar.f23098c && azVar.d) {
+                    SharedPreferences.Editor edit = mp.g1().edit();
+                    edit.putBoolean("proxy_enabled", true);
+                    azVar.f23096a.i(edit);
+                    edit.apply();
+                    bz.B1 = azVar;
+                    ks.e().k(ks.D4, new Object[0]);
+                    ks.e().k(ks.F4, new Object[0]);
+                    ConnectionsManager.setProxySettings(true, bz.B1.f23096a);
+                    return;
                 }
-            } catch (Exception e11) {
-                a8.g(e11, true);
-                ud0Var.a(0L, null, e11.getMessage());
             }
         }
     }
 
-    public static void b(final int i7, final Context context, final r10 r10Var) {
-        if (!s2.f26700i) {
-            return;
-        }
-        kotlin.jvm.internal.j.e(context, "context");
-        final androidx.emoji2.text.n nVar = new androidx.emoji2.text.n(context, 4);
-        final org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, context, null);
-        t1Var.r(500L);
-        ConnectionsManager.getInstance(i7).sendRequestTyped(new TL_account.initPasskeyRegistration(), new d3.b(1), new r10() {
-            @Override
-            public final void a(Object obj, Object obj2) {
-                androidx.emoji2.text.n nVar2 = nVar;
-                Context context2 = context;
-                int i10 = i7;
-                TL_account.passkeyRegistrationOptions passkeyregistrationoptions = (TL_account.passkeyRegistrationOptions) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                org.telegram.ui.ActionBar.t1.this.dismiss();
-                r10 r10Var2 = r10Var;
-                if (tL_error != null) {
-                    r10Var2.a(null, tL_error.text);
+    @Override
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        xr xrVar = this.f25354b;
+        if (i7 == ks.E4) {
+            int i11 = bz.f23270a;
+            if (mp.g1().getBoolean("proxy_enabled", false) && bz.B1 != null && bz.f23272a1 && bz.f23341z1.size() > 1 && this.f25353a) {
+                a();
+            }
+        } else if (i7 == ks.D4) {
+            g0.r(xrVar);
+        } else if (i7 == ks.T1 && i10 == i10.f24637t0) {
+            int i12 = bz.f23270a;
+            if (((mp.g1().getBoolean("proxy_enabled", false) && bz.B1 != null) || bz.f23272a1) && bz.f23341z1.size() > 1) {
+                if (ConnectionsManager.getInstance(i10).getConnectionState() == 4) {
+                    if (!this.f25353a) {
+                        g0.h3(xrVar, ((Integer) d.get(bz.f23275b1)).intValue() * 1000);
+                        return;
+                    }
                     return;
                 }
-                try {
-                    try {
-                        nVar2.c(context2, new v0.e(new JSONObject(passkeyregistrationoptions.options.data).getJSONObject("publicKey").toString()), new jt(new ct(i10, context2, r10Var2)));
-                    } catch (Exception e10) {
-                        a8.g(e10, true);
-                        g0.g3(new dt(r10Var2, e10, 0));
-                    }
-                } catch (Exception e11) {
-                    a8.g(e11, true);
-                    r10Var2.a(null, e11.getMessage());
-                }
+                g0.r(xrVar);
             }
-        });
+        }
     }
 }

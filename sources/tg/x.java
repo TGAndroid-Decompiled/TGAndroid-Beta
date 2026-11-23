@@ -1,45 +1,44 @@
 package tg;
+public final class x implements r1.c {
+    public final int f58286a;
+    public final l0 f58287b;
+    public final boolean f58288c;
 
-import android.app.Activity;
-import org.telegram.messenger.k10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.bn;
-public final class x extends bn {
-    public final h0 f58181vd;
-
-    public x(h0 h0Var) {
-        super(null);
-        this.f58181vd = h0Var;
+    public x(l0 l0Var, boolean z10, int i7) {
+        this.f58286a = i7;
+        this.f58287b = l0Var;
+        this.f58288c = z10;
     }
 
     @Override
-    public final boolean V9() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        return org.telegram.messenger.g0.W(this.f58181vd.getContext());
-    }
-
-    @Override
-    public final h6 getResourceProvider() {
-        return this.f58181vd.A1;
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.User j() {
-        return k10.i(this.currentAccount).f();
+    public final void a(r1.g gVar, boolean z10, float f10, float f11) {
+        switch (this.f58286a) {
+            case 0:
+                l0 l0Var = this.f58287b;
+                o1 o1Var = l0Var.f58029f1;
+                if (gVar == l0Var.f58042p1) {
+                    l0Var.f58042p1 = null;
+                    if (!this.f58288c) {
+                        o1Var.setVisibility(8);
+                    }
+                    o1Var.setMaskProvider(null);
+                    return;
+                }
+                return;
+            default:
+                l0 l0Var2 = this.f58287b;
+                i0 i0Var = l0Var2.f58044q1;
+                if (gVar == l0Var2.f58056w1) {
+                    l0Var2.f58056w1 = null;
+                    if (!this.f58288c) {
+                        i0Var.setVisibility(8);
+                        sg.j0.e(l0Var2.f58062z1).g();
+                        i0Var.getAdapter().f();
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

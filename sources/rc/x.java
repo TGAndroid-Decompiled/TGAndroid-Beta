@@ -4,18 +4,18 @@ import com.google.android.gms.internal.vision.e2;
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 public final class x {
-    public boolean f56574a;
-    public boolean f56575b;
-    public boolean f56576c;
+    public boolean f56687a;
+    public boolean f56688b;
+    public boolean f56689c;
     public boolean d;
-    public int f56577e;
-    public boolean f56578f;
-    public byte[] f56579g;
+    public int f56690e;
+    public boolean f56691f;
+    public byte[] f56692g;
 
     public static x a(int i7, String str) {
         ?? obj = new Object();
-        obj.f56574a = true;
-        obj.f56577e = 8;
+        obj.f56687a = true;
+        obj.f56690e = 8;
         byte[] bArr = {(byte) ((i7 >> 8) & 255), (byte) (i7 & 255)};
         if (str != null && str.length() != 0) {
             byte[] a10 = k.a(str);
@@ -30,7 +30,7 @@ public final class x {
     }
 
     public final int b() {
-        byte[] bArr = this.f56579g;
+        byte[] bArr = this.f56692g;
         if (bArr != null && bArr.length >= 2) {
             return (bArr[1] & 255) | ((bArr[0] & 255) << 8);
         }
@@ -41,7 +41,7 @@ public final class x {
         if (bArr != null && bArr.length == 0) {
             bArr = null;
         }
-        this.f56579g = bArr;
+        this.f56692g = bArr;
     }
 
     public final String toString() {
@@ -52,21 +52,21 @@ public final class x {
         int length;
         StringBuilder m10 = e2.m("WebSocketFrame(FIN=");
         String str5 = "0";
-        if (!this.f56574a) {
+        if (!this.f56687a) {
             str = "0";
         } else {
             str = "1";
         }
         m10.append(str);
         m10.append(",RSV1=");
-        if (!this.f56575b) {
+        if (!this.f56688b) {
             str2 = "0";
         } else {
             str2 = "1";
         }
         m10.append(str2);
         m10.append(",RSV2=");
-        if (!this.f56576c) {
+        if (!this.f56689c) {
             str3 = "0";
         } else {
             str3 = "1";
@@ -78,8 +78,8 @@ public final class x {
         }
         m10.append(str5);
         m10.append(",Opcode=");
-        int i7 = this.f56577e;
-        SecureRandom secureRandom = k.f56527a;
+        int i7 = this.f56690e;
+        SecureRandom secureRandom = k.f56640a;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {
@@ -117,14 +117,14 @@ public final class x {
         }
         m10.append(str4);
         m10.append(",Length=");
-        byte[] bArr = this.f56579g;
+        byte[] bArr = this.f56692g;
         if (bArr == null) {
             length = 0;
         } else {
             length = bArr.length;
         }
         m10.append(length);
-        int i10 = this.f56577e;
+        int i10 = this.f56690e;
         String str6 = null;
         if (i10 != 1) {
             if (i10 != 2) {
@@ -132,7 +132,7 @@ public final class x {
                     m10.append(",CloseCode=");
                     m10.append(b());
                     m10.append(",Reason=");
-                    byte[] bArr2 = this.f56579g;
+                    byte[] bArr2 = this.f56692g;
                     if (bArr2 != null && bArr2.length >= 3) {
                         try {
                             str6 = new String(bArr2, 2, bArr2.length - 2, "UTF-8");
@@ -149,14 +149,14 @@ public final class x {
                 }
             } else {
                 m10.append(",Payload=");
-                if (this.f56579g == null) {
+                if (this.f56692g == null) {
                     m10.append("null");
-                } else if (this.f56575b) {
+                } else if (this.f56688b) {
                     m10.append("compressed");
                 } else {
                     int i11 = 0;
                     while (true) {
-                        byte[] bArr3 = this.f56579g;
+                        byte[] bArr3 = this.f56692g;
                         if (i11 < bArr3.length) {
                             m10.append(String.format("%02X ", Integer.valueOf(bArr3[i11] & 255)));
                             i11++;
@@ -168,13 +168,13 @@ public final class x {
             }
         } else {
             m10.append(",Payload=");
-            if (this.f56579g == null) {
+            if (this.f56692g == null) {
                 m10.append("null");
-            } else if (this.f56575b) {
+            } else if (this.f56688b) {
                 m10.append("compressed");
             } else {
                 m10.append("\"");
-                byte[] bArr4 = this.f56579g;
+                byte[] bArr4 = this.f56692g;
                 if (bArr4 != null) {
                     try {
                         str6 = new String(bArr4, 0, bArr4.length, "UTF-8");

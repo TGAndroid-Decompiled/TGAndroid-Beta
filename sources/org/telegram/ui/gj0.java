@@ -1,68 +1,93 @@
 package org.telegram.ui;
 
-import android.text.TextWatcher;
-import java.util.regex.Pattern;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class gj0 implements TextWatcher {
-    public final int f48064a;
-    public final Object f48065b;
-    public String f48066c;
-    public final Object d;
+import java.util.HashMap;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class gj0 extends oq0 {
+    public final fk0 f48311a;
 
-    public gj0(hk0 hk0Var, EditTextBoldCursor editTextBoldCursor, String str, int i7) {
-        this.f48064a = i7;
-        this.d = hk0Var;
-        this.f48065b = editTextBoldCursor;
-        this.f48066c = str;
+    public gj0(fk0 fk0Var) {
+        this.f48311a = fk0Var;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gj0.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        switch (this.f48064a) {
-            case 0:
-            case 1:
-            case 2:
-                return;
-            default:
-                this.f48066c = charSequence.toString();
-                return;
+    public final void B(int i7) {
+        org.telegram.messenger.yv yvVar;
+        fk0 fk0Var = this.f48311a;
+        int i10 = fk0Var.T0;
+        if (i10 == 1) {
+            yvVar = fk0Var.f47877k1;
+        } else if (i10 == 4) {
+            yvVar = (org.telegram.messenger.yv) fk0Var.l1.get(i7);
+        } else if (i10 == 2) {
+            yvVar = fk0Var.f47879m1;
+        } else if (i10 == 3) {
+            yvVar = fk0Var.n1;
+        } else {
+            yvVar = (org.telegram.messenger.yv) fk0Var.f47875j1.get(i7);
         }
+        dk0 dk0Var = (dk0) fk0Var.f47883o1.remove(yvVar);
+        if (dk0Var == null) {
+            return;
+        }
+        String r12 = fk0.r1(yvVar);
+        int i11 = fk0Var.T0;
+        String str = null;
+        if (i11 == 1) {
+            fk0Var.f47877k1 = null;
+            str = p5.c.k("selfie", r12);
+        } else if (i11 == 4) {
+            str = p5.c.k("translation", r12);
+        } else if (i11 == 2) {
+            fk0Var.f47879m1 = null;
+            str = p5.c.k("front", r12);
+        } else if (i11 == 3) {
+            fk0Var.n1 = null;
+            str = p5.c.k("reverse", r12);
+        } else if (i11 == 0) {
+            str = p5.c.k("files", r12);
+        }
+        if (str != null) {
+            HashMap hashMap = fk0Var.f47908y1;
+            if (hashMap != null) {
+                hashMap.remove(str);
+            }
+            HashMap hashMap2 = fk0Var.f47910z1;
+            if (hashMap2 != null) {
+                hashMap2.remove(str);
+            }
+        }
+        fk0Var.X1(fk0Var.T0);
+        fk0Var.f47874j0.removeView(dk0Var);
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f48064a;
+    public final wq0 E(org.telegram.messenger.fj fjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
+        if (i7 >= 0) {
+            fk0 fk0Var = this.f48311a;
+            if (i7 < fk0Var.f47874j0.getChildCount()) {
+                dk0 dk0Var = (dk0) fk0Var.f47874j0.getChildAt(i7);
+                int[] iArr = new int[2];
+                dk0Var.f47156c.getLocationInWindow(iArr);
+                wq0 wq0Var = new wq0();
+                wq0Var.f53727b = iArr[0];
+                wq0Var.f53728c = iArr[1];
+                wq0Var.d = fk0Var.f47874j0;
+                ImageReceiver imageReceiver = dk0Var.f47156c.getImageReceiver();
+                wq0Var.f53726a = imageReceiver;
+                wq0Var.f53729e = imageReceiver.p();
+                return wq0Var;
+            }
+            return null;
+        }
+        return null;
     }
 
-    public gj0(sg.p pVar) {
-        this.f48064a = 3;
-        this.d = pVar;
-        this.f48065b = Pattern.compile("^[0-9a-fA-F]*$");
-    }
-
-    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void e(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void f(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void g(int i7, int i10, int i11, CharSequence charSequence) {
+    @Override
+    public final String b0() {
+        if (this.f48311a.T0 == 1) {
+            return org.telegram.messenger.gd.a0("PassportDeleteSelfieAlert", null, 2131747387, new Object[0]);
+        }
+        return org.telegram.messenger.gd.a0("PassportDeleteScanAlert", null, 2131747389, new Object[0]);
     }
 }

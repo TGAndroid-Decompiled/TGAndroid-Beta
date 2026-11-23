@@ -1,66 +1,74 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
-public final class hl implements ViewTreeObserver.OnPreDrawListener {
-    public final int f35886a;
-    public final View f35887b;
+public final class hl extends v4.u0 {
+    public final int f35761a;
+    public final kl f35762b;
 
-    public hl(int i7, View view) {
-        this.f35886a = i7;
-        this.f35887b = view;
+    public hl(kl klVar, int i7) {
+        this.f35761a = i7;
+        this.f35762b = klVar;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        float f10;
-        RecyclerView recyclerView;
-        switch (this.f35886a) {
+    public final void a(RecyclerView recyclerView, int i7) {
+        boolean z10;
+        mj0 mj0Var;
+        switch (this.f35761a) {
             case 0:
-                ml mlVar = (ml) this.f35887b;
-                v7 v7Var = mlVar.f37477b.V2;
-                if (v7Var != null) {
-                    f10 = v7Var.getAlpha();
+                kl klVar = this.f35762b;
+                di.b1 b1Var = klVar.M;
+                if (i7 != 0) {
+                    z10 = true;
                 } else {
-                    f10 = 0.0f;
+                    z10 = false;
                 }
-                if (f10 != mlVar.A0) {
-                    mlVar.A0 = f10;
-                    mlVar.i0();
-                    return true;
+                klVar.I = z10;
+                if (!z10 && klVar.G != null) {
+                    klVar.G = null;
                 }
-                return true;
-            case 1:
-                org.telegram.ui.ActionBar.x3 x3Var = ((EditTextBoldCursor) this.f35887b).Z0;
-                if (x3Var != null) {
-                    x3Var.c();
-                    return true;
-                }
-                return true;
-            case 2:
-                ((w60) this.f35887b).invalidate();
-                return true;
-            default:
-                tt0 tt0Var = (tt0) this.f35887b;
-                if (tt0Var.f40016a && tt0Var.f40018b > 0) {
-                    tt0Var.f("PRE_DRAW_BEFORE", null, 0, 0, true);
-                }
-                tt0Var.p();
-                if (tt0Var.f40028h0 && (recyclerView = tt0Var.F) != null && !recyclerView.c0()) {
-                    float n10 = tt0Var.n();
-                    if (!Float.isInfinite(n10)) {
-                        tt0Var.f40028h0 = false;
-                        tt0Var.t(tt0Var.F, Math.round(n10 - tt0Var.V));
-                        tt0Var.B();
+                if (i7 == 0) {
+                    int L = org.telegram.messenger.g0.L(13.0f);
+                    ti tiVar = klVar.f37135b;
+                    int i10 = tiVar.f30260t0;
+                    if (((tiVar.Z3[0] - i10) - L) + i10 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (mj0Var = (mj0) b1Var.K(0)) != null) {
+                        View view = mj0Var.f59245a;
+                        if (view.getTop() > 0) {
+                            b1Var.w0(0, view.getTop(), null);
+                            return;
+                        }
+                        return;
                     }
+                    return;
                 }
-                if (tt0Var.f40016a && tt0Var.f40018b > 0) {
-                    tt0Var.f("PRE_DRAW_AFTER", null, 0, 0, true);
-                    tt0Var.f40018b--;
-                    tt0Var.f40020c++;
+                return;
+            default:
+                if (i7 == 1) {
+                    kl klVar2 = this.f35762b;
+                    if (klVar2.f36775d0 && klVar2.f36776e0) {
+                        org.telegram.messenger.g0.v1(klVar2.f37135b.getCurrentFocus());
+                        return;
+                    }
+                    return;
                 }
-                return true;
+                return;
+        }
+    }
+
+    @Override
+    public void b(RecyclerView recyclerView, int i7, int i10) {
+        switch (this.f35761a) {
+            case 0:
+                kl klVar = this.f35762b;
+                klVar.i0();
+                if (klVar.G != null) {
+                    klVar.H += i10;
+                }
+                klVar.f37135b.N1(klVar, i10);
+                return;
+            default:
+                return;
         }
     }
 }

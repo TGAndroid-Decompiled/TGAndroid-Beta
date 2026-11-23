@@ -1,46 +1,46 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class cz0 extends rg.a {
-    public final org.telegram.messenger.lv f46802c;
-    public final String d;
+import android.app.Activity;
+import android.graphics.Canvas;
+public final class cz0 extends org.telegram.ui.Components.n6 {
+    public boolean f46915s;
+    public final org.telegram.ui.Components.c6 f46916w;
+    public final SaveToGallerySettingsActivity f46917x;
 
-    public cz0(int i7) {
-        super(i7, false);
-        this.f46802c = null;
+    public cz0(SaveToGallerySettingsActivity saveToGallerySettingsActivity, Activity activity) {
+        super(activity, true, true, false);
+        this.f46917x = saveToGallerySettingsActivity;
+        this.f46916w = new org.telegram.ui.Components.c6(this);
+        getDrawable().K = true;
     }
 
-    public final boolean equals(Object obj) {
-        org.telegram.messenger.lv lvVar;
-        if (this == obj) {
-            return true;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f10;
+        if (this.f46915s) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
         }
-        if (obj == null || cz0.class != obj.getClass()) {
-            return false;
-        }
-        cz0 cz0Var = (cz0) obj;
-        if (this.f56599a != cz0Var.f56599a) {
-            return false;
-        }
-        String str = this.d;
-        if (str != null) {
-            return Objects.equals(str, cz0Var.d);
-        }
-        org.telegram.messenger.lv lvVar2 = this.f46802c;
-        if (lvVar2 == null || (lvVar = cz0Var.f46802c) == null || lvVar2.d == lvVar.d) {
-            return true;
-        }
-        return false;
+        org.telegram.ui.Components.c6 c6Var = this.f46916w;
+        c6Var.e(false, f10);
+        int i7 = org.telegram.ui.ActionBar.n6.f29843y6;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f46917x;
+        setTextColor(i0.a.f(c6Var.f33931c, saveToGallerySettingsActivity.getThemedColor(i7), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.n6.f29633n6)));
+        super.dispatchDraw(canvas);
     }
 
-    public cz0(org.telegram.messenger.lv lvVar) {
-        super(2, false);
-        this.f46802c = lvVar;
-    }
-
-    public cz0(int i7, String str) {
-        super(i7, false);
-        this.d = str;
-        this.f46802c = null;
+    public final void e(boolean z10, boolean z11) {
+        float f10;
+        if (this.f46915s != z10) {
+            this.f46915s = z10;
+            if (z10) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            this.f46916w.e(z11, f10);
+            invalidate();
+        }
     }
 }

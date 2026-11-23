@@ -2,7 +2,7 @@ package bg;
 
 import j$.util.concurrent.ConcurrentHashMap;
 import java.util.AbstractMap;
-import org.telegram.messenger.gj;
+import org.telegram.messenger.fj;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
@@ -20,10 +20,10 @@ public final class w {
             this.f3323e.f3310a.add(ephemeralMessage);
         } else if (ephemeralMessage.welcome) {
             TLRPC.TL_message b10 = x.b(ephemeralMessage);
-            gj gjVar = new gj(i7, (TLRPC.Message) b10, (AbstractMap) concurrentHashMap, (AbstractMap) concurrentHashMap2, true, true);
+            fj fjVar = new fj(i7, (TLRPC.Message) b10, (AbstractMap) concurrentHashMap, (AbstractMap) concurrentHashMap2, true, true);
             b10.edit_date = ConnectionsManager.getInstance(i7).getCurrentTime();
             b10.flags |= 32768;
-            u.a(this.f3321b, ephemeralMessage, b10, gjVar);
+            u.a(this.f3321b, ephemeralMessage, b10, fjVar);
         } else {
             this.d.f3310a.add(ephemeralMessage);
         }
@@ -35,7 +35,7 @@ public final class w {
             this.f3323e.f3310a.add(ephemeralMessage);
         } else if (ephemeralMessage.welcome) {
             TLRPC.TL_message b10 = x.b(ephemeralMessage);
-            u.a(this.f3320a, ephemeralMessage, b10, new gj(i7, (TLRPC.Message) b10, (AbstractMap) concurrentHashMap, (AbstractMap) concurrentHashMap2, true, true));
+            u.a(this.f3320a, ephemeralMessage, b10, new fj(i7, (TLRPC.Message) b10, (AbstractMap) concurrentHashMap, (AbstractMap) concurrentHashMap2, true, true));
         } else {
             this.f3322c.f3310a.add(ephemeralMessage);
         }

@@ -1,8 +1,8 @@
 package ci;
 
 import android.text.TextUtils;
-import org.telegram.messenger.y10;
-public final class q0 implements y10 {
+import org.telegram.messenger.w10;
+public final class q0 implements w10 {
     public final int f5743a;
     public final z0 f5744b;
     public final String f5745c;

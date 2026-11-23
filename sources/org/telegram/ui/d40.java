@@ -1,46 +1,84 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Shader;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class d40 extends LinearLayout {
-    public final org.telegram.ui.Components.o6 f46833a;
-    public float f46834b;
-    public final f40 f46835c;
+import java.security.SecureRandom;
+import org.telegram.messenger.Utilities;
+public final class d40 {
+    public float f46947c;
+    public float d;
+    public float f46948e;
+    public float f46949f;
+    public Shader f46950g;
+    public final int f46951i;
+    public float f46945a = -1.0f;
+    public float f46946b = -1.0f;
+    public final Matrix h = new Matrix();
 
-    public d40(f40 f40Var, Context context) {
-        super(context);
-        this.f46835c = f40Var;
-        this.f46834b = 0.0f;
-        setOrientation(1);
-        setGravity(17);
-        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(context, true, false, false);
-        this.f46833a = o6Var;
-        o6Var.setTextColor(-1);
-        o6Var.setTextSize(org.telegram.messenger.g0.L(46.0f));
-        o6Var.setTypeface(org.telegram.messenger.g0.o());
-        o6Var.setGravity(1);
-        TextView textView = new TextView(context);
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setText(org.telegram.messenger.hd.N0(2131743203, null));
-        addView(o6Var, c8.na.o(-1, 46));
-        addView(textView, c8.na.o(-2, -2));
+    public d40(int i7) {
+        this.f46951i = i7;
     }
 
-    public void setWatchersCount(int i7) {
-        String E = org.telegram.messenger.hd.E(i7, ',');
-        org.telegram.ui.Components.o6 o6Var = this.f46833a;
-        float measureText = o6Var.getPaint().measureText((CharSequence) E, 0, E.length());
-        if (this.f46834b != measureText) {
-            int i10 = org.telegram.ui.ActionBar.m6.Ck;
-            f40 f40Var = this.f46835c;
-            o6Var.getPaint().setShader(new LinearGradient(0.0f, 0.0f, measureText, 0.0f, new int[]{org.telegram.ui.ActionBar.m6.w0(i10, f40Var.J0), org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Ek, f40Var.J0)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            this.f46834b = measureText;
+    public final void a() {
+        int i7 = this.f46951i;
+        if (e40.t1(i7)) {
+            this.f46945a = a8.p0.f(Utilities.f22875b.nextInt(100), 0.2f, 100.0f, 0.85f);
+            this.f46946b = 1.0f;
+        } else if (i7 == 1) {
+            SecureRandom secureRandom = Utilities.f22875b;
+            this.f46945a = a8.p0.f(secureRandom.nextInt(100), 0.3f, 100.0f, 0.2f);
+            this.f46946b = a8.p0.f(secureRandom.nextInt(100), 0.3f, 100.0f, 0.7f);
+        } else {
+            SecureRandom secureRandom2 = Utilities.f22875b;
+            this.f46945a = com.google.android.gms.internal.vision.e2.c(secureRandom2.nextInt(100), 100.0f, 0.2f, 0.8f);
+            this.f46946b = secureRandom2.nextInt(100) / 100.0f;
         }
-        o6Var.setText(E);
+    }
+
+    public final void b(int i7, int i10, int i11, long j3, float f10) {
+        float f11;
+        if (this.f46950g == null) {
+            return;
+        }
+        float f12 = this.f46948e;
+        if (f12 == 0.0f || this.f46949f >= f12) {
+            this.f46948e = Utilities.f22875b.nextInt(200) + 1500;
+            this.f46949f = 0.0f;
+            if (this.f46945a == -1.0f) {
+                a();
+            }
+            this.f46947c = this.f46945a;
+            this.d = this.f46946b;
+            a();
+        }
+        float f13 = (float) j3;
+        float f14 = 1.0f;
+        float f15 = (f13 * 0.02f * f10) + (f13 * 1.0f) + this.f46949f;
+        this.f46949f = f15;
+        float f16 = this.f46948e;
+        if (f15 > f16) {
+            this.f46949f = f16;
+        }
+        float interpolation = org.telegram.ui.Components.kr.f36859g.getInterpolation(this.f46949f / f16);
+        float f17 = i11;
+        float f18 = this.f46947c;
+        float f19 = (((((this.f46945a - f18) * interpolation) + f18) * f17) + i10) - 200.0f;
+        float f20 = this.d;
+        float f21 = (((((this.f46946b - f20) * interpolation) + f20) * f17) + i7) - 200.0f;
+        int i12 = this.f46951i;
+        if (!e40.t1(i12)) {
+            if (i12 == 1) {
+                f11 = 4.0f;
+            } else {
+                f11 = 2.5f;
+            }
+            f14 = f11;
+        }
+        float L = (org.telegram.messenger.g0.L(122.0f) / 400.0f) * f14;
+        Matrix matrix = this.h;
+        matrix.reset();
+        matrix.postTranslate(f19, f21);
+        matrix.postScale(L, L, f19 + 200.0f, f21 + 200.0f);
+        this.f46950g.setLocalMatrix(matrix);
     }
 }

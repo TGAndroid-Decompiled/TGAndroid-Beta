@@ -5,48 +5,48 @@ import android.text.SpannableString;
 import android.widget.LinearLayout;
 import c8.na;
 import di.pb;
-import org.telegram.messenger.gs;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.y10;
-import org.telegram.ui.Components.nq;
-import org.telegram.ui.Components.r80;
-public final class o7 extends LinearLayout implements gs {
+import org.telegram.messenger.fs;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.w10;
+import org.telegram.ui.Components.kq;
+import org.telegram.ui.Components.o80;
+public final class o7 extends LinearLayout implements fs {
     public final int f3910a;
-    public final org.telegram.ui.Components.o6 f3911b;
-    public final org.telegram.ui.Components.o6 f3912c;
-    public final nq[] d;
-    public final nq[] f3913e;
+    public final org.telegram.ui.Components.n6 f3911b;
+    public final org.telegram.ui.Components.n6 f3912c;
+    public final kq[] d;
+    public final kq[] f3913e;
     public SpannableString f3914f;
-    public y10 h;
+    public w10 h;
     public long f3915n;
 
-    public o7(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+    public o7(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
-        this.d = new nq[1];
-        this.f3913e = new nq[1];
+        this.d = new kq[1];
+        this.f3913e = new kq[1];
         this.f3915n = -1L;
         this.f3910a = i7;
         setOrientation(1);
         setGravity(21);
         int L = org.telegram.messenger.g0.L(6.0f);
         setPadding(org.telegram.messenger.g0.L(13.0f) + L, L, org.telegram.messenger.g0.L(14.0f) + L, L);
-        org.telegram.ui.Components.o6 a10 = a(context, h6Var);
+        org.telegram.ui.Components.n6 a10 = a(context, i6Var);
         this.f3911b = a10;
         addView(a10, na.r(-2, 18, 5));
-        org.telegram.ui.Components.o6 a11 = a(context, h6Var);
+        org.telegram.ui.Components.n6 a11 = a(context, i6Var);
         this.f3912c = a11;
         addView(a11, na.r(-2, 18, 5));
         b(false);
     }
 
-    public static org.telegram.ui.Components.o6 a(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(context, false, true, false);
-        o6Var.f38085n = true;
-        o6Var.setTypeface(org.telegram.messenger.g0.o());
-        o6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));
-        o6Var.setGravity(5);
-        org.telegram.ui.ActionBar.t6.Y(o6Var, org.telegram.ui.ActionBar.m6.G6, h6Var);
-        return o6Var;
+    public static org.telegram.ui.Components.n6 a(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(context, false, true, false);
+        n6Var.f37685n = true;
+        n6Var.setTypeface(org.telegram.messenger.g0.o());
+        n6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));
+        n6Var.setGravity(5);
+        org.telegram.ui.ActionBar.u6.Y(n6Var, org.telegram.ui.ActionBar.n6.G6, i6Var);
+        return n6Var;
     }
 
     public final void b(boolean z10) {
@@ -56,22 +56,22 @@ public final class o7 extends LinearLayout implements gs {
         long j3 = y10.p().amount;
         cg.a s5 = y11.s();
         if (ii.n.c(i7)) {
-            s5 = cg.a.j(Math.max(0L, org.telegram.ui.Wallet.u0.D(i7).A()) + s5.f5267b, cg.b.f5269b);
+            s5 = cg.a.j(Math.max(0L, org.telegram.ui.Wallet.v0.D(i7).A()) + s5.f5267b, cg.b.f5269b);
         }
-        boolean z11 = y10.f10051e;
-        org.telegram.ui.Components.o6 o6Var = this.f3911b;
-        org.telegram.ui.Components.o6 o6Var2 = this.f3912c;
-        if (z11 && y11.f10051e) {
-            o6Var.c(pb.b1(false, i5.c.l(j3, ' ', new StringBuilder("⭐️")), 0.7f, this.d), z10, true);
+        boolean z11 = y10.f10049e;
+        org.telegram.ui.Components.n6 n6Var = this.f3911b;
+        org.telegram.ui.Components.n6 n6Var2 = this.f3912c;
+        if (z11 && y11.f10049e) {
+            n6Var.c(pb.b1(false, i5.c.l(j3, ' ', new StringBuilder("⭐️")), 0.7f, this.d), z10, true);
             if (s5.l()) {
-                o6Var2.setVisibility(8);
+                n6Var2.setVisibility(8);
             } else {
-                o6Var2.setVisibility(0);
-                nq[] nqVarArr = this.f3913e;
-                o6Var2.c(pb.b1(true, "⭐️" + s5.o(2).d(), 0.7f, nqVarArr), z10, true);
-                nq nqVar = nqVarArr[0];
-                if (nqVar != null) {
-                    nqVar.a(org.telegram.ui.ActionBar.m6.Zl);
+                n6Var2.setVisibility(0);
+                kq[] kqVarArr = this.f3913e;
+                n6Var2.c(pb.b1(true, "⭐️" + s5.o(2).d(), 0.7f, kqVarArr), z10, true);
+                kq kqVar = kqVarArr[0];
+                if (kqVar != null) {
+                    kqVar.a(org.telegram.ui.ActionBar.n6.Zl);
                 }
             }
             this.f3915n = j3;
@@ -80,16 +80,16 @@ public final class o7 extends LinearLayout implements gs {
         if (this.f3914f == null) {
             SpannableString spannableString = new SpannableString("x");
             this.f3914f = spannableString;
-            spannableString.setSpan(new r80(org.telegram.messenger.g0.L(48.0f), o6Var), 0, 1, 33);
+            spannableString.setSpan(new o80(org.telegram.messenger.g0.L(48.0f), n6Var), 0, 1, 33);
         }
-        o6Var.c(this.f3914f, false, true);
-        o6Var2.setVisibility(8);
+        n6Var.c(this.f3914f, false, true);
+        n6Var2.setVisibility(8);
         this.f3915n = -1L;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 != ls.A3 && i7 != ls.f25260d4) {
+        if (i7 != ks.A3 && i7 != ks.f25201d4) {
             return;
         }
         b(true);
@@ -100,10 +100,10 @@ public final class o7 extends LinearLayout implements gs {
         super.onAttachedToWindow();
         b(false);
         int i7 = this.f3910a;
-        ls.f(i7).b(this, ls.A3);
-        ls.f(i7).b(this, ls.f25260d4);
-        if (ii.n.c(i7) && org.telegram.ui.Wallet.u0.D(i7).y() == null) {
-            org.telegram.ui.Wallet.u0.D(i7).K();
+        ks.f(i7).b(this, ks.A3);
+        ks.f(i7).b(this, ks.f25201d4);
+        if (ii.n.c(i7) && org.telegram.ui.Wallet.v0.D(i7).y() == null) {
+            org.telegram.ui.Wallet.v0.D(i7).K();
         }
     }
 
@@ -111,20 +111,20 @@ public final class o7 extends LinearLayout implements gs {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i7 = this.f3910a;
-        ls.f(i7).n(this, ls.A3);
-        ls.f(i7).n(this, ls.f25260d4);
+        ks.f(i7).n(this, ks.A3);
+        ks.f(i7).n(this, ks.f25201d4);
     }
 
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
-        y10 y10Var = this.h;
-        if (y10Var != null && i7 != i11) {
-            y10Var.a(Integer.valueOf(i7));
+        w10 w10Var = this.h;
+        if (w10Var != null && i7 != i11) {
+            w10Var.a(Integer.valueOf(i7));
         }
     }
 
-    public void setOnWidthChanged(y10 y10Var) {
-        this.h = y10Var;
+    public void setOnWidthChanged(w10 w10Var) {
+        this.h = w10Var;
     }
 }

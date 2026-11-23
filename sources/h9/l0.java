@@ -10,9 +10,9 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 public abstract class l0 implements Map, Serializable, j$.util.Map {
-    public transient t0 f14011a;
-    public transient t0 f14012b;
-    public transient d0 f14013c;
+    public transient t0 f14008a;
+    public transient t0 f14009b;
+    public transient d0 f14010c;
 
     public static l0 b(Map map) {
         int i7;
@@ -26,11 +26,11 @@ public abstract class l0 implements Map, Serializable, j$.util.Map {
             i7 = 4;
         }
         xa xaVar = new xa(i7, 10);
-        xaVar.x(entrySet);
+        xaVar.w(entrySet);
         return xaVar.c(true);
     }
 
-    public abstract v1 c();
+    public abstract u1 c();
 
     @Override
     public final void clear() {
@@ -65,16 +65,16 @@ public abstract class l0 implements Map, Serializable, j$.util.Map {
         return values().contains(obj);
     }
 
-    public abstract w1 d();
+    public abstract v1 d();
 
     public abstract d0 e();
 
     @Override
     public final Set entrySet() {
-        t0 t0Var = this.f14011a;
+        t0 t0Var = this.f14008a;
         if (t0Var == null) {
-            v1 c10 = c();
-            this.f14011a = c10;
+            u1 c10 = c();
+            this.f14008a = c10;
             return c10;
         }
         return t0Var;
@@ -87,10 +87,10 @@ public abstract class l0 implements Map, Serializable, j$.util.Map {
 
     @Override
     public d0 values() {
-        d0 d0Var = this.f14013c;
+        d0 d0Var = this.f14010c;
         if (d0Var == null) {
             d0 e10 = e();
-            this.f14013c = e10;
+            this.f14010c = e10;
             return e10;
         }
         return d0Var;
@@ -115,10 +115,10 @@ public abstract class l0 implements Map, Serializable, j$.util.Map {
 
     @Override
     public final int hashCode() {
-        t0 t0Var = this.f14011a;
+        t0 t0Var = this.f14008a;
         if (t0Var == null) {
             t0Var = c();
-            this.f14011a = t0Var;
+            this.f14008a = t0Var;
         }
         return o.o(t0Var);
     }
@@ -133,10 +133,10 @@ public abstract class l0 implements Map, Serializable, j$.util.Map {
 
     @Override
     public final Set keySet() {
-        t0 t0Var = this.f14012b;
+        t0 t0Var = this.f14009b;
         if (t0Var == null) {
-            w1 d = d();
-            this.f14012b = d;
+            v1 d = d();
+            this.f14009b = d;
             return d;
         }
         return t0Var;

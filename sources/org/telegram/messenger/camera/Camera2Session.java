@@ -24,7 +24,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.t0;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.w10;
 public class Camera2Session {
     private CameraCharacteristics cameraCharacteristics;
     private CameraDevice cameraDevice;
@@ -134,18 +134,18 @@ public class Camera2Session {
     public class AnonymousClass3 implements ImageReader.OnImageAvailableListener {
         final File val$file;
         final int val$orientation;
-        final y10 val$whenDone;
+        final w10 val$whenDone;
 
-        public AnonymousClass3(File file, y10 y10Var, int i7) {
+        public AnonymousClass3(File file, w10 w10Var, int i7) {
             Camera2Session.this = r1;
             this.val$file = file;
-            this.val$whenDone = y10Var;
+            this.val$whenDone = w10Var;
             this.val$orientation = i7;
         }
 
-        public static void lambda$onImageAvailable$0(y10 y10Var, int i7) {
-            if (y10Var != null) {
-                y10Var.a(Integer.valueOf(i7));
+        public static void lambda$onImageAvailable$0(w10 w10Var, int i7) {
+            if (w10Var != null) {
+                w10Var.a(Integer.valueOf(i7));
             }
         }
 
@@ -244,7 +244,7 @@ public class Camera2Session {
         float f10;
         boolean z11;
         boolean z12;
-        Context context = t0.f26895b;
+        Context context = t0.f27013b;
         CameraManager cameraManager = (CameraManager) context.getSystemService("camera");
         try {
             size = null;
@@ -460,7 +460,7 @@ public class Camera2Session {
 
     public int getRoundVideoRotationAngle() {
         try {
-            Context context = t0.f26895b;
+            Context context = t0.f27013b;
             if (context != null) {
                 int rotation = ((WindowManager) context.getSystemService("window")).getDefaultDisplay().getRotation();
                 if (rotation != 1) {
@@ -502,7 +502,7 @@ public class Camera2Session {
     }
 
     public void open(SurfaceTexture surfaceTexture) {
-        this.handler.post(new s(1, this, surfaceTexture));
+        this.handler.post(new r(1, this, surfaceTexture));
     }
 
     public void setFlash(boolean z10) {
@@ -545,14 +545,14 @@ public class Camera2Session {
         }
     }
 
-    public boolean takePicture(File file, y10 y10Var) {
+    public boolean takePicture(File file, w10 w10Var) {
         CameraDevice cameraDevice = this.cameraDevice;
         if (cameraDevice != null && this.captureSession != null) {
             try {
                 CaptureRequest.Builder createCaptureRequest = cameraDevice.createCaptureRequest(2);
                 int jpegOrientation = getJpegOrientation();
                 createCaptureRequest.set(CaptureRequest.JPEG_ORIENTATION, Integer.valueOf(jpegOrientation));
-                this.imageReader.setOnImageAvailableListener(new AnonymousClass3(file, y10Var, jpegOrientation), null);
+                this.imageReader.setOnImageAvailableListener(new AnonymousClass3(file, w10Var, jpegOrientation), null);
                 if (this.scanningBarcode) {
                     createCaptureRequest.set(CaptureRequest.CONTROL_SCENE_MODE, 16);
                 }

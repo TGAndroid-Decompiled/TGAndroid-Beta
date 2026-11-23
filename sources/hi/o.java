@@ -1,33 +1,40 @@
 package hi;
+public final class o implements Runnable {
+    public final int f15139a;
+    public final db f15140b;
 
-import org.telegram.messenger.y10;
-public final class o implements y10 {
-    public final int f15096a;
-    public final ja f15097b;
-
-    public o(ja jaVar, int i7) {
-        this.f15096a = i7;
-        this.f15097b = jaVar;
+    public o(db dbVar, int i7) {
+        this.f15139a = i7;
+        this.f15140b = dbVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        Integer num = (Integer) obj;
-        switch (this.f15096a) {
+    public final void run() {
+        switch (this.f15139a) {
             case 0:
-                int intValue = num.intValue();
-                ja jaVar = this.f15097b;
-                jaVar.setPeriod(intValue);
-                y10 y10Var = jaVar.B1;
-                if (y10Var != null) {
-                    y10Var.a(num);
-                    return;
-                }
+                this.f15140b.n();
+                return;
+            case 1:
+                db dbVar = this.f15140b;
+                dbVar.K0 = false;
+                dbVar.L0 = Integer.MIN_VALUE;
+                dbVar.invalidate();
+                dbVar.S0.setVisibility(0);
+                dbVar.T0.setVisibility(0);
                 return;
             default:
-                y10 y10Var2 = this.f15097b.C1;
-                if (y10Var2 != null) {
-                    y10Var2.a(num);
+                nb nbVar = this.f15140b.S1;
+                bb bbVar = nbVar.Y0;
+                if (bbVar != null) {
+                    bbVar.P = false;
+                    bbVar.c();
+                    bb bbVar2 = nbVar.Y0;
+                    bbVar2.m(0L);
+                    xb xbVar = bbVar2.G;
+                    if (xbVar != null) {
+                        xbVar.setProgress(0L);
+                        return;
+                    }
                     return;
                 }
                 return;

@@ -1,39 +1,51 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
 public final class mb implements Runnable {
-    public final int f25521a;
-    public final boolean f25522b;
-    public final int f25523c;
-    public final Object d;
-    public final Object f25524e;
+    public final int f25648a = 0;
+    public final String f25649b;
+    public final int f25650c;
+    public final boolean d;
 
-    public mb(int i7, int i10, Object obj, TLObject tLObject, boolean z10) {
-        this.f25521a = i10;
-        this.d = obj;
-        this.f25524e = tLObject;
-        this.f25522b = z10;
-        this.f25523c = i7;
+    public mb(int i7, String str, boolean z10) {
+        this.f25650c = i7;
+        this.f25649b = str;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.mb.run():void");
+        int i7 = this.f25648a;
+        boolean z10 = this.d;
+        int i10 = this.f25650c;
+        String str = this.f25649b;
+        switch (i7) {
+            case 0:
+                ks.f(i10).k(139, str, Boolean.valueOf(z10));
+                return;
+            default:
+                org.telegram.utils.twidget.k0 k0Var = (org.telegram.utils.twidget.k0) org.telegram.utils.twidget.n0.f54972a.get(str);
+                if (k0Var != null && k0Var.f54943t != null) {
+                    if (org.telegram.utils.twidget.n0.f54977g.contains(k0Var)) {
+                        k0Var.K = i10;
+                        k0Var.f54943t.l(i10);
+                        return;
+                    }
+                    k0Var.K = i10;
+                    k0Var.L = z10;
+                    ArrayList arrayList = org.telegram.utils.twidget.n0.f54976f;
+                    arrayList.remove(k0Var);
+                    arrayList.add(k0Var);
+                    org.telegram.utils.twidget.n0.p();
+                    return;
+                }
+                return;
+        }
     }
 
-    public mb(pb pbVar, int i7, String str, boolean z10) {
-        this.f25521a = 0;
-        this.d = pbVar;
-        this.f25523c = i7;
-        this.f25524e = str;
-        this.f25522b = z10;
-    }
-
-    public mb(si siVar, int i7, boolean z10, y10 y10Var) {
-        this.f25521a = 2;
-        this.d = siVar;
-        this.f25523c = i7;
-        this.f25522b = z10;
-        this.f25524e = y10Var;
+    public mb(String str, int i7, boolean z10) {
+        this.f25649b = str;
+        this.f25650c = i7;
+        this.d = z10;
     }
 }

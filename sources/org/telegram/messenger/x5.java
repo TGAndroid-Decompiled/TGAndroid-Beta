@@ -5,38 +5,38 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class x5 implements Runnable {
-    public final int f27812a;
-    public final a6 f27813b;
+    public final int f27912a;
+    public final a6 f27913b;
 
     public x5(a6 a6Var, int i7) {
-        this.f27812a = i7;
-        this.f27813b = a6Var;
+        this.f27912a = i7;
+        this.f27913b = a6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f27812a) {
+        switch (this.f27912a) {
             case 0:
-                a6 a6Var = this.f27813b;
+                a6 a6Var = this.f27913b;
                 ArrayList arrayList = new ArrayList();
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
                 try {
-                    a6Var.getMessagesStorage().f27216b.executeFast("DELETE FROM downloading_documents WHERE state = 1 AND rowid NOT IN (SELECT rowid FROM downloading_documents WHERE state = 1 ORDER BY date DESC LIMIT 100)").stepThis().dispose();
-                    SQLiteCursor queryFinalized = a6Var.getMessagesStorage().f27216b.queryFinalized("SELECT data, state FROM downloading_documents ORDER BY date DESC", new Object[0]);
+                    a6Var.getMessagesStorage().f27151b.executeFast("DELETE FROM downloading_documents WHERE state = 1 AND rowid NOT IN (SELECT rowid FROM downloading_documents WHERE state = 1 ORDER BY date DESC LIMIT 100)").stepThis().dispose();
+                    SQLiteCursor queryFinalized = a6Var.getMessagesStorage().f27151b.queryFinalized("SELECT data, state FROM downloading_documents ORDER BY date DESC", new Object[0]);
                     while (queryFinalized.next()) {
                         NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                         int intValue = queryFinalized.intValue(1);
                         if (byteBufferValue != null) {
                             TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                             if (TLdeserialize != null) {
-                                TLdeserialize.readAttachPath(byteBufferValue, k10.i(a6Var.currentAccount).f24951n);
-                                gj gjVar = new gj(a6Var.currentAccount, TLdeserialize, false, false);
-                                arrayList3.add(gjVar);
+                                TLdeserialize.readAttachPath(byteBufferValue, i10.i(a6Var.currentAccount).f24656n);
+                                fj fjVar = new fj(a6Var.currentAccount, TLdeserialize, false, false);
+                                arrayList3.add(fjVar);
                                 if (intValue == 0) {
-                                    arrayList.add(gjVar);
+                                    arrayList.add(fjVar);
                                 } else {
-                                    arrayList2.add(gjVar);
+                                    arrayList2.add(fjVar);
                                 }
                             }
                             byteBufferValue.reuse();
@@ -48,10 +48,10 @@ public final class x5 implements Runnable {
                 }
                 a6Var.getFileLoader().l(arrayList);
                 a6Var.getFileLoader().l(arrayList2);
-                g0.g3(new zf(a6Var, arrayList, arrayList2, 18));
+                g0.g3(new yf(a6Var, arrayList, arrayList2, 18));
                 return;
             case 1:
-                a6 a6Var2 = this.f27813b;
+                a6 a6Var2 = this.f27913b;
                 a6Var2.getNotificationCenter().b(a6Var2, 143);
                 a6Var2.getNotificationCenter().b(a6Var2, 142);
                 a6Var2.getNotificationCenter().b(a6Var2, 141);
@@ -62,7 +62,7 @@ public final class x5 implements Runnable {
                 return;
             default:
                 try {
-                    this.f27813b.getMessagesStorage().f27216b.executeFast("DELETE FROM downloading_documents WHERE state = 1").stepThis().dispose();
+                    this.f27913b.getMessagesStorage().f27151b.executeFast("DELETE FROM downloading_documents WHERE state = 1").stepThis().dispose();
                     return;
                 } catch (Exception e11) {
                     a8.g(e11, true);

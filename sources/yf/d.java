@@ -5,24 +5,23 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import wg.p;
-import wg.r;
 public final class d implements RequestDelegate {
-    public final int f61205a;
-    public final Object f61206b;
+    public final int f61324a;
+    public final Object f61325b;
 
     public d(Object obj, int i7) {
-        this.f61205a = i7;
-        this.f61206b = obj;
+        this.f61324a = i7;
+        this.f61325b = obj;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f61205a) {
+        switch (this.f61324a) {
             case 0:
-                g0.g3(new p((e) this.f61206b, tLObject, tL_error));
+                g0.g3(new p((e) this.f61325b, tLObject, tL_error));
                 return;
             default:
-                g0.g3(new r(13, (c) this.f61206b, tLObject));
+                g0.g3(new v9.b(19, (c) this.f61325b, tLObject));
                 return;
         }
     }

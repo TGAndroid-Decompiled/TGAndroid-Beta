@@ -1,45 +1,25 @@
 package org.telegram.ui.Components;
-public final class od0 extends q6 {
-    public final int f38136b;
-    public final rd0 f38137c;
 
-    public od0(rd0 rd0Var, int i7) {
-        super("thumbAnimationProgress", 0);
-        this.f38136b = i7;
-        switch (i7) {
-            case 1:
-                this.f38137c = rd0Var;
-                super("thumbImageVisibleProgress", 0);
-                return;
-            default:
-                this.f38137c = rd0Var;
-                return;
-        }
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class od0 extends AnimatorListenerAdapter {
+    public final int f38130a;
+    public final qd0 f38131b;
+
+    public od0(qd0 qd0Var, int i7) {
+        this.f38130a = i7;
+        this.f38131b = qd0Var;
     }
 
     @Override
-    public final void c(Object obj, float f10) {
-        switch (this.f38136b) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f38130a) {
             case 0:
-                this.f38137c.f39123r = f10;
-                ((rd0) obj).invalidate();
+                this.f38131b.f38817s = null;
                 return;
             default:
-                this.f38137c.f39122n = f10;
-                ((rd0) obj).invalidate();
+                this.f38131b.f38818w = null;
                 return;
-        }
-    }
-
-    @Override
-    public final Object get(Object obj) {
-        switch (this.f38136b) {
-            case 0:
-                rd0 rd0Var = (rd0) obj;
-                return Float.valueOf(this.f38137c.f39123r);
-            default:
-                rd0 rd0Var2 = (rd0) obj;
-                return Float.valueOf(this.f38137c.f39122n);
         }
     }
 }

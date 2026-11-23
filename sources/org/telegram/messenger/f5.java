@@ -4,19 +4,19 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class f5 {
-    public int f23824a;
-    public String f23825b;
-    public String f23826c;
+    public int f23948a;
+    public String f23949b;
+    public String f23950c;
     public boolean d;
-    public final ArrayList f23827e = new ArrayList(4);
-    public final ArrayList f23828f = new ArrayList(4);
-    public final ArrayList f23829g = new ArrayList(4);
+    public final ArrayList f23951e = new ArrayList(4);
+    public final ArrayList f23952f = new ArrayList(4);
+    public final ArrayList f23953g = new ArrayList(4);
     public final ArrayList h = new ArrayList(4);
-    public String f23830i;
-    public String f23831j;
-    public boolean f23832k;
-    public int f23833l;
-    public TLRPC.User f23834m;
+    public String f23954i;
+    public String f23955j;
+    public boolean f23956k;
+    public int f23957l;
+    public TLRPC.User f23958m;
 
     public static String a(String str, String str2) {
         if (!TextUtils.isEmpty(str)) {

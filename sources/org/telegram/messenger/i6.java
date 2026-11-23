@@ -6,16 +6,16 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
 public final class i6 extends f6 {
-    public static final Paint f24583e = new Paint(2);
-    public static final Rect f24584f = new Rect();
-    public e6 f24585c;
+    public static final Paint f24707e = new Paint(2);
+    public static final Rect f24708f = new Rect();
+    public e6 f24709c;
     public boolean d;
 
     @Override
     public final boolean a() {
-        Bitmap[][] bitmapArr = j6.f24798f;
-        e6 e6Var = this.f24585c;
-        if (bitmapArr[e6Var.f23646a][e6Var.f23647b] != null) {
+        Bitmap[][] bitmapArr = j6.f24924f;
+        e6 e6Var = this.f24709c;
+        if (bitmapArr[e6Var.f23766a][e6Var.f23767b] != null) {
             return true;
         }
         return false;
@@ -24,8 +24,8 @@ public final class i6 extends f6 {
     @Override
     public final void b() {
         if (!a()) {
-            e6 e6Var = this.f24585c;
-            j6.i(e6Var.f23646a, e6Var.f23647b);
+            e6 e6Var = this.f24709c;
+            j6.i(e6Var.f23766a, e6Var.f23767b);
         }
     }
 
@@ -37,43 +37,43 @@ public final class i6 extends f6 {
         int i11;
         int i12;
         boolean z10 = this.d;
-        e6 e6Var = this.f24585c;
+        e6 e6Var = this.f24709c;
         if (!a()) {
-            j6.i(e6Var.f23646a, e6Var.f23647b);
+            j6.i(e6Var.f23766a, e6Var.f23767b);
             Paint paint = j6.d;
-            paint.setColor(this.f23836b);
+            paint.setColor(this.f23960b);
             Rect bounds2 = getBounds();
             canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), bounds2.width() * 0.4f, paint);
             return;
         }
-        if (this.f23835a) {
+        if (this.f23959a) {
             Rect bounds3 = getBounds();
             int centerX = bounds3.centerX();
             int centerY = bounds3.centerY();
-            boolean z11 = this.f23835a;
+            boolean z11 = this.f23959a;
             if (z11) {
-                i7 = j6.f24796c;
+                i7 = j6.f24922c;
             } else {
-                i7 = j6.f24795b;
+                i7 = j6.f24921b;
             }
-            bounds = f24584f;
+            bounds = f24708f;
             bounds.left = centerX - (i7 / 2);
             if (z11) {
-                i10 = j6.f24796c;
+                i10 = j6.f24922c;
             } else {
-                i10 = j6.f24795b;
+                i10 = j6.f24921b;
             }
             bounds.right = (i10 / 2) + centerX;
             if (z11) {
-                i11 = j6.f24796c;
+                i11 = j6.f24922c;
             } else {
-                i11 = j6.f24795b;
+                i11 = j6.f24921b;
             }
             bounds.top = centerY - (i11 / 2);
             if (z11) {
-                i12 = j6.f24796c;
+                i12 = j6.f24922c;
             } else {
-                i12 = j6.f24795b;
+                i12 = j6.f24921b;
             }
             bounds.bottom = (i12 / 2) + centerY;
         } else {
@@ -84,7 +84,7 @@ public final class i6 extends f6 {
                 canvas.save();
                 canvas.scale(-1.0f, 1.0f, bounds.centerX(), bounds.centerY());
             }
-            canvas.drawBitmap(j6.f24798f[e6Var.f23646a][e6Var.f23647b], (Rect) null, bounds, f24583e);
+            canvas.drawBitmap(j6.f24924f[e6Var.f23766a][e6Var.f23767b], (Rect) null, bounds, f24707e);
             if (z10) {
                 canvas.restore();
             }
@@ -98,7 +98,7 @@ public final class i6 extends f6 {
 
     @Override
     public final void setAlpha(int i7) {
-        f24583e.setAlpha(i7);
+        f24707e.setAlpha(i7);
     }
 
     @Override

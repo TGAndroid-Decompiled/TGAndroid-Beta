@@ -7,58 +7,47 @@ import android.view.View;
 import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
 public final class a0 extends k.a implements l.i {
-    public final Context f12919c;
+    public final Context f12918c;
     public final l.k d;
-    public q4.q f12920e;
-    public WeakReference f12921f;
+    public q4.q f12919e;
+    public WeakReference f12920f;
     public final b0 h;
 
     public a0(b0 b0Var, Context context, q4.q qVar) {
         this.h = b0Var;
-        this.f12919c = context;
-        this.f12920e = qVar;
+        this.f12918c = context;
+        this.f12919e = qVar;
         l.k kVar = new l.k(context);
-        kVar.f19183l = 1;
+        kVar.f19282l = 1;
         this.d = kVar;
-        kVar.f19177e = this;
+        kVar.f19276e = this;
     }
 
     @Override
-    public final void b(l.k kVar) {
-        if (this.f12920e != null) {
-            j();
-            m.h hVar = this.h.f12939f.d;
-            if (hVar != null) {
-                hVar.l();
-            }
-        }
-    }
-
-    @Override
-    public final void c() {
+    public final void b() {
         b0 b0Var = this.h;
-        if (b0Var.f12941i != this) {
+        if (b0Var.f12940i != this) {
             return;
         }
-        if (b0Var.f12948p) {
-            b0Var.f12942j = this;
-            b0Var.f12943k = this.f12920e;
+        if (b0Var.f12947p) {
+            b0Var.f12941j = this;
+            b0Var.f12942k = this.f12919e;
         } else {
-            this.f12920e.c(this);
+            this.f12919e.c(this);
         }
-        this.f12920e = null;
+        this.f12919e = null;
         b0Var.a(false);
-        ActionBarContextView actionBarContextView = b0Var.f12939f;
-        if (actionBarContextView.f1837w == null) {
+        ActionBarContextView actionBarContextView = b0Var.f12938f;
+        if (actionBarContextView.f1838w == null) {
             actionBarContextView.e();
         }
-        b0Var.f12937c.setHideOnContentScrollEnabled(b0Var.f12952t);
-        b0Var.f12941i = null;
+        b0Var.f12936c.setHideOnContentScrollEnabled(b0Var.f12951t);
+        b0Var.f12940i = null;
     }
 
     @Override
-    public final View d() {
-        WeakReference weakReference = this.f12921f;
+    public final View c() {
+        WeakReference weakReference = this.f12920f;
         if (weakReference != null) {
             return (View) weakReference.get();
         }
@@ -66,82 +55,93 @@ public final class a0 extends k.a implements l.i {
     }
 
     @Override
-    public final l.k e() {
+    public final l.k d() {
         return this.d;
     }
 
     @Override
-    public final k.h f() {
-        return new k.h(this.f12919c);
+    public final k.h e() {
+        return new k.h(this.f12918c);
+    }
+
+    @Override
+    public final CharSequence f() {
+        return this.h.f12938f.getSubtitle();
     }
 
     @Override
     public final CharSequence g() {
-        return this.h.f12939f.getSubtitle();
+        return this.h.f12938f.getTitle();
     }
 
     @Override
-    public final boolean h(l.k kVar, MenuItem menuItem) {
-        q4.q qVar = this.f12920e;
-        if (qVar != null) {
-            return ((c0) qVar.f55836b).G(this, menuItem);
-        }
-        return false;
-    }
-
-    @Override
-    public final CharSequence i() {
-        return this.h.f12939f.getTitle();
-    }
-
-    @Override
-    public final void j() {
-        if (this.h.f12941i != this) {
+    public final void h() {
+        if (this.h.f12940i != this) {
             return;
         }
         l.k kVar = this.d;
         kVar.w();
         try {
-            this.f12920e.d(this, kVar);
+            this.f12919e.d(this, kVar);
         } finally {
             kVar.v();
         }
     }
 
     @Override
-    public final boolean k() {
-        return this.h.f12939f.J;
+    public final void i(l.k kVar) {
+        if (this.f12919e != null) {
+            h();
+            m.h hVar = this.h.f12938f.d;
+            if (hVar != null) {
+                hVar.l();
+            }
+        }
     }
 
     @Override
-    public final void n(View view) {
-        this.h.f12939f.setCustomView(view);
-        this.f12921f = new WeakReference(view);
+    public final boolean j() {
+        return this.h.f12938f.J;
     }
 
     @Override
-    public final void o(int i7) {
-        p(this.h.f12935a.getResources().getString(i7));
+    public final void m(View view) {
+        this.h.f12938f.setCustomView(view);
+        this.f12920f = new WeakReference(view);
     }
 
     @Override
-    public final void p(CharSequence charSequence) {
-        this.h.f12939f.setSubtitle(charSequence);
+    public final void n(int i7) {
+        o(this.h.f12934a.getResources().getString(i7));
+    }
+
+    @Override
+    public final void o(CharSequence charSequence) {
+        this.h.f12938f.setSubtitle(charSequence);
+    }
+
+    @Override
+    public final boolean p(l.k kVar, MenuItem menuItem) {
+        q4.q qVar = this.f12919e;
+        if (qVar != null) {
+            return ((c0) qVar.f55949b).G(this, menuItem);
+        }
+        return false;
     }
 
     @Override
     public final void q(int i7) {
-        r(this.h.f12935a.getResources().getString(i7));
+        r(this.h.f12934a.getResources().getString(i7));
     }
 
     @Override
     public final void r(CharSequence charSequence) {
-        this.h.f12939f.setTitle(charSequence);
+        this.h.f12938f.setTitle(charSequence);
     }
 
     @Override
     public final void s(boolean z10) {
-        this.f18052a = z10;
-        this.h.f12939f.setTitleOptional(z10);
+        this.f18154a = z10;
+        this.h.f12938f.setTitleOptional(z10);
     }
 }

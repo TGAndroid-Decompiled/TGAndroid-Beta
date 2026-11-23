@@ -1,26 +1,29 @@
 package org.telegram.ui.Wallet;
 
-import java.util.concurrent.FutureTask;
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.messenger.p10;
 public final class y7 implements Runnable {
-    public final int f45333a;
-    public final AtomicBoolean f45334b;
-    public final FutureTask f45335c;
+    public final int f45449a;
+    public final AtomicBoolean f45450b;
+    public final p10 f45451c;
 
-    public y7(AtomicBoolean atomicBoolean, FutureTask futureTask, int i7) {
-        this.f45333a = i7;
-        this.f45334b = atomicBoolean;
-        this.f45335c = futureTask;
+    public y7(AtomicBoolean atomicBoolean, p10 p10Var, int i7) {
+        this.f45449a = i7;
+        this.f45450b = atomicBoolean;
+        this.f45451c = p10Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f45333a) {
+        switch (this.f45449a) {
             case 0:
-                WalletEngine2.N(this.f45334b, this.f45335c);
+                WalletEngine2.lambda$emulateSend$20(this.f45450b, this.f45451c);
+                return;
+            case 1:
+                WalletEngine2.lambda$emulateSendNFT$24(this.f45450b, this.f45451c);
                 return;
             default:
-                WalletEngine2.B(this.f45334b, this.f45335c);
+                WalletEngine2.lambda$emulateSendNFT$25(this.f45450b, this.f45451c);
                 return;
         }
     }

@@ -1,6 +1,6 @@
 package bi;
 
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.tgnet.TLObject;
 public final class o8 implements Runnable {
     public final int f3916a = 0;
@@ -45,51 +45,51 @@ public final class o8 implements Runnable {
         switch (i13) {
             case 0:
                 di.p8 p8Var = ((p8) obj).f3979c.U1;
-                if (p8Var.f9509e) {
+                if (p8Var.f9507e) {
                     i7 = 2131750180;
                 } else {
                     i7 = 2131750181;
                 }
-                String N0 = hd.N0(i7, null);
-                if (p8Var.f9509e) {
-                    i10 = 2131231891;
+                String N0 = gd.N0(i7, null);
+                if (p8Var.f9507e) {
+                    i10 = 2131231894;
                 } else {
-                    i10 = 2131231889;
+                    i10 = 2131231892;
                 }
                 y0Var7.j(N0, i10, null);
-                y0Var6.setChecked(TLObject.hasFlag(p8Var.f9511g, 1));
-                y0Var5.setChecked(TLObject.hasFlag(p8Var.f9511g, 2));
-                y0Var4.setChecked(TLObject.hasFlag(p8Var.f9511g, 4));
-                y0Var3.setChecked(TLObject.hasFlag(p8Var.f9511g, 8));
+                y0Var6.setChecked(TLObject.hasFlag(p8Var.f9509g, 1));
+                y0Var5.setChecked(TLObject.hasFlag(p8Var.f9509g, 2));
+                y0Var4.setChecked(TLObject.hasFlag(p8Var.f9509g, 4));
+                y0Var3.setChecked(TLObject.hasFlag(p8Var.f9509g, 8));
                 if (z10) {
-                    y0Var2.setChecked(TLObject.hasFlag(p8Var.f9511g, 256));
-                    y0Var.setChecked(TLObject.hasFlag(p8Var.f9511g, 512));
+                    y0Var2.setChecked(TLObject.hasFlag(p8Var.f9509g, 256));
+                    y0Var.setChecked(TLObject.hasFlag(p8Var.f9509g, 512));
                     return;
                 }
                 return;
             default:
                 di.p8 p8Var2 = (di.p8) obj;
                 if (y0Var7 != null) {
-                    if (p8Var2.f9509e) {
+                    if (p8Var2.f9507e) {
                         i11 = 2131750180;
                     } else {
                         i11 = 2131750181;
                     }
-                    String N02 = hd.N0(i11, null);
-                    if (p8Var2.f9509e) {
-                        i12 = 2131231891;
+                    String N02 = gd.N0(i11, null);
+                    if (p8Var2.f9507e) {
+                        i12 = 2131231894;
                     } else {
-                        i12 = 2131231889;
+                        i12 = 2131231892;
                     }
                     y0Var7.j(N02, i12, null);
                 }
-                y0Var6.setChecked(TLObject.hasFlag(p8Var2.f9511g, 1));
-                y0Var5.setChecked(TLObject.hasFlag(p8Var2.f9511g, 2));
-                y0Var4.setChecked(TLObject.hasFlag(p8Var2.f9511g, 4));
-                y0Var3.setChecked(TLObject.hasFlag(p8Var2.f9511g, 8));
+                y0Var6.setChecked(TLObject.hasFlag(p8Var2.f9509g, 1));
+                y0Var5.setChecked(TLObject.hasFlag(p8Var2.f9509g, 2));
+                y0Var4.setChecked(TLObject.hasFlag(p8Var2.f9509g, 4));
+                y0Var3.setChecked(TLObject.hasFlag(p8Var2.f9509g, 8));
                 if (z10) {
-                    y0Var2.setChecked(TLObject.hasFlag(p8Var2.f9511g, 256));
-                    y0Var.setChecked(TLObject.hasFlag(p8Var2.f9511g, 512));
+                    y0Var2.setChecked(TLObject.hasFlag(p8Var2.f9509g, 256));
+                    y0Var.setChecked(TLObject.hasFlag(p8Var2.f9509g, 512));
                     return;
                 }
                 return;

@@ -8,7 +8,7 @@ import h2.l0;
 import h2.x;
 import h9.g0;
 import h9.i0;
-import h9.t1;
+import h9.s1;
 import java.util.List;
 public final class e implements o {
     public q f163a;
@@ -50,7 +50,7 @@ public final class e implements o {
                 jVar.f182e = j11;
                 h hVar = jVar.d;
                 String str = l0.f13778a;
-                hVar.v0(j11);
+                hVar.l0(j11);
                 jVar.h = 2;
             }
         }
@@ -58,8 +58,8 @@ public final class e implements o {
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f13998b;
-        return t1.f14066e;
+        g0 g0Var = i0.f13995b;
+        return s1.f14058e;
     }
 
     @Override

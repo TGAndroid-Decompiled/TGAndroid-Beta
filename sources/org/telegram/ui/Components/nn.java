@@ -1,39 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-public final class nn implements View.OnKeyListener {
-    public final int f37859a;
-    public final Object f37860b;
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
+public final class nn extends org.telegram.ui.Cells.a6 {
+    public final org.telegram.ui.l4 G;
 
-    public nn(Object obj, int i7) {
-        this.f37859a = i7;
-        this.f37860b = obj;
+    public nn(org.telegram.ui.l4 l4Var, Context context, int i7) {
+        super(context, i7, null, null);
+        this.G = l4Var;
     }
 
     @Override
-    public final boolean onKey(View view, int i7, KeyEvent keyEvent) {
-        switch (this.f37859a) {
-            case 0:
-                rn rnVar = (rn) this.f37860b;
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i7 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    ImageView imageView = rnVar.f30443f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
-                }
-                return false;
-            default:
-                ku kuVar = (ku) this.f37860b;
-                kuVar.getClass();
-                if (i7 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && kuVar.isShowing()) {
-                    kuVar.dismiss();
-                    return true;
-                }
-                return false;
+    public final void h(bi.u uVar, ActionMode actionMode) {
+        if (uVar.isFocused() && uVar.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                org.telegram.ui.bn.C8(menu, ((org.telegram.ui.bn) ((qn) this.G.f49583e).f37135b.f39956a2).h, false, true, true, true);
+            }
         }
+    }
+
+    @Override
+    public final void j(boolean z10) {
+        qn.R((qn) this.G.f49583e, this, z10);
+    }
+
+    @Override
+    public final void k(org.telegram.ui.Cells.a6 a6Var) {
+        qn.S((qn) this.G.f49583e, a6Var);
+    }
+
+    @Override
+    public final void l(bi.u uVar) {
+        ((qn) this.G.f49583e).f37135b.i1(uVar, true);
     }
 }

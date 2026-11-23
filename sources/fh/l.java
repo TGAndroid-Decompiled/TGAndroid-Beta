@@ -15,15 +15,15 @@ import android.os.Build;
 import c8.r0;
 public final class l {
     public static final i h = new i(4194304, 0);
-    public static final float[] f11694i = new float[8];
-    public static final k f11695j = new k();
-    public final long[] f11696a = new long[4];
-    public final j[] f11697b = new j[4];
-    public final int[] f11698c = new int[4];
+    public static final float[] f11693i = new float[8];
+    public static final k f11694j = new k();
+    public final long[] f11695a = new long[4];
+    public final j[] f11696b = new j[4];
+    public final int[] f11697c = new int[4];
     public final PorterDuffColorFilter[] d = new PorterDuffColorFilter[4];
-    public final Paint f11699e = new Paint(2);
-    public final float[] f11700f = new float[8];
-    public final Rect f11701g = new Rect();
+    public final Paint f11698e = new Paint(2);
+    public final float[] f11699f = new float[8];
+    public final Rect f11700g = new Rect();
 
     public static void b(Canvas canvas, Path path, float f10, Paint paint) {
         canvas.save();
@@ -45,11 +45,11 @@ public final class l {
     public static k f(int i7, h hVar, float[] fArr, int i10, int i11) {
         float f10;
         boolean z10;
-        k kVar = f11695j;
-        kVar.f11679a = i7;
+        k kVar = f11694j;
+        kVar.f11678a = i7;
         boolean z11 = false;
         for (int i12 = 0; i12 < 8; i12++) {
-            kVar.f11680b[i12] = Math.round(fArr[i12] * 4.0f);
+            kVar.f11679b[i12] = Math.round(fArr[i12] * 4.0f);
         }
         hVar.getClass();
         double radians = Math.toRadians(0.0f);
@@ -57,55 +57,55 @@ public final class l {
         float cos = (float) Math.cos(radians);
         if (i7 == 3) {
             kVar.d = 0.0f;
-            kVar.f11681c = 0.0f;
-            kVar.f11688l = Math.round(hVar.f11674g * 16.0f);
-            kVar.f11693q = 0;
-            kVar.f11692p = 0;
-            kVar.f11691o = 0;
-            kVar.f11690n = 0;
-            kVar.f11689m = 0;
+            kVar.f11680c = 0.0f;
+            kVar.f11687l = Math.round(hVar.f11673g * 16.0f);
+            kVar.f11692q = 0;
+            kVar.f11691p = 0;
+            kVar.f11690o = 0;
+            kVar.f11689n = 0;
+            kVar.f11688m = 0;
         } else if (i7 == 2) {
             kVar.d = 0.0f;
-            kVar.f11681c = 0.0f;
-            kVar.f11688l = Math.round(hVar.f11672e * 16.0f);
-            kVar.f11689m = 0;
-            kVar.f11690n = Math.round(1000.0f);
-            kVar.f11691o = Math.round(1000.0f);
-            kVar.f11692p = Math.round(1000.0f);
-            kVar.f11693q = 0;
+            kVar.f11680c = 0.0f;
+            kVar.f11687l = Math.round(hVar.f11671e * 16.0f);
+            kVar.f11688m = 0;
+            kVar.f11689n = Math.round(1000.0f);
+            kVar.f11690o = Math.round(1000.0f);
+            kVar.f11691p = Math.round(1000.0f);
+            kVar.f11692q = 0;
         } else {
             if (i7 == 0) {
-                f10 = hVar.f11669a;
+                f10 = hVar.f11668a;
             } else {
-                f10 = -hVar.f11671c;
+                f10 = -hVar.f11670c;
             }
-            kVar.f11681c = Math.round((sin * f10) * 8.0f) / 8.0f;
+            kVar.f11680c = Math.round((sin * f10) * 8.0f) / 8.0f;
             kVar.d = Math.round((cos * f10) * 8.0f) / 8.0f;
-            kVar.f11693q = 0;
-            kVar.f11692p = 0;
-            kVar.f11691o = 0;
-            kVar.f11690n = 0;
-            kVar.f11689m = 0;
-            kVar.f11688l = 0;
+            kVar.f11692q = 0;
+            kVar.f11691p = 0;
+            kVar.f11690o = 0;
+            kVar.f11689n = 0;
+            kVar.f11688m = 0;
+            kVar.f11687l = 0;
         }
-        float abs = Math.abs(kVar.f11681c);
+        float abs = Math.abs(kVar.f11680c);
         float abs2 = Math.abs(kVar.d);
-        kVar.f11682e = ((int) Math.ceil(Math.max(fArr[0], fArr[6]) + abs)) + 1;
-        kVar.f11684g = ((int) Math.ceil(Math.max(fArr[2], fArr[4]) + abs)) + 1;
-        kVar.f11683f = ((int) Math.ceil(Math.max(fArr[1], fArr[3]) + abs2)) + 1;
+        kVar.f11681e = ((int) Math.ceil(Math.max(fArr[0], fArr[6]) + abs)) + 1;
+        kVar.f11683g = ((int) Math.ceil(Math.max(fArr[2], fArr[4]) + abs)) + 1;
+        kVar.f11682f = ((int) Math.ceil(Math.max(fArr[1], fArr[3]) + abs2)) + 1;
         int ceil = ((int) Math.ceil(Math.max(fArr[5], fArr[7]) + abs2)) + 1;
-        int i13 = kVar.f11682e + kVar.f11684g + 2;
+        int i13 = kVar.f11681e + kVar.f11683g + 2;
         if (i10 >= i13) {
             z10 = true;
         } else {
             z10 = false;
         }
-        kVar.f11686j = z10;
-        int i14 = kVar.f11683f + ceil + 2;
+        kVar.f11685j = z10;
+        int i14 = kVar.f11682f + ceil + 2;
         if (i11 >= i14) {
             z11 = true;
         }
-        kVar.f11687k = z11;
+        kVar.f11686k = z11;
         if (z10) {
             i10 = i13;
         }
@@ -113,7 +113,7 @@ public final class l {
         if (z11) {
             i11 = i14;
         }
-        kVar.f11685i = i11;
+        kVar.f11684i = i11;
         return kVar;
     }
 
@@ -123,24 +123,24 @@ public final class l {
         if (f15 >= 1.0f && f16 >= 1.0f && f14 > 0.0f) {
             float e10 = e(e(e(e(1.0f, f15, fArr[0] + fArr[2]), f15, fArr[6] + fArr[4]), f16, fArr[1] + fArr[7]), f16, fArr[3] + fArr[5]);
             for (int i7 = 0; i7 < 8; i7++) {
-                this.f11700f[i7] = Math.max(0.0f, fArr[i7]) * e10;
+                this.f11699f[i7] = Math.max(0.0f, fArr[i7]) * e10;
             }
             if (hVar.a()) {
-                c(canvas, 2, f10, f11, f12, f13, hVar, hVar.f11673f, f14);
+                c(canvas, 2, f10, f11, f12, f13, hVar, hVar.f11672f, f14);
             }
-            if (hVar.f11669a > 0.05f) {
-                int i10 = hVar.f11670b;
+            if (hVar.f11668a > 0.05f) {
+                int i10 = hVar.f11669b;
                 if ((i10 >>> 24) != 0) {
                     c(canvas, 0, f10, f11, f12, f13, hVar, i10, f14);
                 }
             }
-            if (hVar.f11671c > 0.05f) {
+            if (hVar.f11670c > 0.05f) {
                 int i11 = hVar.d;
                 if ((i11 >>> 24) != 0) {
                     c(canvas, 1, f10, f11, f12, f13, hVar, i11, f14);
                 }
             }
-            if (hVar.f11674g > 0.05f) {
+            if (hVar.f11673g > 0.05f) {
                 int i12 = hVar.h;
                 if ((i12 >>> 24) != 0) {
                     c(canvas, 3, f10, f11, f12, f13, hVar, i12, f14);
@@ -157,12 +157,12 @@ public final class l {
         int i14;
         int i15;
         int i16;
-        k f15 = f(i7, hVar, this.f11700f, Math.round(f12 - f10), Math.round(f13 - f11));
-        float f16 = hVar.f11672e;
+        k f15 = f(i7, hVar, this.f11699f, Math.round(f12 - f10), Math.round(f13 - f11));
+        float f16 = hVar.f11671e;
         long a10 = f15.a();
-        j[] jVarArr = this.f11697b;
+        j[] jVarArr = this.f11696b;
         j jVar = jVarArr[i7];
-        long[] jArr = this.f11696a;
+        long[] jArr = this.f11695a;
         if (jVar == null || jArr[i7] != a10) {
             Long valueOf = Long.valueOf(a10);
             i iVar = h;
@@ -174,14 +174,14 @@ public final class l {
                     i11 = 1;
                 }
                 int i17 = i11 * 2;
-                Bitmap createBitmap = Bitmap.createBitmap(f15.h + i17, f15.f11685i + i17, Bitmap.Config.ARGB_8888);
+                Bitmap createBitmap = Bitmap.createBitmap(f15.h + i17, f15.f11684i + i17, Bitmap.Config.ARGB_8888);
                 Canvas canvas2 = new Canvas(createBitmap);
                 float f17 = i11;
                 j3 = a10;
-                RectF rectF = new RectF(f17, f17, f15.h + i11, f15.f11685i + i11);
+                RectF rectF = new RectF(f17, f17, f15.h + i11, f15.f11684i + i11);
                 float[] fArr = new float[8];
                 for (int i18 = 0; i18 < 8; i18++) {
-                    fArr[i18] = f15.f11680b[i18] / 4.0f;
+                    fArr[i18] = f15.f11679b[i18] / 4.0f;
                 }
                 Paint paint = new Paint(1);
                 paint.setColor(-1);
@@ -207,14 +207,14 @@ public final class l {
                 } else if (i7 == 3) {
                     Path path2 = new Path();
                     path2.addRoundRect(rectF, fArr, Path.Direction.CW);
-                    b(canvas2, path2, hVar.f11674g, paint);
+                    b(canvas2, path2, hVar.f11673g, paint);
                 } else {
                     Path path3 = new Path();
                     Path.Direction direction = Path.Direction.CW;
                     path3.addRoundRect(rectF, fArr, direction);
                     Path path4 = new Path();
                     float f21 = rectF.left;
-                    float f22 = f15.f11681c;
+                    float f22 = f15.f11680c;
                     float f23 = f21 + f22;
                     float f24 = rectF.top;
                     float f25 = f15.d;
@@ -229,20 +229,20 @@ public final class l {
                     canvas2.restore();
                 }
                 createBitmap.prepareToDraw();
-                boolean z10 = f15.f11686j;
+                boolean z10 = f15.f11685j;
                 if (z10) {
-                    i13 = f15.f11682e + i11;
+                    i13 = f15.f11681e + i11;
                     i12 = 2;
                 } else {
                     i12 = 2;
                     i13 = (f15.h / 2) + i11;
                 }
                 int i20 = i13;
-                boolean z11 = f15.f11687k;
+                boolean z11 = f15.f11686k;
                 if (z11) {
-                    i14 = f15.f11683f + i11;
+                    i14 = f15.f11682f + i11;
                 } else {
-                    i14 = (f15.f11685i / 2) + i11;
+                    i14 = (f15.f11684i / 2) + i11;
                 }
                 int i21 = i14;
                 if (z10) {
@@ -265,26 +265,26 @@ public final class l {
             jArr[i7] = j3;
             jVarArr[i7] = jVar;
         }
-        int i23 = jVar.f11678c;
+        int i23 = jVar.f11677c;
         int i24 = i10 | (-16777216);
         PorterDuffColorFilter[] porterDuffColorFilterArr = this.d;
         PorterDuffColorFilter porterDuffColorFilter = porterDuffColorFilterArr[i7];
-        int[] iArr = this.f11698c;
+        int[] iArr = this.f11697c;
         if (porterDuffColorFilter == null || iArr[i7] != i24) {
             iArr[i7] = i24;
             porterDuffColorFilterArr[i7] = new PorterDuffColorFilter(i24, PorterDuff.Mode.SRC_IN);
         }
         PorterDuffColorFilter porterDuffColorFilter2 = porterDuffColorFilterArr[i7];
-        Paint paint2 = this.f11699e;
+        Paint paint2 = this.f11698e;
         paint2.setColorFilter(porterDuffColorFilter2);
         paint2.setAlpha(Math.round(Math.min(1.0f, f14) * Color.alpha(i10)));
         int round = Math.round(f10) - i23;
         int round2 = Math.round(f11) - i23;
         int round3 = Math.round(f12) + i23;
         int round4 = Math.round(f13) + i23;
-        Rect rect = this.f11701g;
+        Rect rect = this.f11700g;
         rect.set(round, round2, round3, round4);
-        jVar.f11676a.draw(canvas, rect, paint2);
+        jVar.f11675a.draw(canvas, rect, paint2);
     }
 
     public final void d(Canvas canvas, int i7, Path path, long j3, float f10, float f11, float f12, float f13, h hVar, int i10, float f14) {
@@ -292,12 +292,12 @@ public final class l {
         int i11;
         int round = Math.round(f12 - f10);
         int round2 = Math.round(f13 - f11);
-        k f15 = f(i7, hVar, f11694i, round, round2);
-        float f16 = hVar.f11672e;
+        k f15 = f(i7, hVar, f11693i, round, round2);
+        float f16 = hVar.f11671e;
         long a10 = (((((f15.a() ^ j3) * 1099511628211L) ^ round) * 1099511628211L) ^ round2) * 1099511628211L;
-        j[] jVarArr = this.f11697b;
+        j[] jVarArr = this.f11696b;
         j jVar = jVarArr[i7];
-        long[] jArr2 = this.f11696a;
+        long[] jArr2 = this.f11695a;
         if (jVar == null || jArr2[i7] != a10) {
             Long valueOf = Long.valueOf(a10);
             i iVar = h;
@@ -333,10 +333,10 @@ public final class l {
                     }
                     canvas2.drawPath(path2, paint);
                 } else if (i7 == 3) {
-                    b(canvas2, path2, hVar.f11674g, paint);
+                    b(canvas2, path2, hVar.f11673g, paint);
                 } else {
                     Path path3 = new Path(path2);
-                    path3.offset(f15.f11681c, f15.d);
+                    path3.offset(f15.f11680c, f15.d);
                     if (Build.VERSION.SDK_INT >= 26) {
                         canvas2.clipOutPath(path3);
                     } else {
@@ -355,21 +355,21 @@ public final class l {
             jArr[i7] = a10;
             jVarArr[i7] = jVar;
         }
-        int i13 = jVar.f11678c;
+        int i13 = jVar.f11677c;
         int i14 = i10 | (-16777216);
         PorterDuffColorFilter[] porterDuffColorFilterArr = this.d;
         PorterDuffColorFilter porterDuffColorFilter = porterDuffColorFilterArr[i7];
-        int[] iArr = this.f11698c;
+        int[] iArr = this.f11697c;
         if (porterDuffColorFilter == null || iArr[i7] != i14) {
             iArr[i7] = i14;
             porterDuffColorFilterArr[i7] = new PorterDuffColorFilter(i14, PorterDuff.Mode.SRC_IN);
         }
         PorterDuffColorFilter porterDuffColorFilter2 = porterDuffColorFilterArr[i7];
-        Paint paint2 = this.f11699e;
+        Paint paint2 = this.f11698e;
         paint2.setColorFilter(porterDuffColorFilter2);
         paint2.setAlpha(Math.round(Math.min(1.0f, f14) * Color.alpha(i10)));
         if (paint2.getAlpha() > 0) {
-            canvas.drawBitmap(jVar.f11677b, Math.round(f10) - i13, Math.round(f11) - i13, paint2);
+            canvas.drawBitmap(jVar.f11676b, Math.round(f10) - i13, Math.round(f11) - i13, paint2);
         }
     }
 }

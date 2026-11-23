@@ -8,9 +8,9 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.messenger.gd;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
 public final class b extends ReplacementSpan {
     public final TextPaint f5284a;
     public final RectF f5285b;
@@ -18,23 +18,23 @@ public final class b extends ReplacementSpan {
     public float d;
     public float f5287e;
     public int f5288f;
-    public final h6 h;
+    public final i6 h;
 
-    public b(h6 h6Var) {
+    public b(i6 i6Var) {
         TextPaint textPaint = new TextPaint(1);
         this.f5284a = textPaint;
         this.f5285b = new RectF();
-        this.h = h6Var;
+        this.h = i6Var;
         textPaint.setTextSize(org.telegram.messenger.g0.L(15.0f));
-        textPaint.setColor(m6.w0(m6.C6, h6Var));
+        textPaint.setColor(n6.w0(n6.C6, i6Var));
     }
 
     public final void a() {
         Layout.Alignment alignment;
         if (this.f5286c == null) {
-            String N0 = hd.N0(2131746212, null);
-            int i7 = org.telegram.messenger.g0.f24010q.x;
-            if (hd.f24408a0) {
+            String N0 = gd.N0(2131746212, null);
+            int i7 = org.telegram.messenger.g0.f24226q.x;
+            if (gd.f24314a0) {
                 alignment = Layout.Alignment.ALIGN_OPPOSITE;
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
@@ -49,7 +49,7 @@ public final class b extends ReplacementSpan {
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
         a();
-        this.f5284a.setColor(m6.w0(m6.C6, this.h));
+        this.f5284a.setColor(n6.w0(n6.C6, this.h));
         Rect clipBounds = canvas.getClipBounds();
         RectF rectF = this.f5285b;
         rectF.set(clipBounds);

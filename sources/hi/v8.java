@@ -1,46 +1,52 @@
 package hi;
-
-import java.io.File;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.gs;
-import org.telegram.tgnet.TLRPC;
 public final class v8 implements Runnable {
-    public final int f15561a;
-    public final gs f15562b;
-    public final Object f15563c;
-    public final int d;
-    public final int f15564e;
-    public final Object f15565f;
-    public final boolean h;
-    public final boolean f15566n;
-    public final Object f15567r;
+    public final int f15605a;
+    public final f9 f15606b;
 
-    public v8(ta taVar, v9 v9Var, int i7, int i10, d7 d7Var, boolean z10, boolean z11, Runnable runnable, int i11) {
-        this.f15561a = i11;
-        this.f15562b = taVar;
-        this.f15563c = v9Var;
-        this.d = i7;
-        this.f15564e = i10;
-        this.f15565f = d7Var;
-        this.h = z10;
-        this.f15566n = z11;
-        this.f15567r = runnable;
+    public v8(f9 f9Var, int i7) {
+        this.f15605a = i7;
+        this.f15606b = f9Var;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: hi.v8.run():void");
-    }
-
-    public v8(MediaController mediaController, File file, File file2, TLRPC.TL_document tL_document, int i7, boolean z10, int i10, boolean z11) {
-        this.f15561a = 2;
-        this.f15562b = mediaController;
-        this.f15563c = file;
-        this.f15565f = file2;
-        this.f15567r = tL_document;
-        this.d = i7;
-        this.h = z10;
-        this.f15564e = i10;
-        this.f15566n = z11;
+        switch (this.f15605a) {
+            case 0:
+                k9 k9Var = this.f15606b.f14495a0;
+                org.telegram.ui.Components.fc.h(k9Var.f30229c);
+                super/*org.telegram.ui.ActionBar.w2*/.dismiss();
+                return;
+            case 1:
+                f9 f9Var = this.f15606b;
+                f9Var.f14503w.setLoading(false);
+                k9 k9Var2 = f9Var.f14495a0;
+                k9Var2.N0();
+                k9Var2.f14787m1.C(0);
+                return;
+            case 2:
+                this.f15606b.V = false;
+                return;
+            case 3:
+                k9 k9Var3 = this.f15606b.f14495a0;
+                k9Var3.H1 = 6;
+                k9Var3.f14787m1.C(1);
+                return;
+            case 4:
+                f9 f9Var2 = this.f15606b;
+                f9Var2.f14500n.g(2);
+                f9Var2.f14499f.forceLayout();
+                f9Var2.k();
+                return;
+            default:
+                f9 f9Var3 = this.f15606b;
+                k9 k9Var4 = f9Var3.f14495a0;
+                if (f9Var3.f14494a == 0) {
+                    k9Var4.dismiss();
+                    return;
+                } else {
+                    k9Var4.onBackPressed();
+                    return;
+                }
+        }
     }
 }

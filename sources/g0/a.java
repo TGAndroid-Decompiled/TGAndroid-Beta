@@ -24,9 +24,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.telegram.ui.ac1;
-import org.telegram.ui.tb1;
+import org.telegram.ui.rb1;
 import org.telegram.ui.wn0;
+import org.telegram.ui.yb1;
 public abstract class a {
     public static Paint a(Bitmap bitmap) {
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
@@ -91,12 +91,12 @@ public abstract class a {
         return accessibilityNodeInfo.isTextSelectable();
     }
 
-    public static wn0 h(ac1 ac1Var, tb1 tb1Var) {
-        OnBackInvokedDispatcher findOnBackInvokedDispatcher = ac1Var.findOnBackInvokedDispatcher();
+    public static wn0 h(yb1 yb1Var, rb1 rb1Var) {
+        OnBackInvokedDispatcher findOnBackInvokedDispatcher = yb1Var.findOnBackInvokedDispatcher();
         if (findOnBackInvokedDispatcher == null) {
             return null;
         }
-        wn0 wn0Var = new wn0(tb1Var, 1);
+        wn0 wn0Var = new wn0(rb1Var, 1);
         findOnBackInvokedDispatcher.registerOnBackInvokedCallback(0, wn0Var);
         return wn0Var;
     }
@@ -105,8 +105,8 @@ public abstract class a {
         builder.setExcludedFromSurfaces(0);
     }
 
-    public static void j(ac1 ac1Var, wn0 wn0Var) {
-        OnBackInvokedDispatcher findOnBackInvokedDispatcher = ac1Var.findOnBackInvokedDispatcher();
+    public static void j(yb1 yb1Var, wn0 wn0Var) {
+        OnBackInvokedDispatcher findOnBackInvokedDispatcher = yb1Var.findOnBackInvokedDispatcher();
         if (findOnBackInvokedDispatcher != null) {
             findOnBackInvokedDispatcher.unregisterOnBackInvokedCallback(wn0Var);
         }

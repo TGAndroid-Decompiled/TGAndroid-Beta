@@ -4,14 +4,14 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
-import org.telegram.ui.Cells.a9;
-public final class i extends a9 {
+import org.telegram.ui.Cells.z8;
+public final class i extends z8 {
     public long E;
     public int F;
     public int G;
     public final m H;
-    public int f17528x;
-    public float f17529y;
+    public int f17630x;
+    public float f17631y;
 
     public i(m mVar, Context context) {
         super(context);
@@ -36,7 +36,7 @@ public final class i extends a9 {
         Drawable drawable = mVar.P;
         if (drawable != null) {
             Rect bounds = drawable.getBounds();
-            int L = (int) (this.f17529y * org.telegram.messenger.g0.L(3.0f));
+            int L = (int) (this.f17631y * org.telegram.messenger.g0.L(3.0f));
             int i7 = bounds.left;
             this.F = i7;
             int i10 = bounds.top;
@@ -48,19 +48,19 @@ public final class i extends a9 {
                 j3 = 17;
             }
             this.E = elapsedRealtime;
-            if (this.f17528x == 0) {
-                float f10 = (((float) j3) / 664.0f) + this.f17529y;
-                this.f17529y = f10;
+            if (this.f17630x == 0) {
+                float f10 = (((float) j3) / 664.0f) + this.f17631y;
+                this.f17631y = f10;
                 if (f10 >= 1.0f) {
-                    this.f17528x = 1;
-                    this.f17529y = 1.0f;
+                    this.f17630x = 1;
+                    this.f17631y = 1.0f;
                 }
             } else {
-                float f11 = this.f17529y - (((float) j3) / 664.0f);
-                this.f17529y = f11;
+                float f11 = this.f17631y - (((float) j3) / 664.0f);
+                this.f17631y = f11;
                 if (f11 <= 0.0f) {
-                    this.f17528x = 0;
-                    this.f17529y = 0.0f;
+                    this.f17630x = 0;
+                    this.f17631y = 0.0f;
                 }
             }
             getTextView().invalidate();

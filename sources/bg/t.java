@@ -81,7 +81,7 @@ public abstract class t {
         if (imageReceiver != null) {
             Rect rect = f3305a;
             c(rect, f10, f11, i7, i10, 17);
-            imageReceiver.z0(rect);
+            imageReceiver.A0(rect);
         }
     }
 

@@ -4,21 +4,22 @@ import a8.ma;
 import e2.s0;
 import e2.t;
 import e2.u;
-import f3.i0;
+import f3.j0;
 import f3.p;
 import f3.q;
-import f3.y;
+import f3.z;
 import h2.l0;
 import h2.x;
 import h9.g0;
-import h9.t1;
+import h9.i0;
+import h9.s1;
 import java.util.ArrayList;
 import java.util.List;
 public final class h implements f3.o {
     public final m f4376a;
     public final u f4377b;
     public final ArrayList f4378c;
-    public i0 f4380f;
+    public j0 f4380f;
     public int f4381g;
     public int h;
     public long[] f4382i;
@@ -31,9 +32,9 @@ public final class h implements f3.o {
         this.f4376a = mVar;
         if (uVar != null) {
             t a10 = uVar.a();
-            a10.f10709r = s0.n("application/x-media3-cues");
-            a10.f10701j = uVar.f10761s;
-            a10.P = mVar.y();
+            a10.f10707r = s0.n("application/x-media3-cues");
+            a10.f10699j = uVar.f10759s;
+            a10.P = mVar.N();
             uVar2 = new u(a10);
         } else {
             uVar2 = null;
@@ -59,13 +60,13 @@ public final class h implements f3.o {
             z10 = false;
         }
         ma.p(z10);
-        i0 d2 = qVar.d2(0, 3);
+        j0 d2 = qVar.d2(0, 3);
         this.f4380f = d2;
         u uVar = this.f4377b;
         if (uVar != null) {
             d2.g(uVar);
-            qVar.d1();
-            qVar.j(new y(-9223372036854775807L, new long[]{0}, new long[]{0}));
+            qVar.Z0();
+            qVar.h(new z(-9223372036854775807L, new long[]{0}, new long[]{0}));
         }
         this.h = 1;
     }
@@ -91,8 +92,8 @@ public final class h implements f3.o {
 
     @Override
     public final List e() {
-        g0 g0Var = h9.i0.f13998b;
-        return t1.f14066e;
+        g0 g0Var = i0.f13995b;
+        return s1.f14058e;
     }
 
     @Override

@@ -1,67 +1,89 @@
 package org.telegram.messenger;
 
+import android.location.Location;
+import android.location.LocationListener;
+import android.os.Bundle;
 import android.os.SystemClock;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class od implements Runnable {
-    public final int f26072a;
-    public final long f26073b;
-    public final Object f26074c;
+public final class od implements LocationListener {
+    public final int f26148a;
+    public final Object f26149b;
 
-    public od(Object obj, long j3, int i7) {
-        this.f26072a = i7;
-        this.f26074c = obj;
-        this.f26073b = j3;
+    public od(Object obj, int i7) {
+        this.f26148a = i7;
+        this.f26149b = obj;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f26072a;
-        long j3 = this.f26073b;
-        Object obj = this.f26074c;
-        switch (i7) {
+    public final void onLocationChanged(Location location) {
+        switch (this.f26148a) {
             case 0:
-                rd rdVar = (rd) obj;
-                ArrayList arrayList = rdVar.f26555b;
-                a0.h hVar = rdVar.f26554a;
-                qd qdVar = (qd) hVar.f(j3);
-                hVar.l(j3);
-                if (qdVar != null) {
-                    TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-                    tL_messages_editMessage.peer = rdVar.getMessagesController().l1(qdVar.f26398a);
-                    tL_messages_editMessage.f28482id = qdVar.f26399b;
-                    tL_messages_editMessage.flags |= 16384;
-                    TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
-                    tL_messages_editMessage.media = tL_inputMediaGeoLive;
-                    tL_inputMediaGeoLive.stopped = true;
-                    tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPointEmpty();
-                    rdVar.getConnectionsManager().sendRequest(tL_messages_editMessage, new jd(rdVar, 0));
-                    arrayList.remove(qdVar);
-                    rdVar.l(qdVar, 1);
-                    g0.g3(new kd(rdVar, qdVar, 0));
-                    if (arrayList.isEmpty()) {
-                        rdVar.r(true);
+                qd qdVar = (qd) this.f26149b;
+                if (location != null) {
+                    Location location2 = qdVar.f26498s;
+                    if (location2 != null && (this == qdVar.h || this == qdVar.f26496n)) {
+                        if (!qdVar.E && location.distanceTo(location2) > 20.0f) {
+                            qdVar.m(location);
+                            qdVar.f26499w = SystemClock.elapsedRealtime() - 25000;
+                            return;
+                        }
+                        return;
+                    }
+                    qdVar.m(location);
+                    return;
+                }
+                return;
+            default:
+                a8.b8 b8Var = (a8.b8) this.f26149b;
+                if (location != null && ((xr) b8Var.f344e) != null) {
+                    if (s2.f26829a) {
+                        a8.b("found location " + location);
+                    }
+                    b8Var.f345f = location;
+                    if (location.getAccuracy() < 100.0f) {
+                        ((vy) b8Var.f341a).c0(location);
+                        xr xrVar = (xr) b8Var.f344e;
+                        if (xrVar != null) {
+                            g0.r(xrVar);
+                        }
+                        b8Var.d();
                         return;
                     }
                     return;
                 }
                 return;
-            case 1:
-                ((bi.d5) obj).a(Long.valueOf(j3));
-                return;
-            default:
-                bz bzVar = (bz) obj;
-                bzVar.f23164e = SystemClock.elapsedRealtime();
-                bzVar.f23163c = false;
-                if (j3 == -1) {
-                    bzVar.d = false;
-                    bzVar.f23162b = 0L;
-                } else {
-                    bzVar.f23162b = j3;
-                    bzVar.d = true;
-                }
-                ls.e().k(281, bzVar);
-                return;
         }
+    }
+
+    @Override
+    public final void onProviderDisabled(String str) {
+        int i7 = this.f26148a;
+    }
+
+    @Override
+    public final void onProviderEnabled(String str) {
+        int i7 = this.f26148a;
+    }
+
+    @Override
+    public final void onStatusChanged(String str, int i7, Bundle bundle) {
+        int i10 = this.f26148a;
+    }
+
+    private final void a(String str) {
+    }
+
+    private final void b(String str) {
+    }
+
+    private final void c(String str) {
+    }
+
+    private final void d(String str) {
+    }
+
+    private final void e(String str, int i7, Bundle bundle) {
+    }
+
+    private final void f(String str, int i7, Bundle bundle) {
     }
 }

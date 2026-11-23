@@ -1,195 +1,22 @@
 package org.telegram.ui.Components;
+public final class k21 implements org.telegram.messenger.nc, org.telegram.messenger.mc {
+    public final String f36609a;
+    public final String f36610b;
+    public final org.telegram.messenger.p10 f36611c;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.HashSet;
-public final class k21 extends View implements org.telegram.ui.ActionBar.b6 {
-    public int f36718a;
-    public float f36719b;
-    public final Paint f36720c;
-    public final Paint d;
-    public Drawable f36721e;
-    public boolean f36722f;
-    public int h;
-    public final RectF f36723n;
-
-    public k21(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f36720c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.f36722f = true;
-        this.h = 0;
-        this.f36723n = new RectF();
-        int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.P9, false);
-        this.f36718a = x02;
-        paint.setColor(x02);
-        paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint2.setStyle(Paint.Style.STROKE);
-        paint2.setStrokeCap(Paint.Cap.ROUND);
+    public k21(String str, String str2, org.telegram.messenger.p10 p10Var) {
+        this.f36609a = str;
+        this.f36610b = str2;
+        this.f36611c = p10Var;
     }
 
     @Override
-    public final void drawableHotspotChanged(float f10, float f11) {
-        super.drawableHotspotChanged(f10, f11);
-        Drawable drawable = this.f36721e;
-        if (drawable != null) {
-            drawable.setHotspot(f10, f11);
-        }
+    public void a(String str) {
+        a31.K0(this.f36609a, str, this.f36610b, this.f36611c);
     }
 
     @Override
-    public final void drawableStateChanged() {
-        super.drawableStateChanged();
-        Drawable drawable = this.f36721e;
-        if (drawable != null) {
-            drawable.setState(getDrawableState());
-            invalidate();
-        }
-    }
-
-    @Override
-    public final void jumpDrawablesToCurrentState() {
-        super.jumpDrawablesToCurrentState();
-        Drawable drawable = this.f36721e;
-        if (drawable != null) {
-            drawable.jumpToCurrentState();
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        boolean z10;
-        float f10;
-        Canvas canvas2 = canvas;
-        if (this.f36722f) {
-            if (this.h == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (z10) {
-                f10 = this.f36719b;
-            } else {
-                f10 = 1.0f;
-            }
-            float L = org.telegram.messenger.g0.L((f10 * 26.0f) + 6.0f);
-            RectF rectF = this.f36723n;
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas2.drawRoundRect(rectF, L, L, this.f36720c);
-        }
-        int i7 = this.h;
-        Paint paint = this.d;
-        if (i7 != 0) {
-            if (i7 == 1) {
-                float L2 = org.telegram.messenger.g0.L(21.0f);
-                float width = getWidth() - org.telegram.messenger.g0.L(21.0f);
-                float height = getHeight() / 2.0f;
-                canvas2.save();
-                canvas2.translate((-org.telegram.messenger.g0.L(2.0f)) * this.f36719b, 0.0f);
-                canvas2.rotate(this.f36719b * 90.0f, getWidth() / 2.0f, getHeight() / 2.0f);
-                canvas2.drawLine(L2 + ((width - L2) * this.f36719b), height, width, height, paint);
-                int L3 = org.telegram.messenger.g0.L((this.f36719b * (-1.0f)) + 9.0f);
-                int L4 = org.telegram.messenger.g0.L((this.f36719b * 7.0f) + 9.0f);
-                double d = width;
-                double d2 = L3;
-                double d10 = height;
-                canvas.drawLine(width, height, (float) (d - (Math.cos(0.7853981633974483d) * d2)), (float) ((Math.sin(0.7853981633974483d) * d2) + d10), paint);
-                double d11 = L4;
-                canvas2 = canvas;
-                canvas2.drawLine(width, height, (float) (d - (Math.cos(0.7853981633974483d) * d11)), (float) (d10 - (Math.sin(0.7853981633974483d) * d11)), paint);
-                canvas.restore();
-            }
-        } else {
-            float max = (Math.max(0.4f, this.f36719b) - 0.4f) / 0.6f;
-            if (max != 0.0f) {
-                float B = (org.telegram.messenger.o10.B(21.0f, 2, getWidth()) * max) + org.telegram.messenger.g0.L(21.0f);
-                float height2 = getHeight() / 2.0f;
-                canvas.drawLine(org.telegram.messenger.g0.L(21.0f), height2, B, height2, paint);
-                double L5 = org.telegram.messenger.g0.L(9.0f) * max;
-                float cos = (float) (B - (Math.cos(0.7853981633974483d) * L5));
-                float sin = (float) (Math.sin(0.7853981633974483d) * L5);
-                canvas2 = canvas;
-                canvas2.drawLine(B, height2, cos, height2 - sin, paint);
-                canvas2.drawLine(B, height2, cos, height2 + sin, paint);
-            } else {
-                canvas2 = canvas;
-            }
-        }
-        Drawable drawable = this.f36721e;
-        if (drawable != null) {
-            drawable.setBounds(0, 0, getWidth(), getHeight());
-            this.f36721e.setHotspotBounds(0, 0, getWidth(), getHeight());
-            this.f36721e.draw(canvas2);
-        }
-    }
-
-    @Override
-    public void setBackgroundColor(int i7) {
-        this.f36720c.setColor(i7);
-        invalidate();
-    }
-
-    public void setColor(int i7) {
-        this.d.setColor(i7);
-        invalidate();
-    }
-
-    public void setDrawBackground(boolean z10) {
-        this.f36722f = z10;
-    }
-
-    public void setProgress(float f10) {
-        this.f36719b = f10;
-        invalidate();
-    }
-
-    public void setRippleDrawable(Drawable drawable) {
-        this.f36721e = drawable;
-        invalidate();
-    }
-
-    public void setTransformType(int i7) {
-        this.h = i7;
-        invalidate();
-    }
-
-    @Override
-    public final void updateColors() {
-        Paint paint = this.f36720c;
-        try {
-            if (paint.getColor() == this.f36718a) {
-                this.f36718a = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.P9, false);
-                int color = paint.getColor();
-                int i7 = this.f36718a;
-                if (color != i7) {
-                    paint.setColor(i7);
-                    invalidate();
-                }
-            }
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable)) {
-            Drawable drawable2 = this.f36721e;
-            if (drawable2 == null || drawable != drawable2) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public void s(Exception exc) {
+        a31.K0(this.f36609a, "en", this.f36610b, this.f36611c);
     }
 }

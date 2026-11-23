@@ -1,11 +1,19 @@
 package gb;
-public final class x {
-    public static final u f13426c = new u(2);
-    public final String f13427a;
-    public final String f13428b;
+public final class x extends kd.c {
+    public Object f13426a;
+    public Object f13427b;
+    public final v f13428c;
+    public int d;
 
-    public x(String str, String str2) {
-        this.f13427a = str;
-        this.f13428b = str2;
+    public x(v vVar, kd.c cVar) {
+        super(cVar);
+        this.f13428c = vVar;
+    }
+
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.f13427b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.f13428c.a(null, this);
     }
 }

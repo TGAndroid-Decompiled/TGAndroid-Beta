@@ -1,12 +1,6 @@
 package z2;
 
-import v4.e0;
+import org.telegram.ui.Components.nd0;
 public interface d {
-    public static final e0 D;
-
-    static {
-        ?? obj = new Object();
-        obj.f59109a = new nb.a(6);
-        D = obj;
-    }
+    public static final nd0 D = new nd0(28);
 }

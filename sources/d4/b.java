@@ -9,50 +9,50 @@ import android.text.style.UnderlineSpan;
 import com.google.android.gms.internal.vision.e2;
 import java.util.ArrayList;
 public final class b {
-    public final ArrayList f7778a;
-    public final ArrayList f7779b;
-    public final StringBuilder f7780c;
+    public final ArrayList f7777a;
+    public final ArrayList f7778b;
+    public final StringBuilder f7779c;
     public int d;
-    public int f7781e;
-    public int f7782f;
-    public int f7783g;
+    public int f7780e;
+    public int f7781f;
+    public int f7782g;
     public int h;
 
     public b(int i7, int i10) {
         ArrayList arrayList = new ArrayList();
-        this.f7778a = arrayList;
+        this.f7777a = arrayList;
         ArrayList arrayList2 = new ArrayList();
-        this.f7779b = arrayList2;
+        this.f7778b = arrayList2;
         StringBuilder sb2 = new StringBuilder();
-        this.f7780c = sb2;
-        this.f7783g = i7;
+        this.f7779c = sb2;
+        this.f7782g = i7;
         arrayList.clear();
         arrayList2.clear();
         sb2.setLength(0);
         this.d = 15;
-        this.f7781e = 0;
-        this.f7782f = 0;
+        this.f7780e = 0;
+        this.f7781f = 0;
         this.h = i10;
     }
 
     public final void a(char c10) {
-        StringBuilder sb2 = this.f7780c;
+        StringBuilder sb2 = this.f7779c;
         if (sb2.length() < 32) {
             sb2.append(c10);
         }
     }
 
     public final void b() {
-        StringBuilder sb2 = this.f7780c;
+        StringBuilder sb2 = this.f7779c;
         int length = sb2.length();
         if (length > 0) {
             sb2.delete(length - 1, length);
-            ArrayList arrayList = this.f7778a;
+            ArrayList arrayList = this.f7777a;
             for (int size = arrayList.size() - 1; size >= 0; size--) {
                 a aVar = (a) arrayList.get(size);
-                int i7 = aVar.f7777c;
+                int i7 = aVar.f7776c;
                 if (i7 == length) {
-                    aVar.f7777c = i7 - 1;
+                    aVar.f7776c = i7 - 1;
                 } else {
                     return;
                 }
@@ -66,7 +66,7 @@ public final class b {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = this.f7779b;
+            ArrayList arrayList = this.f7778b;
             if (i11 >= arrayList.size()) {
                 break;
             }
@@ -78,14 +78,14 @@ public final class b {
         if (spannableStringBuilder.length() == 0) {
             return null;
         }
-        int i12 = this.f7781e + this.f7782f;
+        int i12 = this.f7780e + this.f7781f;
         int length = (32 - i12) - spannableStringBuilder.length();
         int i13 = i12 - length;
         if (i7 != Integer.MIN_VALUE) {
             i10 = i7;
-        } else if (this.f7783g == 2 && (Math.abs(i13) < 3 || length < 0)) {
+        } else if (this.f7782g == 2 && (Math.abs(i13) < 3 || length < 0)) {
             i10 = 1;
-        } else if (this.f7783g == 2 && i13 > 0) {
+        } else if (this.f7782g == 2 && i13 > 0) {
             i10 = 2;
         } else {
             i10 = 0;
@@ -103,7 +103,7 @@ public final class b {
         int i14 = this.d;
         if (i14 > 7) {
             i14 -= 17;
-        } else if (this.f7783g == 1) {
+        } else if (this.f7782g == 1) {
             i14 -= this.h - 1;
         }
         return new g2.b(spannableStringBuilder, Layout.Alignment.ALIGN_NORMAL, null, null, i14, 1, Integer.MIN_VALUE, f11, i10, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, -16777216, Integer.MIN_VALUE, 0.0f, 0);
@@ -112,7 +112,7 @@ public final class b {
     public final SpannableString d() {
         int i7;
         boolean z10;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f7780c);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f7779c);
         int length = spannableStringBuilder.length();
         int i10 = -1;
         int i11 = -1;
@@ -122,13 +122,13 @@ public final class b {
         int i15 = 0;
         boolean z11 = false;
         while (true) {
-            ArrayList arrayList = this.f7778a;
+            ArrayList arrayList = this.f7777a;
             if (i14 >= arrayList.size()) {
                 break;
             }
             a aVar = (a) arrayList.get(i14);
-            boolean z12 = aVar.f7776b;
-            int i16 = aVar.f7775a;
+            boolean z12 = aVar.f7775b;
+            int i16 = aVar.f7774a;
             if (i16 != 8) {
                 if (i16 == 7) {
                     z10 = true;
@@ -140,10 +140,10 @@ public final class b {
                 }
                 z11 = z10;
             }
-            int i17 = aVar.f7777c;
+            int i17 = aVar.f7776c;
             i14++;
             if (i14 < arrayList.size()) {
-                i7 = ((a) arrayList.get(i14)).f7777c;
+                i7 = ((a) arrayList.get(i14)).f7776c;
             } else {
                 i7 = length;
             }
@@ -182,7 +182,7 @@ public final class b {
     }
 
     public final boolean e() {
-        if (this.f7778a.isEmpty() && this.f7779b.isEmpty() && this.f7780c.length() == 0) {
+        if (this.f7777a.isEmpty() && this.f7778b.isEmpty() && this.f7779c.length() == 0) {
             return true;
         }
         return false;

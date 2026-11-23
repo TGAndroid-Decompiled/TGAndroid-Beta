@@ -6,18 +6,18 @@ import java.util.Comparator;
 import java.util.NavigableSet;
 public abstract class s extends o implements NavigableSet, c0, SortedSet {
     public final transient Comparator d;
-    public transient s f56053e;
+    public transient s f56166e;
 
     public s(Comparator comparator) {
         this.d = comparator;
     }
 
     public static z s(Comparator comparator) {
-        if (v.f56062b.equals(comparator)) {
+        if (v.f56175b.equals(comparator)) {
             return z.h;
         }
-        i iVar = m.f56033b;
-        return new z(x.f56067e, comparator);
+        i iVar = m.f56146b;
+        return new z(x.f56180e, comparator);
     }
 
     public final void addFirst(Object obj) {
@@ -66,17 +66,17 @@ public abstract class s extends o implements NavigableSet, c0, SortedSet {
 
     @Override
     public final s descendingSet() {
-        z zVar = this.f56053e;
+        z zVar = this.f56166e;
         if (zVar == null) {
             z zVar2 = (z) this;
             Comparator reverseOrder = Collections.reverseOrder(zVar2.d);
             if (zVar2.isEmpty()) {
                 zVar = s(reverseOrder);
             } else {
-                zVar = new z(zVar2.f56075f.m(), reverseOrder);
+                zVar = new z(zVar2.f56188f.m(), reverseOrder);
             }
-            this.f56053e = zVar;
-            zVar.f56053e = this;
+            this.f56166e = zVar;
+            zVar.f56166e = this;
         }
         return zVar;
     }
@@ -87,7 +87,7 @@ public abstract class s extends o implements NavigableSet, c0, SortedSet {
         obj2.getClass();
         if (this.d.compare(obj, obj2) <= 0) {
             z zVar = (z) this;
-            z v = zVar.v(zVar.u(obj, z10), zVar.f56075f.size());
+            z v = zVar.v(zVar.u(obj, z10), zVar.f56188f.size());
             return v.v(0, v.t(obj2, z11));
         }
         throw new IllegalArgumentException();
@@ -110,7 +110,7 @@ public abstract class s extends o implements NavigableSet, c0, SortedSet {
     public final java.util.SortedSet tailSet(Object obj) {
         obj.getClass();
         z zVar = (z) this;
-        return zVar.v(zVar.u(obj, true), zVar.f56075f.size());
+        return zVar.v(zVar.u(obj, true), zVar.f56188f.size());
     }
 
     @Override
@@ -124,6 +124,6 @@ public abstract class s extends o implements NavigableSet, c0, SortedSet {
     public final NavigableSet tailSet(Object obj, boolean z10) {
         obj.getClass();
         z zVar = (z) this;
-        return zVar.v(zVar.u(obj, z10), zVar.f56075f.size());
+        return zVar.v(zVar.u(obj, z10), zVar.f56188f.size());
     }
 }

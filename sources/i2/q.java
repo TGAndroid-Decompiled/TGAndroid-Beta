@@ -2,11 +2,11 @@ package i2;
 
 import java.nio.ByteBuffer;
 public final class q {
-    public final int f15971a;
-    public final ByteBuffer f15972b;
+    public final int f16066a;
+    public final ByteBuffer f16067b;
 
     public q(int i7, ByteBuffer byteBuffer) {
-        this.f15971a = i7;
-        this.f15972b = byteBuffer;
+        this.f16066a = i7;
+        this.f16067b = byteBuffer;
     }
 }

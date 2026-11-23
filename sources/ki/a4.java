@@ -1,26 +1,25 @@
 package ki;
-public final class a4 implements Runnable {
-    public final int f18571a;
-    public final b4 f18572b;
 
-    public a4(b4 b4Var, int i7) {
-        this.f18571a = i7;
-        this.f18572b = b4Var;
+import android.app.Activity;
+import android.content.Context;
+import org.telegram.ui.LaunchActivity;
+public final class a4 extends org.telegram.ui.ActionBar.g2 {
+    @Override
+    public final Context getContext() {
+        return org.telegram.messenger.g0.W(LaunchActivity.H1);
     }
 
     @Override
-    public final void run() {
-        switch (this.f18571a) {
-            case 0:
-                b4 b4Var = this.f18572b;
-                if (b4Var.f18592x) {
-                    b4Var.d();
-                    return;
-                }
-                return;
-            default:
-                this.f18572b.invalidateSelf();
-                return;
+    public final int getCurrentAccount() {
+        return this.currentAccount;
+    }
+
+    @Override
+    public final Activity getParentActivity() {
+        Activity W = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f27013b);
+        if (W == null) {
+            return LaunchActivity.H1;
         }
+        return W;
     }
 }

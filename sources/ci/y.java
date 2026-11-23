@@ -5,21 +5,21 @@ import android.text.TextUtils;
 import android.view.View;
 import j$.util.Objects;
 import java.util.Locale;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.z10;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.x10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Cells.a9;
 import org.telegram.ui.Cells.e2;
 import org.telegram.ui.Cells.y3;
-import org.telegram.ui.Cells.z6;
-import org.telegram.ui.Components.c51;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Wallet.n6;
-import org.telegram.ui.Wallet.na;
-import org.telegram.ui.g00;
-public final class y implements z10 {
+import org.telegram.ui.Cells.y6;
+import org.telegram.ui.Cells.z8;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.kr;
+import org.telegram.ui.Wallet.o6;
+import org.telegram.ui.Wallet.oa;
+import org.telegram.ui.f00;
+public final class y implements x10 {
     public final int f5834a;
 
     public y(int i7) {
@@ -38,7 +38,7 @@ public final class y implements z10 {
                 return Boolean.valueOf(z10);
             case 1:
                 String str2 = (String) obj;
-                nr nrVar = b0.A0;
+                kr krVar = b0.A0;
                 if (TextUtils.isEmpty(str2) || (!str2.startsWith("tg:") && !vf.c.g(Uri.parse(str2), false, null))) {
                     z10 = false;
                 }
@@ -46,29 +46,29 @@ public final class y implements z10 {
             case 2:
                 return String.format(Locale.US, "%.1f%%", Float.valueOf(((Integer) obj).intValue() / 10.0f));
             case 3:
-                gj gjVar = (gj) obj;
-                if (gjVar == null || gjVar.R0() == null) {
+                fj fjVar = (fj) obj;
+                if (fjVar == null || fjVar.R0() == null) {
                     z10 = false;
                 }
                 return Boolean.valueOf(z10);
             case 4:
-                gj gjVar2 = (gj) obj;
-                if (gjVar2 == null || gjVar2.M0() == null) {
+                fj fjVar2 = (fj) obj;
+                if (fjVar2 == null || fjVar2.M0() == null) {
                     z10 = false;
                 }
                 return Boolean.valueOf(z10);
             case 5:
-                return hd.G(((Integer) obj).intValue(), "Hours", new Object[0]);
+                return gd.G(((Integer) obj).intValue(), "Hours", new Object[0]);
             case 6:
-                return hd.G(((Integer) obj).intValue(), "Minutes", new Object[0]);
+                return gd.G(((Integer) obj).intValue(), "Minutes", new Object[0]);
             case 7:
                 View view = (View) obj;
-                if ((view instanceof a9) || (view instanceof z6) || (view instanceof g00) || (view instanceof y3) || (view instanceof e2) || Objects.equals(view.getTag(), -33024)) {
+                if ((view instanceof z8) || (view instanceof y6) || (view instanceof f00) || (view instanceof y3) || (view instanceof e2) || Objects.equals(view.getTag(), -33024)) {
                     z10 = false;
                 }
                 return Boolean.valueOf(z10);
             case 8:
-                return Boolean.valueOf(c51.K(((Integer) obj).intValue()));
+                return Boolean.valueOf(b51.K(((Integer) obj).intValue()));
             case 9:
                 TL_wallet.exportSecretPhrase exportsecretphrase = new TL_wallet.exportSecretPhrase();
                 exportsecretphrase.password = (TLRPC.InputCheckPasswordSRP) obj;
@@ -83,9 +83,9 @@ public final class y implements z10 {
                 replacewallet.password = (TLRPC.InputCheckPasswordSRP) obj;
                 return replacewallet;
             case 12:
-                return Boolean.valueOf(n6.G0(n6.i1((String) obj)));
+                return Boolean.valueOf(o6.G0(o6.i1((String) obj)));
             default:
-                if (na.l0((String) obj) == null) {
+                if (oa.l0((String) obj) == null) {
                     z10 = false;
                 }
                 return Boolean.valueOf(z10);

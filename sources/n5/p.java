@@ -2,12 +2,12 @@ package n5;
 
 import java.util.Arrays;
 public final class p extends b0 {
-    public final byte[] f21391a;
-    public final byte[] f21392b;
+    public final byte[] f21490a;
+    public final byte[] f21491b;
 
     public p(byte[] bArr, byte[] bArr2) {
-        this.f21391a = bArr;
-        this.f21392b = bArr2;
+        this.f21490a = bArr;
+        this.f21491b = bArr2;
     }
 
     public final boolean equals(Object obj) {
@@ -21,18 +21,18 @@ public final class p extends b0 {
             boolean z10 = b0Var instanceof p;
             p pVar = (p) b0Var;
             if (z10) {
-                bArr = pVar.f21391a;
+                bArr = pVar.f21490a;
             } else {
-                bArr = pVar.f21391a;
+                bArr = pVar.f21490a;
             }
-            if (Arrays.equals(this.f21391a, bArr)) {
+            if (Arrays.equals(this.f21490a, bArr)) {
                 p pVar2 = (p) b0Var;
                 if (z10) {
-                    bArr2 = pVar2.f21392b;
+                    bArr2 = pVar2.f21491b;
                 } else {
-                    bArr2 = pVar2.f21392b;
+                    bArr2 = pVar2.f21491b;
                 }
-                if (Arrays.equals(this.f21392b, bArr2)) {
+                if (Arrays.equals(this.f21491b, bArr2)) {
                     return true;
                 }
             }
@@ -41,10 +41,10 @@ public final class p extends b0 {
     }
 
     public final int hashCode() {
-        return ((Arrays.hashCode(this.f21391a) ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f21392b);
+        return ((Arrays.hashCode(this.f21490a) ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f21491b);
     }
 
     public final String toString() {
-        return "ExperimentIds{clearBlob=" + Arrays.toString(this.f21391a) + ", encryptedBlob=" + Arrays.toString(this.f21392b) + "}";
+        return "ExperimentIds{clearBlob=" + Arrays.toString(this.f21490a) + ", encryptedBlob=" + Arrays.toString(this.f21491b) + "}";
     }
 }

@@ -5,8 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.av0;
-import org.telegram.ui.o31;
+import org.telegram.ui.n31;
+import org.telegram.ui.yu0;
 public final class c4 extends RadialProgressView {
     public final int O = 0;
     public final Paint P;
@@ -25,32 +25,32 @@ public final class c4 extends RadialProgressView {
         switch (this.O) {
             case 0:
                 g4 g4Var = (g4) this.Q;
-                org.telegram.ui.Components.q9 q9Var = g4Var.f30649b;
-                if (q9Var.getImageReceiver().L() && q9Var.getAlpha() > 0.0f) {
-                    int alpha = (int) (q9Var.getAlpha() * q9Var.getImageReceiver().f22636i1 * 85.0f);
+                org.telegram.ui.Components.p9 p9Var = g4Var.f30738b;
+                if (p9Var.getImageReceiver().M() && p9Var.getAlpha() > 0.0f) {
+                    int alpha = (int) (p9Var.getAlpha() * p9Var.getImageReceiver().f22739i1 * 85.0f);
                     Paint paint = this.P;
                     paint.setAlpha(alpha);
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint);
                 }
-                g4Var.f30664y.setProgressColor(i0.a.o(-1, (int) (q9Var.getAlpha() * q9Var.getImageReceiver().f22636i1 * 255.0f)));
+                g4Var.f30753y.setProgressColor(i0.a.o(-1, (int) (p9Var.getAlpha() * p9Var.getImageReceiver().f22739i1 * 255.0f)));
                 super.onDraw(canvas);
                 return;
             case 1:
                 ProfileActivity profileActivity = (ProfileActivity) this.Q;
-                av0 av0Var = profileActivity.f43557f0;
-                if (av0Var != null && av0Var.getImageReceiver().L()) {
+                yu0 yu0Var = profileActivity.f43673f0;
+                if (yu0Var != null && yu0Var.getImageReceiver().M()) {
                     Paint paint2 = this.P;
-                    paint2.setAlpha((int) (profileActivity.f43557f0.getImageReceiver().f22636i1 * 85.0f));
+                    paint2.setAlpha((int) (profileActivity.f43673f0.getImageReceiver().f22739i1 * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint2);
                 }
                 super.onDraw(canvas);
                 return;
             default:
-                o31 o31Var = (o31) this.Q;
-                org.telegram.ui.Components.q9 q9Var2 = o31Var.H;
-                if (q9Var2 != null && q9Var2.getImageReceiver().L()) {
+                n31 n31Var = (n31) this.Q;
+                org.telegram.ui.Components.p9 p9Var2 = n31Var.H;
+                if (p9Var2 != null && p9Var2.getImageReceiver().M()) {
                     Paint paint3 = this.P;
-                    paint3.setAlpha((int) (o31Var.H.getImageReceiver().f22636i1 * 85.0f));
+                    paint3.setAlpha((int) (n31Var.H.getImageReceiver().f22739i1 * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint3);
                 }
                 super.onDraw(canvas);
@@ -58,9 +58,9 @@ public final class c4 extends RadialProgressView {
         }
     }
 
-    public c4(o31 o31Var, Context context) {
+    public c4(n31 n31Var, Context context) {
         super(context, null);
-        this.Q = o31Var;
+        this.Q = n31Var;
         Paint paint = new Paint(1);
         this.P = paint;
         paint.setColor(1426063360);

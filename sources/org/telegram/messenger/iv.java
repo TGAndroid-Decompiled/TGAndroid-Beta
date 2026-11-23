@@ -1,119 +1,599 @@
 package org.telegram.messenger;
 
+import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class iv {
-    public final TL_iv.RichText f24746a;
-    public final IdentityHashMap f24747b;
-    public final int f24748c;
-    public final int d;
+    public final ArrayList f24854a;
+    public final int f24855b;
 
-    public iv(TL_iv.RichText richText, IdentityHashMap identityHashMap, int i7, int i10) {
-        this.f24746a = richText;
-        this.f24747b = identityHashMap;
-        this.f24748c = i7;
-        this.d = i10;
+    public iv(int i7, ArrayList arrayList) {
+        this.f24854a = arrayList;
+        this.f24855b = i7;
     }
 
-    public static iv a(fv fvVar, h2.j0 j0Var) {
-        IdentityHashMap identityHashMap = new IdentityHashMap();
-        xt xtVar = (xt) j0Var.f13766c;
-        SpannableStringBuilder o4 = fvVar.o(xtVar.f27924a, xtVar.f27925b, identityHashMap);
-        Spanned spanned = (Spanned) j0Var.d;
-        int spanEnd = spanned.getSpanEnd(xtVar);
-        int i7 = j0Var.f13765b;
-        int i10 = spanEnd - i7;
-        if (o4.length() == i10 && TextUtils.regionMatches(o4, 0, spanned, i7, i10)) {
-            return new iv(xtVar.f27924a, identityHashMap, o4.length(), xtVar.f27925b);
+    public static void a(TL_iv.RichText richText, ArrayList arrayList) {
+        if (richText != null && g(richText) > 0) {
+            arrayList.add(richText);
         }
-        a8.d("RichQuote: laid out text doesn't match the formatted one");
-        return null;
     }
 
-    public final TL_iv.RichText b(int i7, int i10) {
-        int max = Math.max(0, i7);
-        int i11 = this.f24748c;
-        int min = Math.min(i11, i10);
-        if (max >= min) {
-            return null;
+    public static void b(TL_iv.RichText richText, StringBuilder sb2, ArrayList arrayList) {
+        TLRPC.MessageEntity messageEntity;
+        int length;
+        TL_iv.RichText richText2;
+        String str;
+        if (richText == null || (richText instanceof TL_iv.textEmpty) || (richText instanceof TL_iv.textImage)) {
+            return;
         }
-        TL_iv.RichText richText = this.f24746a;
-        if (max == 0 && min == i11) {
-            return richText;
-        }
-        return c(richText, max, min);
-    }
-
-    public final TL_iv.RichText c(TL_iv.RichText richText, int i7, int i10) {
-        int[] iArr;
-        int i11;
-        int i12;
-        if (richText != null && (iArr = (int[]) this.f24747b.get(richText)) != null && (i11 = iArr[0]) != (i12 = iArr[1]) && i12 > i7 && i11 < i10) {
-            if (i7 > i11 || i12 > i10) {
-                if (richText instanceof TL_iv.textPlain) {
-                    String str = ((TL_iv.textPlain) richText).text;
-                    if (str != null && str.length() == i12 - i11) {
-                        int max = Math.max(i7, i11) - i11;
-                        int min = Math.min(i10, i12) - i11;
-                        if (max > 0 && max < str.length() && Character.isLowSurrogate(str.charAt(max))) {
-                            max--;
-                        }
-                        if (min > 0 && min < str.length() && Character.isLowSurrogate(str.charAt(min))) {
-                            min++;
-                        }
-                        TL_iv.textPlain textplain = new TL_iv.textPlain();
-                        textplain.text = str.substring(max, min);
-                        return textplain;
+        if (richText instanceof TL_iv.textPlain) {
+            String str2 = ((TL_iv.textPlain) richText).text;
+            if (str2 != null) {
+                sb2.append(str2);
+            }
+        } else if (richText instanceof TL_iv.textMath) {
+            String str3 = ((TL_iv.textMath) richText).source;
+            if (str3 != null) {
+                sb2.append(str3);
+            }
+        } else {
+            int length2 = sb2.length();
+            if (richText instanceof TL_iv.textCustomEmoji) {
+                TL_iv.textCustomEmoji textcustomemoji = (TL_iv.textCustomEmoji) richText;
+                if (TextUtils.isEmpty(textcustomemoji.alt)) {
+                    str = "😀";
+                } else {
+                    str = textcustomemoji.alt;
+                }
+                sb2.append(str);
+                if (arrayList != null) {
+                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
+                    tL_messageEntityCustomEmoji.document_id = textcustomemoji.document_id;
+                    int length3 = sb2.length();
+                    if (length3 > length2) {
+                        tL_messageEntityCustomEmoji.offset = length2;
+                        tL_messageEntityCustomEmoji.length = length3 - length2;
+                        arrayList.add(tL_messageEntityCustomEmoji);
                     }
-                } else if (richText instanceof TL_iv.textConcat) {
-                    ArrayList<TL_iv.RichText> arrayList = new ArrayList<>();
-                    ArrayList<TL_iv.RichText> arrayList2 = richText.texts;
-                    int size = arrayList2.size();
-                    int i13 = 0;
-                    while (i13 < size) {
-                        TL_iv.RichText richText2 = arrayList2.get(i13);
-                        i13++;
-                        TL_iv.RichText c10 = c(richText2, i7, i10);
-                        if (c10 != null) {
-                            arrayList.add(c10);
-                        }
+                }
+            } else if (richText instanceof TL_iv.textConcat) {
+                ArrayList<TL_iv.RichText> arrayList2 = richText.texts;
+                int size = arrayList2.size();
+                int i7 = 0;
+                while (i7 < size) {
+                    TL_iv.RichText richText3 = arrayList2.get(i7);
+                    i7++;
+                    b(richText3, sb2, arrayList);
+                }
+            } else if (richText instanceof TL_iv.textDiff) {
+                TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
+                if (oi.c6.j(textdiff.text)) {
+                    richText2 = textdiff.old_text;
+                } else {
+                    richText2 = textdiff.text;
+                }
+                b(richText2, sb2, arrayList);
+            } else {
+                b(richText.text, sb2, arrayList);
+                if (arrayList != null) {
+                    if (richText instanceof TL_iv.textBold) {
+                        messageEntity = new TLRPC.TL_messageEntityBold();
+                    } else if (richText instanceof TL_iv.textItalic) {
+                        messageEntity = new TLRPC.TL_messageEntityItalic();
+                    } else if (richText instanceof TL_iv.textUnderline) {
+                        messageEntity = new TLRPC.TL_messageEntityUnderline();
+                    } else if (richText instanceof TL_iv.textStrike) {
+                        messageEntity = new TLRPC.TL_messageEntityStrike();
+                    } else if (richText instanceof TL_iv.textFixed) {
+                        messageEntity = new TLRPC.TL_messageEntityCode();
+                    } else if (richText instanceof TL_iv.textSpoiler) {
+                        messageEntity = new TLRPC.TL_messageEntitySpoiler();
+                    } else if (richText instanceof TL_iv.textUrl) {
+                        TLRPC.TL_messageEntityTextUrl tL_messageEntityTextUrl = new TLRPC.TL_messageEntityTextUrl();
+                        tL_messageEntityTextUrl.url = ((TL_iv.textUrl) richText).url;
+                        messageEntity = tL_messageEntityTextUrl;
+                    } else {
+                        messageEntity = null;
                     }
-                    if (!arrayList.isEmpty()) {
-                        if (arrayList.size() == 1) {
-                            return arrayList.get(0);
+                    if (messageEntity != null && (length = sb2.length()) > length2) {
+                        messageEntity.offset = length2;
+                        messageEntity.length = length - length2;
+                        arrayList.add(messageEntity);
+                    }
+                }
+            }
+        }
+    }
+
+    public static boolean c(fj fjVar) {
+        TLRPC.Message message;
+        TL_iv.RichMessage richMessage;
+        ev evVar;
+        if (fjVar != null && (message = fjVar.f24073k) != null && (richMessage = message.rich_message) != null && (evVar = fjVar.f24130y2) != null && evVar.f23874c == richMessage) {
+            return true;
+        }
+        return false;
+    }
+
+    public static void d(ArrayList arrayList, ArrayList arrayList2) {
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i7 = 0;
+            while (i7 < size) {
+                Object obj = arrayList.get(i7);
+                i7++;
+                TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) obj;
+                if (!(pageBlock instanceof TL_iv.pageBlockParagraph) && !(pageBlock instanceof TL_iv.pageBlockHeading1) && !(pageBlock instanceof TL_iv.pageBlockHeading2) && !(pageBlock instanceof TL_iv.pageBlockHeading3) && !(pageBlock instanceof TL_iv.pageBlockHeading4) && !(pageBlock instanceof TL_iv.pageBlockHeading5) && !(pageBlock instanceof TL_iv.pageBlockHeading6) && !(pageBlock instanceof TL_iv.pageBlockFooter) && !(pageBlock instanceof TL_iv.pageBlockThinking) && !(pageBlock instanceof TL_iv.pageBlockPreformatted)) {
+                    if (pageBlock instanceof TL_iv.pageBlockMath) {
+                        String str = ((TL_iv.pageBlockMath) pageBlock).source;
+                        if (!TextUtils.isEmpty(str)) {
+                            TL_iv.textMath textmath = new TL_iv.textMath();
+                            textmath.source = str;
+                            arrayList2.add(textmath);
                         }
-                        TL_iv.textConcat textconcat = new TL_iv.textConcat();
-                        textconcat.texts = arrayList;
-                        return textconcat;
+                    } else if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
+                        a(pageBlock.text, arrayList2);
+                        a(((TL_iv.pageBlockBlockquote) pageBlock).caption, arrayList2);
+                    } else if (pageBlock instanceof TL_iv.pageBlockBlockquoteBlocks) {
+                        TL_iv.pageBlockBlockquoteBlocks pageblockblockquoteblocks = (TL_iv.pageBlockBlockquoteBlocks) pageBlock;
+                        d(pageblockblockquoteblocks.blocks, arrayList2);
+                        a(pageblockblockquoteblocks.caption, arrayList2);
+                    } else if (pageBlock instanceof TL_iv.pageBlockPullquote) {
+                        a(pageBlock.text, arrayList2);
+                        a(((TL_iv.pageBlockPullquote) pageBlock).caption, arrayList2);
+                    } else if (pageBlock instanceof TL_iv.pageBlockList) {
+                        ArrayList<TL_iv.PageListItem> arrayList3 = ((TL_iv.pageBlockList) pageBlock).items;
+                        int size2 = arrayList3.size();
+                        int i10 = 0;
+                        while (i10 < size2) {
+                            TL_iv.PageListItem pageListItem = arrayList3.get(i10);
+                            i10++;
+                            TL_iv.PageListItem pageListItem2 = pageListItem;
+                            if (pageListItem2 instanceof TL_iv.TL_pageListItemText) {
+                                a(((TL_iv.TL_pageListItemText) pageListItem2).text, arrayList2);
+                            } else if (pageListItem2 instanceof TL_iv.TL_pageListItemBlocks) {
+                                d(((TL_iv.TL_pageListItemBlocks) pageListItem2).blocks, arrayList2);
+                            }
+                        }
+                    } else if (pageBlock instanceof TL_iv.pageBlockOrderedList) {
+                        ArrayList<TL_iv.PageListOrderedItem> arrayList4 = ((TL_iv.pageBlockOrderedList) pageBlock).items;
+                        int size3 = arrayList4.size();
+                        int i11 = 0;
+                        while (i11 < size3) {
+                            TL_iv.PageListOrderedItem pageListOrderedItem = arrayList4.get(i11);
+                            i11++;
+                            TL_iv.PageListOrderedItem pageListOrderedItem2 = pageListOrderedItem;
+                            if (pageListOrderedItem2 instanceof TL_iv.TL_pageListOrderedItemText) {
+                                a(((TL_iv.TL_pageListOrderedItemText) pageListOrderedItem2).text, arrayList2);
+                            } else if (pageListOrderedItem2 instanceof TL_iv.TL_pageListOrderedItemBlocks) {
+                                d(((TL_iv.TL_pageListOrderedItemBlocks) pageListOrderedItem2).blocks, arrayList2);
+                            }
+                        }
+                    } else if (pageBlock instanceof TL_iv.pageBlockTable) {
+                        TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock;
+                        a(pageblocktable.title, arrayList2);
+                        ArrayList<TL_iv.pageTableRow> arrayList5 = pageblocktable.rows;
+                        int size4 = arrayList5.size();
+                        int i12 = 0;
+                        while (i12 < size4) {
+                            TL_iv.pageTableRow pagetablerow = arrayList5.get(i12);
+                            i12++;
+                            ArrayList<TL_iv.pageTableCell> arrayList6 = pagetablerow.cells;
+                            int size5 = arrayList6.size();
+                            int i13 = 0;
+                            while (i13 < size5) {
+                                TL_iv.pageTableCell pagetablecell = arrayList6.get(i13);
+                                i13++;
+                                a(pagetablecell.text, arrayList2);
+                            }
+                        }
+                    } else if (pageBlock instanceof TL_iv.pageBlockDetails) {
+                        TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) pageBlock;
+                        a(pageblockdetails.title, arrayList2);
+                        d(pageblockdetails.blocks, arrayList2);
+                    } else if (!(pageBlock instanceof TL_iv.pageBlockPhoto) && !(pageBlock instanceof TL_iv.pageBlockVideo) && !(pageBlock instanceof TL_iv.pageBlockAudio) && !(pageBlock instanceof TL_iv.pageBlockMap)) {
+                        if (pageBlock instanceof TL_iv.pageBlockCollage) {
+                            d(((TL_iv.pageBlockCollage) pageBlock).items, arrayList2);
+                            TL_iv.PageCaption pageCaption = pageBlock.caption;
+                            if (pageCaption != null) {
+                                a(pageCaption.text, arrayList2);
+                                a(pageCaption.credit, arrayList2);
+                            }
+                        } else if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
+                            d(((TL_iv.pageBlockSlideshow) pageBlock).items, arrayList2);
+                            TL_iv.PageCaption pageCaption2 = pageBlock.caption;
+                            if (pageCaption2 != null) {
+                                a(pageCaption2.text, arrayList2);
+                                a(pageCaption2.credit, arrayList2);
+                            }
+                        } else {
+                            continue;
+                        }
+                    } else {
+                        TL_iv.PageCaption pageCaption3 = pageBlock.caption;
+                        if (pageCaption3 != null) {
+                            a(pageCaption3.text, arrayList2);
+                            a(pageCaption3.credit, arrayList2);
+                        }
                     }
                 } else {
-                    if (!(richText instanceof TL_iv.textMath) && !(richText instanceof TL_iv.textCustomEmoji) && !(richText instanceof TL_iv.textDate) && !(richText instanceof TL_iv.textDiff) && !(richText instanceof TL_iv.textButton)) {
-                        TL_iv.RichText richText3 = richText.text;
-                        if (richText3 != null) {
-                            TL_iv.RichText c11 = c(richText3, i7, i10);
-                            if (c11 != null) {
-                                try {
-                                    richText = (TL_iv.RichText) TLObject.deepCopy(richText, new fd(14));
-                                } catch (Exception e10) {
-                                    a8.g(e10, true);
-                                    richText = null;
-                                }
-                                if (richText != null) {
-                                    richText.text = c11;
+                    a(pageBlock.text, arrayList2);
+                }
+            }
+        }
+    }
+
+    public static ArrayList e(TL_iv.RichMessage richMessage) {
+        ArrayList arrayList = new ArrayList();
+        if (richMessage != null) {
+            d(richMessage.blocks, arrayList);
+        }
+        return arrayList;
+    }
+
+    public static int[] f(fj fjVar, String str, int i7) {
+        ArrayList arrayList;
+        int[] iArr = null;
+        if (fjVar == null || fjVar.f24130y2 == null || TextUtils.isEmpty(str)) {
+            return null;
+        }
+        ev evVar = fjVar.f24130y2;
+        TL_iv.RichMessage richMessage = evVar.f23874c;
+        ArrayList arrayList2 = evVar.f23883n;
+        ArrayList e10 = e(richMessage);
+        if (e10.isEmpty()) {
+            return null;
+        }
+        int[] iArr2 = new int[e10.size()];
+        StringBuilder sb2 = new StringBuilder();
+        int i10 = 0;
+        for (int i11 = 0; i11 < e10.size(); i11++) {
+            if (i11 > 0) {
+                sb2.append('\n');
+            }
+            iArr2[i11] = sb2.length();
+            b((TL_iv.RichText) e10.get(i11), sb2, null);
+        }
+        int Y = fj.Y(i7, sb2.toString(), str);
+        if (Y < 0) {
+            return null;
+        }
+        int length = str.length() + Y;
+        IdentityHashMap identityHashMap = new IdentityHashMap();
+        int i12 = 0;
+        while (i12 < arrayList2.size()) {
+            CharSequence l10 = l((org.telegram.ui.Cells.t9) arrayList2.get(i12));
+            if (l10 instanceof Spanned) {
+                Spanned spanned = (Spanned) l10;
+                int intValue = ((Integer) evVar.f23884o.get(i12)).intValue();
+                wt[] wtVarArr = (wt[]) spanned.getSpans(i10, l10.length(), wt.class);
+                int length2 = wtVarArr.length;
+                int i13 = i10;
+                while (i13 < length2) {
+                    wt wtVar = wtVarArr[i13];
+                    int[] iArr3 = iArr;
+                    if (identityHashMap.containsKey(wtVar.f27854a)) {
+                        arrayList = arrayList2;
+                    } else {
+                        arrayList = arrayList2;
+                        identityHashMap.put(wtVar.f27854a, new int[]{spanned.getSpanStart(wtVar) + intValue, spanned.getSpanEnd(wtVar) + intValue, wtVar.f27855b});
+                    }
+                    i13++;
+                    iArr = iArr3;
+                    arrayList2 = arrayList;
+                }
+            }
+            i12++;
+            iArr = iArr;
+            arrayList2 = arrayList2;
+            i10 = 0;
+        }
+        int[] iArr4 = iArr;
+        int i14 = -1;
+        int i15 = -1;
+        for (int i16 = 0; i16 < e10.size(); i16++) {
+            int g10 = g((TL_iv.RichText) e10.get(i16)) + iArr2[i16];
+            if (i14 < 0 && Y < g10 && identityHashMap.containsKey(e10.get(i16))) {
+                i14 = i16;
+            }
+            if (iArr2[i16] < length && identityHashMap.containsKey(e10.get(i16))) {
+                i15 = i16;
+            }
+        }
+        if (i14 >= 0 && i15 >= 0 && i14 <= i15) {
+            int[] iArr5 = (int[]) identityHashMap.get(e10.get(i14));
+            int[] iArr6 = (int[]) identityHashMap.get(e10.get(i15));
+            int i17 = i(evVar, (TL_iv.RichText) e10.get(i14), iArr5[2], Math.max(0, Y - iArr2[i14]), false);
+            int i18 = i(evVar, (TL_iv.RichText) e10.get(i15), iArr6[2], Math.min(g((TL_iv.RichText) e10.get(i15)), length - iArr2[i15]), true);
+            int i19 = iArr5[0];
+            int min = Math.min(i17, iArr5[1] - i19) + i19;
+            int i20 = iArr6[0];
+            int min2 = Math.min(i18, iArr6[1] - i20) + i20;
+            if (min2 <= min) {
+                return iArr4;
+            }
+            return new int[]{min, min2};
+        }
+        return iArr4;
+    }
+
+    public static int g(TL_iv.RichText richText) {
+        StringBuilder sb2 = new StringBuilder();
+        b(richText, sb2, null);
+        return sb2.toString().length();
+    }
+
+    public static String h(ArrayList arrayList, ArrayList arrayList2) {
+        StringBuilder sb2 = new StringBuilder();
+        if (arrayList != null) {
+            for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                if (i7 > 0) {
+                    sb2.append('\n');
+                }
+                b((TL_iv.RichText) arrayList.get(i7), sb2, arrayList2);
+            }
+        }
+        return sb2.toString();
+    }
+
+    public static int i(ev evVar, TL_iv.RichText richText, int i7, int i10, boolean z10) {
+        IdentityHashMap identityHashMap = new IdentityHashMap();
+        SpannableStringBuilder o4 = evVar.o(richText, i7, identityHashMap);
+        int j3 = j(richText, identityHashMap, i10, z10, new int[]{0});
+        if (j3 < 0) {
+            return o4.length();
+        }
+        return j3;
+    }
+
+    public static int j(TL_iv.RichText richText, IdentityHashMap identityHashMap, int i7, boolean z10, int[] iArr) {
+        TL_iv.RichText richText2;
+        if (richText == null || (richText instanceof TL_iv.textEmpty) || (richText instanceof TL_iv.textImage)) {
+            return -1;
+        }
+        int[] iArr2 = (int[]) identityHashMap.get(richText);
+        int i10 = 0;
+        if (richText instanceof TL_iv.textConcat) {
+            ArrayList<TL_iv.RichText> arrayList = richText.texts;
+            int size = arrayList.size();
+            while (i10 < size) {
+                TL_iv.RichText richText3 = arrayList.get(i10);
+                i10++;
+                int j3 = j(richText3, identityHashMap, i7, z10, iArr);
+                if (j3 >= 0) {
+                    return j3;
+                }
+            }
+        } else if (richText instanceof TL_iv.textDiff) {
+            TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
+            if (oi.c6.j(textdiff.text)) {
+                richText2 = textdiff.old_text;
+            } else {
+                richText2 = textdiff.text;
+            }
+            return j(richText2, identityHashMap, i7, z10, iArr);
+        } else {
+            boolean z11 = richText instanceof TL_iv.textPlain;
+            if (!z11 && !(richText instanceof TL_iv.textMath) && !(richText instanceof TL_iv.textCustomEmoji) && !(richText instanceof TL_iv.textButton)) {
+                return j(richText.text, identityHashMap, i7, z10, iArr);
+            }
+            int g10 = g(richText);
+            int i11 = iArr[0];
+            int i12 = i7 - i11;
+            iArr[0] = i11 + g10;
+            if (iArr2 != null && (!z10 ? i12 < g10 : i12 <= g10)) {
+                if (z11) {
+                    int i13 = iArr2[1];
+                    int i14 = iArr2[0];
+                    if (i13 - i14 == g10) {
+                        return Math.max(0, i12) + i14;
+                    }
+                }
+                if (z10 && i12 > 0) {
+                    return iArr2[1];
+                }
+                return iArr2[0];
+            }
+        }
+        return -1;
+    }
+
+    public static iv k(int i7, int i10, fj fjVar) {
+        int intValue;
+        int intValue2;
+        hv a10;
+        boolean z10;
+        int i11;
+        TL_iv.RichText b10;
+        int i12;
+        if (c(fjVar)) {
+            ev evVar = fjVar.f24130y2;
+            int i13 = mp.u1(fjVar.K1).f25844r4;
+            ArrayList e10 = e(evVar.f23874c);
+            IdentityHashMap identityHashMap = new IdentityHashMap();
+            for (int i14 = 0; i14 < e10.size(); i14++) {
+                identityHashMap.put((TL_iv.RichText) e10.get(i14), Integer.valueOf(i14));
+            }
+            boolean z11 = true;
+            h2.j0 n10 = n(evVar, Math.min(i7, i10), true, identityHashMap);
+            h2.j0 n11 = n(evVar, Math.max(i7, i10), false, identityHashMap);
+            if (n10 != null) {
+                int i15 = n10.f13764a;
+                if (n11 != null && (intValue = ((Integer) identityHashMap.get(((wt) n10.f13766c).f27854a)).intValue()) <= (intValue2 = ((Integer) identityHashMap.get(((wt) n11.f13766c).f27854a)).intValue()) && (intValue != intValue2 || i15 < n11.f13764a)) {
+                    hv a11 = hv.a(evVar, n10);
+                    if (intValue == intValue2) {
+                        a10 = a11;
+                    } else {
+                        a10 = hv.a(evVar, n11);
+                    }
+                    if (a11 != null && a10 != null) {
+                        gv gvVar = new gv(evVar, e10, intValue, n10.f13764a, a11, intValue2, n11.f13764a, a10);
+                        if ((intValue2 - intValue) + 1 > 32) {
+                            int i16 = intValue + 31;
+                            if (i16 != intValue2) {
+                                gvVar.h = null;
+                            }
+                            gvVar.f24408f = i16;
+                            gvVar.f24409g = Integer.MAX_VALUE;
+                        }
+                        int i17 = 0;
+                        loop1: while (i17 < 8 && gvVar.f24408f >= intValue) {
+                            int i18 = intValue;
+                            int i19 = 0;
+                            while (i18 <= gvVar.f24408f) {
+                                TL_iv.RichText a12 = gvVar.a(i18);
+                                StringBuilder sb2 = new StringBuilder();
+                                b(a12, sb2, null);
+                                String sb3 = sb2.toString();
+                                int codePointCount = sb3.codePointCount(0, sb3.length()) + i19;
+                                if (codePointCount > i13) {
+                                    int i20 = i13 - i19;
+                                    int i21 = gvVar.d;
+                                    if (i20 <= 0) {
+                                        i11 = -1;
+                                        z10 = z11;
+                                    } else {
+                                        int offsetByCodePoints = sb3.offsetByCodePoints(0, i20);
+                                        z10 = z11;
+                                        hv b11 = gvVar.b(i18);
+                                        if (i18 == intValue && i21 > 0 && (b10 = gvVar.f24407e.b(0, i21)) != null) {
+                                            offsetByCodePoints += g(b10);
+                                        }
+                                        i11 = i(gvVar.f24404a, (TL_iv.RichText) gvVar.f24405b.get(i18), b11.d, offsetByCodePoints, false);
+                                    }
+                                    if (i20 > 0) {
+                                        if (i18 != gvVar.f24406c) {
+                                            i21 = 0;
+                                        }
+                                        if (i11 > i21 && (i18 != (i12 = gvVar.f24408f) || i11 < gvVar.f24409g)) {
+                                            if (i18 != i12) {
+                                                gvVar.h = null;
+                                            }
+                                            gvVar.f24408f = i18;
+                                            gvVar.f24409g = i11;
+                                            i17++;
+                                            z11 = z10;
+                                        }
+                                    }
+                                    int i22 = i18 - 1;
+                                    if (i22 != gvVar.f24408f) {
+                                        gvVar.h = null;
+                                    }
+                                    gvVar.f24408f = i22;
+                                    gvVar.f24409g = Integer.MAX_VALUE;
+                                    i17++;
+                                    z11 = z10;
+                                } else {
+                                    i18++;
+                                    i19 = codePointCount;
                                 }
                             }
                         }
+                        if (gvVar.f24408f >= intValue) {
+                            ArrayList arrayList = new ArrayList();
+                            for (int i23 = intValue; i23 <= gvVar.f24408f; i23++) {
+                                TL_iv.RichText o4 = o(gvVar.a(i23));
+                                if (o4 != null && g(o4) > 0) {
+                                    arrayList.add(o4);
+                                }
+                            }
+                            if (!arrayList.isEmpty() && arrayList.size() <= 32) {
+                                int i24 = 0;
+                                for (int i25 = 0; i25 < intValue; i25++) {
+                                    i24 += g((TL_iv.RichText) e10.get(i25)) + 1;
+                                }
+                                TL_iv.RichText b12 = a11.b(0, i15);
+                                if (b12 != null) {
+                                    i24 += g(b12);
+                                }
+                                return new iv(i24, arrayList);
+                            }
+                        }
                     }
-                    return richText;
                 }
             }
-            return richText;
         }
         return null;
+    }
+
+    public static CharSequence l(org.telegram.ui.Cells.t9 t9Var) {
+        Layout a10;
+        if (t9Var == null) {
+            a10 = null;
+        } else {
+            a10 = t9Var.a();
+        }
+        if (a10 == null) {
+            return null;
+        }
+        return a10.getText();
+    }
+
+    public static boolean m(TL_iv.RichText richText) {
+        if (richText == null) {
+            return false;
+        }
+        if (richText instanceof TL_iv.textButton) {
+            return true;
+        }
+        if (richText instanceof TL_iv.textConcat) {
+            ArrayList<TL_iv.RichText> arrayList = richText.texts;
+            int size = arrayList.size();
+            int i7 = 0;
+            while (i7 < size) {
+                TL_iv.RichText richText2 = arrayList.get(i7);
+                i7++;
+                if (m(richText2)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        return m(richText.text);
+    }
+
+    public static h2.j0 n(org.telegram.messenger.ev r16, int r17, final boolean r18, java.util.IdentityHashMap r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.iv.n(org.telegram.messenger.ev, int, boolean, java.util.IdentityHashMap):h2.j0");
+    }
+
+    public static TL_iv.RichText o(TL_iv.RichText richText) {
+        TL_iv.RichText richText2;
+        if (richText != null && m(richText)) {
+            if (richText instanceof TL_iv.textButton) {
+                TL_iv.textPlain textplain = new TL_iv.textPlain();
+                textplain.text = ev.x(richText.text);
+                return textplain;
+            } else if (richText instanceof TL_iv.textConcat) {
+                TL_iv.textConcat textconcat = new TL_iv.textConcat();
+                ArrayList<TL_iv.RichText> arrayList = richText.texts;
+                int size = arrayList.size();
+                int i7 = 0;
+                while (i7 < size) {
+                    TL_iv.RichText richText3 = arrayList.get(i7);
+                    i7++;
+                    textconcat.texts.add(o(richText3));
+                }
+                return textconcat;
+            } else {
+                try {
+                    richText2 = (TL_iv.RichText) TLObject.deepCopy(richText, new ed(14));
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                    richText2 = null;
+                }
+                if (richText2 == null) {
+                    return null;
+                }
+                richText2.text = o(richText.text);
+                return richText2;
+            }
+        }
+        return richText;
     }
 }

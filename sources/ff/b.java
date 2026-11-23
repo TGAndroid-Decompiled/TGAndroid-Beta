@@ -5,14 +5,14 @@ import gf.g;
 import java.util.ArrayList;
 import kf.p;
 public final class b extends mf.a {
-    public final ArrayList f11603c;
+    public final ArrayList f11602c;
     public final ArrayList d;
-    public final ef.a f11601a = new p();
-    public final ArrayList f11602b = new ArrayList();
-    public boolean f11604e = true;
+    public final ef.a f11600a = new p();
+    public final ArrayList f11601b = new ArrayList();
+    public boolean f11603e = true;
 
     public b(ArrayList arrayList, ArrayList arrayList2) {
-        this.f11603c = arrayList;
+        this.f11602c = arrayList;
         this.d = arrayList2;
     }
 
@@ -52,16 +52,16 @@ public final class b extends mf.a {
 
     @Override
     public final void a(CharSequence charSequence) {
-        if (this.f11604e) {
-            this.f11604e = false;
+        if (this.f11603e) {
+            this.f11603e = false;
         } else {
-            this.f11602b.add(charSequence);
+            this.f11601b.add(charSequence);
         }
     }
 
     @Override
     public final kf.a e() {
-        return this.f11601a;
+        return this.f11600a;
     }
 
     @Override
@@ -71,13 +71,13 @@ public final class b extends mf.a {
         ArrayList arrayList2 = this.d;
         int size = arrayList2.size();
         ?? pVar = new p();
-        ?? r32 = this.f11601a;
+        ?? r32 = this.f11600a;
         r32.b(pVar);
         ?? pVar2 = new p();
         pVar.b(pVar2);
         int i7 = 0;
         while (true) {
-            arrayList = this.f11603c;
+            arrayList = this.f11602c;
             if (i7 >= size) {
                 break;
             }
@@ -87,11 +87,11 @@ public final class b extends mf.a {
                 pVar3.h = (c) arrayList.get(i7);
             }
             aVar.a(str2.trim(), pVar3);
-            pVar3.f10952g = true;
+            pVar3.f10950g = true;
             pVar2.b(pVar3);
             i7++;
         }
-        ArrayList arrayList3 = this.f11602b;
+        ArrayList arrayList3 = this.f11601b;
         int size2 = arrayList3.size();
         ?? r52 = 0;
         int i10 = 0;

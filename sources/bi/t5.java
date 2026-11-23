@@ -6,26 +6,26 @@ import android.view.View;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.gq0;
-public final class t5 extends b71 {
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.fq0;
+public final class t5 extends c71 {
     public final int f4079a;
-    public final org.telegram.ui.ActionBar.h6 f4080b;
-    public final gq0 f4081c;
+    public final org.telegram.ui.ActionBar.i6 f4080b;
+    public final fq0 f4081c;
 
-    public t5(gq0 gq0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        this.f4081c = gq0Var;
+    public t5(fq0 fq0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        this.f4081c = fq0Var;
         this.f4079a = i7;
-        this.f4080b = h6Var;
+        this.f4080b = i6Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        gq0 gq0Var = this.f4081c;
-        h5 h5Var = gq0Var.R;
-        di.n8 n8Var = gq0Var.f4151e;
+        fq0 fq0Var = this.f4081c;
+        h5 h5Var = fq0Var.R;
+        di.n8 n8Var = fq0Var.f4151e;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i7 = 0;
@@ -41,7 +41,7 @@ public final class t5 extends b71 {
         }
         n8Var.getClass();
         HashMap hashMap = new HashMap();
-        ArrayList arrayList3 = n8Var.f9376e;
+        ArrayList arrayList3 = n8Var.f9370e;
         int size2 = arrayList3.size();
         int i11 = 0;
         while (i11 < size2) {
@@ -66,12 +66,12 @@ public final class t5 extends b71 {
         arrayList3.clear();
         arrayList3.addAll(arrayList4);
         n8Var.j();
-        p6 currentPage = gq0Var.getCurrentPage();
+        p6 currentPage = fq0Var.getCurrentPage();
         if (currentPage != null) {
             if (currentPage.d) {
                 i7 = n8Var.f(currentPage.f3969e.d) + 1;
             }
-            gq0Var.f4153n.f(0.0f, i7, i7);
+            fq0Var.f4153n.f(0.0f, i7, i7);
         }
         org.telegram.messenger.g0.r(h5Var);
         org.telegram.messenger.g0.h3(h5Var, 1000L);
@@ -81,12 +81,12 @@ public final class t5 extends b71 {
     public final void b(View view, int i7, int i10) {
         di.p8 p8Var;
         boolean z10;
-        gq0 gq0Var = this.f4081c;
-        di.n8 n8Var = gq0Var.f4151e;
+        fq0 fq0Var = this.f4081c;
+        di.n8 n8Var = fq0Var.f4151e;
         p6 p6Var = (p6) view;
         int i11 = 0;
         if (i10 == 0) {
-            p8Var = gq0Var.d;
+            p8Var = fq0Var.d;
             z10 = false;
         } else {
             int i12 = i7 - 1;
@@ -114,7 +114,7 @@ public final class t5 extends b71 {
             }
             linearLayout.setVisibility(i11);
         }
-        p6Var.setVisibleHeight(gq0Var.U);
+        p6Var.setVisibleHeight(fq0Var.U);
         p6Var.setHasTabs(!n8Var.d().isEmpty());
     }
 
@@ -132,10 +132,10 @@ public final class t5 extends b71 {
             return null;
         }
         int i10 = this.f4079a;
-        org.telegram.ui.ActionBar.h6 h6Var = this.f4080b;
-        gq0 gq0Var = this.f4081c;
-        p6 p6Var = new p6(gq0Var, i10, h6Var);
-        ri.q qVar = gq0Var.O;
+        org.telegram.ui.ActionBar.i6 i6Var = this.f4080b;
+        fq0 fq0Var = this.f4081c;
+        p6 p6Var = new p6(fq0Var, i10, i6Var);
+        ri.q qVar = fq0Var.O;
         if (qVar != null) {
             qVar.b(p6Var.f3970f);
         }
@@ -158,7 +158,7 @@ public final class t5 extends b71 {
     @Override
     public final CharSequence g(int i7) {
         if (i7 == 0) {
-            return hd.N0(2131750231, null);
+            return gd.N0(2131750231, null);
         }
         TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f4081c.f4151e.d().get(i7 - 1);
         if (tL_starGiftCollection == null) {
@@ -169,7 +169,7 @@ public final class t5 extends b71 {
             TextPaint textPaint = new TextPaint(1);
             textPaint.setTextSize(org.telegram.messenger.g0.L(16.0f));
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("e ");
-            spannableStringBuilder2.setSpan(new org.telegram.ui.Components.y5(tL_starGiftCollection.icon, textPaint.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder2.setSpan(new org.telegram.ui.Components.x5(tL_starGiftCollection.icon, textPaint.getFontMetricsInt()), 0, 1, 33);
             spannableStringBuilder.insert(0, (CharSequence) spannableStringBuilder2);
         }
         return spannableStringBuilder;

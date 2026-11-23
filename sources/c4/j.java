@@ -19,23 +19,23 @@ public abstract class j extends k2.j implements d {
     }
 
     @Override
-    public final long h(int i7) {
+    public final long i(int i7) {
         d dVar = this.f4385a;
         dVar.getClass();
-        return dVar.h(i7) + this.f4386b;
+        return dVar.i(i7) + this.f4386b;
     }
 
     @Override
-    public final List m(long j3) {
+    public final List k(long j3) {
         d dVar = this.f4385a;
         dVar.getClass();
-        return dVar.m(j3 - this.f4386b);
+        return dVar.k(j3 - this.f4386b);
     }
 
     @Override
-    public final int p() {
+    public final int m() {
         d dVar = this.f4385a;
         dVar.getClass();
-        return dVar.p();
+        return dVar.m();
     }
 }

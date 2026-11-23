@@ -1,30 +1,37 @@
 package hi;
 
-import android.os.Build;
-import c8.ed;
-public final class r6 implements ri.n, ri.m {
-    public final v6 f15307a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import org.telegram.messenger.camera.CameraView;
+public final class r6 extends CameraView {
+    public final Path f15296a;
+    public final s6 f15297b;
 
-    public r6(v6 v6Var) {
-        this.f15307a = v6Var;
+    public r6(s6 s6Var, Context context) {
+        super(context, true, false);
+        this.f15297b = s6Var;
+        this.f15296a = new Path();
     }
 
     @Override
-    public int e() {
-        v6 v6Var = this.f15307a;
-        v6Var.getClass();
-        return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29347d6, v6Var.J0);
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        Path path = this.f15296a;
+        path.rewind();
+        path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth() / 2.0f, getHeight() / 2.0f), Path.Direction.CW);
+        canvas.clipPath(path);
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public void l(int i7) {
-        v6 v6Var = this.f15307a;
-        dh.g gVar = v6Var.f15538h2;
-        if (Build.VERSION.SDK_INT >= 31 && gVar != null) {
-            if (ed.a(i7, 4)) {
-                gVar.h(v6Var.Y0.e());
-            }
-            gVar.e(v6Var.f15541k2, v6Var.f30142b.getWidth(), v6Var.f30142b.getHeight());
-        }
+    public final void receivedAmplitude(double d) {
+        ((q) this.f15297b).G.setAmplitude(d);
+    }
+
+    @Override
+    public final boolean square() {
+        return true;
     }
 }

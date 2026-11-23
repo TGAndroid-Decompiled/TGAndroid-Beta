@@ -17,26 +17,26 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.tgnet.tl.TL_update;
 public final class z9 implements RequestDelegate {
-    public final int f54463a;
-    public final Object f54464b;
-    public final Object f54465c;
+    public final int f54551a;
+    public final Object f54552b;
+    public final Object f54553c;
     public final Object d;
 
     public z9(Object obj, Object obj2, Object obj3, int i7) {
-        this.f54463a = i7;
-        this.f54464b = obj;
-        this.f54465c = obj2;
+        this.f54551a = i7;
+        this.f54552b = obj;
+        this.f54553c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f54463a;
+        int i7 = this.f54551a;
         mg.b bVar = null;
         int i10 = 0;
         Object obj = this.d;
-        Object obj2 = this.f54465c;
-        Object obj3 = this.f54464b;
+        Object obj2 = this.f54553c;
+        Object obj3 = this.f54552b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.g0.g3(new bi.s1((org.telegram.ui.ActionBar.g2) ((la) obj3), (String) obj2, tL_error, tLObject, (TLObject) ((TL_account.checkUsername) obj), 22));
@@ -74,7 +74,7 @@ public final class z9 implements RequestDelegate {
                     });
                     return;
                 } else if (!"USERNAME_PURCHASE_AVAILABLE".equals(tL_error.text) && !"USERNAME_INVALID".equals(tL_error.text)) {
-                    org.telegram.messenger.g0.g3(new org.telegram.messenger.camera.i(laVar, t1Var, tL_error, updateusername, 8));
+                    org.telegram.messenger.g0.g3(new oi.h(laVar, t1Var, tL_error, updateusername, 9));
                     return;
                 } else {
                     org.telegram.messenger.g0.g3(new Runnable() {
@@ -106,15 +106,15 @@ public final class z9 implements RequestDelegate {
                 org.telegram.messenger.g0.g3(new bi.s1((org.telegram.ui.ActionBar.g2) ((ad) obj3), (String) obj2, tL_error, tLObject, (TLObject) ((TLRPC.TL_channels_checkUsername) obj), 25));
                 return;
             case 3:
-                org.telegram.messenger.g0.g3(new org.telegram.messenger.camera.i((bn) obj3, (vf.b) obj2, tLObject, (di.m2) obj, 10));
+                org.telegram.messenger.g0.g3(new oi.h((bn) obj3, (vf.b) obj2, tLObject, (di.n2) obj, 11));
                 return;
             case 4:
                 bn bnVar = (bn) obj3;
                 long[] jArr = (long[]) obj;
-                org.telegram.messenger.g0.r((org.telegram.messenger.camera.i) obj2);
-                bnVar.f46181v5.f24177k.voiceTranscriptionRated = true;
-                org.telegram.messenger.ur messagesStorage = bnVar.getMessagesStorage();
-                messagesStorage.f27214a.c(new org.telegram.messenger.fk(messagesStorage, bnVar.f46181v5.e1(), org.telegram.messenger.gj.B0(bnVar.f46181v5.f24177k), bnVar.f46181v5.f24177k, 6));
+                org.telegram.messenger.g0.r((oi.h) obj2);
+                bnVar.f46396v5.f24073k.voiceTranscriptionRated = true;
+                org.telegram.messenger.tr messagesStorage = bnVar.getMessagesStorage();
+                messagesStorage.f27149a.c(new org.telegram.messenger.ek(messagesStorage, bnVar.f46396v5.e1(), org.telegram.messenger.fj.B0(bnVar.f46396v5.f24073k), bnVar.f46396v5.f24073k, 6));
                 vf vfVar = new vf(bnVar, 19);
                 long j3 = 0;
                 if (jArr[0] > 0) {
@@ -140,16 +140,16 @@ public final class z9 implements RequestDelegate {
                 org.telegram.messenger.g0.g3(new ip((ns) obj3, tL_error, tLObject, (ArrayList) obj2, (TLRPC.TL_messages_getMyStickers) obj, 7));
                 return;
             case 8:
-                org.telegram.messenger.g0.g3(new ip((Object) ((cx) obj3), (Object) tLObject, (Object) ((TLRPC.UserFull) obj2), (Object) ((TL_account.TL_birthday) obj), tL_error, 8));
+                org.telegram.messenger.g0.g3(new ip((Object) ((bx) obj3), (Object) tLObject, (Object) ((TLRPC.UserFull) obj2), (Object) ((TL_account.TL_birthday) obj), tL_error, 8));
                 return;
             case 9:
-                org.telegram.messenger.g0.g3(new vu((cx) obj3, (TLRPC.TL_attachMenuBot) obj2, (LaunchActivity) obj, 0));
+                org.telegram.messenger.g0.g3(new uu((bx) obj3, (TLRPC.TL_attachMenuBot) obj2, (LaunchActivity) obj, 0));
                 return;
             case 10:
-                org.telegram.messenger.g0.g3(new up((j00) obj3, (org.telegram.ui.ActionBar.t1) obj2, (org.telegram.messenger.so) obj, 9));
+                org.telegram.messenger.g0.g3(new up((i00) obj3, (org.telegram.ui.ActionBar.t1) obj2, (org.telegram.messenger.ro) obj, 9));
                 return;
             case 11:
-                f40 f40Var = (f40) obj3;
+                e40 e40Var = (e40) obj3;
                 TLRPC.Chat chat = (TLRPC.Chat) obj2;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj;
                 if (tLObject != null) {
@@ -159,27 +159,27 @@ public final class z9 implements RequestDelegate {
                         if (i11 < updates.updates.size()) {
                             TLRPC.Update update = updates.updates.get(i11);
                             if (update instanceof TL_update.TL_updateGroupCall) {
-                                org.telegram.messenger.g0.g3(new org.telegram.ui.Components.q20(f40Var, chat, inputPeer, (TL_update.TL_updateGroupCall) update, 13));
+                                org.telegram.messenger.g0.g3(new org.telegram.ui.Components.xz(e40Var, chat, inputPeer, (TL_update.TL_updateGroupCall) update, 14));
                             } else {
                                 i11++;
                             }
                         }
                     }
-                    org.telegram.messenger.np.u1(f40Var.f47488o1.f23166a).V3(updates, false);
+                    org.telegram.messenger.mp.u1(e40Var.f47376o1.f23343a).V3(updates, false);
                     return;
                 }
-                org.telegram.messenger.g0.g3(new vs(20, f40Var, tL_error));
+                org.telegram.messenger.g0.g3(new org.telegram.ui.Components.voip.o(26, e40Var, tL_error));
                 return;
             case 12:
-                org.telegram.messenger.g0.g3(new ip((Object) ((f40) obj3), (Object) ((org.telegram.ui.ActionBar.t1) obj2), (Object) tLObject, (Object) ((TL_phone.exportGroupCallInvite) obj), tL_error, 9));
+                org.telegram.messenger.g0.g3(new ip((Object) ((e40) obj3), (Object) ((org.telegram.ui.ActionBar.t1) obj2), (Object) tLObject, (Object) ((TL_phone.exportGroupCallInvite) obj), tL_error, 9));
                 return;
             case 13:
-                org.telegram.messenger.g0.g3(new org.telegram.ui.Components.q20(tLObject, (ArrayList) obj3, (ArrayList) obj2, (ip) obj));
+                org.telegram.messenger.g0.g3(new org.telegram.ui.Components.xz(tLObject, (ArrayList) obj3, (ArrayList) obj2, (ip) obj, 16));
                 return;
             case 14:
                 m50 m50Var = (m50) obj3;
                 String str = (String) obj;
-                n50 n50Var = m50Var.f49739r;
+                n50 n50Var = m50Var.f49959r;
                 if (Objects.equals(m50Var.h, (String) obj2) && (tLObject instanceof TLRPC.TL_messages_foundStickerSets)) {
                     ArrayList arrayList = new ArrayList();
                     ArrayList<TLRPC.StickerSetCovered> arrayList2 = ((TLRPC.TL_messages_foundStickerSets) tLObject).sets;
@@ -199,7 +199,7 @@ public final class z9 implements RequestDelegate {
                     }
                     String trim = str.toLowerCase(Locale.ROOT).trim();
                     ArrayList arrayList3 = new ArrayList();
-                    ArrayList u02 = org.telegram.messenger.si.d0(n50.c0(n50Var)).u0(n50Var.h0());
+                    ArrayList u02 = org.telegram.messenger.ri.d0(n50.c0(n50Var)).u0(n50Var.h0());
                     int size2 = u02.size();
                     while (i10 < size2) {
                         Object obj4 = u02.get(i10);
@@ -211,7 +211,7 @@ public final class z9 implements RequestDelegate {
                             arrayList3.add(tL_messages_stickerSet2);
                         }
                     }
-                    org.telegram.messenger.g0.g3(new org.telegram.ui.Components.q20(m50Var, arrayList, arrayList3, str, 18));
+                    org.telegram.messenger.g0.g3(new org.telegram.ui.Components.xz(m50Var, arrayList, arrayList3, str, 19));
                     return;
                 }
                 return;
@@ -221,87 +221,87 @@ public final class z9 implements RequestDelegate {
                 return;
             case 16:
                 String str4 = LaunchActivity.C1;
-                org.telegram.messenger.g0.g3(new ip((Object) ((LaunchActivity) obj3), (Object) ((o60) obj2), (Object) tLObject, (Object) ((TLRPC.TL_wallPaper) obj), tL_error, 11));
+                org.telegram.messenger.g0.g3(new ip((Object) ((LaunchActivity) obj3), (Object) ((i50) obj2), (Object) tLObject, (Object) ((TLRPC.TL_wallPaper) obj), tL_error, 11));
                 return;
             case 17:
                 String str5 = LaunchActivity.C1;
-                org.telegram.messenger.g0.g3(new ip((Object) ((LaunchActivity) obj3), (Object) tLObject, (Object) ((org.telegram.ui.ActionBar.t1) obj2), (Object) ((o60) obj), tL_error, 14));
+                org.telegram.messenger.g0.g3(new ip((Object) ((LaunchActivity) obj3), (Object) tLObject, (Object) ((org.telegram.ui.ActionBar.t1) obj2), (Object) ((i50) obj), tL_error, 14));
                 return;
             case 18:
-                org.telegram.messenger.g0.g3(new ip((s90) obj3, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj, (String) obj2, 15));
+                org.telegram.messenger.g0.g3(new ip((r90) obj3, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj, (String) obj2, 15));
                 return;
             case 19:
-                org.telegram.messenger.g0.g3(new up((qa0) obj3, (org.telegram.ui.ActionBar.t1[]) obj2, (TLRPC.TL_messageMediaVenue) obj, 25));
+                org.telegram.messenger.g0.g3(new up((pa0) obj3, (org.telegram.ui.ActionBar.t1[]) obj2, (TLRPC.TL_messageMediaVenue) obj, 25));
                 return;
             case 20:
-                org.telegram.messenger.g0.g3(new ip((KeyEvent.Callback) ((pb0) obj3), tLObject, (Object) ((Bundle) obj2), tL_error, (TLObject) ((TLRPC.TL_auth_resendCode) obj), 17));
+                org.telegram.messenger.g0.g3(new ip((KeyEvent.Callback) ((ob0) obj3), tLObject, (Object) ((Bundle) obj2), tL_error, (TLObject) ((TLRPC.TL_auth_resendCode) obj), 17));
                 return;
             case 21:
-                org.telegram.messenger.g0.g3(new ip((KeyEvent.Callback) ((sc0) obj3), tLObject, (Object) ((Bundle) obj2), tL_error, (TLObject) ((TL_account.verifyEmail) obj), 19));
+                org.telegram.messenger.g0.g3(new ip((KeyEvent.Callback) ((rc0) obj3), tLObject, (Object) ((Bundle) obj2), tL_error, (TLObject) ((TL_account.verifyEmail) obj), 19));
                 return;
             case 22:
-                org.telegram.messenger.g0.g3(new ip((KeyEvent.Callback) ((sc0) obj3), tLObject, (Object) ((Bundle) obj2), tL_error, (TLObject) ((TL_account.sendVerifyEmailCode) obj), 18));
+                org.telegram.messenger.g0.g3(new ip((KeyEvent.Callback) ((rc0) obj3), tLObject, (Object) ((Bundle) obj2), tL_error, (TLObject) ((TL_account.sendVerifyEmailCode) obj), 18));
                 return;
             case 23:
                 org.telegram.messenger.g0.g3(new ip((Object) ((ld0) obj3), (Object) tLObject, (Object) ((TLRPC.TL_inputInvoicePremiumAuthCode) obj2), (Object) ((TLRPC.TL_inputStorePaymentAuthCode) obj), tL_error, 20));
                 return;
             case 24:
-                og0 og0Var = (og0) obj3;
+                mg0 mg0Var = (mg0) obj3;
                 String str6 = (String) obj2;
                 TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = (TL_stats.TL_loadAsyncGraph) obj;
                 if (tLObject instanceof TL_stats.TL_statsGraph) {
                     try {
-                        bVar = c51.h0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), 1, false);
+                        bVar = b51.h0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), 1, false);
                     } catch (JSONException e10) {
                         e10.printStackTrace();
                     }
                 } else if (tLObject instanceof TL_stats.TL_statsGraphError) {
-                    org.telegram.messenger.g0.g3(new ve0(1, og0Var, (TL_stats.TL_statsGraphError) tLObject));
+                    org.telegram.messenger.g0.g3(new bd0(7, mg0Var, (TL_stats.TL_statsGraphError) tLObject));
                 }
-                org.telegram.messenger.g0.g3(new ip(og0Var, tL_error, bVar, str6, tL_loadAsyncGraph, 21));
+                org.telegram.messenger.g0.g3(new ip(mg0Var, tL_error, bVar, str6, tL_loadAsyncGraph, 21));
                 return;
             case 25:
-                lg0 lg0Var = (lg0) obj3;
+                jg0 jg0Var = (jg0) obj3;
                 String str7 = (String) obj2;
-                b51 b51Var = (b51) obj;
+                a51 a51Var = (a51) obj;
                 if (tLObject instanceof TL_stats.TL_statsGraph) {
                     try {
-                        bVar = c51.h0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), lg0Var.f49733r.f50467i, false);
+                        bVar = b51.h0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), jg0Var.f49590r.f50214i, false);
                     } catch (JSONException e11) {
                         e11.printStackTrace();
                     }
                 } else if (tLObject instanceof TL_stats.TL_statsGraphError) {
-                    Toast.makeText(lg0Var.getContext(), ((TL_stats.TL_statsGraphError) tLObject).error, 1).show();
+                    Toast.makeText(jg0Var.getContext(), ((TL_stats.TL_statsGraphError) tLObject).error, 1).show();
                 }
-                org.telegram.messenger.g0.g3(new kg0(lg0Var, bVar, str7, b51Var, 0));
+                org.telegram.messenger.g0.g3(new yd0((Object) jg0Var, (Object) bVar, str7, (Object) a51Var, 1));
                 return;
             case 26:
-                org.telegram.messenger.g0.g3(new ip((KeyEvent.Callback) ((fh0) obj3), (TLObject) ((TLRPC.TL_contacts_importedContacts) tLObject), (Object) ((TLRPC.TL_inputPhoneContact) obj2), tL_error, (TLObject) ((TLRPC.TL_contacts_importContacts) obj), 22));
+                org.telegram.messenger.g0.g3(new ip((KeyEvent.Callback) ((dh0) obj3), (TLObject) ((TLRPC.TL_contacts_importedContacts) tLObject), (Object) ((TLRPC.TL_inputPhoneContact) obj2), tL_error, (TLObject) ((TLRPC.TL_contacts_importContacts) obj), 22));
                 return;
             case 27:
-                org.telegram.messenger.g0.g3(new ip((dk0) obj3, tL_error, (Bundle) obj2, tLObject, (TLRPC.TL_auth_resendCode) obj, 24));
+                org.telegram.messenger.g0.g3(new ip((bk0) obj3, tL_error, (Bundle) obj2, tLObject, (TLRPC.TL_auth_resendCode) obj, 24));
                 return;
             case 28:
-                org.telegram.messenger.g0.g3(new ip((ml0) obj3, tL_error, tLObject, (String) obj2, (TL_account.getPassword) obj, 25));
+                org.telegram.messenger.g0.g3(new ip((kl0) obj3, tL_error, tLObject, (String) obj2, (TL_account.getPassword) obj, 25));
                 return;
             default:
-                ml0 ml0Var = (ml0) obj3;
-                ve0 ve0Var = (ve0) obj2;
+                kl0 kl0Var = (kl0) obj3;
+                bd0 bd0Var = (bd0) obj2;
                 TLObject tLObject2 = (TLObject) obj;
                 if (tLObject instanceof TLRPC.TL_payments_validatedRequestedInfo) {
-                    org.telegram.messenger.g0.g3(new mc0(ml0Var, (TLRPC.TL_payments_validatedRequestedInfo) tLObject, ve0Var, 18));
+                    org.telegram.messenger.g0.g3(new lc0(kl0Var, (TLRPC.TL_payments_validatedRequestedInfo) tLObject, bd0Var, 18));
                     return;
                 } else {
-                    org.telegram.messenger.g0.g3(new qk0(ml0Var, tL_error, tLObject2, 2));
+                    org.telegram.messenger.g0.g3(new ok0(kl0Var, tL_error, tLObject2, 2));
                     return;
                 }
         }
     }
 
     public z9(Object obj, TLObject tLObject, String str, int i7) {
-        this.f54463a = i7;
-        this.f54464b = obj;
+        this.f54551a = i7;
+        this.f54552b = obj;
         this.d = tLObject;
-        this.f54465c = str;
+        this.f54553c = str;
     }
 }

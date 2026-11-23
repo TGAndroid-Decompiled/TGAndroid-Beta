@@ -34,14 +34,14 @@ public final class d extends j {
             u uVar2 = new u(bArr, 17);
             this.f161n = uVar2;
             t a10 = uVar2.c(Arrays.copyOfRange(bArr, 9, xVar.f13830c), null).a();
-            a10.f10708q = s0.n("audio/ogg");
-            qVar.f55836b = new e2.u(a10);
+            a10.f10706q = s0.n("audio/ogg");
+            qVar.f55949b = new e2.u(a10);
             return true;
         }
         byte b10 = bArr[0];
         if ((b10 & Byte.MAX_VALUE) == 3) {
             wf.b t6 = f3.b.t(xVar);
-            u uVar3 = new u(uVar.f11195a, uVar.f11196b, uVar.f11197c, uVar.d, uVar.f11198e, uVar.f11200g, uVar.h, uVar.f11202j, t6, uVar.f11204l);
+            u uVar3 = new u(uVar.f11199a, uVar.f11200b, uVar.f11201c, uVar.d, uVar.f11202e, uVar.f11204g, uVar.h, uVar.f11206j, t6, uVar.f11208l);
             this.f161n = uVar3;
             ?? obj = new Object();
             obj.f160c = uVar3;
@@ -56,9 +56,9 @@ public final class d extends j {
             c cVar = this.f162o;
             if (cVar != null) {
                 cVar.f158a = j3;
-                qVar.f55837c = cVar;
+                qVar.f55950c = cVar;
             }
-            ((e2.u) qVar.f55836b).getClass();
+            ((e2.u) qVar.f55949b).getClass();
             return false;
         }
     }

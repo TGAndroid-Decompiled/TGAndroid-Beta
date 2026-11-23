@@ -1,36 +1,20 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class tt implements DialogInterface.OnClickListener {
-    public final int f52350a;
-    public final int f52351b;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+public final class tt extends org.telegram.ui.Components.zo0 {
+    public final ut V2;
 
-    public tt(int i7, int i10) {
-        this.f52350a = i10;
-        this.f52351b = i7;
+    public tt(ut utVar, Activity activity, String str) {
+        super(activity, null, str, false, null, false, null);
+        this.V2 = utVar;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i7) {
-        switch (this.f52350a) {
-            case 0:
-                int i10 = 2 - i7;
-                if (i10 == this.f52351b) {
-                    org.telegram.messenger.cz.w(-1);
-                    return;
-                } else {
-                    org.telegram.messenger.cz.w(i10);
-                    return;
-                }
-            default:
-                int i11 = 2 - i7;
-                if (i11 == this.f52351b) {
-                    org.telegram.messenger.cz.w(-1);
-                    return;
-                } else {
-                    org.telegram.messenger.cz.w(i11);
-                    return;
-                }
+    public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
         }
+        org.telegram.messenger.g0.h3(new org.telegram.ui.Components.voip.o(this, hVar, i7), 250L);
     }
 }

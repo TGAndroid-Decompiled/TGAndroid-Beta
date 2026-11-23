@@ -1,27 +1,77 @@
 package org.telegram.ui;
-public final class vz {
-    public long f52889a;
-    public int f52890b;
 
-    public vz(int i7, long j3) {
-        this.f52889a = j3;
-        this.f52890b = i7;
+import android.view.ViewGroup;
+public final class vz extends org.telegram.ui.Components.dk0 {
+    public final b00 f53057c;
+
+    public vz(b00 b00Var) {
+        this.f53057c = b00Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final boolean D(v4.f1 f1Var) {
+        return true;
+    }
+
+    @Override
+    public final int b() {
+        b00 b00Var = this.f53057c;
+        if (b00Var.f45852f.isEmpty()) {
+            return 0;
         }
-        if (obj != null && vz.class == obj.getClass()) {
-            vz vzVar = (vz) obj;
-            if (this.f52889a == vzVar.f52889a && this.f52890b == vzVar.f52890b) {
-                return true;
+        return b00Var.f45852f.size() + (!b00Var.O ? 1 : 0);
+    }
+
+    @Override
+    public final int d(int i7) {
+        if (i7 >= this.f53057c.f45852f.size()) {
+            return 3;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void t(v4.f1 f1Var, int i7) {
+        boolean z10;
+        boolean z11;
+        if (f1Var.f59249f == 0) {
+            org.telegram.ui.Cells.u2 u2Var = (org.telegram.ui.Cells.u2) f1Var.f59245a;
+            b00 b00Var = this.f53057c;
+            org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) b00Var.f45852f.get(i7);
+            u2Var.P = b00Var.f45864q0;
+            u2Var.f0(org.telegram.messenger.fj.B0(fjVar.f24073k), fjVar, fjVar.f24073k.date, false, false);
+            if (i7 != b() - 1) {
+                z10 = true;
+            } else {
+                z10 = false;
             }
+            u2Var.f32068t2 = z10;
+            if (u2Var.getMessage() != null && u2Var.getMessage().e1() == fjVar.e1()) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            u2Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Components.ik(this, u2Var, fjVar, z11, 1));
         }
-        return false;
     }
 
-    public final int hashCode() {
-        return this.f52890b;
+    @Override
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        jg.a0 a0Var;
+        if (i7 != 0) {
+            if (i7 != 3) {
+                org.telegram.ui.Cells.y3 y3Var = new org.telegram.ui.Cells.y3(viewGroup.getContext(), null);
+                y3Var.setText(org.telegram.messenger.gd.N0(2131745560, null));
+                a0Var = y3Var;
+            } else {
+                org.telegram.ui.Components.vz vzVar = new org.telegram.ui.Components.vz(viewGroup.getContext(), null);
+                vzVar.setIsSingleCell(true);
+                vzVar.setViewType(1);
+                a0Var = vzVar;
+            }
+        } else {
+            a0Var = new jg.a0(2, viewGroup.getContext(), true);
+        }
+        return i5.c.q(a0Var, a0Var, -1, -2);
     }
 }

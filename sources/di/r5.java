@@ -9,30 +9,31 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.i61;
 public final class r5 extends View {
     public float E;
     public float F;
     public final Camera G;
-    public final h6.m H;
+    public final i61 H;
     public final RectF I;
-    public m5 f9636a;
-    public m5 f9637b;
-    public m5 f9638c;
+    public m5 f9633a;
+    public m5 f9634b;
+    public m5 f9635c;
     public float d;
-    public float f9639e;
-    public float f9640f;
+    public float f9636e;
+    public float f9637f;
     public boolean h;
-    public boolean f9641n;
-    public boolean f9642r;
-    public l5 f9643s;
-    public l5 f9644w;
-    public l5 f9645x;
-    public float f9646y;
+    public boolean f9638n;
+    public boolean f9639r;
+    public l5 f9640s;
+    public l5 f9641w;
+    public l5 f9642x;
+    public float f9643y;
 
     public r5(Context context) {
         super(context);
         this.G = new Camera();
-        this.H = new h6.m(29);
+        this.H = new i61(1);
         this.I = new RectF();
     }
 
@@ -42,7 +43,7 @@ public final class r5 extends View {
         float f15;
         if (l5Var != null) {
             Matrix matrix = l5Var.d;
-            Paint paint = l5Var.f9250c;
+            Paint paint = l5Var.f9246c;
             if (paint != null) {
                 float f16 = (f10 - 0.5f) / 1.5f;
                 float l10 = Utilities.l(1.0f - Math.abs(f16));
@@ -54,17 +55,17 @@ public final class r5 extends View {
                 canvas.saveLayerAlpha(f17, 0.0f, f18, f12, 255, 31);
                 matrix.reset();
                 matrix.postTranslate(z10, min);
-                l5Var.f9251e.setLocalMatrix(matrix);
+                l5Var.f9247e.setLocalMatrix(matrix);
                 paint.setAlpha((int) (l10 * 255.0f));
                 canvas.drawRect(f17, 0.0f, f18, f12, paint);
                 canvas.save();
                 float L = org.telegram.messenger.g0.L(90.0f);
                 RectF rectF = this.I;
                 rectF.set(f17, 0.0f, f17 + L, f12);
-                h6.m mVar = this.H;
-                mVar.n(canvas, rectF, 0, 1.0f);
+                i61 i61Var = this.H;
+                i61Var.u(canvas, rectF, 0, 1.0f);
                 rectF.set(f18 - L, 0.0f, f18, f12);
-                mVar.n(canvas, rectF, 2, 1.0f);
+                i61Var.u(canvas, rectF, 2, 1.0f);
                 canvas.restore();
                 canvas.restore();
                 for (int i7 = 0; i7 < iArr.length; i7++) {
@@ -74,7 +75,7 @@ public final class r5 extends View {
                     } else {
                         f15 = 0.0f;
                     }
-                    iArr[i7] = org.telegram.ui.ActionBar.m6.w(iArr[i7], org.telegram.ui.ActionBar.m6.r1(l10 * f15, l5Var.f9253g));
+                    iArr[i7] = org.telegram.ui.ActionBar.n6.w(iArr[i7], org.telegram.ui.ActionBar.n6.r1(l10 * f15, l5Var.f9249g));
                 }
                 for (int i10 = 0; i10 < iArr2.length; i10++) {
                     float width2 = (getWidth() / (iArr2.length - 1)) * i10;
@@ -83,7 +84,7 @@ public final class r5 extends View {
                     } else {
                         f14 = 0.0f;
                     }
-                    iArr2[i10] = org.telegram.ui.ActionBar.m6.w(iArr2[i10], org.telegram.ui.ActionBar.m6.r1(l10 * f14, l5Var.f9252f));
+                    iArr2[i10] = org.telegram.ui.ActionBar.n6.w(iArr2[i10], org.telegram.ui.ActionBar.n6.r1(l10 * f14, l5Var.f9248f));
                 }
                 for (int i11 = 0; i11 < iArr3.length; i11++) {
                     float width3 = (getWidth() / (iArr2.length - 1)) * i11;
@@ -92,7 +93,7 @@ public final class r5 extends View {
                     } else {
                         f13 = 0.0f;
                     }
-                    iArr3[i11] = org.telegram.ui.ActionBar.m6.w(iArr3[i11], org.telegram.ui.ActionBar.m6.r1(l10 * f13, l5Var.h));
+                    iArr3[i11] = org.telegram.ui.ActionBar.n6.w(iArr3[i11], org.telegram.ui.ActionBar.n6.r1(l10 * f13, l5Var.h));
                 }
             }
         }
@@ -129,36 +130,36 @@ public final class r5 extends View {
         canvas.translate(-f17, -L);
         float f18 = L2 * T1;
         float f19 = f18 / 2.0f;
-        imageReceiver.y0(width - f19, L - f19, f18, f18);
+        imageReceiver.z0(width - f19, L - f19, f18, f18);
         imageReceiver.setAlpha(l10);
         imageReceiver.h(canvas, null);
-        imageReceiver.y0(f12, f13, f14, f15);
+        imageReceiver.z0(f12, f13, f14, f15);
         imageReceiver.setAlpha(alpha);
         canvas.restore();
     }
 
     public final void c() {
         boolean z10;
-        if (this.f9636a == null && this.f9637b == null && this.f9638c == null && this.f9643s == null && this.f9644w == null && this.f9645x == null) {
+        if (this.f9633a == null && this.f9634b == null && this.f9635c == null && this.f9640s == null && this.f9641w == null && this.f9642x == null) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f9638c = null;
-        this.f9637b = null;
-        this.f9636a = null;
-        this.f9640f = 0.0f;
-        this.f9639e = 0.0f;
+        this.f9635c = null;
+        this.f9634b = null;
+        this.f9633a = null;
+        this.f9637f = 0.0f;
+        this.f9636e = 0.0f;
         this.d = 0.0f;
-        this.f9642r = false;
-        this.f9641n = false;
+        this.f9639r = false;
+        this.f9638n = false;
         this.h = false;
-        this.f9645x = null;
-        this.f9644w = null;
-        this.f9643s = null;
+        this.f9642x = null;
+        this.f9641w = null;
+        this.f9640s = null;
         this.F = 0.0f;
         this.E = 0.0f;
-        this.f9646y = 0.0f;
+        this.f9643y = 0.0f;
         if (z10) {
             invalidate();
         }
@@ -166,8 +167,8 @@ public final class r5 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        b(canvas, this.f9636a, this.d, this.h);
-        b(canvas, this.f9637b, this.f9639e, this.f9641n);
-        b(canvas, this.f9638c, this.f9640f, this.f9642r);
+        b(canvas, this.f9633a, this.d, this.h);
+        b(canvas, this.f9634b, this.f9636e, this.f9638n);
+        b(canvas, this.f9635c, this.f9637f, this.f9639r);
     }
 }

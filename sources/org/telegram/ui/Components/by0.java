@@ -6,17 +6,14 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class by0 extends FrameLayout {
-    public final ey0 f33904a;
-    public boolean f33905b;
-    public boolean f33906c;
+    public final dy0 f33840a;
+    public boolean f33841b;
+    public boolean f33842c;
     public boolean d;
-    public boolean f33907e;
 
-    public by0(ey0 ey0Var, View view, boolean z10) {
-        super(ey0Var.getContext());
-        this.d = false;
-        this.f33907e = true;
-        this.f33904a = ey0Var;
+    public by0(dy0 dy0Var, View view, boolean z10) {
+        super(dy0Var.getContext());
+        this.f33840a = dy0Var;
         setWillNotDraw(false);
         if (!z10) {
             setPadding(org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f), org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f));
@@ -31,62 +28,72 @@ public final class by0 extends FrameLayout {
         float f11;
         float f12;
         float f13;
-        boolean z10 = this.f33905b;
-        ey0 ey0Var = this.f33904a;
-        if (z10 || this.f33906c) {
+        boolean z10 = this.f33842c;
+        dy0 dy0Var = this.f33840a;
+        if (z10 || this.d) {
             canvas2 = canvas;
             float L = org.telegram.messenger.g0.L(10.0f);
-            float[] fArr = ey0Var.f34988c;
-            boolean z11 = this.f33905b;
-            if (z11 && this.d) {
+            float[] fArr = dy0Var.f34493c;
+            boolean z11 = this.f33842c;
+            if (z11) {
                 f10 = L;
             } else {
                 f10 = 0.0f;
             }
             fArr[1] = f10;
             fArr[0] = f10;
-            if (z11 && this.f33907e) {
+            if (z11) {
                 f11 = L;
             } else {
                 f11 = 0.0f;
             }
             fArr[3] = f11;
             fArr[2] = f11;
-            boolean z12 = this.f33906c;
-            if (z12 && this.f33907e) {
+            boolean z12 = this.d;
+            if (z12) {
                 f12 = L;
             } else {
                 f12 = 0.0f;
             }
             fArr[5] = f12;
             fArr[4] = f12;
-            if (!z12 || !this.d) {
+            if (!z12) {
                 L = 0.0f;
             }
             fArr[7] = L;
             fArr[6] = L;
-            ey0Var.f34987b.rewind();
+            dy0Var.f34492b.rewind();
             RectF rectF = org.telegram.messenger.g0.P;
-            float f14 = ey0Var.h;
-            float width = getWidth() - ey0Var.h;
+            float f14 = dy0Var.h;
+            float width = getWidth() - dy0Var.h;
             float height = getHeight();
-            float f15 = ey0Var.h;
-            if (this.f33906c) {
+            float f15 = dy0Var.h;
+            if (this.d) {
                 f13 = -1.0f;
             } else {
                 f13 = 1.0f;
             }
             rectF.set(f14, f14, width, (f15 * f13) + height);
-            if (!this.f33907e) {
-                rectF.right += ey0Var.f34990f;
+            dy0Var.f34492b.addRoundRect(rectF, dy0Var.f34493c, Path.Direction.CW);
+            if (this.f33841b) {
+                canvas2.drawPath(dy0Var.f34492b, dy0Var.d);
             }
-            ey0Var.f34987b.addRoundRect(rectF, ey0Var.f34988c, Path.Direction.CW);
-            canvas2.drawPath(ey0Var.f34987b, ey0Var.f34989e);
+            canvas2.drawPath(dy0Var.f34492b, dy0Var.f34494e);
         } else {
-            float f16 = ey0Var.h;
-            canvas2 = canvas;
-            canvas2.drawRect(f16, f16, getWidth() - ey0Var.h, getHeight() + ey0Var.h, ey0Var.f34989e);
+            if (this.f33841b) {
+                float f16 = dy0Var.h;
+                canvas2 = canvas;
+                canvas2.drawRect(f16, f16, getWidth() + dy0Var.h, getHeight() + dy0Var.h, dy0Var.d);
+            } else {
+                canvas2 = canvas;
+            }
+            float f17 = dy0Var.h;
+            canvas2.drawRect(f17, f17, getWidth() - dy0Var.h, getHeight() + dy0Var.h, dy0Var.f34494e);
         }
         super.onDraw(canvas2);
+    }
+
+    public void setFilled(boolean z10) {
+        this.f33841b = z10;
     }
 }

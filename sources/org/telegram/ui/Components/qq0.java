@@ -3,50 +3,68 @@ package org.telegram.ui.Components;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class qq0 extends v4.n0 {
-    public final kq0 f38931a;
+public final class qq0 extends v4.o0 {
+    public final jq0 f38980a;
+    public final it0 f38981b;
 
-    public qq0(kq0 kq0Var) {
-        this.f38931a = kq0Var;
+    public qq0(it0 it0Var, jq0 jq0Var) {
+        this.f38981b = it0Var;
+        this.f38980a = jq0Var;
     }
 
     @Override
-    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.b1 b1Var) {
+    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.c1 c1Var) {
         boolean z10;
         boolean z11;
-        if (view instanceof org.telegram.ui.Cells.p7) {
-            org.telegram.ui.Cells.p7 p7Var = (org.telegram.ui.Cells.p7) view;
-            kq0 kq0Var = this.f38931a;
-            kq0Var.f34540n.getClass();
-            int R = RecyclerView.R(p7Var);
-            int i7 = kq0Var.f34541r.J;
+        jq0 jq0Var = this.f38980a;
+        int i7 = 0;
+        if (jq0Var.h.getAdapter() == this.f38981b.R) {
+            int R = RecyclerView.R(view);
+            rect.left = 0;
+            rect.bottom = 0;
+            kq0 kq0Var = jq0Var.f34450x;
+            kq0Var.B1();
+            if (R <= kq0Var.U) {
+                rect.top = 0;
+            } else {
+                rect.top = org.telegram.messenger.g0.L(2.0f);
+            }
+            if (!jq0Var.f34450x.E1(R)) {
+                i7 = org.telegram.messenger.g0.L(2.0f);
+            }
+            rect.right = i7;
+        } else if (view instanceof org.telegram.ui.Cells.o7) {
+            org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) view;
+            jq0Var.h.getClass();
+            int R2 = RecyclerView.R(o7Var);
+            int i10 = jq0Var.f34450x.J;
             boolean z12 = true;
-            if (R < i7) {
+            if (R2 < i10) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            p7Var.f31222b0 = z10;
-            int i10 = R % i7;
-            if (i10 == 0) {
+            o7Var.f31262b0 = z10;
+            int i11 = R2 % i10;
+            if (i11 == 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            p7Var.W = z11;
-            if (i10 != i7 - 1) {
+            o7Var.W = z11;
+            if (i11 != i10 - 1) {
                 z12 = false;
             }
-            p7Var.f31220a0 = z12;
+            o7Var.f31260a0 = z12;
             rect.left = 0;
             rect.top = 0;
             rect.bottom = 0;
             rect.right = 0;
-            return;
+        } else {
+            rect.left = 0;
+            rect.top = 0;
+            rect.bottom = 0;
+            rect.right = 0;
         }
-        rect.left = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        rect.right = 0;
     }
 }

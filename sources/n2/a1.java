@@ -2,107 +2,85 @@ package n2;
 
 import java.nio.ByteBuffer;
 public final class a1 extends f2.o {
-    public int f21055i;
-    public int f21056j;
-    public boolean f21057k;
-    public int f21058l;
-    public byte[] f21059m;
-    public int f21060n;
-    public long f21061o;
+    public static final int f21151i = Float.floatToIntBits(Float.NaN);
 
-    @Override
-    public final boolean a() {
-        if (super.a() && this.f21060n == 0) {
-            return true;
+    public static void m(int i7, ByteBuffer byteBuffer) {
+        int floatToIntBits = Float.floatToIntBits((float) (i7 * 4.656612875245797E-10d));
+        if (floatToIntBits == f21151i) {
+            floatToIntBits = Float.floatToIntBits(0.0f);
         }
-        return false;
-    }
-
-    @Override
-    public final ByteBuffer b() {
-        int i7;
-        if (super.a() && (i7 = this.f21060n) > 0) {
-            l(i7).put(this.f21059m, 0, this.f21060n).flip();
-            this.f21060n = 0;
-        }
-        return super.b();
+        byteBuffer.putInt(floatToIntBits);
     }
 
     @Override
     public final void c(ByteBuffer byteBuffer) {
+        ByteBuffer l10;
         int position = byteBuffer.position();
         int limit = byteBuffer.limit();
         int i7 = limit - position;
-        if (i7 != 0) {
-            int min = Math.min(i7, this.f21058l);
-            this.f21061o += min / this.f11050b.d;
-            this.f21058l -= min;
-            byteBuffer.position(position + min);
-            if (this.f21058l > 0) {
-                return;
+        int i10 = this.f11048b.f11044c;
+        if (i10 != 2) {
+            if (i10 != 1342177280) {
+                if (i10 != 1610612736) {
+                    if (i10 != 1879048192) {
+                        if (i10 != 21) {
+                            if (i10 == 22) {
+                                l10 = l(i7);
+                                while (position < limit) {
+                                    m((byteBuffer.get(position) & 255) | ((byteBuffer.get(position + 1) & 255) << 8) | ((byteBuffer.get(position + 2) & 255) << 16) | ((byteBuffer.get(position + 3) & 255) << 24), l10);
+                                    position += 4;
+                                }
+                            } else {
+                                throw new IllegalStateException();
+                            }
+                        } else {
+                            l10 = l((i7 / 3) * 4);
+                            while (position < limit) {
+                                m(((byteBuffer.get(position) & 255) << 8) | ((byteBuffer.get(position + 1) & 255) << 16) | ((byteBuffer.get(position + 2) & 255) << 24), l10);
+                                position += 3;
+                            }
+                        }
+                    } else {
+                        l10 = l(i7 / 2);
+                        while (position < limit) {
+                            l10.putFloat((float) byteBuffer.getDouble(position));
+                            position += 8;
+                        }
+                    }
+                } else {
+                    l10 = l(i7);
+                    while (position < limit) {
+                        m((byteBuffer.get(position + 3) & 255) | ((byteBuffer.get(position + 2) & 255) << 8) | ((byteBuffer.get(position + 1) & 255) << 16) | ((byteBuffer.get(position) & 255) << 24), l10);
+                        position += 4;
+                    }
+                }
+            } else {
+                l10 = l((i7 / 3) * 4);
+                while (position < limit) {
+                    m(((byteBuffer.get(position + 2) & 255) << 8) | ((byteBuffer.get(position + 1) & 255) << 16) | ((byteBuffer.get(position) & 255) << 24), l10);
+                    position += 3;
+                }
             }
-            int i10 = i7 - min;
-            int length = (this.f21060n + i10) - this.f21059m.length;
-            ByteBuffer l10 = l(length);
-            int i11 = h2.l0.i(length, 0, this.f21060n);
-            l10.put(this.f21059m, 0, i11);
-            int i12 = h2.l0.i(length - i11, 0, i10);
-            byteBuffer.limit(byteBuffer.position() + i12);
-            l10.put(byteBuffer);
-            byteBuffer.limit(limit);
-            int i13 = i10 - i12;
-            int i14 = this.f21060n - i11;
-            this.f21060n = i14;
-            byte[] bArr = this.f21059m;
-            System.arraycopy(bArr, i11, bArr, 0, i14);
-            byteBuffer.get(this.f21059m, this.f21060n, i13);
-            this.f21060n += i13;
-            l10.flip();
+        } else {
+            l10 = l(i7 * 2);
+            while (position < limit) {
+                m(((byteBuffer.get(position) & 255) << 16) | ((byteBuffer.get(position + 1) & 255) << 24), l10);
+                position += 2;
+            }
         }
-    }
-
-    @Override
-    public final long g(long j3) {
-        return Math.max(0L, j3 - h2.l0.Y(this.f11050b.f11044a, this.f21056j + this.f21055i));
+        byteBuffer.position(byteBuffer.limit());
+        l10.flip();
     }
 
     @Override
     public final f2.k h(f2.k kVar) {
-        if (h2.l0.M(kVar.f11046c)) {
-            this.f21057k = true;
-            if (this.f21055i == 0 && this.f21056j == 0) {
-                return f2.k.f11043e;
-            }
-            return kVar;
+        int i7 = kVar.f11044c;
+        if (!h2.l0.L(i7) && i7 != 2) {
+            throw new f2.m(kVar);
         }
-        throw new f2.m(kVar);
-    }
-
-    @Override
-    public final void i() {
-        if (this.f21057k) {
-            this.f21057k = false;
-            int i7 = this.f21056j;
-            int i10 = this.f11050b.d;
-            this.f21059m = new byte[i7 * i10];
-            this.f21058l = this.f21055i * i10;
+        if (i7 != 4) {
+            return new f2.k(kVar.f11042a, kVar.f11043b, 4);
         }
-        this.f21060n = 0;
-    }
-
-    @Override
-    public final void j() {
-        int i7;
-        if (this.f21057k) {
-            if (this.f21060n > 0) {
-                this.f21061o += i7 / this.f11050b.d;
-            }
-            this.f21060n = 0;
-        }
-    }
-
-    @Override
-    public final void k() {
-        this.f21059m = h2.l0.f13779b;
+        return f2.k.f11041e;
     }
 }

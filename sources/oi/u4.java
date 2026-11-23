@@ -1,190 +1,138 @@
 package oi;
 
-import android.graphics.Bitmap;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.gc;
-import org.telegram.messenger.w7;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.RadialProgress2;
-public final class u4 {
-    public static ColorMatrixColorFilter f22418f;
-    public final ImageReceiver f22419a;
-    public final ImageReceiver f22420b;
-    public Bitmap f22421c;
-    public final RadialProgress2 d;
-    public r f22422e;
+import java.util.IdentityHashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.b20;
+import org.telegram.messenger.d20;
+import org.telegram.messenger.ef;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.ks;
+public final class u4 implements fs {
+    public final int f22531a;
+    public final h6.m f22532b;
+    public fj f22533c;
+    public d20 d;
+    public String f22534e;
+    public boolean f22535f;
+    public boolean h;
+    public boolean f22536n;
 
-    public u4(r4 r4Var, h6 h6Var) {
-        this.f22419a = new ImageReceiver(r4Var);
-        this.f22420b = new ImageReceiver(r4Var);
-        RadialProgress2 radialProgress2 = new RadialProgress2(r4Var, h6Var);
-        this.d = radialProgress2;
-        radialProgress2.d = -1;
-        radialProgress2.setColors(1711276032, 2130706432, -1, -2500135);
-        radialProgress2.setIcon(3, false, false);
+    public u4(int i7, ef efVar, h6.m mVar) {
+        this.f22531a = i7;
+        this.f22532b = mVar;
+    }
+
+    public static boolean c(ef efVar) {
+        ArrayList arrayList;
+        if (!efVar.f27963b) {
+            ArrayList arrayList2 = efVar.f27976q;
+            if (arrayList2 != null && !arrayList2.isEmpty()) {
+                arrayList = efVar.f27976q;
+            } else {
+                arrayList = efVar.f27975p;
+            }
+            if (arrayList != null) {
+                int size = arrayList.size();
+                for (int i7 = 0; i7 < size; i7++) {
+                    b20 b20Var = (b20) arrayList.get(i7);
+                    if (b20Var != null) {
+                        if (b20Var.f23124a == 0) {
+                            byte b10 = b20Var.f23126b;
+                            if ((b10 & 1) != 0 || (b10 & 4) != 0) {
+                                return true;
+                            }
+                        }
+                        ArrayList arrayList3 = b20Var.f23133k;
+                        if (arrayList3 != null && !arrayList3.isEmpty()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public final void a() {
-        String str;
-        String sb2;
-        TLRPC.Photo photo;
-        TLRPC.Document document;
-        TLRPC.PhotoSize photoSize;
-        int abs;
-        r rVar = this.f22422e;
-        TLRPC.PhotoSize photoSize2 = null;
-        ImageReceiver imageReceiver = this.f22419a;
-        if (rVar == null) {
-            imageReceiver.w0(null);
+        if (!this.f22536n && !this.h) {
+            this.h = true;
+            if (this.f22533c != null && this.d != null) {
+                try {
+                    MediaController.B().i(this.f22533c);
+                } catch (Throwable unused) {
+                }
+            }
+            d();
+        }
+    }
+
+    public final void b() {
+        if (this.f22536n) {
             return;
         }
-        int i7 = org.telegram.messenger.g0.f24010q.x;
-        String j3 = com.google.android.gms.internal.vision.e2.j(i7, "_", i7);
-        StringBuilder sb3 = new StringBuilder();
-        r rVar2 = this.f22422e;
-        if (rVar2 == null) {
-            sb2 = "null";
-        } else {
-            if (rVar2.f22290b) {
-                str = "v";
-            } else if (rVar2.f22291c) {
-                str = "a";
-            } else {
-                str = "p";
-            }
-            if (rVar2.f22292e != null) {
-                StringBuilder n10 = p5.c.n(str, ":local:");
-                n10.append(this.f22422e.f22292e);
-                sb2 = n10.toString();
-            } else {
-                long j10 = 0;
-                if (rVar2.b()) {
-                    r rVar3 = this.f22422e;
-                    TLRPC.Document document2 = rVar3.h;
-                    if (document2 != null) {
-                        j10 = document2.f28404id;
-                    } else {
-                        TLRPC.Photo photo2 = rVar3.f22294g;
-                        if (photo2 != null) {
-                            j10 = photo2.f28422id;
-                        }
-                    }
-                }
-                StringBuilder n11 = p5.c.n(str, ":");
-                n11.append(this.f22422e.f22289a);
-                n11.append(":");
-                n11.append(j10);
-                sb2 = n11.toString();
-            }
-        }
-        sb3.append(sb2);
-        sb3.append("@");
-        sb3.append(j3);
-        if (sb3.toString().equals(null)) {
-            return;
-        }
-        this.f22422e.getClass();
-        r rVar4 = this.f22422e;
-        if (rVar4.f22290b) {
-            if (rVar4.f22292e != null) {
-                imageReceiver.G0(0, 0, false);
-                imageReceiver.u0(gc.o(this.f22422e.f22292e), "g", null, j3, null, j3, null, 0L, null, null, 0);
-            } else if (rVar4.b() && (document = this.f22422e.h) != null) {
-                ArrayList<TLRPC.PhotoSize> arrayList = document.thumbs;
-                int Z0 = org.telegram.messenger.g0.Z0(false);
-                if (arrayList == null) {
-                    photoSize = null;
-                } else {
-                    int i10 = Integer.MAX_VALUE;
-                    photoSize = null;
-                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                        TLRPC.PhotoSize photoSize3 = arrayList.get(i11);
-                        if (!(photoSize3 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize3 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize3.f28423w, photoSize3.h) - Z0)) < i10) {
-                            photoSize = photoSize3;
-                            i10 = abs;
-                        }
-                    }
-                }
-                ArrayList<TLRPC.PhotoSize> arrayList2 = this.f22422e.h.thumbs;
-                if (arrayList2 != null) {
-                    int i12 = 0;
-                    while (true) {
-                        if (i12 >= arrayList2.size()) {
-                            break;
-                        } else if (arrayList2.get(i12) instanceof TLRPC.TL_photoStrippedSize) {
-                            photoSize2 = arrayList2.get(i12);
-                            break;
-                        } else {
-                            i12++;
-                        }
-                    }
-                }
-                imageReceiver.G0(0, 0, false);
-                imageReceiver.u0(gc.b(this.f22422e.h), "g", gc.c(photoSize, this.f22422e.h), j3, gc.c(photoSize2, this.f22422e.h), j3, null, 0L, null, this.f22422e.h, 0);
-            } else {
-                imageReceiver.w0(null);
-            }
-        } else if (rVar4.f22292e != null) {
-            imageReceiver.G0(rVar4.f22298l, rVar4.f22299m, true);
-            imageReceiver.q0(gc.g(this.f22422e.f22292e), j3, null, null, null, 0);
-        } else if (rVar4.b() && (photo = this.f22422e.f22294g) != null) {
-            TLRPC.PhotoSize w10 = w7.w(photo.sizes, org.telegram.messenger.g0.Z0(false), false, null, false);
-            TLRPC.PhotoSize w11 = w7.w(this.f22422e.f22294g.sizes, 100, false, null, false);
-            imageReceiver.G0(0, 0, false);
-            imageReceiver.r0(gc.i(w10, this.f22422e.f22294g), j3, gc.i(w11, this.f22422e.f22294g), j3, null, 0L, null, this.f22422e.f22294g, 0);
-        } else {
-            imageReceiver.w0(null);
-        }
+        this.f22536n = true;
+        d();
+        h6.m mVar = this.f22532b;
+        t3 t3Var = (t3) mVar.d;
+        IdentityHashMap identityHashMap = t3Var.f22487i4;
+        s sVar = (s) mVar.f13931b;
+        identityHashMap.remove(sVar);
+        sVar.f22421a = 3;
+        t3Var.t4((a) mVar.f13932c, sVar);
+        t3Var.f22495p3.onContentChanged();
     }
 
-    public final boolean b() {
-        ImageReceiver imageReceiver;
-        Bitmap n10;
-        if (c() && (n10 = (imageReceiver = this.f22419a).n()) != null && !n10.isRecycled()) {
-            ImageReceiver imageReceiver2 = this.f22420b;
-            if ((imageReceiver2.n() == null || imageReceiver.m() == null) && (n10 != this.f22421c || imageReceiver2.n() == null)) {
-                this.f22421c = n10;
-                imageReceiver2.v0(Utilities.D(n10, false));
-                if (f22418f == null) {
-                    ColorMatrix colorMatrix = new ColorMatrix();
-                    org.telegram.messenger.g0.n2(colorMatrix, 0.9f);
-                    org.telegram.messenger.g0.i(colorMatrix, 0.6f);
-                    f22418f = new ColorMatrixColorFilter(colorMatrix);
+    public final void d() {
+        ks f10 = ks.f(this.f22531a);
+        f10.n(this, ks.f25181a2);
+        f10.n(this, ks.f25188b2);
+        f10.n(this, ks.f25194c2);
+    }
+
+    @Override
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        h6.m mVar = this.f22532b;
+        a aVar = (a) mVar.f13932c;
+        s sVar = (s) mVar.f13931b;
+        t3 t3Var = (t3) mVar.d;
+        if (!this.h && !this.f22536n && i10 == this.f22531a && objArr.length != 0 && objArr[0] == this.f22533c) {
+            if (i7 == ks.f25188b2) {
+                long longValue = ((Long) objArr[3]).longValue();
+                sVar.f22425f = ((Float) objArr[4]).floatValue();
+                View C1 = t3Var.C1(aVar);
+                if (C1 instanceof s4) {
+                    C1.requestLayout();
+                    C1.invalidate();
                 }
-                imageReceiver2.f22648p1 = f22418f;
-            }
-            if (imageReceiver2.n() != null) {
-                return true;
+                if (longValue > 0) {
+                    this.f22536n = true;
+                    d();
+                    String str = this.f22534e;
+                    d20 d20Var = this.d;
+                    int i11 = d20Var.f23597k;
+                    int i12 = d20Var.f23598l;
+                    int ceil = (int) Math.ceil(d20Var.f23604r / 1000.0d);
+                    t3Var.f22487i4.remove(sVar);
+                    sVar.f22422b = true;
+                    sVar.f22424e = str;
+                    if (i11 > 0) {
+                        sVar.f22428j = i11;
+                    }
+                    if (i12 > 0) {
+                        sVar.f22429k = i12;
+                    }
+                    sVar.f22430l = 0;
+                    sVar.f22431m = 0;
+                    sVar.f22425f = 0.0f;
+                    t3Var.q4(aVar);
+                    t3Var.O4((a) mVar.f13932c, sVar, str, true, sVar.f22428j, sVar.f22429k, ceil);
+                }
+            } else if (i7 == ks.f25194c2) {
+                b();
             }
         }
-        return false;
-    }
-
-    public final boolean c() {
-        r rVar = this.f22422e;
-        if (rVar != null) {
-            if (rVar.f22292e != null || rVar.b()) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean d() {
-        r rVar = this.f22422e;
-        if (rVar != null && !rVar.f22290b && !rVar.b()) {
-            int i7 = this.f22422e.f22298l;
-            if (i7 == 90 || i7 == 270) {
-                return true;
-            }
-            return false;
-        }
-        return false;
     }
 }

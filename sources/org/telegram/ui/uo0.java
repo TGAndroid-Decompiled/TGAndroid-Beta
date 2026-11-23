@@ -1,18 +1,22 @@
 package org.telegram.ui;
-public final class uo0 implements Runnable {
-    public final PhotoViewer f52608a;
+public final class uo0 extends org.telegram.ui.Cells.s9 {
+    public final int f52707q0 = 0;
 
-    public uo0(PhotoViewer photoViewer) {
-        this.f52608a = photoViewer;
+    public uo0(fi.w7 w7Var, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(w7Var, i6Var);
     }
 
     @Override
-    public final void run() {
-        PhotoViewer photoViewer = this.f52608a;
-        org.telegram.messenger.gj gjVar = photoViewer.T4;
-        if (gjVar == null) {
-            return;
+    public final int o() {
+        switch (this.f52707q0) {
+            case 0:
+                return 0;
+            default:
+                return 0;
         }
-        org.telegram.messenger.w7.G(gjVar.K1).b0(photoViewer.T4.F0(), true, false);
+    }
+
+    public uo0(fi.b bVar) {
+        super(null, bVar);
     }
 }

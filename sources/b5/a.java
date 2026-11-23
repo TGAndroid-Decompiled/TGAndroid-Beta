@@ -10,9 +10,9 @@ public abstract class a {
         j.e(th2, "<this>");
         j.e(exception, "exception");
         if (th2 != exception) {
-            Integer num = nd.a.f21464a;
+            Integer num = nd.a.f21563a;
             if (num != null && num.intValue() < 19) {
-                Method method = md.a.f20961a;
+                Method method = md.a.f21057a;
                 if (method != null) {
                     method.invoke(th2, exception);
                     return;
@@ -30,7 +30,7 @@ public abstract class a {
                 bundle2.setClassLoader(a.class.getClassLoader());
                 Parcelable parcelable = bundle2.getParcelable("a");
                 if (parcelable instanceof ParcelImpl) {
-                    return ((ParcelImpl) parcelable).f2803a;
+                    return ((ParcelImpl) parcelable).f2804a;
                 }
                 throw new IllegalArgumentException("Invalid parcel");
             }

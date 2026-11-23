@@ -12,9 +12,9 @@ import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public abstract class a {
-    public static volatile ab.b0 f55992b;
-    public static final Object f55991a = new Object();
-    public static final a1 f55993c = new a1("id");
+    public static volatile ab.b0 f56105b;
+    public static final Object f56104a = new Object();
+    public static final a1 f56106c = new a1("id");
     public static final a1 d = new a1("type");
 
     public static int a(int i7, int i10) {
@@ -25,7 +25,7 @@ public abstract class a {
             int i12 = i7 - (i10 * i11);
             if (i12 != 0) {
                 int i13 = ((i7 ^ i10) >> 31) | 1;
-                switch (n0.f56041a[roundingMode.ordinal()]) {
+                switch (n0.f56154a[roundingMode.ordinal()]) {
                     case 1:
                         throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
                     case 2:
@@ -245,7 +245,7 @@ public abstract class a {
         if (collection instanceof SortedSet) {
             obj = ((SortedSet) collection).comparator();
             if (obj == null) {
-                obj = v.f56062b;
+                obj = v.f56175b;
             }
         } else if (collection instanceof c0) {
             obj = ((s) ((c0) collection)).d;
@@ -282,8 +282,8 @@ public abstract class a {
             if (d2 != null) {
                 try {
                     try {
-                        byte b10 = d2.f55997a;
-                        byte b11 = d2.f55998b;
+                        byte b10 = d2.f56110a;
+                        byte b11 = d2.f56111b;
                         int i7 = 0;
                         if (b10 != Byte.MIN_VALUE) {
                             if (b10 != -96) {
@@ -322,7 +322,7 @@ public abstract class a {
                             if (c10 <= 1000) {
                                 l(b11, c10);
                                 int i10 = (int) c10;
-                                k8.a[] aVarArr = new k8.a[i10];
+                                jb.m[] mVarArr = new jb.m[i10];
                                 c1 c1Var = null;
                                 int i11 = 0;
                                 while (i11 < c10) {
@@ -330,15 +330,15 @@ public abstract class a {
                                     if (c1Var != null && k10.compareTo(c1Var) <= 0) {
                                         throw new IOException("Keys in CBOR Map not in strictly ascending natural order:\nPrevious key: " + c1Var.toString() + "\nCurrent key: " + k10.toString());
                                     }
-                                    aVarArr[i11] = new k8.a(k10, k(e1Var), false, 27);
+                                    mVarArr[i11] = new jb.m(28, k10, k(e1Var));
                                     i11++;
                                     c1Var = k10;
                                 }
                                 TreeMap treeMap = new TreeMap();
                                 while (i7 < i10) {
-                                    k8.a aVar = aVarArr[i7];
-                                    if (!treeMap.containsKey((c1) aVar.f18177b)) {
-                                        treeMap.put((c1) aVar.f18177b, (c1) aVar.f18178c);
+                                    jb.m mVar = mVarArr[i7];
+                                    if (!treeMap.containsKey((c1) mVar.f17464b)) {
+                                        treeMap.put((c1) mVar.f17464b, (c1) mVar.f17465c);
                                         i7++;
                                     } else {
                                         throw new IOException("Attempted to add duplicate key to canonical CBOR Map.");

@@ -1,30 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-public final class a71 extends AnimatorListenerAdapter {
-    public boolean f33372a;
-    public final View f33373b;
-    public final float f33374c;
-    public final j71 d;
+import android.content.Context;
+public final class a71 extends j71 {
+    public final k71 f33380u0;
 
-    public a71(j71 j71Var, View view, float f10) {
-        this.d = j71Var;
-        this.f33373b = view;
-        this.f33374c = f10;
+    public a71(k71 k71Var, Context context, boolean z10, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(i7, context, i6Var, z10);
+        this.f33380u0 = k71Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        super.onAnimationCancel(animator);
-        this.f33372a = true;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        if (!this.f33372a) {
-            this.d.B(this.f33373b, this.f33374c);
+    public final void f(float f10, int i7, int i10) {
+        int i11;
+        boolean z10;
+        super.f(f10, i7, i10);
+        if (f10 <= 0.5f) {
+            i11 = i7;
+        } else {
+            i11 = i10;
         }
+        if (i7 < i10) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f33380u0.w(i11, z10);
     }
 }

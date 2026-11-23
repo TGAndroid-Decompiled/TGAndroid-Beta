@@ -1,104 +1,101 @@
 package oi;
 
-import java.util.ArrayList;
-import org.telegram.ui.Cells.j9;
-public final class g3 extends j9 {
-    public final q3 F0;
-    public final s3 G0;
+import android.view.View;
+import org.telegram.messenger.w7;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class g3 implements x4 {
+    public final s f22216a;
+    public final a f22217b;
+    public final t3 f22218c;
 
-    public g3(s3 s3Var, q3 q3Var) {
-        this.G0 = s3Var;
-        this.F0 = q3Var;
+    public g3(a aVar, s sVar, t3 t3Var) {
+        this.f22218c = t3Var;
+        this.f22216a = sVar;
+        this.f22217b = aVar;
     }
 
     @Override
-    public final boolean C() {
-        s3 s3Var = this.G0;
-        CharSequence r10 = s3Var.f22377v3.r();
-        if (r10 != null && r10.length() != 0) {
-            s3Var.f5(r10);
-            return true;
+    public final void a() {
+        s sVar = this.f22216a;
+        sVar.f22421a = 3;
+        t3 t3Var = this.f22218c;
+        t3Var.f22486h4.remove(sVar);
+        t3Var.t4(this.f22217b, sVar);
+        t3Var.f22495p3.onContentChanged();
+    }
+
+    @Override
+    public final void b(int i7, int i10) {
+        if (i7 > 0 && i10 > 0) {
+            s sVar = this.f22216a;
+            sVar.f22428j = i7;
+            sVar.f22429k = i10;
         }
-        return true;
-    }
-
-    @Override
-    public final void D() {
-        s3 s3Var = this.G0;
-        CharSequence r10 = s3Var.f22377v3.r();
-        if (r10 != null && r10.length() > 0) {
-            s3Var.f5(r10);
+        View C1 = this.f22218c.C1(this.f22217b);
+        if (C1 instanceof s4) {
+            C1.requestLayout();
+            C1.invalidate();
         }
-        s3Var.H2();
     }
 
     @Override
-    public final void F() {
-        super.F();
-        this.F0.G();
-    }
-
-    @Override
-    public final void H() {
-        this.G0.f4();
-    }
-
-    @Override
-    public final boolean J() {
-        if (a0()) {
-            return true;
+    public final void c(TLRPC.Photo photo) {
+        int i7;
+        int i10;
+        s sVar = this.f22216a;
+        sVar.f22426g = photo;
+        sVar.f22421a = 2;
+        TLRPC.PhotoSize w10 = w7.w(photo.sizes, org.telegram.messenger.g0.Z0(false), false, null, false);
+        if (w10 != null && (i7 = w10.f28517w) > 0 && (i10 = w10.h) > 0) {
+            sVar.f22428j = i7;
+            sVar.f22429k = i10;
         }
-        return this.G0.V4();
-    }
-
-    @Override
-    public final void K(float f10, float f11) {
-        s3 s3Var = this.G0;
-        s3Var.A3 = true;
-        s3Var.B3 = f10;
-        s3Var.C3 = f11;
-    }
-
-    @Override
-    public final boolean j() {
-        boolean z10;
-        int size;
-        String str;
-        int length;
-        s3 s3Var = this.G0;
-        g3 g3Var = s3Var.f22377v3;
-        ArrayList arrayList = s3Var.f22373t3;
-        if (!arrayList.isEmpty() && g3Var.x() && g3Var.f30889p0 == 0 && g3Var.f30890q0 == 0 && g3Var.f30891r0 <= 0 && g3Var.f30892s0 == (size = arrayList.size() - 1)) {
-            a aVar = (a) arrayList.get(size);
-            if (z5.p(aVar.f21901b)) {
-                str = b6.l(z5.j(aVar.f21901b));
-            } else {
-                str = "";
-            }
-            int i7 = !str.isEmpty();
-            if (g3Var.f30893t0 == i7) {
-                if (i7 == 1) {
-                    length = str.length();
-                } else {
-                    length = z5.z(aVar.f21901b).length();
-                }
-                if (g3Var.f30894u0 >= length) {
-                    z10 = true;
-                    return !z10;
-                }
-            }
+        a aVar = this.f22217b;
+        TL_iv.PageBlock Q3 = t3.Q3(aVar, sVar);
+        if (Q3 instanceof TL_iv.pageBlockPhoto) {
+            ((TL_iv.pageBlockPhoto) Q3).photo_id = photo.f28516id;
         }
-        z10 = false;
-        return !z10;
+        t3 t3Var = this.f22218c;
+        t3Var.f22486h4.remove(sVar);
+        t3Var.q4(aVar);
+        t3Var.f22495p3.onContentChanged();
     }
 
     @Override
-    public final int o() {
-        return this.G0.getPaddingBottom();
+    public final void d(TLRPC.Document document) {
+        s sVar = this.f22216a;
+        sVar.h = document;
+        sVar.f22421a = 2;
+        a aVar = this.f22217b;
+        TL_iv.PageBlock Q3 = t3.Q3(aVar, sVar);
+        if (Q3 instanceof TL_iv.pageBlockVideo) {
+            ((TL_iv.pageBlockVideo) Q3).video_id = document.f28498id;
+        }
+        t3 t3Var = this.f22218c;
+        t3Var.f22486h4.remove(sVar);
+        t3Var.q4(aVar);
+        t3Var.f22495p3.onContentChanged();
     }
 
     @Override
-    public final int p() {
-        return this.G0.getPaddingTop();
+    public final void g(float f10) {
+        this.f22216a.f22425f = f10;
+        a aVar = this.f22217b;
+        t3 t3Var = this.f22218c;
+        View C1 = t3Var.C1(aVar);
+        if (C1 instanceof s4) {
+            C1.requestLayout();
+            C1.invalidate();
+        }
+        t3Var.f22495p3.onContentChanged();
+    }
+
+    @Override
+    public final void e(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void f(TLRPC.Document document) {
     }
 }

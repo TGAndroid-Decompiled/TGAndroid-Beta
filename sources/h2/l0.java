@@ -26,7 +26,7 @@ import di.a8;
 import e2.c1;
 import e2.s0;
 import e2.t0;
-import fi.a6;
+import fi.l4;
 import j$.util.DesugarTimeZone;
 import j$.util.Objects;
 import java.io.IOException;
@@ -145,7 +145,7 @@ public abstract class l0 {
 
     public static e2.u E(int i7, int i10, int i11) {
         e2.t tVar = new e2.t();
-        tVar.f10709r = s0.n("audio/raw");
+        tVar.f10707r = s0.n("audio/raw");
         tVar.J = i10;
         tVar.K = i11;
         tVar.L = i7;
@@ -549,7 +549,7 @@ public abstract class l0 {
     }
 
     public static int c(b3.j jVar, long j3) {
-        int i7 = jVar.f2872b - 1;
+        int i7 = jVar.f2873b - 1;
         int i10 = 0;
         while (i10 <= i7) {
             int i11 = (i10 + i7) >>> 1;
@@ -560,7 +560,7 @@ public abstract class l0 {
             }
         }
         int i12 = i7 + 1;
-        if (i12 < jVar.f2872b && jVar.m(i12) == j3) {
+        if (i12 < jVar.f2873b && jVar.m(i12) == j3) {
             return i12;
         }
         if (i7 == -1) {
@@ -570,7 +570,7 @@ public abstract class l0 {
     }
 
     public static boolean c0(c1 c1Var, boolean z10) {
-        if (c1Var == null || !c1Var.u() || c1Var.i() == 1 || c1Var.i() == 4 || (z10 && c1Var.w0() != 0 && c1Var.w0() != 4)) {
+        if (c1Var == null || !c1Var.v() || c1Var.i() == 1 || c1Var.i() == 4 || (z10 && c1Var.x0() != 0 && c1Var.x0() != 4)) {
             return true;
         }
         return false;
@@ -659,10 +659,10 @@ public abstract class l0 {
         boolean z10;
         boolean z11;
         i9.b bVar = i9.d.d;
-        i9.b bVar2 = bVar.f16173c;
+        i9.b bVar2 = bVar.f16270c;
         if (bVar2 == null) {
-            i9.a aVar = bVar.f16171a;
-            char[] cArr = aVar.f16165b;
+            i9.a aVar = bVar.f16268a;
+            char[] cArr = aVar.f16262b;
             int length = cArr.length;
             int i7 = 0;
             while (true) {
@@ -693,9 +693,9 @@ public abstract class l0 {
                         }
                         cArr2[i11] = c11;
                     }
-                    i9.a aVar2 = new i9.a(p0.s(new StringBuilder(), aVar.f16164a, ".lowerCase()"), cArr2);
+                    i9.a aVar2 = new i9.a(p0.s(new StringBuilder(), aVar.f16261a, ".lowerCase()"), cArr2);
                     if (aVar.h) {
-                        byte[] bArr2 = aVar2.f16169g;
+                        byte[] bArr2 = aVar2.f16266g;
                         if (!aVar2.h) {
                             byte[] copyOf = Arrays.copyOf(bArr2, bArr2.length);
                             for (int i12 = 65; i12 <= 90; i12++) {
@@ -719,7 +719,7 @@ public abstract class l0 {
                                     }
                                 }
                             }
-                            aVar = new i9.a(p0.s(new StringBuilder(), aVar2.f16164a, ".ignoreCase()"), aVar2.f16165b, copyOf, true);
+                            aVar = new i9.a(p0.s(new StringBuilder(), aVar2.f16261a, ".ignoreCase()"), aVar2.f16262b, copyOf, true);
                         }
                     }
                     aVar = aVar2;
@@ -727,18 +727,18 @@ public abstract class l0 {
                     i7++;
                 }
             }
-            if (aVar == bVar.f16171a) {
+            if (aVar == bVar.f16268a) {
                 bVar2 = bVar;
             } else {
                 bVar2 = new i9.b(aVar);
             }
-            bVar.f16173c = bVar2;
+            bVar.f16270c = bVar2;
         }
         int length3 = bArr.length;
         ma.n(0, length3, bArr.length);
-        i9.a aVar3 = bVar2.f16171a;
-        int i14 = aVar3.f16167e;
-        int i15 = aVar3.f16168f;
+        i9.a aVar3 = bVar2.f16268a;
+        int i14 = aVar3.f16264e;
+        int i15 = aVar3.f16265f;
         RoundingMode roundingMode = RoundingMode.CEILING;
         StringBuilder sb2 = new StringBuilder(v0.b(length3, i15) * i14);
         try {
@@ -755,9 +755,9 @@ public abstract class l0 {
 
     public static m9.e0 g0(m9.y yVar, m9.q qVar) {
         ?? obj = new Object();
-        a6 a6Var = new a6(24, obj, yVar);
-        m9.r rVar = m9.r.f20949a;
-        obj.b(a6Var, rVar);
+        l4 l4Var = new l4(26, obj, yVar);
+        m9.r rVar = m9.r.f21045a;
+        obj.b(l4Var, rVar);
         yVar.b(new a8(yVar, obj, qVar, 10), rVar);
         return obj;
     }

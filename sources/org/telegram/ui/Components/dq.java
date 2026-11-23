@@ -1,116 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.util.StateSet;
-import android.view.MotionEvent;
-public final class dq extends o6 {
-    public final Rect f34523s;
-    public Drawable f34524w;
-    public boolean f34525x;
+import android.text.InputFilter;
+import android.text.Spanned;
+public abstract class dq implements InputFilter {
+    public final int f34432a;
 
-    public dq(Context context) {
-        super(context, false, false, false);
-        this.f34523s = new Rect();
-    }
-
-    public Rect getClickBounds() {
-        return this.f34523s;
+    public dq(int i7) {
+        this.f34432a = i7;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f34524w != null) {
-            Rect bounds = getDrawable().getBounds();
-            Rect rect = this.f34523s;
-            rect.set(bounds);
-            int ceil = (int) Math.ceil(getDrawable().c());
-            if (getDrawable().f37751b == 3) {
-                rect.right = rect.left + ceil;
-            } else if (getDrawable().f37751b == 5) {
-                rect.left = rect.right - ceil;
-            } else if (getDrawable().f37751b == 17) {
-                int i7 = (rect.left + rect.right) / 2;
-                int i10 = ceil / 2;
-                rect.left = i7 - i10;
-                rect.right = i7 + i10;
-            }
-            rect.left -= getPaddingLeft();
-            rect.top -= getPaddingTop();
-            rect.right = getPaddingRight() + rect.right;
-            rect.bottom = getPaddingBottom() + rect.bottom;
-            this.f34524w.setBounds(rect);
-            this.f34524w.draw(canvas);
+    public CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
+        int codePointCount = this.f34432a - (Character.codePointCount(spanned, 0, spanned.length()) - Character.codePointCount(spanned, i11, i12));
+        if (codePointCount <= 0) {
+            return "";
         }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
-        if (motionEvent.getAction() == 0 && contains) {
-            this.f34525x = true;
-            Drawable drawable = this.f34524w;
-            if (drawable != null) {
-                drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
-                this.f34524w.setState(new int[]{16842919, 16842910});
-            }
-            invalidate();
-            return contains;
+        if (codePointCount >= Character.codePointCount(charSequence, i7, i10)) {
+            return null;
         }
-        if (motionEvent.getAction() == 1) {
-            if (this.f34525x && contains) {
-                callOnClick();
-            }
-            this.f34525x = false;
-            Drawable drawable2 = this.f34524w;
-            if (drawable2 != null) {
-                drawable2.setState(StateSet.NOTHING);
-                return contains;
-            }
-        } else if (motionEvent.getAction() == 3) {
-            this.f34525x = false;
-            Drawable drawable3 = this.f34524w;
-            if (drawable3 != null) {
-                drawable3.setState(StateSet.NOTHING);
-            }
+        int i13 = codePointCount + i7;
+        if (Character.isHighSurrogate(charSequence.charAt(i13 - 1)) && i13 - 1 == i7) {
+            return "";
         }
-        return contains;
-    }
-
-    @Override
-    public void setBackground(Drawable drawable) {
-        Drawable drawable2 = this.f34524w;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.f34524w = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        invalidate();
-    }
-
-    @Override
-    public void setBackgroundDrawable(Drawable drawable) {
-        Drawable drawable2 = this.f34524w;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.f34524w = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        invalidate();
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f34524w && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+        return charSequence.subSequence(i7, i13);
     }
 }

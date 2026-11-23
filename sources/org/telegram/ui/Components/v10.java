@@ -1,126 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class v10 extends dk0 {
-    public org.telegram.messenger.t3 f40578c;
-    public final int d;
-    public ArrayList h;
-    public org.telegram.ui.b20 f40581n;
-    public final org.telegram.ui.f40 f40582r;
-    public final ArrayList f40579e = new ArrayList();
-    public final ArrayList f40580f = new ArrayList();
-    public boolean f40583s = false;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class v10 extends AnimatorListenerAdapter {
+    public final int f40535a;
+    public final a20 f40536b;
 
-    public v10(org.telegram.messenger.t3 t3Var, int i7, org.telegram.ui.f40 f40Var) {
-        this.f40578c = t3Var;
-        this.d = i7;
-        this.f40582r = f40Var;
+    public v10(a20 a20Var, int i7) {
+        this.f40535a = i7;
+        this.f40536b = a20Var;
     }
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
-        return false;
-    }
-
-    public final void E(ArrayList arrayList, org.telegram.ui.b20 b20Var) {
-        this.h = arrayList;
-        this.f40581n = b20Var;
-    }
-
-    public final void F(org.telegram.ui.x10 x10Var, boolean z10) {
-        this.f40583s = z10;
-        for (int i7 = 0; i7 < x10Var.getChildCount(); i7++) {
-            View childAt = x10Var.getChildAt(i7);
-            if (childAt instanceof u10) {
-                u10 u10Var = (u10) childAt;
-                if (u10Var.getVideoParticipant() != null) {
-                    u10Var.b(z10);
-                }
-            }
-        }
-    }
-
-    public final void G(ek0 ek0Var, boolean z10) {
-        if (this.f40578c == null) {
-            return;
-        }
-        ArrayList arrayList = this.f40579e;
-        ArrayList arrayList2 = this.f40580f;
-        if (z10) {
-            ArrayList arrayList3 = new ArrayList(arrayList2);
-            ArrayList arrayList4 = new ArrayList(arrayList);
-            arrayList2.clear();
-            org.telegram.messenger.t3 t3Var = this.f40578c;
-            if (!t3Var.f26914b.rtmp_stream) {
-                arrayList2.addAll(t3Var.f26918g);
-            }
-            arrayList.clear();
-            org.telegram.messenger.t3 t3Var2 = this.f40578c;
-            if (!t3Var2.f26914b.rtmp_stream) {
-                arrayList.addAll(t3Var2.f26917f);
-            }
-            v4.o.c(new t10(this, arrayList4, arrayList3), true).c(this);
-            org.telegram.messenger.g0.Z3(ek0Var);
-            return;
-        }
-        arrayList2.clear();
-        org.telegram.messenger.t3 t3Var3 = this.f40578c;
-        if (!t3Var3.f26914b.rtmp_stream) {
-            arrayList2.addAll(t3Var3.f26918g);
-        }
-        arrayList.clear();
-        org.telegram.messenger.t3 t3Var4 = this.f40578c;
-        if (!t3Var4.f26914b.rtmp_stream) {
-            arrayList.addAll(t3Var4.f26917f);
-        }
-        f();
-    }
-
-    @Override
-    public final int b() {
-        return this.f40580f.size() + this.f40579e.size();
-    }
-
-    @Override
-    public final void t(v4.e1 e1Var, int i7) {
-        TLRPC.GroupCallParticipant groupCallParticipant;
-        org.telegram.messenger.u3 u3Var;
-        u10 u10Var = (u10) e1Var.f59111a;
-        org.telegram.messenger.u3 u3Var2 = u10Var.f40179f;
-        ArrayList arrayList = this.f40579e;
-        if (i7 < arrayList.size()) {
-            u3Var = (org.telegram.messenger.u3) arrayList.get(i7);
-            groupCallParticipant = ((org.telegram.messenger.u3) arrayList.get(i7)).f27119a;
-        } else {
-            int size = i7 - arrayList.size();
-            ArrayList arrayList2 = this.f40580f;
-            if (size < arrayList2.size()) {
-                groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(i7 - arrayList.size());
-                u3Var = null;
-            } else {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f40535a) {
+            case 0:
+                a20 a20Var = this.f40536b;
+                a20Var.f33327b.setVisibility(8);
+                a20Var.F = false;
+                a20Var.G = 0.0f;
                 return;
-            }
+            default:
+                this.f40536b.f33332e.setVisibility(8);
+                return;
         }
-        u10Var.e(u3Var, groupCallParticipant);
-        if (u3Var2 != null && !u3Var2.equals(u3Var) && u10Var.L && u10Var.getRenderer() != null) {
-            u10Var.b(false);
-            if (u3Var != null) {
-                u10Var.b(true);
-            }
-        } else if (u10Var.L) {
-            if (u10Var.getRenderer() == null && u3Var != null && this.f40583s) {
-                u10Var.b(true);
-            } else if (u10Var.getRenderer() != null && u3Var == null) {
-                u10Var.b(false);
-            }
-        }
-    }
-
-    @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        return new v4.e1(new u10(this, viewGroup.getContext()));
     }
 }

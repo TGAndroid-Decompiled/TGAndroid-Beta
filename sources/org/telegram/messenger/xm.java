@@ -1,23 +1,28 @@
 package org.telegram.messenger;
-public final class xm implements Runnable {
-    public final int f27896a;
-    public final c1 f27897b;
-    public final Object f27898c;
-    public final Object d;
-    public final Object f27899e;
-    public final Object f27900f;
-    public final Object h;
-    public final Object f27901n;
 
-    public xm(c1 c1Var, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7) {
-        this.f27896a = i7;
-        this.f27897b = c1Var;
-        this.h = obj;
-        this.f27898c = obj2;
-        this.d = obj3;
-        this.f27899e = obj4;
-        this.f27900f = obj5;
-        this.f27901n = obj6;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class xm implements Runnable {
+    public final mp f28043a;
+    public final TLRPC.TL_messages_dialogs f28044b;
+    public final ArrayList f28045c;
+    public final TLRPC.messages_Dialogs d;
+    public final int f28046e;
+    public final ArrayList f28047f;
+    public final ArrayList h;
+    public final ArrayList f28048n;
+    public final Runnable f28049r;
+
+    public xm(mp mpVar, TLRPC.TL_messages_dialogs tL_messages_dialogs, ArrayList arrayList, TLRPC.messages_Dialogs messages_dialogs, int i7, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, Runnable runnable) {
+        this.f28043a = mpVar;
+        this.f28044b = tL_messages_dialogs;
+        this.f28045c = arrayList;
+        this.d = messages_dialogs;
+        this.f28046e = i7;
+        this.f28047f = arrayList2;
+        this.h = arrayList3;
+        this.f28048n = arrayList4;
+        this.f28049r = runnable;
     }
 
     @Override

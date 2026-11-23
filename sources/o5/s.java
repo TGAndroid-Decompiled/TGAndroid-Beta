@@ -1,77 +1,43 @@
 package o5;
 
-import ab.c0;
-import android.content.Context;
-import com.google.android.gms.internal.vision.e2;
-import j$.util.DesugarCollections;
-import java.nio.charset.Charset;
-import java.util.Collections;
-import java.util.Set;
-import java.util.concurrent.Executor;
-import org.telegram.ui.web.i1;
+import java.util.HashMap;
+import p4.l0;
 public final class s {
-    public static volatile j f21728e;
-    public final x5.a f21729a;
-    public final x5.a f21730b;
-    public final t5.b f21731c;
-    public final ia.c d;
+    public final i f21824a;
+    public final String f21825b;
+    public final l5.c f21826c;
+    public final l5.e d;
+    public final t f21827e;
 
-    public s(x5.a aVar, x5.a aVar2, t5.b bVar, ia.c cVar, c0 c0Var) {
-        this.f21729a = aVar;
-        this.f21730b = aVar2;
-        this.f21731c = bVar;
-        this.d = cVar;
-        ((Executor) c0Var.f908b).execute(new i1(c0Var, 22));
+    public s(i iVar, String str, l5.c cVar, l5.e eVar, t tVar) {
+        this.f21824a = iVar;
+        this.f21825b = str;
+        this.f21826c = cVar;
+        this.d = eVar;
+        this.f21827e = tVar;
     }
 
-    public static s a() {
-        j jVar = f21728e;
-        if (jVar != null) {
-            return (s) jVar.f21712f.mo24get();
-        }
-        throw new IllegalStateException("Not initialized!");
-    }
-
-    public static void b(Context context) {
-        if (f21728e == null) {
-            synchronized (s.class) {
-                try {
-                    if (f21728e == null) {
-                        ?? obj = new Object();
-                        context.getClass();
-                        obj.f1933a = context;
-                        f21728e = obj.a();
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
-                }
+    public final void a(l5.a aVar, l5.g gVar) {
+        l5.e eVar = this.d;
+        if (eVar != null) {
+            t tVar = this.f21827e;
+            t5.b bVar = tVar.f21831c;
+            i b10 = this.f21824a.b(aVar.f19766c);
+            ?? obj = new Object();
+            obj.f13743f = new HashMap();
+            obj.d = Long.valueOf(tVar.f21829a.o());
+            obj.f13742e = Long.valueOf(tVar.f21830b.o());
+            obj.f13739a = this.f21825b;
+            obj.f13741c = new m(this.f21826c, (byte[]) eVar.apply(aVar.f19765b));
+            obj.f13740b = aVar.f19764a;
+            l5.b bVar2 = aVar.d;
+            if (bVar2 != null) {
+                obj.f13744g = bVar2.f19767a;
             }
+            t5.a aVar2 = (t5.a) bVar;
+            aVar2.f57739b.execute(new l0(aVar2, b10, gVar, obj.b(), 4));
+            return;
         }
-    }
-
-    public final q c(k kVar) {
-        Set singleton;
-        byte[] bytes;
-        if (kVar != null) {
-            singleton = DesugarCollections.unmodifiableSet(m5.a.d);
-        } else {
-            singleton = Collections.singleton(new l5.c("proto"));
-        }
-        h6.m a10 = i.a();
-        kVar.getClass();
-        a10.f13931b = "cct";
-        m5.a aVar = (m5.a) kVar;
-        String str = aVar.f20826a;
-        String str2 = aVar.f20827b;
-        if (str2 == null && str == null) {
-            bytes = null;
-        } else {
-            if (str2 == null) {
-                str2 = "";
-            }
-            bytes = e2.l("1$", str, "\\", str2).getBytes(Charset.forName("UTF-8"));
-        }
-        a10.f13932c = bytes;
-        return new q(singleton, a10.j(), this);
+        throw new NullPointerException("Null transformer");
     }
 }

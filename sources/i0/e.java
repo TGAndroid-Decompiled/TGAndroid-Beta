@@ -8,35 +8,35 @@ import c8.le;
 import c8.n0;
 import java.lang.reflect.Method;
 public abstract class e {
-    public static final n0 f15889a;
-    public static final a0.j f15890b;
+    public static final n0 f15984a;
+    public static final a0.j f15985b;
 
     static {
         le.a("TypefaceCompat static init");
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 29) {
-            f15889a = new n0();
+            f15984a = new n0();
         } else if (i7 >= 28) {
-            f15889a = new h();
+            f15984a = new h();
         } else if (i7 >= 26) {
-            f15889a = new h();
+            f15984a = new h();
         } else {
             if (i7 >= 24) {
-                Method method = g.f15897c;
+                Method method = g.f15992c;
                 if (method == null) {
                     Log.w("TypefaceCompatApi24Impl", "Unable to collect necessary private methods.Fallback to legacy implementation.");
                 }
                 if (method != null) {
-                    f15889a = new n0();
+                    f15984a = new n0();
                 }
             }
-            f15889a = new n0();
+            f15984a = new n0();
         }
-        f15890b = new a0.j(16);
+        f15985b = new a0.j(16);
         Trace.endSection();
     }
 
-    public static android.graphics.Typeface a(android.content.Context r12, h0.d r13, android.content.res.Resources r14, int r15, java.lang.String r16, int r17, int r18, h2.j0 r19) {
+    public static android.graphics.Typeface a(android.content.Context r14, h0.d r15, android.content.res.Resources r16, int r17, java.lang.String r18, int r19, int r20, h2.j0 r21) {
         throw new UnsupportedOperationException("Method not decompiled: i0.e.a(android.content.Context, h0.d, android.content.res.Resources, int, java.lang.String, int, int, h2.j0):android.graphics.Typeface");
     }
 
