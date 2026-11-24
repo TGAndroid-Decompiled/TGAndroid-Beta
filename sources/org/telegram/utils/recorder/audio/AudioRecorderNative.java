@@ -4,14 +4,14 @@ import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicBoolean;
 final class AudioRecorderNative {
-    public long f54761a;
-    public final AtomicBoolean f54762b = new AtomicBoolean(false);
+    public long a;
+    public final AtomicBoolean b = new AtomicBoolean(false);
 
-    public AudioRecorderNative(long j3) {
-        this.f54761a = j3;
+    public AudioRecorderNative(long j) {
+        this.a = j;
     }
 
-    public static AudioRecorderNative a(long j3, long j10, File file, File file2) {
+    public static AudioRecorderNative a(long j, long j2, File file, File file2) {
         String absolutePath;
         String absolutePath2 = file.getAbsolutePath();
         if (file2 == null) {
@@ -19,60 +19,61 @@ final class AudioRecorderNative {
         } else {
             absolutePath = file2.getAbsolutePath();
         }
-        long nCreate = nCreate(absolutePath2, 48000, absolutePath, j3, j10);
+        long nCreate = nCreate(absolutePath2, 48000, absolutePath, j, j2);
         if (nCreate == 0) {
             return null;
         }
         return new AudioRecorderNative(nCreate);
     }
 
-    public static boolean b(String str, String str2, long j3, long j10) {
-        return nCropOpusFile(str, str2, j3, j10);
+    public static boolean b(String str, String str2, long j, long j2) {
+        return nCropOpusFile(str, str2, j, j2);
     }
 
     public static byte[] e(String str) {
         return nGetWaveform(str);
     }
 
-    private static native long nCreate(String str, int i7, String str2, long j3, long j10);
+    private static native long nCreate(String str, int i, String str2, long j, long j2);
 
-    private static native boolean nCropOpusFile(String str, String str2, long j3, long j10);
+    private static native boolean nCropOpusFile(String str, String str2, long j, long j2);
 
-    private static native void nDestroy(long j3);
+    private static native void nDestroy(long j);
 
-    private static native boolean nFinish(long j3);
+    private static native boolean nFinish(long j);
 
-    private static native long nFlush(long j3);
+    private static native long nFlush(long j);
 
     private static native byte[] nGetWaveform(String str);
 
-    private static native int nWriteFrame(long j3, ByteBuffer byteBuffer, int i7);
+    private static native int nWriteFrame(long j, ByteBuffer byteBuffer, int i);
 
     public final boolean c() {
-        if (!this.f54762b.compareAndSet(false, true)) {
+        if (!this.b.compareAndSet(false, true)) {
             return false;
         }
-        long j3 = this.f54761a;
-        this.f54761a = 0L;
-        if (j3 == 0 || !nFinish(j3)) {
+        long j = this.a;
+        this.a = 0L;
+        if (j == 0 || !nFinish(j)) {
             return false;
         }
         return true;
     }
 
     public final long d() {
-        if (!this.f54762b.get()) {
-            return nFlush(this.f54761a);
+        if (!this.b.get()) {
+            return nFlush(this.a);
         }
-        throw new IllegalStateException("Native audio recorder is already released");
+        sc8.j("Native audio recorder is already released");
+        return 0L;
     }
 
     public final void f() {
-        if (this.f54762b.compareAndSet(false, true)) {
-            long j3 = this.f54761a;
-            this.f54761a = 0L;
-            if (j3 != 0) {
-                nDestroy(j3);
+        if (this.b.compareAndSet(false, true)) {
+            long j = this.a;
+            this.a = 0L;
+            if (j != 0) {
+                nDestroy(j);
             }
         }
     }
@@ -85,10 +86,11 @@ final class AudioRecorderNative {
         }
     }
 
-    public final int g(ByteBuffer byteBuffer, int i7) {
-        if (!this.f54762b.get()) {
-            return nWriteFrame(this.f54761a, byteBuffer, i7);
+    public final int g(ByteBuffer byteBuffer, int i) {
+        if (!this.b.get()) {
+            return nWriteFrame(this.a, byteBuffer, i);
         }
-        throw new IllegalStateException("Native audio recorder is already released");
+        sc8.j("Native audio recorder is already released");
+        return 0;
     }
 }

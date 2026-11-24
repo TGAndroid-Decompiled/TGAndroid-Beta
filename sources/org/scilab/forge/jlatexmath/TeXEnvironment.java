@@ -15,34 +15,49 @@ public class TeXEnvironment {
     private int style;
     private String textStyle;
     private float textwidth;
-    private TeXFont f22689tf;
+    private TeXFont tf;
 
-    public TeXEnvironment(int i7, TeXFont teXFont) {
-        this(i7, teXFont, (Color) null, (Color) null);
+    private TeXEnvironment(int i, float f, TeXFont teXFont, Color color, Color color2, String str, boolean z, int i2) {
+        this.lastFontId = -1;
+        this.textwidth = Float.POSITIVE_INFINITY;
+        this.isColored = false;
+        this.style = i;
+        this.scaleFactor = f;
+        this.tf = teXFont;
+        this.textStyle = str;
+        this.smallCap = z;
+        this.depth = i2;
+        this.background = color;
+        this.color = color2;
+        setInterline(1, 1.0f);
     }
 
-    public TeXEnvironment copy() {
-        int i7 = this.depth;
-        if (i7 <= 64) {
-            return new TeXEnvironment(this.style, this.scaleFactor, this.f22689tf, this.background, this.color, this.textStyle, this.smallCap, i7 + 1);
+    public TeXEnvironment copy(TeXFont teXFont) {
+        int i = this.depth;
+        if (i <= 64) {
+            TeXEnvironment teXEnvironment = new TeXEnvironment(this.style, this.scaleFactor, teXFont, this.background, this.color, this.textStyle, this.smallCap, i + 1);
+            teXEnvironment.textwidth = this.textwidth;
+            teXEnvironment.interline = this.interline;
+            teXEnvironment.interlineUnit = this.interlineUnit;
+            return teXEnvironment;
         }
         throw new DepthLimitExceededException();
     }
 
     public TeXEnvironment crampStyle() {
         TeXEnvironment copy = copy();
-        int i7 = this.style;
-        if (i7 % 2 != 1) {
-            i7++;
+        int i = this.style;
+        if (i % 2 != 1) {
+            i++;
         }
-        copy.style = i7;
+        copy.style = i;
         return copy;
     }
 
     public TeXEnvironment denomStyle() {
         TeXEnvironment copy = copy();
-        int i7 = this.style;
-        copy.style = (((i7 / 2) * 2) + 3) - ((i7 / 6) * 2);
+        int i = this.style;
+        copy.style = (((i / 2) << 1) + 3) - ((i / 6) << 1);
         return copy;
     }
 
@@ -59,11 +74,11 @@ public class TeXEnvironment {
     }
 
     public int getLastFontId() {
-        int i7 = this.lastFontId;
-        if (i7 == -1) {
-            return this.f22689tf.getMuFontId();
+        int i = this.lastFontId;
+        if (i == -1) {
+            return this.tf.getMuFontId();
         }
-        return i7;
+        return i;
     }
 
     public float getScaleFactor() {
@@ -71,7 +86,7 @@ public class TeXEnvironment {
     }
 
     public float getSize() {
-        return this.f22689tf.getSize();
+        return this.tf.getSize();
     }
 
     public boolean getSmallCap() {
@@ -79,7 +94,7 @@ public class TeXEnvironment {
     }
 
     public float getSpace() {
-        return this.f22689tf.getScaleFactor() * this.f22689tf.getSpace(this.style);
+        return this.tf.getScaleFactor() * this.tf.getSpace(this.style);
     }
 
     public int getStyle() {
@@ -87,7 +102,7 @@ public class TeXEnvironment {
     }
 
     public TeXFont getTeXFont() {
-        return this.f22689tf;
+        return this.tf;
     }
 
     public String getTextStyle() {
@@ -100,8 +115,8 @@ public class TeXEnvironment {
 
     public TeXEnvironment numStyle() {
         TeXEnvironment copy = copy();
-        int i7 = this.style;
-        copy.style = (i7 + 2) - ((i7 / 6) * 2);
+        int i = this.style;
+        copy.style = (i + 2) - ((i / 6) << 1);
         return copy;
     }
 
@@ -124,93 +139,78 @@ public class TeXEnvironment {
         this.color = color;
     }
 
-    public void setInterline(int i7, float f10) {
-        this.interline = f10;
-        this.interlineUnit = i7;
+    public void setInterline(int i, float f) {
+        this.interline = f;
+        this.interlineUnit = i;
     }
 
-    public void setLastFontId(int i7) {
-        this.lastFontId = i7;
+    public void setLastFontId(int i) {
+        this.lastFontId = i;
     }
 
-    public void setScaleFactor(float f10) {
-        this.scaleFactor = f10;
+    public void setScaleFactor(float f) {
+        this.scaleFactor = f;
     }
 
-    public void setSmallCap(boolean z10) {
-        this.smallCap = z10;
+    public void setSmallCap(boolean z) {
+        this.smallCap = z;
     }
 
-    public void setStyle(int i7) {
-        this.style = i7;
+    public void setStyle(int i) {
+        this.style = i;
     }
 
     public void setTextStyle(String str) {
         this.textStyle = str;
     }
 
-    public void setTextwidth(int i7, float f10) {
-        this.textwidth = SpaceAtom.getFactor(i7, this) * f10;
+    public void setTextwidth(int i, float f) {
+        this.textwidth = SpaceAtom.getFactor(i, this) * f;
     }
 
     public TeXEnvironment subStyle() {
         TeXEnvironment copy = copy();
-        copy.style = ((this.style / 4) * 2) + 5;
+        copy.style = ((this.style / 4) << 1) + 5;
         return copy;
     }
 
     public TeXEnvironment supStyle() {
         TeXEnvironment copy = copy();
-        int i7 = this.style;
-        copy.style = (i7 % 2) + ((i7 / 4) * 2) + 4;
+        int i = this.style;
+        copy.style = (i % 2) + ((i / 4) << 1) + 4;
         return copy;
     }
 
-    public TeXEnvironment(int i7, TeXFont teXFont, int i10, float f10) {
-        this(i7, teXFont, (Color) null, (Color) null);
-        this.textwidth = SpaceAtom.getFactor(i10, this) * f10;
+    public TeXEnvironment(int i, TeXFont teXFont, int i2, float f) {
+        this(i, teXFont, (Color) null, (Color) null);
+        this.textwidth = SpaceAtom.getFactor(i2, this) * f;
     }
 
-    private TeXEnvironment(int i7, TeXFont teXFont, Color color, Color color2) {
+    private TeXEnvironment(int i, TeXFont teXFont, Color color, Color color2) {
         this.lastFontId = -1;
         this.textwidth = Float.POSITIVE_INFINITY;
         this.scaleFactor = 1.0f;
         this.isColored = false;
-        this.style = i7;
-        this.f22689tf = teXFont;
+        this.style = i;
+        this.tf = teXFont;
         this.background = color;
         this.color = color2;
         setInterline(1, 1.0f);
     }
 
-    public TeXEnvironment copy(TeXFont teXFont) {
-        int i7 = this.depth;
-        if (i7 <= 64) {
-            TeXEnvironment teXEnvironment = new TeXEnvironment(this.style, this.scaleFactor, teXFont, this.background, this.color, this.textStyle, this.smallCap, i7 + 1);
-            teXEnvironment.textwidth = this.textwidth;
-            teXEnvironment.interline = this.interline;
-            teXEnvironment.interlineUnit = this.interlineUnit;
-            return teXEnvironment;
+    public TeXEnvironment copy() {
+        int i = this.depth;
+        if (i <= 64) {
+            return new TeXEnvironment(this.style, this.scaleFactor, this.tf, this.background, this.color, this.textStyle, this.smallCap, i + 1);
         }
         throw new DepthLimitExceededException();
     }
 
-    private TeXEnvironment(int i7, float f10, TeXFont teXFont, Color color, Color color2, String str, boolean z10) {
-        this(i7, f10, teXFont, color, color2, str, z10, 0);
+    private TeXEnvironment(int i, float f, TeXFont teXFont, Color color, Color color2, String str, boolean z) {
+        this(i, f, teXFont, color, color2, str, z, 0);
     }
 
-    private TeXEnvironment(int i7, float f10, TeXFont teXFont, Color color, Color color2, String str, boolean z10, int i10) {
-        this.lastFontId = -1;
-        this.textwidth = Float.POSITIVE_INFINITY;
-        this.isColored = false;
-        this.style = i7;
-        this.scaleFactor = f10;
-        this.f22689tf = teXFont;
-        this.textStyle = str;
-        this.smallCap = z10;
-        this.depth = i10;
-        this.background = color;
-        this.color = color2;
-        setInterline(1, 1.0f);
+    public TeXEnvironment(int i, TeXFont teXFont) {
+        this(i, teXFont, (Color) null, (Color) null);
     }
 }

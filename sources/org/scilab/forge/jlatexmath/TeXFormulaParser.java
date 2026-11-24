@@ -1,13 +1,10 @@
 package org.scilab.forge.jlatexmath;
 
-import a8.p0;
-import com.google.android.gms.internal.vision.e2;
 import java.util.HashMap;
 import java.util.Map;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import p5.c;
 import ru.noties.jlatexmath.awt.Color;
 public class TeXFormulaParser {
     private static final String ARG_OBJ_ATTR = "formula";
@@ -33,7 +30,7 @@ public class TeXFormulaParser {
         Object parseValue(String str, String str2);
     }
 
-    public class BooleanValueParser implements ArgumentValueParser {
+    private class BooleanValueParser implements ArgumentValueParser {
         public BooleanValueParser() {
         }
 
@@ -46,11 +43,12 @@ public class TeXFormulaParser {
             if ("false".equals(str)) {
                 return Boolean.FALSE;
             }
-            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c.l("has an invalid '", str2, "'-value : '", str, "'!"));
+            k93.g("PredefinedTeXFormulas.xml", "Argument", "value", b00.i("has an invalid '", str2, "'-value : '", str, "'!"));
+            return null;
         }
     }
 
-    public class CharValueParser implements ArgumentValueParser {
+    private class CharValueParser implements ArgumentValueParser {
         public CharValueParser() {
         }
 
@@ -60,11 +58,12 @@ public class TeXFormulaParser {
             if (str.length() == 1) {
                 return new Character(str.charAt(0));
             }
-            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", "must have a value that consists of exactly 1 character!");
+            k93.g("PredefinedTeXFormulas.xml", "Argument", "value", "must have a value that consists of exactly 1 character!");
+            return null;
         }
     }
 
-    public class ColorConstantValueParser implements ArgumentValueParser {
+    private class ColorConstantValueParser implements ArgumentValueParser {
         public ColorConstantValueParser() {
         }
 
@@ -73,13 +72,13 @@ public class TeXFormulaParser {
             TeXFormulaParser.checkNullValue(str, str2);
             try {
                 return Color.class.getDeclaredField(str).get(null);
-            } catch (Exception e10) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", p0.p("has an unknown color constant name as value : '", str, "'!"), e10);
+            } catch (Exception e) {
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", tb4.y("has an unknown color constant name as value : '", str, "'!"), e);
             }
         }
     }
 
-    public class CreateCommandParser implements ActionParser {
+    private class CreateCommandParser implements ActionParser {
         public CreateCommandParser() {
         }
 
@@ -99,22 +98,22 @@ public class TeXFormulaParser {
                 for (Object obj : argumentValues) {
                     str = str + "Created object: " + obj + "\n";
                 }
-                StringBuilder u10 = p0.u("Error creating the temporary command '", attrValueAndCheckIfNotNull, "' while constructing the predefined command '");
-                u10.append(TeXFormulaParser.this.formulaName);
-                u10.append("'!\n");
-                u10.append(str);
-                throw new XMLResourceParseException(u10.toString());
-            } catch (Exception e10) {
-                StringBuilder u11 = p0.u("Error creating the temporary command '", attrValueAndCheckIfNotNull, "' while constructing the predefined command '");
-                u11.append(TeXFormulaParser.this.formulaName);
-                u11.append("'!\n");
-                u11.append(e10.toString());
-                throw new XMLResourceParseException(u11.toString());
+                StringBuilder p = ug8.p("Error creating the temporary command '", attrValueAndCheckIfNotNull, "' while constructing the predefined command '");
+                p.append(TeXFormulaParser.this.formulaName);
+                p.append("'!\n");
+                p.append(str);
+                throw new XMLResourceParseException(p.toString());
+            } catch (Exception e) {
+                StringBuilder p2 = ug8.p("Error creating the temporary command '", attrValueAndCheckIfNotNull, "' while constructing the predefined command '");
+                p2.append(TeXFormulaParser.this.formulaName);
+                p2.append("'!\n");
+                p2.append(e.toString());
+                throw new XMLResourceParseException(p2.toString());
             }
         }
     }
 
-    public class CreateTeXFormulaParser implements ActionParser {
+    private class CreateTeXFormulaParser implements ActionParser {
         public CreateTeXFormulaParser() {
         }
 
@@ -126,17 +125,17 @@ public class TeXFormulaParser {
             Object[] argumentValues = TeXFormulaParser.this.getArgumentValues(elementsByTagName);
             try {
                 TeXFormulaParser.this.tempFormulas.put(attrValueAndCheckIfNotNull, (TeXFormula) TeXFormula.class.getConstructor(argumentClasses).newInstance(argumentValues));
-            } catch (Exception e10) {
-                StringBuilder u10 = p0.u("Error creating the temporary TeXFormula '", attrValueAndCheckIfNotNull, "' while constructing the predefined TeXFormula '");
-                u10.append(TeXFormulaParser.this.formulaName);
-                u10.append("'!\n");
-                u10.append(e10.toString());
-                throw new XMLResourceParseException(u10.toString());
+            } catch (Exception e) {
+                StringBuilder p = ug8.p("Error creating the temporary TeXFormula '", attrValueAndCheckIfNotNull, "' while constructing the predefined TeXFormula '");
+                p.append(TeXFormulaParser.this.formulaName);
+                p.append("'!\n");
+                p.append(e.toString());
+                throw new XMLResourceParseException(p.toString());
             }
         }
     }
 
-    public class FloatValueParser implements ArgumentValueParser {
+    private class FloatValueParser implements ArgumentValueParser {
         public FloatValueParser() {
         }
 
@@ -145,13 +144,13 @@ public class TeXFormulaParser {
             TeXFormulaParser.checkNullValue(str, str2);
             try {
                 return new Float(Float.parseFloat(str));
-            } catch (NumberFormatException e10) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c.l("has an invalid '", str2, "'-value : '", str, "'!"), e10);
+            } catch (NumberFormatException e) {
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b00.i("has an invalid '", str2, "'-value : '", str, "'!"), e);
             }
         }
     }
 
-    public class IntValueParser implements ArgumentValueParser {
+    private class IntValueParser implements ArgumentValueParser {
         public IntValueParser() {
         }
 
@@ -160,13 +159,13 @@ public class TeXFormulaParser {
             TeXFormulaParser.checkNullValue(str, str2);
             try {
                 return new Float(Integer.parseInt(str));
-            } catch (NumberFormatException e10) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c.l("has an invalid '", str2, "'-value : '", str, "'!"), e10);
+            } catch (NumberFormatException e) {
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b00.i("has an invalid '", str2, "'-value : '", str, "'!"), e);
             }
         }
     }
 
-    public class MethodInvocationParser implements ActionParser {
+    private class MethodInvocationParser implements ActionParser {
         public MethodInvocationParser() {
         }
 
@@ -181,38 +180,40 @@ public class TeXFormulaParser {
                 try {
                     TeXFormula.class.getMethod(attrValueAndCheckIfNotNull, argumentClasses).invoke((TeXFormula) obj, TeXFormulaParser.this.getArgumentValues(elementsByTagName));
                     return;
-                } catch (Exception e10) {
-                    StringBuilder n10 = e2.n("Error invoking the method '", attrValueAndCheckIfNotNull, "' on the temporary TeXFormula '", attrValueAndCheckIfNotNull2, "' while constructing the predefined TeXFormula '");
-                    n10.append(TeXFormulaParser.this.formulaName);
-                    n10.append("'!\n");
-                    n10.append(e10.toString());
-                    throw new XMLResourceParseException(n10.toString());
+                } catch (Exception e) {
+                    StringBuilder l = yjb.l("Error invoking the method '", attrValueAndCheckIfNotNull, "' on the temporary TeXFormula '", attrValueAndCheckIfNotNull2, "' while constructing the predefined TeXFormula '");
+                    l.append(TeXFormulaParser.this.formulaName);
+                    l.append("'!\n");
+                    l.append(e.toString());
+                    throw new XMLResourceParseException(l.toString());
                 }
             }
-            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "formula", p0.p("has an unknown temporary TeXFormula name as value : '", attrValueAndCheckIfNotNull2, "'!"));
+            k93.g("PredefinedTeXFormulas.xml", "Argument", "formula", tb4.y("has an unknown temporary TeXFormula name as value : '", attrValueAndCheckIfNotNull2, "'!"));
         }
     }
 
-    public class ReturnParser implements ActionParser {
+    private class ReturnParser implements ActionParser {
         public ReturnParser() {
         }
 
         @Override
         public void parse(Element element) {
             String attrValueAndCheckIfNotNull = TeXFormulaParser.getAttrValueAndCheckIfNotNull("name", element);
-            Object obj = (TeXFormulaParser.this.type == 0 ? TeXFormulaParser.this.tempCommands : TeXFormulaParser.this.tempFormulas).get(attrValueAndCheckIfNotNull);
+            int i = TeXFormulaParser.this.type;
+            TeXFormulaParser teXFormulaParser = TeXFormulaParser.this;
+            Object obj = (i == 0 ? teXFormulaParser.tempCommands : teXFormulaParser.tempFormulas).get(attrValueAndCheckIfNotNull);
             if (obj != null) {
                 TeXFormulaParser.this.result = obj;
                 return;
             }
-            StringBuilder u10 = p0.u("contains an unknown temporary TeXFormula variable name '", attrValueAndCheckIfNotNull, "' for the predefined TeXFormula '");
-            u10.append(TeXFormulaParser.this.formulaName);
-            u10.append("'!");
-            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Return", "name", u10.toString());
+            StringBuilder p = ug8.p("contains an unknown temporary TeXFormula variable name '", attrValueAndCheckIfNotNull, "' for the predefined TeXFormula '");
+            p.append(TeXFormulaParser.this.formulaName);
+            p.append("'!");
+            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Return", "name", p.toString());
         }
     }
 
-    public class TeXConstantsValueParser implements ArgumentValueParser {
+    private class TeXConstantsValueParser implements ArgumentValueParser {
         public TeXConstantsValueParser() {
         }
 
@@ -221,13 +222,13 @@ public class TeXFormulaParser {
             TeXFormulaParser.checkNullValue(str, str2);
             try {
                 return Integer.valueOf(TeXConstants.class.getDeclaredField(str).getInt(null));
-            } catch (Exception e10) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", p0.p("has an unknown constant name as value : '", str, "'!"), e10);
+            } catch (Exception e) {
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", tb4.y("has an unknown constant name as value : '", str, "'!"), e);
             }
         }
     }
 
-    public class TeXFormulaValueParser implements ArgumentValueParser {
+    private class TeXFormulaValueParser implements ArgumentValueParser {
         public TeXFormulaValueParser() {
         }
 
@@ -240,7 +241,8 @@ public class TeXFormulaParser {
             if (obj != null) {
                 return (TeXFormula) obj;
             }
-            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", p0.p("has an unknown temporary TeXFormula name as value : '", str, "'!"));
+            k93.g("PredefinedTeXFormulas.xml", "Argument", "value", tb4.y("has an unknown temporary TeXFormula name as value : '", str, "'!"));
+            return null;
         }
     }
 
@@ -290,19 +292,20 @@ public class TeXFormulaParser {
         if (!str.equals("")) {
             return;
         }
-        throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", p0.p("is required for an argument of type '", str2, "'!"));
+        k93.g("PredefinedTeXFormulas.xml", "Argument", "value", tb4.y("is required for an argument of type '", str2, "'!"));
     }
 
     public static Class<?>[] getArgumentClasses(NodeList nodeList) {
         Class<?>[] clsArr = new Class[nodeList.getLength()];
-        int i7 = 0;
-        for (int i10 = 0; i10 < nodeList.getLength(); i10++) {
-            Class<?> cls = classMappings.get(getAttrValueAndCheckIfNotNull("type", (Element) nodeList.item(i10)));
+        int i = 0;
+        for (int i2 = 0; i2 < nodeList.getLength(); i2++) {
+            Class<?> cls = classMappings.get(getAttrValueAndCheckIfNotNull("type", (Element) nodeList.item(i2)));
             if (cls != null) {
-                clsArr[i7] = cls;
-                i7++;
+                clsArr[i] = cls;
+                i++;
             } else {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "type", "has an invalid class name value!");
+                k93.g("PredefinedTeXFormulas.xml", "Argument", "type", "has an invalid class name value!");
+                return null;
             }
         }
         return clsArr;
@@ -310,12 +313,12 @@ public class TeXFormulaParser {
 
     public Object[] getArgumentValues(NodeList nodeList) {
         Object[] objArr = new Object[nodeList.getLength()];
-        int i7 = 0;
-        for (int i10 = 0; i10 < nodeList.getLength(); i10++) {
-            Element element = (Element) nodeList.item(i10);
+        int i = 0;
+        for (int i2 = 0; i2 < nodeList.getLength(); i2++) {
+            Element element = (Element) nodeList.item(i2);
             String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("type", element);
-            objArr[i7] = this.argValueParsers.get(attrValueAndCheckIfNotNull).parseValue(element.getAttribute("value"), attrValueAndCheckIfNotNull);
-            i7++;
+            objArr[i] = this.argValueParsers.get(attrValueAndCheckIfNotNull).parseValue(element.getAttribute("value"), attrValueAndCheckIfNotNull);
+            i++;
         }
         return objArr;
     }
@@ -325,13 +328,14 @@ public class TeXFormulaParser {
         if (!attribute.equals("")) {
             return attribute;
         }
-        throw new XMLResourceParseException("PredefinedTeXFormulas.xml", element.getTagName(), str, null);
+        k93.g("PredefinedTeXFormulas.xml", element.getTagName(), str, null);
+        return null;
     }
 
     public Object parse() {
         NodeList childNodes = this.formula.getChildNodes();
-        for (int i7 = 0; i7 < childNodes.getLength(); i7++) {
-            Node item = childNodes.item(i7);
+        for (int i = 0; i < childNodes.getLength(); i++) {
+            Node item = childNodes.item(i);
             if (item.getNodeType() != 3) {
                 Element element = (Element) item;
                 ActionParser actionParser = this.actionParsers.get(element.getTagName());
@@ -343,7 +347,7 @@ public class TeXFormulaParser {
         return this.result;
     }
 
-    public class StringValueParser implements ArgumentValueParser {
+    private class StringValueParser implements ArgumentValueParser {
         public StringValueParser() {
         }
 

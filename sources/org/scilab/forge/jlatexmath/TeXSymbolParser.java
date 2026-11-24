@@ -1,6 +1,5 @@
 package org.scilab.forge.jlatexmath;
 
-import a8.p0;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +14,16 @@ public class TeXSymbolParser {
     private static Map<String, Integer> typeMappings = new HashMap();
     private Element root;
 
-    public TeXSymbolParser() {
-        this(JLatexMathAndroid.getResourceAsStream("TeXSymbols.xml"), "TeXSymbols.xml");
+    public TeXSymbolParser(InputStream inputStream, String str) {
+        try {
+            DocumentBuilderFactory newInstance = DocumentBuilderFactory.newInstance();
+            newInstance.setIgnoringElementContentWhitespace(true);
+            newInstance.setIgnoringComments(true);
+            this.root = newInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
+            setTypeMappings();
+        } catch (Exception e) {
+            throw new XMLResourceParseException(str, e);
+        }
     }
 
     private static String getAttrValueAndCheckIfNotNull(String str, Element element) {
@@ -24,7 +31,8 @@ public class TeXSymbolParser {
         if (!attribute.equals("")) {
             return attribute;
         }
-        throw new XMLResourceParseException("TeXSymbols.xml", element.getTagName(), str, null);
+        k93.g("TeXSymbols.xml", element.getTagName(), str, null);
+        return null;
     }
 
     private void setTypeMappings() {
@@ -39,38 +47,31 @@ public class TeXSymbolParser {
     }
 
     public Map<String, SymbolAtom> readSymbols() {
-        boolean z10;
+        boolean z;
         HashMap hashMap = new HashMap();
         NodeList elementsByTagName = this.root.getElementsByTagName("Symbol");
-        for (int i7 = 0; i7 < elementsByTagName.getLength(); i7++) {
-            Element element = (Element) elementsByTagName.item(i7);
+        for (int i = 0; i < elementsByTagName.getLength(); i++) {
+            Element element = (Element) elementsByTagName.item(i);
             String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", element);
             String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("type", element);
             String attribute = element.getAttribute("del");
             if (attribute != null && attribute.equals("true")) {
-                z10 = true;
+                z = true;
             } else {
-                z10 = false;
+                z = false;
             }
             Integer num = typeMappings.get(attrValueAndCheckIfNotNull2);
             if (num != null) {
-                hashMap.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z10));
+                hashMap.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z));
             } else {
-                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", p0.p("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
+                k93.g("TeXSymbols.xml", "Symbol", "type", tb4.y("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
+                return null;
             }
         }
         return hashMap;
     }
 
-    public TeXSymbolParser(InputStream inputStream, String str) {
-        try {
-            DocumentBuilderFactory newInstance = DocumentBuilderFactory.newInstance();
-            newInstance.setIgnoringElementContentWhitespace(true);
-            newInstance.setIgnoringComments(true);
-            this.root = newInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
-            setTypeMappings();
-        } catch (Exception e10) {
-            throw new XMLResourceParseException(str, e10);
-        }
+    public TeXSymbolParser() {
+        this(JLatexMathAndroid.getResourceAsStream("TeXSymbols.xml"), "TeXSymbols.xml");
     }
 }

@@ -14,12 +14,12 @@ class BaseBitrateAdjuster implements BitrateAdjuster {
     }
 
     @Override
-    public void setTargets(int i7, double d) {
-        this.targetBitrateBps = i7;
+    public void setTargets(int i, double d) {
+        this.targetBitrateBps = i;
         this.targetFramerateFps = d;
     }
 
     @Override
-    public void reportEncodedFrame(int i7) {
+    public void reportEncodedFrame(int i) {
     }
 }

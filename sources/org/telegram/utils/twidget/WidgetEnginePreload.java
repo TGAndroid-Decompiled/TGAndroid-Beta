@@ -6,9 +6,9 @@ import android.util.Log;
 public final class WidgetEnginePreload implements ZygotePreload {
     public void doPreload(ApplicationInfo applicationInfo) {
         try {
-            WidgetEngineService.c(applicationInfo.sourceDir);
-        } catch (Throwable th2) {
-            Log.e("WidgetEngine", "app zygote preload failed", th2);
+            WidgetEngineService.e(applicationInfo.sourceDir);
+        } catch (Throwable th) {
+            Log.e("WidgetEngine", "app zygote preload failed", th);
         }
     }
 }

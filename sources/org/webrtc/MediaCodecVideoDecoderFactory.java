@@ -15,21 +15,21 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
     }
 
     private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
-        int i7 = 0;
+        int i = 0;
         while (true) {
             MediaCodecInfo mediaCodecInfo = null;
-            if (i7 >= MediaCodecList.getCodecCount()) {
+            if (i >= MediaCodecList.getCodecCount()) {
                 return null;
             }
             try {
-                mediaCodecInfo = MediaCodecList.getCodecInfoAt(i7);
-            } catch (IllegalArgumentException e10) {
-                Logging.e("MediaCodecVideoDecoderFactory", "Cannot retrieve decoder codec info", e10);
+                mediaCodecInfo = MediaCodecList.getCodecInfoAt(i);
+            } catch (IllegalArgumentException e) {
+                Logging.e("MediaCodecVideoDecoderFactory", "Cannot retrieve decoder codec info", e);
             }
             if (mediaCodecInfo != null && !mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
                 return mediaCodecInfo;
             }
-            i7++;
+            i++;
         }
     }
 
@@ -70,8 +70,8 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
     public VideoCodecInfo[] getSupportedCodecs() {
         ArrayList arrayList = new ArrayList();
         VideoCodecMimeType[] videoCodecMimeTypeArr = {VideoCodecMimeType.VP8, VideoCodecMimeType.VP9, VideoCodecMimeType.H264, VideoCodecMimeType.AV1, VideoCodecMimeType.H265};
-        for (int i7 = 0; i7 < 5; i7++) {
-            VideoCodecMimeType videoCodecMimeType = videoCodecMimeTypeArr[i7];
+        for (int i = 0; i < 5; i++) {
+            VideoCodecMimeType videoCodecMimeType = videoCodecMimeTypeArr[i];
             MediaCodecInfo findCodecForType = findCodecForType(videoCodecMimeType);
             if (findCodecForType != null) {
                 String name = videoCodecMimeType.name();

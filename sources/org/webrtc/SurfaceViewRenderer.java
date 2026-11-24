@@ -33,8 +33,8 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         getHolder().addCallback(surfaceEglRenderer);
     }
 
-    public static void a(SurfaceViewRenderer surfaceViewRenderer, int i7, int i10) {
-        surfaceViewRenderer.lambda$onFrameResolutionChanged$0(i7, i10);
+    public static void a(SurfaceViewRenderer surfaceViewRenderer, int i, int i2) {
+        surfaceViewRenderer.lambda$onFrameResolutionChanged$0(i, i2);
     }
 
     private String getResourceName() {
@@ -45,9 +45,9 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         }
     }
 
-    public void lambda$onFrameResolutionChanged$0(int i7, int i10) {
-        this.rotatedFrameWidth = i7;
-        this.rotatedFrameHeight = i10;
+    public void lambda$onFrameResolutionChanged$0(int i, int i2) {
+        this.rotatedFrameWidth = i;
+        this.rotatedFrameHeight = i2;
         updateSurfaceSize();
         requestLayout();
     }
@@ -68,29 +68,29 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         ThreadUtils.checkIsOnMainThread();
         if (this.enableFixedSize && this.rotatedFrameWidth != 0 && this.rotatedFrameHeight != 0 && getWidth() != 0 && getHeight() != 0) {
             float width = getWidth() / getHeight();
-            int i7 = this.rotatedFrameWidth;
-            int i10 = this.rotatedFrameHeight;
-            if (i7 / i10 > width) {
-                i7 = (int) (i10 * width);
+            int i = this.rotatedFrameWidth;
+            int i2 = this.rotatedFrameHeight;
+            if (i / i2 > width) {
+                i = (int) (i2 * width);
             } else {
-                i10 = (int) (i7 / width);
+                i2 = (int) (i / width);
             }
-            int min = Math.min(getWidth(), i7);
-            int min2 = Math.min(getHeight(), i10);
-            StringBuilder sb2 = new StringBuilder("updateSurfaceSize. Layout size: ");
-            sb2.append(getWidth());
-            sb2.append("x");
-            sb2.append(getHeight());
-            sb2.append(", frame size: ");
-            sb2.append(this.rotatedFrameWidth);
-            sb2.append("x");
-            i5.c.z(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
-            sb2.append(min2);
-            sb2.append(", old surface size: ");
-            sb2.append(this.surfaceWidth);
-            sb2.append("x");
-            sb2.append(this.surfaceHeight);
-            logD(sb2.toString());
+            int min = Math.min(getWidth(), i);
+            int min2 = Math.min(getHeight(), i2);
+            StringBuilder sb = new StringBuilder("updateSurfaceSize. Layout size: ");
+            sb.append(getWidth());
+            sb.append("x");
+            sb.append(getHeight());
+            sb.append(", frame size: ");
+            sb.append(this.rotatedFrameWidth);
+            sb.append("x");
+            ir2.w(sb, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
+            sb.append(min2);
+            sb.append(", old surface size: ");
+            sb.append(this.surfaceWidth);
+            sb.append("x");
+            sb.append(this.surfaceHeight);
+            logD(sb.toString());
             if (min == this.surfaceWidth && min2 == this.surfaceHeight) {
                 return;
             }
@@ -104,8 +104,8 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         getHolder().setSizeFromLayout();
     }
 
-    public void addFrameListener(EglRenderer.FrameListener frameListener, float f10, RendererCommon.GlDrawer glDrawer) {
-        this.eglRenderer.addFrameListener(frameListener, f10, glDrawer);
+    public void addFrameListener(EglRenderer.FrameListener frameListener, float f, RendererCommon.GlDrawer glDrawer) {
+        this.eglRenderer.addFrameListener(frameListener, f, glDrawer);
     }
 
     public void clearImage() {
@@ -116,8 +116,12 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         this.eglRenderer.disableFpsReduction();
     }
 
-    public void init(EglBase.Context context, RendererCommon.RendererEvents rendererEvents) {
-        init(context, rendererEvents, EglBase.CONFIG_PLAIN, new GlRectDrawer());
+    public void init(EglBase.Context context, RendererCommon.RendererEvents rendererEvents, int[] iArr, RendererCommon.GlDrawer glDrawer) {
+        ThreadUtils.checkIsOnMainThread();
+        this.rendererEvents = rendererEvents;
+        this.rotatedFrameWidth = 0;
+        this.rotatedFrameHeight = 0;
+        this.eglRenderer.init(context, this, iArr, glDrawer);
     }
 
     @Override
@@ -134,34 +138,34 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
     }
 
     @Override
-    public void onFrameResolutionChanged(int i7, int i10, int i11) {
-        int i12;
+    public void onFrameResolutionChanged(int i, int i2, int i3) {
+        int i4;
         RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
         if (rendererEvents != null) {
-            rendererEvents.onFrameResolutionChanged(i7, i10, i11);
+            rendererEvents.onFrameResolutionChanged(i, i2, i3);
         }
-        if (i11 != 0 && i11 != 180) {
-            i12 = i10;
+        if (i3 != 0 && i3 != 180) {
+            i4 = i2;
         } else {
-            i12 = i7;
+            i4 = i;
         }
-        if (i11 == 0 || i11 == 180) {
-            i7 = i10;
+        if (i3 == 0 || i3 == 180) {
+            i = i2;
         }
-        postOrRun(new jg.q(this, i12, i7, 17));
+        postOrRun(new bt(this, i4, i, (byte) 16));
     }
 
     @Override
-    public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         ThreadUtils.checkIsOnMainThread();
-        this.eglRenderer.setLayoutAspectRatio((i11 - i7) / (i12 - i10));
+        this.eglRenderer.setLayoutAspectRatio((i3 - i) / (i4 - i2));
         updateSurfaceSize();
     }
 
     @Override
-    public void onMeasure(int i7, int i10) {
+    public void onMeasure(int i, int i2) {
         ThreadUtils.checkIsOnMainThread();
-        Point measure = this.videoLayoutMeasure.measure(true, i7, i10, this.rotatedFrameWidth, this.rotatedFrameHeight);
+        Point measure = this.videoLayoutMeasure.measure(true, i, i2, this.rotatedFrameWidth, this.rotatedFrameHeight);
         setMeasuredDimension(measure.x, measure.y);
         logD("onMeasure(). New size: " + measure.x + "x" + measure.y);
     }
@@ -178,23 +182,18 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         this.eglRenderer.removeFrameListener(frameListener);
     }
 
-    public void setEnableHardwareScaler(boolean z10) {
+    public void setEnableHardwareScaler(boolean z) {
         ThreadUtils.checkIsOnMainThread();
-        this.enableFixedSize = z10;
+        this.enableFixedSize = z;
         updateSurfaceSize();
     }
 
-    public void setFpsReduction(float f10) {
-        this.eglRenderer.setFpsReduction(f10);
+    public void setFpsReduction(float f) {
+        this.eglRenderer.setFpsReduction(f);
     }
 
-    public void setMirror(boolean z10) {
-        this.eglRenderer.setMirror(z10);
-    }
-
-    @Override
-    public final void setParentSink(VideoSink videoSink) {
-        d0.a(this, videoSink);
+    public void setMirror(boolean z) {
+        this.eglRenderer.setMirror(z);
     }
 
     public void setScalingType(RendererCommon.ScalingType scalingType) {
@@ -211,22 +210,18 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         updateSurfaceSize();
     }
 
-    public void addFrameListener(EglRenderer.FrameListener frameListener, float f10) {
-        this.eglRenderer.addFrameListener(frameListener, f10);
-    }
-
-    public void init(EglBase.Context context, RendererCommon.RendererEvents rendererEvents, int[] iArr, RendererCommon.GlDrawer glDrawer) {
-        ThreadUtils.checkIsOnMainThread();
-        this.rendererEvents = rendererEvents;
-        this.rotatedFrameWidth = 0;
-        this.rotatedFrameHeight = 0;
-        this.eglRenderer.init(context, this, iArr, glDrawer);
+    public void addFrameListener(EglRenderer.FrameListener frameListener, float f) {
+        this.eglRenderer.addFrameListener(frameListener, f);
     }
 
     public void setScalingType(RendererCommon.ScalingType scalingType, RendererCommon.ScalingType scalingType2) {
         ThreadUtils.checkIsOnMainThread();
         this.videoLayoutMeasure.setScalingType(scalingType, scalingType2);
         requestLayout();
+    }
+
+    public void init(EglBase.Context context, RendererCommon.RendererEvents rendererEvents) {
+        init(context, rendererEvents, EglBase.CONFIG_PLAIN, new GlRectDrawer());
     }
 
     public SurfaceViewRenderer(Context context, AttributeSet attributeSet) {
@@ -241,10 +236,14 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
     }
 
     @Override
+    public final void setParentSink(VideoSink videoSink) {
+    }
+
+    @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int i7, int i10, int i11) {
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i2, int i3) {
     }
 }

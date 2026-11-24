@@ -6,13 +6,13 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 public interface DatePrinter {
-    String format(long j3);
+    String format(long j);
 
     String format(Calendar calendar);
 
     String format(Date date);
 
-    StringBuffer format(long j3, StringBuffer stringBuffer);
+    StringBuffer format(long j, StringBuffer stringBuffer);
 
     StringBuffer format(Object obj, StringBuffer stringBuffer, FieldPosition fieldPosition);
 

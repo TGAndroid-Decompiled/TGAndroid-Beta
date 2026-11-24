@@ -2,31 +2,31 @@ package org.telegram.tgnet;
 public interface OutputSerializedData {
     int getPosition();
 
-    void skip(int i7);
+    void skip(int i);
 
-    void writeBool(boolean z10);
+    void writeBool(boolean z);
 
-    void writeByte(byte b10);
+    void writeByte(byte b);
 
-    void writeByte(int i7);
+    void writeByte(int i);
 
     void writeByteArray(byte[] bArr);
 
-    void writeByteArray(byte[] bArr, int i7, int i10);
+    void writeByteArray(byte[] bArr, int i, int i2);
 
     void writeByteBuffer(NativeByteBuffer nativeByteBuffer);
 
     void writeBytes(byte[] bArr);
 
-    void writeBytes(byte[] bArr, int i7, int i10);
+    void writeBytes(byte[] bArr, int i, int i2);
 
     void writeDouble(double d);
 
-    void writeFloat(float f10);
+    void writeFloat(float f);
 
-    void writeInt32(int i7);
+    void writeInt32(int i);
 
-    void writeInt64(long j3);
+    void writeInt64(long j);
 
     void writeString(String str);
 }

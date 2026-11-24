@@ -7,7 +7,6 @@ import android.os.Trace;
 import android.view.Choreographer;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.TimeUnit;
 public final class RenderSynchronizer {
     private static final float DEFAULT_TARGET_FPS = 30.0f;
     private static final String TAG = "RenderSynchronizer";
@@ -27,13 +26,13 @@ public final class RenderSynchronizer {
         void onRenderWindowOpen();
     }
 
-    public RenderSynchronizer(float f10) {
+    public RenderSynchronizer(float f) {
         this.lock = new Object();
         this.listeners = new CopyOnWriteArrayList();
-        this.targetFrameIntervalNanos = Math.round(((float) TimeUnit.SECONDS.toNanos(1L)) / f10);
+        this.targetFrameIntervalNanos = Math.round(1.0E9f / f);
         Handler handler = new Handler(Looper.getMainLooper());
         this.mainThreadHandler = handler;
-        handler.post(new n(this, 1));
+        handler.post(new v69(this, (byte) 1));
         Logging.d("RenderSynchronizer", "Created");
     }
 
@@ -50,28 +49,24 @@ public final class RenderSynchronizer {
     }
 
     public void lambda$registerListener$1() {
-        this.choreographer.postFrameCallback(new o(this));
+        this.choreographer.postFrameCallback(new fp4(this, (byte) 3));
     }
 
-    public void onDisplayRefreshCycleBegin(long j3) {
+    public void onDisplayRefreshCycleBegin(long j) {
         synchronized (this.lock) {
-            try {
-                if (this.listeners.isEmpty()) {
-                    Logging.d("RenderSynchronizer", "No listeners, unsubscribing to frame callbacks");
-                    this.isListening = false;
-                    return;
-                }
-                this.choreographer.postFrameCallback(new o(this));
-                long j10 = j3 - this.lastOpenedTimeNanos;
-                this.lastRefreshTimeNanos = j3;
-                if (Math.abs(j10 - this.targetFrameIntervalNanos) < Math.abs((j10 - this.targetFrameIntervalNanos) + (j3 - this.lastRefreshTimeNanos))) {
-                    this.lastOpenedTimeNanos = j3;
-                    openRenderWindow();
-                } else if (this.renderWindowOpen) {
-                    closeRenderWindow();
-                }
-            } catch (Throwable th2) {
-                throw th2;
+            if (this.listeners.isEmpty()) {
+                Logging.d("RenderSynchronizer", "No listeners, unsubscribing to frame callbacks");
+                this.isListening = false;
+                return;
+            }
+            this.choreographer.postFrameCallback(new fp4(this, (byte) 3));
+            long j2 = j - this.lastOpenedTimeNanos;
+            this.lastRefreshTimeNanos = j;
+            if (Math.abs(j2 - this.targetFrameIntervalNanos) < Math.abs((j2 - this.targetFrameIntervalNanos) + (j - this.lastRefreshTimeNanos))) {
+                this.lastOpenedTimeNanos = j;
+                openRenderWindow();
+            } else if (this.renderWindowOpen) {
+                closeRenderWindow();
             }
         }
     }
@@ -85,28 +80,24 @@ public final class RenderSynchronizer {
     }
 
     private void traceRenderWindowChange() {
-        long j3;
+        long j;
         if (Build.VERSION.SDK_INT >= 29) {
             if (this.renderWindowOpen) {
-                j3 = 1;
+                j = 1;
             } else {
-                j3 = 0;
+                j = 0;
             }
-            Trace.setCounter("RenderWindow", j3);
+            Trace.setCounter("RenderWindow", j);
         }
     }
 
     public void registerListener(Listener listener) {
         this.listeners.add(listener);
         synchronized (this.lock) {
-            try {
-                if (!this.isListening) {
-                    Logging.d("RenderSynchronizer", "First listener, subscribing to frame callbacks");
-                    this.isListening = true;
-                    this.mainThreadHandler.post(new n(this, 0));
-                }
-            } catch (Throwable th2) {
-                throw th2;
+            if (!this.isListening) {
+                Logging.d("RenderSynchronizer", "First listener, subscribing to frame callbacks");
+                this.isListening = true;
+                this.mainThreadHandler.post(new v69(this, (byte) 0));
             }
         }
     }

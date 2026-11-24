@@ -6,11 +6,11 @@ public class RendererCommon {
     private static float BALANCED_VISIBLE_FRACTION = 0.5625f;
 
     public interface GlDrawer {
-        void drawOes(int i7, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z10);
+        void drawOes(int i, int i2, int i3, int i4, int i5, float[] fArr, int i6, int i7, int i8, int i9, int i10, int i11, boolean z);
 
-        void drawRgb(int i7, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z10);
+        void drawRgb(int i, int i2, int i3, int i4, int i5, float[] fArr, int i6, int i7, int i8, int i9, int i10, int i11, boolean z);
 
-        void drawYuv(int[] iArr, int i7, int i10, int i11, int i12, float[] fArr, int i13, int i14, int i15, int i16, int i17, int i18, boolean z10);
+        void drawYuv(int[] iArr, int i, int i2, int i3, int i4, float[] fArr, int i5, int i6, int i7, int i8, int i9, int i10, boolean z);
 
         void release();
     }
@@ -18,7 +18,7 @@ public class RendererCommon {
     public interface RendererEvents {
         void onFirstFrameRendered();
 
-        void onFrameResolutionChanged(int i7, int i10, int i11);
+        void onFrameResolutionChanged(int i, int i2, int i3);
     }
 
     public enum ScalingType {
@@ -27,42 +27,13 @@ public class RendererCommon {
         SCALE_ASPECT_BALANCED
     }
 
-    public static class VideoLayoutMeasure {
-        private float visibleFractionMatchOrientation;
-        private float visibleFractionMismatchOrientation;
-
-        public VideoLayoutMeasure() {
-            ScalingType scalingType = ScalingType.SCALE_ASPECT_BALANCED;
-            this.visibleFractionMatchOrientation = RendererCommon.convertScalingTypeToVisibleFraction(scalingType);
-            this.visibleFractionMismatchOrientation = RendererCommon.convertScalingTypeToVisibleFraction(scalingType);
-        }
-
-        public android.graphics.Point measure(boolean r8, int r9, int r10, int r11, int r12) {
-            throw new UnsupportedOperationException("Method not decompiled: org.webrtc.RendererCommon.VideoLayoutMeasure.measure(boolean, int, int, int, int):android.graphics.Point");
-        }
-
-        public void setScalingType(ScalingType scalingType) {
-            setScalingType(scalingType, scalingType);
-        }
-
-        public void setVisibleFraction(float f10, float f11) {
-            this.visibleFractionMatchOrientation = f10;
-            this.visibleFractionMismatchOrientation = f11;
-        }
-
-        public void setScalingType(ScalingType scalingType, ScalingType scalingType2) {
-            this.visibleFractionMatchOrientation = RendererCommon.convertScalingTypeToVisibleFraction(scalingType);
-            this.visibleFractionMismatchOrientation = RendererCommon.convertScalingTypeToVisibleFraction(scalingType2);
-        }
-    }
-
     private static void adjustOrigin(float[] fArr) {
-        float f10 = fArr[12] - ((fArr[0] + fArr[4]) * 0.5f);
-        fArr[12] = f10;
-        float f11 = fArr[13] - ((fArr[1] + fArr[5]) * 0.5f);
-        fArr[13] = f11;
-        fArr[12] = f10 + 0.5f;
-        fArr[13] = f11 + 0.5f;
+        float f = fArr[12] - ((fArr[0] + fArr[4]) * 0.5f);
+        fArr[12] = f;
+        float f2 = fArr[13] - ((fArr[1] + fArr[5]) * 0.5f);
+        fArr[13] = f2;
+        fArr[12] = f + 0.5f;
+        fArr[13] = f2 + 0.5f;
     }
 
     public static float[] convertMatrixFromAndroidGraphicsMatrix(Matrix matrix) {
@@ -85,41 +56,71 @@ public class RendererCommon {
                 if (ordinal == 2) {
                     return BALANCED_VISIBLE_FRACTION;
                 }
-                throw new IllegalArgumentException();
+                sc8.e();
+                return 0.0f;
             }
             return 0.0f;
         }
         return 1.0f;
     }
 
-    public static Point getDisplaySize(ScalingType scalingType, float f10, int i7, int i10) {
-        return getDisplaySize(convertScalingTypeToVisibleFraction(scalingType), f10, i7, i10);
+    public static Point getDisplaySize(float f, float f2, int i, int i2) {
+        if (f != 0.0f && f2 != 0.0f) {
+            return new Point(Math.min(i, Math.round((i2 / f) * f2)), Math.min(i2, Math.round((i / f) / f2)));
+        }
+        return new Point(i, i2);
     }
 
-    public static float[] getLayoutMatrix(boolean z10, float f10, float f11) {
-        float f12;
-        float f13;
-        if (f11 > f10) {
-            f13 = f10 / f11;
-            f12 = 1.0f;
+    public static float[] getLayoutMatrix(boolean z, float f, float f2) {
+        float f3;
+        float f4;
+        if (f2 > f) {
+            f4 = f / f2;
+            f3 = 1.0f;
         } else {
-            f12 = f11 / f10;
-            f13 = 1.0f;
+            f3 = f2 / f;
+            f4 = 1.0f;
         }
-        if (z10) {
-            f12 *= -1.0f;
+        if (z) {
+            f3 *= -1.0f;
         }
         float[] fArr = new float[16];
         android.opengl.Matrix.setIdentityM(fArr, 0);
-        android.opengl.Matrix.scaleM(fArr, 0, f12, f13, 1.0f);
+        android.opengl.Matrix.scaleM(fArr, 0, f3, f4, 1.0f);
         adjustOrigin(fArr);
         return fArr;
     }
 
-    public static Point getDisplaySize(float f10, float f11, int i7, int i10) {
-        if (f10 != 0.0f && f11 != 0.0f) {
-            return new Point(Math.min(i7, Math.round((i10 / f10) * f11)), Math.min(i10, Math.round((i7 / f10) / f11)));
+    public static class VideoLayoutMeasure {
+        private float visibleFractionMatchOrientation;
+        private float visibleFractionMismatchOrientation;
+
+        public VideoLayoutMeasure() {
+            ScalingType scalingType = ScalingType.SCALE_ASPECT_BALANCED;
+            this.visibleFractionMatchOrientation = RendererCommon.convertScalingTypeToVisibleFraction(scalingType);
+            this.visibleFractionMismatchOrientation = RendererCommon.convertScalingTypeToVisibleFraction(scalingType);
         }
-        return new Point(i7, i10);
+
+        public android.graphics.Point measure(boolean r8, int r9, int r10, int r11, int r12) {
+            throw new UnsupportedOperationException("Method not decompiled: org.webrtc.RendererCommon.VideoLayoutMeasure.measure(boolean, int, int, int, int):android.graphics.Point");
+        }
+
+        public void setScalingType(ScalingType scalingType, ScalingType scalingType2) {
+            this.visibleFractionMatchOrientation = RendererCommon.convertScalingTypeToVisibleFraction(scalingType);
+            this.visibleFractionMismatchOrientation = RendererCommon.convertScalingTypeToVisibleFraction(scalingType2);
+        }
+
+        public void setVisibleFraction(float f, float f2) {
+            this.visibleFractionMatchOrientation = f;
+            this.visibleFractionMismatchOrientation = f2;
+        }
+
+        public void setScalingType(ScalingType scalingType) {
+            setScalingType(scalingType, scalingType);
+        }
+    }
+
+    public static Point getDisplaySize(ScalingType scalingType, float f, int i, int i2) {
+        return getDisplaySize(convertScalingTypeToVisibleFraction(scalingType), f, i, i2);
     }
 }

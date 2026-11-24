@@ -1,28 +1,29 @@
 package org.telegram.messenger.voip;
-public final class e implements Runnable {
-    public final int f27578a;
-    public final GroupCallMessagesController f27579b;
-    public final long f27580c;
-    public final GroupCallMessage d;
 
-    public e(GroupCallMessagesController groupCallMessagesController, long j3, GroupCallMessage groupCallMessage, int i7) {
-        this.f27578a = i7;
-        this.f27579b = groupCallMessagesController;
-        this.f27580c = j3;
-        this.d = groupCallMessage;
+import android.media.AudioManager;
+import org.telegram.messenger.voip.VoIPService;
+public final class e implements Runnable {
+    public final byte a;
+    public final Object b;
+
+    public e(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f27578a) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
             case 0:
-                GroupCallMessagesController.a(this.f27579b, this.f27580c, this.d);
+                ((VoIPService.AnonymousClass1) obj).lambda$run$0();
                 return;
             case 1:
-                GroupCallMessagesController.d(this.f27579b, this.f27580c, this.d);
+                VoIPService.AnonymousClass1.lambda$run$1((AudioManager) obj);
                 return;
             default:
-                GroupCallMessagesController.f(this.f27579b, this.f27580c, this.d);
+                ((VoIPService.AnonymousClass10) obj).lambda$run$0();
                 return;
         }
     }

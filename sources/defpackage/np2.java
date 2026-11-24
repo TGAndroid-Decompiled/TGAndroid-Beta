@@ -1,0 +1,33 @@
+package defpackage;
+
+import java.util.UUID;
+public final class np2 implements op4 {
+    public final byte a;
+    public final Object b;
+
+    public np2(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
+    }
+
+    @Override
+    public final Object invoke() {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                ((wp2) obj).reportFullyDrawn();
+                return null;
+            case 1:
+                ((jh4) obj).a.await();
+                return g5c.a;
+            default:
+                ((v8c) obj).getClass();
+                UUID randomUUID = UUID.randomUUID();
+                randomUUID.getClass();
+                String uuid = randomUUID.toString();
+                uuid.getClass();
+                return uuid;
+        }
+    }
+}

@@ -1,38 +1,36 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.tl.TL_aicompose;
-public final class j implements org.telegram.messenger.w10 {
-    public final int f36207a;
-    public final m0 f36208b;
-    public final l0 f36209c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class j extends AnimatorListenerAdapter {
+    public final byte a;
+    public final ChatActivityEnterView b;
 
-    public j(m0 m0Var, l0 l0Var, int i7) {
-        this.f36207a = i7;
-        this.f36208b = m0Var;
-        this.f36209c = l0Var;
+    public j(ChatActivityEnterView chatActivityEnterView, int i) {
+        this.b = chatActivityEnterView;
+        this.a = i;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f36207a) {
-            case 0:
-                Integer num = (Integer) obj;
-                m0 m0Var = this.f36208b;
-                if (m0Var.f37296q2 != null) {
-                    this.f36209c.c(0, true);
-                    m0Var.y1(null);
-                    return;
+    public final void onAnimationEnd(Animator animator) {
+        ChatActivityEnterView chatActivityEnterView = this.b;
+        if (animator.equals(chatActivityEnterView.j3)) {
+            byte b = this.a;
+            if (b != 3 && chatActivityEnterView.F0 != null && !gl.A1()) {
+                chatActivityEnterView.F0.requestFocus();
+            }
+            chatActivityEnterView.E();
+            if (b != 3) {
+                l lVar = chatActivityEnterView.E2;
+                if (lVar != null) {
+                    lVar.setVisibility(8);
                 }
-                return;
-            default:
-                TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj;
-                m0 m0Var2 = this.f36208b;
-                if (m0Var2.f37296q2 != aiComposeTone) {
-                    this.f36209c.d(aiComposeTone, true);
-                    m0Var2.y1(aiComposeTone);
-                    return;
+                ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.D2;
+                if (recordCircle != null) {
+                    recordCircle.g();
                 }
-                return;
+            }
         }
     }
 }

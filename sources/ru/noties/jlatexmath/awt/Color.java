@@ -20,15 +20,15 @@ public class Color {
         red = color2;
         green = new Color(-16711936);
         blue = new Color(-16776961);
-        cyan = new Color(android.graphics.Color.parseColor("cyan"));
-        magenta = new Color(android.graphics.Color.parseColor("magenta"));
-        yellow = new Color(android.graphics.Color.parseColor("yellow"));
+        cyan = new Color(-16711681);
+        magenta = new Color(-65281);
+        yellow = new Color(-256);
         BLACK = color;
         RED = color2;
     }
 
-    public Color(int i7) {
-        this.color = i7;
+    public Color(float f, float f2, float f3) {
+        this((int) ((f * 255.0f) + 0.5f), (int) ((f2 * 255.0f) + 0.5f), (int) ((f3 * 255.0f) + 0.5f));
     }
 
     public static Color decode(String str) {
@@ -55,11 +55,11 @@ public class Color {
         return android.graphics.Color.red(this.color);
     }
 
-    public Color(int i7, int i10, int i11) {
-        this(android.graphics.Color.rgb(i7, i10, i11));
+    public Color(int i, int i2, int i3) {
+        this(android.graphics.Color.rgb(i, i2, i3));
     }
 
-    public Color(float f10, float f11, float f12) {
-        this((int) ((f10 * 255.0f) + 0.5f), (int) ((f11 * 255.0f) + 0.5f), (int) ((f12 * 255.0f) + 0.5f));
+    public Color(int i) {
+        this.color = i;
     }
 }

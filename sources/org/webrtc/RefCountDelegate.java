@@ -20,7 +20,7 @@ public class RefCountDelegate implements RefCounted {
             }
             return;
         }
-        throw new IllegalStateException("release() called on an object with refcount < 1");
+        sc8.j("release() called on an object with refcount < 1");
     }
 
     @Override
@@ -28,16 +28,16 @@ public class RefCountDelegate implements RefCounted {
         if (this.refCount.incrementAndGet() >= 2) {
             return;
         }
-        throw new IllegalStateException("retain() called on an object with refcount < 1");
+        sc8.j("retain() called on an object with refcount < 1");
     }
 
     public boolean safeRetain() {
-        int i7 = this.refCount.get();
-        while (i7 != 0) {
-            if (this.refCount.weakCompareAndSet(i7, i7 + 1)) {
+        int i = this.refCount.get();
+        while (i != 0) {
+            if (this.refCount.weakCompareAndSet(i, i + 1)) {
                 return true;
             }
-            i7 = this.refCount.get();
+            i = this.refCount.get();
         }
         return false;
     }

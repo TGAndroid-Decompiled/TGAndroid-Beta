@@ -8,56 +8,58 @@ import android.net.Uri;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-public class NotificationBadge$SamsungHomeBadger implements wr {
-    public static final String[] f22861a = {"_id", "class"};
-    public static NotificationBadge$DefaultBadger f22862b;
+public class NotificationBadge$SamsungHomeBadger implements yj7 {
+    public static final String[] a = {"_id", "class"};
+    public static NotificationBadge$DefaultBadger b;
 
-    public static ContentValues c(ComponentName componentName, int i7, boolean z10) {
+    public static ContentValues c(ComponentName componentName, int i, boolean z) {
         ContentValues contentValues = new ContentValues();
-        if (z10) {
+        if (z) {
             contentValues.put("package", componentName.getPackageName());
             contentValues.put("class", componentName.getClassName());
         }
-        contentValues.put("badgecount", Integer.valueOf(i7));
+        contentValues.put("badgecount", Integer.valueOf(i));
         return contentValues;
     }
 
     @Override
-    public final void a(int i7) {
+    public final void a(int i) {
         try {
-            if (f22862b == null) {
-                f22862b = new NotificationBadge$DefaultBadger();
+            NotificationBadge$DefaultBadger notificationBadge$DefaultBadger = b;
+            if (notificationBadge$DefaultBadger == null) {
+                notificationBadge$DefaultBadger = new NotificationBadge$DefaultBadger();
+                b = notificationBadge$DefaultBadger;
             }
-            f22862b.a(i7);
+            notificationBadge$DefaultBadger.a(i);
         } catch (Exception unused) {
         }
         Uri parse = Uri.parse("content://com.sec.badge/apps?notify=true");
-        ContentResolver contentResolver = t0.f27013b.getContentResolver();
+        ContentResolver contentResolver = a.b.getContentResolver();
         Cursor cursor = null;
         try {
-            cursor = contentResolver.query(parse, f22861a, "package=?", new String[]{zr.d.getPackageName()}, null);
+            cursor = contentResolver.query(parse, a, "package=?", new String[]{ak7.d.getPackageName()}, null);
             if (cursor != null) {
-                String className = zr.d.getClassName();
-                boolean z10 = false;
+                String className = ak7.d.getClassName();
+                boolean z = false;
                 while (cursor.moveToNext()) {
-                    contentResolver.update(parse, c(zr.d, i7, false), "_id=?", new String[]{String.valueOf(cursor.getInt(0))});
+                    contentResolver.update(parse, c(ak7.d, i, false), "_id=?", new String[]{String.valueOf(cursor.getInt(0))});
                     if (className.equals(cursor.getString(cursor.getColumnIndex("class")))) {
-                        z10 = true;
+                        z = true;
                     }
                 }
-                if (!z10) {
-                    contentResolver.insert(parse, c(zr.d, i7, true));
+                if (!z) {
+                    contentResolver.insert(parse, c(ak7.d, i, true));
                 }
             }
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }
-        } catch (Throwable th2) {
-            LinkedList linkedList = zr.f28437a;
+        } catch (Throwable th) {
+            LinkedList linkedList = ak7.a;
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }
-            throw th2;
+            throw th;
         }
     }
 

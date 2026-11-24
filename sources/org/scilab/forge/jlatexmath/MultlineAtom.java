@@ -8,61 +8,61 @@ public class MultlineAtom extends Atom {
     private boolean isPartial;
     private int type;
 
-    public MultlineAtom(boolean z10, ArrayOfAtoms arrayOfAtoms, int i7) {
-        this.isPartial = z10;
+    public MultlineAtom(boolean z, ArrayOfAtoms arrayOfAtoms, int i) {
+        this.isPartial = z;
         this.column = arrayOfAtoms;
-        this.type = i7;
+        this.type = i;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        int i7;
+        int i;
         ArrayOfAtoms arrayOfAtoms;
-        int i10;
+        int i2;
         float textwidth = teXEnvironment.getTextwidth();
         if (textwidth != Float.POSITIVE_INFINITY) {
-            int i11 = 2;
+            int i3 = 2;
             if (this.type != 2) {
                 VerticalBox verticalBox = new VerticalBox();
                 Atom atom = this.column.array.get(0).get(0);
                 if (this.type == 1) {
-                    i7 = 2;
+                    i = 2;
                 } else {
-                    i7 = 0;
+                    i = 0;
                 }
-                int i12 = atom.alignment;
-                if (i12 != -1) {
-                    i7 = i12;
+                int i4 = atom.alignment;
+                if (i4 != -1) {
+                    i = i4;
                 }
-                verticalBox.add(new HorizontalBox(atom.createBox(teXEnvironment), textwidth, i7));
+                verticalBox.add(new HorizontalBox(atom.createBox(teXEnvironment), textwidth, i));
                 Box createBox = vsep_in.createBox(teXEnvironment);
-                int i13 = 1;
+                int i5 = 1;
                 while (true) {
                     arrayOfAtoms = this.column;
-                    i10 = arrayOfAtoms.row;
-                    if (i13 >= i10 - 1) {
+                    i2 = arrayOfAtoms.row;
+                    if (i5 >= i2 - 1) {
                         break;
                     }
-                    Atom atom2 = arrayOfAtoms.array.get(i13).get(0);
-                    int i14 = atom2.alignment;
-                    if (i14 == -1) {
-                        i14 = 2;
+                    Atom atom2 = arrayOfAtoms.array.get(i5).get(0);
+                    int i6 = atom2.alignment;
+                    if (i6 == -1) {
+                        i6 = 2;
                     }
                     verticalBox.add(createBox);
-                    verticalBox.add(new HorizontalBox(atom2.createBox(teXEnvironment), textwidth, i14));
-                    i13++;
+                    verticalBox.add(new HorizontalBox(atom2.createBox(teXEnvironment), textwidth, i6));
+                    i5++;
                 }
-                if (i10 > 1) {
-                    Atom atom3 = arrayOfAtoms.array.get(i10 - 1).get(0);
+                if (i2 > 1) {
+                    Atom atom3 = arrayOfAtoms.array.get(i2 - 1).get(0);
                     if (this.type != 1) {
-                        i11 = 1;
+                        i3 = 1;
                     }
-                    int i15 = atom3.alignment;
-                    if (i15 != -1) {
-                        i11 = i15;
+                    int i7 = atom3.alignment;
+                    if (i7 != -1) {
+                        i3 = i7;
                     }
                     verticalBox.add(createBox);
-                    verticalBox.add(new HorizontalBox(atom3.createBox(teXEnvironment), textwidth, i11));
+                    verticalBox.add(new HorizontalBox(atom3.createBox(teXEnvironment), textwidth, i3));
                 }
                 float depth = (verticalBox.getDepth() + verticalBox.getHeight()) / 2.0f;
                 verticalBox.setHeight(depth);
@@ -73,7 +73,7 @@ public class MultlineAtom extends Atom {
         return new MatrixAtom(this.isPartial, this.column, "").createBox(teXEnvironment);
     }
 
-    public MultlineAtom(ArrayOfAtoms arrayOfAtoms, int i7) {
-        this(false, arrayOfAtoms, i7);
+    public MultlineAtom(ArrayOfAtoms arrayOfAtoms, int i) {
+        this(false, arrayOfAtoms, i);
     }
 }

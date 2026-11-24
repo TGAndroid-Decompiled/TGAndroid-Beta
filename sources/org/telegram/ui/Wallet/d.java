@@ -1,42 +1,46 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.ek0;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.n41;
-public final class d extends m41 {
-    public static final int f44151b = 0;
+import org.telegram.ui.Wallet.WalletEngine2;
+public final class d implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final String c;
+    public final Object d;
+    public final Object e;
 
-    static {
-        m41.h(new m41());
+    public d(WalletEngine2.SendCallbacks sendCallbacks, WalletEngine2.SendPhase sendPhase, String str, String str2) {
+        this.a = (byte) 2;
+        this.b = sendCallbacks;
+        this.d = sendPhase;
+        this.c = str;
+        this.e = str2;
     }
 
     @Override
-    public final void b(View view, n41 n41Var, boolean z10, b51 b51Var, g51 g51Var) {
-        view.requestLayout();
-    }
-
-    @Override
-    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        hi.z2 z2Var = new hi.z2(2, context, i6Var);
-        z2Var.setIsSingleCell(true);
-        z2Var.setViewType(35);
-        return z2Var;
-    }
-
-    @Override
-    public final boolean e(n41 n41Var, n41 n41Var2) {
-        if (n41Var.d == n41Var2.d) {
-            return true;
+    public final void run() {
+        byte b = this.a;
+        Object obj = this.e;
+        String str = this.c;
+        Object obj2 = this.d;
+        Object obj3 = this.b;
+        switch (b) {
+            case 0:
+                ((WalletEngine2) obj3).lambda$prepareRotateKey$37((m8c) obj2, (WalletEngine2.PreparedRotation) obj, str);
+                return;
+            case 1:
+                ((WalletEngine2) obj3).lambda$rotateKey$55((WalletEngine2.RotationCallbacks) obj2, (byte[]) obj, str);
+                return;
+            default:
+                ((WalletEngine2.SendCallbacks) obj3).lambda$dispatch$0((WalletEngine2.SendPhase) obj2, str, (String) obj);
+                return;
         }
-        return false;
     }
 
-    @Override
-    public final boolean f() {
-        return false;
+    public d(WalletEngine2 walletEngine2, Object obj, Object obj2, String str, byte b) {
+        this.a = b;
+        this.b = walletEngine2;
+        this.d = obj;
+        this.e = obj2;
+        this.c = str;
     }
 }

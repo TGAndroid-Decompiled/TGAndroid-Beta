@@ -1,24 +1,27 @@
 package org.telegram.tgnet;
-public final class a implements Runnable {
-    public final int f28650a;
-    public final ConnectionsManager f28651b;
-    public final int f28652c;
 
-    public a(ConnectionsManager connectionsManager, int i7, int i10) {
-        this.f28650a = i10;
-        this.f28651b = connectionsManager;
-        this.f28652c = i7;
+import java.util.Comparator;
+import org.telegram.tgnet.ConnectionsManager;
+public final class a implements Comparator {
+    public final byte a;
+
+    public a(byte b) {
+        this.a = b;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28650a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$doInBackground$0;
+        int lambda$doInBackground$02;
+        String str = (String) obj;
+        String str2 = (String) obj2;
+        switch (this.a) {
             case 0:
-                ConnectionsManager.D(this.f28651b, this.f28652c);
-                return;
+                lambda$doInBackground$0 = ConnectionsManager.GoogleDnsLoadTask.lambda$doInBackground$0(str, str2);
+                return lambda$doInBackground$0;
             default:
-                ConnectionsManager.l(this.f28651b, this.f28652c);
-                return;
+                lambda$doInBackground$02 = ConnectionsManager.MozillaDnsLoadTask.lambda$doInBackground$0(str, str2);
+                return lambda$doInBackground$02;
         }
     }
 }

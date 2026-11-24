@@ -1,72 +1,39 @@
 package org.telegram.messenger;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.text.TextUtils;
 import androidx.core.content.FileProvider;
 import java.io.File;
 import org.telegram.tgnet.TLRPC;
-public class ApplicationLoaderImpl extends t0 {
+public class ApplicationLoaderImpl extends a {
     @Override
-    public final boolean b(Context context) {
-        if (Build.VERSION.SDK_INT >= 26 && !t0.f27013b.getPackageManager().canRequestPackageInstalls()) {
-            org.telegram.ui.Components.b5.j(context, null).show();
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final File g() {
-        if (q()) {
-            h1 e10 = h1.e();
-            if (e10.d != null) {
-                File file = new File(e10.d);
-                if (!file.exists()) {
-                    e10.d = null;
-                    e10.f();
-                    return null;
-                }
-                return file;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final boolean q() {
-        return !TextUtils.isEmpty("https://telegram.org/dl/android/apk-public-beta.json");
-    }
-
-    @Override
-    public final boolean v(Activity activity, TLRPC.Document document) {
-        boolean z10 = false;
+    public final boolean u(Activity activity, TLRPC.Document document) {
+        boolean z = false;
         try {
-            w7.r(null, document);
-            w7.G(i10.f24637t0);
-            File J = w7.J(document, null, true, true);
-            z10 = J.exists();
-            if (z10) {
+            ba4.r(null, document);
+            ba4.G(y6c.t0);
+            File J = ba4.J(document, null, true, true);
+            z = J.exists();
+            if (z) {
                 Intent intent = new Intent("android.intent.action.VIEW");
                 intent.setFlags(1);
                 if (Build.VERSION.SDK_INT >= 24) {
-                    t0.d();
-                    intent.setDataAndType(FileProvider.d(activity, "org.telegram.messenger.beta.provider", J), "application/vnd.android.package-archive");
+                    a.d();
+                    intent.setDataAndType(FileProvider.c(activity, "org.telegram.messenger.beta.provider", J), "application/vnd.android.package-archive");
                 } else {
                     intent.setDataAndType(Uri.fromFile(J), "application/vnd.android.package-archive");
                 }
                 try {
                     activity.startActivityForResult(intent, 500);
-                } catch (Exception e10) {
-                    a8.g(e10, true);
+                } catch (Exception e) {
+                    fa4.g(e, true);
                 }
             }
-        } catch (Exception e11) {
-            a8.g(e11, true);
+        } catch (Exception e2) {
+            fa4.g(e2, true);
         }
-        return z10;
+        return z;
     }
 }

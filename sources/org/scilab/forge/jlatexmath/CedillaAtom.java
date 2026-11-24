@@ -11,9 +11,9 @@ public class CedillaAtom extends Atom {
         Box createBox = this.base.createBox(teXEnvironment);
         VerticalBox verticalBox = new VerticalBox();
         verticalBox.add(createBox);
-        Char r22 = teXEnvironment.getTeXFont().getChar("jlatexmathcedilla", teXEnvironment.getStyle());
-        float italic = r22.getItalic();
-        Box charBox = new CharBox(r22);
+        Char r1 = teXEnvironment.getTeXFont().getChar("jlatexmathcedilla", teXEnvironment.getStyle());
+        float italic = r1.getItalic();
+        Box charBox = new CharBox(r1);
         if (Math.abs(italic) > 1.0E-7f) {
             Box horizontalBox = new HorizontalBox(new StrutBox(-italic, 0.0f, 0.0f, 0.0f));
             horizontalBox.add(charBox);

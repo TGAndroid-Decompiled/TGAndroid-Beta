@@ -16,24 +16,24 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                         if (keyCode != 88) {
                             if (keyCode != 126) {
                                 if (keyCode == 127) {
-                                    MediaController.B().R(MediaController.B().f22838v0, true);
+                                    MediaController.w().Q(MediaController.w().v0, true);
                                     return;
                                 }
                                 return;
                             }
-                            MediaController.B().S(MediaController.B().f22838v0);
+                            MediaController.w().R(MediaController.w().v0);
                             return;
                         }
-                        MediaController.B().V();
+                        MediaController.w().U();
                         return;
                     }
-                    MediaController.B().U(false);
+                    MediaController.w().T(false);
                     return;
-                } else if (MediaController.B().H()) {
-                    MediaController.B().S(MediaController.B().f22838v0);
+                } else if (MediaController.w().C()) {
+                    MediaController.w().R(MediaController.w().v0);
                     return;
                 } else {
-                    MediaController.B().R(MediaController.B().f22838v0, true);
+                    MediaController.w().Q(MediaController.w().v0, true);
                     return;
                 }
             }
@@ -41,83 +41,83 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
         }
         String action = intent.getAction();
         action.getClass();
-        char c10 = 65535;
+        char c = 65535;
         switch (action.hashCode()) {
             case -1925342171:
                 if (action.equals("org.telegram.android.musicplayer.repeat")) {
-                    c10 = 0;
+                    c = 0;
                     break;
                 }
                 break;
             case -1461225938:
                 if (action.equals("org.telegram.android.musicplayer.close")) {
-                    c10 = 1;
+                    c = 1;
                     break;
                 }
                 break;
             case -1449542100:
                 if (action.equals("org.telegram.android.musicplayer.pause")) {
-                    c10 = 2;
+                    c = 2;
                     break;
                 }
                 break;
             case -1293741059:
                 if (action.equals("org.telegram.android.musicplayer.next")) {
-                    c10 = 3;
+                    c = 3;
                     break;
                 }
                 break;
             case -1293675458:
                 if (action.equals("org.telegram.android.musicplayer.play")) {
-                    c10 = 4;
+                    c = 4;
                     break;
                 }
                 break;
             case -549244379:
                 if (action.equals("android.media.AUDIO_BECOMING_NOISY")) {
-                    c10 = 5;
+                    c = 5;
                     break;
                 }
                 break;
             case 40087297:
                 if (action.equals("org.telegram.android.musicplayer.previous")) {
-                    c10 = 6;
+                    c = 6;
                     break;
                 }
                 break;
             case 1421978031:
                 if (action.equals("org.telegram.android.musicplayer.shuffle")) {
-                    c10 = 7;
+                    c = 7;
                     break;
                 }
                 break;
         }
-        switch (c10) {
+        switch (c) {
             case 0:
-                bz.E((bz.S0 + 1) % 3);
+                gba.D((gba.P0 + 1) % 3);
                 return;
             case 1:
-                MediaController.B().q(true, true, false, false);
+                MediaController.w().l(true, true, false, false);
                 return;
             case 2:
             case 5:
-                MediaController.B().R(MediaController.B().f22838v0, true);
+                MediaController.w().Q(MediaController.w().v0, true);
                 return;
             case 3:
-                MediaController.B().U(false);
+                MediaController.w().T(false);
                 return;
             case 4:
-                MediaController.B().S(MediaController.B().f22838v0);
+                MediaController.w().R(MediaController.w().v0);
                 return;
             case 6:
-                MediaController.B().V();
+                MediaController.w().U();
                 return;
             case 7:
-                if (bz.N0) {
-                    MediaController.B().l0(0);
+                if (gba.K0) {
+                    MediaController.w().k0(0);
                     return;
                 } else {
-                    MediaController.B().l0(2);
+                    MediaController.w().k0(2);
                     return;
                 }
             default:

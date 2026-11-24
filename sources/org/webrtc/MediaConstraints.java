@@ -46,15 +46,15 @@ public class MediaConstraints {
     }
 
     private static String stringifyKeyValuePairList(List<KeyValuePair> list) {
-        StringBuilder sb2 = new StringBuilder("[");
+        StringBuilder sb = new StringBuilder("[");
         for (KeyValuePair keyValuePair : list) {
-            if (sb2.length() > 1) {
-                sb2.append(", ");
+            if (sb.length() > 1) {
+                sb.append(", ");
             }
-            sb2.append(keyValuePair.toString());
+            sb.append(keyValuePair.toString());
         }
-        sb2.append("]");
-        return sb2.toString();
+        sb.append("]");
+        return sb.toString();
     }
 
     public List<KeyValuePair> getMandatory() {

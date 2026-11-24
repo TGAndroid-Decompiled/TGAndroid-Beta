@@ -8,7 +8,7 @@ public class VideoFrame implements RefCounted {
     private final long timestampNs;
 
     public interface Buffer extends RefCounted {
-        Buffer cropAndScale(int i7, int i10, int i11, int i12, int i13, int i14);
+        Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6);
 
         int getBufferType();
 
@@ -50,8 +50,8 @@ public class VideoFrame implements RefCounted {
             
             private final int glTarget;
 
-            Type(int i7) {
-                this.glTarget = i7;
+            Type(int i) {
+                this.glTarget = i;
             }
 
             public int getGlTarget() {
@@ -59,7 +59,7 @@ public class VideoFrame implements RefCounted {
             }
         }
 
-        TextureBuffer applyTransformMatrix(Matrix matrix, int i7, int i10);
+        TextureBuffer applyTransformMatrix(Matrix matrix, int i, int i2);
 
         int getTextureId();
 
@@ -72,17 +72,19 @@ public class VideoFrame implements RefCounted {
         int getUnscaledWidth();
     }
 
-    public VideoFrame(Buffer buffer, int i7, long j3) {
+    public VideoFrame(Buffer buffer, int i, long j) {
         if (buffer != null) {
-            if (i7 % 90 == 0) {
+            if (i % 90 == 0) {
                 this.buffer = buffer;
-                this.rotation = i7;
-                this.timestampNs = j3;
+                this.rotation = i;
+                this.timestampNs = j;
                 return;
             }
-            throw new IllegalArgumentException("rotation must be a multiple of 90");
+            w26.j("rotation must be a multiple of 90");
+            throw null;
         }
-        throw new IllegalArgumentException("buffer not allowed to be null");
+        w26.j("buffer not allowed to be null");
+        throw null;
     }
 
     public Buffer getBuffer() {
@@ -90,17 +92,21 @@ public class VideoFrame implements RefCounted {
     }
 
     public int getRotatedHeight() {
-        if (this.rotation % 180 == 0) {
-            return this.buffer.getHeight();
+        int i = this.rotation % 180;
+        Buffer buffer = this.buffer;
+        if (i == 0) {
+            return buffer.getHeight();
         }
-        return this.buffer.getWidth();
+        return buffer.getWidth();
     }
 
     public int getRotatedWidth() {
-        if (this.rotation % 180 == 0) {
-            return this.buffer.getWidth();
+        int i = this.rotation % 180;
+        Buffer buffer = this.buffer;
+        if (i == 0) {
+            return buffer.getWidth();
         }
-        return this.buffer.getHeight();
+        return buffer.getHeight();
     }
 
     public int getRotation() {

@@ -4,11 +4,11 @@ public interface AudioDeviceModule {
 
     void release();
 
-    void setMicrophoneMute(boolean z10);
+    void setMicrophoneMute(boolean z);
 
-    boolean setNoiseSuppressorEnabled(boolean z10);
+    boolean setNoiseSuppressorEnabled(boolean z);
 
-    boolean setPreferredMicrophoneFieldDimension(float f10);
+    boolean setPreferredMicrophoneFieldDimension(float f);
 
-    void setSpeakerMute(boolean z10);
+    void setSpeakerMute(boolean z);
 }

@@ -19,13 +19,16 @@ public class WebStartAlphabetRegistration implements AlphabetRegistration {
     public Object getPackage() {
         Character.UnicodeBlock[] unicodeBlockArr = this.blocks;
         if (unicodeBlockArr == AlphabetRegistration.JLM_GREEK) {
-            this.reg = new GreekRegistration();
+            GreekRegistration greekRegistration = new GreekRegistration();
+            this.reg = greekRegistration;
+            return greekRegistration;
         } else if (unicodeBlockArr == AlphabetRegistration.JLM_CYRILLIC) {
-            this.reg = new CyrillicRegistration();
+            CyrillicRegistration cyrillicRegistration = new CyrillicRegistration();
+            this.reg = cyrillicRegistration;
+            return cyrillicRegistration;
         } else {
             throw new AlphabetRegistrationException("Invalid Unicode Block");
         }
-        return this.reg;
     }
 
     @Override

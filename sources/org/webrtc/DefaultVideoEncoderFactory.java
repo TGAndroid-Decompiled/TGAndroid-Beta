@@ -8,18 +8,18 @@ public class DefaultVideoEncoderFactory implements VideoEncoderFactory {
     private final VideoEncoderFactory hardwareVideoEncoderFactory;
     private final VideoEncoderFactory softwareVideoEncoderFactory = new SoftwareVideoEncoderFactory();
 
-    public DefaultVideoEncoderFactory(EglBase.Context context, boolean z10, boolean z11) {
-        this.hardwareVideoEncoderFactory = new HardwareVideoEncoderFactory(context, z10, z11);
+    public DefaultVideoEncoderFactory(EglBase.Context context, boolean z, boolean z2) {
+        this.hardwareVideoEncoderFactory = new HardwareVideoEncoderFactory(context, z, z2);
     }
 
     @Override
     public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
         VideoEncoder createEncoder = this.softwareVideoEncoderFactory.createEncoder(videoCodecInfo);
         VideoEncoder createEncoder2 = this.hardwareVideoEncoderFactory.createEncoder(videoCodecInfo);
-        if (createEncoder2 != null && createEncoder != null) {
-            return new VideoEncoderFallback(createEncoder, createEncoder2);
-        }
         if (createEncoder2 != null) {
+            if (createEncoder != null) {
+                return new VideoEncoderFallback(createEncoder, createEncoder2);
+            }
             return createEncoder2;
         }
         return createEncoder;
@@ -27,12 +27,12 @@ public class DefaultVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public final VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
-        return x.a(this);
+        return null;
     }
 
     @Override
     public final VideoCodecInfo[] getImplementations() {
-        return x.b(this);
+        return getSupportedCodecs();
     }
 
     @Override

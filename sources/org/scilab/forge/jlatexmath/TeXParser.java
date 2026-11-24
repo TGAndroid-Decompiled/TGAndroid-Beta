@@ -1,7 +1,5 @@
 package org.scilab.forge.jlatexmath;
 
-import a8.p0;
-import i5.c;
 import java.lang.Character;
 import java.util.HashSet;
 import java.util.Set;
@@ -88,59 +86,74 @@ public class TeXParser {
         hashSet.add("jlmExternalFont");
     }
 
-    public TeXParser(String str, TeXFormula teXFormula) {
-        this(str, teXFormula, true);
+    public TeXParser(boolean z, String str, TeXFormula teXFormula, boolean z2) {
+        this.ignoreWhiteSpace = true;
+        this.formula = teXFormula;
+        this.isPartial = z;
+        if (str != null) {
+            this.parseString = new StringBuffer(str);
+            this.len = str.length();
+            this.pos = 0;
+            if (z2) {
+                firstpass();
+                return;
+            }
+            return;
+        }
+        this.parseString = null;
+        this.pos = 0;
+        this.len = 0;
     }
 
-    private static char convertToRomanNumber(char c10) {
-        int i7;
-        if (c10 == 1643) {
+    private static char convertToRomanNumber(char c) {
+        int i;
+        if (c == 1643) {
             return '.';
         }
-        if (1632 <= c10 && c10 <= 1641) {
-            i7 = c10 - 1584;
-        } else if (1776 <= c10 && c10 <= 1785) {
-            i7 = c10 - 1728;
-        } else if (2406 <= c10 && c10 <= 2415) {
-            i7 = c10 - 2358;
-        } else if (2534 <= c10 && c10 <= 2543) {
-            i7 = c10 - 2486;
-        } else if (2662 <= c10 && c10 <= 2671) {
-            i7 = c10 - 2614;
-        } else if (2790 <= c10 && c10 <= 2799) {
-            i7 = c10 - 2742;
-        } else if (2918 <= c10 && c10 <= 2927) {
-            i7 = c10 - 2870;
-        } else if (3174 <= c10 && c10 <= 3183) {
-            i7 = c10 - 3126;
-        } else if (3430 <= c10 && c10 <= 3439) {
-            i7 = c10 - 3382;
-        } else if (3664 <= c10 && c10 <= 3673) {
-            i7 = c10 - 3616;
-        } else if (3792 <= c10 && c10 <= 3801) {
-            i7 = c10 - 3744;
-        } else if (3872 <= c10 && c10 <= 3881) {
-            i7 = c10 - 3728;
-        } else if (4160 <= c10 && c10 <= 4169) {
-            i7 = c10 - 4112;
-        } else if (6112 <= c10 && c10 <= 6121) {
-            i7 = c10 - 6064;
-        } else if (6160 <= c10 && c10 <= 6169) {
-            i7 = c10 - 6112;
-        } else if (6992 <= c10 && c10 <= 7001) {
-            i7 = c10 - 6944;
-        } else if (7088 <= c10 && c10 <= 7097) {
-            i7 = c10 - 7040;
-        } else if (7232 <= c10 && c10 <= 7241) {
-            i7 = c10 - 7184;
-        } else if (7248 <= c10 && c10 <= 7257) {
-            i7 = c10 - 7200;
-        } else if (43216 <= c10 && c10 <= 43225) {
-            i7 = c10 - 43168;
+        if (1632 <= c && c <= 1641) {
+            i = c - 1584;
+        } else if (1776 <= c && c <= 1785) {
+            i = c - 1728;
+        } else if (2406 <= c && c <= 2415) {
+            i = c - 2358;
+        } else if (2534 <= c && c <= 2543) {
+            i = c - 2486;
+        } else if (2662 <= c && c <= 2671) {
+            i = c - 2614;
+        } else if (2790 <= c && c <= 2799) {
+            i = c - 2742;
+        } else if (2918 <= c && c <= 2927) {
+            i = c - 2870;
+        } else if (3174 <= c && c <= 3183) {
+            i = c - 3126;
+        } else if (3430 <= c && c <= 3439) {
+            i = c - 3382;
+        } else if (3664 <= c && c <= 3673) {
+            i = c - 3616;
+        } else if (3792 <= c && c <= 3801) {
+            i = c - 3744;
+        } else if (3872 <= c && c <= 3881) {
+            i = c - 3728;
+        } else if (4160 <= c && c <= 4169) {
+            i = c - 4112;
+        } else if (6112 <= c && c <= 6121) {
+            i = c - 6064;
+        } else if (6160 <= c && c <= 6169) {
+            i = c - 6112;
+        } else if (6992 <= c && c <= 7001) {
+            i = c - 6944;
+        } else if (7088 <= c && c <= 7097) {
+            i = c - 7040;
+        } else if (7232 <= c && c <= 7241) {
+            i = c - 7184;
+        } else if (7248 <= c && c <= 7257) {
+            i = c - 7200;
+        } else if (43216 <= c && c <= 43225) {
+            i = c - 43168;
         } else {
-            return c10;
+            return c;
         }
-        return (char) i7;
+        return (char) i;
     }
 
     private void firstpass() {
@@ -152,32 +165,32 @@ public class TeXParser {
     }
 
     private String getCommandWithArgs(String str) {
-        int i7;
+        int i;
         if (str.equals("left")) {
             return getGroup("\\left", "\\right");
         }
         MacroInfo macroInfo = MacroInfo.Commands.get(str);
         if (macroInfo != null) {
-            int i10 = 0;
+            int i2 = 0;
             if (macroInfo.hasOptions) {
-                i7 = macroInfo.posOpts;
+                i = macroInfo.posOpts;
             } else {
-                i7 = 0;
+                i = 0;
             }
-            String[] optsArgs = getOptsArgs(macroInfo.nbArgs, i7);
+            String[] optsArgs = getOptsArgs(macroInfo.nbArgs, i);
             StringBuffer stringBuffer = new StringBuffer("\\");
             stringBuffer.append(str);
-            for (int i11 = 0; i11 < macroInfo.posOpts; i11++) {
-                String str2 = optsArgs[macroInfo.nbArgs + i11 + 1];
+            for (int i3 = 0; i3 < macroInfo.posOpts; i3++) {
+                String str2 = optsArgs[macroInfo.nbArgs + i3 + 1];
                 if (str2 != null) {
                     stringBuffer.append("[");
                     stringBuffer.append(str2);
                     stringBuffer.append("]");
                 }
             }
-            while (i10 < macroInfo.nbArgs) {
-                i10++;
-                String str3 = optsArgs[i10];
+            while (i2 < macroInfo.nbArgs) {
+                i2++;
+                String str3 = optsArgs[i2];
                 if (str3 != null) {
                     stringBuffer.append("{");
                     stringBuffer.append(str3);
@@ -189,35 +202,36 @@ public class TeXParser {
         return "\\".concat(str);
     }
 
-    private org.scilab.forge.jlatexmath.Atom getScripts(char r10) {
+    private org.scilab.forge.jlatexmath.Atom getScripts(char r9) {
         throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.TeXParser.getScripts(char):org.scilab.forge.jlatexmath.Atom");
     }
 
-    private void insert(int i7, int i10, String str) {
-        this.parseString.replace(i7, i10, str);
+    private void insert(int i, int i2, String str) {
+        this.parseString.replace(i, i2, str);
         this.len = this.parseString.length();
-        this.pos = i7;
+        this.pos = i;
         this.insertion = true;
     }
 
     private Atom processCommands(String str) {
-        int i7;
+        int i;
         MacroInfo macroInfo = MacroInfo.Commands.get(str);
         if (macroInfo.hasOptions) {
-            i7 = macroInfo.posOpts;
+            i = macroInfo.posOpts;
         } else {
-            i7 = 0;
+            i = 0;
         }
-        String[] optsArgs = getOptsArgs(macroInfo.nbArgs, i7);
+        String[] optsArgs = getOptsArgs(macroInfo.nbArgs, i);
         optsArgs[0] = str;
         if (NewCommandMacro.isMacro(str)) {
-            int i10 = lastpassExpansions + 1;
-            lastpassExpansions = i10;
-            if (i10 <= 10000) {
+            int i2 = lastpassExpansions + 1;
+            lastpassExpansions = i2;
+            if (i2 <= 10000) {
                 insert(this.spos, this.pos, (String) macroInfo.invoke(this, optsArgs));
                 return null;
             }
-            throw new ParseException("Macro expansion limit exceeded");
+            qm0.g("Macro expansion limit exceeded");
+            return null;
         }
         return (Atom) macroInfo.invoke(this, optsArgs);
     }
@@ -238,7 +252,8 @@ public class TeXParser {
                 if (this.isPartial) {
                     return new ColorAtom(new RomanAtom(new TeXFormula("\\backslash ".concat(command)).root), (Color) null, Color.RED);
                 }
-                throw new ParseException(p0.p("Unknown symbol or command or predefined TeXFormula: '", command, "'"));
+                qm0.g(tb4.y("Unknown symbol or command or predefined TeXFormula: '", command, "'"));
+                return null;
             }
         } catch (FormulaNotFoundException unused2) {
             return SymbolAtom.get(command);
@@ -247,9 +262,9 @@ public class TeXParser {
 
     private final void skipWhiteSpace() {
         while (true) {
-            int i7 = this.pos;
-            if (i7 < this.len) {
-                char charAt = this.parseString.charAt(i7);
+            int i = this.pos;
+            if (i < this.len) {
+                char charAt = this.parseString.charAt(i);
                 if (charAt == ' ' || charAt == '\t' || charAt == '\n' || charAt == '\r') {
                     if (charAt == '\n') {
                         this.line++;
@@ -272,85 +287,86 @@ public class TeXParser {
     public void addRow() {
         if (this.arrayMode) {
             ((ArrayOfAtoms) this.formula).addRow();
-            return;
+        } else {
+            qm0.g("You can add a row only in array mode !");
         }
-        throw new ParseException("You can add a row only in array mode !");
     }
 
-    public Atom convertCharacter(char c10, boolean z10) {
+    public Atom convertCharacter(char c, boolean z) {
         String str;
         String[] strArr;
-        TeXFormula.FontInfos fontInfos;
+        TeXFormula.FontInfos externalFont;
         if (this.ignoreWhiteSpace) {
-            if (c10 >= 945 && c10 <= 969) {
-                return SymbolAtom.get(TeXFormula.symbolMappings[c10]);
+            if (c >= 945 && c <= 969) {
+                return SymbolAtom.get(TeXFormula.symbolMappings[c]);
             }
-            if (c10 >= 913 && c10 <= 937) {
-                return new TeXFormula(TeXFormula.symbolFormulaMappings[c10]).root;
+            if (c >= 913 && c <= 937) {
+                return new TeXFormula(TeXFormula.symbolFormulaMappings[c]).root;
             }
         }
-        char convertToRomanNumber = convertToRomanNumber(c10);
+        char convertToRomanNumber = convertToRomanNumber(c);
         if ((convertToRomanNumber >= '0' && convertToRomanNumber <= '9') || ((convertToRomanNumber >= 'a' && convertToRomanNumber <= 'z') || (convertToRomanNumber >= 'A' && convertToRomanNumber <= 'Z'))) {
-            TeXFormula.FontInfos fontInfos2 = TeXFormula.externalFontMap.get(Character.UnicodeBlock.BASIC_LATIN);
-            if (fontInfos2 != null) {
-                if (z10) {
-                    return new JavaFontRenderingAtom(Character.toString(convertToRomanNumber), fontInfos2);
+            TeXFormula.FontInfos fontInfos = TeXFormula.externalFontMap.get(Character.UnicodeBlock.BASIC_LATIN);
+            if (fontInfos != null) {
+                if (z) {
+                    return new JavaFontRenderingAtom(Character.toString(convertToRomanNumber), fontInfos);
                 }
-                int i7 = this.pos;
-                this.pos = i7 + 1;
-                int i10 = this.len - 1;
+                int i = this.pos;
+                this.pos = i + 1;
+                int i2 = this.len - 1;
                 while (true) {
-                    int i11 = this.pos;
-                    if (i11 >= this.len) {
+                    int i3 = this.pos;
+                    if (i3 >= this.len) {
                         break;
                     }
-                    char charAt = this.parseString.charAt(i11);
+                    char charAt = this.parseString.charAt(i3);
                     if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && (charAt < 'A' || charAt > 'Z'))) {
                         break;
                     }
                     this.pos++;
                 }
-                i10 = this.pos - 1;
-                this.pos = i10;
-                return new JavaFontRenderingAtom(this.parseString.substring(i7, i10 + 1), fontInfos2);
+                i2 = this.pos - 1;
+                this.pos = i2;
+                return new JavaFontRenderingAtom(this.parseString.substring(i, i2 + 1), fontInfos);
             }
             return new CharAtom(convertToRomanNumber, this.formula.textStyle, this.ignoreWhiteSpace);
         }
-        Character.UnicodeBlock of2 = Character.UnicodeBlock.of(convertToRomanNumber);
-        if (!isLoading && !DefaultTeXFont.loadedAlphabets.contains(of2)) {
-            DefaultTeXFont.addAlphabet(DefaultTeXFont.registeredAlphabets.get(of2));
+        Character.UnicodeBlock of = Character.UnicodeBlock.of(convertToRomanNumber);
+        if (!isLoading && !DefaultTeXFont.loadedAlphabets.contains(of)) {
+            DefaultTeXFont.addAlphabet(DefaultTeXFont.registeredAlphabets.get(of));
         }
         String str2 = TeXFormula.symbolMappings[convertToRomanNumber];
         if (str2 == null && ((strArr = TeXFormula.symbolFormulaMappings) == null || strArr[convertToRomanNumber] == null)) {
             Character.UnicodeBlock unicodeBlock = Character.UnicodeBlock.BASIC_LATIN;
-            boolean equals = unicodeBlock.equals(of2);
-            if ((equals && TeXFormula.isRegisteredBlock(unicodeBlock)) || !equals) {
-                fontInfos = TeXFormula.getExternalFont(of2);
+            if (unicodeBlock.equals(of) && !TeXFormula.isRegisteredBlock(unicodeBlock)) {
+                externalFont = null;
             } else {
-                fontInfos = null;
+                externalFont = TeXFormula.getExternalFont(of);
             }
-            if (fontInfos != null) {
-                if (z10) {
-                    return new JavaFontRenderingAtom(Character.toString(convertToRomanNumber), fontInfos);
+            if (externalFont != null) {
+                if (z) {
+                    return new JavaFontRenderingAtom(Character.toString(convertToRomanNumber), externalFont);
                 }
-                int i12 = this.pos;
-                this.pos = i12 + 1;
-                int i13 = this.len - 1;
+                int i4 = this.pos;
+                this.pos = i4 + 1;
+                int i5 = this.len - 1;
                 while (true) {
-                    int i14 = this.pos;
-                    if (i14 >= this.len) {
+                    int i6 = this.pos;
+                    if (i6 >= this.len) {
                         break;
-                    } else if (!Character.UnicodeBlock.of(this.parseString.charAt(i14)).equals(of2)) {
-                        i13 = this.pos - 1;
-                        this.pos = i13;
-                        break;
-                    } else {
-                        this.pos++;
                     }
+                    boolean equals = Character.UnicodeBlock.of(this.parseString.charAt(i6)).equals(of);
+                    int i7 = this.pos;
+                    if (!equals) {
+                        i5 = i7 - 1;
+                        this.pos = i5;
+                        break;
+                    }
+                    this.pos = i7 + 1;
                 }
-                return new JavaFontRenderingAtom(this.parseString.substring(i12, i13 + 1), fontInfos);
+                return new JavaFontRenderingAtom(this.parseString.substring(i4, i5 + 1), externalFont);
             } else if (this.isPartial) {
-                return new ColorAtom(new RomanAtom(new TeXFormula(c.j(convertToRomanNumber, "\\text{(Unknown char ", ")}")).root), (Color) null, Color.RED);
+                return new ColorAtom(new RomanAtom(new TeXFormula(tb4.n(convertToRomanNumber, "\\text{(Unknown char ", ")}")).root), (Color) null, Color.RED);
             } else {
                 throw new ParseException("Unknown character : '" + Character.toString(convertToRomanNumber) + "' (or " + ((int) convertToRomanNumber) + ")");
             }
@@ -363,8 +379,8 @@ public class TeXParser {
             }
             try {
                 return SymbolAtom.get(str2);
-            } catch (SymbolNotFoundException e10) {
-                throw new ParseException("The character '" + Character.toString(convertToRomanNumber) + "' was mapped to an unknown symbol with the name '" + str2 + "'!", e10);
+            } catch (SymbolNotFoundException e) {
+                throw new ParseException("The character '" + Character.toString(convertToRomanNumber) + "' was mapped to an unknown symbol with the name '" + str2 + "'!", e);
             }
         }
     }
@@ -375,9 +391,9 @@ public class TeXParser {
 
     public Atom getArgument() {
         skipWhiteSpace();
-        int i7 = this.pos;
-        if (i7 < this.len) {
-            char charAt = this.parseString.charAt(i7);
+        int i = this.pos;
+        if (i < this.len) {
+            char charAt = this.parseString.charAt(i);
             if (charAt == '{') {
                 TeXFormula teXFormula = new TeXFormula();
                 TeXFormula teXFormula2 = this.formula;
@@ -412,27 +428,28 @@ public class TeXParser {
         return (this.pos - this.col) - 1;
     }
 
-    public String getDollarGroup(char c10) {
+    public String getDollarGroup(char c) {
         char charAt;
-        int i7;
-        int i10 = this.pos;
+        int i;
+        int i2 = this.pos;
         do {
             StringBuffer stringBuffer = this.parseString;
-            int i11 = this.pos;
-            this.pos = i11 + 1;
-            charAt = stringBuffer.charAt(i11);
+            int i3 = this.pos;
+            this.pos = i3 + 1;
+            charAt = stringBuffer.charAt(i3);
             if (charAt == '\\') {
                 this.pos++;
             }
-            i7 = this.pos;
-            if (i7 >= this.len) {
+            i = this.pos;
+            if (i >= this.len) {
                 break;
             }
-        } while (charAt != c10);
-        if (charAt == c10) {
-            return this.parseString.substring(i10, i7 - 1);
+        } while (charAt != c);
+        StringBuffer stringBuffer2 = this.parseString;
+        if (charAt == c) {
+            return stringBuffer2.substring(i2, i - 1);
         }
-        return this.parseString.substring(i10, i7);
+        return stringBuffer2.substring(i2, i);
     }
 
     public Atom getFormulaAtom() {
@@ -442,41 +459,8 @@ public class TeXParser {
         return atom;
     }
 
-    public String getGroup(char c10, char c11) {
-        int i7;
-        int i10;
-        int i11 = this.pos;
-        if (i11 == this.len) {
-            return null;
-        }
-        char charAt = this.parseString.charAt(i11);
-        int i12 = this.pos;
-        if (i12 < this.len && charAt == c10) {
-            int i13 = 1;
-            while (true) {
-                i7 = this.pos;
-                if (i7 >= this.len - 1 || i13 == 0) {
-                    break;
-                }
-                int i14 = i7 + 1;
-                this.pos = i14;
-                char charAt2 = this.parseString.charAt(i14);
-                if (charAt2 == c10) {
-                    i13++;
-                } else if (charAt2 == c11) {
-                    i13--;
-                } else if (charAt2 == '\\' && (i10 = this.pos) != this.len - 1) {
-                    this.pos = i10 + 1;
-                }
-            }
-            int i15 = i7 + 1;
-            this.pos = i15;
-            if (i13 != 0) {
-                return this.parseString.substring(i12 + 1, i15);
-            }
-            return this.parseString.substring(i12 + 1, i7);
-        }
-        throw new ParseException("missing '" + c10 + "'!");
+    public java.lang.String getGroup(java.lang.String r18, java.lang.String r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.TeXParser.getGroup(java.lang.String, java.lang.String):java.lang.String");
     }
 
     public boolean getIsPartial() {
@@ -498,36 +482,36 @@ public class TeXParser {
             return null;
         }
         skipWhiteSpace();
-        int i7 = this.pos;
-        char c10 = 0;
+        int i = this.pos;
+        char c = 0;
         while (true) {
-            int i10 = this.pos;
-            if (i10 >= this.len || c10 == ' ') {
+            int i2 = this.pos;
+            if (i2 >= this.len || c == ' ') {
                 break;
             }
             StringBuffer stringBuffer = this.parseString;
-            this.pos = i10 + 1;
-            c10 = stringBuffer.charAt(i10);
+            this.pos = i2 + 1;
+            c = stringBuffer.charAt(i2);
         }
         skipWhiteSpace();
-        return SpaceAtom.getLength(this.parseString.substring(i7, this.pos - 1));
+        return SpaceAtom.getLength(this.parseString.substring(i, this.pos - 1));
     }
 
     public int getLine() {
         return this.line;
     }
 
-    public String[] getOptsArgs(int i7, int i10) {
-        i7 = (i7 < 0 || i7 > 256) ? 256 : 256;
-        String[] strArr = new String[i7 + 11];
-        if (i7 != 0) {
-            if (i10 == 1) {
-                for (int i11 = i7 + 1; i11 < i7 + 11; i11++) {
+    public String[] getOptsArgs(int i, int i2) {
+        i = (i < 0 || i > 256) ? 256 : 256;
+        String[] strArr = new String[i + 11];
+        if (i != 0) {
+            if (i2 == 1) {
+                for (int i3 = i + 1; i3 < i + 11; i3++) {
                     try {
                         skipWhiteSpace();
-                        strArr[i11] = getGroup('[', ']');
+                        strArr[i3] = getGroup('[', ']');
                     } catch (ParseException unused) {
-                        strArr[i11] = null;
+                        strArr[i3] = null;
                     }
                 }
             }
@@ -536,32 +520,32 @@ public class TeXParser {
                 strArr[1] = getGroup('{', '}');
             } catch (ParseException unused2) {
                 if (this.parseString.charAt(this.pos) != '\\') {
-                    strArr[1] = "" + this.parseString.charAt(this.pos);
-                    this.pos = this.pos + 1;
+                    strArr[1] = String.valueOf(this.parseString.charAt(this.pos));
+                    this.pos++;
                 } else {
                     strArr[1] = getCommandWithArgs(getCommand());
                 }
             }
-            if (i10 == 2) {
-                for (int i12 = i7 + 1; i12 < i7 + 11; i12++) {
+            if (i2 == 2) {
+                for (int i4 = i + 1; i4 < i + 11; i4++) {
                     try {
                         skipWhiteSpace();
-                        strArr[i12] = getGroup('[', ']');
+                        strArr[i4] = getGroup('[', ']');
                     } catch (ParseException unused3) {
-                        strArr[i12] = null;
+                        strArr[i4] = null;
                     }
                 }
             }
-            for (int i13 = 2; i13 <= i7; i13++) {
+            for (int i5 = 2; i5 <= i; i5++) {
                 skipWhiteSpace();
                 try {
-                    strArr[i13] = getGroup('{', '}');
+                    strArr[i5] = getGroup('{', '}');
                 } catch (ParseException unused4) {
                     if (this.parseString.charAt(this.pos) != '\\') {
-                        strArr[i13] = "" + this.parseString.charAt(this.pos);
-                        this.pos = this.pos + 1;
+                        strArr[i5] = String.valueOf(this.parseString.charAt(this.pos));
+                        this.pos++;
                     } else {
-                        strArr[i13] = getCommandWithArgs(getCommand());
+                        strArr[i5] = getCommandWithArgs(getCommand());
                     }
                 }
             }
@@ -573,67 +557,69 @@ public class TeXParser {
     }
 
     public String getOverArgument() {
-        int i7;
+        int i;
         String substring;
-        int i10 = this.pos;
-        if (i10 == this.len) {
+        int i2 = this.pos;
+        if (i2 == this.len) {
             return null;
         }
-        char c10 = 0;
-        char c11 = 0;
-        int i11 = 1;
+        char c = 0;
+        char c2 = 0;
+        int i3 = 1;
         while (true) {
-            i7 = this.pos;
-            if (i7 >= this.len || i11 == 0) {
+            i = this.pos;
+            if (i >= this.len || i3 == 0) {
                 break;
             }
-            c11 = this.parseString.charAt(i7);
-            if (c11 != '&') {
-                if (c11 != '\\') {
-                    if (c11 != '{') {
-                        if (c11 != '}') {
+            c2 = this.parseString.charAt(i);
+            if (c2 != '&') {
+                if (c2 != '\\') {
+                    if (c2 != '{') {
+                        if (c2 != '}') {
                         }
-                        i11--;
+                        i3--;
                     } else {
-                        i11++;
+                        i3++;
                     }
                 } else {
-                    int i12 = this.pos + 1;
-                    this.pos = i12;
-                    if (i12 < this.len && this.parseString.charAt(i12) == '\\' && i11 == 1) {
-                        i11--;
+                    int i4 = this.pos + 1;
+                    this.pos = i4;
+                    if (i4 < this.len && this.parseString.charAt(i4) == '\\' && i3 == 1) {
+                        i3--;
                         this.pos--;
                     } else {
-                        int i13 = this.pos;
-                        if (i13 < this.len - 1 && this.parseString.charAt(i13) == 'c' && this.parseString.charAt(this.pos + 1) == 'r' && i11 == 1) {
-                            i11--;
+                        int i5 = this.pos;
+                        if (i5 < this.len - 1 && this.parseString.charAt(i5) == 'c' && this.parseString.charAt(this.pos + 1) == 'r' && i3 == 1) {
+                            i3--;
                             this.pos--;
                         }
                     }
                 }
                 this.pos++;
             } else {
-                if (i11 != 1) {
+                if (i3 != 1) {
                     this.pos++;
                 }
-                i11--;
+                i3--;
                 this.pos++;
             }
         }
-        if (i11 < 2) {
-            if (i11 == 0) {
-                substring = this.parseString.substring(i10, i7 - 1);
-                c10 = c11;
+        if (i3 < 2) {
+            StringBuffer stringBuffer = this.parseString;
+            if (i3 == 0) {
+                substring = stringBuffer.substring(i2, i - 1);
+                c = c2;
             } else {
-                substring = this.parseString.substring(i10, i7);
+                substring = stringBuffer.substring(i2, i);
             }
-            if (c10 != '&' && c10 != '\\' && c10 != '}') {
+            if (c != '&' && c != '\\' && c != '}') {
                 return substring;
             }
             this.pos--;
             return substring;
         }
-        throw new ParseException("Illegal end,  missing '}' !");
+        qm0.g("Illegal end,  missing '}' !");
+        return null;
     }
 
     public int getPos() {
@@ -663,9 +649,9 @@ public class TeXParser {
         return this.ignoreWhiteSpace;
     }
 
-    public final boolean isValidCharacterInCommand(char c10) {
-        if (!Character.isLetter(c10)) {
-            if (this.atIsLetter == 0 || c10 != '@') {
+    public final boolean isValidCharacterInCommand(char c) {
+        if (!Character.isLetter(c)) {
+            if (this.atIsLetter == 0 || c != '@') {
                 return false;
             }
             return true;
@@ -674,18 +660,18 @@ public class TeXParser {
     }
 
     public final boolean isValidName(String str) {
-        char c10 = 0;
+        char c = 0;
         if (str == null || "".equals(str) || str.charAt(0) != '\\') {
             return false;
         }
         int length = str.length();
-        for (int i7 = 1; i7 < length; i7++) {
-            c10 = str.charAt(i7);
-            if (!Character.isLetter(c10) && (this.atIsLetter == 0 || c10 != '@')) {
+        for (int i = 1; i < length; i++) {
+            c = str.charAt(i);
+            if (!Character.isLetter(c) && (this.atIsLetter == 0 || c != '@')) {
                 break;
             }
         }
-        return Character.isLetter(c10);
+        return Character.isLetter(c);
     }
 
     public void makeAtLetter() {
@@ -697,21 +683,21 @@ public class TeXParser {
     }
 
     public void parse() {
-        int i7;
-        boolean z10;
+        int i;
+        boolean z;
         char charAt;
-        int i10 = parseDepth;
-        int i11 = i10 + 1;
-        parseDepth = i11;
-        if (i11 <= 64) {
+        int i2 = parseDepth;
+        int i3 = i2 + 1;
+        parseDepth = i3;
+        if (i3 <= 64) {
             try {
                 if (this.len != 0) {
                     while (true) {
-                        int i12 = this.pos;
-                        if (i12 >= this.len) {
+                        int i4 = this.pos;
+                        if (i4 >= this.len) {
                             break;
                         }
-                        char charAt2 = this.parseString.charAt(i12);
+                        char charAt2 = this.parseString.charAt(i4);
                         if (charAt2 != '\t') {
                             if (charAt2 != '\n') {
                                 if (charAt2 != '\r') {
@@ -726,35 +712,42 @@ public class TeXParser {
                                                                     if (charAt2 != '^') {
                                                                         if (charAt2 != '_') {
                                                                             if (charAt2 != '}') {
+                                                                                TeXFormula teXFormula = this.formula;
                                                                                 if (charAt2 != '~') {
-                                                                                    this.formula.add(convertCharacter(charAt2, false));
+                                                                                    teXFormula.add(convertCharacter(charAt2, false));
                                                                                     this.pos++;
                                                                                 } else {
-                                                                                    this.formula.add(new SpaceAtom());
+                                                                                    teXFormula.add(new SpaceAtom());
                                                                                     this.pos++;
                                                                                 }
                                                                             } else {
-                                                                                int i13 = this.group - 1;
-                                                                                this.group = i13;
+                                                                                int i5 = this.group - 1;
+                                                                                this.group = i5;
                                                                                 this.pos++;
-                                                                                if (i13 == -1) {
+                                                                                if (i5 == -1) {
                                                                                     throw new ParseException("Found a closing '}' without an opening '{'!");
                                                                                 }
                                                                             }
-                                                                        } else if (this.ignoreWhiteSpace) {
-                                                                            this.formula.add(getScripts(charAt2));
                                                                         } else {
-                                                                            this.formula.add(new UnderscoreAtom());
-                                                                            this.pos++;
+                                                                            boolean z2 = this.ignoreWhiteSpace;
+                                                                            TeXFormula teXFormula2 = this.formula;
+                                                                            if (z2) {
+                                                                                teXFormula2.add(getScripts(charAt2));
+                                                                            } else {
+                                                                                teXFormula2.add(new UnderscoreAtom());
+                                                                                this.pos++;
+                                                                            }
                                                                         }
                                                                     } else {
                                                                         this.formula.add(getScripts(charAt2));
                                                                     }
                                                                 } else {
-                                                                    if (this.ignoreWhiteSpace) {
-                                                                        this.formula.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("prime")));
+                                                                    boolean z3 = this.ignoreWhiteSpace;
+                                                                    TeXFormula teXFormula3 = this.formula;
+                                                                    if (z3) {
+                                                                        teXFormula3.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("prime")));
                                                                     } else {
-                                                                        this.formula.add(convertCharacter('\'', true));
+                                                                        teXFormula3.add(convertCharacter('\'', true));
                                                                     }
                                                                     this.pos++;
                                                                 }
@@ -765,10 +758,12 @@ public class TeXParser {
                                                                 throw new ParseException("Character '&' is only available in array mode !");
                                                             }
                                                         } else {
-                                                            if (this.ignoreWhiteSpace) {
-                                                                this.formula.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("backprime")));
+                                                            boolean z4 = this.ignoreWhiteSpace;
+                                                            TeXFormula teXFormula4 = this.formula;
+                                                            if (z4) {
+                                                                teXFormula4.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("backprime")));
                                                             } else {
-                                                                this.formula.add(convertCharacter((char) 8245, true));
+                                                                teXFormula4.add(convertCharacter((char) 8245, true));
                                                             }
                                                             this.pos++;
                                                         }
@@ -790,29 +785,31 @@ public class TeXParser {
                                                     }
                                                 }
                                             } else {
-                                                int i14 = this.pos + 1;
-                                                this.pos = i14;
+                                                int i6 = this.pos + 1;
+                                                this.pos = i6;
                                                 if (!this.ignoreWhiteSpace) {
-                                                    if (this.parseString.charAt(i14) == '$') {
+                                                    if (this.parseString.charAt(i6) == '$') {
                                                         this.pos++;
-                                                        z10 = true;
-                                                        i7 = 0;
+                                                        z = true;
+                                                        i = 0;
                                                     } else {
-                                                        i7 = 2;
-                                                        z10 = false;
+                                                        i = 2;
+                                                        z = false;
                                                     }
-                                                    this.formula.add(new MathAtom(new TeXFormula(this, getDollarGroup('$'), false).root, i7));
-                                                    if (z10 && this.parseString.charAt(this.pos) == '$') {
+                                                    this.formula.add(new MathAtom(new TeXFormula(this, getDollarGroup('$'), false).root, i));
+                                                    if (z && this.parseString.charAt(this.pos) == '$') {
                                                         this.pos++;
                                                     }
                                                 }
                                             }
                                         } else {
-                                            if (this.ignoreWhiteSpace) {
-                                                this.formula.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("prime")));
+                                            boolean z5 = this.ignoreWhiteSpace;
+                                            TeXFormula teXFormula5 = this.formula;
+                                            if (z5) {
+                                                teXFormula5.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("prime")));
                                                 this.formula.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("prime")));
                                             } else {
-                                                this.formula.add(convertCharacter('\'', true));
+                                                teXFormula5.add(convertCharacter('\'', true));
                                                 this.formula.add(convertCharacter('\'', true));
                                             }
                                             this.pos++;
@@ -823,8 +820,8 @@ public class TeXParser {
                                             this.formula.add(new SpaceAtom());
                                             this.formula.add(new BreakMarkAtom());
                                             while (true) {
-                                                int i15 = this.pos;
-                                                if (i15 < this.len && (charAt = this.parseString.charAt(i15)) == ' ' && charAt == '\t' && charAt == '\r') {
+                                                int i7 = this.pos;
+                                                if (i7 < this.len && (charAt = this.parseString.charAt(i7)) == ' ' && charAt == '\t' && charAt == '\r') {
                                                     this.pos++;
                                                 }
                                             }
@@ -839,18 +836,16 @@ public class TeXParser {
                         this.pos++;
                     }
                 }
-                TeXFormula teXFormula = this.formula;
-                if (teXFormula.root == null && !this.arrayMode) {
-                    teXFormula.add(new EmptyAtom());
+                TeXFormula teXFormula6 = this.formula;
+                if (teXFormula6.root == null && !this.arrayMode) {
+                    teXFormula6.add(new EmptyAtom());
                 }
-                parseDepth--;
                 return;
-            } catch (Throwable th2) {
+            } finally {
                 parseDepth--;
-                throw th2;
             }
         }
-        parseDepth = i10;
+        parseDepth = i2;
         throw new DepthLimitExceededException();
     }
 
@@ -871,70 +866,90 @@ public class TeXParser {
         firstpass();
     }
 
-    public int rewind(int i7) {
-        int i10 = this.pos - i7;
-        this.pos = i10;
-        return i10;
+    public int rewind(int i) {
+        int i2 = this.pos - i;
+        this.pos = i2;
+        return i2;
     }
 
-    public void setArrayMode(boolean z10) {
-        this.arrayMode = z10;
+    public void setArrayMode(boolean z) {
+        this.arrayMode = z;
     }
 
-    public TeXParser(boolean z10, String str, TeXFormula teXFormula) {
+    public TeXParser(boolean z, String str, TeXFormula teXFormula) {
         this(str, teXFormula, false);
-        this.isPartial = z10;
+        this.isPartial = z;
         firstpass();
     }
 
-    public TeXParser(boolean z10, String str, TeXFormula teXFormula, boolean z11) {
-        this.ignoreWhiteSpace = true;
-        this.formula = teXFormula;
-        this.isPartial = z10;
-        if (str != null) {
-            this.parseString = new StringBuffer(str);
-            this.len = str.length();
-            this.pos = 0;
-            if (z11) {
-                firstpass();
-                return;
-            }
-            return;
+    public TeXParser(String str, TeXFormula teXFormula) {
+        this(str, teXFormula, true);
+    }
+
+    public TeXParser(String str, TeXFormula teXFormula, boolean z) {
+        this(false, str, teXFormula, z);
+    }
+
+    public TeXParser(boolean z, String str, ArrayOfAtoms arrayOfAtoms, boolean z2) {
+        this(z, str, (TeXFormula) arrayOfAtoms, z2);
+        this.arrayMode = true;
+    }
+
+    public TeXParser(boolean z, String str, ArrayOfAtoms arrayOfAtoms, boolean z2, boolean z3) {
+        this(z, str, (TeXFormula) arrayOfAtoms, z2, z3);
+        this.arrayMode = true;
+    }
+
+    public TeXParser(String str, ArrayOfAtoms arrayOfAtoms, boolean z) {
+        this(false, str, (TeXFormula) arrayOfAtoms, z);
+    }
+
+    public TeXParser(boolean z, String str, TeXFormula teXFormula, boolean z2, boolean z3) {
+        this(z, str, teXFormula, z2);
+        this.ignoreWhiteSpace = z3;
+    }
+
+    public TeXParser(String str, TeXFormula teXFormula, boolean z, boolean z2) {
+        this(false, str, teXFormula, z);
+        this.ignoreWhiteSpace = z2;
+    }
+
+    public String getGroup(char c, char c2) {
+        int i;
+        int i2;
+        int i3 = this.pos;
+        if (i3 == this.len) {
+            return null;
         }
-        this.parseString = null;
-        this.pos = 0;
-        this.len = 0;
-    }
-
-    public java.lang.String getGroup(java.lang.String r18, java.lang.String r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.TeXParser.getGroup(java.lang.String, java.lang.String):java.lang.String");
-    }
-
-    public TeXParser(String str, TeXFormula teXFormula, boolean z10) {
-        this(false, str, teXFormula, z10);
-    }
-
-    public TeXParser(boolean z10, String str, ArrayOfAtoms arrayOfAtoms, boolean z11) {
-        this(z10, str, (TeXFormula) arrayOfAtoms, z11);
-        this.arrayMode = true;
-    }
-
-    public TeXParser(boolean z10, String str, ArrayOfAtoms arrayOfAtoms, boolean z11, boolean z12) {
-        this(z10, str, (TeXFormula) arrayOfAtoms, z11, z12);
-        this.arrayMode = true;
-    }
-
-    public TeXParser(String str, ArrayOfAtoms arrayOfAtoms, boolean z10) {
-        this(false, str, (TeXFormula) arrayOfAtoms, z10);
-    }
-
-    public TeXParser(boolean z10, String str, TeXFormula teXFormula, boolean z11, boolean z12) {
-        this(z10, str, teXFormula, z11);
-        this.ignoreWhiteSpace = z12;
-    }
-
-    public TeXParser(String str, TeXFormula teXFormula, boolean z10, boolean z11) {
-        this(false, str, teXFormula, z10);
-        this.ignoreWhiteSpace = z11;
+        char charAt = this.parseString.charAt(i3);
+        int i4 = this.pos;
+        if (i4 < this.len && charAt == c) {
+            int i5 = 1;
+            while (true) {
+                i = this.pos;
+                if (i >= this.len - 1 || i5 == 0) {
+                    break;
+                }
+                int i6 = i + 1;
+                this.pos = i6;
+                char charAt2 = this.parseString.charAt(i6);
+                if (charAt2 == c) {
+                    i5++;
+                } else if (charAt2 == c2) {
+                    i5--;
+                } else if (charAt2 == '\\' && (i2 = this.pos) != this.len - 1) {
+                    this.pos = i2 + 1;
+                }
+            }
+            int i7 = i + 1;
+            this.pos = i7;
+            StringBuffer stringBuffer = this.parseString;
+            int i8 = i4 + 1;
+            if (i5 != 0) {
+                return stringBuffer.substring(i8, i7);
+            }
+            return stringBuffer.substring(i8, i);
+        }
+        throw new ParseException("missing '" + c + "'!");
     }
 }

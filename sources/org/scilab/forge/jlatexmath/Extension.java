@@ -5,11 +5,11 @@ public class Extension {
     private final Char repeat;
     private final Char top;
 
-    public Extension(Char r12, Char r22, Char r32, Char r42) {
-        this.top = r12;
-        this.middle = r22;
-        this.repeat = r32;
-        this.bottom = r42;
+    public Extension(Char r1, Char r2, Char r3, Char r4) {
+        this.top = r1;
+        this.middle = r2;
+        this.repeat = r3;
+        this.bottom = r4;
     }
 
     public Char getBottom() {

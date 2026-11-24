@@ -3,50 +3,41 @@ package org.telegram.ui.Stories.recorder;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import e0.i0;
-import e0.q;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.i10;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.s2;
-import org.telegram.messenger.t0;
-import org.telegram.messenger.xs;
-public class StoryUploadingService extends Service implements fs {
-    public q f43953a;
-    public String f43954b;
-    public float f43955c;
+import org.telegram.messenger.a;
+public class StoryUploadingService extends Service implements gk7 {
+    public xk7 a;
+    public String b;
+    public float c;
     public int d = -1;
 
     public StoryUploadingService() {
-        ks.e().b(this, ks.E5);
+        kk7.e().a(this, kk7.D5);
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
         String str;
-        boolean z10 = false;
-        if (i7 == ks.D5) {
-            String str2 = this.f43954b;
+        boolean z = false;
+        if (i == kk7.C5) {
+            String str2 = this.b;
             if (str2 != null && str2.equals((String) objArr[0])) {
                 float floatValue = ((Float) objArr[1]).floatValue();
-                this.f43955c = floatValue;
-                q qVar = this.f43953a;
+                this.c = floatValue;
+                xk7 xk7Var = this.a;
                 int round = Math.round(floatValue * 100.0f);
-                if (this.f43955c <= 0.0f) {
-                    z10 = true;
+                if (this.c <= 0.0f) {
+                    z = true;
                 }
-                qVar.f10249n = 100;
-                qVar.f10250o = round;
-                qVar.f10251p = z10;
+                xk7Var.n = (byte) 100;
+                xk7Var.o = round;
+                xk7Var.p = z;
                 try {
-                    new i0(t0.f27013b).e(null, 33, this.f43953a.b());
-                } catch (Throwable th2) {
-                    a8.g(th2, true);
+                    new pl7(a.b).e(null, 33, this.a.b());
+                } catch (Throwable th) {
+                    fa4.g(th, true);
                 }
             }
-        } else if (i7 == ks.E5 && (str = this.f43954b) != null && str.equals((String) objArr[0])) {
+        } else if (i == kk7.D5 && (str = this.b) != null && str.equals((String) objArr[0])) {
             stopSelf();
         }
     }
@@ -63,74 +54,73 @@ public class StoryUploadingService extends Service implements fs {
             stopForeground(true);
         } catch (Exception unused) {
         }
-        new i0(t0.f27013b).b(33, null);
-        ks.e().n(this, ks.E5);
-        ks.f(this.d).n(this, ks.D5);
-        if (s2.f26829a) {
-            a8.b("upload story destroy");
+        new pl7(a.b).b(33, null);
+        kk7.e().n(this, kk7.D5);
+        kk7.f(this.d).n(this, kk7.C5);
+        if (w01.a) {
+            fa4.b("upload story destroy");
         }
     }
 
     @Override
-    public final int onStartCommand(Intent intent, int i7, int i10) {
-        int i11 = ks.D5;
-        this.f43954b = intent.getStringExtra("path");
-        int i12 = this.d;
-        int intExtra = intent.getIntExtra("currentAccount", i10.f24637t0);
+    public final int onStartCommand(Intent intent, int i, int i2) {
+        int i3 = kk7.C5;
+        this.b = intent.getStringExtra("path");
+        int i4 = this.d;
+        int intExtra = intent.getIntExtra("currentAccount", y6c.t0);
         this.d = intExtra;
-        if (!i10.r(intExtra)) {
+        if (!y6c.q(intExtra)) {
             stopSelf();
             return 2;
         }
-        if (i12 != this.d) {
-            if (i12 != -1) {
-                ks.f(i12).n(this, i11);
+        if (i4 != this.d) {
+            if (i4 != -1) {
+                kk7.f(i4).n(this, i3);
             }
-            int i13 = this.d;
-            if (i13 != -1) {
-                ks.f(i13).b(this, i11);
+            int i5 = this.d;
+            if (i5 != -1) {
+                kk7.f(i5).a(this, i3);
             }
         }
-        if (this.f43954b == null) {
+        if (this.b == null) {
             stopSelf();
             return 2;
         }
-        if (s2.f26829a) {
-            a8.b("start upload story");
+        if (w01.a) {
+            fa4.b("start upload story");
         }
-        if (this.f43953a == null) {
-            xs.i();
-            q qVar = new q(t0.f27013b, null);
-            this.f43953a = qVar;
-            qVar.F.icon = 17301640;
-            qVar.F.when = System.currentTimeMillis();
-            q qVar2 = this.f43953a;
-            qVar2.f10259y = xs.f28072k0;
-            qVar2.g(gd.N0(2131689472, null));
-            this.f43953a.p(gd.N0(2131744207, null));
-            this.f43953a.f(gd.N0(2131744207, null));
+        if (this.a == null) {
+            im7.c();
+            xk7 xk7Var = new xk7(a.b, null);
+            this.a = xk7Var;
+            xk7Var.F.icon = 17301640;
+            xk7Var.F.when = System.currentTimeMillis();
+            xk7 xk7Var2 = this.a;
+            xk7Var2.y = im7.k0;
+            xk7Var2.e(k96.M0(2131689472, null));
+            this.a.k(k96.M0(2131744211, null));
+            this.a.d(k96.M0(2131744211, null));
         }
-        this.f43955c = 0.0f;
-        q qVar3 = this.f43953a;
-        int round = Math.round(0.0f);
-        qVar3.f10249n = 100;
-        qVar3.f10250o = round;
-        qVar3.f10251p = false;
+        this.c = 0.0f;
+        xk7 xk7Var3 = this.a;
+        xk7Var3.n = (byte) 100;
+        xk7Var3.o = 0;
+        xk7Var3.p = false;
         try {
-            startForeground(33, this.f43953a.b());
+            startForeground(33, xk7Var3.b());
+        } catch (Throwable th) {
+            fa4.g(th, true);
+        }
+        try {
+            new pl7(a.b).e(null, 33, this.a.b());
         } catch (Throwable th2) {
-            a8.g(th2, true);
-        }
-        try {
-            new i0(t0.f27013b).e(null, 33, this.f43953a.b());
-        } catch (Throwable th3) {
-            a8.g(th3, true);
+            fa4.g(th2, true);
         }
         return 2;
     }
 
-    public final void onTimeout(int i7, int i10) {
-        a8.b("StoryUploadingService timeout, type = " + i10);
+    public final void onTimeout(int i, int i2) {
+        fa4.b("StoryUploadingService timeout, type = " + i2);
         try {
             stopForeground(true);
         } catch (Throwable unused) {

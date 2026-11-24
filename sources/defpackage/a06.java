@@ -1,0 +1,99 @@
+package defpackage;
+
+import android.view.View;
+import android.view.Window;
+import java.lang.ref.WeakReference;
+import org.telegram.ui.LaunchActivity;
+public final class a06 {
+    public final byte a = 1;
+    public boolean b;
+    public boolean c;
+    public final Object d;
+
+    public a06(LaunchActivity launchActivity, boolean z) {
+        this.d = new WeakReference(launchActivity);
+    }
+
+    public final void a() {
+        switch (this.a) {
+            case 0:
+                b(false);
+                this.c = true;
+                return;
+            default:
+                b(false);
+                this.c = true;
+                return;
+        }
+    }
+
+    public final void b(boolean z) {
+        int i;
+        byte b = this.a;
+        int i2 = 8;
+        Object obj = this.d;
+        int i3 = 1;
+        boolean z2 = true;
+        switch (b) {
+            case 0:
+                if (this.b != z && !this.c) {
+                    this.b = z;
+                    LaunchActivity launchActivity = (LaunchActivity) ((WeakReference) obj).get();
+                    if (launchActivity != null) {
+                        String str = LaunchActivity.C1;
+                        int i4 = launchActivity.B1;
+                        if (!z) {
+                            i3 = -1;
+                        }
+                        int i5 = i4 + i3;
+                        launchActivity.B1 = i5;
+                        yc ycVar = launchActivity.v0;
+                        if (ycVar != null) {
+                            if (i5 <= 0) {
+                                i2 = 0;
+                            }
+                            ycVar.setVisibility(i2);
+                        }
+                        launchActivity.getWindow();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                if (this.b != z && !this.c) {
+                    this.b = z;
+                    c9c c9cVar = (c9c) obj;
+                    if (z) {
+                        i = c9cVar.b + 1;
+                        c9cVar.b = i;
+                    } else {
+                        i = c9cVar.b - 1;
+                        c9cVar.b = i;
+                    }
+                    if (i <= 0) {
+                        z2 = false;
+                    }
+                    if (c9cVar.a != z2) {
+                        c9cVar.a = z2;
+                        Window window = (Window) ((WeakReference) ((dkc) c9cVar.c).b).get();
+                        if (window != null) {
+                            View decorView = window.getDecorView();
+                            if (!z2) {
+                                i2 = 0;
+                            }
+                            decorView.setVisibility(i2);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
+    }
+
+    public a06(c9c c9cVar) {
+        this.d = c9cVar;
+    }
+}

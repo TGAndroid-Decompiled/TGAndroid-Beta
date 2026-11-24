@@ -7,82 +7,78 @@ import android.graphics.Shader;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.messenger.g0;
-import sg.g1;
-import tg.e;
 public class ColorPicker extends FrameLayout {
     public static final int[] d = {-1431751, -2409774, -13610525, -11942419, -8337308, -205211, -223667, -16777216, -1};
-    public static final float[] f33097e = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
-    public float f33098a;
-    public float f33099b;
-    public float f33100c;
+    public static final float[] e = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
+    public float a;
+    public float b;
+    public float c;
 
-    public static int a(float f10) {
+    public static int a(float f) {
         float[] fArr;
-        int i7;
+        int i;
         int blue;
-        int i10 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
+        int i2 = (f > 0.0f ? 1 : (f == 0.0f ? 0 : -1));
         int[] iArr = d;
-        if (i10 <= 0) {
+        if (i2 <= 0) {
             return iArr[0];
         }
-        if (f10 >= 1.0f) {
+        if (f >= 1.0f) {
             return iArr[8];
         }
-        int i11 = 1;
+        int i3 = 1;
         while (true) {
-            fArr = f33097e;
-            if (i11 < 9) {
-                if (fArr[i11] >= f10) {
-                    i7 = i11 - 1;
+            fArr = e;
+            if (i3 < 9) {
+                if (fArr[i3] >= f) {
+                    i = i3 - 1;
                     break;
                 }
-                i11++;
+                i3++;
             } else {
-                i11 = -1;
-                i7 = -1;
+                i3 = -1;
+                i = -1;
                 break;
             }
         }
-        float f11 = fArr[i7];
-        int i12 = iArr[i7];
-        float f12 = fArr[i11];
-        int i13 = iArr[i11];
-        float min = Math.min(Math.max((f10 - f11) / (f12 - f11), 0.0f), 1.0f);
-        int red = Color.red(i12);
-        int red2 = Color.red(i13);
-        int green = Color.green(i12);
-        int green2 = Color.green(i13);
-        return Color.argb(255, Math.min(255, (int) (((red2 - red) * min) + red)), Math.min(255, (int) (((green2 - green) * min) + green)), Math.min(255, (int) (((Color.blue(i13) - blue) * min) + Color.blue(i12))));
+        float f2 = fArr[i];
+        int i4 = iArr[i];
+        float f3 = fArr[i3];
+        int i5 = iArr[i3];
+        float min = Math.min(Math.max((f - f2) / (f3 - f2), 0.0f), 1.0f);
+        int red = Color.red(i4);
+        int red2 = Color.red(i5);
+        int green = Color.green(i4);
+        int green2 = Color.green(i5);
+        return Color.argb(255, Math.min(255, (int) (((red2 - red) * min) + red)), Math.min(255, (int) (((green2 - green) * min) + green)), Math.min(255, (int) (((Color.blue(i5) - blue) * min) + Color.blue(i4))));
     }
 
-    private void setDraggingFactor(float f10) {
-        this.f33100c = f10;
+    private void setDraggingFactor(float f) {
+        this.c = f;
         invalidate();
     }
 
     public float getDraggingFactor() {
-        return this.f33100c;
+        return this.c;
     }
 
     public View getSettingsButton() {
         return null;
     }
 
-    public g1 getSwatch() {
-        return new g1(this.f33098a, this.f33099b, a(this.f33098a));
+    public mcb getSwatch() {
+        return new mcb(this.a, this.b, a(this.a));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawRoundRect(null, g0.L(6.0f), g0.L(6.0f), null);
+        canvas.drawRoundRect(null, gl.L(6.0f), gl.L(6.0f), null);
         throw null;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-        new LinearGradient(g0.L(56.0f), 0.0f, (i11 - i7) - g0.L(56.0f), 0.0f, d, f33097e, tileMode);
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        new LinearGradient(gl.L(56.0f), 0.0f, (i3 - i) - gl.L(56.0f), 0.0f, d, e, Shader.TileMode.REPEAT);
         throw null;
     }
 
@@ -95,30 +91,30 @@ public class ColorPicker extends FrameLayout {
         throw null;
     }
 
-    public void setLocation(float f10) {
-        this.f33098a = f10;
-        a(f10);
+    public void setLocation(float f) {
+        this.a = f;
+        a(f);
         throw null;
     }
 
-    public void setSettingsButtonImage(int i7) {
+    public void setSettingsButtonImage(int i) {
         throw null;
     }
 
-    public void setSwatch(g1 g1Var) {
-        setLocation(g1Var.f57336b);
-        setWeight(g1Var.f57337c);
+    public void setSwatch(mcb mcbVar) {
+        setLocation(mcbVar.b);
+        setWeight(mcbVar.c);
     }
 
-    public void setUndoEnabled(boolean z10) {
+    public void setUndoEnabled(boolean z) {
         throw null;
     }
 
-    public void setWeight(float f10) {
-        this.f33099b = f10;
+    public void setWeight(float f) {
+        this.b = f;
         invalidate();
     }
 
-    public void setDelegate(e eVar) {
+    public void setDelegate(ml2 ml2Var) {
     }
 }

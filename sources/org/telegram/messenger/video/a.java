@@ -1,27 +1,22 @@
 package org.telegram.messenger.video;
 
-import org.telegram.ui.Components.x60;
-public final class a implements Runnable {
-    public final int f27472a;
-    public final Object f27473b;
+import java.util.Comparator;
+import org.telegram.messenger.video.Track;
+import org.telegram.messenger.video.VideoFramesRewinder;
+public final class a implements Comparator {
+    public final byte a;
 
-    public a(Object obj, int i7) {
-        this.f27472a = i7;
-        this.f27473b = obj;
+    public a(byte b) {
+        this.a = b;
     }
 
     @Override
-    public final void run() {
-        switch (this.f27472a) {
+    public final int compare(Object obj, Object obj2) {
+        switch (this.a) {
             case 0:
-                OldVideoPlayerRewinder.a((OldVideoPlayerRewinder) this.f27473b);
-                return;
-            case 1:
-                ((x60) this.f27473b).v();
-                return;
+                return Track.a((Track.SamplePresentationTime) obj, (Track.SamplePresentationTime) obj2);
             default:
-                ((VideoFramesRewinder) this.f27473b).lambda$new$2();
-                return;
+                return VideoFramesRewinder.a((VideoFramesRewinder.Frame) obj, (VideoFramesRewinder.Frame) obj2);
         }
     }
 }

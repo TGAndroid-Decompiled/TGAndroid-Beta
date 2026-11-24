@@ -1,4 +1,4 @@
 package java.util.function;
 public interface ObjLongConsumer<T> {
-    void accept(T t6, long j3);
+    void accept(T t, long j);
 }

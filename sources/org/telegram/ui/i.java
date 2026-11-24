@@ -1,27 +1,30 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class i extends rg.a {
-    public final CharSequence f48675c;
-    public final int d;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.webkit.WebView;
+import org.telegram.tgnet.tl.TL_iv;
+public final class i extends WebView {
+    public final j a;
 
-    public i(int i7, int i10, String str) {
-        super(i7, false);
-        this.d = i10;
-        this.f48675c = str;
+    public i(j jVar, Activity activity) {
+        super(activity);
+        this.a = jVar;
+        setFocusable(false);
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && i.class == obj.getClass()) {
-                i iVar = (i) obj;
-                if (this.d == iVar.d && Objects.equals(this.f48675c, iVar.f48675c)) {
-                    return true;
-                }
-                return false;
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        j jVar = this.a;
+        jVar.s = true;
+        TL_iv.pageBlockEmbed pageblockembed = jVar.w;
+        if (pageblockembed != null) {
+            if (pageblockembed.allow_scrolling) {
+                requestDisallowInterceptTouchEvent(true);
+            } else {
+                jVar.y.g0.requestDisallowInterceptTouchEvent(true);
             }
-            return false;
         }
-        return true;
+        return super.onTouchEvent(motionEvent);
     }
 }

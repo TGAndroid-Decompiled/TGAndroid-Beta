@@ -11,8 +11,8 @@ public class Camera1Enumerator implements CameraEnumerator {
     private static List<List<CameraEnumerationAndroid.CaptureFormat>> cachedSupportedFormats;
     private final boolean captureToTexture;
 
-    public Camera1Enumerator() {
-        this(true);
+    public Camera1Enumerator(boolean z) {
+        this.captureToTexture = z;
     }
 
     public static List<CameraEnumerationAndroid.CaptureFormat.FramerateRange> convertFramerates(List<int[]> list) {
@@ -31,80 +31,81 @@ public class Camera1Enumerator implements CameraEnumerator {
         return arrayList;
     }
 
-    private static List<CameraEnumerationAndroid.CaptureFormat> enumerateFormats(int i7) {
-        int i10;
-        Logging.d("Camera1Enumerator", "Get supported formats for camera index " + i7 + ".");
+    private static List<CameraEnumerationAndroid.CaptureFormat> enumerateFormats(int i) {
+        int i2;
+        Logging.d("Camera1Enumerator", "Get supported formats for camera index " + i + ".");
         long elapsedRealtime = SystemClock.elapsedRealtime();
         Camera camera = null;
         try {
             try {
-                Logging.d("Camera1Enumerator", "Opening camera with index " + i7);
-                camera = Camera.open(i7);
+                Logging.d("Camera1Enumerator", "Opening camera with index " + i);
+                camera = Camera.open(i);
                 Camera.Parameters parameters = camera.getParameters();
                 camera.release();
                 ArrayList arrayList = new ArrayList();
                 try {
                     List<int[]> supportedPreviewFpsRange = parameters.getSupportedPreviewFpsRange();
-                    int i11 = 0;
+                    int i3 = 0;
                     if (supportedPreviewFpsRange != null) {
                         int[] iArr = supportedPreviewFpsRange.get(supportedPreviewFpsRange.size() - 1);
-                        i11 = iArr[0];
-                        i10 = iArr[1];
+                        i3 = iArr[0];
+                        i2 = iArr[1];
                     } else {
-                        i10 = 0;
+                        i2 = 0;
                     }
                     for (Camera.Size size : parameters.getSupportedPreviewSizes()) {
-                        arrayList.add(new CameraEnumerationAndroid.CaptureFormat(size.width, size.height, i11, i10));
+                        arrayList.add(new CameraEnumerationAndroid.CaptureFormat(size.width, size.height, i3, i2));
                     }
-                } catch (Exception e10) {
-                    Logging.e("Camera1Enumerator", "getSupportedFormats() failed on camera index " + i7, e10);
+                } catch (Exception e) {
+                    Logging.e("Camera1Enumerator", "getSupportedFormats() failed on camera index " + i, e);
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                StringBuilder m10 = i5.c.m(i7, "Get supported formats for camera index ", " done. Time spent: ");
-                m10.append(elapsedRealtime2 - elapsedRealtime);
-                m10.append(" ms.");
-                Logging.d("Camera1Enumerator", m10.toString());
+                StringBuilder m = de9.m(i, "Get supported formats for camera index ", " done. Time spent: ");
+                m.append(elapsedRealtime2 - elapsedRealtime);
+                m.append(" ms.");
+                Logging.d("Camera1Enumerator", m.toString());
                 return arrayList;
-            } catch (RuntimeException e11) {
-                Logging.e("Camera1Enumerator", "Open camera failed on camera index " + i7, e11);
+            } catch (RuntimeException e2) {
+                Logging.e("Camera1Enumerator", "Open camera failed on camera index " + i, e2);
                 ArrayList arrayList2 = new ArrayList();
                 if (camera != null) {
                     camera.release();
                 }
                 return arrayList2;
             }
-        } catch (Throwable th2) {
+        } catch (Throwable th) {
             if (camera != null) {
                 camera.release();
             }
-            throw th2;
+            throw th;
         }
     }
 
     public static int getCameraIndex(String str) {
         Logging.d("Camera1Enumerator", "getCameraIndex: " + str);
-        for (int i7 = 0; i7 < Camera.getNumberOfCameras(); i7++) {
-            if (str.equals(getDeviceName(i7))) {
-                return i7;
+        for (int i = 0; i < Camera.getNumberOfCameras(); i++) {
+            if (str.equals(getDeviceName(i))) {
+                return i;
             }
         }
-        throw new IllegalArgumentException(p5.c.k("No such camera: ", str));
+        w26.j(b00.h("No such camera: ", str));
+        return 0;
     }
 
-    private static Camera.CameraInfo getCameraInfo(int i7) {
+    private static Camera.CameraInfo getCameraInfo(int i) {
         Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
         try {
-            Camera.getCameraInfo(i7, cameraInfo);
+            Camera.getCameraInfo(i, cameraInfo);
             return cameraInfo;
-        } catch (Exception e10) {
-            Logging.e("Camera1Enumerator", "getCameraInfo failed on index " + i7, e10);
+        } catch (Exception e) {
+            Logging.e("Camera1Enumerator", "getCameraInfo failed on index " + i, e);
             return null;
         }
     }
 
-    public static String getDeviceName(int i7) {
+    public static String getDeviceName(int i) {
         String str;
-        Camera.CameraInfo cameraInfo = getCameraInfo(i7);
+        Camera.CameraInfo cameraInfo = getCameraInfo(i);
         if (cameraInfo == null) {
             return null;
         }
@@ -113,7 +114,21 @@ public class Camera1Enumerator implements CameraEnumerator {
         } else {
             str = "back";
         }
-        return "Camera " + i7 + ", Facing " + str + ", Orientation " + cameraInfo.orientation;
+        return "Camera " + i + ", Facing " + str + ", Orientation " + cameraInfo.orientation;
+    }
+
+    public static synchronized List<CameraEnumerationAndroid.CaptureFormat> getSupportedFormats(int i) {
+        List<CameraEnumerationAndroid.CaptureFormat> list;
+        synchronized (Camera1Enumerator.class) {
+            if (cachedSupportedFormats == null) {
+                cachedSupportedFormats = new ArrayList();
+                for (int i2 = 0; i2 < Camera.getNumberOfCameras(); i2++) {
+                    cachedSupportedFormats.add(enumerateFormats(i2));
+                }
+            }
+            list = cachedSupportedFormats.get(i);
+        }
+        return list;
     }
 
     @Override
@@ -124,21 +139,16 @@ public class Camera1Enumerator implements CameraEnumerator {
     @Override
     public String[] getDeviceNames() {
         ArrayList arrayList = new ArrayList();
-        for (int i7 = 0; i7 < Camera.getNumberOfCameras(); i7++) {
-            String deviceName = getDeviceName(i7);
+        for (int i = 0; i < Camera.getNumberOfCameras(); i++) {
+            String deviceName = getDeviceName(i);
             if (deviceName != null) {
                 arrayList.add(deviceName);
-                Logging.d("Camera1Enumerator", "Index: " + i7 + ". " + deviceName);
+                Logging.d("Camera1Enumerator", "Index: " + i + ". " + deviceName);
             } else {
-                Logging.e("Camera1Enumerator", "Index: " + i7 + ". Failed to query camera name.");
+                Logging.e("Camera1Enumerator", "Index: " + i + ". Failed to query camera name.");
             }
         }
         return (String[]) arrayList.toArray(new String[arrayList.size()]);
-    }
-
-    @Override
-    public List<CameraEnumerationAndroid.CaptureFormat> getSupportedFormats(String str) {
-        return getSupportedFormats(getCameraIndex(str));
     }
 
     @Override
@@ -159,25 +169,12 @@ public class Camera1Enumerator implements CameraEnumerator {
         return false;
     }
 
-    public Camera1Enumerator(boolean z10) {
-        this.captureToTexture = z10;
+    public Camera1Enumerator() {
+        this(true);
     }
 
-    public static synchronized List<CameraEnumerationAndroid.CaptureFormat> getSupportedFormats(int i7) {
-        List<CameraEnumerationAndroid.CaptureFormat> list;
-        synchronized (Camera1Enumerator.class) {
-            try {
-                if (cachedSupportedFormats == null) {
-                    cachedSupportedFormats = new ArrayList();
-                    for (int i10 = 0; i10 < Camera.getNumberOfCameras(); i10++) {
-                        cachedSupportedFormats.add(enumerateFormats(i10));
-                    }
-                }
-                list = cachedSupportedFormats.get(i7);
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        return list;
+    @Override
+    public List<CameraEnumerationAndroid.CaptureFormat> getSupportedFormats(String str) {
+        return getSupportedFormats(getCameraIndex(str));
     }
 }

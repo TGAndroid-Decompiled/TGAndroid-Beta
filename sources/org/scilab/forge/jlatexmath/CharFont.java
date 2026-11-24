@@ -1,16 +1,16 @@
 package org.scilab.forge.jlatexmath;
 public class CharFont {
     public int boldFontId;
-    public char f22671c;
+    public char c;
     public int fontId;
 
-    public CharFont(char c10, int i7) {
-        this(c10, i7, i7);
+    public CharFont(char c, int i, int i2) {
+        this.c = c;
+        this.fontId = i;
+        this.boldFontId = i2;
     }
 
-    public CharFont(char c10, int i7, int i10) {
-        this.f22671c = c10;
-        this.fontId = i7;
-        this.boldFontId = i10;
+    public CharFont(char c, int i) {
+        this(c, i, i);
     }
 }

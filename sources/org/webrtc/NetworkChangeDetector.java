@@ -36,11 +36,11 @@ public interface NetworkChangeDetector {
         public final ConnectionType type;
         public final ConnectionType underlyingTypeForVpn;
 
-        public NetworkInformation(String str, ConnectionType connectionType, ConnectionType connectionType2, long j3, IPAddress[] iPAddressArr) {
+        public NetworkInformation(String str, ConnectionType connectionType, ConnectionType connectionType2, long j, IPAddress[] iPAddressArr) {
             this.name = str;
             this.type = connectionType;
             this.underlyingTypeForVpn = connectionType2;
-            this.handle = j3;
+            this.handle = j;
             this.ipAddresses = iPAddressArr;
         }
 
@@ -70,9 +70,9 @@ public interface NetworkChangeDetector {
 
         void onNetworkConnect(NetworkInformation networkInformation);
 
-        void onNetworkDisconnect(long j3);
+        void onNetworkDisconnect(long j);
 
-        void onNetworkPreference(List<ConnectionType> list, int i7);
+        void onNetworkPreference(List<ConnectionType> list, int i);
     }
 
     void destroy();

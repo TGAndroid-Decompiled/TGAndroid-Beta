@@ -12,13 +12,13 @@ public interface VideoEncoder {
 
         public int getSum() {
             int[][] iArr;
-            int i7 = 0;
+            int i = 0;
             for (int[] iArr2 : this.bitratesBbs) {
-                for (int i10 : iArr2) {
-                    i7 += i10;
+                for (int i2 : iArr2) {
+                    i += i2;
                 }
             }
-            return i7;
+            return i;
         }
     }
 
@@ -29,8 +29,8 @@ public interface VideoEncoder {
     public static class Capabilities {
         public final boolean lossNotification;
 
-        public Capabilities(boolean z10) {
-            this.lossNotification = z10;
+        public Capabilities(boolean z) {
+            this.lossNotification = z;
         }
     }
 
@@ -61,9 +61,9 @@ public interface VideoEncoder {
         public final boolean applyAlignmentToAllSimulcastLayers;
         public final int requestedResolutionAlignment;
 
-        public EncoderInfo(int i7, boolean z10) {
-            this.requestedResolutionAlignment = i7;
-            this.applyAlignmentToAllSimulcastLayers = z10;
+        public EncoderInfo(int i, boolean z) {
+            this.requestedResolutionAlignment = i;
+            this.applyAlignmentToAllSimulcastLayers = z;
         }
 
         public boolean getApplyAlignmentToAllSimulcastLayers() {
@@ -91,11 +91,11 @@ public interface VideoEncoder {
         public final int minBitrateBps;
         public final int minStartBitrateBps;
 
-        public ResolutionBitrateLimits(int i7, int i10, int i11, int i12) {
-            this.frameSizePixels = i7;
-            this.minStartBitrateBps = i10;
-            this.minBitrateBps = i11;
-            this.maxBitrateBps = i12;
+        public ResolutionBitrateLimits(int i, int i2, int i3, int i4) {
+            this.frameSizePixels = i;
+            this.minStartBitrateBps = i2;
+            this.minBitrateBps = i3;
+            this.maxBitrateBps = i4;
         }
 
         public int getFrameSizePixels() {
@@ -112,33 +112,6 @@ public interface VideoEncoder {
 
         public int getMinStartBitrateBps() {
             return this.minStartBitrateBps;
-        }
-    }
-
-    public static class Settings {
-        public final boolean automaticResizeOn;
-        public final Capabilities capabilities;
-        public final int height;
-        public final int maxFramerate;
-        public final int numberOfCores;
-        public final int numberOfSimulcastStreams;
-        public final int startBitrate;
-        public final int width;
-
-        @Deprecated
-        public Settings(int i7, int i10, int i11, int i12, int i13, int i14, boolean z10) {
-            this(i7, i10, i11, i12, i13, i14, z10, new Capabilities(false));
-        }
-
-        public Settings(int i7, int i10, int i11, int i12, int i13, int i14, boolean z10, Capabilities capabilities) {
-            this.numberOfCores = i7;
-            this.width = i10;
-            this.height = i11;
-            this.startBitrate = i12;
-            this.maxFramerate = i13;
-            this.numberOfSimulcastStreams = i14;
-            this.automaticResizeOn = z10;
-            this.capabilities = capabilities;
         }
     }
 
@@ -160,7 +133,7 @@ public interface VideoEncoder {
 
     VideoCodecStatus release();
 
-    VideoCodecStatus setRateAllocation(BitrateAllocation bitrateAllocation, int i7);
+    VideoCodecStatus setRateAllocation(BitrateAllocation bitrateAllocation, int i);
 
     VideoCodecStatus setRates(RateControlParameters rateControlParameters);
 
@@ -170,10 +143,10 @@ public interface VideoEncoder {
         public final Integer low;
         public final boolean on;
 
-        public ScalingSettings(int i7, int i10) {
+        public ScalingSettings(int i, int i2) {
             this.on = true;
-            this.low = Integer.valueOf(i7);
-            this.high = Integer.valueOf(i10);
+            this.low = Integer.valueOf(i);
+            this.high = Integer.valueOf(i2);
         }
 
         public String toString() {
@@ -190,17 +163,44 @@ public interface VideoEncoder {
         }
 
         @Deprecated
-        public ScalingSettings(boolean z10) {
-            this.on = z10;
+        public ScalingSettings(boolean z) {
+            this.on = z;
             this.low = null;
             this.high = null;
         }
 
         @Deprecated
-        public ScalingSettings(boolean z10, int i7, int i10) {
-            this.on = z10;
-            this.low = Integer.valueOf(i7);
-            this.high = Integer.valueOf(i10);
+        public ScalingSettings(boolean z, int i, int i2) {
+            this.on = z;
+            this.low = Integer.valueOf(i);
+            this.high = Integer.valueOf(i2);
+        }
+    }
+
+    public static class Settings {
+        public final boolean automaticResizeOn;
+        public final Capabilities capabilities;
+        public final int height;
+        public final int maxFramerate;
+        public final int numberOfCores;
+        public final int numberOfSimulcastStreams;
+        public final int startBitrate;
+        public final int width;
+
+        public Settings(int i, int i2, int i3, int i4, int i5, int i6, boolean z, Capabilities capabilities) {
+            this.numberOfCores = i;
+            this.width = i2;
+            this.height = i3;
+            this.startBitrate = i4;
+            this.maxFramerate = i5;
+            this.numberOfSimulcastStreams = i6;
+            this.automaticResizeOn = z;
+            this.capabilities = capabilities;
+        }
+
+        @Deprecated
+        public Settings(int i, int i2, int i3, int i4, int i5, int i6, boolean z) {
+            this(i, i2, i3, i4, i5, i6, z, new Capabilities(false));
         }
     }
 }

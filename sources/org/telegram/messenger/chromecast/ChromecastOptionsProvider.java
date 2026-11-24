@@ -1,34 +1,28 @@
 package org.telegram.messenger.chromecast;
 
 import android.content.Context;
-import f6.i;
-import g6.b;
-import g6.e;
-import h6.a;
 import java.util.ArrayList;
 import java.util.List;
-public class ChromecastOptionsProvider implements e {
-    public static final b f23469a;
+public class ChromecastOptionsProvider {
+    public static final dd1 a;
 
     static {
         ArrayList arrayList = new ArrayList();
-        i iVar = new i();
+        b06 b06Var = new b06();
         ArrayList arrayList2 = new ArrayList();
-        a aVar = b.J;
-        if (aVar != null) {
-            f23469a = new b("CC1AD845", arrayList, false, iVar, true, aVar, true, 0.05000000074505806d, false, false, false, arrayList2, true, false, b.H, b.I);
-            return;
+        bd1 bd1Var = dd1.J;
+        if (bd1Var != null) {
+            a = new dd1("CC1AD845", arrayList, false, b06Var, true, bd1Var, true, 0.05000000074505806d, false, false, false, arrayList2, true, false, dd1.H, dd1.I);
+        } else {
+            fvc.f("use Optional.orNull() instead of Optional.or(null)");
         }
-        throw new NullPointerException("use Optional.orNull() instead of Optional.or(null)");
     }
 
-    @Override
-    public List<com.google.android.gms.internal.cast.e> getAdditionalSessionProviders(Context context) {
+    public List<e7d> getAdditionalSessionProviders(Context context) {
         return null;
     }
 
-    @Override
-    public b getCastOptions(Context context) {
-        return f23469a;
+    public dd1 getCastOptions(Context context) {
+        return a;
     }
 }

@@ -1,6 +1,5 @@
 package org.webrtc;
 
-import ai.c1;
 import android.view.SurfaceHolder;
 import java.util.concurrent.CountDownLatch;
 import org.webrtc.EglBase;
@@ -26,30 +25,26 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
 
     private void updateFrameDimensionsAndReportEvents(VideoFrame videoFrame) {
         synchronized (this.layoutLock) {
-            try {
-                if (this.isRenderingPaused) {
-                    return;
+            if (this.isRenderingPaused) {
+                return;
+            }
+            if (!this.isFirstFrameRendered) {
+                this.isFirstFrameRendered = true;
+                logD("Reporting first rendered frame.");
+                RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
+                if (rendererEvents != null) {
+                    rendererEvents.onFirstFrameRendered();
                 }
-                if (!this.isFirstFrameRendered) {
-                    this.isFirstFrameRendered = true;
-                    logD("Reporting first rendered frame.");
-                    RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
-                    if (rendererEvents != null) {
-                        rendererEvents.onFirstFrameRendered();
-                    }
+            }
+            if (this.rotatedFrameWidth != videoFrame.getRotatedWidth() || this.rotatedFrameHeight != videoFrame.getRotatedHeight() || this.frameRotation != videoFrame.getRotation()) {
+                logD("Reporting frame resolution changed to " + videoFrame.getBuffer().getWidth() + "x" + videoFrame.getBuffer().getHeight() + " with rotation " + videoFrame.getRotation());
+                RendererCommon.RendererEvents rendererEvents2 = this.rendererEvents;
+                if (rendererEvents2 != null) {
+                    rendererEvents2.onFrameResolutionChanged(videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotation());
                 }
-                if (this.rotatedFrameWidth != videoFrame.getRotatedWidth() || this.rotatedFrameHeight != videoFrame.getRotatedHeight() || this.frameRotation != videoFrame.getRotation()) {
-                    logD("Reporting frame resolution changed to " + videoFrame.getBuffer().getWidth() + "x" + videoFrame.getBuffer().getHeight() + " with rotation " + videoFrame.getRotation());
-                    RendererCommon.RendererEvents rendererEvents2 = this.rendererEvents;
-                    if (rendererEvents2 != null) {
-                        rendererEvents2.onFrameResolutionChanged(videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotation());
-                    }
-                    this.rotatedFrameWidth = videoFrame.getRotatedWidth();
-                    this.rotatedFrameHeight = videoFrame.getRotatedHeight();
-                    this.frameRotation = videoFrame.getRotation();
-                }
-            } catch (Throwable th2) {
-                throw th2;
+                this.rotatedFrameWidth = videoFrame.getRotatedWidth();
+                this.rotatedFrameHeight = videoFrame.getRotatedHeight();
+                this.frameRotation = videoFrame.getRotation();
             }
         }
     }
@@ -89,23 +84,23 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     }
 
     @Override
-    public void setFpsReduction(float f10) {
-        boolean z10;
+    public void setFpsReduction(float f) {
+        boolean z;
         synchronized (this.layoutLock) {
-            if (f10 == 0.0f) {
-                z10 = true;
+            if (f == 0.0f) {
+                z = true;
             } else {
-                z10 = false;
+                z = false;
             }
-            this.isRenderingPaused = z10;
+            this.isRenderingPaused = z;
         }
-        super.setFpsReduction(f10);
+        super.setFpsReduction(f);
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int i7, int i10, int i11) {
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i2, int i3) {
         ThreadUtils.checkIsOnMainThread();
-        logD("surfaceChanged: format: " + i7 + " size: " + i10 + "x" + i11);
+        logD("surfaceChanged: format: " + i + " size: " + i2 + "x" + i3);
     }
 
     @Override
@@ -118,7 +113,7 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         ThreadUtils.checkIsOnMainThread();
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        releaseEglSurface(new c1(countDownLatch, 1), false);
+        releaseEglSurface(new wm3(countDownLatch, (byte) 1), false);
         ThreadUtils.awaitUninterruptibly(countDownLatch);
     }
 

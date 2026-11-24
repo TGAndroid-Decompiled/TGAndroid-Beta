@@ -3,11 +3,11 @@ package org.telegram.utils.recorder.audio;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicBoolean;
 final class AudioNoiseSuppressor {
-    public long f54759a;
-    public final AtomicBoolean f54760b = new AtomicBoolean(false);
+    public long a;
+    public final AtomicBoolean b = new AtomicBoolean(false);
 
-    public AudioNoiseSuppressor(long j3) {
-        this.f54759a = j3;
+    public AudioNoiseSuppressor(long j) {
+        this.a = j;
     }
 
     public static AudioNoiseSuppressor a() {
@@ -20,23 +20,24 @@ final class AudioNoiseSuppressor {
 
     private static native long nCreate();
 
-    private static native void nDestroy(long j3);
+    private static native void nDestroy(long j);
 
-    private static native boolean nProcess(long j3, ByteBuffer byteBuffer, int i7);
+    private static native boolean nProcess(long j, ByteBuffer byteBuffer, int i);
 
-    public final boolean b(int i7, ByteBuffer byteBuffer) {
-        if (!this.f54760b.get()) {
-            return nProcess(this.f54759a, byteBuffer, i7);
+    public final boolean b(int i, ByteBuffer byteBuffer) {
+        if (!this.b.get()) {
+            return nProcess(this.a, byteBuffer, i);
         }
-        throw new IllegalStateException("Native noise suppressor is already released");
+        sc8.j("Native noise suppressor is already released");
+        return false;
     }
 
     public final void c() {
-        if (this.f54760b.compareAndSet(false, true)) {
-            long j3 = this.f54759a;
-            this.f54759a = 0L;
-            if (j3 != 0) {
-                nDestroy(j3);
+        if (this.b.compareAndSet(false, true)) {
+            long j = this.a;
+            this.a = 0L;
+            if (j != 0) {
+                nDestroy(j);
             }
         }
     }

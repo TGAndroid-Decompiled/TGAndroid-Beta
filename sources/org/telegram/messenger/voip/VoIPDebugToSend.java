@@ -11,17 +11,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.zip.GZIPOutputStream;
-import ki.n2;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.s2;
 import org.telegram.messenger.voip.Instance;
-import org.telegram.messenger.w7;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.voip.c2;
 public class VoIPDebugToSend {
     private final int currentAccount;
     private final HashMap<Long, Data> pending = new HashMap<>();
@@ -37,12 +33,8 @@ public class VoIPDebugToSend {
         }
     }
 
-    public VoIPDebugToSend(int i7) {
-        this.currentAccount = i7;
-    }
-
-    public static void b(VoIPDebugToSend voIPDebugToSend, TL_phone.saveCallDebug savecalldebug, TLRPC.InputFile inputFile) {
-        voIPDebugToSend.lambda$done$0(savecalldebug, inputFile);
+    public VoIPDebugToSend(int i) {
+        this.currentAccount = i;
     }
 
     public void lambda$done$0(TL_phone.saveCallDebug savecalldebug, TLRPC.InputFile inputFile) {
@@ -56,12 +48,12 @@ public class VoIPDebugToSend {
     }
 
     public void lambda$done$1(File file, TL_phone.saveCallDebug savecalldebug) {
-        w7.G(this.currentAccount).f0(file.getAbsolutePath(), new n2(8, this, savecalldebug));
+        ba4.G(this.currentAccount).f0(new nu9(this, savecalldebug, (byte) 19), file.getAbsolutePath());
     }
 
     public void lambda$done$2(Data data, File file, TL_phone.saveCallDebug savecalldebug) {
         File file2 = new File(data.logPath);
-        Typeface typeface = org.telegram.messenger.g0.f24198a;
+        Typeface typeface = gl.a;
         try {
             BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file2));
             GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
@@ -73,54 +65,65 @@ public class VoIPDebugToSend {
                 } else {
                     gZIPOutputStream.close();
                     bufferedInputStream.close();
-                    org.telegram.messenger.g0.g3(new m(this, file, savecalldebug, 0));
+                    gl.d3(new wbc(this, file, savecalldebug, (byte) 4));
                     return;
                 }
             }
-        } catch (FileNotFoundException e10) {
-            a8.g(e10, true);
-        } catch (IOException e11) {
-            a8.g(e11, true);
+        } catch (FileNotFoundException e) {
+            fa4.g(e, true);
+        } catch (IOException e2) {
+            fa4.g(e2, true);
         }
     }
 
-    public void lambda$done$3(Data data, TL_phone.saveCallDebug savecalldebug, TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (s2.f26829a) {
-            a8.b("Sent debug logs, response = " + tLObject);
+    public void lambda$done$3(final Data data, final TL_phone.saveCallDebug savecalldebug, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (w01.a) {
+            fa4.b("Sent debug logs, response = " + tLObject);
         }
         if ((tLObject instanceof TLRPC.TL_boolFalse) && !TextUtils.isEmpty(data.logPath)) {
-            Utilities.f22879g.c(new l(this, data, new File(a8.p0.s(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 0));
+            final File file = new File(b00.j(new StringBuilder(), data.logPath, ".gzip"));
+            Utilities.g.c(new Runnable() {
+                @Override
+                public final void run() {
+                    VoIPDebugToSend.this.lambda$done$2(data, file, savecalldebug);
+                }
+            });
         }
     }
 
-    public void done(long j3, boolean z10) {
-        Data remove = this.pending.remove(Long.valueOf(j3));
-        if (remove != null && z10) {
-            TL_phone.saveCallDebug savecalldebug = new TL_phone.saveCallDebug();
+    public void done(long j, boolean z) {
+        final Data remove = this.pending.remove(Long.valueOf(j));
+        if (remove != null && z) {
+            final TL_phone.saveCallDebug savecalldebug = new TL_phone.saveCallDebug();
             TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
             savecalldebug.debug = tL_dataJSON;
             tL_dataJSON.data = remove.state.debugLog;
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             savecalldebug.peer = tL_inputPhoneCall;
             tL_inputPhoneCall.access_hash = remove.access_hash;
-            tL_inputPhoneCall.f28557id = remove.callId;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new n(this, remove, savecalldebug, 0));
+            tL_inputPhoneCall.id = remove.callId;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    VoIPDebugToSend.this.lambda$done$3(remove, savecalldebug, tLObject, tL_error);
+                }
+            });
         }
     }
 
-    public void push(long j3, long j10, Instance.FinalState finalState, String str) {
+    public void push(long j, long j2, Instance.FinalState finalState, String str) {
         if (TextUtils.isEmpty(finalState.debugLog)) {
             try {
-                finalState.debugLog = VoIPService.getStringFromFile(c2.e("" + j3));
-            } catch (Exception e10) {
-                e10.printStackTrace();
+                finalState.debugLog = VoIPService.getStringFromFile(rgc.e(String.valueOf(j)));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         Data data = new Data();
-        data.callId = j3;
-        data.access_hash = j10;
+        data.callId = j;
+        data.access_hash = j2;
         data.state = finalState;
         data.logPath = str;
-        this.pending.put(Long.valueOf(j3), data);
+        this.pending.put(Long.valueOf(j), data);
     }
 }

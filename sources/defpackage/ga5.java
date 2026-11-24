@@ -1,0 +1,10 @@
+package defpackage;
+public final class ga5 {
+    public final byte a;
+    public final Object b;
+
+    public ga5(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
+    }
+}

@@ -5,23 +5,23 @@ final class WidgetSandboxNative {
     private WidgetSandboxNative() {
     }
 
-    public static native void answerRequest(long j3, long j10, int i7, byte[] bArr);
+    public static native void answerRequest(long j, long j2, int i, byte[] bArr);
 
-    public static native void attackScan(boolean z10);
+    public static native void attackScan(boolean z);
 
     public static boolean available() {
         return LOADED;
     }
 
-    public static native void conformance(boolean z10);
+    public static native void conformance(boolean z);
 
-    public static native long create(byte[] bArr, byte[] bArr2, byte[] bArr3, float f10, float f11, int i7, byte[] bArr4, byte[] bArr5, byte[] bArr6, byte[] bArr7, boolean z10, Object obj);
+    public static native long create(byte[] bArr, byte[] bArr2, byte[] bArr3, float f, float f2, int i, byte[] bArr4, byte[] bArr5, byte[] bArr6, byte[] bArr7, boolean z, Object obj);
 
-    public static native void data(long j3, byte[] bArr);
+    public static native void data(long j, byte[] bArr);
 
-    public static native void destroy(long j3);
+    public static native void destroy(long j);
 
-    public static native void hover(long j3, int i7, float f10, float f11, int i10);
+    public static native void hover(long j, int i, float f, float f2, int i2);
 
     public static native void limits(byte[] bArr);
 
@@ -34,21 +34,23 @@ final class WidgetSandboxNative {
         }
     }
 
-    public static native void prepare(byte[] bArr);
+    public static native void prepare(byte[] bArr, boolean z);
 
     public static native void registerResources(byte[] bArr, byte[] bArr2, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6);
 
-    public static native void repaint(long j3);
+    public static native void repaint(long j);
 
-    public static native void safeArea(long j3, byte[] bArr);
+    public static native int reserveThreads(int i);
 
-    public static native void theme(long j3, byte[] bArr);
+    public static native void safeArea(long j, byte[] bArr);
 
-    public static native void tick(long j3, float f10, boolean z10, boolean z11, boolean z12);
+    public static native void theme(long j, byte[] bArr);
 
-    public static native void touch(long j3, int i7, float f10, float f11, int i10, boolean z10, boolean z11, int i11, int i12);
+    public static native void tick(long j, float f, boolean z, boolean z2, boolean z3);
 
-    public static native void visible(long j3, boolean z10);
+    public static native void touch(long j, int i, float f, float f2, int i2, boolean z, boolean z2, int i3, int i4);
 
-    public static native void width(long j3, float f10);
+    public static native void visible(long j, boolean z);
+
+    public static native void width(long j, float f);
 }

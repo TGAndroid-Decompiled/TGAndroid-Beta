@@ -1,13 +1,14 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.view.View;
 import java.util.HashSet;
-public class GroupCreateCheckBox extends View implements org.telegram.ui.ActionBar.c6 {
-    public float f33088a;
+public class GroupCreateCheckBox extends View implements tjb {
+    public float a;
 
     public float getProgress() {
-        return this.f33088a;
+        return this.a;
     }
 
     @Override
@@ -24,26 +25,26 @@ public class GroupCreateCheckBox extends View implements org.telegram.ui.ActionB
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (getVisibility() != 0 || this.f33088a == 0.0f) {
+        if (getVisibility() != 0 || this.a == 0.0f) {
             return;
         }
         getMeasuredWidth();
         getMeasuredHeight();
-        org.telegram.messenger.g0.L(30.0f);
+        Typeface typeface = gl.a;
         throw null;
     }
 
-    public void setProgress(float f10) {
-        if (this.f33088a == f10) {
+    public void setProgress(float f) {
+        if (this.a == f) {
             return;
         }
-        this.f33088a = f10;
+        this.a = f;
         invalidate();
     }
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.ActionBar.n6.v0(0);
+        bkb.u0(0);
         throw null;
     }
 
@@ -51,9 +52,9 @@ public class GroupCreateCheckBox extends View implements org.telegram.ui.ActionB
     public final void addColorKeys(HashSet hashSet) {
     }
 
-    public void setCheckScale(float f10) {
+    public void setCheckScale(float f) {
     }
 
-    public void setInnerRadDiff(int i7) {
+    public void setInnerRadDiff(int i) {
     }
 }

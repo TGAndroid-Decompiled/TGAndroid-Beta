@@ -1,32 +1,32 @@
 package org.scilab.forge.jlatexmath;
 public class VlineAtom extends Atom {
     private float height;
-    private int f22693n;
+    private int n;
     private float shift;
 
-    public VlineAtom(int i7) {
-        this.f22693n = i7;
+    public VlineAtom(int i) {
+        this.n = i;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        int i7;
-        if (this.f22693n != 0) {
+        int i;
+        if (this.n != 0) {
             float defaultRuleThickness = teXEnvironment.getTeXFont().getDefaultRuleThickness(teXEnvironment.getStyle());
             HorizontalRule horizontalRule = new HorizontalRule(this.height, defaultRuleThickness, this.shift);
             StrutBox strutBox = new StrutBox(defaultRuleThickness * 2.0f, 0.0f, 0.0f, 0.0f);
             HorizontalBox horizontalBox = new HorizontalBox();
-            int i10 = 0;
+            int i2 = 0;
             while (true) {
-                i7 = this.f22693n;
-                if (i10 >= i7 - 1) {
+                i = this.n;
+                if (i2 >= i - 1) {
                     break;
                 }
                 horizontalBox.add(horizontalRule);
                 horizontalBox.add(strutBox);
-                i10++;
+                i2++;
             }
-            if (i7 > 0) {
+            if (i > 0) {
                 horizontalBox.add(horizontalRule);
             }
             return horizontalBox;
@@ -35,17 +35,17 @@ public class VlineAtom extends Atom {
     }
 
     public float getWidth(TeXEnvironment teXEnvironment) {
-        if (this.f22693n != 0) {
-            return teXEnvironment.getTeXFont().getDefaultRuleThickness(teXEnvironment.getStyle()) * ((this.f22693n * 3) - 2);
+        if (this.n != 0) {
+            return teXEnvironment.getTeXFont().getDefaultRuleThickness(teXEnvironment.getStyle()) * ((this.n * 3) - 2);
         }
         return 0.0f;
     }
 
-    public void setHeight(float f10) {
-        this.height = f10;
+    public void setHeight(float f) {
+        this.height = f;
     }
 
-    public void setShift(float f10) {
-        this.shift = f10;
+    public void setShift(float f) {
+        this.shift = f;
     }
 }

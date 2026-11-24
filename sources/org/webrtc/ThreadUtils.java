@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 public class ThreadUtils {
 
     public class C1CaughtException {
-        Exception f55148e;
+        Exception e;
     }
 
     public class C1Result {
@@ -30,7 +30,7 @@ public class ThreadUtils {
             if (Thread.currentThread() == this.thread) {
                 return;
             }
-            throw new IllegalStateException("Wrong thread");
+            sc8.j("Wrong thread");
         }
 
         public void detachThread() {
@@ -38,20 +38,35 @@ public class ThreadUtils {
         }
     }
 
-    public static void awaitUninterruptibly(final CountDownLatch countDownLatch) {
-        executeUninterruptibly(new BlockingOperation() {
-            @Override
-            public void run() {
-                countDownLatch.await();
+    public static boolean awaitUninterruptibly(CountDownLatch countDownLatch, long j) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        boolean z = false;
+        long j2 = j;
+        boolean z2 = false;
+        while (true) {
+            try {
+                z = countDownLatch.await(j2, TimeUnit.MILLISECONDS);
+                break;
+            } catch (InterruptedException unused) {
+                j2 = j - (SystemClock.elapsedRealtime() - elapsedRealtime);
+                if (j2 <= 0) {
+                    z2 = true;
+                    break;
+                }
+                z2 = true;
             }
-        });
+        }
+        if (z2) {
+            Thread.currentThread().interrupt();
+        }
+        return z;
     }
 
     public static void checkIsOnMainThread() {
         if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
             return;
         }
-        throw new IllegalStateException("Not on main thread!");
+        sc8.j("Not on main thread!");
     }
 
     public static StackTraceElement[] concatStackTraces(StackTraceElement[] stackTraceElementArr, StackTraceElement[] stackTraceElementArr2) {
@@ -62,16 +77,16 @@ public class ThreadUtils {
     }
 
     public static void executeUninterruptibly(BlockingOperation blockingOperation) {
-        boolean z10 = false;
+        boolean z = false;
         while (true) {
             try {
                 blockingOperation.run();
                 break;
             } catch (InterruptedException unused) {
-                z10 = true;
+                z = true;
             }
         }
-        if (z10) {
+        if (z) {
             Thread.currentThread().interrupt();
         }
     }
@@ -80,8 +95,9 @@ public class ThreadUtils {
         if (handler.getLooper().getThread() == Thread.currentThread()) {
             try {
                 return callable.call();
-            } catch (Exception e10) {
-                throw new RuntimeException(e10);
+            } catch (Exception e) {
+                sdb.b(e);
+                return null;
             }
         }
         final C1Result c1Result = new C1Result();
@@ -92,62 +108,48 @@ public class ThreadUtils {
             public void run() {
                 try {
                     C1Result.this.value = callable.call();
-                } catch (Exception e11) {
-                    c1CaughtException.f55148e = e11;
+                } catch (Exception e2) {
+                    c1CaughtException.e = e2;
                 }
                 countDownLatch.countDown();
             }
         });
         awaitUninterruptibly(countDownLatch);
-        if (c1CaughtException.f55148e == null) {
+        Exception exc = c1CaughtException.e;
+        if (exc == null) {
             return c1Result.value;
         }
-        RuntimeException runtimeException = new RuntimeException(c1CaughtException.f55148e);
-        runtimeException.setStackTrace(concatStackTraces(c1CaughtException.f55148e.getStackTrace(), runtimeException.getStackTrace()));
+        RuntimeException runtimeException = new RuntimeException(exc);
+        runtimeException.setStackTrace(concatStackTraces(c1CaughtException.e.getStackTrace(), runtimeException.getStackTrace()));
         throw runtimeException;
     }
 
-    public static boolean joinUninterruptibly(Thread thread, long j3) {
+    public static boolean joinUninterruptibly(Thread thread, long j) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        boolean z10 = false;
-        long j10 = j3;
-        while (j10 > 0) {
+        boolean z = false;
+        long j2 = j;
+        while (j2 > 0) {
             try {
-                thread.join(j10);
+                thread.join(j2);
                 break;
             } catch (InterruptedException unused) {
-                j10 = j3 - (SystemClock.elapsedRealtime() - elapsedRealtime);
-                z10 = true;
+                j2 = j - (SystemClock.elapsedRealtime() - elapsedRealtime);
+                z = true;
             }
         }
-        if (z10) {
+        if (z) {
             Thread.currentThread().interrupt();
         }
         return !thread.isAlive();
     }
 
-    public static boolean awaitUninterruptibly(CountDownLatch countDownLatch, long j3) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        boolean z10 = false;
-        long j10 = j3;
-        boolean z11 = false;
-        while (true) {
-            try {
-                z10 = countDownLatch.await(j10, TimeUnit.MILLISECONDS);
-                break;
-            } catch (InterruptedException unused) {
-                j10 = j3 - (SystemClock.elapsedRealtime() - elapsedRealtime);
-                if (j10 <= 0) {
-                    z11 = true;
-                    break;
-                }
-                z11 = true;
+    public static void awaitUninterruptibly(final CountDownLatch countDownLatch) {
+        executeUninterruptibly(new BlockingOperation() {
+            @Override
+            public void run() {
+                countDownLatch.await();
             }
-        }
-        if (z11) {
-            Thread.currentThread().interrupt();
-        }
-        return z10;
+        });
     }
 
     public static void joinUninterruptibly(final Thread thread) {

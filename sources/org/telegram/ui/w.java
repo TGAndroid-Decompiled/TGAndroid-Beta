@@ -1,35 +1,30 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class w implements Runnable {
-    public final int f53059a;
-    public final g4 f53060b;
-    public final String f53061c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class w extends AnimatorListenerAdapter {
+    public final x a;
 
-    public w(g4 g4Var, String str, int i7) {
-        this.f53059a = i7;
-        this.f53060b = g4Var;
-        this.f53061c = str;
+    public w(x xVar) {
+        this.a = xVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f53059a) {
-            case 0:
-                g4 g4Var = this.f53060b;
-                di.q qVar = g4Var.f48072i0.f53414c0;
-                String str = this.f53061c;
-                if (TextUtils.isEmpty(str)) {
-                    str = "about:blank";
-                }
-                qVar.setText(str);
-                di.q qVar2 = g4Var.f48072i0.f53414c0;
-                qVar2.setSelection(qVar2.getText().length());
-                org.telegram.messenger.g0.I3(g4Var.f48072i0.f53414c0);
-                return;
-            default:
-                vf.c.n(this.f53060b.M, this.f53061c, false, null);
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        super.onAnimationEnd(animator);
+        x xVar = this.a;
+        PhotoViewer photoViewer = xVar.c;
+        photoViewer.n4 = (byte) 0;
+        photoViewer.G0();
+        photoViewer.M0.setAlpha(255);
+        photoViewer.f0.invalidate();
+        photoViewer.Q0.setTranslationY(0.0f);
+        if (photoViewer.t4) {
+            photoViewer.F0(xVar.b.intValue());
+        }
+        o98 o98Var = xVar.a;
+        if (o98Var != null) {
+            o98Var.e();
         }
     }
 }

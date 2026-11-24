@@ -1,44 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_aicompose;
-public final class s implements View.OnClickListener {
-    public final int f39442a;
-    public final v f39443b;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import java.io.File;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class s implements crc {
+    public final ThemeEditorView a;
 
-    public s(v vVar, int i7) {
-        this.f39442a = i7;
-        this.f39443b = vVar;
+    public s(ThemeEditorView themeEditorView) {
+        this.a = themeEditorView;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f39442a) {
-            case 0:
-                this.f39443b.dismiss();
-                return;
-            default:
-                v vVar = this.f39443b;
-                TL_aicompose.AiComposeTone aiComposeTone = vVar.T1;
-                if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
-                    int i7 = vVar.d2 + 1;
-                    vVar.d2 = i7;
-                    TL_aicompose.aiComposeToneExample[] aicomposetoneexampleArr = vVar.f40519e2;
-                    if (i7 >= aicomposetoneexampleArr.length) {
-                        vVar.d2 = 0;
-                    }
-                    int i10 = vVar.d2;
-                    if (aicomposetoneexampleArr[i10] == null) {
-                        TL_aicompose.getToneExample gettoneexample = new TL_aicompose.getToneExample();
-                        gettoneexample.tone = TL_aicompose.InputAiComposeTone.from(aiComposeTone);
-                        gettoneexample.num = i10;
-                        ConnectionsManager.getInstance(vVar.f30223a).sendRequestTyped(gettoneexample, new d3.b(1), new t(vVar, i10, 0));
-                    }
-                    vVar.f40518c2.O(true);
-                    return;
+    public final void a() {
+        int i = 0;
+        while (true) {
+            ThemeEditorView themeEditorView = this.a;
+            if (i < themeEditorView.e.size()) {
+                blb blbVar = (blb) themeEditorView.e.get(i);
+                int w0 = bkb.w0(blbVar.i, blbVar.e, false);
+                blbVar.h = w0;
+                if (i == 0) {
+                    themeEditorView.n.l1.c(w0);
                 }
+                i++;
+            } else {
+                ThemeEditorView.EditorAlert editorAlert = themeEditorView.n;
+                int i2 = ThemeEditorView.EditorAlert.G1;
+                editorAlert.F0(true);
                 return;
+            }
         }
+    }
+
+    @Override
+    public final void b(File file, Bitmap bitmap, boolean z) {
+        akb akbVar = this.a.o;
+        bkb.km.delete(bkb.De);
+        bkb.km.delete(bkb.Ee);
+        bkb.km.delete(bkb.Fe);
+        bkb.km.delete(bkb.Ge);
+        bkb.km.delete(bkb.He);
+        bkb.g0 = null;
+        akbVar.v(null);
+        if (bitmap != null) {
+            bkb.e0 = new BitmapDrawable(bitmap);
+            bkb.v1(akbVar, false, false, false);
+            int[] q = gl.q(bkb.e0);
+            int i = q[0];
+            bkb.b0 = i;
+            bkb.W = i;
+            int i2 = q[1];
+            bkb.c0 = i2;
+            bkb.a0 = i2;
+            bkb.h();
+            bkb.g(bkb.d0);
+            kk7.e().k(kk7.B4, new Object[0]);
+            return;
+        }
+        bkb.e0 = null;
+        bkb.d0 = null;
+        bkb.v1(akbVar, false, false, false);
+        bkb.s1(true);
     }
 }

@@ -10,13 +10,20 @@ public class TeXFormulaSettingsParser {
     public static final String RESOURCE_NAME = "TeXFormulaSettings.xml";
     private Element root;
 
-    public TeXFormulaSettingsParser() {
-        this(JLatexMathAndroid.getResourceAsStream("TeXFormulaSettings.xml"), "TeXFormulaSettings.xml");
+    public TeXFormulaSettingsParser(InputStream inputStream, String str) {
+        try {
+            DocumentBuilderFactory newInstance = DocumentBuilderFactory.newInstance();
+            newInstance.setIgnoringElementContentWhitespace(true);
+            newInstance.setIgnoringComments(true);
+            this.root = newInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
+        } catch (Exception e) {
+            throw new XMLResourceParseException(str, e);
+        }
     }
 
     private static void addFormulaToMap(NodeList nodeList, String[] strArr, String[] strArr2) {
-        for (int i7 = 0; i7 < nodeList.getLength(); i7++) {
-            Element element = (Element) nodeList.item(i7);
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Element element = (Element) nodeList.item(i);
             String attribute = element.getAttribute("char");
             String attribute2 = element.getAttribute("formula");
             String attribute3 = element.getAttribute("text");
@@ -28,20 +35,23 @@ public class TeXFormulaSettingsParser {
                             strArr2[attribute.charAt(0)] = attribute3;
                         }
                     } else {
-                        throw new XMLResourceParseException("TeXFormulaSettings.xml", element.getTagName(), "char", "must have a value that contains exactly 1 character!");
+                        k93.g("TeXFormulaSettings.xml", element.getTagName(), "char", "must have a value that contains exactly 1 character!");
+                        return;
                     }
                 } else {
-                    throw new XMLResourceParseException("TeXFormulaSettings.xml", element.getTagName(), "formula", null);
+                    k93.g("TeXFormulaSettings.xml", element.getTagName(), "formula", null);
+                    return;
                 }
             } else {
-                throw new XMLResourceParseException("TeXFormulaSettings.xml", element.getTagName(), "char", null);
+                k93.g("TeXFormulaSettings.xml", element.getTagName(), "char", null);
+                return;
             }
         }
     }
 
     private static void addToMap(NodeList nodeList, String[] strArr, String[] strArr2) {
-        for (int i7 = 0; i7 < nodeList.getLength(); i7++) {
-            Element element = (Element) nodeList.item(i7);
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Element element = (Element) nodeList.item(i);
             String attribute = element.getAttribute("char");
             String attribute2 = element.getAttribute("symbol");
             String attribute3 = element.getAttribute("text");
@@ -53,13 +63,16 @@ public class TeXFormulaSettingsParser {
                             strArr2[attribute.charAt(0)] = attribute3;
                         }
                     } else {
-                        throw new XMLResourceParseException("TeXFormulaSettings.xml", element.getTagName(), "char", "must have a value that contains exactly 1 character!");
+                        k93.g("TeXFormulaSettings.xml", element.getTagName(), "char", "must have a value that contains exactly 1 character!");
+                        return;
                     }
                 } else {
-                    throw new XMLResourceParseException("TeXFormulaSettings.xml", element.getTagName(), "symbol", null);
+                    k93.g("TeXFormulaSettings.xml", element.getTagName(), "symbol", null);
+                    return;
                 }
             } else {
-                throw new XMLResourceParseException("TeXFormulaSettings.xml", element.getTagName(), "char", null);
+                k93.g("TeXFormulaSettings.xml", element.getTagName(), "char", null);
+                return;
             }
         }
     }
@@ -78,14 +91,7 @@ public class TeXFormulaSettingsParser {
         }
     }
 
-    public TeXFormulaSettingsParser(InputStream inputStream, String str) {
-        try {
-            DocumentBuilderFactory newInstance = DocumentBuilderFactory.newInstance();
-            newInstance.setIgnoringElementContentWhitespace(true);
-            newInstance.setIgnoringComments(true);
-            this.root = newInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e10) {
-            throw new XMLResourceParseException(str, e10);
-        }
+    public TeXFormulaSettingsParser() {
+        this(JLatexMathAndroid.getResourceAsStream("TeXFormulaSettings.xml"), "TeXFormulaSettings.xml");
     }
 }

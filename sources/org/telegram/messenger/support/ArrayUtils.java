@@ -9,44 +9,44 @@ public class ArrayUtils {
     private ArrayUtils() {
     }
 
-    public static <T> T[] appendElement(Class<T> cls, T[] tArr, T t6) {
+    public static <T> T[] appendElement(Class<T> cls, T[] tArr, T t) {
         T[] tArr2;
-        int i7 = 0;
+        int i = 0;
         if (tArr != null) {
             int length = tArr.length;
             tArr2 = (T[]) ((Object[]) Array.newInstance((Class<?>) cls, length + 1));
             System.arraycopy(tArr, 0, tArr2, 0, length);
-            i7 = length;
+            i = length;
         } else {
             tArr2 = (T[]) ((Object[]) Array.newInstance((Class<?>) cls, 1));
         }
-        tArr2[i7] = t6;
+        tArr2[i] = t;
         return tArr2;
     }
 
-    public static int[] appendInt(int[] iArr, int i7) {
+    public static int[] appendInt(int[] iArr, int i) {
         if (iArr == null) {
-            return new int[]{i7};
+            return new int[]{i};
         }
         int length = iArr.length;
-        for (int i10 : iArr) {
-            if (i10 == i7) {
+        for (int i2 : iArr) {
+            if (i2 == i) {
                 return iArr;
             }
         }
         int[] iArr2 = new int[length + 1];
         System.arraycopy(iArr, 0, iArr2, 0, length);
-        iArr2[length] = i7;
+        iArr2[length] = i;
         return iArr2;
     }
 
-    public static <T> boolean contains(T[] tArr, T t6) {
-        for (T t10 : tArr) {
-            if (t10 == null) {
-                if (t6 == null) {
+    public static <T> boolean contains(T[] tArr, T t) {
+        for (T t2 : tArr) {
+            if (t2 == null) {
+                if (t == null) {
                     return true;
                 }
-            } else if (t6 != null && t10.equals(t6)) {
+            } else if (t != null && t2.equals(t)) {
                 return true;
             }
         }
@@ -66,64 +66,64 @@ public class ArrayUtils {
         return (T[]) ((Object[]) obj);
     }
 
-    public static boolean equals(byte[] bArr, byte[] bArr2, int i7) {
+    public static boolean equals(byte[] bArr, byte[] bArr2, int i) {
         if (bArr == bArr2) {
             return true;
         }
-        if (bArr == null || bArr2 == null || bArr.length < i7 || bArr2.length < i7) {
+        if (bArr == null || bArr2 == null || bArr.length < i || bArr2.length < i) {
             return false;
         }
-        for (int i10 = 0; i10 < i7; i10++) {
-            if (bArr[i10] != bArr2[i10]) {
+        for (int i2 = 0; i2 < i; i2++) {
+            if (bArr[i2] != bArr2[i2]) {
                 return false;
             }
         }
         return true;
     }
 
-    public static int idealBooleanArraySize(int i7) {
-        return idealByteArraySize(i7);
+    public static int idealBooleanArraySize(int i) {
+        return idealByteArraySize(i);
     }
 
-    public static int idealByteArraySize(int i7) {
-        for (int i10 = 4; i10 < 32; i10++) {
-            int i11 = (1 << i10) - 12;
-            if (i7 <= i11) {
-                return i11;
+    public static int idealByteArraySize(int i) {
+        for (int i2 = 4; i2 < 32; i2++) {
+            int i3 = (1 << i2) - 12;
+            if (i <= i3) {
+                return i3;
             }
         }
-        return i7;
+        return i;
     }
 
-    public static int idealCharArraySize(int i7) {
-        return idealByteArraySize(i7 * 2) / 2;
+    public static int idealCharArraySize(int i) {
+        return idealByteArraySize(i << 1) / 2;
     }
 
-    public static int idealFloatArraySize(int i7) {
-        return idealByteArraySize(i7 * 4) / 4;
+    public static int idealFloatArraySize(int i) {
+        return idealByteArraySize(i << 2) / 4;
     }
 
-    public static int idealIntArraySize(int i7) {
-        return idealByteArraySize(i7 * 4) / 4;
+    public static int idealIntArraySize(int i) {
+        return idealByteArraySize(i << 2) / 4;
     }
 
-    public static int idealLongArraySize(int i7) {
-        return idealByteArraySize(i7 * 8) / 8;
+    public static int idealLongArraySize(int i) {
+        return idealByteArraySize(i << 3) / 8;
     }
 
-    public static int idealObjectArraySize(int i7) {
-        return idealByteArraySize(i7 * 4) / 4;
+    public static int idealObjectArraySize(int i) {
+        return idealByteArraySize(i << 2) / 4;
     }
 
-    public static int idealShortArraySize(int i7) {
-        return idealByteArraySize(i7 * 2) / 2;
+    public static int idealShortArraySize(int i) {
+        return idealByteArraySize(i << 1) / 2;
     }
 
-    public static int indexOf(int[] iArr, int i7) {
+    public static int indexOf(int[] iArr, int i) {
         if (iArr != null) {
-            for (int i10 = 0; i10 < iArr.length; i10++) {
-                if (iArr[i10] == i7) {
-                    return i10;
+            for (int i2 = 0; i2 < iArr.length; i2++) {
+                if (iArr[i2] == i) {
+                    return i2;
                 }
             }
             return -1;
@@ -131,17 +131,17 @@ public class ArrayUtils {
         return -1;
     }
 
-    public static <T> T[] removeElement(Class<T> cls, T[] tArr, T t6) {
+    public static <T> T[] removeElement(Class<T> cls, T[] tArr, T t) {
         if (tArr != null) {
             int length = tArr.length;
-            for (int i7 = 0; i7 < length; i7++) {
-                if (tArr[i7] == t6) {
+            for (int i = 0; i < length; i++) {
+                if (tArr[i] == t) {
                     if (length == 1) {
                         return null;
                     }
                     T[] tArr2 = (T[]) ((Object[]) Array.newInstance((Class<?>) cls, length - 1));
-                    System.arraycopy(tArr, 0, tArr2, 0, i7);
-                    System.arraycopy(tArr, i7 + 1, tArr2, i7, (length - i7) - 1);
+                    System.arraycopy(tArr, 0, tArr2, 0, i);
+                    System.arraycopy(tArr, i + 1, tArr2, i, (length - i) - 1);
                     return tArr2;
                 }
             }
@@ -149,20 +149,20 @@ public class ArrayUtils {
         return tArr;
     }
 
-    public static int[] removeInt(int[] iArr, int i7) {
+    public static int[] removeInt(int[] iArr, int i) {
         if (iArr == null) {
             return null;
         }
         int length = iArr.length;
-        for (int i10 = 0; i10 < length; i10++) {
-            if (iArr[i10] == i7) {
-                int i11 = length - 1;
-                int[] iArr2 = new int[i11];
-                if (i10 > 0) {
-                    System.arraycopy(iArr, 0, iArr2, 0, i10);
+        for (int i2 = 0; i2 < length; i2++) {
+            if (iArr[i2] == i) {
+                int i3 = length - 1;
+                int[] iArr2 = new int[i3];
+                if (i2 > 0) {
+                    System.arraycopy(iArr, 0, iArr2, 0, i2);
                 }
-                if (i10 < i11) {
-                    System.arraycopy(iArr, i10 + 1, iArr2, i10, (length - i10) - 1);
+                if (i2 < i3) {
+                    System.arraycopy(iArr, i2 + 1, iArr2, i2, (length - i2) - 1);
                 }
                 return iArr2;
             }
@@ -171,16 +171,16 @@ public class ArrayUtils {
     }
 
     public static long total(long[] jArr) {
-        long j3 = 0;
-        for (long j10 : jArr) {
-            j3 += j10;
+        long j = 0;
+        for (long j2 : jArr) {
+            j += j2;
         }
-        return j3;
+        return j;
     }
 
-    public static boolean contains(int[] iArr, int i7) {
-        for (int i10 : iArr) {
-            if (i10 == i7) {
+    public static boolean contains(int[] iArr, int i) {
+        for (int i2 : iArr) {
+            if (i2 == i) {
                 return true;
             }
         }

@@ -419,17 +419,20 @@ public class TLClassStore {
     }
 
     public static TLClassStore Instance() {
-        if (store == null) {
-            store = new TLClassStore();
+        TLClassStore tLClassStore = store;
+        if (tLClassStore == null) {
+            TLClassStore tLClassStore2 = new TLClassStore();
+            store = tLClassStore2;
+            return tLClassStore2;
         }
-        return store;
+        return tLClassStore;
     }
 
-    public TLObject TLdeserialize(NativeByteBuffer nativeByteBuffer, int i7, boolean z10) {
-        TLObjectFactory tLObjectFactory = this.classStore.get(i7);
+    public TLObject TLdeserialize(NativeByteBuffer nativeByteBuffer, int i, boolean z) {
+        TLObjectFactory tLObjectFactory = this.classStore.get(i);
         if (tLObjectFactory != null) {
             TLObject create = tLObjectFactory.create();
-            create.readParams(nativeByteBuffer, z10);
+            create.readParams(nativeByteBuffer, z);
             return create;
         }
         return null;

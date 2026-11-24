@@ -8,7 +8,7 @@ public class GlRectDrawer extends GlGenericDrawer {
         super("void main() {\n  gl_FragColor = sample(tc);\n}\n", new ShaderCallbacks());
     }
 
-    public static class ShaderCallbacks implements GlGenericDrawer.ShaderCallbacks {
+    private static class ShaderCallbacks implements GlGenericDrawer.ShaderCallbacks {
         private ShaderCallbacks() {
         }
 
@@ -17,7 +17,7 @@ public class GlRectDrawer extends GlGenericDrawer {
         }
 
         @Override
-        public void onPrepareShader(GlShader glShader, float[] fArr, int i7, int i10, int i11, int i12) {
+        public void onPrepareShader(GlShader glShader, float[] fArr, int i, int i2, int i3, int i4) {
         }
     }
 }

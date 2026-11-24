@@ -7,86 +7,89 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 public class AnimatedArrowDrawable extends Drawable {
-    public final Paint f32622a;
-    public final Path f32623b = new Path();
-    public float f32624c;
+    public final Paint a;
+    public final Path b = new Path();
+    public float c;
     public float d;
-    public long f32625e;
-    public final boolean f32626f;
-    public final float f32627g;
+    public long e;
+    public final boolean f;
+    public final float g;
     public final float h;
-    public final float f32628i;
+    public final float i;
 
-    public AnimatedArrowDrawable(int i7, boolean z10) {
+    public AnimatedArrowDrawable(int i) {
         Paint paint = new Paint(1);
-        this.f32622a = paint;
+        this.a = paint;
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint.setColor(i7);
+        paint.setStrokeWidth(gl.N(1.66f));
+        paint.setColor(i);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f32626f = z10;
+        this.f = true;
+        this.g = 12.66f;
+        this.h = 6.16f;
+        this.i = 1.66f;
         b();
     }
 
-    public final void a(float f10) {
-        if (this.d == f10) {
+    public final void a(float f) {
+        if (this.d == f) {
             return;
         }
-        this.d = f10;
-        this.f32625e = SystemClock.elapsedRealtime();
+        this.d = f;
+        this.e = SystemClock.elapsedRealtime();
         invalidateSelf();
     }
 
     public final void b() {
-        Path path = this.f32623b;
+        Path path = this.b;
         path.reset();
-        float f10 = (this.f32624c * 2.0f) - 1.0f;
-        float f11 = this.f32627g;
-        if (f11 > 0.0f) {
-            float f12 = this.h;
-            if (f12 > 0.0f) {
-                float N = org.telegram.messenger.g0.N(this.f32628i) / 2.0f;
-                float N2 = org.telegram.messenger.g0.N(f11) - N;
-                float N3 = org.telegram.messenger.g0.N(f12) - N;
-                float f13 = N3 - N;
-                path.moveTo(N, N3 - (this.f32624c * f13));
-                path.lineTo((N + N2) / 2.0f, (this.f32624c * f13) + N);
-                path.lineTo(N2, N3 - (f13 * this.f32624c));
+        float f = (this.c * 2.0f) - 1.0f;
+        float f2 = this.g;
+        if (f2 > 0.0f) {
+            float f3 = this.h;
+            if (f3 > 0.0f) {
+                float N = gl.N(this.i) / 2.0f;
+                float N2 = gl.N(f2) - N;
+                float N3 = gl.N(f3) - N;
+                float f4 = N3 - N;
+                path.moveTo(N, N3 - (this.c * f4));
+                path.lineTo((N + N2) / 2.0f, (this.c * f4) + N);
+                path.lineTo(N2, N3 - (f4 * this.c));
                 return;
             }
         }
-        if (this.f32626f) {
-            path.moveTo(org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(6.0f) - (org.telegram.messenger.g0.L(2.0f) * f10));
-            path.lineTo(org.telegram.messenger.g0.L(8.0f), (org.telegram.messenger.g0.L(2.0f) * f10) + org.telegram.messenger.g0.L(6.0f));
-            path.lineTo(org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(6.0f) - (org.telegram.messenger.g0.L(2.0f) * f10));
+        if (this.f) {
+            path.moveTo(gl.L(3.0f), gl.L(6.0f) - (gl.L(2.0f) * f));
+            path.lineTo(gl.L(8.0f), (gl.L(2.0f) * f) + gl.L(6.0f));
+            path.lineTo(gl.L(13.0f), gl.L(6.0f) - (gl.L(2.0f) * f));
             return;
         }
-        path.moveTo(org.telegram.messenger.g0.L(4.5f), (org.telegram.messenger.g0.L(2.0f) * this.f32624c) + (org.telegram.messenger.g0.L(12.0f) - (org.telegram.messenger.g0.L(4.0f) * f10)));
-        path.lineTo(org.telegram.messenger.g0.L(13.0f), (org.telegram.messenger.g0.L(2.0f) * this.f32624c) + (org.telegram.messenger.g0.L(4.0f) * f10) + org.telegram.messenger.g0.L(12.0f));
-        path.lineTo(org.telegram.messenger.g0.L(21.5f), (org.telegram.messenger.g0.L(2.0f) * this.f32624c) + (org.telegram.messenger.g0.L(12.0f) - (org.telegram.messenger.g0.L(4.0f) * f10)));
+        path.moveTo(gl.L(4.5f), (gl.L(2.0f) * this.c) + (gl.L(12.0f) - (gl.L(4.0f) * f)));
+        path.lineTo(gl.L(13.0f), (gl.L(2.0f) * this.c) + (gl.L(4.0f) * f) + gl.L(12.0f));
+        path.lineTo(gl.L(21.5f), (gl.L(2.0f) * this.c) + (gl.L(12.0f) - (gl.L(4.0f) * f)));
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        canvas.drawPath(this.f32623b, this.f32622a);
-        if (this.d != this.f32624c) {
+        canvas.drawPath(this.b, this.a);
+        if (this.d != this.c) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j3 = elapsedRealtime - this.f32625e;
-            this.f32625e = elapsedRealtime;
-            float f10 = this.f32624c;
-            float f11 = this.d;
-            if (f10 < f11) {
-                float f12 = (((float) j3) / 180.0f) + f10;
-                this.f32624c = f12;
-                if (f12 > f11) {
-                    this.f32624c = f11;
+            long j = elapsedRealtime - this.e;
+            this.e = elapsedRealtime;
+            float f = this.c;
+            float f2 = this.d;
+            if (f < f2) {
+                float f3 = (((float) j) / 180.0f) + f;
+                this.c = f3;
+                if (f3 > f2) {
+                    this.c = f2;
                 }
             } else {
-                float f13 = f10 - (((float) j3) / 180.0f);
-                this.f32624c = f13;
-                if (f13 < f11) {
-                    this.f32624c = f11;
+                float f4 = f - (((float) j) / 180.0f);
+                this.c = f4;
+                if (f4 < f2) {
+                    this.c = f2;
                 }
             }
             b();
@@ -95,25 +98,25 @@ public class AnimatedArrowDrawable extends Drawable {
     }
 
     public float getAnimationProgress() {
-        return this.f32624c;
+        return this.c;
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        float f10 = this.h;
-        if (f10 > 0.0f) {
-            return org.telegram.messenger.g0.L(f10);
+        float f = this.h;
+        if (f > 0.0f) {
+            return gl.L(f);
         }
-        return org.telegram.messenger.g0.L(26.0f);
+        return gl.L(26.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        float f10 = this.f32627g;
-        if (f10 > 0.0f) {
-            return org.telegram.messenger.g0.L(f10);
+        float f = this.g;
+        if (f > 0.0f) {
+            return gl.L(f);
         }
-        return org.telegram.messenger.g0.L(26.0f);
+        return gl.L(26.0f);
     }
 
     @Override
@@ -121,34 +124,31 @@ public class AnimatedArrowDrawable extends Drawable {
         return -2;
     }
 
-    public void setAnimationProgress(float f10) {
-        this.f32624c = f10;
-        this.d = f10;
+    public void setAnimationProgress(float f) {
+        this.c = f;
+        this.d = f;
         b();
         invalidateSelf();
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f32622a.setColorFilter(colorFilter);
-    }
-
-    public AnimatedArrowDrawable(int i7) {
-        Paint paint = new Paint(1);
-        this.f32622a = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(org.telegram.messenger.g0.N(1.66f));
-        paint.setColor(i7);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f32626f = true;
-        this.f32627g = 12.66f;
-        this.h = 6.16f;
-        this.f32628i = 1.66f;
-        b();
+        this.a.setColorFilter(colorFilter);
     }
 
     @Override
-    public final void setAlpha(int i7) {
+    public final void setAlpha(int i) {
+    }
+
+    public AnimatedArrowDrawable(int i, boolean z) {
+        Paint paint = new Paint(1);
+        this.a = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(gl.L(2.0f));
+        paint.setColor(i);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        this.f = z;
+        b();
     }
 }

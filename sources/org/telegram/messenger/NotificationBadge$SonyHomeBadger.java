@@ -6,38 +6,38 @@ import android.content.Intent;
 import android.net.Uri;
 import java.util.Arrays;
 import java.util.List;
-public class NotificationBadge$SonyHomeBadger implements wr {
-    public static yr f22863b;
-    public final Uri f22864a = Uri.parse("content://com.sonymobile.home.resourceprovider/badge");
+public class NotificationBadge$SonyHomeBadger implements yj7 {
+    public static zj7 b;
+    public final Uri a = Uri.parse("content://com.sonymobile.home.resourceprovider/badge");
 
     @Override
-    public final void a(int i7) {
-        boolean z10 = false;
-        if (t0.f27013b.getPackageManager().resolveContentProvider("com.sonymobile.home.resourceprovider", 0) != null) {
-            if (i7 < 0) {
+    public final void a(int i) {
+        boolean z = false;
+        if (a.b.getPackageManager().resolveContentProvider("com.sonymobile.home.resourceprovider", 0) != null) {
+            if (i < 0) {
                 return;
             }
-            if (f22863b == null) {
-                f22863b = new AsyncQueryHandler(t0.f27013b.getApplicationContext().getContentResolver());
+            if (b == null) {
+                b = new AsyncQueryHandler(a.b.getApplicationContext().getContentResolver());
             }
-            String packageName = zr.d.getPackageName();
-            String className = zr.d.getClassName();
+            String packageName = ak7.d.getPackageName();
+            String className = ak7.d.getClassName();
             ContentValues contentValues = new ContentValues();
-            contentValues.put("badge_count", Integer.valueOf(i7));
+            contentValues.put("badge_count", Integer.valueOf(i));
             contentValues.put("package_name", packageName);
             contentValues.put("activity_name", className);
-            f22863b.startInsert(0, null, this.f22864a, contentValues);
+            b.startInsert(0, null, this.a, contentValues);
             return;
         }
         Intent intent = new Intent("com.sonyericsson.home.action.UPDATE_BADGE");
-        intent.putExtra("com.sonyericsson.home.intent.extra.badge.PACKAGE_NAME", zr.d.getPackageName());
-        intent.putExtra("com.sonyericsson.home.intent.extra.badge.ACTIVITY_NAME", zr.d.getClassName());
-        intent.putExtra("com.sonyericsson.home.intent.extra.badge.MESSAGE", String.valueOf(i7));
-        if (i7 > 0) {
-            z10 = true;
+        intent.putExtra("com.sonyericsson.home.intent.extra.badge.PACKAGE_NAME", ak7.d.getPackageName());
+        intent.putExtra("com.sonyericsson.home.intent.extra.badge.ACTIVITY_NAME", ak7.d.getClassName());
+        intent.putExtra("com.sonyericsson.home.intent.extra.badge.MESSAGE", String.valueOf(i));
+        if (i > 0) {
+            z = true;
         }
-        intent.putExtra("com.sonyericsson.home.intent.extra.badge.SHOW_MESSAGE", z10);
-        g0.g3(new s(intent, 5));
+        intent.putExtra("com.sonyericsson.home.intent.extra.badge.SHOW_MESSAGE", z);
+        gl.d3(new hk(intent, (byte) 5));
     }
 
     @Override

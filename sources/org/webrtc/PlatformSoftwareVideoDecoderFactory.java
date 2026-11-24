@@ -7,17 +7,17 @@ public class PlatformSoftwareVideoDecoderFactory extends MediaCodecVideoDecoderF
     private static final Predicate<MediaCodecInfo> defaultAllowedPredicate = new Predicate<MediaCodecInfo>() {
         @Override
         public final Predicate<MediaCodecInfo> and(Predicate<? super MediaCodecInfo> predicate) {
-            return Predicate.CC.a(this, predicate);
+            return new Predicate.AnonymousClass2(predicate);
         }
 
         @Override
         public final Predicate<MediaCodecInfo> negate() {
-            return Predicate.CC.b(this);
+            return new Predicate.AnonymousClass3();
         }
 
         @Override
         public final Predicate<MediaCodecInfo> or(Predicate<? super MediaCodecInfo> predicate) {
-            return Predicate.CC.c(this, predicate);
+            return new Predicate.AnonymousClass1(predicate);
         }
 
         @Override

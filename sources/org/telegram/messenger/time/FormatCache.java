@@ -27,16 +27,18 @@ public abstract class FormatCache<F extends Format> {
 
         public int hashCode() {
             Object[] objArr;
-            if (this.hashCode == 0) {
-                int i7 = 0;
+            int i = this.hashCode;
+            if (i == 0) {
+                int i2 = 0;
                 for (Object obj : this.keys) {
                     if (obj != null) {
-                        i7 = obj.hashCode() + (i7 * 7);
+                        i2 = obj.hashCode() + (i2 * 7);
                     }
                 }
-                this.hashCode = i7;
+                this.hashCode = i2;
+                return i2;
             }
-            return this.hashCode;
+            return i;
         }
     }
 
@@ -68,7 +70,8 @@ public abstract class FormatCache<F extends Format> {
                 }
                 return pattern;
             } catch (ClassCastException unused) {
-                throw new IllegalArgumentException("No date time pattern for locale: " + locale);
+                w26.i(locale, "No date time pattern for locale: ");
+                return null;
             }
         }
         return str;
@@ -76,16 +79,8 @@ public abstract class FormatCache<F extends Format> {
 
     public abstract F createInstance(String str, TimeZone timeZone, Locale locale);
 
-    public F getDateInstance(int i7, TimeZone timeZone, Locale locale) {
-        return getDateTimeInstance(Integer.valueOf(i7), (Integer) null, timeZone, locale);
-    }
-
-    public F getInstance() {
-        return getDateTimeInstance(3, 3, TimeZone.getDefault(), Locale.getDefault());
-    }
-
-    public F getTimeInstance(int i7, TimeZone timeZone, Locale locale) {
-        return getDateTimeInstance((Integer) null, Integer.valueOf(i7), timeZone, locale);
+    public F getDateInstance(int i, TimeZone timeZone, Locale locale) {
+        return getDateTimeInstance(Integer.valueOf(i), (Integer) null, timeZone, locale);
     }
 
     public F getInstance(String str, TimeZone timeZone, Locale locale) {
@@ -97,18 +92,30 @@ public abstract class FormatCache<F extends Format> {
                 locale = Locale.getDefault();
             }
             MultipartKey multipartKey = new MultipartKey(str, timeZone, locale);
-            F f10 = this.cInstanceCache.get(multipartKey);
-            if (f10 == null) {
+            F f = this.cInstanceCache.get(multipartKey);
+            if (f == null) {
                 F createInstance = createInstance(str, timeZone, locale);
                 F putIfAbsent = this.cInstanceCache.putIfAbsent(multipartKey, createInstance);
-                return putIfAbsent != null ? putIfAbsent : createInstance;
+                if (putIfAbsent != null) {
+                    return putIfAbsent;
+                }
+                return createInstance;
             }
-            return f10;
+            return f;
         }
-        throw new NullPointerException("pattern must not be null");
+        fvc.f("pattern must not be null");
+        return null;
     }
 
-    public F getDateTimeInstance(int i7, int i10, TimeZone timeZone, Locale locale) {
-        return getDateTimeInstance(Integer.valueOf(i7), Integer.valueOf(i10), timeZone, locale);
+    public F getTimeInstance(int i, TimeZone timeZone, Locale locale) {
+        return getDateTimeInstance((Integer) null, Integer.valueOf(i), timeZone, locale);
+    }
+
+    public F getDateTimeInstance(int i, int i2, TimeZone timeZone, Locale locale) {
+        return getDateTimeInstance(Integer.valueOf(i), Integer.valueOf(i2), timeZone, locale);
+    }
+
+    public F getInstance() {
+        return getDateTimeInstance(3, 3, TimeZone.getDefault(), Locale.getDefault());
     }
 }

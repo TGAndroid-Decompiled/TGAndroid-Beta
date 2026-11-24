@@ -1,26 +1,15 @@
 package org.telegram.ui.Components;
-public final class b implements org.telegram.messenger.nc {
-    public final int f33587a;
-    public final m0 f33588b;
 
-    public b(m0 m0Var, int i7) {
-        this.f33587a = i7;
-        this.f33588b = m0Var;
+import android.util.Property;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class b extends Property {
+    @Override
+    public final Object get(Object obj) {
+        return Float.valueOf(((ChatActivityEnterView.RecordCircle) obj).getScale());
     }
 
     @Override
-    public final void a(String str) {
-        switch (this.f33587a) {
-            case 0:
-                m0 m0Var = this.f33588b;
-                m0Var.f37293n2 = str;
-                m0Var.P2.O(true);
-                return;
-            default:
-                m0 m0Var2 = this.f33588b;
-                m0Var2.f37293n2 = str;
-                m0Var2.P2.O(true);
-                return;
-        }
+    public final void set(Object obj, Object obj2) {
+        ((ChatActivityEnterView.RecordCircle) obj).setScale(((Float) obj2).floatValue());
     }
 }

@@ -22,10 +22,10 @@ public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
         if (createDecoder == null && (videoDecoderFactory = this.platformSoftwareVideoDecoderFactory) != null) {
             createDecoder = videoDecoderFactory.createDecoder(videoCodecInfo);
         }
-        if (createDecoder2 != null && createDecoder != null) {
-            return new VideoDecoderFallback(createDecoder, createDecoder2);
-        }
         if (createDecoder2 != null) {
+            if (createDecoder != null) {
+                return new VideoDecoderFallback(createDecoder, createDecoder2);
+            }
             return createDecoder2;
         }
         return createDecoder;

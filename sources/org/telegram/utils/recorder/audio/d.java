@@ -3,123 +3,209 @@ package org.telegram.utils.recorder.audio;
 import android.media.AudioRecord;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.SystemClock;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
-import yi.g;
+import org.telegram.messenger.MediaController;
 public final class d {
     public long A;
     public long B;
-    public final File f54770a;
-    public final File f54771b;
-    public final long f54772c;
+    public final File a;
+    public final File b;
+    public final long c;
     public final long d;
-    public final g f54773e;
-    public final yi.b f54774f;
-    public final ac.e f54775g;
+    public final e30 e;
+    public final q20 f;
+    public final m20 g;
     public final HandlerThread h;
-    public final Handler f54776i;
-    public final HandlerThread f54777j;
-    public final Handler f54778k;
-    public volatile boolean f54781n;
-    public volatile boolean f54782o;
-    public AudioRecord f54783p;
-    public long f54784q;
-    public long f54785r;
-    public AudioRecorderNative f54787t;
-    public AudioNoiseSuppressor f54788u;
+    public final Handler i;
+    public final HandlerThread j;
+    public final Handler k;
+    public volatile boolean n;
+    public volatile boolean o;
+    public AudioRecord p;
+    public long q;
+    public long r;
+    public AudioRecorderNative t;
+    public AudioNoiseSuppressor u;
     public Exception v;
-    public boolean f54789w;
-    public long f54790x;
-    public int f54791y;
-    public long f54792z;
-    public final ConcurrentLinkedQueue f54779l = new ConcurrentLinkedQueue();
-    public final AtomicInteger f54780m = new AtomicInteger();
-    public final ByteBuffer f54786s = ByteBuffer.allocateDirect(1920).order(ByteOrder.nativeOrder());
+    public boolean w;
+    public long x;
+    public int y;
+    public long z;
+    public final ConcurrentLinkedQueue l = new ConcurrentLinkedQueue();
+    public final AtomicInteger m = new AtomicInteger();
+    public final ByteBuffer s = ByteBuffer.allocateDirect(1920).order(ByteOrder.nativeOrder());
 
-    public d(File file, File file2, long j3, long j10, g gVar, yi.b bVar, ac.e eVar) {
-        this.f54770a = file;
-        this.f54771b = file2;
-        this.f54772c = j3;
-        this.d = j10;
-        this.f54773e = gVar;
-        this.f54774f = bVar;
-        this.f54775g = eVar;
+    public d(File file, File file2, long j, long j2, e30 e30Var, q20 q20Var, m20 m20Var) {
+        this.a = file;
+        this.b = file2;
+        this.c = j;
+        this.d = j2;
+        this.e = e30Var;
+        this.f = q20Var;
+        this.g = m20Var;
         HandlerThread handlerThread = new HandlerThread("AudioRecorderCapture", -16);
         this.h = handlerThread;
         handlerThread.start();
-        this.f54776i = new Handler(handlerThread.getLooper());
+        this.i = new Handler(handlerThread.getLooper());
         HandlerThread handlerThread2 = new HandlerThread("AudioRecorderEncoder", 0);
-        this.f54777j = handlerThread2;
+        this.j = handlerThread2;
         handlerThread2.start();
-        this.f54778k = new Handler(handlerThread2.getLooper());
+        this.k = new Handler(handlerThread2.getLooper());
     }
 
-    public static Exception a(Throwable th2) {
-        if (th2 instanceof Exception) {
-            return (Exception) th2;
+    public static Exception a(Throwable th) {
+        if (th instanceof Exception) {
+            return (Exception) th;
         }
-        return new RuntimeException(th2);
+        return new RuntimeException(th);
     }
 
-    public final void b(int i7) {
-        ByteBuffer byteBuffer = this.f54786s;
+    public final void b(int i) {
+        ByteBuffer byteBuffer = this.s;
         byteBuffer.position(0);
-        byteBuffer.limit(i7);
-        if (this.f54788u != null) {
+        byteBuffer.limit(i);
+        if (this.u != null) {
             long nanoTime = System.nanoTime();
-            boolean b10 = this.f54788u.b(i7 / 2, byteBuffer);
+            boolean b = this.u.b(i / 2, byteBuffer);
             long nanoTime2 = System.nanoTime() - nanoTime;
-            this.f54792z++;
+            this.z++;
             this.A += nanoTime2;
             this.B = Math.max(this.B, nanoTime2);
-            yi.b bVar = this.f54774f;
-            if (!b10) {
-                bVar.b("RNNoise processing failed; recording unprocessed PCM");
-                this.f54788u.c();
-                this.f54788u = null;
-            } else if (this.f54792z % 100 == 0) {
-                bVar.b("RNNoise processing: averageMs=" + ((this.A / this.f54792z) / 1000000.0d) + ", maxMs=" + (this.B / 1000000.0d));
+            q20 q20Var = this.f;
+            if (!b) {
+                q20Var.b("RNNoise processing failed; recording unprocessed PCM");
+                this.u.c();
+                this.u = null;
+            } else if (this.z % 100 == 0) {
+                q20Var.b("RNNoise processing: averageMs=" + ((this.A / this.z) / 1000000.0d) + ", maxMs=" + (this.B / 1000000.0d));
             }
             byteBuffer.position(0);
-            byteBuffer.limit(i7);
+            byteBuffer.limit(i);
         }
-        AudioRecorderNative audioRecorderNative = this.f54787t;
-        if (audioRecorderNative != null && audioRecorderNative.g(byteBuffer, i7) != 0) {
+        AudioRecorderNative audioRecorderNative = this.t;
+        if (audioRecorderNative != null && audioRecorderNative.g(byteBuffer, i) != 0) {
             return;
         }
-        throw new IllegalStateException("Native Opus encoding failed");
+        sc8.j("Native Opus encoding failed");
     }
 
-    public final void c(ByteBuffer byteBuffer) {
-        if (!this.f54789w) {
-            this.f54779l.offer(byteBuffer);
-        }
-    }
-
-    public final void d() {
-        this.f54781n = true;
-        if (!this.f54782o) {
-            this.f54776i.postAtFrontOfQueue(new yi.a(this, 1));
-        }
-    }
-
-    public final void e(Exception exc) {
-        if (this.f54782o) {
+    public final void c() {
+        double sqrt;
+        if (this.o) {
             return;
         }
-        this.f54782o = true;
-        this.f54781n = true;
+        Exception exc = null;
+        if (this.n) {
+            f(null);
+            return;
+        }
+        ByteBuffer byteBuffer = (ByteBuffer) this.l.poll();
+        if (byteBuffer == null) {
+            byteBuffer = ByteBuffer.allocateDirect(1920).order(ByteOrder.nativeOrder());
+        }
+        byteBuffer.clear();
+        boolean z = false;
+        try {
+            int read = this.p.read(byteBuffer, byteBuffer.capacity());
+            if (read > 0) {
+                byteBuffer.limit(read);
+                gjc gjcVar = xxe.a;
+                if (gjcVar != null && read > 0) {
+                    gjcVar.n(byteBuffer, read, 48000, 2);
+                }
+                int i = read / 2;
+                long j = 0;
+                for (int i2 = 0; i2 + 1 < read; i2 += 2) {
+                    long j2 = byteBuffer.getShort(i2);
+                    j += j2 * j2;
+                }
+                this.q += i;
+                this.m.incrementAndGet();
+                this.k.post(new c(this, byteBuffer, (byte) 0));
+                try {
+                    long elapsedRealtime = SystemClock.elapsedRealtime();
+                    if (elapsedRealtime - this.r >= 32) {
+                        if (i == 0) {
+                            sqrt = 0.0d;
+                        } else {
+                            sqrt = Math.sqrt(j / i);
+                        }
+                        final double d = sqrt;
+                        final m20 m20Var = this.g;
+                        final long j3 = this.q;
+                        Handler handler = ((h30) m20Var.c).i;
+                        final long j4 = m20Var.a;
+                        handler.post(new Runnable() {
+                            @Override
+                            public final void run() {
+                                h30 h30Var = (h30) m20.this.c;
+                                if (j4 == h30Var.o && h30Var.G == 3) {
+                                    h30Var.q = j3;
+                                    long j5 = h30Var.j();
+                                    double d2 = d;
+                                    if (d2 >= 0.0d) {
+                                        MediaController mediaController = ((ml6) h30Var.f.b).a;
+                                        mediaController.l1 = j5;
+                                        kk7.f(mediaController.i1).k(kk7.j2, Integer.valueOf(mediaController.h1), Double.valueOf(d2 / 2.0d));
+                                    }
+                                }
+                            }
+                        });
+                        this.r = elapsedRealtime;
+                    }
+                    this.i.post(new vz(this, (byte) 3));
+                    return;
+                } catch (Throwable th) {
+                    th = th;
+                    z = true;
+                    if (!z) {
+                        d(byteBuffer);
+                    }
+                    if (!this.n) {
+                        exc = a(th);
+                    }
+                    f(exc);
+                    return;
+                }
+            }
+            throw new IllegalStateException("AudioRecord read failed: " + read);
+        } catch (Throwable th2) {
+            th = th2;
+        }
+    }
+
+    public final void d(ByteBuffer byteBuffer) {
+        if (!this.w) {
+            this.l.offer(byteBuffer);
+        }
+    }
+
+    public final void e() {
+        this.n = true;
+        if (!this.o) {
+            this.i.postAtFrontOfQueue(new vz(this, (byte) 1));
+        }
+    }
+
+    public final void f(Exception exc) {
+        if (this.o) {
+            return;
+        }
+        this.o = true;
+        this.n = true;
         if (exc != null) {
-            this.f54774f.a("capture failed", exc);
+            this.f.a("capture failed", exc);
         }
-        AudioRecord audioRecord = this.f54783p;
+        AudioRecord audioRecord = this.p;
         if (audioRecord != null) {
             try {
                 if (audioRecord.getRecordingState() == 3) {
-                    this.f54783p.stop();
+                    this.p.stop();
                 }
             } finally {
                 if (exc == null) {
@@ -129,7 +215,7 @@ public final class d {
                 }
             }
         }
-        this.f54778k.post(new b(this, this.f54784q, exc));
+        this.k.post(new b(this, this.q, exc));
         this.h.quitSafely();
     }
 }

@@ -15,51 +15,51 @@ public class CheckBoxBase {
     public int A;
     public float B;
     public String C;
-    public mp D;
-    public org.telegram.ui.ActionBar.u4 E;
-    public org.telegram.ui.ActionBar.i6 F;
-    public org.telegram.messenger.i9 G;
+    public xf2 D;
+    public m17 E;
+    public wjb F;
+    public js4 G;
     public long H;
-    public View f32924a;
+    public View a;
     public final Paint d;
-    public final Paint f32928f;
-    public TextPaint f32929g;
-    public boolean f32930i;
-    public boolean f32933l;
-    public boolean f32935n;
-    public float f32936o;
-    public ObjectAnimator f32937p;
-    public boolean f32938q;
-    public int f32940s;
-    public int f32941t;
-    public int f32942u;
+    public final Paint f;
+    public TextPaint g;
+    public boolean i;
+    public boolean l;
+    public boolean n;
+    public float o;
+    public ObjectAnimator p;
+    public boolean q;
+    public int s;
+    public int t;
+    public int u;
     public float v;
-    public float f32943w;
-    public int f32944x;
-    public boolean f32945y;
-    public boolean f32946z;
-    public final Rect f32925b = new Rect();
-    public final RectF f32926c = new RectF();
-    public float f32927e = 1.0f;
+    public float w;
+    public int x;
+    public boolean y;
+    public boolean z;
+    public final Rect b = new Rect();
+    public final RectF c = new RectF();
+    public float e = 1.0f;
     public float h = 1.0f;
-    public final Path f32931j = new Path();
-    public boolean f32932k = true;
-    public float f32934m = 1.0f;
-    public int f32939r = org.telegram.ui.ActionBar.n6.f29581k7;
+    public final Path j = new Path();
+    public boolean k = true;
+    public float m = 1.0f;
+    public int r = bkb.j7;
 
-    public CheckBoxBase(int i7, View view, org.telegram.ui.ActionBar.i6 i6Var) {
-        int i10 = org.telegram.ui.ActionBar.n6.f29440cd;
-        this.f32940s = i10;
-        this.f32941t = i10;
-        this.f32942u = org.telegram.ui.ActionBar.n6.f29524h5;
+    public CheckBoxBase(int i, wjb wjbVar, View view) {
+        int i2 = bkb.bd;
+        this.s = i2;
+        this.t = i2;
+        this.u = bkb.g5;
         this.v = 0.0f;
-        this.f32943w = 1.0f;
-        this.f32946z = true;
-        this.G = new k2(21);
+        this.w = 1.0f;
+        this.z = true;
+        this.G = new k32((byte) 4);
         this.H = 200L;
-        this.F = i6Var;
-        this.f32924a = view;
-        this.B = i7;
+        this.F = wjbVar;
+        this.a = view;
+        this.B = i;
         if (I == null) {
             I = new Paint(1);
         }
@@ -69,145 +69,145 @@ public class CheckBoxBase {
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.9f));
+        paint.setStrokeWidth(gl.L(1.9f));
         Paint paint2 = new Paint(1);
-        this.f32928f = paint2;
+        this.f = paint2;
         paint2.setStyle(style);
-        paint2.setStrokeWidth(org.telegram.messenger.g0.L(1.2f));
+        paint2.setStrokeWidth(gl.L(1.2f));
     }
 
-    public final void a(android.graphics.Canvas r33) {
+    public final void a(android.graphics.Canvas r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CheckBoxBase.a(android.graphics.Canvas):void");
     }
 
     public final void b() {
-        View view = this.f32924a;
+        View view = this.a;
         if (view == null) {
             return;
         }
         if (view.getParent() != null) {
-            ((View) this.f32924a.getParent()).invalidate();
+            ((View) this.a.getParent()).invalidate();
         }
-        this.f32924a.invalidate();
+        this.a.invalidate();
     }
 
-    public final void c(float f10) {
-        if (this.f32934m == f10) {
+    public final void c(float f) {
+        if (this.m == f) {
             return;
         }
-        this.f32934m = f10;
+        this.m = f;
         b();
     }
 
-    public final void d(int i7) {
-        if (this.A == i7) {
+    public final void d(int i) {
+        if (this.A == i) {
             return;
         }
-        this.A = i7;
-        Paint paint = this.f32928f;
-        if (i7 != 12 && i7 != 13) {
-            if (i7 != 4 && i7 != 5) {
-                if (i7 == 3) {
-                    paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
-                } else if (i7 != 0) {
-                    paint.setStrokeWidth(org.telegram.messenger.g0.L(1.5f));
+        this.A = i;
+        Paint paint = this.f;
+        if (i != 12 && i != 13) {
+            if (i != 4 && i != 5) {
+                if (i == 3) {
+                    paint.setStrokeWidth(gl.L(3.0f));
+                } else if (i != 0) {
+                    paint.setStrokeWidth(gl.L(1.5f));
                 }
             } else {
-                paint.setStrokeWidth(org.telegram.messenger.g0.L(1.9f));
-                if (i7 == 5) {
-                    this.d.setStrokeWidth(org.telegram.messenger.g0.L(1.5f));
+                paint.setStrokeWidth(gl.L(1.9f));
+                if (i == 5) {
+                    this.d.setStrokeWidth(gl.L(1.5f));
                 }
             }
         } else {
-            paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
+            paint.setStrokeWidth(gl.L(1.0f));
         }
         b();
     }
 
-    public final void e(int i7, int i10, int i11, int i12) {
-        int i13 = i11 + i7;
-        int i14 = i12 + i10;
-        Rect rect = this.f32925b;
-        if (rect.left == i7 && rect.top == i10 && rect.right == i13 && rect.bottom == i14) {
+    public final void e(int i, int i2, int i3, int i4) {
+        int i5 = i3 + i;
+        int i6 = i4 + i2;
+        Rect rect = this.b;
+        if (rect.left == i && rect.top == i2 && rect.right == i5 && rect.bottom == i6) {
             return;
         }
-        rect.left = i7;
-        rect.top = i10;
-        rect.right = i13;
-        rect.bottom = i14;
+        rect.left = i;
+        rect.top = i2;
+        rect.right = i5;
+        rect.bottom = i6;
         b();
     }
 
-    public final void f(int i7, boolean z10, boolean z11) {
-        if (i7 >= 0) {
-            String str = "" + (i7 + 1);
-            String str2 = this.C;
-            if (str2 == null || !str2.equals(str)) {
-                this.C = str;
+    public final void f(int i, boolean z, boolean z2) {
+        if (i >= 0) {
+            String valueOf = String.valueOf(i + 1);
+            String str = this.C;
+            if (str == null || !str.equals(valueOf)) {
+                this.C = valueOf;
                 b();
             }
         }
-        if (z10 == this.f32938q) {
+        if (z == this.q) {
             return;
         }
-        this.f32938q = z10;
-        float f10 = 0.0f;
-        if (this.f32933l && z11) {
-            if (z10) {
-                f10 = 1.0f;
+        this.q = z;
+        float f = 0.0f;
+        if (this.l && z2) {
+            if (z) {
+                f = 1.0f;
             }
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f10);
-            this.f32937p = ofFloat;
-            ofFloat.addListener(new x(this, 20));
-            this.f32937p.setInterpolator(kr.f36859g);
-            this.f32937p.setDuration(this.H);
-            this.f32937p.start();
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f);
+            this.p = ofFloat;
+            ofFloat.addListener(new bb1(this, (byte) 28));
+            this.p.setInterpolator(s33.g);
+            this.p.setDuration(this.H);
+            this.p.start();
             return;
         }
-        ObjectAnimator objectAnimator = this.f32937p;
+        ObjectAnimator objectAnimator = this.p;
         if (objectAnimator != null) {
             objectAnimator.cancel();
-            this.f32937p = null;
+            this.p = null;
         }
-        if (z10) {
-            f10 = 1.0f;
+        if (z) {
+            f = 1.0f;
         }
-        setProgress(f10);
+        setProgress(f);
     }
 
-    public final void g(boolean z10, boolean z11) {
-        f(-1, z10, z11);
+    public final void g(boolean z, boolean z2) {
+        f(-1, z, z2);
     }
 
     public float getProgress() {
-        return this.f32936o;
+        return this.o;
     }
 
-    public final void h(int i7, int i10, int i11) {
-        if (this.f32940s == i7 && this.f32941t == i10 && this.f32939r == i11) {
+    public final void h(int i, int i2, int i3) {
+        if (this.s == i && this.t == i2 && this.r == i3) {
             return;
         }
-        this.f32940s = i7;
-        this.f32941t = i10;
-        this.f32939r = i11;
+        this.s = i;
+        this.t = i2;
+        this.r = i3;
         b();
     }
 
-    public final void i(float f10) {
-        if (this.v == f10) {
+    public final void i(float f) {
+        if (this.v == f) {
             return;
         }
-        this.v = f10;
+        this.v = f;
         b();
     }
 
-    public final void j(boolean z10) {
+    public final void j(boolean z) {
         PorterDuffXfermode porterDuffXfermode;
-        if (this.f32930i == z10) {
+        if (this.i == z) {
             return;
         }
-        this.f32930i = z10;
-        if (z10) {
+        this.i = z;
+        if (z) {
             porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
         } else {
             porterDuffXfermode = null;
@@ -216,29 +216,29 @@ public class CheckBoxBase {
         b();
     }
 
-    public final void k(boolean z10) {
-        if (this.f32946z == z10) {
+    public final void k(boolean z) {
+        if (this.z == z) {
             return;
         }
-        this.f32946z = z10;
+        this.z = z;
         b();
     }
 
-    public final void l(float f10) {
-        if (this.B == f10) {
+    public final void l(float f) {
+        if (this.B == f) {
             return;
         }
-        this.B = f10;
+        this.B = f;
         b();
     }
 
-    public void setProgress(float f10) {
-        if (this.f32936o != f10) {
-            this.f32936o = f10;
+    public void setProgress(float f) {
+        if (this.o != f) {
+            this.o = f;
             b();
-            mp mpVar = this.D;
-            if (mpVar != null) {
-                mpVar.a();
+            xf2 xf2Var = this.D;
+            if (xf2Var != null) {
+                xf2Var.f();
             }
         }
     }

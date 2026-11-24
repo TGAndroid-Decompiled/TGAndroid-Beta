@@ -1,0 +1,8 @@
+package defpackage;
+
+import android.view.View;
+public final class ft2 implements View.OnFocusChangeListener {
+    @Override
+    public final void onFocusChange(View view, boolean z) {
+    }
+}

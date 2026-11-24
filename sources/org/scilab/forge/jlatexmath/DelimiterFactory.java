@@ -2,34 +2,34 @@ package org.scilab.forge.jlatexmath;
 public class DelimiterFactory {
     private static final float MAX_LENGTH = 4096.0f;
 
-    public static Box create(String str, TeXEnvironment teXEnvironment, float f10) {
-        float f11;
-        if (Float.isInfinite(f10) || Float.isNaN(f10) || f10 < 0.0f) {
-            f10 = 0.0f;
+    public static Box create(String str, TeXEnvironment teXEnvironment, float f) {
+        float f2;
+        if (Float.isInfinite(f) || Float.isNaN(f) || f < 0.0f) {
+            f = 0.0f;
         }
-        float min = Math.min(f10, 4096.0f);
+        float min = Math.min(f, 4096.0f);
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
-        Char r42 = teXFont.getChar(str, style);
-        Metrics metrics = r42.getMetrics();
+        Char r4 = teXFont.getChar(str, style);
+        Metrics metrics = r4.getMetrics();
         float height = metrics.getHeight();
         float depth = metrics.getDepth();
         while (true) {
-            f11 = depth + height;
-            if (f11 >= min || !teXFont.hasNextLarger(r42)) {
+            f2 = depth + height;
+            if (f2 >= min || !teXFont.hasNextLarger(r4)) {
                 break;
             }
-            r42 = teXFont.getNextLarger(r42, style);
-            Metrics metrics2 = r42.getMetrics();
+            r4 = teXFont.getNextLarger(r4, style);
+            Metrics metrics2 = r4.getMetrics();
             height = metrics2.getHeight();
             depth = metrics2.getDepth();
         }
-        if (f11 >= min) {
-            return new CharBox(r42);
+        if (f2 >= min) {
+            return new CharBox(r4);
         }
-        if (teXFont.isExtensionChar(r42)) {
+        if (teXFont.isExtensionChar(r4)) {
             VerticalBox verticalBox = new VerticalBox();
-            Extension extension = teXFont.getExtension(r42, style);
+            Extension extension = teXFont.getExtension(r4, style);
             if (extension.hasTop()) {
                 verticalBox.add(new CharBox(extension.getTop()));
             }
@@ -55,25 +55,28 @@ public class DelimiterFactory {
             }
             return verticalBox;
         }
-        return new CharBox(r42);
+        return new CharBox(r4);
     }
 
-    public static Box create(SymbolAtom symbolAtom, TeXEnvironment teXEnvironment, int i7) {
-        if (i7 > 4) {
+    public static Box create(SymbolAtom symbolAtom, TeXEnvironment teXEnvironment, int i) {
+        if (i > 4) {
             return symbolAtom.createBox(teXEnvironment);
         }
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
-        Char r22 = teXFont.getChar(symbolAtom.getName(), style);
-        int i10 = 1;
-        while (i10 <= i7 && teXFont.hasNextLarger(r22)) {
-            r22 = teXFont.getNextLarger(r22, style);
-            i10++;
+        Char r2 = teXFont.getChar(symbolAtom.getName(), style);
+        int i2 = 1;
+        while (true) {
+            if (i2 > i) {
+                break;
+            } else if (teXFont.hasNextLarger(r2)) {
+                r2 = teXFont.getNextLarger(r2, style);
+                i2++;
+            } else if (!teXFont.hasNextLarger(r2)) {
+                CharBox charBox = new CharBox(teXFont.getChar('A', "mathnormal", style));
+                return create(symbolAtom.getName(), teXEnvironment, (charBox.getDepth() + charBox.getHeight()) * i);
+            }
         }
-        if (i10 <= i7 && !teXFont.hasNextLarger(r22)) {
-            CharBox charBox = new CharBox(teXFont.getChar('A', "mathnormal", style));
-            return create(symbolAtom.getName(), teXEnvironment, (charBox.getDepth() + charBox.getHeight()) * i7);
-        }
-        return new CharBox(r22);
+        return new CharBox(r2);
     }
 }

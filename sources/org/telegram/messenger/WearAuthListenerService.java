@@ -6,72 +6,74 @@ import android.content.Intent;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.util.Log;
-public class WearAuthListenerService extends Service implements a9.a {
-    public static final int f22888r = 0;
-    public ComponentName f22889a;
-    public a9.g f22890b;
-    public a9.d f22891c;
+public class WearAuthListenerService extends Service implements fg1 {
+    public static final int r = 0;
+    public ComponentName a;
+    public u2f b;
+    public e5d c;
     public Intent d;
-    public Looper f22892e;
+    public Looper e;
     public boolean h;
-    public final Object f22893f = new Object();
-    public final b9.d f22894n = new b9.d(new qb.a(this));
+    public final Object f = new Object();
+    public final zbd n = new zbd(new Object());
 
     @Override
-    public final android.os.IBinder onBind(android.content.Intent r5) {
+    public final android.os.IBinder onBind(android.content.Intent r4) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.WearAuthListenerService.onBind(android.content.Intent):android.os.IBinder");
     }
 
     @Override
     public final void onCreate() {
         super.onCreate();
-        this.f22889a = new ComponentName(this, getClass().getName());
+        this.a = new ComponentName(this, getClass().getName());
         if (Log.isLoggable("WearableLS", 3)) {
-            Log.d("WearableLS", "onCreate: ".concat(String.valueOf(this.f22889a)));
+            Log.d("WearableLS", "onCreate: ".concat(String.valueOf(this.a)));
         }
-        if (this.f22892e == null) {
+        Looper looper = this.e;
+        if (looper == null) {
             HandlerThread handlerThread = new HandlerThread("WearableListenerService");
             handlerThread.start();
-            this.f22892e = handlerThread.getLooper();
+            looper = handlerThread.getLooper();
+            this.e = looper;
         }
-        this.f22890b = new a9.g(this, this.f22892e);
+        this.b = new u2f(this, looper);
         Intent intent = new Intent("com.google.android.gms.wearable.BIND_LISTENER");
         this.d = intent;
-        intent.setComponent(this.f22889a);
-        this.f22891c = new a9.d(this);
+        intent.setComponent(this.a);
+        this.c = new e5d(this);
     }
 
     @Override
     public final void onDestroy() {
         if (Log.isLoggable("WearableLS", 3)) {
-            Log.d("WearableLS", "onDestroy: ".concat(String.valueOf(this.f22889a)));
+            Log.d("WearableLS", "onDestroy: ".concat(String.valueOf(this.a)));
         }
-        synchronized (this.f22893f) {
+        synchronized (this.f) {
             this.h = true;
-            a9.g gVar = this.f22890b;
-            if (gVar != null) {
-                gVar.getLooper().quit();
-                gVar.a("quit");
+            u2f u2fVar = this.b;
+            if (u2fVar != null) {
+                u2fVar.getLooper().quit();
+                u2fVar.a("quit");
             } else {
-                throw new IllegalStateException("onDestroy: mServiceHandler not set, did you override onCreate() but forget to call super.onCreate()? component=".concat(String.valueOf(this.f22889a)));
+                throw new IllegalStateException("onDestroy: mServiceHandler not set, did you override onCreate() but forget to call super.onCreate()? component=".concat(String.valueOf(this.a)));
             }
         }
         super.onDestroy();
     }
 
     @Override
-    public final void a(b9.f fVar) {
+    public final void a(oed oedVar) {
     }
 
     @Override
-    public final void b(b9.f fVar) {
+    public final void b(oed oedVar) {
     }
 
     @Override
-    public final void c(b9.f fVar) {
+    public final void c(oed oedVar) {
     }
 
     @Override
-    public final void d(b9.f fVar) {
+    public final void d(oed oedVar) {
     }
 }

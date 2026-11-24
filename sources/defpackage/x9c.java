@@ -1,0 +1,59 @@
+package defpackage;
+public final class x9c {
+    public static final int[] e = {31892, 34236, 39577, 42195, 48118, 51042, 55367, 58893, 63784, 68472, 70749, 76311, 79154, 84390, 87683, 92361, 96236, 102084, 102881, 110507, 110734, 117786, 119615, 126325, 127568, 133589, 136944, 141498, 145311, 150283, 152622, 158308, 161089, 167017};
+    public static final x9c[] f = a();
+    public final byte a;
+    public final int[] b;
+    public final nfd[] c;
+    public final int d;
+
+    public x9c(int i, int[] iArr, nfd... nfdVarArr) {
+        w9c[] w9cVarArr;
+        this.a = i;
+        this.b = iArr;
+        this.c = nfdVarArr;
+        nfd nfdVar = nfdVarArr[0];
+        byte b = nfdVar.a;
+        int i2 = 0;
+        for (w9c w9cVar : (w9c[]) nfdVar.b) {
+            i2 += (w9cVar.b + b) * w9cVar.a;
+        }
+        this.d = i2;
+    }
+
+    public static x9c[] a() {
+        return new x9c[]{new x9c(1, new int[0], new nfd(7, new w9c[]{new w9c(1, 19)}), new nfd(10, new w9c[]{new w9c(1, 16)}), new nfd(13, new w9c[]{new w9c(1, 13)}), new nfd(17, new w9c[]{new w9c(1, 9)})), new x9c(2, new int[]{6, 18}, new nfd(10, new w9c[]{new w9c(1, 34)}), new nfd(16, new w9c[]{new w9c(1, 28)}), new nfd(22, new w9c[]{new w9c(1, 22)}), new nfd(28, new w9c[]{new w9c(1, 16)})), new x9c(3, new int[]{6, 22}, new nfd(15, new w9c[]{new w9c(1, 55)}), new nfd(26, new w9c[]{new w9c(1, 44)}), new nfd(18, new w9c[]{new w9c(2, 17)}), new nfd(22, new w9c[]{new w9c(2, 13)})), new x9c(4, new int[]{6, 26}, new nfd(20, new w9c[]{new w9c(1, 80)}), new nfd(18, new w9c[]{new w9c(2, 32)}), new nfd(26, new w9c[]{new w9c(2, 24)}), new nfd(16, new w9c[]{new w9c(4, 9)})), new x9c(5, new int[]{6, 30}, new nfd(26, new w9c[]{new w9c(1, 108)}), new nfd(24, new w9c[]{new w9c(2, 43)}), new nfd(18, new w9c[]{new w9c(2, 15), new w9c(2, 16)}), new nfd(22, new w9c[]{new w9c(2, 11), new w9c(2, 12)})), new x9c(6, new int[]{6, 34}, new nfd(18, new w9c[]{new w9c(2, 68)}), new nfd(16, new w9c[]{new w9c(4, 27)}), new nfd(24, new w9c[]{new w9c(4, 19)}), new nfd(28, new w9c[]{new w9c(4, 15)})), new x9c(7, new int[]{6, 22, 38}, new nfd(20, new w9c[]{new w9c(2, 78)}), new nfd(18, new w9c[]{new w9c(4, 31)}), new nfd(18, new w9c[]{new w9c(2, 14), new w9c(4, 15)}), new nfd(26, new w9c[]{new w9c(4, 13), new w9c(1, 14)})), new x9c(8, new int[]{6, 24, 42}, new nfd(24, new w9c[]{new w9c(2, 97)}), new nfd(22, new w9c[]{new w9c(2, 38), new w9c(2, 39)}), new nfd(22, new w9c[]{new w9c(4, 18), new w9c(2, 19)}), new nfd(26, new w9c[]{new w9c(4, 14), new w9c(2, 15)})), new x9c(9, new int[]{6, 26, 46}, new nfd(30, new w9c[]{new w9c(2, 116)}), new nfd(22, new w9c[]{new w9c(3, 36), new w9c(2, 37)}), new nfd(20, new w9c[]{new w9c(4, 16), new w9c(4, 17)}), new nfd(24, new w9c[]{new w9c(4, 12), new w9c(4, 13)})), new x9c(10, new int[]{6, 28, 50}, new nfd(18, new w9c[]{new w9c(2, 68), new w9c(2, 69)}), new nfd(26, new w9c[]{new w9c(4, 43), new w9c(1, 44)}), new nfd(24, new w9c[]{new w9c(6, 19), new w9c(2, 20)}), new nfd(28, new w9c[]{new w9c(6, 15), new w9c(2, 16)})), new x9c(11, new int[]{6, 30, 54}, new nfd(20, new w9c[]{new w9c(4, 81)}), new nfd(30, new w9c[]{new w9c(1, 50), new w9c(4, 51)}), new nfd(28, new w9c[]{new w9c(4, 22), new w9c(4, 23)}), new nfd(24, new w9c[]{new w9c(3, 12), new w9c(8, 13)})), new x9c(12, new int[]{6, 32, 58}, new nfd(24, new w9c[]{new w9c(2, 92), new w9c(2, 93)}), new nfd(22, new w9c[]{new w9c(6, 36), new w9c(2, 37)}), new nfd(26, new w9c[]{new w9c(4, 20), new w9c(6, 21)}), new nfd(28, new w9c[]{new w9c(7, 14), new w9c(4, 15)})), new x9c(13, new int[]{6, 34, 62}, new nfd(26, new w9c[]{new w9c(4, 107)}), new nfd(22, new w9c[]{new w9c(8, 37), new w9c(1, 38)}), new nfd(24, new w9c[]{new w9c(8, 20), new w9c(4, 21)}), new nfd(22, new w9c[]{new w9c(12, 11), new w9c(4, 12)})), new x9c(14, new int[]{6, 26, 46, 66}, new nfd(30, new w9c[]{new w9c(3, 115), new w9c(1, 116)}), new nfd(24, new w9c[]{new w9c(4, 40), new w9c(5, 41)}), new nfd(20, new w9c[]{new w9c(11, 16), new w9c(5, 17)}), new nfd(24, new w9c[]{new w9c(11, 12), new w9c(5, 13)})), new x9c(15, new int[]{6, 26, 48, 70}, new nfd(22, new w9c[]{new w9c(5, 87), new w9c(1, 88)}), new nfd(24, new w9c[]{new w9c(5, 41), new w9c(5, 42)}), new nfd(30, new w9c[]{new w9c(5, 24), new w9c(7, 25)}), new nfd(24, new w9c[]{new w9c(11, 12), new w9c(7, 13)})), new x9c(16, new int[]{6, 26, 50, 74}, new nfd(24, new w9c[]{new w9c(5, 98), new w9c(1, 99)}), new nfd(28, new w9c[]{new w9c(7, 45), new w9c(3, 46)}), new nfd(24, new w9c[]{new w9c(15, 19), new w9c(2, 20)}), new nfd(30, new w9c[]{new w9c(3, 15), new w9c(13, 16)})), new x9c(17, new int[]{6, 30, 54, 78}, new nfd(28, new w9c[]{new w9c(1, 107), new w9c(5, 108)}), new nfd(28, new w9c[]{new w9c(10, 46), new w9c(1, 47)}), new nfd(28, new w9c[]{new w9c(1, 22), new w9c(15, 23)}), new nfd(28, new w9c[]{new w9c(2, 14), new w9c(17, 15)})), new x9c(18, new int[]{6, 30, 56, 82}, new nfd(30, new w9c[]{new w9c(5, 120), new w9c(1, 121)}), new nfd(26, new w9c[]{new w9c(9, 43), new w9c(4, 44)}), new nfd(28, new w9c[]{new w9c(17, 22), new w9c(1, 23)}), new nfd(28, new w9c[]{new w9c(2, 14), new w9c(19, 15)})), new x9c(19, new int[]{6, 30, 58, 86}, new nfd(28, new w9c[]{new w9c(3, 113), new w9c(4, 114)}), new nfd(26, new w9c[]{new w9c(3, 44), new w9c(11, 45)}), new nfd(26, new w9c[]{new w9c(17, 21), new w9c(4, 22)}), new nfd(26, new w9c[]{new w9c(9, 13), new w9c(16, 14)})), new x9c(20, new int[]{6, 34, 62, 90}, new nfd(28, new w9c[]{new w9c(3, 107), new w9c(5, 108)}), new nfd(26, new w9c[]{new w9c(3, 41), new w9c(13, 42)}), new nfd(30, new w9c[]{new w9c(15, 24), new w9c(5, 25)}), new nfd(28, new w9c[]{new w9c(15, 15), new w9c(10, 16)})), new x9c(21, new int[]{6, 28, 50, 72, 94}, new nfd(28, new w9c[]{new w9c(4, 116), new w9c(4, 117)}), new nfd(26, new w9c[]{new w9c(17, 42)}), new nfd(28, new w9c[]{new w9c(17, 22), new w9c(6, 23)}), new nfd(30, new w9c[]{new w9c(19, 16), new w9c(6, 17)})), new x9c(22, new int[]{6, 26, 50, 74, 98}, new nfd(28, new w9c[]{new w9c(2, 111), new w9c(7, 112)}), new nfd(28, new w9c[]{new w9c(17, 46)}), new nfd(30, new w9c[]{new w9c(7, 24), new w9c(16, 25)}), new nfd(24, new w9c[]{new w9c(34, 13)})), new x9c(23, new int[]{6, 30, 54, 78, 102}, new nfd(30, new w9c[]{new w9c(4, 121), new w9c(5, 122)}), new nfd(28, new w9c[]{new w9c(4, 47), new w9c(14, 48)}), new nfd(30, new w9c[]{new w9c(11, 24), new w9c(14, 25)}), new nfd(30, new w9c[]{new w9c(16, 15), new w9c(14, 16)})), new x9c(24, new int[]{6, 28, 54, 80, 106}, new nfd(30, new w9c[]{new w9c(6, 117), new w9c(4, 118)}), new nfd(28, new w9c[]{new w9c(6, 45), new w9c(14, 46)}), new nfd(30, new w9c[]{new w9c(11, 24), new w9c(16, 25)}), new nfd(30, new w9c[]{new w9c(30, 16), new w9c(2, 17)})), new x9c(25, new int[]{6, 32, 58, 84, 110}, new nfd(26, new w9c[]{new w9c(8, 106), new w9c(4, 107)}), new nfd(28, new w9c[]{new w9c(8, 47), new w9c(13, 48)}), new nfd(30, new w9c[]{new w9c(7, 24), new w9c(22, 25)}), new nfd(30, new w9c[]{new w9c(22, 15), new w9c(13, 16)})), new x9c(26, new int[]{6, 30, 58, 86, 114}, new nfd(28, new w9c[]{new w9c(10, 114), new w9c(2, 115)}), new nfd(28, new w9c[]{new w9c(19, 46), new w9c(4, 47)}), new nfd(28, new w9c[]{new w9c(28, 22), new w9c(6, 23)}), new nfd(30, new w9c[]{new w9c(33, 16), new w9c(4, 17)})), new x9c(27, new int[]{6, 34, 62, 90, 118}, new nfd(30, new w9c[]{new w9c(8, 122), new w9c(4, 123)}), new nfd(28, new w9c[]{new w9c(22, 45), new w9c(3, 46)}), new nfd(30, new w9c[]{new w9c(8, 23), new w9c(26, 24)}), new nfd(30, new w9c[]{new w9c(12, 15), new w9c(28, 16)})), new x9c(28, new int[]{6, 26, 50, 74, 98, 122}, new nfd(30, new w9c[]{new w9c(3, 117), new w9c(10, 118)}), new nfd(28, new w9c[]{new w9c(3, 45), new w9c(23, 46)}), new nfd(30, new w9c[]{new w9c(4, 24), new w9c(31, 25)}), new nfd(30, new w9c[]{new w9c(11, 15), new w9c(31, 16)})), new x9c(29, new int[]{6, 30, 54, 78, 102, 126}, new nfd(30, new w9c[]{new w9c(7, 116), new w9c(7, 117)}), new nfd(28, new w9c[]{new w9c(21, 45), new w9c(7, 46)}), new nfd(30, new w9c[]{new w9c(1, 23), new w9c(37, 24)}), new nfd(30, new w9c[]{new w9c(19, 15), new w9c(26, 16)})), new x9c(30, new int[]{6, 26, 52, 78, 104, 130}, new nfd(30, new w9c[]{new w9c(5, 115), new w9c(10, 116)}), new nfd(28, new w9c[]{new w9c(19, 47), new w9c(10, 48)}), new nfd(30, new w9c[]{new w9c(15, 24), new w9c(25, 25)}), new nfd(30, new w9c[]{new w9c(23, 15), new w9c(25, 16)})), new x9c(31, new int[]{6, 30, 56, 82, 108, 134}, new nfd(30, new w9c[]{new w9c(13, 115), new w9c(3, 116)}), new nfd(28, new w9c[]{new w9c(2, 46), new w9c(29, 47)}), new nfd(30, new w9c[]{new w9c(42, 24), new w9c(1, 25)}), new nfd(30, new w9c[]{new w9c(23, 15), new w9c(28, 16)})), new x9c(32, new int[]{6, 34, 60, 86, 112, 138}, new nfd(30, new w9c[]{new w9c(17, 115)}), new nfd(28, new w9c[]{new w9c(10, 46), new w9c(23, 47)}), new nfd(30, new w9c[]{new w9c(10, 24), new w9c(35, 25)}), new nfd(30, new w9c[]{new w9c(19, 15), new w9c(35, 16)})), new x9c(33, new int[]{6, 30, 58, 86, 114, 142}, new nfd(30, new w9c[]{new w9c(17, 115), new w9c(1, 116)}), new nfd(28, new w9c[]{new w9c(14, 46), new w9c(21, 47)}), new nfd(30, new w9c[]{new w9c(29, 24), new w9c(19, 25)}), new nfd(30, new w9c[]{new w9c(11, 15), new w9c(46, 16)})), new x9c(34, new int[]{6, 34, 62, 90, 118, 146}, new nfd(30, new w9c[]{new w9c(13, 115), new w9c(6, 116)}), new nfd(28, new w9c[]{new w9c(14, 46), new w9c(23, 47)}), new nfd(30, new w9c[]{new w9c(44, 24), new w9c(7, 25)}), new nfd(30, new w9c[]{new w9c(59, 16), new w9c(1, 17)})), new x9c(35, new int[]{6, 30, 54, 78, 102, 126, 150}, new nfd(30, new w9c[]{new w9c(12, 121), new w9c(7, 122)}), new nfd(28, new w9c[]{new w9c(12, 47), new w9c(26, 48)}), new nfd(30, new w9c[]{new w9c(39, 24), new w9c(14, 25)}), new nfd(30, new w9c[]{new w9c(22, 15), new w9c(41, 16)})), new x9c(36, new int[]{6, 24, 50, 76, 102, 128, 154}, new nfd(30, new w9c[]{new w9c(6, 121), new w9c(14, 122)}), new nfd(28, new w9c[]{new w9c(6, 47), new w9c(34, 48)}), new nfd(30, new w9c[]{new w9c(46, 24), new w9c(10, 25)}), new nfd(30, new w9c[]{new w9c(2, 15), new w9c(64, 16)})), new x9c(37, new int[]{6, 28, 54, 80, 106, 132, 158}, new nfd(30, new w9c[]{new w9c(17, 122), new w9c(4, 123)}), new nfd(28, new w9c[]{new w9c(29, 46), new w9c(14, 47)}), new nfd(30, new w9c[]{new w9c(49, 24), new w9c(10, 25)}), new nfd(30, new w9c[]{new w9c(24, 15), new w9c(46, 16)})), new x9c(38, new int[]{6, 32, 58, 84, 110, 136, 162}, new nfd(30, new w9c[]{new w9c(4, 122), new w9c(18, 123)}), new nfd(28, new w9c[]{new w9c(13, 46), new w9c(32, 47)}), new nfd(30, new w9c[]{new w9c(48, 24), new w9c(14, 25)}), new nfd(30, new w9c[]{new w9c(42, 15), new w9c(32, 16)})), new x9c(39, new int[]{6, 26, 54, 82, 110, 138, 166}, new nfd(30, new w9c[]{new w9c(20, 117), new w9c(4, 118)}), new nfd(28, new w9c[]{new w9c(40, 47), new w9c(7, 48)}), new nfd(30, new w9c[]{new w9c(43, 24), new w9c(22, 25)}), new nfd(30, new w9c[]{new w9c(10, 15), new w9c(67, 16)})), new x9c(40, new int[]{6, 30, 58, 86, 114, 142, 170}, new nfd(30, new w9c[]{new w9c(19, 118), new w9c(6, 119)}), new nfd(28, new w9c[]{new w9c(18, 47), new w9c(31, 48)}), new nfd(30, new w9c[]{new w9c(34, 24), new w9c(34, 25)}), new nfd(30, new w9c[]{new w9c(20, 15), new w9c(61, 16)}))};
+    }
+
+    public static x9c b(int i) {
+        int i2 = Integer.MAX_VALUE;
+        int i3 = 0;
+        for (int i4 = 0; i4 < 34; i4++) {
+            int i5 = e[i4];
+            if (i5 == i) {
+                return c(i4 + 7);
+            }
+            int bitCount = Integer.bitCount(i5 ^ i);
+            if (bitCount < i2) {
+                i3 = i4 + 7;
+                i2 = bitCount;
+            }
+        }
+        if (i2 <= 3) {
+            return c(i3);
+        }
+        return null;
+    }
+
+    public static x9c c(int i) {
+        if (i >= 1 && i <= 40) {
+            return f[i - 1];
+        }
+        sc8.e();
+        return null;
+    }
+
+    public final String toString() {
+        return String.valueOf((int) this.a);
+    }
+}

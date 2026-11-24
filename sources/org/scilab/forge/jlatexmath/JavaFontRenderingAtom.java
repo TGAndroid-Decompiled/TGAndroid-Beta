@@ -7,14 +7,14 @@ public class JavaFontRenderingAtom extends Atom {
     private String str;
     private int type;
 
-    public JavaFontRenderingAtom(String str, int i7) {
+    public JavaFontRenderingAtom(String str, int i) {
         this.str = str;
-        this.type = i7;
+        this.type = i;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        int i7;
+        int i;
         Font font;
         Font font2;
         Font font3;
@@ -23,14 +23,15 @@ public class JavaFontRenderingAtom extends Atom {
         }
         DefaultTeXFont defaultTeXFont = (DefaultTeXFont) teXEnvironment.getTeXFont();
         if (defaultTeXFont.isIt) {
-            i7 = 2;
+            i = 2;
         } else {
-            i7 = 0;
+            i = 0;
         }
-        int i10 = i7 | (defaultTeXFont.isBold ? 1 : 0);
-        boolean z10 = defaultTeXFont.isRoman;
-        if (defaultTeXFont.isSs) {
-            TeXFormula.FontInfos fontInfos = this.fontInfos;
+        int i2 = i | (defaultTeXFont.isBold ? 1 : 0);
+        boolean z = defaultTeXFont.isRoman;
+        boolean z2 = defaultTeXFont.isSs;
+        TeXFormula.FontInfos fontInfos = this.fontInfos;
+        if (z2) {
             String str = fontInfos.sansserif;
             if (str == null) {
                 font2 = new Font(fontInfos.serif, 0, 10);
@@ -40,17 +41,16 @@ public class JavaFontRenderingAtom extends Atom {
                 font3 = font;
             }
         } else {
-            TeXFormula.FontInfos fontInfos2 = this.fontInfos;
-            String str2 = fontInfos2.serif;
+            String str2 = fontInfos.serif;
             if (str2 == null) {
-                font2 = new Font(fontInfos2.sansserif, 0, 10);
+                font2 = new Font(fontInfos.sansserif, 0, 10);
                 font3 = font2;
             } else {
                 font = new Font(str2, 0, 10);
                 font3 = font;
             }
         }
-        return new JavaFontRenderingBox(this.str, i10, DefaultTeXFont.getSizeFactor(teXEnvironment.getStyle()), font3, z10);
+        return new JavaFontRenderingBox(this.str, i2, DefaultTeXFont.getSizeFactor(teXEnvironment.getStyle()), font3, z);
     }
 
     public JavaFontRenderingAtom(String str, TeXFormula.FontInfos fontInfos) {

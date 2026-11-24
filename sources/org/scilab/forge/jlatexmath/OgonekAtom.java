@@ -12,9 +12,9 @@ public class OgonekAtom extends Atom {
         Box createBox = this.base.createBox(teXEnvironment);
         VerticalBox verticalBox = new VerticalBox();
         verticalBox.add(createBox);
-        Char r82 = teXEnvironment.getTeXFont().getChar("ogonek", teXEnvironment.getStyle());
-        float italic = r82.getItalic();
-        CharBox charBox = new CharBox(r82);
+        Char r7 = teXEnvironment.getTeXFont().getChar("ogonek", teXEnvironment.getStyle());
+        float italic = r7.getItalic();
+        CharBox charBox = new CharBox(r7);
         if (Math.abs(italic) > 1.0E-7f) {
             box = new HorizontalBox(new StrutBox(-italic, 0.0f, 0.0f, 0.0f));
             box.add(charBox);

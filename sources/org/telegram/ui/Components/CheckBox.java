@@ -21,23 +21,23 @@ public class CheckBox extends View {
     public int F;
     public int G;
     public String H;
-    public final Drawable f32913a;
-    public final TextPaint f32914b;
-    public Bitmap f32915c;
+    public final Drawable a;
+    public final TextPaint b;
+    public Bitmap c;
     public Bitmap d;
-    public Canvas f32916e;
-    public Canvas f32917f;
+    public Canvas e;
+    public Canvas f;
     public boolean h;
-    public boolean f32918n;
-    public float f32919r;
-    public ObjectAnimator f32920s;
-    public boolean f32921w;
-    public boolean f32922x;
-    public boolean f32923y;
+    public boolean n;
+    public float r;
+    public ObjectAnimator s;
+    public boolean w;
+    public boolean x;
+    public boolean y;
 
-    public CheckBox(Context context, int i7) {
+    public CheckBox(Context context, int i) {
         super(context);
-        this.f32921w = true;
+        this.w = true;
         this.E = 22;
         if (I == null) {
             I = new Paint(1);
@@ -59,69 +59,69 @@ public class CheckBox extends View {
             paint5.setColor(-1);
             L.setStyle(style);
         }
-        K.setStrokeWidth(org.telegram.messenger.g0.L(28.0f));
-        L.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        K.setStrokeWidth(gl.L(28.0f));
+        L.setStrokeWidth(gl.L(2.0f));
         TextPaint textPaint = new TextPaint(1);
-        this.f32914b = textPaint;
-        textPaint.setTextSize(org.telegram.messenger.g0.L(18.0f));
-        textPaint.setTypeface(org.telegram.messenger.g0.o());
-        this.f32913a = context.getResources().getDrawable(i7).mutate();
+        this.b = textPaint;
+        textPaint.setTextSize(gl.L(18.0f));
+        textPaint.setTypeface(gl.o());
+        this.a = context.getResources().getDrawable(i).mutate();
     }
 
-    public final void a(boolean z10) {
-        b(z10, false);
+    public final void a(boolean z) {
+        b(z, false);
     }
 
-    public final void b(boolean z10, boolean z11) {
-        if (z10 == this.f32923y) {
+    public final void b(boolean z, boolean z2) {
+        if (z == this.y) {
             return;
         }
-        this.f32923y = z10;
-        float f10 = 0.0f;
-        if (this.f32922x && z11) {
-            this.f32921w = z10;
-            if (z10) {
-                f10 = 1.0f;
+        this.y = z;
+        float f = 0.0f;
+        if (this.x && z2) {
+            this.w = z;
+            if (z) {
+                f = 1.0f;
             }
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f10);
-            this.f32920s = ofFloat;
-            ofFloat.addListener(new x(this, 19));
-            this.f32920s.setDuration(300L);
-            this.f32920s.start();
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f);
+            this.s = ofFloat;
+            ofFloat.addListener(new bb1(this, (byte) 27));
+            this.s.setDuration(300L);
+            this.s.start();
             return;
         }
-        ObjectAnimator objectAnimator = this.f32920s;
+        ObjectAnimator objectAnimator = this.s;
         if (objectAnimator != null) {
             objectAnimator.cancel();
-            this.f32920s = null;
+            this.s = null;
         }
-        if (z10) {
-            f10 = 1.0f;
+        if (z) {
+            f = 1.0f;
         }
-        setProgress(f10);
+        setProgress(f);
     }
 
-    public final void c(int i7, int i10) {
-        this.G = i7;
-        this.f32913a.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
-        this.f32914b.setColor(i10);
+    public final void c(int i, int i2) {
+        this.G = i;
+        this.a.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.MULTIPLY));
+        this.b.setColor(i2);
         invalidate();
     }
 
     public float getProgress() {
-        return this.f32919r;
+        return this.r;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f32922x = true;
+        this.x = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f32922x = false;
+        this.x = false;
     }
 
     @Override
@@ -134,78 +134,78 @@ public class CheckBox extends View {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f32923y);
+        accessibilityNodeInfo.setChecked(this.y);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        super.onLayout(z10, i7, i10, i11, i12);
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
     }
 
     @Override
-    public void setBackgroundColor(int i7) {
-        this.G = i7;
+    public void setBackgroundColor(int i) {
+        this.G = i;
         invalidate();
     }
 
-    public void setCheckColor(int i7) {
-        this.f32913a.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
-        this.f32914b.setColor(i7);
+    public void setCheckColor(int i) {
+        this.a.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+        this.b.setColor(i);
         invalidate();
     }
 
-    public void setCheckOffset(int i7) {
-        this.F = i7;
+    public void setCheckOffset(int i) {
+        this.F = i;
     }
 
-    public void setDrawBackground(boolean z10) {
-        this.h = z10;
+    public void setDrawBackground(boolean z) {
+        this.h = z;
     }
 
-    public void setHasBorder(boolean z10) {
-        this.f32918n = z10;
+    public void setHasBorder(boolean z) {
+        this.n = z;
     }
 
-    public void setNum(int i7) {
-        if (i7 >= 0) {
-            this.H = "" + (i7 + 1);
-        } else if (this.f32920s == null) {
+    public void setNum(int i) {
+        if (i >= 0) {
+            this.H = String.valueOf(i + 1);
+        } else if (this.s == null) {
             this.H = null;
         }
         invalidate();
     }
 
-    public void setProgress(float f10) {
-        if (this.f32919r == f10) {
+    public void setProgress(float f) {
+        if (this.r == f) {
             return;
         }
-        this.f32919r = f10;
+        this.r = f;
         invalidate();
     }
 
-    public void setSize(int i7) {
-        this.E = i7;
-        if (i7 == 40) {
-            this.f32914b.setTextSize(org.telegram.messenger.g0.L(24.0f));
+    public void setSize(int i) {
+        this.E = i;
+        if (i == 40) {
+            this.b.setTextSize(gl.L(24.0f));
         }
     }
 
-    public void setStrokeWidth(int i7) {
-        L.setStrokeWidth(i7);
+    public void setStrokeWidth(int i) {
+        L.setStrokeWidth(i);
     }
 
     @Override
-    public void setVisibility(int i7) {
-        super.setVisibility(i7);
-        if (i7 == 0 && this.f32915c == null) {
+    public void setVisibility(int i) {
+        super.setVisibility(i);
+        if (i == 0 && this.c == null) {
             try {
-                int L2 = org.telegram.messenger.g0.L(this.E);
-                int L3 = org.telegram.messenger.g0.L(this.E);
+                int L2 = gl.L(this.E);
+                int L3 = gl.L(this.E);
                 Bitmap.Config config = Bitmap.Config.ARGB_4444;
-                this.f32915c = Bitmap.createBitmap(L2, L3, config);
-                this.f32916e = new Canvas(this.f32915c);
-                this.d = Bitmap.createBitmap(org.telegram.messenger.g0.L(this.E), org.telegram.messenger.g0.L(this.E), config);
-                this.f32917f = new Canvas(this.d);
+                this.c = Bitmap.createBitmap(L2, L3, config);
+                this.e = new Canvas(this.c);
+                this.d = Bitmap.createBitmap(gl.L(this.E), gl.L(this.E), config);
+                this.f = new Canvas(this.d);
             } catch (Throwable unused) {
             }
         }

@@ -1,53 +1,15 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_aicompose;
-public final class f implements org.telegram.messenger.w10 {
-    public final int f34928a;
-    public final m0 f34929b;
-
-    public f(m0 m0Var, int i7) {
-        this.f34928a = i7;
-        this.f34929b = m0Var;
+import android.util.Property;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class f extends Property {
+    @Override
+    public final Object get(Object obj) {
+        return Float.valueOf(((ChatActivityEnterView.RecordCircle) obj).getControlsScale());
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f34928a;
-        int i10 = 0;
-        m0 m0Var = this.f34929b;
-        switch (i7) {
-            case 0:
-                m0.g1(m0Var, (TL_aicompose.AiComposeTone) obj);
-                return;
-            case 1:
-                TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj;
-                m0Var.f37298s2.f23740b.add(0, aiComposeTone);
-                m0Var.E1();
-                new kc(m0Var.E2, m0Var.J0).p(aiComposeTone.emoji_id, org.telegram.messenger.gd.a0(null, null, 2131754956, aiComposeTone.title), org.telegram.messenger.gd.N0(2131754957, null)).j();
-                return;
-            case 2:
-                TL_aicompose.AiComposeTone aiComposeTone2 = (TL_aicompose.AiComposeTone) obj;
-                if (aiComposeTone2 instanceof TL_aicompose.TL_aiComposeTone) {
-                    org.telegram.messenger.e eVar = m0Var.f37298s2;
-                    TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) aiComposeTone2;
-                    ArrayList arrayList = eVar.f23740b;
-                    while (true) {
-                        if (i10 < arrayList.size()) {
-                            if ((arrayList.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) arrayList.get(i10)).f28705id == tL_aiComposeTone.f28705id) {
-                                arrayList.set(i10, tL_aiComposeTone);
-                                eVar.c();
-                            } else {
-                                i10++;
-                            }
-                        }
-                    }
-                }
-                m0Var.E1();
-                return;
-            default:
-                m0.f1(m0Var, ((Integer) obj).intValue());
-                return;
-        }
+    public final void set(Object obj, Object obj2) {
+        ((ChatActivityEnterView.RecordCircle) obj).setControlsScale(((Float) obj2).floatValue());
     }
 }

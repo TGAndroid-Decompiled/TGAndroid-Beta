@@ -18,22 +18,22 @@ public class SequenceParameterSetRbsp {
     public boolean sps_temporal_id_nesting_flag;
 
     public SequenceParameterSetRbsp(InputStream inputStream) {
-        int i7;
+        int i;
         ?? obj = new Object();
-        mc.a aVar = new mc.a(0);
-        aVar.f21055b = new char[50];
-        obj.f21879e = aVar;
-        obj.f21876a = inputStream;
-        obj.f21877b = inputStream.read();
-        obj.f21878c = inputStream.read();
+        nj1 nj1Var = new nj1((byte) 0);
+        nj1Var.b = new char[50];
+        obj.e = nj1Var;
+        obj.a = inputStream;
+        obj.b = inputStream.read();
+        obj.c = inputStream.read();
         obj.d(4, "sps_video_parameter_set_id");
         this.sps_max_sub_layers_minus1 = (int) obj.d(3, "sps_max_sub_layers_minus1");
         obj.b("sps_temporal_id_nesting_flag");
         profile_tier_level(this.sps_max_sub_layers_minus1, obj);
         obj.e("sps_seq_parameter_set_id");
-        int e10 = obj.e("chroma_format_idc");
-        this.chroma_format_idc = e10;
-        if (e10 == 3) {
+        int e = obj.e("chroma_format_idc");
+        this.chroma_format_idc = e;
+        if (e == 3) {
             obj.a();
         }
         this.pic_width_in_luma_samples = obj.e("pic_width_in_luma_samples");
@@ -46,22 +46,22 @@ public class SequenceParameterSetRbsp {
         }
         this.bit_depth_luma_minus8 = obj.e("bit_depth_luma_minus8");
         this.bit_depth_chroma_minus8 = obj.e("bit_depth_chroma_minus8");
-        int e11 = obj.e("log2_max_pic_order_cnt_lsb_minus4");
-        boolean b10 = obj.b("sps_sub_layer_ordering_info_present_flag");
-        int i10 = this.sps_max_sub_layers_minus1;
-        if (b10) {
-            i7 = 0;
+        int e2 = obj.e("log2_max_pic_order_cnt_lsb_minus4");
+        boolean b = obj.b("sps_sub_layer_ordering_info_present_flag");
+        int i2 = this.sps_max_sub_layers_minus1;
+        if (b) {
+            i = 0;
         } else {
-            i7 = i10;
+            i = i2;
         }
-        int i11 = (i10 - i7) + 1;
-        int[] iArr = new int[i11];
-        int[] iArr2 = new int[i11];
-        int[] iArr3 = new int[i11];
-        for (i10 = b10 ? 0 : i10; i10 <= this.sps_max_sub_layers_minus1; i10++) {
-            iArr[i10] = obj.e("sps_max_dec_pic_buffering_minus1[" + i10 + "]");
-            iArr2[i10] = obj.e("sps_max_num_reorder_pics[" + i10 + "]");
-            iArr3[i10] = obj.e("sps_max_latency_increase_plus1[" + i10 + "]");
+        int i3 = (i2 - i) + 1;
+        int[] iArr = new int[i3];
+        int[] iArr2 = new int[i3];
+        int[] iArr3 = new int[i3];
+        for (i2 = b ? 0 : i2; i2 <= this.sps_max_sub_layers_minus1; i2++) {
+            iArr[i2] = obj.e("sps_max_dec_pic_buffering_minus1[" + i2 + "]");
+            iArr2[i2] = obj.e("sps_max_num_reorder_pics[" + i2 + "]");
+            iArr3[i2] = obj.e("sps_max_latency_increase_plus1[" + i2 + "]");
         }
         obj.e("log2_min_luma_coding_block_size_minus3");
         obj.e("log2_diff_max_min_luma_coding_block_size");
@@ -83,157 +83,158 @@ public class SequenceParameterSetRbsp {
         }
         parse_short_term_ref_pic_sets(obj.e("num_short_term_ref_pic_sets"), obj);
         if (obj.b("long_term_ref_pics_present_flag")) {
-            int e12 = obj.e("num_long_term_ref_pics_sps");
-            int[] iArr4 = new int[e12];
-            boolean[] zArr = new boolean[e12];
-            for (int i12 = 0; i12 < e12; i12++) {
-                iArr4[i12] = (int) obj.d(e11 + 4, "lt_ref_pic_poc_lsb_sps[" + i12 + "]");
-                zArr[i12] = obj.b("used_by_curr_pic_lt_sps_flag[" + i12 + "]");
+            int e3 = obj.e("num_long_term_ref_pics_sps");
+            int[] iArr4 = new int[e3];
+            boolean[] zArr = new boolean[e3];
+            for (int i4 = 0; i4 < e3; i4++) {
+                iArr4[i4] = (int) obj.d(e2 + 4, "lt_ref_pic_poc_lsb_sps[" + i4 + "]");
+                zArr[i4] = obj.b("used_by_curr_pic_lt_sps_flag[" + i4 + "]");
             }
         }
         obj.b("sps_temporal_mvp_enabled_flag");
         obj.b("strong_intra_smoothing_enabled_flag");
     }
 
-    private void parse_short_term_ref_pic_sets(int i7, oc.a aVar) {
-        boolean z10;
-        boolean z11;
-        long[] jArr = new long[i7];
-        for (int i10 = 0; i10 < i7; i10++) {
-            if (i10 != 0 && aVar.a() == 1) {
-                aVar.b("delta_rps_sign");
-                aVar.e("abs_delta_rps_minus1");
-                jArr[i10] = 0;
-                for (int i11 = 0; i11 <= jArr[i10 - 1]; i11++) {
-                    if (aVar.a() == 1) {
-                        z10 = true;
+    private void parse_short_term_ref_pic_sets(int i, h51 h51Var) {
+        boolean z;
+        boolean z2;
+        long[] jArr = new long[i];
+        for (int i2 = 0; i2 < i; i2++) {
+            if (i2 != 0 && h51Var.a() == 1) {
+                h51Var.b("delta_rps_sign");
+                h51Var.e("abs_delta_rps_minus1");
+                jArr[i2] = 0;
+                for (int i3 = 0; i3 <= jArr[i2 - 1]; i3++) {
+                    if (h51Var.a() == 1) {
+                        z = true;
                     } else {
-                        z10 = false;
+                        z = false;
                     }
-                    if (!z10 && aVar.a() == 1) {
-                        z11 = true;
+                    if (!z && h51Var.a() == 1) {
+                        z2 = true;
                     } else {
-                        z11 = false;
+                        z2 = false;
                     }
-                    if (z10 || z11) {
-                        jArr[i10] = jArr[i10] + 1;
+                    if (z || z2) {
+                        jArr[i2] = jArr[i2] + 1;
                     }
                 }
             } else {
-                long e10 = aVar.e("num_positive_pics") + aVar.e("num_negative_pics");
-                jArr[i10] = e10;
-                for (long j3 = 0; j3 < e10; j3++) {
-                    aVar.e("delta_poc_s0/1_minus1");
-                    aVar.b("used_by_curr_pic_s0/1_flag");
+                long e = h51Var.e("num_positive_pics") + h51Var.e("num_negative_pics");
+                jArr[i2] = e;
+                for (long j = 0; j < e; j++) {
+                    h51Var.e("delta_poc_s0/1_minus1");
+                    h51Var.b("used_by_curr_pic_s0/1_flag");
                 }
             }
         }
     }
 
-    private void profile_tier_level(int i7, oc.a aVar) {
+    private void profile_tier_level(int i, h51 h51Var) {
         boolean[] zArr;
+        long[] jArr;
         int[] iArr;
         boolean[] zArr2;
-        long[] jArr;
-        int i10 = i7;
-        long d = aVar.d(2, "general_profile_space");
-        InputStream inputStream = aVar.f21876a;
+        int i2 = i;
+        long d = h51Var.d(2, "general_profile_space");
+        InputStream inputStream = h51Var.a;
         this.general_profile_space = (int) d;
-        this.general_tier_flag = aVar.b("general_tier_flag");
-        this.general_profile_idc = (int) aVar.d(5, "general_profile_idc");
-        this.general_profile_compatibility_flags = aVar.c(32);
-        this.general_constraint_indicator_flags = aVar.c(48);
-        if (aVar.d > 0) {
-            aVar.f21877b = aVar.f21878c;
-            aVar.f21878c = inputStream.read();
-            aVar.d = 0;
+        this.general_tier_flag = h51Var.b("general_tier_flag");
+        this.general_profile_idc = (int) h51Var.d(5, "general_profile_idc");
+        this.general_profile_compatibility_flags = h51Var.c(32);
+        this.general_constraint_indicator_flags = h51Var.c(48);
+        if (h51Var.d > 0) {
+            h51Var.b = h51Var.c;
+            h51Var.c = inputStream.read();
+            h51Var.d = 0;
         }
-        int i11 = aVar.f21877b;
-        aVar.f21877b = aVar.f21878c;
-        aVar.f21878c = inputStream.read();
-        aVar.d = 0;
-        this.general_level_idc = (byte) i11;
-        boolean[] zArr3 = new boolean[i10];
-        boolean[] zArr4 = new boolean[i10];
-        for (int i12 = 0; i12 < i10; i12++) {
-            zArr3[i12] = aVar.b("sub_layer_profile_present_flag[" + i12 + "]");
-            zArr4[i12] = aVar.b("sub_layer_level_present_flag[" + i12 + "]");
+        int i3 = h51Var.b;
+        h51Var.b = h51Var.c;
+        h51Var.c = inputStream.read();
+        h51Var.d = 0;
+        this.general_level_idc = (byte) i3;
+        boolean[] zArr3 = new boolean[i2];
+        boolean[] zArr4 = new boolean[i2];
+        for (int i4 = 0; i4 < i2; i4++) {
+            zArr3[i4] = h51Var.b("sub_layer_profile_present_flag[" + i4 + "]");
+            zArr4[i4] = h51Var.b("sub_layer_level_present_flag[" + i4 + "]");
         }
-        if (i10 > 0) {
+        if (i2 > 0) {
             int[] iArr2 = new int[8];
-            for (int i13 = i10; i13 < 8; i13++) {
-                iArr2[i13] = (int) aVar.d(2, "reserved_zero_2bits[" + i13 + "]");
+            for (int i5 = i2; i5 < 8; i5++) {
+                iArr2[i5] = (int) h51Var.d(2, "reserved_zero_2bits[" + i5 + "]");
             }
         }
-        int[] iArr3 = new int[i10];
-        boolean[] zArr5 = new boolean[i10];
-        int[] iArr4 = new int[i10];
-        boolean[][] zArr6 = (boolean[][]) Array.newInstance(Boolean.TYPE, i10, 32);
-        boolean[] zArr7 = new boolean[i10];
-        boolean[] zArr8 = new boolean[i10];
-        boolean[] zArr9 = new boolean[i10];
-        boolean[] zArr10 = new boolean[i10];
-        long[] jArr2 = new long[i10];
-        int[] iArr5 = new int[i10];
-        int i14 = 0;
-        while (i14 < i10) {
-            if (zArr3[i14]) {
+        int[] iArr3 = new int[i2];
+        boolean[] zArr5 = new boolean[i2];
+        int[] iArr4 = new int[i2];
+        boolean[][] zArr6 = (boolean[][]) Array.newInstance(Boolean.TYPE, i2, 32);
+        boolean[] zArr7 = new boolean[i2];
+        boolean[] zArr8 = new boolean[i2];
+        boolean[] zArr9 = new boolean[i2];
+        boolean[] zArr10 = new boolean[i2];
+        long[] jArr2 = new long[i2];
+        int[] iArr5 = new int[i2];
+        int i6 = 0;
+        while (i6 < i2) {
+            if (zArr3[i6]) {
                 zArr = zArr3;
-                iArr = iArr5;
-                zArr2 = zArr10;
-                iArr3[i14] = (int) aVar.d(2, "sub_layer_profile_space[" + i14 + "]");
-                zArr5[i14] = aVar.b("sub_layer_tier_flag[" + i14 + "]");
                 jArr = jArr2;
-                iArr4[i14] = (int) aVar.d(5, "sub_layer_profile_idc[" + i14 + "]");
-                for (int i15 = 0; i15 < 32; i15++) {
-                    zArr6[i14][i15] = aVar.b("sub_layer_profile_compatibility_flag[" + i14 + "][" + i15 + "]");
+                iArr = iArr5;
+                iArr3[i6] = (int) h51Var.d(2, "sub_layer_profile_space[" + i6 + "]");
+                zArr5[i6] = h51Var.b("sub_layer_tier_flag[" + i6 + "]");
+                iArr4[i6] = (int) h51Var.d(5, "sub_layer_profile_idc[" + i6 + "]");
+                for (int i7 = 0; i7 < 32; i7++) {
+                    zArr6[i6][i7] = h51Var.b("sub_layer_profile_compatibility_flag[" + i6 + "][" + i7 + "]");
                 }
-                zArr7[i14] = aVar.b("sub_layer_progressive_source_flag[" + i14 + "]");
-                zArr8[i14] = aVar.b("sub_layer_interlaced_source_flag[" + i14 + "]");
-                zArr9[i14] = aVar.b("sub_layer_non_packed_constraint_flag[" + i14 + "]");
-                zArr2[i14] = aVar.b("sub_layer_frame_only_constraint_flag[" + i14 + "]");
-                jArr[i14] = aVar.c(44);
+                zArr7[i6] = h51Var.b("sub_layer_progressive_source_flag[" + i6 + "]");
+                zArr8[i6] = h51Var.b("sub_layer_interlaced_source_flag[" + i6 + "]");
+                zArr9[i6] = h51Var.b("sub_layer_non_packed_constraint_flag[" + i6 + "]");
+                zArr10[i6] = h51Var.b("sub_layer_frame_only_constraint_flag[" + i6 + "]");
+                jArr[i6] = h51Var.c(44);
             } else {
                 zArr = zArr3;
-                iArr = iArr5;
-                zArr2 = zArr10;
                 jArr = jArr2;
+                iArr = iArr5;
             }
-            if (zArr4[i14]) {
-                iArr[i14] = (int) aVar.d(8, "sub_layer_level_idc[" + i14 + "]");
+            if (zArr4[i6]) {
+                zArr2 = zArr10;
+                iArr[i6] = (int) h51Var.d(8, "sub_layer_level_idc[" + i6 + "]");
+            } else {
+                zArr2 = zArr10;
             }
-            i14++;
-            i10 = i7;
-            jArr2 = jArr;
+            i6++;
+            i2 = i;
             zArr10 = zArr2;
+            jArr2 = jArr;
             zArr3 = zArr;
             iArr5 = iArr;
         }
     }
 
-    private static void skip_scaling_list_data(oc.a aVar) {
-        int i7;
-        for (int i10 = 0; i10 < 4; i10++) {
-            int i11 = 0;
+    private static void skip_scaling_list_data(h51 h51Var) {
+        int i;
+        for (int i2 = 0; i2 < 4; i2++) {
+            int i3 = 0;
             while (true) {
-                if (i10 == 3) {
-                    i7 = 2;
+                if (i2 == 3) {
+                    i = 2;
                 } else {
-                    i7 = 6;
+                    i = 6;
                 }
-                if (i11 < i7) {
-                    if (aVar.a() == 1) {
-                        aVar.e("scaling_list_pred_matrix_id_delta");
+                if (i3 < i) {
+                    if (h51Var.a() == 1) {
+                        h51Var.e("scaling_list_pred_matrix_id_delta");
                     } else {
-                        int min = Math.min(64, 1 << ((i10 << 1) + 4));
-                        if (i10 > 1) {
-                            aVar.e("scaling_list_dc_coef_minus8");
+                        int min = Math.min(64, 1 << ((i2 << 1) + 4));
+                        if (i2 > 1) {
+                            h51Var.e("scaling_list_dc_coef_minus8");
                         }
-                        for (int i12 = 0; i12 < min; i12++) {
-                            aVar.e("scaling_list_delta_coef");
+                        for (int i4 = 0; i4 < min; i4++) {
+                            h51Var.e("scaling_list_delta_coef");
                         }
                     }
-                    i11++;
+                    i3++;
                 }
             }
         }

@@ -5,8 +5,9 @@ public class BasicStroke implements Stroke {
     private final float miterLimit;
     private final float width;
 
-    public BasicStroke(float f10, int i7, int i10) {
-        this(f10, i7, i10, 10.0f);
+    public BasicStroke(float f, int i, int i2, float f2) {
+        this.width = f;
+        this.miterLimit = f2;
     }
 
     @Override
@@ -23,8 +24,7 @@ public class BasicStroke implements Stroke {
         return this.width;
     }
 
-    public BasicStroke(float f10, int i7, int i10, float f11) {
-        this.width = f10;
-        this.miterLimit = f11;
+    public BasicStroke(float f, int i, int i2) {
+        this(f, i, i2, 10.0f);
     }
 }

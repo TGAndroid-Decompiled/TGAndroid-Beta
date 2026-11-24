@@ -9,9 +9,9 @@ public interface VideoDecoder {
         public final boolean isMissingFrames;
         public final long renderTimeMs;
 
-        public DecodeInfo(boolean z10, long j3) {
-            this.isMissingFrames = z10;
-            this.renderTimeMs = j3;
+        public DecodeInfo(boolean z, long j) {
+            this.isMissingFrames = z;
+            this.renderTimeMs = j;
         }
     }
 
@@ -20,14 +20,14 @@ public interface VideoDecoder {
         public final int numberOfCores;
         public final int width;
 
-        public Settings(int i7, int i10, int i11) {
-            this.numberOfCores = i7;
-            this.width = i10;
-            this.height = i11;
+        public Settings(int i, int i2, int i3) {
+            this.numberOfCores = i;
+            this.width = i2;
+            this.height = i3;
         }
     }
 
-    long createNative(long j3);
+    long createNative(long j);
 
     VideoCodecStatus decode(EncodedImage encodedImage, DecodeInfo decodeInfo);
 

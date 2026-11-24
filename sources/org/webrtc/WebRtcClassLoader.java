@@ -5,6 +5,7 @@ class WebRtcClassLoader {
         if (classLoader != null) {
             return classLoader;
         }
-        throw new RuntimeException("Failed to get WebRTC class loader.");
+        wn4.j("Failed to get WebRTC class loader.");
+        return null;
     }
 }

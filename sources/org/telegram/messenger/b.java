@@ -1,51 +1,51 @@
 package org.telegram.messenger;
 
-import android.os.Looper;
-public final class b implements org.telegram.ui.Components.j00 {
-    public final Thread f23102c;
-    public final ai.k d;
-    public volatile boolean f23103e;
-    public volatile int f23104f;
-    public int f23105g;
-    public volatile boolean f23106i;
-    public final Object f23100a = new Object();
-    public volatile int h = -1;
-    public final android.support.v4.media.session.q f23101b = new android.support.v4.media.session.q(this, Looper.getMainLooper(), 4);
+import android.text.TextUtils;
+import org.telegram.messenger.PushListenerController;
+public final class b implements PushListenerController.IPushListenerServiceProvider {
+    public static final b b = new Object();
+    public Boolean a;
 
-    public b(ai.k kVar) {
-        boolean z10;
-        this.d = kVar;
-        r0 r0Var = r0.f26613f;
-        if (r0Var.f26614a > 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f23103e = z10;
-        r0Var.d.add(this);
-        Thread thread = new Thread(new a(this, 0), "ANRDetector");
-        this.f23102c = thread;
-        thread.start();
+    @Override
+    public final String getLogTitle() {
+        return "Google Play Services";
     }
 
     @Override
-    public final void a() {
-        synchronized (this.f23100a) {
-            this.f23104f++;
-            this.f23103e = false;
-        }
-        this.f23101b.removeMessages(1);
-        this.f23102c.interrupt();
+    public final int getPushType() {
+        return 2;
     }
 
     @Override
-    public final void b() {
-        synchronized (this.f23100a) {
-            this.f23104f++;
-            this.f23103e = true;
-            this.f23106i = false;
-            this.f23100a.notifyAll();
+    public final boolean hasServices() {
+        boolean z;
+        Boolean bool = this.a;
+        if (bool == null) {
+            try {
+                if (cy4.e.c(a.b, dy4.a) == 0) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                Boolean valueOf = Boolean.valueOf(z);
+                this.a = valueOf;
+                bool = valueOf;
+            } catch (Exception e) {
+                fa4.g(e, true);
+                bool = Boolean.FALSE;
+                this.a = bool;
+            }
         }
-        this.f23102c.interrupt();
+        return bool.booleanValue();
+    }
+
+    @Override
+    public final void onRequestPushToken() {
+        if (!TextUtils.isEmpty(gba.f)) {
+            boolean z = w01.a;
+        } else if (w01.a) {
+            fa4.b("FCM Registration not found.");
+        }
+        Utilities.e.c(new sr8(this, (byte) 4));
     }
 }

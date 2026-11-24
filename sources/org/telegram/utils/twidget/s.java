@@ -1,40 +1,52 @@
 package org.telegram.utils.twidget;
-public final class s implements x, p0 {
-    public final int f55050a;
-    public final int f55051b;
-    public final int f55052c;
+
+import android.os.SystemClock;
+public final class s implements xvc {
+    public final byte a;
+    public final w b;
+    public final byte[] c;
     public final int d;
-    public final Object f55053e;
-    public final Object f55054f;
 
-    public s(Object obj, int i7, int i10, int i11, Object obj2, int i12) {
-        this.f55050a = i12;
-        this.f55053e = obj;
-        this.f55051b = i7;
-        this.f55052c = i10;
-        this.d = i11;
-        this.f55054f = obj2;
+    public s(w wVar, byte[] bArr, int i, byte b) {
+        this.a = b;
+        this.b = wVar;
+        this.c = bArr;
+        this.d = i;
     }
 
     @Override
-    public void mo26run() {
-        ((WidgetEngineBackend) this.f55053e).lambda$canvasRun$8(this.f55051b, this.f55052c, this.d, (int[]) this.f55054f);
-    }
-
-    @Override
-    public Object run() {
-        switch (this.f55050a) {
-            case 1:
-                x0 x0Var = (x0) this.f55053e;
-                x0Var.f55105b.defineImage(this.f55051b, this.f55052c, this.d, x0Var.i1((byte[]) this.f55054f));
+    public final Object run() {
+        switch (this.a) {
+            case 0:
+                w wVar = this.b;
+                byte[] bArr = this.c;
+                int i = this.d;
+                byte[] b = wVar.b(bArr);
+                if (b.length <= 1048576) {
+                    synchronized (wVar) {
+                        long elapsedRealtime = SystemClock.elapsedRealtime();
+                        double min = Math.min(2000.0d, ((elapsedRealtime - wVar.i) * 1.0d) + wVar.f);
+                        wVar.f = min;
+                        wVar.i = elapsedRealtime;
+                        if (min >= 1.0d) {
+                            wVar.f = min - 1.0d;
+                            wVar.b.signal(i, b);
+                        } else {
+                            sc8.j("Widget engine: too many signals");
+                        }
+                    }
+                } else {
+                    w26.j("Signal too long");
+                }
                 return null;
             default:
-                int[] iArr = (int[]) this.f55054f;
-                WidgetSandboxBackend widgetSandboxBackend = ((x0) this.f55053e).f55105b;
-                if (iArr == null) {
-                    iArr = new int[0];
+                w wVar2 = this.b;
+                byte[] bArr2 = this.c;
+                int i2 = this.d;
+                if (bArr2 != null && bArr2.length <= 262144) {
+                    return Float.valueOf(wVar2.b.textWidth(i2, bArr2));
                 }
-                widgetSandboxBackend.canvasRun(this.f55051b, this.f55052c, this.d, iArr);
+                w26.j("Text too long");
                 return null;
         }
     }

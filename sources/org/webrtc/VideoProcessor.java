@@ -11,15 +11,15 @@ public interface VideoProcessor extends CapturerObserver {
         public final int scaleWidth;
         public final long timestampNs;
 
-        public FrameAdaptationParameters(int i7, int i10, int i11, int i12, int i13, int i14, long j3, boolean z10) {
-            this.cropX = i7;
-            this.cropY = i10;
-            this.cropWidth = i11;
-            this.cropHeight = i12;
-            this.scaleWidth = i13;
-            this.scaleHeight = i14;
-            this.timestampNs = j3;
-            this.drop = z10;
+        public FrameAdaptationParameters(int i, int i2, int i3, int i4, int i5, int i6, long j, boolean z) {
+            this.cropX = i;
+            this.cropY = i2;
+            this.cropWidth = i3;
+            this.cropHeight = i4;
+            this.scaleWidth = i5;
+            this.scaleHeight = i6;
+            this.timestampNs = j;
+            this.drop = z;
         }
     }
 

@@ -1,7 +1,5 @@
 package org.telegram.SQLite;
 
-import org.telegram.messenger.a8;
-import org.telegram.messenger.s2;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.Vector;
@@ -18,14 +16,14 @@ public class SQLiteCursor {
         this.preparedStatement = sQLitePreparedStatement;
     }
 
-    public byte[] byteArrayValue(int i7) {
+    public byte[] byteArrayValue(int i) {
         checkRow();
-        return columnByteArrayValue(this.preparedStatement.getStatementHandle(), i7);
+        return columnByteArrayValue(this.preparedStatement.getStatementHandle(), i);
     }
 
-    public NativeByteBuffer byteBufferValue(int i7) {
+    public NativeByteBuffer byteBufferValue(int i) {
         checkRow();
-        long columnByteBufferValue = columnByteBufferValue(this.preparedStatement.getStatementHandle(), i7);
+        long columnByteBufferValue = columnByteBufferValue(this.preparedStatement.getStatementHandle(), i);
         if (columnByteBufferValue != 0) {
             return NativeByteBuffer.wrap(columnByteBufferValue);
         }
@@ -39,31 +37,31 @@ public class SQLiteCursor {
         throw new SQLiteException("You must call next before");
     }
 
-    public native byte[] columnByteArrayValue(long j3, int i7);
+    public native byte[] columnByteArrayValue(long j, int i);
 
-    public native long columnByteBufferValue(long j3, int i7);
+    public native long columnByteBufferValue(long j, int i);
 
-    public native int columnCount(long j3);
+    public native int columnCount(long j);
 
-    public native double columnDoubleValue(long j3, int i7);
+    public native double columnDoubleValue(long j, int i);
 
-    public native int columnIntValue(long j3, int i7);
+    public native int columnIntValue(long j, int i);
 
-    public native int columnIsNull(long j3, int i7);
+    public native int columnIsNull(long j, int i);
 
-    public native long columnLongValue(long j3, int i7);
+    public native long columnLongValue(long j, int i);
 
-    public native String columnStringValue(long j3, int i7);
+    public native String columnStringValue(long j, int i);
 
-    public native int columnType(long j3, int i7);
+    public native int columnType(long j, int i);
 
     public void dispose() {
         this.preparedStatement.dispose();
     }
 
-    public double doubleValue(int i7) {
+    public double doubleValue(int i) {
         checkRow();
-        return columnDoubleValue(this.preparedStatement.getStatementHandle(), i7);
+        return columnDoubleValue(this.preparedStatement.getStatementHandle(), i);
     }
 
     public int getColumnCount() {
@@ -78,77 +76,77 @@ public class SQLiteCursor {
         return this.preparedStatement.getStatementHandle();
     }
 
-    public int getTypeOf(int i7) {
+    public int getTypeOf(int i) {
         checkRow();
-        return columnType(this.preparedStatement.getStatementHandle(), i7);
+        return columnType(this.preparedStatement.getStatementHandle(), i);
     }
 
-    public int intValue(int i7) {
+    public int intValue(int i) {
         checkRow();
-        return columnIntValue(this.preparedStatement.getStatementHandle(), i7);
+        return columnIntValue(this.preparedStatement.getStatementHandle(), i);
     }
 
-    public boolean isNull(int i7) {
+    public boolean isNull(int i) {
         checkRow();
-        if (columnIsNull(this.preparedStatement.getStatementHandle(), i7) == 1) {
+        if (columnIsNull(this.preparedStatement.getStatementHandle(), i) == 1) {
             return true;
         }
         return false;
     }
 
-    public long longValue(int i7) {
+    public long longValue(int i) {
         checkRow();
-        return columnLongValue(this.preparedStatement.getStatementHandle(), i7);
+        return columnLongValue(this.preparedStatement.getStatementHandle(), i);
     }
 
     public boolean next() {
         SQLitePreparedStatement sQLitePreparedStatement = this.preparedStatement;
         int step = sQLitePreparedStatement.step(sQLitePreparedStatement.getStatementHandle());
-        boolean z10 = true;
+        boolean z = true;
         if (step == -1) {
-            int i7 = 6;
+            int i = 6;
             while (true) {
-                int i10 = i7 - 1;
-                if (i7 == 0) {
+                int i2 = i - 1;
+                if (i == 0) {
                     break;
                 }
                 try {
-                    if (s2.f26829a) {
-                        a8.b("sqlite busy, waiting...");
+                    if (w01.a) {
+                        fa4.b("sqlite busy, waiting...");
                     }
                     Thread.sleep(500L);
                     step = this.preparedStatement.step();
-                } catch (Exception e10) {
-                    a8.g(e10, true);
+                } catch (Exception e) {
+                    fa4.g(e, true);
                 }
                 if (step == 0) {
                     break;
                 }
-                i7 = i10;
+                i = i2;
             }
             if (step == -1) {
                 throw new SQLiteException("sqlite busy");
             }
         }
         if (step != 0) {
-            z10 = false;
+            z = false;
         }
-        this.inRow = z10;
-        return z10;
+        this.inRow = z;
+        return z;
     }
 
-    public String stringValue(int i7) {
+    public String stringValue(int i) {
         checkRow();
-        return columnStringValue(this.preparedStatement.getStatementHandle(), i7);
+        return columnStringValue(this.preparedStatement.getStatementHandle(), i);
     }
 
-    public <T extends TLObject> T tlObjectValue(int i7, Vector.TLDeserializer<T> tLDeserializer, boolean z10) {
-        NativeByteBuffer byteBufferValue = byteBufferValue(i7);
+    public <T extends TLObject> T tlObjectValue(int i, Vector.TLDeserializer<T> tLDeserializer, boolean z) {
+        NativeByteBuffer byteBufferValue = byteBufferValue(i);
         if (byteBufferValue == null) {
             return null;
         }
         try {
-            return tLDeserializer.deserialize(byteBufferValue, byteBufferValue.readInt32(z10), z10);
+            return tLDeserializer.deserialize(byteBufferValue, byteBufferValue.readInt32(z), z);
         } finally {
             byteBufferValue.reuse();
         }

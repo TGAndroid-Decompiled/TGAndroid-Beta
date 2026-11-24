@@ -1,4 +1,4 @@
 package java.util.function;
 public interface ObjIntConsumer<T> {
-    void accept(T t6, int i7);
+    void accept(T t, int i);
 }

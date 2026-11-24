@@ -1,24 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class h implements View.OnClickListener {
-    public final int f35580a;
-    public final EditTextBoldCursor f35581b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class h extends AnimatorListenerAdapter {
+    public final ChatActivityEnterView a;
 
-    public h(EditTextBoldCursor editTextBoldCursor, int i7) {
-        this.f35580a = i7;
-        this.f35581b = editTextBoldCursor;
+    public h(ChatActivityEnterView chatActivityEnterView) {
+        this.a = chatActivityEnterView;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f35580a) {
-            case 0:
-                this.f35581b.setText("");
-                return;
-            default:
-                this.f35581b.setText("");
-                return;
-        }
+    public final void onAnimationEnd(Animator animator) {
+        ChatActivityEnterView chatActivityEnterView = this.a;
+        chatActivityEnterView.i1.setAllowDraw(true);
+        chatActivityEnterView.D2.setTransformToSeekbar(1.0f);
+        chatActivityEnterView.U0();
     }
 }

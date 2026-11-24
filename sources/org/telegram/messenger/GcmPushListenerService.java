@@ -5,27 +5,27 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import java.util.HashMap;
 public class GcmPushListenerService extends FirebaseMessagingService {
-    public static final int f22716n = 0;
+    public static final int n = 0;
 
     @Override
-    public final void c(ab.a0 a0Var) {
+    public final void c(j69 j69Var) {
         long parseLong;
-        Bundle bundle = a0Var.f901a;
+        Bundle bundle = j69Var.a;
         String string = bundle.getString("from");
-        if (a0Var.f902b == null) {
-            ?? lVar = new a0.l(0);
+        if (j69Var.b == null) {
+            ?? aiaVar = new aia(0);
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
                 if (obj instanceof String) {
                     String str2 = (String) obj;
                     if (!str.startsWith("google.") && !str.startsWith("gcm.") && !str.equals("from") && !str.equals("message_type") && !str.equals("collapse_key")) {
-                        lVar.put(str, str2);
+                        aiaVar.put(str, str2);
                     }
                 }
             }
-            a0Var.f902b = lVar;
+            j69Var.b = aiaVar;
         }
-        HashMap hashMap = new HashMap(a0Var.f902b);
+        HashMap hashMap = new HashMap(j69Var.b);
         Object obj2 = bundle.get("google.sent_time");
         if (obj2 instanceof Long) {
             parseLong = ((Long) obj2).longValue();
@@ -39,14 +39,14 @@ public class GcmPushListenerService extends FirebaseMessagingService {
             }
             parseLong = 0;
         }
-        if (s2.f26829a) {
-            a8.b("FCM received data: " + hashMap + " from: " + string);
+        if (w01.a) {
+            fa4.b("FCM received data: " + hashMap + " from: " + string);
         }
         PushListenerController.processRemoteMessage(2, (String) hashMap.get("p"), parseLong);
     }
 
     @Override
     public final void d(String str) {
-        g0.g3(new n4(str, 4));
+        gl.d3(new xt2(str, (byte) 4));
     }
 }

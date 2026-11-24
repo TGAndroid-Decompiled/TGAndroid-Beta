@@ -3,9 +3,9 @@ public class Sample {
     private long offset;
     private long size;
 
-    public Sample(long j3, long j10) {
-        this.offset = j3;
-        this.size = j10;
+    public Sample(long j, long j2) {
+        this.offset = j;
+        this.size = j2;
     }
 
     public long getOffset() {

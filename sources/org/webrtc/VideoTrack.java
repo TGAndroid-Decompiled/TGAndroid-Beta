@@ -4,16 +4,16 @@ import java.util.IdentityHashMap;
 public class VideoTrack extends MediaStreamTrack {
     private final IdentityHashMap<VideoSink, Long> sinks;
 
-    public VideoTrack(long j3) {
-        super(j3);
+    public VideoTrack(long j) {
+        super(j);
         this.sinks = new IdentityHashMap<>();
     }
 
-    private static native void nativeAddSink(long j3, long j10);
+    private static native void nativeAddSink(long j, long j2);
 
-    private static native void nativeFreeSink(long j3);
+    private static native void nativeFreeSink(long j);
 
-    private static native void nativeRemoveSink(long j3, long j10);
+    private static native void nativeRemoveSink(long j, long j2);
 
     private static native long nativeWrapSink(VideoSink videoSink);
 
@@ -27,13 +27,13 @@ public class VideoTrack extends MediaStreamTrack {
             }
             return;
         }
-        throw new IllegalArgumentException("The VideoSink is not allowed to be null");
+        w26.j("The VideoSink is not allowed to be null");
     }
 
     @Override
     public void dispose() {
-        for (Long l10 : this.sinks.values()) {
-            long longValue = l10.longValue();
+        for (Long l : this.sinks.values()) {
+            long longValue = l.longValue();
             nativeRemoveSink(getNativeMediaStreamTrack(), longValue);
             nativeFreeSink(longValue);
         }

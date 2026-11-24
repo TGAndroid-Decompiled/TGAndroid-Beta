@@ -1,0 +1,13 @@
+package defpackage;
+
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class oaa extends zr9 {
+    @Override
+    public final boolean d(TLObject tLObject) {
+        if ((tLObject instanceof TLRPC.Chat) && !hc2.B((TLRPC.Chat) tLObject)) {
+            return false;
+        }
+        return true;
+    }
+}

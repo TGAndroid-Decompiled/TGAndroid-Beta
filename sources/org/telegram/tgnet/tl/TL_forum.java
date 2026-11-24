@@ -9,6 +9,49 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public class TL_forum {
 
+    public static class TL_messages_reorderPinnedForumTopics extends TLObject {
+        public static final int constructor = 242762224;
+        public boolean force;
+        public ArrayList<Integer> order = new ArrayList<>();
+        public TLRPC.InputPeer peer;
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(242762224);
+            outputSerializedData.writeInt32(TLObject.setFlag(0, 1, this.force));
+            this.peer.serializeToStream(outputSerializedData);
+            Vector.serializeInt(outputSerializedData, this.order);
+        }
+    }
+
+    public static class TL_messages_updatePinnedForumTopic extends TLObject {
+        public static final int constructor = 392032849;
+        public TLRPC.InputPeer peer;
+        public boolean pinned;
+        public int topic_id;
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(392032849);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.topic_id);
+            outputSerializedData.writeBool(this.pinned);
+        }
+    }
+
+    private TL_forum() {
+    }
+
     public static class TL_messages_createForumTopic extends TLMethod<TLRPC.Updates> {
         public static final int constructor = 798540757;
         public int flags;
@@ -22,15 +65,15 @@ public class TL_forum {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            boolean z10;
+            boolean z;
             outputSerializedData.writeInt32(798540757);
-            int i7 = this.flags;
+            int i = this.flags;
             if (this.send_as != null) {
-                z10 = true;
+                z = true;
             } else {
-                z10 = false;
+                z = false;
             }
-            int flag = TLObject.setFlag(i7, 4, z10);
+            int flag = TLObject.setFlag(i, 4, z);
             this.flags = flag;
             int flag2 = TLObject.setFlag(flag, 16, this.title_missing);
             this.flags = flag2;
@@ -50,8 +93,8 @@ public class TL_forum {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i7, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
         }
     }
 
@@ -68,8 +111,8 @@ public class TL_forum {
         }
 
         @Override
-        public TLRPC.TL_messages_affectedHistory deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
-            return TLRPC.TL_messages_affectedHistory.TLdeserialize(inputSerializedData, i7, z10);
+        public TLRPC.TL_messages_affectedHistory deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.TL_messages_affectedHistory.TLdeserialize(inputSerializedData, i, z);
         }
     }
 
@@ -85,15 +128,15 @@ public class TL_forum {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            boolean z10;
+            boolean z;
             outputSerializedData.writeInt32(-825487052);
-            int i7 = this.flags;
+            int i = this.flags;
             if (this.title != null) {
-                z10 = true;
+                z = true;
             } else {
-                z10 = false;
+                z = false;
             }
-            int flag = TLObject.setFlag(i7, 1, z10);
+            int flag = TLObject.setFlag(i, 1, z);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
@@ -113,8 +156,8 @@ public class TL_forum {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i7, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
         }
     }
 
@@ -127,34 +170,34 @@ public class TL_forum {
         public int offset_id;
         public int offset_topic;
         public TLRPC.InputPeer peer;
-        public String f28712q;
+        public String q;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            boolean z10;
-            boolean z11;
+            boolean z;
+            boolean z2;
             outputSerializedData.writeInt32(-963894886);
-            boolean z12 = false;
-            if (this.f28712q != null) {
-                z10 = true;
+            boolean z3 = false;
+            if (this.q != null) {
+                z = true;
             } else {
-                z10 = false;
+                z = false;
             }
-            int flag = TLObject.setFlag(0, 1, z10);
+            int flag = TLObject.setFlag(0, 1, z);
             if (this.icon_emoji_id != null) {
-                z11 = true;
+                z2 = true;
             } else {
-                z11 = false;
+                z2 = false;
             }
-            int flag2 = TLObject.setFlag(flag, 2, z11);
+            int flag2 = TLObject.setFlag(flag, 2, z2);
             if (this.closed != null) {
-                z12 = true;
+                z3 = true;
             }
-            int flag3 = TLObject.setFlag(flag2, 4, z12);
+            int flag3 = TLObject.setFlag(flag2, 4, z3);
             outputSerializedData.writeInt32(flag3);
             this.peer.serializeToStream(outputSerializedData);
             if (TLObject.hasFlag(flag3, 1)) {
-                outputSerializedData.writeString(this.f28712q);
+                outputSerializedData.writeString(this.q);
             }
             if (TLObject.hasFlag(flag3, 2)) {
                 outputSerializedData.writeInt64(this.icon_emoji_id.longValue());
@@ -169,8 +212,8 @@ public class TL_forum {
         }
 
         @Override
-        public TLRPC.TL_messages_forumTopics deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
-            return TLRPC.TL_messages_forumTopics.TLdeserialize(inputSerializedData, i7, z10);
+        public TLRPC.TL_messages_forumTopics deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.TL_messages_forumTopics.TLdeserialize(inputSerializedData, i, z);
         }
     }
 
@@ -187,51 +230,8 @@ public class TL_forum {
         }
 
         @Override
-        public TLRPC.TL_messages_forumTopics deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
-            return TLRPC.TL_messages_forumTopics.TLdeserialize(inputSerializedData, i7, z10);
+        public TLRPC.TL_messages_forumTopics deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.TL_messages_forumTopics.TLdeserialize(inputSerializedData, i, z);
         }
-    }
-
-    public static class TL_messages_reorderPinnedForumTopics extends TLObject {
-        public static final int constructor = 242762224;
-        public boolean force;
-        public ArrayList<Integer> order = new ArrayList<>();
-        public TLRPC.InputPeer peer;
-
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i7, z10);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(242762224);
-            outputSerializedData.writeInt32(TLObject.setFlag(0, 1, this.force));
-            this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.order);
-        }
-    }
-
-    public static class TL_messages_updatePinnedForumTopic extends TLObject {
-        public static final int constructor = 392032849;
-        public TLRPC.InputPeer peer;
-        public boolean pinned;
-        public int topic_id;
-
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i7, z10);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(392032849);
-            this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.topic_id);
-            outputSerializedData.writeBool(this.pinned);
-        }
-    }
-
-    private TL_forum() {
     }
 }

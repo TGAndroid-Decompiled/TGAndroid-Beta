@@ -5,17 +5,17 @@ import ru.noties.jlatexmath.awt.Graphics2D;
 import ru.noties.jlatexmath.awt.geom.AffineTransform;
 public class CharBox extends Box {
     private final char[] arr = new char[1];
-    private final CharFont f22670cf;
+    private final CharFont cf;
     private float italic;
     private final float size;
 
-    public CharBox(Char r22) {
-        this.f22670cf = r22.getCharFont();
-        this.size = r22.getMetrics().getSize();
-        this.width = r22.getWidth();
-        this.height = r22.getHeight();
-        this.depth = r22.getDepth();
-        this.italic = r22.getItalic();
+    public CharBox(Char r2) {
+        this.cf = r2.getCharFont();
+        this.size = r2.getMetrics().getSize();
+        this.width = r2.getWidth();
+        this.height = r2.getHeight();
+        this.depth = r2.getDepth();
+        this.italic = r2.getItalic();
     }
 
     public void addItalicCorrectionToWidth() {
@@ -24,31 +24,31 @@ public class CharBox extends Box {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f10, float f11) {
-        drawDebug(graphics2D, f10, f11);
+    public void draw(Graphics2D graphics2D, float f, float f2) {
+        drawDebug(graphics2D, f, f2);
         AffineTransform transform = graphics2D.getTransform();
-        graphics2D.translate(f10, f11);
-        Font font = FontInfo.getFont(this.f22670cf.fontId);
+        graphics2D.translate(f, f2);
+        Font font = FontInfo.getFont(this.cf.fontId);
         if (Math.abs(this.size - TeXFormula.FONT_SCALE_FACTOR) > 1.0E-7f) {
-            float f12 = this.size;
-            float f13 = TeXFormula.FONT_SCALE_FACTOR;
-            graphics2D.scale(f12 / f13, f12 / f13);
+            float f3 = this.size;
+            float f4 = TeXFormula.FONT_SCALE_FACTOR;
+            graphics2D.scale(f3 / f4, f3 / f4);
         }
         if (graphics2D.getFont() != font) {
             graphics2D.setFont(font);
         }
         char[] cArr = this.arr;
-        cArr[0] = this.f22670cf.f22671c;
+        cArr[0] = this.cf.c;
         graphics2D.drawChars(cArr, 0, 1, 0, 0);
         graphics2D.setTransform(transform);
     }
 
     @Override
     public int getLastFontId() {
-        return this.f22670cf.fontId;
+        return this.cf.fontId;
     }
 
     public String toString() {
-        return super.toString() + "=" + this.f22670cf.f22671c;
+        return super.toString() + "=" + this.cf.c;
     }
 }

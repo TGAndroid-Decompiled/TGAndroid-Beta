@@ -2,11 +2,8 @@ package org.telegram.SQLite;
 
 import android.os.SystemClock;
 import java.nio.ByteBuffer;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.s2;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
-import p5.c;
 public class SQLitePreparedStatement {
     private boolean isFinalized = false;
     private String query;
@@ -15,53 +12,53 @@ public class SQLitePreparedStatement {
 
     public SQLitePreparedStatement(SQLiteDatabase sQLiteDatabase, String str) {
         this.sqliteStatementHandle = prepare(sQLiteDatabase.getSQLiteHandle(), str);
-        if (s2.f26829a) {
+        if (w01.a) {
             this.query = str;
             this.startTime = SystemClock.elapsedRealtime();
         }
     }
 
-    public void bindByteBuffer(int i7, ByteBuffer byteBuffer) {
-        bindByteBuffer(this.sqliteStatementHandle, i7, byteBuffer, byteBuffer.limit());
+    public void bindByteBuffer(int i, NativeByteBuffer nativeByteBuffer) {
+        bindByteBuffer(this.sqliteStatementHandle, i, nativeByteBuffer.buffer, nativeByteBuffer.limit());
     }
 
-    public native void bindByteBuffer(long j3, int i7, ByteBuffer byteBuffer, int i10);
+    public native void bindByteBuffer(long j, int i, ByteBuffer byteBuffer, int i2);
 
-    public void bindDouble(int i7, double d) {
-        bindDouble(this.sqliteStatementHandle, i7, d);
+    public void bindDouble(int i, double d) {
+        bindDouble(this.sqliteStatementHandle, i, d);
     }
 
-    public native void bindDouble(long j3, int i7, double d);
+    public native void bindDouble(long j, int i, double d);
 
-    public native void bindInt(long j3, int i7, int i10);
+    public native void bindInt(long j, int i, int i2);
 
-    public void bindInteger(int i7, int i10) {
-        bindInt(this.sqliteStatementHandle, i7, i10);
+    public void bindInteger(int i, int i2) {
+        bindInt(this.sqliteStatementHandle, i, i2);
     }
 
-    public void bindLong(int i7, long j3) {
-        bindLong(this.sqliteStatementHandle, i7, j3);
+    public void bindLong(int i, long j) {
+        bindLong(this.sqliteStatementHandle, i, j);
     }
 
-    public native void bindLong(long j3, int i7, long j10);
+    public native void bindLong(long j, int i, long j2);
 
-    public void bindNull(int i7) {
-        bindNull(this.sqliteStatementHandle, i7);
+    public void bindNull(int i) {
+        bindNull(this.sqliteStatementHandle, i);
     }
 
-    public native void bindNull(long j3, int i7);
+    public native void bindNull(long j, int i);
 
-    public void bindString(int i7, String str) {
-        bindString(this.sqliteStatementHandle, i7, str);
+    public void bindString(int i, String str) {
+        bindString(this.sqliteStatementHandle, i, str);
     }
 
-    public native void bindString(long j3, int i7, String str);
+    public native void bindString(long j, int i, String str);
 
-    public void bindTlObject(int i7, TLObject tLObject) {
+    public void bindTlObject(int i, TLObject tLObject) {
         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLObject.getObjectSize());
         try {
             tLObject.serializeToStream(nativeByteBuffer);
-            bindByteBuffer(i7, nativeByteBuffer);
+            bindByteBuffer(i, nativeByteBuffer);
         } finally {
             nativeByteBuffer.reuse();
         }
@@ -78,26 +75,26 @@ public class SQLitePreparedStatement {
         finalizeQuery();
     }
 
-    public native void finalize(long j3);
+    public native void finalize(long j);
 
     public void finalizeQuery() {
         if (!this.isFinalized) {
-            if (s2.f26829a) {
+            if (w01.a) {
                 long elapsedRealtime = SystemClock.elapsedRealtime() - this.startTime;
                 if (elapsedRealtime > 500) {
-                    StringBuilder sb2 = new StringBuilder("sqlite query ");
-                    sb2.append(this.query);
-                    sb2.append(" took ");
-                    sb2.append(elapsedRealtime);
-                    c.s("ms", sb2);
+                    StringBuilder sb = new StringBuilder("sqlite query ");
+                    sb.append(this.query);
+                    sb.append(" took ");
+                    sb.append(elapsedRealtime);
+                    de9.s("ms", sb);
                 }
             }
             try {
                 this.isFinalized = true;
                 finalize(this.sqliteStatementHandle);
-            } catch (SQLiteException e10) {
-                if (s2.f26829a) {
-                    a8.e(e10.getMessage(), e10);
+            } catch (SQLiteException e) {
+                if (w01.a) {
+                    fa4.e(e.getMessage(), e);
                 }
             }
         }
@@ -107,35 +104,49 @@ public class SQLitePreparedStatement {
         return this.sqliteStatementHandle;
     }
 
-    public native long prepare(long j3, String str);
+    public native long prepare(long j, String str);
 
     public SQLiteCursor query(Object[] objArr) {
+        SQLitePreparedStatement sQLitePreparedStatement;
         if (objArr != null) {
             checkFinalized();
             reset(this.sqliteStatementHandle);
-            int i7 = 1;
-            for (Object obj : objArr) {
+            int i = 0;
+            int i2 = 1;
+            while (i < objArr.length) {
+                Object obj = objArr[i];
                 if (obj == null) {
-                    bindNull(this.sqliteStatementHandle, i7);
+                    this.bindNull(this.sqliteStatementHandle, i2);
                 } else if (obj instanceof Integer) {
-                    bindInt(this.sqliteStatementHandle, i7, ((Integer) obj).intValue());
+                    this.bindInt(this.sqliteStatementHandle, i2, ((Integer) obj).intValue());
                 } else {
                     if (obj instanceof Double) {
-                        bindDouble(this.sqliteStatementHandle, i7, ((Double) obj).doubleValue());
-                    } else if (obj instanceof String) {
-                        bindString(this.sqliteStatementHandle, i7, (String) obj);
-                    } else if (obj instanceof Long) {
-                        bindLong(this.sqliteStatementHandle, i7, ((Long) obj).longValue());
+                        sQLitePreparedStatement = this;
+                        sQLitePreparedStatement.bindDouble(this.sqliteStatementHandle, i2, ((Double) obj).doubleValue());
                     } else {
-                        throw new IllegalArgumentException();
+                        sQLitePreparedStatement = this;
+                        if (obj instanceof String) {
+                            sQLitePreparedStatement.bindString(sQLitePreparedStatement.sqliteStatementHandle, i2, (String) obj);
+                        } else if (obj instanceof Long) {
+                            sQLitePreparedStatement.bindLong(sQLitePreparedStatement.sqliteStatementHandle, i2, ((Long) obj).longValue());
+                        } else {
+                            sc8.e();
+                            return null;
+                        }
                     }
-                    i7++;
+                    i2++;
+                    i++;
+                    this = sQLitePreparedStatement;
                 }
-                i7++;
+                sQLitePreparedStatement = this;
+                i2++;
+                i++;
+                this = sQLitePreparedStatement;
             }
             return new SQLiteCursor(this);
         }
-        throw new IllegalArgumentException();
+        sc8.e();
+        return null;
     }
 
     public void requery() {
@@ -143,20 +154,20 @@ public class SQLitePreparedStatement {
         reset(this.sqliteStatementHandle);
     }
 
-    public native void reset(long j3);
+    public native void reset(long j);
 
     public int step() {
         return step(this.sqliteStatementHandle);
     }
 
-    public native int step(long j3);
+    public native int step(long j);
 
     public SQLitePreparedStatement stepThis() {
         step(this.sqliteStatementHandle);
         return this;
     }
 
-    public void bindByteBuffer(int i7, NativeByteBuffer nativeByteBuffer) {
-        bindByteBuffer(this.sqliteStatementHandle, i7, nativeByteBuffer.buffer, nativeByteBuffer.limit());
+    public void bindByteBuffer(int i, ByteBuffer byteBuffer) {
+        bindByteBuffer(this.sqliteStatementHandle, i, byteBuffer, byteBuffer.limit());
     }
 }

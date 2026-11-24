@@ -7,62 +7,15 @@ public class RtpCapabilities {
     public List<CodecCapability> codecs;
     public List<HeaderExtensionCapability> headerExtensions;
 
-    public static class CodecCapability {
-        public Integer clockRate;
-        public MediaStreamTrack.MediaType kind;
-        public String mimeType;
-        public String name;
-        public Integer numChannels;
-        public Map<String, String> parameters;
-        public int preferredPayloadType;
-
-        public CodecCapability() {
-        }
-
-        public Integer getClockRate() {
-            return this.clockRate;
-        }
-
-        public MediaStreamTrack.MediaType getKind() {
-            return this.kind;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public Integer getNumChannels() {
-            return this.numChannels;
-        }
-
-        public Map getParameters() {
-            return this.parameters;
-        }
-
-        public int getPreferredPayloadType() {
-            return this.preferredPayloadType;
-        }
-
-        public CodecCapability(int i7, String str, MediaStreamTrack.MediaType mediaType, Integer num, Integer num2, String str2, Map<String, String> map) {
-            this.preferredPayloadType = i7;
-            this.name = str;
-            this.kind = mediaType;
-            this.clockRate = num;
-            this.numChannels = num2;
-            this.parameters = map;
-            this.mimeType = str2;
-        }
-    }
-
     public static class HeaderExtensionCapability {
         private final boolean preferredEncrypted;
         private final int preferredId;
         private final String uri;
 
-        public HeaderExtensionCapability(String str, int i7, boolean z10) {
+        public HeaderExtensionCapability(String str, int i, boolean z) {
             this.uri = str;
-            this.preferredId = i7;
-            this.preferredEncrypted = z10;
+            this.preferredId = i;
+            this.preferredEncrypted = z;
         }
 
         public boolean getPreferredEncrypted() {
@@ -89,5 +42,52 @@ public class RtpCapabilities {
 
     public List<HeaderExtensionCapability> getHeaderExtensions() {
         return this.headerExtensions;
+    }
+
+    public static class CodecCapability {
+        public Integer clockRate;
+        public MediaStreamTrack.MediaType kind;
+        public String mimeType;
+        public String name;
+        public Integer numChannels;
+        public Map<String, String> parameters;
+        public int preferredPayloadType;
+
+        public CodecCapability(int i, String str, MediaStreamTrack.MediaType mediaType, Integer num, Integer num2, String str2, Map<String, String> map) {
+            this.preferredPayloadType = i;
+            this.name = str;
+            this.kind = mediaType;
+            this.clockRate = num;
+            this.numChannels = num2;
+            this.parameters = map;
+            this.mimeType = str2;
+        }
+
+        public Integer getClockRate() {
+            return this.clockRate;
+        }
+
+        public MediaStreamTrack.MediaType getKind() {
+            return this.kind;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public Integer getNumChannels() {
+            return this.numChannels;
+        }
+
+        public Map getParameters() {
+            return this.parameters;
+        }
+
+        public int getPreferredPayloadType() {
+            return this.preferredPayloadType;
+        }
+
+        public CodecCapability() {
+        }
     }
 }

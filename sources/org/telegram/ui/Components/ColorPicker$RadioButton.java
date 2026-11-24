@@ -8,46 +8,47 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 public class ColorPicker$RadioButton extends View {
-    public final Paint f32969a;
-    public ObjectAnimator f32970b;
-    public float f32971c;
+    public final Paint a;
+    public ObjectAnimator b;
+    public float c;
     public boolean d;
-    public int f32972e;
+    public int e;
 
     public ColorPicker$RadioButton(Context context) {
         super(context);
-        this.f32969a = new Paint(1);
+        this.a = new Paint(1);
     }
 
-    public final void a(int i7) {
-        this.f32972e = i7;
+    public final void a(int i) {
+        this.e = i;
         invalidate();
     }
 
-    public final void b(boolean z10) {
-        ObjectAnimator objectAnimator = this.f32970b;
+    public final void b(boolean z) {
+        ObjectAnimator objectAnimator = this.b;
         if (objectAnimator != null) {
             objectAnimator.cancel();
         }
-        float f10 = 0.0f;
-        if (z10) {
-            if (this.d) {
-                f10 = 1.0f;
+        boolean z2 = this.d;
+        float f = 0.0f;
+        if (z) {
+            if (z2) {
+                f = 1.0f;
             }
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "checkedState", f10);
-            this.f32970b = ofFloat;
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "checkedState", f);
+            this.b = ofFloat;
             ofFloat.setDuration(200L);
-            this.f32970b.start();
+            this.b.start();
             return;
         }
-        if (this.d) {
-            f10 = 1.0f;
+        if (z2) {
+            f = 1.0f;
         }
-        setCheckedState(f10);
+        setCheckedState(f);
     }
 
     public float getCheckedState() {
-        return this.f32971c;
+        return this.c;
     }
 
     @Override
@@ -58,25 +59,25 @@ public class ColorPicker$RadioButton extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float L = org.telegram.messenger.g0.L(15.0f);
+        float L = gl.L(15.0f);
         float measuredWidth = getMeasuredWidth() * 0.5f;
         float measuredHeight = getMeasuredHeight() * 0.5f;
-        int i7 = this.f32972e;
-        Paint paint = this.f32969a;
-        paint.setColor(i7);
+        int i = this.e;
+        Paint paint = this.a;
+        paint.setColor(i);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
-        paint.setAlpha(Math.round(this.f32971c * 255.0f));
+        paint.setStrokeWidth(gl.L(3.0f));
+        paint.setAlpha(Math.round(this.c * 255.0f));
         canvas.drawCircle(measuredWidth, measuredHeight, L - (paint.getStrokeWidth() * 0.5f), paint);
         paint.setAlpha(255);
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawCircle(measuredWidth, measuredHeight, L - (org.telegram.messenger.g0.L(5.0f) * this.f32971c), paint);
+        canvas.drawCircle(measuredWidth, measuredHeight, L - (gl.L(5.0f) * this.c), paint);
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setText(org.telegram.messenger.gd.N0(2131752003, null));
+        accessibilityNodeInfo.setText(k96.M0(2131752003, null));
         accessibilityNodeInfo.setClassName(Button.class.getName());
         accessibilityNodeInfo.setChecked(this.d);
         accessibilityNodeInfo.setCheckable(true);
@@ -84,12 +85,12 @@ public class ColorPicker$RadioButton extends View {
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824));
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(gl.L(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(30.0f), 1073741824));
     }
 
-    public void setCheckedState(float f10) {
-        this.f32971c = f10;
+    public void setCheckedState(float f) {
+        this.c = f;
         invalidate();
     }
 }

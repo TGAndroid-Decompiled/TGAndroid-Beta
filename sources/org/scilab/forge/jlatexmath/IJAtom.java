@@ -2,28 +2,28 @@ package org.scilab.forge.jlatexmath;
 public class IJAtom extends Atom {
     private boolean upper;
 
-    public IJAtom(boolean z10) {
-        this.upper = z10;
+    public IJAtom(boolean z) {
+        this.upper = z;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        char c10;
-        char c11;
+        char c;
+        char c2;
         TeXFont teXFont = teXEnvironment.getTeXFont();
         if (this.upper) {
-            c10 = 'I';
+            c = 'I';
         } else {
-            c10 = 'i';
+            c = 'i';
         }
-        CharBox charBox = new CharBox(teXFont.getChar(c10, "mathnormal", teXEnvironment.getStyle()));
+        CharBox charBox = new CharBox(teXFont.getChar(c, "mathnormal", teXEnvironment.getStyle()));
         TeXFont teXFont2 = teXEnvironment.getTeXFont();
         if (this.upper) {
-            c11 = 'J';
+            c2 = 'J';
         } else {
-            c11 = 'j';
+            c2 = 'j';
         }
-        CharBox charBox2 = new CharBox(teXFont2.getChar(c11, "mathnormal", teXEnvironment.getStyle()));
+        CharBox charBox2 = new CharBox(teXFont2.getChar(c2, "mathnormal", teXEnvironment.getStyle()));
         HorizontalBox horizontalBox = new HorizontalBox(charBox);
         horizontalBox.add(new SpaceAtom(0, -0.065f, 0.0f, 0.0f).createBox(teXEnvironment));
         horizontalBox.add(charBox2);

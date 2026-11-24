@@ -3,12 +3,12 @@ package org.telegram.messenger;
 import android.net.Uri;
 import java.util.Collections;
 import java.util.List;
-public class NotificationBadge$ZukHomeBadger implements wr {
-    public final Uri f22865a = Uri.parse("content://com.android.badge/badge");
+public class NotificationBadge$ZukHomeBadger implements yj7 {
+    public final Uri a = Uri.parse("content://com.android.badge/badge");
 
     @Override
-    public final void a(int i7) {
-        g0.g3(new rq(12, this, p5.c.f(i7, "app_badge_count")));
+    public final void a(int i) {
+        gl.d3(new bj7(this, ls6.j(i, "app_badge_count"), (byte) 5));
     }
 
     @Override

@@ -1,7 +1,5 @@
 package org.telegram.messenger.time;
 
-import a8.p0;
-import com.google.android.gms.internal.vision.e2;
 import j$.util.DesugarTimeZone;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.ObjectInputStream;
@@ -47,8 +45,8 @@ public class FastDateParser implements DateParser, Serializable {
     };
     private static final Strategy NUMBER_MONTH_STRATEGY = new NumberStrategy(2) {
         @Override
-        public int modify(int i7) {
-            return i7 - 1;
+        public int modify(int i) {
+            return i - 1;
         }
     };
     private static final Strategy LITERAL_YEAR_STRATEGY = new NumberStrategy(1);
@@ -60,14 +58,14 @@ public class FastDateParser implements DateParser, Serializable {
     private static final Strategy HOUR_OF_DAY_STRATEGY = new NumberStrategy(11);
     private static final Strategy MODULO_HOUR_OF_DAY_STRATEGY = new NumberStrategy(11) {
         @Override
-        public int modify(int i7) {
-            return i7 % 24;
+        public int modify(int i) {
+            return i % 24;
         }
     };
     private static final Strategy MODULO_HOUR_STRATEGY = new NumberStrategy(10) {
         @Override
-        public int modify(int i7) {
-            return i7 % 12;
+        public int modify(int i) {
+            return i % 12;
         }
     };
     private static final Strategy HOUR_STRATEGY = new NumberStrategy(10);
@@ -84,8 +82,8 @@ public class FastDateParser implements DateParser, Serializable {
         }
 
         @Override
-        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb2) {
-            FastDateParser.escapeRegex(sb2, this.formatField, true);
+        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb) {
+            FastDateParser.escapeRegex(sb, this.formatField, true);
             return false;
         }
 
@@ -103,19 +101,19 @@ public class FastDateParser implements DateParser, Serializable {
         private final int field;
         private final Map<String, Integer> keyValues;
 
-        public TextStrategy(int i7, Calendar calendar, Locale locale) {
+        public TextStrategy(int i, Calendar calendar, Locale locale) {
             super();
-            this.field = i7;
-            this.keyValues = FastDateParser.getDisplayNames(i7, calendar, locale);
+            this.field = i;
+            this.keyValues = FastDateParser.getDisplayNames(i, calendar, locale);
         }
 
         @Override
-        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb2) {
-            sb2.append('(');
+        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb) {
+            sb.append('(');
             for (String str : this.keyValues.keySet()) {
-                FastDateParser.escapeRegex(sb2, str, false).append('|');
+                FastDateParser.escapeRegex(sb, str, false).append('|');
             }
-            sb2.setCharAt(sb2.length() - 1, ')');
+            sb.setCharAt(sb.length() - 1, ')');
             return true;
         }
 
@@ -123,14 +121,13 @@ public class FastDateParser implements DateParser, Serializable {
         public void setCalendar(FastDateParser fastDateParser, Calendar calendar, String str) {
             Integer num = this.keyValues.get(str);
             if (num == null) {
-                StringBuilder sb2 = new StringBuilder(str);
-                sb2.append(" not in (");
+                StringBuilder k = b00.k(str, " not in (");
                 for (String str2 : this.keyValues.keySet()) {
-                    sb2.append(str2);
-                    sb2.append(' ');
+                    k.append(str2);
+                    k.append(' ');
                 }
-                sb2.setCharAt(sb2.length() - 1, ')');
-                throw new IllegalArgumentException(sb2.toString());
+                k.setCharAt(k.length() - 1, ')');
+                throw new IllegalArgumentException(k.toString());
             }
             calendar.set(this.field, num.intValue());
         }
@@ -168,17 +165,17 @@ public class FastDateParser implements DateParser, Serializable {
                     }
                 }
             }
-            StringBuilder m10 = e2.m("(GMT[+\\-]\\d{0,1}\\d{2}|[+\\-]\\d{2}:?\\d{2}|");
+            StringBuilder r = tb4.r("(GMT[+\\-]\\d{0,1}\\d{2}|[+\\-]\\d{2}:?\\d{2}|");
             for (String str : this.tzNames.keySet()) {
-                FastDateParser.escapeRegex(m10, str, false).append('|');
+                FastDateParser.escapeRegex(r, str, false).append('|');
             }
-            m10.setCharAt(m10.length() - 1, ')');
-            this.validTimeZoneChars = m10.toString();
+            r.setCharAt(r.length() - 1, ')');
+            this.validTimeZoneChars = r.toString();
         }
 
         @Override
-        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb2) {
-            sb2.append(this.validTimeZoneChars);
+        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb) {
+            sb.append(this.validTimeZoneChars);
             return true;
         }
 
@@ -191,7 +188,8 @@ public class FastDateParser implements DateParser, Serializable {
                 } else {
                     timeZone = this.tzNames.get(str);
                     if (timeZone == null) {
-                        throw new IllegalArgumentException(str.concat(" is not a supported timezone name"));
+                        w26.j(str.concat(" is not a supported timezone name"));
+                        return;
                     }
                 }
             } else {
@@ -201,79 +199,92 @@ public class FastDateParser implements DateParser, Serializable {
         }
     }
 
-    public FastDateParser(String str, TimeZone timeZone, Locale locale) {
-        this(str, timeZone, locale, null);
-    }
-
-    public int adjustYear(int i7) {
-        int i10 = this.century + i7;
-        if (i7 >= this.startYear) {
-            return i10;
+    public FastDateParser(String str, TimeZone timeZone, Locale locale, Date date) {
+        int i;
+        this.pattern = str;
+        this.timeZone = timeZone;
+        this.locale = locale;
+        Calendar calendar = Calendar.getInstance(timeZone, locale);
+        if (date != null) {
+            calendar.setTime(date);
+            i = calendar.get(1);
+        } else if (locale.equals(JAPANESE_IMPERIAL)) {
+            i = 0;
+        } else {
+            calendar.setTime(new Date());
+            i = calendar.get(1) - 80;
         }
-        return i10 + 100;
+        int i2 = (i / 100) * 100;
+        this.century = i2;
+        this.startYear = i - i2;
+        init(calendar);
     }
 
-    public static StringBuilder escapeRegex(StringBuilder sb2, String str, boolean z10) {
-        sb2.append("\\Q");
-        int i7 = 0;
-        while (i7 < str.length()) {
-            char charAt = str.charAt(i7);
+    public int adjustYear(int i) {
+        int i2 = this.century + i;
+        if (i >= this.startYear) {
+            return i2;
+        }
+        return i2 + 100;
+    }
+
+    public static StringBuilder escapeRegex(StringBuilder sb, String str, boolean z) {
+        sb.append("\\Q");
+        int i = 0;
+        while (i < str.length()) {
+            char charAt = str.charAt(i);
             if (charAt != '\'') {
-                if (charAt == '\\' && (i7 = i7 + 1) != str.length()) {
-                    sb2.append(charAt);
-                    charAt = str.charAt(i7);
+                if (charAt == '\\' && (i = i + 1) != str.length()) {
+                    sb.append(charAt);
+                    charAt = str.charAt(i);
                     if (charAt == 'E') {
-                        sb2.append("E\\\\E\\");
+                        sb.append("E\\\\E\\");
                         charAt = 'Q';
                     }
                 }
-            } else if (z10) {
-                i7++;
-                if (i7 == str.length()) {
-                    return sb2;
+            } else if (z) {
+                i++;
+                if (i == str.length()) {
+                    return sb;
                 }
-                charAt = str.charAt(i7);
+                charAt = str.charAt(i);
             } else {
                 continue;
             }
-            sb2.append(charAt);
-            i7++;
+            sb.append(charAt);
+            i++;
         }
-        sb2.append("\\E");
-        return sb2;
+        sb.append("\\E");
+        return sb;
     }
 
-    private static ConcurrentMap<Locale, Strategy> getCache(int i7) {
+    private static ConcurrentMap<Locale, Strategy> getCache(int i) {
         ConcurrentMap<Locale, Strategy> concurrentMap;
         ConcurrentMap<Locale, Strategy>[] concurrentMapArr = caches;
         synchronized (concurrentMapArr) {
-            try {
-                if (concurrentMapArr[i7] == null) {
-                    concurrentMapArr[i7] = new ConcurrentHashMap(3);
-                }
-                concurrentMap = concurrentMapArr[i7];
-            } catch (Throwable th2) {
-                throw th2;
+            if (concurrentMapArr[i] == null) {
+                concurrentMapArr[i] = new ConcurrentHashMap(3);
             }
+            concurrentMap = concurrentMapArr[i];
         }
         return concurrentMap;
     }
 
-    private static String[] getDisplayNameArray(int i7, boolean z10, Locale locale) {
+    private static String[] getDisplayNameArray(int i, boolean z, Locale locale) {
         DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(locale);
-        if (i7 != 0) {
-            if (i7 != 2) {
-                if (i7 != 7) {
-                    if (i7 != 9) {
+        if (i != 0) {
+            if (i != 2) {
+                if (i != 7) {
+                    if (i != 9) {
                         return null;
                     }
                     return dateFormatSymbols.getAmPmStrings();
-                } else if (z10) {
+                } else if (z) {
                     return dateFormatSymbols.getWeekdays();
                 } else {
                     return dateFormatSymbols.getShortWeekdays();
                 }
-            } else if (z10) {
+            } else if (z) {
                 return dateFormatSymbols.getMonths();
             } else {
                 return dateFormatSymbols.getShortMonths();
@@ -282,25 +293,26 @@ public class FastDateParser implements DateParser, Serializable {
         return dateFormatSymbols.getEras();
     }
 
-    private static Map<String, Integer> getDisplayNames(int i7, Locale locale) {
+    private static Map<String, Integer> getDisplayNames(int i, Locale locale) {
         HashMap hashMap = new HashMap();
-        insertValuesInMap(hashMap, getDisplayNameArray(i7, false, locale));
-        insertValuesInMap(hashMap, getDisplayNameArray(i7, true, locale));
+        insertValuesInMap(hashMap, getDisplayNameArray(i, false, locale));
+        insertValuesInMap(hashMap, getDisplayNameArray(i, true, locale));
         if (hashMap.isEmpty()) {
             return null;
         }
         return hashMap;
     }
 
-    private Strategy getLocaleSpecificStrategy(int i7, Calendar calendar) {
+    private Strategy getLocaleSpecificStrategy(int i, Calendar calendar) {
         Strategy textStrategy;
-        ConcurrentMap<Locale, Strategy> cache = getCache(i7);
+        ConcurrentMap<Locale, Strategy> cache = getCache(i);
         Strategy strategy = cache.get(this.locale);
         if (strategy == null) {
-            if (i7 == 15) {
-                textStrategy = new TimeZoneStrategy(this.locale);
+            Locale locale = this.locale;
+            if (i == 15) {
+                textStrategy = new TimeZoneStrategy(locale);
             } else {
-                textStrategy = new TextStrategy(i7, calendar, this.locale);
+                textStrategy = new TextStrategy(i, calendar, locale);
             }
             Strategy putIfAbsent = cache.putIfAbsent(this.locale, textStrategy);
             if (putIfAbsent != null) {
@@ -318,7 +330,7 @@ public class FastDateParser implements DateParser, Serializable {
                 switch (charAt) {
                     case '\'':
                         if (str.length() > 2) {
-                            return new CopyQuotedStrategy(e2.k(str, 1, 1));
+                            return new CopyQuotedStrategy(ir2.n(1, 1, str));
                         }
                         return new CopyQuotedStrategy(str);
                     case 'S':
@@ -377,7 +389,7 @@ public class FastDateParser implements DateParser, Serializable {
     }
 
     private void init(Calendar calendar) {
-        StringBuilder sb2 = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         ArrayList arrayList = new ArrayList();
         Matcher matcher = formatPattern.matcher(this.pattern);
         if (matcher.lookingAt()) {
@@ -391,7 +403,7 @@ public class FastDateParser implements DateParser, Serializable {
                 }
                 String group2 = matcher.group();
                 this.nextStrategy = getStrategy(group2, calendar);
-                if (strategy.addRegex(this, sb2)) {
+                if (strategy.addRegex(this, sb)) {
                     arrayList.add(strategy);
                 }
                 this.currentFormatField = group2;
@@ -399,25 +411,28 @@ public class FastDateParser implements DateParser, Serializable {
             }
             this.nextStrategy = null;
             if (matcher.regionStart() == matcher.regionEnd()) {
-                if (strategy.addRegex(this, sb2)) {
+                if (strategy.addRegex(this, sb)) {
                     arrayList.add(strategy);
                 }
                 this.currentFormatField = null;
                 this.strategies = (Strategy[]) arrayList.toArray(new Strategy[arrayList.size()]);
-                this.parsePattern = Pattern.compile(sb2.toString());
+                this.parsePattern = Pattern.compile(sb.toString());
                 return;
             }
-            throw new IllegalArgumentException("Failed to parse \"" + this.pattern + "\" ; gave up at index " + matcher.regionStart());
+            String str = this.pattern;
+            int regionStart = matcher.regionStart();
+            throw new IllegalArgumentException("Failed to parse \"" + str + "\" ; gave up at index " + regionStart);
         }
-        throw new IllegalArgumentException("Illegal pattern character '" + this.pattern.charAt(matcher.regionStart()) + "'");
+        char charAt = this.pattern.charAt(matcher.regionStart());
+        throw new IllegalArgumentException("Illegal pattern character '" + charAt + "'");
     }
 
     private static void insertValuesInMap(Map<String, Integer> map, String[] strArr) {
         if (strArr != null) {
-            for (int i7 = 0; i7 < strArr.length; i7++) {
-                String str = strArr[i7];
+            for (int i = 0; i < strArr.length; i++) {
+                String str = strArr[i];
                 if (str != null && str.length() > 0) {
-                    map.put(strArr[i7], Integer.valueOf(i7));
+                    map.put(strArr[i], Integer.valueOf(i));
                 }
             }
         }
@@ -479,11 +494,18 @@ public class FastDateParser implements DateParser, Serializable {
         Date parse = parse(str, new ParsePosition(0));
         if (parse == null) {
             if (this.locale.equals(JAPANESE_IMPERIAL)) {
-                throw new ParseException("(The " + this.locale + " locale does not support dates before 1868 AD)\nUnparseable date: \"" + str + "\" does not match " + this.parsePattern.pattern(), 0);
+                StringBuilder sb = new StringBuilder("(The ");
+                sb.append(this.locale);
+                String pattern = this.parsePattern.pattern();
+                sb.append(" locale does not support dates before 1868 AD)\nUnparseable date: \"");
+                sb.append(str);
+                sb.append("\" does not match ");
+                sb.append(pattern);
+                throw new ParseException(sb.toString(), 0);
             }
-            StringBuilder u10 = p0.u("Unparseable date: \"", str, "\" does not match ");
-            u10.append(this.parsePattern.pattern());
-            throw new ParseException(u10.toString(), 0);
+            StringBuilder p = ug8.p("Unparseable date: \"", str, "\" does not match ");
+            p.append(this.parsePattern.pattern());
+            throw new ParseException(p.toString(), 0);
         }
         return parse;
     }
@@ -497,76 +519,28 @@ public class FastDateParser implements DateParser, Serializable {
         return "FastDateParser[" + this.pattern + "," + this.locale + "," + this.timeZone.getID() + "]";
     }
 
-    public FastDateParser(String str, TimeZone timeZone, Locale locale, Date date) {
-        int i7;
-        this.pattern = str;
-        this.timeZone = timeZone;
-        this.locale = locale;
-        Calendar calendar = Calendar.getInstance(timeZone, locale);
-        if (date != null) {
-            calendar.setTime(date);
-            i7 = calendar.get(1);
-        } else if (locale.equals(JAPANESE_IMPERIAL)) {
-            i7 = 0;
-        } else {
-            calendar.setTime(new Date());
-            i7 = calendar.get(1) - 80;
-        }
-        int i10 = (i7 / 100) * 100;
-        this.century = i10;
-        this.startYear = i7 - i10;
-        init(calendar);
-    }
-
     @Override
     public Object parseObject(String str, ParsePosition parsePosition) {
         return parse(str, parsePosition);
     }
 
-    public static Map<String, Integer> getDisplayNames(int i7, Calendar calendar, Locale locale) {
-        return getDisplayNames(i7, locale);
-    }
-
-    @Override
-    public Date parse(String str, ParsePosition parsePosition) {
-        int index = parsePosition.getIndex();
-        Matcher matcher = this.parsePattern.matcher(str.substring(index));
-        if (!matcher.lookingAt()) {
-            return null;
-        }
-        Calendar calendar = Calendar.getInstance(this.timeZone, this.locale);
-        calendar.clear();
-        int i7 = 0;
-        while (true) {
-            Strategy[] strategyArr = this.strategies;
-            if (i7 < strategyArr.length) {
-                int i10 = i7 + 1;
-                strategyArr[i7].setCalendar(this, calendar, matcher.group(i10));
-                i7 = i10;
-            } else {
-                parsePosition.setIndex(matcher.end() + index);
-                return calendar.getTime();
-            }
-        }
-    }
-
-    public static class NumberStrategy extends Strategy {
+    private static class NumberStrategy extends Strategy {
         private final int field;
 
-        public NumberStrategy(int i7) {
+        public NumberStrategy(int i) {
             super();
-            this.field = i7;
+            this.field = i;
         }
 
         @Override
-        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb2) {
+        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb) {
             if (fastDateParser.isNextNumber()) {
-                sb2.append("(\\p{Nd}{");
-                sb2.append(fastDateParser.getFieldWidth());
-                sb2.append("}+)");
+                sb.append("(\\p{Nd}{");
+                sb.append(fastDateParser.getFieldWidth());
+                sb.append("}+)");
                 return true;
             }
-            sb2.append("(\\p{Nd}++)");
+            sb.append("(\\p{Nd}++)");
             return true;
         }
 
@@ -580,22 +554,53 @@ public class FastDateParser implements DateParser, Serializable {
             calendar.set(this.field, modify(Integer.parseInt(str)));
         }
 
-        public int modify(int i7) {
-            return i7;
+        public int modify(int i) {
+            return i;
         }
+    }
+
+    public static Map<String, Integer> getDisplayNames(int i, Calendar calendar, Locale locale) {
+        return getDisplayNames(i, locale);
+    }
+
+    public FastDateParser(String str, TimeZone timeZone, Locale locale) {
+        this(str, timeZone, locale, null);
     }
 
     public static abstract class Strategy {
         private Strategy() {
         }
 
-        public abstract boolean addRegex(FastDateParser fastDateParser, StringBuilder sb2);
+        public abstract boolean addRegex(FastDateParser fastDateParser, StringBuilder sb);
 
         public boolean isNumber() {
             return false;
         }
 
         public void setCalendar(FastDateParser fastDateParser, Calendar calendar, String str) {
+        }
+    }
+
+    @Override
+    public Date parse(String str, ParsePosition parsePosition) {
+        int index = parsePosition.getIndex();
+        Matcher matcher = this.parsePattern.matcher(str.substring(index));
+        if (!matcher.lookingAt()) {
+            return null;
+        }
+        Calendar calendar = Calendar.getInstance(this.timeZone, this.locale);
+        calendar.clear();
+        int i = 0;
+        while (true) {
+            Strategy[] strategyArr = this.strategies;
+            if (i < strategyArr.length) {
+                int i2 = i + 1;
+                strategyArr[i].setCalendar(this, calendar, matcher.group(i2));
+                i = i2;
+            } else {
+                parsePosition.setIndex(matcher.end() + index);
+                return calendar.getTime();
+            }
         }
     }
 }

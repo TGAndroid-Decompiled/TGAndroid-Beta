@@ -15,14 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
-import com.google.android.gms.internal.vision.e2;
-import ki.n3;
-import og.a;
-import og.m;
-import og.n;
-import og.o;
-import org.telegram.messenger.g0;
-import p1.g;
 public class CropAreaView extends ViewGroup {
     public RectF E;
     public int F;
@@ -43,161 +35,161 @@ public class CropAreaView extends ViewGroup {
     public Paint U;
     public AccelerateDecelerateInterpolator V;
     public float W;
-    public int f32973a;
-    public float f32974a0;
-    public float f32975b;
-    public boolean f32976b0;
-    public float f32977c;
-    public float f32978c0;
+    public int a;
+    public float a0;
+    public float b;
+    public boolean b0;
+    public float c;
+    public float c0;
     public RectF d;
-    public ObjectAnimator f32979d0;
-    public RectF f32980e;
-    public a f32981e0;
-    public RectF f32982f;
-    public boolean f32983f0;
-    public boolean f32984g0;
+    public ObjectAnimator d0;
+    public RectF e;
+    public o23 e0;
+    public RectF f;
+    public boolean f0;
+    public boolean g0;
     public RectF h;
-    public Bitmap f32985h0;
-    public Paint f32986i0;
-    public String f32987j0;
-    public StaticLayout f32988k0;
-    public AnimatorSet f32989l0;
+    public Bitmap h0;
+    public Paint i0;
+    public String j0;
+    public StaticLayout k0;
+    public AnimatorSet l0;
     public RectF m0;
-    public RectF f32990n;
-    public TextPaint f32991n0;
-    public float f32992o0;
-    public float f32993p0;
-    public float f32994q0;
-    public RectF f32995r;
-    public float f32996r0;
-    public RectF f32997s;
-    public int f32998s0;
-    public int f32999t0;
-    public int f33000u0;
-    public RectF f33001w;
-    public float f33002x;
-    public RectF f33003y;
+    public RectF n;
+    public TextPaint n0;
+    public float o0;
+    public float p0;
+    public float q0;
+    public RectF r;
+    public float r0;
+    public RectF s;
+    public int s0;
+    public int t0;
+    public int u0;
+    public RectF w;
+    public float x;
+    public RectF y;
 
-    public static void b(RectF rectF, float f10) {
+    public static void b(RectF rectF, float f) {
         float height = rectF.height();
-        rectF.right = rectF.left + (f10 * height);
+        rectF.right = rectF.left + (f * height);
         rectF.bottom = rectF.top + height;
     }
 
-    public static void c(RectF rectF, float f10) {
+    public static void c(RectF rectF, float f) {
         float width = rectF.width();
         rectF.right = rectF.left + width;
-        rectF.bottom = rectF.top + (width / f10);
+        rectF.bottom = rectF.top + (width / f);
     }
 
     private float getGridProgress() {
-        return this.f32978c0;
+        return this.c0;
     }
 
-    private void setCropBottom(float f10) {
-        this.f33003y.bottom = f10;
+    private void setCropBottom(float f) {
+        this.y.bottom = f;
         invalidate();
     }
 
-    private void setCropLeft(float f10) {
-        this.f33003y.left = f10;
+    private void setCropLeft(float f) {
+        this.y.left = f;
         invalidate();
     }
 
-    private void setCropRight(float f10) {
-        this.f33003y.right = f10;
+    private void setCropRight(float f) {
+        this.y.right = f;
         invalidate();
     }
 
-    private void setCropTop(float f10) {
-        this.f33003y.top = f10;
+    private void setCropTop(float f) {
+        this.y.top = f;
         invalidate();
     }
 
-    private void setGridProgress(float f10) {
-        this.f32978c0 = f10;
+    private void setGridProgress(float f) {
+        this.c0 = f;
         invalidate();
     }
 
-    public final void a(RectF rectF, float f10) {
-        int i7;
-        float f11;
-        float f12;
-        float f13;
-        float f14;
-        float f15 = this.W;
-        if (!this.f32976b0) {
-            i7 = g0.f24220m;
+    public final void a(RectF rectF, float f) {
+        int i;
+        float f2;
+        float f3;
+        float f4;
+        float f5;
+        float f6 = this.W;
+        if (!this.b0) {
+            i = gl.m;
         } else {
-            i7 = 0;
+            i = 0;
         }
-        float f16 = i7;
-        float measuredHeight = ((getMeasuredHeight() - this.H) - this.I) - f16;
+        float f7 = i;
+        float measuredHeight = ((getMeasuredHeight() - this.H) - this.I) - f7;
         float measuredWidth = getMeasuredWidth() / measuredHeight;
-        float f17 = f15 * 2.0f;
-        float min = Math.min(getMeasuredWidth(), measuredHeight) - f17;
-        float measuredWidth2 = getMeasuredWidth() - f17;
-        float f18 = measuredHeight - f17;
+        float f8 = f6 * 2.0f;
+        float min = Math.min(getMeasuredWidth(), measuredHeight) - f8;
+        float measuredWidth2 = getMeasuredWidth() - f8;
+        float f9 = measuredHeight - f8;
         float measuredWidth3 = getMeasuredWidth() / 2.0f;
-        float f19 = (measuredHeight / 2.0f) + f16 + this.I;
-        if (Math.abs(1.0f - f10) < 1.0E-4d) {
-            float f20 = min / 2.0f;
-            f14 = measuredWidth3 - f20;
-            f13 = f19 - f20;
-            f11 = measuredWidth3 + f20;
-            f12 = f19 + f20;
+        float f10 = (measuredHeight / 2.0f) + f7 + this.I;
+        if (Math.abs(1.0f - f) < 1.0E-4d) {
+            float f11 = min / 2.0f;
+            f5 = measuredWidth3 - f11;
+            f2 = f10 - f11;
+            f3 = measuredWidth3 + f11;
+            f4 = f10 + f11;
         } else {
-            if (f10 - measuredWidth <= 1.0E-4d) {
-                float f21 = f18 * f10;
-                if (f21 <= measuredWidth2) {
-                    float f22 = f21 / 2.0f;
-                    f14 = measuredWidth3 - f22;
-                    float f23 = f18 / 2.0f;
-                    float f24 = f19 - f23;
-                    f11 = measuredWidth3 + f22;
-                    f12 = f19 + f23;
-                    f13 = f24;
+            if (f - measuredWidth <= 1.0E-4d) {
+                float f12 = f9 * f;
+                if (f12 <= measuredWidth2) {
+                    float f13 = f12 / 2.0f;
+                    float f14 = measuredWidth3 - f13;
+                    float f15 = f9 / 2.0f;
+                    float f16 = f10 - f15;
+                    f3 = measuredWidth3 + f13;
+                    f4 = f10 + f15;
+                    f5 = f14;
+                    f2 = f16;
                 }
             }
-            float f25 = measuredWidth2 / 2.0f;
-            float f26 = measuredWidth3 - f25;
-            float f27 = (measuredWidth2 / f10) / 2.0f;
-            float f28 = f19 - f27;
-            f11 = measuredWidth3 + f25;
-            f12 = f19 + f27;
-            f13 = f28;
-            f14 = f26;
+            float f17 = measuredWidth2 / 2.0f;
+            float f18 = measuredWidth3 - f17;
+            float f19 = (measuredWidth2 / f) / 2.0f;
+            f2 = f10 - f19;
+            f3 = measuredWidth3 + f17;
+            f4 = f10 + f19;
+            f5 = f18;
         }
-        rectF.set(f14, f13, f11, f12);
+        rectF.set(f5, f2, f3, f4);
     }
 
     public final void d(RectF rectF) {
-        rectF.set(this.f33003y);
+        rectF.set(this.y);
     }
 
-    public final void e(int i7, int i10, boolean z10, boolean z11) {
-        float f10;
-        this.f32984g0 = z11;
-        if (z10) {
-            f10 = i10 / i7;
+    public final void e(int i, int i2, boolean z, boolean z2) {
+        float f;
+        this.g0 = z2;
+        if (z) {
+            f = i2 / i;
         } else {
-            f10 = i7 / i10;
+            f = i / i2;
         }
-        if (!z11) {
-            f10 = 1.0f;
-            this.f33002x = 1.0f;
+        if (!z2) {
+            f = 1.0f;
+            this.x = 1.0f;
         }
-        setActualRect(f10);
+        setActualRect(f);
     }
 
-    public final void f(boolean z10, boolean z11) {
-        this.K = z10;
-        float f10 = 1.0f;
-        if (z10) {
-            if (z11) {
-                f10 = 0.0f;
+    public final void f(boolean z, boolean z2) {
+        this.K = z;
+        float f = 1.0f;
+        if (z) {
+            if (z2) {
+                f = 0.0f;
             }
-            this.M = f10;
+            this.M = f;
             this.O = SystemClock.elapsedRealtime();
             invalidate();
             return;
@@ -205,77 +197,77 @@ public class CropAreaView extends ViewGroup {
         this.M = 1.0f;
     }
 
-    public final void g(int i7, boolean z10) {
-        float f10;
-        ObjectAnimator objectAnimator = this.f32979d0;
-        if (objectAnimator != null && (!z10 || this.f33000u0 != i7)) {
+    public final void g(int i, boolean z) {
+        float f;
+        ObjectAnimator objectAnimator = this.d0;
+        if (objectAnimator != null && (!z || this.u0 != i)) {
             objectAnimator.cancel();
-            this.f32979d0 = null;
+            this.d0 = null;
         }
-        int i10 = this.f33000u0;
-        if (i10 == i7) {
+        int i2 = this.u0;
+        if (i2 == i) {
             return;
         }
-        this.f32999t0 = i10;
-        this.f33000u0 = i7;
-        if (i7 == 1) {
-            f10 = 0.0f;
+        this.t0 = i2;
+        this.u0 = i;
+        if (i == 1) {
+            f = 0.0f;
         } else {
-            f10 = 1.0f;
+            f = 1.0f;
         }
-        if (!z10) {
-            this.f32978c0 = f10;
+        if (!z) {
+            this.c0 = f;
             invalidate();
             return;
         }
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "gridProgress", this.f32978c0, f10);
-        this.f32979d0 = ofFloat;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "gridProgress", this.c0, f);
+        this.d0 = ofFloat;
         ofFloat.setDuration(200L);
-        this.f32979d0.addListener(new n3(this, 4));
-        if (i7 == 1) {
-            this.f32979d0.setStartDelay(200L);
+        this.d0.addListener(new im2(this, (byte) 2));
+        if (i == 1) {
+            this.d0.setStartDelay(200L);
         }
-        this.f32979d0.start();
+        this.d0.start();
     }
 
     public float getAspectRatio() {
-        RectF rectF = this.f33003y;
+        RectF rectF = this.y;
         return (rectF.right - rectF.left) / (rectF.bottom - rectF.top);
     }
 
     public float getCropBottom() {
-        return this.f33003y.bottom;
+        return this.y.bottom;
     }
 
     public float getCropCenterX() {
-        RectF rectF = this.f33003y;
+        RectF rectF = this.y;
         return (rectF.left + rectF.right) / 2.0f;
     }
 
     public float getCropCenterY() {
-        RectF rectF = this.f33003y;
+        RectF rectF = this.y;
         return (rectF.top + rectF.bottom) / 2.0f;
     }
 
     public float getCropHeight() {
-        RectF rectF = this.f33003y;
+        RectF rectF = this.y;
         return rectF.bottom - rectF.top;
     }
 
     public float getCropLeft() {
-        return this.f33003y.left;
+        return this.y.left;
     }
 
     public float getCropRight() {
-        return this.f33003y.right;
+        return this.y.right;
     }
 
     public float getCropTop() {
-        return this.f33003y.top;
+        return this.y.top;
     }
 
     public float getCropWidth() {
-        RectF rectF = this.f33003y;
+        RectF rectF = this.y;
         return rectF.right - rectF.left;
     }
 
@@ -284,7 +276,7 @@ public class CropAreaView extends ViewGroup {
     }
 
     public float getLockAspectRatio() {
-        return this.f33002x;
+        return this.x;
     }
 
     public RectF getTargetRectToFill() {
@@ -294,169 +286,170 @@ public class CropAreaView extends ViewGroup {
         return rectF;
     }
 
-    public final void h(boolean z10) {
-        int i7;
+    public final void h(boolean z) {
+        int i;
         try {
             View decorView = ((Activity) getContext()).getWindow().getDecorView();
             int systemUiVisibility = decorView.getSystemUiVisibility();
-            if (z10) {
-                i7 = systemUiVisibility | 4;
+            if (z) {
+                i = systemUiVisibility | 4;
             } else {
-                i7 = systemUiVisibility & (-5);
+                i = systemUiVisibility & (-5);
             }
-            decorView.setSystemUiVisibility(i7);
+            decorView.setSystemUiVisibility(i);
         } catch (Exception unused) {
         }
     }
 
     public final void i() {
-        if (this.f32987j0 != null) {
-            if (this.f32991n0 == null) {
+        if (this.j0 != null) {
+            if (this.n0 == null) {
                 TextPaint textPaint = new TextPaint();
-                this.f32991n0 = textPaint;
-                textPaint.setColor(i0.a.o(-1, 120));
-                this.f32991n0.setTextSize(g0.L(13.0f));
-                this.f32991n0.setTextAlign(Paint.Align.CENTER);
+                this.n0 = textPaint;
+                textPaint.setColor(bm2.o(-1, 120));
+                this.n0.setTextSize(gl.L(13.0f));
+                this.n0.setTextAlign(Paint.Align.CENTER);
             }
-            this.f32988k0 = new StaticLayout(this.f32987j0, this.f32991n0, getMeasuredWidth() - g0.L(120.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.k0 = new StaticLayout(this.j0, this.n0, getMeasuredWidth() - gl.L(120.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             return;
         }
-        this.f32988k0 = null;
+        this.k0 = null;
     }
 
     public final void j() {
-        int L = g0.L(16.0f);
+        int L = gl.L(16.0f);
         RectF rectF = this.d;
-        RectF rectF2 = this.f33003y;
-        float f10 = rectF2.left;
-        float f11 = L;
-        float f12 = rectF2.top;
-        rectF.set(f10 - f11, f12 - f11, f10 + f11, f12 + f11);
-        RectF rectF3 = this.f32980e;
-        float f13 = rectF2.right;
-        float f14 = rectF2.top;
-        rectF3.set(f13 - f11, f14 - f11, f13 + f11, f14 + f11);
-        RectF rectF4 = this.f32982f;
-        float f15 = rectF2.left;
-        float f16 = rectF2.bottom;
-        rectF4.set(f15 - f11, f16 - f11, f15 + f11, f16 + f11);
+        RectF rectF2 = this.y;
+        float f = rectF2.left;
+        float f2 = L;
+        float f3 = rectF2.top;
+        rectF.set(f - f2, f3 - f2, f + f2, f3 + f2);
+        RectF rectF3 = this.e;
+        float f4 = rectF2.right;
+        float f5 = rectF2.top;
+        rectF3.set(f4 - f2, f5 - f2, f4 + f2, f5 + f2);
+        RectF rectF4 = this.f;
+        float f6 = rectF2.left;
+        float f7 = rectF2.bottom;
+        rectF4.set(f6 - f2, f7 - f2, f6 + f2, f7 + f2);
         RectF rectF5 = this.h;
-        float f17 = rectF2.right;
-        float f18 = rectF2.bottom;
-        rectF5.set(f17 - f11, f18 - f11, f17 + f11, f18 + f11);
-        float f19 = rectF2.top;
-        this.f32990n.set(rectF2.left + f11, f19 - f11, rectF2.right - f11, f19 + f11);
-        RectF rectF6 = this.f32995r;
-        float f20 = rectF2.left;
-        rectF6.set(f20 - f11, rectF2.top + f11, f20 + f11, rectF2.bottom - f11);
-        RectF rectF7 = this.f33001w;
-        float f21 = rectF2.right;
-        rectF7.set(f21 - f11, rectF2.top + f11, f21 + f11, rectF2.bottom - f11);
-        float f22 = rectF2.bottom;
-        this.f32997s.set(rectF2.left + f11, f22 - f11, rectF2.right - f11, f22 + f11);
+        float f8 = rectF2.right;
+        float f9 = rectF2.bottom;
+        rectF5.set(f8 - f2, f9 - f2, f8 + f2, f9 + f2);
+        float f10 = rectF2.top;
+        this.n.set(rectF2.left + f2, f10 - f2, rectF2.right - f2, f10 + f2);
+        RectF rectF6 = this.r;
+        float f11 = rectF2.left;
+        rectF6.set(f11 - f2, rectF2.top + f2, f11 + f2, rectF2.bottom - f2);
+        RectF rectF7 = this.w;
+        float f12 = rectF2.right;
+        rectF7.set(f12 - f2, rectF2.top + f2, f12 + f2, rectF2.bottom - f2);
+        float f13 = rectF2.bottom;
+        this.s.set(rectF2.left + f2, f13 - f2, rectF2.right - f2, f13 + f2);
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r29) {
+    public final void onDraw(android.graphics.Canvas r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Crop.CropAreaView.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f32983f0) {
+        if (this.f0) {
             return false;
         }
         return super.onInterceptTouchEvent(motionEvent);
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
         i();
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int i7;
-        boolean z10;
-        float f10 = this.W;
+        int i;
+        boolean z;
+        float f = this.W;
         RectF rectF = this.E;
-        int x10 = (int) (motionEvent.getX() - ((ViewGroup) getParent()).getX());
-        int y10 = (int) (motionEvent.getY() - ((ViewGroup) getParent()).getY());
-        if (!this.f32976b0) {
-            i7 = g0.f24220m;
+        int x = (int) (motionEvent.getX() - ((ViewGroup) getParent()).getX());
+        int y = (int) (motionEvent.getY() - ((ViewGroup) getParent()).getY());
+        if (!this.b0) {
+            i = gl.m;
         } else {
-            i7 = 0;
+            i = 0;
         }
-        float f11 = i7;
+        float f2 = i;
         int actionMasked = motionEvent.getActionMasked();
         if (actionMasked == 0) {
-            if (this.f32984g0) {
-                float f12 = x10;
-                float f13 = y10;
-                if (this.d.contains(f12, f13)) {
-                    this.f32998s0 = 2;
-                } else if (this.f32980e.contains(f12, f13)) {
-                    this.f32998s0 = 3;
-                } else if (this.f32982f.contains(f12, f13)) {
-                    this.f32998s0 = 4;
-                } else if (this.h.contains(f12, f13)) {
-                    this.f32998s0 = 5;
-                } else if (this.f32995r.contains(f12, f13)) {
-                    this.f32998s0 = 7;
-                } else if (this.f32990n.contains(f12, f13)) {
-                    this.f32998s0 = 6;
-                } else if (this.f33001w.contains(f12, f13)) {
-                    this.f32998s0 = 9;
-                } else if (this.f32997s.contains(f12, f13)) {
-                    this.f32998s0 = 8;
+            if (this.g0) {
+                float f3 = x;
+                float f4 = y;
+                if (this.d.contains(f3, f4)) {
+                    this.s0 = 2;
+                } else if (this.e.contains(f3, f4)) {
+                    this.s0 = 3;
+                } else if (this.f.contains(f3, f4)) {
+                    this.s0 = 4;
+                } else if (this.h.contains(f3, f4)) {
+                    this.s0 = 5;
+                } else if (this.r.contains(f3, f4)) {
+                    this.s0 = 7;
+                } else if (this.n.contains(f3, f4)) {
+                    this.s0 = 6;
+                } else if (this.w.contains(f3, f4)) {
+                    this.s0 = 9;
+                } else if (this.s.contains(f3, f4)) {
+                    this.s0 = 8;
                 } else {
-                    this.f32998s0 = 1;
+                    this.s0 = 1;
                     return false;
                 }
-                this.F = x10;
-                this.G = y10;
+                this.F = x;
+                this.G = y;
                 g(3, false);
-                this.f32983f0 = true;
+                this.f0 = true;
                 h(true);
-                a aVar = this.f32981e0;
-                if (aVar != null) {
-                    o oVar = (o) aVar;
-                    oVar.f21987a.d(oVar.f21991f);
-                    oVar.f21992n = 0.0f;
-                    n nVar = oVar.N;
-                    if (nVar != null) {
-                        nVar.q0(false);
+                o23 o23Var = this.e0;
+                if (o23Var != null) {
+                    j33 j33Var = (j33) o23Var;
+                    j33Var.a.d(j33Var.f);
+                    j33Var.n = 0.0f;
+                    i33 i33Var = j33Var.N;
+                    if (i33Var != null) {
+                        i33Var.h2(false);
                         return true;
                     }
                 }
             } else {
-                this.f32998s0 = 1;
+                this.s0 = 1;
                 return false;
             }
         } else if (actionMasked != 1 && actionMasked != 3) {
-            if (actionMasked == 2 && this.f32998s0 != 1) {
-                rectF.set(this.f33003y);
-                float f14 = x10 - this.F;
-                float f15 = y10 - this.G;
-                this.F = x10;
-                this.G = y10;
-                if (Math.abs(f14) > Math.abs(f15)) {
-                    z10 = true;
+            if (actionMasked == 2 && this.s0 != 1) {
+                rectF.set(this.y);
+                float f5 = x - this.F;
+                float f6 = y - this.G;
+                this.F = x;
+                this.G = y;
+                if (Math.abs(f5) > Math.abs(f6)) {
+                    z = true;
                 } else {
-                    z10 = false;
+                    z = false;
                 }
-                switch (g.c(this.f32998s0)) {
+                switch (ug8.F(this.s0)) {
                     case 1:
-                        rectF.left += f14;
-                        rectF.top += f15;
-                        if (this.f33002x > 0.0f) {
+                        rectF.left += f5;
+                        rectF.top += f6;
+                        if (this.x > 0.0f) {
                             float width = rectF.width();
                             float height = rectF.height();
-                            if (z10) {
-                                c(rectF, this.f33002x);
+                            float f7 = this.x;
+                            if (z) {
+                                c(rectF, f7);
                             } else {
-                                b(rectF, this.f33002x);
+                                b(rectF, f7);
                             }
                             rectF.left -= rectF.width() - width;
                             rectF.top -= rectF.width() - height;
@@ -464,165 +457,167 @@ public class CropAreaView extends ViewGroup {
                         }
                         break;
                     case 2:
-                        rectF.right += f14;
-                        rectF.top += f15;
-                        if (this.f33002x > 0.0f) {
+                        rectF.right += f5;
+                        rectF.top += f6;
+                        if (this.x > 0.0f) {
                             float height2 = rectF.height();
-                            if (z10) {
-                                c(rectF, this.f33002x);
+                            float f8 = this.x;
+                            if (z) {
+                                c(rectF, f8);
                             } else {
-                                b(rectF, this.f33002x);
+                                b(rectF, f8);
                             }
                             rectF.top -= rectF.width() - height2;
                             break;
                         }
                         break;
                     case 3:
-                        rectF.left += f14;
-                        rectF.bottom += f15;
-                        if (this.f33002x > 0.0f) {
+                        rectF.left += f5;
+                        rectF.bottom += f6;
+                        if (this.x > 0.0f) {
                             float width2 = rectF.width();
-                            if (z10) {
-                                c(rectF, this.f33002x);
+                            float f9 = this.x;
+                            if (z) {
+                                c(rectF, f9);
                             } else {
-                                b(rectF, this.f33002x);
+                                b(rectF, f9);
                             }
                             rectF.left -= rectF.width() - width2;
                             break;
                         }
                         break;
                     case 4:
-                        rectF.right += f14;
-                        rectF.bottom += f15;
-                        float f16 = this.f33002x;
-                        if (f16 > 0.0f) {
-                            if (z10) {
-                                c(rectF, f16);
+                        rectF.right += f5;
+                        rectF.bottom += f6;
+                        float f10 = this.x;
+                        if (f10 > 0.0f) {
+                            if (z) {
+                                c(rectF, f10);
                                 break;
                             } else {
-                                b(rectF, f16);
+                                b(rectF, f10);
                                 break;
                             }
                         }
                         break;
                     case 5:
-                        rectF.top += f15;
-                        float f17 = this.f33002x;
-                        if (f17 > 0.0f) {
-                            b(rectF, f17);
+                        rectF.top += f6;
+                        float f11 = this.x;
+                        if (f11 > 0.0f) {
+                            b(rectF, f11);
                             break;
                         }
                         break;
                     case 6:
-                        rectF.left += f14;
-                        float f18 = this.f33002x;
-                        if (f18 > 0.0f) {
-                            c(rectF, f18);
+                        rectF.left += f5;
+                        float f12 = this.x;
+                        if (f12 > 0.0f) {
+                            c(rectF, f12);
                             break;
                         }
                         break;
                     case 7:
-                        rectF.bottom += f15;
-                        float f19 = this.f33002x;
-                        if (f19 > 0.0f) {
-                            b(rectF, f19);
+                        rectF.bottom += f6;
+                        float f13 = this.x;
+                        if (f13 > 0.0f) {
+                            b(rectF, f13);
                             break;
                         }
                         break;
                     case 8:
-                        rectF.right += f14;
-                        float f20 = this.f33002x;
-                        if (f20 > 0.0f) {
-                            c(rectF, f20);
+                        rectF.right += f5;
+                        float f14 = this.x;
+                        if (f14 > 0.0f) {
+                            c(rectF, f14);
                             break;
                         }
                         break;
                 }
-                if (rectF.left < f10) {
-                    float f21 = this.f33002x;
-                    if (f21 > 0.0f) {
-                        rectF.bottom = e2.A(rectF.right, f10, f21, rectF.top);
+                if (rectF.left < f) {
+                    float f15 = this.x;
+                    if (f15 > 0.0f) {
+                        rectF.bottom = oo1.z(rectF.right, f, f15, rectF.top);
                     }
-                    rectF.left = f10;
-                } else if (rectF.right > getWidth() - f10) {
-                    rectF.right = getWidth() - f10;
-                    if (this.f33002x > 0.0f) {
-                        rectF.bottom = (rectF.width() / this.f33002x) + rectF.top;
+                    rectF.left = f;
+                } else if (rectF.right > getWidth() - f) {
+                    rectF.right = getWidth() - f;
+                    if (this.x > 0.0f) {
+                        rectF.bottom = (rectF.width() / this.x) + rectF.top;
                     }
                 }
-                float f22 = f11 + this.I + f10;
-                float f23 = this.H + f10;
-                if (rectF.top < f22) {
-                    float f24 = this.f33002x;
-                    if (f24 > 0.0f) {
-                        rectF.right = e2.z(rectF.bottom, f22, f24, rectF.left);
+                float f16 = f2 + this.I + f;
+                float f17 = this.H + f;
+                if (rectF.top < f16) {
+                    float f18 = this.x;
+                    if (f18 > 0.0f) {
+                        rectF.right = tb4.A(rectF.bottom, f16, f18, rectF.left);
                     }
-                    rectF.top = f22;
-                } else if (rectF.bottom > getHeight() - f23) {
-                    rectF.bottom = getHeight() - f23;
-                    if (this.f33002x > 0.0f) {
-                        rectF.right = (rectF.height() * this.f33002x) + rectF.left;
+                    rectF.top = f16;
+                } else if (rectF.bottom > getHeight() - f17) {
+                    rectF.bottom = getHeight() - f17;
+                    if (this.x > 0.0f) {
+                        rectF.right = (rectF.height() * this.x) + rectF.left;
                     }
                 }
                 float width3 = rectF.width();
-                float f25 = this.f32974a0;
-                if (width3 < f25) {
-                    rectF.right = rectF.left + f25;
+                float f19 = this.a0;
+                if (width3 < f19) {
+                    rectF.right = rectF.left + f19;
                 }
                 float height3 = rectF.height();
-                float f26 = this.f32974a0;
-                if (height3 < f26) {
-                    rectF.bottom = rectF.top + f26;
+                float f20 = this.a0;
+                if (height3 < f20) {
+                    rectF.bottom = rectF.top + f20;
                 }
-                float f27 = this.f33002x;
-                if (f27 > 0.0f) {
-                    if (f27 < 1.0f) {
+                float f21 = this.x;
+                if (f21 > 0.0f) {
+                    if (f21 < 1.0f) {
                         float width4 = rectF.width();
-                        float f28 = this.f32974a0;
-                        if (width4 <= f28) {
-                            rectF.right = rectF.left + f28;
-                            rectF.bottom = (rectF.width() / this.f33002x) + rectF.top;
+                        float f22 = this.a0;
+                        if (width4 <= f22) {
+                            rectF.right = rectF.left + f22;
+                            rectF.bottom = (rectF.width() / this.x) + rectF.top;
                         }
                     } else {
                         float height4 = rectF.height();
-                        float f29 = this.f32974a0;
-                        if (height4 <= f29) {
-                            rectF.bottom = rectF.top + f29;
-                            rectF.right = (rectF.height() * this.f33002x) + rectF.left;
+                        float f23 = this.a0;
+                        if (height4 <= f23) {
+                            rectF.bottom = rectF.top + f23;
+                            rectF.right = (rectF.height() * this.x) + rectF.left;
                         }
                     }
                 }
                 setActualRect(rectF);
-                a aVar2 = this.f32981e0;
-                if (aVar2 != null) {
-                    o oVar2 = (o) aVar2;
-                    CropAreaView cropAreaView = oVar2.f21987a;
+                o23 o23Var2 = this.e0;
+                if (o23Var2 != null) {
+                    j33 j33Var2 = (j33) o23Var2;
+                    CropAreaView cropAreaView = j33Var2.a;
                     cropAreaView.g(3, false);
-                    RectF rectF2 = oVar2.f21991f;
+                    RectF rectF2 = j33Var2.f;
                     float centerX = rectF2.centerX() - cropAreaView.getCropCenterX();
                     float centerY = rectF2.centerY() - cropAreaView.getCropCenterY();
-                    m mVar = oVar2.M;
-                    if (mVar != null) {
-                        m.f(mVar, centerX, centerY);
+                    h33 h33Var = j33Var2.M;
+                    if (h33Var != null) {
+                        h33Var.g(centerX, centerY);
                     }
-                    oVar2.r(false);
-                    rectF2.set(cropAreaView.f33003y);
-                    oVar2.e(true, false, false, false);
+                    j33Var2.r(false);
+                    rectF2.set(cropAreaView.y);
+                    j33Var2.d(true, false, false, false);
                     return true;
                 }
             }
             return false;
         } else {
-            this.f32983f0 = false;
+            this.f0 = false;
             h(false);
-            if (this.f32998s0 != 1) {
-                this.f32998s0 = 1;
-                a aVar3 = this.f32981e0;
-                if (aVar3 != null) {
-                    o oVar3 = (o) aVar3;
-                    CropAreaView cropAreaView2 = oVar3.f21987a;
+            if (this.s0 != 1) {
+                this.s0 = 1;
+                o23 o23Var3 = this.e0;
+                if (o23Var3 != null) {
+                    j33 j33Var3 = (j33) o23Var3;
+                    CropAreaView cropAreaView2 = j33Var3.a;
                     cropAreaView2.g(1, true);
-                    oVar3.d(cropAreaView2.getTargetRectToFill());
+                    j33Var3.c(cropAreaView2.getTargetRectToFill());
                 }
             }
             return false;
@@ -630,68 +625,68 @@ public class CropAreaView extends ViewGroup {
         return true;
     }
 
-    public void setActualRect(float f10) {
-        a(this.f33003y, f10);
+    public void setActualRect(float f) {
+        a(this.y, f);
         j();
         invalidate();
     }
 
-    public void setBottomPadding(float f10) {
-        this.H = f10;
+    public void setBottomPadding(float f) {
+        this.H = f;
     }
 
-    public void setDimAlpha(float f10) {
-        this.L = f10;
+    public void setDimAlpha(float f) {
+        this.L = f;
     }
 
-    public void setDimVisibility(boolean z10) {
-        this.J = z10;
+    public void setDimVisibility(boolean z) {
+        this.J = z;
     }
 
-    public void setFrameAlpha(float f10) {
-        this.N = f10;
+    public void setFrameAlpha(float f) {
+        this.N = f;
     }
 
-    public void setFreeform(boolean z10) {
-        this.f32984g0 = z10;
+    public void setFreeform(boolean z) {
+        this.g0 = z;
     }
 
-    public void setIsVideo(boolean z10) {
-        float f10;
-        if (z10) {
-            f10 = 64.0f;
+    public void setIsVideo(boolean z) {
+        float f;
+        if (z) {
+            f = 64.0f;
         } else {
-            f10 = 32.0f;
+            f = 32.0f;
         }
-        this.f32974a0 = g0.L(f10);
+        this.a0 = gl.L(f);
     }
 
-    public void setListener(a aVar) {
-        this.f32981e0 = aVar;
+    public void setListener(o23 o23Var) {
+        this.e0 = o23Var;
     }
 
-    public void setLockedAspectRatio(float f10) {
-        this.f33002x = f10;
+    public void setLockedAspectRatio(float f) {
+        this.x = f;
     }
 
     public void setSubtitle(String str) {
-        this.f32987j0 = str;
+        this.j0 = str;
         if (getMeasuredWidth() > 0) {
             i();
         }
     }
 
-    public void setTopPadding(float f10) {
-        this.I = f10;
+    public void setTopPadding(float f) {
+        this.I = f;
     }
 
     public void setActualRect(RectF rectF) {
-        this.f33003y.set(rectF);
+        this.y.set(rectF);
         j();
         invalidate();
     }
 
     @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
     }
 }

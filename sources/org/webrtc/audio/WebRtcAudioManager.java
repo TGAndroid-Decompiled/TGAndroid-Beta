@@ -15,11 +15,11 @@ class WebRtcAudioManager {
         return (AudioManager) context.getSystemService("audio");
     }
 
-    public static int getInputBufferSize(Context context, AudioManager audioManager, int i7, int i10) {
+    public static int getInputBufferSize(Context context, AudioManager audioManager, int i, int i2) {
         if (isLowLatencyInputSupported(context)) {
             return getLowLatencyFramesPerBuffer(audioManager);
         }
-        return getMinInputFrameSize(i7, i10);
+        return getMinInputFrameSize(i, i2);
     }
 
     private static int getLowLatencyFramesPerBuffer(AudioManager audioManager) {
@@ -30,33 +30,33 @@ class WebRtcAudioManager {
         return Integer.parseInt(property);
     }
 
-    private static int getMinInputFrameSize(int i7, int i10) {
-        int i11;
-        int i12 = i10 * 2;
-        if (i10 == 1) {
-            i11 = 16;
+    private static int getMinInputFrameSize(int i, int i2) {
+        int i3;
+        int i4 = i2 << 1;
+        if (i2 == 1) {
+            i3 = 16;
         } else {
-            i11 = 12;
+            i3 = 12;
         }
-        return AudioRecord.getMinBufferSize(i7, i11, 2) / i12;
+        return AudioRecord.getMinBufferSize(i, i3, 2) / i4;
     }
 
-    private static int getMinOutputFrameSize(int i7, int i10) {
-        int i11;
-        int i12 = i10 * 2;
-        if (i10 == 1) {
-            i11 = 4;
+    private static int getMinOutputFrameSize(int i, int i2) {
+        int i3;
+        int i4 = i2 << 1;
+        if (i2 == 1) {
+            i3 = 4;
         } else {
-            i11 = 12;
+            i3 = 12;
         }
-        return AudioTrack.getMinBufferSize(i7, i11, 2) / i12;
+        return AudioTrack.getMinBufferSize(i, i3, 2) / i4;
     }
 
-    public static int getOutputBufferSize(Context context, AudioManager audioManager, int i7, int i10) {
+    public static int getOutputBufferSize(Context context, AudioManager audioManager, int i, int i2) {
         if (isLowLatencyOutputSupported(context)) {
             return getLowLatencyFramesPerBuffer(audioManager);
         }
-        return getMinOutputFrameSize(i7, i10);
+        return getMinOutputFrameSize(i, i2);
     }
 
     public static int getSampleRate(AudioManager audioManager) {

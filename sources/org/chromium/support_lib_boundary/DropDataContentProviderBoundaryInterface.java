@@ -16,11 +16,11 @@ public interface DropDataContentProviderBoundaryInterface {
 
     boolean onCreate();
 
-    void onDragEnd(boolean z10);
+    void onDragEnd(boolean z);
 
     ParcelFileDescriptor openFile(ContentProvider contentProvider, Uri uri);
 
     Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2);
 
-    void setClearCachedDataIntervalMs(int i7);
+    void setClearCachedDataIntervalMs(int i);
 }

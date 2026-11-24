@@ -1,68 +1,64 @@
 package org.telegram.ui.Components;
-public final class a implements Runnable {
-    public final int f33293a;
-    public final m0 f33294b;
 
-    public a(m0 m0Var, int i7) {
-        this.f33293a = i7;
-        this.f33294b = m0Var;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class a extends FrameLayout {
+    public final Paint a;
+    public final RectF b;
+    public final wjb c;
+    public final ChatActivityEnterView d;
+
+    public a(ChatActivityEnterView chatActivityEnterView, Activity activity, wjb wjbVar) {
+        super(activity);
+        this.d = chatActivityEnterView;
+        this.c = wjbVar;
+        this.a = new Paint(1);
+        this.b = new RectF();
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f33293a;
-        m0 m0Var = this.f33294b;
-        switch (i7) {
-            case 0:
-                l0 l0Var = m0Var.f37301v2;
-                if (l0Var == null || l0Var.getSelectedTone() == null) {
-                    hi.u3 u3Var = m0Var.f37305z2;
-                    if (u3Var != null) {
-                        u3Var.f(true);
-                        m0Var.f37305z2 = null;
-                    }
-                    hi.u3 u3Var2 = new hi.u3(m0Var.getContext(), 1);
-                    m0Var.f37305z2 = u3Var2;
-                    u3Var2.t();
-                    m0Var.f37305z2.setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
-                    m0Var.f37305z2.s(20.0f);
-                    m0Var.f37305z2.u(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.ui.ActionBar.n6.r1(0.25f, -16777216));
-                    m0Var.f37305z2.v(org.telegram.messenger.gd.N0(2131755000, null));
-                    if (i0.a.h(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29451d6, m0Var.J0)) < 0.5d) {
-                        m0Var.f37305z2.j(956301311);
-                        hi.u3 u3Var3 = m0Var.f37305z2;
-                        u3Var3.I.u(-1);
-                        u3Var3.K.setColor(-1);
-                        m0Var.f37305z2.u(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.ui.ActionBar.n6.r1(0.12f, -16777216));
-                    }
-                    m0Var.f37305z2.o(0.5f, 0.0f);
-                    hi.u3 u3Var4 = m0Var.f37305z2;
-                    u3Var4.d = 8000L;
-                    m0Var.f30226b.addView(u3Var4, c8.na.d(-1, 200.0f, 55, 0.0f, 0.0f, 0.0f, 0.0f));
-                    m0Var.f37305z2.x();
-                    m0Var.D1();
-                    return;
-                }
-                return;
-            case 1:
-                if (!m0Var.I2) {
-                    m0Var.B2.setVisibility(8);
-                    return;
-                }
-                return;
-            case 2:
-                if (m0Var.I2) {
-                    m0Var.A2.setVisibility(8);
-                    return;
-                }
-                return;
-            case 3:
-                org.telegram.messenger.g0.I3(m0Var.f37304y2.d);
-                return;
-            default:
-                m0Var.u1(0, 0, false);
-                m0Var.dismiss();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        ChatActivityEnterView chatActivityEnterView = this.d;
+        if (!chatActivityEnterView.b1 && !chatActivityEnterView.o7) {
+            gw1 gw1Var = chatActivityEnterView.T0;
+            float f = 1.0f;
+            if (gw1Var != null && gw1Var.getVisibility() == 0) {
+                f = 1.0f - chatActivityEnterView.T0.getAlpha();
+            }
+            float N = gl.N(19.0f);
+            int F0 = chatActivityEnterView.F0(bkb.Oe);
+            Paint paint = this.a;
+            paint.setColor(F0);
+            float N2 = gl.N(3.0f);
+            float N3 = gl.N(38.0f);
+            float measuredWidth = (getMeasuredWidth() - gl.N(38.0f)) - N2;
+            float measuredHeight = (getMeasuredHeight() - N3) - N2;
+            float measuredWidth2 = getMeasuredWidth() - N2;
+            float measuredHeight2 = getMeasuredHeight() - N2;
+            RectF rectF = this.b;
+            rectF.set(measuredWidth, measuredHeight, measuredWidth2, measuredHeight2);
+            canvas.save();
+            canvas.scale(f, f, rectF.centerX(), rectF.centerY());
+            canvas.drawRoundRect(rectF, N, N, paint);
+            canvas.restore();
         }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.d.o7) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r35) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

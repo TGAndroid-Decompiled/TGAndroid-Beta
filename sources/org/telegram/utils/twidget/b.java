@@ -1,30 +1,53 @@
 package org.telegram.utils.twidget;
 
-import android.os.IInterface;
-public interface b extends IInterface {
-    void G0(long j3, float f10);
+import android.content.Context;
+public abstract class b {
+    public void a(long j, long j2, int i, byte[] bArr) {
+        WidgetSandboxNative.answerRequest(j, j2, i, bArr);
+    }
 
-    void J(long j3);
+    public abstract long b(Context context, String str, String str2, float f, float f2, int i, String str3, String str4, String str5, String str6, boolean z, WidgetSandboxBackend widgetSandboxBackend);
 
-    void M0(long j3);
+    public void c(long j, byte[] bArr) {
+        WidgetSandboxNative.data(j, bArr);
+    }
 
-    void R(long j3, byte[] bArr);
+    public void d(long j) {
+        WidgetSandboxNative.destroy(j);
+    }
 
-    void Z0(long j3, int i7, float f10, float f11, int i10);
+    public void e(long j, int i, float f, float f2, int i2) {
+        WidgetSandboxNative.hover(j, i, f, f2, i2);
+    }
 
-    void b1();
+    public void g(long j) {
+        WidgetSandboxNative.repaint(j);
+    }
 
-    void d1(long j3, byte[] bArr);
+    public void h(long j, byte[] bArr) {
+        WidgetSandboxNative.safeArea(j, bArr);
+    }
 
-    void e0(long j3, byte[] bArr);
+    public void i(long j, byte[] bArr) {
+        WidgetSandboxNative.theme(j, bArr);
+    }
 
-    void j0(long j3, int i7, float f10, float f11, int i10, boolean z10, boolean z11, int i11, int i12);
+    public void j(long j, float f, boolean z, boolean z2, boolean z3) {
+        WidgetSandboxNative.tick(j, f, z, z2, z3);
+    }
 
-    void s(long j3, float f10, boolean z10, boolean z11, boolean z12);
+    public void k(long j, int i, float f, float f2, int i2, boolean z, boolean z2, int i3, int i4) {
+        WidgetSandboxNative.touch(j, i, f, f2, i2, z, z2, i3, i4);
+    }
 
-    long t(byte[] bArr, byte[] bArr2, float f10, float f11, int i7, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6, boolean z10, d dVar);
+    public void l(long j, boolean z) {
+        WidgetSandboxNative.visible(j, z);
+    }
 
-    void u(long j3, long j10, int i7, byte[] bArr);
+    public void m(long j, float f) {
+        WidgetSandboxNative.width(j, f);
+    }
 
-    void u0(long j3, boolean z10);
+    public void f(long j) {
+    }
 }

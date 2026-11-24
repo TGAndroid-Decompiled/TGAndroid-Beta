@@ -1,0 +1,18 @@
+package defpackage;
+
+import android.os.Build;
+import android.view.View;
+import android.view.Window;
+public abstract class gye {
+    public static void a(Window window) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 35) {
+            tga.t(window);
+        } else if (i >= 30) {
+            tga.s(window);
+        } else {
+            View decorView = window.getDecorView();
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | 1792);
+        }
+    }
+}

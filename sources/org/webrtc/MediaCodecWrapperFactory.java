@@ -1,4 +1,4 @@
 package org.webrtc;
-public interface MediaCodecWrapperFactory {
+interface MediaCodecWrapperFactory {
     MediaCodecWrapper createByCodecName(String str);
 }

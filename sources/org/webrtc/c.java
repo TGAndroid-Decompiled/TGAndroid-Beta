@@ -1,32 +1,45 @@
 package org.webrtc;
 
-import android.content.Context;
-import android.graphics.Matrix;
-import android.view.WindowManager;
-import org.webrtc.VideoFrame;
+import org.webrtc.EglBase;
+import org.webrtc.EglBase10;
+import org.webrtc.EglBase14;
 public abstract class c {
-    public static VideoFrame.TextureBuffer a(TextureBufferImpl textureBufferImpl, boolean z10, int i7) {
-        Matrix matrix = new Matrix();
-        matrix.preTranslate(0.5f, 0.5f);
-        if (z10) {
-            matrix.preScale(-1.0f, 1.0f);
-        }
-        matrix.preRotate(i7);
-        matrix.preTranslate(-0.5f, -0.5f);
-        return textureBufferImpl.applyTransformMatrix(matrix, textureBufferImpl.getWidth(), textureBufferImpl.getHeight());
+    public static final int a = 0;
+
+    static {
+        Object obj = EglBase.lock;
     }
 
-    public static int b(Context context) {
-        int rotation = ((WindowManager) context.getSystemService("window")).getDefaultDisplay().getRotation();
-        if (rotation != 1) {
-            if (rotation != 2) {
-                if (rotation != 3) {
-                    return 0;
-                }
-                return 270;
+    public static EglBase a(EglBase.Context context, int[] iArr) {
+        if (context == null) {
+            if (EglBase14Impl.isEGL14Supported()) {
+                return new EglBase14Impl(null, iArr);
             }
-            return 180;
+            return new EglBase10Impl(null, iArr);
+        } else if (context instanceof EglBase14.Context) {
+            return new EglBase14Impl(((EglBase14.Context) context).getRawContext(), iArr);
+        } else {
+            if (context instanceof EglBase10.Context) {
+                return new EglBase10Impl(((EglBase10.Context) context).getRawContext(), iArr);
+            }
+            w26.j("Unrecognized Context");
+            return null;
         }
-        return 90;
+    }
+
+    public static int b(int[] iArr) {
+        for (int i = 0; i < iArr.length - 1; i++) {
+            if (iArr[i] == 12352) {
+                int i2 = iArr[i + 1];
+                if (i2 != 4) {
+                    if (i2 != 64) {
+                        return 1;
+                    }
+                    return 3;
+                }
+                return 2;
+            }
+        }
+        return 1;
     }
 }

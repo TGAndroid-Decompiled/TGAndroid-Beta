@@ -17,15 +17,17 @@ public abstract class JLatexMathAndroid {
         if (context != null) {
             return context;
         }
-        throw new NullPointerException("Please call `#init(Context)` method to initialize jLatexMath");
+        fvc.f("Please call `#init(Context)` method to initialize jLatexMath");
+        return null;
     }
 
     public static InputStream getResourceAsStream(String str) {
         try {
             AssetManager assets = context().getAssets();
             return assets.open("org/scilab/forge/jlatexmath/" + str);
-        } catch (IOException e10) {
-            throw new RuntimeException(e10);
+        } catch (IOException e) {
+            sdb.b(e);
+            return null;
         }
     }
 

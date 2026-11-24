@@ -1,42 +1,32 @@
 package org.telegram.utils.twidget;
+public final class q implements xvc, lvc {
+    public final byte a;
+    public final Object b;
+    public final int c;
 
-import android.content.res.AssetManager;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-public final class q implements y, x {
-    public final int f55034a;
-    public final Object f55035b;
-
-    public q(Object obj, int i7) {
-        this.f55034a = i7;
-        this.f55035b = obj;
+    public q(Object obj, int i, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = i;
     }
 
     @Override
-    public void a(byte[] bArr) {
-        WidgetEngineBackend.i((WidgetEngineBackend) this.f55035b, bArr);
+    public final void a(byte[] bArr) {
+        ((WidgetEngineBackend) this.b).lambda$signal$3(this.c, bArr);
     }
 
-    public InputStream b(String str) {
-        switch (this.f55034a) {
-            case 2:
-                ZipFile zipFile = (ZipFile) this.f55035b;
-                String str2 = WidgetEngineService.f54797b;
-                ZipEntry entry = zipFile.getEntry("assets/WidgetSandbox/" + str);
-                if (entry != null) {
-                    return zipFile.getInputStream(entry);
-                }
-                throw new FileNotFoundException(str);
+    @Override
+    public final Object run() {
+        byte b = this.a;
+        int i = this.c;
+        w wVar = (w) this.b;
+        switch (b) {
+            case 0:
+                wVar.b.deleteFont(i);
+                return null;
             default:
-                String str3 = WidgetEngineService.f54797b;
-                return ((AssetManager) this.f55035b).open("WidgetSandbox/" + str);
+                wVar.b.canvasRelease(i);
+                return null;
         }
-    }
-
-    @Override
-    public void mo26run() {
-        WidgetEngineBackend.m((y) this.f55035b);
     }
 }

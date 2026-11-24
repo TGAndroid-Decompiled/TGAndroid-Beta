@@ -1,117 +1,113 @@
 package org.telegram.utils.code.highlight;
-
-import com.google.android.gms.internal.play_billing.s0;
-import qi.q;
 public final class PrismaHighlighter implements AutoCloseable {
-    public long f54756a;
-    public final String[] f54757b;
-    public final q f54758c;
+    public long a;
+    public final String[] b;
+    public final kj8 c;
 
     public PrismaHighlighter(byte[] bArr) {
         if (bArr != null) {
             long nativeCreate = nativeCreate(bArr);
-            this.f54756a = nativeCreate;
+            this.a = nativeCreate;
             if (nativeCreate != 0) {
                 try {
                     String[] nativeGetTokenNames = nativeGetTokenNames(nativeCreate);
-                    this.f54757b = nativeGetTokenNames;
+                    this.b = nativeGetTokenNames;
                     if (nativeGetTokenNames != null && nativeGetTokenNames.length != 0 && "".equals(nativeGetTokenNames[0])) {
-                        this.f54758c = new q(nativeGetTokenNames);
+                        this.c = new kj8(nativeGetTokenNames);
                         return;
                     }
                     throw new IllegalStateException("Invalid native token name table");
-                } catch (Error e10) {
-                    e = e10;
-                    close();
-                    throw e;
-                } catch (RuntimeException e11) {
-                    e = e11;
+                } catch (Error | RuntimeException e) {
                     close();
                     throw e;
                 }
             }
-            throw new IllegalStateException("Native highlighter was not created");
+            sc8.j("Native highlighter was not created");
+            throw null;
         }
-        throw new NullPointerException("grammars");
+        fvc.f("grammars");
+        throw null;
     }
 
-    public static boolean b(int i7, String str) {
-        if (i7 > 0 && i7 < str.length() && Character.isHighSurrogate(str.charAt(i7 - 1)) && Character.isLowSurrogate(str.charAt(i7))) {
+    public static boolean b(int i, String str) {
+        if (i > 0 && i < str.length() && Character.isHighSurrogate(str.charAt(i - 1)) && Character.isLowSurrogate(str.charAt(i))) {
             return true;
         }
         return false;
     }
 
-    public static void d(int[] iArr, String str, int i7) {
+    public static void d(int[] iArr, String str, int i) {
         if (iArr != null && iArr.length % 5 == 0) {
-            int i10 = 0;
-            int i11 = 0;
-            while (i10 < iArr.length) {
-                int i12 = iArr[i10];
-                int i13 = iArr[i10 + 1];
-                int i14 = iArr[i10 + 2];
-                int i15 = iArr[i10 + 3];
-                int i16 = iArr[i10 + 4];
-                if (i12 >= i11 && i13 > i12 && i13 <= str.length() && i14 >= 0 && i14 < i7 && i15 >= 0 && i15 < i7 && i16 >= -1 && i16 < i10 / 5 && !b(i12, str) && !b(i13, str)) {
-                    if (i16 >= 0) {
-                        int i17 = i16 * 5;
-                        if (i12 < iArr[i17] || i13 > iArr[i17 + 1]) {
-                            throw new IllegalStateException("Native token is outside its parent");
+            int i2 = 0;
+            int i3 = 0;
+            while (i2 < iArr.length) {
+                int i4 = iArr[i2];
+                int i5 = iArr[i2 + 1];
+                int i6 = iArr[i2 + 2];
+                int i7 = iArr[i2 + 3];
+                int i8 = iArr[i2 + 4];
+                if (i4 >= i3 && i5 > i4 && i5 <= str.length() && i6 >= 0 && i6 < i && i7 >= 0 && i7 < i && i8 >= -1 && i8 < i2 / 5 && !b(i4, str) && !b(i5, str)) {
+                    if (i8 >= 0) {
+                        int i9 = i8 * 5;
+                        if (i4 < iArr[i9] || i5 > iArr[i9 + 1]) {
+                            sc8.j("Native token is outside its parent");
+                            return;
                         }
                     }
-                    i10 += 5;
-                    i11 = i12;
+                    i2 += 5;
+                    i3 = i4;
                 } else {
-                    throw new IllegalStateException("Invalid native token range");
+                    sc8.j("Invalid native token range");
+                    return;
                 }
             }
             return;
         }
-        throw new IllegalStateException("Invalid native token array");
+        sc8.j("Invalid native token array");
     }
 
     private static native long nativeCreate(byte[] bArr);
 
-    private static native void nativeDestroy(long j3);
+    private static native void nativeDestroy(long j);
 
-    private static native String[] nativeGetLanguages(long j3);
+    private static native String[] nativeGetLanguages(long j);
 
-    private static native String[] nativeGetTokenNames(long j3);
+    private static native String[] nativeGetTokenNames(long j);
 
-    private static native int[] nativeHighlight(long j3, String str, String str2);
+    private static native int[] nativeHighlight(long j, String str, String str2);
 
     public final synchronized String[] a() {
-        long j3;
-        j3 = this.f54756a;
-        if (j3 != 0) {
+        long j;
+        j = this.a;
+        if (j != 0) {
         } else {
             throw new IllegalStateException("Highlighter is closed");
         }
-        return nativeGetLanguages(j3);
+        return nativeGetLanguages(j);
     }
 
-    public final synchronized s0 c(String str, String str2) {
+    public final synchronized f06 c(String str, String str2) {
         int[] nativeHighlight;
-        long j3 = this.f54756a;
-        if (j3 != 0) {
+        long j = this.a;
+        if (j != 0) {
             if (str != null) {
-                nativeHighlight = nativeHighlight(j3, str, str2);
-                d(nativeHighlight, str, this.f54757b.length);
+                nativeHighlight = nativeHighlight(j, str, str2);
+                d(nativeHighlight, str, this.b.length);
             } else {
                 throw new NullPointerException("text");
             }
         } else {
             throw new IllegalStateException("Highlighter is closed");
         }
-        return new s0(nativeHighlight, this.f54758c);
+        return new f06(nativeHighlight, this.c);
     }
 
     @Override
     public final synchronized void close() {
-        long j3 = this.f54756a;
-        if (j3 != 0) {
-            nativeDestroy(j3);
-            this.f54756a = 0L;
+        long j = this.a;
+        if (j != 0) {
+            nativeDestroy(j);
+            this.a = 0L;
         }
     }
 }

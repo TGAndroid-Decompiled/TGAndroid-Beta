@@ -11,16 +11,16 @@ public class MusicBrowserService extends MediaBrowserService {
     @Override
     public final void onCreate() {
         super.onCreate();
-        t0.w();
-        setSessionToken((MediaSession.Token) ((android.support.v4.media.session.u) pz.a(this).f26419b.f1676b).f1708c.f1652b);
+        a.v();
+        setSessionToken((MediaSession.Token) ((zu6) hgb.a(this).b.b).c.b);
     }
 
     @Override
-    public final MediaBrowserService.BrowserRoot onGetRoot(String str, int i7, Bundle bundle) {
+    public final MediaBrowserService.BrowserRoot onGetRoot(String str, int i, Bundle bundle) {
         if (str != null) {
-            if (1000 != i7 && Process.myUid() != i7) {
-                HashSet hashSet = zs.f28440a;
-                if (i7 != 1000 && i7 != Process.myUid() && !zs.f28440a.contains(str)) {
+            if (1000 != i && Process.myUid() != i) {
+                HashSet hashSet = lr7.a;
+                if (i != 1000 && i != Process.myUid() && !lr7.a.contains(str)) {
                     PackageManager packageManager = getPackageManager();
                     try {
                         if (packageManager.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", str) != 0) {
@@ -33,11 +33,11 @@ public class MusicBrowserService extends MediaBrowserService {
                     }
                 }
             }
-            pz.a(this).getClass();
-            if (pz.b()) {
+            hgb.a(this).getClass();
+            if (hgb.b()) {
                 return null;
             }
-            pz.a(this).getClass();
+            hgb.a(this).getClass();
             Bundle bundle2 = new Bundle();
             bundle2.putBoolean("android.media.browse.CONTENT_STYLE_SUPPORTED", true);
             bundle2.putInt("android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", 2);
@@ -49,15 +49,15 @@ public class MusicBrowserService extends MediaBrowserService {
 
     @Override
     public final void onLoadChildren(String str, MediaBrowserService.Result result) {
-        pz a10 = pz.a(this);
-        a10.getClass();
-        if (pz.b()) {
-            Toast.makeText(getApplicationContext(), gd.N0(2131751098, null), 1).show();
+        hgb a = hgb.a(this);
+        a.getClass();
+        if (hgb.b()) {
+            Toast.makeText(getApplicationContext(), k96.M0(2131751098, null), 1).show();
             stopSelf();
             result.detach();
             return;
         }
         result.detach();
-        a10.c(str, new j1(result, 13));
+        a.c(str, new im6(result, (byte) 12));
     }
 }

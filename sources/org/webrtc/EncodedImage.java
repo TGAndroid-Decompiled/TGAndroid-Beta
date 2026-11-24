@@ -13,66 +13,6 @@ public class EncodedImage implements RefCounted {
     private final RefCountDelegate refCountDelegate;
     public final int rotation;
 
-    public static class Builder {
-        private ByteBuffer buffer;
-        private long captureTimeNs;
-        private int encodedHeight;
-        private int encodedWidth;
-        private FrameType frameType;
-        private Integer qp;
-        private Runnable releaseCallback;
-        private int rotation;
-
-        public EncodedImage createEncodedImage() {
-            return new EncodedImage(this.buffer, this.releaseCallback, this.encodedWidth, this.encodedHeight, this.captureTimeNs, this.frameType, this.rotation, this.qp);
-        }
-
-        public Builder setBuffer(ByteBuffer byteBuffer, Runnable runnable) {
-            this.buffer = byteBuffer;
-            this.releaseCallback = runnable;
-            return this;
-        }
-
-        @Deprecated
-        public Builder setCaptureTimeMs(long j3) {
-            this.captureTimeNs = TimeUnit.MILLISECONDS.toNanos(j3);
-            return this;
-        }
-
-        public Builder setCaptureTimeNs(long j3) {
-            this.captureTimeNs = j3;
-            return this;
-        }
-
-        public Builder setEncodedHeight(int i7) {
-            this.encodedHeight = i7;
-            return this;
-        }
-
-        public Builder setEncodedWidth(int i7) {
-            this.encodedWidth = i7;
-            return this;
-        }
-
-        public Builder setFrameType(FrameType frameType) {
-            this.frameType = frameType;
-            return this;
-        }
-
-        public Builder setQp(Integer num) {
-            this.qp = num;
-            return this;
-        }
-
-        public Builder setRotation(int i7) {
-            this.rotation = i7;
-            return this;
-        }
-
-        private Builder() {
-        }
-    }
-
     public enum FrameType {
         EmptyFrame(0),
         VideoFrameKey(3),
@@ -80,23 +20,36 @@ public class EncodedImage implements RefCounted {
         
         private final int nativeIndex;
 
-        FrameType(int i7) {
-            this.nativeIndex = i7;
+        FrameType(int i) {
+            this.nativeIndex = i;
         }
 
-        public static FrameType fromNativeIndex(int i7) {
+        public static FrameType fromNativeIndex(int i) {
             FrameType[] values;
             for (FrameType frameType : values()) {
-                if (frameType.getNative() == i7) {
+                if (frameType.getNative() == i) {
                     return frameType;
                 }
             }
-            throw new IllegalArgumentException(i5.c.i(i7, "Unknown native frame type: "));
+            w26.j(de9.k(i, "Unknown native frame type: "));
+            return null;
         }
 
         public int getNative() {
             return this.nativeIndex;
         }
+    }
+
+    private EncodedImage(ByteBuffer byteBuffer, Runnable runnable, int i, int i2, long j, FrameType frameType, int i3, Integer num) {
+        this.buffer = byteBuffer;
+        this.encodedWidth = i;
+        this.encodedHeight = i2;
+        this.captureTimeMs = j / 1000000;
+        this.captureTimeNs = j;
+        this.frameType = frameType;
+        this.rotation = i3;
+        this.qp = num;
+        this.refCountDelegate = new RefCountDelegate(runnable);
     }
 
     public static Builder builder() {
@@ -141,15 +94,63 @@ public class EncodedImage implements RefCounted {
         this.refCountDelegate.retain();
     }
 
-    private EncodedImage(ByteBuffer byteBuffer, Runnable runnable, int i7, int i10, long j3, FrameType frameType, int i11, Integer num) {
-        this.buffer = byteBuffer;
-        this.encodedWidth = i7;
-        this.encodedHeight = i10;
-        this.captureTimeMs = TimeUnit.NANOSECONDS.toMillis(j3);
-        this.captureTimeNs = j3;
-        this.frameType = frameType;
-        this.rotation = i11;
-        this.qp = num;
-        this.refCountDelegate = new RefCountDelegate(runnable);
+    public static class Builder {
+        private ByteBuffer buffer;
+        private long captureTimeNs;
+        private int encodedHeight;
+        private int encodedWidth;
+        private FrameType frameType;
+        private Integer qp;
+        private Runnable releaseCallback;
+        private int rotation;
+
+        public EncodedImage createEncodedImage() {
+            return new EncodedImage(this.buffer, this.releaseCallback, this.encodedWidth, this.encodedHeight, this.captureTimeNs, this.frameType, this.rotation, this.qp);
+        }
+
+        public Builder setBuffer(ByteBuffer byteBuffer, Runnable runnable) {
+            this.buffer = byteBuffer;
+            this.releaseCallback = runnable;
+            return this;
+        }
+
+        @Deprecated
+        public Builder setCaptureTimeMs(long j) {
+            this.captureTimeNs = TimeUnit.MILLISECONDS.toNanos(j);
+            return this;
+        }
+
+        public Builder setCaptureTimeNs(long j) {
+            this.captureTimeNs = j;
+            return this;
+        }
+
+        public Builder setEncodedHeight(int i) {
+            this.encodedHeight = i;
+            return this;
+        }
+
+        public Builder setEncodedWidth(int i) {
+            this.encodedWidth = i;
+            return this;
+        }
+
+        public Builder setFrameType(FrameType frameType) {
+            this.frameType = frameType;
+            return this;
+        }
+
+        public Builder setQp(Integer num) {
+            this.qp = num;
+            return this;
+        }
+
+        public Builder setRotation(int i) {
+            this.rotation = i;
+            return this;
+        }
+
+        private Builder() {
+        }
     }
 }

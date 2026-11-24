@@ -6,8 +6,8 @@ import android.content.Intent;
 public class StopLiveLocationReceiver extends BroadcastReceiver {
     @Override
     public final void onReceive(Context context, Intent intent) {
-        for (int i7 = 0; i7 < 4; i7++) {
-            Utilities.d.c(new hd(qd.f(i7), 6));
+        for (int i = 0; i < 4; i++) {
+            Utilities.d.c(new va6(eb6.f(i), (byte) 6));
         }
     }
 }

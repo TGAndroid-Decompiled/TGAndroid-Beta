@@ -7,17 +7,17 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
     private static final Predicate<MediaCodecInfo> defaultAllowedPredicate = new Predicate<MediaCodecInfo>() {
         @Override
         public final Predicate<MediaCodecInfo> and(Predicate<? super MediaCodecInfo> predicate) {
-            return Predicate.CC.a(this, predicate);
+            return new Predicate.AnonymousClass2(predicate);
         }
 
         @Override
         public final Predicate<MediaCodecInfo> negate() {
-            return Predicate.CC.b(this);
+            return new Predicate.AnonymousClass3();
         }
 
         @Override
         public final Predicate<MediaCodecInfo> or(Predicate<? super MediaCodecInfo> predicate) {
-            return Predicate.CC.c(this, predicate);
+            return new Predicate.AnonymousClass1(predicate);
         }
 
         @Override
@@ -26,9 +26,8 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
         }
     };
 
-    @Deprecated
-    public HardwareVideoDecoderFactory() {
-        this(null);
+    public HardwareVideoDecoderFactory(org.webrtc.EglBase.Context r2, org.webrtc.Predicate<android.media.MediaCodecInfo> r3) {
+        throw new UnsupportedOperationException("Method not decompiled: org.webrtc.HardwareVideoDecoderFactory.<init>(org.webrtc.EglBase$Context, org.webrtc.Predicate):void");
     }
 
     @Override
@@ -45,7 +44,8 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
         this(context, null);
     }
 
-    public HardwareVideoDecoderFactory(org.webrtc.EglBase.Context r2, org.webrtc.Predicate<android.media.MediaCodecInfo> r3) {
-        throw new UnsupportedOperationException("Method not decompiled: org.webrtc.HardwareVideoDecoderFactory.<init>(org.webrtc.EglBase$Context, org.webrtc.Predicate):void");
+    @Deprecated
+    public HardwareVideoDecoderFactory() {
+        this(null);
     }
 }

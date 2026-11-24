@@ -39,8 +39,8 @@ public class Logging {
         
         public final int level;
 
-        TraceLevel(int i7) {
-            this.level = i7;
+        TraceLevel(int i) {
+            this.level = i;
         }
     }
 
@@ -58,8 +58,11 @@ public class Logging {
         loggable = null;
     }
 
-    public static void e(String str, String str2) {
-        log(Severity.LS_ERROR, str, str2);
+    public static void e(String str, String str2, Throwable th) {
+        Severity severity = Severity.LS_ERROR;
+        log(severity, str, str2);
+        log(severity, str, th.toString());
+        log(severity, str, getStackTraceString(th));
     }
 
     public static void enableLogThreads() {
@@ -81,12 +84,12 @@ public class Logging {
         }
     }
 
-    private static String getStackTraceString(Throwable th2) {
-        if (th2 == null) {
+    private static String getStackTraceString(Throwable th) {
+        if (th == null) {
             return "";
         }
         StringWriter stringWriter = new StringWriter();
-        th2.printStackTrace(new PrintWriter(stringWriter));
+        th.printStackTrace(new PrintWriter(stringWriter));
         return stringWriter.toString();
     }
 
@@ -129,37 +132,34 @@ public class Logging {
                 return;
             }
         }
-        throw new IllegalArgumentException("Logging tag or message may not be null.");
+        w26.j("Logging tag or message may not be null.");
     }
 
     private static native void nativeEnableLogThreads();
 
     private static native void nativeEnableLogTimeStamps();
 
-    private static native void nativeEnableLogToDebugOutput(int i7);
+    private static native void nativeEnableLogToDebugOutput(int i);
 
-    private static native void nativeLog(int i7, String str, String str2);
+    private static native void nativeLog(int i, String str, String str2);
 
     public static void v(String str, String str2) {
         log(Severity.LS_VERBOSE, str, str2);
     }
 
-    public static void w(String str, String str2) {
-        log(Severity.LS_WARNING, str, str2);
-    }
-
-    public static void e(String str, String str2, Throwable th2) {
-        Severity severity = Severity.LS_ERROR;
-        log(severity, str, str2);
-        log(severity, str, th2.toString());
-        log(severity, str, getStackTraceString(th2));
-    }
-
-    public static void w(String str, String str2, Throwable th2) {
+    public static void w(String str, String str2, Throwable th) {
         Severity severity = Severity.LS_WARNING;
         log(severity, str, str2);
-        log(severity, str, th2.toString());
-        log(severity, str, getStackTraceString(th2));
+        log(severity, str, th.toString());
+        log(severity, str, getStackTraceString(th));
+    }
+
+    public static void e(String str, String str2) {
+        log(Severity.LS_ERROR, str, str2);
+    }
+
+    public static void w(String str, String str2) {
+        log(Severity.LS_WARNING, str, str2);
     }
 
     @Deprecated

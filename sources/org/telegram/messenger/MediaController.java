@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import android.animation.ValueAnimator;
-import android.bluetooth.BluetoothAdapter;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -23,7 +22,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.TextureView;
-import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.FrameLayout;
 import j$.util.concurrent.ConcurrentHashMap;
@@ -38,317 +37,310 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Timer;
+import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.h61;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-public class MediaController implements AudioManager.OnAudioFocusChangeListener, fs, SensorEventListener {
+public class MediaController implements AudioManager.OnAudioFocusChangeListener, gk7, SensorEventListener {
     public static final String[] W1;
     public static final String[] X1;
     public static final ConcurrentHashMap Y1;
     public static Runnable Z1;
-    public static ue f22784a2;
-    public static ue f22785b2;
-    public static ArrayList f22786c2;
+    public static xl6 a2;
+    public static xl6 b2;
+    public static ArrayList c2;
     public static ArrayList d2;
-    public static bi.i5 f22787e2;
-    public static volatile MediaController f22788f2;
-    public static long f22789g2;
-    public static boolean f22790h2;
+    public static qt e2;
+    public static volatile MediaController f2;
+    public static long g2;
+    public static boolean h2;
     public boolean B0;
     public boolean C0;
-    public int C1;
-    public h2.a0 D0;
+    public byte C1;
+    public km6 D0;
     public boolean D1;
-    public int E;
-    public rf.a E0;
+    public byte E;
+    public g00 E0;
     public int E1;
     public int F;
-    public h61 F0;
+    public lbc F0;
     public boolean F1;
     public int G;
     public boolean G0;
-    public e0.g G1;
+    public u20 G1;
     public long H;
     public TextureView H0;
-    public fi.z0 H1;
+    public al6 H1;
     public PipRoundVideoView I0;
     public boolean I1;
     public boolean J;
-    public int J0;
+    public byte J0;
     public boolean J1;
     public boolean K;
     public LaunchActivity K0;
     public boolean K1;
-    public View L0;
-    public ac.e L1;
+    public ViewGroup L0;
+    public m20 L1;
     public boolean M;
-    public org.telegram.ui.j4 M0;
-    public ud M1;
+    public ix M0;
+    public xk6 M1;
     public boolean N;
     public boolean N0;
-    public final q5 N1;
+    public final co3 N1;
     public boolean O;
     public FrameLayout O0;
-    public final q5 O1;
+    public final co3 O1;
     public boolean P;
     public float P0;
     public boolean Q;
     public boolean Q0;
     public float Q1;
     public float R;
-    public gp R0;
+    public ia7 R0;
     public ValueAnimator R1;
-    public androidx.emoji2.text.j T1;
+    public sv T1;
     public boolean U1;
-    public int V;
+    public byte V;
     public int V0;
-    public gf V1;
+    public mm6 V1;
     public boolean W;
     public boolean W0;
     public boolean X;
     public boolean Y0;
     public boolean Z;
     public long Z0;
-    public int f22793a1;
-    public jf f22795b0;
-    public long f22796b1;
-    public SensorManager f22797c;
+    public int a1;
+    public om6 b0;
+    public long b1;
+    public SensorManager c;
     public PowerManager.WakeLock d;
-    public Sensor f22802e;
-    public boolean f22803e0;
-    public boolean f22804e1;
-    public Sensor f22805f;
-    public ArrayList f22806f0;
-    public AudioRecord f22807f1;
-    public SparseArray f22808g0;
-    public TLRPC.TL_document f22809g1;
+    public Sensor e;
+    public boolean e0;
+    public boolean e1;
+    public Sensor f;
+    public ArrayList f0;
+    public AudioRecord f1;
+    public SparseArray g0;
+    public TLRPC.TL_document g1;
     public Sensor h;
-    public int f22813i1;
-    public File f22815j1;
-    public File f22817k1;
+    public int i1;
+    public File j1;
+    public File k1;
     public long l1;
     public boolean m0;
-    public int f22819m1;
-    public Sensor f22820n;
-    public int f22821n0;
+    public int m1;
+    public Sensor n;
+    public int n0;
     public long n1;
-    public String f22822o0;
-    public long f22823o1;
-    public long f22824p0;
-    public long f22825p1;
-    public kj f22827q1;
-    public boolean f22828r;
-    public fj f22830r1;
-    public org.telegram.ui.bn f22831s;
-    public fj f22833s1;
-    public TL_stories.StoryItem f22835t1;
-    public float f22836u0;
-    public bw f22837u1;
-    public fj f22838v0;
-    public boolean f22840w;
-    public fj f22841w0;
-    public long f22842w1;
-    public long f22843x;
-    public cf f22844x0;
-    public int f22846y;
-    public boolean f22847y0;
-    public final ByteBuffer f22850z1;
-    public final sd f22791a = new AudioManager.OnAudioFocusChangeListener() {
-        @Override
-        public final void onAudioFocusChange(int i7) {
-            MediaController mediaController = MediaController.this;
-            if (i7 != 1) {
-                mediaController.W = false;
-                return;
-            }
-            String[] strArr = MediaController.W1;
-            mediaController.getClass();
-        }
-    };
-    public final Object f22794b = new Object();
+    public String o0;
+    public long o1;
+    public long p0;
+    public long p1;
+    public u47 q1;
+    public boolean r;
+    public k27 r1;
+    public mu1 s;
+    public k27 s1;
+    public TL_stories.StoryItem t1;
+    public float u0;
+    public j1a u1;
+    public k27 v0;
+    public boolean w;
+    public k27 w0;
+    public long w1;
+    public long x;
+    public gm6 x0;
+    public int y;
+    public boolean y0;
+    public final ByteBuffer z1;
+    public final zz a = new zz(this, (byte) 1);
+    public final Object b = new Object();
     public long I = 0;
     public float L = -100.0f;
     public final float[] S = new float[3];
     public final float[] T = new float[3];
     public final float[] U = new float[3];
-    public int Y = 0;
-    public final ArrayList f22792a0 = new ArrayList();
-    public final ArrayList f22798c0 = new ArrayList();
-    public final HashMap f22800d0 = new HashMap();
-    public boolean f22810h0 = false;
-    public boolean f22812i0 = false;
-    public h61 f22814j0 = null;
-    public h61 f22816k0 = null;
-    public int f22818l0 = 0;
-    public float f22826q0 = 1.0f;
-    public float f22829r0 = 1.0f;
-    public float f22832s0 = 1.0f;
-    public float f22834t0 = 1.0f;
-    public Timer f22849z0 = null;
+    public byte Y = 0;
+    public final ArrayList a0 = new ArrayList();
+    public final ArrayList c0 = new ArrayList();
+    public final HashMap d0 = new HashMap();
+    public boolean h0 = false;
+    public boolean i0 = false;
+    public lbc j0 = null;
+    public lbc k0 = null;
+    public int l0 = 0;
+    public float q0 = 1.0f;
+    public float r0 = 1.0f;
+    public float s0 = 1.0f;
+    public float t0 = 1.0f;
+    public Timer z0 = null;
     public final Object A0 = new Object();
     public final ArrayList S0 = new ArrayList();
     public final HashMap T0 = new HashMap();
     public final ArrayList U0 = new ArrayList();
     public final boolean[] X0 = {false, false};
-    public final int[] f22799c1 = {Integer.MAX_VALUE, Integer.MAX_VALUE};
-    public final qe f22801d1 = new qe(this);
-    public int f22811h1 = -1;
-    public short[] f22839v1 = new short[1024];
-    public final Object f22845x1 = new Object();
-    public final ArrayList f22848y1 = new ArrayList();
+    public final int[] c1 = {Integer.MAX_VALUE, Integer.MAX_VALUE};
+    public final rl6 d1 = new rl6(this);
+    public int h1 = -1;
+    public short[] v1 = new short[1024];
+    public final Object x1 = new Object();
+    public final ArrayList y1 = new ArrayList();
     public int A1 = 1280;
-    public int B1 = 48000;
-    public final i6.g P1 = new i6.g(this, 10);
-    public final fi.d4 S1 = new fi.d4(this, 6);
+    public char B1 = 48000;
+    public final ez3 P1 = new ez3(this, (byte) 24);
+    public final ae0 S1 = new ae0(this, (byte) 8);
 
     static {
         String str;
         String str2;
-        int i7 = Build.VERSION.SDK_INT;
-        if (i7 <= 28) {
+        int i = Build.VERSION.SDK_INT;
+        if (i <= 28) {
             str = "datetaken";
         } else {
             str = "date_modified";
         }
         W1 = new String[]{"_id", "bucket_id", "bucket_display_name", "_data", str, "orientation", "width", "height", "_size"};
-        if (i7 <= 28) {
+        if (i <= 28) {
             str2 = "datetaken";
         } else {
             str2 = "date_modified";
         }
         X1 = new String[]{"_id", "bucket_id", "bucket_display_name", "_data", str2, "duration", "width", "height", "_size"};
         Y1 = new ConcurrentHashMap();
-        f22786c2 = new ArrayList();
+        c2 = new ArrayList();
         d2 = new ArrayList();
     }
 
     public MediaController() {
-        q5 q5Var = new q5("recordQueue");
-        this.N1 = q5Var;
-        q5Var.setPriority(10);
-        q5 q5Var2 = new q5("fileEncodingQueue");
-        this.O1 = q5Var2;
-        q5Var2.setPriority(10);
-        q5Var.c(new td(this, 0));
-        Utilities.f22877e.c(new td(this, 1));
-        this.f22850z1 = ByteBuffer.allocateDirect(1920);
-        g0.g3(new td(this, 2));
-        ContentResolver contentResolver = t0.f27013b.getContentResolver();
+        co3 co3Var = new co3("recordQueue");
+        this.N1 = co3Var;
+        co3Var.setPriority(10);
+        co3 co3Var2 = new co3("fileEncodingQueue");
+        this.O1 = co3Var2;
+        co3Var2.setPriority(10);
+        co3Var.c(new wk6(this, (byte) 0));
+        Utilities.e.c(new wk6(this, (byte) 1));
+        this.z1 = ByteBuffer.allocateDirect(1920);
+        gl.d3(new wk6(this, (byte) 2));
+        ContentResolver contentResolver = a.b.getContentResolver();
         try {
-            contentResolver.registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, true, new com.google.android.gms.internal.clearcut.e2(null, 1));
-        } catch (Exception e10) {
-            a8.g(e10, true);
+            contentResolver.registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, true, new hd1(null, (byte) 1));
+        } catch (Exception e) {
+            fa4.g(e, true);
         }
         try {
-            contentResolver.registerContentObserver(MediaStore.Images.Media.INTERNAL_CONTENT_URI, true, new com.google.android.gms.internal.clearcut.e2(null, 2));
-        } catch (Exception e11) {
-            a8.g(e11, true);
+            contentResolver.registerContentObserver(MediaStore.Images.Media.INTERNAL_CONTENT_URI, true, new hd1(null, (byte) 2));
+        } catch (Exception e3) {
+            fa4.g(e3, true);
         }
         try {
-            contentResolver.registerContentObserver(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, true, new com.google.android.gms.internal.clearcut.e2(null, 1));
-        } catch (Exception e12) {
-            a8.g(e12, true);
+            contentResolver.registerContentObserver(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, true, new hd1(null, (byte) 1));
+        } catch (Exception e4) {
+            fa4.g(e4, true);
         }
         try {
-            contentResolver.registerContentObserver(MediaStore.Video.Media.INTERNAL_CONTENT_URI, true, new com.google.android.gms.internal.clearcut.e2(null, 2));
-        } catch (Exception e13) {
-            a8.g(e13, true);
+            contentResolver.registerContentObserver(MediaStore.Video.Media.INTERNAL_CONTENT_URI, true, new hd1(null, (byte) 2));
+        } catch (Exception e5) {
+            fa4.g(e5, true);
         }
     }
 
-    public static java.lang.String A(android.net.Uri r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.A(android.net.Uri):java.lang.String");
-    }
-
-    public static MediaController B() {
-        MediaController mediaController;
-        MediaController mediaController2 = f22788f2;
-        if (mediaController2 == null) {
-            synchronized (MediaController.class) {
-                try {
-                    mediaController = f22788f2;
-                    if (mediaController == null) {
-                        mediaController = new MediaController();
-                        f22788f2 = mediaController;
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
-                }
-            }
-            return mediaController;
-        }
-        return mediaController2;
-    }
-
-    public static int E(String str) {
-        int i7;
-        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-        try {
-            mediaMetadataRetriever.setDataSource(str);
-            i7 = Integer.parseInt(mediaMetadataRetriever.extractMetadata(20));
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            i7 = 0;
-        }
-        try {
-            mediaMetadataRetriever.release();
-        } catch (Throwable th2) {
-            a8.g(th2, true);
-        }
-        return i7;
-    }
-
-    public static boolean G(Uri uri) {
+    public static boolean B(Uri uri) {
         InputStream inputStream = null;
         try {
             try {
                 try {
-                    inputStream = t0.f27013b.getContentResolver().openInputStream(uri);
+                    inputStream = a.b.getContentResolver().openInputStream(uri);
                     byte[] bArr = new byte[3];
                     if (inputStream.read(bArr, 0, 3) == 3) {
                         if (new String(bArr).equalsIgnoreCase("gif")) {
                             try {
                                 inputStream.close();
                                 return true;
-                            } catch (Exception e10) {
-                                a8.g(e10, true);
+                            } catch (Exception e) {
+                                fa4.g(e, true);
                                 return true;
                             }
                         }
                     }
                     inputStream.close();
                     return false;
-                } catch (Exception e11) {
-                    a8.g(e11, true);
+                } catch (Exception e3) {
+                    fa4.g(e3, true);
                     if (inputStream != null) {
                         inputStream.close();
                     }
                     return false;
                 }
-            } catch (Exception e12) {
-                a8.g(e12, true);
+            } catch (Exception e4) {
+                fa4.g(e4, true);
                 return false;
             }
-        } catch (Throwable th2) {
+        } catch (Throwable th) {
             if (inputStream != null) {
                 try {
                     inputStream.close();
-                } catch (Exception e13) {
-                    a8.g(e13, true);
+                } catch (Exception e5) {
+                    fa4.g(e5, true);
                 }
             }
-            throw th2;
+            throw th;
+        }
+    }
+
+    public static boolean H(Uri uri) {
+        InputStream inputStream = null;
+        try {
+            try {
+                try {
+                    inputStream = a.b.getContentResolver().openInputStream(uri);
+                    byte[] bArr = new byte[12];
+                    if (inputStream.read(bArr, 0, 12) == 12) {
+                        String lowerCase = new String(bArr).toLowerCase();
+                        if (lowerCase.startsWith("riff")) {
+                            if (lowerCase.endsWith("webp")) {
+                                try {
+                                    inputStream.close();
+                                    return true;
+                                } catch (Exception e) {
+                                    fa4.g(e, true);
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                    inputStream.close();
+                    return false;
+                } catch (Exception e3) {
+                    fa4.g(e3, true);
+                    if (inputStream != null) {
+                        inputStream.close();
+                    }
+                    return false;
+                }
+            } catch (Exception e4) {
+                fa4.g(e4, true);
+                return false;
+            }
+        } catch (Throwable th) {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (Exception e5) {
+                    fa4.g(e5, true);
+                }
+            }
+            throw th;
         }
     }
 
     public static void H0(File file, File file2, OutputStream outputStream, boolean[] zArr) {
-        String j3 = p5.c.j(file2.length(), "<?xpacket begin=\"\ufeff\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?><x:xmpmeta xmlns:x=\"adobe:ns:meta/\"><rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"><rdf:Description rdf:about=\"\" xmlns:GCamera=\"http://ns.google.com/photos/1.0/camera/\" xmlns:Container=\"http://ns.google.com/photos/1.0/container/\" xmlns:Item=\"http://ns.google.com/photos/1.0/container/item/\" GCamera:MotionPhoto=\"1\" GCamera:MotionPhotoVersion=\"1\" GCamera:MotionPhotoPresentationTimestampUs=\"0\"><Container:Directory><rdf:Seq><rdf:li rdf:parseType=\"Resource\"><Container:Item Item:Mime=\"image/jpeg\" Item:Semantic=\"Primary\" Item:Length=\"0\" Item:Padding=\"0\"/></rdf:li><rdf:li rdf:parseType=\"Resource\"><Container:Item Item:Mime=\"video/mp4\" Item:Semantic=\"MotionPhoto\" Item:Length=\"", "\" Item:Padding=\"0\"/></rdf:li></rdf:Seq></Container:Directory></rdf:Description></rdf:RDF></x:xmpmeta><?xpacket end=\"w\"?>");
+        String n = ug8.n(file2.length(), "<?xpacket begin=\"\ufeff\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?><x:xmpmeta xmlns:x=\"adobe:ns:meta/\"><rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"><rdf:Description rdf:about=\"\" xmlns:GCamera=\"http://ns.google.com/photos/1.0/camera/\" xmlns:Container=\"http://ns.google.com/photos/1.0/container/\" xmlns:Item=\"http://ns.google.com/photos/1.0/container/item/\" GCamera:MotionPhoto=\"1\" GCamera:MotionPhotoVersion=\"1\" GCamera:MotionPhotoPresentationTimestampUs=\"0\"><Container:Directory><rdf:Seq><rdf:li rdf:parseType=\"Resource\"><Container:Item Item:Mime=\"image/jpeg\" Item:Semantic=\"Primary\" Item:Length=\"0\" Item:Padding=\"0\"/></rdf:li><rdf:li rdf:parseType=\"Resource\"><Container:Item Item:Mime=\"video/mp4\" Item:Semantic=\"MotionPhoto\" Item:Length=\"", "\" Item:Padding=\"0\"/></rdf:li></rdf:Seq></Container:Directory></rdf:Description></rdf:RDF></x:xmpmeta><?xpacket end=\"w\"?>");
         byte[] bytes = "http://ns.adobe.com/xap/1.0/\u0000".getBytes("UTF-8");
-        byte[] bytes2 = j3.getBytes("UTF-8");
+        byte[] bytes2 = n.getBytes("UTF-8");
         int length = bytes.length + bytes2.length + 2;
         if (length <= 65535) {
             FileInputStream fileInputStream = new FileInputStream(file);
@@ -375,560 +367,108 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             outputStream.write(bArr, 0, read3);
                         } else {
                             fileInputStream.close();
-                            FileInputStream fileInputStream2 = new FileInputStream(file2);
+                            fileInputStream = new FileInputStream(file2);
                             try {
                                 byte[] bArr2 = new byte[65536];
                                 while (true) {
-                                    int read4 = fileInputStream2.read(bArr2);
-                                    if (read4 > 0) {
-                                        if (zArr != null && zArr[0]) {
-                                            fileInputStream2.close();
-                                            return;
-                                        }
-                                        outputStream.write(bArr2, 0, read4);
-                                    } else {
-                                        fileInputStream2.close();
-                                        return;
+                                    int read4 = fileInputStream.read(bArr2);
+                                    if (read4 <= 0 || (zArr != null && zArr[0])) {
+                                        break;
                                     }
+                                    outputStream.write(bArr2, 0, read4);
                                 }
-                            } catch (Throwable th2) {
-                                try {
-                                    fileInputStream2.close();
-                                } catch (Throwable th3) {
-                                    th2.addSuppressed(th3);
-                                }
-                                throw th2;
+                                fileInputStream.close();
+                                return;
+                            } finally {
                             }
                         }
                     }
                 } else {
                     throw new IOException("Not a JPEG: " + file);
                 }
-            } catch (Throwable th4) {
-                try {
-                    fileInputStream.close();
-                } catch (Throwable th5) {
-                    th4.addSuppressed(th5);
-                }
-                throw th4;
+            } finally {
             }
         } else {
-            throw new IOException(i5.c.i(length, "XMP segment too large: "));
+            k93.f(de9.k(length, "XMP segment too large: "));
         }
     }
 
-    public static boolean M(Uri uri) {
-        InputStream inputStream = null;
-        try {
-            try {
-                try {
-                    inputStream = t0.f27013b.getContentResolver().openInputStream(uri);
-                    byte[] bArr = new byte[12];
-                    if (inputStream.read(bArr, 0, 12) == 12) {
-                        String lowerCase = new String(bArr).toLowerCase();
-                        if (lowerCase.startsWith("riff")) {
-                            if (lowerCase.endsWith("webp")) {
-                                try {
-                                    inputStream.close();
-                                    return true;
-                                } catch (Exception e10) {
-                                    a8.g(e10, true);
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                    inputStream.close();
-                    return false;
-                } catch (Exception e11) {
-                    a8.g(e11, true);
-                    if (inputStream != null) {
-                        inputStream.close();
-                    }
-                    return false;
-                }
-            } catch (Throwable th2) {
-                if (inputStream != null) {
-                    try {
-                        inputStream.close();
-                    } catch (Exception e12) {
-                        a8.g(e12, true);
-                    }
-                }
-                throw th2;
-            }
-        } catch (Exception e13) {
-            a8.g(e13, true);
-        }
-    }
-
-    public static void O(int i7) {
-        Thread thread = new Thread(new jg.x(i7, 2));
+    public static void N(int i) {
+        Thread thread = new Thread(new xv0(i, (byte) 6));
         thread.setPriority(1);
         thread.start();
     }
 
-    public static int Q(int r5, int r6, int r7, int r8, int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.Q(int, int, int, int, int):int");
+    public static int P(int r5, int r6, int r7, int r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.P(int, int, int, int, int):int");
     }
 
-    public static void a(MediaController mediaController, boolean z10) {
-        mediaController.stopRecord();
-        TLRPC.TL_document tL_document = mediaController.f22809g1;
-        File N = mediaController.N(mediaController.f22815j1, mediaController.f22817k1, tL_document);
-        if (tL_document != null && N != null) {
-            g0.g3(new aa.c0(mediaController, N, z10, tL_document, 13));
-        }
-    }
-
-    public static void b(final MediaController mediaController, final int i7, final int i10, long j3, long j10, kj kjVar, fj fjVar, fj fjVar2, TL_stories.StoryItem storyItem, bw bwVar) {
-        String absolutePath;
-        if (mediaController.f22807f1 != null) {
-            g0.g3(new Runnable(mediaController) {
-                public final MediaController f28378b;
-
-                {
-                    this.f28378b = mediaController;
-                }
-
-                @Override
-                public final void run() {
-                    int i11 = r4;
-                    int i12 = i10;
-                    int i13 = i7;
-                    MediaController mediaController2 = this.f28378b;
-                    switch (i11) {
-                        case 0:
-                            mediaController2.M1 = null;
-                            ks.f(i13).k(156, Integer.valueOf(i12));
-                            return;
-                        case 1:
-                            mediaController2.M1 = null;
-                            ks.f(i13).k(156, Integer.valueOf(i12));
-                            return;
-                        case 2:
-                            mediaController2.M1 = null;
-                            ks.f(i13).k(156, Integer.valueOf(i12));
-                            return;
-                        default:
-                            mediaController2.M1 = null;
-                            ks.f(i13).k(155, Integer.valueOf(i12), Boolean.TRUE);
-                            return;
-                    }
-                }
-            });
-            return;
-        }
-        j0(true);
-        mediaController.C1 = 0;
-        TLRPC.TL_document tL_document = new TLRPC.TL_document();
-        mediaController.f22809g1 = tL_document;
-        mediaController.f22811h1 = i10;
-        tL_document.file_reference = new byte[0];
-        tL_document.dc_id = Integer.MIN_VALUE;
-        tL_document.f28498id = bz.p();
-        mediaController.f22809g1.user_id = i10.i(i7).e();
-        TLRPC.TL_document tL_document2 = mediaController.f22809g1;
-        tL_document2.mime_type = "audio/ogg";
-        tL_document2.file_reference = new byte[0];
-        bz.y();
-        File z10 = w7.z(1);
-        mediaController.f22817k1 = new File(z10, System.currentTimeMillis() + "_" + w7.r(null, mediaController.f22809g1));
-        w7.z(4).mkdirs();
-        if (s2.f26829a) {
-            a8.b("start recording internal " + mediaController.f22817k1.getPath() + " " + mediaController.f22817k1.exists());
-        }
-        File file = mediaController.f22817k1;
-        Set set = z0.f28337a;
-        if (file != null && (absolutePath = file.getAbsolutePath()) != null) {
-            z0.f28337a.add(absolutePath);
-        }
-        try {
-            if (mediaController.startRecord(mediaController.f22817k1.getPath(), mediaController.B1) == 0) {
-                g0.g3(new Runnable(mediaController) {
-                    public final MediaController f28378b;
-
-                    {
-                        this.f28378b = mediaController;
-                    }
-
-                    @Override
-                    public final void run() {
-                        int i11 = r4;
-                        int i12 = i10;
-                        int i13 = i7;
-                        MediaController mediaController2 = this.f28378b;
-                        switch (i11) {
-                            case 0:
-                                mediaController2.M1 = null;
-                                ks.f(i13).k(156, Integer.valueOf(i12));
-                                return;
-                            case 1:
-                                mediaController2.M1 = null;
-                                ks.f(i13).k(156, Integer.valueOf(i12));
-                                return;
-                            case 2:
-                                mediaController2.M1 = null;
-                                ks.f(i13).k(156, Integer.valueOf(i12));
-                                return;
-                            default:
-                                mediaController2.M1 = null;
-                                ks.f(i13).k(155, Integer.valueOf(i12), Boolean.TRUE);
-                                return;
-                        }
-                    }
-                });
-                if (s2.f26829a) {
-                    a8.b("cant init encoder");
-                    return;
-                }
-                return;
-            }
-            mediaController.f22804e1 = false;
-            mediaController.f22807f1 = new AudioRecord(0, mediaController.B1, 16, 2, mediaController.A1);
-            System.currentTimeMillis();
-            long j11 = 0;
-            mediaController.l1 = 0L;
-            mediaController.f22819m1 = 0;
-            mediaController.f22842w1 = 0L;
-            mediaController.n1 = j3;
-            mediaController.f22825p1 = j10;
-            mediaController.f22827q1 = kjVar;
-            if (fjVar != null) {
-                j11 = fj.b2(mediaController.f22813i1, fjVar.f24073k, false, false);
-            }
-            mediaController.f22823o1 = j11;
-            mediaController.f22813i1 = i7;
-            mediaController.f22830r1 = fjVar2;
-            mediaController.f22833s1 = fjVar;
-            mediaController.f22835t1 = storyItem;
-            mediaController.f22837u1 = bwVar;
-            mediaController.f22850z1.rewind();
-            mediaController.f22807f1.startRecording();
-            mediaController.N1.c(mediaController.P1);
-            g0.g3(new Runnable(mediaController) {
-                public final MediaController f28378b;
-
-                {
-                    this.f28378b = mediaController;
-                }
-
-                @Override
-                public final void run() {
-                    int i11 = r4;
-                    int i12 = i10;
-                    int i13 = i7;
-                    MediaController mediaController2 = this.f28378b;
-                    switch (i11) {
-                        case 0:
-                            mediaController2.M1 = null;
-                            ks.f(i13).k(156, Integer.valueOf(i12));
-                            return;
-                        case 1:
-                            mediaController2.M1 = null;
-                            ks.f(i13).k(156, Integer.valueOf(i12));
-                            return;
-                        case 2:
-                            mediaController2.M1 = null;
-                            ks.f(i13).k(156, Integer.valueOf(i12));
-                            return;
-                        default:
-                            mediaController2.M1 = null;
-                            ks.f(i13).k(155, Integer.valueOf(i12), Boolean.TRUE);
-                            return;
-                    }
-                }
-            });
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            mediaController.f22809g1 = null;
-            mediaController.stopRecord();
-            z0.b(mediaController.f22817k1);
-            mediaController.f22817k1.delete();
-            mediaController.f22817k1 = null;
-            File file2 = mediaController.f22815j1;
-            if (file2 != null) {
-                file2.delete();
-                mediaController.f22815j1 = null;
-            }
-            try {
-                mediaController.f22807f1.release();
-                mediaController.f22807f1 = null;
-            } catch (Exception e11) {
-                a8.g(e11, true);
-            }
-            j0(false);
-            g0.g3(new Runnable(mediaController) {
-                public final MediaController f28378b;
-
-                {
-                    this.f28378b = mediaController;
-                }
-
-                @Override
-                public final void run() {
-                    int i11 = r4;
-                    int i12 = i10;
-                    int i13 = i7;
-                    MediaController mediaController2 = this.f28378b;
-                    switch (i11) {
-                        case 0:
-                            mediaController2.M1 = null;
-                            ks.f(i13).k(156, Integer.valueOf(i12));
-                            return;
-                        case 1:
-                            mediaController2.M1 = null;
-                            ks.f(i13).k(156, Integer.valueOf(i12));
-                            return;
-                        case 2:
-                            mediaController2.M1 = null;
-                            ks.f(i13).k(156, Integer.valueOf(i12));
-                            return;
-                        default:
-                            mediaController2.M1 = null;
-                            ks.f(i13).k(155, Integer.valueOf(i12), Boolean.TRUE);
-                            return;
-                    }
-                }
-            });
-        }
-    }
-
-    public static void c(final MediaController mediaController, File file, File file2, final TLRPC.TL_document tL_document, final int i7, final boolean z10, final int i10, final boolean z11) {
-        mediaController.stopRecord();
-        final File N = mediaController.N(file, file2, tL_document);
-        if (N == null) {
-            if (s2.f26829a) {
-                a8.b("stop recording recordingAudioFileToSend == null in queue");
-                return;
-            }
-            return;
-        }
-        if (s2.f26829a) {
-            a8.b("stop recording internal in queue " + N.exists() + " " + N.length());
-        }
-        g0.g3(new Runnable() {
-            @Override
-            public final void run() {
-                boolean z12;
-                char c10;
-                int i11;
-                int i12;
-                String[] strArr = MediaController.W1;
-                boolean z13 = s2.f26829a;
-                MediaController mediaController2 = MediaController.this;
-                File file3 = N;
-                if (z13) {
-                    StringBuilder sb2 = new StringBuilder("stop recording internal ");
-                    sb2.append(file3.exists() + " " + file3.length() + "  recordTimeCount " + mediaController2.l1 + " writedFrames" + mediaController2.f22819m1);
-                    a8.b(sb2.toString());
-                }
-                if (!file3.exists()) {
-                    a8.g(new RuntimeException("file not found :( recordTimeCount " + mediaController2.l1 + " writedFrames" + mediaController2.f22819m1), true);
-                }
-                ri.d0(mediaController2.f22813i1).F1(mediaController2.n1, mediaController2.f22823o1, null);
-                int currentTime = ConnectionsManager.getInstance(mediaController2.f22813i1).getCurrentTime();
-                TLRPC.TL_document tL_document2 = tL_document;
-                tL_document2.date = currentTime;
-                tL_document2.size = (int) file3.length();
-                TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-                tL_documentAttributeAudio.voice = true;
-                byte[] waveform = MediaController.getWaveform(file3.getAbsolutePath());
-                tL_documentAttributeAudio.waveform = waveform;
-                if (waveform != null) {
-                    tL_documentAttributeAudio.flags |= 4;
-                }
-                long j3 = mediaController2.l1;
-                tL_documentAttributeAudio.duration = j3 / 1000.0d;
-                tL_document2.attributes.clear();
-                tL_document2.attributes.add(tL_documentAttributeAudio);
-                if (j3 > 700) {
-                    int i13 = i7;
-                    if (i13 == 1) {
-                        String absolutePath = file3.getAbsolutePath();
-                        long j10 = mediaController2.n1;
-                        fj fjVar = mediaController2.f22830r1;
-                        fj fjVar2 = mediaController2.f22833s1;
-                        if (z11) {
-                            i12 = Integer.MAX_VALUE;
-                        } else {
-                            i12 = 0;
-                        }
-                        c10 = 1;
-                        i11 = 2;
-                        xy f10 = xy.f(tL_document2, null, absolutePath, j10, fjVar, fjVar2, null, null, null, null, z10, i10, 0, i12, null, null, false);
-                        f10.R = mediaController2.f22825p1;
-                        f10.T = mediaController2.f22827q1;
-                        f10.H = mediaController2.f22835t1;
-                        f10.K = mediaController2.f22837u1;
-                        f10.Q = 0L;
-                        zy.C(mediaController2.f22813i1).r0(f10);
-                    } else {
-                        c10 = 1;
-                        i11 = 2;
-                    }
-                    ks f11 = ks.f(mediaController2.f22813i1);
-                    Integer valueOf = Integer.valueOf(mediaController2.f22811h1);
-                    String str = null;
-                    if (i13 != i11) {
-                        tL_document2 = null;
-                    }
-                    if (i13 == i11) {
-                        str = file3.getAbsolutePath();
-                    }
-                    Object[] objArr = new Object[3];
-                    z12 = false;
-                    objArr[0] = valueOf;
-                    objArr[c10] = tL_document2;
-                    objArr[i11] = str;
-                    f11.k(ks.f25286s2, objArr);
-                } else {
-                    z12 = false;
-                    ks.f(mediaController2.f22813i1).k(ks.f25292t2, Integer.valueOf(mediaController2.f22811h1), Boolean.FALSE, Integer.valueOf((int) j3));
-                    z0.b(file3);
-                    file3.delete();
-                }
-                mediaController2.Y(z12);
-            }
-        });
-    }
-
-    public static native boolean cropOpusFile(String str, String str2, long j3, long j10);
-
-    public static void d(MediaController mediaController) {
-        mediaController.f22815j1 = mediaController.f22817k1;
-        File z10 = w7.z(1);
-        ne neVar = new ne(1, z10, System.currentTimeMillis() + "_" + w7.r(null, mediaController.f22809g1));
-        mediaController.f22817k1 = neVar;
-        if (mediaController.startRecord(neVar.getPath(), mediaController.B1) == 0) {
-            g0.g3(new td(mediaController, 7));
-            if (s2.f26829a) {
-                a8.b("cant resume audio encoder");
-                return;
-            }
-            return;
-        }
-        g0.g3(new td(mediaController, 8));
-    }
-
-    public static void d0(java.lang.String r12, android.content.Context r13, int r14, java.lang.String r15, java.lang.String r16, org.telegram.messenger.w10 r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.d0(java.lang.String, android.content.Context, int, java.lang.String, java.lang.String, org.telegram.messenger.w10):void");
-    }
-
-    public static void e0(String str, String str2, Context context, w10 w10Var) {
-        org.telegram.ui.ActionBar.t1 t1Var;
+    public static void c0(String str, String str2, Context context, p8c p8cVar) {
+        hd hdVar;
         if (!TextUtils.isEmpty(str) && !TextUtils.isEmpty(str2) && context != null) {
             File file = new File(str);
             File file2 = new File(str2);
             if (file.exists() && file2.exists()) {
-                if (!g0.I1(Uri.fromFile(file), 0) && !g0.I1(Uri.fromFile(file2), 0)) {
+                if (!gl.G1(Uri.fromFile(file), 0) && !gl.G1(Uri.fromFile(file2), 0)) {
                     boolean[] zArr = {false};
                     boolean[] zArr2 = new boolean[1];
                     try {
-                        org.telegram.ui.ActionBar.t1 t1Var2 = new org.telegram.ui.ActionBar.t1(2, context, null);
-                        t1Var2.n(gd.N0(2131748586, null));
-                        t1Var2.setCanceledOnTouchOutside(false);
-                        t1Var2.setCancelable(true);
-                        t1Var2.setOnCancelListener(new ae(zArr, 1));
-                        g0.h3(new be(zArr2, t1Var2, 1), 250L);
-                        t1Var = t1Var2;
-                    } catch (Exception e10) {
-                        a8.g(e10, true);
-                        t1Var = null;
+                        hd hdVar2 = new hd(2, null, context);
+                        hdVar2.m(k96.M0(2131748587, null));
+                        hdVar2.setCanceledOnTouchOutside(false);
+                        hdVar2.setCancelable(true);
+                        hdVar2.setOnCancelListener(new gn1(zArr, (byte) 3));
+                        gl.e3(new dl6(zArr2, hdVar2, (byte) 1), 250L);
+                        hdVar = hdVar2;
+                    } catch (Exception e) {
+                        fa4.g(e, true);
+                        hdVar = null;
                     }
-                    new Thread(new tj(file, file2, zArr, w10Var, t1Var, zArr2)).start();
+                    new Thread(new e57(file, file2, zArr, p8cVar, hdVar, zArr2)).start();
                     return;
                 }
                 return;
             }
-            d0(str, context, 0, null, null, w10Var);
+            d0(str, context, 0, null, null, p8cVar);
         }
     }
 
-    public static void f(MediaController mediaController, fj fjVar, int[] iArr, boolean z10, boolean z11, int i7) {
-        fj fjVar2;
-        qe qeVar = mediaController.f22801d1;
-        if (mediaController.F0 != null) {
-            if (i7 != 4 && i7 != 1) {
-                try {
-                    mediaController.K0.getWindow().addFlags(128);
-                } catch (Exception e10) {
-                    a8.g(e10, true);
-                }
-            } else {
-                try {
-                    mediaController.K0.getWindow().clearFlags(128);
-                } catch (Exception e11) {
-                    a8.g(e11, true);
-                }
-            }
-            if (i7 == 3) {
-                mediaController.G0 = true;
-                fj fjVar3 = mediaController.f22838v0;
-                if (fjVar3 != null && (fj.L4(fjVar3.f24073k) || mediaController.f22838v0.h4())) {
-                    g0.r(qeVar);
-                    w7.G(fjVar.K1).Z(mediaController.f22838v0.F0(), true, false);
-                }
-                mediaController.Q0 = true;
-            } else if (i7 == 2) {
-                if (z11 && (fjVar2 = mediaController.f22838v0) != null) {
-                    if (fj.L4(fjVar2.f24073k) || mediaController.f22838v0.h4()) {
-                        if (mediaController.G0) {
-                            qeVar.run();
-                        } else {
-                            g0.h3(qeVar, 1000L);
-                        }
-                    }
-                }
-            } else if (mediaController.F0.d0() && i7 == 4) {
-                fj fjVar4 = mediaController.f22838v0;
-                if (fjVar4 != null && fj.L4(fjVar4.f24073k) && !z10 && (iArr == null || iArr[0] < 4)) {
-                    mediaController.F0.p0(0L);
-                    if (iArr != null) {
-                        iArr[0] = iArr[0] + 1;
-                    }
-                } else if (!mediaController.a0()) {
-                    mediaController.q(true, mediaController.F(), true, false);
-                }
-            }
-        }
+    public static native boolean cropOpusFile(String str, String str2, long j, long j2);
+
+    public static void d0(java.lang.String r12, android.content.Context r13, int r14, java.lang.String r15, java.lang.String r16, defpackage.p8c r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.d0(java.lang.String, android.content.Context, int, java.lang.String, java.lang.String, p8c):void");
     }
 
-    public static Uri f0(int i7, File file, String str) {
-        String str2;
+    public static Uri e0(int i, File file, String str) {
         Uri contentUri;
         try {
             ContentValues contentValues = new ContentValues();
-            String D = w7.D(file);
-            if (D != null) {
-                str2 = MimeTypeMap.getSingleton().getMimeTypeFromExtension(D);
-            } else {
-                str2 = null;
-            }
-            if ((i7 == 0 || i7 == 1) && str2 != null) {
-                if (str2.startsWith("image")) {
-                    i7 = 0;
+            String D = ba4.D(file);
+            String mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension(D);
+            if ((i == 0 || i == 1) && mimeTypeFromExtension != null) {
+                if (mimeTypeFromExtension.startsWith("image")) {
+                    i = 0;
                 }
-                if (str2.startsWith("video")) {
-                    i7 = 1;
+                if (mimeTypeFromExtension.startsWith("video")) {
+                    i = 1;
                 }
             }
-            if (i7 == 0) {
+            if (i == 0) {
                 if (str == null) {
-                    str = g0.p0(0, D);
+                    str = gl.p0(0, D);
                 }
                 contentUri = MediaStore.Images.Media.getContentUri("external_primary");
                 contentValues.put("relative_path", new File(Environment.DIRECTORY_PICTURES, "Telegram") + File.separator);
                 contentValues.put("_display_name", str);
-                contentValues.put("mime_type", str2);
-            } else if (i7 == 1) {
+                contentValues.put("mime_type", mimeTypeFromExtension);
+            } else if (i == 1) {
                 if (str == null) {
-                    str = g0.p0(1, D);
+                    str = gl.p0(1, D);
                 }
                 contentValues.put("relative_path", new File(Environment.DIRECTORY_MOVIES, "Telegram") + File.separator);
                 contentUri = MediaStore.Video.Media.getContentUri("external_primary");
                 contentValues.put("_display_name", str);
-            } else if (i7 == 2) {
+            } else if (i == 2) {
                 if (str == null) {
                     str = file.getName();
                 }
@@ -943,282 +483,262 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 contentUri = MediaStore.Audio.Media.getContentUri("external_primary");
                 contentValues.put("_display_name", str);
             }
-            contentValues.put("mime_type", str2);
-            Uri insert = t0.f27013b.getContentResolver().insert(contentUri, contentValues);
+            contentValues.put("mime_type", mimeTypeFromExtension);
+            Uri insert = a.b.getContentResolver().insert(contentUri, contentValues);
             if (insert != null) {
                 FileInputStream fileInputStream = new FileInputStream(file);
-                g0.D(fileInputStream, t0.f27013b.getContentResolver().openOutputStream(insert));
+                gl.D(fileInputStream, a.b.getContentResolver().openOutputStream(insert));
                 fileInputStream.close();
             }
             return insert;
-        } catch (Exception e10) {
-            a8.g(e10, true);
+        } catch (Exception e) {
+            fa4.g(e, true);
             return null;
         }
     }
 
-    public static void g0(Context context, c cVar, ArrayList arrayList, nr nrVar) {
-        fi.b bVar;
+    public static void f0(Context context, j5 j5Var, ArrayList arrayList, uc7 uc7Var) {
+        f53 f53Var;
         if (arrayList.isEmpty()) {
             return;
         }
         ?? obj = new Object();
         obj.d = new HashMap();
-        obj.f22974a = cVar;
-        obj.f22976c = arrayList;
-        obj.f22981s = nrVar;
-        obj.f22982w = ((fj) arrayList.get(0)).I3();
-        int i7 = cVar.f23343a;
-        ks.f(i7).b(obj, ks.Y1);
-        ks.f(i7).b(obj, ks.X1);
-        ks.f(i7).b(obj, ks.Z1);
-        if (PhotoViewer.p1().Q1()) {
-            bVar = new fi.b();
+        obj.a = j5Var;
+        obj.c = arrayList;
+        obj.s = uc7Var;
+        obj.w = ((k27) arrayList.get(0)).I3();
+        int i = j5Var.a;
+        kk7.f(i).a(obj, kk7.X1);
+        kk7.f(i).a(obj, kk7.W1);
+        kk7.f(i).a(obj, kk7.Y1);
+        if (PhotoViewer.r0().U0()) {
+            f53Var = new f53();
         } else {
-            bVar = null;
+            f53Var = null;
         }
-        org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(2, context, bVar);
-        obj.f22975b = t1Var;
-        t1Var.n(gd.N0(2131748586, null));
-        t1Var.setCancelable(true);
-        t1Var.I = true;
-        t1Var.setOnCancelListener(new ae(obj, 3));
-        g0.h3(new ze(obj, 1), 250L);
-        new Thread(new ze(obj, 2)).start();
+        hd hdVar = new hd(2, f53Var, context);
+        obj.b = hdVar;
+        hdVar.m(k96.M0(2131748587, null));
+        hdVar.setCancelable(true);
+        hdVar.I = true;
+        hdVar.setOnCancelListener(new ur0(obj, (byte) 12));
+        gl.e3(new dm6(obj, (byte) 1), 250L);
+        new Thread(new dm6(obj, (byte) 2)).start();
     }
 
     public static native byte[] getWaveform(String str);
 
-    public static native int isOpusFile(String str);
-
-    public static void j0(boolean z10) {
-        AudioManager audioManager = (AudioManager) t0.f27013b.getSystemService("audio");
-        if (bz.f23326u0 && !c8.oa.d("android.permission.BLUETOOTH_CONNECT")) {
-            bz.f23326u0 = false;
-            bz.y();
-        }
-        if ((audioManager.isBluetoothScoAvailableOffCall() && bz.f23326u0) || !z10) {
-            BluetoothAdapter defaultAdapter = BluetoothAdapter.getDefaultAdapter();
-            if (defaultAdapter != null) {
-                try {
-                    if (defaultAdapter.getProfileConnectionState(1) != 2) {
-                    }
-                    if (!z10 && !audioManager.isBluetoothScoOn()) {
-                        audioManager.startBluetoothSco();
-                        return;
-                    } else if (z10 && audioManager.isBluetoothScoOn()) {
-                        audioManager.stopBluetoothSco();
-                        return;
-                    }
-                } catch (SecurityException unused) {
-                    return;
-                } catch (Throwable th2) {
-                    a8.g(th2, true);
-                    return;
-                }
-            }
-            if (z10) {
-                return;
-            }
-            if (!z10) {
-            }
-            if (z10) {
-            }
-        }
+    public static void i0(boolean r4) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.i0(boolean):void");
     }
+
+    public static native int isOpusFile(String str);
 
     public static native boolean joinOpusFiles(String str, String str2, String str3);
 
-    public static boolean s0(int i7) {
-        aj.a aVar = aj.e.f1621b;
-        aVar.a();
-        if (aVar.f1613c) {
-            aVar.a();
-            return aVar.d;
-        } else if (!((h0) mp.u1(i7).A7.f26247l0.f17372b).f24439c) {
+    public static java.lang.String o(long r15, android.net.Uri r17, java.lang.String r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.o(long, android.net.Uri, java.lang.String):java.lang.String");
+    }
+
+    public static File p(String str) {
+        int lastIndexOf;
+        File file;
+        try {
+            File f1 = gl.f1();
+            f1.mkdirs();
+            if (gl.G1(Uri.fromFile(f1), 0)) {
+                return null;
+            }
+            int i = 0;
+            do {
+                File f12 = gl.f1();
+                if (i == 0) {
+                    file = new File(f12, str);
+                } else {
+                    if (str.lastIndexOf(".") > 0) {
+                        file = new File(f12, str.substring(0, lastIndexOf) + " (" + i + ")" + str.substring(lastIndexOf));
+                    } else {
+                        file = new File(f12, str + " (" + i + ")");
+                    }
+                }
+                i++;
+            } while (file.exists());
+            return file;
+        } catch (Exception e) {
+            fa4.g(e, true);
+            return null;
+        }
+    }
+
+    public static int q(int r5, int r6, int r7, boolean r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.q(int, int, int, boolean):int");
+    }
+
+    public static int r(MediaExtractor mediaExtractor, boolean z) {
+        int trackCount = mediaExtractor.getTrackCount();
+        for (int i = 0; i < trackCount; i++) {
+            String string = mediaExtractor.getTrackFormat(i).getString("mime");
+            if (z) {
+                if (string.startsWith("audio/")) {
+                    return i;
+                }
+            } else if (string.startsWith("video/")) {
+                return i;
+            }
+        }
+        return -5;
+    }
+
+    public static boolean r0(int i) {
+        im0 im0Var = wcd.b;
+        im0Var.a();
+        if (im0Var.c) {
+            im0Var.a();
+            return im0Var.d;
+        } else if (!na7.q1(i).k4.k0.f) {
             return true;
         } else {
             return false;
         }
     }
 
-    private native int startRecord(String str, int i7);
+    private native int startRecord(String str, int i);
 
     private native void stopRecord();
 
-    public static java.lang.String t(long r15, android.net.Uri r17, java.lang.String r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.t(long, android.net.Uri, java.lang.String):java.lang.String");
-    }
-
-    public static File u(String str) {
-        int lastIndexOf;
-        File file;
-        try {
-            File g12 = g0.g1();
-            g12.mkdirs();
-            if (g0.I1(Uri.fromFile(g12), 0)) {
-                return null;
-            }
-            int i7 = 0;
-            do {
-                File g13 = g0.g1();
-                if (i7 == 0) {
-                    file = new File(g13, str);
-                } else {
-                    if (str.lastIndexOf(".") > 0) {
-                        file = new File(g13, str.substring(0, lastIndexOf) + " (" + i7 + ")" + str.substring(lastIndexOf));
-                    } else {
-                        file = new File(g13, str + " (" + i7 + ")");
-                    }
-                }
-                i7++;
-            } while (file.exists());
-            return file;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static int v(int r5, int r6, int r7, boolean r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.v(int, int, int, boolean):int");
-    }
-
-    public static int w(MediaExtractor mediaExtractor, boolean z10) {
-        int trackCount = mediaExtractor.getTrackCount();
-        for (int i7 = 0; i7 < trackCount; i7++) {
-            String string = mediaExtractor.getTrackFormat(i7).getString("mime");
-            if (z10) {
-                if (string.startsWith("audio/")) {
-                    return i7;
-                }
-            } else if (string.startsWith("video/")) {
-                return i7;
-            }
-        }
-        return -5;
-    }
-
-    public native int writeFrame(ByteBuffer byteBuffer, int i7);
-
-    public static boolean y() {
+    public static boolean t() {
         AudioDeviceInfo[] devices;
         try {
-            for (AudioDeviceInfo audioDeviceInfo : xs.f28076p0.getDevices(2)) {
+            for (AudioDeviceInfo audioDeviceInfo : im7.p0.getDevices(2)) {
                 int type = audioDeviceInfo.getType();
                 if ((type == 8 || type == 7 || type == 26 || type == 27 || type == 4 || type == 3) && audioDeviceInfo.isSink()) {
                     return true;
                 }
             }
             return false;
-        } catch (Exception e10) {
-            a8.g(e10, true);
+        } catch (Exception e) {
+            fa4.g(e, true);
             return false;
         }
     }
 
-    public final void A0(org.telegram.ui.bn bnVar, boolean z10, boolean z11) {
-        int i7;
-        if (this.P) {
-            this.P = false;
-            return;
-        }
-        if (z11) {
-            if (this.f22809g1 != null && !K()) {
-                D0(false);
-            } else {
-                if (z10) {
-                    i7 = 2;
-                } else {
-                    i7 = 0;
-                }
-                B0(i7, 0, false, false);
-            }
-        }
-        if (this.Q && !this.P) {
-            if ((this.f22805f != null || this.f22820n != null) && this.f22802e != null && this.f22831s == bnVar) {
-                this.f22831s = null;
-                this.Q = false;
-                this.f22840w = false;
-                this.J = false;
-                this.f22828r = false;
-                this.M = false;
-                Utilities.f22877e.c(new td(this, 5));
-                PowerManager.WakeLock wakeLock = this.d;
-                if (wakeLock != null && wakeLock.isHeld()) {
-                    this.d.release();
-                }
-            }
-        }
+    public static java.lang.String v(android.net.Uri r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.v(android.net.Uri):java.lang.String");
     }
 
-    public final void B0(final int i7, final int i10, final boolean z10, final boolean z11) {
-        e0.g gVar;
+    public static MediaController w() {
+        MediaController mediaController;
+        MediaController mediaController2 = f2;
+        if (mediaController2 == null) {
+            synchronized (MediaController.class) {
+                mediaController = f2;
+                if (mediaController == null) {
+                    mediaController = new MediaController();
+                    f2 = mediaController;
+                }
+            }
+            return mediaController;
+        }
+        return mediaController2;
+    }
+
+    public native int writeFrame(ByteBuffer byteBuffer, int i);
+
+    public static int z(String str) {
+        int i;
+        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+        try {
+            mediaMetadataRetriever.setDataSource(str);
+            i = Integer.parseInt(mediaMetadataRetriever.extractMetadata(20));
+        } catch (Exception e) {
+            fa4.g(e, true);
+            i = 0;
+        }
+        try {
+            mediaMetadataRetriever.release();
+        } catch (Throwable th) {
+            fa4.g(th, true);
+        }
+        return i;
+    }
+
+    public final boolean A() {
+        ArrayList arrayList;
+        k27 k27Var = this.v0;
+        if (k27Var == null || ((!k27.Q4(k27Var.k) && !this.v0.g4()) || (arrayList = this.f0) == null || arrayList.size() <= 1 || !this.f0.contains(this.v0) || this.f0.indexOf(this.v0) >= this.f0.size() - 1)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void A0(final int i, final int i2, final boolean z, final boolean z2) {
+        u20 u20Var;
         if (this.I1) {
-            ac.e eVar = this.L1;
-            if (eVar != null) {
+            m20 m20Var = this.L1;
+            if (m20Var != null) {
                 this.L1 = null;
-                if (i7 == 0) {
-                    x(false);
+                if (i == 0) {
+                    s(false);
                     return;
                 }
-                this.C1 = i7;
-                this.D1 = z10;
-                this.E1 = i10;
-                this.F1 = z11;
-                s(eVar);
+                this.C1 = i;
+                this.D1 = z;
+                this.E1 = i2;
+                this.F1 = z2;
+                n(m20Var);
                 return;
             } else if (this.J1) {
                 if (this.C1 == 3) {
-                    this.C1 = i7;
-                    this.D1 = z10;
-                    this.E1 = i10;
-                    this.F1 = z11;
-                    if (i7 == 0) {
-                        e0.g gVar2 = this.G1;
-                        if (gVar2 != null) {
-                            gVar2.f10196b = false;
-                            ((yi.j) gVar2.f10198e).b();
+                    this.C1 = i;
+                    this.D1 = z;
+                    this.E1 = i2;
+                    this.F1 = z2;
+                    if (i == 0) {
+                        u20 u20Var2 = this.G1;
+                        if (u20Var2 != null) {
+                            u20Var2.a = false;
+                            ((h30) u20Var2.e).b();
                         }
-                        x(false);
+                        s(false);
                         return;
                     }
                     return;
                 }
                 return;
-            } else if (i7 == 2 && (gVar = this.G1) != null && gVar.e()) {
-                this.f22847y0 = false;
-                this.f22828r = false;
+            } else if (i == 2 && (u20Var = this.G1) != null && u20Var.e()) {
+                this.y0 = false;
+                this.r = false;
                 this.P = false;
                 return;
             } else {
-                fi.z0 z0Var = this.H1;
-                if (z0Var != null) {
-                    g0.r(z0Var);
+                al6 al6Var = this.H1;
+                if (al6Var != null) {
+                    gl.r(al6Var);
                     this.H1 = null;
                 }
                 this.J1 = true;
-                this.C1 = i7;
-                this.D1 = z10;
-                this.E1 = i10;
-                this.F1 = z11;
-                e0.g gVar3 = this.G1;
-                if (gVar3 == null) {
-                    x(false);
+                this.C1 = i;
+                this.D1 = z;
+                this.E1 = i2;
+                this.F1 = z2;
+                u20 u20Var3 = this.G1;
+                if (u20Var3 == null) {
+                    s(false);
                 } else {
-                    yi.j jVar = (yi.j) gVar3.f10198e;
-                    if (i7 == 0) {
-                        gVar3.f10196b = false;
-                        jVar.b();
-                        x(false);
+                    h30 h30Var = (h30) u20Var3.e;
+                    if (i == 0) {
+                        u20Var3.a = false;
+                        h30Var.b();
+                        s(false);
                     } else {
-                        gVar3.f10196b = true;
-                        jVar.getClass();
-                        yi.j.q();
-                        int i11 = jVar.e().f2932a;
-                        if (gVar3.f10196b && (i11 == 3 || i11 == 5)) {
-                            gVar3.f10196b = false;
-                            jVar.h();
+                        u20Var3.a = true;
+                        h30Var.getClass();
+                        h30.q();
+                        int i3 = h30Var.e().a;
+                        if (u20Var3.a && (i3 == 3 || i3 == 5)) {
+                            u20Var3.a = false;
+                            h30Var.h();
                         }
                     }
                 }
@@ -1226,194 +746,181 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     this.L0.performHapticFeedback(3, 2);
                 } catch (Exception unused) {
                 }
-                final int i12 = this.f22813i1;
-                final int i13 = this.f22811h1;
-                g0.g3(new Runnable() {
+                final int i4 = this.i1;
+                final int i5 = this.h1;
+                gl.d3(new Runnable() {
                     @Override
                     public final void run() {
-                        int i14;
+                        int i6;
                         String[] strArr = MediaController.W1;
-                        ks f10 = ks.f(i12);
-                        Integer valueOf = Integer.valueOf(i13);
-                        if (i7 == 2) {
-                            i14 = 1;
+                        kk7 f = kk7.f(i4);
+                        Integer valueOf = Integer.valueOf(i5);
+                        if (i == 2) {
+                            i6 = 1;
                         } else {
-                            i14 = 0;
+                            i6 = 0;
                         }
-                        f10.k(ks.f25255n2, valueOf, Integer.valueOf(i14));
+                        f.k(kk7.m2, valueOf, Integer.valueOf(i6));
                     }
                 });
                 return;
             }
         }
-        ud udVar = this.M1;
-        q5 q5Var = this.N1;
-        if (udVar != null) {
-            q5Var.a(udVar);
+        xk6 xk6Var = this.M1;
+        co3 co3Var = this.N1;
+        if (xk6Var != null) {
+            co3Var.a(xk6Var);
             this.M1 = null;
         }
-        q5Var.c(new Runnable() {
+        co3Var.c(new Runnable() {
             @Override
             public final void run() {
+                String[] strArr = MediaController.W1;
                 MediaController mediaController = MediaController.this;
-                int i14 = mediaController.C1;
-                int i15 = i7;
-                boolean z12 = z10;
-                int i16 = i10;
-                boolean z13 = z11;
-                if (i14 == 3) {
-                    mediaController.C1 = 0;
-                    mediaController.C0(i15, i16, z12, z13);
+                byte b = mediaController.C1;
+                byte b3 = i;
+                boolean z3 = z;
+                int i6 = i2;
+                boolean z4 = z2;
+                if (b == 3) {
+                    mediaController.C1 = (byte) 0;
+                    mediaController.B0(b3, i6, z3, z4);
                     return;
                 }
-                AudioRecord audioRecord = mediaController.f22807f1;
+                AudioRecord audioRecord = mediaController.f1;
                 if (audioRecord == null) {
-                    mediaController.f22809g1 = null;
-                    mediaController.f22847y0 = false;
-                    mediaController.f22828r = false;
+                    mediaController.g1 = null;
+                    mediaController.y0 = false;
+                    mediaController.r = false;
                     mediaController.P = false;
                     return;
                 }
                 try {
-                    mediaController.C1 = i15;
-                    mediaController.D1 = z12;
-                    mediaController.E1 = i16;
-                    mediaController.F1 = z13;
+                    mediaController.C1 = b3;
+                    mediaController.D1 = z3;
+                    mediaController.E1 = i6;
+                    mediaController.F1 = z4;
                     audioRecord.stop();
-                    MediaController.j0(false);
-                } catch (Exception e10) {
-                    a8.g(e10, true);
-                    if (mediaController.f22817k1 != null) {
-                        if (s2.f26829a) {
-                            a8.d("delete voice file");
+                    MediaController.i0(false);
+                } catch (Exception e) {
+                    fa4.g(e, true);
+                    if (mediaController.k1 != null) {
+                        if (w01.a) {
+                            fa4.d("delete voice file");
                         }
-                        mediaController.f22817k1.delete();
+                        mediaController.k1.delete();
                     }
                 }
-                if (i15 == 0) {
-                    mediaController.C0(0, 0, false, false);
+                if (b3 == 0) {
+                    mediaController.B0(0, 0, false, false);
                 }
                 try {
                     mediaController.L0.performHapticFeedback(3, 2);
                 } catch (Exception unused2) {
                 }
-                g0.g3(new wd(mediaController, i15, 0));
+                gl.d3(new sv1(mediaController, b3, (byte) 4));
             }
         });
     }
 
-    public final float C(boolean z10) {
-        if (z10) {
-            return this.f22829r0;
-        }
-        return this.f22826q0;
-    }
-
-    public final void C0(int i7, int i10, boolean z10, boolean z11) {
-        MediaController mediaController;
-        File file;
-        if (i7 != 0 && (file = this.f22817k1) != null) {
-            TLRPC.TL_document tL_document = this.f22809g1;
-            File file2 = this.f22815j1;
-            if (s2.f26829a) {
-                a8.b("stop recording internal filename " + this.f22817k1.getPath());
+    public final void B0(final int i, final int i2, final boolean z, final boolean z2) {
+        final MediaController mediaController;
+        final File file;
+        if (i != 0 && (file = this.k1) != null) {
+            final TLRPC.TL_document tL_document = this.g1;
+            final File file2 = this.j1;
+            if (w01.a) {
+                fa4.b("stop recording internal filename " + this.k1.getPath());
             }
             mediaController = this;
-            mediaController.O1.c(new hi.p9(mediaController, file2, file, tL_document, i7, z10, i10, z11));
+            mediaController.O1.c(new Runnable() {
+                @Override
+                public final void run() {
+                    String[] strArr = MediaController.W1;
+                    MediaController.this.K(file2, file, tL_document, i, z, i2, z2);
+                }
+            });
         } else {
             mediaController = this;
-            z0.b(mediaController.f22817k1);
-            File file3 = mediaController.f22817k1;
+            s60.b(mediaController.k1);
+            File file3 = mediaController.k1;
             if (file3 != null) {
                 file3.delete();
             }
-            Y(false);
+            mediaController.X(false);
         }
         try {
-            AudioRecord audioRecord = mediaController.f22807f1;
+            AudioRecord audioRecord = mediaController.f1;
             if (audioRecord != null) {
                 audioRecord.release();
-                mediaController.f22807f1 = null;
+                mediaController.f1 = null;
             }
-        } catch (Exception e10) {
-            a8.g(e10, true);
+        } catch (Exception e) {
+            fa4.g(e, true);
         }
-        mediaController.f22809g1 = null;
-        mediaController.f22815j1 = null;
-        mediaController.f22817k1 = null;
-        mediaController.f22847y0 = false;
-        mediaController.f22828r = false;
+        mediaController.g1 = null;
+        mediaController.j1 = null;
+        mediaController.k1 = null;
+        mediaController.y0 = false;
+        mediaController.r = false;
         mediaController.P = false;
     }
 
-    public final long D(fj fjVar) {
-        fj fjVar2 = this.f22838v0;
-        if ((this.f22814j0 != null || this.F0 != null) && fjVar != null && fjVar2 != null && L(fjVar)) {
-            try {
-                h61 h61Var = this.f22814j0;
-                if (h61Var != null) {
-                    return h61Var.S();
-                }
-                h61 h61Var2 = this.F0;
-                if (h61Var2 != null) {
-                    return h61Var2.S();
-                }
-            } catch (Exception unused) {
-            }
+    public final boolean C() {
+        if (!this.h0 && !this.B0) {
+            return false;
         }
-        return -1L;
+        return true;
     }
 
-    public final void D0(boolean z10) {
-        boolean z11;
+    public final void C0(boolean z) {
+        boolean z2 = false;
         if (this.I1) {
-            this.K1 = z10;
-            e0.g gVar = this.G1;
-            if (gVar != null) {
-                if (gVar.e()) {
-                    Y(true);
-                    j0(true);
+            this.K1 = z;
+            u20 u20Var = this.G1;
+            if (u20Var != null) {
+                if (u20Var.e()) {
+                    X(true);
+                    i0(true);
                 }
-                e0.g gVar2 = this.G1;
-                yi.j jVar = (yi.j) gVar2.f10198e;
-                jVar.getClass();
-                yi.j.q();
-                int i7 = jVar.e().f2932a;
-                if (i7 == 3) {
-                    ((yi.j) gVar2.f10198e).n();
+                u20 u20Var2 = this.G1;
+                h30 h30Var = (h30) u20Var2.e;
+                h30Var.getClass();
+                h30.q();
+                int i = h30Var.e().a;
+                if (i == 3) {
+                    ((h30) u20Var2.e).n();
                     return;
-                } else if (i7 == 5) {
-                    yi.j jVar2 = (yi.j) gVar2.f10198e;
-                    jVar2.getClass();
-                    yi.j.q();
-                    if (jVar2.G == 5) {
-                        jVar2.h.b("resume requested: trim=" + jVar2.f61461r + ".." + jVar2.f61462s + ", sourceDurationMs=" + jVar2.j());
-                        jVar2.p();
-                        jVar2.s(6);
-                        yi.h hVar = jVar2.f61468z;
-                        if (hVar == null) {
-                            jVar2.g(new IllegalStateException("Output generation is missing"));
+                } else if (i == 5) {
+                    h30 h30Var2 = (h30) u20Var2.e;
+                    h30Var2.getClass();
+                    h30.q();
+                    if (h30Var2.G == 5) {
+                        h30Var2.h.b("resume requested: trim=" + h30Var2.r + ".." + h30Var2.s + ", sourceDurationMs=" + h30Var2.j());
+                        h30Var2.p();
+                        h30Var2.s(6);
+                        f30 f30Var = h30Var2.z;
+                        if (f30Var == null) {
+                            h30Var2.g(new IllegalStateException("Output generation is missing"));
                             return;
                         }
-                        long j3 = jVar2.f61461r;
-                        long j10 = jVar2.f61462s;
-                        if (j10 >= yi.j.r(jVar2.f61459p)) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
+                        long j = h30Var2.r;
+                        long j2 = h30Var2.s;
+                        if (j2 >= h30.r(h30Var2.p)) {
+                            z2 = true;
                         }
-                        jVar2.k(1);
-                        long j11 = ((j10 - j3) * 48000) / 1000;
-                        jVar2.f61459p = j11;
-                        jVar2.f61461r = 0L;
-                        jVar2.f61462s = yi.j.r(j11);
-                        jVar2.d();
-                        jVar2.h.b("resume prefix selected: source=" + hVar.f61443b.getName() + ", trim=" + j3 + ".." + j10);
-                        File file = hVar.f61443b;
-                        if (z11) {
-                            j10 = -1;
+                        h30Var2.k(1);
+                        long j3 = ((j2 - j) * 48000) / 1000;
+                        h30Var2.p = j3;
+                        h30Var2.r = 0L;
+                        h30Var2.s = h30.r(j3);
+                        h30Var2.d();
+                        h30Var2.h.b("resume prefix selected: source=" + f30Var.b.getName() + ", trim=" + j + ".." + j2);
+                        File file = f30Var.b;
+                        if (z2) {
+                            j2 = -1;
                         }
-                        jVar2.u(j3, j10, file);
+                        h30Var2.u(j, j2, file);
                         return;
                     }
                     return;
@@ -1423,26 +930,46 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
             return;
         }
-        this.N1.c(new vd(this, z10, 0));
+        this.N1.c(new yk6(this, z, (byte) 0));
     }
 
-    public final boolean E0(int i7, ArrayList arrayList) {
-        boolean z10;
-        int size;
-        fj fjVar;
-        int i10;
-        fj fjVar2;
-        int i11 = this.V0;
-        int i12 = 0;
-        if (ConnectionsManager.getInstance(i10.f24637t0).getConnectionState() == 2) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final boolean D(k27 k27Var) {
+        k27 k27Var2;
+        boolean z;
+        if (k27Var == null || !k27Var.j2) {
+            if ((this.j0 != null || this.F0 != null) && k27Var != null && (k27Var2 = this.v0) != null) {
+                long j = k27Var2.T;
+                if (j != 0 && j == k27Var.T) {
+                    z = this.B0;
+                } else if (G(k27Var)) {
+                    z = this.B0;
+                } else {
+                    return false;
+                }
+                return !z;
+            }
+            return false;
         }
-        this.V0 += i7;
-        if (z10) {
-            while (this.V0 < arrayList.size() && (i10 = this.V0) >= 0 && ((fjVar2 = (fj) arrayList.get(i10)) == null || !fjVar2.f24132z0)) {
-                this.V0 += i7;
+        return false;
+    }
+
+    public final boolean D0(int i, ArrayList arrayList) {
+        boolean z;
+        int size;
+        k27 k27Var;
+        int i2;
+        k27 k27Var2;
+        int i3 = this.V0;
+        int i4 = 0;
+        if (ConnectionsManager.getInstance(y6c.t0).getConnectionState() == 2) {
+            z = true;
+        } else {
+            z = false;
+        }
+        this.V0 += i;
+        if (z) {
+            while (this.V0 < arrayList.size() && (i2 = this.V0) >= 0 && ((k27Var2 = (k27) arrayList.get(i2)) == null || !k27Var2.z0)) {
+                this.V0 += i;
             }
         }
         if (this.V0 < arrayList.size() && this.V0 >= 0) {
@@ -1454,173 +981,539 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             size = arrayList.size() - 1;
         }
         this.V0 = size;
-        if (z10) {
+        if (z) {
             while (true) {
-                int i13 = this.V0;
-                if (i13 < 0 || i13 >= arrayList.size()) {
+                int i5 = this.V0;
+                if (i5 < 0 || i5 >= arrayList.size()) {
                     break;
                 }
-                int i14 = this.V0;
-                if (i7 > 0) {
-                    if (i14 > i11) {
+                int i6 = this.V0;
+                if (i > 0) {
+                    if (i6 > i3) {
                         break;
                     }
-                    fjVar = (fj) arrayList.get(this.V0);
-                    if (fjVar == null && fjVar.f24132z0) {
+                    k27Var = (k27) arrayList.get(i6);
+                    if (k27Var == null && k27Var.z0) {
                         break;
                     }
-                    this.V0 += i7;
+                    this.V0 += i;
                 } else {
-                    if (i14 < i11) {
+                    if (i6 < i3) {
                         break;
                     }
-                    fjVar = (fj) arrayList.get(this.V0);
-                    if (fjVar == null) {
+                    k27Var = (k27) arrayList.get(i6);
+                    if (k27Var == null) {
                     }
-                    this.V0 += i7;
+                    this.V0 += i;
                 }
             }
             if (this.V0 >= arrayList.size() || this.V0 < 0) {
                 if (this.V0 < arrayList.size()) {
-                    i12 = arrayList.size() - 1;
+                    i4 = arrayList.size() - 1;
                 }
-                this.V0 = i12;
+                this.V0 = i4;
             }
         }
         return true;
     }
 
+    public final boolean E() {
+        if (this.M1 == null && this.H1 == null && this.g1 == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void E0() {
+        k27 k27Var = this.v0;
+        if (k27Var != null && C() && this.i0 && (k27.Q4(k27Var.k) || k27Var.I3())) {
+            R(k27Var);
+        }
+        this.i0 = false;
+    }
+
     public final boolean F() {
-        ArrayList arrayList;
-        fj fjVar = this.f22838v0;
-        if (fjVar == null || ((!fj.R4(fjVar.f24073k) && !this.f22838v0.h4()) || (arrayList = this.f22806f0) == null || arrayList.size() <= 1 || !this.f22806f0.contains(this.f22838v0) || this.f22806f0.indexOf(this.f22838v0) >= this.f22806f0.size() - 1)) {
-            return true;
+        if (this.I1) {
+            u20 u20Var = this.G1;
+            if (u20Var != null && u20Var.e()) {
+                return true;
+            }
+            return false;
         }
-        return false;
+        return this.e1;
     }
 
-    public final void F0() {
-        fj fjVar = this.f22838v0;
-        if (fjVar != null && H() && this.f22812i0 && (fj.R4(fjVar.f24073k) || fjVar.I3())) {
-            S(fjVar);
-        }
-        this.f22812i0 = false;
-    }
-
-    public final void G0(File file, long j3, byte[] bArr) {
-        TLRPC.TL_document tL_document = this.f22809g1;
+    public final void F0(File file, long j, byte[] bArr) {
+        TLRPC.TL_document tL_document = this.g1;
         if (tL_document == null) {
             return;
         }
-        tL_document.date = ConnectionsManager.getInstance(this.f22813i1).getCurrentTime();
-        this.f22809g1.size = (int) file.length();
+        tL_document.date = ConnectionsManager.getInstance(this.i1).getCurrentTime();
+        this.g1.size = (int) file.length();
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
         tL_documentAttributeAudio.voice = true;
         tL_documentAttributeAudio.waveform = bArr;
         if (bArr != null) {
             tL_documentAttributeAudio.flags |= 4;
         }
-        tL_documentAttributeAudio.duration = j3 / 1000.0d;
-        this.f22809g1.attributes.clear();
-        this.f22809g1.attributes.add(tL_documentAttributeAudio);
+        tL_documentAttributeAudio.duration = j / 1000.0d;
+        this.g1.attributes.clear();
+        this.g1.attributes.add(tL_documentAttributeAudio);
     }
 
-    public final boolean H() {
-        if (!this.f22810h0 && !this.B0) {
-            return false;
+    public final boolean G(k27 k27Var) {
+        boolean z;
+        boolean z2;
+        k27 k27Var2 = this.v0;
+        if (k27Var2 != null && k27.B0(k27Var2.k) == k27.B0(k27Var.k) && this.v0.e1() == k27Var.e1()) {
+            if (this.v0.T == 0) {
+                z = true;
+            } else {
+                z = false;
+            }
+            if (k27Var.T == 0) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            if (z == z2) {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
-    public final boolean I(fj fjVar) {
-        fj fjVar2;
-        boolean z10;
-        if (fjVar == null || !fjVar.f24072j2) {
-            if ((this.f22814j0 != null || this.F0 != null) && fjVar != null && (fjVar2 = this.f22838v0) != null) {
-                long j3 = fjVar2.T;
-                if (j3 != 0 && j3 == fjVar.T) {
-                    z10 = this.B0;
-                } else if (L(fjVar)) {
-                    z10 = this.B0;
-                } else {
-                    return false;
+    public final void G0(k27 k27Var, int[] iArr, boolean z, boolean z2, int i) {
+        k27 k27Var2;
+        if (this.F0 != null) {
+            if (i != 4 && i != 1) {
+                try {
+                    this.K0.getWindow().addFlags(128);
+                } catch (Exception e) {
+                    fa4.g(e, true);
                 }
-                return !z10;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean J() {
-        if (this.M1 == null && this.H1 == null && this.f22809g1 == null) {
-            return false;
-        }
-        return true;
-    }
-
-    public final boolean K() {
-        if (this.I1) {
-            e0.g gVar = this.G1;
-            if (gVar != null && gVar.e()) {
-                return true;
-            }
-            return false;
-        }
-        return this.f22804e1;
-    }
-
-    public final boolean L(fj fjVar) {
-        boolean z10;
-        boolean z11;
-        fj fjVar2 = this.f22838v0;
-        if (fjVar2 != null && fj.B0(fjVar2.f24073k) == fj.B0(fjVar.f24073k) && this.f22838v0.e1() == fjVar.e1()) {
-            if (this.f22838v0.T == 0) {
-                z10 = true;
             } else {
-                z10 = false;
+                try {
+                    this.K0.getWindow().clearFlags(128);
+                } catch (Exception e3) {
+                    fa4.g(e3, true);
+                }
             }
-            if (fjVar.T == 0) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            if (z10 == z11) {
-                return true;
+            rl6 rl6Var = this.d1;
+            if (i == 3) {
+                this.G0 = true;
+                k27 k27Var3 = this.v0;
+                if (k27Var3 != null && (k27.K4(k27Var3.k) || this.v0.g4())) {
+                    gl.r(rl6Var);
+                    ba4.G(k27Var.K1).Z(this.v0.F0(), true, false);
+                }
+                this.Q0 = true;
+            } else if (i == 2) {
+                if (z2 && (k27Var2 = this.v0) != null) {
+                    if (k27.K4(k27Var2.k) || this.v0.g4()) {
+                        if (this.G0) {
+                            rl6Var.run();
+                        } else {
+                            gl.e3(rl6Var, 1000L);
+                        }
+                    }
+                }
+            } else if (this.F0.c0() && i == 4) {
+                k27 k27Var4 = this.v0;
+                if (k27Var4 != null && k27.K4(k27Var4.k) && !z && (iArr == null || iArr[0] < 4)) {
+                    this.F0.o0(0L);
+                    if (iArr != null) {
+                        iArr[0] = iArr[0] + 1;
+                    }
+                } else if (!Z()) {
+                    l(true, A(), true, false);
+                }
             }
         }
-        return false;
     }
 
-    public final File N(File file, File file2, TLRPC.TL_document tL_document) {
+    public final File I(File file, File file2, TLRPC.TL_document tL_document) {
         if (file != null && file2 != null) {
-            File z10 = w7.z(1);
-            File file3 = new File(z10, System.currentTimeMillis() + "_" + w7.r(null, tL_document));
+            File z = ba4.z(1);
+            File file3 = new File(z, System.currentTimeMillis() + "_" + ba4.r(null, tL_document));
             if (joinOpusFiles(file.getAbsolutePath(), file2.getAbsolutePath(), file3.getAbsolutePath())) {
                 file2.delete();
-                if (file2 == this.f22817k1) {
-                    this.f22817k1 = file3;
+                if (file2 == this.k1) {
+                    this.k1 = file3;
                 }
                 file2 = file3;
             }
             file.delete();
-            if (file == this.f22815j1) {
-                this.f22815j1 = null;
+            if (file == this.j1) {
+                this.j1 = null;
             }
         }
         return file2;
     }
 
-    public final void P() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.P():void");
+    public final void J(final int i, final int i2, long j, long j2, u47 u47Var, k27 k27Var, k27 k27Var2, TL_stories.StoryItem storyItem, j1a j1aVar) {
+        String absolutePath;
+        if (this.f1 != null) {
+            gl.d3(new Runnable(this) {
+                public final MediaController b;
+
+                {
+                    this.b = this;
+                }
+
+                @Override
+                public final void run() {
+                    byte b = r4;
+                    int i3 = i2;
+                    int i4 = i;
+                    MediaController mediaController = this.b;
+                    switch (b) {
+                        case 0:
+                            String[] strArr = MediaController.W1;
+                            mediaController.M1 = null;
+                            kk7.f(i4).k(156, Integer.valueOf(i3));
+                            return;
+                        case 1:
+                            String[] strArr2 = MediaController.W1;
+                            mediaController.M1 = null;
+                            kk7.f(i4).k(156, Integer.valueOf(i3));
+                            return;
+                        case 2:
+                            String[] strArr3 = MediaController.W1;
+                            mediaController.M1 = null;
+                            kk7.f(i4).k(156, Integer.valueOf(i3));
+                            return;
+                        default:
+                            String[] strArr4 = MediaController.W1;
+                            mediaController.M1 = null;
+                            kk7.f(i4).k(155, Integer.valueOf(i3), Boolean.TRUE);
+                            return;
+                    }
+                }
+            });
+            return;
+        }
+        i0(true);
+        this.C1 = (byte) 0;
+        TLRPC.TL_document tL_document = new TLRPC.TL_document();
+        this.g1 = tL_document;
+        this.h1 = i2;
+        tL_document.file_reference = new byte[0];
+        tL_document.dc_id = Integer.MIN_VALUE;
+        tL_document.id = gba.p();
+        this.g1.user_id = y6c.h(i).e();
+        TLRPC.TL_document tL_document2 = this.g1;
+        tL_document2.mime_type = "audio/ogg";
+        tL_document2.file_reference = new byte[0];
+        gba.x();
+        File z = ba4.z(1);
+        this.k1 = new File(z, System.currentTimeMillis() + "_" + ba4.r(null, this.g1));
+        ba4.z(4).mkdirs();
+        if (w01.a) {
+            fa4.b("start recording internal " + this.k1.getPath() + " " + this.k1.exists());
+        }
+        File file = this.k1;
+        Set set = s60.a;
+        if (file != null && (absolutePath = file.getAbsolutePath()) != null) {
+            s60.a.add(absolutePath);
+        }
+        try {
+            if (startRecord(this.k1.getPath(), this.B1) == 0) {
+                gl.d3(new Runnable(this) {
+                    public final MediaController b;
+
+                    {
+                        this.b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        byte b = r4;
+                        int i3 = i2;
+                        int i4 = i;
+                        MediaController mediaController = this.b;
+                        switch (b) {
+                            case 0:
+                                String[] strArr = MediaController.W1;
+                                mediaController.M1 = null;
+                                kk7.f(i4).k(156, Integer.valueOf(i3));
+                                return;
+                            case 1:
+                                String[] strArr2 = MediaController.W1;
+                                mediaController.M1 = null;
+                                kk7.f(i4).k(156, Integer.valueOf(i3));
+                                return;
+                            case 2:
+                                String[] strArr3 = MediaController.W1;
+                                mediaController.M1 = null;
+                                kk7.f(i4).k(156, Integer.valueOf(i3));
+                                return;
+                            default:
+                                String[] strArr4 = MediaController.W1;
+                                mediaController.M1 = null;
+                                kk7.f(i4).k(155, Integer.valueOf(i3), Boolean.TRUE);
+                                return;
+                        }
+                    }
+                });
+                if (w01.a) {
+                    fa4.b("cant init encoder");
+                    return;
+                }
+                return;
+            }
+            this.e1 = false;
+            this.f1 = new AudioRecord(0, this.B1, 16, 2, this.A1);
+            System.currentTimeMillis();
+            long j3 = 0;
+            this.l1 = 0L;
+            this.m1 = 0;
+            this.w1 = 0L;
+            this.n1 = j;
+            this.p1 = j2;
+            this.q1 = u47Var;
+            if (k27Var != null) {
+                j3 = k27.b2(this.i1, k27Var.k, false, false);
+            }
+            this.o1 = j3;
+            this.i1 = i;
+            this.r1 = k27Var2;
+            this.s1 = k27Var;
+            this.t1 = storyItem;
+            this.u1 = j1aVar;
+            this.z1.rewind();
+            this.f1.startRecording();
+            this.N1.c(this.P1);
+            gl.d3(new Runnable(this) {
+                public final MediaController b;
+
+                {
+                    this.b = this;
+                }
+
+                @Override
+                public final void run() {
+                    byte b = r4;
+                    int i3 = i2;
+                    int i4 = i;
+                    MediaController mediaController = this.b;
+                    switch (b) {
+                        case 0:
+                            String[] strArr = MediaController.W1;
+                            mediaController.M1 = null;
+                            kk7.f(i4).k(156, Integer.valueOf(i3));
+                            return;
+                        case 1:
+                            String[] strArr2 = MediaController.W1;
+                            mediaController.M1 = null;
+                            kk7.f(i4).k(156, Integer.valueOf(i3));
+                            return;
+                        case 2:
+                            String[] strArr3 = MediaController.W1;
+                            mediaController.M1 = null;
+                            kk7.f(i4).k(156, Integer.valueOf(i3));
+                            return;
+                        default:
+                            String[] strArr4 = MediaController.W1;
+                            mediaController.M1 = null;
+                            kk7.f(i4).k(155, Integer.valueOf(i3), Boolean.TRUE);
+                            return;
+                    }
+                }
+            });
+        } catch (Exception e) {
+            fa4.g(e, true);
+            this.g1 = null;
+            stopRecord();
+            s60.b(this.k1);
+            this.k1.delete();
+            this.k1 = null;
+            File file2 = this.j1;
+            if (file2 != null) {
+                file2.delete();
+                this.j1 = null;
+            }
+            try {
+                this.f1.release();
+                this.f1 = null;
+            } catch (Exception e3) {
+                fa4.g(e3, true);
+            }
+            i0(false);
+            gl.d3(new Runnable(this) {
+                public final MediaController b;
+
+                {
+                    this.b = this;
+                }
+
+                @Override
+                public final void run() {
+                    byte b = r4;
+                    int i3 = i2;
+                    int i4 = i;
+                    MediaController mediaController = this.b;
+                    switch (b) {
+                        case 0:
+                            String[] strArr = MediaController.W1;
+                            mediaController.M1 = null;
+                            kk7.f(i4).k(156, Integer.valueOf(i3));
+                            return;
+                        case 1:
+                            String[] strArr2 = MediaController.W1;
+                            mediaController.M1 = null;
+                            kk7.f(i4).k(156, Integer.valueOf(i3));
+                            return;
+                        case 2:
+                            String[] strArr3 = MediaController.W1;
+                            mediaController.M1 = null;
+                            kk7.f(i4).k(156, Integer.valueOf(i3));
+                            return;
+                        default:
+                            String[] strArr4 = MediaController.W1;
+                            mediaController.M1 = null;
+                            kk7.f(i4).k(155, Integer.valueOf(i3), Boolean.TRUE);
+                            return;
+                    }
+                }
+            });
+        }
     }
 
-    public final boolean R(fj fjVar, boolean z10) {
-        if ((this.f22814j0 != null || this.F0 != null) && fjVar != null && this.f22838v0 != null && L(fjVar)) {
-            z0();
+    public final void K(File file, File file2, final TLRPC.TL_document tL_document, final int i, final boolean z, final int i2, final boolean z2) {
+        stopRecord();
+        final File I = I(file, file2, tL_document);
+        if (I == null) {
+            if (w01.a) {
+                fa4.b("stop recording recordingAudioFileToSend == null in queue");
+                return;
+            }
+            return;
+        }
+        if (w01.a) {
+            fa4.b("stop recording internal in queue " + I.exists() + " " + I.length());
+        }
+        gl.d3(new Runnable() {
+            @Override
+            public final void run() {
+                boolean z3;
+                char c;
+                byte b;
+                String str;
+                int i3;
+                String[] strArr = MediaController.W1;
+                MediaController mediaController = MediaController.this;
+                mediaController.getClass();
+                boolean z4 = w01.a;
+                File file3 = I;
+                if (z4) {
+                    fa4.b("stop recording internal ".concat(file3.exists() + " " + file3.length() + "  recordTimeCount " + mediaController.l1 + " writedFrames" + mediaController.m1));
+                }
+                if (!file3.exists()) {
+                    fa4.g(new RuntimeException("file not found :( recordTimeCount " + mediaController.l1 + " writedFrames" + mediaController.m1), true);
+                }
+                hq6.d0(mediaController.i1).D1(mediaController.n1, mediaController.o1, null);
+                int currentTime = ConnectionsManager.getInstance(mediaController.i1).getCurrentTime();
+                TLRPC.TL_document tL_document2 = tL_document;
+                tL_document2.date = currentTime;
+                tL_document2.size = (int) file3.length();
+                TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
+                tL_documentAttributeAudio.voice = true;
+                byte[] waveform = MediaController.getWaveform(file3.getAbsolutePath());
+                tL_documentAttributeAudio.waveform = waveform;
+                if (waveform != null) {
+                    tL_documentAttributeAudio.flags |= 4;
+                }
+                long j = mediaController.l1;
+                tL_documentAttributeAudio.duration = j / 1000.0d;
+                tL_document2.attributes.clear();
+                tL_document2.attributes.add(tL_documentAttributeAudio);
+                if (j > 700) {
+                    byte b3 = i;
+                    if (b3 == 1) {
+                        String absolutePath = file3.getAbsolutePath();
+                        long j2 = mediaController.n1;
+                        k27 k27Var = mediaController.r1;
+                        k27 k27Var2 = mediaController.s1;
+                        if (z2) {
+                            i3 = Integer.MAX_VALUE;
+                        } else {
+                            i3 = 0;
+                        }
+                        c = 1;
+                        b = 2;
+                        z3 = false;
+                        x3a f = x3a.f(tL_document2, null, absolutePath, j2, k27Var, k27Var2, null, null, null, null, z, i2, 0, i3, null, null, false);
+                        f.R = mediaController.p1;
+                        f.T = mediaController.q1;
+                        f.H = mediaController.t1;
+                        f.K = mediaController.u1;
+                        f.Q = 0L;
+                        z3a.B(mediaController.i1).q0(f);
+                    } else {
+                        c = 1;
+                        b = 2;
+                        z3 = false;
+                    }
+                    kk7 f3 = kk7.f(mediaController.i1);
+                    Integer valueOf = Integer.valueOf(mediaController.h1);
+                    if (b3 == b) {
+                        str = file3.getAbsolutePath();
+                    } else {
+                        tL_document2 = null;
+                        str = null;
+                    }
+                    Object[] objArr = new Object[3];
+                    objArr[z3 ? 1 : 0] = valueOf;
+                    objArr[c] = tL_document2;
+                    objArr[b] = str;
+                    f3.k(kk7.r2, objArr);
+                } else {
+                    z3 = false;
+                    kk7.f(mediaController.i1).k(kk7.s2, Integer.valueOf(mediaController.h1), Boolean.FALSE, Integer.valueOf((int) j));
+                    s60.b(file3);
+                    file3.delete();
+                }
+                mediaController.X(z3);
+            }
+        });
+    }
+
+    public final void L(boolean z) {
+        stopRecord();
+        TLRPC.TL_document tL_document = this.g1;
+        File I = I(this.j1, this.k1, tL_document);
+        if (tL_document != null && I != null) {
+            gl.d3(new qg(this, I, z, tL_document, (byte) 24));
+        }
+    }
+
+    public final void M() {
+        this.j1 = this.k1;
+        File z = ba4.z(1);
+        pl6 pl6Var = new pl6(z, System.currentTimeMillis() + "_" + ba4.r(null, this.g1), (byte) 1);
+        this.k1 = pl6Var;
+        if (startRecord(pl6Var.getPath(), this.B1) == 0) {
+            gl.d3(new wk6(this, (byte) 7));
+            if (w01.a) {
+                fa4.b("cant resume audio encoder");
+                return;
+            }
+            return;
+        }
+        gl.d3(new wk6(this, (byte) 8));
+    }
+
+    public final void O() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.O():void");
+    }
+
+    public final boolean Q(k27 k27Var, boolean z) {
+        if ((this.j0 != null || this.F0 != null) && k27Var != null && this.v0 != null && G(k27Var)) {
+            y0();
             try {
-                if (this.f22814j0 != null) {
-                    if (z10 && !d1.f.u() && !fj.R4(this.f22838v0.f24073k) && this.f22838v0.L0() * (1.0f - this.f22838v0.f24033b0) > 1.0d && LaunchActivity.G1) {
+                if (this.j0 != null) {
+                    if (z && !fo.w() && !k27.Q4(this.v0.k) && this.v0.L0() * (1.0f - this.v0.b0) > 1.0d && LaunchActivity.G1) {
                         ValueAnimator valueAnimator = this.R1;
                         if (valueAnimator != null) {
                             valueAnimator.removeAllUpdateListeners();
@@ -1630,304 +1523,306 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         this.R1 = ofFloat;
                         ofFloat.addUpdateListener(this.S1);
                         this.R1.setDuration(300L);
-                        this.R1.addListener(new ki.n3(this, 6));
+                        this.R1.addListener(new v85(this, (byte) 15));
                         this.R1.start();
                     } else {
-                        this.f22814j0.g0();
+                        this.j0.f0();
                     }
                 } else {
-                    h61 h61Var = this.F0;
-                    if (h61Var != null) {
-                        h61Var.g0();
+                    lbc lbcVar = this.F0;
+                    if (lbcVar != null) {
+                        lbcVar.f0();
                     }
                 }
-                this.f22810h0 = true;
-                ks.f(this.f22838v0.K1).k(ks.f25217g2, Integer.valueOf(this.f22838v0.e1()));
+                this.h0 = true;
+                kk7.f(this.v0.K1).k(kk7.f2, Integer.valueOf(this.v0.e1()));
                 try {
-                    d1.f.b(1);
+                    fo.b(1);
                     if (!this.U1) {
-                        if (wf.b.I().M()) {
-                            wf.b.I().Q(z());
+                        if (tg2.D().I()) {
+                            tg2.D().X(u());
                         }
-                        d1.f.x(false);
+                        fo.z(false);
                     }
                     return true;
-                } catch (Exception e10) {
-                    a8.g(e10, true);
+                } catch (Exception e) {
+                    fa4.g(e, true);
                     return true;
                 }
-            } catch (Exception e11) {
-                a8.g(e11, true);
-                this.f22810h0 = false;
+            } catch (Exception e3) {
+                fa4.g(e3, true);
+                this.h0 = false;
             }
         }
         return false;
     }
 
-    public final boolean S(final org.telegram.messenger.fj r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.S(org.telegram.messenger.fj):boolean");
+    public final boolean R(final defpackage.k27 r41) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.R(k27):boolean");
     }
 
-    public final void T(int i7) {
-        int i10 = this.V0;
-        if (i10 >= 0) {
+    public final void S(int i) {
+        int i2 = this.V0;
+        if (i2 >= 0) {
             ArrayList arrayList = this.S0;
-            if (i10 < arrayList.size()) {
-                this.V0 = i7;
+            if (i2 < arrayList.size()) {
+                this.V0 = i;
                 this.C0 = true;
-                fj fjVar = (fj) arrayList.get(i7);
-                if (this.f22838v0 != null && !L(fjVar)) {
-                    this.f22838v0.G5();
+                k27 k27Var = (k27) arrayList.get(i);
+                if (this.v0 != null && !G(k27Var)) {
+                    this.v0.F5();
                 }
-                S(fjVar);
+                R(k27Var);
             }
         }
     }
 
-    public final void U(boolean z10) {
+    public final void T(boolean z) {
         ArrayList arrayList;
-        boolean z11;
-        int i7;
-        int i10;
-        if (bz.N0) {
+        boolean z2;
+        int i;
+        int i2;
+        if (gba.K0) {
             arrayList = this.U0;
         } else {
             arrayList = this.S0;
         }
-        if (z10 && (((i10 = bz.S0) == 2 || (i10 == 1 && arrayList.size() == 1)) && !this.W0)) {
-            q(false, false, false, false);
-            int i11 = this.V0;
-            if (i11 >= 0 && i11 < arrayList.size()) {
-                fj fjVar = (fj) arrayList.get(this.V0);
-                fjVar.f24033b0 = 0.0f;
-                fjVar.f24065i0 = 0;
-                S(fjVar);
+        if (z && (((i2 = gba.P0) == 2 || (i2 == 1 && arrayList.size() == 1)) && !this.W0)) {
+            l(false, false, false, false);
+            int i3 = this.V0;
+            if (i3 >= 0 && i3 < arrayList.size()) {
+                k27 k27Var = (k27) arrayList.get(this.V0);
+                k27Var.b0 = 0.0f;
+                k27Var.i0 = 0;
+                R(k27Var);
                 return;
             }
             return;
         }
         if (this.R0 != null) {
-            if (!bz.O0) {
-                z11 = true;
+            if (!gba.L0) {
+                z2 = true;
             } else {
-                z11 = false;
+                z2 = false;
             }
         } else {
-            z11 = bz.O0;
+            z2 = gba.L0;
         }
-        if (z11) {
-            i7 = 1;
+        if (z2) {
+            i = 1;
         } else {
-            i7 = -1;
+            i = -1;
         }
-        if (E0(i7, arrayList) && z10 && bz.S0 == 0 && !this.W0) {
-            h61 h61Var = this.f22814j0;
-            if (h61Var != null || this.F0 != null) {
-                if (h61Var != null) {
-                    cf cfVar = this.f22844x0;
-                    if (cfVar != null) {
-                        cfVar.b();
-                        this.f22844x0 = null;
-                    }
-                    try {
-                        this.f22814j0.m0();
-                    } catch (Exception e10) {
-                        a8.g(e10, true);
-                    }
-                    this.f22814j0 = null;
-                    org.telegram.ui.ActionBar.n6.N1(this.f22838v0);
-                } else {
+        if (D0(i, arrayList) && z && gba.P0 == 0 && !this.W0) {
+            if (this.j0 == null) {
+                lbc lbcVar = this.F0;
+                if (lbcVar != null) {
                     this.M0 = null;
                     this.O0 = null;
                     this.Q0 = false;
                     this.H0 = null;
-                    this.F0.m0();
+                    lbcVar.l0();
                     this.F0 = null;
                     try {
                         this.K0.getWindow().clearFlags(128);
-                    } catch (Exception e11) {
-                        a8.g(e11, true);
+                    } catch (Exception e) {
+                        fa4.g(e, true);
                     }
-                    g0.r(this.f22801d1);
-                    w7.G(this.f22838v0.K1).Z(this.f22838v0.F0(), true, false);
+                    gl.r(this.d1);
+                    ba4.G(this.v0.K1).Z(this.v0.F0(), true, false);
+                } else {
+                    return;
                 }
-                z0();
-                this.f22810h0 = true;
-                fj fjVar2 = this.f22838v0;
-                fjVar2.f24033b0 = 0.0f;
-                fjVar2.f24065i0 = 0;
-                ks.f(fjVar2.K1).k(ks.f25205e2, Integer.valueOf(this.f22838v0.e1()), 0);
-                ks.f(this.f22838v0.K1).k(ks.f25217g2, Integer.valueOf(this.f22838v0.e1()));
-                return;
+            } else {
+                gm6 gm6Var = this.x0;
+                if (gm6Var != null) {
+                    gm6Var.a();
+                    this.x0 = null;
+                }
+                try {
+                    this.j0.l0();
+                } catch (Exception e3) {
+                    fa4.g(e3, true);
+                }
+                this.j0 = null;
+                bkb.L1(this.v0);
             }
+            y0();
+            this.h0 = true;
+            k27 k27Var2 = this.v0;
+            k27Var2.b0 = 0.0f;
+            k27Var2.i0 = 0;
+            kk7.f(k27Var2.K1).k(kk7.d2, Integer.valueOf(this.v0.e1()), 0);
+            kk7.f(this.v0.K1).k(kk7.f2, Integer.valueOf(this.v0.e1()));
             return;
         }
-        int i12 = this.V0;
-        if (i12 >= 0 && i12 < arrayList.size()) {
-            fj fjVar3 = this.f22838v0;
-            if (fjVar3 != null) {
-                fjVar3.G5();
+        int i4 = this.V0;
+        if (i4 >= 0 && i4 < arrayList.size()) {
+            k27 k27Var3 = this.v0;
+            if (k27Var3 != null) {
+                k27Var3.F5();
             }
             this.C0 = true;
-            S((fj) arrayList.get(this.V0));
+            R((k27) arrayList.get(this.V0));
         }
     }
 
-    public final void V() {
+    public final void U() {
         ArrayList arrayList;
-        int i7;
-        boolean z10;
-        int i10;
-        if (bz.N0) {
+        int i;
+        boolean z;
+        int i2;
+        if (gba.K0) {
             arrayList = this.U0;
         } else {
             arrayList = this.S0;
         }
-        if (!arrayList.isEmpty() && (i7 = this.V0) >= 0 && i7 < arrayList.size()) {
-            fj fjVar = (fj) arrayList.get(this.V0);
-            if (fjVar.f24065i0 > 10) {
-                i0(fjVar, 0.0f);
+        if (!arrayList.isEmpty() && (i = this.V0) >= 0 && i < arrayList.size()) {
+            k27 k27Var = (k27) arrayList.get(this.V0);
+            if (k27Var.i0 > 10) {
+                h0(k27Var, 0.0f);
                 return;
             }
             if (this.R0 != null) {
-                if (!bz.O0) {
-                    z10 = true;
+                if (!gba.L0) {
+                    z = true;
                 } else {
-                    z10 = false;
+                    z = false;
                 }
             } else {
-                z10 = bz.O0;
+                z = gba.L0;
             }
-            if (z10) {
-                i10 = -1;
+            if (z) {
+                i2 = -1;
             } else {
-                i10 = 1;
+                i2 = 1;
             }
-            E0(i10, arrayList);
+            D0(i2, arrayList);
             if (this.V0 < arrayList.size()) {
                 this.C0 = true;
-                S((fj) arrayList.get(this.V0));
+                R((k27) arrayList.get(this.V0));
             }
         }
     }
 
-    public final void W(boolean z10) {
-        bw bwVar;
-        long j3;
-        if (this.f22809g1 != null) {
-            D0(false);
-        } else if (z10) {
-            int currentAccount = this.f22831s.getCurrentAccount();
-            long a10 = this.f22831s.a();
-            org.telegram.ui.bn bnVar = this.f22831s;
-            fj fjVar = bnVar.f46282m4;
-            int classGuid = bnVar.getClassGuid();
-            org.telegram.ui.bn bnVar2 = this.f22831s;
-            kj kjVar = null;
-            if (bnVar2 != null) {
-                bwVar = bnVar2.Y8();
+    public final void V(boolean z) {
+        j1a j1aVar;
+        long j;
+        if (this.g1 != null) {
+            C0(false);
+        } else if (z) {
+            int currentAccount = this.s.getCurrentAccount();
+            long a = this.s.a();
+            mu1 mu1Var = this.s;
+            k27 k27Var = mu1Var.m4;
+            int classGuid = mu1Var.getClassGuid();
+            mu1 mu1Var2 = this.s;
+            u47 u47Var = null;
+            if (mu1Var2 != null) {
+                j1aVar = mu1Var2.O6();
             } else {
-                bwVar = null;
+                j1aVar = null;
             }
-            org.telegram.ui.bn bnVar3 = this.f22831s;
-            if (bnVar3 != null) {
-                j3 = bnVar3.j9();
+            mu1 mu1Var3 = this.s;
+            if (mu1Var3 != null) {
+                j = mu1Var3.a7();
             } else {
-                j3 = 0;
+                j = 0;
             }
-            org.telegram.ui.bn bnVar4 = this.f22831s;
-            if (bnVar4 != null) {
-                kjVar = bnVar4.f46436y5;
+            mu1 mu1Var4 = this.s;
+            if (mu1Var4 != null) {
+                u47Var = mu1Var4.y5;
             }
-            x0(currentAccount, a10, null, fjVar, null, classGuid, false, bwVar, j3, kjVar);
+            w0(currentAccount, a, null, k27Var, null, classGuid, false, j1aVar, j, u47Var);
         } else {
-            B0(2, 0, false, false);
+            A0(2, 0, false, false);
         }
     }
 
-    public final boolean X() {
-        ac.e eVar = this.L1;
-        if (eVar != null) {
-            File file = (File) eVar.f1021b;
-            z0.b(file);
+    public final boolean W() {
+        m20 m20Var = this.L1;
+        if (m20Var != null) {
+            File file = (File) m20Var.b;
+            s60.b(file);
             file.delete();
-            Z();
+            Y();
             return true;
         }
-        e0.g gVar = this.G1;
-        if (gVar != null && gVar.e()) {
+        u20 u20Var = this.G1;
+        if (u20Var != null && u20Var.e()) {
             this.G1 = null;
-            if (!gVar.c()) {
-                ((yi.j) gVar.f10198e).o();
-                gVar.f10197c = true;
+            if (!u20Var.c()) {
+                ((h30) u20Var.e).o();
+                u20Var.c = true;
             }
-            Z();
+            Y();
             return true;
         }
         return false;
     }
 
-    public final void Y(boolean z10) {
-        sd sdVar = this.f22791a;
-        if (z10) {
-            if (!this.W && bz.F0 && xs.f28076p0.requestAudioFocus(sdVar, 3, 2) == 1) {
+    public final void X(boolean z) {
+        boolean z2 = this.W;
+        zz zzVar = this.a;
+        if (z) {
+            if (!z2 && gba.B0 && im7.p0.requestAudioFocus(zzVar, 3, 2) == 1) {
                 this.W = true;
             }
-        } else if (this.W) {
-            xs.f28076p0.abandonAudioFocus(sdVar);
+        } else if (z2) {
+            im7.p0.abandonAudioFocus(zzVar);
             this.W = false;
         }
     }
 
-    public final void Z() {
-        this.f22809g1 = null;
-        this.f22815j1 = null;
-        this.f22817k1 = null;
+    public final void Y() {
+        this.g1 = null;
+        this.j1 = null;
+        this.k1 = null;
         this.I1 = false;
         this.J1 = false;
         this.K1 = false;
         this.L1 = null;
-        this.C1 = 0;
+        this.C1 = (byte) 0;
     }
 
-    public final boolean a0() {
+    public final boolean Z() {
         ArrayList arrayList;
-        int i7;
-        fj fjVar;
-        gf gfVar = this.V1;
-        if (gfVar != null) {
-            fj fjVar2 = gfVar.f24349a;
+        int i;
+        k27 k27Var;
+        mm6 mm6Var = this.V1;
+        if (mm6Var != null) {
+            k27 k27Var2 = mm6Var.a;
             this.V1 = null;
-            if (bz.N0) {
+            if (gba.K0) {
                 arrayList = this.U0;
             } else {
                 arrayList = this.S0;
             }
-            if (arrayList != null && (i7 = this.V0) >= 0 && i7 < arrayList.size() && (fjVar = (fj) arrayList.get(this.V0)) != null && fj.B0(fjVar.f24073k) == fj.B0(fjVar2.f24073k) && fjVar.e1() == fjVar2.e1()) {
+            if (arrayList != null && (i = this.V0) >= 0 && i < arrayList.size() && (k27Var = (k27) arrayList.get(this.V0)) != null && k27.B0(k27Var.k) == k27.B0(k27Var2.k) && k27Var.e1() == k27Var2.e1()) {
                 this.C0 = false;
-                float f10 = gfVar.f24350b;
-                fjVar.f24038c0 = f10;
-                fjVar.f24033b0 = f10;
-                fjVar.f24042d0 = gfVar.f24351c;
-                fjVar.f24065i0 = gfVar.d;
-                S(fjVar);
-                R(fjVar, false);
+                float f = mm6Var.b;
+                k27Var.c0 = f;
+                k27Var.b0 = f;
+                k27Var.d0 = mm6Var.c;
+                k27Var.i0 = mm6Var.d;
+                R(k27Var);
+                Q(k27Var, false);
                 return true;
             }
         }
         return false;
     }
 
-    public final void b0(fj fjVar) {
-        if ((this.f22814j0 != null || this.F0 != null) && fjVar != null && this.f22838v0 != null && L(fjVar)) {
+    public final void a0(k27 k27Var) {
+        if ((this.j0 != null || this.F0 != null) && k27Var != null && this.v0 != null && G(k27Var)) {
             try {
-                v0(this.f22838v0);
+                u0(this.v0);
                 ValueAnimator valueAnimator = this.R1;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
                     this.R1.cancel();
                 }
-                if (!fj.R4(fjVar.f24073k) && !fjVar.h4()) {
+                if (!k27.Q4(k27Var.k) && !k27Var.g4()) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(this.Q1, 1.0f);
                     this.R1 = ofFloat;
                     ofFloat.addUpdateListener(this.S1);
@@ -1935,214 +1830,272 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     this.R1.start();
                 } else {
                     this.Q1 = 1.0f;
-                    n0();
+                    m0();
                 }
-                h61 h61Var = this.f22814j0;
-                if (h61Var != null) {
-                    h61Var.h0();
+                lbc lbcVar = this.j0;
+                if (lbcVar != null) {
+                    lbcVar.g0();
                 } else {
-                    h61 h61Var2 = this.F0;
-                    if (h61Var2 != null) {
-                        h61Var2.h0();
+                    lbc lbcVar2 = this.F0;
+                    if (lbcVar2 != null) {
+                        lbcVar2.g0();
                     }
                 }
-                j(fjVar);
-                this.f22810h0 = false;
-                ks.f(this.f22838v0.K1).k(ks.f25217g2, Integer.valueOf(this.f22838v0.e1()));
+                e(k27Var);
+                this.h0 = false;
+                kk7.f(this.v0.K1).k(kk7.f2, Integer.valueOf(this.v0.e1()));
                 try {
-                    d1.f.b(1);
+                    fo.b(1);
                     if (!this.U1) {
-                        d1.f.x(true);
+                        fo.z(true);
                     }
-                } catch (Exception e10) {
-                    a8.g(e10, true);
+                } catch (Exception e) {
+                    fa4.g(e, true);
                 }
-            } catch (Exception e11) {
-                a8.g(e11, true);
+            } catch (Exception e3) {
+                fa4.g(e3, true);
             }
         }
     }
 
-    public final void c0() {
-        fj fjVar;
-        h61 h61Var = this.f22814j0;
-        if (h61Var != null && (fjVar = this.f22838v0) != null && !this.f22810h0) {
-            if (h61Var.d != null && h61Var.M == 2) {
-                q(false, false, false, false);
-                S(fjVar);
+    public final void b() {
+        k27 k27Var;
+        ArrayList arrayList = this.S0;
+        if (!arrayList.isEmpty()) {
+            ArrayList arrayList2 = new ArrayList(arrayList);
+            ArrayList arrayList3 = this.U0;
+            arrayList3.clear();
+            int i = this.V0;
+            if (i >= 0 && i < arrayList.size()) {
+                k27Var = (k27) arrayList.get(this.V0);
+                arrayList2.remove(this.V0);
+            } else {
+                k27Var = null;
+            }
+            int size = arrayList2.size();
+            for (int i2 = 0; i2 < size; i2++) {
+                int nextInt = Utilities.b.nextInt(arrayList2.size());
+                arrayList3.add((k27) arrayList2.get(nextInt));
+                arrayList2.remove(nextInt);
+            }
+            if (k27Var != null) {
+                arrayList3.add(k27Var);
+                this.V0 = arrayList3.size() - 1;
+            }
+        }
+    }
+
+    public final void b0() {
+        k27 k27Var;
+        lbc lbcVar = this.j0;
+        if (lbcVar != null && (k27Var = this.v0) != null && !this.h0) {
+            if (lbcVar.d != null && lbcVar.M == 2) {
+                l(false, false, false, false);
+                R(k27Var);
                 return;
             }
-            h61Var.h0();
+            lbcVar.g0();
+        }
+    }
+
+    public final boolean c() {
+        k27 k27Var = this.v0;
+        if (k27Var != null) {
+            if ((k27Var.I3() || k27.Q4(this.v0.k) || this.v0.g4()) && !this.v0.R4() && !this.v0.f4()) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void d(k27 k27Var) {
+        if (k27Var != null && !this.c0.isEmpty()) {
+            for (int i = 0; i < this.c0.size(); i++) {
+                om6 om6Var = (om6) this.c0.get(i);
+                k27 k27Var2 = om6Var.a;
+                if (k27Var2.T(k27Var) && k27Var2.K1 == k27Var.K1) {
+                    if (i == 0) {
+                        synchronized (this.b) {
+                            om6Var.b.V = true;
+                        }
+                        return;
+                    }
+                    this.a0.remove((om6) this.c0.remove(i));
+                    f(true);
+                    return;
+                }
+            }
         }
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        gp gpVar;
-        fj fjVar;
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        ia7 ia7Var;
+        k27 k27Var;
         ArrayList arrayList;
-        char c10;
+        char c;
         int indexOf;
-        int i11 = 0;
-        if (i7 != ks.Y1 && i7 != ks.R1) {
-            if (i7 == ks.f25309w) {
+        int i3 = 0;
+        if (i != kk7.X1 && i != kk7.Q1) {
+            if (i == kk7.v) {
                 if (!((Boolean) objArr[2]).booleanValue()) {
                     long longValue = ((Long) objArr[1]).longValue();
                     ArrayList arrayList2 = (ArrayList) objArr[0];
-                    fj fjVar2 = this.f22838v0;
-                    if (fjVar2 != null && longValue == fjVar2.f24073k.peer_id.channel_id && arrayList2.contains(Integer.valueOf(fjVar2.e1()))) {
-                        q(true, true, false, false);
+                    k27 k27Var2 = this.v0;
+                    if (k27Var2 != null && longValue == k27Var2.k.peer_id.channel_id && arrayList2.contains(Integer.valueOf(k27Var2.e1()))) {
+                        l(true, true, false, false);
                     }
-                    ArrayList arrayList3 = this.f22806f0;
-                    if (arrayList3 != null && !arrayList3.isEmpty() && longValue == ((fj) this.f22806f0.get(0)).f24073k.peer_id.channel_id) {
-                        while (i11 < arrayList2.size()) {
-                            Integer num = (Integer) arrayList2.get(i11);
-                            fj fjVar3 = (fj) this.f22808g0.get(num.intValue());
-                            this.f22808g0.remove(num.intValue());
-                            if (fjVar3 != null) {
-                                this.f22806f0.remove(fjVar3);
+                    ArrayList arrayList3 = this.f0;
+                    if (arrayList3 != null && !arrayList3.isEmpty() && longValue == ((k27) this.f0.get(0)).k.peer_id.channel_id) {
+                        while (i3 < arrayList2.size()) {
+                            Integer num = (Integer) arrayList2.get(i3);
+                            k27 k27Var3 = (k27) this.g0.get(num.intValue());
+                            this.g0.remove(num.intValue());
+                            if (k27Var3 != null) {
+                                this.f0.remove(k27Var3);
                             }
-                            i11++;
+                            i3++;
                         }
                         return;
                     }
                     return;
                 }
                 return;
-            } else if (i7 == ks.f25203e0) {
+            } else if (i == kk7.d0) {
                 long longValue2 = ((Long) objArr[0]).longValue();
-                fj fjVar4 = this.f22838v0;
-                if (fjVar4 != null && fj.B0(fjVar4.f24073k) == longValue2) {
-                    q(false, true, false, false);
+                k27 k27Var4 = this.v0;
+                if (k27Var4 != null && k27.B0(k27Var4.k) == longValue2) {
+                    l(false, true, false, false);
                     return;
                 }
                 return;
             } else {
-                int i12 = ks.K0;
-                int[] iArr = this.f22799c1;
+                int i4 = kk7.J0;
+                int[] iArr = this.c1;
                 HashMap hashMap = this.T0;
                 ArrayList arrayList4 = this.S0;
-                if (i7 == i12) {
+                if (i == i4) {
                     long longValue3 = ((Long) objArr[0]).longValue();
                     long longValue4 = ((Long) objArr[3]).longValue();
-                    fj fjVar5 = this.f22838v0;
-                    if (fjVar5 != null && fjVar5.I3() && fj.B0(this.f22838v0.f24073k) == longValue3 && this.f22796b1 == longValue4 && !this.f22838v0.f24102r1) {
+                    k27 k27Var5 = this.v0;
+                    if (k27Var5 != null && k27Var5.I3() && k27.B0(this.v0.k) == longValue3 && this.b1 == longValue4 && !this.v0.r1) {
                         arrayList4.addAll(0, (ArrayList) objArr[1]);
                         arrayList4.addAll((ArrayList) objArr[2]);
                         int size = arrayList4.size();
-                        for (int i13 = 0; i13 < size; i13++) {
-                            fj fjVar6 = (fj) arrayList4.get(i13);
-                            hashMap.put(Integer.valueOf(fjVar6.e1()), fjVar6);
-                            iArr[0] = Math.min(iArr[0], fjVar6.e1());
+                        for (int i5 = 0; i5 < size; i5++) {
+                            k27 k27Var6 = (k27) arrayList4.get(i5);
+                            hashMap.put(Integer.valueOf(k27Var6.e1()), k27Var6);
+                            iArr[0] = Math.min(iArr[0], k27Var6.e1());
                         }
-                        t0();
-                        if (bz.N0) {
-                            g();
+                        s0();
+                        if (gba.K0) {
+                            b();
                         } else {
-                            fj fjVar7 = this.f22838v0;
-                            if (fjVar7 != null && (indexOf = arrayList4.indexOf(fjVar7)) >= 0) {
+                            k27 k27Var7 = this.v0;
+                            if (k27Var7 != null && (indexOf = arrayList4.indexOf(k27Var7)) >= 0) {
                                 this.V0 = indexOf;
                             }
                         }
-                        this.f22793a1 = ConnectionsManager.generateClassGuid();
+                        this.a1 = ConnectionsManager.generateClassGuid();
                         return;
                     }
                     return;
                 }
-                int i14 = ks.V;
-                int i15 = ks.L0;
-                if (i7 == i14) {
-                    if (((Integer) objArr[3]).intValue() == this.f22793a1 && this.f22838v0 != null) {
+                int i6 = kk7.U;
+                int i7 = kk7.K0;
+                if (i == i6) {
+                    if (((Integer) objArr[3]).intValue() == this.a1 && this.v0 != null) {
                         long longValue5 = ((Long) objArr[0]).longValue();
                         ((Integer) objArr[4]).getClass();
                         ArrayList arrayList5 = (ArrayList) objArr[2];
                         if (longValue5 == this.Z0) {
-                            c10 = 1;
+                            c = 1;
                         } else {
-                            c10 = 0;
+                            c = 0;
                         }
                         if (!arrayList5.isEmpty()) {
-                            this.X0[c10] = ((Boolean) objArr[5]).booleanValue();
+                            this.X0[c] = ((Boolean) objArr[5]).booleanValue();
                         }
-                        int i16 = 0;
-                        for (int i17 = 0; i17 < arrayList5.size(); i17++) {
-                            fj fjVar8 = (fj) arrayList5.get(i17);
-                            if (!fjVar8.S4() && !hashMap.containsKey(Integer.valueOf(fjVar8.e1()))) {
-                                i16++;
-                                arrayList4.add(0, fjVar8);
-                                hashMap.put(Integer.valueOf(fjVar8.e1()), fjVar8);
-                                iArr[c10] = Math.min(iArr[c10], fjVar8.e1());
+                        int i8 = 0;
+                        for (int i9 = 0; i9 < arrayList5.size(); i9++) {
+                            k27 k27Var8 = (k27) arrayList5.get(i9);
+                            if (!k27Var8.R4() && !hashMap.containsKey(Integer.valueOf(k27Var8.e1()))) {
+                                i8++;
+                                arrayList4.add(0, k27Var8);
+                                hashMap.put(Integer.valueOf(k27Var8.e1()), k27Var8);
+                                iArr[c] = Math.min(iArr[c], k27Var8.e1());
                             }
                         }
-                        t0();
-                        int indexOf2 = arrayList4.indexOf(this.f22838v0);
+                        s0();
+                        int indexOf2 = arrayList4.indexOf(this.v0);
                         if (indexOf2 >= 0) {
                             this.V0 = indexOf2;
                         }
                         this.Y0 = false;
-                        if (bz.N0) {
-                            g();
+                        if (gba.K0) {
+                            b();
                         }
-                        if (i16 != 0) {
-                            ks.f(this.f22838v0.K1).k(i15, Integer.valueOf(i16));
+                        if (i8 != 0) {
+                            kk7.f(this.v0.K1).k(i7, Integer.valueOf(i8));
                             return;
                         }
                         return;
                     }
                     return;
-                } else if (i7 == 1) {
-                    if (!((Boolean) objArr[2]).booleanValue() && (arrayList = this.f22806f0) != null && !arrayList.isEmpty() && ((Long) objArr[0]).longValue() == fj.B0(((fj) this.f22806f0.get(0)).f24073k)) {
+                } else if (i == 1) {
+                    if (!((Boolean) objArr[2]).booleanValue() && (arrayList = this.f0) != null && !arrayList.isEmpty() && ((Long) objArr[0]).longValue() == k27.B0(((k27) this.f0.get(0)).k)) {
                         ArrayList arrayList6 = (ArrayList) objArr[1];
-                        while (i11 < arrayList6.size()) {
-                            fj fjVar9 = (fj) arrayList6.get(i11);
-                            if ((fj.R4(fjVar9.f24073k) || fjVar9.h4()) && !fjVar9.S4() && !fjVar9.g4() && (!this.f22803e0 || (fjVar9.f24073k.media_unread && !fjVar9.N3()))) {
-                                this.f22806f0.add(fjVar9);
-                                this.f22808g0.put(fjVar9.e1(), fjVar9);
+                        while (i3 < arrayList6.size()) {
+                            k27 k27Var9 = (k27) arrayList6.get(i3);
+                            if ((k27.Q4(k27Var9.k) || k27Var9.g4()) && !k27Var9.R4() && !k27Var9.f4() && (!this.e0 || (k27Var9.k.media_unread && !k27Var9.N3()))) {
+                                this.f0.add(k27Var9);
+                                this.g0.put(k27Var9.e1(), k27Var9);
                             }
-                            i11++;
+                            i3++;
                         }
                         return;
                     }
                     return;
-                } else if (i7 == ks.K4) {
-                    h61 h61Var = (h61) objArr[0];
-                    if (this.F0 != h61Var && this.f22814j0 != h61Var) {
-                        fj fjVar10 = this.f22838v0;
-                        if (fjVar10 != null && I(fjVar10) && !H() && (fjVar10.I3() || fj.R4(fjVar10.f24073k))) {
-                            this.f22812i0 = true;
+                } else if (i == kk7.J4) {
+                    lbc lbcVar = (lbc) objArr[0];
+                    if (this.F0 != lbcVar && this.j0 != lbcVar) {
+                        k27 k27Var10 = this.v0;
+                        if (k27Var10 != null && D(k27Var10) && !C() && (k27Var10.I3() || k27.Q4(k27Var10.k))) {
+                            this.i0 = true;
                         }
-                        R(fjVar10, true);
+                        Q(k27Var10, true);
                         return;
                     }
                     return;
-                } else if (i7 == ks.W3 && (gpVar = this.R0) != null && objArr[0] == gpVar) {
-                    int size2 = gpVar.f24392c.size() - arrayList4.size();
+                } else if (i == kk7.V3 && (ia7Var = this.R0) != null && objArr[0] == ia7Var) {
+                    int size2 = ia7Var.c.size() - arrayList4.size();
                     arrayList4.clear();
-                    arrayList4.addAll(this.R0.f24392c);
-                    t0();
-                    if (bz.N0) {
-                        g();
+                    arrayList4.addAll(this.R0.c);
+                    s0();
+                    if (gba.K0) {
+                        b();
                     } else {
-                        fj fjVar11 = this.f22838v0;
-                        if (fjVar11 != null) {
-                            int indexOf3 = arrayList4.indexOf(fjVar11);
+                        k27 k27Var11 = this.v0;
+                        if (k27Var11 != null) {
+                            int indexOf3 = arrayList4.indexOf(k27Var11);
                             if (indexOf3 >= 0) {
                                 this.V0 = indexOf3;
                             } else {
-                                int i18 = this.V0;
-                                if (i18 < 0 || i18 >= arrayList4.size()) {
+                                int i10 = this.V0;
+                                if (i10 < 0 || i10 >= arrayList4.size()) {
                                     this.V0 = 0;
                                 }
                                 if (arrayList4.size() == 0) {
-                                    o();
+                                    j();
                                 } else {
-                                    S((fj) arrayList4.get(0));
+                                    R((k27) arrayList4.get(0));
                                 }
                             }
                         }
                     }
-                    if (size2 != 0 && (fjVar = this.f22838v0) != null) {
-                        ks.f(fjVar.K1).k(i15, Integer.valueOf(size2));
+                    if (size2 != 0 && (k27Var = this.v0) != null) {
+                        kk7.f(k27Var.K1).k(i7, Integer.valueOf(size2));
                         return;
                     }
                     return;
@@ -2152,197 +2105,74 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
         }
         String str = (String) objArr[0];
-        fj fjVar12 = this.f22838v0;
-        if (fjVar12 != null && fjVar12.K1 == i10 && w7.r(null, fjVar12.F0()).equals(str)) {
+        k27 k27Var12 = this.v0;
+        if (k27Var12 != null && k27Var12.K1 == i2 && ba4.r(null, k27Var12.F0()).equals(str)) {
             if (this.B0) {
                 this.C0 = true;
-                S(this.f22838v0);
+                R(this.v0);
             } else if (this.E0 == null) {
                 try {
-                    w7.G(i10.f24637t0);
-                    this.E0 = rf.a.a(w7.M(this.f22838v0.f24073k, false, true));
-                } catch (Exception e10) {
-                    a8.g(e10, true);
+                    ba4.G(y6c.t0);
+                    this.E0 = g00.a(ba4.M(this.v0.k, false, true));
+                } catch (Exception e) {
+                    fa4.g(e, true);
                 }
             }
         }
     }
 
-    public final void g() {
-        fj fjVar;
-        ArrayList arrayList = this.S0;
-        if (!arrayList.isEmpty()) {
-            ArrayList arrayList2 = new ArrayList(arrayList);
-            ArrayList arrayList3 = this.U0;
-            arrayList3.clear();
-            int i7 = this.V0;
-            if (i7 >= 0 && i7 < arrayList.size()) {
-                fjVar = (fj) arrayList.get(this.V0);
-                arrayList2.remove(this.V0);
-            } else {
-                fjVar = null;
-            }
-            int size = arrayList2.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                int nextInt = Utilities.f22875b.nextInt(arrayList2.size());
-                arrayList3.add((fj) arrayList2.get(nextInt));
-                arrayList2.remove(nextInt);
-            }
-            if (fjVar != null) {
-                arrayList3.add(fjVar);
-                this.V0 = arrayList3.size() - 1;
-            }
-        }
-    }
-
-    public native byte[] getWaveform2(short[] sArr, int i7);
-
-    public final boolean h() {
-        fj fjVar = this.f22838v0;
-        if (fjVar != null) {
-            if ((fjVar.I3() || fj.R4(this.f22838v0.f24073k) || this.f22838v0.h4()) && !this.f22838v0.S4() && !this.f22838v0.g4()) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean h0(fj fjVar, boolean z10, boolean z11, boolean z12) {
-        d20 d20Var;
-        if (fjVar != null) {
-            d20Var = fjVar.f24101r0;
-        } else {
-            d20Var = null;
-        }
-        if (fjVar != null && d20Var != null) {
-            ArrayList arrayList = this.f22798c0;
-            if (!z10 || arrayList.isEmpty()) {
-                if (z10) {
-                    new File(fjVar.f24073k.attachPath).delete();
-                }
-                ?? obj = new Object();
-                obj.f24957a = fjVar;
-                obj.f24959c = fjVar.K1;
-                obj.f24958b = d20Var;
-                obj.d = z12;
-                arrayList.add(obj);
-                if (z11) {
-                    this.f22792a0.add(obj);
-                    k(false);
-                }
-                if (arrayList.size() == 1) {
-                    y0();
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final void i(fj fjVar) {
-        if (fjVar != null && !this.f22798c0.isEmpty()) {
-            for (int i7 = 0; i7 < this.f22798c0.size(); i7++) {
-                jf jfVar = (jf) this.f22798c0.get(i7);
-                fj fjVar2 = jfVar.f24957a;
-                if (fjVar2.T(fjVar) && fjVar2.K1 == fjVar.K1) {
-                    if (i7 == 0) {
-                        synchronized (this.f22794b) {
-                            jfVar.f24958b.W = true;
-                        }
-                        return;
-                    }
-                    this.f22792a0.remove((jf) this.f22798c0.remove(i7));
-                    k(true);
-                    return;
-                }
-            }
-        }
-    }
-
-    public final void i0(fj fjVar, float f10) {
-        fj fjVar2 = this.f22838v0;
-        if ((this.f22814j0 != null || this.F0 != null) && fjVar != null && fjVar2 != null && L(fjVar)) {
-            try {
-                h61 h61Var = this.f22814j0;
-                if (h61Var != null) {
-                    long U = h61Var.U();
-                    if (U == -9223372036854775807L) {
-                        this.f22836u0 = f10;
-                    } else {
-                        fjVar2.f24033b0 = f10;
-                        long j3 = (int) (((float) U) * f10);
-                        this.f22814j0.q0(j3, false);
-                        fjVar2.f24046e0 = j3;
-                        if (!this.U1) {
-                            d1.f.v(j3);
-                        }
-                    }
-                } else {
-                    h61 h61Var2 = this.F0;
-                    if (h61Var2 != null) {
-                        h61Var2.p0(((float) h61Var2.U()) * f10);
-                        if (!this.U1) {
-                            d1.f.v(((float) this.F0.U()) * f10);
-                        }
-                    }
-                }
-                ks.f(fjVar.K1).k(ks.f25229i2, Integer.valueOf(fjVar2.e1()), Float.valueOf(f10));
-            } catch (Exception e10) {
-                a8.g(e10, true);
-            }
-        }
-    }
-
-    public final void j(fj fjVar) {
-        int i7;
-        int i10;
+    public final void e(k27 k27Var) {
+        byte b;
+        int i;
         int requestAudioFocus;
-        if (!fj.R4(fjVar.f24073k) && !fjVar.h4()) {
-            i7 = 1;
+        if (!k27.Q4(k27Var.k) && !k27Var.g4()) {
+            b = 1;
         } else if (this.M) {
-            i7 = 3;
+            b = 3;
         } else {
-            i7 = 2;
+            b = 2;
         }
-        if (this.V != i7) {
-            this.V = i7;
-            if (i7 == 3) {
-                requestAudioFocus = xs.f28076p0.requestAudioFocus(this, 0, 1);
+        if (this.V != b) {
+            this.V = b;
+            if (b == 3) {
+                requestAudioFocus = im7.p0.requestAudioFocus(this, 0, 1);
             } else {
-                AudioManager audioManager = xs.f28076p0;
-                if (i7 == 2 && !bz.G0) {
-                    i10 = 3;
+                AudioManager audioManager = im7.p0;
+                if (b == 2 && !gba.C0) {
+                    i = 3;
                 } else {
-                    i10 = 1;
+                    i = 1;
                 }
-                requestAudioFocus = audioManager.requestAudioFocus(this, 3, i10);
+                requestAudioFocus = audioManager.requestAudioFocus(this, 3, i);
             }
             if (requestAudioFocus == 1) {
-                this.Y = 2;
+                this.Y = (byte) 2;
             }
         }
     }
 
-    public final void k(boolean z10) {
-        if (!this.f22792a0.isEmpty()) {
-            this.f22795b0 = (jf) this.f22792a0.get(0);
+    public final void f(boolean z) {
+        om6 om6Var;
+        if (!this.a0.isEmpty()) {
+            om6Var = (om6) this.a0.get(0);
+            this.b0 = om6Var;
         } else {
-            this.f22795b0 = null;
+            om6Var = null;
+            this.b0 = null;
         }
-        if (this.f22795b0 != null || z10) {
-            if (VideoEncodingService.f22884e == null) {
+        if (om6Var != null || z) {
+            if (VideoEncodingService.e == null) {
                 try {
-                    t0.f27013b.startService(new Intent(t0.f27013b, VideoEncodingService.class));
-                } catch (Exception e10) {
-                    a8.g(e10, true);
+                    a.b.startService(new Intent(a.b, VideoEncodingService.class));
+                } catch (Exception e) {
+                    fa4.g(e, true);
                 }
-            } else if (z10) {
-                jf jfVar = B().f22795b0;
-                VideoEncodingService videoEncodingService = VideoEncodingService.f22884e;
-                if (videoEncodingService.f22886b != jfVar) {
-                    if (jfVar != null) {
-                        videoEncodingService.a(jfVar);
+            } else if (z) {
+                om6 om6Var2 = w().b0;
+                VideoEncodingService videoEncodingService = VideoEncodingService.e;
+                if (videoEncodingService.b != om6Var2) {
+                    if (om6Var2 != null) {
+                        videoEncodingService.a(om6Var2);
                     } else {
                         videoEncodingService.stopSelf();
                     }
@@ -2351,92 +2181,57 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public final void k0(boolean z10) {
-        org.telegram.ui.j4 j4Var = this.M0;
-        if (j4Var != null) {
-            if (z10) {
-                PipRoundVideoView pipRoundVideoView = this.I0;
-                if (pipRoundVideoView != null) {
-                    this.J0 = 2;
-                    pipRoundVideoView.a(true);
-                    this.I0 = null;
-                    return;
-                }
-                if (j4Var.getParent() == null) {
-                    this.O0.addView(this.M0);
-                }
-                this.F0.A0(this.H0);
-            } else if (j4Var.getParent() != null) {
-                this.J0 = 1;
-                this.O0.removeView(this.M0);
-            } else {
-                if (this.I0 == null) {
-                    try {
-                        PipRoundVideoView pipRoundVideoView2 = new PipRoundVideoView();
-                        this.I0 = pipRoundVideoView2;
-                        pipRoundVideoView2.d(this.K0, new td(this, 4));
-                    } catch (Exception unused) {
-                        this.I0 = null;
-                    }
-                }
-                PipRoundVideoView pipRoundVideoView3 = this.I0;
-                if (pipRoundVideoView3 != null) {
-                    this.F0.A0(pipRoundVideoView3.f33103c);
-                }
-            }
-        }
-    }
-
-    public final void l(int i7) {
+    public final void g(int i) {
         ArrayList arrayList;
-        boolean z10;
-        int i10;
+        boolean z;
+        int i2;
         File M;
-        a6 q10 = a6.q(i7);
-        int e10 = t0.e();
-        int i11 = 2;
-        if (e10 == 1) {
-            if (!q10.O.f28360g || !q10.p().d) {
+        up3 q = up3.q(i);
+        int e = a.e();
+        int i3 = 2;
+        if (e == 1) {
+            if (!q.O.g || !q.p().d) {
                 return;
             }
-        } else if (e10 == 2) {
-            if (!q10.P.f28360g || !q10.o().d) {
+        } else if (e == 2) {
+            if (!q.P.g || !q.o().d) {
                 return;
             }
-        } else if (!q10.N.f28360g || !q10.n().d) {
+        } else if (!q.N.g || !q.n().d) {
             return;
         }
-        if (bz.N0) {
+        if (gba.K0) {
             arrayList = this.U0;
         } else {
             arrayList = this.S0;
         }
         if (arrayList != null && arrayList.size() >= 2) {
             if (this.R0 != null) {
-                if (!bz.O0) {
-                    z10 = true;
+                if (!gba.L0) {
+                    z = true;
                 } else {
-                    z10 = false;
+                    z = false;
                 }
             } else {
-                z10 = bz.O0;
+                z = gba.L0;
             }
-            if (z10) {
-                i10 = this.V0 + 1;
-                if (i10 >= arrayList.size()) {
-                    i10 = 0;
+            int i4 = this.V0;
+            if (z) {
+                i2 = i4 + 1;
+                if (i2 >= arrayList.size()) {
+                    i2 = 0;
                 }
             } else {
-                i10 = this.V0 - 1;
-                if (i10 < 0) {
-                    i10 = arrayList.size() - 1;
+                i2 = i4 - 1;
+                if (i2 < 0) {
+                    i2 = arrayList.size() - 1;
                 }
             }
-            if (i10 >= 0 && i10 < arrayList.size()) {
-                fj fjVar = (fj) arrayList.get(i10);
+            if (i2 >= 0 && i2 < arrayList.size()) {
+                k27 k27Var = (k27) arrayList.get(i2);
                 File file = null;
-                if (!TextUtils.isEmpty(fjVar.f24073k.attachPath)) {
-                    File file2 = new File(fjVar.f24073k.attachPath);
+                if (!TextUtils.isEmpty(k27Var.k.attachPath)) {
+                    File file2 = new File(k27Var.k.attachPath);
                     if (file2.exists()) {
                         file = file2;
                     }
@@ -2444,377 +2239,325 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 if (file != null) {
                     M = file;
                 } else {
-                    w7.G(i7);
-                    M = w7.M(fjVar.f24073k, false, true);
+                    ba4.G(i);
+                    M = ba4.M(k27Var.k, false, true);
                 }
                 M.exists();
-                if (M != file && !M.exists() && fjVar.I3()) {
-                    w7 G = w7.G(i7);
-                    TLRPC.Document F0 = fjVar.F0();
-                    if (!fj.R5(fjVar.f24073k)) {
-                        i11 = 0;
+                if (M != file && !M.exists() && k27Var.I3()) {
+                    ba4 G = ba4.G(i);
+                    TLRPC.Document F0 = k27Var.F0();
+                    if (!k27.Q5(k27Var.k)) {
+                        i3 = 0;
                     }
-                    G.W(F0, fjVar, 0, i11);
+                    G.X(F0, k27Var, 0, i3);
                 }
             }
         }
     }
 
-    public final void l0(int i7) {
-        boolean z10 = bz.N0;
-        if (i7 == 2) {
-            bz.N0 = true;
-            bz.O0 = false;
-        } else if (i7 == 1) {
-            bz.O0 = true;
-            bz.N0 = false;
+    public final boolean g0(k27 k27Var, boolean z, boolean z2, boolean z3) {
+        oac oacVar;
+        if (k27Var != null) {
+            oacVar = k27Var.r0;
         } else {
-            bz.O0 = false;
-            bz.N0 = false;
+            oacVar = null;
         }
-        MediaController B = B();
-        fj fjVar = B.f22838v0;
-        if (fjVar != null && fjVar.I3()) {
-            B.l(B.f22838v0.K1);
-        }
-        SharedPreferences.Editor edit = mp.g1().edit();
-        edit.putBoolean("shuffleMusic", bz.N0);
-        edit.putBoolean("playOrderReversed", bz.O0);
-        edit.apply();
-        boolean z11 = bz.N0;
-        if (z10 != z11) {
-            if (z11) {
-                g();
-                return;
-            }
-            fj fjVar2 = this.f22838v0;
-            if (fjVar2 != null) {
-                int indexOf = this.S0.indexOf(fjVar2);
-                this.V0 = indexOf;
-                if (indexOf == -1) {
-                    r();
-                    q(true, true, false, false);
+        if (k27Var != null && oacVar != null) {
+            ArrayList arrayList = this.c0;
+            if (z) {
+                if (arrayList.isEmpty()) {
+                    new File(k27Var.k.attachPath).delete();
                 }
             }
+            ?? obj = new Object();
+            obj.a = k27Var;
+            obj.c = k27Var.K1;
+            obj.b = oacVar;
+            obj.d = z3;
+            arrayList.add(obj);
+            if (z2) {
+                this.a0.add(obj);
+                f(false);
+            }
+            if (arrayList.size() == 1) {
+                x0();
+            }
+            return true;
         }
+        return false;
     }
 
-    public final void m() {
-        int i7;
+    public native byte[] getWaveform2(short[] sArr, int i);
+
+    public final void h() {
+        int i;
         try {
             long currentTimeMillis = System.currentTimeMillis();
-            if (Math.abs(currentTimeMillis - f22789g2) >= 5000) {
-                AudioManager audioManager = (AudioManager) t0.f27013b.getSystemService("audio");
+            if (Math.abs(currentTimeMillis - g2) >= 5000) {
+                AudioManager audioManager = (AudioManager) a.b.getSystemService("audio");
                 if (this.M) {
-                    i7 = 0;
+                    i = 0;
                 } else {
-                    i7 = 3;
+                    i = 3;
                 }
-                int streamVolume = audioManager.getStreamVolume(i7);
+                int streamVolume = audioManager.getStreamVolume(i);
                 if (streamVolume == 0) {
-                    audioManager.adjustStreamVolume(i7, streamVolume, 1);
-                    f22789g2 = currentTimeMillis;
+                    audioManager.adjustStreamVolume(i, streamVolume, 1);
+                    g2 = currentTimeMillis;
                 }
             }
         } catch (Exception unused) {
         }
     }
 
-    public final void m0(boolean z10, float f10) {
+    public final void h0(k27 k27Var, float f) {
+        k27 k27Var2 = this.v0;
+        if ((this.j0 != null || this.F0 != null) && k27Var != null && k27Var2 != null && G(k27Var)) {
+            try {
+                lbc lbcVar = this.j0;
+                if (lbcVar != null) {
+                    long U = lbcVar.U();
+                    if (U == -9223372036854775807L) {
+                        this.u0 = f;
+                    } else {
+                        k27Var2.b0 = f;
+                        long j = (int) (((float) U) * f);
+                        this.j0.p0(j, false);
+                        k27Var2.e0 = j;
+                        if (!this.U1) {
+                            fo.x(j);
+                        }
+                    }
+                } else {
+                    lbc lbcVar2 = this.F0;
+                    if (lbcVar2 != null) {
+                        lbcVar2.o0(((float) lbcVar2.U()) * f);
+                        if (!this.U1) {
+                            fo.x(((float) this.F0.U()) * f);
+                        }
+                    }
+                }
+                kk7.f(k27Var.K1).k(kk7.h2, Integer.valueOf(k27Var2.e1()), Float.valueOf(f));
+            } catch (Exception e) {
+                fa4.g(e, true);
+            }
+        }
+    }
+
+    public final void i(boolean z) {
+        File file;
+        File file2;
+        boolean z2;
+        File file3;
+        u20 u20Var;
+        u20 u20Var2;
+        if (this.I1) {
+            al6 al6Var = this.H1;
+            if (al6Var != null) {
+                gl.r(al6Var);
+                this.H1 = null;
+            }
+            if (!z && (u20Var2 = this.G1) != null) {
+                z2 = u20Var2.c();
+            } else {
+                z2 = false;
+            }
+            if (!z2 && (u20Var = this.G1) != null) {
+                u20Var.a = false;
+                ((h30) u20Var.e).b();
+            }
+            if (z2 && (file3 = this.k1) != null) {
+                s60.b(file3);
+            }
+            s(!z);
+            return;
+        }
+        this.g1 = null;
+        s60.b(this.k1);
+        if (z && (file2 = this.k1) != null) {
+            try {
+                file2.delete();
+            } catch (Exception e) {
+                fa4.g(e, true);
+            }
+        }
+        this.k1 = null;
+        if (z && (file = this.j1) != null) {
+            file.delete();
+        }
+        this.j1 = null;
+        this.y0 = false;
+        this.r = false;
+        this.P = false;
+    }
+
+    public final void j() {
+        l(true, true, false, false);
+        this.E0 = null;
+        this.C0 = false;
+        for (int i = 0; i < 4; i++) {
+            up3 q = up3.q(i);
+            q.b.clear();
+            q.c.clear();
+            q.d.clear();
+            q.e.clear();
+            q.f.clear();
+            q.h.clear();
+            q.G.b();
+        }
+        this.c0.clear();
+        this.d0.clear();
+        this.V1 = null;
+        this.f0 = null;
+        this.g0 = null;
+        m();
+    }
+
+    public final void j0(boolean z) {
+        ix ixVar = this.M0;
+        if (ixVar != null) {
+            if (z) {
+                PipRoundVideoView pipRoundVideoView = this.I0;
+                if (pipRoundVideoView != null) {
+                    this.J0 = (byte) 2;
+                    pipRoundVideoView.a(true);
+                    this.I0 = null;
+                    return;
+                }
+                if (ixVar.getParent() == null) {
+                    this.O0.addView(this.M0);
+                }
+                this.F0.z0(this.H0);
+            } else if (ixVar.getParent() != null) {
+                this.J0 = (byte) 1;
+                this.O0.removeView(this.M0);
+            } else {
+                if (this.I0 == null) {
+                    try {
+                        PipRoundVideoView pipRoundVideoView2 = new PipRoundVideoView();
+                        this.I0 = pipRoundVideoView2;
+                        pipRoundVideoView2.d(this.K0, new wk6(this, (byte) 4));
+                    } catch (Exception unused) {
+                        this.I0 = null;
+                    }
+                }
+                PipRoundVideoView pipRoundVideoView3 = this.I0;
+                if (pipRoundVideoView3 != null) {
+                    this.F0.z0(pipRoundVideoView3.c);
+                }
+            }
+        }
+    }
+
+    public final void k(boolean z, boolean z2) {
+        l(z, z2, false, false);
+    }
+
+    public final void k0(int i) {
+        boolean z = gba.K0;
+        if (i == 2) {
+            gba.K0 = true;
+            gba.L0 = false;
+        } else if (i == 1) {
+            gba.L0 = true;
+            gba.K0 = false;
+        } else {
+            gba.L0 = false;
+            gba.K0 = false;
+        }
+        MediaController w = w();
+        k27 k27Var = w.v0;
+        if (k27Var != null && k27Var.I3()) {
+            w.g(w.v0.K1);
+        }
+        SharedPreferences.Editor edit = na7.c1().edit();
+        edit.putBoolean("shuffleMusic", gba.K0);
+        edit.putBoolean("playOrderReversed", gba.L0);
+        edit.apply();
+        boolean z2 = gba.K0;
+        if (z != z2) {
+            if (z2) {
+                b();
+                return;
+            }
+            k27 k27Var2 = this.v0;
+            if (k27Var2 != null) {
+                int indexOf = this.S0.indexOf(k27Var2);
+                this.V0 = indexOf;
+                if (indexOf == -1) {
+                    m();
+                    l(true, true, false, false);
+                }
+            }
+        }
+    }
+
+    public final void l(boolean r21, boolean r22, boolean r23, boolean r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.l(boolean, boolean, boolean, boolean):void");
+    }
+
+    public final void l0(boolean z, float f) {
         String str;
+        float f3;
         String str2;
-        float f11;
-        if (z10) {
-            if (this.f22829r0 >= 6.0f && f10 == 1.0f && this.f22838v0 != null) {
-                this.f22814j0.g0();
-                fj fjVar = this.f22838v0;
-                g0.h3(new ee(this, fjVar, fjVar.f24033b0, 0), 50L);
+        if (z) {
+            if (this.r0 >= 6.0f && f == 1.0f && this.v0 != null) {
+                this.j0.f0();
+                k27 k27Var = this.v0;
+                gl.e3(new dt(this, k27Var, k27Var.b0, (byte) 1), 50L);
             }
-            this.f22829r0 = f10;
-            if (Math.abs(f10 - 1.0f) > 0.001f) {
-                this.f22834t0 = f10;
+            this.r0 = f;
+            if (Math.abs(f - 1.0f) > 0.001f) {
+                this.t0 = f;
             }
         } else {
-            this.f22826q0 = f10;
-            if (Math.abs(f10 - 1.0f) > 0.001f) {
-                this.f22832s0 = f10;
+            this.q0 = f;
+            if (Math.abs(f - 1.0f) > 0.001f) {
+                this.s0 = f;
             }
         }
-        h61 h61Var = this.f22814j0;
-        if (h61Var != null) {
-            h61Var.v0(Math.round(f10 * 10.0f) / 10.0f);
+        lbc lbcVar = this.j0;
+        if (lbcVar != null) {
+            lbcVar.u0(Math.round(f * 10.0f) / 10.0f);
         } else {
-            h61 h61Var2 = this.F0;
-            if (h61Var2 != null) {
-                h61Var2.v0(Math.round(f10 * 10.0f) / 10.0f);
+            lbc lbcVar2 = this.F0;
+            if (lbcVar2 != null) {
+                lbcVar2.u0(Math.round(f * 10.0f) / 10.0f);
             }
         }
-        SharedPreferences.Editor edit = mp.g1().edit();
-        if (z10) {
+        SharedPreferences.Editor edit = na7.c1().edit();
+        if (z) {
             str = "musicPlaybackSpeed";
         } else {
             str = "playbackSpeed";
         }
-        SharedPreferences.Editor putFloat = edit.putFloat(str, f10);
-        if (z10) {
+        SharedPreferences.Editor putFloat = edit.putFloat(str, f);
+        if (z) {
+            f3 = this.t0;
             str2 = "fastMusicPlaybackSpeed";
         } else {
+            f3 = this.s0;
             str2 = "fastPlaybackSpeed";
         }
-        if (z10) {
-            f11 = this.f22834t0;
-        } else {
-            f11 = this.f22832s0;
-        }
-        putFloat.putFloat(str2, f11).commit();
-        ks.e().k(ks.M4, new Object[0]);
+        putFloat.putFloat(str2, f3).commit();
+        kk7.e().k(kk7.L4, new Object[0]);
         if (!this.U1) {
-            d1.f.z(f10);
+            fo.B(f);
         }
     }
 
-    public final void n(boolean z10) {
-        File file;
-        File file2;
-        boolean z11;
-        File file3;
-        e0.g gVar;
-        e0.g gVar2;
-        if (this.I1) {
-            fi.z0 z0Var = this.H1;
-            if (z0Var != null) {
-                g0.r(z0Var);
-                this.H1 = null;
-            }
-            if (!z10 && (gVar2 = this.G1) != null) {
-                z11 = gVar2.c();
-            } else {
-                z11 = false;
-            }
-            if (!z11 && (gVar = this.G1) != null) {
-                gVar.f10196b = false;
-                ((yi.j) gVar.f10198e).b();
-            }
-            if (z11 && (file3 = this.f22817k1) != null) {
-                z0.b(file3);
-            }
-            x(!z10);
-            return;
-        }
-        this.f22809g1 = null;
-        z0.b(this.f22817k1);
-        if (z10 && (file2 = this.f22817k1) != null) {
-            try {
-                file2.delete();
-            } catch (Exception e10) {
-                a8.g(e10, true);
-            }
-        }
-        this.f22817k1 = null;
-        if (z10 && (file = this.f22815j1) != null) {
-            file.delete();
-        }
-        this.f22815j1 = null;
-        this.f22847y0 = false;
-        this.f22828r = false;
-        this.P = false;
-    }
-
-    public final void n0() {
-        float f10;
-        try {
-            if (this.Y != 1) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.2f;
-            }
-            h61 h61Var = this.f22814j0;
-            float f11 = 0.0f;
-            if (h61Var != null) {
-                if (!d1.f.u()) {
-                    f11 = this.Q1 * f10;
-                }
-                h61Var.B0(f11);
-                return;
-            }
-            h61 h61Var2 = this.F0;
-            if (h61Var2 != null) {
-                if (d1.f.u()) {
-                    f10 = 0.0f;
-                }
-                h61Var2.B0(f10);
-            }
-        } catch (Exception e10) {
-            a8.g(e10, true);
-        }
-    }
-
-    public final void o() {
-        q(true, true, false, false);
-        this.E0 = null;
-        this.C0 = false;
-        for (int i7 = 0; i7 < 4; i7++) {
-            a6 q10 = a6.q(i7);
-            q10.f22936b.clear();
-            q10.f22937c.clear();
-            q10.d.clear();
-            q10.f22938e.clear();
-            q10.f22939f.clear();
-            q10.h.clear();
-            q10.G.b();
-        }
-        this.f22798c0.clear();
-        this.f22800d0.clear();
-        this.V1 = null;
-        this.f22806f0 = null;
-        this.f22808g0 = null;
-        r();
-    }
-
-    public final boolean o0(ArrayList arrayList, fj fjVar, long j3, boolean z10, h2.a0 a0Var, long j10) {
-        HashMap hashMap;
-        fj fjVar2 = this.f22838v0;
-        ArrayList arrayList2 = this.S0;
-        if (fjVar2 == fjVar) {
-            int indexOf = arrayList2.indexOf(fjVar);
-            if (indexOf >= 0) {
-                this.V0 = indexOf;
-            }
-            return S(fjVar);
-        }
-        this.W0 = !z10;
-        this.Z0 = j3;
-        this.C0 = !arrayList2.isEmpty();
-        r();
-        this.D0 = a0Var;
-        this.f22796b1 = j10;
-        boolean z11 = false;
-        if (!arrayList.isEmpty() && n5.C(fj.B0(((fj) arrayList.get(0)).f24073k))) {
-            z11 = true;
-        }
-        int size = arrayList.size() - 1;
-        int i7 = Integer.MAX_VALUE;
-        int i10 = Integer.MIN_VALUE;
-        while (true) {
-            hashMap = this.T0;
-            if (size < 0) {
-                break;
-            }
-            fj fjVar3 = (fj) arrayList.get(size);
-            if (fjVar3.I3()) {
-                int e12 = fjVar3.e1();
-                if (e12 > 0 || z11) {
-                    i7 = Math.min(i7, e12);
-                    i10 = Math.max(i10, e12);
-                }
-                arrayList2.add(fjVar3);
-                hashMap.put(Integer.valueOf(e12), fjVar3);
-            }
-            size--;
-        }
-        t0();
-        int indexOf2 = arrayList2.indexOf(fjVar);
-        this.V0 = indexOf2;
-        if (indexOf2 == -1) {
-            r();
-            this.V0 = arrayList2.size();
-            arrayList2.add(fjVar);
-            hashMap.put(Integer.valueOf(fjVar.e1()), fjVar);
-        }
-        if (fjVar.I3() && !fjVar.f24102r1) {
-            if (bz.N0) {
-                g();
-            }
-            if (z10) {
-                if (this.D0 == null) {
-                    final ri d02 = ri.d0(fjVar.K1);
-                    final long B0 = fj.B0(fjVar.f24073k);
-                    final long j11 = this.f22796b1;
-                    final long j12 = i7;
-                    final long j13 = i10;
-                    d02.getMessagesStorage().f27149a.c(new Runnable() {
-                        @Override
-                        public final void run() {
-                            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.th.run():void");
-                        }
-                    });
-                } else {
-                    this.f22793a1 = ConnectionsManager.generateClassGuid();
-                }
-            }
-        }
-        return S(fjVar);
-    }
-
-    @Override
-    public final void onAudioFocusChange(int i7) {
-        g0.g3(new wd(this, i7, 1));
-    }
-
-    @Override
-    public final void onSensorChanged(android.hardware.SensorEvent r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.onSensorChanged(android.hardware.SensorEvent):void");
-    }
-
-    public final void p(boolean z10, boolean z11) {
-        q(z10, z11, false, false);
-    }
-
-    public final void p0(TextureView textureView, org.telegram.ui.j4 j4Var, FrameLayout frameLayout, boolean z10) {
-        if (textureView != null) {
-            boolean z11 = true;
-            if (!z10 && this.H0 == textureView) {
-                this.J0 = 1;
-                this.H0 = null;
-                this.M0 = null;
-                this.O0 = null;
-                return;
-            }
-            h61 h61Var = this.F0;
-            if (h61Var != null && textureView != this.H0) {
-                if (j4Var == null || !j4Var.d) {
-                    z11 = false;
-                }
-                this.N0 = z11;
-                this.H0 = textureView;
-                PipRoundVideoView pipRoundVideoView = this.I0;
-                if (pipRoundVideoView != null) {
-                    h61Var.A0(pipRoundVideoView.f33103c);
-                } else {
-                    h61Var.A0(textureView);
-                }
-                this.M0 = j4Var;
-                this.O0 = frameLayout;
-                if (this.Q0 && j4Var != null) {
-                    j4Var.a(this.P0, 0);
-                }
-            }
-        }
-    }
-
-    public final void q(boolean r21, boolean r22, boolean r23, boolean r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.q(boolean, boolean, boolean, boolean):void");
-    }
-
-    public final void q0() {
-        this.M = true;
-        AudioManager audioManager = xs.f28076p0;
-        audioManager.setBluetoothScoOn(false);
-        audioManager.setSpeakerphoneOn(false);
-    }
-
-    public final void r() {
+    public final void m() {
         this.R0 = null;
         this.S0.clear();
         this.T0.clear();
         this.U0.clear();
-        this.f22793a1 = 0;
+        this.a1 = 0;
         boolean[] zArr = this.X0;
         zArr[1] = false;
         zArr[0] = false;
         this.Z0 = 0L;
-        this.f22796b1 = 0L;
-        int[] iArr = this.f22799c1;
+        this.b1 = 0L;
+        int[] iArr = this.c1;
         iArr[1] = Integer.MAX_VALUE;
         iArr[0] = Integer.MAX_VALUE;
         this.Y0 = false;
@@ -2822,173 +2565,348 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.V1 = null;
     }
 
-    public final void r0(ArrayList arrayList, boolean z10) {
-        ArrayList arrayList2;
-        if (arrayList != null) {
-            arrayList2 = new ArrayList(arrayList);
-        } else {
-            arrayList2 = null;
-        }
-        this.f22806f0 = arrayList2;
-        if (arrayList2 != null) {
-            this.f22803e0 = z10;
-            this.f22808g0 = new SparseArray();
-            for (int i7 = 0; i7 < this.f22806f0.size(); i7++) {
-                fj fjVar = (fj) this.f22806f0.get(i7);
-                this.f22808g0.put(fjVar.e1(), fjVar);
+    public final void m0() {
+        float f;
+        try {
+            if (this.Y != 1) {
+                f = 1.0f;
+            } else {
+                f = 0.2f;
             }
+            lbc lbcVar = this.j0;
+            float f3 = 0.0f;
+            if (lbcVar != null) {
+                if (!fo.w()) {
+                    f3 = f * this.Q1;
+                }
+                lbcVar.A0(f3);
+                return;
+            }
+            lbc lbcVar2 = this.F0;
+            if (lbcVar2 != null) {
+                if (fo.w()) {
+                    f = 0.0f;
+                }
+                lbcVar2.A0(f);
+            }
+        } catch (Exception e) {
+            fa4.g(e, true);
         }
     }
 
-    public final void s(ac.e eVar) {
+    public final void n(m20 m20Var) {
         byte[] bArr;
         TLRPC.TL_document tL_document;
-        int i7;
-        File file = (File) eVar.f1021b;
-        this.f22817k1 = file;
-        long j3 = eVar.f1020a;
-        this.l1 = j3;
-        byte[] bArr2 = (byte[]) eVar.f1022c;
+        int i;
+        File file = (File) m20Var.b;
+        this.k1 = file;
+        long j = m20Var.a;
+        this.l1 = j;
+        byte[] bArr2 = (byte[]) m20Var.c;
         String str = null;
         if (bArr2 == null) {
             bArr = null;
         } else {
             bArr = (byte[]) bArr2.clone();
         }
-        G0(file, j3, bArr);
+        F0(file, j, bArr);
         if (this.C1 == 3) {
-            this.L1 = eVar;
-            e0.g gVar = this.G1;
-            if (gVar != null) {
-                ((yi.j) gVar.f10198e).o();
-                gVar.f10197c = true;
+            this.L1 = m20Var;
+            u20 u20Var = this.G1;
+            if (u20Var != null) {
+                ((h30) u20Var.e).o();
+                u20Var.c = true;
                 this.G1 = null;
             }
-            Y(false);
-            j0(false);
+            X(false);
+            i0(false);
             return;
         }
-        ri.d0(this.f22813i1).F1(this.n1, this.f22823o1, null);
+        hq6.d0(this.i1).D1(this.n1, this.o1, null);
         if (this.C1 == 1) {
-            TLRPC.TL_document tL_document2 = this.f22809g1;
+            TLRPC.TL_document tL_document2 = this.g1;
             String absolutePath = file.getAbsolutePath();
-            long j10 = this.n1;
-            fj fjVar = this.f22830r1;
-            fj fjVar2 = this.f22833s1;
-            boolean z10 = this.D1;
-            int i10 = this.E1;
+            long j2 = this.n1;
+            k27 k27Var = this.r1;
+            k27 k27Var2 = this.s1;
+            boolean z = this.D1;
+            int i2 = this.E1;
             if (this.F1) {
-                i7 = Integer.MAX_VALUE;
+                i = Integer.MAX_VALUE;
             } else {
-                i7 = 0;
+                i = 0;
             }
-            xy f10 = xy.f(tL_document2, null, absolutePath, j10, fjVar, fjVar2, null, null, null, null, z10, i10, 0, i7, null, null, false);
-            f10.R = this.f22825p1;
-            f10.T = this.f22827q1;
-            f10.H = this.f22835t1;
-            f10.K = this.f22837u1;
-            f10.Q = 0L;
-            zy.C(this.f22813i1).r0(f10);
+            x3a f = x3a.f(tL_document2, null, absolutePath, j2, k27Var, k27Var2, null, null, null, null, z, i2, 0, i, null, null, false);
+            f.R = this.p1;
+            f.T = this.q1;
+            f.H = this.t1;
+            f.K = this.u1;
+            f.Q = 0L;
+            z3a.B(this.i1).q0(f);
         }
-        ks f11 = ks.f(this.f22813i1);
-        Integer valueOf = Integer.valueOf(this.f22811h1);
-        int i11 = this.C1;
-        if (i11 == 2) {
-            tL_document = this.f22809g1;
+        kk7 f3 = kk7.f(this.i1);
+        Integer valueOf = Integer.valueOf(this.h1);
+        if (this.C1 == 2) {
+            TLRPC.TL_document tL_document3 = this.g1;
+            str = file.getAbsolutePath();
+            tL_document = tL_document3;
         } else {
             tL_document = null;
         }
-        if (i11 == 2) {
-            str = file.getAbsolutePath();
+        f3.k(kk7.r2, valueOf, tL_document, str);
+        s(true);
+    }
+
+    public final boolean n0(ArrayList arrayList, k27 k27Var, long j, boolean z, km6 km6Var, long j2) {
+        HashMap hashMap;
+        k27 k27Var2 = this.v0;
+        ArrayList arrayList2 = this.S0;
+        if (k27Var2 == k27Var) {
+            int indexOf = arrayList2.indexOf(k27Var);
+            if (indexOf >= 0) {
+                this.V0 = indexOf;
+            }
+            return R(k27Var);
         }
-        f11.k(ks.f25286s2, valueOf, tL_document, str);
-        x(true);
+        this.W0 = !z;
+        this.Z0 = j;
+        this.C0 = !arrayList2.isEmpty();
+        m();
+        this.D0 = km6Var;
+        this.b1 = j2;
+        boolean z2 = false;
+        if (!arrayList.isEmpty() && cf3.B(k27.B0(((k27) arrayList.get(0)).k))) {
+            z2 = true;
+        }
+        int size = arrayList.size() - 1;
+        int i = Integer.MAX_VALUE;
+        int i2 = Integer.MIN_VALUE;
+        while (true) {
+            hashMap = this.T0;
+            if (size < 0) {
+                break;
+            }
+            k27 k27Var3 = (k27) arrayList.get(size);
+            if (k27Var3.I3()) {
+                int e1 = k27Var3.e1();
+                if (e1 > 0 || z2) {
+                    i = Math.min(i, e1);
+                    i2 = Math.max(i2, e1);
+                }
+                arrayList2.add(k27Var3);
+                hashMap.put(Integer.valueOf(e1), k27Var3);
+            }
+            size--;
+        }
+        s0();
+        int indexOf2 = arrayList2.indexOf(k27Var);
+        this.V0 = indexOf2;
+        if (indexOf2 == -1) {
+            m();
+            this.V0 = arrayList2.size();
+            arrayList2.add(k27Var);
+            hashMap.put(Integer.valueOf(k27Var.e1()), k27Var);
+        }
+        if (k27Var.I3() && !k27Var.r1) {
+            if (gba.K0) {
+                b();
+            }
+            if (z) {
+                if (this.D0 == null) {
+                    final hq6 d0 = hq6.d0(k27Var.K1);
+                    final long B0 = k27.B0(k27Var.k);
+                    final long j3 = this.b1;
+                    final long j4 = i;
+                    final long j5 = i2;
+                    d0.getMessagesStorage().a.c(new Runnable() {
+                        @Override
+                        public final void run() {
+                            throw new UnsupportedOperationException("Method not decompiled: defpackage.ip6.run():void");
+                        }
+                    });
+                } else {
+                    this.a1 = ConnectionsManager.generateClassGuid();
+                }
+            }
+        }
+        return R(k27Var);
     }
 
-    public final void t0() {
-        Collections.sort(this.S0, new jg.w(17));
-    }
-
-    public final void u0(boolean z10) {
-        boolean z11;
-        fj fjVar = this.f22838v0;
-        if (fjVar != null) {
-            int i7 = 0;
-            ks.f(fjVar.K1).k(ks.f25299u2, Boolean.valueOf(this.M));
-            h61 h61Var = this.F0;
-            if (h61Var != null) {
-                if (!this.M) {
-                    i7 = 3;
-                }
-                h61Var.x0(i7);
-                if (!z10) {
-                    if (this.F0.S() < 1000) {
-                        this.F0.p0(0L);
-                    }
-                    this.F0.h0();
-                    return;
-                }
-                R(this.f22838v0, true);
+    public final void o0(TextureView textureView, ix ixVar, FrameLayout frameLayout, boolean z) {
+        if (textureView != null) {
+            boolean z2 = true;
+            if (!z && this.H0 == textureView) {
+                this.J0 = (byte) 1;
+                this.H0 = null;
+                this.M0 = null;
+                this.O0 = null;
                 return;
             }
-            h61 h61Var2 = this.f22814j0;
-            if (h61Var2 != null) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            fj fjVar2 = this.f22838v0;
-            float f10 = fjVar2.f24033b0;
-            int i10 = fjVar2.f24070j0;
-            if (!z10 && h61Var2 != null && h61Var2.d0() && i10 * f10 <= 1.0f) {
-                fjVar2.f24033b0 = 0.0f;
-            } else {
-                fjVar2.f24033b0 = f10;
-            }
-            q(false, true, false, false);
-            S(fjVar2);
-            if (z10) {
-                if (z11) {
-                    g0.h3(new z4(21, this, fjVar2), 100L);
+            lbc lbcVar = this.F0;
+            if (lbcVar != null && textureView != this.H0) {
+                if (ixVar == null || !ixVar.d) {
+                    z2 = false;
+                }
+                this.N0 = z2;
+                this.H0 = textureView;
+                PipRoundVideoView pipRoundVideoView = this.I0;
+                if (pipRoundVideoView != null) {
+                    lbcVar.z0(pipRoundVideoView.c);
                 } else {
-                    R(fjVar2, true);
+                    lbcVar.z0(textureView);
+                }
+                this.M0 = ixVar;
+                this.O0 = frameLayout;
+                if (this.Q0 && ixVar != null) {
+                    ixVar.a(this.P0, 0);
                 }
             }
         }
     }
 
-    public final void v0(fj fjVar) {
+    @Override
+    public final void onAudioFocusChange(int i) {
+        gl.d3(new sm3(this, i, (byte) 18));
+    }
+
+    @Override
+    public final void onSensorChanged(android.hardware.SensorEvent r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.onSensorChanged(android.hardware.SensorEvent):void");
+    }
+
+    public final void p0() {
+        this.M = true;
+        AudioManager audioManager = im7.p0;
+        audioManager.setBluetoothScoOn(false);
+        audioManager.setSpeakerphoneOn(false);
+    }
+
+    public final void q0(ArrayList arrayList, boolean z) {
+        ArrayList arrayList2;
+        if (arrayList != null) {
+            arrayList2 = new ArrayList(arrayList);
+        } else {
+            arrayList2 = null;
+        }
+        this.f0 = arrayList2;
+        if (arrayList2 != null) {
+            this.e0 = z;
+            this.g0 = new SparseArray();
+            for (int i = 0; i < this.f0.size(); i++) {
+                k27 k27Var = (k27) this.f0.get(i);
+                this.g0.put(k27Var.e1(), k27Var);
+            }
+        }
+    }
+
+    public final void s(boolean z) {
+        File file;
+        X(false);
+        i0(false);
+        u20 u20Var = this.G1;
+        if (u20Var != null) {
+            ((h30) u20Var.e).o();
+            u20Var.c = true;
+            this.G1 = null;
+        }
+        if (!z && (file = this.k1) != null) {
+            s60.b(file);
+            this.k1.delete();
+        }
+        Y();
+        this.y0 = false;
+        this.r = false;
+        this.P = false;
+    }
+
+    public final void s0() {
+        Collections.sort(this.S0, new el6((byte) 1));
+    }
+
+    public final void t0(boolean z) {
+        boolean z2;
+        k27 k27Var = this.v0;
+        if (k27Var != null) {
+            int i = 0;
+            kk7.f(k27Var.K1).k(kk7.t2, Boolean.valueOf(this.M));
+            lbc lbcVar = this.F0;
+            if (lbcVar != null) {
+                if (!this.M) {
+                    i = 3;
+                }
+                lbcVar.w0(i);
+                if (!z) {
+                    if (this.F0.S() < 1000) {
+                        this.F0.o0(0L);
+                    }
+                    this.F0.g0();
+                    return;
+                }
+                Q(this.v0, true);
+                return;
+            }
+            lbc lbcVar2 = this.j0;
+            if (lbcVar2 != null) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            k27 k27Var2 = this.v0;
+            float f = k27Var2.b0;
+            int i2 = k27Var2.j0;
+            if (!z && lbcVar2 != null && lbcVar2.c0() && i2 * f <= 1.0f) {
+                k27Var2.b0 = 0.0f;
+            } else {
+                k27Var2.b0 = f;
+            }
+            l(false, true, false, false);
+            R(k27Var2);
+            if (z) {
+                if (z2) {
+                    gl.e3(new oh6(this, k27Var2, (byte) 2), 100L);
+                } else {
+                    Q(k27Var2, true);
+                }
+            }
+        }
+    }
+
+    public final defpackage.yg2 u() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.u():yg2");
+    }
+
+    public final void u0(k27 k27Var) {
         synchronized (this.A0) {
-            Timer timer = this.f22849z0;
+            Timer timer = this.z0;
             if (timer != null) {
                 try {
                     timer.cancel();
-                    this.f22849z0 = null;
-                } catch (Exception e10) {
-                    a8.g(e10, true);
+                    this.z0 = null;
+                } catch (Exception e) {
+                    fa4.g(e, true);
                 }
             }
-            fjVar.S0();
+            k27Var.S0();
             Timer timer2 = new Timer();
-            this.f22849z0 = timer2;
-            timer2.schedule(new jg.q1(1, this, fjVar), 0L, 17L);
+            this.z0 = timer2;
+            timer2.schedule(new ox2(this, k27Var, (byte) 2), 0L, 17L);
         }
     }
 
-    public final void w0(org.telegram.ui.bn bnVar) {
-        if (bnVar != null) {
-            if ((this.f22805f != null || this.f22820n != null) && this.f22802e != null) {
-                if (!bz.k(false)) {
-                    fj fjVar = this.f22838v0;
-                    if (fjVar != null) {
-                        if (!fj.R4(fjVar.f24073k) && !this.f22838v0.h4()) {
+    public final void v0(mu1 mu1Var) {
+        if (mu1Var != null) {
+            if ((this.f != null || this.n != null) && this.e != null) {
+                if (!gba.k(false)) {
+                    k27 k27Var = this.v0;
+                    if (k27Var != null) {
+                        if (!k27.Q4(k27Var.k) && !this.v0.g4()) {
                             return;
                         }
                     } else {
                         return;
                     }
                 }
-                this.f22831s = bnVar;
+                this.s = mu1Var;
                 if (!this.Q) {
                     float[] fArr = this.S;
                     fArr[2] = 0.0f;
@@ -3004,140 +2922,172 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     fArr3[0] = 0.0f;
                     this.I = 0L;
                     this.R = 0.0f;
-                    this.f22846y = 0;
-                    this.E = 0;
+                    this.y = 0;
+                    this.E = (byte) 0;
                     this.G = 0;
                     this.F = 0;
-                    Utilities.f22877e.c(new td(this, 3));
+                    Utilities.e.c(new wk6(this, (byte) 3));
                     this.Q = true;
                 }
             }
         }
     }
 
-    public final void x(boolean z10) {
-        File file;
-        Y(false);
-        j0(false);
-        e0.g gVar = this.G1;
-        if (gVar != null) {
-            ((yi.j) gVar.f10198e).o();
-            gVar.f10197c = true;
-            this.G1 = null;
-        }
-        if (!z10 && (file = this.f22817k1) != null) {
-            z0.b(file);
-            this.f22817k1.delete();
-        }
-        Z();
-        this.f22847y0 = false;
-        this.f22828r = false;
-        this.P = false;
-    }
-
-    public final void x0(int i7, long j3, fj fjVar, fj fjVar2, TL_stories.StoryItem storyItem, int i10, boolean z10, bw bwVar, long j10, kj kjVar) {
-        boolean z11;
-        long j11;
+    public final void w0(int i, long j, k27 k27Var, k27 k27Var2, TL_stories.StoryItem storyItem, int i2, boolean z, j1a j1aVar, long j2, u47 u47Var) {
+        boolean z2;
+        long j3;
         long b22;
-        long j12;
-        fj fjVar3 = this.f22838v0;
-        if (fjVar3 != null && I(fjVar3) && !H()) {
-            z11 = true;
+        long j4;
+        k27 k27Var3 = this.v0;
+        if (k27Var3 != null && D(k27Var3) && !C()) {
+            z2 = true;
         } else {
-            z11 = false;
+            z2 = false;
         }
-        this.f22847y0 = z10;
-        Y(true);
+        this.y0 = z;
+        X(true);
         try {
             this.L0.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
-        if (this.I1 && !X()) {
-            g0.g3(new e9(i7, i10, 2));
-        } else if (s0(i7)) {
+        if (this.I1 && !W()) {
+            gl.d3(new gs2(i, i2, (byte) 5));
+        } else if (r0(i)) {
             this.I1 = true;
             this.J1 = false;
             this.K1 = false;
-            this.f22813i1 = i7;
-            this.f22811h1 = i10;
-            this.n1 = j3;
-            this.f22825p1 = j10;
-            this.f22827q1 = kjVar;
-            if (fjVar2 == null) {
+            this.i1 = i;
+            this.h1 = i2;
+            this.n1 = j;
+            this.p1 = j2;
+            this.q1 = u47Var;
+            if (k27Var2 == null) {
                 b22 = 0;
             } else {
-                b22 = fj.b2(i7, fjVar2.f24073k, false, false);
+                b22 = k27.b2(i, k27Var2.k, false, false);
             }
-            this.f22823o1 = b22;
-            this.f22830r1 = fjVar;
-            this.f22833s1 = fjVar2;
-            this.f22835t1 = storyItem;
-            this.f22837u1 = bwVar;
-            this.f22815j1 = null;
-            this.f22817k1 = null;
+            this.o1 = b22;
+            this.r1 = k27Var;
+            this.s1 = k27Var2;
+            this.t1 = storyItem;
+            this.u1 = j1aVar;
+            this.j1 = null;
+            this.k1 = null;
             this.l1 = 0L;
-            this.f22819m1 = 0;
-            this.f22842w1 = 0L;
-            this.C1 = 0;
-            fi.z0 z0Var = new fi.z0(i7, i10, 1, j3, this);
-            this.H1 = z0Var;
-            if (z11) {
-                j12 = 500;
+            this.m1 = 0;
+            this.w1 = 0L;
+            this.C1 = (byte) 0;
+            al6 al6Var = new al6(this, i, j, i2, (byte) 0);
+            this.H1 = al6Var;
+            if (z2) {
+                j4 = 500;
             } else {
-                j12 = 50;
+                j4 = 50;
             }
-            g0.h3(z0Var, j12);
+            gl.e3(al6Var, j4);
         } else {
-            if (s2.f26829a) {
-                a8.b("AudioRecorder legacy selected: account=" + i7 + ", dialog=" + j3 + ", guid=" + i10);
+            if (w01.a) {
+                fa4.b("AudioRecorder legacy selected: account=" + i + ", dialog=" + j + ", guid=" + i2);
             }
-            ud udVar = new ud(this, i7, i10, j3, j10, kjVar, fjVar2, fjVar, storyItem, bwVar);
-            this.M1 = udVar;
-            if (z11) {
-                j11 = 500;
+            xk6 xk6Var = new xk6(this, i, i2, j, j2, u47Var, k27Var2, k27Var, storyItem, j1aVar);
+            this.M1 = xk6Var;
+            if (z2) {
+                j3 = 500;
             } else {
-                j11 = 50;
+                j3 = 50;
             }
-            this.N1.d(udVar, j11);
+            this.N1.d(xk6Var, j3);
         }
+    }
+
+    public final float x(boolean z) {
+        if (z) {
+            return this.r0;
+        }
+        return this.q0;
+    }
+
+    public final void x0() {
+        if (!this.c0.isEmpty()) {
+            om6 om6Var = (om6) this.c0.get(0);
+            oac oacVar = om6Var.b;
+            synchronized (this.b) {
+                if (oacVar != null) {
+                    oacVar.V = false;
+                }
+            }
+            new Thread(new vl6(om6Var, (byte) 3)).start();
+        }
+    }
+
+    public final long y(k27 k27Var) {
+        k27 k27Var2 = this.v0;
+        if ((this.j0 != null || this.F0 != null) && k27Var != null && k27Var2 != null && G(k27Var)) {
+            try {
+                lbc lbcVar = this.j0;
+                if (lbcVar != null) {
+                    return lbcVar.S();
+                }
+                lbc lbcVar2 = this.F0;
+                if (lbcVar2 != null) {
+                    return lbcVar2.S();
+                }
+            } catch (Exception unused) {
+            }
+        }
+        return -1L;
     }
 
     public final void y0() {
-        if (!this.f22798c0.isEmpty()) {
-            jf jfVar = (jf) this.f22798c0.get(0);
-            d20 d20Var = jfVar.f24958b;
-            synchronized (this.f22794b) {
-                if (d20Var != null) {
-                    try {
-                        d20Var.W = false;
-                    } catch (Throwable th2) {
-                        throw th2;
-                    }
-                }
-            }
-            new Thread(new a(jfVar, 20)).start();
-        }
-    }
-
-    public final wf.f z() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.z():wf.f");
-    }
-
-    public final void z0() {
         synchronized (this.A0) {
-            Timer timer = this.f22849z0;
+            Timer timer = this.z0;
             if (timer != null) {
                 try {
                     timer.cancel();
-                    this.f22849z0 = null;
-                } catch (Exception e10) {
-                    a8.g(e10, true);
+                    this.z0 = null;
+                } catch (Exception e) {
+                    fa4.g(e, true);
+                }
+            }
+        }
+    }
+
+    public final void z0(mu1 mu1Var, boolean z, boolean z2) {
+        int i;
+        if (this.P) {
+            this.P = false;
+            return;
+        }
+        if (z2) {
+            if (this.g1 != null && !F()) {
+                C0(false);
+            } else {
+                if (z) {
+                    i = 2;
+                } else {
+                    i = 0;
+                }
+                A0(i, 0, false, false);
+            }
+        }
+        if (this.Q && !this.P) {
+            if ((this.f != null || this.n != null) && this.e != null && this.s == mu1Var) {
+                this.s = null;
+                this.Q = false;
+                this.w = false;
+                this.J = false;
+                this.r = false;
+                this.M = false;
+                Utilities.e.c(new wk6(this, (byte) 5));
+                PowerManager.WakeLock wakeLock = this.d;
+                if (wakeLock != null && wakeLock.isHeld()) {
+                    this.d.release();
                 }
             }
         }
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int i7) {
+    public final void onAccuracyChanged(Sensor sensor, int i) {
     }
 }

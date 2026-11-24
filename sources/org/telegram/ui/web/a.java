@@ -1,47 +1,86 @@
 package org.telegram.ui.web;
 
+import android.app.Activity;
+import android.content.Context;
 import android.view.View;
-import java.io.Serializable;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.u10;
-import org.telegram.ui.Components.n41;
-public final class a implements org.telegram.ui.ActionBar.q1, u10 {
-    public final k f53324a;
+import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import java.io.InputStream;
+import org.telegram.ui.LaunchActivity;
+public final class a implements p8c {
+    public final pob a;
+    public final boolean[] b;
+    public final qob c;
+    public final ctc d;
+    public final p8c e;
 
-    public a(k kVar) {
-        this.f53324a = kVar;
+    public a(pob pobVar, boolean[] zArr, qob qobVar, ctc ctcVar, p8c p8cVar) {
+        this.a = pobVar;
+        this.b = zArr;
+        this.c = qobVar;
+        this.d = ctcVar;
+        this.e = p8cVar;
     }
 
     @Override
-    public void i(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        k kVar = this.f53324a;
-        kVar.getContext().getSharedPreferences("webhistory", 0).edit().remove("queries_json").apply();
-        kVar.f53454x.f35323g3.O(true);
-    }
-
-    @Override
-    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        org.telegram.ui.q qVar;
-        n41 n41Var = (n41) obj;
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f10 = (Float) serializable;
-        Float f11 = (Float) serializable2;
-        boolean H = n41Var.H(d.class);
-        k kVar = this.f53324a;
-        if (H) {
-            String charSequence = n41Var.f37655m.toString();
-            org.telegram.ui.x xVar = kVar.M;
-            if (xVar != null) {
-                xVar.a(charSequence);
-            }
-        } else if (n41Var.H(g.class) && (qVar = kVar.O) != null) {
-            try {
-                qVar.a(k.a((fj) n41Var.I));
-            } catch (Exception e10) {
-                a8.g(e10, true);
-            }
+    public final void a(Object obj) {
+        pob pobVar = this.a;
+        boolean[] zArr = this.b;
+        qob qobVar = this.c;
+        ctc ctcVar = this.d;
+        p8c p8cVar = this.e;
+        InputStream inputStream = (InputStream) obj;
+        qob.a(pobVar);
+        if (zArr[0]) {
+            return;
         }
+        pob d = qob.d(qobVar, "readHTML");
+        String str = ctcVar.a;
+        final yt0 yt0Var = new yt0(d, zArr, qobVar, ctcVar, p8cVar, (byte) 9);
+        if (inputStream == null) {
+            yt0Var.a(null);
+            return;
+        }
+        Context context = LaunchActivity.H1;
+        if (context == null) {
+            context = org.telegram.messenger.a.b;
+        }
+        Activity W = gl.W(context);
+        if (W == null) {
+            yt0Var.a(null);
+            return;
+        }
+        View rootView = W.findViewById(16908290).getRootView();
+        if (!(rootView instanceof ViewGroup)) {
+            yt0Var.a(null);
+            return;
+        }
+        final ar8 ar8Var = new ar8(context, (byte) 22);
+        ((ViewGroup) rootView).addView(ar8Var);
+        final WebView webView = new WebView(context);
+        WebSettings settings = webView.getSettings();
+        settings.setAllowContentAccess(false);
+        settings.setDatabaseEnabled(false);
+        settings.setAllowFileAccess(false);
+        settings.setJavaScriptEnabled(true);
+        settings.setSaveFormData(false);
+        settings.setGeolocationEnabled(false);
+        settings.setDomStorageEnabled(false);
+        settings.setAllowFileAccessFromFileURLs(false);
+        settings.setAllowUniversalAccessFromFileURLs(false);
+        webView.setWebViewClient(new xsc(ctcVar, inputStream));
+        webView.setWebChromeClient(new WebChromeClient());
+        ar8Var.addView(webView, nme.c(-1.0f, -1));
+        final boolean[] zArr2 = {false};
+        webView.addJavascriptInterface(new Object() {
+            @JavascriptInterface
+            public void done(String str2) {
+                gl.d3(new tsa(zArr2, webView, ar8Var, str2, yt0Var, (byte) 10));
+            }
+        }, "Instant");
+        webView.loadUrl(str);
     }
 }

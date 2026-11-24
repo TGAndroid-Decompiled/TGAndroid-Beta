@@ -1,46 +1,45 @@
 package org.webrtc;
 
-import com.google.android.gms.internal.vision.e2;
 import java.util.Map;
 public class RTCStats {
-    private final String f55144id;
+    private final String id;
     private final Map<String, Object> members;
     private final long timestampUs;
     private final String type;
 
-    public RTCStats(long j3, String str, String str2, Map<String, Object> map) {
-        this.timestampUs = j3;
+    public RTCStats(long j, String str, String str2, Map<String, Object> map) {
+        this.timestampUs = j;
         this.type = str;
-        this.f55144id = str2;
+        this.id = str2;
         this.members = map;
     }
 
-    private static void appendValue(StringBuilder sb2, Object obj) {
+    private static void appendValue(StringBuilder sb, Object obj) {
         if (obj instanceof Object[]) {
             Object[] objArr = (Object[]) obj;
-            sb2.append('[');
-            for (int i7 = 0; i7 < objArr.length; i7++) {
-                if (i7 != 0) {
-                    sb2.append(", ");
+            sb.append('[');
+            for (int i = 0; i < objArr.length; i++) {
+                if (i != 0) {
+                    sb.append(", ");
                 }
-                appendValue(sb2, objArr[i7]);
+                appendValue(sb, objArr[i]);
             }
-            sb2.append(']');
+            sb.append(']');
         } else if (obj instanceof String) {
-            sb2.append('\"');
-            sb2.append(obj);
-            sb2.append('\"');
+            sb.append('\"');
+            sb.append(obj);
+            sb.append('\"');
         } else {
-            sb2.append(obj);
+            sb.append(obj);
         }
     }
 
-    public static RTCStats create(long j3, String str, String str2, Map map) {
-        return new RTCStats(j3, str, str2, map);
+    public static RTCStats create(long j, String str, String str2, Map map) {
+        return new RTCStats(j, str, str2, map);
     }
 
     public String getId() {
-        return this.f55144id;
+        return this.id;
     }
 
     public Map<String, Object> getMembers() {
@@ -56,19 +55,19 @@ public class RTCStats {
     }
 
     public String toString() {
-        StringBuilder m10 = e2.m("{ timestampUs: ");
-        m10.append(this.timestampUs);
-        m10.append(", type: ");
-        m10.append(this.type);
-        m10.append(", id: ");
-        m10.append(this.f55144id);
+        StringBuilder r = tb4.r("{ timestampUs: ");
+        r.append(this.timestampUs);
+        r.append(", type: ");
+        r.append(this.type);
+        r.append(", id: ");
+        r.append(this.id);
         for (Map.Entry<String, Object> entry : this.members.entrySet()) {
-            m10.append(", ");
-            m10.append(entry.getKey());
-            m10.append(": ");
-            appendValue(m10, entry.getValue());
+            r.append(", ");
+            r.append(entry.getKey());
+            r.append(": ");
+            appendValue(r, entry.getValue());
         }
-        m10.append(" }");
-        return m10.toString();
+        r.append(" }");
+        return r.toString();
     }
 }

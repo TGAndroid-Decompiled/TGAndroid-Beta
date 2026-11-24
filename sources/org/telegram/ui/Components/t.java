@@ -1,125 +1,169 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.Locale;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_aicompose;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class t implements org.telegram.messenger.p10 {
-    public final int f39762a;
-    public final int f39763b;
-    public final Object f39764c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class t extends FrameLayout {
+    public boolean a;
+    public final RectF b;
+    public Boolean c;
+    public final ThemeEditorView.EditorAlert d;
 
-    public t(Object obj, int i7, int i10) {
-        this.f39762a = i10;
-        this.f39764c = obj;
-        this.f39763b = i7;
+    public t(ThemeEditorView.EditorAlert editorAlert, Context context) {
+        super(context);
+        this.d = editorAlert;
+        this.a = false;
+        this.b = new RectF();
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        String str;
-        boolean z10;
-        int i7 = this.f39762a;
-        int i10 = this.f39763b;
-        Object obj3 = this.f39764c;
-        switch (i7) {
-            case 0:
-                v vVar = (v) obj3;
-                TL_aicompose.aiComposeToneExample aicomposetoneexample = (TL_aicompose.aiComposeToneExample) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (aicomposetoneexample != null) {
-                    vVar.f40519e2[i10] = aicomposetoneexample;
-                    vVar.f40518c2.O(true);
-                    return;
-                }
-                vVar.getClass();
-                return;
-            default:
-                ArrayList arrayList = (ArrayList) obj;
-                b51 b51Var = (b51) obj2;
-                org.telegram.ui.Wallet.o6 o6Var = (org.telegram.ui.Wallet.o6) ((di.i4) obj3).f8999c;
-                if (i10 == 0) {
-                    b51Var.V();
-                    org.telegram.ui.Wallet.u0 u0Var = o6Var.G0;
-                    if (u0Var != null && !u0Var.f45215c.isEmpty()) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10) {
-                        for (int i11 = 0; i11 < o6Var.G0.f45215c.size(); i11++) {
-                            arrayList.add(org.telegram.ui.Wallet.e4.i((TL_wallet.walletTransaction) o6Var.G0.f45215c.get(i11), o6Var.G0.f45213a));
-                        }
-                    }
-                    org.telegram.ui.Wallet.u0 u0Var2 = o6Var.G0;
-                    if (u0Var2 != null && (u0Var2.f45221k || !u0Var2.h)) {
-                        arrayList.add(n41.q(-1, 37));
-                        arrayList.add(n41.q(-2, 37));
-                        arrayList.add(n41.q(-3, 37));
-                    }
-                    b51Var.U();
-                    if (z10) {
-                        long j3 = ((org.telegram.messenger.l0) o6Var.getMessagesController().A7.f26258r0.f17372b).f25429c;
-                        if (j3 > 0) {
-                            arrayList.add(n41.C(org.telegram.messenger.gd.V(null, null, 2131742846, org.telegram.ui.Wallet.v0.x(j3, false))));
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                org.telegram.ui.Wallet.m0 m0Var = o6Var.H0;
-                if (m0Var != null) {
-                    ArrayList arrayList2 = m0Var.f44629a;
-                    int size = arrayList2.size();
-                    int i12 = 0;
-                    while (i12 < size) {
-                        Object obj4 = arrayList2.get(i12);
-                        i12++;
-                        TL_wallet.nftItem nftitem = (TL_wallet.nftItem) obj4;
-                        if (o6Var.f44806l0.isEmpty() || ((str = nftitem.name) != null && str.toLowerCase(Locale.ROOT).contains(o6Var.f44806l0))) {
-                            if (nftitem.gift != null) {
-                                org.telegram.ui.Wallet.s8 s8Var = o6Var.f44805k0;
-                                int i13 = org.telegram.ui.Wallet.e8.f44222b;
-                                n41 K = n41.K(org.telegram.ui.Wallet.e8.class);
-                                K.v = 1;
-                                K.H = nftitem;
-                                K.I = s8Var;
-                                arrayList.add(K);
-                            } else {
-                                int i14 = org.telegram.ui.Wallet.b.f44075b;
-                                n41 K2 = n41.K(org.telegram.ui.Wallet.b.class);
-                                K2.H = nftitem;
-                                K2.v = 1;
-                                arrayList.add(K2);
-                            }
-                        }
-                    }
-                    if (arrayList.isEmpty() && !o6Var.f44806l0.isEmpty()) {
-                        org.telegram.ui.Wallet.m0 m0Var2 = o6Var.H0;
-                        if (!m0Var2.f44635i && m0Var2.f44634g) {
-                            arrayList.add(n41.r(org.telegram.messenger.gd.N0(2131747974, null)));
-                        }
-                    }
-                    org.telegram.ui.Wallet.m0 m0Var3 = o6Var.H0;
-                    if (m0Var3.f44635i) {
-                        for (int i15 = 0; i15 < 3; i15++) {
-                            int i16 = org.telegram.ui.Wallet.d.f44151b;
-                            n41 K3 = n41.K(org.telegram.ui.Wallet.d.class);
-                            K3.v = 1;
-                            K3.d = (-1) - i15;
-                            arrayList.add(K3);
-                        }
-                        return;
-                    } else if (m0Var3.f44639m != null) {
-                        arrayList.add(n41.e(-10001, org.telegram.messenger.gd.N0(2131745856, null)));
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        int i;
+        float f;
+        boolean z;
+        boolean z2;
+        ThemeEditorView.EditorAlert editorAlert = this.d;
+        Drawable drawable = editorAlert.x1;
+        int L = gl.L(6.0f) + (editorAlert.y1 - editorAlert.t0);
+        int L2 = (editorAlert.y1 - editorAlert.t0) - gl.L(13.0f);
+        int L3 = gl.L(30.0f) + getMeasuredHeight();
+        int i2 = editorAlert.t0;
+        int i3 = L3 + i2;
+        boolean z3 = true;
+        if (!editorAlert.W) {
+            int i4 = gl.m;
+            L2 += i4;
+            L += i4;
+            i3 -= i4;
+            int i5 = i4 << 1;
+            if (L2 + i2 < i5) {
+                int min = Math.min(i4, (i5 - L2) - i2);
+                L2 -= min;
+                i3 += min;
+                f = 1.0f - Math.min(1.0f, (min << 1) / gl.m);
+            } else {
+                f = 1.0f;
+            }
+            int i6 = editorAlert.t0;
+            int i7 = L2 + i6;
+            int i8 = gl.m;
+            if (i7 < i8) {
+                i = Math.min(i8, (i8 - L2) - i6);
+            } else {
+                i = 0;
+            }
+        } else {
+            i = 0;
+            f = 1.0f;
         }
+        drawable.setBounds(0, L2, getMeasuredWidth(), i3);
+        drawable.draw(canvas);
+        int i9 = (f > 1.0f ? 1 : (f == 1.0f ? 0 : -1));
+        RectF rectF = this.b;
+        if (i9 != 0) {
+            bkb.s0.setColor(-1);
+            rectF.set(editorAlert.u0, editorAlert.t0 + L2, getMeasuredWidth() - editorAlert.u0, gl.L(24.0f) + editorAlert.t0 + L2);
+            canvas.drawRoundRect(rectF, gl.L(12.0f) * f, gl.L(12.0f) * f, bkb.s0);
+        }
+        int L4 = gl.L(36.0f);
+        rectF.set((getMeasuredWidth() - L4) / 2, L, (getMeasuredWidth() + L4) / 2, gl.L(4.0f) + L);
+        bkb.s0.setColor(-1973016);
+        bkb.s0.setAlpha((int) (editorAlert.m1.getAlpha() * 255.0f));
+        canvas.drawRoundRect(rectF, gl.L(2.0f), gl.L(2.0f), bkb.s0);
+        if (i > 0) {
+            bkb.s0.setColor(bkb.w0(null, bkb.g5, false));
+            canvas.drawRect(editorAlert.u0, gl.m - i, getMeasuredWidth() - editorAlert.u0, gl.m, bkb.s0);
+        }
+        if (i > gl.m / 2) {
+            z = true;
+        } else {
+            z = false;
+        }
+        Boolean bool = this.c;
+        if (bool != null && bool.booleanValue() == z) {
+            return;
+        }
+        int i10 = bkb.g5;
+        int i11 = ThemeEditorView.EditorAlert.G1;
+        if (gl.B(bkb.v0(i10, editorAlert.J0)) > 0.721f) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        if (gl.B(bkb.v(bkb.v0(bkb.r8, editorAlert.J0), 855638016)) <= 0.721f) {
+            z3 = false;
+        }
+        this.c = Boolean.valueOf(z);
+        if (!z) {
+            z2 = z3;
+        }
+        gl.o3(editorAlert.getWindow(), z2);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            ThemeEditorView.EditorAlert editorAlert = this.d;
+            if (editorAlert.y1 != 0 && motionEvent.getY() < editorAlert.y1) {
+                editorAlert.dismiss();
+                return true;
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        int i5 = ThemeEditorView.EditorAlert.G1;
+        this.d.G0();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
+        ThemeEditorView.EditorAlert editorAlert = this.d;
+        u uVar = editorAlert.m1;
+        int i3 = ThemeEditorView.EditorAlert.G1;
+        if (!editorAlert.W) {
+            this.a = true;
+            int i4 = editorAlert.u0;
+            setPadding(i4, gl.m, i4, 0);
+            this.a = false;
+        }
+        int L = (gl.L(8.0f) + (size2 - gl.m)) - Math.min(size, size2 - gl.m);
+        if (uVar.getPaddingTop() != L) {
+            this.a = true;
+            uVar.getPaddingTop();
+            uVar.setPadding(0, L, 0, gl.L(48.0f));
+            if (editorAlert.l1.getVisibility() == 0) {
+                editorAlert.setScrollOffsetY(uVar.getPaddingTop());
+                editorAlert.A1 = 0;
+            }
+            this.a = false;
+        }
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.d.J && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.a) {
+            return;
+        }
+        super.requestLayout();
     }
 }

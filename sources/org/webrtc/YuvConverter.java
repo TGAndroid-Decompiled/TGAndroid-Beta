@@ -3,7 +3,6 @@ package org.webrtc;
 import android.graphics.Matrix;
 import android.opengl.GLES20;
 import java.nio.ByteBuffer;
-import org.telegram.messenger.a8;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.ThreadUtils;
 import org.webrtc.VideoFrame;
@@ -34,12 +33,12 @@ public class YuvConverter {
         }
 
         @Override
-        public void onPrepareShader(GlShader glShader, float[] fArr, int i7, int i10, int i11, int i12) {
+        public void onPrepareShader(GlShader glShader, float[] fArr, int i, int i2, int i3, int i4) {
             GLES20.glUniform4fv(this.coeffsLoc, 1, this.coeffs, 0);
-            int i13 = this.xUnitLoc;
-            float f10 = this.stepSize;
-            float f11 = i7;
-            GLES20.glUniform2f(i13, (fArr[0] * f10) / f11, (f10 * fArr[1]) / f11);
+            int i5 = this.xUnitLoc;
+            float f = this.stepSize;
+            float f2 = i;
+            GLES20.glUniform2f(i5, (fArr[0] * f) / f2, (f * fArr[1]) / f2);
         }
 
         public void setPlaneU() {
@@ -58,130 +57,124 @@ public class YuvConverter {
         }
     }
 
-    public YuvConverter() {
-        this(new VideoFrameDrawer());
+    public YuvConverter(VideoFrameDrawer videoFrameDrawer) {
+        ThreadUtils.ThreadChecker threadChecker = new ThreadUtils.ThreadChecker();
+        this.threadChecker = threadChecker;
+        this.i420TextureFrameBuffer = new GlTextureFrameBuffer(6408);
+        ShaderCallbacks shaderCallbacks = new ShaderCallbacks();
+        this.shaderCallbacks = shaderCallbacks;
+        this.drawer = new GlGenericDrawer("uniform vec2 xUnit;\nuniform vec4 coeffs;\n\nvoid main() {\n  gl_FragColor.r = coeffs.a + dot(coeffs.rgb,\n      sample(tc - 1.5 * xUnit).rgb);\n  gl_FragColor.g = coeffs.a + dot(coeffs.rgb,\n      sample(tc - 0.5 * xUnit).rgb);\n  gl_FragColor.b = coeffs.a + dot(coeffs.rgb,\n      sample(tc + 0.5 * xUnit).rgb);\n  gl_FragColor.a = coeffs.a + dot(coeffs.rgb,\n      sample(tc + 1.5 * xUnit).rgb);\n}\n", shaderCallbacks);
+        this.videoFrameDrawer = videoFrameDrawer;
+        threadChecker.detachThread();
     }
 
     public VideoFrame.I420Buffer convert(VideoFrame.TextureBuffer textureBuffer) {
-        int i7;
+        int i;
+        int i2;
+        int i3;
         ByteBuffer byteBuffer;
-        int i10;
-        int i11;
-        boolean z10;
+        byte b;
         this.threadChecker.checkIsOnValidThread();
         VideoFrame.TextureBuffer textureBuffer2 = (VideoFrame.TextureBuffer) this.videoFrameDrawer.prepareBufferForViewportSize(textureBuffer, textureBuffer.getWidth(), textureBuffer.getHeight());
         int width = textureBuffer2.getWidth();
         int height = textureBuffer2.getHeight();
-        int i12 = ((width + 7) / 8) * 8;
-        int i13 = (height + 1) / 2;
-        int i14 = height + i13;
-        ByteBuffer nativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer(i12 * i14);
-        int i15 = i12 / 4;
+        int i4 = ((width + 7) / 8) << 3;
+        int i5 = (height + 1) / 2;
+        int i6 = height + i5;
+        ByteBuffer nativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer(i4 * i6);
+        int i7 = i4 / 4;
         Matrix matrix = new Matrix();
         matrix.preTranslate(0.5f, 0.5f);
         matrix.preScale(1.0f, -1.0f);
         matrix.preTranslate(-0.5f, -0.5f);
         try {
-            this.i420TextureFrameBuffer.setSize(i15, i14);
+            this.i420TextureFrameBuffer.setSize(i7, i6);
             GLES20.glBindFramebuffer(36160, this.i420TextureFrameBuffer.getFrameBufferId());
             GlUtil.checkNoGLES2Error("glBindFramebuffer");
             this.shaderCallbacks.setPlaneY();
+            i = i4;
+            i2 = 0;
+            i3 = i5;
             try {
-                i7 = i12;
-                i10 = 0;
+                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, 0, i7, height, false);
+                this.shaderCallbacks.setPlaneU();
                 try {
-                    VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, 0, i15, height, false);
-                    this.shaderCallbacks.setPlaneU();
-                    try {
-                        VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, height, i15 / 2, i13, false);
-                        this.shaderCallbacks.setPlaneV();
-                        VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, i15 / 2, height, i15 / 2, i13, false);
-                        i11 = i13;
-                    } catch (Exception e10) {
-                        e = e10;
-                        i11 = i13;
-                    }
-                    try {
-                        byteBuffer = nativeAllocateByteBuffer;
-                    } catch (Exception e11) {
-                        e = e11;
-                        byteBuffer = nativeAllocateByteBuffer;
-                        z10 = true;
-                        a8.g(e, true);
-                        int i16 = i7 * height;
-                        int i17 = i7 / 2;
-                        int i18 = i16 + i17;
-                        byteBuffer.position(i10);
-                        byteBuffer.limit(i16);
-                        ByteBuffer slice = byteBuffer.slice();
-                        byteBuffer.position(i16);
-                        int i19 = ((i11 - 1) * i7) + i17;
-                        byteBuffer.limit(i16 + i19);
-                        ByteBuffer slice2 = byteBuffer.slice();
-                        byteBuffer.position(i18);
-                        byteBuffer.limit(i18 + i19);
-                        ByteBuffer slice3 = byteBuffer.slice();
-                        textureBuffer2.release();
-                        return JavaI420Buffer.wrap(width, height, slice, i7, slice2, i7, slice3, i7, new j(1, byteBuffer));
-                    }
-                    try {
-                        GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
-                        GlUtil.checkNoGLES2Error("YuvConverter.convert");
-                        GLES20.glBindFramebuffer(36160, 0);
-                        z10 = true;
-                    } catch (Exception e12) {
-                        e = e12;
-                        z10 = true;
-                        a8.g(e, true);
-                        int i162 = i7 * height;
-                        int i172 = i7 / 2;
-                        int i182 = i162 + i172;
-                        byteBuffer.position(i10);
-                        byteBuffer.limit(i162);
-                        ByteBuffer slice4 = byteBuffer.slice();
-                        byteBuffer.position(i162);
-                        int i192 = ((i11 - 1) * i7) + i172;
-                        byteBuffer.limit(i162 + i192);
-                        ByteBuffer slice22 = byteBuffer.slice();
-                        byteBuffer.position(i182);
-                        byteBuffer.limit(i182 + i192);
-                        ByteBuffer slice32 = byteBuffer.slice();
-                        textureBuffer2.release();
-                        return JavaI420Buffer.wrap(width, height, slice4, i7, slice22, i7, slice32, i7, new j(1, byteBuffer));
-                    }
-                } catch (Exception e13) {
-                    e = e13;
-                    i11 = i13;
+                    VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, height, i7 / 2, i3, false);
+                    this.shaderCallbacks.setPlaneV();
+                    VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, i7 / 2, height, i7 / 2, i3, false);
+                    i3 = i3;
+                    byteBuffer = nativeAllocateByteBuffer;
+                } catch (Exception e) {
+                    e = e;
+                    i3 = i3;
+                    byteBuffer = nativeAllocateByteBuffer;
+                    b = 1;
+                    fa4.g(e, true);
+                    int i8 = i * height;
+                    int i9 = i / 2;
+                    int i10 = i8 + i9;
+                    byteBuffer.position(i2);
+                    byteBuffer.limit(i8);
+                    ByteBuffer slice = byteBuffer.slice();
+                    byteBuffer.position(i8);
+                    int i11 = ((i3 - 1) * i) + i9;
+                    byteBuffer.limit(i8 + i11);
+                    ByteBuffer slice2 = byteBuffer.slice();
+                    byteBuffer.position(i10);
+                    byteBuffer.limit(i10 + i11);
+                    ByteBuffer slice3 = byteBuffer.slice();
+                    textureBuffer2.release();
+                    return JavaI420Buffer.wrap(width, height, slice, i, slice2, i, slice3, i, new ys5(byteBuffer, b));
                 }
-            } catch (Exception e14) {
-                e = e14;
-                i7 = i12;
-                i11 = i13;
-                byteBuffer = nativeAllocateByteBuffer;
-                i10 = 0;
+                try {
+                    GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
+                    GlUtil.checkNoGLES2Error("YuvConverter.convert");
+                    GLES20.glBindFramebuffer(36160, 0);
+                    b = 1;
+                } catch (Exception e2) {
+                    e = e2;
+                    b = 1;
+                    fa4.g(e, true);
+                    int i82 = i * height;
+                    int i92 = i / 2;
+                    int i102 = i82 + i92;
+                    byteBuffer.position(i2);
+                    byteBuffer.limit(i82);
+                    ByteBuffer slice4 = byteBuffer.slice();
+                    byteBuffer.position(i82);
+                    int i112 = ((i3 - 1) * i) + i92;
+                    byteBuffer.limit(i82 + i112);
+                    ByteBuffer slice22 = byteBuffer.slice();
+                    byteBuffer.position(i102);
+                    byteBuffer.limit(i102 + i112);
+                    ByteBuffer slice32 = byteBuffer.slice();
+                    textureBuffer2.release();
+                    return JavaI420Buffer.wrap(width, height, slice4, i, slice22, i, slice32, i, new ys5(byteBuffer, b));
+                }
+            } catch (Exception e3) {
+                e = e3;
             }
-        } catch (Exception e15) {
-            e = e15;
-            i7 = i12;
-            byteBuffer = nativeAllocateByteBuffer;
-            i10 = 0;
-            i11 = i13;
+        } catch (Exception e4) {
+            e = e4;
+            i = i4;
+            i2 = 0;
+            i3 = i5;
         }
-        int i1622 = i7 * height;
-        int i1722 = i7 / 2;
-        int i1822 = i1622 + i1722;
-        byteBuffer.position(i10);
-        byteBuffer.limit(i1622);
+        int i822 = i * height;
+        int i922 = i / 2;
+        int i1022 = i822 + i922;
+        byteBuffer.position(i2);
+        byteBuffer.limit(i822);
         ByteBuffer slice42 = byteBuffer.slice();
-        byteBuffer.position(i1622);
-        int i1922 = ((i11 - 1) * i7) + i1722;
-        byteBuffer.limit(i1622 + i1922);
+        byteBuffer.position(i822);
+        int i1122 = ((i3 - 1) * i) + i922;
+        byteBuffer.limit(i822 + i1122);
         ByteBuffer slice222 = byteBuffer.slice();
-        byteBuffer.position(i1822);
-        byteBuffer.limit(i1822 + i1922);
+        byteBuffer.position(i1022);
+        byteBuffer.limit(i1022 + i1122);
         ByteBuffer slice322 = byteBuffer.slice();
         textureBuffer2.release();
-        return JavaI420Buffer.wrap(width, height, slice42, i7, slice222, i7, slice322, i7, new j(1, byteBuffer));
+        return JavaI420Buffer.wrap(width, height, slice42, i, slice222, i, slice322, i, new ys5(byteBuffer, b));
     }
 
     public void release() {
@@ -192,14 +185,7 @@ public class YuvConverter {
         this.threadChecker.detachThread();
     }
 
-    public YuvConverter(VideoFrameDrawer videoFrameDrawer) {
-        ThreadUtils.ThreadChecker threadChecker = new ThreadUtils.ThreadChecker();
-        this.threadChecker = threadChecker;
-        this.i420TextureFrameBuffer = new GlTextureFrameBuffer(6408);
-        ShaderCallbacks shaderCallbacks = new ShaderCallbacks();
-        this.shaderCallbacks = shaderCallbacks;
-        this.drawer = new GlGenericDrawer("uniform vec2 xUnit;\nuniform vec4 coeffs;\n\nvoid main() {\n  gl_FragColor.r = coeffs.a + dot(coeffs.rgb,\n      sample(tc - 1.5 * xUnit).rgb);\n  gl_FragColor.g = coeffs.a + dot(coeffs.rgb,\n      sample(tc - 0.5 * xUnit).rgb);\n  gl_FragColor.b = coeffs.a + dot(coeffs.rgb,\n      sample(tc + 0.5 * xUnit).rgb);\n  gl_FragColor.a = coeffs.a + dot(coeffs.rgb,\n      sample(tc + 1.5 * xUnit).rgb);\n}\n", shaderCallbacks);
-        this.videoFrameDrawer = videoFrameDrawer;
-        threadChecker.detachThread();
+    public YuvConverter() {
+        this(new VideoFrameDrawer());
     }
 }

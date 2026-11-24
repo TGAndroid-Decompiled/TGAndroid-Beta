@@ -1,0 +1,6 @@
+package defpackage;
+
+import org.telegram.tgnet.TLRPC;
+public final class n27 extends TLRPC.TL_messageMediaPoll {
+    public int a;
+}

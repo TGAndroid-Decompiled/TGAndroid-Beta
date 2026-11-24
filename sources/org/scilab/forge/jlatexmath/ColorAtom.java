@@ -14,15 +14,15 @@ public class ColorAtom extends Atom implements Row {
         initColors();
     }
 
-    public ColorAtom(Atom atom, Color color, Color color2) {
-        this.elements = new RowAtom(atom);
-        this.background = color;
-        this.color = color2;
+    public ColorAtom(Color color, Color color2, ColorAtom colorAtom) {
+        this.elements = new RowAtom(colorAtom.elements);
+        this.background = color == null ? colorAtom.background : color;
+        this.color = color2 == null ? colorAtom.color : color2;
     }
 
-    private static Color convColor(float f10, float f11, float f12, float f13) {
-        float f14 = 1.0f - f13;
-        return new Color((1.0f - f10) * f14, (1.0f - f11) * f14, (1.0f - f12) * f14);
+    private static Color convColor(float f, float f2, float f3, float f4) {
+        float f5 = 1.0f - f4;
+        return new Color((1.0f - f) * f5, (1.0f - f2) * f5, (1.0f - f3) * f5);
     }
 
     public static Color getColor(String str) {
@@ -177,9 +177,9 @@ public class ColorAtom extends Atom implements Row {
         this.elements.setPreviousAtom(dummy);
     }
 
-    public ColorAtom(Color color, Color color2, ColorAtom colorAtom) {
-        this.elements = new RowAtom(colorAtom.elements);
-        this.background = color == null ? colorAtom.background : color;
-        this.color = color2 == null ? colorAtom.color : color2;
+    public ColorAtom(Atom atom, Color color, Color color2) {
+        this.elements = new RowAtom(atom);
+        this.background = color;
+        this.color = color2;
     }
 }

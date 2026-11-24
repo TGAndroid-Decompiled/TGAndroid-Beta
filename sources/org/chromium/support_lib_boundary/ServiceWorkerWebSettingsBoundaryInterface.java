@@ -14,15 +14,15 @@ public interface ServiceWorkerWebSettingsBoundaryInterface {
 
     Set<String> getRequestedWithHeaderOriginAllowList();
 
-    void setAllowContentAccess(boolean z10);
+    void setAllowContentAccess(boolean z);
 
-    void setAllowFileAccess(boolean z10);
+    void setAllowFileAccess(boolean z);
 
-    void setBlockNetworkLoads(boolean z10);
+    void setBlockNetworkLoads(boolean z);
 
-    void setCacheMode(int i7);
+    void setCacheMode(int i);
 
-    void setIncludeCookiesOnIntercept(boolean z10);
+    void setIncludeCookiesOnIntercept(boolean z);
 
     void setRequestedWithHeaderOriginAllowList(Set<String> set);
 }

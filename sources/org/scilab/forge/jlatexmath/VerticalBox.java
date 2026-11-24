@@ -8,20 +8,34 @@ public class VerticalBox extends Box {
     private float leftMostPos;
     private float rightMostPos;
 
-    public VerticalBox() {
-        this.leftMostPos = Float.MAX_VALUE;
-        this.rightMostPos = -3.4028235E38f;
+    public VerticalBox(Box box, float f, int i) {
+        this();
+        add(box);
+        if (i == 2) {
+            float f2 = f / 2.0f;
+            StrutBox strutBox = new StrutBox(0.0f, f2, 0.0f, 0.0f);
+            super.add(0, strutBox);
+            this.height += f2;
+            this.depth += f2;
+            super.add(strutBox);
+        } else if (i == 3) {
+            this.depth += f;
+            super.add(new StrutBox(0.0f, f, 0.0f, 0.0f));
+        } else if (i == 4) {
+            this.height += f;
+            super.add(0, new StrutBox(0.0f, f, 0.0f, 0.0f));
+        }
     }
 
     private void recalculateWidth(Box box) {
         this.leftMostPos = Math.min(this.leftMostPos, box.shift);
-        float f10 = this.rightMostPos;
-        float f11 = box.shift;
-        float f12 = box.width;
-        if (f12 <= 0.0f) {
-            f12 = 0.0f;
+        float f = this.rightMostPos;
+        float f2 = box.shift;
+        float f3 = box.width;
+        if (f3 <= 0.0f) {
+            f3 = 0.0f;
         }
-        float max = Math.max(f10, f11 + f12);
+        float max = Math.max(f, f2 + f3);
         this.rightMostPos = max;
         this.width = max - this.leftMostPos;
     }
@@ -39,14 +53,14 @@ public class VerticalBox extends Box {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f10, float f11) {
-        float f12 = f11 - this.height;
+    public void draw(Graphics2D graphics2D, float f, float f2) {
+        float f3 = f2 - this.height;
         Iterator<Box> it = this.children.iterator();
         while (it.hasNext()) {
             Box next = it.next();
-            float height = next.getHeight() + f12;
-            next.draw(graphics2D, (next.getShift() + f10) - this.leftMostPos, height);
-            f12 = next.getDepth() + height;
+            float height = next.getHeight() + f3;
+            next.draw(graphics2D, (next.getShift() + f) - this.leftMostPos, height);
+            f3 = next.getDepth() + height;
         }
     }
 
@@ -54,52 +68,39 @@ public class VerticalBox extends Box {
     public int getLastFontId() {
         LinkedList<Box> linkedList = this.children;
         ListIterator<Box> listIterator = linkedList.listIterator(linkedList.size());
-        int i7 = -1;
-        while (i7 == -1 && listIterator.hasPrevious()) {
-            i7 = listIterator.previous().getLastFontId();
+        int i = -1;
+        while (i == -1 && listIterator.hasPrevious()) {
+            i = listIterator.previous().getLastFontId();
         }
-        return i7;
+        return i;
     }
 
     public int getSize() {
         return this.children.size();
     }
 
-    public VerticalBox(Box box, float f10, int i7) {
-        this();
-        add(box);
-        if (i7 == 2) {
-            float f11 = f10 / 2.0f;
-            StrutBox strutBox = new StrutBox(0.0f, f11, 0.0f, 0.0f);
-            super.add(0, strutBox);
-            this.height += f11;
-            this.depth += f11;
-            super.add(strutBox);
-        } else if (i7 == 3) {
-            this.depth += f10;
-            super.add(new StrutBox(0.0f, f10, 0.0f, 0.0f));
-        } else if (i7 == 4) {
-            this.height += f10;
-            super.add(0, new StrutBox(0.0f, f10, 0.0f, 0.0f));
-        }
-    }
-
-    public final void add(Box box, float f10) {
+    public final void add(Box box, float f) {
         if (this.children.size() >= 1) {
-            add(new StrutBox(0.0f, f10, 0.0f, 0.0f));
+            add(new StrutBox(0.0f, f, 0.0f, 0.0f));
         }
         add(box);
     }
 
     @Override
-    public void add(int i7, Box box) {
-        super.add(i7, box);
-        if (i7 == 0) {
-            this.depth = box.depth + this.height + this.depth;
+    public void add(int i, Box box) {
+        super.add(i, box);
+        float f = this.depth;
+        if (i == 0) {
+            this.depth = box.depth + this.height + f;
             this.height = box.height;
         } else {
-            this.depth = box.height + box.depth + this.depth;
+            this.depth = box.height + box.depth + f;
         }
         recalculateWidth(box);
+    }
+
+    public VerticalBox() {
+        this.leftMostPos = Float.MAX_VALUE;
+        this.rightMostPos = -3.4028235E38f;
     }
 }

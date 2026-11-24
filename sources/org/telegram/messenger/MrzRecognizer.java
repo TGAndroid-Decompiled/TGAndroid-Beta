@@ -7,55 +7,54 @@ import android.util.Base64;
 import android.util.SparseArray;
 import java.util.Calendar;
 import java.util.HashMap;
-import org.telegram.ui.Components.i61;
 public class MrzRecognizer {
     public static String a(String str) {
         if (str == null) {
             return null;
         }
         char[] charArray = str.toCharArray();
-        boolean z10 = true;
-        for (int i7 = 0; i7 < charArray.length; i7++) {
-            if (!z10 && Character.isLetter(charArray[i7])) {
-                charArray[i7] = Character.toLowerCase(charArray[i7]);
-            } else if (charArray[i7] == ' ') {
-                z10 = true;
+        boolean z = true;
+        for (int i = 0; i < charArray.length; i++) {
+            if (!z && Character.isLetter(charArray[i])) {
+                charArray[i] = Character.toLowerCase(charArray[i]);
+            } else if (charArray[i] == ' ') {
+                z = true;
             } else {
-                z10 = false;
+                z = false;
             }
         }
         return new String(charArray);
     }
 
     public static int b(String str) {
-        int i7;
+        int i;
         char[] charArray = str.toCharArray();
         int[] iArr = {7, 3, 1};
-        int i10 = 0;
-        for (int i11 = 0; i11 < charArray.length; i11++) {
-            char c10 = charArray[i11];
-            if (c10 >= '0' && c10 <= '9') {
-                i7 = c10 - '0';
-            } else if (c10 >= 'A' && c10 <= 'Z') {
-                i7 = c10 - '7';
+        int i2 = 0;
+        for (int i3 = 0; i3 < charArray.length; i3++) {
+            char c = charArray[i3];
+            if (c >= '0' && c <= '9') {
+                i = c - '0';
+            } else if (c >= 'A' && c <= 'Z') {
+                i = c - '7';
             } else {
-                i7 = 0;
+                i = 0;
             }
-            i10 += i7 * iArr[i11 % 3];
+            i2 += i * iArr[i3 % 3];
         }
-        return i10 % 10;
+        return i2 % 10;
     }
 
     private static native Rect[][] binarizeAndFindCharacters(Bitmap bitmap, Bitmap bitmap2);
 
     public static String c(String str) {
         String[] strArr = {"A", "B", "V", "G", "D", "E", "E", "ZH", "Z", "I", "I", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "F", "KH", "TS", "CH", "SH", "SHCH", "IE", "Y", "", "E", "IU", "IA"};
-        int i7 = 0;
+        int i = 0;
         String str2 = str;
-        while (i7 < 33) {
-            int i10 = i7 + 1;
-            str2 = str2.replace("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".substring(i7, i10), strArr[i7]);
-            i7 = i10;
+        while (i < 33) {
+            int i2 = i + 1;
+            str2 = str2.replace("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".substring(i, i2), strArr[i]);
+            i = i2;
         }
         return str2;
     }
@@ -314,54 +313,56 @@ public class MrzRecognizer {
         return hashMap;
     }
 
-    public static int e(char c10) {
-        if (c10 == 'O') {
+    public static int e(char c) {
+        if (c == 'O') {
             return 0;
         }
-        if (c10 == 'I') {
+        if (c == 'I') {
             return 1;
         }
-        if (c10 == 'B') {
+        if (c == 'B') {
             return 8;
         }
-        return c10 - '0';
+        return c - '0';
     }
 
-    public static void f(String str, ur urVar) {
-        int i7;
+    public static void f(String str, vf7 vf7Var) {
+        int i;
         try {
             int parseInt = Integer.parseInt(str.substring(0, 2));
-            urVar.f27321i = parseInt;
-            if (parseInt < (Calendar.getInstance().get(1) % 100) - 5) {
-                i7 = urVar.f27321i + 2000;
+            vf7Var.i = parseInt;
+            int i2 = (Calendar.getInstance().get(1) % 100) - 5;
+            int i3 = vf7Var.i;
+            if (parseInt < i2) {
+                i = i3 + 2000;
             } else {
-                i7 = urVar.f27321i + 1900;
+                i = i3 + 1900;
             }
-            urVar.f27321i = i7;
-            urVar.f27322j = Integer.parseInt(str.substring(2, 4));
-            urVar.f27323k = Integer.parseInt(str.substring(4));
+            vf7Var.i = i;
+            vf7Var.j = Integer.parseInt(str.substring(2, 4));
+            vf7Var.k = Integer.parseInt(str.substring(4));
         } catch (NumberFormatException unused) {
         }
     }
 
     private static native int[] findCornerPoints(Bitmap bitmap);
 
-    public static void g(String str, ur urVar) {
+    public static void g(String str, vf7 vf7Var) {
         try {
             if ("<<<<<<".equals(str)) {
-                urVar.f27327o = true;
+                vf7Var.o = true;
                 return;
             }
-            urVar.f27319f = Integer.parseInt(str.substring(0, 2)) + 2000;
-            urVar.f27320g = Integer.parseInt(str.substring(2, 4));
-            urVar.h = Integer.parseInt(str.substring(4));
+            vf7Var.f = Integer.parseInt(str.substring(0, 2)) + 2000;
+            vf7Var.g = Integer.parseInt(str.substring(2, 4));
+            vf7Var.h = Integer.parseInt(str.substring(4));
         } catch (NumberFormatException unused) {
         }
     }
 
-    public static int h(char c10) {
-        if (c10 != 'F') {
-            if (c10 != 'M') {
+    public static int h(char c) {
+        if (c != 'F') {
+            if (c != 'M') {
                 return 0;
             }
             return 1;
@@ -369,102 +370,103 @@ public class MrzRecognizer {
         return 2;
     }
 
-    public static ur i(Bitmap bitmap) {
-        u8.e eVar;
-        int i7;
-        u8.n nVar = new u8.n(new com.google.android.gms.internal.vision.u2(t0.f27013b, (com.google.android.gms.internal.vision.x1) new Object()));
+    public static vf7 i(Bitmap bitmap) {
+        pe0 pe0Var;
+        byte b;
+        ye0 ye0Var = new ye0(new jbd(a.b, (zre) new Object()));
         if (bitmap.getWidth() > 1500 || bitmap.getHeight() > 1500) {
             float max = 1500.0f / Math.max(bitmap.getWidth(), bitmap.getHeight());
             bitmap = Bitmap.createScaledBitmap(bitmap, Math.round(bitmap.getWidth() * max), Math.round(bitmap.getHeight() * max), true);
         }
-        i61 i61Var = new i61(20);
+        int i = 4;
+        xl3 xl3Var = new xl3((byte) 4);
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
-        i61Var.d = bitmap;
-        b7.d dVar = (b7.d) i61Var.f35958b;
-        dVar.f2914a = width;
-        dVar.f2915b = height;
-        SparseArray e12 = nVar.e1(i61Var);
-        int i10 = 0;
-        for (int i11 = 0; i11 < e12.size(); i11++) {
-            u8.m mVar = (u8.m) e12.valueAt(i11);
-            int i12 = mVar.d;
-            int i13 = 6;
-            int i14 = 4;
-            if (i12 == 12 && (eVar = mVar.E) != null) {
+        xl3Var.d = bitmap;
+        pc0 pc0Var = (pc0) xl3Var.b;
+        pc0Var.a = width;
+        pc0Var.b = height;
+        SparseArray h = ye0Var.h(xl3Var);
+        int i2 = 0;
+        for (int i3 = 0; i3 < h.size(); i3++) {
+            xe0 xe0Var = (xe0) h.valueAt(i3);
+            int i4 = xe0Var.d;
+            int i5 = 6;
+            if (i4 == 12 && (pe0Var = xe0Var.E) != null) {
                 ?? obj = new Object();
-                if ("ID".equals(eVar.f58610a)) {
-                    i7 = 2;
+                if ("ID".equals(pe0Var.a)) {
+                    b = 2;
                 } else {
-                    i7 = 4;
+                    b = 4;
                 }
-                obj.f27315a = i7;
-                String str = mVar.E.E;
+                obj.a = b;
+                String str = xe0Var.E.E;
                 str.getClass();
                 if (!str.equals("CAN")) {
                     if (str.equals("USA")) {
-                        obj.f27324l = "US";
-                        obj.f27325m = "US";
+                        obj.l = "US";
+                        obj.m = "US";
                     }
                 } else {
-                    obj.f27324l = "CA";
-                    obj.f27325m = "CA";
+                    obj.l = "CA";
+                    obj.m = "CA";
                 }
-                obj.f27316b = a(mVar.E.f58611b);
-                obj.f27317c = a(mVar.E.d);
-                obj.d = a(mVar.E.f58612c);
-                u8.e eVar2 = mVar.E;
-                obj.f27318e = eVar2.f58617s;
-                String str2 = eVar2.f58613e;
+                obj.b = a(xe0Var.E.b);
+                obj.c = a(xe0Var.E.d);
+                obj.d = a(xe0Var.E.c);
+                pe0 pe0Var2 = xe0Var.E;
+                obj.e = pe0Var2.s;
+                String str2 = pe0Var2.e;
                 if (str2 != null) {
                     if (!str2.equals("1")) {
                         if (str2.equals("2")) {
-                            obj.f27326n = 2;
+                            obj.n = 2;
                         }
                     } else {
-                        obj.f27326n = 1;
+                        obj.n = 1;
                     }
                 }
-                if ("USA".equals(obj.f27324l)) {
-                    i14 = 0;
-                    i10 = 4;
-                    i13 = 2;
+                if ("USA".equals(obj.l)) {
+                    i5 = 2;
+                } else {
+                    i = 0;
+                    i2 = 4;
                 }
                 try {
-                    String str3 = mVar.E.f58620y;
+                    String str3 = xe0Var.E.y;
                     if (str3 != null && str3.length() == 8) {
-                        obj.f27321i = Integer.parseInt(mVar.E.f58620y.substring(i10, i10 + 4));
-                        obj.f27322j = Integer.parseInt(mVar.E.f58620y.substring(i14, i14 + 2));
-                        obj.f27323k = Integer.parseInt(mVar.E.f58620y.substring(i13, i13 + 2));
+                        obj.i = Integer.parseInt(xe0Var.E.y.substring(i, i + 4));
+                        obj.j = Integer.parseInt(xe0Var.E.y.substring(i2, i2 + 2));
+                        obj.k = Integer.parseInt(xe0Var.E.y.substring(i5, i5 + 2));
                     }
-                    String str4 = mVar.E.f58619x;
+                    String str4 = xe0Var.E.x;
                     if (str4 != null && str4.length() == 8) {
-                        obj.f27319f = Integer.parseInt(mVar.E.f58619x.substring(i10, i10 + 4));
-                        obj.f27320g = Integer.parseInt(mVar.E.f58619x.substring(i14, i14 + 2));
-                        obj.h = Integer.parseInt(mVar.E.f58619x.substring(i13, i13 + 2));
+                        obj.f = Integer.parseInt(xe0Var.E.x.substring(i, i + 4));
+                        obj.g = Integer.parseInt(xe0Var.E.x.substring(i2, i2 + 2));
+                        obj.h = Integer.parseInt(xe0Var.E.x.substring(i5, i5 + 2));
                     }
                 } catch (NumberFormatException unused) {
                 }
                 return obj;
             }
-            if (i12 == 7 && mVar.f58640a == 2048 && mVar.f58641b.matches("^[A-Za-z0-9=]+$")) {
+            if (i4 == 7 && xe0Var.a == 2048 && xe0Var.b.matches("^[A-Za-z0-9=]+$")) {
                 try {
-                    String[] split = new String(Base64.decode(mVar.f58641b, 0), "windows-1251").split("\\|");
+                    String[] split = new String(Base64.decode(xe0Var.b, 0), "windows-1251").split("\\|");
                     if (split.length >= 10) {
                         ?? obj2 = new Object();
-                        obj2.f27315a = 4;
-                        obj2.f27324l = "RU";
-                        obj2.f27325m = "RU";
-                        obj2.f27318e = split[0];
-                        obj2.f27319f = Integer.parseInt(split[2].substring(0, 4));
-                        obj2.f27320g = Integer.parseInt(split[2].substring(4, 6));
+                        obj2.a = (byte) 4;
+                        obj2.l = "RU";
+                        obj2.m = "RU";
+                        obj2.e = split[0];
+                        obj2.f = Integer.parseInt(split[2].substring(0, 4));
+                        obj2.g = Integer.parseInt(split[2].substring(4, 6));
                         obj2.h = Integer.parseInt(split[2].substring(6));
-                        obj2.f27317c = a(c(split[3]));
-                        obj2.f27316b = a(c(split[4]));
+                        obj2.c = a(c(split[3]));
+                        obj2.b = a(c(split[4]));
                         obj2.d = a(c(split[5]));
-                        obj2.f27321i = Integer.parseInt(split[6].substring(0, 4));
-                        obj2.f27322j = Integer.parseInt(split[6].substring(4, 6));
-                        obj2.f27323k = Integer.parseInt(split[6].substring(6));
+                        obj2.i = Integer.parseInt(split[6].substring(0, 4));
+                        obj2.j = Integer.parseInt(split[6].substring(4, 6));
+                        obj2.k = Integer.parseInt(split[6].substring(6));
                         return obj2;
                     }
                     continue;
@@ -476,22 +478,22 @@ public class MrzRecognizer {
         return null;
     }
 
-    public static org.telegram.messenger.ur j(android.graphics.Bitmap r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MrzRecognizer.j(android.graphics.Bitmap):org.telegram.messenger.ur");
+    public static defpackage.vf7 j(android.graphics.Bitmap r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MrzRecognizer.j(android.graphics.Bitmap):vf7");
     }
 
     public static String k(String str) {
         char[] charArray = str.toCharArray();
-        for (int i7 = 0; i7 < charArray.length; i7++) {
-            int indexOf = "ABVGDE2JZIQKLMNOPRSTUFHC34WXY9678".indexOf(charArray[i7]);
+        for (int i = 0; i < charArray.length; i++) {
+            int indexOf = "ABVGDE2JZIQKLMNOPRSTUFHC34WXY9678".indexOf(charArray[i]);
             if (indexOf != -1) {
-                charArray[i7] = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".charAt(indexOf);
+                charArray[i] = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".charAt(indexOf);
             }
         }
         return new String(charArray);
     }
 
-    private static native String performRecognition(Bitmap bitmap, int i7, int i10, AssetManager assetManager);
+    private static native String performRecognition(Bitmap bitmap, int i, int i2, AssetManager assetManager);
 
     private static native void setYuvBitmapPixels(Bitmap bitmap, byte[] bArr);
 }

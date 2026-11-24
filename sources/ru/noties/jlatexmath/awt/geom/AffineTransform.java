@@ -19,6 +19,14 @@ public class AffineTransform implements Cloneable {
         return new AffineTransform(null, canvas);
     }
 
+    public AffineTransform clone() {
+        AffineTransform affineTransform = new AffineTransform(this, this.canvas);
+        affineTransform.setScale(this.scaleX, this.scaleY);
+        affineTransform.setTranslate(this.translateX, this.translateY);
+        affineTransform.save = this.canvas.save();
+        return affineTransform;
+    }
+
     public Canvas getCanvas() {
         return this.canvas;
     }
@@ -32,16 +40,17 @@ public class AffineTransform implements Cloneable {
     }
 
     public AffineTransform restore() {
-        int i7 = this.save;
-        if (i7 != -1) {
-            this.canvas.restoreToCount(i7);
+        int i = this.save;
+        if (i != -1) {
+            this.canvas.restoreToCount(i);
             this.save = -1;
         }
         AffineTransform affineTransform = this.parent;
         if (affineTransform != null) {
             return affineTransform;
         }
-        throw new IllegalStateException("Cannot restore root transform instance");
+        sc8.j("Cannot restore root transform instance");
+        return null;
     }
 
     public AffineTransform save() {
@@ -62,14 +71,14 @@ public class AffineTransform implements Cloneable {
         this.scaleY = d2;
     }
 
-    public void setTranslate(float f10, float f11) {
-        this.translateX = f10;
-        this.translateY = f11;
+    public void setTranslate(float f, float f2) {
+        this.translateX = f;
+        this.translateY = f2;
     }
 
-    public void translate(float f10, float f11) {
-        this.canvas.translate(f10, f11);
-        setTranslate(f10, f11);
+    public void translate(float f, float f2) {
+        this.canvas.translate(f, f2);
+        setTranslate(f, f2);
     }
 
     public float translateX() {
@@ -78,13 +87,5 @@ public class AffineTransform implements Cloneable {
 
     public float translateY() {
         return this.translateY;
-    }
-
-    public AffineTransform clone() {
-        AffineTransform affineTransform = new AffineTransform(this, this.canvas);
-        affineTransform.setScale(this.scaleX, this.scaleY);
-        affineTransform.setTranslate(this.translateX, this.translateY);
-        affineTransform.save = this.canvas.save();
-        return affineTransform;
     }
 }

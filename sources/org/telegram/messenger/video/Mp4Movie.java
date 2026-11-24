@@ -7,18 +7,18 @@ import java.util.ArrayList;
 public class Mp4Movie {
     private File cacheFile;
     private int height;
-    private pc.d matrix = pc.d.f55682j;
+    private jj6 matrix = jj6.j;
     private ArrayList<Track> tracks = new ArrayList<>();
     private int width;
 
-    public void addSample(int i7, long j3, MediaCodec.BufferInfo bufferInfo) {
-        if (i7 >= 0 && i7 < this.tracks.size()) {
-            this.tracks.get(i7).addSample(j3, bufferInfo);
+    public void addSample(int i, long j, MediaCodec.BufferInfo bufferInfo) {
+        if (i >= 0 && i < this.tracks.size()) {
+            this.tracks.get(i).addSample(j, bufferInfo);
         }
     }
 
-    public int addTrack(MediaFormat mediaFormat, boolean z10) {
-        this.tracks.add(new Track(this.tracks.size(), mediaFormat, z10));
+    public int addTrack(MediaFormat mediaFormat, boolean z) {
+        this.tracks.add(new Track(this.tracks.size(), mediaFormat, z));
         return this.tracks.size() - 1;
     }
 
@@ -30,14 +30,14 @@ public class Mp4Movie {
         return this.height;
     }
 
-    public long getLastFrameTimestamp(int i7) {
-        if (i7 >= 0 && i7 < this.tracks.size()) {
-            return this.tracks.get(i7).getLastFrameTimestamp();
+    public long getLastFrameTimestamp(int i) {
+        if (i >= 0 && i < this.tracks.size()) {
+            return this.tracks.get(i).getLastFrameTimestamp();
         }
         return 0L;
     }
 
-    public pc.d getMatrix() {
+    public jj6 getMatrix() {
         return this.matrix;
     }
 
@@ -53,20 +53,20 @@ public class Mp4Movie {
         this.cacheFile = file;
     }
 
-    public void setRotation(int i7) {
-        if (i7 == 0) {
-            this.matrix = pc.d.f55682j;
-        } else if (i7 == 90) {
-            this.matrix = pc.d.f55683k;
-        } else if (i7 == 180) {
-            this.matrix = pc.d.f55684l;
-        } else if (i7 == 270) {
-            this.matrix = pc.d.f55685m;
+    public void setRotation(int i) {
+        if (i == 0) {
+            this.matrix = jj6.j;
+        } else if (i == 90) {
+            this.matrix = jj6.k;
+        } else if (i == 180) {
+            this.matrix = jj6.l;
+        } else if (i == 270) {
+            this.matrix = jj6.m;
         }
     }
 
-    public void setSize(int i7, int i10) {
-        this.width = i7;
-        this.height = i10;
+    public void setSize(int i, int i2) {
+        this.width = i;
+        this.height = i2;
     }
 }

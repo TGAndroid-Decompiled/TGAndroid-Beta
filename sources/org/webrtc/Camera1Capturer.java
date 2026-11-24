@@ -6,19 +6,19 @@ import org.webrtc.CameraVideoCapturer;
 public class Camera1Capturer extends CameraCapturer {
     private final boolean captureToTexture;
 
-    public Camera1Capturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler, boolean z10) {
-        super(str, cameraEventsHandler, new Camera1Enumerator(z10));
-        this.captureToTexture = z10;
+    public Camera1Capturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler, boolean z) {
+        super(str, cameraEventsHandler, new Camera1Enumerator(z));
+        this.captureToTexture = z;
     }
 
     @Override
-    public void changeCaptureFormat(int i7, int i10, int i11) {
-        super.changeCaptureFormat(i7, i10, i11);
+    public void changeCaptureFormat(int i, int i2, int i3) {
+        super.changeCaptureFormat(i, i2, i3);
     }
 
     @Override
-    public void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i7, int i10, int i11) {
-        Camera1Session.create(createSessionCallback, events, this.captureToTexture, context, surfaceTextureHelper, str, i7, i10, i11);
+    public void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) {
+        Camera1Session.create(createSessionCallback, events, this.captureToTexture, context, surfaceTextureHelper, str, i, i2, i3);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class Camera1Capturer extends CameraCapturer {
     }
 
     @Override
-    public void startCapture(int i7, int i10, int i11) {
-        super.startCapture(i7, i10, i11);
+    public void startCapture(int i, int i2, int i3) {
+        super.startCapture(i, i2, i3);
     }
 
     @Override

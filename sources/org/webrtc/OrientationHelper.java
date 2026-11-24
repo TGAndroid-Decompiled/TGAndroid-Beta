@@ -1,18 +1,17 @@
 package org.webrtc;
 
 import android.view.OrientationEventListener;
-import org.telegram.messenger.t0;
 public class OrientationHelper {
     private static final int ORIENTATION_HYSTERESIS = 5;
     public static volatile int cameraOrientation;
     public static volatile int cameraRotation;
     public static volatile boolean cameraRotationDisabled;
-    private OrientationEventListener orientationEventListener = new OrientationEventListener(t0.f27013b) {
+    private OrientationEventListener orientationEventListener = new OrientationEventListener(org.telegram.messenger.a.b) {
         @Override
-        public void onOrientationChanged(int i7) {
-            if (OrientationHelper.this.orientationEventListener != null && i7 != -1) {
+        public void onOrientationChanged(int i) {
+            if (OrientationHelper.this.orientationEventListener != null && i != -1) {
                 OrientationHelper orientationHelper = OrientationHelper.this;
-                int roundOrientation = orientationHelper.roundOrientation(i7, orientationHelper.rotation);
+                int roundOrientation = orientationHelper.roundOrientation(i, orientationHelper.rotation);
                 if (roundOrientation != OrientationHelper.this.rotation) {
                     OrientationHelper orientationHelper2 = OrientationHelper.this;
                     orientationHelper2.onOrientationUpdate(orientationHelper2.rotation = roundOrientation);
@@ -22,14 +21,14 @@ public class OrientationHelper {
     };
     private int rotation;
 
-    public int roundOrientation(int i7, int i10) {
-        if (i10 != -1) {
-            int abs = Math.abs(i7 - i10);
+    public int roundOrientation(int i, int i2) {
+        if (i2 != -1) {
+            int abs = Math.abs(i - i2);
             if (Math.min(abs, 360 - abs) < 50) {
-                return i10;
+                return i2;
             }
         }
-        return (((i7 + 45) / 90) * 90) % 360;
+        return (((i + 45) / 90) * 90) % 360;
     }
 
     public int getOrientation() {
@@ -40,11 +39,13 @@ public class OrientationHelper {
     }
 
     public void start() {
-        if (this.orientationEventListener.canDetectOrientation()) {
-            this.orientationEventListener.enable();
+        boolean canDetectOrientation = this.orientationEventListener.canDetectOrientation();
+        OrientationEventListener orientationEventListener = this.orientationEventListener;
+        if (canDetectOrientation) {
+            orientationEventListener.enable();
             return;
         }
-        this.orientationEventListener.disable();
+        orientationEventListener.disable();
         this.orientationEventListener = null;
     }
 
@@ -56,6 +57,6 @@ public class OrientationHelper {
         }
     }
 
-    public void onOrientationUpdate(int i7) {
+    public void onOrientationUpdate(int i) {
     }
 }

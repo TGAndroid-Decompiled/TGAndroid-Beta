@@ -14,8 +14,16 @@ public class ArrayOfAtoms extends TeXFormula {
         this.row = 0;
     }
 
-    public void addCol() {
+    public void addCol(int i) {
+        if (i < 1) {
+            i = 1;
+        } else if (i > 4096) {
+            i = 4096;
+        }
         this.array.get(this.row).add(this.root);
+        for (int i2 = 1; i2 < i - 1; i2++) {
+            this.array.get(this.row).add(null);
+        }
         this.root = null;
     }
 
@@ -33,15 +41,15 @@ public class ArrayOfAtoms extends TeXFormula {
         }
         this.row = this.array.size() - 1;
         this.col = this.array.get(0).size();
-        for (int i7 = 1; i7 < this.row; i7++) {
-            if (this.array.get(i7).size() > this.col) {
-                this.col = this.array.get(i7).size();
+        for (int i = 1; i < this.row; i++) {
+            if (this.array.get(i).size() > this.col) {
+                this.col = this.array.get(i).size();
             }
         }
-        for (int i10 = 0; i10 < this.row; i10++) {
-            int size = this.array.get(i10).size();
-            if (size != this.col && this.array.get(i10).get(0) != null && this.array.get(i10).get(0).type != 11) {
-                LinkedList<Atom> linkedList = this.array.get(i10);
+        for (int i2 = 0; i2 < this.row; i2++) {
+            int size = this.array.get(i2).size();
+            if (size != this.col && this.array.get(i2).get(0) != null && this.array.get(i2).get(0).type != 11) {
+                LinkedList<Atom> linkedList = this.array.get(i2);
                 while (size < this.col) {
                     linkedList.add(null);
                     size++;
@@ -71,16 +79,8 @@ public class ArrayOfAtoms extends TeXFormula {
         return this.row;
     }
 
-    public void addCol(int i7) {
-        if (i7 < 1) {
-            i7 = 1;
-        } else if (i7 > 4096) {
-            i7 = 4096;
-        }
+    public void addCol() {
         this.array.get(this.row).add(this.root);
-        for (int i10 = 1; i10 < i7 - 1; i10++) {
-            this.array.get(this.row).add(null);
-        }
         this.root = null;
     }
 }

@@ -13,8 +13,8 @@ public class ContextUtils {
     public static void initialize(Context context) {
         if (context != null) {
             applicationContext = context;
-            return;
+        } else {
+            w26.j("Application context cannot be null for ContextUtils.initialize.");
         }
-        throw new IllegalArgumentException("Application context cannot be null for ContextUtils.initialize.");
     }
 }

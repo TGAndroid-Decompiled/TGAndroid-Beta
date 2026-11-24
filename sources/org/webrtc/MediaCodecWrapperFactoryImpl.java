@@ -8,8 +8,12 @@ import android.os.Bundle;
 import android.view.Surface;
 import java.nio.ByteBuffer;
 class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
+    @Override
+    public MediaCodecWrapper createByCodecName(String str) {
+        return new MediaCodecWrapperImpl(MediaCodec.createByCodecName(str));
+    }
 
-    public static class MediaCodecWrapperImpl implements MediaCodecWrapper {
+    private static class MediaCodecWrapperImpl implements MediaCodecWrapper {
         private final MediaCodec mediaCodec;
 
         public MediaCodecWrapperImpl(MediaCodec mediaCodec) {
@@ -17,8 +21,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void configure(MediaFormat mediaFormat, Surface surface, MediaCrypto mediaCrypto, int i7) {
-            this.mediaCodec.configure(mediaFormat, surface, mediaCrypto, i7);
+        public void configure(MediaFormat mediaFormat, Surface surface, MediaCrypto mediaCrypto, int i) {
+            this.mediaCodec.configure(mediaFormat, surface, mediaCrypto, i);
         }
 
         @Override
@@ -27,13 +31,13 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public int dequeueInputBuffer(long j3) {
-            return this.mediaCodec.dequeueInputBuffer(j3);
+        public int dequeueInputBuffer(long j) {
+            return this.mediaCodec.dequeueInputBuffer(j);
         }
 
         @Override
-        public int dequeueOutputBuffer(MediaCodec.BufferInfo bufferInfo, long j3) {
-            return this.mediaCodec.dequeueOutputBuffer(bufferInfo, j3);
+        public int dequeueOutputBuffer(MediaCodec.BufferInfo bufferInfo, long j) {
+            return this.mediaCodec.dequeueOutputBuffer(bufferInfo, j);
         }
 
         @Override
@@ -47,8 +51,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public ByteBuffer getInputBuffer(int i7) {
-            return this.mediaCodec.getInputBuffer(i7);
+        public ByteBuffer getInputBuffer(int i) {
+            return this.mediaCodec.getInputBuffer(i);
         }
 
         @Override
@@ -57,8 +61,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public ByteBuffer getOutputBuffer(int i7) {
-            return this.mediaCodec.getOutputBuffer(i7);
+        public ByteBuffer getOutputBuffer(int i) {
+            return this.mediaCodec.getOutputBuffer(i);
         }
 
         @Override
@@ -67,8 +71,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void queueInputBuffer(int i7, int i10, int i11, long j3, int i12) {
-            this.mediaCodec.queueInputBuffer(i7, i10, i11, j3, i12);
+        public void queueInputBuffer(int i, int i2, int i3, long j, int i4) {
+            this.mediaCodec.queueInputBuffer(i, i2, i3, j, i4);
         }
 
         @Override
@@ -77,8 +81,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void releaseOutputBuffer(int i7, boolean z10) {
-            this.mediaCodec.releaseOutputBuffer(i7, z10);
+        public void releaseOutputBuffer(int i, boolean z) {
+            this.mediaCodec.releaseOutputBuffer(i, z);
         }
 
         @Override
@@ -97,13 +101,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public MediaFormat getOutputFormat(int i7) {
-            return this.mediaCodec.getOutputFormat(i7);
+        public MediaFormat getOutputFormat(int i) {
+            return this.mediaCodec.getOutputFormat(i);
         }
-    }
-
-    @Override
-    public MediaCodecWrapper createByCodecName(String str) {
-        return new MediaCodecWrapperImpl(MediaCodec.createByCodecName(str));
     }
 }

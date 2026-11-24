@@ -9,7 +9,16 @@ public class VRowAtom extends Atom {
     protected boolean vtop = false;
     protected int halign = 5;
 
-    public VRowAtom() {
+    public VRowAtom(Atom atom) {
+        if (atom != null) {
+            boolean z = atom instanceof VRowAtom;
+            LinkedList<Atom> linkedList = this.elements;
+            if (z) {
+                linkedList.addAll(((VRowAtom) atom).elements);
+            } else {
+                linkedList.add(atom);
+            }
+        }
     }
 
     public final void add(Atom atom) {
@@ -27,22 +36,22 @@ public class VRowAtom extends Atom {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         VerticalBox verticalBox = new VerticalBox();
-        float f10 = 0.0f;
+        float f = 0.0f;
         if (this.halign != 5) {
             LinkedList linkedList = new LinkedList();
             ListIterator<Atom> listIterator = this.elements.listIterator();
-            float f11 = Float.NEGATIVE_INFINITY;
+            float f2 = Float.NEGATIVE_INFINITY;
             while (listIterator.hasNext()) {
                 Box createBox = listIterator.next().createBox(teXEnvironment);
                 linkedList.add(createBox);
-                if (f11 < createBox.getWidth()) {
-                    f11 = createBox.getWidth();
+                if (f2 < createBox.getWidth()) {
+                    f2 = createBox.getWidth();
                 }
             }
             StrutBox strutBox = new StrutBox(0.0f, teXEnvironment.getInterline(), 0.0f, 0.0f);
             ListIterator listIterator2 = linkedList.listIterator();
             while (listIterator2.hasNext()) {
-                verticalBox.add(new HorizontalBox((Box) listIterator2.next(), f11, this.halign));
+                verticalBox.add(new HorizontalBox((Box) listIterator2.next(), f2, this.halign));
                 if (this.addInterline && listIterator2.hasNext()) {
                     verticalBox.add(strutBox);
                 }
@@ -60,17 +69,17 @@ public class VRowAtom extends Atom {
         verticalBox.setShift(-this.raise.createBox(teXEnvironment).getWidth());
         if (this.vtop) {
             if (verticalBox.getSize() != 0) {
-                f10 = verticalBox.children.getFirst().getHeight();
+                f = verticalBox.children.getFirst().getHeight();
             }
-            verticalBox.setHeight(f10);
-            verticalBox.setDepth((verticalBox.getHeight() + verticalBox.getDepth()) - f10);
+            verticalBox.setHeight(f);
+            verticalBox.setDepth((verticalBox.getHeight() + verticalBox.getDepth()) - f);
             return verticalBox;
         }
         if (verticalBox.getSize() != 0) {
-            f10 = verticalBox.children.getLast().getDepth();
+            f = verticalBox.children.getLast().getDepth();
         }
-        verticalBox.setHeight((verticalBox.getHeight() + verticalBox.getDepth()) - f10);
-        verticalBox.setDepth(f10);
+        verticalBox.setHeight((verticalBox.getHeight() + verticalBox.getDepth()) - f);
+        verticalBox.setDepth(f);
         return verticalBox;
     }
 
@@ -90,29 +99,22 @@ public class VRowAtom extends Atom {
         return this.vtop;
     }
 
-    public void setAddInterline(boolean z10) {
-        this.addInterline = z10;
+    public void setAddInterline(boolean z) {
+        this.addInterline = z;
     }
 
-    public void setHalign(int i7) {
-        this.halign = i7;
+    public void setHalign(int i) {
+        this.halign = i;
     }
 
-    public void setRaise(int i7, float f10) {
-        this.raise = new SpaceAtom(i7, f10, 0.0f, 0.0f);
+    public void setRaise(int i, float f) {
+        this.raise = new SpaceAtom(i, f, 0.0f, 0.0f);
     }
 
-    public void setVtop(boolean z10) {
-        this.vtop = z10;
+    public void setVtop(boolean z) {
+        this.vtop = z;
     }
 
-    public VRowAtom(Atom atom) {
-        if (atom != null) {
-            if (atom instanceof VRowAtom) {
-                this.elements.addAll(((VRowAtom) atom).elements);
-            } else {
-                this.elements.add(atom);
-            }
-        }
+    public VRowAtom() {
     }
 }

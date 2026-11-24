@@ -1,25 +1,32 @@
 package org.webrtc;
 
 import org.webrtc.Camera1Session;
+import org.webrtc.TextureBufferImpl;
 public final class b implements Runnable {
-    public final int f55151a;
-    public final Camera1Session.AnonymousClass2 f55152b;
-    public final byte[] f55153c;
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public b(Camera1Session.AnonymousClass2 anonymousClass2, byte[] bArr, int i7) {
-        this.f55151a = i7;
-        this.f55152b = anonymousClass2;
-        this.f55153c = bArr;
+    public b(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f55151a) {
+        byte b = this.a;
+        Object obj = this.c;
+        Object obj2 = this.b;
+        switch (b) {
             case 0:
-                Camera1Session.AnonymousClass2.a(this.f55152b, this.f55153c);
+                Camera1Session.AnonymousClass2.a((Camera1Session.AnonymousClass2) obj2, (byte[]) obj);
+                return;
+            case 1:
+                Camera1Session.AnonymousClass2.b((Camera1Session.AnonymousClass2) obj2, (byte[]) obj);
                 return;
             default:
-                Camera1Session.AnonymousClass2.b(this.f55152b, this.f55153c);
+                TextureBufferImpl.a((TextureBufferImpl) obj2, (TextureBufferImpl.RefCountMonitor) obj);
                 return;
         }
     }

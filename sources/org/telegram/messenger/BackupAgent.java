@@ -4,13 +4,15 @@ import android.app.backup.BackupAgentHelper;
 import android.app.backup.BackupManager;
 import android.app.backup.SharedPreferencesBackupHelper;
 public class BackupAgent extends BackupAgentHelper {
-    public static BackupManager f22708a;
+    public static BackupManager a;
 
     public static void a() {
-        if (f22708a == null) {
-            f22708a = new BackupManager(t0.f27013b);
+        BackupManager backupManager = a;
+        if (backupManager == null) {
+            backupManager = new BackupManager(a.b);
+            a = backupManager;
         }
-        f22708a.dataChanged();
+        backupManager.dataChanged();
     }
 
     @Override

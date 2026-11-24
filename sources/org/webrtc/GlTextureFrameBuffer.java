@@ -1,6 +1,5 @@
 package org.webrtc;
 
-import a8.p0;
 import android.opengl.GLES20;
 public class GlTextureFrameBuffer {
     private int frameBufferId;
@@ -9,17 +8,18 @@ public class GlTextureFrameBuffer {
     private int textureId;
     private int width;
 
-    public GlTextureFrameBuffer(int i7) {
-        switch (i7) {
+    public GlTextureFrameBuffer(int i) {
+        switch (i) {
             case 6407:
             case 6408:
             case 6409:
-                this.pixelFormat = i7;
+                this.pixelFormat = i;
                 this.width = 0;
                 this.height = 0;
                 return;
             default:
-                throw new IllegalArgumentException(i5.c.i(i7, "Invalid pixel format: "));
+                w26.j(de9.k(i, "Invalid pixel format: "));
+                throw null;
         }
     }
 
@@ -48,13 +48,13 @@ public class GlTextureFrameBuffer {
         this.height = 0;
     }
 
-    public void setSize(int i7, int i10) {
-        if (i7 > 0 && i10 > 0) {
-            if (i7 == this.width && i10 == this.height) {
+    public void setSize(int i, int i2) {
+        if (i > 0 && i2 > 0) {
+            if (i == this.width && i2 == this.height) {
                 return;
             }
-            this.width = i7;
-            this.height = i10;
+            this.width = i;
+            this.height = i2;
             if (this.textureId == 0) {
                 this.textureId = GlUtil.generateTexture(3553);
             }
@@ -65,8 +65,8 @@ public class GlTextureFrameBuffer {
             }
             GLES20.glActiveTexture(33984);
             GLES20.glBindTexture(3553, this.textureId);
-            int i11 = this.pixelFormat;
-            GLES20.glTexImage2D(3553, 0, i11, i7, i10, 0, i11, 5121, null);
+            int i3 = this.pixelFormat;
+            GLES20.glTexImage2D(3553, 0, i3, i, i2, 0, i3, 5121, null);
             GLES20.glBindTexture(3553, 0);
             GlUtil.checkNoGLES2Error("GlTextureFrameBuffer setSize");
             GLES20.glBindFramebuffer(36160, this.frameBufferId);
@@ -75,9 +75,11 @@ public class GlTextureFrameBuffer {
             if (glCheckFramebufferStatus == 36053) {
                 GLES20.glBindFramebuffer(36160, 0);
                 return;
+            } else {
+                sc8.j(de9.k(glCheckFramebufferStatus, "Framebuffer not complete, status: "));
+                return;
             }
-            throw new IllegalStateException(i5.c.i(glCheckFramebufferStatus, "Framebuffer not complete, status: "));
         }
-        throw new IllegalArgumentException(p0.m(i7, i10, "Invalid size: ", "x"));
+        w26.j(b00.g(i, i2, "Invalid size: ", "x"));
     }
 }

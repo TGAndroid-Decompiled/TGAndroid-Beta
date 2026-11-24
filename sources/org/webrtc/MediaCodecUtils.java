@@ -19,7 +19,7 @@ class MediaCodecUtils {
     static final int[] ENCODER_COLOR_FORMATS = {19, 21, 2141391872, 2141391876};
     static final int[] TEXTURE_COLOR_FORMATS = {2130708361};
 
-    public static class AnonymousClass1 {
+    static class AnonymousClass1 {
         static final int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
 
         static {
@@ -60,13 +60,14 @@ class MediaCodecUtils {
         return false;
     }
 
-    public static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z10) {
-        int i7 = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
-        if (i7 != 1 && i7 != 2 && i7 != 3 && i7 != 4) {
-            if (i7 == 5) {
-                return H264Utils.getDefaultH264Params(z10);
+    public static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z) {
+        int i = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+        if (i != 1 && i != 2 && i != 3 && i != 4) {
+            if (i == 5) {
+                return H264Utils.getDefaultH264Params(z);
             }
-            throw new IllegalArgumentException("Unsupported codec: " + videoCodecMimeType);
+            w26.i(videoCodecMimeType, "Unsupported codec: ");
+            return null;
         }
         return new HashMap();
     }
@@ -101,10 +102,10 @@ class MediaCodecUtils {
 
     public static Integer selectColorFormat(int[] iArr, MediaCodecInfo.CodecCapabilities codecCapabilities) {
         int[] iArr2;
-        for (int i7 : iArr) {
-            for (int i10 : codecCapabilities.colorFormats) {
-                if (i10 == i7) {
-                    return Integer.valueOf(i10);
+        for (int i : iArr) {
+            for (int i2 : codecCapabilities.colorFormats) {
+                if (i2 == i) {
+                    return Integer.valueOf(i2);
                 }
             }
         }

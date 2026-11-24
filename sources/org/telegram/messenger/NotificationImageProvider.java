@@ -12,12 +12,12 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-public class NotificationImageProvider extends ContentProvider implements fs {
+public class NotificationImageProvider extends ContentProvider implements gk7 {
     public static String d;
-    public static UriMatcher f22866e;
-    public final HashSet f22867a = new HashSet();
-    public final Object f22868b = new Object();
-    public final HashMap f22869c = new HashMap();
+    public static UriMatcher e;
+    public final HashSet a = new HashSet();
+    public final Object b = new Object();
+    public final HashMap c = new HashMap();
 
     @Override
     public final int delete(Uri uri, String str, String[] strArr) {
@@ -25,17 +25,13 @@ public class NotificationImageProvider extends ContentProvider implements fs {
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.Y1) {
-            synchronized (this.f22868b) {
-                try {
-                    String str = (String) objArr[0];
-                    if (this.f22867a.remove(str)) {
-                        this.f22869c.remove(str);
-                        this.f22868b.notifyAll();
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == kk7.X1) {
+            synchronized (this.b) {
+                String str = (String) objArr[0];
+                if (this.a.remove(str)) {
+                    this.c.remove(str);
+                    this.b.notifyAll();
                 }
             }
         }
@@ -61,8 +57,8 @@ public class NotificationImageProvider extends ContentProvider implements fs {
 
     @Override
     public final boolean onCreate() {
-        for (int i7 = 0; i7 < i10.c(); i7++) {
-            ks.f(i7).b(this, ks.Y1);
+        for (int i = 0; i < y6c.c(); i++) {
+            kk7.f(i).a(this, kk7.X1);
         }
         return true;
     }
@@ -71,57 +67,59 @@ public class NotificationImageProvider extends ContentProvider implements fs {
     public final ParcelFileDescriptor openFile(Uri uri, String str) {
         long currentTimeMillis;
         if ("r".equals(str)) {
-            if (f22866e == null) {
+            if (e == null) {
                 UriMatcher uriMatcher = new UriMatcher(-1);
-                f22866e = uriMatcher;
-                if (d == null) {
-                    t0.d();
+                e = uriMatcher;
+                String str2 = d;
+                if (str2 == null) {
+                    a.d();
+                    str2 = "org.telegram.messenger.beta.notification_image_provider";
                     d = "org.telegram.messenger.beta.notification_image_provider";
                 }
-                uriMatcher.addURI(d, "msg_media_raw/#/*", 1);
+                uriMatcher.addURI(str2, "msg_media_raw/#/*", 1);
             }
-            if (f22866e.match(uri) == 1) {
+            if (e.match(uri) == 1) {
                 List<String> pathSegments = uri.getPathSegments();
                 Integer.parseInt(pathSegments.get(1));
-                String str2 = pathSegments.get(2);
+                String str3 = pathSegments.get(2);
                 String queryParameter = uri.getQueryParameter("final_path");
                 String queryParameter2 = uri.getQueryParameter("fallback");
                 File file = new File(queryParameter);
-                t0.w();
-                if (!g0.I1(Uri.fromFile(file), 0)) {
+                a.v();
+                if (!gl.G1(Uri.fromFile(file), 0)) {
                     if (!file.exists()) {
-                        Long l10 = (Long) this.f22869c.get(str2);
-                        if (l10 != null) {
-                            currentTimeMillis = l10.longValue();
+                        Long l = (Long) this.c.get(str3);
+                        if (l != null) {
+                            currentTimeMillis = l.longValue();
                         } else {
                             currentTimeMillis = System.currentTimeMillis();
                         }
-                        if (l10 == null) {
-                            this.f22869c.put(str2, Long.valueOf(currentTimeMillis));
+                        if (l == null) {
+                            this.c.put(str3, Long.valueOf(currentTimeMillis));
                         }
                         while (!file.exists()) {
                             if (System.currentTimeMillis() - currentTimeMillis >= 3000) {
-                                if (s2.f26829a) {
-                                    a8.l("Waiting for " + str2 + " to download timed out");
+                                if (w01.a) {
+                                    fa4.l("Waiting for " + str3 + " to download timed out");
                                 }
                                 if (!TextUtils.isEmpty(queryParameter2)) {
                                     File file2 = new File(queryParameter2);
-                                    if (!g0.I1(Uri.fromFile(file2), 0)) {
+                                    if (!gl.G1(Uri.fromFile(file2), 0)) {
                                         return ParcelFileDescriptor.open(file2, 268435456);
                                     }
                                     throw new SecurityException("trying to read internal file");
                                 }
                                 throw new FileNotFoundException("Download timed out");
                             }
-                            synchronized (this.f22868b) {
-                                this.f22867a.add(str2);
+                            synchronized (this.b) {
+                                this.a.add(str3);
                                 try {
-                                    this.f22868b.wait(1000L);
+                                    this.b.wait(1000L);
                                 } catch (InterruptedException unused) {
                                 }
                             }
                         }
-                        if (g0.I1(Uri.fromFile(file), 0)) {
+                        if (gl.G1(Uri.fromFile(file), 0)) {
                             throw new SecurityException("trying to read internal file");
                         }
                     }
@@ -141,8 +139,8 @@ public class NotificationImageProvider extends ContentProvider implements fs {
 
     @Override
     public final void shutdown() {
-        for (int i7 = 0; i7 < i10.c(); i7++) {
-            ks.f(i7).n(this, ks.Y1);
+        for (int i = 0; i < y6c.c(); i++) {
+            kk7.f(i).n(this, kk7.X1);
         }
     }
 

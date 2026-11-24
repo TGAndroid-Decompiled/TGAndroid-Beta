@@ -44,8 +44,8 @@ public class PeerConnection {
             this.bitMask = num;
         }
 
-        public static AdapterType fromNativeIndex(int i7) {
-            return BY_BITMASK.get(Integer.valueOf(i7));
+        public static AdapterType fromNativeIndex(int i) {
+            return BY_BITMASK.get(Integer.valueOf(i));
         }
     }
 
@@ -74,8 +74,8 @@ public class PeerConnection {
         DISCONNECTED,
         CLOSED;
 
-        public static IceConnectionState fromNativeIndex(int i7) {
-            return values()[i7];
+        public static IceConnectionState fromNativeIndex(int i) {
+            return values()[i];
         }
     }
 
@@ -84,186 +84,8 @@ public class PeerConnection {
         GATHERING,
         COMPLETE;
 
-        public static IceGatheringState fromNativeIndex(int i7) {
-            return values()[i7];
-        }
-    }
-
-    public static class IceServer {
-        public final String hostname;
-        public final String password;
-        public final List<String> tlsAlpnProtocols;
-        public final TlsCertPolicy tlsCertPolicy;
-        public final List<String> tlsEllipticCurves;
-        @Deprecated
-        public final String uri;
-        public final List<String> urls;
-        public final String username;
-
-        public static class Builder {
-            private String hostname;
-            private String password;
-            private List<String> tlsAlpnProtocols;
-            private TlsCertPolicy tlsCertPolicy;
-            private List<String> tlsEllipticCurves;
-            private final List<String> urls;
-            private String username;
-
-            public IceServer createIceServer() {
-                return new IceServer(this.urls.get(0), this.urls, this.username, this.password, this.tlsCertPolicy, this.hostname, this.tlsAlpnProtocols, this.tlsEllipticCurves);
-            }
-
-            public Builder setHostname(String str) {
-                this.hostname = str;
-                return this;
-            }
-
-            public Builder setPassword(String str) {
-                this.password = str;
-                return this;
-            }
-
-            public Builder setTlsAlpnProtocols(List<String> list) {
-                this.tlsAlpnProtocols = list;
-                return this;
-            }
-
-            public Builder setTlsCertPolicy(TlsCertPolicy tlsCertPolicy) {
-                this.tlsCertPolicy = tlsCertPolicy;
-                return this;
-            }
-
-            public Builder setTlsEllipticCurves(List<String> list) {
-                this.tlsEllipticCurves = list;
-                return this;
-            }
-
-            public Builder setUsername(String str) {
-                this.username = str;
-                return this;
-            }
-
-            private Builder(List<String> list) {
-                this.username = "";
-                this.password = "";
-                this.tlsCertPolicy = TlsCertPolicy.TLS_CERT_POLICY_SECURE;
-                this.hostname = "";
-                if (list != null && !list.isEmpty()) {
-                    this.urls = list;
-                    return;
-                }
-                throw new IllegalArgumentException("urls == null || urls.isEmpty(): " + list);
-            }
-        }
-
-        public static Builder builder(String str) {
-            return new Builder(Collections.singletonList(str));
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == null) {
-                return false;
-            }
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof IceServer)) {
-                return false;
-            }
-            IceServer iceServer = (IceServer) obj;
-            if (!this.uri.equals(iceServer.uri) || !this.urls.equals(iceServer.urls) || !this.username.equals(iceServer.username) || !this.password.equals(iceServer.password) || !this.tlsCertPolicy.equals(iceServer.tlsCertPolicy) || !this.hostname.equals(iceServer.hostname) || !this.tlsAlpnProtocols.equals(iceServer.tlsAlpnProtocols) || !this.tlsEllipticCurves.equals(iceServer.tlsEllipticCurves)) {
-                return false;
-            }
-            return true;
-        }
-
-        public String getHostname() {
-            return this.hostname;
-        }
-
-        public String getPassword() {
-            return this.password;
-        }
-
-        public List<String> getTlsAlpnProtocols() {
-            return this.tlsAlpnProtocols;
-        }
-
-        public TlsCertPolicy getTlsCertPolicy() {
-            return this.tlsCertPolicy;
-        }
-
-        public List<String> getTlsEllipticCurves() {
-            return this.tlsEllipticCurves;
-        }
-
-        public List<String> getUrls() {
-            return this.urls;
-        }
-
-        public String getUsername() {
-            return this.username;
-        }
-
-        public int hashCode() {
-            return Arrays.hashCode(new Object[]{this.uri, this.urls, this.username, this.password, this.tlsCertPolicy, this.hostname, this.tlsAlpnProtocols, this.tlsEllipticCurves});
-        }
-
-        public String toString() {
-            return this.urls + " [" + this.username + ":" + this.password + "] [" + this.tlsCertPolicy + "] [" + this.hostname + "] [" + this.tlsAlpnProtocols + "] [" + this.tlsEllipticCurves + "]";
-        }
-
-        @Deprecated
-        public IceServer(String str) {
-            this(str, "", "");
-        }
-
-        public static Builder builder(List<String> list) {
-            return new Builder(list);
-        }
-
-        @Deprecated
-        public IceServer(String str, String str2, String str3) {
-            this(str, str2, str3, TlsCertPolicy.TLS_CERT_POLICY_SECURE);
-        }
-
-        @Deprecated
-        public IceServer(String str, String str2, String str3, TlsCertPolicy tlsCertPolicy) {
-            this(str, str2, str3, tlsCertPolicy, "");
-        }
-
-        @Deprecated
-        public IceServer(String str, String str2, String str3, TlsCertPolicy tlsCertPolicy, String str4) {
-            this(str, Collections.singletonList(str), str2, str3, tlsCertPolicy, str4, null, null);
-        }
-
-        private IceServer(String str, List<String> list, String str2, String str3, TlsCertPolicy tlsCertPolicy, String str4, List<String> list2, List<String> list3) {
-            if (str != null && list != null && !list.isEmpty()) {
-                for (String str5 : list) {
-                    if (str5 == null) {
-                        throw new IllegalArgumentException("urls element is null: " + list);
-                    }
-                }
-                if (str2 == null) {
-                    throw new IllegalArgumentException("username == null");
-                }
-                if (str3 == null) {
-                    throw new IllegalArgumentException("password == null");
-                }
-                if (str4 != null) {
-                    this.uri = str;
-                    this.urls = list;
-                    this.username = str2;
-                    this.password = str3;
-                    this.tlsCertPolicy = tlsCertPolicy;
-                    this.hostname = str4;
-                    this.tlsAlpnProtocols = list2;
-                    this.tlsEllipticCurves = list3;
-                    return;
-                }
-                throw new IllegalArgumentException("hostname == null");
-            }
-            throw new IllegalArgumentException("uri == null || urls == null || urls.isEmpty()");
+        public static IceGatheringState fromNativeIndex(int i) {
+            return values()[i];
         }
     }
 
@@ -296,7 +118,7 @@ public class PeerConnection {
 
         void onIceConnectionChange(IceConnectionState iceConnectionState);
 
-        void onIceConnectionReceivingChange(boolean z10);
+        void onIceConnectionReceivingChange(boolean z);
 
         void onIceGatheringChange(IceGatheringState iceGatheringState);
 
@@ -323,8 +145,8 @@ public class PeerConnection {
         FAILED,
         CLOSED;
 
-        public static PeerConnectionState fromNativeIndex(int i7) {
-            return values()[i7];
+        public static PeerConnectionState fromNativeIndex(int i) {
+            return values()[i];
         }
     }
 
@@ -555,8 +377,8 @@ public class PeerConnection {
         HAVE_REMOTE_PRANSWER,
         CLOSED;
 
-        public static SignalingState fromNativeIndex(int i7) {
-            return values()[i7];
+        public static SignalingState fromNativeIndex(int i) {
+            return values()[i];
         }
     }
 
@@ -570,25 +392,29 @@ public class PeerConnection {
         TLS_CERT_POLICY_INSECURE_NO_CHECK
     }
 
-    public PeerConnection(NativePeerConnectionFactory nativePeerConnectionFactory) {
-        this(nativePeerConnectionFactory.createNativePeerConnection());
+    public PeerConnection(long j) {
+        this.localStreams = new ArrayList();
+        this.senders = new ArrayList();
+        this.receivers = new ArrayList();
+        this.transceivers = new ArrayList();
+        this.nativePeerConnection = j;
     }
 
     public static long createNativePeerConnectionObserver(Observer observer) {
         return nativeCreatePeerConnectionObserver(observer);
     }
 
-    private native boolean nativeAddIceCandidate(String str, int i7, String str2);
+    private native boolean nativeAddIceCandidate(String str, int i, String str2);
 
-    private native void nativeAddIceCandidateWithObserver(String str, int i7, String str2, AddIceObserver addIceObserver);
+    private native void nativeAddIceCandidateWithObserver(String str, int i, String str2, AddIceObserver addIceObserver);
 
-    private native boolean nativeAddLocalStream(long j3);
+    private native boolean nativeAddLocalStream(long j);
 
-    private native RtpSender nativeAddTrack(long j3, List<String> list);
+    private native RtpSender nativeAddTrack(long j, List<String> list);
 
     private native RtpTransceiver nativeAddTransceiverOfType(MediaStreamTrack.MediaType mediaType, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit);
 
-    private native RtpTransceiver nativeAddTransceiverWithTrack(long j3, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit);
+    private native RtpTransceiver nativeAddTransceiverWithTrack(long j, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit);
 
     private native void nativeClose();
 
@@ -604,7 +430,7 @@ public class PeerConnection {
 
     private native RtpSender nativeCreateSender(String str, String str2);
 
-    private static native void nativeFreeOwnedPeerConnection(long j3);
+    private static native void nativeFreeOwnedPeerConnection(long j);
 
     private native RtcCertificatePem nativeGetCertificate();
 
@@ -626,23 +452,23 @@ public class PeerConnection {
 
     private native void nativeNewGetStats(RTCStatsCollectorCallback rTCStatsCollectorCallback);
 
-    private native void nativeNewGetStatsReceiver(long j3, RTCStatsCollectorCallback rTCStatsCollectorCallback);
+    private native void nativeNewGetStatsReceiver(long j, RTCStatsCollectorCallback rTCStatsCollectorCallback);
 
-    private native void nativeNewGetStatsSender(long j3, RTCStatsCollectorCallback rTCStatsCollectorCallback);
+    private native void nativeNewGetStatsSender(long j, RTCStatsCollectorCallback rTCStatsCollectorCallback);
 
-    private native boolean nativeOldGetStats(StatsObserver statsObserver, long j3);
+    private native boolean nativeOldGetStats(StatsObserver statsObserver, long j);
 
     private native boolean nativeRemoveIceCandidates(IceCandidate[] iceCandidateArr);
 
-    private native void nativeRemoveLocalStream(long j3);
+    private native void nativeRemoveLocalStream(long j);
 
-    private native boolean nativeRemoveTrack(long j3);
+    private native boolean nativeRemoveTrack(long j);
 
     private native void nativeRestartIce();
 
-    private native void nativeSetAudioPlayout(boolean z10);
+    private native void nativeSetAudioPlayout(boolean z);
 
-    private native void nativeSetAudioRecording(boolean z10);
+    private native void nativeSetAudioRecording(boolean z);
 
     private native boolean nativeSetBitrate(Integer num, Integer num2, Integer num3);
 
@@ -656,7 +482,7 @@ public class PeerConnection {
 
     private native SignalingState nativeSignalingState();
 
-    private native boolean nativeStartRtcEventLog(int i7, int i10);
+    private native boolean nativeStartRtcEventLog(int i, int i2);
 
     private native void nativeStopRtcEventLog();
 
@@ -672,12 +498,35 @@ public class PeerConnection {
         return true;
     }
 
-    public RtpSender addTrack(MediaStreamTrack mediaStreamTrack) {
-        return addTrack(mediaStreamTrack, Collections.EMPTY_LIST);
+    public RtpSender addTrack(MediaStreamTrack mediaStreamTrack, List<String> list) {
+        if (mediaStreamTrack != null && list != null) {
+            RtpSender nativeAddTrack = nativeAddTrack(mediaStreamTrack.getNativeMediaStreamTrack(), list);
+            if (nativeAddTrack != null) {
+                this.senders.add(nativeAddTrack);
+                return nativeAddTrack;
+            }
+            sc8.j("C++ addTrack failed.");
+            return null;
+        }
+        fvc.f("No MediaStreamTrack specified in addTrack.");
+        return null;
     }
 
-    public RtpTransceiver addTransceiver(MediaStreamTrack mediaStreamTrack) {
-        return addTransceiver(mediaStreamTrack, new RtpTransceiver.RtpTransceiverInit());
+    public RtpTransceiver addTransceiver(MediaStreamTrack mediaStreamTrack, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit) {
+        if (mediaStreamTrack != null) {
+            if (rtpTransceiverInit == null) {
+                rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
+            }
+            RtpTransceiver nativeAddTransceiverWithTrack = nativeAddTransceiverWithTrack(mediaStreamTrack.getNativeMediaStreamTrack(), rtpTransceiverInit);
+            if (nativeAddTransceiverWithTrack != null) {
+                this.transceivers.add(nativeAddTransceiverWithTrack);
+                return nativeAddTransceiverWithTrack;
+            }
+            sc8.j("C++ addTransceiver failed.");
+            return null;
+        }
+        fvc.f("No MediaStreamTrack specified for addTransceiver.");
+        return null;
     }
 
     public void close() {
@@ -770,7 +619,13 @@ public class PeerConnection {
 
     @Deprecated
     public boolean getStats(StatsObserver statsObserver, MediaStreamTrack mediaStreamTrack) {
-        return nativeOldGetStats(statsObserver, mediaStreamTrack == null ? 0L : mediaStreamTrack.getNativeMediaStreamTrack());
+        long nativeMediaStreamTrack;
+        if (mediaStreamTrack == null) {
+            nativeMediaStreamTrack = 0;
+        } else {
+            nativeMediaStreamTrack = mediaStreamTrack.getNativeMediaStreamTrack();
+        }
+        return nativeOldGetStats(statsObserver, nativeMediaStreamTrack);
     }
 
     public List<RtpTransceiver> getTransceivers() {
@@ -803,19 +658,20 @@ public class PeerConnection {
         if (rtpSender != null) {
             return nativeRemoveTrack(rtpSender.getNativeRtpSender());
         }
-        throw new NullPointerException("No RtpSender specified for removeTrack.");
+        fvc.f("No RtpSender specified for removeTrack.");
+        return false;
     }
 
     public void restartIce() {
         nativeRestartIce();
     }
 
-    public void setAudioPlayout(boolean z10) {
-        nativeSetAudioPlayout(z10);
+    public void setAudioPlayout(boolean z) {
+        nativeSetAudioPlayout(z);
     }
 
-    public void setAudioRecording(boolean z10) {
-        nativeSetAudioRecording(z10);
+    public void setAudioRecording(boolean z) {
+        nativeSetAudioRecording(z);
     }
 
     public boolean setBitrate(Integer num, Integer num2, Integer num3) {
@@ -838,59 +694,208 @@ public class PeerConnection {
         return nativeSignalingState();
     }
 
-    public boolean startRtcEventLog(int i7, int i10) {
-        return nativeStartRtcEventLog(i7, i10);
+    public boolean startRtcEventLog(int i, int i2) {
+        return nativeStartRtcEventLog(i, i2);
     }
 
     public void stopRtcEventLog() {
         nativeStopRtcEventLog();
     }
 
-    public PeerConnection(long j3) {
-        this.localStreams = new ArrayList();
-        this.senders = new ArrayList();
-        this.receivers = new ArrayList();
-        this.transceivers = new ArrayList();
-        this.nativePeerConnection = j3;
+    public void setLocalDescription(SdpObserver sdpObserver, SessionDescription sessionDescription) {
+        nativeSetLocalDescription(sdpObserver, sessionDescription);
+    }
+
+    public static class IceServer {
+        public final String hostname;
+        public final String password;
+        public final List<String> tlsAlpnProtocols;
+        public final TlsCertPolicy tlsCertPolicy;
+        public final List<String> tlsEllipticCurves;
+        @Deprecated
+        public final String uri;
+        public final List<String> urls;
+        public final String username;
+
+        public static class Builder {
+            private String hostname;
+            private String password;
+            private List<String> tlsAlpnProtocols;
+            private TlsCertPolicy tlsCertPolicy;
+            private List<String> tlsEllipticCurves;
+            private final List<String> urls;
+            private String username;
+
+            private Builder(List<String> list) {
+                this.username = "";
+                this.password = "";
+                this.tlsCertPolicy = TlsCertPolicy.TLS_CERT_POLICY_SECURE;
+                this.hostname = "";
+                if (list != null && !list.isEmpty()) {
+                    this.urls = list;
+                } else {
+                    w26.i(list, "urls == null || urls.isEmpty(): ");
+                    throw null;
+                }
+            }
+
+            public IceServer createIceServer() {
+                return new IceServer(this.urls.get(0), this.urls, this.username, this.password, this.tlsCertPolicy, this.hostname, this.tlsAlpnProtocols, this.tlsEllipticCurves);
+            }
+
+            public Builder setHostname(String str) {
+                this.hostname = str;
+                return this;
+            }
+
+            public Builder setPassword(String str) {
+                this.password = str;
+                return this;
+            }
+
+            public Builder setTlsAlpnProtocols(List<String> list) {
+                this.tlsAlpnProtocols = list;
+                return this;
+            }
+
+            public Builder setTlsCertPolicy(TlsCertPolicy tlsCertPolicy) {
+                this.tlsCertPolicy = tlsCertPolicy;
+                return this;
+            }
+
+            public Builder setTlsEllipticCurves(List<String> list) {
+                this.tlsEllipticCurves = list;
+                return this;
+            }
+
+            public Builder setUsername(String str) {
+                this.username = str;
+                return this;
+            }
+        }
+
+        private IceServer(String str, List<String> list, String str2, String str3, TlsCertPolicy tlsCertPolicy, String str4, List<String> list2, List<String> list3) {
+            if (str != null && list != null && !list.isEmpty()) {
+                for (String str5 : list) {
+                    if (str5 == null) {
+                        w26.i(list, "urls element is null: ");
+                        throw null;
+                    }
+                }
+                if (str2 != null) {
+                    if (str3 != null) {
+                        if (str4 != null) {
+                            this.uri = str;
+                            this.urls = list;
+                            this.username = str2;
+                            this.password = str3;
+                            this.tlsCertPolicy = tlsCertPolicy;
+                            this.hostname = str4;
+                            this.tlsAlpnProtocols = list2;
+                            this.tlsEllipticCurves = list3;
+                            return;
+                        }
+                        w26.j("hostname == null");
+                        throw null;
+                    }
+                    w26.j("password == null");
+                    throw null;
+                }
+                w26.j("username == null");
+                throw null;
+            }
+            w26.j("uri == null || urls == null || urls.isEmpty()");
+            throw null;
+        }
+
+        public static Builder builder(String str) {
+            return new Builder(Collections.singletonList(str));
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof IceServer)) {
+                return false;
+            }
+            IceServer iceServer = (IceServer) obj;
+            if (!this.uri.equals(iceServer.uri) || !this.urls.equals(iceServer.urls) || !this.username.equals(iceServer.username) || !this.password.equals(iceServer.password) || !this.tlsCertPolicy.equals(iceServer.tlsCertPolicy) || !this.hostname.equals(iceServer.hostname) || !this.tlsAlpnProtocols.equals(iceServer.tlsAlpnProtocols) || !this.tlsEllipticCurves.equals(iceServer.tlsEllipticCurves)) {
+                return false;
+            }
+            return true;
+        }
+
+        public String getHostname() {
+            return this.hostname;
+        }
+
+        public String getPassword() {
+            return this.password;
+        }
+
+        public List<String> getTlsAlpnProtocols() {
+            return this.tlsAlpnProtocols;
+        }
+
+        public TlsCertPolicy getTlsCertPolicy() {
+            return this.tlsCertPolicy;
+        }
+
+        public List<String> getTlsEllipticCurves() {
+            return this.tlsEllipticCurves;
+        }
+
+        public List<String> getUrls() {
+            return this.urls;
+        }
+
+        public String getUsername() {
+            return this.username;
+        }
+
+        public int hashCode() {
+            return Arrays.hashCode(new Object[]{this.uri, this.urls, this.username, this.password, this.tlsCertPolicy, this.hostname, this.tlsAlpnProtocols, this.tlsEllipticCurves});
+        }
+
+        public String toString() {
+            return this.urls + " [" + this.username + ":" + this.password + "] [" + this.tlsCertPolicy + "] [" + this.hostname + "] [" + this.tlsAlpnProtocols + "] [" + this.tlsEllipticCurves + "]";
+        }
+
+        public static Builder builder(List<String> list) {
+            return new Builder(list);
+        }
+
+        @Deprecated
+        public IceServer(String str) {
+            this(str, "", "");
+        }
+
+        @Deprecated
+        public IceServer(String str, String str2, String str3) {
+            this(str, str2, str3, TlsCertPolicy.TLS_CERT_POLICY_SECURE);
+        }
+
+        @Deprecated
+        public IceServer(String str, String str2, String str3, TlsCertPolicy tlsCertPolicy) {
+            this(str, str2, str3, tlsCertPolicy, "");
+        }
+
+        @Deprecated
+        public IceServer(String str, String str2, String str3, TlsCertPolicy tlsCertPolicy, String str4) {
+            this(str, Collections.singletonList(str), str2, str3, tlsCertPolicy, str4, null, null);
+        }
     }
 
     public void addIceCandidate(IceCandidate iceCandidate, AddIceObserver addIceObserver) {
         nativeAddIceCandidateWithObserver(iceCandidate.sdpMid, iceCandidate.sdpMLineIndex, iceCandidate.sdp, addIceObserver);
     }
 
-    public RtpSender addTrack(MediaStreamTrack mediaStreamTrack, List<String> list) {
-        if (mediaStreamTrack != null && list != null) {
-            RtpSender nativeAddTrack = nativeAddTrack(mediaStreamTrack.getNativeMediaStreamTrack(), list);
-            if (nativeAddTrack != null) {
-                this.senders.add(nativeAddTrack);
-                return nativeAddTrack;
-            }
-            throw new IllegalStateException("C++ addTrack failed.");
-        }
-        throw new NullPointerException("No MediaStreamTrack specified in addTrack.");
-    }
-
-    public RtpTransceiver addTransceiver(MediaStreamTrack mediaStreamTrack, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit) {
-        if (mediaStreamTrack != null) {
-            if (rtpTransceiverInit == null) {
-                rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
-            }
-            RtpTransceiver nativeAddTransceiverWithTrack = nativeAddTransceiverWithTrack(mediaStreamTrack.getNativeMediaStreamTrack(), rtpTransceiverInit);
-            if (nativeAddTransceiverWithTrack != null) {
-                this.transceivers.add(nativeAddTransceiverWithTrack);
-                return nativeAddTransceiverWithTrack;
-            }
-            throw new IllegalStateException("C++ addTransceiver failed.");
-        }
-        throw new NullPointerException("No MediaStreamTrack specified for addTransceiver.");
-    }
-
     public void getStats(RTCStatsCollectorCallback rTCStatsCollectorCallback) {
         nativeNewGetStats(rTCStatsCollectorCallback);
-    }
-
-    public void setLocalDescription(SdpObserver sdpObserver, SessionDescription sessionDescription) {
-        nativeSetLocalDescription(sdpObserver, sessionDescription);
     }
 
     public void getStats(RtpSender rtpSender, RTCStatsCollectorCallback rTCStatsCollectorCallback) {
@@ -899,6 +904,18 @@ public class PeerConnection {
 
     public void getStats(RtpReceiver rtpReceiver, RTCStatsCollectorCallback rTCStatsCollectorCallback) {
         nativeNewGetStatsReceiver(rtpReceiver.getNativeRtpReceiver(), rTCStatsCollectorCallback);
+    }
+
+    public RtpSender addTrack(MediaStreamTrack mediaStreamTrack) {
+        return addTrack(mediaStreamTrack, Collections.EMPTY_LIST);
+    }
+
+    public PeerConnection(NativePeerConnectionFactory nativePeerConnectionFactory) {
+        this(nativePeerConnectionFactory.createNativePeerConnection());
+    }
+
+    public RtpTransceiver addTransceiver(MediaStreamTrack mediaStreamTrack) {
+        return addTransceiver(mediaStreamTrack, new RtpTransceiver.RtpTransceiverInit());
     }
 
     public RtpTransceiver addTransceiver(MediaStreamTrack.MediaType mediaType) {
@@ -915,8 +932,10 @@ public class PeerConnection {
                 this.transceivers.add(nativeAddTransceiverOfType);
                 return nativeAddTransceiverOfType;
             }
-            throw new IllegalStateException("C++ addTransceiver failed.");
+            sc8.j("C++ addTransceiver failed.");
+            return null;
         }
-        throw new NullPointerException("No MediaType specified for addTransceiver.");
+        fvc.f("No MediaType specified for addTransceiver.");
+        return null;
     }
 }

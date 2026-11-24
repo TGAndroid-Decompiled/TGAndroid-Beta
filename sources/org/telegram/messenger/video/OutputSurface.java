@@ -9,14 +9,9 @@ import android.opengl.GLES20;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.Surface;
-import hi.w7;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGL10;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.b20;
-import org.telegram.messenger.ff;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
-import org.telegram.messenger.we;
 public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private static final int EGL_CONTEXT_CLIENT_VERSION = 12440;
     private static final int EGL_OPENGL_ES2_BIT = 4;
@@ -31,8 +26,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private EGLSurface mEGLSurface = null;
     private final Object mFrameSyncObject = new Object();
 
-    public OutputSurface(ff ffVar, String str, String str2, String str3, ArrayList<b20> arrayList, we weVar, int i7, int i10, int i11, int i12, int i13, float f10, boolean z10, Integer num, Integer num2, w7 w7Var, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
-        TextureRenderer textureRenderer = new TextureRenderer(ffVar, str, str2, str3, arrayList, weVar, i7, i10, i11, i12, i13, f10, z10, num, num2, w7Var, convertVideoParams);
+    public OutputSurface(lm6 lm6Var, String str, String str2, String str3, ArrayList<mac> arrayList, zl6 zl6Var, int i, int i2, int i3, int i4, int i5, float f, boolean z, Integer num, Integer num2, e4b e4bVar, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
+        TextureRenderer textureRenderer = new TextureRenderer(lm6Var, str, str2, str3, arrayList, zl6Var, i, i2, i3, i4, i5, f, z, num, num2, e4bVar, convertVideoParams);
         this.mTextureRender = textureRenderer;
         textureRenderer.surfaceCreated();
         this.mSurfaceTexture = new SurfaceTexture(this.mTextureRender.getTextureId());
@@ -47,32 +42,33 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         if (EGL14.eglGetError() == 12288) {
             return;
         }
-        throw new RuntimeException(p5.c.k("EGL error encountered (see log) at: ", str));
+        wn4.j(b00.h("EGL error encountered (see log) at: ", str));
     }
 
     public void awaitNewImage() {
         synchronized (this.mFrameSyncObject) {
-            while (!this.mFrameAvailable) {
-                try {
-                    this.mFrameSyncObject.wait(2500L);
-                    if (!this.mFrameAvailable) {
-                        throw new RuntimeException("Surface frame wait timed out");
+            do {
+                if (!this.mFrameAvailable) {
+                    try {
+                        this.mFrameSyncObject.wait(2500L);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
-                } catch (InterruptedException e10) {
-                    throw new RuntimeException(e10);
+                } else {
+                    this.mFrameAvailable = false;
                 }
-            }
-            this.mFrameAvailable = false;
+            } while (this.mFrameAvailable);
+            throw new RuntimeException("Surface frame wait timed out");
         }
         this.mSurfaceTexture.updateTexImage();
     }
 
-    public void changeFragmentShader(String str, String str2, boolean z10) {
-        this.mTextureRender.changeFragmentShader(str, str2, z10);
+    public void changeFragmentShader(String str, String str2, boolean z) {
+        this.mTextureRender.changeFragmentShader(str, str2, z);
     }
 
-    public void drawImage(long j3) {
-        this.mTextureRender.drawFrame(this.mSurfaceTexture, j3);
+    public void drawImage(long j) {
+        this.mTextureRender.drawFrame(this.mSurfaceTexture, j);
     }
 
     public Surface getSurface() {
@@ -82,15 +78,11 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     @Override
     public void onFrameAvailable(SurfaceTexture surfaceTexture) {
         synchronized (this.mFrameSyncObject) {
-            try {
-                if (!this.mFrameAvailable) {
-                    this.mFrameAvailable = true;
-                    this.mFrameSyncObject.notifyAll();
-                } else {
-                    throw new RuntimeException("mFrameAvailable already set, frame could be dropped");
-                }
-            } catch (Throwable th2) {
-                throw th2;
+            if (!this.mFrameAvailable) {
+                this.mFrameAvailable = true;
+                this.mFrameSyncObject.notifyAll();
+            } else {
+                throw new RuntimeException("mFrameAvailable already set, frame could be dropped");
             }
         }
     }
@@ -118,8 +110,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     public boolean supportsEXTYUV() {
         try {
             return GLES20.glGetString(7939).contains("GL_EXT_YUV_target");
-        } catch (Exception e10) {
-            a8.g(e10, true);
+        } catch (Exception e) {
+            fa4.g(e, true);
             return false;
         }
     }

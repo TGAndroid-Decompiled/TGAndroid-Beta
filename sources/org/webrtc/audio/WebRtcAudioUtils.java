@@ -4,15 +4,14 @@ import android.content.Context;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
-import i5.c;
 import java.util.Arrays;
 import org.webrtc.Logging;
 final class WebRtcAudioUtils {
     private static final String TAG = "WebRtcAudioUtilsExternal";
 
-    public static String audioEncodingToString(int i7) {
-        if (i7 != 0) {
-            switch (i7) {
+    public static String audioEncodingToString(int i) {
+        if (i != 0) {
+            switch (i) {
                 case 2:
                     return "PCM_16BIT";
                 case 3:
@@ -29,14 +28,14 @@ final class WebRtcAudioUtils {
                 case 9:
                     return "MP3";
                 default:
-                    return c.i(i7, "Invalid encoding: ");
+                    return de9.k(i, "Invalid encoding: ");
             }
         }
         return "INVALID";
     }
 
-    public static String audioSourceToString(int i7) {
-        switch (i7) {
+    public static String audioSourceToString(int i) {
+        switch (i) {
             case 0:
                 return "DEFAULT";
             case 1:
@@ -63,9 +62,9 @@ final class WebRtcAudioUtils {
         }
     }
 
-    public static String channelMaskToString(int i7) {
-        if (i7 != 12) {
-            if (i7 != 16) {
+    public static String channelMaskToString(int i) {
+        if (i != 12) {
+            if (i != 16) {
                 return "INVALID";
             }
             return "IN_MONO";
@@ -73,8 +72,8 @@ final class WebRtcAudioUtils {
         return "IN_STEREO";
     }
 
-    public static String deviceTypeToString(int i7) {
-        switch (i7) {
+    public static String deviceTypeToString(int i) {
+        switch (i) {
             case 1:
                 return "TYPE_BUILTIN_EARPIECE";
             case 2:
@@ -138,32 +137,32 @@ final class WebRtcAudioUtils {
         if (devices.length != 0) {
             Logging.d(str, "Audio Devices: ");
             for (AudioDeviceInfo audioDeviceInfo : devices) {
-                StringBuilder sb2 = new StringBuilder("  ");
-                sb2.append(deviceTypeToString(audioDeviceInfo.getType()));
+                StringBuilder sb = new StringBuilder("  ");
+                sb.append(deviceTypeToString(audioDeviceInfo.getType()));
                 if (audioDeviceInfo.isSource()) {
                     str2 = "(in): ";
                 } else {
                     str2 = "(out): ";
                 }
-                sb2.append(str2);
+                sb.append(str2);
                 if (audioDeviceInfo.getChannelCounts().length > 0) {
-                    sb2.append("channels=");
-                    sb2.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
-                    sb2.append(", ");
+                    sb.append("channels=");
+                    sb.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
+                    sb.append(", ");
                 }
                 if (audioDeviceInfo.getEncodings().length > 0) {
-                    sb2.append("encodings=");
-                    sb2.append(Arrays.toString(audioDeviceInfo.getEncodings()));
-                    sb2.append(", ");
+                    sb.append("encodings=");
+                    sb.append(Arrays.toString(audioDeviceInfo.getEncodings()));
+                    sb.append(", ");
                 }
                 if (audioDeviceInfo.getSampleRates().length > 0) {
-                    sb2.append("sample rates=");
-                    sb2.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
-                    sb2.append(", ");
+                    sb.append("sample rates=");
+                    sb.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
+                    sb.append(", ");
                 }
-                sb2.append("id=");
-                sb2.append(audioDeviceInfo.getId());
-                Logging.d(str, sb2.toString());
+                sb.append("id=");
+                sb.append(audioDeviceInfo.getId());
+                Logging.d(str, sb.toString());
             }
         }
     }
@@ -185,16 +184,16 @@ final class WebRtcAudioUtils {
         boolean isVolumeFixed = audioManager.isVolumeFixed();
         Logging.d(str, "  fixed volume=" + isVolumeFixed);
         if (!isVolumeFixed) {
-            for (int i7 = 0; i7 < 6; i7++) {
-                int i10 = iArr[i7];
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append("  " + streamTypeToString(i10) + ": ");
-                sb2.append("volume=");
-                sb2.append(audioManager.getStreamVolume(i10));
-                sb2.append(", max=");
-                sb2.append(audioManager.getStreamMaxVolume(i10));
-                logIsStreamMute(str, audioManager, i10, sb2);
-                Logging.d(str, sb2.toString());
+            for (int i = 0; i < 6; i++) {
+                int i2 = iArr[i];
+                StringBuilder sb = new StringBuilder();
+                sb.append("  " + streamTypeToString(i2) + ": ");
+                sb.append("volume=");
+                sb.append(audioManager.getStreamVolume(i2));
+                sb.append(", max=");
+                sb.append(audioManager.getStreamMaxVolume(i2));
+                logIsStreamMute(str, audioManager, i2, sb);
+                Logging.d(str, sb.toString());
             }
         }
     }
@@ -203,16 +202,16 @@ final class WebRtcAudioUtils {
         Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
     }
 
-    private static void logIsStreamMute(String str, AudioManager audioManager, int i7, StringBuilder sb2) {
-        sb2.append(", muted=");
-        sb2.append(audioManager.isStreamMute(i7));
+    private static void logIsStreamMute(String str, AudioManager audioManager, int i, StringBuilder sb) {
+        sb.append(", muted=");
+        sb.append(audioManager.isStreamMute(i));
     }
 
-    public static String modeToString(int i7) {
-        if (i7 != 0) {
-            if (i7 != 1) {
-                if (i7 != 2) {
-                    if (i7 != 3) {
+    public static String modeToString(int i) {
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 2) {
+                    if (i != 3) {
                         return "MODE_INVALID";
                     }
                     return "MODE_IN_COMMUNICATION";
@@ -231,13 +230,13 @@ final class WebRtcAudioUtils {
         return false;
     }
 
-    private static String streamTypeToString(int i7) {
-        if (i7 != 0) {
-            if (i7 != 1) {
-                if (i7 != 2) {
-                    if (i7 != 3) {
-                        if (i7 != 4) {
-                            if (i7 != 5) {
+    private static String streamTypeToString(int i) {
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 2) {
+                    if (i != 3) {
+                        if (i != 4) {
+                            if (i != 5) {
                                 return "STREAM_INVALID";
                             }
                             return "STREAM_NOTIFICATION";

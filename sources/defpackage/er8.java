@@ -1,0 +1,9 @@
+package defpackage;
+
+import android.os.Handler;
+import android.os.Looper;
+public abstract class er8 {
+    public static Handler a(Looper looper) {
+        return Handler.createAsync(looper);
+    }
+}

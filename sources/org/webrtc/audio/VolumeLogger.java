@@ -11,13 +11,13 @@ class VolumeLogger {
     private final AudioManager audioManager;
     private Timer timer;
 
-    public class LogVolumeTask extends TimerTask {
+    private class LogVolumeTask extends TimerTask {
         private final int maxRingVolume;
         private final int maxVoiceCallVolume;
 
-        public LogVolumeTask(int i7, int i10) {
-            this.maxRingVolume = i7;
-            this.maxVoiceCallVolume = i10;
+        public LogVolumeTask(int i, int i2) {
+            this.maxRingVolume = i;
+            this.maxVoiceCallVolume = i2;
         }
 
         @Override

@@ -11,49 +11,70 @@ public class HorizontalBox extends Box {
     protected List<Integer> breakPositions;
     private float curPos;
 
-    public HorizontalBox(Box box, float f10, int i7) {
+    public HorizontalBox(Box box, float f, int i) {
         this.curPos = 0.0f;
-        if (f10 != Float.POSITIVE_INFINITY) {
-            float width = f10 - box.getWidth();
-            if (width <= 0.0f) {
-                add(box);
-                return;
-            } else if (i7 == 2 || i7 == 5) {
+        if (f != Float.POSITIVE_INFINITY) {
+            float width = f - box.getWidth();
+            if (width > 0.0f) {
+                if (i != 2 && i != 5) {
+                    if (i == 0) {
+                        add(box);
+                        add(new StrutBox(width, 0.0f, 0.0f, 0.0f));
+                        return;
+                    } else if (i == 1) {
+                        add(new StrutBox(width, 0.0f, 0.0f, 0.0f));
+                        add(box);
+                        return;
+                    } else {
+                        add(box);
+                        return;
+                    }
+                }
                 StrutBox strutBox = new StrutBox(width / 2.0f, 0.0f, 0.0f, 0.0f);
                 add(strutBox);
                 add(box);
                 add(strutBox);
                 return;
-            } else if (i7 == 0) {
-                add(box);
-                add(new StrutBox(width, 0.0f, 0.0f, 0.0f));
-                return;
-            } else if (i7 == 1) {
-                add(new StrutBox(width, 0.0f, 0.0f, 0.0f));
-                add(box);
-                return;
-            } else {
-                add(box);
-                return;
             }
+            add(box);
+            return;
         }
         add(box);
     }
 
     private void recalculate(Box box) {
-        float f10;
+        float f;
         this.width = box.getWidth() + this.width;
-        float f11 = Float.NEGATIVE_INFINITY;
+        float f2 = Float.NEGATIVE_INFINITY;
         if (this.children.size() == 0) {
-            f10 = Float.NEGATIVE_INFINITY;
+            f = Float.NEGATIVE_INFINITY;
         } else {
-            f10 = this.height;
+            f = this.height;
         }
-        this.height = Math.max(f10, box.height - box.shift);
+        this.height = Math.max(f, box.height - box.shift);
         if (this.children.size() != 0) {
-            f11 = this.depth;
+            f2 = this.depth;
         }
-        this.depth = Math.max(f11, box.depth + box.shift);
+        this.depth = Math.max(f2, box.depth + box.shift);
+    }
+
+    private HorizontalBox[] split(int i, int i2) {
+        HorizontalBox cloneBox = cloneBox();
+        HorizontalBox cloneBox2 = cloneBox();
+        for (int i3 = 0; i3 <= i; i3++) {
+            cloneBox.add(this.children.get(i3));
+        }
+        for (int i4 = i2 + i; i4 < this.children.size(); i4++) {
+            cloneBox2.add(this.children.get(i4));
+        }
+        if (this.breakPositions != null) {
+            for (int i5 = 0; i5 < this.breakPositions.size(); i5++) {
+                if (this.breakPositions.get(i5).intValue() > i + 1) {
+                    cloneBox2.addBreakPosition((this.breakPositions.get(i5).intValue() - i) - 1);
+                }
+            }
+        }
+        return new HorizontalBox[]{cloneBox, cloneBox2};
     }
 
     @Override
@@ -62,11 +83,11 @@ public class HorizontalBox extends Box {
         super.add(box);
     }
 
-    public void addBreakPosition(int i7) {
+    public void addBreakPosition(int i) {
         if (this.breakPositions == null) {
             this.breakPositions = new ArrayList();
         }
-        this.breakPositions.add(Integer.valueOf(i7));
+        this.breakPositions.add(Integer.valueOf(i));
     }
 
     public HorizontalBox cloneBox() {
@@ -76,13 +97,13 @@ public class HorizontalBox extends Box {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f10, float f11) {
-        startDraw(graphics2D, f10, f11);
+    public void draw(Graphics2D graphics2D, float f, float f2) {
+        startDraw(graphics2D, f, f2);
         Iterator<Box> it = this.children.iterator();
         while (it.hasNext()) {
             Box next = it.next();
-            next.draw(graphics2D, f10, next.shift + f11);
-            f10 += next.getWidth();
+            next.draw(graphics2D, f, next.shift + f2);
+            f += next.getWidth();
         }
         endDraw(graphics2D);
     }
@@ -91,44 +112,21 @@ public class HorizontalBox extends Box {
     public int getLastFontId() {
         LinkedList<Box> linkedList = this.children;
         ListIterator<Box> listIterator = linkedList.listIterator(linkedList.size());
-        int i7 = -1;
-        while (i7 == -1 && listIterator.hasPrevious()) {
-            i7 = listIterator.previous().getLastFontId();
+        int i = -1;
+        while (i == -1 && listIterator.hasPrevious()) {
+            i = listIterator.previous().getLastFontId();
         }
-        return i7;
+        return i;
     }
 
-    public HorizontalBox[] split(int i7) {
-        return split(i7, 1);
-    }
-
-    public HorizontalBox[] splitRemove(int i7) {
-        return split(i7, 2);
-    }
-
-    private HorizontalBox[] split(int i7, int i10) {
-        HorizontalBox cloneBox = cloneBox();
-        HorizontalBox cloneBox2 = cloneBox();
-        for (int i11 = 0; i11 <= i7; i11++) {
-            cloneBox.add(this.children.get(i11));
-        }
-        for (int i12 = i10 + i7; i12 < this.children.size(); i12++) {
-            cloneBox2.add(this.children.get(i12));
-        }
-        if (this.breakPositions != null) {
-            for (int i13 = 0; i13 < this.breakPositions.size(); i13++) {
-                if (this.breakPositions.get(i13).intValue() > i7 + 1) {
-                    cloneBox2.addBreakPosition((this.breakPositions.get(i13).intValue() - i7) - 1);
-                }
-            }
-        }
-        return new HorizontalBox[]{cloneBox, cloneBox2};
+    public HorizontalBox[] splitRemove(int i) {
+        return split(i, 2);
     }
 
     @Override
-    public final void add(int i7, Box box) {
+    public final void add(int i, Box box) {
         recalculate(box);
-        super.add(i7, box);
+        super.add(i, box);
     }
 
     public HorizontalBox(Box box) {
@@ -143,5 +141,9 @@ public class HorizontalBox extends Box {
     public HorizontalBox(Color color, Color color2) {
         super(color, color2);
         this.curPos = 0.0f;
+    }
+
+    public HorizontalBox[] split(int i) {
+        return split(i, 1);
     }
 }

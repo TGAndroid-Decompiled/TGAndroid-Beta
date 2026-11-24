@@ -22,14 +22,14 @@ public class InputSurface {
     }
 
     private void checkEglError(String str) {
-        boolean z10 = false;
+        boolean z = false;
         while (EGL14.eglGetError() != 12288) {
-            z10 = true;
+            z = true;
         }
-        if (!z10) {
+        if (!z) {
             return;
         }
-        throw new RuntimeException("EGL error encountered (see log)");
+        wn4.j("EGL error encountered (see log)");
     }
 
     private void eglSetup() {
@@ -48,16 +48,20 @@ public class InputSurface {
                         if (this.mEGLSurface != null) {
                             return;
                         }
-                        throw new RuntimeException("surface was null");
+                        wn4.j("surface was null");
+                        return;
                     }
-                    throw new RuntimeException("null context");
+                    wn4.j("null context");
+                    return;
                 }
-                throw new RuntimeException("unable to find RGB888+recordable ES2 EGL config");
+                wn4.j("unable to find RGB888+recordable ES2 EGL config");
+                return;
             }
             this.mEGLDisplay = null;
-            throw new RuntimeException("unable to initialize EGL14");
+            wn4.j("unable to initialize EGL14");
+            return;
         }
-        throw new RuntimeException("unable to get EGL14 display");
+        wn4.j("unable to get EGL14 display");
     }
 
     public Surface getSurface() {
@@ -70,7 +74,7 @@ public class InputSurface {
         if (EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.mEGLContext)) {
             return;
         }
-        throw new RuntimeException("eglMakeCurrent failed");
+        wn4.j("eglMakeCurrent failed");
     }
 
     public void release() {
@@ -88,8 +92,8 @@ public class InputSurface {
         this.mSurface = null;
     }
 
-    public void setPresentationTime(long j3) {
-        EGLExt.eglPresentationTimeANDROID(this.mEGLDisplay, this.mEGLSurface, j3);
+    public void setPresentationTime(long j) {
+        EGLExt.eglPresentationTimeANDROID(this.mEGLDisplay, this.mEGLSurface, j);
     }
 
     public boolean swapBuffers() {

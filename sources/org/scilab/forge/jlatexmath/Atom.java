@@ -4,6 +4,14 @@ public abstract class Atom implements Cloneable {
     public int type_limits = 1;
     public int alignment = -1;
 
+    public Atom clone() {
+        try {
+            return (Atom) super.clone();
+        } catch (Exception unused) {
+            return null;
+        }
+    }
+
     public abstract Box createBox(TeXEnvironment teXEnvironment);
 
     public int getLeftType() {
@@ -12,13 +20,5 @@ public abstract class Atom implements Cloneable {
 
     public int getRightType() {
         return this.type;
-    }
-
-    public Atom clone() {
-        try {
-            return (Atom) super.clone();
-        } catch (Exception unused) {
-            return null;
-        }
     }
 }

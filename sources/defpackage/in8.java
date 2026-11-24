@@ -1,0 +1,21 @@
+package defpackage;
+
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ProfileActivity;
+public final class in8 extends taa {
+    public final ProfileActivity U2;
+
+    public in8(ProfileActivity profileActivity, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.U2 = profileActivity;
+    }
+
+    @Override
+    public final void L0(vf6 vf6Var, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+        if (!z) {
+            return;
+        }
+        gl.e3(new ll8(this, vf6Var, i, (byte) 11), 250L);
+    }
+}

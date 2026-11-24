@@ -11,7 +11,8 @@ class JniHelper {
         try {
             return str.getBytes("ISO-8859-1");
         } catch (UnsupportedEncodingException unused) {
-            throw new RuntimeException("ISO-8859-1 is unsupported");
+            wn4.j("ISO-8859-1 is unsupported");
+            return null;
         }
     }
 

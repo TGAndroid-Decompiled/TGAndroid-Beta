@@ -1,83 +1,90 @@
 package org.webrtc;
 public interface Predicate<T> {
 
-    public abstract class CC {
-        public static Predicate a(final Predicate predicate, final Predicate predicate2) {
-            return new Predicate() {
-                @Override
-                public final Predicate and(Predicate predicate3) {
-                    return CC.a(this, predicate3);
-                }
+    class AnonymousClass1 implements Predicate {
+        final Predicate val$other;
 
-                @Override
-                public final Predicate negate() {
-                    return CC.b(this);
-                }
-
-                @Override
-                public final Predicate or(Predicate predicate3) {
-                    return CC.c(this, predicate3);
-                }
-
-                @Override
-                public boolean test(Object obj) {
-                    if (Predicate.this.test(obj) && predicate2.test(obj)) {
-                        return true;
-                    }
-                    return false;
-                }
-            };
+        public AnonymousClass1(Predicate predicate) {
+            this.val$other = predicate;
         }
 
-        public static Predicate b(final Predicate predicate) {
-            return new Predicate() {
-                @Override
-                public final Predicate and(Predicate predicate2) {
-                    return CC.a(this, predicate2);
-                }
-
-                @Override
-                public final Predicate negate() {
-                    return CC.b(this);
-                }
-
-                @Override
-                public final Predicate or(Predicate predicate2) {
-                    return CC.c(this, predicate2);
-                }
-
-                @Override
-                public boolean test(Object obj) {
-                    return !Predicate.this.test(obj);
-                }
-            };
+        @Override
+        public final Predicate and(Predicate predicate) {
+            return new AnonymousClass2(predicate);
         }
 
-        public static Predicate c(final Predicate predicate, final Predicate predicate2) {
-            return new Predicate() {
-                @Override
-                public final Predicate and(Predicate predicate3) {
-                    return CC.a(this, predicate3);
-                }
+        @Override
+        public final Predicate negate() {
+            return new AnonymousClass3();
+        }
 
-                @Override
-                public final Predicate negate() {
-                    return CC.b(this);
-                }
+        @Override
+        public final Predicate or(Predicate predicate) {
+            return new AnonymousClass1(predicate);
+        }
 
-                @Override
-                public final Predicate or(Predicate predicate3) {
-                    return CC.c(this, predicate3);
-                }
+        @Override
+        public boolean test(Object obj) {
+            if (!Predicate.this.test(obj) && !this.val$other.test(obj)) {
+                return false;
+            }
+            return true;
+        }
+    }
 
-                @Override
-                public boolean test(Object obj) {
-                    if (!Predicate.this.test(obj) && !predicate2.test(obj)) {
-                        return false;
-                    }
-                    return true;
-                }
-            };
+    class AnonymousClass2 implements Predicate {
+        final Predicate val$other;
+
+        public AnonymousClass2(Predicate predicate) {
+            this.val$other = predicate;
+        }
+
+        @Override
+        public final Predicate and(Predicate predicate) {
+            return new AnonymousClass2(predicate);
+        }
+
+        @Override
+        public final Predicate negate() {
+            return new AnonymousClass3();
+        }
+
+        @Override
+        public final Predicate or(Predicate predicate) {
+            return new AnonymousClass1(predicate);
+        }
+
+        @Override
+        public boolean test(Object obj) {
+            if (Predicate.this.test(obj) && this.val$other.test(obj)) {
+                return true;
+            }
+            return false;
+        }
+    }
+
+    class AnonymousClass3 implements Predicate {
+        public AnonymousClass3() {
+        }
+
+        @Override
+        public final Predicate and(Predicate predicate) {
+            return new AnonymousClass2(predicate);
+        }
+
+        @Override
+        public final Predicate negate() {
+            return new AnonymousClass3();
+        }
+
+        @Override
+        public final Predicate or(Predicate predicate) {
+            return new AnonymousClass1(predicate);
+        }
+
+        @Override
+        public boolean test(Object obj) {
+            return !Predicate.this.test(obj);
         }
     }
 
@@ -87,5 +94,5 @@ public interface Predicate<T> {
 
     Predicate<T> or(Predicate<? super T> predicate);
 
-    boolean test(T t6);
+    boolean test(T t);
 }

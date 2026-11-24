@@ -11,23 +11,23 @@ public class FcscoreBox extends Box {
     private boolean strike;
     private float thickness;
 
-    public FcscoreBox(int i7, float f10, float f11, float f12, boolean z10) {
-        if (i7 < 0) {
-            i7 = 0;
-        } else if (i7 > 4096) {
-            i7 = 4096;
+    public FcscoreBox(int i, float f, float f2, float f3, boolean z) {
+        if (i < 0) {
+            i = 0;
+        } else if (i > 4096) {
+            i = 4096;
         }
-        this.N = i7;
-        this.width = (2.0f * f12) + ((f11 + f12) * i7);
-        this.height = f10;
+        this.N = i;
+        this.width = (2.0f * f3) + ((f2 + f3) * i);
+        this.height = f;
         this.depth = 0.0f;
-        this.strike = z10;
-        this.space = f12;
-        this.thickness = f11;
+        this.strike = z;
+        this.space = f3;
+        this.thickness = f2;
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f10, float f11) {
+    public void draw(Graphics2D graphics2D, float f, float f2) {
         AffineTransform transform = graphics2D.getTransform();
         Stroke stroke = graphics2D.getStroke();
         double scaleX = transform.getScaleX();
@@ -39,34 +39,34 @@ public class FcscoreBox extends Box {
         } else {
             scaleX = 1.0d;
         }
-        int i7 = 0;
+        int i = 0;
         graphics2D.setStroke(new BasicStroke((float) (this.thickness * scaleX), 0, 0));
-        float f12 = 2.0f;
-        float f13 = this.thickness / 2.0f;
+        float f3 = 2.0f;
+        float f4 = this.thickness / 2.0f;
         Line2D.Float r10 = new Line2D.Float();
-        float f14 = this.space;
-        float f15 = (float) (((f14 / 2.0f) * scaleX) + ((f10 + f14) * scaleX));
-        int round = (int) Math.round((f14 + this.thickness) * scaleX);
-        while (i7 < this.N) {
-            float f16 = f12;
-            double d = (f13 * scaleX) + f15;
+        float f5 = this.space;
+        float f6 = (float) (((f5 / 2.0f) * scaleX) + ((f + f5) * scaleX));
+        int round = (int) Math.round((f5 + this.thickness) * scaleX);
+        while (i < this.N) {
+            float f7 = f3;
+            double d = (f4 * scaleX) + f6;
             double d2 = scaleX;
-            int i10 = round;
-            r10.setLine(d, (f11 - this.height) * scaleX, d, f11 * d2);
+            int i2 = round;
+            r10.setLine(d, (f2 - this.height) * scaleX, d, f2 * d2);
             graphics2D.draw(r10);
-            f15 += i10;
-            i7++;
-            round = i10;
-            f12 = f16;
+            f6 += i2;
+            i++;
+            round = i2;
+            f3 = f7;
             scaleX = d2;
         }
-        double d10 = scaleX;
-        float f17 = f12;
-        float f18 = f15;
+        double d3 = scaleX;
+        float f8 = f3;
+        float f9 = f6;
         if (this.strike) {
-            float f19 = this.space;
-            float f20 = this.height;
-            r10.setLine((f10 + f19) * d10, (f11 - (f20 / f17)) * d10, f18 - ((f19 * d10) / 2.0d), (f11 - (f20 / f17)) * d10);
+            float f10 = this.space;
+            float f11 = this.height;
+            r10.setLine((f + f10) * d3, (f2 - (f11 / f8)) * d3, f9 - ((f10 * d3) / 2.0d), (f2 - (f11 / f8)) * d3);
             graphics2D.draw(r10);
         }
         graphics2D.setTransform(transform);

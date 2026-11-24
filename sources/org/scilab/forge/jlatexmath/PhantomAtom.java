@@ -3,10 +3,10 @@ public class PhantomAtom extends Atom implements Row {
     private boolean d;
     private RowAtom elements;
     private boolean h;
-    private boolean f22681w;
+    private boolean w;
 
     public PhantomAtom(Atom atom) {
-        this.f22681w = true;
+        this.w = true;
         this.h = true;
         this.d = true;
         if (atom == null) {
@@ -18,24 +18,24 @@ public class PhantomAtom extends Atom implements Row {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        float f10;
-        float f11;
+        float f;
+        float f2;
         Box createBox = this.elements.createBox(teXEnvironment);
-        float f12 = 0.0f;
-        if (this.f22681w) {
-            f10 = createBox.getWidth();
+        float f3 = 0.0f;
+        if (this.w) {
+            f = createBox.getWidth();
         } else {
-            f10 = 0.0f;
+            f = 0.0f;
         }
         if (this.h) {
-            f11 = createBox.getHeight();
+            f2 = createBox.getHeight();
         } else {
-            f11 = 0.0f;
+            f2 = 0.0f;
         }
         if (this.d) {
-            f12 = createBox.getDepth();
+            f3 = createBox.getDepth();
         }
-        return new StrutBox(f10, f11, f12, createBox.getShift());
+        return new StrutBox(f, f2, f3, createBox.getShift());
     }
 
     @Override
@@ -53,10 +53,10 @@ public class PhantomAtom extends Atom implements Row {
         this.elements.setPreviousAtom(dummy);
     }
 
-    public PhantomAtom(Atom atom, boolean z10, boolean z11, boolean z12) {
+    public PhantomAtom(Atom atom, boolean z, boolean z2, boolean z3) {
         this(atom);
-        this.f22681w = z10;
-        this.h = z11;
-        this.d = z12;
+        this.w = z;
+        this.h = z2;
+        this.d = z3;
     }
 }

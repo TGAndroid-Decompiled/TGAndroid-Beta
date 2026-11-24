@@ -3,9 +3,9 @@ public class MathAtom extends Atom {
     protected Atom base;
     private int style;
 
-    public MathAtom(Atom atom, int i7) {
+    public MathAtom(Atom atom, int i) {
         this.base = atom;
-        this.style = i7;
+        this.style = i;
     }
 
     @Override

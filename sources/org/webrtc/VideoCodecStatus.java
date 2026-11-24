@@ -16,8 +16,8 @@ public enum VideoCodecStatus {
     
     private final int number;
 
-    VideoCodecStatus(int i7) {
-        this.number = i7;
+    VideoCodecStatus(int i) {
+        this.number = i;
     }
 
     public int getNumber() {

@@ -1,298 +1,46 @@
 package org.telegram.utils.twidget;
+public final class i implements kvc, xvc {
+    public final byte a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final Object e;
+    public final Object f;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.DashPathEffect;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RadialGradient;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.SweepGradient;
-import com.google.android.gms.internal.vision.e2;
-public final class i {
-    public static final PorterDuff.Mode[] Y = {null, PorterDuff.Mode.SRC_IN, PorterDuff.Mode.SRC_OUT, PorterDuff.Mode.SRC_ATOP, PorterDuff.Mode.DST_OVER, PorterDuff.Mode.DST_IN, PorterDuff.Mode.DST_OUT, PorterDuff.Mode.DST_ATOP, PorterDuff.Mode.ADD, PorterDuff.Mode.SRC, PorterDuff.Mode.XOR, PorterDuff.Mode.MULTIPLY, PorterDuff.Mode.SCREEN, PorterDuff.Mode.OVERLAY, PorterDuff.Mode.DARKEN, PorterDuff.Mode.LIGHTEN};
-    public float A;
-    public float B;
-    public float C;
-    public float D;
-    public int[] E;
-    public float[] F;
-    public int G;
-    public int H;
-    public float I;
-    public float J;
-    public float K;
-    public float[] L;
-    public int M;
-    public int N;
-    public int O;
-    public String P;
-    public float Q;
-    public float R;
-    public float S;
-    public float T;
-    public boolean U;
-    public boolean V;
-    public volatile long W;
-    public long X;
-    public final Paint f54888a = new Paint(3);
-    public final Paint f54889b = new Paint(1);
-    public final Paint f54890c = new Paint();
-    public final Paint d;
-    public final Path f54891e;
-    public final Path f54892f;
-    public final Matrix f54893g;
-    public final Matrix h;
-    public final float[] f54894i;
-    public final float[] f54895j;
-    public final float[] f54896k;
-    public final RectF f54897l;
-    public final Rect f54898m;
-    public final int f54899n;
-    public Bitmap f54900o;
-    public Bitmap f54901p;
-    public Canvas f54902q;
-    public int f54903r;
-    public int f54904s;
-    public int[] f54905t;
-    public int f54906u;
-    public int v;
-    public int f54907w;
-    public int f54908x;
-    public int f54909y;
-    public int f54910z;
-
-    public i(int i7) {
-        Paint paint = new Paint();
-        this.d = paint;
-        this.f54891e = new Path();
-        this.f54892f = new Path();
-        this.f54893g = new Matrix();
-        this.h = new Matrix();
-        this.f54894i = new float[9];
-        this.f54895j = new float[6];
-        this.f54896k = new float[8];
-        this.f54897l = new RectF();
-        this.f54898m = new Rect();
-        this.f54904s = -1;
-        this.f54899n = i7;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    public i(Object obj, int i, int i2, int i3, Object obj2, byte b) {
+        this.a = b;
+        this.e = obj;
+        this.b = i;
+        this.c = i2;
+        this.d = i3;
+        this.f = obj2;
     }
 
-    public static void b(int r3, android.graphics.Paint r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.i.b(int, android.graphics.Paint):void");
-    }
-
-    public final void a(Paint paint) {
-        int[] iArr;
-        if (this.f54908x != 0 && (iArr = this.E) != null) {
-            float[] fArr = this.F;
-            paint.setColor(-16777216);
-            int i7 = this.f54908x;
-            float[] fArr2 = this.f54895j;
-            if (i7 == 1) {
-                paint.setShader(new LinearGradient(fArr2[0], fArr2[1], fArr2[2], fArr2[3], iArr, fArr, Shader.TileMode.CLAMP));
-                return;
-            } else if (i7 == 2) {
-                float f10 = fArr2[2];
-                float max = Math.max(fArr2[5], 0.01f);
-                if (f10 > 0.0f && f10 < max) {
-                    float[] fArr3 = new float[fArr.length];
-                    for (int i10 = 0; i10 < fArr.length; i10++) {
-                        float f11 = f10 / max;
-                        fArr3[i10] = e2.z(1.0f, f11, fArr[i10], f11);
-                    }
-                    fArr = fArr3;
-                }
-                paint.setShader(new RadialGradient(fArr2[3], fArr2[4], max, iArr, fArr, Shader.TileMode.CLAMP));
-                return;
-            } else {
-                SweepGradient sweepGradient = new SweepGradient(fArr2[1], fArr2[2], iArr, fArr);
-                Matrix matrix = new Matrix();
-                matrix.setRotate((float) Math.toDegrees(fArr2[0]), fArr2[1], fArr2[2]);
-                sweepGradient.setLocalMatrix(matrix);
-                paint.setShader(sweepGradient);
-                return;
-            }
-        }
-        paint.setShader(null);
-        paint.setColor(this.f54909y);
-    }
-
-    public final void c(android.graphics.Canvas r24, org.telegram.utils.twidget.h r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.i.c(android.graphics.Canvas, org.telegram.utils.twidget.h):void");
-    }
-
-    public final void d(Paint paint) {
-        Paint.Cap cap;
-        Paint.Join join;
-        int i7;
-        paint.setStrokeWidth(this.I);
-        int i10 = this.G;
-        if (i10 == 1) {
-            cap = Paint.Cap.ROUND;
-        } else if (i10 == 2) {
-            cap = Paint.Cap.SQUARE;
-        } else {
-            cap = Paint.Cap.BUTT;
-        }
-        paint.setStrokeCap(cap);
-        int i11 = this.H;
-        if (i11 == 1) {
-            join = Paint.Join.ROUND;
-        } else if (i11 == 2) {
-            join = Paint.Join.BEVEL;
-        } else {
-            join = Paint.Join.MITER;
-        }
-        paint.setStrokeJoin(join);
-        paint.setStrokeMiter(this.J);
-        paint.setPathEffect(null);
-        float[] fArr = this.L;
-        if (fArr != null) {
-            int length = fArr.length;
-            if (length % 2 == 1) {
-                i7 = length * 2;
-            } else {
-                i7 = length;
-            }
-            float[] fArr2 = new float[i7];
-            float f10 = 0.0f;
-            for (int i12 = 0; i12 < i7; i12++) {
-                float max = Math.max(0.0f, this.L[i12 % length]);
-                fArr2[i12] = max;
-                f10 += max;
-            }
-            if (f10 > 0.0f) {
-                paint.setPathEffect(new DashPathEffect(fArr2, this.K));
-            }
-        }
-    }
-
-    public final void e(int i7) {
-        if (i7 >= 0 && i7 <= this.f54905t.length - this.f54906u) {
-            return;
-        }
-        throw new IllegalArgumentException("Canvas batch: count");
-    }
-
-    public final float f() {
-        int[] iArr = this.f54905t;
-        int i7 = this.f54906u;
-        this.f54906u = i7 + 1;
-        return Float.intBitsToFloat(iArr[i7]);
-    }
-
-    public final void g(Path path, boolean z10) {
-        int i7;
-        path.rewind();
-        int[] iArr = this.f54905t;
-        int i10 = this.f54906u;
-        int i11 = i10 + 1;
-        this.f54906u = i11;
-        int i12 = iArr[i10];
-        this.f54906u = i10 + 2;
-        int i13 = iArr[i11];
-        e(i12);
-        if (i13 >= 0) {
-            int[] iArr2 = this.f54905t;
-            int length = iArr2.length;
-            int i14 = this.f54906u;
-            if (i13 <= (length - i14) - i12) {
-                int i15 = i14 + i12;
-                int i16 = i15 + i13;
-                int i17 = i15;
-                for (int i18 = i14; i18 < i15; i18++) {
-                    int i19 = iArr2[i18];
-                    if (i19 != 0 && i19 != 1) {
-                        if (i19 == 2) {
-                            i7 = 4;
-                        } else if (i19 == 3) {
-                            i7 = 6;
-                        } else {
-                            i7 = 0;
-                        }
-                    } else {
-                        i7 = 2;
-                    }
-                    if (i7 + i17 <= i16) {
-                        if (i19 != 0) {
-                            if (i19 != 1) {
-                                if (i19 != 2) {
-                                    if (i19 != 3) {
-                                        if (i19 == 4) {
-                                            path.close();
-                                        }
-                                    } else {
-                                        path.cubicTo(Float.intBitsToFloat(iArr2[i17]), Float.intBitsToFloat(iArr2[i17 + 1]), Float.intBitsToFloat(iArr2[i17 + 2]), Float.intBitsToFloat(iArr2[i17 + 3]), Float.intBitsToFloat(iArr2[i17 + 4]), Float.intBitsToFloat(iArr2[i17 + 5]));
-                                        i17 += 6;
-                                    }
-                                } else {
-                                    path.quadTo(Float.intBitsToFloat(iArr2[i17]), Float.intBitsToFloat(iArr2[i17 + 1]), Float.intBitsToFloat(iArr2[i17 + 2]), Float.intBitsToFloat(iArr2[i17 + 3]));
-                                    i17 += 4;
-                                }
-                            } else {
-                                path.lineTo(Float.intBitsToFloat(iArr2[i17]), Float.intBitsToFloat(iArr2[i17 + 1]));
-                            }
-                        } else {
-                            path.moveTo(Float.intBitsToFloat(iArr2[i17]), Float.intBitsToFloat(iArr2[i17 + 1]));
-                        }
-                        i17 += 2;
-                    } else {
-                        throw new IllegalArgumentException("Canvas batch: path");
-                    }
-                }
-                this.f54906u = i12 + i13 + this.f54906u;
-                if (z10) {
-                    path.setFillType(Path.FillType.WINDING);
-                    return;
-                }
-                return;
-            }
-        }
-        throw new IllegalArgumentException("Canvas batch: count");
-    }
-
-    public final void h(org.telegram.utils.twidget.h r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.i.h(org.telegram.utils.twidget.h):void");
-    }
-
-    public final synchronized void i() {
-        try {
-            Bitmap bitmap = this.f54900o;
-            if (bitmap != null) {
-                bitmap.recycle();
-            }
-            this.f54900o = null;
-            this.f54902q = null;
-            this.f54901p = null;
-        } catch (Throwable th2) {
-            throw th2;
-        }
-    }
-
-    public final synchronized Bitmap j() {
-        try {
-            Bitmap bitmap = this.f54900o;
-            if (bitmap == null) {
+    @Override
+    public final Object run() {
+        byte b = this.a;
+        Object obj = this.f;
+        int i = this.d;
+        int i2 = this.c;
+        int i3 = this.b;
+        w wVar = (w) this.e;
+        switch (b) {
+            case 1:
+                wVar.b.defineImage(i3, i2, i, wVar.b((byte[]) obj));
                 return null;
-            }
-            if (this.f54904s == this.f54903r) {
-                if (this.f54901p == null) {
+            default:
+                int[] iArr = (int[]) obj;
+                WidgetSandboxBackend widgetSandboxBackend = wVar.b;
+                if (iArr == null) {
+                    iArr = new int[0];
                 }
-                return this.f54901p;
-            }
-            this.f54901p = bitmap.copy(Bitmap.Config.ARGB_8888, false);
-            this.f54904s = this.f54903r;
-            return this.f54901p;
-        } catch (Throwable th2) {
-            throw th2;
+                widgetSandboxBackend.canvasRun(i3, i2, i, iArr);
+                return null;
         }
+    }
+
+    @Override
+    public final void mo21run() {
+        ((WidgetEngineBackend) this.e).lambda$canvasRun$8(this.b, this.c, this.d, (int[]) this.f);
     }
 }

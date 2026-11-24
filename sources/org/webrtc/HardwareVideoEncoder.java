@@ -6,13 +6,11 @@ import android.media.MediaFormat;
 import android.opengl.GLES20;
 import android.os.Bundle;
 import android.view.Surface;
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Map;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.a8;
 import org.webrtc.EglBase14;
 import org.webrtc.EncodedImage;
 import org.webrtc.ThreadUtils;
@@ -72,14 +70,10 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
         public void decrement() {
             synchronized (this.countLock) {
-                try {
-                    int i7 = this.count - 1;
-                    this.count = i7;
-                    if (i7 == 0) {
-                        this.countLock.notifyAll();
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
+                int i = this.count - 1;
+                this.count = i;
+                if (i == 0) {
+                    this.countLock.notifyAll();
                 }
             }
         }
@@ -91,25 +85,25 @@ public class HardwareVideoEncoder implements VideoEncoder {
         }
 
         public void waitForZero() {
-            boolean z10;
+            boolean z;
             synchronized (this.countLock) {
-                z10 = false;
+                z = false;
                 while (this.count > 0) {
                     try {
                         this.countLock.wait();
-                    } catch (InterruptedException e10) {
-                        Logging.e("HardwareVideoEncoder", "Interrupted while waiting on busy count", e10);
-                        z10 = true;
+                    } catch (InterruptedException e) {
+                        Logging.e("HardwareVideoEncoder", "Interrupted while waiting on busy count", e);
+                        z = true;
                     }
                 }
             }
-            if (z10) {
+            if (z) {
                 Thread.currentThread().interrupt();
             }
         }
     }
 
-    public HardwareVideoEncoder(MediaCodecWrapperFactory mediaCodecWrapperFactory, String str, VideoCodecMimeType videoCodecMimeType, Integer num, Integer num2, Map<String, String> map, int i7, int i10, BitrateAdjuster bitrateAdjuster, EglBase14.Context context) {
+    public HardwareVideoEncoder(MediaCodecWrapperFactory mediaCodecWrapperFactory, String str, VideoCodecMimeType videoCodecMimeType, Integer num, Integer num2, Map<String, String> map, int i, int i2, BitrateAdjuster bitrateAdjuster, EglBase14.Context context) {
         ThreadUtils.ThreadChecker threadChecker = new ThreadUtils.ThreadChecker();
         this.encodeThreadChecker = threadChecker;
         this.outputThreadChecker = new ThreadUtils.ThreadChecker();
@@ -120,8 +114,8 @@ public class HardwareVideoEncoder implements VideoEncoder {
         this.surfaceColorFormat = num;
         this.yuvColorFormat = num2;
         this.params = map;
-        this.keyFrameIntervalSec = i7;
-        this.forcedKeyFrameNs = TimeUnit.MILLISECONDS.toNanos(i10);
+        this.keyFrameIntervalSec = i;
+        this.forcedKeyFrameNs = TimeUnit.MILLISECONDS.toNanos(i2);
         this.bitrateAdjuster = bitrateAdjuster;
         this.sharedContext = context;
         threadChecker.detachThread();
@@ -136,21 +130,22 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     private Thread createOutputThread() {
         return new Thread() {
-            {
-                HardwareVideoEncoder.this = this;
-            }
-
             @Override
             public void run() {
-                while (HardwareVideoEncoder.this.running) {
-                    HardwareVideoEncoder.this.deliverEncodedImage();
+                while (true) {
+                    boolean z = HardwareVideoEncoder.this.running;
+                    HardwareVideoEncoder hardwareVideoEncoder = HardwareVideoEncoder.this;
+                    if (!z) {
+                        hardwareVideoEncoder.releaseCodecOnOutputThread();
+                        return;
+                    }
+                    hardwareVideoEncoder.deliverEncodedImage();
                 }
-                HardwareVideoEncoder.this.releaseCodecOnOutputThread();
             }
         };
     }
 
-    private VideoCodecStatus encodeByteBuffer(VideoFrame videoFrame, VideoFrame.Buffer buffer, int i7) {
+    private VideoCodecStatus encodeByteBuffer(VideoFrame videoFrame, VideoFrame.Buffer buffer, int i) {
         this.encodeThreadChecker.checkIsOnValidThread();
         long timestampNs = (videoFrame.getTimestampNs() + 500) / 1000;
         try {
@@ -169,119 +164,43 @@ public class HardwareVideoEncoder implements VideoEncoder {
                 try {
                     this.codec.queueInputBuffer(dequeueInputBuffer, 0, this.frameSizeBytes, timestampNs, 0);
                     return VideoCodecStatus.OK;
-                } catch (IllegalStateException e10) {
-                    Logging.e("HardwareVideoEncoder", "queueInputBuffer failed", e10);
+                } catch (IllegalStateException e) {
+                    Logging.e("HardwareVideoEncoder", "queueInputBuffer failed", e);
                     return VideoCodecStatus.ERROR;
                 }
-            } catch (IllegalStateException e11) {
-                Logging.e("HardwareVideoEncoder", "getInputBuffer with index=" + dequeueInputBuffer + " failed", e11);
+            } catch (IllegalStateException e2) {
+                Logging.e("HardwareVideoEncoder", "getInputBuffer with index=" + dequeueInputBuffer + " failed", e2);
                 return VideoCodecStatus.ERROR;
             }
-        } catch (IllegalStateException e12) {
-            Logging.e("HardwareVideoEncoder", "dequeueInputBuffer failed", e12);
+        } catch (IllegalStateException e3) {
+            Logging.e("HardwareVideoEncoder", "dequeueInputBuffer failed", e3);
             return VideoCodecStatus.ERROR;
         }
     }
 
-    private VideoCodecStatus encodeTextureBuffer(VideoFrame videoFrame, long j3) {
+    private VideoCodecStatus encodeTextureBuffer(VideoFrame videoFrame, long j) {
         this.encodeThreadChecker.checkIsOnValidThread();
         try {
             this.textureEglBase.makeCurrent();
             GLES20.glClear(16384);
             this.videoFrameDrawer.drawFrame(new VideoFrame(videoFrame.getBuffer(), 0, videoFrame.getTimestampNs()), this.textureDrawer, null);
-            this.textureEglBase.swapBuffers(TimeUnit.MICROSECONDS.toNanos(j3), false);
+            this.textureEglBase.swapBuffers(TimeUnit.MICROSECONDS.toNanos(j), false);
             return VideoCodecStatus.OK;
-        } catch (RuntimeException e10) {
-            Logging.e("HardwareVideoEncoder", "encodeTexture failed", e10);
+        } catch (RuntimeException e) {
+            Logging.e("HardwareVideoEncoder", "encodeTexture failed", e);
             return VideoCodecStatus.ERROR;
         }
     }
 
-    private VideoCodecStatus initEncodeInternal() {
-        Integer num;
-        this.encodeThreadChecker.checkIsOnValidThread();
-        this.nextPresentationTimestampUs = 0L;
-        this.lastKeyFrameNs = -1L;
-        this.isEncodingStatisticsEnabled = false;
-        try {
-            this.codec = this.mediaCodecWrapperFactory.createByCodecName(this.codecName);
-            if (this.useSurfaceMode) {
-                num = this.surfaceColorFormat;
-            } else {
-                num = this.yuvColorFormat;
-            }
-            int intValue = num.intValue();
-            try {
-                MediaFormat createVideoFormat = MediaFormat.createVideoFormat(this.codecType.mimeType(), this.width, this.height);
-                createVideoFormat.setInteger("bitrate", this.adjustedBitrate);
-                createVideoFormat.setInteger("bitrate-mode", 2);
-                createVideoFormat.setInteger("color-format", intValue);
-                createVideoFormat.setFloat("frame-rate", (float) this.bitrateAdjuster.getAdjustedFramerateFps());
-                createVideoFormat.setInteger("i-frame-interval", this.keyFrameIntervalSec);
-                if (this.codecType == VideoCodecMimeType.H264) {
-                    String str = this.params.get("profile-level-id");
-                    if (str == null) {
-                        str = "42e01f";
-                    }
-                    int hashCode = str.hashCode();
-                    if (hashCode != 1537948542) {
-                        if (hashCode == 1595523974 && str.equals("640c1f")) {
-                            createVideoFormat.setInteger("profile", 8);
-                            createVideoFormat.setInteger("level", 256);
-                        }
-                        Logging.w("HardwareVideoEncoder", "Unknown profile level id: ".concat(str));
-                    } else {
-                        if (str.equals("42e01f")) {
-                        }
-                        Logging.w("HardwareVideoEncoder", "Unknown profile level id: ".concat(str));
-                    }
-                }
-                if (this.codecName.equals("c2.google.av1.encoder")) {
-                    createVideoFormat.setInteger("vendor.google-av1enc.encoding-preset.int32.value", 1);
-                }
-                if (isEncodingStatisticsSupported()) {
-                    createVideoFormat.setInteger("video-encoding-statistics-level", 1);
-                    this.isEncodingStatisticsEnabled = true;
-                }
-                Logging.d("HardwareVideoEncoder", "Format: " + createVideoFormat);
-                this.codec.configure(createVideoFormat, null, null, 1);
-                if (this.useSurfaceMode) {
-                    this.textureEglBase = e.i(this.sharedContext, EglBase.CONFIG_RECORDABLE);
-                    Surface createInputSurface = this.codec.createInputSurface();
-                    this.textureInputSurface = createInputSurface;
-                    this.textureEglBase.createSurface(createInputSurface);
-                    this.textureEglBase.makeCurrent();
-                }
-                updateInputFormat(this.codec.getInputFormat());
-                this.codec.start();
-                this.running = true;
-                this.outputThreadChecker.detachThread();
-                Thread createOutputThread = createOutputThread();
-                this.outputThread = createOutputThread;
-                createOutputThread.start();
-                return VideoCodecStatus.OK;
-            } catch (IllegalArgumentException e10) {
-                e = e10;
-                Logging.e("HardwareVideoEncoder", "initEncodeInternal failed", e);
-                release();
-                return VideoCodecStatus.FALLBACK_SOFTWARE;
-            } catch (IllegalStateException e11) {
-                e = e11;
-                Logging.e("HardwareVideoEncoder", "initEncodeInternal failed", e);
-                release();
-                return VideoCodecStatus.FALLBACK_SOFTWARE;
-            }
-        } catch (IOException | IllegalArgumentException unused) {
-            Logging.e("HardwareVideoEncoder", "Cannot create media encoder " + this.codecName);
-            return VideoCodecStatus.FALLBACK_SOFTWARE;
-        }
+    private org.webrtc.VideoCodecStatus initEncodeInternal() {
+        throw new UnsupportedOperationException("Method not decompiled: org.webrtc.HardwareVideoEncoder.initEncodeInternal():org.webrtc.VideoCodecStatus");
     }
 
-    public void lambda$deliverEncodedImage$0(int i7) {
+    public void lambda$deliverEncodedImage$0(int i) {
         try {
-            this.codec.releaseOutputBuffer(i7, false);
-        } catch (Exception e10) {
-            Logging.e("HardwareVideoEncoder", "releaseOutputBuffer failed", e10);
+            this.codec.releaseOutputBuffer(i, false);
+        } catch (Exception e) {
+            Logging.e("HardwareVideoEncoder", "releaseOutputBuffer failed", e);
         }
         this.outputBuffersBusyCount.decrement();
     }
@@ -292,48 +211,48 @@ public class HardwareVideoEncoder implements VideoEncoder {
         this.outputBuffersBusyCount.waitForZero();
         try {
             this.codec.stop();
-        } catch (Exception e10) {
-            Logging.e("HardwareVideoEncoder", "Media encoder stop failed", e10);
+        } catch (Exception e) {
+            Logging.e("HardwareVideoEncoder", "Media encoder stop failed", e);
         }
         try {
             this.codec.release();
-        } catch (Exception e11) {
-            Logging.e("HardwareVideoEncoder", "Media encoder release failed", e11);
-            this.shutdownException = e11;
+        } catch (Exception e2) {
+            Logging.e("HardwareVideoEncoder", "Media encoder release failed", e2);
+            this.shutdownException = e2;
         }
         this.configBuffer = null;
         Logging.d("HardwareVideoEncoder", "Release on output thread done");
     }
 
-    private void requestKeyFrame(long j3) {
+    private void requestKeyFrame(long j) {
         this.encodeThreadChecker.checkIsOnValidThread();
         try {
             Bundle bundle = new Bundle();
             bundle.putInt("request-sync", 0);
             this.codec.setParameters(bundle);
-            this.lastKeyFrameNs = j3;
-        } catch (IllegalStateException e10) {
-            Logging.e("HardwareVideoEncoder", "requestKeyFrame failed", e10);
+            this.lastKeyFrameNs = j;
+        } catch (IllegalStateException e) {
+            Logging.e("HardwareVideoEncoder", "requestKeyFrame failed", e);
         }
     }
 
-    private VideoCodecStatus resetCodec(int i7, int i10, boolean z10) {
-        a8.b("resetCodec " + i7 + "x" + i10);
+    private VideoCodecStatus resetCodec(int i, int i2, boolean z) {
+        fa4.b("resetCodec " + i + "x" + i2);
         this.encodeThreadChecker.checkIsOnValidThread();
         VideoCodecStatus release = release();
         if (release != VideoCodecStatus.OK) {
             return release;
         }
-        this.width = i7;
-        this.height = i10;
-        this.useSurfaceMode = z10;
+        this.width = i;
+        this.height = i2;
+        this.useSurfaceMode = z;
         return initEncodeInternal();
     }
 
-    private boolean shouldForceKeyFrame(long j3) {
+    private boolean shouldForceKeyFrame(long j) {
         this.encodeThreadChecker.checkIsOnValidThread();
-        long j10 = this.forcedKeyFrameNs;
-        if (j10 > 0 && j3 > this.lastKeyFrameNs + j10) {
+        long j2 = this.forcedKeyFrameNs;
+        if (j2 > 0 && j > this.lastKeyFrameNs + j2) {
             return true;
         }
         return false;
@@ -347,8 +266,8 @@ public class HardwareVideoEncoder implements VideoEncoder {
             bundle.putInt("video-bitrate", this.adjustedBitrate);
             this.codec.setParameters(bundle);
             return VideoCodecStatus.OK;
-        } catch (IllegalStateException e10) {
-            Logging.e("HardwareVideoEncoder", "updateBitrate failed", e10);
+        } catch (IllegalStateException e) {
+            Logging.e("HardwareVideoEncoder", "updateBitrate failed", e);
             return VideoCodecStatus.ERROR;
         }
     }
@@ -371,20 +290,20 @@ public class HardwareVideoEncoder implements VideoEncoder {
         boolean isSemiPlanar = isSemiPlanar(this.yuvColorFormat.intValue());
         this.isSemiPlanar = isSemiPlanar;
         if (isSemiPlanar) {
-            int i7 = this.sliceHeight;
-            int i10 = this.stride;
-            this.frameSizeBytes = (((this.height + 1) / 2) * i10) + (i7 * i10);
+            int i = this.sliceHeight;
+            int i2 = this.stride;
+            this.frameSizeBytes = (((this.height + 1) / 2) * i2) + (i * i2);
         } else {
-            int i11 = this.stride;
-            int i12 = this.sliceHeight;
-            this.frameSizeBytes = (((i12 + 1) / 2) * ((i11 + 1) / 2) * 2) + (i12 * i11);
+            int i3 = this.stride;
+            int i4 = this.sliceHeight;
+            this.frameSizeBytes = (i4 * i3) + ((((i4 + 1) / 2) * ((i3 + 1) / 2)) << 1);
         }
         Logging.d("HardwareVideoEncoder", "updateInputFormat format: " + mediaFormat + " stride: " + this.stride + " sliceHeight: " + this.sliceHeight + " isSemiPlanar: " + this.isSemiPlanar + " frameSizeBytes: " + this.frameSizeBytes);
     }
 
     @Override
     public final long createNativeVideoEncoder() {
-        return w.a(this);
+        return 0L;
     }
 
     public void deliverEncodedImage() {
@@ -395,7 +314,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
         this.outputThreadChecker.checkIsOnValidThread();
         try {
             MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
-            int dequeueOutputBuffer = this.codec.dequeueOutputBuffer(bufferInfo, 100000L);
+            final int dequeueOutputBuffer = this.codec.dequeueOutputBuffer(bufferInfo, 100000L);
             if (dequeueOutputBuffer < 0) {
                 if (dequeueOutputBuffer == -3) {
                     this.outputBuffersBusyCount.waitForZero();
@@ -408,11 +327,11 @@ public class HardwareVideoEncoder implements VideoEncoder {
             outputBuffer.limit(bufferInfo.offset + bufferInfo.size);
             if ((bufferInfo.flags & 2) != 0) {
                 Logging.d("HardwareVideoEncoder", "Config frame generated. Offset: " + bufferInfo.offset + ". Size: " + bufferInfo.size);
-                int i7 = bufferInfo.size;
-                if (i7 > 0) {
+                int i = bufferInfo.size;
+                if (i > 0) {
                     VideoCodecMimeType videoCodecMimeType = this.codecType;
                     if (videoCodecMimeType == VideoCodecMimeType.H264 || videoCodecMimeType == VideoCodecMimeType.H265) {
-                        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(i7);
+                        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(i);
                         this.configBuffer = allocateDirect;
                         allocateDirect.put(outputBuffer);
                         return;
@@ -425,20 +344,20 @@ public class HardwareVideoEncoder implements VideoEncoder {
             if (this.adjustedBitrate != this.bitrateAdjuster.getAdjustedBitrateBps()) {
                 updateBitrate();
             }
-            boolean z10 = true;
+            boolean z = true;
             if ((bufferInfo.flags & 1) == 0) {
-                z10 = false;
+                z = false;
             }
-            if (z10) {
+            if (z) {
                 Logging.d("HardwareVideoEncoder", "Sync frame generated");
             }
-            i iVar = null;
+            Runnable runnable = null;
             if (this.isEncodingStatisticsEnabled && (outputFormat = this.codec.getOutputFormat(dequeueOutputBuffer)) != null && outputFormat.containsKey("video-qp-average")) {
                 num = Integer.valueOf(outputFormat.getInteger("video-qp-average"));
             } else {
                 num = null;
             }
-            if (z10 && this.configBuffer != null) {
+            if (z && this.configBuffer != null) {
                 Logging.d("HardwareVideoEncoder", "Prepending config buffer of size " + this.configBuffer.capacity() + " to output buffer with offset " + bufferInfo.offset + ", size " + bufferInfo.size);
                 slice = ByteBuffer.allocateDirect(bufferInfo.size + this.configBuffer.capacity());
                 this.configBuffer.rewind();
@@ -449,28 +368,33 @@ public class HardwareVideoEncoder implements VideoEncoder {
             } else {
                 slice = outputBuffer.slice();
                 this.outputBuffersBusyCount.increment();
-                iVar = new i(this, dequeueOutputBuffer, 0);
+                runnable = new Runnable() {
+                    @Override
+                    public final void run() {
+                        HardwareVideoEncoder.this.lambda$deliverEncodedImage$0(dequeueOutputBuffer);
+                    }
+                };
             }
-            if (z10) {
+            if (z) {
                 frameType = EncodedImage.FrameType.VideoFrameKey;
             } else {
                 frameType = EncodedImage.FrameType.VideoFrameDelta;
             }
             EncodedImage.Builder poll = this.outputBuilders.poll();
-            poll.setBuffer(slice, iVar);
+            poll.setBuffer(slice, runnable);
             poll.setFrameType(frameType);
             poll.setQp(num);
             EncodedImage createEncodedImage = poll.createEncodedImage();
             this.callback.onEncodedFrame(createEncodedImage, new VideoEncoder.CodecSpecificInfo());
             createEncodedImage.release();
-        } catch (IllegalStateException e10) {
-            Logging.e("HardwareVideoEncoder", "deliverOutput failed", e10);
+        } catch (IllegalStateException e) {
+            Logging.e("HardwareVideoEncoder", "deliverOutput failed", e);
         }
     }
 
     @Override
     public VideoCodecStatus encode(VideoFrame videoFrame, VideoEncoder.EncodeInfo encodeInfo) {
-        boolean z10;
+        boolean z;
         VideoCodecStatus resetCodec;
         VideoCodecStatus encodeByteBuffer;
         this.encodeThreadChecker.checkIsOnValidThread();
@@ -478,36 +402,36 @@ public class HardwareVideoEncoder implements VideoEncoder {
             return VideoCodecStatus.UNINITIALIZED;
         }
         VideoFrame.Buffer buffer = videoFrame.getBuffer();
-        boolean z11 = videoFrame.getBuffer() instanceof VideoFrame.TextureBuffer;
+        boolean z2 = videoFrame.getBuffer() instanceof VideoFrame.TextureBuffer;
         int width = videoFrame.getBuffer().getWidth();
         int height = videoFrame.getBuffer().getHeight();
-        if (canUseSurface() && z11) {
-            z10 = true;
+        if (canUseSurface() && z2) {
+            z = true;
         } else {
-            z10 = false;
+            z = false;
         }
-        if ((width != this.width || height != this.height || z10 != this.useSurfaceMode) && (resetCodec = resetCodec(width, height, z10)) != VideoCodecStatus.OK) {
+        if ((width != this.width || height != this.height || z != this.useSurfaceMode) && (resetCodec = resetCodec(width, height, z)) != VideoCodecStatus.OK) {
             return resetCodec;
         }
         if (this.outputBuilders.size() > 2) {
             Logging.e("HardwareVideoEncoder", "Dropped frame, encoder queue full");
             return VideoCodecStatus.NO_OUTPUT;
         }
-        boolean z12 = false;
+        boolean z3 = false;
         for (EncodedImage.FrameType frameType : encodeInfo.frameTypes) {
             if (frameType == EncodedImage.FrameType.VideoFrameKey) {
-                z12 = true;
+                z3 = true;
             }
         }
-        if (z12 || shouldForceKeyFrame(videoFrame.getTimestampNs())) {
+        if (z3 || shouldForceKeyFrame(videoFrame.getTimestampNs())) {
             requestKeyFrame(videoFrame.getTimestampNs());
         }
         int width2 = ((buffer.getWidth() * buffer.getHeight()) * 3) / 2;
         this.outputBuilders.offer(EncodedImage.builder().setCaptureTimeNs(videoFrame.getTimestampNs()).setEncodedWidth(videoFrame.getBuffer().getWidth()).setEncodedHeight(videoFrame.getBuffer().getHeight()).setRotation(videoFrame.getRotation()));
-        long j3 = this.nextPresentationTimestampUs;
-        this.nextPresentationTimestampUs += (long) (TimeUnit.SECONDS.toMicros(1L) / this.bitrateAdjuster.getAdjustedFramerateFps());
+        long j = this.nextPresentationTimestampUs;
+        this.nextPresentationTimestampUs += (long) (1000000.0d / this.bitrateAdjuster.getAdjustedFramerateFps());
         if (this.useSurfaceMode) {
-            encodeByteBuffer = encodeTextureBuffer(videoFrame, j3);
+            encodeByteBuffer = encodeTextureBuffer(videoFrame, j);
         } else {
             encodeByteBuffer = encodeByteBuffer(videoFrame, buffer, width2);
         }
@@ -539,7 +463,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public final VideoEncoder.ResolutionBitrateLimits[] getResolutionBitrateLimits() {
-        return w.c(this);
+        return new VideoEncoder.ResolutionBitrateLimits[0];
     }
 
     @Override
@@ -558,16 +482,16 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public VideoCodecStatus initEncode(VideoEncoder.Settings settings, VideoEncoder.Callback callback) {
-        int i7;
+        int i;
         this.encodeThreadChecker.checkIsOnValidThread();
         this.callback = callback;
         this.automaticResizeOn = settings.automaticResizeOn;
         this.width = settings.width;
         this.height = settings.height;
         this.useSurfaceMode = canUseSurface();
-        int i10 = settings.startBitrate;
-        if (i10 != 0 && (i7 = settings.maxFramerate) != 0) {
-            this.bitrateAdjuster.setTargets(i10 * 1000, i7);
+        int i2 = settings.startBitrate;
+        if (i2 != 0 && (i = settings.maxFramerate) != 0) {
+            this.bitrateAdjuster.setTargets(i2 * 1000, i);
         }
         this.adjustedBitrate = this.bitrateAdjuster.getAdjustedBitrateBps();
         Logging.d("HardwareVideoEncoder", "initEncode name: " + this.codecName + " type: " + this.codecType + " width: " + this.width + " height: " + this.height + " framerate_fps: " + settings.maxFramerate + " bitrate_kbps: " + settings.startBitrate + " surface mode: " + this.useSurfaceMode);
@@ -586,13 +510,14 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public final boolean isHardwareEncoder() {
-        return w.d(this);
+        return true;
     }
 
-    public boolean isSemiPlanar(int i7) {
-        if (i7 != 19) {
-            if (i7 != 21 && i7 != 2141391872 && i7 != 2141391876) {
-                throw new IllegalArgumentException(i5.c.i(i7, "Unsupported colorFormat: "));
+    public boolean isSemiPlanar(int i) {
+        if (i != 19) {
+            if (i != 21 && i != 2141391872 && i != 2141391876) {
+                w26.j(de9.k(i, "Unsupported colorFormat: "));
+                return false;
             }
             return true;
         }
@@ -637,12 +562,12 @@ public class HardwareVideoEncoder implements VideoEncoder {
     }
 
     @Override
-    public VideoCodecStatus setRateAllocation(VideoEncoder.BitrateAllocation bitrateAllocation, int i7) {
+    public VideoCodecStatus setRateAllocation(VideoEncoder.BitrateAllocation bitrateAllocation, int i) {
         this.encodeThreadChecker.checkIsOnValidThread();
-        if (i7 > 30) {
-            i7 = 30;
+        if (i > 30) {
+            i = 30;
         }
-        this.bitrateAdjuster.setTargets(bitrateAllocation.getSum(), i7);
+        this.bitrateAdjuster.setTargets(bitrateAllocation.getSum(), i);
         return VideoCodecStatus.OK;
     }
 

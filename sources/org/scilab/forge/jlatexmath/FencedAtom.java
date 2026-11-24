@@ -9,17 +9,31 @@ public class FencedAtom extends Atom {
     private final List<MiddleAtom> middle;
     private SymbolAtom right;
 
-    public FencedAtom(Atom atom, SymbolAtom symbolAtom, SymbolAtom symbolAtom2) {
-        this(atom, symbolAtom, null, symbolAtom2);
+    public FencedAtom(Atom atom, SymbolAtom symbolAtom, List<MiddleAtom> list, SymbolAtom symbolAtom2) {
+        this.left = null;
+        this.right = null;
+        if (atom == null) {
+            this.base = new RowAtom();
+        } else {
+            this.base = atom;
+        }
+        if (symbolAtom == null || !symbolAtom.getName().equals("normaldot")) {
+            this.left = symbolAtom;
+        }
+        if (symbolAtom2 == null || !symbolAtom2.getName().equals("normaldot")) {
+            this.right = symbolAtom2;
+        }
+        this.middle = list;
     }
 
-    private static void center(Box box, float f10) {
+    private static void center(Box box, float f) {
         float height = box.getHeight();
-        box.setShift((-(((box.getDepth() + height) / 2.0f) - height)) - f10);
+        box.setShift((-(((box.getDepth() + height) / 2.0f) - height)) - f);
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
+        List<MiddleAtom> list;
         TeXFont teXFont = teXEnvironment.getTeXFont();
         Box createBox = this.base.createBox(teXEnvironment);
         float axisHeight = teXFont.getAxisHeight(teXEnvironment.getStyle());
@@ -27,16 +41,23 @@ public class FencedAtom extends Atom {
         float max2 = Math.max((max / 500.0f) * 901.0f, (max * 2.0f) - (SpaceAtom.getFactor(3, teXEnvironment) * 5.0f));
         HorizontalBox horizontalBox = new HorizontalBox();
         if (this.middle != null) {
-            for (int i7 = 0; i7 < this.middle.size(); i7++) {
-                MiddleAtom middleAtom = this.middle.get(i7);
+            int i = 0;
+            while (true) {
+                int size = this.middle.size();
+                list = this.middle;
+                if (i >= size) {
+                    break;
+                }
+                MiddleAtom middleAtom = list.get(i);
                 Atom atom = middleAtom.base;
                 if (atom instanceof SymbolAtom) {
                     Box create = DelimiterFactory.create(((SymbolAtom) atom).getName(), teXEnvironment, max2);
                     center(create, axisHeight);
                     middleAtom.box = create;
                 }
+                i++;
             }
-            if (this.middle.size() != 0) {
+            if (list.size() != 0) {
                 createBox = this.base.createBox(teXEnvironment);
             }
         }
@@ -74,20 +95,7 @@ public class FencedAtom extends Atom {
         return 7;
     }
 
-    public FencedAtom(Atom atom, SymbolAtom symbolAtom, List<MiddleAtom> list, SymbolAtom symbolAtom2) {
-        this.left = null;
-        this.right = null;
-        if (atom == null) {
-            this.base = new RowAtom();
-        } else {
-            this.base = atom;
-        }
-        if (symbolAtom == null || !symbolAtom.getName().equals("normaldot")) {
-            this.left = symbolAtom;
-        }
-        if (symbolAtom2 == null || !symbolAtom2.getName().equals("normaldot")) {
-            this.right = symbolAtom2;
-        }
-        this.middle = list;
+    public FencedAtom(Atom atom, SymbolAtom symbolAtom, SymbolAtom symbolAtom2) {
+        this(atom, symbolAtom, null, symbolAtom2);
     }
 }

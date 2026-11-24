@@ -7,9 +7,9 @@ import android.util.Log;
 public final class WidgetConformanceActivity extends Activity {
     @Override
     public final void onCreate(Bundle bundle) {
-        org.telegram.messenger.t0.w();
+        org.telegram.messenger.a.v();
         super.onCreate(bundle);
-        boolean z10 = org.telegram.messenger.s2.f26829a;
+        boolean z = w01.a;
         finish();
     }
 
@@ -24,10 +24,10 @@ public final class WidgetConformanceActivity extends Activity {
         if (!intent.getBooleanExtra("clearHeights", false)) {
             return;
         }
-        for (int i7 = 0; i7 < 4; i7++) {
-            if (org.telegram.messenger.i10.i(i7).p()) {
-                org.telegram.messenger.tr a02 = org.telegram.messenger.tr.a0(i7);
-                a02.f27149a.c(new org.telegram.messenger.pq(a02, 1));
+        for (int i = 0; i < 4; i++) {
+            if (y6c.h(i).o()) {
+                ad7 Y = ad7.Y(i);
+                Y.a.c(new vb7(Y, (byte) 1));
             }
         }
         Log.i("WidgetConformance", "widget heights cleared");
