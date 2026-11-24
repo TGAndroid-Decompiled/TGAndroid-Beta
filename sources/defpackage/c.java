@@ -2,7 +2,7 @@ package defpackage;
 
 import java.util.Calendar;
 import java.util.Locale;
-public final class c implements yy5, ee, jp7, hp7 {
+public final class c implements yw5, ed, fn7, dn7 {
     public final byte a;
 
     public c(byte b) {
@@ -14,21 +14,21 @@ public final class c implements yy5, ee, jp7, hp7 {
         switch (this.a) {
             case 18:
                 if (i == 0) {
-                    return jb6.M0(2131748288, null);
+                    return k96.M0(2131748339, null);
                 }
                 Calendar calendar = Calendar.getInstance();
                 int i2 = calendar.get(1);
                 calendar.add(6, i);
                 long timeInMillis = calendar.getTimeInMillis();
                 if (calendar.get(1) == i2) {
-                    return jb6.D0().z0().format(timeInMillis) + ", " + jb6.D0().v0().format(timeInMillis);
+                    return k96.D0().z0().format(timeInMillis) + ", " + k96.D0().v0().format(timeInMillis);
                 }
-                return jb6.D0().x0().format(timeInMillis);
+                return k96.D0().x0().format(timeInMillis);
             case 19:
                 return String.format("%02d", Integer.valueOf(i));
             case 20:
                 if (i == 0) {
-                    return jb6.M0(2131748288, null);
+                    return k96.M0(2131748339, null);
                 }
                 Calendar calendar2 = Calendar.getInstance();
                 int i3 = calendar2.get(1);
@@ -36,11 +36,11 @@ public final class c implements yy5, ee, jp7, hp7 {
                 long timeInMillis2 = calendar2.getTimeInMillis();
                 if (calendar2.get(1) == i3) {
                     if (i < 7) {
-                        return jb6.D0().z0().format(timeInMillis2) + ", " + jb6.D0().v0().format(timeInMillis2);
+                        return k96.D0().z0().format(timeInMillis2) + ", " + k96.D0().v0().format(timeInMillis2);
                     }
-                    return jb6.D0().v0().format(timeInMillis2);
+                    return k96.D0().v0().format(timeInMillis2);
                 }
-                return jb6.D0().x0().format(timeInMillis2);
+                return k96.D0().x0().format(timeInMillis2);
             case 21:
                 return String.format("%02d", Integer.valueOf(i));
             case 22:
@@ -58,16 +58,16 @@ public final class c implements yy5, ee, jp7, hp7 {
                 return String.format("%02d", Integer.valueOf(i));
             case 27:
                 if (i == 0) {
-                    return jb6.M0(2131748288, null);
+                    return k96.M0(2131748339, null);
                 }
                 Calendar calendar4 = Calendar.getInstance();
                 int i4 = calendar4.get(1);
                 calendar4.add(6, i);
                 long timeInMillis3 = calendar4.getTimeInMillis();
                 if (calendar4.get(1) == i4) {
-                    return jb6.D0().v0().format(timeInMillis3);
+                    return k96.D0().v0().format(timeInMillis3);
                 }
-                return jb6.D0().x0().format(timeInMillis3);
+                return k96.D0().x0().format(timeInMillis3);
             case 28:
                 return String.format("%02d", Integer.valueOf(i));
             default:
@@ -76,23 +76,23 @@ public final class c implements yy5, ee, jp7, hp7 {
     }
 
     @Override
-    public final void o(Exception exc) {
+    public final void n(Exception exc) {
         switch (this.a) {
             case 0:
-                fc4.g(exc, true);
+                fa4.g(exc, true);
                 return;
             default:
-                fc4.g(exc, true);
+                fa4.g(exc, true);
                 return;
         }
     }
 
     @Override
-    public final void r(he heVar, int i) {
-        heVar.dismiss();
+    public final void u(hd hdVar, int i) {
+        hdVar.dismiss();
     }
 
     @Override
-    public final void g(lp7 lp7Var, int i) {
+    public final void i(hn7 hn7Var, int i) {
     }
 }

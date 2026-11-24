@@ -1,43 +1,26 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class vx1 implements gk, h59 {
-    public final byte a;
-    public final ChatActivityEnterView b;
+import android.os.Bundle;
+import org.telegram.tgnet.TLRPC;
+public final class vx1 extends mu1 {
+    public boolean wd;
+    public final TLRPC.User xd;
+    public final TLRPC.User yd;
+    public final long zd;
 
-    public vx1(ChatActivityEnterView chatActivityEnterView, byte b) {
-        this.a = b;
-        this.b = chatActivityEnterView;
+    public vx1(Bundle bundle, TLRPC.User user, TLRPC.User user2, long j) {
+        super(bundle);
+        this.xd = user;
+        this.yd = user2;
+        this.zd = j;
     }
 
     @Override
-    public final boolean g(int i, View view) {
-        if (view instanceof cq0) {
-            ChatActivityEnterView chatActivityEnterView = this.b;
-            chatActivityEnterView.setFieldText(((cq0) view).getCommand() + " ");
-            chatActivityEnterView.n0.c();
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void y(int i, int i2, boolean z) {
-        switch (this.a) {
-            case 0:
-                this.b.x1(z, i, i2, 0L, true);
-                return;
-            default:
-                ChatActivityEnterView chatActivityEnterView = this.b;
-                boolean x1 = chatActivityEnterView.x1(z, i, i2, 0L, true);
-                j67 j67Var = chatActivityEnterView.M0;
-                if (j67Var != null) {
-                    j67Var.f(!x1);
-                    chatActivityEnterView.M0 = null;
-                    return;
-                }
-                return;
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.wd) {
+            this.wd = true;
+            u21.b0(this).I(2131623990, k96.a0(null, null, 2131751727, l7c.r(this.xd)), gl.N2(k96.a0(null, null, 2131751728, l7c.r(this.yd)), -1, 0, new et(this, this.zd, (byte) 6), null)).j();
         }
     }
 }

@@ -1,22 +1,52 @@
 package defpackage;
 
-import android.app.Activity;
-public final class zb5 extends i46 {
-    public final ac5 S2;
+import java.io.Serializable;
+import java.util.Arrays;
+public final class zb5 {
+    public static final byte[] f = {0, 0, 1};
+    public int a;
+    public int b;
+    public boolean c;
+    public byte d;
+    public Serializable e;
 
-    public zb5(ac5 ac5Var, ac5 ac5Var2, Activity activity, int i, int i2, ylb ylbVar) {
-        super(i, i2, ylbVar, activity, ac5Var2);
-        this.S2 = ac5Var;
+    public final b90 a() {
+        String str;
+        if (this.d == 7 && (str = (String) this.e) != null) {
+            return new b90(this.a, this.b, str, this.c);
+        }
+        StringBuilder sb = new StringBuilder();
+        if (((String) this.e) == null) {
+            sb.append(" processName");
+        }
+        if ((this.d & 1) == 0) {
+            sb.append(" pid");
+        }
+        if ((this.d & 2) == 0) {
+            sb.append(" importance");
+        }
+        if ((this.d & 4) == 0) {
+            sb.append(" defaultProcess");
+        }
+        sc8.j(ir2.o("Missing required properties:", sb));
+        return null;
     }
 
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.S2.C0 = false;
-    }
-
-    @Override
-    public final void w() {
-        this.S2.C0 = false;
+    public final void b(int i, int i2, byte[] bArr) {
+        if (!this.c) {
+            return;
+        }
+        int i3 = i2 - i;
+        byte[] bArr2 = (byte[]) this.e;
+        int length = bArr2.length;
+        int i4 = this.a + i3;
+        byte[] bArr3 = bArr2;
+        if (length < i4) {
+            ?? copyOf = Arrays.copyOf(bArr2, i4 << 1);
+            this.e = copyOf;
+            bArr3 = copyOf;
+        }
+        System.arraycopy(bArr, i, bArr3, this.a, i3);
+        this.a += i3;
     }
 }

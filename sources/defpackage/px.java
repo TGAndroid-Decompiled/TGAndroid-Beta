@@ -1,40 +1,24 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class px implements ValueAnimator.AnimatorUpdateListener {
+import android.os.HandlerThread;
+public final class px implements qbb {
     public final byte a;
-    public final sx b;
+    public final int b;
 
-    public px(sx sxVar, byte b) {
+    public px(int i, byte b) {
         this.a = b;
-        this.b = sxVar;
+        this.b = i;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+    public final Object get() {
         byte b = this.a;
-        sx sxVar = this.b;
+        int i = this.b;
         switch (b) {
             case 0:
-                sxVar.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                sxVar.c.invalidate();
-                sxVar.u();
-                sxVar.r();
-                return;
-            case 1:
-                sxVar.x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                sxVar.A();
-                sxVar.u();
-                sxVar.r();
-                return;
+                return new HandlerThread(rx.o(i, "ExoPlayer:MediaCodecAsyncAdapter:"));
             default:
-                sxVar.y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!sxVar.n) {
-                    sxVar.A();
-                }
-                sxVar.u();
-                sxVar.r();
-                return;
+                return new HandlerThread(rx.o(i, "ExoPlayer:MediaCodecQueueingThread:"));
         }
     }
 }

@@ -24,17 +24,17 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.StickersActivity;
-public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7 {
-    public q7c a;
+public class StickersActivity extends org.telegram.ui.ActionBar.d implements gk7 {
+    public q5c a;
     private int archivedRow;
-    public jg2 b;
-    public p3c c;
+    public xe2 b;
+    public p1c c;
     public ArrayList d;
     private int dynamicPackOrder;
     public ArrayList e;
     public final ArrayList f;
     private int featuredRow;
-    public zja h;
+    public xha h;
     private int largeEmojiRow;
     public int n;
     public boolean r;
@@ -42,13 +42,13 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
     private int suggestRow;
     public ArrayList w;
     public final HashSet x;
-    public final b2b y;
+    public final a0b y;
 
     public StickersActivity(int i, ArrayList arrayList) {
         super(null);
         this.f = new ArrayList();
         this.x = new HashSet();
-        this.y = new b2b(this, (byte) 0);
+        this.y = new a0b(this, (byte) 0);
         this.s = i;
         this.w = arrayList;
     }
@@ -56,121 +56,38 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
     @Override
     public final void addThemeColorKeys(HashSet hashSet) {
         super.addThemeColorKeys(hashSet);
-        hashSet.add(Integer.valueOf(cmb.Ki));
-        hashSet.add(Integer.valueOf(cmb.Li));
-        hashSet.add(Integer.valueOf(cmb.y6));
-        hashSet.add(Integer.valueOf(cmb.F6));
-        hashSet.add(Integer.valueOf(cmb.H6));
-        hashSet.add(Integer.valueOf(cmb.I6));
-        hashSet.add(Integer.valueOf(cmb.A6));
-        hashSet.add(Integer.valueOf(cmb.c7));
-        hashSet.add(Integer.valueOf(cmb.h6));
-        hashSet.add(Integer.valueOf(cmb.y8));
-        hashSet.add(Integer.valueOf(cmb.x8));
-        hashSet.add(Integer.valueOf(cmb.s8));
-        hashSet.add(Integer.valueOf(cmb.z8));
-        hashSet.add(Integer.valueOf(cmb.u8));
-        hashSet.add(Integer.valueOf(cmb.r8));
+        hashSet.add(Integer.valueOf(bkb.Ki));
+        hashSet.add(Integer.valueOf(bkb.Li));
+        hashSet.add(Integer.valueOf(bkb.y6));
+        hashSet.add(Integer.valueOf(bkb.F6));
+        hashSet.add(Integer.valueOf(bkb.H6));
+        hashSet.add(Integer.valueOf(bkb.I6));
+        hashSet.add(Integer.valueOf(bkb.A6));
+        hashSet.add(Integer.valueOf(bkb.c7));
+        hashSet.add(Integer.valueOf(bkb.h6));
+        hashSet.add(Integer.valueOf(bkb.y8));
+        hashSet.add(Integer.valueOf(bkb.x8));
+        hashSet.add(Integer.valueOf(bkb.s8));
+        hashSet.add(Integer.valueOf(bkb.z8));
+        hashSet.add(Integer.valueOf(bkb.u8));
+        hashSet.add(Integer.valueOf(bkb.r8));
     }
 
-    public final CharSequence c0(String str) {
+    public final CharSequence b0(String str) {
         int indexOf = str.indexOf("@stickers");
         if (indexOf != -1) {
             try {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-                spannableStringBuilder.setSpan(new uj(this, (byte) 3), indexOf, indexOf + 9, 18);
+                spannableStringBuilder.setSpan(new ui(this, (byte) 3), indexOf, indexOf + 9, 18);
                 return spannableStringBuilder;
             } catch (Exception e) {
-                fc4.g(e, true);
+                fa4.g(e, true);
             }
         }
         return str;
     }
 
-    @Override
-    public final View createView(Context context) {
-        ArrayList arrayList;
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonDrawable(new ee0(false));
-        byte b = this.s;
-        if (b == 0) {
-            this.simpleActionBar.setTitle(jb6.M0(2131744546, null));
-        } else if (b == 1) {
-            this.simpleActionBar.setTitle(jb6.M0(2131748436, null));
-        } else if (b == 5) {
-            this.simpleActionBar.setTitle(jb6.M0(2131751133, null));
-        }
-        this.simpleActionBar.setActionBarMenuOnItemClick(new im8(this, (byte) 17));
-        yja q = this.simpleActionBar.q();
-        q.b(2, 2131232369, null, null, gm.L(54.0f), null);
-        q.b(0, 2131232057, null, null, gm.L(54.0f), null);
-        this.h = q.b(1, 2131232114, null, null, gm.L(54.0f), null);
-        if (b == 5 && (arrayList = this.w) != null) {
-            this.d = arrayList;
-        } else {
-            this.d = new ArrayList(oc7.r1(this.currentAccount).u0(hs6.d0(this.currentAccount).t0(b)));
-        }
-        this.e = g0();
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.fragmentView = frameLayout;
-        q7c q7cVar = new q7c(this, new jac(this) {
-            public final StickersActivity b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void a(Object obj, Object obj2) {
-                byte b2 = r2;
-                StickersActivity stickersActivity = this.b;
-                switch (b2) {
-                    case 0:
-                        stickersActivity.f0((ArrayList) obj, (l7c) obj2);
-                        return;
-                    default:
-                        ((Integer) obj).getClass();
-                        stickersActivity.s0((ArrayList) obj2);
-                        return;
-                }
-            }
-        }, new e2b(this), new e2b(this));
-        this.a = q7cVar;
-        q7cVar.r1();
-        this.a.setFocusable(true);
-        this.a.setSectionsDrawBackground(true);
-        this.a.setTag(7);
-        this.a.E1(new jac(this) {
-            public final StickersActivity b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void a(Object obj, Object obj2) {
-                byte b2 = r2;
-                StickersActivity stickersActivity = this.b;
-                switch (b2) {
-                    case 0:
-                        stickersActivity.f0((ArrayList) obj, (l7c) obj2);
-                        return;
-                    default:
-                        ((Integer) obj).getClass();
-                        stickersActivity.s0((ArrayList) obj2);
-                        return;
-                }
-            }
-        }, false);
-        jg2 jg2Var = new jg2((byte) 6, this, false);
-        this.b = jg2Var;
-        jg2Var.i1(1);
-        this.a.setLayoutManager(this.b);
-        frameLayout.addView(this.a, qoe.c(-1.0f, -1));
-        return this.fragmentView;
-    }
-
-    public final void d0() {
+    public final void c0() {
         HashSet hashSet = this.x;
         int size = hashSet.size();
         boolean x = this.simpleActionBar.x();
@@ -199,36 +116,125 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
                     this.h.setVisibility(i);
                 }
             }
-            this.simpleActionBar.F(size, x);
+            this.simpleActionBar.E(size, x);
             if (!x) {
                 this.simpleActionBar.J();
                 this.a.z1(true);
-                if (!gda.Q && this.s != 5) {
-                    gda.Q = true;
-                    SharedPreferences.Editor edit = oc7.d1().edit();
-                    edit.putBoolean("stickersReorderingHintUsed", gda.Q);
+                if (!gba.Q && this.s != 5) {
+                    gba.Q = true;
+                    SharedPreferences.Editor edit = na7.c1().edit();
+                    edit.putBoolean("stickersReorderingHintUsed", gba.Q);
                     edit.apply();
-                    u31.g(this, new j99(getParentActivity(), jb6.M0(2131744539, null)), 3250).j();
+                    m21.g(this, new h79(getParentActivity(), k96.M0(2131744613, null)), 3250).j();
                 }
             }
         } else if (x) {
             this.simpleActionBar.w();
             this.a.z1(false);
-            p0();
+            o0();
         }
     }
 
     @Override
+    public final View createView(Context context) {
+        ArrayList arrayList;
+        setHasOwnBackground(true);
+        this.simpleActionBar.setBackButtonDrawable(new ed0(false));
+        byte b = this.s;
+        if (b == 0) {
+            this.simpleActionBar.setTitle(k96.M0(2131744620, null));
+        } else if (b == 1) {
+            this.simpleActionBar.setTitle(k96.M0(2131748487, null));
+        } else if (b == 5) {
+            this.simpleActionBar.setTitle(k96.M0(2131751184, null));
+        }
+        this.simpleActionBar.setActionBarMenuOnItemClick(new kk8(this, (byte) 16));
+        wha q = this.simpleActionBar.q();
+        q.b(2, 2131232368, null, null, gl.L(54.0f), null);
+        q.b(0, 2131232056, null, null, gl.L(54.0f), null);
+        this.h = q.b(1, 2131232113, null, null, gl.L(54.0f), null);
+        if (b == 5 && (arrayList = this.w) != null) {
+            this.d = arrayList;
+        } else {
+            this.d = new ArrayList(na7.q1(this.currentAccount).u0(hq6.d0(this.currentAccount).t0(b)));
+        }
+        this.e = f0();
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        q5c q5cVar = new q5c(this, new i8c(this) {
+            public final StickersActivity b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void a(Object obj, Object obj2) {
+                byte b2 = r2;
+                StickersActivity stickersActivity = this.b;
+                switch (b2) {
+                    case 0:
+                        stickersActivity.e0((ArrayList) obj, (l5c) obj2);
+                        return;
+                    default:
+                        ((Integer) obj).getClass();
+                        stickersActivity.r0((ArrayList) obj2);
+                        return;
+                }
+            }
+        }, new d0b(this), new d0b(this));
+        this.a = q5cVar;
+        q5cVar.r1();
+        this.a.setFocusable(true);
+        this.a.setSectionsDrawBackground(true);
+        this.a.setTag(7);
+        this.a.E1(new i8c(this) {
+            public final StickersActivity b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void a(Object obj, Object obj2) {
+                byte b2 = r2;
+                StickersActivity stickersActivity = this.b;
+                switch (b2) {
+                    case 0:
+                        stickersActivity.e0((ArrayList) obj, (l5c) obj2);
+                        return;
+                    default:
+                        ((Integer) obj).getClass();
+                        stickersActivity.r0((ArrayList) obj2);
+                        return;
+                }
+            }
+        }, false);
+        xe2 xe2Var = new xe2((byte) 6, this, false);
+        this.b = xe2Var;
+        xe2Var.i1(1);
+        this.a.setLayoutManager(this.b);
+        frameLayout.addView(this.a, nme.c(-1.0f, -1));
+        return this.fragmentView;
+    }
+
+    public final void d0() {
+        this.x.clear();
+        this.a.g3.O(true);
+        c0();
+    }
+
+    @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        int i3 = nm7.x0;
+        int i3 = kk7.w0;
         byte b = this.s;
         if (i == i3) {
             if (((Integer) objArr[0]).intValue() == b) {
                 this.f.clear();
             }
             this.a.g3.O(true);
-        } else if (i != nm7.z0 && i != nm7.A0) {
-            if (i == nm7.Z0 && ((Integer) objArr[0]).intValue() == b) {
+        } else if (i != kk7.y0 && i != kk7.z0) {
+            if (i == kk7.Y0 && ((Integer) objArr[0]).intValue() == b) {
                 this.a.g3.O(true);
             }
         } else {
@@ -236,18 +242,12 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
         }
     }
 
-    public final void e0() {
-        this.x.clear();
-        this.a.g3.O(true);
-        d0();
+    public final void e0(java.util.ArrayList r19, defpackage.l5c r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.StickersActivity.e0(java.util.ArrayList, l5c):void");
     }
 
-    public final void f0(java.util.ArrayList r19, defpackage.l7c r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.StickersActivity.f0(java.util.ArrayList, l7c):void");
-    }
-
-    public final ArrayList g0() {
-        hs6 d0 = hs6.d0(this.currentAccount);
+    public final ArrayList f0() {
+        hq6 d0 = hq6.d0(this.currentAccount);
         ArrayList[] arrayListArr = d0.t0;
         if (this.s == 5) {
             ArrayList arrayList = new ArrayList(arrayListArr[1]);
@@ -264,53 +264,48 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
         return arrayListArr[0];
     }
 
-    @Override
-    public final r59 getListViewForSimpleGlass() {
-        return this.a;
-    }
-
-    @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
-        int i = cmb.c6;
-        arrayList.add(new cnb(this.a, 16, new Class[]{s1b.class, vkb.class, bjb.class}, (Paint) null, (Drawable[]) null, (bnb) null, i));
-        arrayList.add(new cnb(this.a, 0, new Class[]{bjb.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.L6));
-        arrayList.add(new cnb(this.a, 0, new Class[]{bjb.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.M6));
-        arrayList.add(new cnb(this.a, 8192, new Class[]{s1b.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, i));
-        arrayList.add(new cnb(this.a, 16384, new Class[]{s1b.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.j7));
-        p3c p3cVar = this.c;
-        if (p3cVar != null) {
-            arrayList.addAll(p3cVar.R());
-        }
-        return arrayList;
-    }
-
-    public final String h0(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+    public final String g0(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         String str;
         Locale locale = Locale.US;
         StringBuilder sb = new StringBuilder("https://");
-        sb.append(oc7.r1(this.currentAccount).N2);
+        sb.append(na7.q1(this.currentAccount).N2);
         sb.append("/");
         if (tL_messages_stickerSet.set.emojis) {
             str = "addemoji";
         } else {
             str = "addstickers";
         }
-        return String.format(locale, b10.j(sb, str, "/%s"), tL_messages_stickerSet.set.short_name);
-    }
-
-    public final void i0(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
-        hs6.d0(this.currentAccount).h2(getParentActivity(), tL_messages_stickerSet, 0, this, true, true);
+        return String.format(locale, b00.j(sb, str, "/%s"), tL_messages_stickerSet.set.short_name);
     }
 
     @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
+    public final o39 getListViewForSimpleGlass() {
+        return this.a;
     }
 
-    public final void j0(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+    @Override
+    public final ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
+        int i = bkb.c6;
+        arrayList.add(new blb(this.a, 16, new Class[]{rza.class, uib.class, ahb.class}, (Paint) null, (Drawable[]) null, (alb) null, i));
+        arrayList.add(new blb(this.a, 0, new Class[]{ahb.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.L6));
+        arrayList.add(new blb(this.a, 0, new Class[]{ahb.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.M6));
+        arrayList.add(new blb(this.a, 8192, new Class[]{rza.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, i));
+        arrayList.add(new blb(this.a, 16384, new Class[]{rza.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.j7));
+        p1c p1cVar = this.c;
+        if (p1cVar != null) {
+            arrayList.addAll(p1cVar.S());
+        }
+        return arrayList;
+    }
+
+    public final void h0(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        hq6.d0(this.currentAccount).h2(getParentActivity(), tL_messages_stickerSet, 0, this, true, true);
+    }
+
+    public final void i0(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         int i;
-        hs6 d0 = hs6.d0(this.currentAccount);
+        hq6 d0 = hq6.d0(this.currentAccount);
         Activity parentActivity = getParentActivity();
         if (!tL_messages_stickerSet.set.archived) {
             i = 1;
@@ -320,15 +315,20 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
         d0.h2(parentActivity, tL_messages_stickerSet, i, this, true, true);
     }
 
-    public final void k0(int i, ArrayList arrayList) {
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    public final void j0(int i, ArrayList arrayList) {
         int i2;
         final byte b;
         ArrayList[] arrayListArr;
         boolean z;
         int i3;
         boolean z2;
-        e0();
-        final hs6 d0 = hs6.d0(this.currentAccount);
+        d0();
+        final hq6 d0 = hq6.d0(this.currentAccount);
         boolean z3 = true;
         if (i == 1) {
             i2 = 0;
@@ -394,14 +394,14 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
         ArrayList[] arrayListArr3 = arrayListArr2;
         boolean z4 = z3;
         final int i6 = i2;
-        long s = hs6.s(arrayListArr3[b]);
+        long s = hq6.s(arrayListArr3[b]);
         jArr[b] = s;
         d0.M1(b, d0.Z[b], s, arrayListArr3[b]);
-        nm7 notificationCenter = d0.getNotificationCenter();
+        kk7 notificationCenter = d0.getNotificationCenter();
         Object[] objArr = new Object[2];
         objArr[0] = Integer.valueOf(b);
         objArr[z4 ? 1 : 0] = Boolean.TRUE;
-        notificationCenter.k(nm7.x0, objArr);
+        notificationCenter.k(kk7.w0, objArr);
         TLRPC.TL_messages_toggleStickerSets tL_messages_toggleStickerSets = new TLRPC.TL_messages_toggleStickerSets();
         tL_messages_toggleStickerSets.stickersets = arrayList2;
         if (i6 != 0) {
@@ -414,36 +414,36 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
         d0.getConnectionsManager().sendRequest(tL_messages_toggleStickerSets, new RequestDelegate() {
             @Override
             public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-                final hs6 hs6Var = hs6.this;
+                final hq6 hq6Var = hq6.this;
                 boolean z5 = i6;
                 final StickersActivity stickersActivity = this;
                 final byte b3 = b;
                 final int i7 = z5 ? 1 : 0;
-                gm.c3(new Runnable() {
+                gl.c3(new Runnable() {
                     @Override
                     public final void run() {
-                        hs6 hs6Var2 = hs6.this;
+                        hq6 hq6Var2 = hq6.this;
                         boolean z6 = i7;
                         byte b4 = b3;
                         if (z6) {
                             TLObject tLObject2 = tLObject;
                             if (tLObject2 instanceof TLRPC.TL_messages_stickerSetInstallResultArchive) {
-                                hs6Var2.C1(stickersActivity, true, b4, (TLRPC.TL_messages_stickerSetInstallResultArchive) tLObject2);
+                                hq6Var2.C1(stickersActivity, true, b4, (TLRPC.TL_messages_stickerSetInstallResultArchive) tLObject2);
                             }
-                            hs6Var2.c1(b4, false, false, true, null);
+                            hq6Var2.c1(b4, false, false, true, null);
                             return;
                         }
-                        hs6Var2.b1(b4, false, true);
+                        hq6Var2.b1(b4, false, true);
                     }
                 });
             }
         });
     }
 
-    public final void l0(c6c c6cVar, View view) {
+    public final void k0(c4c c4cVar, View view) {
         boolean z;
         boolean z2;
-        Object obj = c6cVar.H;
+        Object obj = c4cVar.H;
         if (obj instanceof TLRPC.TL_messages_stickerSet) {
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
             if (this.x.isEmpty()) {
@@ -457,15 +457,15 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
                         tL_inputStickerSetID.id = stickerSet2.id;
                         tL_inputStickerSetID.access_hash = stickerSet2.access_hash;
                         arrayList2.add(tL_inputStickerSetID);
-                        showDialog(new az3(this, getParentActivity(), getResourceProvider(), arrayList2));
+                        showDialog(new qx3(this, getParentActivity(), getResourceProvider(), arrayList2));
                         return;
                     }
-                    showDialog(new x2b(getParentActivity(), this, null, tL_messages_stickerSet, null, null));
+                    showDialog(new u0b(getParentActivity(), this, null, tL_messages_stickerSet, null, null));
                     return;
                 }
                 return;
             }
-            r0((s1b) view);
+            q0((rza) view);
             return;
         }
         boolean z3 = obj instanceof TLRPC.StickerSetCovered;
@@ -479,21 +479,21 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
             if (b == 5) {
                 ArrayList arrayList3 = new ArrayList(1);
                 arrayList3.add(tL_inputStickerSetID2);
-                showDialog(new az3(this, getParentActivity(), getResourceProvider(), arrayList3));
+                showDialog(new qx3(this, getParentActivity(), getResourceProvider(), arrayList3));
                 return;
             }
-            showDialog(new x2b(getParentActivity(), this, tL_inputStickerSetID2, null, null, null));
+            showDialog(new u0b(getParentActivity(), this, tL_inputStickerSetID2, null, null, null));
             return;
         }
-        switch (c6cVar.d) {
+        switch (c4cVar.d) {
             case 1:
             case 8:
                 if (b == 5) {
                     ArrayList arrayList4 = new ArrayList();
-                    ArrayList g0 = g0();
-                    if (g0 != null) {
-                        for (int i = 0; i < g0.size(); i++) {
-                            TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) g0.get(i);
+                    ArrayList f0 = f0();
+                    if (f0 != null) {
+                        for (int i = 0; i < f0.size(); i++) {
+                            TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) f0.get(i);
                             if (stickerSetCovered != null && stickerSetCovered.set != null) {
                                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID3 = new TLRPC.TL_inputStickerSetID();
                                 TLRPC.StickerSet stickerSet4 = stickerSetCovered.set;
@@ -503,95 +503,95 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
                             }
                         }
                     }
-                    hs6.d0(this.currentAccount).e1(true, true);
-                    showDialog(new az3(this, getParentActivity(), getResourceProvider(), arrayList4));
+                    hq6.d0(this.currentAccount).e1(true, true);
+                    showDialog(new qx3(this, getParentActivity(), getResourceProvider(), arrayList4));
                     return;
                 }
-                p3c p3cVar = new p3c(getParentActivity(), this, new d4c(getParentActivity(), new f2b(this), new TLRPC.StickerSetCovered[10], new LongSparseArray(), new LongSparseArray(), null, null), null);
-                this.c = p3cVar;
-                p3cVar.show();
+                p1c p1cVar = new p1c(getParentActivity(), this, new d2c(getParentActivity(), new e0b(this), new TLRPC.StickerSetCovered[10], new LongSparseArray(), new LongSparseArray(), null, null), null);
+                this.c = p1cVar;
+                p1cVar.show();
                 return;
             case 2:
-                presentFragment(new ht(b));
+                presentFragment(new hs(b));
                 return;
             case 3:
                 presentFragment(new StickersActivity(5, null));
                 return;
             case 4:
-                presentFragment(new a39());
+                presentFragment(new y09());
                 return;
             case 5:
-                bu5 I = bu5.I(this, view);
-                if (gda.D == 0) {
+                cs5 I = cs5.I(this, view);
+                if (gba.D == 0) {
                     z = true;
                 } else {
                     z = false;
                 }
-                I.h(new ud(view, (byte) 7), jb6.M0(2131744086, null), z);
-                if (gda.D == 1) {
+                I.h(new uc(view, (byte) 7), k96.M0(2131744160, null), z);
+                if (gba.D == 1) {
                     z2 = true;
                 } else {
                     z2 = false;
                 }
-                I.h(new ud(view, (byte) 8), jb6.M0(2131744085, null), z2);
-                if (gda.D != 2) {
+                I.h(new uc(view, (byte) 8), k96.M0(2131744159, null), z2);
+                if (gba.D != 2) {
                     z4 = false;
                 }
-                I.h(new ud(view, (byte) 9), jb6.M0(2131744084, null), z4);
+                I.h(new uc(view, (byte) 9), k96.M0(2131744158, null), z4);
                 I.a0();
                 return;
             case 6:
-                gda.P0 = !gda.P0;
-                SharedPreferences.Editor edit = oc7.d1().edit();
-                edit.putBoolean("allowBigEmoji", gda.P0);
+                gba.P0 = !gba.P0;
+                SharedPreferences.Editor edit = na7.c1().edit();
+                edit.putBoolean("allowBigEmoji", gba.P0);
                 edit.apply();
-                ((bjb) view).setChecked(gda.P0);
+                ((ahb) view).setChecked(gba.P0);
                 return;
             case 7:
-                gda.N();
-                ((bjb) view).setChecked(gda.W);
+                gba.N();
+                ((ahb) view).setChecked(gba.W);
                 return;
             case 9:
-                gda.E = !gda.E;
-                SharedPreferences.Editor edit2 = oc7.d1().edit();
-                edit2.putBoolean("suggestAnimatedEmoji", gda.E);
+                gba.E = !gba.E;
+                SharedPreferences.Editor edit2 = na7.c1().edit();
+                edit2.putBoolean("suggestAnimatedEmoji", gba.E);
                 edit2.apply();
-                ((bjb) view).setChecked(gda.E);
+                ((ahb) view).setChecked(gba.E);
                 return;
             default:
                 return;
         }
     }
 
-    public final void m0(View view) {
-        r94 r94Var = (r94) view.getParent();
-        TLRPC.StickerSetCovered stickerSet = r94Var.getStickerSet();
+    public final void l0(View view) {
+        i84 i84Var = (i84) view.getParent();
+        TLRPC.StickerSetCovered stickerSet = i84Var.getStickerSet();
         Long valueOf = Long.valueOf(stickerSet.set.id);
         ArrayList arrayList = this.f;
         if (arrayList.contains(valueOf)) {
             return;
         }
         arrayList.add(Long.valueOf(stickerSet.set.id));
-        r94Var.f.a(true, true);
-        boolean z = r94Var.w;
+        i84Var.f.a(true, true);
+        boolean z = i84Var.w;
         int i = this.currentAccount;
         if (z) {
-            hs6.d0(i).h2(getParentActivity(), stickerSet, 0, this, false, false);
+            hq6.d0(i).h2(getParentActivity(), stickerSet, 0, this, false, false);
         } else {
-            hs6.d0(i).h2(getParentActivity(), stickerSet, 2, this, false, false);
+            hq6.d0(i).h2(getParentActivity(), stickerSet, 2, this, false, false);
         }
     }
 
-    public final void n0(View view) {
-        s1b s1bVar;
+    public final void m0(View view) {
+        rza rzaVar;
         TLRPC.TL_messages_stickerSet stickersSet;
         TLRPC.StickerSetCovered stickerSetCovered;
         TLRPC.StickerSetCovered stickerSetCovered2;
         if (view != null && (view.getParent() instanceof ViewGroup)) {
             ViewGroup viewGroup = (ViewGroup) view.getParent();
-            if ((viewGroup.getParent() instanceof s1b) && (stickersSet = (s1bVar = (s1b) viewGroup.getParent()).getStickersSet()) != null && stickersSet.set != null) {
+            if ((viewGroup.getParent() instanceof rza) && (stickersSet = (rzaVar = (rza) viewGroup.getParent()).getStickersSet()) != null && stickersSet.set != null) {
                 int i = 0;
-                if (s1bVar.E == view) {
+                if (rzaVar.E == view) {
                     ArrayList arrayList = getMediaDataController().t0[1];
                     while (true) {
                         if (i < arrayList.size()) {
@@ -614,7 +614,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
                             return;
                         }
                     }
-                    hs6 d0 = hs6.d0(this.currentAccount);
+                    hq6 d0 = hq6.d0(this.currentAccount);
                     Activity parentActivity = getParentActivity();
                     if (stickerSetCovered == null) {
                         stickerSetCovered2 = stickersSet;
@@ -622,16 +622,16 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
                         stickerSetCovered2 = stickerSetCovered;
                     }
                     d0.h2(parentActivity, stickerSetCovered2, 2, this, false, false);
-                } else if (s1bVar.F == view) {
-                    hs6.d0(this.currentAccount).h2(getParentActivity(), stickersSet, 0, this, false, true);
-                } else if (s1bVar.G == view) {
-                    showDialog(new kj8((org.telegram.ui.ActionBar.d) this, 11, false));
+                } else if (rzaVar.F == view) {
+                    hq6.d0(this.currentAccount).h2(getParentActivity(), stickersSet, 0, this, false, true);
+                } else if (rzaVar.G == view) {
+                    showDialog(new jh8((org.telegram.ui.ActionBar.d) this, 11, false));
                 }
             }
         }
     }
 
-    public final void o0(int i) {
+    public final void n0(int i) {
         StickersActivity stickersActivity;
         int i2;
         String M0;
@@ -646,12 +646,12 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
                     if (sb.length() != 0) {
                         sb.append("\n");
                     }
-                    sb.append(h0(tL_messages_stickerSet));
+                    sb.append(g0(tL_messages_stickerSet));
                 }
             }
             String sb2 = sb.toString();
-            tca G0 = tca.G0(this.fragmentView.getContext(), null, sb2, false, sb2);
-            G0.n2 = new x59(this, (byte) 16);
+            taa G0 = taa.G0(this.fragmentView.getContext(), null, sb2, false, sb2);
+            G0.n2 = new u39(this, (byte) 16);
             G0.show();
         } else if (i == 0 || i == 1) {
             ArrayList arrayList = new ArrayList(this.x.size());
@@ -667,20 +667,20 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
                 if (size3 != 1) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
                     if (i == 1) {
-                        alertDialog$Builder.a.S = jb6.a0(null, null, 2131751431, jb6.G(size3, "StickerSets", new Object[0]));
-                        alertDialog$Builder.a.U = jb6.a0(null, null, 2131751430, Integer.valueOf(size3));
-                        M0 = jb6.M0(2131751535, null);
+                        alertDialog$Builder.a.S = k96.a0(null, null, 2131751482, k96.G(size3, "StickerSets", new Object[0]));
+                        alertDialog$Builder.a.U = k96.a0(null, null, 2131751481, Integer.valueOf(size3));
+                        M0 = k96.M0(2131751586, null);
                     } else {
-                        alertDialog$Builder.a.S = jb6.a0(null, null, 2131754107, jb6.G(size3, "StickerSets", new Object[0]));
-                        alertDialog$Builder.a.U = jb6.a0(null, null, 2131754106, Integer.valueOf(size3));
-                        M0 = jb6.M0(2131754137, null);
+                        alertDialog$Builder.a.S = k96.a0(null, null, 2131754139, k96.G(size3, "StickerSets", new Object[0]));
+                        alertDialog$Builder.a.U = k96.a0(null, null, 2131754138, Integer.valueOf(size3));
+                        M0 = k96.M0(2131754169, null);
                     }
-                    alertDialog$Builder.j(M0, new yg(this, arrayList, i, (byte) 16));
-                    alertDialog$Builder.g(jb6.M0(2131752542, null), null);
-                    he heVar = alertDialog$Builder.a;
-                    showDialog(heVar);
-                    if (i == 1 && (textView = (TextView) heVar.c(-1)) != null) {
-                        anb.X(textView, cmb.p7, null);
+                    alertDialog$Builder.j(M0, new yf(this, arrayList, i, (byte) 15));
+                    alertDialog$Builder.g(k96.M0(2131752577, null), null);
+                    hd hdVar = alertDialog$Builder.a;
+                    showDialog(hdVar);
+                    if (i == 1 && (textView = (TextView) hdVar.c(-1)) != null) {
+                        zkb.X(textView, bkb.p7, null);
                         return;
                     }
                     return;
@@ -691,7 +691,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
                         TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) this.d.get(i3);
                         if (this.x.contains(Long.valueOf(tL_messages_stickerSet3.set.id))) {
                             if (i == 0) {
-                                hs6 d0 = hs6.d0(this.currentAccount);
+                                hq6 d0 = hq6.d0(this.currentAccount);
                                 Activity parentActivity = getParentActivity();
                                 if (!tL_messages_stickerSet3.set.archived) {
                                     i2 = 1;
@@ -703,22 +703,22 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
                             } else {
                                 stickersActivity = this;
                                 if (i == 1) {
-                                    hs6.d0(stickersActivity.currentAccount).h2(stickersActivity.getParentActivity(), tL_messages_stickerSet3, 0, stickersActivity, true, true);
+                                    hq6.d0(stickersActivity.currentAccount).h2(stickersActivity.getParentActivity(), tL_messages_stickerSet3, 0, stickersActivity, true, true);
                                 } else if (i == 2) {
                                     try {
                                         Intent intent = new Intent("android.intent.action.SEND");
                                         intent.setType("text/plain");
-                                        intent.putExtra("android.intent.extra.TEXT", stickersActivity.h0(tL_messages_stickerSet3));
-                                        stickersActivity.getParentActivity().startActivityForResult(Intent.createChooser(intent, jb6.M0(2131744535, null)), 500);
+                                        intent.putExtra("android.intent.extra.TEXT", stickersActivity.g0(tL_messages_stickerSet3));
+                                        stickersActivity.getParentActivity().startActivityForResult(Intent.createChooser(intent, k96.M0(2131744609, null)), 500);
                                     } catch (Exception e) {
-                                        fc4.g(e, true);
+                                        fa4.g(e, true);
                                     }
                                 } else if (i == 3) {
                                     try {
-                                        ((ClipboardManager) org.telegram.messenger.a.b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", stickersActivity.h0(tL_messages_stickerSet3)));
-                                        c41.j(stickersActivity).j();
+                                        ((ClipboardManager) org.telegram.messenger.a.b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", stickersActivity.g0(tL_messages_stickerSet3)));
+                                        u21.j(stickersActivity).j();
                                     } catch (Exception e2) {
-                                        fc4.g(e2, true);
+                                        fa4.g(e2, true);
                                     }
                                 } else if (i == 4) {
                                     HashSet hashSet = stickersActivity.x;
@@ -730,7 +730,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
                                         hashSet.add(Long.valueOf(stickerSet.id));
                                     }
                                     stickersActivity.a.g3.O(true);
-                                    stickersActivity.d0();
+                                    stickersActivity.c0();
                                 }
                             }
                         } else {
@@ -741,75 +741,21 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
                         break;
                     }
                 }
-                stickersActivity.e0();
+                stickersActivity.d0();
             }
         }
     }
 
-    @Override
-    public final boolean onBackPressed(boolean z) {
-        if (!this.x.isEmpty()) {
-            if (z) {
-                e0();
-                return false;
-            }
-            return false;
-        }
-        return super.onBackPressed(z);
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        super.onFragmentCreate();
-        hs6 d0 = hs6.d0(this.currentAccount);
-        byte b = this.s;
-        d0.D(b);
-        if (b == 0) {
-            hs6.d0(this.currentAccount).z();
-            hs6.d0(this.currentAccount).D(1);
-            hs6.d0(this.currentAccount).D(5);
-        } else if (b == 6) {
-            hs6.d0(this.currentAccount).y();
-            nm7.f(this.currentAccount).b(this, nm7.A0);
-        }
-        nm7.f(this.currentAccount).b(this, nm7.x0);
-        nm7.f(this.currentAccount).b(this, nm7.Z0);
-        nm7.f(this.currentAccount).b(this, nm7.z0);
-        nm7.f(this.currentAccount).b(this, nm7.j5);
-        return true;
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        if (this.s == 6) {
-            nm7.f(this.currentAccount).n(this, nm7.A0);
-        }
-        nm7.f(this.currentAccount).n(this, nm7.x0);
-        nm7.f(this.currentAccount).n(this, nm7.Z0);
-        nm7.f(this.currentAccount).n(this, nm7.z0);
-        nm7.f(this.currentAccount).n(this, nm7.j5);
-    }
-
-    @Override
-    public final void onResume() {
-        super.onResume();
-        q7c q7cVar = this.a;
-        if (q7cVar != null) {
-            q7cVar.g3.O(true);
-        }
-    }
-
-    public final void p0() {
+    public final void o0() {
         boolean z;
         boolean z2;
         if (this.r) {
             this.r = false;
-            hs6 d0 = hs6.d0(this.currentAccount);
+            hq6 d0 = hq6.d0(this.currentAccount);
             long[] jArr = d0.Y;
             ArrayList[] arrayListArr = d0.H;
             byte b = this.s;
-            jArr[b] = hs6.s(arrayListArr[b]);
+            jArr[b] = hq6.s(arrayListArr[b]);
             this.n++;
             TLRPC.TL_messages_reorderStickerSets tL_messages_reorderStickerSets = new TLRPC.TL_messages_reorderStickerSets();
             if (b == 1) {
@@ -826,43 +772,97 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
             tL_messages_reorderStickerSets.emojis = z2;
             int i = 0;
             while (i < this.d.size()) {
-                i = mle.c(i, 1, ((TLRPC.TL_messages_stickerSet) this.d.get(i)).set.id, tL_messages_reorderStickerSets.order);
+                i = mue.c(i, 1, ((TLRPC.TL_messages_stickerSet) this.d.get(i)).set.id, tL_messages_reorderStickerSets.order);
             }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_reorderStickerSets, new go9(this, (byte) 6));
-            nm7.f(this.currentAccount).k(nm7.x0, Integer.valueOf(b), Boolean.TRUE);
-            if (gda.W) {
-                gda.N();
-                c41.b0(this).I(2131624018, jb6.M0(2131751274, null), jb6.M0(2131751273, null)).j();
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_reorderStickerSets, new wx9(this, (byte) 5));
+            kk7.f(this.currentAccount).k(kk7.w0, Integer.valueOf(b), Boolean.TRUE);
+            if (gba.W) {
+                gba.N();
+                u21.b0(this).I(2131624018, k96.M0(2131751325, null), k96.M0(2131751324, null)).j();
                 this.a.g3.O(true);
             }
         }
     }
 
-    public final void q0(View view) {
-        if (view instanceof vkb) {
-            vkb vkbVar = (vkb) view;
-            String S = hs6.d0(this.currentAccount).S();
+    @Override
+    public final boolean onBackPressed(boolean z) {
+        if (!this.x.isEmpty()) {
+            if (z) {
+                d0();
+                return false;
+            }
+            return false;
+        }
+        return super.onBackPressed(z);
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        super.onFragmentCreate();
+        hq6 d0 = hq6.d0(this.currentAccount);
+        byte b = this.s;
+        d0.D(b);
+        if (b == 0) {
+            hq6.d0(this.currentAccount).z();
+            hq6.d0(this.currentAccount).D(1);
+            hq6.d0(this.currentAccount).D(5);
+        } else if (b == 6) {
+            hq6.d0(this.currentAccount).y();
+            kk7.f(this.currentAccount).b(this, kk7.z0);
+        }
+        kk7.f(this.currentAccount).b(this, kk7.w0);
+        kk7.f(this.currentAccount).b(this, kk7.Y0);
+        kk7.f(this.currentAccount).b(this, kk7.y0);
+        kk7.f(this.currentAccount).b(this, kk7.h5);
+        return true;
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        if (this.s == 6) {
+            kk7.f(this.currentAccount).n(this, kk7.z0);
+        }
+        kk7.f(this.currentAccount).n(this, kk7.w0);
+        kk7.f(this.currentAccount).n(this, kk7.Y0);
+        kk7.f(this.currentAccount).n(this, kk7.y0);
+        kk7.f(this.currentAccount).n(this, kk7.h5);
+    }
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        q5c q5cVar = this.a;
+        if (q5cVar != null) {
+            q5cVar.g3.O(true);
+        }
+    }
+
+    public final void p0(View view) {
+        if (view instanceof uib) {
+            uib uibVar = (uib) view;
+            String S = hq6.d0(this.currentAccount).S();
             if (S != null) {
                 if (S.startsWith("animated_")) {
                     try {
-                        vm m = vm.m(this.currentAccount, Long.parseLong(S.substring(9)), null, 2);
-                        m.b(vkbVar.getValueBackupImageView());
-                        vkbVar.getValueBackupImageView().setImageDrawable(m);
+                        vl m = vl.m(this.currentAccount, Long.parseLong(S.substring(9)), null, 2);
+                        m.b(uibVar.getValueBackupImageView());
+                        uibVar.getValueBackupImageView().setImageDrawable(m);
                         return;
                     } catch (Exception unused) {
                         return;
                     }
                 }
-                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) hs6.d0(this.currentAccount).r.get(S);
+                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) hq6.d0(this.currentAccount).r.get(S);
                 if (tL_availableReaction != null) {
-                    vkbVar.getValueBackupImageView().getImageReceiver().d0(gn5.b(tL_availableReaction.center_icon), "100_100_lastreactframe", eq3.d(tL_availableReaction.static_icon.thumbs, cmb.Z6, 1.0f, false), "webp", tL_availableReaction, 1);
+                    uibVar.getValueBackupImageView().getImageReceiver().d0(gl5.b(tL_availableReaction.center_icon), "100_100_lastreactframe", uo3.d(tL_availableReaction.static_icon.thumbs, bkb.Z6, 1.0f, false), "webp", tL_availableReaction, 1);
                 }
             }
         }
     }
 
-    public final void r0(s1b s1bVar) {
-        TLRPC.TL_messages_stickerSet stickersSet = s1bVar.getStickersSet();
+    public final void q0(rza rzaVar) {
+        TLRPC.TL_messages_stickerSet stickersSet = rzaVar.getStickersSet();
         if (stickersSet == null) {
             return;
         }
@@ -870,33 +870,33 @@ public class StickersActivity extends org.telegram.ui.ActionBar.d implements jm7
         HashSet hashSet = this.x;
         if (hashSet.contains(valueOf)) {
             hashSet.remove(Long.valueOf(stickersSet.set.id));
-            s1bVar.b(false, true);
+            rzaVar.b(false, true);
         } else {
             hashSet.add(Long.valueOf(stickersSet.set.id));
-            s1bVar.b(true, true);
+            rzaVar.b(true, true);
         }
         this.a.g3.O(true);
-        d0();
+        c0();
     }
 
-    public final void s0(ArrayList arrayList) {
+    public final void r0(ArrayList arrayList) {
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i = 0;
         while (i < size) {
             Object obj = arrayList.get(i);
             i++;
-            Object obj2 = ((c6c) obj).H;
+            Object obj2 = ((c4c) obj).H;
             if (obj2 instanceof TLRPC.TL_messages_stickerSet) {
                 arrayList2.add((TLRPC.TL_messages_stickerSet) obj2);
             }
         }
         this.d = arrayList2;
         this.r = true;
-        Collections.sort(hs6.d0(this.currentAccount).t0(this.s), new i01(this, (byte) 7));
-        b2b b2bVar = this.y;
-        gm.r(b2bVar);
-        gm.d3(b2bVar, 1000L);
+        Collections.sort(hq6.d0(this.currentAccount).t0(this.s), new bz0(this, (byte) 6));
+        a0b a0bVar = this.y;
+        gl.r(a0bVar);
+        gl.d3(a0bVar, 1000L);
     }
 
     @Override

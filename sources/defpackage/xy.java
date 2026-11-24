@@ -1,64 +1,29 @@
 package defpackage;
 
-import org.telegram.tgnet.ConnectionsManager;
-public final class xy implements bma {
-    public final byte a = 2;
-    public final long b;
-    public final int c;
-    public final byte d;
+import android.content.Context;
+import org.telegram.tgnet.tl.TL_stars;
+public final class xy implements Runnable {
+    public final byte a;
+    public final Context b;
+    public final wjb c;
+    public final TL_stars.StarGift d;
 
-    public xy(int i, long j, int i2) {
-        this.c = i;
-        this.b = j;
-        this.d = i2;
+    public xy(Context context, wjb wjbVar, TL_stars.StarGift starGift, byte b) {
+        this.a = b;
+        this.b = context;
+        this.c = wjbVar;
+        this.d = starGift;
     }
 
-    public final boolean a(int i, int i2) {
-        byte b = this.d;
-        if (b != 1) {
-            if ((b == 2 || b == 3) && ConnectionsManager.getInstance(i).getCurrentTime() >= this.b) {
-                return false;
-            }
-        } else if (this.c >= i2) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int b() {
-        byte b = this.d;
-        if (b != 2) {
-            if (b != 3) {
-                return 14;
-            }
-            return 16;
-        }
-        return 15;
-    }
-
-    public final String toString() {
+    @Override
+    public final void run() {
         switch (this.a) {
             case 0:
-                StringBuilder sb = new StringBuilder("AtomSizeTooSmall{type=");
-                sb.append(hac.f0(this.c));
-                sb.append(", size=");
-                sb.append(this.b);
-                sb.append(", minHeaderSize=");
-                return hg9.k(sb, this.d, "}");
+                ez.b1(this.c, this.b, this.d);
+                return;
             default:
-                return super.toString();
+                ez.b1(this.c, this.b, this.d);
+                return;
         }
-    }
-
-    public xy(long j, int i, int i2) {
-        this.b = j;
-        this.c = i;
-        this.d = i2;
-    }
-
-    public xy(int i, int i2, long j) {
-        this.d = i;
-        this.b = j;
-        this.c = i2;
     }
 }

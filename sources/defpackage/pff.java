@@ -1,3 +1,5 @@
 package defpackage;
-public abstract class pff {
+
+import android.os.IInterface;
+public interface pff extends IInterface {
 }

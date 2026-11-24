@@ -1,3 +1,3 @@
 package defpackage;
-public interface sg4 {
+public final class sg4 extends v30 {
 }

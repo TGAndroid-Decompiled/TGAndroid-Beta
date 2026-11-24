@@ -8,8 +8,8 @@ public class OldVideoPlayerRewinder {
     private long rewindLastUpdatePlayerTime;
     private long startRewindFrom;
     private Runnable updateRewindRunnable;
-    private ndc videoPlayer;
-    private bc8 webView;
+    private lbc videoPlayer;
+    private aa8 webView;
     private float playSpeed = 1.0f;
     private final Runnable backSeek = new Runnable() {
         {
@@ -71,7 +71,7 @@ public class OldVideoPlayerRewinder {
                     }
                     OldVideoPlayerRewinder oldVideoPlayerRewinder10 = OldVideoPlayerRewinder.this;
                     if (oldVideoPlayerRewinder10.rewindCount > 0) {
-                        gm.d3(oldVideoPlayerRewinder10.backSeek, 16L);
+                        gl.d3(oldVideoPlayerRewinder10.backSeek, 16L);
                         return;
                     }
                     return;
@@ -94,27 +94,27 @@ public class OldVideoPlayerRewinder {
     }
 
     private long getCurrentPosition() {
-        bc8 bc8Var = this.webView;
-        if (bc8Var != null) {
-            return bc8Var.getCurrentPosition();
+        aa8 aa8Var = this.webView;
+        if (aa8Var != null) {
+            return aa8Var.getCurrentPosition();
         }
-        ndc ndcVar = this.videoPlayer;
-        if (ndcVar == null) {
+        lbc lbcVar = this.videoPlayer;
+        if (lbcVar == null) {
             return 0L;
         }
-        return ndcVar.S();
+        return lbcVar.S();
     }
 
     public long getDuration() {
-        bc8 bc8Var = this.webView;
-        if (bc8Var != null) {
-            return bc8Var.getVideoDuration();
+        aa8 aa8Var = this.webView;
+        if (aa8Var != null) {
+            return aa8Var.getVideoDuration();
         }
-        ndc ndcVar = this.videoPlayer;
-        if (ndcVar == null) {
+        lbc lbcVar = this.videoPlayer;
+        if (lbcVar == null) {
             return 0L;
         }
-        return ndcVar.U();
+        return lbcVar.U();
     }
 
     private void incrementRewindCount() {
@@ -122,15 +122,15 @@ public class OldVideoPlayerRewinder {
     }
 
     private boolean isPlaying() {
-        bc8 bc8Var = this.webView;
-        if (bc8Var != null) {
-            return bc8Var.H;
+        aa8 aa8Var = this.webView;
+        if (aa8Var != null) {
+            return aa8Var.H;
         }
-        ndc ndcVar = this.videoPlayer;
-        if (ndcVar == null) {
+        lbc lbcVar = this.videoPlayer;
+        if (lbcVar == null) {
             return false;
         }
-        return ndcVar.c0();
+        return lbcVar.c0();
     }
 
     public void lambda$incrementRewindCount$0() {
@@ -139,29 +139,29 @@ public class OldVideoPlayerRewinder {
     }
 
     public void seekTo(long j) {
-        bc8 bc8Var = this.webView;
-        if (bc8Var != null) {
-            bc8Var.i(j);
+        aa8 aa8Var = this.webView;
+        if (aa8Var != null) {
+            aa8Var.i(j);
             return;
         }
-        ndc ndcVar = this.videoPlayer;
-        if (ndcVar == null) {
+        lbc lbcVar = this.videoPlayer;
+        if (lbcVar == null) {
             return;
         }
-        ndcVar.o0(j);
+        lbcVar.o0(j);
     }
 
     private void setPlaybackSpeed(float f) {
-        bc8 bc8Var = this.webView;
-        if (bc8Var != null) {
-            bc8Var.setPlaybackSpeed(f);
+        aa8 aa8Var = this.webView;
+        if (aa8Var != null) {
+            aa8Var.setPlaybackSpeed(f);
             return;
         }
-        ndc ndcVar = this.videoPlayer;
-        if (ndcVar == null) {
+        lbc lbcVar = this.videoPlayer;
+        if (lbcVar == null) {
             return;
         }
-        ndcVar.u0(f);
+        lbcVar.u0(f);
     }
 
     public void cancelRewind() {
@@ -176,10 +176,10 @@ public class OldVideoPlayerRewinder {
                 setPlaybackSpeed(this.playSpeed);
             }
         }
-        gm.r(this.backSeek);
+        gl.r(this.backSeek);
         Runnable runnable = this.updateRewindRunnable;
         if (runnable != null) {
-            gm.r(runnable);
+            gl.r(runnable);
             this.updateRewindRunnable = null;
         }
         onRewindCanceled();
@@ -189,16 +189,16 @@ public class OldVideoPlayerRewinder {
         return ((float) this.rewindBackSeekPlayerPosition) / ((float) getDuration());
     }
 
-    public void startRewind(bc8 bc8Var, boolean z, float f) {
-        this.webView = bc8Var;
+    public void startRewind(aa8 aa8Var, boolean z, float f) {
+        this.webView = aa8Var;
         this.playSpeed = f;
         this.rewindForward = z;
         cancelRewind();
         incrementRewindCount();
     }
 
-    public void startRewind(ndc ndcVar, boolean z, float f) {
-        this.videoPlayer = ndcVar;
+    public void startRewind(lbc lbcVar, boolean z, float f) {
+        this.videoPlayer = lbcVar;
         this.playSpeed = f;
         this.rewindForward = z;
         cancelRewind();

@@ -1,17 +1,21 @@
 package defpackage;
-public final class ppe implements cq7 {
-    public static final ppe a = new Object();
 
-    static {
-        mlb.z(mlb.q(ikd.class, new cid(1)));
-    }
+import java.io.Serializable;
+public enum ppe {
+    VOID(Void.class, null),
+    INT(Integer.class, 0),
+    LONG(Long.class, 0L),
+    FLOAT(Float.class, Float.valueOf(0.0f)),
+    DOUBLE(Double.class, Double.valueOf(0.0d)),
+    BOOLEAN(Boolean.class, Boolean.FALSE),
+    STRING(String.class, ""),
+    BYTE_STRING(sie.class, sie.c),
+    ENUM(Integer.class, null),
+    MESSAGE(Object.class, null);
+    
+    public final Class a;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    ppe(Class cls, Serializable serializable) {
+        this.a = cls;
     }
 }

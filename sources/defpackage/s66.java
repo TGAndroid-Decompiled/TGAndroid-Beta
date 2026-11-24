@@ -1,167 +1,154 @@
 package defpackage;
 
-import android.graphics.Color;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.RuntimeShader;
-import java.util.Arrays;
-public final class s66 {
-    public float A;
-    public boolean B;
-    public final RenderNode a;
-    public final RuntimeShader b;
-    public RuntimeShader c;
-    public RuntimeShader d;
-    public RenderEffect e;
-    public RenderEffect[] f;
-    public float[] g;
-    public float[] h;
-    public int i;
-    public float j;
-    public float k;
-    public float l;
-    public float m;
-    public float n;
-    public float o;
-    public float p;
-    public float q;
-    public float r;
-    public int s;
-    public float t;
-    public float u;
-    public float v;
-    public float w;
-    public float x;
-    public float y;
-    public float z;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.os.Build;
+import android.text.Layout;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.TextView;
+import org.telegram.messenger.ImageReceiver;
+public final class s66 extends ViewGroup {
+    public int E;
+    public boolean F;
+    public final t66 G;
+    public final long a;
+    public boolean b;
+    public long c;
+    public final ImageReceiver d;
+    public final TextView e;
+    public final qn3 f;
+    public final Paint h;
+    public final lm n;
+    public final lm r;
+    public final RectF s;
+    public final Path w;
+    public int x;
+    public int y;
 
-    public s66(RenderNode renderNode) {
-        this.a = renderNode;
-        RuntimeShader b = yn3.b(gm.v2(null, 2131624083));
-        this.b = b;
-        this.d = b;
-        RenderEffect createRuntimeShaderEffect = RenderEffect.createRuntimeShaderEffect(b, "img");
-        this.e = createRuntimeShaderEffect;
-        renderNode.setRenderEffect(createRuntimeShaderEffect);
+    public s66(t66 t66Var, Context context, long j) {
+        super(context);
+        this.G = t66Var;
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.d = imageReceiver;
+        Paint paint = new Paint(1);
+        this.h = paint;
+        s33 s33Var = s33.h;
+        this.n = new lm(this, 0L, 320L, s33Var);
+        this.r = new lm(this, 0L, 320L, s33Var);
+        this.s = new RectF();
+        this.w = new Path();
+        this.a = j;
+        TextView textView = new TextView(context);
+        this.e = textView;
+        textView.setTextSize(1, 14.0f);
+        textView.setTextColor(-1);
+        textView.setIncludeFontPadding(false);
+        addView(textView);
+        qn3 qn3Var = new qn3(textView);
+        this.f = qn3Var;
+        qn3Var.c(-9717249, -1, true);
+        imageReceiver.q0(gl.L(11.0f));
+        paint.setColor(-13946053);
+        setWillNotDraw(false);
     }
 
-    public final void a(float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8) {
-        if (this.x == f && this.y == f2 && this.z == f3 && this.A == f4 && this.t == f5 && this.u == f6 && this.v == f7 && this.w == f8) {
-            return;
-        }
-        this.x = f;
-        this.y = f2;
-        this.z = f3;
-        this.A = f4;
-        this.t = f5;
-        this.u = f6;
-        this.v = f7;
-        this.w = f8;
-        this.B = true;
-    }
-
-    public final void b(float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8, float f9, float f10, float f11, int i, float f12, float f13, int i2) {
-        float f14;
-        float f15;
-        float f16;
-        float f17;
-        int length;
-        float f18 = f5 + f8;
-        if (f18 > f2) {
-            float f19 = f5 / f18;
-            f14 = f2 * f19;
-            f15 = (1.0f - f19) * f2;
-        } else {
-            f14 = f5;
-            f15 = f8;
-        }
-        float f20 = f6 + f7;
-        if (f20 > f2) {
-            float f21 = f6 / f20;
-            f16 = f2 * f21;
-            f17 = (1.0f - f21) * f2;
-        } else {
-            f16 = f6;
-            f17 = f7;
-        }
-        if (this.i != i2 || Math.abs(this.j - f) > 0.1f || Math.abs(this.k - f2) > 0.1f || Math.abs(this.l - f14) > 0.1f || Math.abs(this.m - f16) > 0.1f || Math.abs(this.n - f17) > 0.1f || Math.abs(this.o - f15) > 0.1f || Math.abs(this.p - f9) > 0.1f || Math.abs(this.q - f10) > 0.1f || Math.abs(this.r - f11) > 0.1f || this.s != i || this.B) {
-            this.B = false;
-            if (this.t > 0.0f) {
-                RuntimeShader runtimeShader = this.c;
-                if (runtimeShader == null) {
-                    yn3.c();
-                    runtimeShader = yn3.b(gm.v2(null, 2131624082));
-                    this.c = runtimeShader;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        boolean z = false;
+        float e = this.n.e(false, this.y);
+        float e2 = this.r.e(false, this.E);
+        RectF rectF = this.s;
+        float f = 0.0f;
+        rectF.set(0.0f, 0.0f, e, e2);
+        Path path = this.w;
+        path.rewind();
+        path.addRoundRect(rectF, gl.L(14.0f), gl.L(14.0f), Path.Direction.CW);
+        canvas.drawPath(path, this.h);
+        if (Build.VERSION.SDK_INT >= 29) {
+            t66 t66Var = this.G;
+            if (t66Var.b != null && canvas.isHardwareAccelerated()) {
+                View view = this;
+                float f2 = 0.0f;
+                while (true) {
+                    if (view != t66Var.d) {
+                        f += view.getX();
+                        f2 += view.getY();
+                        ViewParent parent = view.getParent();
+                        if (!(parent instanceof View)) {
+                            break;
+                        }
+                        view = (View) parent;
+                    } else {
+                        z = true;
+                        break;
+                    }
                 }
-                this.d = runtimeShader;
-            } else {
-                this.d = this.b;
-            }
-            this.s = i;
-            float alpha = Color.alpha(i) / 255.0f;
-            float f22 = 1.0f / i2;
-            this.i = i2;
-            this.j = f;
-            this.k = f2;
-            this.n = f17;
-            this.m = f16;
-            this.o = f15;
-            this.l = f14;
-            this.p = f9;
-            this.d.setFloatUniform("size", (f / 2.0f) * f22, (f2 / 2.0f) * f22);
-            this.d.setFloatUniform("radius", f17 * f22, f16 * f22, f15 * f22, f14 * f22);
-            this.d.setFloatUniform("thickness", f9 * f22);
-            RuntimeShader runtimeShader2 = this.d;
-            this.q = f10;
-            runtimeShader2.setFloatUniform("refract_intensity", f10);
-            RuntimeShader runtimeShader3 = this.d;
-            this.r = f11;
-            runtimeShader3.setFloatUniform("refract_index", f11);
-            this.d.setFloatUniform("foreground_color_premultiplied", (Color.red(i) / 255.0f) * alpha, (Color.green(i) / 255.0f) * alpha, (Color.blue(i) / 255.0f) * alpha, alpha);
-            RuntimeShader runtimeShader4 = this.d;
-            if (runtimeShader4 == this.c) {
-                runtimeShader4.setFloatUniform("arrow", this.t * f22, this.u * f22, this.v * f22, this.w * f22);
-                this.d.setFloatUniform("arrow_axis", this.x * f22, this.y * f22, this.z, this.A);
-            }
-            int i3 = (i2 * i2) + 1;
-            RenderEffect[] renderEffectArr = this.f;
-            if (renderEffectArr != null && renderEffectArr.length == i3) {
-                Arrays.fill(renderEffectArr, (Object) null);
-            } else {
-                this.f = new RenderEffect[i3];
-                this.g = new float[i3];
-                this.h = new float[i3];
+                if (z) {
+                    canvas.save();
+                    canvas.clipPath(path);
+                    canvas.translate(-f, -f2);
+                    float f3 = t66Var.c;
+                    canvas.scale(f3, f3);
+                    canvas.drawRenderNode(t66Var.b);
+                    canvas.restore();
+                }
             }
         }
-        float f23 = i2;
-        float f24 = (((f / 2.0f) + f3) - f12) / f23;
-        float f25 = (((f2 / 2.0f) + f4) - f13) / f23;
-        if (f12 == ((int) f12) && f13 == ((int) f13)) {
-            int i4 = (int) (-f13);
-            int i5 = i4 % i2;
-            if (i5 == 0) {
-                i5 = 0;
-            } else if ((((i4 ^ i2) >> 31) | 1) <= 0) {
-                i5 += i2;
-            }
-            int i6 = (int) (-f12);
-            int i7 = i6 % i2;
-            length = (i5 * i2) + (i7 == 0 ? 0 : (((i6 ^ i2) >> 31) | 1) > 0 ? i7 : i7 + i2);
-        } else {
-            length = this.f.length - 1;
+        canvas.save();
+        canvas.clipPath(path);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+        this.d.h(canvas, null);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.d.I();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.d.K();
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        TextView textView = this.e;
+        Layout layout = textView.getLayout();
+        int L = gl.L(19.0f);
+        int i5 = 0;
+        if (layout != null && layout.getLineCount() > 0) {
+            i5 = layout.getLineBaseline(0);
         }
-        RenderEffect renderEffect = this.f[length];
-        if (renderEffect == null || this.g[length] != f24 || this.h[length] != f25) {
-            this.d.setFloatUniform("center", f24, f25);
-            renderEffect = RenderEffect.createRuntimeShaderEffect(this.d, "img");
-            this.f[length] = renderEffect;
-            this.g[length] = f24;
-            this.h[length] = f25;
+        int i6 = L - i5;
+        textView.layout(gl.L(32.0f), i6, textView.getMeasuredWidth() + gl.L(32.0f), textView.getMeasuredHeight() + i6);
+        this.d.i0(gl.L(4.0f), gl.L(3.0f), gl.L(22.0f), gl.L(22.0f));
+        setPivotX(0.0f);
+        setPivotY(i4 - i2);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size - gl.L(44.0f)), Integer.MIN_VALUE);
+        TextView textView = this.e;
+        textView.measure(makeMeasureSpec, 0);
+        this.y = gl.L(44.0f) + textView.getMeasuredWidth();
+        int e = ls6.e(8.0f, textView.getMeasuredHeight(), gl.L(28.0f));
+        this.E = e;
+        setMeasuredDimension(size, e);
+        if (!this.F) {
+            this.F = true;
+            this.n.e(true, this.y);
+            this.r.e(true, this.E);
         }
-        if (this.e != renderEffect) {
-            RenderNode renderNode = this.a;
-            this.e = renderEffect;
-            renderNode.setRenderEffect(renderEffect);
-        }
+        invalidate();
     }
 }

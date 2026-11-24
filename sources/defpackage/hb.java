@@ -26,7 +26,7 @@ public final class hb implements View.OnClickListener {
 
     @Override
     public final void onClick(View view) {
-        qac qacVar;
+        p8c p8cVar;
         boolean z;
         boolean z2;
         boolean z3;
@@ -39,13 +39,13 @@ public final class hb implements View.OnClickListener {
         boolean z10;
         boolean z11;
         boolean z12;
-        kk9 N2;
-        nk9 q;
+        ii9 N2;
+        li9 q;
         boolean z13;
         String M0;
         int i;
         int i2;
-        TLRPC.Chat L0;
+        TLRPC.Chat K0;
         TLRPC.User user;
         TLRPC.EncryptedChat encryptedChat;
         boolean z14;
@@ -82,108 +82,108 @@ public final class hb implements View.OnClickListener {
                 ibVar.D0();
                 return;
             case 1:
-                View.OnClickListener onClickListener = ((ew1) obj).b[b2];
+                View.OnClickListener onClickListener = ((su1) obj).b[b2];
                 if (onClickListener != null) {
                     onClickListener.onClick(view);
                     return;
                 }
                 return;
             case 2:
-                v51 v51Var = ((q02) obj).h;
-                if (v51Var != null) {
-                    v51Var.h(b2);
+                o41 o41Var = ((dz1) obj).h;
+                if (o41Var != null) {
+                    o41Var.g(b2);
                     return;
                 }
                 return;
             case 3:
-                jx5 jx5Var = (jx5) obj;
-                jx5Var.R.dismiss();
-                int i5 = jx5Var.d0;
+                jv5 jv5Var = (jv5) obj;
+                jv5Var.R.dismiss();
+                int i5 = jv5Var.d0;
                 if (i5 >= 0) {
-                    v61 v61Var = jx5Var.e0;
-                    int[] iArr = v61Var.c;
-                    if (!v61Var.b) {
-                        v61Var.b = true;
+                    o51 o51Var = jv5Var.e0;
+                    int[] iArr = o51Var.c;
+                    if (!o51Var.b) {
+                        o51Var.b = true;
                         for (int i6 = 0; i6 < 4; i6++) {
-                            iArr[i6] = gda.q().getInt(hg9.j(i6, "keep_media_type_"), v61.b(i6));
+                            iArr[i6] = gba.q().getInt(de9.k(i6, "keep_media_type_"), o51.b(i6));
                         }
                     }
                     iArr[i5] = b2;
-                    gda.q().edit().putInt("keep_media_type_" + i5, b2).apply();
-                    gx5 gx5Var = jx5Var.f0;
-                    if (gx5Var != null) {
-                        gx5Var.a(b2);
+                    gba.q().edit().putInt("keep_media_type_" + i5, b2).apply();
+                    gv5 gv5Var = jv5Var.f0;
+                    if (gv5Var != null) {
+                        gv5Var.a(b2);
                         return;
                     }
                     return;
                 }
-                gx5 gx5Var2 = jx5Var.f0;
-                if (gx5Var2 != null) {
-                    gx5Var2.a(b2);
+                gv5 gv5Var2 = jv5Var.f0;
+                if (gv5Var2 != null) {
+                    gv5Var2.a(b2);
                     return;
                 }
                 return;
             case 4:
-                xz7 xz7Var = (xz7) obj;
-                az7 az7Var = xz7Var.E1;
-                xz7Var.T0 = b2;
+                vx7 vx7Var = (vx7) obj;
+                xw7 xw7Var = vx7Var.E1;
+                vx7Var.T0 = b2;
                 if (b2 == 1) {
-                    xz7Var.j0 = xz7Var.h0;
+                    vx7Var.j0 = vx7Var.h0;
                 } else if (b2 == 4) {
-                    xz7Var.j0 = xz7Var.i0;
+                    vx7Var.j0 = vx7Var.i0;
                 } else if (b2 == 2) {
-                    xz7Var.j0 = xz7Var.f0;
+                    vx7Var.j0 = vx7Var.f0;
                 } else if (b2 == 3) {
-                    xz7Var.j0 = xz7Var.g0;
+                    vx7Var.j0 = vx7Var.g0;
                 } else {
-                    xz7Var.j0 = xz7Var.e0;
+                    vx7Var.j0 = vx7Var.e0;
                 }
-                xw9 xw9Var = (xw9) view.getTag();
-                PhotoViewer.r0().T1(null, xz7Var, null);
+                uu9 uu9Var = (uu9) view.getTag();
+                PhotoViewer.r0().T1(null, vx7Var, null);
                 if (b2 == 1) {
                     ArrayList arrayList = new ArrayList();
-                    arrayList.add(xz7Var.k1);
-                    PhotoViewer.r0().j1(arrayList, 0, az7Var);
+                    arrayList.add(vx7Var.k1);
+                    PhotoViewer.r0().k1(arrayList, 0, xw7Var);
                     return;
                 } else if (b2 == 2) {
                     ArrayList arrayList2 = new ArrayList();
-                    arrayList2.add(xz7Var.m1);
-                    PhotoViewer.r0().j1(arrayList2, 0, az7Var);
+                    arrayList2.add(vx7Var.m1);
+                    PhotoViewer.r0().k1(arrayList2, 0, xw7Var);
                     return;
                 } else if (b2 == 3) {
                     ArrayList arrayList3 = new ArrayList();
-                    arrayList3.add(xz7Var.n1);
-                    PhotoViewer.r0().j1(arrayList3, 0, az7Var);
+                    arrayList3.add(vx7Var.n1);
+                    PhotoViewer.r0().k1(arrayList3, 0, xw7Var);
                     return;
                 } else if (b2 == 0) {
                     PhotoViewer r0 = PhotoViewer.r0();
-                    ArrayList arrayList4 = xz7Var.j1;
-                    r0.j1(arrayList4, arrayList4.indexOf(xw9Var), az7Var);
+                    ArrayList arrayList4 = vx7Var.j1;
+                    r0.k1(arrayList4, arrayList4.indexOf(uu9Var), xw7Var);
                     return;
                 } else {
                     PhotoViewer r02 = PhotoViewer.r0();
-                    ArrayList arrayList5 = xz7Var.l1;
-                    r02.j1(arrayList5, arrayList5.indexOf(xw9Var), az7Var);
+                    ArrayList arrayList5 = vx7Var.l1;
+                    r02.k1(arrayList5, arrayList5.indexOf(uu9Var), xw7Var);
                     return;
                 }
             case 5:
-                yk8 yk8Var = ((vk8) obj).b;
-                if (yk8Var.r && (qacVar = yk8Var.f) != null) {
-                    qacVar.a(Integer.valueOf(b2));
+                vi8 vi8Var = ((ti8) obj).b;
+                if (vi8Var.r && (p8cVar = vi8Var.f) != null) {
+                    p8cVar.a(Integer.valueOf(b2));
                     return;
                 }
                 return;
             case 6:
-                final p82 p82Var = ((hh9) obj).a.a;
-                ylb ylbVar = p82Var.a;
-                ch9 ch9Var = p82Var.r;
-                ll0 M2 = ch9Var.M2();
+                final e72 e72Var = ((df9) obj).a.a;
+                wjb wjbVar = e72Var.a;
+                ye9 ye9Var = e72Var.r;
+                lk0 M2 = ye9Var.M2();
                 if (b2 != 1) {
                     if (b2 != 2) {
                         if (b2 != 4) {
                             if (b2 != 7) {
                                 if (b2 == 9) {
-                                    ch9Var.p3();
+                                    ye9Var.p3();
                                     return;
                                 }
                                 return;
@@ -194,111 +194,111 @@ public final class hb implements View.OnClickListener {
                                     pageblockmath = (TL_iv.pageBlockMath) pageBlock;
                                 }
                             }
-                            Context context = p82Var.getContext();
+                            Context context = e72Var.getContext();
                             if (pageblockmath != null && !TextUtils.isEmpty(pageblockmath.source)) {
                                 str = pageblockmath.source;
                             }
-                            p82.X(context, str, new qy1(p82Var, pageblockmath, (byte) 6), ylbVar);
+                            e72.X(context, str, new pz1(e72Var, pageblockmath, (byte) 5), wjbVar);
                             return;
                         }
-                        kk9 kk9Var = ch9Var.q4;
-                        if (kk9Var == null && (N2 = ch9Var.N2()) != null && N2.getModel() != null) {
-                            View findFocus = ch9Var.findFocus();
-                            if ((findFocus instanceof ne9) && (q = N2.q((ne9) findFocus)) != null) {
+                        ii9 ii9Var = ye9Var.q4;
+                        if (ii9Var == null && (N2 = ye9Var.N2()) != null && N2.getModel() != null) {
+                            View findFocus = ye9Var.findFocus();
+                            if ((findFocus instanceof mc9) && (q = N2.q((mc9) findFocus)) != null) {
                                 pagetablecell = q.b;
                             }
                             if (pagetablecell != null) {
-                                ch9Var.b2(N2);
+                                ye9Var.b2(N2);
                                 if (N2.I.add(pagetablecell)) {
                                     N2.w.invalidate();
                                     N2.v();
                                 }
-                                kk9Var = N2;
+                                ii9Var = N2;
                             }
                         }
-                        if (kk9Var != null && kk9Var.getModel() != null && !kk9Var.I.isEmpty()) {
-                            ch9Var.H4(kk9Var);
+                        if (ii9Var != null && ii9Var.getModel() != null && !ii9Var.I.isEmpty()) {
+                            ye9Var.H4(ii9Var);
                             return;
                         } else {
-                            ch9Var.N1(xk9.t(2, 2));
+                            ye9Var.N1(wi9.t(2, 2));
                             return;
                         }
                     }
-                    bu5 bu5Var = p82Var.I;
-                    if (bu5Var != null) {
-                        bu5Var.u();
+                    cs5 cs5Var = e72Var.I;
+                    if (cs5Var != null) {
+                        cs5Var.u();
                     }
-                    final bu5 G3 = bu5.G(p82Var, ylbVar, view);
+                    final cs5 G3 = cs5.G(e72Var, wjbVar, view);
                     G3.T = true;
                     if (M2 != null && M2.b()) {
                         z8 = false;
                     } else {
                         z8 = true;
                     }
-                    G3.i(z8, 2131231072, null, jb6.M0(2131753964, null), new g82(p82Var, M2, (byte) 1));
+                    G3.i(z8, 2131231071, null, k96.M0(2131753996, null), new v62(e72Var, M2, (byte) 1));
                     if (M2 != null && M2.b() && !M2.a() && !M2.c()) {
                         z9 = true;
                     } else {
                         z9 = false;
                     }
-                    G3.i(z9, 2131231569, null, jb6.M0(2131753971, null), new g82(p82Var, M2, (byte) 2));
+                    G3.i(z9, 2131231568, null, k96.M0(2131754003, null), new v62(e72Var, M2, (byte) 2));
                     if (M2 != null && M2.b() && !M2.a() && M2.c()) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    G3.i(z10, 2131231581, null, jb6.M0(2131753968, null), new g82(p82Var, M2, (byte) 3));
+                    G3.i(z10, 2131231580, null, k96.M0(2131754000, null), new v62(e72Var, M2, (byte) 3));
                     if (M2 != null && M2.b() && M2.a() && !M2.c()) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    G3.i(z11, 2131231602, null, jb6.M0(2131753966, null), new g82(p82Var, M2, (byte) 4));
+                    G3.i(z11, 2131231601, null, k96.M0(2131753998, null), new v62(e72Var, M2, (byte) 4));
                     if (M2 != null && (M2.b instanceof TL_iv.pageBlockDetails)) {
                         z12 = true;
                     } else {
                         z12 = false;
                     }
-                    G3.i(z12, 2131231557, null, jb6.M0(2131753952, null), new b82(ch9Var, (byte) 1));
-                    boolean h2 = ch9Var.h2();
-                    boolean k2 = ch9Var.k2();
+                    G3.i(z12, 2131231556, null, k96.M0(2131753984, null), new q62(ye9Var, (byte) 1));
+                    boolean h2 = ye9Var.h2();
+                    boolean k2 = ye9Var.k2();
                     if (h2 || k2) {
                         G3.j();
                         if (h2) {
-                            G3.b(2131231570, jb6.M0(2131753978, null), new Runnable() {
+                            G3.b(2131231569, k96.M0(2131754010, null), new Runnable() {
                                 @Override
                                 public final void run() {
                                     byte b3 = r3;
-                                    bu5 bu5Var2 = G3;
-                                    p82 p82Var2 = p82Var;
+                                    cs5 cs5Var2 = G3;
+                                    e72 e72Var2 = e72Var;
                                     switch (b3) {
                                         case 0:
-                                            p82Var2.r.n3(false);
-                                            bu5Var2.u();
+                                            e72Var2.r.n3(false);
+                                            cs5Var2.u();
                                             return;
                                         default:
-                                            p82Var2.r.n3(true);
-                                            bu5Var2.u();
+                                            e72Var2.r.n3(true);
+                                            cs5Var2.u();
                                             return;
                                     }
                                 }
                             }, false);
                         }
                         if (k2) {
-                            G3.b(2131231571, jb6.M0(2131753963, null), new Runnable() {
+                            G3.b(2131231570, k96.M0(2131753995, null), new Runnable() {
                                 @Override
                                 public final void run() {
                                     byte b3 = r3;
-                                    bu5 bu5Var2 = G3;
-                                    p82 p82Var2 = p82Var;
+                                    cs5 cs5Var2 = G3;
+                                    e72 e72Var2 = e72Var;
                                     switch (b3) {
                                         case 0:
-                                            p82Var2.r.n3(false);
-                                            bu5Var2.u();
+                                            e72Var2.r.n3(false);
+                                            cs5Var2.u();
                                             return;
                                         default:
-                                            p82Var2.r.n3(true);
-                                            bu5Var2.u();
+                                            e72Var2.r.n3(true);
+                                            cs5Var2.u();
                                             return;
                                     }
                                 }
@@ -307,91 +307,91 @@ public final class hb implements View.OnClickListener {
                     }
                     G3.X = true;
                     G3.a0();
-                    p82Var.I = G3;
+                    e72Var.I = G3;
                     return;
                 }
-                int i7 = p82Var.n;
-                bu5 bu5Var2 = p82Var.I;
-                if (bu5Var2 != null) {
-                    bu5Var2.u();
+                int i7 = e72Var.n;
+                cs5 cs5Var2 = e72Var.I;
+                if (cs5Var2 != null) {
+                    cs5Var2.u();
                 }
-                bu5 H = bu5.H(p82Var, ylbVar, view, true);
+                cs5 H = cs5.H(e72Var, wjbVar, view, true);
                 H.T = true;
-                bu5 K = H.K();
-                if (!oc7.r1(i7).x4() && !z8c.h(i7).p()) {
+                cs5 K = H.K();
+                if (!na7.q1(i7).v4() && !y6c.h(i7).p()) {
                     z = true;
                 } else {
                     z = false;
                 }
-                K.b(2131231244, jb6.M0(2131753721, null), new bo1(H, (byte) 1), false);
+                K.b(2131231243, k96.M0(2131753753, null), new en1(H, (byte) 1), false);
                 K.j();
-                p82Var.O(K, M2, new TL_iv.pageBlockHeading1(), 2131231563, jb6.M0(2131753995, null), gda.S0 + 2, H);
-                p82Var.O(K, M2, new TL_iv.pageBlockHeading2(), 2131231564, jb6.M0(2131753994, null), gda.S0 + 1, H);
-                p82Var.O(K, M2, new TL_iv.pageBlockHeading3(), 2131231565, jb6.M0(2131753993, null), gda.S0, H);
-                p82Var.O(K, M2, new TL_iv.pageBlockHeading4(), 2131231566, jb6.M0(2131753992, null), gda.S0 - 1, H);
-                p82Var.O(K, M2, new TL_iv.pageBlockHeading5(), 2131231567, jb6.M0(2131753991, null), gda.S0 - 2, H);
-                p82Var.O(K, M2, new TL_iv.pageBlockHeading6(), 2131231568, jb6.M0(2131753990, null), gda.S0 - 3, H);
-                if (M2 != null && ch9.y3(M2.b)) {
+                e72Var.P(K, M2, new TL_iv.pageBlockHeading1(), 2131231562, k96.M0(2131754027, null), gba.S0 + 2, H);
+                e72Var.P(K, M2, new TL_iv.pageBlockHeading2(), 2131231563, k96.M0(2131754026, null), gba.S0 + 1, H);
+                e72Var.P(K, M2, new TL_iv.pageBlockHeading3(), 2131231564, k96.M0(2131754025, null), gba.S0, H);
+                e72Var.P(K, M2, new TL_iv.pageBlockHeading4(), 2131231565, k96.M0(2131754024, null), gba.S0 - 1, H);
+                e72Var.P(K, M2, new TL_iv.pageBlockHeading5(), 2131231566, k96.M0(2131754023, null), gba.S0 - 2, H);
+                e72Var.P(K, M2, new TL_iv.pageBlockHeading6(), 2131231567, k96.M0(2131754022, null), gba.S0 - 3, H);
+                if (M2 != null && ye9.y3(M2.b)) {
                     z2 = true;
                 } else {
                     z2 = false;
                 }
-                hf9 hf9Var = new hf9(p82Var.getContext(), 2131231563);
-                hf9Var.a(z);
-                H.i(z2, 0, hf9Var, jb6.M0(2131753996, null), new c20(H, K, (byte) 5));
+                fd9 fd9Var = new fd9(e72Var.getContext(), 2131231562);
+                fd9Var.a(z);
+                H.i(z2, 0, fd9Var, k96.M0(2131754028, null), new c10(H, K, (byte) 5));
                 if (M2 != null && (M2.b instanceof TL_iv.pageBlockParagraph)) {
                     z3 = true;
                 } else {
                     z3 = false;
                 }
-                H.i(z3, 2131231600, null, jb6.M0(2131753953, null), new g82(p82Var, M2, (byte) 5));
+                H.i(z3, 2131231599, null, k96.M0(2131753985, null), new v62(e72Var, M2, (byte) 5));
                 if (M2 != null && (M2.b instanceof TL_iv.pageBlockBlockquote)) {
                     z4 = true;
                 } else {
                     z4 = false;
                 }
-                H.i(z4, 2131231585, null, jb6.M0(2131753961, null), new g82(p82Var, M2, (byte) 6));
+                H.i(z4, 2131231584, null, k96.M0(2131753993, null), new v62(e72Var, M2, (byte) 6));
                 if (M2 != null && (M2.b instanceof TL_iv.pageBlockPullquote)) {
                     z5 = true;
                 } else {
                     z5 = false;
                 }
-                hf9 hf9Var2 = new hf9(p82Var.getContext(), 2131231584);
-                hf9Var2.a(z);
-                H.i(z5, 0, hf9Var2, jb6.M0(2131753962, null), new g82(p82Var, M2, (byte) 7));
+                fd9 fd9Var2 = new fd9(e72Var.getContext(), 2131231583);
+                fd9Var2.a(z);
+                H.i(z5, 0, fd9Var2, k96.M0(2131753994, null), new v62(e72Var, M2, (byte) 7));
                 if (M2 != null && (M2.b instanceof TL_iv.pageBlockPreformatted)) {
                     z6 = true;
                 } else {
                     z6 = false;
                 }
-                H.i(z6, 2131231556, null, jb6.M0(2131754020, null), new g82(p82Var, M2, (byte) 8));
+                H.i(z6, 2131231555, null, k96.M0(2131754052, null), new v62(e72Var, M2, (byte) 8));
                 if (M2 != null && (M2.b instanceof TL_iv.pageBlockFooter)) {
                     z7 = true;
                 } else {
                     z7 = false;
                 }
-                hf9 hf9Var3 = new hf9(p82Var.getContext(), 2131231559);
-                hf9Var3.a(z);
-                H.i(z7, 0, hf9Var3, jb6.M0(2131753997, null), new g82(p82Var, M2, (byte) 9));
+                fd9 fd9Var3 = new fd9(e72Var.getContext(), 2131231558);
+                fd9Var3.a(z);
+                H.i(z7, 0, fd9Var3, k96.M0(2131754029, null), new v62(e72Var, M2, (byte) 9));
                 H.a0();
-                p82Var.I = H;
+                e72Var.I = H;
                 return;
             default:
-                final nha nhaVar = (nha) obj;
-                kea keaVar = nhaVar.a0;
-                yga ygaVar = nhaVar.U;
-                ylb ylbVar2 = nhaVar.I1;
-                long j = nhaVar.m1;
-                SparseArray[] sparseArrayArr = nhaVar.c1;
-                d dVar = nhaVar.y1;
+                final nfa nfaVar = (nfa) obj;
+                kca kcaVar = nfaVar.a0;
+                yea yeaVar = nfaVar.U;
+                wjb wjbVar2 = nfaVar.I1;
+                long j = nfaVar.m1;
+                SparseArray[] sparseArrayArr = nfaVar.c1;
+                d dVar = nfaVar.y1;
                 if (b2 == 101) {
-                    if (!nha.j0(nhaVar.getSelectedTab()) && nhaVar.getSelectedTab() != 13) {
-                        if (nhaVar.getSelectedTab() == 11) {
-                            ArrayList arrayList6 = dVar.getMessagesController().E1().j;
+                    if (!nfa.j0(nfaVar.getSelectedTab()) && nfaVar.getSelectedTab() != 13) {
+                        if (nfaVar.getSelectedTab() == 11) {
+                            ArrayList arrayList6 = dVar.getMessagesController().D1().j;
                             final ArrayList arrayList7 = new ArrayList();
                             for (int i8 = 0; i8 < arrayList6.size(); i8++) {
-                                long j2 = ((vr9) arrayList6.get(i8)).a;
-                                if (ygaVar.x.contains(Long.valueOf(j2))) {
+                                long j2 = ((up9) arrayList6.get(i8)).a;
+                                if (yeaVar.x.contains(Long.valueOf(j2))) {
                                     arrayList7.add(Long.valueOf(j2));
                                 }
                             }
@@ -406,21 +406,21 @@ public final class hb implements View.OnClickListener {
                                 int i9 = (longValue > 0L ? 1 : (longValue == 0L ? 0 : -1));
                                 z14 = z15;
                                 if (i9 < 0) {
-                                    TLRPC.Chat L02 = dVar.getMessagesController().L0(Long.valueOf(-longValue));
+                                    TLRPC.Chat K02 = dVar.getMessagesController().K0(Long.valueOf(-longValue));
                                     z14 = z15;
-                                    if (L02 != null) {
-                                        str = L02.title;
+                                    if (K02 != null) {
+                                        str = K02.title;
                                         z14 = z15;
                                     }
                                 } else if (i9 >= 0) {
-                                    TLRPC.User W1 = dVar.getMessagesController().W1(l);
+                                    TLRPC.User V1 = dVar.getMessagesController().V1(l);
                                     z14 = z15;
-                                    if (W1 != null) {
-                                        if (m9c.u(W1)) {
-                                            str = jb6.M0(2131754217, null);
+                                    if (V1 != null) {
+                                        if (l7c.u(V1)) {
+                                            str = k96.M0(2131754249, null);
                                             z14 = z15;
                                         } else {
-                                            str = m9c.r(W1);
+                                            str = l7c.r(V1);
                                             z14 = z15;
                                         }
                                     }
@@ -428,148 +428,148 @@ public final class hb implements View.OnClickListener {
                             } else {
                                 z14 = false;
                             }
-                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ylbVar2, nhaVar.getContext());
+                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, wjbVar2, nfaVar.getContext());
                             if (arrayList7.size() == 1) {
                                 if (z14) {
-                                    i4 = 2131752018;
+                                    i4 = 2131752069;
                                 } else {
-                                    i4 = 2131752014;
+                                    i4 = 2131752065;
                                 }
-                                G = jb6.a0(null, null, i4, str);
+                                G = k96.a0(null, null, i4, str);
                             } else {
-                                G = jb6.G(arrayList7.size(), "ClearHistoryTitleMultiple", new Object[0]);
+                                G = k96.G(arrayList7.size(), "ClearHistoryTitleMultiple", new Object[0]);
                             }
-                            he heVar = alertDialog$Builder.a;
-                            heVar.S = G;
+                            hd hdVar = alertDialog$Builder.a;
+                            hdVar.S = G;
                             if (arrayList7.size() == 1) {
                                 if (z14) {
-                                    i3 = 2131752019;
+                                    i3 = 2131752070;
                                 } else {
-                                    i3 = 2131752020;
+                                    i3 = 2131752071;
                                 }
-                                G2 = jb6.a0(null, null, i3, str);
+                                G2 = k96.a0(null, null, i3, str);
                             } else {
-                                G2 = jb6.G(arrayList7.size(), "ClearHistoryMessageMultiple", new Object[0]);
+                                G2 = k96.G(arrayList7.size(), "ClearHistoryMessageMultiple", new Object[0]);
                             }
-                            heVar.U = G2;
-                            alertDialog$Builder.j(jb6.M0(2131746054, null), new ee() {
+                            hdVar.U = G2;
+                            alertDialog$Builder.j(k96.M0(2131746128, null), new ed() {
                                 @Override
-                                public final void r(he heVar2, int i10) {
+                                public final void u(hd hdVar2, int i10) {
                                     byte b3 = r3;
                                     ArrayList arrayList8 = arrayList7;
-                                    nha nhaVar2 = nhaVar;
+                                    nfa nfaVar2 = nfaVar;
                                     switch (b3) {
                                         case 0:
-                                            d dVar2 = nhaVar2.y1;
-                                            dVar2.getMessagesController().N1().r(arrayList8, nhaVar2.m1);
-                                            c41.b0(dVar2).Q(2131624052, 36, jb6.G(arrayList8.size(), "StoriesDeleted", new Object[0])).j();
-                                            nhaVar2.E(false);
+                                            d dVar2 = nfaVar2.y1;
+                                            dVar2.getMessagesController().M1().r(arrayList8, nfaVar2.m1);
+                                            u21.b0(dVar2).Q(2131624052, 36, k96.G(arrayList8.size(), "StoriesDeleted", new Object[0])).j();
+                                            nfaVar2.E(false);
                                             return;
                                         default:
                                             for (int i11 = 0; i11 < arrayList8.size(); i11++) {
-                                                nhaVar2.y1.getMessagesController().e0(((Long) arrayList8.get(i11)).longValue(), 0, null);
+                                                nfaVar2.y1.getMessagesController().e0(((Long) arrayList8.get(i11)).longValue(), 0, null);
                                             }
-                                            nhaVar2.E(true);
+                                            nfaVar2.E(true);
                                             return;
                                     }
                                 }
                             });
-                            alertDialog$Builder.g(jb6.M0(2131752542, null), null);
-                            dVar.showDialog(heVar);
-                            TextView textView = (TextView) heVar.c(-1);
+                            alertDialog$Builder.g(k96.M0(2131752577, null), null);
+                            dVar.showDialog(hdVar);
+                            TextView textView = (TextView) hdVar.c(-1);
                             if (textView != null) {
-                                anb.X(textView, cmb.p7, null);
+                                zkb.X(textView, bkb.p7, null);
                                 return;
                             }
                             return;
                         }
-                        if (pg3.B(j)) {
-                            encryptedChat = dVar.getMessagesController().Z0(Integer.valueOf((int) (j & 4294967295L)));
+                        if (cf3.B(j)) {
+                            encryptedChat = dVar.getMessagesController().Y0(Integer.valueOf((int) (j & 4294967295L)));
                             user = null;
-                            L0 = null;
-                        } else if (pg3.D(j)) {
-                            user = dVar.getMessagesController().W1(Long.valueOf(j));
-                            L0 = null;
+                            K0 = null;
+                        } else if (cf3.D(j)) {
+                            user = dVar.getMessagesController().V1(Long.valueOf(j));
+                            K0 = null;
                             encryptedChat = null;
                         } else {
-                            L0 = dVar.getMessagesController().L0(Long.valueOf(-j));
+                            K0 = dVar.getMessagesController().K0(Long.valueOf(-j));
                             user = null;
                             encryptedChat = null;
                         }
-                        ik.y(dVar, user, L0, encryptedChat, null, nhaVar.f1, null, nhaVar.c1, null, 0, 0, null, new oda(nhaVar, (byte) 14), null, nhaVar.I1);
+                        ij.y(dVar, user, K0, encryptedChat, null, nfaVar.f1, null, nfaVar.c1, null, 0, 0, null, new oba(nfaVar, (byte) 14), null, nfaVar.I1);
                         return;
                     } else if (sparseArrayArr[0] != null) {
-                        if (nhaVar.l0() && keaVar != null && keaVar.getCurrentList() != null) {
-                            t3b currentList = keaVar.getCurrentList();
+                        if (nfaVar.l0() && kcaVar != null && kcaVar.getCurrentList() != null) {
+                            s1b currentList = kcaVar.getCurrentList();
                             ArrayList arrayList8 = new ArrayList();
                             for (int i10 = 0; i10 < sparseArrayArr[0].size(); i10++) {
-                                TL_stories.StoryItem storyItem = ((k47) sparseArrayArr[0].valueAt(i10)).l;
+                                TL_stories.StoryItem storyItem = ((k27) sparseArrayArr[0].valueAt(i10)).l;
                                 if (storyItem != null) {
                                     arrayList8.add(storyItem.media);
                                 }
                             }
                             if (!arrayList8.isEmpty()) {
-                                AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, ylbVar2, nhaVar.getContext());
+                                AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, wjbVar2, nfaVar.getContext());
                                 if (arrayList8.size() > 1) {
-                                    i2 = 2131751497;
+                                    i2 = 2131751548;
                                 } else {
-                                    i2 = 2131751501;
+                                    i2 = 2131751552;
                                 }
-                                String M02 = jb6.M0(i2, null);
-                                he heVar2 = alertDialog$Builder2.a;
-                                heVar2.S = M02;
-                                heVar2.U = jb6.G(arrayList8.size(), "DeleteBotPreviewsSubtitle", new Object[0]);
-                                alertDialog$Builder2.j(jb6.M0(2131751535, null), new jq9(nhaVar, currentList, arrayList8));
-                                alertDialog$Builder2.g(jb6.M0(2131752542, null), new dq9((byte) 16));
-                                heVar2.show();
-                                heVar2.h();
+                                String M02 = k96.M0(i2, null);
+                                hd hdVar2 = alertDialog$Builder2.a;
+                                hdVar2.S = M02;
+                                hdVar2.U = k96.G(arrayList8.size(), "DeleteBotPreviewsSubtitle", new Object[0]);
+                                alertDialog$Builder2.j(k96.M0(2131751586, null), new io9(nfaVar, currentList, arrayList8));
+                                alertDialog$Builder2.g(k96.M0(2131752577, null), new ho9((byte) 15));
+                                hdVar2.show();
+                                hdVar2.h();
                                 return;
                             }
                             return;
                         }
                         final ArrayList arrayList9 = new ArrayList();
                         for (int i11 = 0; i11 < sparseArrayArr[0].size(); i11++) {
-                            TL_stories.StoryItem storyItem2 = ((k47) sparseArrayArr[0].valueAt(i11)).l;
+                            TL_stories.StoryItem storyItem2 = ((k27) sparseArrayArr[0].valueAt(i11)).l;
                             if (storyItem2 != null) {
                                 arrayList9.add(storyItem2);
                             }
                         }
                         if (!arrayList9.isEmpty()) {
-                            AlertDialog$Builder alertDialog$Builder3 = new AlertDialog$Builder(0, ylbVar2, nhaVar.getContext());
+                            AlertDialog$Builder alertDialog$Builder3 = new AlertDialog$Builder(0, wjbVar2, nfaVar.getContext());
                             if (arrayList9.size() > 1) {
-                                i = 2131751426;
+                                i = 2131751477;
                             } else {
-                                i = 2131751424;
+                                i = 2131751475;
                             }
-                            String M03 = jb6.M0(i, null);
-                            he heVar3 = alertDialog$Builder3.a;
-                            heVar3.S = M03;
-                            heVar3.U = jb6.G(arrayList9.size(), "DeleteStoriesSubtitle", new Object[0]);
-                            alertDialog$Builder3.j(jb6.M0(2131751535, null), new ee() {
+                            String M03 = k96.M0(i, null);
+                            hd hdVar3 = alertDialog$Builder3.a;
+                            hdVar3.S = M03;
+                            hdVar3.U = k96.G(arrayList9.size(), "DeleteStoriesSubtitle", new Object[0]);
+                            alertDialog$Builder3.j(k96.M0(2131751586, null), new ed() {
                                 @Override
-                                public final void r(he heVar22, int i102) {
+                                public final void u(hd hdVar22, int i102) {
                                     byte b3 = r3;
                                     ArrayList arrayList82 = arrayList9;
-                                    nha nhaVar2 = nhaVar;
+                                    nfa nfaVar2 = nfaVar;
                                     switch (b3) {
                                         case 0:
-                                            d dVar2 = nhaVar2.y1;
-                                            dVar2.getMessagesController().N1().r(arrayList82, nhaVar2.m1);
-                                            c41.b0(dVar2).Q(2131624052, 36, jb6.G(arrayList82.size(), "StoriesDeleted", new Object[0])).j();
-                                            nhaVar2.E(false);
+                                            d dVar2 = nfaVar2.y1;
+                                            dVar2.getMessagesController().M1().r(arrayList82, nfaVar2.m1);
+                                            u21.b0(dVar2).Q(2131624052, 36, k96.G(arrayList82.size(), "StoriesDeleted", new Object[0])).j();
+                                            nfaVar2.E(false);
                                             return;
                                         default:
                                             for (int i112 = 0; i112 < arrayList82.size(); i112++) {
-                                                nhaVar2.y1.getMessagesController().e0(((Long) arrayList82.get(i112)).longValue(), 0, null);
+                                                nfaVar2.y1.getMessagesController().e0(((Long) arrayList82.get(i112)).longValue(), 0, null);
                                             }
-                                            nhaVar2.E(true);
+                                            nfaVar2.E(true);
                                             return;
                                     }
                                 }
                             });
-                            alertDialog$Builder3.g(jb6.M0(2131752542, null), new dq9((byte) 17));
-                            heVar3.show();
-                            heVar3.h();
+                            alertDialog$Builder3.g(k96.M0(2131752577, null), new ho9((byte) 16));
+                            hdVar3.show();
+                            hdVar3.h();
                             return;
                         }
                         return;
@@ -577,42 +577,42 @@ public final class hb implements View.OnClickListener {
                         return;
                     }
                 } else if (b2 == 100) {
-                    if (nhaVar.h1 != null) {
-                        oc7 messagesController = dVar.getMessagesController();
-                        TLRPC.UserFull userFull = nhaVar.h1;
+                    if (nfaVar.h1 != null) {
+                        na7 messagesController = dVar.getMessagesController();
+                        TLRPC.UserFull userFull = nfaVar.h1;
                         messagesController.getClass();
-                        if (oc7.M2(userFull)) {
-                            hg5 hg5Var = nhaVar.H1;
-                            if (hg5Var != null) {
-                                hg5Var.t(jb6.M0(2131750466, null));
-                                nhaVar.H1.x(view, true);
+                        if (na7.K2(userFull)) {
+                            je5 je5Var = nfaVar.H1;
+                            if (je5Var != null) {
+                                je5Var.t(k96.M0(2131750517, null));
+                                nfaVar.H1.x(view, true);
                                 return;
                             }
                             return;
                         }
                     }
-                    if (nhaVar.g1 != null) {
-                        TLRPC.Chat L03 = dVar.getMessagesController().L0(Long.valueOf(nhaVar.g1.id));
-                        if (dVar.getMessagesController().l2(L03)) {
-                            hg5 hg5Var2 = nhaVar.H1;
-                            if (hg5Var2 != null) {
-                                if (sd2.T(L03) && !L03.megagroup) {
-                                    M0 = jb6.M0(2131750468, null);
+                    if (nfaVar.g1 != null) {
+                        TLRPC.Chat K03 = dVar.getMessagesController().K0(Long.valueOf(nfaVar.g1.id));
+                        if (dVar.getMessagesController().k2(K03)) {
+                            je5 je5Var2 = nfaVar.H1;
+                            if (je5Var2 != null) {
+                                if (hc2.T(K03) && !K03.megagroup) {
+                                    M0 = k96.M0(2131750519, null);
                                 } else {
-                                    M0 = jb6.M0(2131750467, null);
+                                    M0 = k96.M0(2131750518, null);
                                 }
-                                hg5Var2.t(M0);
-                                nhaVar.H1.x(view, true);
+                                je5Var2.t(M0);
+                                nfaVar.H1.x(view, true);
                                 return;
                             }
                             return;
                         }
                     }
-                    if (nhaVar.e0()) {
-                        hg5 hg5Var3 = nhaVar.H1;
-                        if (hg5Var3 != null) {
-                            hg5Var3.t(jb6.M0(2131750469, "ForwardsRestrictedInfoBot"));
-                            nhaVar.H1.x(view, true);
+                    if (nfaVar.e0()) {
+                        je5 je5Var3 = nfaVar.H1;
+                        if (je5Var3 != null) {
+                            je5Var3.t(k96.M0(2131750520, "ForwardsRestrictedInfoBot"));
+                            nfaVar.H1.x(view, true);
                             return;
                         }
                         return;
@@ -621,66 +621,66 @@ public final class hb implements View.OnClickListener {
                     bundle.putBoolean("onlySelect", true);
                     bundle.putBoolean("canSelectTopics", true);
                     bundle.putInt("dialogsType", 3);
-                    nk3 nk3Var = new nk3(bundle);
-                    nk3Var.E2 = new qda(nhaVar);
-                    dVar.presentFragment(nk3Var);
+                    cj3 cj3Var = new cj3(bundle);
+                    cj3Var.E2 = new qba(nfaVar);
+                    dVar.presentFragment(cj3Var);
                     return;
                 } else if (b2 == 102) {
                     if (sparseArrayArr[1].size() + sparseArrayArr[0].size() == 1) {
                         if (sparseArrayArr[0].size() == 1) {
                             c = 0;
                         }
-                        k47 k47Var = (k47) sparseArrayArr[c].valueAt(0);
+                        k27 k27Var = (k27) sparseArrayArr[c].valueAt(0);
                         Bundle bundle2 = new Bundle();
-                        long B0 = k47.B0(k47Var.k);
-                        if (pg3.B(B0)) {
+                        long B0 = k27.B0(k27Var.k);
+                        if (cf3.B(B0)) {
                             bundle2.putInt("enc_id", (int) (B0 & 4294967295L));
-                        } else if (pg3.D(B0)) {
+                        } else if (cf3.D(B0)) {
                             bundle2.putLong("user_id", B0);
                         } else {
-                            TLRPC.Chat L04 = dVar.getMessagesController().L0(Long.valueOf(-B0));
-                            if (L04 != null && L04.migrated_to != null) {
+                            TLRPC.Chat K04 = dVar.getMessagesController().K0(Long.valueOf(-B0));
+                            if (K04 != null && K04.migrated_to != null) {
                                 bundle2.putLong("migrated_to", B0);
-                                B0 = -L04.migrated_to.channel_id;
+                                B0 = -K04.migrated_to.channel_id;
                             }
                             bundle2.putLong("chat_id", -B0);
                         }
-                        bundle2.putInt("message_id", k47Var.e1());
+                        bundle2.putInt("message_id", k27Var.e1());
                         bundle2.putBoolean("need_remove_previous_same_chat_activity", false);
-                        yv1 yv1Var = new yv1(bundle2);
-                        yv1Var.d8 = k47Var.e1();
-                        long j3 = nhaVar.G;
+                        mu1 mu1Var = new mu1(bundle2);
+                        mu1Var.d8 = k27Var.e1();
+                        long j3 = nfaVar.G;
                         if (j3 != 0) {
-                            no4.a(yv1Var, bf7.a(B0, j3));
-                            bundle2.putInt("message_id", k47Var.e1());
+                            mm4.a(mu1Var, zc7.a(B0, j3));
+                            bundle2.putInt("message_id", k27Var.e1());
                         }
-                        dVar.presentFragment(yv1Var, false);
+                        dVar.presentFragment(mu1Var, false);
                         return;
                     }
                     return;
                 } else if (b2 == 103 || b2 == 104) {
-                    if (nhaVar.getClosestTab() == 8) {
-                        xfa xfaVar = nhaVar.f0;
-                        if (xfaVar != null && xfaVar.s != null) {
+                    if (nfaVar.getClosestTab() == 8) {
+                        xda xdaVar = nfaVar.f0;
+                        if (xdaVar != null && xdaVar.s != null) {
                             ArrayList arrayList10 = new ArrayList();
                             for (int i12 = 0; i12 < sparseArrayArr[0].size(); i12++) {
-                                arrayList10.add(Integer.valueOf(((k47) sparseArrayArr[0].valueAt(i12)).e1()));
+                                arrayList10.add(Integer.valueOf(((k27) sparseArrayArr[0].valueAt(i12)).e1()));
                             }
                             if (b2 != 103) {
                                 z16 = false;
                             }
-                            nhaVar.a1(arrayList10, z16);
-                            nhaVar.E(false);
+                            nfaVar.a1(arrayList10, z16);
+                            nfaVar.E(false);
                             return;
                         }
                         return;
                     }
-                    wr9 E1 = dVar.getMessagesController().E1();
-                    ArrayList arrayList11 = E1.j;
+                    vp9 D1 = dVar.getMessagesController().D1();
+                    ArrayList arrayList11 = D1.j;
                     ArrayList arrayList12 = new ArrayList();
                     for (int i13 = 0; i13 < arrayList11.size(); i13++) {
-                        long j4 = ((vr9) arrayList11.get(i13)).a;
-                        if (ygaVar.x.contains(Long.valueOf(j4))) {
+                        long j4 = ((up9) arrayList11.get(i13)).a;
+                        if (yeaVar.x.contains(Long.valueOf(j4))) {
                             arrayList12.add(Long.valueOf(j4));
                         }
                     }
@@ -689,23 +689,23 @@ public final class hb implements View.OnClickListener {
                     } else {
                         z13 = false;
                     }
-                    if (!E1.m(arrayList12, z13, true)) {
-                        dVar.showDialog(new i46(33, dVar.getCurrentAccount(), null, nhaVar.getContext(), dVar));
+                    if (!D1.m(arrayList12, z13, true)) {
+                        dVar.showDialog(new h26(33, dVar.getCurrentAccount(), null, nfaVar.getContext(), dVar));
                     } else {
                         int i14 = 0;
                         while (true) {
-                            iga[] igaVarArr = nhaVar.n0;
-                            if (i14 < igaVarArr.length) {
-                                iga igaVar = igaVarArr[i14];
-                                if (igaVar.F == 11) {
-                                    igaVar.x.g1(0, 0);
+                            iea[] ieaVarArr = nfaVar.n0;
+                            if (i14 < ieaVarArr.length) {
+                                iea ieaVar = ieaVarArr[i14];
+                                if (ieaVar.F == 11) {
+                                    ieaVar.x.g1(0, 0);
                                 } else {
                                     i14++;
                                 }
                             }
                         }
                     }
-                    nhaVar.E(true);
+                    nfaVar.E(true);
                     return;
                 } else {
                     return;

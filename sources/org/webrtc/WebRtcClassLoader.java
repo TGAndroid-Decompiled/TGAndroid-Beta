@@ -5,7 +5,7 @@ class WebRtcClassLoader {
         if (classLoader != null) {
             return classLoader;
         }
-        zo4.k("Failed to get WebRTC class loader.");
+        wn4.j("Failed to get WebRTC class loader.");
         return null;
     }
 }

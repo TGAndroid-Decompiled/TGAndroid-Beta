@@ -1,26 +1,39 @@
 package defpackage;
-public final class hb0 {
-    public final Integer a;
 
-    public hb0(Integer num) {
-        this.a = num;
+import j$.util.Objects;
+public final class hb0 {
+    public int a;
+    public boolean b;
+    public int c;
+    public int d;
+    public int e;
+    public int f;
+
+    public final hb0 a() {
+        ?? obj = new Object();
+        obj.c = this.c;
+        obj.d = this.d;
+        obj.e = this.e;
+        obj.f = this.f;
+        obj.b = this.b;
+        return obj;
     }
 
     public final boolean equals(Object obj) {
-        if (obj == this) {
+        if (this == obj) {
             return true;
         }
-        if (obj instanceof hb0) {
-            return this.a.equals(((hb0) obj).a);
+        if (!(obj instanceof hb0)) {
+            return false;
+        }
+        hb0 hb0Var = (hb0) obj;
+        if (this.c == hb0Var.c && this.d == hb0Var.d && this.e == hb0Var.e && this.f == hb0Var.f) {
+            return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return 1000003 ^ this.a.hashCode();
-    }
-
-    public final String toString() {
-        return "ProductData{productId=" + this.a + "}";
+        return Objects.hash(Integer.valueOf(this.a), Integer.valueOf(this.c), Integer.valueOf(this.d), Integer.valueOf(this.e), Integer.valueOf(this.f));
     }
 }

@@ -1,189 +1,215 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import android.text.TextUtils;
 import android.util.LongSparseArray;
-import java.nio.ByteBuffer;
+import android.util.SparseArray;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
+import java.util.Iterator;
 public final class v61 {
-    public final int a;
-    public boolean b = false;
-    public final int[] c = {-1, -1, -1, -1};
+    public final boolean a;
+    public long k;
+    public boolean m;
+    public boolean n;
+    public boolean o;
+    public boolean p;
+    public boolean q;
+    public long r;
+    public long s;
+    public long t;
+    public long u;
+    public long v;
+    public ArrayList b = new ArrayList();
+    public final LongSparseArray c = new LongSparseArray();
+    public final ArrayList d = new ArrayList();
+    public final ArrayList e = new ArrayList();
+    public final ArrayList f = new ArrayList();
+    public final ArrayList g = new ArrayList();
+    public final ArrayList h = new ArrayList();
+    public final HashSet i = new HashSet();
+    public final HashSet j = new HashSet();
+    public final HashSet l = new HashSet();
 
-    public v61(int i) {
-        this.a = i;
+    public v61(boolean z) {
+        this.a = z;
     }
 
-    public static long a(int i) {
-        if (i == 0) {
-            return 604800L;
+    public final void a(int i, boolean z) {
+        if (this.a) {
+            if (!z) {
+                if (i == 0) {
+                    this.m = false;
+                    return;
+                } else if (i == 1) {
+                    this.n = false;
+                    return;
+                } else if (i == 2) {
+                    this.o = false;
+                    return;
+                } else if (i == 3) {
+                    this.p = false;
+                    return;
+                } else if (i == 4) {
+                    this.q = false;
+                    return;
+                } else {
+                    return;
+                }
+            }
+            ArrayList arrayList = this.d;
+            if (i == 0) {
+                this.m = b(i, arrayList);
+            } else if (i == 1) {
+                this.n = b(i, arrayList);
+            } else if (i == 2) {
+                this.o = b(i, this.e);
+            } else if (i == 3) {
+                this.p = b(i, this.f);
+            } else if (i == 4) {
+                this.q = b(i, this.g);
+            } else if (i == 7) {
+                b(i, this.h);
+            }
         }
-        if (i == 1) {
-            return 2592000L;
-        }
-        if (i == 3) {
-            return 86400L;
-        }
-        if (i == 6) {
-            return 172800L;
-        }
-        if (i == 5) {
-            boolean z = e21.a;
-            return Long.MAX_VALUE;
-        }
-        return Long.MAX_VALUE;
     }
 
-    public static int b(int i) {
-        if (i == 0) {
-            return 2;
+    public final boolean b(int i, ArrayList arrayList) {
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            if (((u61) arrayList.get(i2)).d == i && !this.j.contains(arrayList.get(i2))) {
+                return false;
+            }
         }
-        if (i == 1) {
-            return 1;
+        return true;
+    }
+
+    public final void c() {
+        if (!this.a) {
+            HashSet hashSet = this.i;
+            hashSet.clear();
+            HashSet hashSet2 = this.j;
+            Iterator it = hashSet2.iterator();
+            while (it.hasNext()) {
+                long j = ((u61) it.next()).b;
+                if (j != 0) {
+                    hashSet.add(Long.valueOf(j));
+                }
+            }
+            HashSet hashSet3 = this.l;
+            hashSet3.clear();
+            Iterator it2 = hashSet.iterator();
+            while (it2.hasNext()) {
+                l61 l61Var = (l61) this.c.get(((Long) it2.next()).longValue());
+                if (l61Var != null) {
+                    SparseArray sparseArray = l61Var.d;
+                    int i = 0;
+                    while (true) {
+                        if (i < sparseArray.size()) {
+                            ArrayList arrayList = ((m61) sparseArray.valueAt(i)).b;
+                            int size = arrayList.size();
+                            int i2 = 0;
+                            while (i2 < size) {
+                                Object obj = arrayList.get(i2);
+                                i2++;
+                                if (!hashSet2.contains((u61) obj)) {
+                                    break;
+                                }
+                            }
+                            i++;
+                        } else {
+                            hashSet3.add(Long.valueOf(l61Var.a));
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public final void d() {
+        this.k = 0L;
+        this.j.clear();
+        this.l.clear();
+    }
+
+    public final ArrayList e(int i) {
+        if (i == 0 || i == 1) {
+            return this.d;
         }
         if (i == 2) {
-            return 0;
+            return this.e;
         }
         if (i == 3) {
-            return 6;
+            return this.f;
         }
-        return gda.F;
+        if (i == 4) {
+            return this.g;
+        }
+        if (i == 7) {
+            return this.h;
+        }
+        return null;
     }
 
-    public static String f(int i) {
-        if (i == 5) {
-            return jb6.G(1, "Minutes", new Object[0]);
-        }
-        if (i == 3) {
-            return jb6.G(1, "Days", new Object[0]);
-        }
-        if (i == 6) {
-            return jb6.G(2, "Days", new Object[0]);
-        }
+    public final long f(int i) {
         if (i == 0) {
-            return jb6.G(1, "Weeks", new Object[0]);
+            return this.r;
         }
         if (i == 1) {
-            return jb6.G(1, "Months", new Object[0]);
+            return this.s;
         }
-        return jb6.M0(2131753816, null);
+        if (i == 2) {
+            return this.t;
+        }
+        if (i == 3) {
+            return this.u;
+        }
+        if (i == 4) {
+            return this.v;
+        }
+        return -1L;
     }
 
-    public final int c(int i) {
-        boolean z = this.b;
-        int[] iArr = this.c;
+    public final void g(u61 u61Var, boolean z) {
+        long j = u61Var.c;
         if (!z) {
-            this.b = true;
-            for (int i2 = 0; i2 < 4; i2++) {
-                iArr[i2] = gda.q().getInt(hg9.j(i2, "keep_media_type_"), b(i2));
-            }
+            j = -j;
         }
-        int i3 = iArr[i];
-        if (i3 == -1) {
-            return gda.F;
-        }
-        return i3;
-    }
-
-    public final ArrayList d(int i) {
-        ArrayList arrayList = new ArrayList();
-        HashSet hashSet = new HashSet();
-        SharedPreferences j = z8c.h(this.a).j();
-        String string = j.getString("keep_media_exceptions_" + i, "");
-        if (TextUtils.isEmpty(string)) {
-            return arrayList;
-        }
-        ByteBuffer wrap = ByteBuffer.wrap(Utilities.v(string));
-        int i2 = wrap.getInt();
-        for (int i3 = 0; i3 < i2; i3++) {
-            long j2 = wrap.getLong();
-            t61 t61Var = new t61(j2, wrap.getInt());
-            if (!hashSet.contains(Long.valueOf(j2))) {
-                hashSet.add(Long.valueOf(j2));
-                arrayList.add(t61Var);
-            }
-        }
-        wrap.clear();
-        return arrayList;
-    }
-
-    public final LongSparseArray e() {
-        LongSparseArray longSparseArray = new LongSparseArray();
-        for (int i = 0; i < 3; i++) {
-            ArrayList d = d(i);
-            for (int i2 = 0; i2 < d.size(); i2++) {
-                longSparseArray.put(((t61) d.get(i2)).a, (t61) d.get(i2));
-            }
-        }
-        return longSparseArray;
-    }
-
-    public final void g(ArrayList arrayList) {
-        int i;
-        int i2 = this.a;
-        lc4 lc4Var = bc4.G(i2).d;
-        lc4Var.getClass();
-        CountDownLatch countDownLatch = new CountDownLatch(1);
-        LongSparseArray longSparseArray = new LongSparseArray();
-        lc4Var.h(new xo1(lc4Var, arrayList, longSparseArray, countDownLatch, (byte) 18));
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            fc4.g(e, true);
-        }
-        LongSparseArray e2 = e();
-        for (int i3 = 0; i3 < longSparseArray.size(); i3++) {
-            long keyAt = longSparseArray.keyAt(i3);
-            ArrayList arrayList2 = (ArrayList) longSparseArray.valueAt(i3);
-            if (keyAt >= 0) {
-                i = 0;
-            } else {
-                long j = -keyAt;
-                TLRPC.Chat L0 = oc7.r1(i2).L0(Long.valueOf(j));
-                if (L0 == null) {
-                    L0 = cf7.Y(i2).O(j);
-                }
-                if (L0 == null) {
-                    i = -1;
-                } else if (sd2.T(L0)) {
-                    i = 2;
-                } else {
-                    i = 1;
-                }
-            }
-            t61 t61Var = (t61) e2.get(keyAt);
-            for (int i4 = 0; i4 < arrayList2.size(); i4++) {
-                u61 u61Var = (u61) arrayList2.get(i4);
-                if (i >= 0) {
-                    u61Var.c = i;
-                }
-                if (t61Var != null) {
-                    u61Var.b = t61Var.b;
-                }
-            }
+        byte b = u61Var.d;
+        if (b == 0) {
+            this.r += j;
+        } else if (b == 1) {
+            this.s += j;
+        } else if (b == 2) {
+            this.t += j;
+        } else if (b == 3) {
+            this.u += j;
+        } else if (b == 4) {
+            this.v += j;
         }
     }
 
-    public final void h(int i, ArrayList arrayList) {
-        String j = hg9.j(i, "keep_media_exceptions_");
-        boolean isEmpty = arrayList.isEmpty();
-        int i2 = this.a;
-        if (isEmpty) {
-            z8c.h(i2).j().edit().remove(j).apply();
-            return;
+    public final boolean h() {
+        if (this.d.isEmpty() && this.e.isEmpty() && this.f.isEmpty()) {
+            if (this.a || this.b.isEmpty()) {
+                return true;
+            }
+            return false;
         }
-        int size = arrayList.size();
-        ByteBuffer allocate = ByteBuffer.allocate((size * 12) + 4);
-        allocate.putInt(size);
-        for (int i3 = 0; i3 < size; i3++) {
-            allocate.putLong(((t61) arrayList.get(i3)).a);
-            allocate.putInt(((t61) arrayList.get(i3)).b);
+        return false;
+    }
+
+    public final void i(u61 u61Var) {
+        HashSet hashSet = this.j;
+        if (hashSet.contains(u61Var)) {
+            hashSet.remove(u61Var);
+            g(u61Var, false);
+            this.k -= u61Var.c;
+            a(u61Var.d, false);
+        } else {
+            hashSet.add(u61Var);
+            g(u61Var, true);
+            this.k += u61Var.c;
+            a(u61Var.d, true);
         }
-        z8c.h(i2).j().edit().putString(j, Utilities.f(allocate.array())).apply();
-        allocate.clear();
+        c();
     }
 }

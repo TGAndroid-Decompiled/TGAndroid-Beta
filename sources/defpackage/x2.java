@@ -10,7 +10,7 @@ public final class x2 extends y2 implements RandomAccess {
     public x2(y2 y2Var, int i, int i2) {
         this.a = y2Var;
         this.b = i;
-        bnd.a(i, i2, y2Var.h());
+        zkd.a(i, i2, y2Var.h());
         this.c = i2 - i;
     }
 
@@ -20,7 +20,7 @@ public final class x2 extends y2 implements RandomAccess {
         if (i >= 0 && i < i2) {
             return this.a.get(this.b + i);
         }
-        wa3.i(b10.g(i, i2, "index: ", ", size: "));
+        k93.i(b00.g(i, i2, "index: ", ", size: "));
         return null;
     }
 
@@ -31,7 +31,7 @@ public final class x2 extends y2 implements RandomAccess {
 
     @Override
     public final List subList(int i, int i2) {
-        bnd.a(i, i2, this.c);
+        zkd.a(i, i2, this.c);
         int i3 = this.b;
         return new x2(this.a, i + i3, i3 + i2);
     }

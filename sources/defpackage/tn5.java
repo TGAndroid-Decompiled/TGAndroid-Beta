@@ -1,37 +1,51 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class tn5 extends jb8 {
-    public final ArrayList a;
-    public final wn5 b;
+import java.util.regex.Pattern;
+public abstract class tn5 {
+    public bj6 a;
+    public tg6 b;
+    public String c;
+    public int d;
 
-    public tn5(wn5 wn5Var, ArrayList arrayList) {
-        this.b = wn5Var;
-        this.a = arrayList;
+    public final String a(Pattern pattern) {
+        bj6 bj6Var = this.a;
+        bj6Var.g = this.d;
+        String c = bj6Var.c(pattern);
+        this.d = this.a.g;
+        return c;
     }
 
-    @Override
-    public final void M(int i, rcc rccVar, boolean z, int i2, int i3, boolean z2) {
-        this.b.s((jo6) this.a.get(0));
-    }
-
-    @Override
-    public final qb8 N(k47 k47Var, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
-        vn5 vn5Var = this.b.b;
-        if (vn5Var == null) {
+    public tg6 b() {
+        String a = a(sa0.e);
+        if (a != null) {
+            String n = ir2.n(1, 1, a);
+            bk5 bk5Var = new bk5("mailto:".concat(n), null, (byte) 1);
+            bk5Var.b(new ugb(n));
+            return bk5Var;
+        }
+        String a2 = a(sa0.f);
+        if (a2 == null) {
             return null;
         }
-        return vn5Var.getCloseIntoObject();
+        String n2 = ir2.n(1, 1, a2);
+        bk5 bk5Var2 = new bk5(n2, null, (byte) 1);
+        bk5Var2.b(new ugb(n2));
+        return bk5Var2;
     }
 
-    @Override
-    public final boolean U() {
-        return false;
+    public char c() {
+        return '<';
     }
 
-    @Override
-    public final boolean y() {
-        return false;
+    public final void d() {
+        bj6 bj6Var = this.a;
+        bj6Var.g = this.d;
+        bj6Var.c(bj6.k);
+        this.d = this.a.g;
+    }
+
+    public final ugb e(String str) {
+        this.a.getClass();
+        return new ugb(str);
     }
 }

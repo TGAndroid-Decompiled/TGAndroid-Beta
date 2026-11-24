@@ -50,7 +50,7 @@ public final class g0 extends AnimatorListenerAdapter {
                 return;
             case 1:
                 s1 s1Var = (s1) obj;
-                ((fq8) s1Var).f0.e.c.r = false;
+                ((eo8) s1Var).f0.e.c.r = false;
                 FrameLayout frameLayout = s1Var.K;
                 if (frameLayout.getBackground() == null) {
                     frameLayout.setBackground(s1Var.L);
@@ -80,7 +80,7 @@ public final class g0 extends AnimatorListenerAdapter {
                 }
                 return;
             case 4:
-                ((mv2) obj).run();
+                ((gu2) obj).run();
                 return;
             case 5:
                 gb gbVar = (gb) obj;
@@ -90,83 +90,72 @@ public final class g0 extends AnimatorListenerAdapter {
                 }
                 return;
             case 6:
-                ic icVar = (ic) obj;
-                if (icVar.d == animator) {
-                    icVar.d = null;
-                    icVar.a();
-                    return;
-                }
-                return;
-            case 7:
-                ((rc) obj).h = 0.0f;
-                return;
-            case 8:
-                HashMap hashMap = gm.l0;
+                HashMap hashMap = gl.l0;
                 if (hashMap != null) {
                     hashMap.remove((Window) obj);
                     return;
                 }
                 return;
-            case 9:
-                qn qnVar = (qn) obj;
-                qnVar.d = null;
-                qnVar.b.clear();
+            case 7:
+                qm qmVar = (qm) obj;
+                qmVar.d = null;
+                qmVar.b.clear();
                 return;
-            case 10:
+            case 8:
                 AnimatedPhoneNumberEditText animatedPhoneNumberEditText = (AnimatedPhoneNumberEditText) obj;
                 animatedPhoneNumberEditText.S1 = null;
                 animatedPhoneNumberEditText.Q1.clear();
                 return;
-            case 11:
+            case 9:
                 super.onAnimationEnd(animator);
-                ho hoVar = (ho) obj;
-                hoVar.b();
-                hoVar.o = null;
-                hoVar.j = 0.0f;
-                hoVar.m = 0.0f;
-                hoVar.l = 0.0f;
-                hoVar.k = 0.0f;
-                hoVar.r = 0.0f;
-                hoVar.q = 0.0f;
-                hoVar.invalidateSelf();
-                Runnable runnable = hoVar.c0;
+                gn gnVar = (gn) obj;
+                gnVar.b();
+                gnVar.o = null;
+                gnVar.j = 0.0f;
+                gnVar.m = 0.0f;
+                gnVar.l = 0.0f;
+                gnVar.k = 0.0f;
+                gnVar.r = 0.0f;
+                gnVar.q = 0.0f;
+                gnVar.invalidateSelf();
+                Runnable runnable = gnVar.c0;
                 if (runnable != null) {
                     runnable.run();
                 }
-                hoVar.t = null;
-                CharSequence charSequence = hoVar.u;
+                gnVar.t = null;
+                CharSequence charSequence = gnVar.u;
                 if (charSequence != null) {
-                    hoVar.t(charSequence, true, hoVar.v);
-                    hoVar.u = null;
-                    hoVar.v = false;
+                    gnVar.t(charSequence, true, gnVar.v);
+                    gnVar.u = null;
+                    gnVar.v = false;
                     return;
                 }
-                b1 b1Var = hoVar.J;
+                b1 b1Var = gnVar.J;
                 if (b1Var != null) {
                     b1Var.run();
                     return;
                 }
                 return;
-            case 12:
-                et etVar = (et) obj;
-                Button button = etVar.n;
-                mu8 mu8Var = etVar.f;
-                if (button == mu8Var) {
-                    etVar.e.setVisibility(4);
+            case 10:
+                es esVar = (es) obj;
+                Button button = esVar.n;
+                ls8 ls8Var = esVar.f;
+                if (button == ls8Var) {
+                    esVar.e.setVisibility(4);
                     return;
                 } else {
-                    mu8Var.setVisibility(4);
+                    ls8Var.setVisibility(4);
                     return;
                 }
-            case 13:
+            case 11:
                 super.onAnimationEnd(animator);
-                eu euVar = (eu) obj;
-                if (euVar != null) {
-                    euVar.run();
+                dt dtVar = (dt) obj;
+                if (dtVar != null) {
+                    dtVar.run();
                     return;
                 }
                 return;
-            case 14:
+            case 12:
                 o oVar = (o) obj;
                 Runnable runnable2 = oVar.b0;
                 if (runnable2 != null) {
@@ -175,109 +164,116 @@ public final class g0 extends AnimatorListenerAdapter {
                     return;
                 }
                 return;
+            case 13:
+                sw swVar = (sw) obj;
+                swVar.x = 1.0f;
+                swVar.A();
+                swVar.s();
+                swVar.r();
+                swVar.a.e();
+                return;
+            case 14:
+                be0 be0Var = (be0) obj;
+                be0Var.setVisibility(8);
+                be0Var.setImageDrawable(null);
+                be0Var.setAlpha(1.0f);
+                return;
             case 15:
-                sx sxVar = (sx) obj;
-                sxVar.x = 1.0f;
-                sxVar.A();
-                sxVar.u();
-                sxVar.r();
-                sxVar.a.e();
+                mb0 mb0Var = (mb0) ((ya0) obj).m1;
+                mb0Var.f = false;
+                mb0Var.e.setVisibility(8);
                 return;
             case 16:
-                bf0 bf0Var = (bf0) obj;
-                bf0Var.setVisibility(8);
-                bf0Var.setImageDrawable(null);
-                bf0Var.setAlpha(1.0f);
+                ((qb0) obj).setVisibility(8);
                 return;
             case 17:
-                mc0 mc0Var = (mc0) ((yb0) obj).m1;
-                mc0Var.f = false;
-                mc0Var.e.setVisibility(8);
+                tb0 tb0Var = (tb0) obj;
+                tb0Var.c = false;
+                tb0Var.invalidate();
                 return;
             case 18:
-                ((qc0) obj).setVisibility(8);
-                return;
-            case 19:
-                tc0 tc0Var = (tc0) obj;
-                tc0Var.c = false;
-                tc0Var.invalidate();
-                return;
-            case 20:
-                gd0 gd0Var = (gd0) obj;
-                if (gd0Var.f != null) {
-                    gd0Var.e = 1.0f;
-                    gd0Var.k();
-                    if (gd0Var.g) {
-                        gd0Var.g = false;
-                        Runnable runnable3 = gd0Var.j;
+                gc0 gc0Var = (gc0) obj;
+                if (gc0Var.f != null) {
+                    gc0Var.e = 1.0f;
+                    gc0Var.k();
+                    if (gc0Var.g) {
+                        gc0Var.g = false;
+                        Runnable runnable3 = gc0Var.j;
                         if (runnable3 != null) {
                             runnable3.run();
                         }
                     }
-                    gd0Var.d();
+                    gc0Var.d();
                 }
-                gd0Var.f = null;
+                gc0Var.f = null;
+                return;
+            case 19:
+                super.onAnimationEnd(animator);
+                nf0 nf0Var = (nf0) obj;
+                if (!nf0Var.j1) {
+                    nf0Var.v0 = false;
+                    nf0Var.u0.setVisibility(8);
+                    nf0Var.invalidate();
+                }
+                nf0Var.g0 = false;
+                return;
+            case 20:
+                mm0 mm0Var = (mm0) obj;
+                mm0Var.b = 1.0f;
+                mm0Var.invalidate();
                 return;
             case 21:
-                super.onAnimationEnd(animator);
-                ng0 ng0Var = (ng0) obj;
-                if (!ng0Var.j1) {
-                    ng0Var.v0 = false;
-                    ng0Var.u0.setVisibility(8);
-                    ng0Var.invalidate();
-                }
-                ng0Var.g0 = false;
+                ((lo0) obj).i0.setVisibility(8);
                 return;
             case 22:
-                mn0 mn0Var = (mn0) obj;
-                mn0Var.b = 1.0f;
-                mn0Var.invalidate();
+                super.onAnimationEnd(animator);
+                ((wo0) obj).x = null;
                 return;
             case 23:
-                ((lp0) obj).i0.setVisibility(8);
+                ap0 ap0Var = (ap0) obj;
+                ap0Var.setVisibility(8);
+                ap0Var.a = null;
                 return;
             case 24:
-                super.onAnimationEnd(animator);
-                ((wp0) obj).x = null;
+                ((hv0) obj).s.setVisibility(8);
                 return;
             case 25:
-                aq0 aq0Var = (aq0) obj;
-                aq0Var.setVisibility(8);
-                aq0Var.a = null;
+                ((ow0) obj).F.setVisibility(8);
                 return;
             case 26:
-                ((qw0) obj).s.setVisibility(8);
-                return;
-            case 27:
-                ((wx0) obj).F.setVisibility(8);
-                return;
-            case 28:
-                xy0 xy0Var = (xy0) obj;
-                if (xy0Var.G == animator) {
-                    xy0Var.H = xy0Var.I;
-                    Iterator it = xy0Var.J.iterator();
+                qx0 qx0Var = (qx0) obj;
+                if (qx0Var.G == animator) {
+                    qx0Var.H = qx0Var.I;
+                    Iterator it = qx0Var.J.iterator();
                     while (it.hasNext()) {
                         ((Runnable) it.next()).run();
                     }
                     return;
                 }
                 return;
-            default:
-                fz0 fz0Var = (fz0) obj;
-                xy0 xy0Var2 = fz0Var.a;
-                if (xy0Var2 != null) {
-                    xy0Var2.b = true;
-                    xy0Var2.invalidate();
+            case 27:
+                yx0 yx0Var = (yx0) obj;
+                qx0 qx0Var2 = yx0Var.a;
+                if (qx0Var2 != null) {
+                    qx0Var2.b = true;
+                    qx0Var2.invalidate();
                 }
-                if (fz0Var.V) {
+                if (yx0Var.V) {
                     f2 = 1.0f;
                 }
-                fz0Var.W = f2;
-                fz0Var.invalidate();
-                if (!fz0Var.V) {
-                    fz0Var.S.clear();
+                yx0Var.W = f2;
+                yx0Var.invalidate();
+                if (!yx0Var.V) {
+                    yx0Var.S.clear();
                     return;
                 }
+                return;
+            case 28:
+            default:
+                super.onAnimationEnd(animator);
+                return;
+            case 29:
+                ((da1) obj).w = null;
                 return;
         }
     }
@@ -288,10 +284,19 @@ public final class g0 extends AnimatorListenerAdapter {
         Object obj = this.b;
         switch (b) {
             case 1:
-                ((fq8) ((s1) obj)).f0.e.c.r = true;
+                ((eo8) ((s1) obj)).f0.e.c.r = true;
                 return;
-            case 18:
-                ((qc0) obj).setVisibility(0);
+            case 16:
+                ((qb0) obj).setVisibility(0);
+                return;
+            case 28:
+                b81 b81Var = (b81) obj;
+                for (int i = 0; i < b81Var.b.getChildCount(); i++) {
+                    int i2 = b81Var.Q;
+                    int i3 = b81Var.R;
+                    int i4 = y71.E;
+                    ((y71) b81Var.b.getChildAt(i)).c(i2, i3);
+                }
                 return;
             default:
                 super.onAnimationStart(animator);

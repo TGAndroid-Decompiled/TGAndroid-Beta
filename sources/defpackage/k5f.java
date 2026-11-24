@@ -1,50 +1,53 @@
 package defpackage;
-public final class k5f extends wgf {
-    private static final k5f zzb;
-    private int zzd;
-    private String zze = "";
-    private String zzf = "";
 
-    static {
-        k5f k5fVar = new k5f();
-        zzb = k5fVar;
-        wgf.e(k5f.class, k5fVar);
+import android.util.Log;
+import com.google.android.gms.common.api.Status;
+public final class k5f {
+    public final byte a;
+    public final wr6 b;
+
+    public k5f(wr6 wr6Var, byte b) {
+        this.a = b;
+        this.b = wr6Var;
     }
 
-    public static h5f l() {
-        return (h5f) zzb.j();
-    }
-
-    public static void m(k5f k5fVar, String str) {
-        str.getClass();
-        k5fVar.zzd |= 1;
-        k5fVar.zze = str;
-    }
-
-    public static void n(k5f k5fVar, String str) {
-        str.getClass();
-        k5fVar.zzd |= 2;
-        k5fVar.zzf = str;
-    }
-
-    @Override
-    public final Object h(int i, wgf wgfVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
-                    }
-                    return new vgf(zzb);
+    public final void a(ua9 ua9Var) {
+        byte b = this.a;
+        wr6 wr6Var = this.b;
+        vcd vcdVar = (vcd) ua9Var;
+        switch (b) {
+            case 0:
+                Status a = vcdVar.a();
+                int i = a.a;
+                if (i != 0) {
+                    dc6 dc6Var = wr6Var.a;
+                    Log.w(dc6Var.a, dc6Var.d(mue.d("Error fetching queue item ids, statusCode=", i, ", statusMessage=", a.b), new Object[0]));
                 }
-                return new k5f();
-            }
-            return new tif(zzb, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဈ\u0000\u0002ဈ\u0001", new Object[]{"zzd", "zze", "zzf"});
+                wr6Var.l = null;
+                if (!wr6Var.h.isEmpty()) {
+                    o59 o59Var = wr6Var.i;
+                    aw3 aw3Var = wr6Var.j;
+                    o59Var.removeCallbacks(aw3Var);
+                    o59Var.postDelayed(aw3Var, 500L);
+                    return;
+                }
+                return;
+            default:
+                Status a2 = vcdVar.a();
+                int i2 = a2.a;
+                if (i2 != 0) {
+                    dc6 dc6Var2 = wr6Var.a;
+                    Log.w(dc6Var2.a, dc6Var2.d(mue.d("Error fetching queue items, statusCode=", i2, ", statusMessage=", a2.b), new Object[0]));
+                }
+                wr6Var.k = null;
+                if (!wr6Var.h.isEmpty()) {
+                    o59 o59Var2 = wr6Var.i;
+                    aw3 aw3Var2 = wr6Var.j;
+                    o59Var2.removeCallbacks(aw3Var2);
+                    o59Var2.postDelayed(aw3Var2, 500L);
+                    return;
+                }
+                return;
         }
-        return (byte) 1;
     }
 }

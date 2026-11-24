@@ -1,37 +1,84 @@
 package defpackage;
 
+import android.os.SystemClock;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import org.telegram.tgnet.TLRPC;
-public final class u3a implements Runnable {
-    public final byte a;
-    public final a6a b;
-    public final TLRPC.Message c;
-    public final boolean d;
+public final class u3a {
+    public String e;
+    public String f;
+    public String g;
+    public long h;
+    public long i;
+    public int j;
+    public double k;
+    public long l;
+    public long m;
+    public final z3a o;
+    public final HashMap a = new HashMap();
+    public final HashMap b = new HashMap();
+    public final HashMap c = new HashMap();
+    public final ArrayList d = new ArrayList();
+    public int n = Integer.MAX_VALUE;
 
-    public u3a(a6a a6aVar, TLRPC.Message message, boolean z, byte b) {
-        this.a = b;
-        this.b = a6aVar;
-        this.c = message;
-        this.d = z;
+    public u3a(z3a z3aVar) {
+        this.o = z3aVar;
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        boolean z = this.d;
-        TLRPC.Message message = this.c;
-        a6a a6aVar = this.b;
-        switch (b) {
-            case 0:
-                a6aVar.c0(message.id);
-                a6aVar.h0(message.id, z);
-                return;
-            case 1:
-                a6aVar.c0(message.id);
-                a6aVar.h0(message.id, z);
-                return;
-            default:
-                a6aVar.f0(message, z);
-                return;
+    public final void a(String str, long j, float f) {
+        this.b.put(str, Float.valueOf(f));
+        Long valueOf = Long.valueOf(j);
+        HashMap hashMap = this.c;
+        hashMap.put(str, valueOf);
+        this.i = 0L;
+        for (Map.Entry entry : hashMap.entrySet()) {
+            this.i = ((Long) entry.getValue()).longValue() + this.i;
         }
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j2 = this.i;
+        long j3 = this.m;
+        if (j2 != j3) {
+            long j4 = this.l;
+            if (elapsedRealtime != j4) {
+                double d = (j2 - j3) / ((elapsedRealtime - j4) / 1000.0d);
+                double d2 = this.k;
+                if (d2 == 0.0d) {
+                    this.k = d;
+                } else {
+                    d = (d * 0.01d) + (0.99d * d2);
+                    this.k = d;
+                }
+                this.n = (int) (((this.h - j2) * 1000) / d);
+                this.m = j2;
+                this.l = elapsedRealtime;
+            }
+        }
+        int i = (int) ((((float) j2) / ((float) this.h)) * 100.0f);
+        if (this.j != i) {
+            this.j = i;
+            this.o.getNotificationCenter().k(kk7.v1, this.e);
+        }
+    }
+
+    public final void b() {
+        TLRPC.TL_stickers_createStickerSet tL_stickers_createStickerSet = new TLRPC.TL_stickers_createStickerSet();
+        tL_stickers_createStickerSet.user_id = new TLRPC.TL_inputUserSelf();
+        tL_stickers_createStickerSet.title = this.f;
+        tL_stickers_createStickerSet.short_name = this.e;
+        String str = this.g;
+        if (str != null) {
+            tL_stickers_createStickerSet.software = str;
+            tL_stickers_createStickerSet.flags |= 8;
+        }
+        ArrayList arrayList = this.d;
+        int size = arrayList.size();
+        for (int i = 0; i < size; i++) {
+            TLRPC.TL_inputStickerSetItem tL_inputStickerSetItem = ((s3a) arrayList.get(i)).f;
+            if (tL_inputStickerSetItem != null) {
+                tL_stickers_createStickerSet.stickers.add(tL_inputStickerSetItem);
+            }
+        }
+        this.o.getConnectionsManager().sendRequest(tL_stickers_createStickerSet, new t3a(this, tL_stickers_createStickerSet));
     }
 }

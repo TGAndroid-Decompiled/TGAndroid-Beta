@@ -1,50 +1,17 @@
 package defpackage;
+public final class hld implements zn7 {
+    public static final hld a = new Object();
 
-import java.util.Iterator;
-import java.util.Map;
-public final class hld extends okd {
-    public final pld s;
-
-    public hld(pld pldVar) {
-        super((byte) 4);
-        this.s = pldVar;
+    static {
+        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)));
     }
 
     @Override
-    public final yjd B() {
-        return new bld(this);
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object obj2 = this.s.get(entry.getKey());
-            if (obj2 != null && obj2.equals(entry.getValue())) {
-                return true;
-            }
-            return false;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        return false;
-    }
-
-    @Override
-    public final int hashCode() {
-        return c3f.a(this.s.entrySet());
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return A().listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        return this.s.d.size();
-    }
-
-    @Override
-    public final v7c u() {
-        return A().listIterator(0);
+        throw new ClassCastException();
     }
 }

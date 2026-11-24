@@ -1,260 +1,98 @@
 package defpackage;
-public final class mma {
-    public final int a;
-    public final int b;
-    public final float c;
-    public final float d;
-    public final float e;
-    public final int f;
-    public final int g;
-    public final int h;
-    public final kma i;
-    public int j;
-    public int k;
-    public int l;
-    public int m;
-    public int n;
-    public int o;
-    public int p;
-    public double q;
 
-    public mma(int i, int i2, float f, float f2, int i3, boolean z) {
-        kma lmaVar;
-        this.a = i;
-        this.b = i2;
-        this.c = f;
-        this.d = f2;
-        this.e = i / i3;
-        this.f = i / 400;
-        int i4 = i / 65;
-        this.g = i4;
-        this.h = i4 << 1;
-        if (z) {
-            lmaVar = new jma(this);
-        } else {
-            lmaVar = new lma(this);
-        }
-        this.i = lmaVar;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Path;
+import android.graphics.RectF;
+import java.util.ArrayList;
+public class mma extends nf0 {
+    public final Matrix E1;
+    public final float[] F1;
+    public final Path G1;
+    public boolean[] H1;
+    public float[] I1;
+
+    public mma(Context context) {
+        super(context, null);
+        this.E1 = new Matrix();
+        this.F1 = new float[2];
+        this.G1 = new Path();
+        this.x0 = true;
+        this.y0 = true;
+        this.e = false;
     }
 
-    public final void a(int i, int i2) {
-        kma kmaVar = this.i;
-        kmaVar.i(i2);
-        Object g = kmaVar.g();
-        int i3 = this.b;
-        System.arraycopy(g, i * i3, kmaVar.h(), this.k * i3, i3 * i2);
-        this.k += i2;
+    @Override
+    public nma h(ek1 ek1Var) {
+        return new nma(ek1Var);
     }
 
-    public final void b() {
-        int i;
-        float f;
-        int i2;
-        int i3;
-        double d;
-        int i4;
-        int i5;
-        int i6;
-        int i7;
-        int i8;
-        int i9;
-        int i10;
-        long j;
-        long j2;
-        int i11;
-        boolean z;
-        int i12 = this.k;
-        float f2 = this.c;
-        float f3 = this.d;
-        double d2 = f2 / f3;
-        float f4 = this.e * f3;
-        int i13 = (d2 > 1.0000100135803223d ? 1 : (d2 == 1.0000100135803223d ? 0 : -1));
-        int i14 = this.a;
-        int i15 = 1;
-        kma kmaVar = this.i;
-        int i16 = this.b;
-        if (i13 <= 0 && d2 >= 0.9999899864196777d) {
-            a(0, this.j);
-            this.j = 0;
-        } else {
-            int i17 = this.j;
-            int i18 = this.h;
-            if (i17 >= i18) {
-                int i19 = 0;
-                while (true) {
-                    int i20 = this.o;
-                    if (i20 > 0) {
-                        int min = Math.min(i18, i20);
-                        a(i19, min);
-                        this.o -= min;
-                        i19 += min;
-                        f = f4;
-                        d = d2;
-                        i6 = i15;
-                        i4 = i18;
-                    } else {
-                        if (i14 > 4000) {
-                            i = i14 / 4000;
-                        } else {
-                            i = i15;
-                        }
-                        int i21 = this.g;
-                        int i22 = this.f;
-                        if (i16 == i15 && i == i15) {
-                            i2 = kmaVar.e(i19, i22, i21);
-                            f = f4;
-                        } else {
-                            kmaVar.d(i19, i);
-                            f = f4;
-                            int q = kmaVar.q(i22 / i, i21 / i);
-                            if (i != i15) {
-                                int i23 = q * i;
-                                int i24 = i << 2;
-                                int i25 = i23 - i24;
-                                int i26 = i23 + i24;
-                                if (i25 >= i22) {
-                                    i22 = i25;
-                                }
-                                if (i26 <= i21) {
-                                    i21 = i26;
-                                }
-                                if (i16 == i15) {
-                                    i2 = kmaVar.e(i19, i22, i21);
-                                } else {
-                                    kmaVar.d(i19, i15);
-                                    i2 = kmaVar.q(i22, i21);
-                                }
-                            } else {
-                                i2 = q;
-                            }
-                        }
-                        if (kmaVar.j()) {
-                            i3 = this.p;
-                        } else {
-                            i3 = i2;
-                        }
-                        kmaVar.f();
-                        this.p = i2;
-                        int i27 = (d2 > 1.0d ? 1 : (d2 == 1.0d ? 0 : -1));
-                        double d3 = this.q;
-                        if (i27 > 0) {
-                            if (d2 >= 2.0d) {
-                                i7 = i15;
-                                double d4 = (i3 / (d2 - 1.0d)) + d3;
-                                i8 = (int) Math.round(d4);
-                                d = d2;
-                                this.q = d4 - i8;
-                                kmaVar = kmaVar;
-                            } else {
-                                d = d2;
-                                i7 = i15;
-                                double d5 = (((2.0d - d) * i3) / (d - 1.0d)) + d3;
-                                int round = (int) Math.round(d5);
-                                this.o = round;
-                                this.q = d5 - round;
-                                i8 = i3;
-                            }
-                            kmaVar.i(i8);
-                            int i28 = i18;
-                            int i29 = i8;
-                            kmaVar.m(i29, this.b, this.k, i19, i19 + i3);
-                            this.k += i29;
-                            i19 = i3 + i29 + i19;
-                            i4 = i28;
-                            i6 = i7;
-                        } else {
-                            d = d2;
-                            int i30 = i15;
-                            i4 = i18;
-                            if (d < 0.5d) {
-                                double d6 = ((i3 * d) / (1.0d - d)) + d3;
-                                i5 = (int) Math.round(d6);
-                                this.q = d6 - i5;
-                            } else {
-                                double d7 = ((((2.0d * d) - 1.0d) * i3) / (1.0d - d)) + d3;
-                                int round2 = (int) Math.round(d7);
-                                this.o = round2;
-                                this.q = d7 - round2;
-                                i5 = i3;
-                            }
-                            int i31 = i3 + i5;
-                            kmaVar.i(i31);
-                            i6 = i30;
-                            System.arraycopy(kmaVar.g(), i19 * i16, kmaVar.h(), this.k * i16, i3 * i16);
-                            int i32 = i19;
-                            kmaVar.m(i5, this.b, this.k + i3, i3 + i19, i32);
-                            this.k += i31;
-                            i19 = i32 + i5;
-                        }
-                    }
-                    if (i19 + i4 > i17) {
-                        break;
-                    }
-                    i18 = i4;
-                    f4 = f;
-                    i15 = i6;
-                    d2 = d;
-                }
-                int i33 = this.j - i19;
-                System.arraycopy(kmaVar.g(), i19 * i16, kmaVar.g(), 0, i33 * i16);
-                this.j = i33;
-                if (f == 1.0f && this.k != i12) {
-                    long j3 = i14 / f;
-                    long j4 = i14;
-                    while (j3 != 0 && j4 != 0 && j3 % 2 == 0 && j4 % 2 == 0) {
-                        j3 /= 2;
-                        j4 /= 2;
-                    }
-                    int i34 = this.k - i12;
-                    kmaVar.n(i34);
-                    System.arraycopy(kmaVar.h(), i12 * i16, kmaVar.l(), this.l * i16, i34 * i16);
-                    this.k = i12;
-                    this.l += i34;
-                    int i35 = 0;
-                    while (true) {
-                        i9 = this.l - 1;
-                        if (i35 >= i9) {
-                            break;
-                        }
-                        while (true) {
-                            i10 = this.m + 1;
-                            j = i10;
-                            j2 = this.n;
-                            i11 = i6;
-                            if (j * j3 <= j2 * j4) {
-                                break;
-                            }
-                            kmaVar.i(i11);
-                            kmaVar.k(j4, i35, j3);
-                            this.n += i11;
-                            this.k += i11;
-                        }
-                        this.m = i10;
-                        if (j == j4) {
-                            this.m = 0;
-                            if (j2 == j3) {
-                                z = i11;
-                            } else {
-                                z = 0;
-                            }
-                            jte.p(z);
-                            this.n = 0;
-                        }
-                        i35++;
-                        i6 = i11;
-                    }
-                    if (i9 != 0) {
-                        System.arraycopy(kmaVar.l(), i9 * i16, kmaVar.l(), 0, (this.l - i9) * i16);
-                        this.l -= i9;
-                        return;
-                    }
-                    return;
-                }
+    public final int M(float f, float f2) {
+        RectF rectF = this.I0;
+        float centerX = rectF.centerX();
+        float centerY = rectF.centerY() + gl.L(16.0f);
+        if (f >= centerX) {
+            if (f2 <= centerY) {
+                return 0;
+            }
+            if (f2 >= centerY) {
+                return 1;
             }
         }
-        f = f4;
-        i6 = 1;
-        if (f == 1.0f) {
+        if (f < centerX && f2 >= centerY) {
+            return 2;
         }
+        return 3;
+    }
+
+    @Override
+    public float getMinDistance() {
+        return 0.1f;
+    }
+
+    @Override
+    public void k(android.graphics.Canvas r46) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mma.k(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public void n(android.graphics.Canvas r27) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mma.n(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        F();
+        k(canvas);
+        i(canvas);
+        ArrayList arrayList = this.b;
+        this.n0 = arrayList.size();
+        int i = 0;
+        while (true) {
+            this.o0 = i;
+            int i2 = this.o0;
+            if (i2 < this.n0) {
+                l(canvas, (ik1) arrayList.get(i2));
+                p(canvas, (ik1) arrayList.get(this.o0));
+                i = this.o0 + 1;
+            } else {
+                j(canvas);
+                m(canvas);
+                o(canvas);
+                super.onDraw(canvas);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void q(defpackage.zyb r21) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mma.q(zyb):void");
+    }
+
+    @Override
+    public final long r(int i, int i2) {
+        return 100L;
     }
 }

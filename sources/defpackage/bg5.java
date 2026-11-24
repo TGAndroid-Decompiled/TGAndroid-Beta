@@ -1,17 +1,64 @@
 package defpackage;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public abstract class bg5 {
-    public static int[] a() {
-        return new int[]{10000, 3600, 400, 20, -10787210, -8681059, -14341066, 2000, 1800, 280, 10, -2013375, -1482439, -7666429, 500, 900, 200, 7, -1214690, -1214690, -6606592, 250, 600, 150, 4, -1926647, -1926647, -6668800, 100, 300, 110, 3, -12539616, -12539616, -15244800, 50, 120, 80, 2, -12147733, -12147733, -16756594, 10, 60, 60, 1, -6988581, -6988581, -11991141, 0, 30, 30, 0, -6988581, -6988581, -11991141};
+    public static final Map a;
+    public static final Pattern b;
+
+    static {
+        HashMap hashMap = new HashMap();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(bg5.class.getResourceAsStream("/org/commonmark/internal/util/entities.properties"), Charset.forName("UTF-8")));
+            while (true) {
+                String readLine = bufferedReader.readLine();
+                if (readLine != null) {
+                    if (readLine.length() != 0) {
+                        int indexOf = readLine.indexOf("=");
+                        hashMap.put(readLine.substring(0, indexOf), readLine.substring(indexOf + 1));
+                    }
+                } else {
+                    bufferedReader.close();
+                    hashMap.put("NewLine", "\n");
+                    a = hashMap;
+                    b = Pattern.compile("^&#[Xx]?");
+                    return;
+                }
+            }
+        } catch (IOException e) {
+            k93.h("Failed reading data for HTML named character references", e);
+        }
     }
 
-    public static int b(int i, int i2, int i3) {
-        int[] iArr = oc7.r1(i).T3;
-        for (int i4 = 0; i4 < iArr.length / 7; i4++) {
-            int i5 = i4 * 7;
-            if (i2 >= iArr[i5]) {
-                return iArr[i5 + 1 + i3];
+    public static String a(String str) {
+        int i;
+        Matcher matcher = b.matcher(str);
+        if (matcher.find()) {
+            if (matcher.end() == 2) {
+                i = 10;
+            } else {
+                i = 16;
+            }
+            try {
+                int parseInt = Integer.parseInt(str.substring(matcher.end(), str.length() - 1), i);
+                if (parseInt == 0) {
+                    return "�";
+                }
+                return new String(Character.toChars(parseInt));
+            } catch (IllegalArgumentException unused) {
+                return "�";
             }
         }
-        return 0;
+        String str2 = (String) a.get(ir2.n(1, 1, str));
+        if (str2 != null) {
+            return str2;
+        }
+        return str;
     }
 }

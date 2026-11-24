@@ -1,3 +1,3 @@
 package defpackage;
-public interface wh2 extends av5 {
+public abstract class wh2 {
 }

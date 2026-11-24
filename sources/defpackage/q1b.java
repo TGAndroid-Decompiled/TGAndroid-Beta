@@ -1,57 +1,24 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class q1b extends AnimatorListenerAdapter {
-    public final byte a;
-    public final boolean b;
-    public final s1b c;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_stories;
+public final class q1b extends TL_stories.StoryItem {
+    public final s1b a;
 
-    public q1b(s1b s1bVar, boolean z, byte b) {
-        this.a = b;
-        this.c = s1bVar;
-        this.b = z;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        s1b s1bVar = this.c;
-        boolean z = this.b;
-        switch (b) {
-            case 0:
-                if (!z) {
-                    s1bVar.h.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                if (!z) {
-                    s1bVar.y.setVisibility(4);
-                    return;
-                }
-                return;
+    public q1b(s1b s1bVar, long j, TL_bots.botPreviewMedia botpreviewmedia) {
+        this.a = s1bVar;
+        this.dialogId = j;
+        TLRPC.MessageMedia messageMedia = botpreviewmedia.media;
+        this.media = messageMedia;
+        TLRPC.Document document = messageMedia.document;
+        if (document != null) {
+            document.date = botpreviewmedia.date;
+            return;
         }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        byte b = this.a;
-        s1b s1bVar = this.c;
-        boolean z = this.b;
-        switch (b) {
-            case 0:
-                if (z) {
-                    s1bVar.h.setVisibility(0);
-                    return;
-                }
-                return;
-            default:
-                if (z) {
-                    s1bVar.y.setVisibility(0);
-                    return;
-                }
-                return;
+        TLRPC.Photo photo = messageMedia.photo;
+        if (photo != null) {
+            photo.date = botpreviewmedia.date;
         }
     }
 }

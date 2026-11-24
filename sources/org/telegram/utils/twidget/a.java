@@ -21,13 +21,13 @@ public final class a extends b {
             WidgetSandboxNative.conformance(false);
             WidgetSandboxNative.attackScan(false);
             WidgetSandboxNative.limits(null);
-            ExecutorService executorService = iyc.a;
-            synchronized (iyc.class) {
-                file = iyc.b;
+            ExecutorService executorService = hwc.a;
+            synchronized (hwc.class) {
+                file = hwc.b;
                 if (file == null) {
                     AssetManager assets = context.getApplicationContext().getAssets();
                     InputStream open = assets.open("WidgetSandbox/manifest.txt");
-                    String a = iyc.a(open);
+                    String a = hwc.a(open);
                     open.close();
                     byte[] digest = MessageDigest.getInstance("SHA-256").digest(a.getBytes(StandardCharsets.UTF_8));
                     StringBuilder sb = new StringBuilder();
@@ -114,7 +114,7 @@ public final class a extends b {
                         fileOutputStream2.write(1);
                         fileOutputStream2.close();
                     }
-                    iyc.b = file2;
+                    hwc.b = file2;
                     file = file2;
                 }
             }
@@ -122,7 +122,7 @@ public final class a extends b {
             Charset charset = StandardCharsets.UTF_8;
             return WidgetSandboxNative.create(absolutePath.getBytes(charset), str.getBytes(charset), str2.getBytes(charset), f, f2, i, str3.getBytes(charset), str4.getBytes(charset), str5.getBytes(charset), str6.getBytes(charset), z, widgetSandboxBackend);
         }
-        dq9.m("libtwidget is missing");
+        sc8.j("libtwidget is missing");
         return 0L;
     }
 }

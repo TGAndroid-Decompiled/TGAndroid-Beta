@@ -1,18 +1,17 @@
 package defpackage;
-public final class uj7 {
-    public final mo5 a;
-    public final int[] b;
+public final class uj7 extends m19 {
+    public static final uj7 c;
 
-    public uj7(y79 y79Var, int[] iArr, byte b) {
-        switch (b) {
-            case 1:
-                this.a = mo5.q(y79Var);
-                this.b = iArr;
-                return;
-            default:
-                this.a = mo5.q(y79Var);
-                this.b = iArr;
-                return;
+    static {
+        ?? exc = new Exception();
+        c = exc;
+        exc.setStackTrace(m19.b);
+    }
+
+    public static uj7 a() {
+        if (m19.a) {
+            return new Exception();
         }
+        return c;
     }
 }

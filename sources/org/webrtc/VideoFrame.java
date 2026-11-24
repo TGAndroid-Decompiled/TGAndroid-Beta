@@ -80,10 +80,10 @@ public class VideoFrame implements RefCounted {
                 this.timestampNs = j;
                 return;
             }
-            u36.j("rotation must be a multiple of 90");
+            w26.j("rotation must be a multiple of 90");
             throw null;
         }
-        u36.j("buffer not allowed to be null");
+        w26.j("buffer not allowed to be null");
         throw null;
     }
 

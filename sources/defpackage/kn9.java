@@ -1,37 +1,28 @@
 package defpackage;
-public final class kn9 implements Runnable {
-    public final byte a;
-    public final et8 b;
-    public final Exception c;
 
-    public kn9(et8 et8Var, Exception exc, byte b) {
-        this.a = b;
-        this.b = et8Var;
-        this.c = exc;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
+public final class kn9 extends il0 {
+    public final RectF j0;
+
+    public kn9(ln9 ln9Var) {
+        super(ln9Var, ln9Var, ln9Var);
+        this.j0 = new RectF();
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        Exception exc = this.c;
-        et8 et8Var = this.b;
-        switch (b) {
-            case 0:
-                un9 un9Var = (un9) et8Var.b;
-                un9Var.m.a("recording segment interrupted in state=".concat(hg9.A(un9Var.a0)), exc);
-                int i = un9Var.a0;
-                if (i == 3) {
-                    un9Var.q();
-                    return;
-                } else if (i == 2) {
-                    un9Var.D = true;
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                ((un9) et8Var.b).h(exc);
-                return;
+    public final void draw(Canvas canvas) {
+        super.draw(canvas);
+        hl0 hl0Var = this.S;
+        Rect rect = hl0Var.m;
+        if (!rect.isEmpty() && this.c != 0) {
+            RectF rectF = this.j0;
+            rectF.set(rect);
+            canvas.save();
+            canvas.clipPath(hl0Var.k);
+            uv8.c(canvas, rectF, 0.0f, this.c / 255.0f);
+            canvas.restore();
         }
     }
 }

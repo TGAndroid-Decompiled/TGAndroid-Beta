@@ -1,3 +1,5 @@
 package defpackage;
-public abstract class abf {
+
+import java.util.RandomAccess;
+public final class abf extends l3 implements RandomAccess {
 }

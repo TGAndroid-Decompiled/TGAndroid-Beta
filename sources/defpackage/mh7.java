@@ -1,61 +1,41 @@
 package defpackage;
+public final class mh7 implements la1, akc {
+    public final na1 a;
+    public final nh7 b;
 
-import j$.util.Objects;
-public final class mh7 implements lf7 {
-    public final float a;
-    public final lh7 b;
-    public final lh7 c;
-
-    public mh7(float f, lh7 lh7Var, lh7 lh7Var2) {
-        this.a = f;
-        this.b = lh7Var;
-        this.c = lh7Var2;
+    public mh7(nh7 nh7Var, na1 na1Var) {
+        this.b = nh7Var;
+        this.a = na1Var;
     }
 
     @Override
-    public final go4 a() {
-        return null;
+    public final void a(nv9 nv9Var, int i) {
+        this.a.a(nv9Var, i);
     }
 
     @Override
-    public final byte[] c() {
-        return null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof mh7)) {
-            return false;
+    public final lo5 b(Object obj, gq4 gq4Var) {
+        nh7 nh7Var = this.b;
+        ma1 ma1Var = new ma1(nh7Var, this);
+        lo5 E = this.a.E((g5c) obj, ma1Var);
+        if (E != null) {
+            nh7.h.set(nh7Var, null);
         }
-        mh7 mh7Var = (mh7) obj;
-        if (Float.compare(this.a, mh7Var.a) != 0 || !Objects.equals(this.b, mh7Var.b) || !Objects.equals(this.c, mh7Var.c)) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        int i;
-        int floatToIntBits = Float.floatToIntBits(this.a) * 31;
-        int i2 = 0;
-        lh7 lh7Var = this.b;
-        if (lh7Var != null) {
-            i = lh7Var.hashCode();
-        } else {
-            i = 0;
-        }
-        int i3 = (floatToIntBits + i) * 31;
-        lh7 lh7Var2 = this.c;
-        if (lh7Var2 != null) {
-            i2 = lh7Var2.hashCode();
-        }
-        return i3 + i2;
-    }
-
-    public final String toString() {
-        return "ReplayGain Xing/Info: peak=" + this.a + ", field 1=" + this.b + ", field 2=" + this.c;
+        return E;
     }
 
     @Override
-    public final void b(ht6 ht6Var) {
+    public final void e(Object obj) {
+        this.a.e(obj);
+    }
+
+    @Override
+    public final sw2 getContext() {
+        return this.a.e;
+    }
+
+    @Override
+    public final void resumeWith(Object obj) {
+        this.a.resumeWith(obj);
     }
 }

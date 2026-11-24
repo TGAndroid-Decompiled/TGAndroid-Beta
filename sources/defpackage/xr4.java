@@ -1,3 +1,10 @@
 package defpackage;
-public interface xr4 extends gs4 {
+
+import androidx.recyclerview.widget.RecyclerView;
+public final class xr4 {
+    public boolean a;
+    public int b;
+    public int c;
+    public RecyclerView d;
+    public int e;
 }

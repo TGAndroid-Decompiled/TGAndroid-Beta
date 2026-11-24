@@ -1,12 +1,10 @@
 package defpackage;
-public final class khe {
-    public final Long a;
-    public final cje b;
-    public final Boolean c;
+public abstract class khe {
+    public static final java.lang.Object a(defpackage.hk4 r5, defpackage.gw2 r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.khe.a(hk4, gw2):java.lang.Object");
+    }
 
-    public khe(uqd uqdVar) {
-        this.a = (Long) uqdVar.b;
-        this.b = (cje) uqdVar.c;
-        this.c = (Boolean) uqdVar.d;
+    public static final java.lang.Object b(defpackage.hk4 r4, defpackage.gw2 r5) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.khe.b(hk4, gw2):java.lang.Object");
     }
 }

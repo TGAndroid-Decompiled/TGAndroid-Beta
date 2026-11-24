@@ -1,17 +1,24 @@
 package defpackage;
-public final class f6e implements cq7 {
-    public static final f6e a = new Object();
 
-    static {
-        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)));
+import android.os.Bundle;
+public final class f6e extends n4d {
+    public final gg0 g;
+
+    public f6e(gg0 gg0Var, int i, Bundle bundle) {
+        super(gg0Var, i, bundle);
+        this.g = gg0Var;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final boolean a() {
+        this.g.o.a(ds2.f);
+        return true;
+    }
+
+    @Override
+    public final void b(ds2 ds2Var) {
+        gg0 gg0Var = this.g;
+        gg0Var.o.a(ds2Var);
+        gg0Var.s(ds2Var);
     }
 }

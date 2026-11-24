@@ -33,8 +33,8 @@ public final class i6 implements Runnable {
             case 3:
                 Drawable drawable2 = ActionBarLayout.w1;
                 if (actionBarLayout.a && actionBarLayout.getLastFragment() != null && actionBarLayout.s.getChildCount() == 0) {
-                    boolean z = e21.a;
-                    fc4.g(new RuntimeException(TextUtils.join(", ", actionBarLayout.p1)), true);
+                    boolean z = w01.a;
+                    fa4.g(new RuntimeException(TextUtils.join(", ", actionBarLayout.p1)), true);
                     actionBarLayout.W(true, true);
                     return;
                 }

@@ -1,17 +1,6 @@
 package defpackage;
-public final class gid implements cq7 {
-    public static final gid a = new Object();
+public @interface gid {
+    int zza();
 
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)), 5)), 6)), 7)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
-    }
+    aid zzb() default aid.a;
 }

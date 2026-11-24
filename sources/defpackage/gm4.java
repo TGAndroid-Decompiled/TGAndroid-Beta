@@ -1,8 +1,17 @@
 package defpackage;
-public interface gm4 {
-    void a(int i, int i2, int i3);
+public final class gm4 extends m19 {
+    public static final gm4 c;
 
-    void b(int i, int i2, int i3);
+    static {
+        ?? exc = new Exception();
+        c = exc;
+        exc.setStackTrace(m19.b);
+    }
 
-    int c(int i, int i2);
+    public static gm4 a() {
+        if (m19.a) {
+            return new Exception();
+        }
+        return c;
+    }
 }

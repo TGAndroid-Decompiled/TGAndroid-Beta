@@ -1,3 +1,6 @@
 package defpackage;
-public abstract class os7 {
+
+import android.graphics.Typeface;
+public interface os7 {
+    Typeface a();
 }

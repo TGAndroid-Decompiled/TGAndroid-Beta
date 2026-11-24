@@ -1,17 +1,8 @@
 package defpackage;
-public final class y60 implements cq7 {
-    public static final y60 a = new Object();
+public interface y60 {
+    void N();
 
-    static {
-        wa4.c("clsId");
-    }
+    void dismiss();
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
-    }
+    void n(int i, int i2);
 }

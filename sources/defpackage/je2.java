@@ -1,439 +1,526 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import android.util.LongSparseArray;
+import j$.util.Objects;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class je2 extends q59 {
-    public final Context c;
-    public boolean d;
-    public final ke2 e;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_update;
+public final class je2 extends pf0 {
+    public static volatile co3 s = new co3("chatThemeQueue");
+    public static final je2[] w = new je2[4];
+    public final HashMap a;
+    public ArrayList b;
+    public volatile long c;
+    public volatile long d;
+    public final HashMap e;
+    public final ie2 f;
+    public final LongSparseArray h;
+    public final HashMap n;
+    public final HashMap r;
 
-    public je2(ke2 ke2Var, Context context) {
-        this.e = ke2Var;
-        if (ke2Var.E == 2) {
-            C(true);
-        }
-        this.c = context;
+    public je2(int i) {
+        super(i);
+        this.a = new HashMap();
+        this.e = new HashMap();
+        this.f = new Object();
+        this.h = new LongSparseArray();
+        this.n = new HashMap();
+        this.r = new HashMap();
+        i();
     }
 
-    @Override
-    public final boolean D(u69 u69Var) {
-        TLRPC.Chat chat;
-        int i = u69Var.f;
-        ke2 ke2Var = this.e;
-        TLRPC.TL_chatBannedRights tL_chatBannedRights = ke2Var.Q;
-        int i2 = ke2Var.E;
-        TLRPC.TL_chatAdminRights tL_chatAdminRights = ke2Var.O;
-        if (!ke2Var.x.creator || ((i2 != 0 && (i2 != 2 || !ke2Var.L)) || i != 4 || u69Var.b() != ke2Var.f0)) {
-            if (ke2Var.J) {
-                if ((i2 == 0 || i2 == 2) && i == 4) {
-                    int b = u69Var.b();
-                    if (b == ke2Var.X) {
-                        if (!tL_chatAdminRights.add_admins && ((chat = ke2Var.x) == null || !chat.creator)) {
-                            return false;
-                        }
-                    } else if (i2 != 2 || ke2Var.L) {
-                        if (b == ke2Var.Y) {
-                            if (tL_chatAdminRights.change_info) {
-                                if (tL_chatBannedRights != null && !tL_chatBannedRights.change_info && !ke2Var.F) {
-                                    return false;
-                                }
-                            } else {
-                                return false;
-                            }
-                        } else if (b == ke2Var.Z) {
-                            return tL_chatAdminRights.post_messages;
-                        } else {
-                            if (b == ke2Var.a0) {
-                                return tL_chatAdminRights.manage_direct_messages;
-                            }
-                            if (b == ke2Var.b0) {
-                                return tL_chatAdminRights.manage_welcome_messages;
-                            }
-                            if (b == ke2Var.c0) {
-                                return tL_chatAdminRights.edit_messages;
-                            }
-                            if (b == ke2Var.d0) {
-                                return tL_chatAdminRights.delete_messages;
-                            }
-                            if (b == ke2Var.L0) {
-                                return tL_chatAdminRights.manage_call;
-                            }
-                            if (b == ke2Var.e0) {
-                                return tL_chatAdminRights.add_admins;
-                            }
-                            if (b == ke2Var.f0) {
-                                return tL_chatAdminRights.anonymous;
-                            }
-                            if (b == ke2Var.g0) {
-                                return tL_chatAdminRights.ban_users;
-                            }
-                            if (b == ke2Var.h0) {
-                                return tL_chatAdminRights.invite_users;
-                            }
-                            if (b == ke2Var.i0) {
-                                if (tL_chatAdminRights.pin_messages) {
-                                    if (tL_chatBannedRights != null && !tL_chatBannedRights.pin_messages) {
-                                        return false;
-                                    }
-                                } else {
-                                    return false;
-                                }
-                            } else if (b == ke2Var.j0) {
-                                return tL_chatAdminRights.manage_ranks;
-                            } else {
-                                if (b == ke2Var.n0) {
-                                    return tL_chatAdminRights.manage_topics;
-                                }
-                                if (b == ke2Var.V0) {
-                                    return tL_chatAdminRights.post_stories;
-                                }
-                                if (b == ke2Var.W0) {
-                                    return tL_chatAdminRights.edit_stories;
-                                }
-                                if (b == ke2Var.X0) {
-                                    return tL_chatAdminRights.delete_stories;
-                                }
-                                if (b == ke2Var.o0) {
-                                    return tL_chatAdminRights.manage_linked_peers;
-                                }
-                            }
-                        }
+    public static je2 e(int i) {
+        je2 je2Var;
+        je2[] je2VarArr = w;
+        je2 je2Var2 = je2VarArr[i];
+        if (je2Var2 == null) {
+            synchronized (je2.class) {
+                je2Var = je2VarArr[i];
+                if (je2Var == null) {
+                    je2Var = new je2(i);
+                    je2VarArr[i] = je2Var;
+                }
+            }
+            return je2Var;
+        }
+        return je2Var2;
+    }
+
+    public static String h(TLRPC.WallPaper wallPaper) {
+        if (wallPaper != null) {
+            TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
+            if (wallPaperSettings != null && !TextUtils.isEmpty(wallPaperSettings.emoticon)) {
+                return wallPaper.settings.emoticon;
+            }
+            return "";
+        }
+        return null;
+    }
+
+    public static void l(String str) {
+        new ImageReceiver(null).d0(gl5.b(hq6.d0(y6c.t0).V(str)), "50_50", null, null, null, 0);
+        vu3.k(str);
+    }
+
+    public static boolean t(TLRPC.WallPaper wallPaper, TLRPC.WallPaper wallPaper2) {
+        if (wallPaper == null && wallPaper2 == null) {
+            return true;
+        }
+        if ((wallPaper instanceof TLRPC.TL_wallPaper) && (wallPaper2 instanceof TLRPC.TL_wallPaper)) {
+            if (wallPaper.id == wallPaper2.id) {
+                return true;
+            }
+            return false;
+        }
+        if ((wallPaper instanceof TLRPC.TL_wallPaperNoFile) && (wallPaper2 instanceof TLRPC.TL_wallPaperNoFile)) {
+            if (wallPaper.settings != null && wallPaper2.settings != null) {
+                return TextUtils.equals(h(wallPaper), h(wallPaper2));
+            }
+            if (wallPaper.id == wallPaper2.id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final void a(long j, boolean z, boolean z2) {
+        TLRPC.TL_messages_setChatWallPaper tL_messages_setChatWallPaper = new TLRPC.TL_messages_setChatWallPaper();
+        int i = (j > 0L ? 1 : (j == 0L ? 0 : -1));
+        int i2 = this.currentAccount;
+        if (i >= 0) {
+            tL_messages_setChatWallPaper.peer = na7.l1(na7.q1(i2).V1(Long.valueOf(j)));
+            tL_messages_setChatWallPaper.revert = z2;
+            if (!z2) {
+                TLRPC.UserFull W1 = getMessagesController().W1(j);
+                if (W1 != null) {
+                    W1.wallpaper = null;
+                    W1.flags &= -16777217;
+                    getMessagesStorage().g2(W1, false);
+                }
+                p(j, null);
+                if (z) {
+                    kk7.f(this.currentAccount).k(kk7.D0, Long.valueOf(j), W1);
+                }
+            }
+        } else {
+            long j2 = -j;
+            tL_messages_setChatWallPaper.peer = na7.j1(na7.q1(i2).K0(Long.valueOf(j2)));
+            TLRPC.ChatFull L0 = getMessagesController().L0(j2);
+            if (L0 != null) {
+                L0.wallpaper = null;
+                L0.flags2 &= -129;
+                getMessagesStorage().K1(L0, false);
+            }
+            p(j, null);
+            if (z) {
+                kk7 f = kk7.f(this.currentAccount);
+                Boolean bool = Boolean.FALSE;
+                f.k(kk7.S, L0, 0, bool, bool);
+            }
+        }
+        getConnectionsManager().sendRequest(tL_messages_setChatWallPaper, new ce2((byte) 0));
+    }
+
+    public final ArrayList b() {
+        SharedPreferences f = f();
+        int i = f.getInt("count", 0);
+        ArrayList arrayList = new ArrayList(i);
+        for (int i2 = 0; i2 < i; i2++) {
+            SerializedData serializedData = new SerializedData(Utilities.v(f.getString("theme_" + i2, "")));
+            try {
+                TLRPC.TL_theme TLdeserialize = TLRPC.Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                if (TLdeserialize != null) {
+                    arrayList.add(new jy3(this.currentAccount, TLdeserialize));
+                }
+            } catch (Throwable th) {
+                fa4.g(th, true);
+            }
+        }
+        return arrayList;
+    }
+
+    public final TLRPC.WallPaper c(long j) {
+        if (j >= 0) {
+            TLRPC.UserFull W1 = getMessagesController().W1(j);
+            if (W1 != null) {
+                return W1.wallpaper;
+            }
+        } else {
+            TLRPC.ChatFull L0 = getMessagesController().L0(-j);
+            if (L0 != null) {
+                return L0.wallpaper;
+            }
+        }
+        SharedPreferences sharedPreferences = a.b.getSharedPreferences("chatthemeconfig_emoji", 0);
+        String string = sharedPreferences.getString("chatWallpaper_" + this.currentAccount + "_" + j, null);
+        if (string != null) {
+            SerializedData serializedData = new SerializedData(Utilities.v(string));
+            try {
+                return TLRPC.WallPaper.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+            } catch (Throwable th) {
+                fa4.g(th, true);
+            }
+        }
+        return null;
+    }
+
+    public final ArrayList d(int i) {
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        boolean hasFlag = TLObject.hasFlag(i, 1);
+        boolean hasFlag2 = TLObject.hasFlag(i, 2);
+        boolean hasFlag3 = TLObject.hasFlag(i, 4);
+        ArrayList arrayList3 = new ArrayList();
+        if (hasFlag3 && (arrayList2 = (ArrayList) this.f.d) != null) {
+            arrayList3.addAll(arrayList2);
+        }
+        if (hasFlag2 && (arrayList = this.b) != null) {
+            arrayList3.addAll(arrayList);
+        }
+        int i2 = 0;
+        if (hasFlag && (arrayList3.isEmpty() || !((jy3) arrayList3.get(0)).a)) {
+            jy3 jy3Var = new jy3(this.currentAccount);
+            jy3Var.e = "❌";
+            jy3Var.c = elb.d("❌");
+            jy3Var.d = TLRPC.ChatTheme.ofEmoticon("❌");
+            jy3Var.a = true;
+            iy3 iy3Var = new iy3();
+            iy3Var.a = jy3.d(true);
+            ArrayList arrayList4 = jy3Var.f;
+            arrayList4.add(iy3Var);
+            iy3 iy3Var2 = new iy3();
+            iy3Var2.a = jy3.d(false);
+            arrayList4.add(iy3Var2);
+            arrayList3.add(0, jy3Var);
+        }
+        int size = arrayList3.size();
+        while (i2 < size) {
+            Object obj = arrayList3.get(i2);
+            i2++;
+            ((jy3) obj).k();
+        }
+        return arrayList3;
+    }
+
+    public final SharedPreferences f() {
+        return oo1.k(new StringBuilder("chatthemeconfig_"), this.currentAccount, a.b, 0);
+    }
+
+    public final jy3 g(elb elbVar) {
+        if (elbVar != null) {
+            String str = elbVar.b;
+            if (!TextUtils.isEmpty(str)) {
+                return (jy3) this.e.get(str);
+            }
+            ArrayList arrayList = this.b;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                jy3 jy3Var = (jy3) obj;
+                if (elbVar.equals(jy3Var.c)) {
+                    return jy3Var;
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public final void i() {
+        SharedPreferences f = f();
+        this.c = 0L;
+        this.d = 0L;
+        try {
+            this.c = f.getLong("hash", 0L);
+            this.d = f.getLong("lastReload", 0L);
+        } catch (Exception e) {
+            fa4.g(e, true);
+        }
+        this.b = b();
+        ad7 messagesStorage = getMessagesStorage();
+        int i = 0;
+        be2 be2Var = new be2(this, (byte) 0);
+        messagesStorage.getClass();
+        messagesStorage.H(new t67(messagesStorage, be2Var, (byte) 26));
+        l("❌");
+        if (!this.b.isEmpty()) {
+            ArrayList arrayList = this.b;
+            int size = arrayList.size();
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                l(((jy3) obj).e);
+            }
+        }
+    }
+
+    public final void j(boolean z) {
+        boolean z2;
+        ArrayList arrayList = this.b;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            jy3 jy3Var = (jy3) obj;
+            if (jy3Var.h(z ? 1 : 0) != 0) {
+                TLRPC.WallPaper j = jy3Var.j(z ? 1 : 0);
+                if (j != null && j.document != null) {
+                    if (j.pattern) {
+                        z2 = zqc.b(ng5.c(xqc.b(j))).exists();
                     } else {
-                        return false;
+                        z2 = dye.a(dye.c(j.id)).exists();
                     }
-                }
-                if (i == 3 || i == 1 || i == 5 || i == 8 || i == 11) {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final int b() {
-        return this.e.W;
-    }
-
-    @Override
-    public final long c(int i) {
-        ke2 ke2Var = this.e;
-        if (ke2Var.E == 2) {
-            if (i == ke2Var.X) {
-                return 1L;
-            }
-            if (i == ke2Var.Y) {
-                return 2L;
-            }
-            if (i == ke2Var.Z) {
-                return 3L;
-            }
-            if (i == ke2Var.c0) {
-                return 4L;
-            }
-            if (i == ke2Var.d0) {
-                return 5L;
-            }
-            if (i == ke2Var.e0) {
-                return 6L;
-            }
-            if (i == ke2Var.f0) {
-                return 7L;
-            }
-            if (i == ke2Var.g0) {
-                return 8L;
-            }
-            if (i == ke2Var.h0) {
-                return 9L;
-            }
-            if (i == ke2Var.i0) {
-                return 10L;
-            }
-            if (i == ke2Var.p0) {
-                return 11L;
-            }
-            if (i == ke2Var.q0) {
-                return 12L;
-            }
-            if (i == ke2Var.r0) {
-                return 13L;
-            }
-            if (i == ke2Var.s0) {
-                return 14L;
-            }
-            if (i == ke2Var.t0) {
-                return 15L;
-            }
-            if (i == ke2Var.u0) {
-                return 16L;
-            }
-            if (i == ke2Var.v0) {
-                return 17L;
-            }
-            if (i == ke2Var.w0) {
-                return 18L;
-            }
-            if (i == ke2Var.x0) {
-                return 19L;
-            }
-            if (i == ke2Var.z0) {
-                return 20L;
-            }
-            if (i == ke2Var.C0) {
-                return 21L;
-            }
-            if (i == ke2Var.I0) {
-                return 22L;
-            }
-            if (i == ke2Var.J0) {
-                return 23L;
-            }
-            if (i == ke2Var.K0) {
-                return 24L;
-            }
-            if (i == ke2Var.L0) {
-                return 25L;
-            }
-            if (i == ke2Var.M0) {
-                return 26L;
-            }
-            if (i == ke2Var.N0) {
-                return 27L;
-            }
-            if (i == ke2Var.y0) {
-                return 28L;
-            }
-            if (i == ke2Var.n0) {
-                return 29L;
-            }
-            if (i == ke2Var.D0) {
-                return 30L;
-            }
-            if (i == ke2Var.F0) {
-                return 31L;
-            }
-            if (i == ke2Var.E0) {
-                return 32L;
-            }
-            if (i == ke2Var.G0) {
-                return 33L;
-            }
-            if (i == ke2Var.H0) {
-                return 34L;
-            }
-            if (i == ke2Var.A0) {
-                return 35L;
-            }
-            if (i == ke2Var.O0) {
-                return 36L;
-            }
-            if (i == ke2Var.Q0) {
-                return 37L;
-            }
-            if (i == ke2Var.R0) {
-                return 38L;
-            }
-            if (i == ke2Var.S0) {
-                return 39L;
-            }
-            if (i == ke2Var.T0) {
-                return 40L;
-            }
-            if (i == ke2Var.V0) {
-                return 41L;
-            }
-            if (i == ke2Var.W0) {
-                return 42L;
-            }
-            if (i == ke2Var.X0) {
-                return 43L;
-            }
-            if (i == ke2Var.a0) {
-                return 44L;
-            }
-            if (i == ke2Var.j0) {
-                return 45L;
-            }
-            if (i == ke2Var.k0) {
-                return 46L;
-            }
-            if (i == ke2Var.l0) {
-                return 47L;
-            }
-            if (i == ke2Var.m0) {
-                return 48L;
-            }
-            if (i == ke2Var.o0) {
-                return 49L;
-            }
-            if (i == ke2Var.b0) {
-                return 50L;
-            }
-            return 0L;
-        }
-        return -1L;
-    }
-
-    @Override
-    public final int d(int i) {
-        ke2 ke2Var = this.e;
-        if (i != ke2Var.I0 && i != ke2Var.K0 && i != ke2Var.J0 && i != ke2Var.C0 && i != ke2Var.D0 && i != ke2Var.F0 && i != ke2Var.E0 && i != ke2Var.H0 && i != ke2Var.G0 && i != ke2Var.k0 && i != ke2Var.Q0 && i != ke2Var.R0 && i != ke2Var.S0 && i != ke2Var.V0 && i != ke2Var.W0 && i != ke2Var.X0) {
-            if (i != ke2Var.A0 && i != ke2Var.O0 && i != ke2Var.T0) {
-                if (i == 0) {
-                    return 0;
-                }
-                if (i != 1 && i != ke2Var.p0 && i != ke2Var.r0 && i != ke2Var.M0 && i != ke2Var.t0) {
-                    if (i != 2 && i != ke2Var.v0) {
-                        if (i != ke2Var.Y && i != ke2Var.Z && i != ke2Var.a0 && i != ke2Var.c0 && i != ke2Var.d0 && i != ke2Var.e0 && i != ke2Var.g0 && i != ke2Var.h0 && i != ke2Var.i0 && i != ke2Var.j0 && i != ke2Var.z0 && i != ke2Var.f0 && i != ke2Var.L0 && i != ke2Var.X && i != ke2Var.n0 && i != ke2Var.l0 && i != ke2Var.o0 && i != ke2Var.b0) {
-                            if (i == ke2Var.s0 || i == ke2Var.x0 || i == ke2Var.m0) {
-                                return 1;
-                            }
-                            if (i == ke2Var.N0) {
-                                return 6;
-                            }
-                            if (i == ke2Var.w0) {
-                                return 11;
-                            }
-                            if (i != ke2Var.y0) {
-                                return 2;
-                            }
-                            return 8;
-                        }
-                        return 4;
-                    }
-                    return 3;
-                }
-                return 5;
-            }
-            return 9;
-        }
-        return 10;
-    }
-
-    @Override
-    public final void t(defpackage.u69 r33, int r34) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.je2.t(u69, int):void");
-    }
-
-    @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        View v8cVar;
-        View jf5Var;
-        int i2;
-        int i3;
-        ylb ylbVar;
-        Context context = this.c;
-        ke2 ke2Var = this.e;
-        switch (i) {
-            case 0:
-                v8cVar = new v8c(context, null);
-                anb.h(cmb.c6, null, v8cVar);
-                break;
-            case 1:
-                v8cVar = new njb(context);
-                break;
-            case 2:
-            default:
-                v8cVar = new vkb(context);
-                anb.h(cmb.c6, null, v8cVar);
-                break;
-            case 3:
-                jf5Var = new jf5(this.c, cmb.K6, 21, 15, true, null);
-                anb.h(cmb.c6, null, jf5Var);
-                v8cVar = jf5Var;
-                break;
-            case 4:
-            case 9:
-                v8cVar = new ajb(context);
-                anb.h(cmb.c6, null, v8cVar);
-                break;
-            case 5:
-                v8cVar = new bba(context, (hg9) null);
-                break;
-            case 6:
-                v8cVar = new hjb(null, context, false);
-                anb.h(cmb.c6, null, v8cVar);
-                break;
-            case 7:
-                ng8 ng8Var = new ng8(context, 0, null, null);
-                anb.h(cmb.c6, null, ng8Var);
-                ng8Var.c(new b7(this, (byte) 13));
-                v8cVar = ng8Var;
-                break;
-            case 8:
-                FrameLayout frameLayout = new FrameLayout(context);
-                ke2Var.d = frameLayout;
-                int i4 = cmb.Z6;
-                anb.h(i4, null, frameLayout);
-                ke2Var.e = new FrameLayout(context);
-                io ioVar = new io(context, true, false, false);
-                ke2Var.f = ioVar;
-                ioVar.setTypeface(gm.o());
-                ke2Var.f.setTextColor(-1);
-                ke2Var.f.setTextSize(gm.L(14.0f));
-                ke2Var.f.setGravity(17);
-                io ioVar2 = ke2Var.f;
-                StringBuilder sb = new StringBuilder(jb6.M0(2131754456, null));
-                sb.append(" ");
-                if (ke2Var.L) {
-                    i2 = 2131754455;
                 } else {
-                    i2 = 2131754454;
+                    z2 = true;
                 }
-                sb.append(jb6.M0(i2, null));
-                ioVar2.setText(sb.toString());
-                ke2Var.e.addView(ke2Var.f, qoe.e(-2, -2, 17));
-                ke2Var.e.setBackground(ulb.f(cmb.Ei, 4.0f));
-                ke2Var.e.setOnClickListener(new k81(this, (byte) 15));
-                ke2Var.d.addView(ke2Var.e, qoe.d(-1, 48.0f, 119, 14.0f, 28.0f, 14.0f, 14.0f));
-                ke2Var.d.setLayoutParams(new g69(-1, -2));
-                View view = new View(context);
-                anb.h(i4, null, view);
-                ke2Var.d.setClipChildren(false);
-                ke2Var.d.setClipToPadding(false);
-                ke2Var.d.addView(view, qoe.d(-1, 800.0f, 87, 0.0f, 0.0f, 0.0f, -800.0f));
-                v8cVar = ke2Var.d;
-                break;
-            case 10:
-                oh2 oh2Var = new oh2(this.c, 4, 21, false, ke2Var.getResourceProvider());
-                oh2Var.setPad(1);
-                oh2Var.getCheckBoxRound().setDrawBackgroundAsArc(14);
-                oh2Var.getCheckBoxRound().b(cmb.U6, cmb.f7, cmb.j7);
-                oh2Var.setEnabled(true);
-                anb.h(cmb.c6, null, oh2Var);
-                v8cVar = oh2Var;
-                break;
-            case 11:
-                i3 = ((d) ke2Var).currentAccount;
-                ylbVar = ((d) ke2Var).resourceProvider;
-                jf5Var = new xhb(i3, -ke2Var.s, ylbVar, this.c);
-                v8cVar = jf5Var;
-                break;
-        }
-        return new u69(v8cVar);
-    }
-
-    @Override
-    public final void y(u69 u69Var) {
-        int b = u69Var.b();
-        ke2 ke2Var = this.e;
-        if (b == ke2Var.v0) {
-            ke2Var.r0(u69Var.a);
+                if (!z2) {
+                    jy3Var.n(z ? 1 : 0, null);
+                }
+            }
         }
     }
 
-    @Override
-    public final void z(u69 u69Var) {
-        int b = u69Var.b();
-        ke2 ke2Var = this.e;
-        if (b == ke2Var.w0 && ke2Var.getParentActivity() != null) {
-            gm.t1(ke2Var.getParentActivity().getCurrentFocus());
+    public final void k(boolean z) {
+        ArrayList arrayList = this.b;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            jy3 jy3Var = (jy3) obj;
+            long h = jy3Var.h(z ? 1 : 0);
+            if (h != 0 && !this.a.containsKey(Long.valueOf(h))) {
+                jy3Var.p(z ? 1 : 0, new rh1(this, (byte) 23));
+            }
         }
+    }
+
+    public final void m(TL_update.TL_updatePeerWallpaper tL_updatePeerWallpaper) {
+        if (tL_updatePeerWallpaper.peer instanceof TLRPC.TL_peerUser) {
+            TLRPC.UserFull W1 = getMessagesController().W1(tL_updatePeerWallpaper.peer.user_id);
+            if (W1 != null && !t(W1.wallpaper, tL_updatePeerWallpaper.wallpaper)) {
+                long j = W1.id;
+                if ((tL_updatePeerWallpaper.flags & 1) != 0) {
+                    W1.wallpaper_overridden = tL_updatePeerWallpaper.wallpaper_overridden;
+                    W1.wallpaper = tL_updatePeerWallpaper.wallpaper;
+                    W1.flags |= 16777216;
+                } else {
+                    W1.wallpaper_overridden = false;
+                    W1.wallpaper = null;
+                    W1.flags &= -16777217;
+                }
+                getMessagesStorage().g2(W1, false);
+                p(j, W1.wallpaper);
+                gl.c3(new de2(this, j, W1, (byte) 0));
+                return;
+            }
+            return;
+        }
+        TLRPC.ChatFull L0 = getMessagesController().L0(-cf3.n(tL_updatePeerWallpaper.peer));
+        if (L0 != null && !t(L0.wallpaper, tL_updatePeerWallpaper.wallpaper)) {
+            long j2 = -L0.id;
+            if ((tL_updatePeerWallpaper.flags & 1) != 0) {
+                L0.wallpaper = tL_updatePeerWallpaper.wallpaper;
+                L0.flags2 |= 128;
+            } else {
+                L0.wallpaper = null;
+                L0.flags2 &= -129;
+            }
+            getMessagesStorage().K1(L0, false);
+            p(j2, L0.wallpaper);
+            gl.c3(new ee2(this, L0, (byte) 0));
+        }
+    }
+
+    public final void n(TLRPC.ChatTheme chatTheme) {
+        if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
+            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = (TLRPC.TL_chatThemeUniqueGift) chatTheme;
+            String str = tL_chatThemeUniqueGift.gift.slug;
+            HashMap hashMap = this.e;
+            if (!hashMap.containsKey(str)) {
+                jy3 jy3Var = new jy3(this.currentAccount, tL_chatThemeUniqueGift);
+                jy3Var.k();
+                hashMap.put(tL_chatThemeUniqueGift.gift.slug, jy3Var);
+                ad7 messagesStorage = getMessagesStorage();
+                messagesStorage.getClass();
+                messagesStorage.H(new t67(messagesStorage, Collections.singletonList(chatTheme), (byte) 25));
+            }
+        }
+    }
+
+    public final void o(ResultCallback resultCallback, boolean z) {
+        boolean z2;
+        if (this.c == 0 || this.d == 0) {
+            i();
+        }
+        if (System.currentTimeMillis() - this.d > 7200000) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        ArrayList arrayList = this.b;
+        if (arrayList == null || arrayList.isEmpty() || z2) {
+            TL_account.getChatThemes getchatthemes = new TL_account.getChatThemes();
+            getchatthemes.hash = this.c;
+            ConnectionsManager connectionsManager = getConnectionsManager();
+            co3 co3Var = s;
+            Objects.requireNonNull(co3Var);
+            connectionsManager.sendRequestTyped(getchatthemes, new ge2(co3Var, (byte) 0), new yd2(this, resultCallback, z, (byte) 0));
+        }
+        ArrayList arrayList2 = this.b;
+        if (arrayList2 != null && !arrayList2.isEmpty()) {
+            resultCallback.onComplete(d((z ? 1 : 0) | 2));
+        }
+    }
+
+    public final void p(long j, TLRPC.WallPaper wallPaper) {
+        if (wallPaper != null) {
+            if (wallPaper.document == null) {
+                return;
+            }
+            SerializedData serializedData = new SerializedData(wallPaper.getObjectSize());
+            wallPaper.serializeToStream(serializedData);
+            String f = Utilities.f(serializedData.toByteArray());
+            SharedPreferences.Editor edit = a.b.getSharedPreferences("chatthemeconfig_emoji", 0).edit();
+            edit.putString("chatWallpaper_" + this.currentAccount + "_" + j, f).apply();
+            return;
+        }
+        SharedPreferences.Editor edit2 = a.b.getSharedPreferences("chatthemeconfig_emoji", 0).edit();
+        edit2.remove("chatWallpaper_" + this.currentAccount + "_" + j).apply();
+    }
+
+    public final void q(long r6, defpackage.elb r8, org.telegram.tgnet.TLRPC.ChatTheme r9, boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.je2.q(long, elb, org.telegram.tgnet.TLRPC$ChatTheme, boolean):void");
+    }
+
+    public final void r(long j, String str) {
+        boolean isEmpty = TextUtils.isEmpty(str);
+        HashMap hashMap = this.r;
+        HashMap hashMap2 = this.n;
+        if (isEmpty) {
+            String str2 = (String) hashMap2.remove(Long.valueOf(j));
+            if (str2 != null) {
+                hashMap.remove(str2);
+            }
+        } else if (j == 0) {
+            Long l = (Long) hashMap.remove(str);
+            if (l != null) {
+                hashMap2.remove(l);
+            }
+        } else {
+            String str3 = (String) hashMap2.put(Long.valueOf(j), str);
+            Long l2 = (Long) hashMap.put(str, Long.valueOf(j));
+            if (str3 != null && !TextUtils.equals(str, str3)) {
+                hashMap.remove(str3);
+            }
+            if (l2 != null && l2.longValue() != j) {
+                hashMap2.remove(l2);
+            }
+        }
+    }
+
+    public final int s(long j, String str, vjb vjbVar, k27 k27Var, jc jcVar) {
+        boolean z;
+        TLRPC.ChatFull L0;
+        TLRPC.UserFull userFull;
+        String str2;
+        TLRPC.TL_messages_setChatWallPaper tL_messages_setChatWallPaper = new TLRPC.TL_messages_setChatWallPaper();
+        int i = (j > 0L ? 1 : (j == 0L ? 0 : -1));
+        int i2 = this.currentAccount;
+        if (i >= 0) {
+            tL_messages_setChatWallPaper.peer = na7.l1(na7.q1(i2).V1(Long.valueOf(j)));
+        } else {
+            tL_messages_setChatWallPaper.peer = na7.j1(na7.q1(i2).K0(Long.valueOf(-j)));
+        }
+        tL_messages_setChatWallPaper.for_both = vjbVar.o;
+        if (k27Var != null && (k27Var.k.action instanceof TLRPC.TL_messageActionSetChatWallPaper)) {
+            tL_messages_setChatWallPaper.flags |= 2;
+            tL_messages_setChatWallPaper.id = k27Var.e1();
+            int i3 = this.currentAccount;
+            TLRPC.WallPaper wallPaper = null;
+            if (i >= 0) {
+                userFull = na7.q1(i3).W1(j);
+                L0 = null;
+            } else {
+                L0 = na7.q1(i3).L0(-j);
+                userFull = null;
+            }
+            TLRPC.TL_messageActionSetChatWallPaper tL_messageActionSetChatWallPaper = (TLRPC.TL_messageActionSetChatWallPaper) k27Var.k.action;
+            TLRPC.TL_wallPaper tL_wallPaper = new TLRPC.TL_wallPaper();
+            TLRPC.WallPaper wallPaper2 = tL_messageActionSetChatWallPaper.wallpaper;
+            tL_wallPaper.id = wallPaper2.id;
+            tL_wallPaper.document = wallPaper2.document;
+            TLRPC.TL_wallPaperSettings tL_wallPaperSettings = new TLRPC.TL_wallPaperSettings();
+            tL_wallPaper.settings = tL_wallPaperSettings;
+            tL_wallPaperSettings.intensity = (int) (vjbVar.k * 100.0f);
+            tL_wallPaperSettings.motion = vjbVar.j;
+            tL_wallPaperSettings.blur = vjbVar.i;
+            tL_wallPaperSettings.background_color = vjbVar.d;
+            tL_wallPaperSettings.second_background_color = vjbVar.e;
+            tL_wallPaperSettings.third_background_color = vjbVar.f;
+            tL_wallPaperSettings.fourth_background_color = vjbVar.g;
+            tL_wallPaperSettings.rotation = vjbVar.h;
+            tL_wallPaper.uploadingImage = str;
+            if (userFull != null) {
+                wallPaper = userFull.wallpaper;
+            } else if (L0 != null) {
+                wallPaper = L0.wallpaper;
+            }
+            if (wallPaper != null && (str2 = wallPaper.uploadingImage) != null && str2.equals(str)) {
+                tL_wallPaper.stripedThumb = wallPaper.stripedThumb;
+            }
+            tL_wallPaper.settings.flags |= 121;
+            TLRPC.TL_wallPaper tL_wallPaper2 = new TLRPC.TL_wallPaper();
+            TLRPC.WallPaper wallPaper3 = tL_messageActionSetChatWallPaper.wallpaper;
+            tL_wallPaper2.pattern = wallPaper3.pattern;
+            tL_wallPaper2.id = wallPaper3.id;
+            tL_wallPaper2.document = wallPaper3.document;
+            int i4 = wallPaper3.flags;
+            tL_wallPaper2.creator = wallPaper3.creator;
+            tL_wallPaper2.dark = wallPaper3.dark;
+            tL_wallPaper2.isDefault = wallPaper3.isDefault;
+            tL_wallPaper2.slug = wallPaper3.slug;
+            TLRPC.ChatFull chatFull = L0;
+            tL_wallPaper2.access_hash = wallPaper3.access_hash;
+            tL_wallPaper2.stripedThumb = wallPaper3.stripedThumb;
+            tL_wallPaper2.settings = tL_wallPaper.settings;
+            tL_wallPaper2.flags = i4 | 4;
+            z = false;
+            if (userFull != null) {
+                userFull.wallpaper = tL_wallPaper2;
+                userFull.flags |= 16777216;
+                getMessagesStorage().g2(userFull, false);
+                kk7.f(this.currentAccount).k(kk7.D0, Long.valueOf(j), userFull);
+            } else if (chatFull != null) {
+                chatFull.wallpaper = tL_wallPaper2;
+                chatFull.flags2 |= 128;
+                getMessagesStorage().K1(chatFull, false);
+                kk7 f = kk7.f(this.currentAccount);
+                Boolean bool = Boolean.FALSE;
+                f.k(kk7.S, chatFull, 0, bool, bool);
+            }
+        } else {
+            tL_messages_setChatWallPaper.flags |= 1;
+            tL_messages_setChatWallPaper.wallpaper = na7.p1(vjbVar);
+            z = true;
+        }
+        tL_messages_setChatWallPaper.flags |= 4;
+        tL_messages_setChatWallPaper.settings = na7.b2(vjbVar);
+        return ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_setChatWallPaper, new js0(this, j, z, str, jcVar));
     }
 }

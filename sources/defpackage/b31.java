@@ -1,82 +1,54 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.tgnet.TLRPC;
-public class b31 extends p21 {
-    public final s09 a;
-    public TextView b;
-    public int c;
+import android.os.Bundle;
+import android.os.IBinder;
+import java.util.Arrays;
+public final class b31 {
+    public static final int b = g51.a;
+    public final w21 a;
 
-    public b31(Context context, ylb ylbVar) {
-        super(context, ylbVar);
-        ?? imageView = new ImageView(context);
-        this.a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView((View) imageView, qoe.h(56.0f, 48.0f, 8388627));
-        a31 a31Var = new a31(context, null, (byte) 0);
-        a31Var.setDisablePaddingsOffset(true);
-        this.b = a31Var;
-        nm7.i(a31Var);
-        this.b.setSingleLine();
-        this.b.setTypeface(Typeface.SANS_SERIF);
-        this.b.setTextSize(1, 15.0f);
-        this.b.setEllipsize(TextUtils.TruncateAt.END);
-        this.b.setPadding(0, gm.L(8.0f), 0, gm.L(8.0f));
-        addView(this.b, qoe.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        anb.G(this.b, cmb.wj, ylbVar);
-        setTextColor(getThemedColor(cmb.xj));
-        setBackground(getThemedColor(cmb.vj));
-    }
-
-    public final void c(int i, int i2, int i3, String... strArr) {
-        s09 s09Var = this.a;
-        s09Var.f(i, i2, i3, null);
-        for (String str : strArr) {
-            s09Var.h(this.c, str);
+    public b31(byte[] bArr) {
+        jm5 p = mm5.p();
+        int length = bArr.length;
+        int i = b;
+        int g = g8c.g(length, i);
+        for (int i2 = 0; i2 < g; i2++) {
+            Bundle bundle = new Bundle();
+            int i3 = i2 * i;
+            bundle.putByteArray("bytes", Arrays.copyOfRange(bArr, i3, Math.min(i3 + i, bArr.length)));
+            p.c(bundle);
         }
+        this.a = new w21(p.f());
     }
 
-    public final void d(int i, String... strArr) {
-        c(i, 32, 32, strArr);
-    }
-
-    public final void e(TLRPC.Document document, String... strArr) {
-        s09 s09Var = this.a;
-        s09Var.setAutoRepeat(true);
-        s09Var.g(36, 36, document);
-        for (String str : strArr) {
-            s09Var.h(this.c, str);
+    public static byte[] a(Bundle bundle) {
+        IBinder binder = bundle.getBinder(c31.g);
+        if (binder != null) {
+            try {
+                mm5 a = w21.a(binder);
+                if (a.isEmpty()) {
+                    return g8c.b;
+                }
+                byte[] byteArray = ((Bundle) jle.b(a)).getByteArray("bytes");
+                if (byteArray != null) {
+                    int size = a.size() - 1;
+                    int i = b;
+                    int i2 = size * i;
+                    byte[] bArr = new byte[byteArray.length + i2];
+                    System.arraycopy(byteArray, 0, bArr, i2, byteArray.length);
+                    for (int i3 = 0; i3 < size; i3++) {
+                        byte[] byteArray2 = ((Bundle) a.get(i3)).getByteArray("bytes");
+                        if (byteArray2 != null && byteArray2.length == i) {
+                            System.arraycopy(byteArray2, 0, bArr, i3 * i, i);
+                        }
+                    }
+                    return bArr;
+                }
+            } catch (RuntimeException e) {
+                lad.g("BundleableByteArray", "Failed to read byte array from bundle list retriever", e);
+                return null;
+            }
         }
-    }
-
-    @Override
-    public CharSequence getAccessibilityText() {
-        return this.b.getText();
-    }
-
-    @Override
-    public final void onShow() {
-        super.onShow();
-        this.a.d();
-    }
-
-    public void setIconPaddingBottom(int i) {
-        this.a.setLayoutParams(qoe.i(56.0f, 48 - i, 8388627, 0.0f, 0.0f, 0.0f, i));
-    }
-
-    public void setTextColor(int i) {
-        this.c = i;
-        this.b.setTextColor(i);
-    }
-
-    public b31(int i, int i2, ylb ylbVar, Context context) {
-        this(context, ylbVar);
-        setBackground(i);
-        setTextColor(i2);
+        return null;
     }
 }

@@ -1,44 +1,36 @@
 package defpackage;
 
+import android.app.Activity;
+import android.graphics.RectF;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.Iterator;
-public final class hm8 implements ku4, h59, jc5 {
-    public final km8 a;
+import org.telegram.ui.ProfileActivity;
+public final class hm8 implements View.OnClickListener {
+    public final byte a;
+    public final ProfileActivity b;
+    public final String c;
 
-    public hm8(km8 km8Var) {
-        this.a = km8Var;
+    public hm8(ProfileActivity profileActivity, String str, byte b) {
+        this.a = b;
+        this.b = profileActivity;
+        this.c = str;
     }
 
     @Override
-    public final void a(ArrayList arrayList, boolean z, boolean z2) {
-        Iterator it = arrayList.iterator();
-        if (!it.hasNext()) {
-            this.a.a0();
-        } else {
-            Long l = (Long) it.next();
-            throw null;
+    public final void onClick(View view) {
+        byte b = this.a;
+        String str = this.c;
+        ProfileActivity profileActivity = this.b;
+        switch (b) {
+            case 0:
+                RectF rectF = ProfileActivity.Z6;
+                Activity parentActivity = profileActivity.getParentActivity();
+                d01.t(parentActivity, "https://" + profileActivity.getMessagesController().N2 + "/nft/" + str);
+                return;
+            default:
+                RectF rectF2 = ProfileActivity.Z6;
+                Activity parentActivity2 = profileActivity.getParentActivity();
+                d01.t(parentActivity2, "https://" + profileActivity.getMessagesController().N2 + "/nft/" + str);
+                return;
         }
-    }
-
-    @Override
-    public final boolean g(int i, View view) {
-        km8 km8Var = this.a;
-        if (i >= km8Var.r && i < km8Var.s) {
-            if (km8Var.E) {
-                km8Var.Z(Long.valueOf(km8Var.getMessagesController().x0.keyAt(i - km8Var.r)), view);
-                return true;
-            }
-            throw null;
-        }
-        return false;
-    }
-
-    @Override
-    public final Object l(Object obj) {
-        if (((Integer) obj).intValue() != this.a.x) {
-            return null;
-        }
-        return Integer.valueOf(cmb.p1(0.12f, cmb.w0(null, cmb.o7, false)));
     }
 }

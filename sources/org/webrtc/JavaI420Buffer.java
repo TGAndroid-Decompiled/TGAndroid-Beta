@@ -40,15 +40,15 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
         ByteBuffer slice2 = nativeAllocateByteBuffer.slice();
         nativeAllocateByteBuffer.position(i7);
         nativeAllocateByteBuffer.limit(i7 + i6);
-        return new JavaI420Buffer(i, i2, slice, i, slice2, i4, nativeAllocateByteBuffer.slice(), i4, new xu5(nativeAllocateByteBuffer, (byte) 0));
+        return new JavaI420Buffer(i, i2, slice, i, slice2, i4, nativeAllocateByteBuffer.slice(), i4, new ys5(nativeAllocateByteBuffer, (byte) 0));
     }
 
     private static void checkCapacity(ByteBuffer byteBuffer, int i, int i2, int i3) {
-        int h = aq1.h(i2, 1, i3, i);
+        int h = oo1.h(i2, 1, i3, i);
         if (byteBuffer.capacity() >= h) {
             return;
         }
-        gxc.c(byteBuffer.capacity(), hg9.l(h, "Buffer must be at least ", " bytes, but was "));
+        fvc.e(byteBuffer.capacity(), de9.m(h, "Buffer must be at least ", " bytes, but was "));
     }
 
     public static VideoFrame.Buffer cropAndScaleI420(VideoFrame.I420Buffer i420Buffer, int i, int i2, int i3, int i4, int i5, int i6) {
@@ -62,7 +62,7 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
             dataU.position((i420Buffer.getStrideU() * i8) + i7);
             dataV.position((i420Buffer.getStrideV() * i8) + i7);
             i420Buffer.retain();
-            return wrap(i5, i6, dataY.slice(), i420Buffer.getStrideY(), dataU.slice(), i420Buffer.getStrideU(), dataV.slice(), i420Buffer.getStrideV(), new kg5(i420Buffer, (byte) 11));
+            return wrap(i5, i6, dataY.slice(), i420Buffer.getStrideY(), dataU.slice(), i420Buffer.getStrideU(), dataV.slice(), i420Buffer.getStrideV(), new tp5(i420Buffer, (byte) 4));
         }
         JavaI420Buffer allocate = allocate(i5, i6);
         nativeCropAndScaleI420(i420Buffer.getDataY(), i420Buffer.getStrideY(), i420Buffer.getDataU(), i420Buffer.getStrideU(), i420Buffer.getDataV(), i420Buffer.getStrideV(), i, i2, i3, i4, allocate.getDataY(), allocate.getStrideY(), allocate.getDataU(), allocate.getStrideU(), allocate.getDataV(), allocate.getStrideV(), i5, i6);
@@ -84,10 +84,10 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
                 checkCapacity(slice3, i6, i7, i5);
                 return new JavaI420Buffer(i, i2, slice, i3, slice2, i4, slice3, i5, runnable);
             }
-            u36.j("Data buffers must be direct byte buffers.");
+            w26.j("Data buffers must be direct byte buffers.");
             return null;
         }
-        u36.j("Data buffers cannot be null.");
+        w26.j("Data buffers cannot be null.");
         return null;
     }
 

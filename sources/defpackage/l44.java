@@ -1,22 +1,100 @@
 package defpackage;
+public final class l44 implements ip9 {
+    public final fm4 a;
+    public long[] c;
+    public boolean d;
+    public m44 e;
+    public boolean f;
+    public int h;
+    public final lv6 b = new lv6((byte) 25);
+    public long n = -9223372036854775807L;
 
-import android.text.InputFilter;
-import android.text.Spanned;
-public final class l44 extends InputFilter.LengthFilter {
-    public final n44 a;
-
-    public l44(n44 n44Var) {
-        super(128);
-        this.a = n44Var;
+    public l44(m44 m44Var, fm4 fm4Var, boolean z) {
+        this.a = fm4Var;
+        this.e = m44Var;
+        this.c = m44Var.b;
+        c(m44Var, z);
     }
 
     @Override
-    public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
-        CharSequence filter = super.filter(charSequence, i, i2, spanned, i3, i4);
-        if (filter != null && filter.length() == 0) {
-            gm.z3(this.a.a);
-            xx0.APP_ERROR.a();
+    public final int a() {
+        return 0;
+    }
+
+    public final void c(m44 m44Var, boolean z) {
+        long j;
+        int i = this.h;
+        long j2 = -9223372036854775807L;
+        if (i == 0) {
+            j = -9223372036854775807L;
+        } else {
+            j = this.c[i - 1];
         }
-        return filter;
+        this.d = z;
+        this.e = m44Var;
+        long[] jArr = m44Var.b;
+        this.c = jArr;
+        long j3 = this.n;
+        if (j3 != -9223372036854775807L) {
+            int b = g8c.b(jArr, j3, true);
+            this.h = b;
+            if (this.d && b == this.c.length) {
+                j2 = j3;
+            }
+            this.n = j2;
+        } else if (j != -9223372036854775807L) {
+            this.h = g8c.b(jArr, j, false);
+        }
+    }
+
+    @Override
+    public final int h(sk4 sk4Var, z83 z83Var, int i) {
+        boolean z;
+        int i2 = this.h;
+        if (i2 == this.c.length) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (z && !this.d) {
+            z83Var.setFlags(4);
+            return -4;
+        } else if ((i & 2) == 0 && this.f) {
+            if (z) {
+                return -3;
+            }
+            if ((i & 1) == 0) {
+                this.h = i2 + 1;
+            }
+            if ((i & 4) == 0) {
+                byte[] r = this.b.r(this.e.a[i2]);
+                z83Var.c(r.length);
+                z83Var.c.put(r);
+            }
+            z83Var.e = this.c[i2];
+            z83Var.setFlags(1);
+            return -4;
+        } else {
+            sk4Var.c = this.a;
+            this.f = true;
+            return -5;
+        }
+    }
+
+    @Override
+    public final boolean j() {
+        return true;
+    }
+
+    @Override
+    public final int n(long j) {
+        int max = Math.max(this.h, g8c.b(this.c, j, true));
+        int i = max - this.h;
+        this.h = max;
+        return i;
+    }
+
+    @Override
+    public final void b() {
     }
 }

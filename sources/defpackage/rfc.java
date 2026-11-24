@@ -1,64 +1,88 @@
 package defpackage;
 
-import android.app.Application;
-import java.lang.reflect.InvocationTargetException;
-public final class rfc extends nf5 {
-    public static rfc H;
-    public static final jk2 I = new jk2((byte) 29);
-    public final Application G;
+import android.view.View;
+import android.view.WindowInsets;
+import android.widget.FrameLayout;
+import org.telegram.messenger.voip.VoIPService;
+public final class rfc implements ed, ofc, no7, pic {
+    public final byte a;
+    public final hgc b;
 
-    public rfc(Application application) {
-        super((byte) 29);
-        this.G = application;
+    public rfc(hgc hgcVar, byte b) {
+        this.a = b;
+        this.b = hgcVar;
     }
 
     @Override
-    public final pfc d(Class cls, x23 x23Var) {
-        x23Var.getClass();
-        if (this.G != null) {
-            return j(cls);
+    public final vxc W(View view, vxc vxcVar) {
+        WindowInsets g = vxcVar.g();
+        hgc hgcVar = this.b;
+        hgcVar.r0 = g;
+        ((FrameLayout.LayoutParams) hgcVar.j0.getLayoutParams()).bottomMargin = hgcVar.r0.getSystemWindowInsetBottom();
+        ((FrameLayout.LayoutParams) hgcVar.f0.getLayoutParams()).bottomMargin = hgcVar.r0.getSystemWindowInsetBottom();
+        ((FrameLayout.LayoutParams) hgcVar.I.getLayoutParams()).topMargin = hgcVar.r0.getSystemWindowInsetTop();
+        ((FrameLayout.LayoutParams) hgcVar.J.getLayoutParams()).topMargin = hgcVar.r0.getSystemWindowInsetTop();
+        ((FrameLayout.LayoutParams) hgcVar.L.getLayoutParams()).topMargin = hgcVar.r0.getSystemWindowInsetTop() + gl.L(56.0f);
+        ((FrameLayout.LayoutParams) hgcVar.Y.getLayoutParams()).topMargin = hgcVar.r0.getSystemWindowInsetTop() + gl.L(135.0f);
+        ((FrameLayout.LayoutParams) hgcVar.O.getLayoutParams()).topMargin = hgcVar.r0.getSystemWindowInsetTop() + gl.L(17.0f);
+        ((FrameLayout.LayoutParams) hgcVar.E.getLayoutParams()).topMargin = hgcVar.r0.getSystemWindowInsetTop() + gl.L(93.0f);
+        ((FrameLayout.LayoutParams) hgcVar.P.getLayoutParams()).topMargin = hgcVar.r0.getSystemWindowInsetTop();
+        ((FrameLayout.LayoutParams) hgcVar.S.getLayoutParams()).topMargin = hgcVar.r0.getSystemWindowInsetTop() + gl.L(118.0f);
+        ((FrameLayout.LayoutParams) hgcVar.R.getLayoutParams()).topMargin = hgcVar.r0.getSystemWindowInsetTop() + gl.L(380.0f);
+        ((FrameLayout.LayoutParams) hgcVar.a0.getLayoutParams()).bottomMargin = hgcVar.r0.getSystemWindowInsetBottom();
+        ((FrameLayout.LayoutParams) hgcVar.M0.getLayoutParams()).bottomMargin = hgcVar.r0.getSystemWindowInsetBottom();
+        hgcVar.Z.setInsets(hgcVar.r0);
+        hgcVar.a0.setInsets(hgcVar.r0);
+        hgcVar.s.requestLayout();
+        bgc bgcVar = hgcVar.o0;
+        if (bgcVar != null) {
+            bgcVar.setBottomPadding(hgcVar.r0.getSystemWindowInsetBottom());
         }
-        Application application = (Application) x23Var.b(I);
-        if (application != null) {
-            return l(cls, application);
-        }
-        if (!hm.class.isAssignableFrom(cls)) {
-            return tne.a(cls);
-        }
-        u36.j("CreationExtras must have an application by `APPLICATION_KEY`");
-        return null;
+        return vxc.b;
     }
 
     @Override
-    public final pfc j(Class cls) {
-        Application application = this.G;
-        if (application != null) {
-            return l(cls, application);
+    public final void a(qic qicVar) {
+        int i;
+        byte b = this.a;
+        hgc hgcVar = this.b;
+        switch (b) {
+            case 4:
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    gl.r(hgcVar.S0);
+                    hgcVar.R0 = false;
+                    boolean isMicMute = sharedInstance.isMicMute();
+                    boolean z = !isMicMute;
+                    if (hgcVar.w0.isTouchExplorationEnabled()) {
+                        if (!isMicMute) {
+                            i = 2131754728;
+                        } else {
+                            i = 2131754727;
+                        }
+                        qicVar.announceForAccessibility(k96.M0(i, null));
+                    }
+                    sharedInstance.setMicMute(z, false, true);
+                    hgcVar.q0 = hgcVar.p0;
+                    hgcVar.y();
+                    return;
+                }
+                return;
+            default:
+                gl.r(hgcVar.S0);
+                hgcVar.R0 = false;
+                if (hgcVar.b.checkSelfPermission("android.permission.CAMERA") != 0) {
+                    hgcVar.b.requestPermissions(new String[]{"android.permission.CAMERA"}, 102);
+                    return;
+                } else {
+                    hgcVar.t();
+                    return;
+                }
         }
-        rjb.j("AndroidViewModelFactory constructed with empty constructor works only with create(modelClass: Class<T>, extras: CreationExtras).");
-        return null;
     }
 
-    public final pfc l(Class cls, Application application) {
-        if (hm.class.isAssignableFrom(cls)) {
-            try {
-                pfc pfcVar = (pfc) cls.getConstructor(Application.class).newInstance(application);
-                pfcVar.getClass();
-                return pfcVar;
-            } catch (IllegalAccessException e) {
-                dq9.n("Cannot create an instance of ", cls, e);
-                return null;
-            } catch (InstantiationException e2) {
-                dq9.n("Cannot create an instance of ", cls, e2);
-                return null;
-            } catch (NoSuchMethodException e3) {
-                dq9.n("Cannot create an instance of ", cls, e3);
-                return null;
-            } catch (InvocationTargetException e4) {
-                dq9.n("Cannot create an instance of ", cls, e4);
-                return null;
-            }
-        }
-        return tne.a(cls);
+    @Override
+    public final void u(hd hdVar, int i) {
+        this.b.u0.b();
     }
 }

@@ -1,20 +1,32 @@
 package defpackage;
-public final class zme {
-    public final Long a;
-    public final qme b;
-    public final ple c;
-    public final Integer d;
-    public final Integer e;
-    public final Integer f;
-    public final Integer g;
 
-    public zme(jd4 jd4Var) {
-        this.a = (Long) jd4Var.a;
-        this.b = (qme) jd4Var.b;
-        this.c = (ple) jd4Var.c;
-        this.d = (Integer) jd4Var.d;
-        this.e = (Integer) jd4Var.e;
-        this.f = (Integer) jd4Var.f;
-        this.g = (Integer) jd4Var.g;
+import android.os.IBinder;
+import android.os.IInterface;
+public final class zme extends xx4 {
+    @Override
+    public final IInterface b(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.clearcut.internal.IClearcutLoggerService");
+        if (queryLocalInterface instanceof j5f) {
+            return (j5f) queryLocalInterface;
+        }
+        return new j5f(iBinder);
+    }
+
+    @Override
+    public final int i() {
+        return 11925000;
+    }
+
+    @Override
+    public final String l() {
+        return "com.google.android.gms.clearcut.internal.IClearcutLoggerService";
+    }
+
+    @Override
+    public final String n() {
+        return "com.google.android.gms.clearcut.service.START";
     }
 }

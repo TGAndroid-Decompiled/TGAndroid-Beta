@@ -1,43 +1,26 @@
 package defpackage;
+public final class kmc implements Runnable {
+    public final byte a;
+    public final mmc b;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.Shader;
-public final class kmc extends qa6 {
-    public final Paint M;
-    public final mmc N;
-
-    public kmc(mmc mmcVar, ylb ylbVar) {
-        super(ylbVar);
-        this.N = mmcVar;
-        Paint paint = new Paint(1);
-        this.M = paint;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+    public kmc(mmc mmcVar, byte b) {
+        this.a = b;
+        this.b = mmcVar;
     }
 
     @Override
-    public final void b(Canvas canvas, Path path) {
-        super.b(canvas, path);
-        mmc mmcVar = this.N;
-        RectF rectF = mmcVar.f;
-        if (mmcVar.o0 != null) {
-            canvas.saveLayer(rectF, null);
-            mmcVar.o0.c((gm.L(206.0f) - mmcVar.o0.j()) / 2.0f, (rectF.bottom - gm.L(7.0f)) - mmcVar.o0.h(), 1.0f, -1, canvas);
-            Shader shader = this.x.getShader();
-            Paint paint = this.M;
-            paint.setShader(shader);
-            canvas.drawRect(rectF, paint);
-            canvas.restore();
+    public final void run() {
+        byte b = this.a;
+        mmc mmcVar = this.b;
+        switch (b) {
+            case 0:
+                mmcVar.performClick();
+                return;
+            default:
+                mmcVar.h.invalidate();
+                mmcVar.n.invalidate();
+                mmcVar.e.invalidate();
+                return;
         }
-    }
-
-    @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        this.N.a.invalidate();
     }
 }

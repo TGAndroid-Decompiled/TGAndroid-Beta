@@ -1,42 +1,46 @@
 package defpackage;
-public enum wtb extends rub {
-    public wtb() {
-        super("BeforeDoctypeName", 51);
+
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class wtb extends FrameLayout implements tjb {
+    public boolean a;
+    public be0 b;
+    public TextView c;
+    public TextView d;
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(bkb.b9));
     }
 
     @Override
-    public final void c(bsb bsbVar, hl1 hl1Var) {
-        srb srbVar = bsbVar.m;
-        boolean o = hl1Var.o();
-        xtb xtbVar = rub.q0;
-        if (o) {
-            srbVar.s();
-            bsbVar.c = xtbVar;
-            return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.a) {
+            canvas.drawLine(gl.L(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, bkb.j0);
         }
-        char d = hl1Var.d();
-        if (d != 0) {
-            if (d != ' ') {
-                if (d != 65535) {
-                    if (d != '\t' && d != '\n' && d != '\f' && d != '\r') {
-                        srbVar.s();
-                        srbVar.e.append(d);
-                        bsbVar.c = xtbVar;
-                        return;
-                    }
-                    return;
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(56.0f), 1073741824));
+    }
+
+    @Override
+    public final void updateColors() {
+        be0 be0Var = this.b;
+        if (be0Var != null) {
+            try {
+                if (be0Var.getImageReceiver() != null && (be0Var.getImageReceiver().t() instanceof lm4)) {
+                    ((lm4) be0Var.getImageReceiver().t()).a(bkb.w0(null, bkb.b9, false));
+                    be0Var.invalidate();
                 }
-                bsbVar.l(this);
-                srbVar.s();
-                bsbVar.j();
-                bsbVar.c = rub.a;
-                return;
+            } catch (Exception e) {
+                fa4.g(e, true);
             }
-            return;
         }
-        bsbVar.m(this);
-        srbVar.s();
-        srbVar.e.append((char) 65533);
-        bsbVar.c = xtbVar;
     }
 }

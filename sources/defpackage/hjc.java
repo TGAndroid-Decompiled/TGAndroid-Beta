@@ -1,38 +1,40 @@
 package defpackage;
 
-import java.util.HashSet;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class hjc implements RequestDelegate {
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+public final class hjc extends View {
     public final byte a;
-    public final VoIPService b;
-    public final long c;
-    public final HashSet d;
-    public final AtomicInteger e;
-    public final int f;
-    public final String g;
+    public final jjc b;
 
-    public hjc(VoIPService voIPService, long j, HashSet hashSet, AtomicInteger atomicInteger, int i, String str, byte b) {
+    public hjc(jjc jjcVar, Context context, byte b) {
+        super(context);
         this.a = b;
-        this.b = voIPService;
-        this.c = j;
-        this.d = hashSet;
-        this.e = atomicInteger;
-        this.f = i;
-        this.g = str;
+        this.b = jjcVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.a) {
+    public final void onDraw(Canvas canvas) {
+        byte b = this.a;
+        int i = -1;
+        jjc jjcVar = this.b;
+        switch (b) {
             case 0:
-                this.b.lambda$startConferenceGroupCall$54(this.c, this.d, this.e, this.f, this.g, tLObject, tL_error);
+                RectF rectF = gl.P;
+                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                if (!jjcVar.g0) {
+                    i = jjcVar.h0;
+                }
+                jjcVar.j(canvas, rectF, i, 1.0f);
                 return;
             default:
-                this.b.lambda$startConferenceGroupCall$46(this.c, this.d, this.e, this.f, this.g, tLObject, tL_error);
+                RectF rectF2 = gl.P;
+                rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
+                if (!jjcVar.g0) {
+                    i = jjcVar.h0;
+                }
+                jjcVar.e(canvas, rectF2, i, 1.0f);
                 return;
         }
     }

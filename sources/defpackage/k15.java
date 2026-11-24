@@ -1,32 +1,49 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class k15 implements Runnable {
-    public final byte a;
-    public final d b;
-    public final TwoStepVerificationActivity c;
+import android.app.AlertDialog;
+import android.hardware.fingerprint.FingerprintManager;
+public final class k15 extends FingerprintManager.AuthenticationCallback {
+    public final l15 a;
 
-    public k15(d dVar, TwoStepVerificationActivity twoStepVerificationActivity, byte b) {
-        this.a = b;
-        this.b = dVar;
-        this.c = twoStepVerificationActivity;
+    public k15(l15 l15Var) {
+        this.a = l15Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        TwoStepVerificationActivity twoStepVerificationActivity = this.c;
-        d dVar = this.b;
-        switch (b) {
-            case 0:
-                dVar.presentFragment(twoStepVerificationActivity);
-                return;
-            default:
-                ?? obj = new Object();
-                obj.a = true;
-                dVar.showAsSheet(twoStepVerificationActivity, obj);
-                return;
+    public final void onAuthenticationError(int i, CharSequence charSequence) {
+        if (this.a.f()) {
+            l15 l15Var = this.a;
+            if (!l15Var.f) {
+                if (i == 5) {
+                    l15Var.c("AUTH_CANCELED");
+                } else {
+                    l15Var.a();
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void onAuthenticationFailed() {
+        AlertDialog alertDialog;
+        if (this.a.f() && (alertDialog = this.a.i) != null) {
+            alertDialog.setMessage(k96.M0(2131742873, null));
+        }
+    }
+
+    @Override
+    public final void onAuthenticationHelp(int i, CharSequence charSequence) {
+        AlertDialog alertDialog;
+        if (this.a.f() && (alertDialog = this.a.i) != null) {
+            alertDialog.setMessage(charSequence);
+        }
+    }
+
+    @Override
+    public final void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult authenticationResult) {
+        l15 l15Var = this.a;
+        if (!l15Var.f) {
+            l15Var.c(null);
         }
     }
 }

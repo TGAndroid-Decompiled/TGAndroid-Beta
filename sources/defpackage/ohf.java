@@ -1,30 +1,48 @@
 package defpackage;
 
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-public final class ohf extends f1d implements qhf {
-    public final mhf Z(eq7 eq7Var, whf whfVar) {
-        mhf f1dVar;
-        Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(this.c);
-        int i = xid.a;
-        obtain.writeStrongBinder(eq7Var);
-        obtain.writeInt(1);
-        whfVar.writeToParcel(obtain, 0);
-        Parcel T = T(obtain, 1);
-        IBinder readStrongBinder = T.readStrongBinder();
-        if (readStrongBinder == null) {
-            f1dVar = 0;
-        } else {
-            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.mlkit.vision.segmentation.subject.aidls.ISubjectSegmenter");
-            if (queryLocalInterface instanceof mhf) {
-                f1dVar = (mhf) queryLocalInterface;
-            } else {
-                f1dVar = new f1d(readStrongBinder, "com.google.mlkit.vision.segmentation.subject.aidls.ISubjectSegmenter", (byte) 8);
-            }
+import java.util.Map;
+import java.util.Set;
+public abstract class ohf implements fdd {
+    public transient xze a;
+    public transient d3 b;
+
+    public final Map a() {
+        d3 d3Var = this.b;
+        if (d3Var == null) {
+            vhf vhfVar = (vhf) this;
+            d3 d3Var2 = new d3(vhfVar, vhfVar.c, (byte) 1);
+            this.b = d3Var2;
+            return d3Var2;
         }
-        T.recycle();
-        return f1dVar;
+        return d3Var;
+    }
+
+    public final Set b() {
+        xze xzeVar = this.a;
+        if (xzeVar == null) {
+            vhf vhfVar = (vhf) this;
+            xze xzeVar2 = new xze(vhfVar, vhfVar.c);
+            this.a = xzeVar2;
+            return xzeVar2;
+        }
+        return xzeVar;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof fdd)) {
+            return false;
+        }
+        return a().equals(((ohf) ((fdd) obj)).a());
+    }
+
+    public final int hashCode() {
+        return ((so2) ((d3) a()).d).hashCode();
+    }
+
+    public final String toString() {
+        return ((so2) ((d3) a()).d).toString();
     }
 }

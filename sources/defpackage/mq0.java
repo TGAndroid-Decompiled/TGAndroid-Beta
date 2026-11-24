@@ -1,139 +1,131 @@
 package defpackage;
 
-import android.app.DownloadManager;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.TextUtils;
-import android.util.Pair;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import org.json.JSONObject;
-import org.telegram.messenger.a;
-public final class mq0 {
-    public static final HashMap g = new HashMap();
-    public static final HashMap h = new HashMap();
-    public final Context a;
-    public final int b;
-    public final long c;
-    public final DownloadManager d;
-    public final ArrayList e = new ArrayList();
-    public lq0 f;
+import android.graphics.PorterDuff;
+import android.text.SpannableStringBuilder;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.tgnet.tl.TL_keyboard;
+public final class mq0 extends FrameLayout {
+    public final wla a;
+    public final ImageView b;
+    public final TL_keyboard.KeyboardButton c;
+    public boolean d;
+    public boolean e;
+    public boolean f;
+    public boolean h;
+    public final oq0 n;
 
-    public mq0(Context context, int i, long j) {
-        this.a = context;
-        this.b = i;
-        this.c = j;
-        this.d = (DownloadManager) context.getSystemService("download");
-        Set<String> stringSet = context.getSharedPreferences("botdownloads_" + i, 0).getStringSet(String.valueOf(j), null);
-        if (stringSet != null) {
-            for (String str : stringSet) {
-                try {
-                    lq0 lq0Var = new lq0(this, new JSONObject(str));
-                    File file = lq0Var.d;
-                    if (file != null && file.exists()) {
-                        this.e.add(lq0Var);
-                    }
-                } catch (Exception e) {
-                    fc4.g(e, true);
-                }
+    public mq0(oq0 oq0Var, Context context, TL_keyboard.KeyboardButton keyboardButton) {
+        super(context);
+        this.n = oq0Var;
+        this.c = keyboardButton;
+        wla wlaVar = new wla(context);
+        this.a = wlaVar;
+        wlaVar.r = false;
+        wlaVar.setTextSize(1, 14.0f);
+        wlaVar.setTypeface(gl.o());
+        kk7.i(wlaVar);
+        addView(wlaVar, nme.e(-2, -2, 17));
+        kk7.i(wlaVar);
+        setTag(keyboardButton);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = keyboardButton.style;
+        if (keyboardButtonStyle != null && keyboardButtonStyle.icon != 0) {
+            spannableStringBuilder.append((CharSequence) "* ");
+            spannableStringBuilder.setSpan(new gm(keyboardButton.style.icon, wlaVar.getPaint().getFontMetricsInt()), 0, 1, 33);
+        }
+        spannableStringBuilder.append(vu3.m(keyboardButton.text, wlaVar.getPaint().getFontMetricsInt(), false, null, 0));
+        ImageView imageView = new ImageView(getContext());
+        this.b = imageView;
+        zkb.s(imageView, bkb.Of, oq0Var.a, PorterDuff.Mode.SRC_ATOP);
+        if (jdb.b(keyboardButton)) {
+            imageView.setImageResource(2131230899);
+            imageView.setVisibility(0);
+        } else {
+            imageView.setVisibility(8);
+        }
+        addView(imageView, nme.d(12, 12.0f, 53, 0.0f, 8.0f, 8.0f, 0.0f));
+        wlaVar.setText(spannableStringBuilder);
+    }
+
+    public final void a() {
+        int i;
+        int i2;
+        boolean z;
+        int i3;
+        boolean z2;
+        int i4;
+        int i5;
+        int i6;
+        int p1;
+        int k;
+        int L = gl.L(21.0f);
+        int L2 = gl.L(11.0f);
+        int i7 = bkb.Pf;
+        wjb wjbVar = this.n.a;
+        int v0 = bkb.v0(i7, wjbVar);
+        int v02 = bkb.v0(bkb.Qf, wjbVar);
+        int v03 = bkb.v0(bkb.Of, wjbVar);
+        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.c.style;
+        if (keyboardButtonStyle != null) {
+            if (keyboardButtonStyle.bg_primary) {
+                p1 = bkb.p1(0.8f, bkb.v0(bkb.Tl, wjbVar));
+                k = bm2.k(bkb.v0(bkb.h6, wjbVar), p1);
+            } else if (keyboardButtonStyle.bg_danger) {
+                p1 = bkb.p1(0.8f, bkb.v0(bkb.Ul, wjbVar));
+                k = bm2.k(bkb.v0(bkb.h6, wjbVar), p1);
+            } else if (keyboardButtonStyle.bg_success) {
+                p1 = bkb.p1(0.8f, bkb.v0(bkb.Vl, wjbVar));
+                k = bm2.k(bkb.v0(bkb.h6, wjbVar), p1);
             }
-        }
-    }
-
-    public static void a() {
-        Context context = a.b;
-        if (context == null) {
-            return;
-        }
-        for (int i = 0; i < 4; i++) {
-            context.getSharedPreferences("botdownloads_" + i, 0).edit().clear().apply();
-        }
-        g.clear();
-    }
-
-    public static mq0 c(Context context, int i, long j) {
-        Pair pair = new Pair(Integer.valueOf(i), Long.valueOf(j));
-        HashMap hashMap = g;
-        mq0 mq0Var = (mq0) hashMap.get(pair);
-        if (mq0Var == null) {
-            mq0 mq0Var2 = new mq0(context, i, j);
-            hashMap.put(pair, mq0Var2);
-            return mq0Var2;
-        }
-        return mq0Var;
-    }
-
-    public final void b(String str, String str2) {
-        lq0 d = d(str);
-        if (d != null) {
-            this.f = d;
-            d.k = true;
-            e();
-            return;
-        }
-        lq0 lq0Var = new lq0(this, str, str2);
-        this.f = lq0Var;
-        lq0Var.l = false;
-        this.e.add(lq0Var);
-        f();
-        e();
-    }
-
-    public final lq0 d(String str) {
-        ArrayList arrayList = this.e;
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            lq0 lq0Var = (lq0) obj;
-            if (TextUtils.equals(lq0Var.b, str) && lq0Var.h) {
-                return lq0Var;
+            i = p1;
+            i2 = k;
+            v03 = -1;
+            this.b.setColorFilter(v03);
+            this.a.setTextColor(v03);
+            z = this.d;
+            if (!z && this.e) {
+                i3 = L;
+            } else {
+                i3 = L2;
             }
-        }
-        return null;
-    }
-
-    public final void e() {
-        nm7.f(this.b).k(nm7.M3, new Object[0]);
-    }
-
-    public final void f() {
-        String absolutePath;
-        int i = 0;
-        SharedPreferences.Editor edit = this.a.getSharedPreferences("botdownloads_" + this.b, 0).edit();
-        edit.clear();
-        HashSet hashSet = new HashSet();
-        ArrayList arrayList = this.e;
-        int size = arrayList.size();
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            lq0 lq0Var = (lq0) obj;
-            lq0Var.getClass();
-            JSONObject jSONObject = new JSONObject();
-            try {
-                jSONObject.put("url", lq0Var.b);
-                jSONObject.put("file_name", lq0Var.c);
-                jSONObject.put("size", lq0Var.g);
-                File file = lq0Var.d;
-                if (file == null) {
-                    absolutePath = null;
-                } else {
-                    absolutePath = file.getAbsolutePath();
-                }
-                jSONObject.put("path", absolutePath);
-                jSONObject.put("done", lq0Var.h);
-                jSONObject.put("mime", lq0Var.e);
-            } catch (Exception e) {
-                fc4.g(e, true);
+            z2 = this.f;
+            if (!z2 && this.e) {
+                i4 = L;
+            } else {
+                i4 = L2;
             }
-            hashSet.add(jSONObject.toString());
+            if (!z2 && this.h) {
+                i5 = L;
+            } else {
+                i5 = L2;
+            }
+            if (!z && this.h) {
+                i6 = L;
+            } else {
+                i6 = L2;
+            }
+            setBackground(bkb.i0(i3, i4, i5, i6, i, i2, i2));
         }
-        edit.putStringSet(String.valueOf(this.c), hashSet);
-        edit.apply();
+        i = v0;
+        i2 = v02;
+        this.b.setColorFilter(v03);
+        this.a.setTextColor(v03);
+        z = this.d;
+        if (!z) {
+        }
+        i3 = L2;
+        z2 = this.f;
+        if (!z2) {
+        }
+        i4 = L2;
+        if (!z2) {
+        }
+        i5 = L2;
+        if (!z) {
+        }
+        i6 = L2;
+        setBackground(bkb.i0(i3, i4, i5, i6, i, i2, i2));
     }
 }

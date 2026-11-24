@@ -1,14 +1,17 @@
 package defpackage;
-public abstract class ufd {
-    public static final o94 a;
-    public static final o94[] b;
+public final class ufd implements zn7 {
+    public static final ufd a = new Object();
 
     static {
-        o94 o94Var = new o94("fpnv_exchange_credential_response_for_phone_number_api", -1, 1L, true);
-        o94 o94Var2 = new o94("fpnv_get_consent_screen_intent", -1, 1L, true);
-        o94 o94Var3 = new o94("fpnv_get_digital_credential_payload_api", -1, 1L, true);
-        o94 o94Var4 = new o94("fpnv_get_verification_support_info", -1, 1L, true);
-        a = o94Var4;
-        b = new o94[]{o94Var, o94Var2, o94Var3, o94Var4, new o94("fpnv_test_sessions", -1, 1L, true), new o94("fpnv_verify_phone_number", -1, 1L, true)};
+        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)), 5)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

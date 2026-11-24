@@ -1,43 +1,50 @@
 package defpackage;
 
-import java.util.Random;
-public final class plc extends fl0 {
-    public final void g(float f, float f2) {
-        if (e86.e(this.r)) {
-            int i = 0;
-            while (true) {
-                float f3 = i;
-                float f4 = this.n;
-                if (f3 < f4) {
-                    float[] fArr = this.i;
-                    float f5 = fArr[i];
-                    float[] fArr2 = this.j;
-                    float f6 = fArr2[i];
-                    float f7 = (f6 * f * 8.2f * 1.0f) + (0.8f * f6) + f5;
-                    fArr[i] = f7;
-                    if (f7 >= 1.0f) {
-                        fArr[i] = 0.0f;
-                        float[] fArr3 = this.g;
-                        this.e[i] = fArr3[i];
-                        float[] fArr4 = this.h;
-                        this.f[i] = fArr4[i];
-                        if (f2 < 1.0f) {
-                            float f8 = 360.0f / f4;
-                            float f9 = this.b;
-                            float f10 = this.a;
-                            Random random = this.m;
-                            fArr3[i] = (Math.abs((random.nextInt() % 100.0f) / 100.0f) * (f9 - f10) * f2) + f10;
-                            fArr4[i] = ((((random.nextInt() * f2) % 100.0f) / 100.0f) * 0.05f * f8) + (f8 * f3);
-                            fArr2[i] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
-                        } else {
-                            c(fArr3, fArr4, i);
-                        }
-                    }
-                    i++;
-                } else {
-                    return;
-                }
-            }
+import android.view.View;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class plc implements View.OnAttachStateChangeListener {
+    public final be5 a;
+    public final TL_wallet.walletTransaction[] b;
+    public final olc c;
+    public final int d;
+    public final i8c e;
+    public final cj7[] f;
+    public final String[] h;
+    public final boolean[] n;
+
+    public plc(be5 be5Var, TL_wallet.walletTransaction[] wallettransactionArr, olc olcVar, int i, i8c i8cVar, cj7[] cj7VarArr, String[] strArr, boolean[] zArr) {
+        this.a = be5Var;
+        this.b = wallettransactionArr;
+        this.c = olcVar;
+        this.d = i;
+        this.e = i8cVar;
+        this.f = cj7VarArr;
+        this.h = strArr;
+        this.n = zArr;
+    }
+
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        this.a.a(this.b[0]);
+        olc olcVar = this.c;
+        if (olcVar != null) {
+            int i = this.d;
+            kk7.f(i).b(olcVar, kk7.c4);
+            kk7.f(i).b(olcVar, kk7.d4);
+        }
+        i8c i8cVar = this.e;
+        if (i8cVar != null) {
+            this.f[0].n(new wbc(i8cVar, this.h, this.n, (byte) 11));
+        }
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        olc olcVar = this.c;
+        if (olcVar != null) {
+            int i = this.d;
+            kk7.f(i).n(olcVar, kk7.c4);
+            kk7.f(i).n(olcVar, kk7.d4);
         }
     }
 }

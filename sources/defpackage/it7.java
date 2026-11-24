@@ -1,30 +1,33 @@
 package defpackage;
 
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.view.animation.Interpolator;
-public final class it7 {
-    public final BitmapDrawable a;
-    public final Rect c;
-    public Interpolator d;
-    public long e;
-    public final Rect f;
-    public int g;
-    public long i;
-    public boolean j;
-    public boolean k;
-    public wm4 l;
-    public float b = 1.0f;
-    public float h = 1.0f;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.ViewGroup;
+public final class it7 extends as7 {
+    public final Path o3;
+    public final x6b p3;
 
-    public it7(BitmapDrawable bitmapDrawable, Rect rect) {
-        this.a = bitmapDrawable;
-        this.f = rect;
-        Rect rect2 = new Rect(rect);
-        this.c = rect2;
-        if (bitmapDrawable != null) {
-            bitmapDrawable.setAlpha((int) (this.b * 255.0f));
-            bitmapDrawable.setBounds(rect2);
-        }
+    public it7(x6b x6bVar, Context context) {
+        super(context);
+        this.p3 = x6bVar;
+        this.o3 = new Path();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        ViewGroup barView;
+        x6b x6bVar = this.p3;
+        barView = x6bVar.getBarView();
+        RectF rectF = gl.P;
+        rectF.set(gl.U1(x6bVar.t1, barView.getLeft() - getLeft(), 0), gl.U1(x6bVar.t1, barView.getTop() - getTop(), 0), gl.U1(x6bVar.t1, barView.getRight() - getLeft(), getWidth()), gl.U1(x6bVar.t1, barView.getBottom() - getTop(), getHeight()));
+        Path path = this.o3;
+        path.rewind();
+        path.addRoundRect(rectF, gl.L(32.0f), gl.L(32.0f), Path.Direction.CW);
+        canvas.save();
+        canvas.clipPath(path);
+        super.draw(canvas);
+        canvas.restore();
     }
 }

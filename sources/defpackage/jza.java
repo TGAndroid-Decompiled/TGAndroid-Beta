@@ -1,35 +1,65 @@
 package defpackage;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.view.View;
 public final class jza {
-    public boolean a;
-    public String b;
-    public long c;
-    public nl1 d;
-    public nl1 e;
-    public String f;
-    public String g;
-    public boolean h;
-    public final byte i;
-    public final String j;
-    public boolean k;
-    public boolean l;
-    public boolean m;
-    public boolean n;
-    public boolean o;
+    public boolean b;
+    public int c;
+    public Bitmap d;
+    public Bitmap e;
+    public Bitmap f;
+    public Bitmap g;
+    public float j;
+    public float k;
+    public int n;
+    public float[] o;
+    public final Paint r;
+    public final Paint s;
+    public final mza t;
+    public final lm a = new lm(0.0f, (View) null, 0, 320, s33.h);
+    public final RectF h = new RectF();
+    public final RectF i = new RectF();
+    public final Path l = new Path();
+    public final Path m = new Path();
+    public final Paint p = new Paint(1);
+    public final Paint q = new Paint(1);
 
-    public jza(String str, int i) {
-        this.j = str;
-        this.i = i;
+    public jza(mza mzaVar) {
+        this.t = mzaVar;
+        new Paint(1);
+        this.r = new Paint(1);
+        this.s = new Paint(1);
     }
 
-    public final void a(int i, int i2, int i3, iac iacVar) {
-        if (!this.k) {
-            this.k = true;
-            TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-            tL_loadAsyncGraph.token = this.f;
-            ConnectionsManager.getInstance(i).bindRequestToGuid(ConnectionsManager.getInstance(i).sendRequest(tL_loadAsyncGraph, new ara(this, iacVar, (byte) 3), null, null, 0, i3, 1, true), i2);
+    public final Bitmap a() {
+        Bitmap bitmap = this.g;
+        if (bitmap != null) {
+            return bitmap;
         }
+        return this.f;
+    }
+
+    public final Bitmap b() {
+        Bitmap bitmap = this.e;
+        if (bitmap != null) {
+            return bitmap;
+        }
+        return this.d;
+    }
+
+    public final Bitmap c() {
+        Bitmap createBitmap = Bitmap.createBitmap(b().getWidth(), b().getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        canvas.drawColor(-16777216);
+        Paint paint = new Paint(3);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        canvas.drawBitmap(b(), 0.0f, 0.0f, paint);
+        return createBitmap;
     }
 }

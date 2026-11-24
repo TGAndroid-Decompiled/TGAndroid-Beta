@@ -1,17 +1,9 @@
 package defpackage;
-public final class hpe implements cq7 {
-    public static final hpe a = new Object();
-
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
-    }
+public final class hpe {
+    public Long a;
+    public Long b;
+    public Long c;
+    public Long d;
+    public Long e;
+    public Long f;
 }

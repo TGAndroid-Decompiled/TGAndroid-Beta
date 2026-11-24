@@ -1,579 +1,109 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.ui.Components.CheckBoxBase;
-public final class pt4 extends FrameLayout {
-    public static int e0;
-    public float E;
-    public float F;
-    public StaticLayout G;
-    public float H;
-    public float I;
-    public final FrameLayout J;
-    public final ya K;
-    public final float L;
-    public final boolean M;
-    public mt4 N;
-    public mt4 O;
-    public String P;
-    public final qn4 Q;
-    public np3 R;
-    public String S;
-    public Object T;
-    public if4 U;
-    public boolean V;
-    public boolean W;
-    public Bitmap a;
-    public final Path a0;
-    public final Paint b;
-    public final float[] b0;
-    public final Paint c;
-    public final Paint c0;
-    public final Paint d;
-    public LinearGradient e;
-    public final Matrix f;
-    public final Matrix h;
-    public final Paint n;
-    public final TextPaint r;
-    public final TextPaint s;
-    public final Drawable w;
-    public boolean x;
-    public StaticLayout y;
-    public static final ArrayList d0 = new ArrayList();
-    public static final HashMap f0 = new HashMap();
-    public static final ot4 g0 = new ot4(45, (byte) 0);
+import android.content.Intent;
+import android.net.Uri;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+public final class pt4 extends fy0 {
+    public final TLRPC.TL_payments_checkedGiftCode S1;
+    public final boolean T1;
+    public ot4 U1;
+    public final String V1;
 
-    public pt4(Context context, r63 r63Var, float f, boolean z) {
-        super(context);
-        this.b = new Paint(3);
-        Paint paint = new Paint(1);
-        this.c = paint;
-        this.d = new Paint(1);
-        this.f = new Matrix();
-        this.h = new Matrix();
-        Paint paint2 = new Paint(1);
-        this.n = paint2;
-        TextPaint textPaint = new TextPaint(1);
-        this.r = textPaint;
-        TextPaint textPaint2 = new TextPaint(1);
-        this.s = textPaint2;
-        this.Q = new qn4(this, (byte) 2);
-        this.a0 = new Path();
-        this.b0 = new float[8];
-        this.c0 = new Paint(1);
-        this.L = f;
-        this.M = z;
-        paint.setColor(285212671);
-        paint2.setColor(1275068416);
-        textPaint.setTypeface(gm.o());
-        textPaint.setTextSize(gm.N(12.66f));
-        textPaint.setColor(-1);
-        textPaint2.setTextSize(gm.L(11.33f));
-        textPaint2.setColor(-1);
-        this.w = context.getResources().getDrawable(2131232566).mutate();
-        ya yaVar = new ya(this, context, r63Var);
-        this.K = yaVar;
-        if (!z) {
-            yaVar.setDrawBackgroundAsArc(6);
-        } else {
-            yaVar.setDrawBackgroundAsArc(7);
-        }
-        yaVar.b(cmb.V9, cmb.W9, cmb.U9);
-        CheckBoxBase checkBoxBase = yaVar.getCheckBoxBase();
-        int i = cmb.F6;
-        if (checkBoxBase.u != i) {
-            checkBoxBase.u = i;
-            checkBoxBase.b();
-        }
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.J = frameLayout;
-        frameLayout.addView(yaVar, qoe.e(26, 26, 17));
-        addView(frameLayout, qoe.d(36, 36.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
-        frameLayout.setVisibility(0);
-        frameLayout.setImportantForAccessibility(2);
-        yaVar.setImportantForAccessibility(2);
-        setWillNotDraw(false);
-    }
-
-    public static void d(String str) {
-        if (str != null) {
-            HashMap hashMap = f0;
-            Integer num = (Integer) hashMap.get(str);
-            if (num != null) {
-                int intValue = num.intValue() - 1;
-                Integer valueOf = Integer.valueOf(intValue);
-                if (intValue <= 0) {
-                    hashMap.remove(str);
-                } else {
-                    hashMap.put(str, valueOf);
-                }
-            }
-        }
-    }
-
-    public final np3 a() {
-        np3 np3Var = this.R;
-        if (np3Var != null) {
-            return np3Var;
-        }
-        ArrayList arrayList = d0;
-        if (arrayList.size() < 4) {
-            np3 np3Var2 = new np3("gallery_load_" + arrayList.size(), true);
-            this.R = np3Var2;
-            arrayList.add(np3Var2);
-        } else {
-            int i = e0 + 1;
-            e0 = i;
-            if (i >= arrayList.size()) {
-                e0 = 0;
-            }
-            this.R = (np3) arrayList.get(e0);
-        }
-        return this.R;
-    }
-
-    public final void b(Object obj) {
-        String str;
-        Bitmap bitmap;
-        if (obj == null) {
-            d(this.S);
-            this.S = null;
-            this.a = null;
-            invalidate();
-            return;
-        }
-        boolean z = obj instanceof jo6;
-        if (z) {
-            jo6 jo6Var = (jo6) obj;
-            str = jo6Var.c;
-            if (str == null) {
-                if (jo6Var.b && !jo6Var.d()) {
-                    str = String.valueOf(jo6Var.C);
-                } else {
-                    str = jo6Var.I;
-                }
-            }
-        } else if (obj instanceof g6b) {
-            str = "d" + ((g6b) obj).b;
-        } else {
-            str = null;
-        }
-        if (TextUtils.equals(str, this.S)) {
-            return;
-        }
-        String str2 = this.S;
-        if (str2 != null) {
-            this.a = null;
-            d(str2);
-            invalidate();
-        }
-        this.S = str;
-        Paint paint = this.d;
-        paint.setShader(null);
-        this.e = null;
-        if (z) {
-            jo6 jo6Var2 = (jo6) obj;
-            if (jo6Var2.T != 0 && jo6Var2.U != 0) {
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{jo6Var2.T, jo6Var2.U}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                this.e = linearGradient;
-                paint.setShader(linearGradient);
-                h();
-            }
-        }
-        if (str == null) {
-            bitmap = null;
-        } else {
-            bitmap = (Bitmap) g0.get(str);
-            if (bitmap != null) {
-                HashMap hashMap = f0;
-                Integer num = (Integer) hashMap.get(str);
-                int i = 1;
-                if (num != null) {
-                    i = 1 + num.intValue();
-                }
-                hashMap.put(str, Integer.valueOf(i));
-            }
-        }
-        this.a = bitmap;
-        if (bitmap != null) {
-            invalidate();
-            return;
-        }
-        if (this.U != null) {
-            a().cancelRunnable(this.U);
-            this.U = null;
-        }
-        np3 a = a();
-        if4 if4Var = new if4(this, obj, str, (byte) 5);
-        this.U = if4Var;
-        a.postRunnable(if4Var);
-    }
-
-    public final Bitmap c(jo6 jo6Var, BitmapFactory.Options options) {
-        if (jo6Var == null) {
-            return null;
-        }
-        int i = jo6Var.C;
-        String str = jo6Var.c;
-        if (str != null) {
-            return BitmapFactory.decodeFile(str, options);
-        }
-        if (jo6Var.b && !jo6Var.d()) {
-            return MediaStore.Video.Thumbnails.getThumbnail(getContext().getContentResolver(), i, 1, options);
-        }
-        return MediaStore.Images.Thumbnails.getThumbnail(getContext().getContentResolver(), i, 1, options);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f;
-        float f2;
+    public pt4(d dVar, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
+        super(dVar, true);
         boolean z;
-        Canvas canvas2;
-        int L;
-        int L2;
-        boolean z2 = true;
-        if (!this.V && !this.W) {
+        if (tL_payments_checkedGiftCode.used_date == 0) {
+            z = true;
+        } else {
             z = false;
-        } else {
-            canvas.save();
-            Path path = this.a0;
-            path.rewind();
-            RectF rectF = gm.P;
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            if (this.V) {
-                f = gm.L(6.0f);
-            } else {
-                f = 0.0f;
-            }
-            float[] fArr = this.b0;
-            fArr[1] = f;
-            fArr[0] = f;
-            if (this.W) {
-                f2 = gm.L(6.0f);
-            } else {
-                f2 = 0.0f;
-            }
-            fArr[3] = f2;
-            fArr[2] = f2;
-            path.addRoundRect(rectF, fArr, Path.Direction.CW);
-            canvas.clipPath(path);
-            z = true;
         }
-        float progress = this.K.getProgress() * gm.L(12.66f);
-        if (progress > 0.0f) {
-            if (!z) {
-                canvas.save();
-            }
-            float width = (getWidth() - (progress * 2.0f)) / getWidth();
-            Paint paint = this.c0;
-            paint.setColor(218103807);
-            canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
-            canvas.scale(width, width, getWidth() / 2.0f, getHeight() / 2.0f);
-            canvas.clipRect(0, 0, getWidth(), getHeight());
-        } else {
-            z2 = z;
-        }
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.c);
-        if (this.e != null) {
-            canvas2 = canvas;
-            canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.d);
-        } else {
-            canvas2 = canvas;
-        }
-        Bitmap bitmap = this.a;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            canvas2.drawBitmap(this.a, this.f, this.b);
-        }
-        StaticLayout staticLayout = this.G;
-        Paint paint2 = this.n;
-        if (staticLayout != null) {
-            RectF rectF2 = gm.P;
-            rectF2.set(gm.L(4.0f), gm.L(4.0f), gm.L(10.0f) + this.H + gm.L(6.0f), gm.L(2.0f) + this.G.getHeight() + gm.L(5.0f));
-            canvas2.drawRoundRect(rectF2, gm.L(10.0f), gm.L(10.0f), paint2);
-            canvas2.save();
-            canvas2.translate((rectF2.left + gm.L(6.0f)) - this.I, rectF2.top + gm.L(1.33f));
-            this.G.draw(canvas2);
-            canvas2.restore();
-        }
-        if (this.y != null) {
-            RectF rectF3 = gm.P;
-            float L3 = gm.L(4.0f);
-            float height = ((getHeight() - gm.L(4.0f)) - this.y.getHeight()) - gm.L(2.0f);
-            int L4 = gm.L(4.0f);
-            if (this.x) {
-                L = gm.L(16.0f);
-            } else {
-                L = gm.L(4.0f);
-            }
-            rectF3.set(L3, height, L4 + L + this.E + gm.L(5.0f), getHeight() - gm.L(4.0f));
-            canvas2.drawRoundRect(rectF3, gm.L(10.0f), gm.L(10.0f), paint2);
-            if (this.x) {
-                Drawable drawable = this.w;
-                drawable.setBounds((int) (rectF3.left + gm.L(6.0f)), (int) (rectF3.centerY() - (gm.L(8.0f) / 2)), (int) (rectF3.left + gm.L(13.0f)), (int) (rectF3.centerY() + (gm.L(8.0f) / 2)));
-                drawable.draw(canvas2);
-            }
-            canvas2.save();
-            float f3 = rectF3.left;
-            if (this.x) {
-                L2 = gm.L(16.0f);
-            } else {
-                L2 = gm.L(5.0f);
-            }
-            canvas2.translate((f3 + L2) - this.F, rectF3.top + gm.L(1.0f));
-            this.y.draw(canvas2);
-            canvas2.restore();
-        }
-        if (z2) {
-            canvas2.restore();
-        }
-        super.draw(canvas);
+        this.T1 = z;
+        this.S1 = tL_payments_checkedGiftCode;
+        this.V1 = str;
+        this.v0 = false;
+        this.w0 = false;
+        K();
+        W0();
+        ot4 ot4Var = this.U1;
+        ww0 ww0Var = this.c;
+        ot4Var.getClass();
+        ot4Var.d = tL_payments_checkedGiftCode.used_date == 0;
+        ot4Var.e = dVar;
+        ot4Var.f = tL_payments_checkedGiftCode;
+        ot4Var.h = str;
+        ot4Var.n = ww0Var;
     }
 
-    public final void e(int i, g6b g6bVar) {
-        boolean z;
-        String str;
-        int i2;
-        float f;
-        float f2;
-        this.T = g6bVar;
-        if (i > 0) {
-            this.G = null;
-            g(jb6.G(i, "StoryDrafts", new Object[0]));
-            this.x = false;
-            this.P = jb6.G(i, "StoryDrafts", new Object[0]);
-        } else {
-            if (g6bVar != null && g6bVar.c) {
-                z = true;
-            } else {
-                z = false;
-            }
-            if (z) {
-                String N0 = jb6.N0("StoryDraft");
-                if (getMeasuredWidth() > 0) {
-                    i2 = getMeasuredWidth();
-                } else {
-                    i2 = gm.q.x;
+    public static boolean Y0(Intent intent, c01 c01Var) {
+        String scheme;
+        String path;
+        Uri data = intent.getData();
+        if (data != null && (scheme = data.getScheme()) != null) {
+            if (!scheme.equals("http") && !scheme.equals("https")) {
+                if (scheme.equals("tg")) {
+                    String uri = data.toString();
+                    String lastPathSegment = data.getLastPathSegment();
+                    if ((uri.startsWith("tg:giftcode") || uri.startsWith("tg://giftcode")) && lastPathSegment != null) {
+                        Z0(LaunchActivity.Q(), lastPathSegment, c01Var);
+                        return true;
+                    }
+                    return false;
                 }
-                StaticLayout staticLayout = new StaticLayout(N0, this.s, i2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.G = staticLayout;
-                if (staticLayout.getLineCount() > 0) {
-                    f = this.G.getLineWidth(0);
-                } else {
-                    f = 0.0f;
+                return false;
+            }
+            String lowerCase = data.getHost().toLowerCase();
+            if ((lowerCase.equals("telegram.me") || lowerCase.equals("t.me") || lowerCase.equals("telegram.dog")) && (path = data.getPath()) != null) {
+                String lastPathSegment2 = data.getLastPathSegment();
+                if (path.startsWith("/giftcode") && lastPathSegment2 != null) {
+                    Z0(LaunchActivity.Q(), lastPathSegment2, c01Var);
+                    return true;
                 }
-                this.H = f;
-                if (this.G.getLineCount() > 0) {
-                    f2 = this.G.getLineLeft(0);
-                } else {
-                    f2 = 0.0f;
-                }
-                this.I = f2;
-            } else {
-                this.G = null;
+                return false;
             }
-            if (g6bVar != null && g6bVar.K) {
-                str = gm.g0((int) Math.max(0.0f, ((g6bVar.a0 - g6bVar.Z) * ((float) g6bVar.h0)) / 1000.0f), false, false);
-            } else {
-                str = null;
-            }
-            g(str);
-            if (g6bVar != null && g6bVar.K) {
-                float f3 = g6bVar.a0 - g6bVar.Z;
-                this.P = jb6.M0(2131744368, null) + ", " + jb6.z((int) Math.max(0.0f, (f3 * ((float) g6bVar.h0)) / 1000.0f));
-            } else {
-                this.P = jb6.M0(2131744368, null);
-            }
+            return false;
         }
-        b(g6bVar);
+        return false;
     }
 
-    public final void f(int i, boolean z, boolean z2) {
-        float f;
-        float f2;
-        int i2;
-        if (this.M) {
-            z = true;
-        }
-        ya yaVar = this.K;
-        FrameLayout frameLayout = this.J;
-        if (!z2) {
-            if (z) {
-                i2 = 0;
-            } else {
-                i2 = 8;
-            }
-            frameLayout.setVisibility(i2);
-        } else {
-            frameLayout.setVisibility(0);
-            ViewPropertyAnimator animate = yaVar.animate();
-            float f3 = 1.0f;
-            if (z) {
-                f = 1.0f;
-            } else {
-                f = 0.0f;
-            }
-            ViewPropertyAnimator alpha = animate.alpha(f);
-            if (z) {
-                f2 = 1.0f;
-            } else {
-                f2 = 0.7f;
-            }
-            ViewPropertyAnimator scaleX = alpha.scaleX(f2);
-            if (!z) {
-                f3 = 0.7f;
-            }
-            wi8.t(scaleX.scaleY(f3).withEndAction(new y8c((byte) 21, this, z)), d53.h, 320L);
-        }
-        if (i >= 0) {
-            yaVar.a(true, z2);
-            yaVar.setNum(i);
+    public static void Z0(d dVar, String str, c01 c01Var) {
+        if (dVar == null) {
             return;
         }
-        yaVar.a(false, z2);
-    }
-
-    public final void g(String str) {
-        int i;
-        float f;
-        if (!TextUtils.isEmpty(str)) {
-            if (getMeasuredWidth() > 0) {
-                i = getMeasuredWidth();
-            } else {
-                i = gm.q.x;
-            }
-            StaticLayout staticLayout = new StaticLayout(str, this.r, i, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.y = staticLayout;
-            float f2 = 0.0f;
-            if (staticLayout.getLineCount() > 0) {
-                f = this.y.getLineWidth(0);
-            } else {
-                f = 0.0f;
-            }
-            this.E = f;
-            if (this.y.getLineCount() > 0) {
-                f2 = this.y.getLineLeft(0);
-            }
-            this.F = f2;
-        } else {
-            this.y = null;
+        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
+        if (c01Var != null) {
+            c01Var.d();
+            c01Var.b = new tm0(atomicBoolean, (byte) 1);
         }
-        this.x = true;
-    }
-
-    public final void h() {
-        Bitmap bitmap;
-        float measuredWidth;
-        if (getMeasuredWidth() > 0 && getMeasuredHeight() > 0 && (bitmap = this.a) != null) {
-            if (bitmap.getHeight() / this.a.getWidth() > this.L - 0.1f) {
-                measuredWidth = Math.max(getMeasuredWidth() / this.a.getWidth(), getMeasuredHeight() / this.a.getHeight());
-            } else {
-                measuredWidth = getMeasuredWidth() / this.a.getWidth();
-            }
-            Matrix matrix = this.f;
-            matrix.reset();
-            matrix.postScale(measuredWidth, measuredWidth);
-            matrix.postTranslate(b10.b(measuredWidth, this.a.getWidth(), getMeasuredWidth(), 2.0f), b10.b(measuredWidth, this.a.getHeight(), getMeasuredHeight(), 2.0f));
-        }
-        if (getMeasuredHeight() > 0) {
-            Matrix matrix2 = this.h;
-            matrix2.reset();
-            matrix2.postScale(1.0f, getMeasuredHeight());
-            LinearGradient linearGradient = this.e;
-            if (linearGradient != null) {
-                linearGradient.setLocalMatrix(matrix2);
-            }
-        }
+        au0 au0Var = new au0(atomicBoolean, dVar, str, c01Var, (byte) 10);
+        vm0 vm0Var = new vm0(atomicBoolean, c01Var, (byte) 1);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(y6c.t0);
+        na7 q1 = na7.q1(y6c.t0);
+        TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
+        tL_payments_checkGiftCode.slug = str;
+        connectionsManager.sendRequest(tL_payments_checkGiftCode, new en0(q1, au0Var, vm0Var));
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        gm.r(this.Q);
-        Object obj = this.T;
-        if (obj != null) {
-            b(obj);
-        }
+    public final n39 G0(o39 o39Var) {
+        ot4 ot4Var = new ot4(this, this.J0);
+        this.U1 = ot4Var;
+        return ot4Var;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        gm.d3(this.Q, 250L);
+    public final CharSequence J0() {
+        if (this.T1) {
+            return k96.M0(2131753497, null);
+        }
+        return k96.M0(2131753170, null);
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        boolean z;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        FrameLayout frameLayout = this.J;
-        if (frameLayout != null && frameLayout.getVisibility() == 0) {
-            accessibilityNodeInfo.setClassName("android.widget.CheckBox");
-            accessibilityNodeInfo.setCheckable(true);
-            ya yaVar = this.K;
-            if (yaVar != null && yaVar.a.q) {
-                z = true;
-            } else {
-                z = false;
-            }
-            accessibilityNodeInfo.setChecked(z);
-        } else {
-            accessibilityNodeInfo.setClassName("android.widget.ImageView");
-        }
-        accessibilityNodeInfo.setClickable(true);
-        accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.addAction(16);
-        if (this.O != null) {
-            accessibilityNodeInfo.setLongClickable(true);
-            accessibilityNodeInfo.addAction(32);
-        }
-        String str = this.P;
-        if (str != null) {
-            accessibilityNodeInfo.setContentDescription(str);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size * this.L), 1073741824));
-        h();
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(int i, Bundle bundle) {
-        mt4 mt4Var;
-        mt4 mt4Var2;
-        if (i == 16 && (mt4Var2 = this.N) != null) {
-            mt4Var2.run();
-            return true;
-        } else if (i == 32 && (mt4Var = this.O) != null) {
-            mt4Var.run();
-            return true;
-        } else {
-            return super.performAccessibilityAction(i, bundle);
-        }
+    public final void P0(cja cjaVar) {
+        m21.a(this.c, new oy((byte) 7));
     }
 }

@@ -3,7 +3,7 @@ package defpackage;
 import java.security.AccessController;
 import java.security.PrivilegedActionException;
 import sun.misc.Unsafe;
-public final class r2 extends smd {
+public final class r2 extends qkd {
     public static final Unsafe a;
     public static final long b;
     public static final long c;
@@ -27,10 +27,10 @@ public final class r2 extends smd {
                 f = unsafe.objectFieldOffset(s2.class.getDeclaredField("b"));
                 a = unsafe;
             } catch (NoSuchFieldException e2) {
-                rjb.m(e2);
+                sdb.b(e2);
             }
         } catch (PrivilegedActionException e3) {
-            rjb.k("Could not initialize intrinsics", e3.getCause());
+            fyb.j("Could not initialize intrinsics", e3.getCause());
         }
     }
 

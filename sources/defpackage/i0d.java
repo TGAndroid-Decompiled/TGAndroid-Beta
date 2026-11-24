@@ -1,3 +1,3 @@
 package defpackage;
-public enum i0d extends l0d {
+public final class i0d extends ezc implements m0d {
 }

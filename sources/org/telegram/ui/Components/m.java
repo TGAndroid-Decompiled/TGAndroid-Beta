@@ -4,7 +4,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import java.util.ArrayList;
 import org.telegram.ui.Components.ChatActivityEnterView;
-public final class m extends b84 {
+public final class m extends s64 {
     public final int[] o;
     public final ChatActivityEnterView.RecordCircle p;
 
@@ -27,7 +27,7 @@ public final class m extends b84 {
             }
             ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.a2;
             if (slideTextView != null && (rect = slideTextView.I) != null) {
-                RectF rectF = gm.P;
+                RectF rectF = gl.P;
                 rectF.set(rect);
                 ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.a2;
                 int[] iArr = this.o;
@@ -64,17 +64,17 @@ public final class m extends b84 {
         ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
         if (i == 1) {
             u4Var.h(chatActivityEnterView.I4);
-            u4Var.o(jb6.M0(2131745374, "Send"));
+            u4Var.o(k96.M0(2131745448, "Send"));
         } else if (i == 2) {
             Rect rect2 = chatActivityEnterView.J4;
             RectF rectF = chatActivityEnterView.H4;
             rect2.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
             u4Var.h(chatActivityEnterView.J4);
-            u4Var.o(jb6.M0(2131744530, null));
+            u4Var.o(k96.M0(2131744604, null));
         } else if (i == 3 && chatActivityEnterView.D2 != null) {
             ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.a2;
             if (slideTextView != null && (rect = slideTextView.I) != null) {
-                Rect rect3 = gm.Q;
+                Rect rect3 = gl.Q;
                 rect3.set(rect);
                 ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.a2;
                 int[] iArr = this.o;
@@ -84,7 +84,7 @@ public final class m extends b84 {
                 rect3.offset(-iArr[0], -iArr[1]);
                 u4Var.h(rect3);
             }
-            u4Var.o(jb6.M0(2131752542, "Cancel"));
+            u4Var.o(k96.M0(2131752577, "Cancel"));
         }
     }
 }

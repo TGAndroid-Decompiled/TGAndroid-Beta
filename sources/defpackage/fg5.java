@@ -1,32 +1,59 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class fg5 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final ig5 b;
+import java.util.ArrayList;
+import java.util.Map;
+public final class fg5 extends hg5 {
+    public final fg5 e;
+    public ArrayList f;
 
-    public fg5(ig5 ig5Var, byte b) {
-        this.a = b;
-        this.b = ig5Var;
+    public fg5(String str, int i, Map map, fg5 fg5Var) {
+        super(i, str, map);
+        this.e = fg5Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        ig5 ig5Var = this.b;
-        switch (b) {
-            case 0:
-                ig5Var.d = null;
-                qn4 qn4Var = new qn4(this, (byte) 29);
-                ig5Var.e = qn4Var;
-                gm.d3(qn4Var, ig5Var.w);
-                return;
-            default:
-                ig5Var.setVisibility(4);
-                ig5Var.c = null;
-                ig5Var.d = null;
-                return;
+    public final Map a() {
+        return this.c;
+    }
+
+    public final void b(int i) {
+        if (this.d > -1) {
+            return;
         }
+        this.d = i;
+        ArrayList arrayList = this.f;
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList.get(i2);
+                i2++;
+                ((fg5) obj).b(i);
+            }
+        }
+    }
+
+    public final String toString() {
+        String str;
+        StringBuilder sb = new StringBuilder("BlockImpl{name='");
+        sb.append(this.a);
+        sb.append("', start=");
+        sb.append(this.b);
+        sb.append(", end=");
+        sb.append(this.d);
+        sb.append(", attributes=");
+        sb.append(this.c);
+        sb.append(", parent=");
+        fg5 fg5Var = this.e;
+        if (fg5Var != null) {
+            str = fg5Var.a;
+        } else {
+            str = null;
+        }
+        sb.append(str);
+        sb.append(", children=");
+        sb.append(this.f);
+        sb.append('}');
+        return sb.toString();
     }
 }

@@ -1,17 +1,13 @@
 package defpackage;
-public final class zkd implements cq7 {
-    public static final zkd a = new Object();
-
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+public abstract class zkd {
+    public static void a(int i, int i2, int i3) {
+        if (i >= 0 && i2 <= i3) {
+            if (i <= i2) {
+                return;
+            }
+            w26.j(b00.g(i, i2, "fromIndex: ", " > toIndex: "));
+            return;
         }
-        throw new ClassCastException();
+        w26.h(i3, ir2.p("fromIndex: ", i, ", toIndex: ", i2, ", size: "));
     }
 }

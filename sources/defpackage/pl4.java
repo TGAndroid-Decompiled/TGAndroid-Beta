@@ -1,60 +1,49 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-public final class pl4 extends FrameLayout {
-    public final byte a;
-    public final tl4 b;
+import android.util.Base64;
+import java.util.List;
+public final class pl4 {
+    public final String a;
+    public final String b;
+    public final String c;
+    public final List d;
+    public final String e;
 
-    public pl4(tl4 tl4Var, Activity activity, byte b) {
-        super(activity);
-        this.a = b;
-        this.b = tl4Var;
+    public pl4(String str, String str2, String str3, List list) {
+        str.getClass();
+        this.a = str;
+        str2.getClass();
+        this.b = str2;
+        this.c = str3;
+        list.getClass();
+        this.d = list;
+        this.e = b00.i(str, "-", str2, "-", str3);
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.a) {
-            case 0:
-                super.dispatchDraw(canvas);
-                tl4 tl4Var = this.b;
-                lx9 lx9Var = tl4Var.G;
-                if (lx9Var != null && lx9Var.a()) {
-                    tl4Var.G.setBounds(getLeft(), getTop(), getRight(), getBottom());
-                    tl4Var.G.draw(canvas);
-                    return;
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("FontRequest {mProviderAuthority: ");
+        sb.append(this.a);
+        sb.append(", mProviderPackage: ");
+        sb.append(this.b);
+        sb.append(", mQuery: ");
+        StringBuilder sb2 = new StringBuilder(b00.j(sb, this.c, ", mCertificates:"));
+        int i = 0;
+        while (true) {
+            List list = this.d;
+            if (i < list.size()) {
+                sb2.append(" [");
+                List list2 = (List) list.get(i);
+                for (int i2 = 0; i2 < list2.size(); i2++) {
+                    sb2.append(" \"");
+                    sb2.append(Base64.encodeToString((byte[]) list2.get(i2), 0));
+                    sb2.append("\"");
                 }
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(android.view.MotionEvent r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.pl4.dispatchTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.a) {
-            case 0:
-                tl4 tl4Var = this.b;
-                ucc uccVar = tl4Var.F;
-                if (uccVar.j) {
-                    uccVar.setBounds(getLeft(), getTop(), getRight(), getBottom());
-                    uccVar.draw(canvas);
-                }
-                canvas.save();
-                canvas.translate(getLeft(), getTop());
-                tl4Var.b.u0(canvas, getRight() - getLeft(), getBottom() - getTop());
-                canvas.restore();
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+                sb2.append(" ]");
+                i++;
+            } else {
+                sb2.append("}mCertificatesArray: 0");
+                return sb2.toString();
+            }
         }
     }
 }

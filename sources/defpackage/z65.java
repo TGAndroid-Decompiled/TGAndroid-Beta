@@ -1,17 +1,28 @@
 package defpackage;
-public final class z65 extends sc3 {
-    public final g95 F;
 
-    public z65(g95 g95Var) {
-        this.F = g95Var;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+public final class z65 extends y95 {
+    public final c75 h0;
+
+    public z65(c75 c75Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.h0 = c75Var;
     }
 
     @Override
-    public final void P(u69 u69Var) {
-        g95 g95Var = this.F;
-        g95Var.J1.invalidate();
-        g95Var.T3.invalidate();
-        g95Var.b.invalidate();
-        g95Var.F1();
+    public final void d(y95 y95Var) {
+        h75 h75Var = this.h0.N;
+        h75 h75Var2 = h75.s5;
+        h75Var.A1(y95Var);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        if (gl.O1()) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(gl.L(420.0f), View.MeasureSpec.getSize(i)), 1073741824), i2);
+        } else {
+            super.onMeasure(i, i2);
+        }
     }
 }

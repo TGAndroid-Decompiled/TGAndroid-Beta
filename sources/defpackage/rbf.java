@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class rbf {
+public final class rbf extends c4f {
 }

@@ -1,17 +1,24 @@
 package defpackage;
-public final class uud implements cq7 {
-    public static final uud a = new Object();
 
-    static {
-        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)), 3)));
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.wearable.ConnectionConfiguration;
+public final class uud extends b4 {
+    public static final Parcelable.Creator<uud> CREATOR = new rpd((byte) 22);
+    public final int a;
+    public final ConnectionConfiguration[] b;
+
+    public uud(int i, ConnectionConfiguration[] connectionConfigurationArr) {
+        this.a = i;
+        this.b = connectionConfigurationArr;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        jte.o(parcel, 3, this.b, i);
+        jte.s(parcel, r);
     }
 }

@@ -1,189 +1,25 @@
 package defpackage;
+public final class sg1 implements Runnable {
+    public final byte a;
+    public final nh1 b;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.d;
-public final class sg1 extends y59 {
-    public final Context c;
-    public int d;
-    public int e;
-    public int f;
-    public int h;
-    public final vg1 n;
-
-    public sg1(vg1 vg1Var, Context context) {
-        this.n = vg1Var;
-        this.c = context;
-        C(true);
-    }
-
-    public final void D(boolean z) {
-        this.d = 0;
-        vg1 vg1Var = this.n;
-        ArrayList arrayList = vg1Var.p0;
-        if (!arrayList.isEmpty()) {
-            if (!vg1Var.r0) {
-                int i = this.d;
-                this.d = i + 1;
-                this.e = i;
-            } else {
-                this.e = -1;
-            }
-            int i2 = this.d;
-            this.f = i2;
-            int size = arrayList.size() + i2;
-            this.d = size;
-            this.h = size;
-            return;
-        }
-        this.e = -1;
-        this.f = -1;
-        this.h = -1;
+    public sg1(nh1 nh1Var, byte b) {
+        this.a = b;
+        this.b = nh1Var;
     }
 
     @Override
-    public final int b() {
-        return this.d;
-    }
-
-    @Override
-    public final long c(int i) {
-        if (i >= this.f && i < this.h) {
-            ArrayList arrayList = this.n.p0;
-            return ((k47) arrayList.get((arrayList.size() - (i - this.f)) - 1)).m1;
-        } else if (i == this.e) {
-            return 2L;
-        } else {
-            return 5L;
-        }
-    }
-
-    @Override
-    public final int d(int i) {
-        if (i >= this.f && i < this.h) {
-            ArrayList arrayList = this.n.p0;
-            return ((k47) arrayList.get((arrayList.size() - (i - this.f)) - 1)).U;
-        }
-        return 4;
-    }
-
-    @Override
-    public final void f() {
-        D(true);
-        try {
-            super.f();
-        } catch (Exception e) {
-            fc4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void g(int i) {
-        D(false);
-        try {
-            super.g(i);
-        } catch (Exception e) {
-            fc4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void j(int i, int i2) {
-        D(false);
-        try {
-            super.j(i, i2);
-        } catch (Exception e) {
-            fc4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void l(int i, int i2) {
-        D(false);
-        try {
-            super.l(i, i2);
-        } catch (Exception e) {
-            fc4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void p(int i, int i2) {
-        D(false);
-        try {
-            super.p(i, i2);
-        } catch (Exception e) {
-            fc4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void q(int i, int i2) {
-        D(false);
-        try {
-            super.q(i, i2);
-        } catch (Exception e) {
-            fc4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void t(defpackage.u69 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.sg1.t(u69, int):void");
-    }
-
-    @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        ylb ylbVar;
-        zc2 zc2Var;
-        int i2;
-        View view;
-        vg1 vg1Var = this.n;
-        ArrayList arrayList = vg1Var.h;
-        Context context = this.c;
-        if (i == 0) {
-            if (arrayList.isEmpty()) {
-                i2 = ((d) vg1Var).currentAccount;
-                view = new rc2(context, i2);
-            } else {
-                arrayList.remove(0);
-                view = (View) arrayList.get(0);
-            }
-            rc2 rc2Var = (rc2) view;
-            rc2Var.setDelegate(new ng1(this));
-            rc2Var.setAllowAssistant(true);
-            zc2Var = view;
-        } else if (i == 1) {
-            cm1 cm1Var = new cm1(context);
-            cm1Var.setDelegate(new qg1(this));
-            zc2Var = cm1Var;
-        } else if (i == 2) {
-            zc2Var = new vf2(context, null);
-        } else if (i == 10) {
-            ylbVar = ((d) vg1Var).resourceProvider;
-            zc2 zc2Var2 = new zc2(context, ylbVar);
-            zc2Var2.setDelegate(new k6d(this, (byte) 17));
-            zc2Var = zc2Var2;
-        } else {
-            zc2Var = new xb2(context, null);
-        }
-        return kt6.h(zc2Var, zc2Var, -1, -2);
-    }
-
-    @Override
-    public final void y(u69 u69Var) {
-        View view = u69Var.a;
-        if ((view instanceof rc2) || (view instanceof cm1)) {
-            view.getViewTreeObserver().addOnPreDrawListener(new rg1(this, view, u69Var));
-        }
-        if (view instanceof rc2) {
-            rc2 rc2Var = (rc2) view;
-            rc2Var.getMessageObject();
-            rc2Var.setBackgroundDrawable(null);
-            rc2Var.n3(true, false);
-            rc2Var.setHighlighted(false);
+    public final void run() {
+        byte b = this.a;
+        nh1 nh1Var = this.b;
+        switch (b) {
+            case 0:
+                nh1Var.X0();
+                return;
+            default:
+                nh1Var.getClass();
+                ir2.v(null, 2131752248, u21.b0(nh1Var), 2131624000, 36);
+                return;
         }
     }
 }

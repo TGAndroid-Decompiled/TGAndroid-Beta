@@ -8,9 +8,9 @@ public final class b implements Runnable {
     public final Object c;
     public final Object d;
 
-    public b(h40 h40Var, f40 f40Var, long j) {
-        this.c = h40Var;
-        this.d = f40Var;
+    public b(h30 h30Var, f30 f30Var, long j) {
+        this.c = h30Var;
+        this.d = f30Var;
         this.b = j;
     }
 
@@ -26,7 +26,7 @@ public final class b implements Runnable {
             case 0:
                 d dVar = (d) obj2;
                 Exception exc = (Exception) obj;
-                q30 q30Var = dVar.f;
+                q20 q20Var = dVar.f;
                 File file = dVar.a;
                 ByteBuffer byteBuffer = dVar.s;
                 if (!dVar.w) {
@@ -106,23 +106,23 @@ public final class b implements Runnable {
                         j = 0;
                     }
                     if (dVar.z > 0) {
-                        q30Var.b("RNNoise summary: frames=" + dVar.z + ", averageMs=" + ((dVar.A / dVar.z) / 1000000.0d) + ", maxMs=" + (dVar.B / 1000000.0d));
+                        q20Var.b("RNNoise summary: frames=" + dVar.z + ", averageMs=" + ((dVar.A / dVar.z) / 1000000.0d) + ", maxMs=" + (dVar.B / 1000000.0d));
                     }
                     long j2 = this.b;
-                    StringBuilder o = wi8.o(j2, "capture stopped: samples=", ", durationMs=");
+                    StringBuilder o = ug8.o(j2, "capture stopped: samples=", ", durationMs=");
                     o.append((1000 * j2) / 48000);
                     o.append(", bytes=");
                     o.append(j);
                     o.append(", maxQueuedChunks=");
                     o.append(dVar.y);
-                    q30Var.b(o.toString());
-                    m30 m30Var = dVar.g;
-                    h40 h40Var = (h40) m30Var.c;
+                    q20Var.b(o.toString());
+                    m20 m20Var = dVar.g;
+                    h30 h30Var = (h30) m20Var.c;
                     if (exc3 == null) {
-                        h40Var.a((f40) m30Var.b, j);
-                        h40Var.i.post(new w30(m30Var, m30Var.a, j2, (byte) 1));
+                        h30Var.a((f30) m20Var.b, j);
+                        h30Var.i.post(new w20(m20Var, m20Var.a, j2, (byte) 1));
                     } else {
-                        h40Var.i.post(new of2(m30Var, m30Var.a, exc3, (byte) 11));
+                        h30Var.i.post(new de2(m20Var, m20Var.a, exc3, (byte) 11));
                     }
                     dVar.j.quitSafely();
                     dVar.l.clear();
@@ -130,14 +130,14 @@ public final class b implements Runnable {
                 }
                 return;
             default:
-                h40 h40Var2 = (h40) obj2;
-                f40 f40Var = (f40) obj;
+                h30 h30Var2 = (h30) obj2;
+                f30 f30Var = (f30) obj;
                 try {
-                    bArr = AudioRecorderNative.e(f40Var.b.getAbsolutePath());
+                    bArr = AudioRecorderNative.e(f30Var.b.getAbsolutePath());
                 } catch (Throwable th5) {
-                    h40Var2.h.a("final waveform extraction failed", th5);
+                    h30Var2.h.a("final waveform extraction failed", th5);
                 }
-                h40Var2.i.post(new p97(h40Var2, f40Var, this.b, bArr, (byte) 2));
+                h30Var2.i.post(new m77(h30Var2, f30Var, this.b, bArr, (byte) 2));
                 return;
         }
     }

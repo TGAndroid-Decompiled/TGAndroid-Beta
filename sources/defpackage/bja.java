@@ -1,4 +1,4 @@
 package defpackage;
 public interface bja {
-    int b();
+    void L(int i, boolean z);
 }

@@ -1,78 +1,40 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.TextView;
-public final class a31 extends l66 {
-    public final byte M;
+import android.os.SharedMemory;
+import android.system.OsConstants;
+import java.nio.ByteBuffer;
+public final class a31 {
+    public final SharedMemory a;
 
-    public a31(Context context, ylb ylbVar, byte b) {
-        super(context, ylbVar);
-        this.M = b;
+    public a31(SharedMemory sharedMemory) {
+        this.a = sharedMemory;
     }
 
-    @Override
-    public final int a() {
-        switch (this.M) {
-            case 5:
-                return 3;
-            default:
-                return super.a();
+    public static a31 a(byte[] bArr) {
+        SharedMemory sharedMemory;
+        try {
+            sharedMemory = SharedMemory.create("BundleableByteArray", bArr.length);
+        } catch (Exception e) {
+            e = e;
+            sharedMemory = null;
+        }
+        try {
+            ByteBuffer mapReadWrite = sharedMemory.mapReadWrite();
+            mapReadWrite.put(bArr);
+            SharedMemory.unmap(mapReadWrite);
+            sharedMemory.setProtect(OsConstants.PROT_READ);
+            return new a31(sharedMemory);
+        } catch (Exception e2) {
+            e = e2;
+            lad.g("BundleableByteArray", "Failed to allocate shared memory for byte array, size=" + bArr.length, e);
+            if (sharedMemory != null) {
+                sharedMemory.close();
+            }
+            return null;
         }
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.M) {
-            case 3:
-                if (getAlpha() < 0.95f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 4:
-                if (getAlpha() < 0.95f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 5:
-            default:
-                return super.dispatchTouchEvent(motionEvent);
-            case 6:
-                if (getAlpha() < 0.9f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.M) {
-            case 7:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-                return;
-            default:
-                super.onMeasure(i, i2);
-                return;
-        }
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.M) {
-            case 0:
-                super.setText(gw3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            case 1:
-                super.setText(gw3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            case 2:
-                super.setText(gw3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            default:
-                super.setText(charSequence, bufferType);
-                return;
-        }
+    public static byte[] b(android.os.Bundle r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.a31.b(android.os.Bundle):byte[]");
     }
 }

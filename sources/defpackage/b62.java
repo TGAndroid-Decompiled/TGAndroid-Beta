@@ -1,57 +1,39 @@
 package defpackage;
 
-import java.io.File;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.camera.CameraSessionWrapper;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.ShutterButton;
-public final class b62 implements zia {
-    public File a;
-    public boolean b;
-    public final ylb c;
-    public final dy0 d;
-    public final ChatAttachAlertPhotoLayout e;
+import android.content.Context;
+import android.view.View;
+public final class b62 extends u26 {
+    public final z12 r;
 
-    public b62(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, ylb ylbVar, dy0 dy0Var) {
-        this.e = chatAttachAlertPhotoLayout;
-        this.c = ylbVar;
-        this.d = dy0Var;
+    public b62(z12 z12Var, Context context) {
+        super(context);
+        this.r = z12Var;
     }
 
-    public final void a() {
-        m62 m62Var;
-        boolean z;
-        boolean z2;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.e;
-        i22 i22Var = chatAttachAlertPhotoLayout.b;
-        ShutterButton shutterButton = chatAttachAlertPhotoLayout.l0;
-        if (!chatAttachAlertPhotoLayout.t0 && (m62Var = chatAttachAlertPhotoLayout.Q) != null && m62Var.getCameraSession() != null) {
-            if (shutterButton.getState() == aja.b) {
-                chatAttachAlertPhotoLayout.o0();
-                CameraController.getInstance().stopVideoRecording(chatAttachAlertPhotoLayout.Q.getCameraSession(), false);
-                shutterButton.a(aja.a);
-            } else if (!chatAttachAlertPhotoLayout.y0) {
-                mlb.y(null, 2131749316, new c41(chatAttachAlertPhotoLayout.Q, this.c), null);
-            } else {
-                d dVar = i22Var.Z1;
-                if ((dVar instanceof yv1) && ((yv1) dVar).x()) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                File q0 = gm.q0(null, z);
-                boolean isSameTakePictureOrientation = chatAttachAlertPhotoLayout.Q.getCameraSession().isSameTakePictureOrientation();
-                CameraSessionWrapper cameraSession = chatAttachAlertPhotoLayout.Q.getCameraSession();
-                if (!(i22Var.Z1 instanceof yv1) && i22Var.N2 != 2) {
-                    z2 = false;
-                } else {
-                    z2 = true;
-                }
-                cameraSession.setFlipFront(z2);
-                chatAttachAlertPhotoLayout.t0 = CameraController.getInstance().takePicture(q0, false, chatAttachAlertPhotoLayout.Q.getCameraSessionObject(), new z52(this, q0, isSameTakePictureOrientation, (byte) 0));
-                chatAttachAlertPhotoLayout.Q.startTakePictureAnimation(true);
-            }
+    @Override
+    public final int k(int i, View view) {
+        int i2;
+        k62 k62Var = (k62) this.r.V;
+        if (k62Var.W0) {
+            i = -1;
         }
+        int k = super.k(i, view);
+        if (k62Var.W0) {
+            k += gl.L(160.0f);
+        }
+        if (!k62Var.W0) {
+            k = de9.f(7.0f, k62Var.S0 - gl.m, k);
+        }
+        if (k62Var.W0 && k == 0 && (i2 = k62Var.X0) >= 0) {
+            k62Var.k0(i2);
+            k62Var.X0 = -1;
+        }
+        k62Var.W0 = false;
+        return k;
+    }
+
+    @Override
+    public final int m(int i) {
+        return super.m(i) << 1;
     }
 }

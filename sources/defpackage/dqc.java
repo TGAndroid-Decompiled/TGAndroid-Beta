@@ -1,26 +1,18 @@
 package defpackage;
+public abstract class dqc {
+    public static do3 a;
+    public static final int[] b = new int[129];
 
-import android.view.animation.OvershootInterpolator;
-public final class dqc implements Runnable {
-    public final byte a;
-    public final aqc b;
-
-    public dqc(aqc aqcVar, byte b) {
-        this.a = b;
-        this.b = aqcVar;
-    }
-
-    @Override
-    public final void run() {
-        byte b = this.a;
-        aqc aqcVar = this.b;
-        switch (b) {
-            case 0:
-                aqcVar.animate().rotation(0.0f).setDuration(120L).start();
+    static {
+        int i = 0;
+        while (true) {
+            int[] iArr = b;
+            if (i < 129) {
+                iArr[i] = (int) (Math.max(0.0d, Math.min(1.0d, 7.5d - Math.sqrt(i))) * 255.0d);
+                i++;
+            } else {
                 return;
-            default:
-                aqcVar.animate().scaleX(1.0f).scaleY(1.0f).setDuration(260L).setInterpolator(new OvershootInterpolator(2.0f)).start();
-                return;
+            }
         }
     }
 }

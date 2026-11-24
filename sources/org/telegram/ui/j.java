@@ -9,11 +9,11 @@ import android.webkit.CookieManager;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
-public final class j extends FrameLayout implements fkb {
+public final class j extends FrameLayout implements eib {
     public final i a;
-    public final tvc b;
-    public bx c;
-    public bx d;
+    public final stc b;
+    public bw c;
+    public bw d;
     public int e;
     public int f;
     public int h;
@@ -21,18 +21,18 @@ public final class j extends FrameLayout implements fkb {
     public int r;
     public boolean s;
     public TL_iv.pageBlockEmbed w;
-    public final ey x;
+    public final dx x;
     public final o y;
 
-    public j(o oVar, Activity activity, ey eyVar) {
+    public j(o oVar, Activity activity, dx dxVar) {
         super(activity);
         this.y = oVar;
-        this.x = eyVar;
+        this.x = dxVar;
         setWillNotDraw(false);
         if (Looper.myLooper() == Looper.getMainLooper()) {
-            tvc tvcVar = new tvc(activity, false, new qv(this));
-            this.b = tvcVar;
-            addView(tvcVar);
+            stc stcVar = new stc(activity, false, new qu(this));
+            this.b = stcVar;
+            addView(stcVar);
             oVar.O.add(this);
             i iVar = new i(this, activity);
             this.a = iVar;
@@ -43,8 +43,8 @@ public final class j extends FrameLayout implements fkb {
             iVar.addJavascriptInterface(new ArticleViewer$BlockEmbedCell$TelegramWebviewProxy(this), "TelegramWebviewProxy");
             iVar.getSettings().setMixedContentMode(0);
             CookieManager.getInstance().setAcceptThirdPartyCookies(iVar, true);
-            iVar.setWebChromeClient(new rv(this, (byte) 0));
-            iVar.setWebViewClient(new sv(this, (byte) 0));
+            iVar.setWebChromeClient(new ru(this, (byte) 0));
+            iVar.setWebViewClient(new su(this, (byte) 0));
             addView(iVar);
             return;
         }
@@ -62,38 +62,38 @@ public final class j extends FrameLayout implements fkb {
                     iVar.destroy();
                 }
             } catch (Exception e) {
-                fc4.g(e, true);
+                fa4.g(e, true);
             }
         }
         this.w = null;
-        tvc tvcVar = this.b;
-        if (tvcVar != null) {
-            tvcVar.b();
+        stc stcVar = this.b;
+        if (stcVar != null) {
+            stcVar.b();
         }
     }
 
     @Override
     public final void k(ArrayList arrayList) {
-        bx bxVar = this.c;
-        if (bxVar != null) {
-            arrayList.add(bxVar);
+        bw bwVar = this.c;
+        if (bwVar != null) {
+            arrayList.add(bwVar);
         }
-        bx bxVar2 = this.d;
-        if (bxVar2 != null) {
-            arrayList.add(bxVar2);
+        bw bwVar2 = this.d;
+        if (bwVar2 != null) {
+            arrayList.add(bwVar2);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        bx bxVar = this.c;
-        if (bxVar != null) {
-            bxVar.i(this);
+        bw bwVar = this.c;
+        if (bwVar != null) {
+            bwVar.i(this);
         }
-        bx bxVar2 = this.d;
-        if (bxVar2 != null) {
-            bxVar2.i(this);
+        bw bwVar2 = this.d;
+        if (bwVar2 != null) {
+            bwVar2.i(this);
         }
     }
 
@@ -103,23 +103,23 @@ public final class j extends FrameLayout implements fkb {
         if (!this.y.W) {
             this.w = null;
         }
-        bx bxVar = this.c;
-        if (bxVar != null) {
-            bxVar.f(this);
+        bw bwVar = this.c;
+        if (bwVar != null) {
+            bwVar.f(this);
         }
-        bx bxVar2 = this.d;
-        if (bxVar2 != null) {
-            bxVar2.f(this);
+        bw bwVar2 = this.d;
+        if (bwVar2 != null) {
+            bwVar2.f(this);
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.w != null) {
-            bx bxVar = this.c;
+            bw bwVar = this.c;
             o oVar = this.y;
             int i = 0;
-            if (bxVar != null) {
+            if (bwVar != null) {
                 canvas.save();
                 canvas.translate(this.e, this.f);
                 o.s(oVar, canvas, this, 0);
@@ -141,7 +141,7 @@ public final class j extends FrameLayout implements fkb {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
-        StringBuilder sb = new StringBuilder(jb6.M0(2131754867, null));
+        StringBuilder sb = new StringBuilder(k96.M0(2131754867, null));
         if (this.c != null) {
             sb.append(", ");
             sb.append(this.c.d.getText());
@@ -160,10 +160,10 @@ public final class j extends FrameLayout implements fkb {
             int i5 = this.n;
             iVar.layout(i5, 0, iVar.getMeasuredWidth() + i5, iVar.getMeasuredHeight());
         }
-        tvc tvcVar = this.b;
-        if (tvcVar != null && tvcVar.getParent() == this) {
+        stc stcVar = this.b;
+        if (stcVar != null && stcVar.getParent() == this) {
             int i6 = this.n;
-            tvcVar.layout(i6, 0, tvcVar.getMeasuredWidth() + i6, tvcVar.getMeasuredHeight());
+            stcVar.layout(i6, 0, stcVar.getMeasuredWidth() + i6, stcVar.getMeasuredHeight());
         }
     }
 
@@ -174,11 +174,11 @@ public final class j extends FrameLayout implements fkb {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        bx bxVar = this.c;
+        bw bwVar = this.c;
         int i = this.e;
         int i2 = this.f;
         o oVar = this.y;
-        if (!o.i(oVar, this.x, motionEvent, this, bxVar, i, i2)) {
+        if (!o.i(oVar, this.x, motionEvent, this, bwVar, i, i2)) {
             if (!o.i(oVar, this.x, motionEvent, this, this.d, this.e, this.f + this.h) && !super.onTouchEvent(motionEvent)) {
                 return false;
             }

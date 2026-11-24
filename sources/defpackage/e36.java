@@ -1,4 +1,10 @@
 package defpackage;
 public interface e36 {
-    g36 m();
+    void a();
+
+    void c();
+
+    void i();
+
+    void k();
 }

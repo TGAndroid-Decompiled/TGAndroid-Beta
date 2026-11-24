@@ -1,3 +1,4 @@
 package defpackage;
-public final class hk4 extends ik4 {
+public interface hk4 {
+    Object h(ik4 ik4Var, fw2 fw2Var);
 }

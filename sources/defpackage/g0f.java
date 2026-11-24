@@ -1,25 +1,17 @@
 package defpackage;
+public final class g0f extends c6c {
+    @Override
+    public final void m(Object obj, long j, double d) {
+        this.a.putDouble(obj, j, d);
+    }
 
-import android.os.Build;
-import android.webkit.WebView;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-public abstract class g0f {
-    public static InvocationHandler a() {
-        ClassLoader classLoader;
-        if (Build.VERSION.SDK_INT >= 28) {
-            classLoader = fp.v();
-        } else {
-            try {
-                Method declaredMethod = WebView.class.getDeclaredMethod("getFactory", null);
-                declaredMethod.setAccessible(true);
-                classLoader = declaredMethod.invoke(null, null).getClass().getClassLoader();
-            } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-                rjb.m(e);
-                return null;
-            }
-        }
-        return (InvocationHandler) Class.forName("org.chromium.support_lib_glue.SupportLibReflectionUtil", false, classLoader).getDeclaredMethod("createWebViewProviderFactory", null).invoke(null, null);
+    @Override
+    public final void n(Object obj, long j, float f) {
+        this.a.putFloat(obj, j, f);
+    }
+
+    @Override
+    public final void o(Object obj, long j, boolean z) {
+        this.a.putBoolean(obj, j, z);
     }
 }

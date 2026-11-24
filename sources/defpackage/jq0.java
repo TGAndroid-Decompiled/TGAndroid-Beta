@@ -1,140 +1,275 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.graphics.LinearGradient;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-public final class jq0 extends Drawable {
-    public final ImageView a;
-    public final Paint b;
-    public final RectF c;
-    public final long d;
-    public final Drawable e;
-    public boolean f;
-    public float g;
-    public boolean h;
-    public final ln i;
-    public final ln j;
-    public final ln k;
-    public p09 l;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Wallet.WalletEngine2;
+public final class jq0 implements p8c {
+    public final byte a;
+    public final int b;
+    public final Object c;
 
-    public jq0(Context context, ImageView imageView) {
-        Paint paint = new Paint(1);
-        this.b = paint;
-        this.c = new RectF();
-        this.h = false;
-        f00 f00Var = new f00(this, (byte) 20);
-        d53 d53Var = d53.h;
-        this.i = new ln(f00Var, 320L, d53Var, 0);
-        this.j = new ln(new f00(this, (byte) 20), 320L, d53Var, 0);
-        this.k = new ln(new f00(this, (byte) 20), 320L, d53Var, 0);
-        this.a = imageView;
-        this.d = System.currentTimeMillis();
-        this.e = b10.d(context, 2131232703);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(gm.L(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
+    public jq0(int i, Object obj, byte b) {
+        this.a = b;
+        this.b = i;
+        this.c = obj;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float f;
-        float f2;
-        p09 p09Var;
+    public final void a(Object obj) {
+        boolean z;
         int i;
-        Canvas canvas2 = canvas;
-        Rect bounds = getBounds();
-        int centerX = bounds.centerX();
-        int centerY = bounds.centerY();
-        float d = this.k.d(this.h);
-        float f3 = 0.0f;
-        char c = 2;
-        if (d < 1.0f) {
-            float f4 = 1.0f - d;
-            float f5 = (0.4f * f4) + 0.6f;
-            canvas2.save();
-            float f6 = centerX;
-            float f7 = centerY;
-            canvas2.scale(f5, f5, f6, f7);
-            Drawable drawable = this.e;
-            drawable.setBounds(aq1.A(2, centerX, drawable), aq1.y(2, centerY, drawable), aq1.w(2, centerX, drawable), aq1.i(2, centerY, drawable));
-            drawable.setAlpha((int) (f4 * 255.0f));
-            drawable.draw(canvas2);
-            float L = gm.L(14.0f);
-            int p1 = cmb.p1(0.2f * f4, -1);
-            Paint paint = this.b;
-            paint.setColor(p1);
-            canvas2.drawCircle(f6, f7, L, paint);
-            float f8 = f4 * 1.0f;
-            paint.setColor(cmb.p1(f8, -1));
-            float f9 = f6 - L;
-            f2 = 255.0f;
-            float f10 = f7 - L;
-            float f11 = f6 + L;
-            float f12 = f7 + L;
-            RectF rectF = this.c;
-            rectF.set(f9, f10, f11, f12);
-            float d2 = this.i.d(this.f);
-            paint.setColor(cmb.p1((1.0f - d2) * f4 * 0.15f, -1));
-            long currentTimeMillis = System.currentTimeMillis();
-            long j = this.d;
-            canvas2.drawArc(rectF, (-(((((float) ((currentTimeMillis - j) % 600)) / 600.0f) - 1.0f) * 360.0f)) - 90.0f, -90.0f, false, paint);
-            float currentTimeMillis2 = (((float) (System.currentTimeMillis() - j)) * 0.45f) % 5400.0f;
-            float max = Math.max(0.0f, ((1520.0f * currentTimeMillis2) / 5400.0f) - 20.0f);
-            int i2 = 0;
-            while (i2 < 4) {
-                l94 l94Var = wi2.h;
-                float f13 = f3;
-                l94Var.getInterpolation((currentTimeMillis2 - (i2 * 1350)) / 667.0f);
-                max += l94Var.getInterpolation((currentTimeMillis2 - (i + 667)) / 667.0f) * 250.0f;
-                i2++;
-                f3 = f13;
-                c = c;
-            }
-            f = f3;
-            paint.setColor(cmb.p1(f8, -1));
-            canvas2 = canvas;
-            canvas2.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, this.j.e(false, this.g)) * (-360.0f) * d2, false, paint);
-            invalidateSelf();
-            canvas2.restore();
-        } else {
-            f = 0.0f;
-            f2 = 255.0f;
+        float f;
+        byte b = this.a;
+        TLRPC.User user = null;
+        String str = null;
+        user = null;
+        user = null;
+        int i2 = 0;
+        boolean z2 = false;
+        int i3 = this.b;
+        Object obj2 = this.c;
+        switch (b) {
+            case 0:
+                TLRPC.User user2 = (TLRPC.User) obj2;
+                ArrayList arrayList = (ArrayList) obj;
+                if (arrayList != null && !arrayList.isEmpty()) {
+                    na7 q1 = na7.q1(i3);
+                    TLRPC.TL_messages_inviteUsersToBot tL_messages_inviteUsersToBot = new TLRPC.TL_messages_inviteUsersToBot();
+                    tL_messages_inviteUsersToBot.bot = q1.o1(user2);
+                    int size = arrayList.size();
+                    while (i2 < size) {
+                        Object obj3 = arrayList.get(i2);
+                        i2++;
+                        tL_messages_inviteUsersToBot.users.add(q1.o1((TLRPC.User) obj3));
+                    }
+                    ConnectionsManager.getInstance(i3).sendRequest(tL_messages_inviteUsersToBot, new pl(l7c.r(user2), arrayList));
+                    return;
+                }
+                return;
+            case 1:
+                c42 c42Var = (c42) obj2;
+                TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
+                TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
+                tL_messageMediaGeoLive.geo = tL_geoPoint;
+                tL_geoPoint.lat = gl.b0(c42Var.i0.getLatitude());
+                tL_messageMediaGeoLive.geo._long = gl.b0(c42Var.i0.getLongitude());
+                tL_messageMediaGeoLive.period = i3;
+                c42Var.o0.b(tL_messageMediaGeoLive, c42Var.p0, true, 0, ((Long) obj).longValue());
+                c42Var.b.a(true);
+                return;
+            case 2:
+                dh7 dh7Var = (dh7) obj2;
+                View view = (View) obj;
+                va vaVar = dh7Var.b;
+                if (view instanceof ch7) {
+                    vaVar.getClass();
+                    int R = RecyclerView.R(view);
+                    c4c G = vaVar.g3.G(R);
+                    if (G != null) {
+                        ch7 ch7Var = (ch7) view;
+                        ch7Var.setPosition(dh7Var.b(R));
+                        if (i3 == G.d) {
+                            z = true;
+                        } else {
+                            z = false;
+                        }
+                        ch7Var.b(z, true);
+                        view.setPressed(false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 3:
+                zi8 zi8Var = (zi8) obj2;
+                int[] iArr = (int[]) obj;
+                f4b f4bVar = zi8Var.d;
+                int i4 = iArr[0];
+                zi8Var.V = i4;
+                f4bVar.A0 = i4;
+                int i5 = iArr[1];
+                zi8Var.W = i5;
+                f4bVar.B0 = i5;
+                zi8Var.U.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i3, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+                zi8Var.invalidate();
+                kac kacVar = zi8Var.n;
+                if (kacVar != null) {
+                    int i6 = zi8Var.V;
+                    int i7 = zi8Var.W;
+                    td4 td4Var = kacVar.b;
+                    if (td4Var == null) {
+                        kacVar.n = i6;
+                        kacVar.r = i7;
+                    } else {
+                        td4Var.f(i6, i7);
+                    }
+                }
+                l58 l58Var = zi8Var.s;
+                if (l58Var != null) {
+                    int i8 = zi8Var.V;
+                    int i9 = zi8Var.W;
+                    td4 td4Var2 = l58Var.m0;
+                    if (td4Var2 != null) {
+                        td4Var2.f(i8, i9);
+                        return;
+                    }
+                    l58Var.K0 = i8;
+                    l58Var.L0 = i9;
+                    return;
+                }
+                return;
+            case 4:
+                kx8 kx8Var = (kx8) ((kk8) obj2).b;
+                kx8Var.d0();
+                i = ((d) kx8Var).currentAccount;
+                ox8.f(i).k(i3, (String) obj);
+                return;
+            case 5:
+                x4c x4cVar = (x4c) obj2;
+                ArrayList arrayList2 = (ArrayList) obj;
+                x4cVar.getClass();
+                if (LaunchActivity.E1) {
+                    if (arrayList2 != null && arrayList2.size() != 0) {
+                        LinearLayout linearLayout = new LinearLayout(x4cVar.getContext());
+                        linearLayout.setOrientation(1);
+                        ?? imageView = new ImageView(x4cVar.getContext());
+                        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                        imageView.f(2131624050, 50, 50, null);
+                        imageView.d();
+                        imageView.setScaleType(ImageView.ScaleType.CENTER);
+                        int L = gl.L(80.0f);
+                        int i10 = bkb.H6;
+                        ShapeDrawable K = bkb.K(L, bkb.w0(null, i10, false));
+                        vkb M = zkb.M(i10);
+                        imageView.setBackground(K);
+                        zkb.j(imageView, K, M, null, null);
+                        linearLayout.addView((View) imageView, nme.t(80, 80, 17, 0, 14, 0, 0));
+                        TextView textView = new TextView(x4cVar.getContext());
+                        textView.setTypeface(gl.o());
+                        textView.setTextSize(1, 20.0f);
+                        textView.setGravity(17);
+                        textView.setText(k96.G(arrayList2.size(), "UnconfirmedAuthDeniedTitle", new Object[0]));
+                        zkb.X(textView, bkb.i5, null);
+                        linearLayout.addView(textView, nme.k(28.0f, 14.0f, 28.0f, 0.0f, -1, -2));
+                        TextView textView2 = new TextView(x4cVar.getContext());
+                        textView2.setTextSize(1, 14.0f);
+                        textView2.setGravity(17);
+                        if (arrayList2.size() == 1) {
+                            textView2.setText(k96.a0(null, null, 2131743666, x4c.a((u4c) arrayList2.get(0))));
+                        } else {
+                            String str2 = "\n";
+                            for (int i11 = 0; i11 < Math.min(arrayList2.size(), 10); i11++) {
+                                StringBuilder k = b00.k(str2, "• ");
+                                k.append(x4c.a((u4c) arrayList2.get(i11)));
+                                k.append("\n");
+                                str2 = k.toString();
+                            }
+                            textView2.setText(k96.a0(null, null, 2131743667, str2));
+                        }
+                        zkb.X(textView2, bkb.i5, null);
+                        linearLayout.addView(textView2, nme.k(40.0f, 9.0f, 40.0f, 0.0f, -1, -2));
+                        FrameLayout frameLayout = new FrameLayout(x4cVar.getContext());
+                        frameLayout.setPadding(gl.L(24.0f), gl.L(10.0f), gl.L(24.0f), gl.L(10.0f));
+                        int L2 = gl.L(12.0f);
+                        int i12 = bkb.p7;
+                        int w0 = bkb.w0(null, i12, false);
+                        float f2 = 0.15f;
+                        if (bkb.I.o()) {
+                            f = 0.2f;
+                        } else {
+                            f = 0.15f;
+                        }
+                        Drawable b0 = bkb.b0(L2, bkb.p1(f, w0));
+                        if (bkb.I.o()) {
+                            f2 = 0.2f;
+                        }
+                        vkb K2 = zkb.K(f2, i12);
+                        frameLayout.setBackground(b0);
+                        zkb.j(frameLayout, b0, K2, null, null);
+                        TextView textView3 = new TextView(x4cVar.getContext());
+                        textView3.setTypeface(gl.o());
+                        textView3.setTextSize(1, 14.0f);
+                        textView3.setGravity(17);
+                        ug8.x(textView3, i12, null, null, 2131743662);
+                        frameLayout.addView(textView3, nme.e(-1, -1, 119));
+                        linearLayout.addView(frameLayout, nme.k(14.0f, 19.0f, 14.0f, 0.0f, -1, -2));
+                        u41 u41Var = new u41(null, x4cVar.getContext(), true);
+                        u41Var.setRoundRadius(24);
+                        ote.b(u41Var, 0.02f, 1.5f);
+                        u41Var.i(k96.M0(2131749356, null), false, true);
+                        linearLayout.addView(u41Var, nme.k(14.0f, 20.0f, 14.0f, 4.0f, -1, 48));
+                        fx0 h = de9.h(1, null, x4cVar.getContext(), false);
+                        h.O = linearLayout;
+                        h.show();
+                        h.c0 = false;
+                        h.d0 = false;
+                        rw0 rw0Var = new rw0(h, (byte) 5);
+                        gl.r(u41Var.K);
+                        u41Var.setCountFilled(false);
+                        u41Var.J = 5;
+                        u41Var.c(5, false);
+                        u41Var.setShowZero(false);
+                        q21 q21Var = new q21(u41Var, rw0Var, (byte) 2);
+                        u41Var.K = q21Var;
+                        gl.d3(q21Var, 1000L);
+                        u41Var.setOnClickListener(new vzb(u41Var, h, (byte) 3));
+                    } else {
+                        yjb.x(null, 2131743640, new u21(f11.a(x4cVar.getContext()), null), null);
+                    }
+                }
+                x4cVar.e.a(false, true);
+                na7.q1(i3).P1().a();
+                return;
+            case 6:
+                p8c p8cVar = (p8c) obj2;
+                Long l = (Long) obj;
+                if (l != null && l.longValue() > 0 && l.longValue() != Long.MAX_VALUE) {
+                    user = na7.q1(i3).V1(l);
+                }
+                p8cVar.a(user);
+                return;
+            default:
+                ypc ypcVar = (ypc) obj2;
+                String str3 = (String) obj;
+                if (!ypcVar.r && i3 == ypcVar.K) {
+                    ypcVar.F = 0;
+                    ypcVar.M = false;
+                    if (WalletEngine2.isValidRecipientAddress(str3)) {
+                        str = WalletEngine2.toUserFriendlyAddress(str3);
+                    }
+                    ypcVar.y = str;
+                    u41 u41Var2 = ypcVar.a0;
+                    if (u41Var2 != null) {
+                        if (str != null) {
+                            z2 = true;
+                        }
+                        u41Var2.setEnabled(z2);
+                    }
+                    ypcVar.a.g3.O(true);
+                    return;
+                }
+                return;
         }
-        if (d > f && (p09Var = this.l) != null) {
-            int i3 = p09Var.b / 2;
-            int i4 = p09Var.c / 2;
-            p09Var.setBounds(centerX - i3, centerY - i4, i3 + centerX, i4 + centerY);
-            this.l.setAlpha((int) (d * f2));
-            this.l.draw(canvas2);
-        }
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return gm.L(40.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return gm.L(40.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public jq0(Object obj, int i, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = i;
     }
 }

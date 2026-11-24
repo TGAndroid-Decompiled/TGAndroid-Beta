@@ -1,74 +1,187 @@
 package defpackage;
-public final class if3 {
-    public final yy8 a;
-    public final byte b;
-    public final byte c;
 
-    public if3(yy8 yy8Var, int i, int i2) {
-        kte.a(yy8Var, "Null dependency anInterface.");
-        this.a = yy8Var;
-        this.b = i;
-        this.c = i2;
-    }
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.ui.Components.RadioButton;
+public final class if3 extends FrameLayout {
+    public int a;
+    public TextView b;
+    public TextView c;
+    public RadioButton d;
+    public boolean e;
+    public int f;
 
-    public static if3 a(yy8 yy8Var) {
-        return new if3(yy8Var, 1, 0);
-    }
-
-    public static if3 b(Class cls) {
-        return new if3(1, 0, cls);
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof if3) {
-            if3 if3Var = (if3) obj;
-            if (this.a.equals(if3Var.a) && this.b == if3Var.b && this.c == if3Var.c) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return ((((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b) * 1000003) ^ this.c;
-    }
-
-    public final String toString() {
-        String str;
-        String str2;
-        StringBuilder sb = new StringBuilder("Dependency{anInterface=");
-        sb.append(this.a);
-        sb.append(", type=");
-        byte b = this.b;
-        if (b == 1) {
-            str = "required";
-        } else if (b == 0) {
-            str = "optional";
-        } else {
-            str = "set";
-        }
-        sb.append(str);
-        sb.append(", injection=");
-        byte b2 = this.c;
-        if (b2 != 0) {
-            if (b2 != 1) {
-                if (b2 == 2) {
-                    str2 = "deferred";
-                } else {
-                    bh7.j(hg9.j(b2, "Unsupported injection: "));
-                    return null;
-                }
+    public final void a(boolean z, boolean z2) {
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        RadioButton radioButton = this.d;
+        TextView textView = this.c;
+        setEnabled(z);
+        TextView textView2 = this.b;
+        float f5 = 0.5f;
+        if (z2) {
+            ViewPropertyAnimator animate = textView2.animate();
+            if (z) {
+                f3 = 1.0f;
             } else {
-                str2 = "provider";
+                f3 = 0.5f;
             }
-        } else {
-            str2 = "direct";
+            animate.alpha(f3).start();
+            ViewPropertyAnimator animate2 = textView.animate();
+            if (z) {
+                f4 = 1.0f;
+            } else {
+                f4 = 0.5f;
+            }
+            animate2.alpha(f4).start();
+            ViewPropertyAnimator animate3 = radioButton.animate();
+            if (z) {
+                f5 = 1.0f;
+            }
+            animate3.alpha(f5).start();
+            return;
         }
-        return b10.j(sb, str2, "}");
+        if (z) {
+            f = 1.0f;
+        } else {
+            f = 0.5f;
+        }
+        textView2.setAlpha(f);
+        if (z) {
+            f2 = 1.0f;
+        } else {
+            f2 = 0.5f;
+        }
+        textView.setAlpha(f2);
+        if (z) {
+            f5 = 1.0f;
+        }
+        radioButton.setAlpha(f5);
     }
 
-    public if3(int i, int i2, Class cls) {
-        this(yy8.a(cls), i, i2);
+    public final void b() {
+        int i;
+        float f;
+        FrameLayout.LayoutParams d;
+        FrameLayout.LayoutParams d2;
+        int i2;
+        float f2;
+        TextView textView = this.b;
+        TextView textView2 = this.c;
+        int visibility = textView2.getVisibility();
+        boolean z = k96.a0;
+        float f3 = 61.0f;
+        int i3 = 3;
+        if (visibility == 0) {
+            if (z) {
+                i2 = 5;
+            } else {
+                i2 = 3;
+            }
+            int i4 = i2 | 48;
+            if (z) {
+                f2 = this.f;
+            } else {
+                f2 = 61.0f;
+            }
+            if (!z) {
+                f3 = this.f;
+            }
+            d = nme.d(-1, -1.0f, i4, f2, 0.0f, f3, 0.0f);
+        } else {
+            if (z) {
+                i = 5;
+            } else {
+                i = 3;
+            }
+            int i5 = i | 48;
+            if (z) {
+                f = 61.0f;
+            } else {
+                f = this.f;
+            }
+            if (z) {
+                f3 = this.f;
+            }
+            d = nme.d(-1, -1.0f, i5, f, 0.0f, f3, 0.0f);
+        }
+        textView.setLayoutParams(d);
+        RadioButton radioButton = this.d;
+        int visibility2 = textView2.getVisibility();
+        boolean z2 = k96.a0;
+        if (visibility2 == 0) {
+            if (z2) {
+                i3 = 5;
+            }
+            d2 = nme.d(22, 22.0f, i3 | 48, 20.0f, 15.0f, 20.0f, 0.0f);
+        } else {
+            if (!z2) {
+                i3 = 5;
+            }
+            d2 = nme.d(22, 22.0f, i3 | 48, 20.0f, 15.0f, 20.0f, 0.0f);
+        }
+        radioButton.setLayoutParams(d2);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f;
+        if (this.e) {
+            float f2 = 0.0f;
+            if (k96.a0) {
+                f = 0.0f;
+            } else {
+                f = this.f;
+            }
+            float L = gl.L(f);
+            float height = getHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (k96.a0) {
+                f2 = this.f;
+            }
+            canvas.drawLine(L, height, measuredWidth - gl.L(f2), getHeight() - 1, bkb.j0);
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int i3;
+        setMeasuredDimension(View.MeasureSpec.getSize(i), gl.L(50.0f) + (this.e ? 1 : 0));
+        int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
+        int i4 = this.f + 61;
+        TextView textView = this.c;
+        if (textView.getVisibility() == 0) {
+            i3 = 12;
+        } else {
+            i3 = 0;
+        }
+        int L = measuredWidth - gl.L(i4 + i3);
+        this.d.measure(View.MeasureSpec.makeMeasureSpec(gl.L(22.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(gl.L(22.0f), 1073741824));
+        if (textView.getVisibility() == 0) {
+            textView.measure(View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+            L = ug8.B(12.0f, textView.getMeasuredWidth(), L);
+        }
+        this.b.measure(View.MeasureSpec.makeMeasureSpec(L, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+    }
+
+    public void setHorizontalPadding(int i) {
+        TextView textView = this.c;
+        if (this.f != i) {
+            this.f = i;
+            float f = i;
+            ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).leftMargin = gl.L(f);
+            ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).rightMargin = gl.L(f);
+            b();
+        }
+    }
+
+    public void setTextColor(int i) {
+        this.b.setTextColor(i);
     }
 }

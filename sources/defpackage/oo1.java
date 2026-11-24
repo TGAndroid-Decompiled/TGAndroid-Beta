@@ -1,41 +1,137 @@
 package defpackage;
-public final class oo1 implements we7 {
-    public final byte a;
-    public final yv1 b;
 
-    public oo1(yv1 yv1Var, byte b) {
-        this.a = b;
-        this.b = yv1Var;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import org.telegram.tgnet.TLRPC;
+public abstract class oo1 {
+    public static int A(int i, int i2, Drawable drawable) {
+        return i2 - (drawable.getIntrinsicWidth() / i);
     }
 
-    @Override
-    public final void a(int i) {
-        byte b = this.a;
-        yv1 yv1Var = this.b;
-        switch (b) {
-            case 0:
-                if (yv1Var.getParentActivity() != null && yv1Var.fragmentView != null && i > 0) {
-                    c41.b0(yv1Var).m(b41.r, i, 0, 0, yv1Var.Ba).j();
-                    return;
-                }
-                return;
-            case 1:
-                yv1 yv1Var2 = this.b;
-                if (i == 0) {
-                    yv1Var2.E6 = false;
-                    yv1Var2.W9();
-                    return;
-                }
-                yv1Var2.J(i, 0, 0, 0, false, true);
-                return;
-            default:
-                if (i == 0) {
-                    yv1Var.zd(true);
-                    return;
-                } else {
-                    yv1Var.finishFragment();
-                    return;
-                }
+    public static boolean a(k27 k27Var) {
+        if (k27Var != null && k27.B0(k27Var.k) == 1271266957) {
+            return true;
         }
+        return false;
+    }
+
+    public static ar2 b() {
+        return new cr2();
+    }
+
+    public static dr2 c() {
+        ?? cr2Var = new cr2();
+        cr2Var.e = -1.7976931348623157E308d;
+        cr2Var.f = Double.MAX_VALUE;
+        return cr2Var;
+    }
+
+    public static gr2 d() {
+        return new cr2();
+    }
+
+    public static float e(float f, float f2, float f3) {
+        return (gl.N(f) * f2) + f3;
+    }
+
+    public static float f(float f, float f2, float f3, float f4) {
+        return Math.max(f4, (f - f2) / f3);
+    }
+
+    public static float g(float f, float f2, float f3, float f4, float f5) {
+        return (((f * f2) + f3) * f4) + f5;
+    }
+
+    public static int h(int i, int i2, int i3, int i4) {
+        return ((i - i2) * i3) + i4;
+    }
+
+    public static int i(int i, int i2, Drawable drawable) {
+        return (drawable.getIntrinsicHeight() / i) + i2;
+    }
+
+    public static zla j(float f, float f2, float f3) {
+        zla zlaVar = new zla(f);
+        zlaVar.b(f2);
+        zlaVar.a(f3);
+        return zlaVar;
+    }
+
+    public static SharedPreferences k(StringBuilder sb, int i, Context context, int i2) {
+        sb.append(i);
+        return context.getSharedPreferences(sb.toString(), i2);
+    }
+
+    public static Integer l(int i, ArrayList arrayList, int i2, ArrayList arrayList2, int i3) {
+        arrayList.add(k96.M0(i, null));
+        arrayList2.add(Integer.valueOf(i2));
+        return Integer.valueOf(i3);
+    }
+
+    public static Object m(int i, List list) {
+        return list.get(list.size() - i);
+    }
+
+    public static String n(int i, String str) {
+        return i + str;
+    }
+
+    public static void o(int i, String str, ArrayList arrayList) {
+        arrayList.add(c4c.u(k96.M0(i, str)));
+    }
+
+    public static void p(int i, ArrayList arrayList, ArrayList arrayList2, Integer num) {
+        arrayList.add(k96.M0(i, null));
+        arrayList2.add(num);
+    }
+
+    public static void q(int i, HashMap hashMap, String str, int i2, String str2) {
+        hashMap.put(str, Integer.valueOf(i));
+        hashMap.put(str2, Integer.valueOf(i2));
+    }
+
+    public static void r(c5a c5aVar) {
+        n89.a().getClass();
+        n89.b(c5aVar);
+    }
+
+    public static void s(String str, String str2, String str3) {
+        lad.f(str3, str + str2);
+    }
+
+    public static boolean t(String str) {
+        return new File(str).exists();
+    }
+
+    public static boolean u(TLRPC.TL_game tL_game) {
+        if (tL_game != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static float v(float f, float f2, float f3, float f4) {
+        return f4 - ((f * f2) * f3);
+    }
+
+    public static int w(int i, int i2, Drawable drawable) {
+        return (drawable.getIntrinsicWidth() / i) + i2;
+    }
+
+    public static float x(float f, float f2, float f3, float f4) {
+        return Math.max(f4, f3 - (f / f2));
+    }
+
+    public static int y(int i, int i2, Drawable drawable) {
+        return i2 - (drawable.getIntrinsicHeight() / i);
+    }
+
+    public static float z(float f, float f2, float f3, float f4) {
+        return ((f - f2) / f3) + f4;
     }
 }

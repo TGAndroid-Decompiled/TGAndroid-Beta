@@ -1,26 +1,36 @@
 package defpackage;
 
-import java.util.ArrayDeque;
-public final class rb3 {
-    public final byte[] a = new byte[8];
-    public final ArrayDeque b = new ArrayDeque();
-    public final dbc c = new dbc();
-    public k44 d;
-    public byte e;
-    public int f;
-    public long g;
+import java.math.BigInteger;
+public final class rb3 implements fv9 {
+    public final sb3 a;
 
-    public final boolean a(defpackage.vb3 r39) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.rb3.a(vb3):boolean");
+    public rb3(sb3 sb3Var) {
+        this.a = sb3Var;
     }
 
-    public final long b(vb3 vb3Var, int i) {
-        byte[] bArr = this.a;
-        vb3Var.c(bArr, 0, i, false);
-        long j = 0;
-        for (int i2 = 0; i2 < i; i2++) {
-            j = (j << 8) | (bArr[i2] & 255);
-        }
-        return j;
+    @Override
+    public final boolean c() {
+        return true;
+    }
+
+    @Override
+    public final boolean d() {
+        return false;
+    }
+
+    @Override
+    public final ev9 f(long j) {
+        sb3 sb3Var = this.a;
+        long j2 = sb3Var.b;
+        BigInteger valueOf = BigInteger.valueOf((sb3Var.d.i * j) / 1000000);
+        long j3 = sb3Var.c;
+        hv9 hv9Var = new hv9(j, g8c.j((valueOf.multiply(BigInteger.valueOf(j3 - j2)).divide(BigInteger.valueOf(sb3Var.f)).longValue() + j2) - 30000, sb3Var.b, j3 - 1));
+        return new ev9(hv9Var, hv9Var);
+    }
+
+    @Override
+    public final long h() {
+        sb3 sb3Var = this.a;
+        return (sb3Var.f * 1000000) / sb3Var.d.i;
     }
 }

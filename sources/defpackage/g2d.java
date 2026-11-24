@@ -1,22 +1,10 @@
 package defpackage;
+public final class g2d {
+    public final h2d a;
+    public final v8b b;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.ArrayList;
-public final class g2d extends b4 {
-    public static final Parcelable.Creator<g2d> CREATOR = new hx6((byte) 24);
-    public final ArrayList a;
-
-    public g2d(ArrayList arrayList) {
-        arrayList.getClass();
-        this.a = arrayList;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        parcel.getClass();
-        int r = mve.r(parcel, 20293);
-        mve.p(parcel, 1, this.a);
-        mve.s(parcel, r);
+    public g2d(h2d h2dVar, v8b v8bVar) {
+        this.a = h2dVar;
+        this.b = v8bVar;
     }
 }

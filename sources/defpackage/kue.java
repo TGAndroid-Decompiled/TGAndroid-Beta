@@ -1,12 +1,17 @@
 package defpackage;
-public abstract class kue {
-    public static boolean a(float[] fArr) {
-        if (fArr != null && fArr.length == 8) {
-            float f = fArr[0];
-            if (f == fArr[1] && f == fArr[2] && f == fArr[3] && f == fArr[4] && f == fArr[5] && f == fArr[6] && f == fArr[7]) {
-                return true;
-            }
+public final class kue implements zn7 {
+    public static final kue a = new Object();
+
+    static {
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        return false;
+        throw new ClassCastException();
     }
 }

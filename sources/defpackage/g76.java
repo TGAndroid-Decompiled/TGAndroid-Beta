@@ -1,48 +1,29 @@
 package defpackage;
-public final class g76 extends x1 {
-    public final f76 a = new ui6();
-    public final int b;
-    public boolean c;
 
-    public g76(int i) {
-        this.b = i;
+import android.content.Context;
+import android.view.View;
+public final class g76 extends b4c {
+    public static final int b = 0;
+
+    static {
+        b4c.h(new b4c());
     }
 
     @Override
-    public final boolean b(gl0 gl0Var) {
-        if (this.c) {
-            gl0 gl0Var2 = (gl0) ((ui6) this.a.b);
+    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
+        ((h76) view).set((j76) c4cVar.H);
+    }
+
+    @Override
+    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
+        return new h76(context);
+    }
+
+    @Override
+    public final boolean e(c4c c4cVar, c4c c4cVar2) {
+        if (c4cVar.H == c4cVar2.H) {
             return true;
         }
-        return true;
-    }
-
-    @Override
-    public final gl0 e() {
-        return this.a;
-    }
-
-    @Override
-    public final boolean f() {
-        return true;
-    }
-
-    @Override
-    public final il2 h(fq3 fq3Var) {
-        boolean z = false;
-        if (fq3Var.h) {
-            if (((ui6) this.a.c) != null) {
-                gl0 e = fq3Var.h().e();
-                this.c = ((e instanceof uw7) || (e instanceof f76)) ? true : true;
-                return il2.a(fq3Var.e);
-            }
-            return null;
-        }
-        int i = fq3Var.g;
-        int i2 = this.b;
-        if (i >= i2) {
-            return new il2(-1, fq3Var.c + i2, false);
-        }
-        return null;
+        return false;
     }
 }

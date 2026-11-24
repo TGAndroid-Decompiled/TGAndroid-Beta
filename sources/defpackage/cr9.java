@@ -1,3 +1,4 @@
 package defpackage;
-public final class cr9 extends x23 {
+public interface cr9 {
+    void a(int i);
 }

@@ -1,35 +1,27 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class vrc implements qac {
+import com.google.android.gms.tasks.OnFailureListener;
+public final class vrc implements OnFailureListener {
     public final byte a;
-    public final asc b;
+    public final u41 b;
 
-    public vrc(asc ascVar, byte b) {
+    public vrc(u41 u41Var, byte b) {
         this.a = b;
-        this.b = ascVar;
+        this.b = u41Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        l7 l7Var;
+    public final void onFailure(Exception exc) {
         byte b = this.a;
-        asc ascVar = this.b;
+        u41 u41Var = this.b;
         switch (b) {
             case 0:
-                ascVar.f0((String) obj);
+                fa4.d("wear-auth: /answer send failed: " + exc.getMessage());
+                u41Var.setLoading(false);
                 return;
             default:
-                TLRPC.User user = (TLRPC.User) obj;
-                if (!ascVar.isFinished && (l7Var = ascVar.O) != null) {
-                    if (user == null) {
-                        gm.c3(new wrc(ascVar, (byte) 1));
-                        return;
-                    }
-                    gm.t1(l7Var);
-                    ascVar.m0(null, user);
-                    return;
-                }
+                fa4.d("wear-auth: /token send failed: " + exc.getMessage());
+                u41Var.setLoading(false);
                 return;
         }
     }

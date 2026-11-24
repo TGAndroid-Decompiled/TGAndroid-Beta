@@ -1,50 +1,75 @@
 package defpackage;
 
-import android.widget.TextView;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.d;
-public final class n5c extends c6 {
-    public final p5c a;
+public abstract class n5c extends d {
+    public va a;
+    public g74 b;
+    public int c;
+    public int d;
 
-    public n5c(p5c p5cVar) {
-        this.a = p5cVar;
+    public n5c() {
+        super(null);
+        this.c = -1;
+    }
+
+    public void Y(java.util.ArrayList r9, defpackage.l5c r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.n5c.Y(java.util.ArrayList, l5c):void");
+    }
+
+    public CharSequence Z() {
+        return k96.M0(2131752713, null);
+    }
+
+    public void a0(c4c c4cVar, View view) {
+        if (c4cVar.d == 1) {
+            j41 d = j41.d(this.currentAccount);
+            TL_account.createBusinessChatLink createbusinesschatlink = new TL_account.createBusinessChatLink();
+            TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
+            createbusinesschatlink.link = tL_inputBusinessChatLink;
+            tL_inputBusinessChatLink.message = "";
+            ConnectionsManager.getInstance(d.a).sendRequest(createbusinesschatlink, new h41(d, (byte) 1));
+        } else if (c4cVar.a == 29) {
+            Object obj = c4cVar.H;
+            if (obj instanceof e41) {
+                Bundle j = ls6.j(6, "chatMode");
+                j.putString("business_link", ((e41) obj).a.link);
+                presentFragment(new mu1(j));
+            }
+        }
+    }
+
+    public boolean b0(c4c c4cVar, View view) {
+        return false;
     }
 
     @Override
-    public final void b(int i) {
-        String M0;
-        tk5 tk5Var;
-        p5c p5cVar = this.a;
-        if (i == -1) {
-            if (p5cVar.H >= 0) {
-                tk5Var = ((d) p5cVar).parentLayout;
-                if (tk5Var.getFragmentStack().size() == 1) {
-                    p5cVar.N0();
-                    return;
-                }
-            }
-            p5cVar.finishFragment();
-        } else if (i == 1) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(p5cVar.getParentActivity());
-            TL_account.Password password = p5cVar.V;
-            if (password != null && password.has_password) {
-                M0 = jb6.M0(2131752539, null);
-            } else {
-                M0 = jb6.M0(2131752531, null);
-            }
-            String M02 = jb6.M0(2131752538, null);
-            String M03 = jb6.M0(2131754950, null);
-            he heVar = alertDialog$Builder.a;
-            heVar.U = M0;
-            heVar.S = M02;
-            alertDialog$Builder.j(M03, new wta(this, (byte) 24));
-            alertDialog$Builder.g(jb6.M0(2131752542, null), null);
-            p5cVar.showDialog(heVar);
-            TextView textView = (TextView) heVar.c(-1);
-            if (textView != null) {
-                anb.X(textView, cmb.p7, null);
-            }
+    public View createView(Context context) {
+        kk8 kk8Var = new kk8(this, (byte) 23);
+        pha phaVar = this.simpleActionBar;
+        if (phaVar != null) {
+            phaVar.setBackButtonDrawable(new ed0(false));
+            this.simpleActionBar.setTitle(Z());
+            this.simpleActionBar.setActionBarMenuOnItemClick(kk8Var);
+        } else {
+            this.actionBar.setBackButtonDrawable(new ed0(false));
+            this.actionBar.setAllowOverlayTitle(true);
+            this.actionBar.setTitle(Z());
+            this.actionBar.setActionBarMenuOnItemClick(kk8Var);
         }
+        this.b = new g74(context, null, (byte) 3);
+        if (!useSimpleActionBar()) {
+            zkb.h(bkb.Z6, null, this.b);
+        }
+        va vaVar = new va(this, this, new n4b(this, (byte) 9), new m5c(this), new m5c(this));
+        this.a = vaVar;
+        this.b.addView(vaVar, nme.c(-1.0f, -1));
+        g74 g74Var = this.b;
+        this.fragmentView = g74Var;
+        return g74Var;
     }
 }

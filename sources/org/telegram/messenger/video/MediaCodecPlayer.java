@@ -52,7 +52,7 @@ public class MediaCodecPlayer {
             createDecoderByType.start();
             return;
         }
-        u36.j("No video track found in file.");
+        w26.j("No video track found in file.");
         throw null;
     }
 

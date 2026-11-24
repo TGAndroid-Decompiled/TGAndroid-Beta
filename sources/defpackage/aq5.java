@@ -1,3 +1,3 @@
 package defpackage;
-public interface aq5 {
+public final class aq5 extends RuntimeException {
 }

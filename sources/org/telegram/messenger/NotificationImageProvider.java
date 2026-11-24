@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-public class NotificationImageProvider extends ContentProvider implements jm7 {
+public class NotificationImageProvider extends ContentProvider implements gk7 {
     public static String d;
     public static UriMatcher e;
     public final HashSet a = new HashSet();
@@ -26,7 +26,7 @@ public class NotificationImageProvider extends ContentProvider implements jm7 {
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == nm7.Y1) {
+        if (i == kk7.X1) {
             synchronized (this.b) {
                 String str = (String) objArr[0];
                 if (this.a.remove(str)) {
@@ -57,8 +57,8 @@ public class NotificationImageProvider extends ContentProvider implements jm7 {
 
     @Override
     public final boolean onCreate() {
-        for (int i = 0; i < z8c.c(); i++) {
-            nm7.f(i).a(this, nm7.Y1);
+        for (int i = 0; i < y6c.c(); i++) {
+            kk7.f(i).a(this, kk7.X1);
         }
         return true;
     }
@@ -86,7 +86,7 @@ public class NotificationImageProvider extends ContentProvider implements jm7 {
                 String queryParameter2 = uri.getQueryParameter("fallback");
                 File file = new File(queryParameter);
                 a.v();
-                if (!gm.G1(Uri.fromFile(file), 0)) {
+                if (!gl.G1(Uri.fromFile(file), 0)) {
                     if (!file.exists()) {
                         Long l = (Long) this.c.get(str3);
                         if (l != null) {
@@ -99,12 +99,12 @@ public class NotificationImageProvider extends ContentProvider implements jm7 {
                         }
                         while (!file.exists()) {
                             if (System.currentTimeMillis() - currentTimeMillis >= 3000) {
-                                if (e21.a) {
-                                    fc4.l("Waiting for " + str3 + " to download timed out");
+                                if (w01.a) {
+                                    fa4.l("Waiting for " + str3 + " to download timed out");
                                 }
                                 if (!TextUtils.isEmpty(queryParameter2)) {
                                     File file2 = new File(queryParameter2);
-                                    if (!gm.G1(Uri.fromFile(file2), 0)) {
+                                    if (!gl.G1(Uri.fromFile(file2), 0)) {
                                         return ParcelFileDescriptor.open(file2, 268435456);
                                     }
                                     throw new SecurityException("trying to read internal file");
@@ -119,7 +119,7 @@ public class NotificationImageProvider extends ContentProvider implements jm7 {
                                 }
                             }
                         }
-                        if (gm.G1(Uri.fromFile(file), 0)) {
+                        if (gl.G1(Uri.fromFile(file), 0)) {
                             throw new SecurityException("trying to read internal file");
                         }
                     }
@@ -139,8 +139,8 @@ public class NotificationImageProvider extends ContentProvider implements jm7 {
 
     @Override
     public final void shutdown() {
-        for (int i = 0; i < z8c.c(); i++) {
-            nm7.f(i).n(this, nm7.Y1);
+        for (int i = 0; i < y6c.c(); i++) {
+            kk7.f(i).n(this, kk7.X1);
         }
     }
 

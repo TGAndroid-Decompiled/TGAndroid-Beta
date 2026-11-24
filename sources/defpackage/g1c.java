@@ -1,33 +1,22 @@
 package defpackage;
-public final class g1c implements Runnable {
-    public final byte a;
-    public final jac b;
-    public final String c;
 
-    public g1c(jac jacVar, String str, byte b) {
-        this.a = b;
-        this.b = jacVar;
-        this.c = str;
+import java.util.Set;
+public final class g1c implements f1c {
+    public final Set a;
+    public final ra0 b;
+    public final i1c c;
+
+    public g1c(Set set, ra0 ra0Var, i1c i1cVar) {
+        this.a = set;
+        this.b = ra0Var;
+        this.c = i1cVar;
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        String str = this.c;
-        jac jacVar = this.b;
-        switch (b) {
-            case 0:
-                jacVar.a(str, Boolean.FALSE);
-                return;
-            case 1:
-                jacVar.a(null, str);
-                return;
-            case 2:
-                jacVar.a(null, str);
-                return;
-            default:
-                jacVar.a(null, str);
-                return;
+    public final h1c a(String str, s24 s24Var, yyb yybVar) {
+        Set set = this.a;
+        if (set.contains(s24Var)) {
+            return new h1c(this.b, str, s24Var, yybVar, this.c);
         }
+        throw new IllegalArgumentException(String.format("%s is not supported byt this factory. Supported encodings are: %s.", s24Var, set));
     }
 }

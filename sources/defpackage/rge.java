@@ -1,19 +1,17 @@
 package defpackage;
-public abstract class rge {
-    public static long a(double d) {
-        jte.e("not a normal value", b(d));
-        int exponent = Math.getExponent(d);
-        long doubleToRawLongBits = Double.doubleToRawLongBits(d) & 4503599627370495L;
-        if (exponent == -1023) {
-            return doubleToRawLongBits << 1;
-        }
-        return doubleToRawLongBits | 4503599627370496L;
+public final class rge implements zn7 {
+    public static final rge a = new Object();
+
+    static {
+        yjb.y(yjb.q(kkd.class, new cjd(1)));
     }
 
-    public static boolean b(double d) {
-        if (Math.getExponent(d) <= 1023) {
-            return true;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        return false;
+        throw new ClassCastException();
     }
 }

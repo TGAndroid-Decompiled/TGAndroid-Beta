@@ -15,32 +15,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
-public class a8 extends FrameLayout implements vlb {
+public class a8 extends FrameLayout implements tjb {
     public int E;
     public int F;
     public int G;
     public int H;
     public boolean I;
     public PorterDuffColorFilter J;
-    public fg0 K;
+    public ff0 K;
     public byte L;
     public boolean M;
     public boolean N;
     public int O;
-    public final ylb P;
+    public final wjb P;
     public Runnable Q;
     public boolean R;
     public ValueAnimator S;
     public boolean T;
     public int U;
     public float V;
-    public final fn a;
+    public final fm a;
     public TextView b;
-    public final s09 c;
+    public final ry8 c;
     public boolean d;
-    public jh2 e;
+    public wf2 e;
     public ImageView f;
-    public bf0 h;
+    public be0 h;
     public int n;
     public int r;
     public PorterDuff.Mode s;
@@ -48,53 +48,53 @@ public class a8 extends FrameLayout implements vlb {
     public int x;
     public int y;
 
-    public a8(int i, ylb ylbVar, Context context, boolean z, boolean z2) {
+    public a8(int i, wjb wjbVar, Context context, boolean z, boolean z2) {
         super(context);
         int i2;
-        int i3 = cmb.D8;
+        int i3 = bkb.D8;
         this.x = i3;
-        int i4 = cmb.E8;
+        int i4 = bkb.E8;
         this.y = i4;
-        int i5 = cmb.H5;
+        int i5 = bkb.H5;
         this.E = i5;
         this.L = (byte) 12;
         this.O = 48;
         this.V = 1.0f;
-        this.P = ylbVar;
+        this.P = wjbVar;
         this.M = z;
         this.N = z2;
-        this.n = cmb.v0(i3, ylbVar);
-        this.r = cmb.v0(i4, ylbVar);
+        this.n = bkb.v0(i3, wjbVar);
+        this.r = bkb.v0(i4, wjbVar);
         this.s = PorterDuff.Mode.MULTIPLY;
-        int v0 = cmb.v0(i5, ylbVar);
+        int v0 = bkb.v0(i5, wjbVar);
         this.w = v0;
         this.F = this.n;
         this.G = this.r;
         this.H = v0;
         l();
-        setPadding(gm.L(18.0f), 0, gm.L(18.0f), 0);
+        setPadding(gl.L(18.0f), 0, gl.L(18.0f), 0);
         ?? imageView = new ImageView(context);
         this.c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(this.r, PorterDuff.Mode.SRC_IN);
         this.J = porterDuffColorFilter;
         imageView.setColorFilter(porterDuffColorFilter);
-        if (jb6.a0) {
+        if (k96.a0) {
             i2 = 5;
         } else {
             i2 = 3;
         }
-        addView((View) imageView, qoe.e(-2, 40, i2 | 16));
-        fn fnVar = new fn(context);
-        this.a = fnVar;
-        fnVar.setLines(1);
-        fnVar.setSingleLine(true);
-        fnVar.setGravity(3);
-        fnVar.setEllipsize(TextUtils.TruncateAt.END);
-        fnVar.setTextColor(this.n);
-        fnVar.setTextSize(1, 16.0f);
-        addView(fnVar, qoe.e(-2, -2, (jb6.a0 ? 5 : 3) | 16));
-        this.d = jb6.a0;
+        addView((View) imageView, nme.e(-2, 40, i2 | 16));
+        fm fmVar = new fm(context);
+        this.a = fmVar;
+        fmVar.setLines(1);
+        fmVar.setSingleLine(true);
+        fmVar.setGravity(3);
+        fmVar.setEllipsize(TextUtils.TruncateAt.END);
+        fmVar.setTextColor(this.n);
+        fmVar.setTextSize(1, 16.0f);
+        addView(fmVar, nme.e(-2, -2, (k96.a0 ? 5 : 3) | 16));
+        this.d = k96.a0;
         a(i);
     }
 
@@ -104,50 +104,50 @@ public class a8 extends FrameLayout implements vlb {
         int i3;
         int L2;
         if (i > 0) {
-            jh2 jh2Var = new jh2(26, this.P, getContext());
-            this.e = jh2Var;
-            jh2Var.setDrawUnchecked(false);
-            this.e.b(-1, -1, cmb.D8);
+            wf2 wf2Var = new wf2(26, this.P, getContext());
+            this.e = wf2Var;
+            wf2Var.setDrawUnchecked(false);
+            this.e.b(-1, -1, bkb.D8);
             this.e.setDrawBackgroundAsArc(-1);
-            fn fnVar = this.a;
+            fm fmVar = this.a;
             int i4 = 3;
             if (i == 1) {
-                boolean z = jb6.a0;
+                boolean z = k96.a0;
                 this.d = !z;
-                jh2 jh2Var2 = this.e;
+                wf2 wf2Var2 = this.e;
                 if (z) {
                     i4 = 5;
                 }
-                addView(jh2Var2, qoe.e(26, -1, i4 | 16));
-                if (!jb6.a0) {
-                    i3 = gm.L(34.0f);
+                addView(wf2Var2, nme.e(26, -1, i4 | 16));
+                if (!k96.a0) {
+                    i3 = gl.L(34.0f);
                 } else {
                     i3 = 0;
                 }
-                if (!jb6.a0) {
+                if (!k96.a0) {
                     L2 = 0;
                 } else {
-                    L2 = gm.L(34.0f);
+                    L2 = gl.L(34.0f);
                 }
-                fnVar.setPadding(i3, 0, L2, 0);
+                fmVar.setPadding(i3, 0, L2, 0);
                 return;
             }
-            jh2 jh2Var3 = this.e;
-            if (!jb6.a0) {
+            wf2 wf2Var3 = this.e;
+            if (!k96.a0) {
                 i4 = 5;
             }
-            addView(jh2Var3, qoe.e(26, -1, i4 | 16));
-            if (jb6.a0) {
-                i2 = gm.L(34.0f);
+            addView(wf2Var3, nme.e(26, -1, i4 | 16));
+            if (k96.a0) {
+                i2 = gl.L(34.0f);
             } else {
                 i2 = 0;
             }
-            if (jb6.a0) {
+            if (k96.a0) {
                 L = 0;
             } else {
-                L = gm.L(34.0f);
+                L = gl.L(34.0f);
             }
-            fnVar.setPadding(i2, 0, L, 0);
+            fmVar.setPadding(i2, 0, L, 0);
         }
     }
 
@@ -175,8 +175,8 @@ public class a8 extends FrameLayout implements vlb {
     }
 
     public final void c(int i, int i2) {
-        ylb ylbVar = this.P;
-        d(cmb.v0(i, ylbVar), cmb.v0(i2, ylbVar));
+        wjb wjbVar = this.P;
+        d(bkb.v0(i, wjbVar), bkb.v0(i2, wjbVar));
         this.x = i;
         this.y = i2;
         this.F = this.n;
@@ -212,14 +212,14 @@ public class a8 extends FrameLayout implements vlb {
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                 int i4 = i;
                 int i5 = i3;
-                int f3 = on2.f(floatValue, i4, i5);
+                int f3 = bm2.f(floatValue, i4, i5);
                 a8 a8Var = a8.this;
                 a8Var.setTextColor(f3);
-                a8Var.setIconColor(on2.f(floatValue, i2, i5));
+                a8Var.setIconColor(bm2.f(floatValue, i2, i5));
             }
         });
         this.S.addListener(new z7(this, z, i, i3, i2));
-        this.S.setInterpolator(d53.h);
+        this.S.setInterpolator(s33.h);
         this.S.start();
     }
 
@@ -243,7 +243,7 @@ public class a8 extends FrameLayout implements vlb {
         this.T = z;
         ofFloat.addUpdateListener(new f0(this, (byte) 2));
         this.S.addListener(new y7((byte) 0, this, z));
-        this.S.setInterpolator(d53.h);
+        this.S.setInterpolator(s33.h);
         this.S.start();
     }
 
@@ -259,7 +259,7 @@ public class a8 extends FrameLayout implements vlb {
         this.I = true;
     }
 
-    public jh2 getCheckView() {
+    public wf2 getCheckView() {
         return this.e;
     }
 
@@ -279,13 +279,13 @@ public class a8 extends FrameLayout implements vlb {
         return this.b;
     }
 
-    public fn getTextView() {
+    public fm getTextView() {
         return this.a;
     }
 
     public final void h(float f, int i) {
         this.V = f;
-        setSelectorColor(cmb.p1(f, cmb.v0(i, this.P)));
+        setSelectorColor(bkb.p1(f, bkb.v0(i, this.P)));
         this.E = i;
         this.H = this.w;
     }
@@ -298,27 +298,27 @@ public class a8 extends FrameLayout implements vlb {
         float f;
         int L;
         int i2;
-        fn fnVar = this.a;
-        fnVar.setText(charSequence);
-        s09 s09Var = this.c;
+        fm fmVar = this.a;
+        fmVar.setText(charSequence);
+        ry8 ry8Var = this.c;
         if (i == 0 && drawable == null && this.e == null) {
             this.U = 0;
-            s09Var.setVisibility(4);
-            fnVar.setPadding(0, 0, 0, 0);
+            ry8Var.setVisibility(4);
+            fmVar.setPadding(0, 0, 0, 0);
             return;
         }
         if (drawable != null) {
             this.U = 0;
-            s09Var.setImageDrawable(drawable);
+            ry8Var.setImageDrawable(drawable);
         } else {
             this.U = i;
-            s09Var.setImageResource(i);
+            ry8Var.setImageResource(i);
         }
-        s09Var.setVisibility(0);
+        ry8Var.setVisibility(0);
         float f2 = 0.0f;
         if (this.d) {
             if (this.e != null) {
-                L = gm.L(43.0f);
+                L = gl.L(43.0f);
             } else {
                 L = 0;
             }
@@ -328,52 +328,52 @@ public class a8 extends FrameLayout implements vlb {
             } else {
                 f = 43.0f;
             }
-            L = gm.L(f);
+            L = gl.L(f);
         }
         if (this.d) {
             if (i != 0 || drawable != null) {
                 f2 = 43.0f;
             }
-            i2 = gm.L(f2);
+            i2 = gl.L(f2);
         } else if (this.e != null) {
-            i2 = gm.L(43.0f);
+            i2 = gl.L(43.0f);
         } else {
             i2 = 0;
         }
-        fnVar.setPadding(L, 0, i2, 0);
+        fmVar.setPadding(L, 0, i2, 0);
     }
 
-    public final void k(CharSequence charSequence, gn5 gn5Var, String str, meb mebVar, TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+    public final void k(CharSequence charSequence, gl5 gl5Var, String str, kcb kcbVar, TLRPC.TL_attachMenuBot tL_attachMenuBot) {
         int L;
         int L2;
         int i;
-        fn fnVar = this.a;
-        fnVar.setText(charSequence);
+        fm fmVar = this.a;
+        fmVar.setText(charSequence);
         if (this.d && this.e == null) {
             L = 0;
         } else {
-            L = gm.L(43.0f);
+            L = gl.L(43.0f);
         }
         if (this.d || this.e != null) {
-            L2 = gm.L(43.0f);
+            L2 = gl.L(43.0f);
         } else {
             L2 = 0;
         }
-        fnVar.setPadding(L, 0, L2, 0);
+        fmVar.setPadding(L, 0, L2, 0);
         if (this.h == null) {
-            bf0 bf0Var = new bf0(getContext());
-            this.h = bf0Var;
-            bf0Var.setRoundRadius(gm.L(5.0f));
-            bf0 bf0Var2 = this.h;
-            if (jb6.a0) {
+            be0 be0Var = new be0(getContext());
+            this.h = be0Var;
+            be0Var.setRoundRadius(gl.L(5.0f));
+            be0 be0Var2 = this.h;
+            if (k96.a0) {
                 i = 5;
             } else {
                 i = 3;
             }
-            addView(bf0Var2, qoe.e(28, 28, i | 16));
+            addView(be0Var2, nme.e(28, 28, i | 16));
         }
         this.c.setVisibility(4);
-        this.h.m(gn5Var, str, mebVar, tL_attachMenuBot);
+        this.h.m(gl5Var, str, kcbVar, tL_attachMenuBot);
     }
 
     public void l() {
@@ -388,7 +388,7 @@ public class a8 extends FrameLayout implements vlb {
         if (this.N) {
             b2 = this.L;
         }
-        fg0 Y = cmb.Y(i, b, b2);
+        ff0 Y = bkb.Y(i, b, b2);
         this.K = Y;
         setBackground(Y);
     }
@@ -416,8 +416,8 @@ public class a8 extends FrameLayout implements vlb {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(isEnabled());
-        jh2 jh2Var = this.e;
-        if (jh2Var != null && jh2Var.a.q) {
+        wf2 wf2Var = this.e;
+        if (wf2Var != null && wf2Var.a.q) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(this.e.a.q);
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
@@ -426,9 +426,9 @@ public class a8 extends FrameLayout implements vlb {
 
     @Override
     public void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(this.O), 1073741824));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(this.O), 1073741824));
         if (this.R && this.a.getLayout().getLineCount() > 1) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(this.O + 8), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(this.O + 8), 1073741824));
         }
     }
 
@@ -442,11 +442,11 @@ public class a8 extends FrameLayout implements vlb {
     }
 
     public void setChecked(boolean z) {
-        jh2 jh2Var = this.e;
-        if (jh2Var == null) {
+        wf2 wf2Var = this.e;
+        if (wf2Var == null) {
             return;
         }
-        jh2Var.a(z, true);
+        wf2Var.a(z, true);
     }
 
     public void setEmojiCacheType(int i) {
@@ -463,9 +463,9 @@ public class a8 extends FrameLayout implements vlb {
     }
 
     public void setIconColorImage(int i) {
-        bf0 bf0Var = this.h;
-        if (bf0Var != null) {
-            bf0Var.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+        be0 be0Var = this.h;
+        if (be0Var != null) {
+            be0Var.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
         }
     }
 
@@ -474,15 +474,15 @@ public class a8 extends FrameLayout implements vlb {
     }
 
     public void setMultiline(boolean z) {
-        fn fnVar = this.a;
-        fnVar.setLines(2);
+        fm fmVar = this.a;
+        fmVar.setLines(2);
         if (z) {
-            fnVar.setTextSize(1, 14.0f);
+            fmVar.setTextSize(1, 14.0f);
         } else {
             this.R = true;
         }
-        fnVar.setSingleLine(false);
-        fnVar.setGravity(16);
+        fmVar.setSingleLine(false);
+        fmVar.setGravity(16);
     }
 
     public void setRightIcon(int i) {
@@ -495,48 +495,48 @@ public class a8 extends FrameLayout implements vlb {
             this.f = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.f.setColorFilter(this.r, PorterDuff.Mode.MULTIPLY);
-            if (jb6.a0) {
+            if (k96.a0) {
                 this.f.setScaleX(-1.0f);
             }
             ImageView imageView2 = this.f;
-            if (jb6.a0) {
+            if (k96.a0) {
                 i4 = 3;
             } else {
                 i4 = 5;
             }
-            addView(imageView2, qoe.e(24, -1, i4 | 16));
+            addView(imageView2, nme.e(24, -1, i4 | 16));
         }
-        fn fnVar = this.a;
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fnVar.getLayoutParams();
-        boolean z = jb6.a0;
+        fm fmVar = this.a;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fmVar.getLayoutParams();
+        boolean z = k96.a0;
         ImageView imageView3 = this.f;
         if (z) {
             if (imageView3 != null) {
-                i3 = gm.L(32.0f);
+                i3 = gl.L(32.0f);
             } else {
                 i3 = 0;
             }
             layoutParams.leftMargin = i3;
         } else {
             if (imageView3 != null) {
-                i2 = gm.L(32.0f);
+                i2 = gl.L(32.0f);
             } else {
                 i2 = 0;
             }
             layoutParams.rightMargin = i2;
         }
-        fnVar.setLayoutParams(layoutParams);
+        fmVar.setLayoutParams(layoutParams);
         float f2 = 18.0f;
-        if (jb6.a0) {
+        if (k96.a0) {
             f = 8.0f;
         } else {
             f = 18.0f;
         }
-        int L = gm.L(f);
-        if (!jb6.a0) {
+        int L = gl.L(f);
+        if (!k96.a0) {
             f2 = 8.0f;
         }
-        setPadding(L, 0, gm.L(f2), 0);
+        setPadding(L, 0, gl.L(f2), 0);
         ImageView imageView4 = this.f;
         if (i == 0) {
             imageView4.setVisibility(8);
@@ -551,9 +551,9 @@ public class a8 extends FrameLayout implements vlb {
             this.w = i;
             if (this.K != null) {
                 Drawable background = getBackground();
-                fg0 fg0Var = this.K;
-                if (background == fg0Var) {
-                    cmb.F1(fg0Var, i, true);
+                ff0 ff0Var = this.K;
+                if (background == ff0Var) {
+                    bkb.F1(ff0Var, i, true);
                     return;
                 }
             }
@@ -575,26 +575,26 @@ public class a8 extends FrameLayout implements vlb {
             int i4 = 3;
             this.b.setGravity(3);
             this.b.setEllipsize(TextUtils.TruncateAt.END);
-            anb.X(this.b, cmb.Qi, this.P);
+            zkb.X(this.b, bkb.Qi, this.P);
             this.b.setVisibility(8);
             this.b.setTextSize(1, 13.0f);
             TextView textView2 = this.b;
-            if (jb6.a0) {
+            if (k96.a0) {
                 L = 0;
             } else {
-                L = gm.L(43.0f);
+                L = gl.L(43.0f);
             }
-            if (jb6.a0) {
-                i = gm.L(43.0f);
+            if (k96.a0) {
+                i = gl.L(43.0f);
             } else {
                 i = 0;
             }
             textView2.setPadding(L, 0, i, 0);
             TextView textView3 = this.b;
-            if (jb6.a0) {
+            if (k96.a0) {
                 i4 = 5;
             }
-            addView(textView3, qoe.d(-2, -2.0f, i4 | 16, 0.0f, 10.0f, 0.0f, 0.0f));
+            addView(textView3, nme.d(-2, -2.0f, i4 | 16, 0.0f, 10.0f, 0.0f, 0.0f));
         }
         boolean isEmpty = TextUtils.isEmpty(charSequence);
         boolean z2 = !isEmpty;
@@ -607,13 +607,13 @@ public class a8 extends FrameLayout implements vlb {
                 i2 = 0;
             }
             textView4.setVisibility(i2);
-            fn fnVar = this.a;
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fnVar.getLayoutParams();
+            fm fmVar = this.a;
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fmVar.getLayoutParams();
             if (!isEmpty) {
-                i3 = gm.L(10.0f);
+                i3 = gl.L(10.0f);
             }
             layoutParams.bottomMargin = i3;
-            fnVar.setLayoutParams(layoutParams);
+            fmVar.setLayoutParams(layoutParams);
         }
         this.b.setText(charSequence);
     }
@@ -621,7 +621,7 @@ public class a8 extends FrameLayout implements vlb {
     public void setSubtextColor(int i) {
         TextView textView = this.b;
         if (textView != null) {
-            anb.q(textView);
+            zkb.q(textView);
             this.b.setTextColor(i);
         }
     }
@@ -639,19 +639,19 @@ public class a8 extends FrameLayout implements vlb {
 
     @Override
     public final void updateColors() {
-        s09 s09Var;
+        ry8 ry8Var;
         PorterDuff.Mode mode;
-        fn fnVar;
+        fm fmVar;
         try {
             int i = this.x;
-            ylb ylbVar = this.P;
-            if (i >= 0 && this.n == this.F && (fnVar = this.a) != null && fnVar.getCurrentTextColor() == this.n) {
-                int v0 = cmb.v0(this.x, ylbVar);
+            wjb wjbVar = this.P;
+            if (i >= 0 && this.n == this.F && (fmVar = this.a) != null && fmVar.getCurrentTextColor() == this.n) {
+                int v0 = bkb.v0(this.x, wjbVar);
                 setTextColor(v0);
                 this.F = v0;
             }
-            if (this.y >= 0 && this.r == this.G && (s09Var = this.c) != null && s09Var.getColorFilter() == this.J) {
-                int v02 = cmb.v0(this.y, ylbVar);
+            if (this.y >= 0 && this.r == this.G && (ry8Var = this.c) != null && ry8Var.getColorFilter() == this.J) {
+                int v02 = bkb.v0(this.y, wjbVar);
                 if (v02 != this.r) {
                     this.r = v02;
                     if (!this.I || (mode = this.s) == null) {
@@ -659,7 +659,7 @@ public class a8 extends FrameLayout implements vlb {
                     }
                     PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(v02, mode);
                     this.J = porterDuffColorFilter;
-                    s09Var.setColorFilter(porterDuffColorFilter);
+                    ry8Var.setColorFilter(porterDuffColorFilter);
                     ImageView imageView = this.f;
                     if (imageView != null) {
                         imageView.setColorFilter(v02, PorterDuff.Mode.MULTIPLY);
@@ -669,7 +669,7 @@ public class a8 extends FrameLayout implements vlb {
             }
             int i2 = this.E;
             if (i2 >= 0 && this.w == this.H) {
-                int p1 = cmb.p1(this.V, cmb.v0(i2, ylbVar));
+                int p1 = bkb.p1(this.V, bkb.v0(i2, wjbVar));
                 if (p1 != this.w) {
                     this.w = p1;
                     Drawable background = getBackground();
@@ -680,7 +680,7 @@ public class a8 extends FrameLayout implements vlb {
                 this.H = p1;
             }
         } catch (Exception e) {
-            fc4.g(e, true);
+            fa4.g(e, true);
         }
     }
 
@@ -689,8 +689,8 @@ public class a8 extends FrameLayout implements vlb {
         this.c.setImageResource(i);
     }
 
-    public a8(ylb ylbVar, Context context, boolean z, boolean z2) {
-        this(0, ylbVar, context, z, z2);
+    public a8(wjb wjbVar, Context context, boolean z, boolean z2) {
+        this(0, wjbVar, context, z, z2);
     }
 
     public a8(Context context, boolean z, boolean z2) {

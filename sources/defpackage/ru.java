@@ -1,52 +1,99 @@
 package defpackage;
 
-import android.content.Context;
-import android.net.Uri;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import android.view.KeyEvent;
+import android.view.View;
+import android.webkit.WebChromeClient;
+import android.widget.FrameLayout;
+import org.telegram.ui.j;
 import org.telegram.ui.o;
-public final class ru implements RequestDelegate {
-    public final byte a = 1;
-    public final int b;
-    public final boolean c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
-    public final Object g;
+public final class ru extends WebChromeClient {
+    public final byte a;
+    public final KeyEvent.Callback b;
 
-    public ru(k11 k11Var, he[] heVarArr, int i, Uri uri, Context context, boolean z) {
-        this.d = k11Var;
-        this.e = heVarArr;
-        this.b = i;
-        this.f = uri;
-        this.g = context;
-        this.c = z;
+    public ru(KeyEvent.Callback callback, byte b) {
+        this.a = b;
+        this.b = callback;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void onHideCustomView() {
         byte b = this.a;
-        Object obj = this.g;
-        Object obj2 = this.f;
-        Object obj3 = this.e;
-        Object obj4 = this.d;
+        KeyEvent.Callback callback = this.b;
         switch (b) {
             case 0:
-                gm.c3(new gu((o) obj4, tLObject, this.b, (TLRPC.WebPage) obj3, (k47) obj2, this.c, (String) obj));
+                super.onHideCustomView();
+                o oVar = ((j) callback).y;
+                if (oVar.P != null) {
+                    oVar.Q.setVisibility(4);
+                    oVar.Q.removeView(oVar.P);
+                    WebChromeClient.CustomViewCallback customViewCallback = oVar.T;
+                    if (customViewCallback != null && !customViewCallback.getClass().getName().contains(".chromium.")) {
+                        oVar.T.onCustomViewHidden();
+                    }
+                    oVar.P = null;
+                    return;
+                }
                 return;
             default:
-                gm.c3(new gu((k11) obj4, (he[]) obj3, tLObject, this.b, (Uri) obj2, (Context) obj, this.c));
+                super.onHideCustomView();
+                ou3 ou3Var = (ou3) callback;
+                FrameLayout frameLayout = ou3Var.o1;
+                if (ou3Var.n1 != null) {
+                    ou3Var.b.setVisibility(0);
+                    frameLayout.setVisibility(4);
+                    frameLayout.removeView(ou3Var.n1);
+                    WebChromeClient.CustomViewCallback customViewCallback2 = ou3Var.p1;
+                    if (customViewCallback2 != null && !customViewCallback2.getClass().getName().contains(".chromium.")) {
+                        ou3Var.p1.onCustomViewHidden();
+                    }
+                    ou3Var.n1 = null;
+                    return;
+                }
                 return;
         }
     }
 
-    public ru(o oVar, int i, TLRPC.WebPage webPage, k47 k47Var, boolean z, String str) {
-        this.d = oVar;
-        this.b = i;
-        this.e = webPage;
-        this.f = k47Var;
-        this.c = z;
-        this.g = str;
+    @Override
+    public final void onShowCustomView(View view, WebChromeClient.CustomViewCallback customViewCallback) {
+        byte b = this.a;
+        KeyEvent.Callback callback = this.b;
+        switch (b) {
+            case 0:
+                o oVar = ((j) callback).y;
+                if (oVar.P != null) {
+                    customViewCallback.onCustomViewHidden();
+                    return;
+                }
+                oVar.P = view;
+                oVar.T = customViewCallback;
+                gl.d3(new b1(this, (byte) 21), 100L);
+                return;
+            default:
+                ou3 ou3Var = (ou3) callback;
+                FrameLayout frameLayout = ou3Var.o1;
+                if (ou3Var.n1 == null && !ou3Var.H0()) {
+                    ou3Var.F0();
+                    ou3Var.n1 = view;
+                    ou3Var.b.setVisibility(4);
+                    frameLayout.setVisibility(0);
+                    frameLayout.addView(view, nme.c(-1.0f, -1));
+                    ou3Var.p1 = customViewCallback;
+                    return;
+                }
+                customViewCallback.onCustomViewHidden();
+                return;
+        }
+    }
+
+    @Override
+    public final void onShowCustomView(View view, int i, WebChromeClient.CustomViewCallback customViewCallback) {
+        switch (this.a) {
+            case 0:
+                onShowCustomView(view, customViewCallback);
+                return;
+            default:
+                onShowCustomView(view, customViewCallback);
+                return;
+        }
     }
 }

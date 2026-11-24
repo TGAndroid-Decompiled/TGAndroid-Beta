@@ -1,11 +1,31 @@
 package defpackage;
-public enum vsb extends rub {
-    public vsb() {
-        super("ScriptDataDoubleEscapeStart", 27);
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class vsb extends AnimatorListenerAdapter {
+    public final byte a;
+    public final zsb b;
+
+    public vsb(zsb zsbVar, byte b) {
+        this.a = b;
+        this.b = zsbVar;
     }
 
     @Override
-    public final void c(bsb bsbVar, hl1 hl1Var) {
-        rub.a(bsbVar, hl1Var, rub.S, rub.L);
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        zsb zsbVar = this.b;
+        switch (b) {
+            case 0:
+                zsbVar.w = 0;
+                zsbVar.n.setVisibility(8);
+                return;
+            case 1:
+                zsbVar.w = 0;
+                return;
+            default:
+                zsbVar.G.setVisibility(8);
+                return;
+        }
     }
 }

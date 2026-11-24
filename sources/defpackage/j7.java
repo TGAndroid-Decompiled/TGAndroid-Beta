@@ -20,7 +20,7 @@ public final class j7 implements ViewTreeObserver.OnPreDrawListener {
             l7 l7Var = r7Var.e;
             l7Var.setTranslationX(f - l7Var.getX());
         }
-        r7Var.e.animate().translationX(0.0f).setDuration(250L).setStartDelay(0L).setInterpolator(d53.f).start();
+        r7Var.e.animate().translationX(0.0f).setDuration(250L).setStartDelay(0L).setInterpolator(s33.f).start();
         return true;
     }
 }

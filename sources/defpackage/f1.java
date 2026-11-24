@@ -1,3 +1,3 @@
 package defpackage;
-public final class f1 extends ubb {
+public final class f1 extends s9b {
 }

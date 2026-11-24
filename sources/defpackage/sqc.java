@@ -1,74 +1,113 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.d;
-public final class sqc implements qac {
-    public final byte a;
-    public final vqc b;
-    public final k11 c;
+import android.graphics.Bitmap;
+import android.text.TextUtils;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.regex.Pattern;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+public abstract class sqc {
+    public static final Pattern a = Pattern.compile("^(.+_\\d+_.+_v\\d+(_debug)?\\.jpg|-?\\d+_-?\\d+\\.jpg|wallpaper_thumb_-?\\d+\\.png)$");
+    public static final Object b = new Object();
+    public static volatile File c;
 
-    public sqc(vqc vqcVar, k11 k11Var, byte b) {
-        this.a = b;
-        this.b = vqcVar;
-        this.c = k11Var;
+    public static boolean a(File file, File file2) {
+        boolean renameTo;
+        if (file == null) {
+            return false;
+        }
+        if (file.equals(file2)) {
+            return true;
+        }
+        synchronized (b) {
+            File parentFile = file2.getParentFile();
+            File file3 = new File(parentFile, file2.getName() + ".tmp");
+            FileInputStream fileInputStream = new FileInputStream(file);
+            FileOutputStream fileOutputStream = new FileOutputStream(file3);
+            try {
+                fileOutputStream.getChannel().transferFrom(fileInputStream.getChannel(), 0L, fileInputStream.getChannel().size());
+                fileOutputStream.getFD().sync();
+                fileOutputStream.close();
+                fileInputStream.close();
+                renameTo = file3.renameTo(file2);
+                if (!renameTo) {
+                    file3.delete();
+                }
+            } catch (Throwable th) {
+                try {
+                    fileOutputStream.close();
+                } catch (Throwable th2) {
+                    th.addSuppressed(th2);
+                }
+                throw th;
+            }
+        }
+        return renameTo;
     }
 
-    @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        k11 k11Var = this.c;
-        vqc vqcVar = this.b;
-        String str = (String) obj;
-        switch (b) {
-            case 0:
-                k11Var.c(false);
-                if (str != null) {
-                    c41.b0(vqcVar).f0(str, false);
-                    return;
-                }
-                tk5 parentLayout = vqcVar.getParentLayout();
-                if (parentLayout == null) {
-                    vqcVar.finishFragment();
-                    return;
-                }
-                ArrayList arrayList = new ArrayList(parentLayout.getFragmentStack());
-                int size = arrayList.size();
-                int i = 0;
-                while (i < size) {
-                    Object obj2 = arrayList.get(i);
-                    i++;
-                    d dVar = (d) obj2;
-                    if ((dVar instanceof asc) || (dVar instanceof drc) || (dVar instanceof hsc) || (dVar instanceof vqc)) {
-                        ((ActionBarLayout) parentLayout).c0(dVar, false);
-                    }
-                }
-                vqcVar.finishFragment();
-                return;
-            default:
-                k11Var.c(false);
-                tk5 parentLayout2 = vqcVar.getParentLayout();
-                if (parentLayout2 != null) {
-                    ArrayList arrayList2 = new ArrayList(parentLayout2.getFragmentStack());
-                    int size2 = arrayList2.size();
-                    int i2 = 0;
-                    while (i2 < size2) {
-                        Object obj3 = arrayList2.get(i2);
-                        i2++;
-                        d dVar2 = (d) obj3;
-                        if ((dVar2 instanceof asc) || (dVar2 instanceof drc) || (dVar2 instanceof hsc)) {
-                            ((ActionBarLayout) parentLayout2).c0(dVar2, false);
-                        }
-                    }
-                }
-                if (str != null) {
-                    c41.b0(vqcVar).f0(str, false);
-                    return;
-                }
-                u31 I = c41.b0(vqcVar).I(2131623990, jb6.M0(2131742874, null), jb6.M0(2131742872, null));
-                I.j = 5000;
-                I.j();
-                return;
+    public static File b(String str) {
+        File file = c;
+        if (file == null) {
+            file = new File(a.h(), "wallpaper");
+            file.mkdirs();
+            c = file;
         }
+        if (str == null) {
+            return new File(file, ".none");
+        }
+        File file2 = new File(file, str);
+        if (!file2.exists()) {
+            synchronized (b) {
+                File file3 = new File(a.h(), str);
+                if (file3.isFile() && !file2.exists() && !file3.renameTo(file2)) {
+                    return file3;
+                }
+                return file2;
+            }
+        }
+        return file2;
+    }
+
+    public static boolean c(Bitmap bitmap, Bitmap.CompressFormat compressFormat, File file) {
+        if (bitmap == null) {
+            return false;
+        }
+        synchronized (b) {
+            File parentFile = file.getParentFile();
+            File file2 = new File(parentFile, file.getName() + ".tmp");
+            FileOutputStream fileOutputStream = new FileOutputStream(file2);
+            if (!bitmap.compress(compressFormat, 87, fileOutputStream)) {
+                fileOutputStream.close();
+                file2.delete();
+                return false;
+            }
+            fileOutputStream.flush();
+            fileOutputStream.getFD().sync();
+            fileOutputStream.close();
+            boolean renameTo = file2.renameTo(file);
+            if (!renameTo) {
+                file2.delete();
+            }
+            return renameTo;
+        }
+    }
+
+    public static File d(String str) {
+        String str2;
+        if (TextUtils.isEmpty(str)) {
+            str2 = null;
+        } else {
+            str2 = Utilities.a(str) + ".wp";
+        }
+        return b(str2);
+    }
+
+    public static File e(String str) {
+        if (TextUtils.isEmpty(str)) {
+            str = null;
+        }
+        return b(str);
     }
 }

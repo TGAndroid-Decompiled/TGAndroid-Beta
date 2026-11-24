@@ -1,23 +1,28 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_aicompose;
+import java.util.Locale;
 public final class vm3 {
     public final String a;
-    public final long b;
-    public final TL_aicompose.AiComposeTone c;
-    public final boolean d;
+    public final float b;
+    public final boolean c;
 
-    public vm3(String str, long j, TL_aicompose.AiComposeTone aiComposeTone, boolean z) {
+    public vm3(String str, float f, boolean z) {
         this.a = str;
-        this.b = j;
-        this.c = aiComposeTone;
-        this.d = z;
+        this.b = f;
+        this.c = z;
     }
 
-    public final String a() {
-        if (this.d) {
-            return jb6.M0(2131744990, null);
+    public final String toString() {
+        String str;
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.a);
+        sb.append(String.format(Locale.US, " %.2f", Float.valueOf(this.b)));
+        if (this.c) {
+            str = " sure";
+        } else {
+            str = "";
         }
-        return this.a;
+        sb.append(str);
+        return sb.toString();
     }
 }

@@ -1,33 +1,60 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.ViewGroup;
-public final class jv7 extends bu7 {
-    public final Path o3;
-    public final z8b p3;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.PasscodeActivity;
+public final class jv7 implements TextWatcher {
+    public final byte a;
+    public final PasscodeActivity b;
 
-    public jv7(z8b z8bVar, Context context) {
-        super(context);
-        this.p3 = z8bVar;
-        this.o3 = new Path();
+    public jv7(PasscodeActivity passcodeActivity, byte b) {
+        this.a = b;
+        this.b = passcodeActivity;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        ViewGroup barView;
-        z8b z8bVar = this.p3;
-        barView = z8bVar.getBarView();
-        RectF rectF = gm.P;
-        rectF.set(gm.U1(z8bVar.t1, barView.getLeft() - getLeft(), 0), gm.U1(z8bVar.t1, barView.getTop() - getTop(), 0), gm.U1(z8bVar.t1, barView.getRight() - getLeft(), getWidth()), gm.U1(z8bVar.t1, barView.getBottom() - getTop(), getHeight()));
-        Path path = this.o3;
-        path.rewind();
-        path.addRoundRect(rectF, gm.L(32.0f), gm.L(32.0f), Path.Direction.CW);
-        canvas.save();
-        canvas.clipPath(path);
-        super.draw(canvas);
-        canvas.restore();
+    public final void afterTextChanged(Editable editable) {
+        byte b = this.a;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        byte b = this.a;
+        PasscodeActivity passcodeActivity = this.b;
+        switch (b) {
+            case 0:
+                ev7 ev7Var = passcodeActivity.T;
+                if (passcodeActivity.S) {
+                    passcodeActivity.n.removeCallbacks(ev7Var);
+                    ev7Var.run();
+                    return;
+                }
+                return;
+            default:
+                ev7 ev7Var2 = passcodeActivity.T;
+                if (passcodeActivity.S) {
+                    passcodeActivity.n.removeCallbacks(ev7Var2);
+                    ev7Var2.run();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        byte b = this.a;
+    }
+
+    private final void a(Editable editable) {
+    }
+
+    private final void b(Editable editable) {
+    }
+
+    private final void c(int i, int i2, int i3, CharSequence charSequence) {
+    }
+
+    private final void d(int i, int i2, int i3, CharSequence charSequence) {
     }
 }

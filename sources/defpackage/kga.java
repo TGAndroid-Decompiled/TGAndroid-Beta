@@ -1,281 +1,229 @@
 package defpackage;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.util.SparseArray;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class kga extends q59 {
-    public final Context c;
-    public e6a e;
-    public int n;
-    public final byte r;
-    public int s;
-    public final nha w;
-    public ArrayList d = new ArrayList();
-    public ArrayList f = new ArrayList();
-    public int h = 0;
+import org.telegram.messenger.Utilities;
+public final class kga extends fx0 implements gk7 {
+    public final ns9 l1;
+    public final s20 m1;
+    public final Drawable n1;
+    public TextView o1;
+    public int p1;
+    public boolean q1;
+    public final jga r1;
+    public int s1;
 
-    public kga(nha nhaVar, Context context, int i) {
-        this.w = nhaVar;
-        this.c = context;
-        this.r = i;
+    public kga(Context context, jga jgaVar, wjb wjbVar) {
+        super(1, wjbVar, context, false);
+        kk7.e().b(this, kk7.F4);
+        this.r1 = jgaVar;
+        K();
+        Drawable mutate = context.getResources().getDrawable(2131232733).mutate();
+        this.n1 = mutate;
+        int i = bkb.g5;
+        mutate.setColorFilter(new PorterDuffColorFilter(bkb.v0(i, this.J0), PorterDuff.Mode.MULTIPLY));
+        oc6 oc6Var = new oc6((byte) 22, context, this);
+        this.b = oc6Var;
+        oc6Var.setWillNotDraw(false);
+        ViewGroup viewGroup = this.b;
+        int i2 = this.u0;
+        viewGroup.setPadding(i2, 0, i2, 0);
+        ns9 ns9Var = new ns9((byte) 3, context, this);
+        this.l1 = ns9Var;
+        getContext();
+        ns9Var.setLayoutManager(new t26(1, false));
+        s20 s20Var = new s20(this, context, (byte) 15);
+        this.m1 = s20Var;
+        ns9Var.setAdapter(s20Var);
+        ns9Var.setVerticalScrollBarEnabled(false);
+        ns9Var.setClipToPadding(false);
+        ns9Var.setEnabled(true);
+        zkb.l(ns9Var, 21, bkb.z5, wjbVar);
+        ns9Var.setOnScrollListener(new n58(this, (byte) 21));
+        ns9Var.setOnItemClickListener(new f09(this, (byte) 9));
+        this.b.addView(ns9Var, nme.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 48.0f));
+        View view = new View(context);
+        view.setBackgroundResource(2131231241);
+        this.b.addView(view, nme.d(-1, 3.0f, 83, 0.0f, 0.0f, 0.0f, 48.0f));
+        a6 a6Var = new a6(context, (byte) 25);
+        zkb.h(bkb.c6, null, a6Var);
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, 14.0f);
+        int i3 = bkb.Yi;
+        zkb.X(textView, i3, null);
+        textView.setGravity(17);
+        ff0 f0 = bkb.f0(bkb.w0(null, i3, false) & 268435455, 0, -1);
+        vkb g = zkb.g(i3, 15);
+        textView.setBackground(f0);
+        zkb.j(textView, f0, null, g, null);
+        textView.setPadding(gl.L(33.0f), 0, gl.L(33.0f), 0);
+        textView.setText(k96.M0(2131752577, null).toUpperCase());
+        textView.setTypeface(gl.o());
+        a6Var.addView(textView, nme.e(-2, -1, 51));
+        LinearLayout j = de9.j(context, 0);
+        ff0 f02 = bkb.f0(bkb.w0(null, i3, false) & 268435455, 0, -1);
+        vkb g2 = zkb.g(i3, 15);
+        j.setBackground(f02);
+        zkb.j(j, f02, null, g2, null);
+        j.setPadding(gl.L(33.0f), 0, gl.L(33.0f), 0);
+        a6Var.addView(j, nme.e(-2, -1, 53));
+        TextView textView2 = new TextView(context);
+        ug8.v(textView2, 1, 13.0f);
+        zkb.X(textView2, bkb.bj, null);
+        textView2.setGravity(17);
+        int L = gl.L(11.0f);
+        int i4 = bkb.aj;
+        ShapeDrawable b0 = bkb.b0(L, bkb.w0(null, i4, false));
+        vkb M = zkb.M(i4);
+        textView2.setBackground(b0);
+        zkb.j(textView2, b0, M, null, null);
+        textView2.setMinWidth(gl.L(23.0f));
+        textView2.setPadding(gl.L(8.0f), 0, gl.L(8.0f), gl.L(1.0f));
+        TextView m = ug8.m(j, textView2, nme.t(-2, 23, 16, 0, 0, 10, 0), context);
+        m.setTextSize(1, 14.0f);
+        zkb.X(m, i3, null);
+        m.setGravity(17);
+        m.setCompoundDrawablePadding(gl.L(8.0f));
+        m.setText(k96.M0(2131745448, null).toUpperCase());
+        m.setTypeface(gl.o());
+        j.addView(m, nme.r(-2, -2, 16));
+        zkb.h(i, wjbVar, a6Var);
+        this.b.addView(a6Var, nme.e(-1, 48, 83));
+        textView.setPadding(gl.L(18.0f), 0, gl.L(18.0f), 0);
+        zkb.X(textView, bkb.p7, wjbVar);
+        textView.setText(k96.M0(2131744603, null));
+        textView.setOnClickListener(new View.OnClickListener(this) {
+            public final kga b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view2) {
+                byte b = r2;
+                kga kgaVar = this.b;
+                switch (b) {
+                    case 0:
+                        for (int i5 = 0; i5 < 4; i5++) {
+                            Utilities.d.c(new va6(eb6.f(i5), (byte) 6));
+                        }
+                        kgaVar.dismiss();
+                        return;
+                    default:
+                        kgaVar.dismiss();
+                        return;
+                }
+            }
+        });
+        zkb.X(m, bkb.m5, wjbVar);
+        m.setText(k96.M0(2131752029, null).toUpperCase());
+        j.setPadding(gl.L(18.0f), 0, gl.L(18.0f), 0);
+        j.setOnClickListener(new View.OnClickListener(this) {
+            public final kga b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view2) {
+                byte b = r2;
+                kga kgaVar = this.b;
+                switch (b) {
+                    case 0:
+                        for (int i5 = 0; i5 < 4; i5++) {
+                            Utilities.d.c(new va6(eb6.f(i5), (byte) 6));
+                        }
+                        kgaVar.dismiss();
+                        return;
+                    default:
+                        kgaVar.dismiss();
+                        return;
+                }
+            }
+        });
+        textView2.setVisibility(8);
+        s20Var.f();
+    }
+
+    public static db6 D0(int i) {
+        for (int i2 = 0; i2 < 4; i2++) {
+            ArrayList arrayList = eb6.f(i2).J;
+            if (i >= arrayList.size()) {
+                i -= arrayList.size();
+            } else {
+                return (db6) arrayList.get(i);
+            }
+        }
+        return null;
     }
 
     @Override
-    public final boolean D(u69 u69Var) {
-        if (this.f.size() + this.d.size() != 0) {
-            return true;
-        }
+    public final boolean D() {
         return false;
     }
 
-    public final k47 E(int i) {
-        if (i < this.d.size()) {
-            return (k47) this.d.get(i);
-        }
-        return (k47) this.f.get(i - this.d.size());
-    }
-
-    public final void F(final int i, long j, long j2, final String str) {
-        d dVar = this.w.y1;
-        if (!pg3.B(j)) {
-            if (this.h != 0) {
-                dVar.getConnectionsManager().cancelRequest(this.h, true);
-                this.h = 0;
-                this.s--;
-            }
-            if (str != null && str.length() != 0) {
-                TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
-                tL_messages_search.limit = 50;
-                tL_messages_search.offset_id = i;
-                byte b = this.r;
-                if (b == 1) {
-                    tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterDocument();
-                } else if (b == 3) {
-                    tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterUrl();
-                } else if (b == 4) {
-                    tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterMusic();
-                }
-                tL_messages_search.q = str;
-                tL_messages_search.peer = dVar.getMessagesController().i1(j);
-                if (j2 != 0) {
-                    int i2 = (j > dVar.getUserConfig().e() ? 1 : (j == dVar.getUserConfig().e() ? 0 : -1));
-                    int i3 = tL_messages_search.flags;
-                    if (i2 == 0) {
-                        tL_messages_search.flags = i3 | 4;
-                        tL_messages_search.saved_peer_id = dVar.getMessagesController().i1(j2);
-                    } else {
-                        tL_messages_search.flags = i3 | 2;
-                        tL_messages_search.top_msg_id = (int) j2;
-                    }
-                }
-                if (tL_messages_search.peer == null) {
-                    return;
-                }
-                final int i4 = this.n + 1;
-                this.n = i4;
-                this.s++;
-                this.h = dVar.getConnectionsManager().sendRequest(tL_messages_search, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ArrayList arrayList = new ArrayList();
-                        kga kgaVar = kga.this;
-                        if (tL_error == null) {
-                            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                            for (int i5 = 0; i5 < messages_messages.messages.size(); i5++) {
-                                TLRPC.Message message = messages_messages.messages.get(i5);
-                                int i6 = i;
-                                if (i6 == 0 || message.id <= i6) {
-                                    arrayList.add(new k47(kgaVar.w.y1.getCurrentAccount(), message, false, true));
-                                }
-                            }
-                        }
-                        gm.c3(new tda(kgaVar, i4, arrayList, str, (byte) 2));
-                    }
-                }, 2);
-                dVar.getConnectionsManager().bindRequestToGuid(this.h, dVar.getClassGuid());
-                return;
-            }
-            this.f.clear();
-            this.n = 0;
-            f();
-        }
-    }
-
-    public final void G(String str, boolean z) {
-        e6a e6aVar = this.e;
-        if (e6aVar != null) {
-            gm.r(e6aVar);
-            this.e = null;
-        }
-        if (!this.d.isEmpty() || !this.f.isEmpty()) {
-            this.d.clear();
-            this.f.clear();
-            f();
-        }
-        boolean isEmpty = TextUtils.isEmpty(str);
-        int i = 0;
-        nha nhaVar = this.w;
-        if (isEmpty) {
-            if (!this.d.isEmpty() || !this.f.isEmpty() || this.s != 0) {
-                this.d.clear();
-                this.f.clear();
-                if (this.h != 0) {
-                    nhaVar.y1.getConnectionsManager().cancelRequest(this.h, true);
-                    this.h = 0;
-                    this.s--;
-                    return;
-                }
-                return;
-            }
+    public final void E0() {
+        ns9 ns9Var = this.l1;
+        if (ns9Var.getChildCount() <= 0) {
+            int paddingTop = ns9Var.getPaddingTop();
+            this.p1 = paddingTop;
+            ns9Var.setTopGlowOffset(paddingTop);
+            this.b.invalidate();
             return;
         }
-        while (true) {
-            iga[] igaVarArr = nhaVar.n0;
-            if (i < igaVarArr.length) {
-                iga igaVar = igaVarArr[i];
-                if (igaVar.F == this.r) {
-                    igaVar.w.e(true, z);
-                }
-                i++;
+        int i = 0;
+        View childAt = ns9Var.getChildAt(0);
+        y29 y29Var = (y29) ns9Var.G(childAt);
+        int top = childAt.getTop() - gl.L(8.0f);
+        if (top > 0 && y29Var != null && y29Var.b() == 0) {
+            i = top;
+        }
+        if (this.p1 != i) {
+            this.p1 = i;
+            ns9Var.setTopGlowOffset(i);
+            this.b.invalidate();
+        }
+    }
+
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == kk7.F4) {
+            if (eb6.g() == 0) {
+                dismiss();
             } else {
-                e6a e6aVar2 = new e6a(this, str, (byte) 8);
-                this.e = e6aVar2;
-                gm.d3(e6aVar2, 300L);
-                return;
+                this.m1.f();
             }
         }
     }
 
     @Override
-    public final int b() {
-        int size = this.d.size();
-        int size2 = this.f.size();
-        if (size2 != 0) {
-            return size + size2;
-        }
-        return size;
+    public final void dismiss() {
+        super.dismiss();
+        kk7.e().n(this, kk7.F4);
     }
 
     @Override
-    public final int d(int i) {
-        return 24;
-    }
-
-    @Override
-    public final void t(u69 u69Var, int i) {
-        boolean z;
-        char c;
-        boolean z2;
-        char c2;
-        boolean z3;
-        char c3;
-        View view = u69Var.a;
-        nha nhaVar = this.w;
-        long j = nhaVar.m1;
-        SparseArray[] sparseArrayArr = nhaVar.c1;
-        boolean z4 = false;
-        byte b = this.r;
-        if (b == 1) {
-            if (view instanceof ida) {
-                ida idaVar = (ida) view;
-                k47 E = E(i);
-                if (i != b() - 1) {
-                    z3 = true;
-                } else {
-                    z3 = false;
-                }
-                idaVar.c(E, z3);
-                if (nhaVar.F1) {
-                    if (k47.B0(E.k) == j) {
-                        c3 = 0;
-                    } else {
-                        c3 = 1;
-                    }
-                    if (sparseArrayArr[c3].indexOfKey(E.e1()) >= 0) {
-                        z4 = true;
-                    }
-                    idaVar.b(z4, !nhaVar.e1);
-                    return;
-                }
-                idaVar.b(false, !nhaVar.e1);
+    public final void p0() {
+        try {
+            super.p0();
+            int v0 = bkb.v0(bkb.g5, this.J0);
+            Drawable drawable = this.n1;
+            if (drawable != null && v0 != this.s1) {
+                this.s1 = v0;
+                drawable.setColorFilter(new PorterDuffColorFilter(v0, PorterDuff.Mode.MULTIPLY));
             }
-        } else if (b == 3) {
-            if (view instanceof lda) {
-                lda ldaVar = (lda) view;
-                k47 E2 = E(i);
-                if (i != b() - 1) {
-                    z2 = true;
-                } else {
-                    z2 = false;
-                }
-                ldaVar.E = z2;
-                ldaVar.e();
-                ldaVar.c0 = E2;
-                ldaVar.requestLayout();
-                if (nhaVar.F1) {
-                    if (k47.B0(E2.k) == j) {
-                        c2 = 0;
-                    } else {
-                        c2 = 1;
-                    }
-                    if (sparseArrayArr[c2].indexOfKey(E2.e1()) >= 0) {
-                        z4 = true;
-                    }
-                    ldaVar.f(z4, !nhaVar.e1);
-                    return;
-                }
-                ldaVar.f(false, !nhaVar.e1);
-            }
-        } else if (b == 4 && (view instanceof eda)) {
-            eda edaVar = (eda) view;
-            k47 E3 = E(i);
-            if (i != b() - 1) {
-                z = true;
-            } else {
-                z = false;
-            }
-            edaVar.f(E3, z);
-            if (nhaVar.F1) {
-                if (k47.B0(E3.k) == j) {
-                    c = 0;
-                } else {
-                    c = 1;
-                }
-                if (sparseArrayArr[c].indexOfKey(E3.e1()) >= 0) {
-                    z4 = true;
-                }
-                edaVar.e(z4, !nhaVar.e1);
-                return;
-            }
-            edaVar.e(false, !nhaVar.e1);
+        } catch (Exception e) {
+            fa4.g(e, true);
         }
-    }
-
-    @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        FrameLayout wg4Var;
-        nha nhaVar = this.w;
-        ylb ylbVar = nhaVar.I1;
-        Context context = this.c;
-        byte b = this.r;
-        if (b == 1) {
-            wg4Var = new ida(0, ylbVar, context);
-        } else if (b == 4) {
-            wg4Var = new wg4(this, context, ylbVar, (byte) 1);
-        } else {
-            lda ldaVar = new lda(0, ylbVar, context);
-            ldaVar.setDelegate(nhaVar.W1);
-            wg4Var = ldaVar;
-        }
-        wg4Var.setLayoutParams(new g69(-1, -2));
-        return new u69(wg4Var);
     }
 }

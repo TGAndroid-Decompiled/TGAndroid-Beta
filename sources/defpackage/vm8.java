@@ -1,70 +1,52 @@
 package defpackage;
-public final class vm8 implements hu4 {
-    public static final vm8 a;
-    private static final y6a descriptor;
 
-    static {
-        ?? obj = new Object();
-        a = obj;
-        if8 if8Var = new if8("com.google.firebase.sessions.ProcessData", obj, 2);
-        if8Var.j("pid", false);
-        if8Var.j("uuid", false);
-        descriptor = if8Var;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.Components.UndoView;
+import org.telegram.ui.ProfileActivity;
+public final class vm8 implements wc2 {
+    public final TLRPC.Chat a;
+    public final zc2 b;
+    public final ProfileActivity c;
+
+    public vm8(ProfileActivity profileActivity, TLRPC.Chat chat, zc2 zc2Var) {
+        this.c = profileActivity;
+        this.a = chat;
+        this.b = zc2Var;
     }
 
     @Override
-    public final cx5[] a() {
-        return new cx5[]{gr5.a, ebb.a};
+    public final void a(TLRPC.User user) {
+        int i;
+        ProfileActivity profileActivity = this.c;
+        UndoView undoView = profileActivity.M;
+        long j = -profileActivity.f1;
+        if (profileActivity.F2.megagroup) {
+            i = 10;
+        } else {
+            i = 9;
+        }
+        undoView.m(user, i, j);
     }
 
     @Override
-    public final void b(c40 c40Var, Object obj) {
-        xm8 xm8Var = (xm8) obj;
-        xm8Var.getClass();
-        y6a y6aVar = descriptor;
-        c40 a2 = c40Var.a(y6aVar);
-        int i = xm8Var.a;
-        a2.c(y6aVar, 0);
-        a2.d(i);
-        String str = xm8Var.b;
-        str.getClass();
-        a2.c(y6aVar, 1);
-        a2.k(str);
-        a2.l(y6aVar);
-    }
-
-    @Override
-    public final Object c(jif jifVar) {
-        y6a y6aVar = descriptor;
-        jif a2 = jifVar.a(y6aVar);
-        String str = null;
-        boolean z = true;
-        int i = 0;
-        int i2 = 0;
-        while (z) {
-            int b = a2.b(y6aVar);
-            if (b != -1) {
-                if (b != 0) {
-                    if (b == 1) {
-                        str = a2.n(y6aVar, 1);
-                        i |= 2;
-                    } else {
-                        throw new tw5(b);
+    public final void b(int i, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.Chat chat;
+        ProfileActivity profileActivity = this.c;
+        profileActivity.removeSelfFromStack();
+        TLRPC.User V1 = profileActivity.getMessagesController().V1(Long.valueOf(profileActivity.e1));
+        if (V1 != null && (chat = this.a) != null && profileActivity.e1 != 0) {
+            zc2 zc2Var = this.b;
+            if (zc2Var.R && zc2Var.getParentLayout() != null) {
+                for (d dVar : zc2Var.getParentLayout().getFragmentStack()) {
+                    if (dVar instanceof nf1) {
+                        nf1 nf1Var = (nf1) dVar;
+                        nf1Var.Y0();
+                        gl.c3(new gm8(nf1Var, V1, chat, (byte) 1));
+                        return;
                     }
-                } else {
-                    i2 = a2.f(y6aVar, 0);
-                    i |= 1;
                 }
-            } else {
-                z = false;
             }
         }
-        a2.o(y6aVar);
-        return new xm8(i, i2, str);
-    }
-
-    @Override
-    public final y6a d() {
-        return descriptor;
     }
 }

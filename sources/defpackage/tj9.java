@@ -1,1000 +1,462 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
-import android.text.style.ClickableSpan;
-import android.view.MotionEvent;
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.SystemClock;
 import android.view.View;
-import android.view.ViewConfiguration;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Stack;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.tgnet.TLObject;
-public final class tj9 implements qkb, wgb {
-    public static Paint U;
-    public final AtomicReference E;
-    public cn F;
-    public final b66 G;
-    public b66 H;
-    public qa6 I;
-    public i66 J;
-    public kf9 K;
-    public boolean L;
-    public rna M;
-    public CharacterStyle N;
-    public int O;
-    public int P;
-    public gn Q;
-    public ti9 R;
-    public final RectF S;
-    public View T;
-    public final uj9 a;
-    public final StaticLayout b;
-    public int c;
-    public int d;
-    public int e;
-    public final int f;
-    public final int h;
-    public final int n;
-    public boolean r;
-    public final int s;
-    public boolean w;
-    public final ArrayList x;
-    public final Stack y;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.Components.q;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.SecretMediaViewer;
+import org.telegram.ui.StickersActivity;
+public final class tj9 implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public tj9(uj9 uj9Var, CharSequence charSequence, int i, Layout.Alignment alignment, float f) {
-        Paint.FontMetricsInt fontMetricsInt;
-        boolean z;
-        float f2;
-        rj9[] rj9VarArr;
-        int i2;
-        int i3;
-        int i4;
-        float f3;
-        rj9[] rj9VarArr2;
-        ti9[] ti9VarArr;
-        boolean z2;
-        TextPaint textPaint;
-        int i5;
-        dw3[] dw3VarArr;
-        rj9[] rj9VarArr3;
-        this.x = new ArrayList();
-        this.y = new Stack();
-        this.E = new AtomicReference();
-        this.S = new RectF();
-        this.a = uj9Var;
-        TextPaint textPaint2 = uj9Var.w;
-        Paint.FontMetricsInt fontMetricsInt2 = textPaint2.getFontMetricsInt();
-        boolean z3 = true;
-        boolean z4 = false;
-        if (wi8.A(charSequence)) {
-            for (rj9 rj9Var : (rj9[]) ((Spanned) charSequence).getSpans(0, charSequence.length(), rj9.class)) {
-                int i6 = rj9Var.b & 15;
-                if (i6 >= 1 && i6 <= 6) {
-                    TextPaint textPaint3 = new TextPaint(textPaint2);
-                    rj9Var.a(textPaint3);
-                    fontMetricsInt = textPaint3.getFontMetricsInt();
-                    z = true;
-                    break;
-                }
-            }
-        }
-        fontMetricsInt = fontMetricsInt2;
-        z = false;
-        if (z) {
-            f2 = 0.85f;
-        } else {
-            f2 = 1.0f;
-        }
-        CharSequence n = gw3.n(charSequence, fontMetricsInt, false, null, 0, f2, 0);
-        if (n instanceof Spanned) {
-            Spanned spanned = (Spanned) n;
-            if (((gn[]) spanned.getSpans(0, spanned.length(), gn.class)).length != 0 || ((dw3[]) spanned.getSpans(0, spanned.length(), dw3.class)).length != 0 || ((ti9[]) spanned.getSpans(0, spanned.length(), ti9.class)).length != 0) {
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(n);
-                for (gn gnVar : (gn[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), gn.class)) {
-                    gnVar.setPreserveFontMetrics(true);
-                }
-                for (dw3 dw3Var : (dw3[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), dw3.class)) {
-                    dw3Var.e = true;
-                }
-                for (ti9 ti9Var : (ti9[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), ti9.class)) {
-                    if (ti9Var.a.a.s > 0) {
-                        ti9Var.e = true;
-                    }
-                }
-                int i7 = 0;
-                while (i7 < spannableStringBuilder.length()) {
-                    int indexOf = TextUtils.indexOf((CharSequence) spannableStringBuilder, '\n', i7);
-                    if (indexOf >= 0) {
-                        z2 = z3;
-                    } else {
-                        z2 = z4;
-                    }
-                    indexOf = z2 ? indexOf : spannableStringBuilder.length();
-                    pd0 s = s(spannableStringBuilder, i7, indexOf, textPaint2);
-                    int i8 = s.b;
-                    if (i8 > 0 && s.a * 100 >= i8 * 70 && (i5 = s.c) > 0) {
-                        gn[] gnVarArr = (gn[]) spannableStringBuilder.getSpans(i7, indexOf, gn.class);
-                        int length = gnVarArr.length;
-                        int i9 = 0;
-                        while (i9 < length) {
-                            gn gnVar2 = gnVarArr[i9];
-                            TextPaint textPaint4 = textPaint2;
-                            int spanStart = spannableStringBuilder.getSpanStart(gnVar2);
-                            if (spanStart >= i7 && spanStart < indexOf) {
-                                gnVar2.setMinimumLineHeight(i5);
-                            }
-                            i9++;
-                            textPaint2 = textPaint4;
-                        }
-                        textPaint = textPaint2;
-                        for (dw3 dw3Var2 : (dw3[]) spannableStringBuilder.getSpans(i7, indexOf, dw3.class)) {
-                            int spanStart2 = spannableStringBuilder.getSpanStart(dw3Var2);
-                            if (spanStart2 >= i7 && spanStart2 < indexOf) {
-                                dw3Var2.f = i5;
-                            }
-                        }
-                        ti9[] ti9VarArr2 = (ti9[]) spannableStringBuilder.getSpans(i7, indexOf, ti9.class);
-                        int length2 = ti9VarArr2.length;
-                        int i10 = 0;
-                        while (i10 < length2) {
-                            ti9 ti9Var2 = ti9VarArr2[i10];
-                            int spanStart3 = spannableStringBuilder.getSpanStart(ti9Var2);
-                            ti9[] ti9VarArr3 = ti9VarArr2;
-                            if (ti9Var2.a.a.s > 0 && spanStart3 >= i7 && spanStart3 < indexOf) {
-                                ti9Var2.f = i5;
-                            }
-                            i10++;
-                            ti9VarArr2 = ti9VarArr3;
-                        }
-                    } else {
-                        textPaint = textPaint2;
-                    }
-                    if (!z2) {
-                        break;
-                    }
-                    i7 = indexOf + 1;
-                    textPaint2 = textPaint;
-                    z3 = true;
-                    z4 = false;
-                }
-                n = spannableStringBuilder;
-            }
-        }
-        int d = zk9.d(n);
-        this.s = d;
-        if (d == 0 && (n instanceof Spanned)) {
-            Spanned spanned2 = (Spanned) n;
-            ti9[] ti9VarArr4 = (ti9[]) spanned2.getSpans(0, n.length(), ti9.class);
-            if (ti9VarArr4.length > 0) {
-                Arrays.sort(ti9VarArr4, new yb2(spanned2, (byte) 2));
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(n);
-                int length3 = ti9VarArr4.length;
-                int i11 = 0;
-                while (true) {
-                    if (i11 < length3) {
-                        ti9 ti9Var3 = ti9VarArr4[i11];
-                        int spanStart4 = spanned2.getSpanStart(ti9Var3);
-                        int spanEnd = spanned2.getSpanEnd(ti9Var3);
-                        if (spanStart4 < 0 || spanEnd <= spanStart4) {
-                            break;
-                        }
-                        tj9 tj9Var = ti9Var3.a.a;
-                        if (tj9Var.s == 0) {
-                            break;
-                        }
-                        spannableStringBuilder2.replace(spanStart4, spanEnd, tj9Var.b.getText());
-                        i11++;
-                    } else {
-                        this.s = zk9.d(spannableStringBuilder2);
-                        break;
-                    }
-                }
-            }
-        }
-        if (this.s > 0 && (n instanceof Spanned)) {
-            for (rj9 rj9Var2 : (rj9[]) ((Spanned) n).getSpans(0, n.length(), rj9.class)) {
-                if ((rj9Var2.b & 15) == 14) {
-                    rj9Var2.d = true;
-                }
-            }
-        }
-        if (n instanceof Spanned) {
-            rj9[] rj9VarArr4 = (rj9[]) ((Spanned) n).getSpans(0, n.length(), rj9.class);
-            int length4 = rj9VarArr4.length;
-            for (int i12 = 0; i12 < length4 && (rj9VarArr4[i12].b & 15) == 0; i12++) {
-            }
-        }
-        this.b = k47.f5(f, 0.0f, i, alignment, uj9Var.w, n, false);
-        this.f = i;
-        this.h = 0;
-        for (int i13 = 0; i13 < this.b.getLineCount(); i13++) {
-            this.f = Math.min(this.f, (int) Math.floor(this.b.getLineLeft(i13)));
-            this.h = Math.max(this.h, (int) Math.ceil(this.b.getLineRight(i13)));
-        }
-        this.n = 0;
-        if (this.b.getLineCount() > 0) {
-            StaticLayout staticLayout = this.b;
-            this.n = (int) Math.ceil(staticLayout.getLineRight(staticLayout.getLineCount() - 1));
-        }
-        b66 b66Var = null;
-        rna.c(null, this.b, this.y, this.x);
-        if (this.b.getText() instanceof Spanned) {
-            Spanned spanned3 = (Spanned) this.b.getText();
-            for (rj9 rj9Var3 : (rj9[]) spanned3.getSpans(0, spanned3.length(), rj9.class)) {
-                int i14 = rj9Var3.b;
-                if (TLObject.hasFlag(i14, 8192)) {
-                    int spanStart5 = spanned3.getSpanStart(rj9Var3);
-                    int spanEnd2 = spanned3.getSpanEnd(rj9Var3);
-                    if (spanStart5 >= 0 && spanEnd2 > spanStart5) {
-                        if (b66Var == null) {
-                            i2 = 0;
-                            b66Var = new b66(0);
-                            b66Var.n = false;
-                        } else {
-                            i2 = 0;
-                        }
-                        b66Var.d(this.b, spanStart5, 0.0f);
-                        if (TLObject.hasFlag(i14, 4096)) {
-                            i3 = -gm.L(6.0f);
-                        } else if (TLObject.hasFlag(i14, 2048)) {
-                            i3 = gm.L(2.0f);
-                        } else {
-                            i3 = i2;
-                        }
-                        if (i3 != 0) {
-                            if (i3 > 0) {
-                                f3 = 5.0f;
-                            } else {
-                                f3 = -2.0f;
-                            }
-                            i4 = i3 + gm.L(f3);
-                        } else {
-                            i4 = i2;
-                        }
-                        b66Var.o = i4;
-                        this.b.getSelectionPath(spanStart5, spanEnd2, b66Var);
-                    }
-                }
-            }
-            if (b66Var != null) {
-                b66Var.n = true;
-                this.G = b66Var;
-            }
-        }
-    }
-
-    public static pd0 s(Spanned spanned, int i, int i2, TextPaint textPaint) {
-        int[] iArr;
-        ti9[] ti9VarArr;
-        ti9 ti9Var;
-        int i3;
-        int i4;
-        ?? obj = new Object();
-        int i5 = i2 - i;
-        if (i5 > 0) {
-            gn[] gnVarArr = (gn[]) spanned.getSpans(i, i2, gn.class);
-            dw3[] dw3VarArr = (dw3[]) spanned.getSpans(i, i2, dw3.class);
-            if (gnVarArr.length == 0 && dw3VarArr.length == 0) {
-                iArr = null;
-            } else {
-                iArr = new int[i5];
-            }
-            int length = gnVarArr.length;
-            int i6 = 0;
-            while (i6 < length) {
-                int i7 = i6;
-                gn gnVar = gnVarArr[i7];
-                int spanStart = spanned.getSpanStart(gnVar);
-                int min = Math.min(i2, spanned.getSpanEnd(gnVar));
-                if (spanStart >= i && spanStart < i2 && min > spanStart) {
-                    int i8 = spanStart - i;
-                    iArr[i8] = Math.max(iArr[i8], min);
-                    i4 = i7;
-                    obj.c = Math.max(obj.c, gnVar.getSize(textPaint, spanned, spanStart, min, null) + 1);
-                } else {
-                    i4 = i7;
-                }
-                i6 = i4 + 1;
-            }
-            for (dw3 dw3Var : dw3VarArr) {
-                int spanStart2 = spanned.getSpanStart(dw3Var);
-                int min2 = Math.min(i2, spanned.getSpanEnd(dw3Var));
-                if (spanStart2 >= i && spanStart2 < i2 && min2 > spanStart2) {
-                    int i9 = spanStart2 - i;
-                    iArr[i9] = Math.max(iArr[i9], min2);
-                    obj.c = Math.max(obj.c, dw3Var.getSize(textPaint, spanned, spanStart2, min2, null));
-                }
-            }
-            ti9[] ti9VarArr2 = (ti9[]) spanned.getSpans(i, i2, ti9.class);
-            if (ti9VarArr2.length > 0) {
-                ti9VarArr = null;
-                for (ti9 ti9Var2 : ti9VarArr2) {
-                    int spanStart3 = spanned.getSpanStart(ti9Var2);
-                    if (ti9Var2.a.a.s > 0 && spanStart3 >= i && spanStart3 < i2) {
-                        if (ti9VarArr == null) {
-                            ti9VarArr = new ti9[i5];
-                        }
-                        ti9VarArr[spanStart3 - i] = ti9Var2;
-                    }
-                }
-            } else {
-                ti9VarArr = null;
-            }
-            if (iArr != null || ti9VarArr != null) {
-                int i10 = i;
-                while (i10 < i2) {
-                    int i11 = i10 - i;
-                    if (ti9VarArr == null) {
-                        ti9Var = null;
-                    } else {
-                        ti9Var = ti9VarArr[i11];
-                    }
-                    if (ti9Var != null) {
-                        ri9 ri9Var = ti9Var.a;
-                        tj9 tj9Var = ri9Var.a;
-                        tj9 tj9Var2 = ri9Var.a;
-                        if (tj9Var.b.getText() instanceof Spanned) {
-                            Spanned spanned2 = (Spanned) tj9Var2.b.getText();
-                            pd0 s = s(spanned2, 0, spanned2.length(), tj9Var2.b.getPaint());
-                            obj.a += s.a;
-                            obj.b += Math.max(1, s.b);
-                            obj.c = Math.max(obj.c, s.c);
-                            i10 = Math.min(i2, spanned.getSpanEnd(ti9Var));
-                        }
-                    }
-                    if (iArr == null) {
-                        i3 = 0;
-                    } else {
-                        i3 = iArr[i11];
-                    }
-                    if (i3 > i10) {
-                        obj.a++;
-                        obj.b++;
-                        i10 = i3;
-                    } else {
-                        int codePointAt = Character.codePointAt(spanned, i10);
-                        if (!Character.isWhitespace(codePointAt)) {
-                            obj.b++;
-                        }
-                        i10 += Character.charCount(codePointAt);
-                    }
-                }
-            }
-        }
-        return obj;
+    public tj9(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final Layout a() {
-        return this.b;
-    }
-
-    @Override
-    public final int b() {
-        return this.s;
-    }
-
-    @Override
-    public final Rect c() {
-        return null;
-    }
-
-    @Override
-    public final void d(Canvas canvas, View view) {
+    public final void run() {
         int i;
-        int i2;
-        View view2;
-        boolean z;
-        int i3;
-        canvas.save();
-        canvas.translate(-n(), 0.0f);
-        uj9 uj9Var = this.a;
-        boolean D = uj9Var.D();
-        TextPaint textPaint = uj9Var.w;
-        if (D) {
-            i = cmb.Vc;
-        } else {
-            i = cmb.Uc;
-        }
-        int v0 = cmb.v0(i, uj9Var.D);
-        textPaint.setColor(v0);
-        if (uj9Var.D()) {
-            i2 = cmb.Xc;
-        } else {
-            i2 = cmb.Wc;
-        }
-        textPaint.linkColor = cmb.v0(i2, uj9Var.D);
-        b66 b66Var = this.G;
-        if (b66Var != null) {
-            if (U == null) {
-                Paint paint = new Paint(1);
-                U = paint;
-                paint.setPathEffect(b66.c());
-            }
-            U.setColor((uj9Var.y.h() & 16777215) | 855638016);
-            canvas.drawPath(b66Var, U);
-        }
-        if (view != null) {
-            view2 = view;
-        } else {
-            view2 = this.T;
-        }
-        i66 i66Var = this.J;
-        if (i66Var != null && i66Var.g(canvas) && view2 != null) {
-            view2.invalidate();
-        }
-        StaticLayout staticLayout = this.b;
-        AtomicReference atomicReference = this.E;
-        ArrayList arrayList = this.x;
-        rna.g(view2, false, v0, 0, atomicReference, 0, staticLayout, arrayList, canvas, false);
-        StaticLayout staticLayout2 = this.b;
-        boa.a(canvas, staticLayout2);
-        if (!uj9Var.E()) {
-            gn.drawAnimatedEmojis(canvas, this.b, this.F, 0.0f, arrayList, 0.0f, 0.0f, 0.0f, 1.0f);
-        }
-        float f = uj9Var.V;
-        if (f > 0.0f) {
-            k47 k47Var = uj9Var.b;
-            if (!uj9Var.O && (k47Var == null || !oc7.r1(uj9Var.a).i4.z(k47Var))) {
-                z = false;
-            } else {
-                z = true;
-            }
-            if (this.I == null) {
-                qa6 qa6Var = new qa6();
-                this.I = qa6Var;
-                qa6Var.D = true;
-                b66 b66Var2 = new b66(0);
-                this.H = b66Var2;
-                b66Var2.c = true;
-                qa6 qa6Var2 = this.I;
-                qa6Var2.y = b66Var2;
-                qa6Var2.j(5.0f);
-                this.I.b = -1L;
-                this.H.reset();
-                this.H.d(staticLayout2, 0, 0.0f);
-                this.H.n = false;
-                staticLayout2.getSelectionPath(0, staticLayout2.getText().length(), this.H);
-                b66 b66Var3 = this.H;
-                b66Var3.n = true;
-                b66Var3.a();
-                this.I.k();
-            }
-            qa6 qa6Var3 = this.I;
-            if (z) {
-                if (qa6Var3.d() || this.I.c()) {
-                    qa6 qa6Var4 = this.I;
-                    qa6Var4.b = -1L;
-                    qa6Var4.c = -1L;
+        int indexOf;
+        int K;
+        TLRPC.Message message;
+        int i2 = 0;
+        r13 = false;
+        boolean z = false;
+        int i3 = 0;
+        int i4 = 0;
+        switch (this.a) {
+            case 0:
+                ((ak9) this.b).Y((nl9) this.c);
+                return;
+            case 1:
+                ak9 ak9Var = (ak9) this.b;
+                HandlerThread handlerThread = (HandlerThread) this.c;
+                ak9Var.f();
+                dk9 dk9Var = ak9Var.w;
+                if (dk9Var != null) {
+                    long p = dk9Var.p();
+                    jk9 jk9Var = ak9Var.v;
+                    if (jk9Var != null && p != Long.MAX_VALUE) {
+                        jk9Var.q = Math.max(0L, p) * 1000;
+                        Handler handler = jk9Var.u;
+                        if (handler != null) {
+                            handler.removeCallbacks(jk9Var.y0);
+                        }
+                    }
                 }
-            } else if (!qa6Var3.d() && !this.I.c()) {
-                this.I.a();
-            }
-            if (uj9Var.D()) {
-                i3 = cmb.Xc;
-            } else {
-                i3 = cmb.Wc;
-            }
-            int v02 = cmb.v0(i3, uj9Var.D);
-            this.I.g(cmb.p1(0.05f, v02), cmb.p1(0.15f, v02), cmb.p1(0.1f, v02), cmb.p1(0.3f, v02));
-            this.I.setAlpha((int) (f * 255.0f));
-            this.I.draw(canvas);
-        }
-        canvas.restore();
-    }
-
-    public final boolean e(ti9 ti9Var, float f, float f2) {
-        float L = gm.L(8.0f);
-        RectF rectF = ti9Var.c;
-        if (f < rectF.left - L || f >= rectF.right + L || f2 < rectF.top - L || f2 >= rectF.bottom + L) {
-            StaticLayout staticLayout = this.b;
-            ti9 ti9Var2 = null;
-            if (staticLayout.getText() instanceof Spanned) {
-                Spanned spanned = (Spanned) staticLayout.getText();
-                ti9[] ti9VarArr = (ti9[]) spanned.getSpans(0, spanned.length(), ti9.class);
-                if (ti9VarArr.length == 1) {
-                    int spanStart = spanned.getSpanStart(ti9VarArr[0]);
-                    int spanEnd = spanned.getSpanEnd(ti9VarArr[0]);
-                    int i = 0;
+                ak9Var.j();
+                dk9 dk9Var2 = ak9Var.w;
+                if (dk9Var2 != null) {
+                    dk9Var2.u();
+                    ak9Var.w = null;
+                }
+                if (ak9Var.w0 > 0) {
+                    ak9Var.j.b("release waits for camera open results: pending=" + ak9Var.w0);
+                    ak9Var.x0 = handlerThread;
+                    return;
+                }
+                handlerThread.quitSafely();
+                return;
+            case 2:
+                jk9 jk9Var2 = (jk9) this.b;
+                CountDownLatch countDownLatch = (CountDownLatch) this.c;
+                jk9Var2.getClass();
+                try {
+                    try {
+                        jk9Var2.f();
+                        jk9Var2.r0 = true;
+                    } catch (RuntimeException e) {
+                        jk9Var2.x0 = e;
+                        jk9Var2.i();
+                    }
+                    return;
+                } finally {
+                    countDownLatch.countDown();
+                }
+            case 3:
+                pb1 pb1Var = (pb1) this.b;
+                am9 am9Var = (am9) this.c;
+                al9 al9Var = pb1Var.a;
+                if (am9Var.getWidth() <= 0) {
+                    al9Var.animate().scaleX(0.0f).scaleY(1.0f).withEndAction(new zk9(pb1Var, (byte) 0)).start();
+                    return;
+                }
+                float width = am9Var.getWidth() / al9Var.getWidth();
+                ValueAnimator valueAnimator = pb1Var.x;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                }
+                pb1Var.x = ValueAnimator.ofFloat(0.0f, 1.0f);
+                pb1Var.x.addUpdateListener(new zl(pb1Var, al9Var.getScaleX(), width, ((am9Var.getWidth() / 2.0f) + am9Var.getX()) - ((al9Var.getWidth() / 2.0f) + al9Var.getX()), ((am9Var.getHeight() / 2.0f) + am9Var.getY()) - ((al9Var.getHeight() / 2.0f) + al9Var.getY()), (byte) 4));
+                pb1Var.x.addListener(new eh8((Object) pb1Var, (Object) am9Var, (byte) 11));
+                pb1Var.x.setDuration(320L);
+                pb1Var.x.setInterpolator(s33.h);
+                pb1Var.w = am9Var;
+                pb1Var.x.start();
+                return;
+            case 4:
+                nl9 nl9Var = (nl9) this.c;
+                ul9 ul9Var = (ul9) ((g29) this.b).b;
+                ul9Var.R++;
+                ul9Var.y = true;
+                ul9Var.m.b("camera switch started: target=" + nl9Var);
+                q qVar = (q) ul9Var.d.a;
+                FrameLayout frameLayout = qVar.y;
+                qVar.v0++;
+                ValueAnimator valueAnimator2 = qVar.e0;
+                if (valueAnimator2 != null) {
+                    valueAnimator2.removeAllListeners();
+                    qVar.e0.cancel();
+                    qVar.e0 = null;
+                }
+                qVar.q0 = true;
+                qVar.r0 = false;
+                qVar.s0 = false;
+                qVar.t0 = false;
+                qVar.u0 = SystemClock.elapsedRealtime();
+                as1 as1Var = qVar.F;
+                qVar.t(false);
+                Bitmap bitmap = qVar.w0;
+                if (bitmap != null) {
+                    as1Var.setImageBitmap(bitmap);
+                    qVar.p0 = true;
+                    as1Var.animate().cancel();
+                    as1Var.setAlpha(1.0f);
+                }
+                frameLayout.animate().cancel();
+                frameLayout.setRotationY(0.0f);
+                frameLayout.setCameraDistance(frameLayout.getMeasuredHeight() * 8.0f);
+                int i5 = qVar.v0;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                qVar.e0 = ofFloat;
+                ofFloat.setDuration(580L);
+                qVar.e0.setInterpolator(s33.h);
+                qVar.e0.addUpdateListener(new tw0(qVar, i5, (byte) 2));
+                qVar.e0.addListener(new cn(qVar, i5, (byte) 5));
+                qVar.e0.start();
+                fa4.b("RoundVideo camera flip started: facing=" + nl9Var + ", minimumDurationMs=580");
+                qVar.z();
+                ul9Var.o();
+                return;
+            case 5:
+                nm9 nm9Var = (nm9) this.b;
+                nm9Var.a0 = (String) this.c;
+                nm9Var.N();
+                return;
+            case 6:
+                nm9 nm9Var2 = (nm9) this.b;
+                NativeInstance nativeInstance = (NativeInstance) this.c;
+                if (!nm9Var2.w && nm9Var2.P == nativeInstance) {
+                    fa4.b("[LivePlayer] broadcast asks to rejoin");
+                    nm9Var2.Z = true;
+                    nm9Var2.P.resetGroupInstance(true, false);
+                    return;
+                }
+                return;
+            case 7:
+                ArrayList arrayList = (ArrayList) this.c;
+                nm9 nm9Var3 = ((mm9) this.b).a;
+                if (!nm9Var3.w) {
+                    if (arrayList.isEmpty()) {
+                        nm9Var3.C(true);
+                        return;
+                    } else if (nm9Var3.y == null) {
+                        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = new TLRPC.TL_groupCallParticipant();
+                        nm9Var3.y = tL_groupCallParticipant;
+                        tL_groupCallParticipant.peer = na7.q1(nm9Var3.e).w1(nm9Var3.b);
+                        nm9Var3.y.video = new TLRPC.TL_groupCallParticipantVideo();
+                        TLRPC.TL_groupCallParticipantVideoSourceGroup tL_groupCallParticipantVideoSourceGroup = new TLRPC.TL_groupCallParticipantVideoSourceGroup();
+                        tL_groupCallParticipantVideoSourceGroup.semantics = "SIM";
+                        int size = arrayList.size();
+                        while (i2 < size) {
+                            Object obj = arrayList.get(i2);
+                            i2++;
+                            tL_groupCallParticipantVideoSourceGroup.sources.add(Integer.valueOf(((TL_phone.TL_groupCallStreamChannel) obj).channel));
+                        }
+                        nm9Var3.y.video.source_groups.add(tL_groupCallParticipantVideoSourceGroup);
+                        TLRPC.GroupCallParticipant groupCallParticipant = nm9Var3.y;
+                        groupCallParticipant.video.endpoint = "unified";
+                        groupCallParticipant.videoEndpoint = "unified";
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
+            case 8:
+                um9 um9Var = (um9) this.b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.c;
+                if (!um9Var.w && um9Var.P) {
+                    fa4.b("[LivePlayer] rejoin failed: " + tL_error.text);
+                    um9Var.K();
+                    return;
+                }
+                return;
+            case 9:
+                ArrayList arrayList2 = (ArrayList) this.c;
+                um9 um9Var2 = ((sm9) this.b).a;
+                if (!um9Var2.w) {
+                    if (arrayList2.isEmpty()) {
+                        um9Var2.C(true);
+                        return;
+                    }
+                    um9Var2.C(false);
+                    if (um9Var2.y == null) {
+                        TLRPC.TL_groupCallParticipant tL_groupCallParticipant2 = new TLRPC.TL_groupCallParticipant();
+                        um9Var2.y = tL_groupCallParticipant2;
+                        tL_groupCallParticipant2.peer = na7.q1(um9Var2.e).w1(um9Var2.b);
+                        um9Var2.y.video = new TLRPC.TL_groupCallParticipantVideo();
+                        TLRPC.TL_groupCallParticipantVideoSourceGroup tL_groupCallParticipantVideoSourceGroup2 = new TLRPC.TL_groupCallParticipantVideoSourceGroup();
+                        tL_groupCallParticipantVideoSourceGroup2.semantics = "SIM";
+                        int size2 = arrayList2.size();
+                        while (i4 < size2) {
+                            Object obj2 = arrayList2.get(i4);
+                            i4++;
+                            tL_groupCallParticipantVideoSourceGroup2.sources.add(Integer.valueOf(((TL_phone.TL_groupCallStreamChannel) obj2).channel));
+                        }
+                        um9Var2.y.video.source_groups.add(tL_groupCallParticipantVideoSourceGroup2);
+                        TLRPC.GroupCallParticipant groupCallParticipant2 = um9Var2.y;
+                        groupCallParticipant2.video.endpoint = "unified";
+                        groupCallParticipant2.videoEndpoint = "unified";
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 10:
+                vp9 vp9Var = (vp9) this.b;
+                try {
+                    SQLitePreparedStatement executeFast = ((ad7) this.c).b.executeFast("DELETE FROM saved_dialogs WHERE forumChatId = ?");
+                    executeFast.requery();
+                    executeFast.bindLong(1, 0L);
+                    executeFast.step();
+                    executeFast.dispose();
+                } catch (Exception e2) {
+                    fa4.g(e2, true);
+                }
+                gl.c3(new tp9(vp9Var, (byte) 2));
+                return;
+            case 11:
+                sr9 sr9Var = (sr9) this.b;
+                String str = (String) this.c;
+                sr9Var.J = str;
+                if (sr9Var.r) {
+                    sr9Var.f.g(str, true, false, sr9Var.s, sr9Var.w, sr9Var.y, sr9Var.x, -1, 1);
+                }
+                int i6 = y6c.t0;
+                ArrayList arrayList3 = new ArrayList(qu2.r(i6).f0);
+                sr9Var.E = true;
+                int i7 = sr9Var.G;
+                sr9Var.G = i7 + 1;
+                sr9Var.F = i7;
+                sr9Var.f();
+                Utilities.g.c(new zy0(sr9Var, str, i7, arrayList3, i6, (byte) 8));
+                return;
+            case 12:
+                ArrayList arrayList4 = (ArrayList) this.c;
+                int i8 = ((zr9) this.b).m;
+                try {
+                    ad7.Y(i8).b.beginTransaction();
+                    SQLitePreparedStatement executeFast2 = ad7.Y(i8).b.executeFast("REPLACE INTO hashtag_recent_v2 VALUES(?, ?)");
                     while (true) {
-                        if (i < spanned.length()) {
-                            if ((i < spanStart || i >= spanEnd) && !Character.isWhitespace(spanned.charAt(i))) {
-                                break;
-                            }
-                            i++;
-                        } else {
-                            ti9Var2 = ti9VarArr[0];
-                            break;
-                        }
-                    }
-                }
-            }
-            if (ti9Var != ti9Var2 || !this.S.contains(f, f2)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final void f(View view) {
-        View view2 = this.T;
-        if (view2 == view && view2 != null) {
-            this.T = null;
-            gn.release((View) null, this.F);
-            this.F = null;
-            i66 i66Var = this.J;
-            if (i66Var != null) {
-                i66Var.c = null;
-            }
-            ti9[] p = p();
-            if (p != null) {
-                for (ti9 ti9Var : p) {
-                    View view3 = this.T;
-                    ti9Var.h = null;
-                    ti9Var.a.a.f(view3);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void g(int i) {
-        this.e = i;
-    }
-
-    @Override
-    public final CharSequence getPrefix() {
-        return null;
-    }
-
-    @Override
-    public final int getRow() {
-        return this.e;
-    }
-
-    @Override
-    public final CharSequence getText() {
-        if (a() == null) {
-            return null;
-        }
-        return a().getText();
-    }
-
-    @Override
-    public final int getX() {
-        return this.c;
-    }
-
-    @Override
-    public final int getY() {
-        return this.d;
-    }
-
-    @Override
-    public final void h(int i) {
-        this.d = i;
-    }
-
-    @Override
-    public final void i(View view) {
-        boolean z;
-        View view2 = this.T;
-        if (view != view2) {
-            if (view2 != null) {
-                f(view2);
-            }
-            this.T = view;
-            if (this.a.v && !this.w) {
-                z = true;
-            } else {
-                z = false;
-            }
-            this.F = gn.update(0, view, z, this.F, this.b);
-            i66 i66Var = this.J;
-            if (i66Var != null) {
-                i66Var.c = this.T;
-            }
-            ti9[] p = p();
-            if (p != null) {
-                for (ti9 ti9Var : p) {
-                    View view3 = this.T;
-                    ti9Var.h = view3;
-                    ti9Var.a.a(view3);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void j(int i) {
-        this.c = i;
-    }
-
-    public final void k() {
-        kf9 kf9Var = this.K;
-        if (kf9Var != null) {
-            gm.r(kf9Var);
-            this.K = null;
-        }
-    }
-
-    public final void l(android.text.style.CharacterStyle r13, boolean r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.tj9.l(android.text.style.CharacterStyle, boolean):void");
-    }
-
-    public final void m(Canvas canvas, int i, float f) {
-        int i2;
-        int i3;
-        canvas.save();
-        canvas.translate(-n(), 0.0f);
-        uj9 uj9Var = this.a;
-        boolean D = uj9Var.D();
-        TextPaint textPaint = uj9Var.w;
-        if (D) {
-            i2 = cmb.Vc;
-        } else {
-            i2 = cmb.Uc;
-        }
-        int v0 = cmb.v0(i2, uj9Var.D);
-        textPaint.setColor(v0);
-        if (uj9Var.D()) {
-            i3 = cmb.Xc;
-        } else {
-            i3 = cmb.Wc;
-        }
-        textPaint.linkColor = cmb.v0(i3, uj9Var.D);
-        oi7.b(canvas, this.b, i, f, new yg(this, this.T, v0, (byte) 13));
-        canvas.restore();
-    }
-
-    public final int n() {
-        if (this.r) {
-            return 0;
-        }
-        return this.f;
-    }
-
-    public final boolean o(CharacterStyle characterStyle, ii9 ii9Var) {
-        StaticLayout staticLayout = this.b;
-        if (staticLayout.getText() instanceof Spanned) {
-            Spanned spanned = (Spanned) staticLayout.getText();
-            int spanStart = spanned.getSpanStart(characterStyle);
-            int spanEnd = spanned.getSpanEnd(characterStyle);
-            if (spanStart >= 0 && spanEnd > spanStart) {
-                ii9Var.a = staticLayout;
-                ii9Var.b = spanStart;
-                ii9Var.c = spanEnd;
-                ii9Var.d = staticLayout.getWidth();
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final ti9[] p() {
-        StaticLayout staticLayout = this.b;
-        if (!(staticLayout.getText() instanceof Spanned)) {
-            return null;
-        }
-        Spanned spanned = (Spanned) staticLayout.getText();
-        return (ti9[]) spanned.getSpans(0, spanned.length(), ti9.class);
-    }
-
-    public final int q() {
-        return Math.max(0, this.n - this.f);
-    }
-
-    public final int r() {
-        return Math.max(0, this.h - this.f);
-    }
-
-    public final boolean t(MotionEvent motionEvent) {
-        boolean z;
-        boolean z2;
-        rj9 rj9Var;
-        rj9 rj9Var2;
-        int spanEnd;
-        rj9 rj9Var3;
-        int spanStart;
-        int actionMasked = motionEvent.getActionMasked();
-        int n = n() + ((int) motionEvent.getX());
-        int y = (int) motionEvent.getY();
-        ArrayList arrayList = this.x;
-        uj9 uj9Var = this.a;
-        StaticLayout staticLayout = this.b;
-        boolean z3 = true;
-        int i = 0;
-        if (actionMasked == 0) {
-            this.M = null;
-            this.N = null;
-            this.Q = null;
-            this.R = null;
-            int size = arrayList.size();
-            int i2 = 0;
-            while (i2 < size) {
-                Object obj = arrayList.get(i2);
-                i2++;
-                rna rnaVar = (rna) obj;
-                if (rnaVar.getBounds().contains(n, y)) {
-                    this.M = rnaVar;
-                    return true;
-                }
-            }
-            ti9[] p = p();
-            if (p != null) {
-                for (ti9 ti9Var : p) {
-                    if (e(ti9Var, n, y)) {
-                        ri9 ri9Var = ti9Var.a;
-                        if (ri9Var.b) {
-                            return true;
-                        }
-                        this.R = ti9Var;
-                        this.L = false;
-                        ri9Var.n(true);
-                        View view = this.T;
-                        if (view != null) {
-                            view.invalidate();
-                        }
-                        u();
-                        return true;
-                    }
-                }
-            }
-            if ((staticLayout.getText() instanceof Spannable) && y >= 0 && y < staticLayout.getHeight()) {
-                int lineForVertical = staticLayout.getLineForVertical(y);
-                float lineLeft = staticLayout.getLineLeft(lineForVertical);
-                float lineWidth = staticLayout.getLineWidth(lineForVertical) + lineLeft;
-                float f = n;
-                if (f >= lineLeft && f <= lineWidth) {
-                    int offsetForHorizontal = staticLayout.getOffsetForHorizontal(lineForVertical, f);
-                    Spannable spannable = (Spannable) staticLayout.getText();
-                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
-                    if (clickableSpanArr != null && clickableSpanArr.length > 0) {
-                        ClickableSpan clickableSpan = clickableSpanArr[0];
-                        this.N = clickableSpan;
-                        this.O = spannable.getSpanStart(clickableSpan);
-                        this.P = spannable.getSpanEnd(this.N);
-                        this.L = false;
-                        m66 m66Var = new m66(this.N, uj9Var.D, f, y, 0);
-                        b66 b = m66Var.b();
-                        b.d(staticLayout, this.O, 0.0f);
-                        staticLayout.getSelectionPath(this.O, this.P, b);
-                        i66 i66Var = this.J;
-                        if (i66Var == null) {
-                            i66Var = new i66(this.T);
-                            this.J = i66Var;
-                        }
-                        i66Var.a(m66Var, null);
-                        View view2 = this.T;
-                        if (view2 != null) {
-                            view2.invalidate();
-                        }
-                        u();
-                        return true;
-                    }
-                    rj9[] rj9VarArr = (rj9[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, rj9.class);
-                    if (rj9VarArr != null) {
-                        int length = rj9VarArr.length;
-                        int i3 = 0;
-                        while (i3 < length) {
-                            z2 = z3;
-                            rj9Var = rj9VarArr[i3];
-                            if (TLObject.hasFlag(rj9Var.b, 256)) {
-                                break;
-                            }
+                        if (i3 < arrayList4.size() && i3 != 100) {
+                            xr9 xr9Var = (xr9) arrayList4.get(i3);
+                            executeFast2.requery();
+                            executeFast2.bindString(1, xr9Var.a);
+                            executeFast2.bindInteger(2, xr9Var.b);
+                            executeFast2.step();
                             i3++;
-                            z3 = z2;
                         }
                     }
-                    z2 = z3;
-                    rj9Var = null;
-                    if (rj9Var != null) {
-                        int spanStart2 = spannable.getSpanStart(rj9Var);
-                        int spanEnd2 = spannable.getSpanEnd(rj9Var);
-                        while (spanStart2 > 0) {
-                            int i4 = spanStart2 - 1;
-                            rj9[] rj9VarArr2 = (rj9[]) spannable.getSpans(i4, i4, rj9.class);
-                            int length2 = rj9VarArr2.length;
-                            int i5 = i;
-                            while (true) {
-                                if (i5 < length2) {
-                                    rj9Var3 = rj9VarArr2[i5];
-                                    if (TLObject.hasFlag(rj9Var3.b, 256)) {
-                                        break;
-                                    }
-                                    i5++;
-                                } else {
-                                    rj9Var3 = null;
-                                    break;
-                                }
-                            }
-                            if (rj9Var3 == null || (spanStart = spannable.getSpanStart(rj9Var3)) >= spanStart2) {
-                                break;
-                            }
-                            spanStart2 = spanStart;
-                            i = 0;
+                    executeFast2.dispose();
+                    if (arrayList4.size() > 100) {
+                        SQLitePreparedStatement executeFast3 = ad7.Y(i8).b.executeFast("DELETE FROM hashtag_recent_v2 WHERE id = ?");
+                        for (i = 100; i < arrayList4.size(); i++) {
+                            executeFast3.requery();
+                            executeFast3.bindString(1, ((xr9) arrayList4.get(i)).a);
+                            executeFast3.step();
                         }
-                        while (spanEnd2 < spannable.length()) {
-                            rj9[] rj9VarArr3 = (rj9[]) spannable.getSpans(spanEnd2, spanEnd2, rj9.class);
-                            int length3 = rj9VarArr3.length;
-                            int i6 = 0;
-                            while (true) {
-                                if (i6 < length3) {
-                                    rj9Var2 = rj9VarArr3[i6];
-                                    if (TLObject.hasFlag(rj9Var2.b, 256)) {
-                                        break;
-                                    }
-                                    i6++;
-                                } else {
-                                    rj9Var2 = null;
-                                    break;
-                                }
-                            }
-                            if (rj9Var2 == null || (spanEnd = spannable.getSpanEnd(rj9Var2)) <= spanEnd2) {
-                                break;
-                            }
-                            spanEnd2 = spanEnd;
-                        }
-                        this.N = rj9Var;
-                        this.O = spanStart2;
-                        this.P = spanEnd2;
-                        this.L = false;
-                        m66 m66Var2 = new m66(rj9Var, uj9Var.D, f, y, 0);
-                        b66 b2 = m66Var2.b();
-                        b2.d(staticLayout, spanStart2, 0.0f);
-                        staticLayout.getSelectionPath(spanStart2, spanEnd2, b2);
-                        i66 i66Var2 = this.J;
-                        if (i66Var2 == null) {
-                            i66Var2 = new i66(this.T);
-                            this.J = i66Var2;
-                        }
-                        i66Var2.a(m66Var2, null);
-                        View view3 = this.T;
-                        if (view3 != null) {
-                            view3.invalidate();
-                        }
-                        u();
-                        return z2;
+                        executeFast3.dispose();
                     }
-                    gn[] gnVarArr = (gn[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, gn.class);
-                    if (gnVarArr != null && gnVarArr.length > 0) {
-                        this.Q = gnVarArr[0];
-                        return z2;
-                    }
+                    ad7.Y(i8).b.commitTransaction();
+                    return;
+                } catch (Exception e3) {
+                    fa4.g(e3, true);
+                    return;
                 }
-            }
-            return false;
-        } else if (actionMasked == 2) {
-            ti9 ti9Var2 = this.R;
-            if (ti9Var2 != null) {
-                if (e(ti9Var2, n, y)) {
-                    return true;
+            case 13:
+                mt9 mt9Var = (mt9) this.b;
+                TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) this.c;
+                ArrayList arrayList5 = mt9Var.L;
+                if (!arrayList5.isEmpty() && (indexOf = arrayList5.indexOf(tL_sponsoredPeer)) >= 0 && (K = mt9Var.K()) < mt9Var.b()) {
+                    arrayList5.remove(indexOf);
+                    mt9Var.r(K + 1 + indexOf);
+                    int size3 = mt9Var.k0.e.size();
+                    int size4 = arrayList5.size();
+                    if (mt9Var.H0) {
+                        size3 = Math.min(3, size3);
+                    }
+                    if (size4 + size3 <= 0) {
+                        mt9Var.r(K);
+                        return;
+                    }
+                    return;
                 }
-                k();
-                this.R.a.n(false);
-                this.R = null;
-                this.L = false;
-                return true;
-            }
-        } else if (actionMasked == 1) {
-            if (this.R != null) {
-                k();
-                ti9 ti9Var3 = this.R;
-                this.R = null;
-                ti9Var3.a.n(false);
-                if (!this.L) {
-                    View view4 = this.T;
-                    if (view4 != null) {
-                        view4.playSoundEffect(0);
+                return;
+            case 14:
+                ((mt9) this.b).S();
+                u21.b0((cj3) this.c).c(k96.M0(2131754485, null)).j();
+                return;
+            case 15:
+                bu9 bu9Var = (bu9) this.b;
+                TLRPC.Message message2 = (TLRPC.Message) this.c;
+                message2.send_state = 2;
+                bu9Var.getNotificationCenter().k(23, Integer.valueOf(message2.id));
+                bu9Var.getSendMessagesHelper().c0(message2.id);
+                bu9Var.getSendMessagesHelper().h0(message2.id, false);
+                return;
+            case 16:
+                ((SecretMediaViewer) this.b).L = false;
+                ((p98) this.c).a.v0(false, true);
+                return;
+            case 17:
+                ((SecretMediaViewer) ((wk4) this.b).c).i((File) this.c);
+                return;
+            case 18:
+                ((yu9) this.b).sendAccessibilityEvent((View) this.c, 4);
+                return;
+            case 19:
+                tx9 tx9Var = (tx9) this.b;
+                tx9Var.v(null, false, false);
+                ((d) this.c).presentFragment(new StickersActivity(5, tx9Var.M0));
+                jx9 jx9Var = tx9Var.V1;
+                if (jx9Var != null) {
+                    jx9Var.run();
+                    return;
+                }
+                return;
+            case 20:
+                yx9 yx9Var = (yx9) this.b;
+                TLObject tLObject = (TLObject) this.c;
+                ArrayList arrayList6 = yx9Var.X1;
+                yx9Var.p2 = false;
+                yx9Var.o2 = false;
+                if (tLObject instanceof TLRPC.messages_Messages) {
+                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                    na7.q1(yx9Var.a).b4(messages_messages.users, false);
+                    na7.q1(yx9Var.a).V3(messages_messages.chats, false);
+                    ArrayList<TLRPC.Message> arrayList7 = messages_messages.messages;
+                    int size5 = arrayList7.size();
+                    int i9 = 0;
+                    while (i9 < size5) {
+                        TLRPC.Message message3 = arrayList7.get(i9);
+                        i9++;
+                        arrayList6.add(new k27(yx9Var.a, message3, false, true));
                     }
-                    rc2 rc2Var = uj9Var.E;
-                    mc2 mc2Var = uj9Var.F;
-                    if (rc2Var != null && mc2Var != null) {
-                        mc2Var.L0(rc2Var, ti9Var3.b);
+                    if ((messages_messages instanceof TLRPC.TL_messages_messagesSlice) && arrayList6.size() < messages_messages.count) {
+                        z = true;
                     }
-                    z = false;
+                    yx9Var.n2 = z;
+                    yx9Var.m2 = messages_messages.next_rate;
                 } else {
-                    z = false;
+                    yx9Var.n2 = false;
+                    yx9Var.m2 = 0;
                 }
-                this.L = z;
-                return true;
-            } else if (this.M != null) {
-                float width = staticLayout.getWidth();
-                float height = staticLayout.getHeight();
-                float sqrt = (float) Math.sqrt((height * height) + (width * width));
-                View view5 = this.T;
-                this.M.q = new sj9(this, view5, uj9Var);
-                int size2 = arrayList.size();
-                int i7 = 0;
-                while (i7 < size2) {
-                    Object obj2 = arrayList.get(i7);
-                    i7++;
-                    ((rna) obj2).j(n, y, sqrt, false);
-                }
-                if (view5 != null) {
-                    view5.playSoundEffect(0);
-                }
-                this.M = null;
-                return true;
-            } else if (this.N != null) {
-                k();
-                if (!this.L) {
-                    l(this.N, false);
-                }
-                i66 i66Var3 = this.J;
-                if (i66Var3 != null) {
-                    i66Var3.e(true);
-                }
-                this.N = null;
-                this.L = false;
-                return true;
-            } else {
-                gn gnVar = this.Q;
-                if (gnVar == null) {
-                    return false;
-                }
-                this.Q = null;
-                rc2 rc2Var2 = uj9Var.E;
-                mc2 mc2Var2 = uj9Var.F;
-                if (rc2Var2 != null && mc2Var2 != null) {
-                    View view6 = this.T;
-                    if (view6 != null) {
-                        view6.playSoundEffect(0);
+                yx9Var.j2.O(true);
+                return;
+            case 21:
+                yx9 yx9Var2 = (yx9) this.b;
+                yx9Var2.E2 = false;
+                yx9Var2.W1.addAll((ArrayList) this.c);
+                yx9Var2.j2.O(true);
+                return;
+            case 22:
+                sz9 sz9Var = (sz9) this.b;
+                sz9Var.f = null;
+                g0a g0aVar = sz9Var.h;
+                g0aVar.R = false;
+                g0aVar.P.c = ((String) this.c).toLowerCase();
+                g0aVar.e();
+                return;
+            case 23:
+                z3a z3aVar = (z3a) this.b;
+                k27 k27Var = (k27) this.c;
+                if (k27Var != null && (message = k27Var.k) != null) {
+                    message.reqId = 0;
+                    if (message.send_state == 3) {
+                        message.send_state = 0;
+                        z3aVar.getNotificationCenter().k(49, Long.valueOf(k27.B0(k27Var.k)), tb4.t(k27Var));
+                        return;
                     }
-                    mc2Var2.D1(gnVar);
-                    return true;
+                    return;
                 }
-                return true;
-            }
-        } else if (actionMasked == 3) {
-            this.M = null;
-            this.Q = null;
-            if (this.R != null) {
-                k();
-                this.R.a.n(false);
-                this.R = null;
-                this.L = false;
-            }
-            if (this.N != null) {
-                k();
-                i66 i66Var4 = this.J;
-                if (i66Var4 != null) {
-                    i66Var4.e(true);
+                return;
+            case 24:
+                TLRPC.TL_updateShortSentMessage tL_updateShortSentMessage = (TLRPC.TL_updateShortSentMessage) this.c;
+                ((z3a) this.b).getMessagesController().P3(tL_updateShortSentMessage.pts, tL_updateShortSentMessage.date, tL_updateShortSentMessage.pts_count);
+                return;
+            case 25:
+                p3a p3aVar = ((n3a) this.b).b;
+                HashSet hashSet = p3aVar.c;
+                hashSet.remove((String) this.c);
+                z3a z3aVar2 = p3aVar.q;
+                z3aVar2.getNotificationCenter().k(110, Long.valueOf(p3aVar.j));
+                if (hashSet.isEmpty()) {
+                    TLRPC.TL_messages_startHistoryImport tL_messages_startHistoryImport = new TLRPC.TL_messages_startHistoryImport();
+                    tL_messages_startHistoryImport.peer = p3aVar.g;
+                    tL_messages_startHistoryImport.import_id = p3aVar.k;
+                    z3aVar2.getConnectionsManager().sendRequest(tL_messages_startHistoryImport, new o3a(p3aVar, tL_messages_startHistoryImport));
+                    return;
                 }
-                this.N = null;
-                this.L = false;
-                return false;
-            }
+                return;
+            case 26:
+                u3a u3aVar = (u3a) this.b;
+                HashMap hashMap = u3aVar.a;
+                hashMap.remove((String) this.c);
+                u3aVar.o.getNotificationCenter().k(111, u3aVar.e);
+                if (hashMap.isEmpty()) {
+                    u3aVar.b();
+                    return;
+                }
+                return;
+            case 27:
+                j4a j4aVar = (j4a) this.b;
+                mu1 mu1Var = (mu1) this.c;
+                if (mu1Var != null) {
+                    mu1Var.presentFragment(new PremiumPreviewFragment(0, "select_sender"));
+                    j4aVar.dismiss();
+                    return;
+                }
+                return;
+            case 28:
+                ((WindowManager) this.c).removeView(((j4a) this.b).B);
+                return;
+            default:
+                gl.g((String) this.c);
+                u21.b0((d8a) this.b).k(false).j();
+                return;
         }
-        return false;
-    }
-
-    public final void u() {
-        k();
-        kf9 kf9Var = new kf9(this, (byte) 5);
-        this.K = kf9Var;
-        gm.d3(kf9Var, ViewConfiguration.getLongPressTimeout());
-    }
-
-    public tj9(uj9 uj9Var, SpannableStringBuilder spannableStringBuilder, int i, Layout.Alignment alignment) {
-        this(uj9Var, spannableStringBuilder, i, alignment, 1.0f);
-    }
-
-    public tj9(uj9 uj9Var, SpannableStringBuilder spannableStringBuilder, int i) {
-        this(uj9Var, spannableStringBuilder, i, Layout.Alignment.ALIGN_NORMAL);
     }
 }

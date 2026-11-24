@@ -1,109 +1,83 @@
 package defpackage;
 
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_agent;
-public final class ad extends dc {
-    public final wc E;
-    public String F;
-    public final ArrayList G;
-    public String H;
-    public String I;
-    public boolean J;
-    public boolean K;
-    public int L;
-    public String M;
-    public final ArrayList N;
-    public String O;
-    public boolean P;
-    public final ArrayList Q;
-    public final b1 R;
-    public final ArrayList S;
-    public final mc y;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+public final class ad extends FrameLayout {
+    public final TextView a;
+    public final ImageView b;
 
-    public ad(int i, View view, sm2 sm2Var, ylb ylbVar) {
-        super(i, view, sm2Var, ylbVar);
-        this.G = new ArrayList();
-        this.H = "";
-        this.L = -1;
-        this.N = new ArrayList();
-        this.Q = new ArrayList();
-        this.R = new b1(this, (byte) 8);
-        this.S = new ArrayList();
-        this.y = mc.c(i);
-        wc wcVar = new wc(this, view.getContext());
-        this.E = wcVar;
-        this.f.a(wcVar, qoe.o(264, -2));
+    public ad(Context context, wjb wjbVar) {
+        super(context);
+        int i;
+        int i2 = bkb.H5;
+        Drawable f0 = bkb.f0(bkb.v0(i2, wjbVar), 2, -1);
+        vkb M = zkb.M(i2);
+        setBackground(f0);
+        zkb.j(this, f0, null, M, wjbVar);
+        setPadding(gl.L(23.0f), 0, gl.L(23.0f), 0);
+        ImageView imageView = new ImageView(context);
+        this.b = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        zkb.s(imageView, bkb.I5, wjbVar, PorterDuff.Mode.MULTIPLY);
+        if (k96.a0) {
+            i = 5;
+        } else {
+            i = 3;
+        }
+        addView(imageView, nme.e(-2, 40, i | 16));
+        TextView textView = new TextView(context);
+        this.a = textView;
+        textView.setLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        zkb.X(textView, bkb.i5, wjbVar);
+        textView.setTextSize(1, 16.0f);
+        addView(textView, nme.e(-2, -2, (k96.a0 ? 5 : 3) | 16));
     }
 
-    public static TL_agent.agentModel e(String str, ArrayList arrayList) {
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (TextUtils.equals(((TL_agent.agentModel) arrayList.get(i)).id, str)) {
-                return (TL_agent.agentModel) arrayList.get(i);
+    public final void a(int i, CharSequence charSequence) {
+        int L;
+        int i2;
+        TextView textView = this.a;
+        textView.setText(charSequence);
+        ImageView imageView = this.b;
+        if (i != 0) {
+            imageView.setImageResource(i);
+            imageView.setVisibility(0);
+            if (k96.a0) {
+                L = 0;
+            } else {
+                L = gl.L(56.0f);
             }
+            if (k96.a0) {
+                i2 = gl.L(56.0f);
+            } else {
+                i2 = 0;
+            }
+            textView.setPadding(L, 0, i2, 0);
+            return;
         }
-        return null;
+        imageView.setVisibility(4);
+        textView.setPadding(0, 0, 0, 0);
     }
 
     @Override
-    public final int getMenuAnchorTint() {
-        int i = tc.h;
-        return cmb.p1(0.06f, cmb.v0(cmb.Ke, this.d));
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824));
     }
 
-    @Override
-    public final int getMenuDimAlpha() {
-        return 51;
+    public void setGravity(int i) {
+        this.a.setGravity(i);
     }
 
-    public final void j(boolean z) {
-        String str;
-        wc wcVar = this.E;
-        String str2 = null;
-        if (z) {
-            gm.r(this.R);
-            if (this.L >= 0) {
-                ConnectionsManager.getInstance(this.a).cancelRequest(this.L, true);
-                this.L = -1;
-            }
-            ArrayList arrayList = this.G;
-            arrayList.clear();
-            this.I = null;
-            this.J = false;
-            this.K = false;
-            if (TextUtils.isEmpty(this.H)) {
-                ArrayList arrayList2 = this.N;
-                if (!arrayList2.isEmpty()) {
-                    arrayList.addAll(arrayList2);
-                    this.I = this.O;
-                    this.J = this.P;
-                    wcVar.c();
-                    return;
-                }
-            }
-        }
-        if (!this.K && !this.J && (str = this.F) != null) {
-            this.K = true;
-            String str3 = this.H;
-            String str4 = this.I;
-            lf2 lf2Var = new lf2(this, str3, (byte) 2);
-            mc mcVar = this.y;
-            mcVar.getClass();
-            TL_agent.getModels getmodels = new TL_agent.getModels();
-            getmodels.provider = str;
-            if (TextUtils.isEmpty(str3)) {
-                str3 = null;
-            }
-            getmodels.query = str3;
-            if (!TextUtils.isEmpty(str4)) {
-                str2 = str4;
-            }
-            getmodels.offset = str2;
-            getmodels.limit = 20;
-            this.L = ConnectionsManager.getInstance(mcVar.a).sendRequestTyped(getmodels, new kc((byte) 0), lf2Var);
-            wcVar.c();
-        }
+    public void setTextColor(int i) {
+        this.a.setTextColor(i);
     }
 }

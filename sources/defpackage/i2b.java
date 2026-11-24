@@ -1,35 +1,33 @@
 package defpackage;
-public final class i2b implements Runnable {
-    public final byte a;
-    public final x2b b;
 
-    public i2b(x2b x2bVar, byte b) {
-        this.a = b;
-        this.b = x2bVar;
+import android.view.ViewTreeObserver;
+import android.widget.TextView;
+public final class i2b implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final TextView a;
+    public final a8b b;
+    public final TextView c;
+    public final k2b d;
+
+    public i2b(k2b k2bVar, TextView textView, a8b a8bVar, TextView textView2) {
+        this.d = k2bVar;
+        this.a = textView;
+        this.b = a8bVar;
+        this.c = textView2;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        x2b x2bVar = this.b;
-        switch (b) {
-            case 0:
-                x2bVar.n1.f();
-                return;
-            case 1:
-                x2bVar.n1.f();
-                return;
-            case 2:
-                x2bVar.dismiss();
-                hs6.d0(x2bVar.a).h2(x2bVar.getContext(), x2bVar.M1, 1, x2bVar.F1, false, false);
-                return;
-            case 3:
-                oc7.r1(x2bVar.a).C3("stickers", x2bVar.F1, 1, null);
-                return;
-            default:
-                x2bVar.dismiss();
-                hs6.d0(x2bVar.a).h2(x2bVar.getContext(), x2bVar.M1, 1, x2bVar.F1, false, false);
-                return;
+    public final void onGlobalLayout() {
+        int[] iArr = new int[2];
+        TextView textView = this.a;
+        textView.getLocationOnScreen(iArr);
+        int L = gl.L(24.0f) + iArr[1];
+        int measuredHeight = this.b.getMeasuredHeight();
+        k2b k2bVar = this.d;
+        if (L > measuredHeight) {
+            textView.setLayoutParams(nme.k(0.0f, 13.0f, 0.0f, 0.0f, -2, -2));
+            this.c.setLayoutParams(nme.k(68.0f, 8.0f, 68.0f, 13.0f, -2, -2));
+            k2bVar.requestLayout();
         }
+        k2bVar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
     }
 }

@@ -1,8 +1,8 @@
 package defpackage;
-public interface egc {
-    void a(int i);
-
-    void b(float f, int i, int i2);
-
-    void c(int i);
+public final class egc extends dic {
+    @Override
+    public final void dispatchSetPressed(boolean z) {
+        super.dispatchSetPressed(z);
+        setPressedBtn(z);
+    }
 }

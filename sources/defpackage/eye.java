@@ -1,17 +1,25 @@
 package defpackage;
-public final class eye implements cq7 {
-    public static final eye a = new Object();
 
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+import android.os.Build;
+import android.webkit.WebView;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+public abstract class eye {
+    public static InvocationHandler a() {
+        ClassLoader classLoader;
+        if (Build.VERSION.SDK_INT >= 28) {
+            classLoader = fo.v();
+        } else {
+            try {
+                Method declaredMethod = WebView.class.getDeclaredMethod("getFactory", null);
+                declaredMethod.setAccessible(true);
+                classLoader = declaredMethod.invoke(null, null).getClass().getClassLoader();
+            } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+                sdb.b(e);
+                return null;
+            }
         }
-        throw new ClassCastException();
+        return (InvocationHandler) Class.forName("org.chromium.support_lib_glue.SupportLibReflectionUtil", false, classLoader).getDeclaredMethod("createWebViewProviderFactory", null).invoke(null, null);
     }
 }

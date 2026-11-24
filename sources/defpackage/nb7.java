@@ -1,56 +1,64 @@
 package defpackage;
-public final class nb7 implements jm7 {
-    public final int a;
-    public final byte b;
-    public final int c;
-    public final long d;
-    public final dc7 e;
-    public final oc7 f;
 
-    public nb7(oc7 oc7Var, int i, int i2, int i3, long j, dc7 dc7Var) {
-        this.f = oc7Var;
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
-        this.d = j;
-        this.e = dc7Var;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class nb7 implements Runnable {
+    public final byte a = 0;
+    public final long b;
+    public final long c;
+    public final boolean d;
+    public final Object e;
+    public final TLObject f;
+
+    public nb7(ad7 ad7Var, long j, boolean z, TLRPC.InputPeer inputPeer, long j2) {
+        this.e = ad7Var;
+        this.b = j;
+        this.d = z;
+        this.f = inputPeer;
+        this.c = j2;
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        int i3 = nm7.H;
-        dc7 dc7Var = this.e;
-        int i4 = this.a;
-        oc7 oc7Var = this.f;
-        int i5 = nm7.G;
-        if (i == i5 && ((Integer) objArr[0]).intValue() == i4) {
-            int intValue = ((Integer) objArr[1]).intValue();
-            boolean booleanValue = ((Boolean) objArr[2]).booleanValue();
-            boolean booleanValue2 = ((Boolean) objArr[3]).booleanValue();
-            int intValue2 = ((Integer) objArr[4]).intValue();
-            byte b = this.b;
-            if (intValue < b / 2 && !booleanValue2 && booleanValue) {
-                int i6 = this.c;
-                long j = this.d;
-                if (i6 != 0) {
-                    oc7Var.d3(j, 0L, false, b, i6, 0, false, 0, this.a, 3, intValue2, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
-                    return;
-                } else {
-                    oc7Var.d3(j, 0L, false, b, i6, 0, false, 0, this.a, 2, intValue2, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
+    public final void run() {
+        TLRPC.PeerSettings peerSettings;
+        byte b = this.a;
+        TLObject tLObject = this.f;
+        Object obj = this.e;
+        switch (b) {
+            case 0:
+                ((ad7) obj).getMessagesController().D3(this.b, this.d, (TLRPC.InputPeer) tLObject, this.c);
+                return;
+            default:
+                gta gtaVar = (gta) obj;
+                int i = gtaVar.a;
+                if (tLObject instanceof TLRPC.TL_boolTrue) {
+                    long j = this.b;
+                    int i2 = (j > 0L ? 1 : (j == 0L ? 0 : -1));
+                    long j2 = this.c;
+                    if (i2 != 0) {
+                        gtaVar.Z(-j, j2, this.d);
+                        return;
+                    }
+                    TLRPC.UserFull W1 = na7.q1(i).W1(j2);
+                    if (W1 != null && (peerSettings = W1.settings) != null) {
+                        peerSettings.flags &= -16385;
+                        peerSettings.charge_paid_message_stars = 0L;
+                    }
+                    na7.q1(i).W3.edit().putLong(ls6.n(j2, "dialog_bar_paying_"), 0L).apply();
+                    na7.q1(i).c3(na7.q1(i).V1(Long.valueOf(j2)), na7.q1(i).K0(Long.valueOf(-j2)), true);
+                    qu2.r(i).D(true);
+                    kk7.f(i).k(241, Long.valueOf(j2));
                     return;
                 }
-            }
-            oc7Var.getNotificationCenter().n(this, i5);
-            oc7Var.getNotificationCenter().n(this, i3);
-            if (dc7Var != null) {
-                dc7Var.l(booleanValue);
-            }
-        } else if (i == i3 && ((Integer) objArr[0]).intValue() == i4) {
-            oc7Var.getNotificationCenter().n(this, i5);
-            oc7Var.getNotificationCenter().n(this, i3);
-            if (dc7Var != null) {
-                dc7Var.a();
-            }
+                return;
         }
+    }
+
+    public nb7(gta gtaVar, TLObject tLObject, long j, long j2, boolean z) {
+        this.e = gtaVar;
+        this.f = tLObject;
+        this.b = j;
+        this.c = j2;
+        this.d = z;
     }
 }

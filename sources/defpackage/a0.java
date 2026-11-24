@@ -34,7 +34,7 @@ public final class a0 implements View.OnClickListener {
                         TL_aicompose.getToneExample gettoneexample = new TL_aicompose.getToneExample();
                         gettoneexample.tone = TL_aicompose.InputAiComposeTone.from(aiComposeTone);
                         gettoneexample.num = i;
-                        ConnectionsManager.getInstance(e0Var.a).sendRequestTyped(gettoneexample, new kc((byte) 0), new c0(e0Var, i, (byte) 0));
+                        ConnectionsManager.getInstance(e0Var.a).sendRequestTyped(gettoneexample, new hc((byte) 0), new c0(e0Var, i, (byte) 0));
                     }
                     e0Var.b2.O(true);
                     return;

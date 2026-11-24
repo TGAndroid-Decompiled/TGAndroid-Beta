@@ -1,157 +1,99 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class bga extends q59 {
-    public final Context c;
-    public final ArrayList d = new ArrayList();
-    public boolean e;
-    public boolean f;
-    public boolean h;
-    public int n;
-    public final nha r;
+import android.util.Log;
+public final class bga extends ccb implements eq4 {
+    public final byte a;
+    public boolean b;
+    public final fga c;
 
-    public bga(nha nhaVar, Context context) {
-        this.r = nhaVar;
-        this.c = context;
+    public bga(fga fgaVar, fw2 fw2Var, byte b) {
+        super(2, fw2Var);
+        this.a = b;
+        this.c = fgaVar;
     }
 
     @Override
-    public final boolean D(u69 u69Var) {
-        int i = u69Var.f;
-        if (i != 14 && i != 25) {
-            return false;
+    public final fw2 create(Object obj, fw2 fw2Var) {
+        byte b = this.a;
+        fga fgaVar = this.c;
+        switch (b) {
+            case 0:
+                return new bga(fgaVar, fw2Var, (byte) 0);
+            default:
+                return new bga(fgaVar, fw2Var, (byte) 1);
         }
-        return true;
-    }
-
-    public final void E(long j) {
-        d dVar = this.r.y1;
-        if (!this.e) {
-            TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
-            TLRPC.InputUser n1 = dVar.getMessagesController().n1(F());
-            tL_messages_getCommonChats.user_id = n1;
-            if (n1 instanceof TLRPC.TL_inputUserEmpty) {
-                return;
-            }
-            tL_messages_getCommonChats.limit = 100;
-            tL_messages_getCommonChats.max_id = j;
-            this.e = true;
-            f();
-            this.n = dVar.getConnectionsManager().sendRequest(tL_messages_getCommonChats, new go9(this, (byte) 2));
-            dVar.getConnectionsManager().bindRequestToGuid(this.n, dVar.getClassGuid());
-        }
-    }
-
-    public final long F() {
-        nha nhaVar = this.r;
-        long j = nhaVar.m1;
-        if (pg3.B(j)) {
-            return nhaVar.y1.getMessagesController().Z0(Integer.valueOf((int) (j & 4294967295L))).user_id;
-        }
-        return j;
-    }
-
-    public final boolean G() {
-        TLRPC.User W1;
-        if (!this.d.isEmpty() && (W1 = this.r.y1.getMessagesController().W1(Long.valueOf(F()))) != null && !W1.bot && !W1.self && !m9c.z(W1)) {
-            return true;
-        }
-        return false;
     }
 
     @Override
-    public final int b() {
-        ArrayList arrayList = this.d;
-        if (arrayList.isEmpty() && !this.e) {
-            return 1;
+    public final Object invoke(Object obj, Object obj2) {
+        byte b = this.a;
+        g5c g5cVar = g5c.a;
+        ax2 ax2Var = (ax2) obj;
+        fw2 fw2Var = (fw2) obj2;
+        switch (b) {
+            case 0:
+                return ((bga) create(ax2Var, fw2Var)).invokeSuspend(g5cVar);
+            default:
+                return ((bga) create(ax2Var, fw2Var)).invokeSuspend(g5cVar);
         }
-        int size = arrayList.size();
-        if (!arrayList.isEmpty()) {
-            if (G()) {
-                size++;
-            }
-            if (!this.h) {
-                return size + 1;
-            }
-            return size;
-        }
-        return size;
     }
 
     @Override
-    public final int d(int i) {
-        ArrayList arrayList = this.d;
-        if (arrayList.isEmpty() && !this.e) {
-            return 15;
-        }
-        if (G()) {
-            if (i == 0) {
-                return 25;
-            }
-            i--;
-        }
-        if (i < arrayList.size()) {
-            return 14;
-        }
-        return 16;
-    }
-
-    @Override
-    public final void t(u69 u69Var, int i) {
-        int i2 = u69Var.f;
-        View view = u69Var.a;
-        boolean z = false;
-        if (i2 == 14) {
-            if (view instanceof ut8) {
-                ut8 ut8Var = (ut8) view;
-                if (G()) {
-                    i--;
+    public final Object invokeSuspend(Object obj) {
+        byte b = this.a;
+        g5c g5cVar = g5c.a;
+        Object obj2 = bx2.a;
+        fga fgaVar = this.c;
+        switch (b) {
+            case 0:
+                boolean z = this.b;
+                if (z) {
+                    if (z) {
+                        qse.b(obj);
+                        return g5cVar;
+                    }
+                    sc8.j("call to 'resume' before 'invoke' with coroutine");
+                    return null;
                 }
-                ArrayList arrayList = this.d;
-                ut8Var.x((TLRPC.Chat) arrayList.get(i), null, null, null, false, false);
-                if (i != arrayList.size() - 1 || !this.h) {
-                    z = true;
+                qse.b(obj);
+                lv6 lv6Var = new lv6(fgaVar.e.getData(), new aga(fgaVar, null), false, (byte) 29);
+                g73 g73Var = new g73(fgaVar, (byte) 2);
+                this.b = true;
+                if (lv6Var.h(g73Var, this) == obj2) {
+                    return obj2;
                 }
-                ut8Var.N = z;
-            }
-        } else if (i2 == 25 && (view instanceof fj6)) {
-            ((fj6) view).b(2131232182, 5, jb6.a0(null, null, 2131751682, m9c.k(this.r.y1.getMessagesController().W1(Long.valueOf(F())), true)), true);
-        }
-    }
-
-    @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        ut8 ut8Var;
-        nha nhaVar = this.r;
-        ylb ylbVar = nhaVar.I1;
-        Context context = this.c;
-        if (i != 14) {
-            if (i != 15) {
-                if (i != 25) {
-                    tk4 tk4Var = new tk4(context, ylbVar);
-                    tk4Var.setIsSingleCell(true);
-                    tk4Var.x = false;
-                    tk4Var.setViewType(1);
-                    ut8Var = tk4Var;
-                } else {
-                    fj6 fj6Var = new fj6(context);
-                    fj6Var.a(cmb.u6, cmb.t6);
-                    fj6Var.setTextLeft(gm.C);
-                    ut8Var = fj6Var;
+                return g5cVar;
+            default:
+                boolean z2 = this.b;
+                try {
+                    if (z2) {
+                        if (z2) {
+                            qse.b(obj);
+                        } else {
+                            sc8.j("call to 'resume' before 'invoke' with coroutine");
+                            return null;
+                        }
+                    } else {
+                        qse.b(obj);
+                        v63 v63Var = fgaVar.e;
+                        dga dgaVar = new dga(fgaVar, null, (byte) 0);
+                        this.b = true;
+                        if (v63Var.a(dgaVar, this) == obj2) {
+                            g5cVar = obj2;
+                        }
+                    }
+                    return g5cVar;
+                } catch (Exception e) {
+                    Log.d("FirebaseSessions", "App backgrounded, failed to update data. Message: " + e.getMessage());
+                    w5a w5aVar = fgaVar.h;
+                    if (w5aVar != null) {
+                        fgaVar.d.getClass();
+                        fgaVar.h = w5a.a(w5aVar, null, snb.a(), null, 5);
+                        return g5cVar;
+                    }
+                    rp5.e("localSessionData");
+                    throw null;
                 }
-            } else {
-                bj G = nha.G(6, nhaVar.m1, ylbVar, context);
-                G.setLayoutParams(new g69(-1, -1));
-                return new u69(G);
-            }
-        } else {
-            ut8Var = new ut8(context, ylbVar);
         }
-        return kt6.h(ut8Var, ut8Var, -1, -2);
     }
 }

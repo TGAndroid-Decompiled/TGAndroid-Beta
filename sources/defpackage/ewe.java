@@ -1,27 +1,17 @@
 package defpackage;
+public final class ewe implements zn7 {
+    public static final ewe a = new Object();
 
-import android.content.SharedPreferences;
-public abstract class ewe {
-    public static SharedPreferences a;
+    static {
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)), 6)), 7)));
+    }
 
-    public static void a(int i) {
-        SharedPreferences sharedPreferences = a;
-        if (sharedPreferences != null) {
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            for (String str : a.getAll().keySet()) {
-                if (str.startsWith("confirm_shown_" + i + "_")) {
-                    edit.remove(str);
-                }
-            }
-            edit.apply();
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-    }
-
-    public static boolean b(int i, long j) {
-        return a.getBoolean(String.format("confirm_shown_%d_%d", Integer.valueOf(i), Long.valueOf(j)), false);
-    }
-
-    public static void c(int i, long j) {
-        a.edit().putBoolean(String.format("confirm_shown_%d_%d", Integer.valueOf(i), Long.valueOf(j)), true).apply();
+        throw new ClassCastException();
     }
 }

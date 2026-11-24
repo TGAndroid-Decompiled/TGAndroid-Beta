@@ -18,7 +18,7 @@ public class MediaStream {
         if (this.nativeStream != 0) {
             return;
         }
-        dq9.m("MediaStream has been disposed.");
+        sc8.j("MediaStream has been disposed.");
     }
 
     private static native boolean nativeAddAudioTrackToNativeStream(long j, long j2);

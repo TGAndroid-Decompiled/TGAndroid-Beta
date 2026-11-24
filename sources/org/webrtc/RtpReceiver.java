@@ -19,7 +19,7 @@ public class RtpReceiver {
         if (this.nativeRtpReceiver != 0) {
             return;
         }
-        dq9.m("RtpReceiver has been disposed.");
+        sc8.j("RtpReceiver has been disposed.");
     }
 
     private static native String nativeGetId(long j);

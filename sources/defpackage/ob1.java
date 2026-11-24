@@ -1,37 +1,33 @@
 package defpackage;
-
-import org.telegram.messenger.camera.CameraView;
-public final class ob1 implements Runnable {
+public final class ob1 implements p8c {
     public final byte a;
-    public final CameraView.CameraGLThread b;
+    public final j7b b;
 
-    public ob1(CameraView.CameraGLThread cameraGLThread, byte b) {
+    public ob1(j7b j7bVar, byte b) {
         this.a = b;
-        this.b = cameraGLThread;
+        this.b = j7bVar;
     }
 
     @Override
-    public final void run() {
+    public final void a(Object obj) {
         byte b = this.a;
-        CameraView.CameraGLThread cameraGLThread = this.b;
+        j7b j7bVar = this.b;
+        Integer num = (Integer) obj;
         switch (b) {
             case 0:
-                cameraGLThread.lambda$onDraw$4();
-                return;
-            case 1:
-                cameraGLThread.lambda$onDraw$5();
-                return;
-            case 2:
-                cameraGLThread.lambda$new$0();
-                return;
-            case 3:
-                cameraGLThread.lambda$new$1();
-                return;
-            case 4:
-                cameraGLThread.lambda$new$2();
+                j7bVar.setPeriod(num.intValue());
+                p8c p8cVar = j7bVar.B1;
+                if (p8cVar != null) {
+                    p8cVar.a(num);
+                    return;
+                }
                 return;
             default:
-                cameraGLThread.lambda$new$3();
+                p8c p8cVar2 = j7bVar.C1;
+                if (p8cVar2 != null) {
+                    p8cVar2.a(num);
+                    return;
+                }
                 return;
         }
     }

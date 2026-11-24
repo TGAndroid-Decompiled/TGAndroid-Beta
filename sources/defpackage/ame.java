@@ -1,17 +1,20 @@
 package defpackage;
-public final class ame implements cq7 {
-    public static final ame a = new Object();
 
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+import android.util.Log;
+public abstract class ame {
+    public static void a(Exception exc, String str, Object... objArr) {
+        if (Log.isLoggable("Vision", 6)) {
+            if (Log.isLoggable("Vision", 3)) {
+                Log.e("Vision", String.format(str, objArr), exc);
+                return;
+            }
+            String format = String.format(str, objArr);
+            String valueOf = String.valueOf(exc);
+            StringBuilder sb = new StringBuilder(valueOf.length() + format.length() + 2);
+            sb.append(format);
+            sb.append(": ");
+            sb.append(valueOf);
+            Log.e("Vision", sb.toString());
         }
-        throw new ClassCastException();
     }
 }

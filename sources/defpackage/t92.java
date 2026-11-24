@@ -1,32 +1,45 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-public final class t92 implements RequestDelegate {
-    public final byte a;
-    public final ba2 b;
+public final class t92 extends ju5 {
+    public final TLRPC.Chat x;
+    public final u92 y;
 
-    public t92(ba2 ba2Var, byte b) {
-        this.a = b;
-        this.b = ba2Var;
+    public t92(u92 u92Var, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
+        super(context, chat);
+        this.y = u92Var;
+        this.x = chat2;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        byte b = this.a;
-        ba2 ba2Var = this.b;
-        switch (b) {
-            case 0:
-                gm.c3(new co1(ba2Var, tL_error, tLObject, (byte) 15));
-                return;
-            case 1:
-                gm.c3(new v92(ba2Var, (byte) 1));
-                return;
-            default:
-                ba2Var.getClass();
-                gm.c3(new v92(ba2Var, (byte) 4));
-                return;
+    public final boolean a(boolean z, hu5 hu5Var) {
+        x92 x92Var = this.y.d;
+        if (x92Var.Q) {
+            return false;
+        }
+        x92Var.Q = true;
+        e(new n92(this, hu5Var, (byte) 4), new rg(this, this.x, z, (Runnable) hu5Var, (byte) 11));
+        return true;
+    }
+
+    @Override
+    public final boolean b(boolean z, iu5 iu5Var) {
+        x92 x92Var = this.y.d;
+        if (x92Var.P) {
+            return false;
+        }
+        x92Var.P = true;
+        e(new n92(this, iu5Var, (byte) 4), new rg(this, this.x, z, (Runnable) iu5Var, (byte) 10));
+        return true;
+    }
+
+    public final void e(n92 n92Var, Runnable runnable) {
+        x92 x92Var = this.y.d;
+        if (!hc2.T(x92Var.f)) {
+            x92Var.getMessagesController().P(x92Var.getParentActivity(), this.x.id, x92Var, new v82(this, runnable, (byte) 2), n92Var);
+        } else {
+            runnable.run();
         }
     }
 }

@@ -1,56 +1,74 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.widget.FrameLayout;
-public final class qoc extends pn2 {
-    public final soc M;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.d;
+public final class qoc implements p8c {
+    public final byte a;
+    public final toc b;
+    public final c01 c;
 
-    public qoc(soc socVar) {
-        super(2131232836, 0);
-        this.M = socVar;
+    public qoc(toc tocVar, c01 c01Var, byte b) {
+        this.a = b;
+        this.b = tocVar;
+        this.c = c01Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        soc socVar = this.M;
-        FrameLayout.LayoutParams layoutParams = socVar.Q;
-        if (!socVar.j0) {
-            this.x = 1.0f;
-            if (socVar.a) {
-                float max = Math.max(0.0f, Math.min(1.0f, socVar.U));
-                int i6 = (max > 0.0f ? 1 : (max == 0.0f ? 0 : -1));
-                if (i6 == 0) {
-                    float intrinsicWidth = this.c.getIntrinsicWidth() * socVar.b;
-                    float f2 = socVar.b;
-                    float intrinsicHeight = this.c.getIntrinsicHeight() * f2;
-                    float f3 = (f2 * f) + layoutParams.leftMargin;
-                    float height = ((socVar.O.getHeight() / 2.0f) - (intrinsicHeight / 2.0f)) + layoutParams.topMargin;
-                    socVar.f.set(f3, height, intrinsicWidth + f3, intrinsicHeight + height);
-                }
-                if (max < 1.0f) {
-                    if (socVar.i0 == null) {
-                        socVar.i0 = new bpc(this.c.getIntrinsicWidth(), this.c.getIntrinsicHeight());
-                        socVar.m();
-                    }
-                    Drawable drawable = this.c;
-                    socVar.i0.setBounds(drawable.getBounds());
-                    bpc bpcVar = socVar.i0;
-                    bpcVar.i = socVar.g0.c;
-                    this.c = bpcVar;
-                    this.d = false;
-                    this.x = 1.0f - max;
-                    super.draw(canvas, charSequence, i, i2, f, i3, i4, i5, paint);
-                    this.c = drawable;
-                    this.d = true;
-                }
-                this.x = max;
-                if (i6 == 0) {
+    public final void a(Object obj) {
+        byte b = this.a;
+        c01 c01Var = this.c;
+        toc tocVar = this.b;
+        String str = (String) obj;
+        switch (b) {
+            case 0:
+                c01Var.c(false);
+                if (str != null) {
+                    u21.b0(tocVar).f0(str, false);
                     return;
                 }
-            }
-            super.draw(canvas, charSequence, i, i2, f, i3, i4, i5, paint);
+                ui5 parentLayout = tocVar.getParentLayout();
+                if (parentLayout == null) {
+                    tocVar.finishFragment();
+                    return;
+                }
+                ArrayList arrayList = new ArrayList(parentLayout.getFragmentStack());
+                int size = arrayList.size();
+                int i = 0;
+                while (i < size) {
+                    Object obj2 = arrayList.get(i);
+                    i++;
+                    d dVar = (d) obj2;
+                    if ((dVar instanceof ypc) || (dVar instanceof bpc) || (dVar instanceof fqc) || (dVar instanceof toc)) {
+                        ((ActionBarLayout) parentLayout).c0(dVar, false);
+                    }
+                }
+                tocVar.finishFragment();
+                return;
+            default:
+                c01Var.c(false);
+                ui5 parentLayout2 = tocVar.getParentLayout();
+                if (parentLayout2 != null) {
+                    ArrayList arrayList2 = new ArrayList(parentLayout2.getFragmentStack());
+                    int size2 = arrayList2.size();
+                    int i2 = 0;
+                    while (i2 < size2) {
+                        Object obj3 = arrayList2.get(i2);
+                        i2++;
+                        d dVar2 = (d) obj3;
+                        if ((dVar2 instanceof ypc) || (dVar2 instanceof bpc) || (dVar2 instanceof fqc)) {
+                            ((ActionBarLayout) parentLayout2).c0(dVar2, false);
+                        }
+                    }
+                }
+                if (str != null) {
+                    u21.b0(tocVar).f0(str, false);
+                    return;
+                }
+                m21 I = u21.b0(tocVar).I(2131623990, k96.M0(2131742948, null), k96.M0(2131742946, null));
+                I.j = 5000;
+                I.j();
+                return;
         }
     }
 }

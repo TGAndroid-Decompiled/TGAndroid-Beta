@@ -1,88 +1,73 @@
 package defpackage;
-public final class rp3 extends tp3 implements my2, px2 {
-    public static final long n = fy.a.objectFieldOffset(rp3.class.getDeclaredField("_reusableCancellableContinuation$volatile"));
-    private volatile Object _reusableCancellableContinuation$volatile;
-    public final fy2 d;
-    public final qx2 e;
-    public Object f;
-    public final Object h;
 
-    public rp3(fy2 fy2Var, qx2 qx2Var) {
-        super(-1);
-        this.d = fy2Var;
-        this.e = qx2Var;
-        this.f = r5c.a;
-        this.h = gfd.b(qx2Var.getContext());
+import java.util.ArrayList;
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLRPC;
+public final class rp3 implements Runnable {
+    public final byte a;
+    public final up3 b;
+
+    public rp3(up3 up3Var, byte b) {
+        this.a = b;
+        this.b = up3Var;
     }
 
     @Override
-    public final my2 getCallerFrame() {
-        return this.e;
-    }
-
-    @Override
-    public final cy2 getContext() {
-        return this.e.getContext();
-    }
-
-    @Override
-    public final Object i() {
-        Object obj = this.f;
-        this.f = r5c.a;
-        return obj;
-    }
-
-    @Override
-    public final void resumeWith(Object obj) {
-        Object qq2Var;
-        Throwable a = tc9.a(obj);
-        if (a == null) {
-            qq2Var = obj;
-        } else {
-            qq2Var = new qq2(a, false);
+    public final void run() {
+        byte b = this.a;
+        up3 up3Var = this.b;
+        switch (b) {
+            case 0:
+                ArrayList arrayList = new ArrayList();
+                ArrayList arrayList2 = new ArrayList();
+                ArrayList arrayList3 = new ArrayList();
+                try {
+                    up3Var.getMessagesStorage().b.executeFast("DELETE FROM downloading_documents WHERE state = 1 AND rowid NOT IN (SELECT rowid FROM downloading_documents WHERE state = 1 ORDER BY date DESC LIMIT 100)").stepThis().dispose();
+                    SQLiteCursor queryFinalized = up3Var.getMessagesStorage().b.queryFinalized("SELECT data, state FROM downloading_documents ORDER BY date DESC", new Object[0]);
+                    while (queryFinalized.next()) {
+                        NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
+                        int intValue = queryFinalized.intValue(1);
+                        if (byteBufferValue != null) {
+                            TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                            if (TLdeserialize != null) {
+                                TLdeserialize.readAttachPath(byteBufferValue, y6c.h(up3Var.currentAccount).n);
+                                k27 k27Var = new k27(up3Var.currentAccount, TLdeserialize, false, false);
+                                arrayList3.add(k27Var);
+                                if (intValue == 0) {
+                                    arrayList.add(k27Var);
+                                } else {
+                                    arrayList2.add(k27Var);
+                                }
+                            }
+                            byteBufferValue.reuse();
+                        }
+                    }
+                    queryFinalized.dispose();
+                } catch (Exception e) {
+                    fa4.g(e, true);
+                }
+                up3Var.getFileLoader().l(arrayList);
+                up3Var.getFileLoader().l(arrayList2);
+                gl.c3(new mg3(up3Var, arrayList, arrayList2, (byte) 10));
+                return;
+            case 1:
+                up3Var.getNotificationCenter().a(up3Var, 143);
+                up3Var.getNotificationCenter().a(up3Var, 142);
+                up3Var.getNotificationCenter().a(up3Var, 141);
+                up3Var.getNotificationCenter().a(up3Var, 140);
+                up3Var.getNotificationCenter().a(up3Var, 135);
+                up3Var.getNotificationCenter().a(up3Var, 136);
+                up3Var.s(false);
+                return;
+            default:
+                try {
+                    up3Var.getMessagesStorage().b.executeFast("DELETE FROM downloading_documents WHERE state = 1").stepThis().dispose();
+                    return;
+                } catch (Exception e2) {
+                    fa4.g(e2, true);
+                    return;
+                }
         }
-        qx2 qx2Var = this.e;
-        cy2 context = qx2Var.getContext();
-        fy2 fy2Var = this.d;
-        if (fy2Var.d(context)) {
-            this.f = qq2Var;
-            this.c = 0;
-            fy2Var.c(qx2Var.getContext(), this);
-            return;
-        }
-        o54 a2 = epb.a();
-        if (a2.c >= 4294967296L) {
-            this.f = qq2Var;
-            this.c = 0;
-            lt ltVar = a2.e;
-            if (ltVar == null) {
-                ltVar = new lt();
-                a2.e = ltVar;
-            }
-            ltVar.addLast(this);
-            return;
-        }
-        a2.g(true);
-        try {
-            cy2 context2 = qx2Var.getContext();
-            Object c = gfd.c(context2, this.h);
-            qx2Var.resumeWith(obj);
-            gfd.a(context2, c);
-            do {
-            } while (a2.i());
-        } finally {
-            try {
-            } finally {
-            }
-        }
-    }
-
-    public final String toString() {
-        return "DispatchedContinuation[" + this.d + ", " + ea3.d(this.e) + ']';
-    }
-
-    @Override
-    public final px2 d() {
-        return this;
     }
 }

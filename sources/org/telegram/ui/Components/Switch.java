@@ -13,13 +13,13 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.HashSet;
-public class Switch extends View implements vlb {
+public class Switch extends View implements tjb {
     public int E;
     public int F;
     public Drawable G;
     public int H;
     public boolean I;
-    public fg0 J;
+    public ff0 J;
     public final int[] K;
     public byte L;
     public boolean M;
@@ -32,8 +32,8 @@ public class Switch extends View implements vlb {
     public float T;
     public Paint U;
     public Paint V;
-    public final ylb W;
-    public final fn0 a;
+    public final wjb W;
+    public final fm0 a;
     public int a0;
     public final RectF b;
     public float c;
@@ -48,24 +48,24 @@ public class Switch extends View implements vlb {
     public int x;
     public int y;
 
-    public Switch(Context context, ylb ylbVar) {
+    public Switch(Context context, wjb wjbVar) {
         super(context);
-        this.a = new fn0(0, new xg0(this, (byte) 4), d53.h, 380L, true);
+        this.a = new fm0(0, new sg0(this, (byte) 2), s33.h, 380L, true);
         this.w = 1.0f;
-        this.x = cmb.q7;
-        this.y = cmb.U6;
-        int i = cmb.c6;
+        this.x = bkb.q7;
+        this.y = bkb.U6;
+        int i = bkb.c6;
         this.E = i;
         this.F = i;
         this.K = new int[]{16842910, 16842919};
-        this.W = ylbVar;
+        this.W = wjbVar;
         this.b = new RectF();
         this.n = new Paint(1);
         Paint paint = new Paint(1);
         this.r = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(gm.L(2.0f));
+        paint.setStrokeWidth(gl.L(2.0f));
         setHapticFeedbackEnabled(true);
     }
 
@@ -85,7 +85,7 @@ public class Switch extends View implements vlb {
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f2);
                 this.d = ofFloat;
                 ofFloat.setDuration(200L);
-                this.d.addListener(new seb(this, (byte) 0));
+                this.d.addListener(new qcb(this, (byte) 0));
                 this.d.start();
             } else {
                 ObjectAnimator objectAnimator = this.d;
@@ -115,7 +115,7 @@ public class Switch extends View implements vlb {
                 ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this, "iconProgress", f3);
                 this.e = ofFloat2;
                 ofFloat2.setDuration(200L);
-                this.e.addListener(new seb(this, (byte) 1));
+                this.e.addListener(new qcb(this, (byte) 1));
                 this.e.start();
                 return;
             }
@@ -194,7 +194,7 @@ public class Switch extends View implements vlb {
                 } else {
                     i2 = this.x;
                 }
-                int v0 = cmb.v0(i2, this.W);
+                int v0 = bkb.v0(i2, this.W);
                 this.H = v0;
                 mutate.setColorFilter(new PorterDuffColorFilter(v0, PorterDuff.Mode.MULTIPLY));
             }
@@ -262,8 +262,8 @@ public class Switch extends View implements vlb {
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
         if (!super.verifyDrawable(drawable)) {
-            fg0 fg0Var = this.J;
-            if (fg0Var == null || drawable != fg0Var) {
+            ff0 ff0Var = this.J;
+            if (ff0Var == null || drawable != ff0Var) {
                 return false;
             }
             return true;
@@ -279,6 +279,6 @@ public class Switch extends View implements vlb {
     public final void addColorKeys(HashSet hashSet) {
     }
 
-    public void setOnCheckedChangeListener(teb tebVar) {
+    public void setOnCheckedChangeListener(rcb rcbVar) {
     }
 }

@@ -1,68 +1,35 @@
 package defpackage;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class a60 extends c60 {
-    public static final Parcelable.Creator<a60> CREATOR = new sje((byte) 18);
-    public final rce a;
-    public final rce b;
-    public final rce c;
-    public final String[] d;
-
-    public a60(byte[] bArr, byte[] bArr2, byte[] bArr3, String[] strArr) {
-        ite.h(bArr);
-        rce o = rce.o(bArr.length, bArr);
-        ite.h(bArr2);
-        rce o2 = rce.o(bArr2.length, bArr2);
-        ite.h(bArr3);
-        rce o3 = rce.o(bArr3.length, bArr3);
-        this.a = o;
-        this.b = o2;
-        this.c = o3;
-        ite.h(strArr);
-        this.d = strArr;
-    }
-
-    public final org.json.JSONObject b() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.a60.b():org.json.JSONObject");
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof a60) {
-            a60 a60Var = (a60) obj;
-            if (fse.a(this.a, a60Var.a) && fse.a(this.b, a60Var.b) && fse.a(this.c, a60Var.c)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.c}))});
-    }
-
-    public final String toString() {
-        wm9 wm9Var = new wm9(getClass().getSimpleName(), (byte) 25);
-        w8e w8eVar = n9e.d;
-        byte[] p = this.a.p();
-        wm9Var.B(w8eVar.c(p.length, p), "keyHandle");
-        byte[] p2 = this.b.p();
-        wm9Var.B(w8eVar.c(p2.length, p2), "clientDataJSON");
-        byte[] p3 = this.c.p();
-        wm9Var.B(w8eVar.c(p3.length, p3), "attestationObject");
-        wm9Var.B(Arrays.toString(this.d), "transports");
-        return wm9Var.toString();
-    }
+public final class a60 implements zn7 {
+    public static final a60 a = new Object();
+    public static final w84 b = w84.c("generator");
+    public static final w84 c = w84.c("identifier");
+    public static final w84 d = w84.c("appQualitySessionId");
+    public static final w84 e = w84.c("startedAt");
+    public static final w84 f = w84.c("endedAt");
+    public static final w84 g = w84.c("crashed");
+    public static final w84 h = w84.c("app");
+    public static final w84 i = w84.c("user");
+    public static final w84 j = w84.c("os");
+    public static final w84 k = w84.c("device");
+    public static final w84 l = w84.c("events");
+    public static final w84 m = w84.c("generatorType");
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        mve.c(parcel, 2, this.a.p());
-        mve.c(parcel, 3, this.b.p());
-        mve.c(parcel, 4, this.c.p());
-        mve.m(parcel, 5, this.d);
-        mve.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        gz2 gz2Var = (gz2) obj;
+        ao7 ao7Var = (ao7) obj2;
+        ao7Var.a(b, ((l80) gz2Var).a);
+        l80 l80Var = (l80) gz2Var;
+        ao7Var.a(c, l80Var.b.getBytes(hz2.a));
+        ao7Var.a(d, l80Var.c);
+        ao7Var.g(e, l80Var.d);
+        ao7Var.a(f, l80Var.e);
+        ao7Var.d(g, l80Var.f);
+        ao7Var.a(h, l80Var.g);
+        ao7Var.a(i, l80Var.h);
+        ao7Var.a(j, l80Var.i);
+        ao7Var.a(k, l80Var.j);
+        ao7Var.a(l, l80Var.k);
+        ao7Var.e(m, l80Var.l);
     }
 }

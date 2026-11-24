@@ -1,7 +1,9 @@
 package defpackage;
-public final class yi extends lp7 {
+
+import android.widget.TextView;
+public final class yi extends l46 {
     @Override
-    public final CharSequence d(int i) {
-        return jb6.G(i, "Hours", new Object[0]);
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(vu3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
     }
 }

@@ -1,198 +1,67 @@
 package defpackage;
 
-import android.os.Looper;
-import android.view.SurfaceHolder;
-import java.util.List;
-public interface re8 {
-    int A();
-
-    void A0(int i, bt6 bt6Var);
-
-    jec B();
-
-    Looper B0();
-
-    void C();
-
-    void C0();
-
-    float D();
-
-    void D0(bt6 bt6Var);
-
-    void E();
-
-    void E0();
-
-    o00 F();
-
-    boolean F0();
-
-    void G(int i, boolean z);
-
-    d0c G0();
-
-    of3 H();
-
-    long H0();
-
-    void I();
-
-    void I0(int i);
-
-    void J(int i, int i2);
-
-    void J0();
-
-    void K(int i);
-
-    void K0();
-
-    int L();
-
-    void L0();
-
-    void M(d0c d0cVar);
-
-    jt6 M0();
-
-    boolean N();
-
-    void N0(List list);
-
-    void O(int i);
-
-    long O0();
-
-    void P(int i, int i2);
-
-    boolean P0();
-
-    void Q(SurfaceHolder surfaceHolder);
-
-    void R(float f);
-
-    void S();
-
-    void T(List list, int i, long j);
-
-    u64 U();
-
-    void V(boolean z);
-
-    void W(int i);
-
-    long X();
-
-    long Y();
-
-    void Z(int i, List list);
-
-    void a();
-
-    void a0();
-
-    void b(ce8 ce8Var);
-
-    long b0();
-
-    void c();
-
-    boolean c0();
-
-    void d(float f);
-
-    void d0();
-
-    void e(long j);
-
-    void e0(int i);
-
-    boolean f();
-
-    g0c f0();
-
-    ce8 g();
-
-    jt6 g0();
-
-    long getDuration();
-
-    int h();
-
-    g53 h0();
-
-    boolean i();
-
-    void i0(o00 o00Var, boolean z);
-
-    void j();
-
-    void j0(jt6 jt6Var);
-
-    long k();
-
-    int k0();
-
-    int l();
-
-    int l0();
-
-    boolean m();
-
-    boolean m0(int i);
-
-    long n();
-
-    void n0(int i);
-
-    long o();
-
-    void o0(boolean z);
-
-    void p(int i, long j);
-
-    void p0(pe8 pe8Var);
-
-    ne8 q();
-
-    void q0(bt6 bt6Var);
-
-    void r(bt6 bt6Var, long j);
-
-    void r0(List list, int i, int i2);
-
-    boolean s();
-
-    void s0(int i, int i2);
-
-    void stop();
-
-    void t();
-
-    void t0(int i, int i2, int i3);
-
-    bt6 u();
-
-    boolean u0();
-
-    void v(boolean z);
-
-    int v0();
-
-    int w();
-
-    void w0(List list);
-
-    long x();
-
-    int x0();
-
-    void y(pe8 pe8Var);
-
-    bqb y0();
-
-    long z();
-
-    boolean z0();
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ProfileActivity;
+public final class re8 implements View.OnClickListener {
+    public final t37 a;
+    public final mu1 b;
+    public final o39 c;
+    public final LinearLayout d;
+    public final cs5 e;
+    public final cs5 f;
+    public final ve8 h;
+
+    public re8(ve8 ve8Var, t37 t37Var, mu1 mu1Var, o39 o39Var, LinearLayout linearLayout, cs5 cs5Var, cs5 cs5Var2) {
+        this.h = ve8Var;
+        this.a = t37Var;
+        this.b = mu1Var;
+        this.c = o39Var;
+        this.d = linearLayout;
+        this.e = cs5Var;
+        this.f = cs5Var2;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        t37 t37Var = this.a;
+        ArrayList arrayList = t37Var.b;
+        ArrayList arrayList2 = t37Var.c;
+        if (!arrayList2.isEmpty()) {
+            int size = arrayList2.size();
+            ve8 ve8Var = this.h;
+            mu1 mu1Var = this.b;
+            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
+                TLObject tLObject = (TLObject) arrayList2.get(0);
+                if (tLObject == null) {
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                if (tLObject instanceof TLRPC.User) {
+                    bundle.putLong("user_id", ((TLRPC.User) tLObject).id);
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).id);
+                }
+                mu1Var.presentFragment(new ProfileActivity(bundle, null));
+                ve8Var.b(false);
+                return;
+            }
+            if (gba.Y0 > 0 && mu1Var.m1.getKeyboardHeight() < gl.L(20.0f)) {
+                m21 t = new u21(f11.a(ve8Var.getContext()), ve8Var.b).t(gl.S2(k96.M0(2131748296, null)), null);
+                mu1Var.C1 = t;
+                t.j = 4000;
+                t.j();
+                gba.P(gba.Y0 - 1);
+            }
+            o39 o39Var = this.c;
+            o39Var.requestLayout();
+            this.d.requestLayout();
+            o39Var.getAdapter().f();
+            this.e.L(this.f);
+        }
+    }
 }

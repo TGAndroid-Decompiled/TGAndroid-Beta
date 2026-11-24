@@ -1,44 +1,52 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class ov1 implements ValueAnimator.AnimatorUpdateListener {
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class ov1 implements Runnable {
     public final byte a;
-    public final pv1 b;
+    public final ChatActivityEnterView b;
+    public final boolean c;
 
-    public ov1(pv1 pv1Var, byte b) {
+    public ov1(ChatActivityEnterView chatActivityEnterView, boolean z, byte b) {
         this.a = b;
-        this.b = pv1Var;
+        this.b = chatActivityEnterView;
+        this.c = z;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+    public final void run() {
+        j47 j47Var;
         byte b = this.a;
-        pv1 pv1Var = this.b;
+        ChatActivityEnterView chatActivityEnterView = this.b;
+        boolean z = this.c;
         switch (b) {
             case 0:
-                pv1Var.a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = pv1Var.b.fragmentView;
-                if (view != null) {
-                    view.invalidate();
+                int i = ChatActivityEnterView.r7;
+                if (!z) {
+                    chatActivityEnterView.j2.setVisibility(8);
                     return;
                 }
                 return;
             case 1:
-                pv1Var.a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view2 = pv1Var.b.fragmentView;
-                if (view2 != null) {
-                    view2.invalidate();
+                int i2 = ChatActivityEnterView.r7;
+                if (!z) {
+                    chatActivityEnterView.k2.setVisibility(8);
                     return;
                 }
                 return;
             default:
-                pv1Var.a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view3 = pv1Var.b.fragmentView;
-                if (view3 != null) {
-                    view3.invalidate();
+                int i3 = ChatActivityEnterView.r7;
+                ChatActivityEnterView chatActivityEnterView2 = this.b;
+                uv1 uv1Var = chatActivityEnterView2.e6;
+                chatActivityEnterView2.N0 = System.currentTimeMillis();
+                boolean v1 = chatActivityEnterView2.v1(false, 0, 0, 0L, true);
+                if (!z && (j47Var = chatActivityEnterView2.M0) != null) {
+                    j47Var.f(!v1);
+                    chatActivityEnterView2.M0 = null;
                     return;
                 }
+                chatActivityEnterView2.d6 = !v1;
+                gl.r(uv1Var);
+                gl.d3(uv1Var, 500L);
                 return;
         }
     }

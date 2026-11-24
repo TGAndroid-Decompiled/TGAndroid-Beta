@@ -1,55 +1,47 @@
 package defpackage;
-public final class d93 extends eeb implements rr4 {
-    public final byte a = 0;
-    public byte b;
-    public final h93 c;
-    public Object d;
-    public final Object e;
-    public final Object f;
 
-    public d93(e79 e79Var, h93 h93Var, c79 c79Var, px2 px2Var) {
-        super(1, px2Var);
-        this.e = e79Var;
-        this.c = h93Var;
-        this.f = c79Var;
-    }
+import android.text.TextUtils;
+public final class d93 {
+    public final String a;
+    public final fm4 b;
+    public final fm4 c;
+    public final byte d;
+    public final int e;
 
-    @Override
-    public final px2 create(px2 px2Var) {
-        byte b = this.a;
-        Object obj = this.f;
-        Object obj2 = this.e;
-        h93 h93Var = this.c;
-        switch (b) {
-            case 0:
-                return new d93((e79) obj2, h93Var, (c79) obj, px2Var);
-            default:
-                return new d93(h93Var, (cy2) obj2, (fs4) obj, px2Var);
+    public d93(String str, fm4 fm4Var, fm4 fm4Var2, int i, int i2) {
+        boolean z;
+        if (i != 0 && i2 != 0) {
+            z = false;
+        } else {
+            z = true;
         }
+        gre.f(z);
+        gre.f(!TextUtils.isEmpty(str));
+        this.a = str;
+        fm4Var.getClass();
+        this.b = fm4Var;
+        fm4Var2.getClass();
+        this.c = fm4Var2;
+        this.d = i;
+        this.e = i2;
     }
 
-    @Override
-    public final Object invoke(Object obj) {
-        byte b = this.a;
-        g7c g7cVar = g7c.a;
-        px2 px2Var = (px2) obj;
-        switch (b) {
-            case 0:
-                return ((d93) create(px2Var)).invokeSuspend(g7cVar);
-            default:
-                return ((d93) create(px2Var)).invokeSuspend(g7cVar);
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && d93.class == obj.getClass()) {
+                d93 d93Var = (d93) obj;
+                if (this.d == d93Var.d && this.e == d93Var.e && this.a.equals(d93Var.a) && this.b.equals(d93Var.b) && this.c.equals(d93Var.c)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
+        return true;
     }
 
-    @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.d93.invokeSuspend(java.lang.Object):java.lang.Object");
-    }
-
-    public d93(h93 h93Var, cy2 cy2Var, fs4 fs4Var, px2 px2Var) {
-        super(1, px2Var);
-        this.c = h93Var;
-        this.e = cy2Var;
-        this.f = fs4Var;
+    public final int hashCode() {
+        int j = ir2.j((((527 + this.d) * 31) + this.e) * 31, 31, this.a);
+        return this.c.hashCode() + ((this.b.hashCode() + j) * 31);
     }
 }

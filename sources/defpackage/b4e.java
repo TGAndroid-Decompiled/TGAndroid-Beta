@@ -1,17 +1,11 @@
 package defpackage;
-public final class b4e implements cq7 {
-    public static final b4e a = new Object();
 
-    static {
-        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)), 4)), 5)));
-    }
+import java.io.Serializable;
+public final class b4e extends g4e implements Serializable {
+    public final byte[] b;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public b4e(byte[] bArr) {
+        bArr.getClass();
+        this.b = bArr;
     }
 }

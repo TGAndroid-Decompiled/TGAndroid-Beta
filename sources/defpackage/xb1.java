@@ -1,9 +1,28 @@
 package defpackage;
-public final class xb1 extends qq2 {
-    public static final long c = fy.a.objectFieldOffset(xb1.class.getDeclaredField("_resumed$volatile"));
-    private volatile int _resumed$volatile;
 
-    public xb1(defpackage.vb1 r3, java.lang.Throwable r4, boolean r5) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.xb1.<init>(vb1, java.lang.Throwable, boolean):void");
-    }
+import android.widget.FrameLayout;
+public interface xb1 {
+    FrameLayout E();
+
+    long I();
+
+    long J();
+
+    void L(cc1 cc1Var);
+
+    void M(long j);
+
+    void R(l34 l34Var);
+
+    void l(boolean z);
+
+    FrameLayout m();
+
+    wjb o();
+
+    cc1 p();
+
+    cc1 t();
+
+    long v();
 }

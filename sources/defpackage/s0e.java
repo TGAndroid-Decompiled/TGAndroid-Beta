@@ -1,28 +1,17 @@
 package defpackage;
+public final class s0e implements zn7 {
+    public static final s0e a = new Object();
 
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-public final class s0e implements IInterface {
-    public final IBinder a;
-
-    public s0e(IBinder iBinder) {
-        this.a = iBinder;
-    }
-
-    public final void a(Parcel parcel, int i) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            this.a.transact(i, parcel, obtain, 0);
-            obtain.readException();
-        } finally {
-            parcel.recycle();
-            obtain.recycle();
-        }
+    static {
+        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)));
     }
 
     @Override
-    public final IBinder asBinder() {
-        return this.a;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

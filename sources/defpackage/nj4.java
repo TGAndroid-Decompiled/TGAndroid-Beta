@@ -1,41 +1,26 @@
 package defpackage;
 
-import java.util.concurrent.CountDownLatch;
-public final class nj4 {
-    public final CountDownLatch a;
-    public jz2 b = null;
+import java.util.ArrayList;
+public final class nj4 implements xr3 {
+    public final ArrayList a;
+    public final u23 b;
 
-    public nj4(CountDownLatch countDownLatch) {
-        this.a = countDownLatch;
+    public nj4(u23 u23Var, ArrayList arrayList) {
+        this.b = u23Var;
+        this.a = arrayList;
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof nj4) {
-                nj4 nj4Var = (nj4) obj;
-                if (!this.a.equals(nj4Var.a) || !rr5.a(this.b, nj4Var.b)) {
-                    return false;
-                }
-                return true;
-            }
-            return false;
+    @Override
+    public final void a(yla ylaVar, boolean z, float f, float f2) {
+        ArrayList arrayList = ylaVar.k;
+        int indexOf = arrayList.indexOf(this);
+        if (indexOf >= 0) {
+            arrayList.set(indexOf, null);
         }
-        return true;
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        int hashCode2 = this.a.hashCode() * 31;
-        jz2 jz2Var = this.b;
-        if (jz2Var == null) {
-            hashCode = 0;
-        } else {
-            hashCode = jz2Var.hashCode();
+        ArrayList arrayList2 = this.a;
+        arrayList2.add(ylaVar);
+        if (arrayList2.size() == 2) {
+            this.b.b();
         }
-        return hashCode2 + hashCode;
-    }
-
-    public final String toString() {
-        return "Dependency(latch=" + this.a + ", subscriber=" + this.b + ')';
     }
 }

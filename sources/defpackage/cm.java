@@ -1,60 +1,38 @@
 package defpackage;
 
-import android.text.Selection;
-import android.text.Spannable;
-import android.text.method.LinkMovementMethod;
-import android.view.MotionEvent;
-import android.widget.TextView;
-public final class cm extends LinkMovementMethod {
-    public final byte a;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class cm {
+    public ArrayList a;
+    public HashMap b;
+    public ArrayList c;
 
-    public cm(byte b) {
-        this.a = b;
+    public final void a() {
+        ArrayList arrayList = this.a;
+        for (int i = 0; i < arrayList.size(); i++) {
+            ((bm) arrayList.get(i)).d.spanDrawn = false;
+        }
     }
 
-    @Override
-    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
-        switch (this.a) {
-            case 0:
-                try {
-                    boolean onTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
-                    if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                        Selection.removeSelection(spannable);
-                    }
-                    return onTouchEvent;
-                } catch (Exception e) {
-                    fc4.g(e, true);
-                    return false;
-                }
-            case 1:
-                try {
-                    boolean onTouchEvent2 = super.onTouchEvent(textView, spannable, motionEvent);
-                    if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                        Selection.removeSelection(spannable);
-                    }
-                    return onTouchEvent2;
-                } catch (Exception e2) {
-                    fc4.g(e2, true);
-                    return false;
-                }
-            case 2:
-                try {
-                    return super.onTouchEvent(textView, spannable, motionEvent);
-                } catch (Exception e3) {
-                    fc4.g(e3, true);
-                    return false;
-                }
-            default:
-                try {
-                    boolean onTouchEvent3 = super.onTouchEvent(textView, spannable, motionEvent);
-                    if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                        Selection.removeSelection(spannable);
-                    }
-                    return onTouchEvent3;
-                } catch (Exception e4) {
-                    fc4.g(e4, true);
-                    return false;
-                }
+    public final void b(int i) {
+        bm bmVar = (bm) this.a.remove(i);
+        HashMap hashMap = this.b;
+        em emVar = (em) hashMap.get(bmVar.c);
+        if (emVar != null) {
+            ArrayList arrayList = emVar.b;
+            arrayList.remove(bmVar);
+            emVar.a();
+            if (arrayList.isEmpty()) {
+                hashMap.remove(bmVar.c);
+                this.c.remove(emVar);
+            }
+            vl vlVar = bmVar.f;
+            if (vlVar != null) {
+                vlVar.n(bmVar);
+                return;
+            }
+            return;
         }
+        wn4.j("!!!");
     }
 }

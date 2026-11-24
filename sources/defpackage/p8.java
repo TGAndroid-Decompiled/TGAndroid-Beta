@@ -45,7 +45,7 @@ public final class p8 implements View.OnTouchListener {
                 }
                 return false;
             case 28:
-                int i = ChatActivityEnterView.z7;
+                int i = ChatActivityEnterView.r7;
                 break;
         }
         return true;

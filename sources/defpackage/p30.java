@@ -1,25 +1,9 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+import java.nio.ShortBuffer;
 public interface p30 {
-    public static final ByteBuffer a = ByteBuffer.allocateDirect(0).order(ByteOrder.nativeOrder());
+    public static final o5f m = new o5f((byte) 18);
+    public static final ize o = new ize((byte) 28);
 
-    boolean a();
-
-    ByteBuffer b();
-
-    void c(n30 n30Var);
-
-    void d(ByteBuffer byteBuffer);
-
-    l30 e(l30 l30Var);
-
-    void f();
-
-    long g(long j);
-
-    boolean isActive();
-
-    void reset();
+    void i(ShortBuffer shortBuffer, int i, ShortBuffer shortBuffer2, int i2, int i3);
 }

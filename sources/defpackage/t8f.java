@@ -1,23 +1,19 @@
 package defpackage;
-public final class t8f extends wgf {
+public final class t8f extends vef {
     private static final t8f zzb;
     private int zzd;
-    private boolean zze;
+    private int zze;
     private int zzf;
     private int zzg;
-    private int zzh;
-    private maf zzi;
-    private int zzj;
-    private boolean zzk;
 
     static {
-        ?? wgfVar = new wgf();
-        zzb = wgfVar;
-        wgf.e(t8f.class, wgfVar);
+        ?? vefVar = new vef();
+        zzb = vefVar;
+        vef.e(t8f.class, vefVar);
     }
 
     @Override
-    public final Object h(int i, wgf wgfVar) {
+    public final Object h(int i, vef vefVar) {
         int i2 = i - 1;
         if (i2 != 0) {
             if (i2 != 2) {
@@ -28,11 +24,11 @@ public final class t8f extends wgf {
                         }
                         return zzb;
                     }
-                    return new vgf(zzb);
+                    return new uef(zzb);
                 }
-                return new wgf();
+                return new vef();
             }
-            return new tif(zzb, "\u0001\u0007\u0000\u0001\u0001\u0007\u0007\u0000\u0000\u0000\u0001ဇ\u0000\u0002᠌\u0001\u0003᠌\u0002\u0004᠌\u0003\u0005ဉ\u0004\u0006᠌\u0005\u0007ဇ\u0006", new Object[]{"zzd", "zze", "zzf", jk2.r, "zzg", f8e.n, "zzh", q7f.n, "zzi", "zzj", kg7.r, "zzk"});
+            return new sgf(zzb, "\u0001\u0003\u0000\u0001\u0001\u0003\u0003\u0000\u0000\u0000\u0001င\u0000\u0002င\u0001\u0003င\u0002", new Object[]{"zzd", "zze", "zzf", "zzg"});
         }
         return (byte) 1;
     }

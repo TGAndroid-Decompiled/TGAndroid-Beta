@@ -1,33 +1,33 @@
 package defpackage;
-public abstract class c2 implements ay2 {
-    public final by2 a;
+public abstract class c2 implements qw2 {
+    public final rw2 a;
 
-    public c2(by2 by2Var) {
-        this.a = by2Var;
+    public c2(rw2 rw2Var) {
+        this.a = rw2Var;
     }
 
     @Override
-    public final Object fold(Object obj, fs4 fs4Var) {
-        return fs4Var.invoke(obj, this);
+    public final Object fold(Object obj, eq4 eq4Var) {
+        return eq4Var.invoke(obj, this);
     }
 
     @Override
-    public ay2 get(by2 by2Var) {
-        return nwd.a(this, by2Var);
+    public qw2 get(rw2 rw2Var) {
+        return kud.a(this, rw2Var);
     }
 
     @Override
-    public final by2 getKey() {
+    public final rw2 getKey() {
         return this.a;
     }
 
     @Override
-    public cy2 minusKey(by2 by2Var) {
-        return nwd.b(this, by2Var);
+    public sw2 minusKey(rw2 rw2Var) {
+        return kud.b(this, rw2Var);
     }
 
     @Override
-    public final cy2 plus(cy2 cy2Var) {
-        return nwd.c(this, cy2Var);
+    public final sw2 plus(sw2 sw2Var) {
+        return kud.c(this, sw2Var);
     }
 }

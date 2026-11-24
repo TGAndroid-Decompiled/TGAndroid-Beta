@@ -1,28 +1,17 @@
 package defpackage;
-public final class y6e extends v7c {
-    public boolean b;
-    public final Object c;
+public final class y6e implements zn7 {
+    public static final y6e a = new Object();
 
-    public y6e(Object obj) {
-        super((byte) 12);
-        this.c = obj;
+    static {
+        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)));
     }
 
     @Override
-    public final boolean hasNext() {
-        if (!this.b) {
-            return true;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (!this.b) {
-            this.b = true;
-            return this.c;
-        }
-        u36.g();
-        return null;
+        throw new ClassCastException();
     }
 }

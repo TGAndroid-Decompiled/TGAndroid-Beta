@@ -1,37 +1,53 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class eg2 extends ke2 {
-    public final boolean[] d1;
-    public final long e1;
-    public final wg2 f1;
+import sun.misc.Unsafe;
+public final class eg2 extends ft5 {
+    public final na1 e;
 
-    public eg2(wg2 wg2Var, long j, long j2, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i, boolean[] zArr, long j3) {
-        super(j, j2, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i, true, false, null);
-        this.f1 = wg2Var;
-        this.d1 = zArr;
-        this.e1 = j3;
+    public eg2(na1 na1Var) {
+        this.e = na1Var;
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z, boolean z2) {
-        if (!z && z2 && this.d1[0]) {
-            wg2 wg2Var = this.f1;
-            if (c41.a(wg2Var)) {
-                long j = this.e1;
-                if (j > 0) {
-                    TLRPC.User W1 = getMessagesController().W1(Long.valueOf(j));
-                    if (W1 != null) {
-                        c41.C(W1.first_name, wg2Var).j();
-                        return;
-                    }
+    public final boolean k() {
+        return true;
+    }
+
+    @Override
+    public final void l(Throwable th) {
+        Unsafe unsafe;
+        Unsafe unsafe2;
+        pt5 j = j();
+        na1 na1Var = this.e;
+        Throwable p = na1Var.p(j);
+        if (na1Var.w()) {
+            ho3 ho3Var = (ho3) na1Var.d;
+            long j2 = ho3.n;
+            loop0: while (true) {
+                Object objectVolatile = ex.a.getObjectVolatile(ho3Var, j2);
+                lo5 lo5Var = r3c.b;
+                if (rp5.a(objectVolatile, lo5Var)) {
+                    do {
+                        unsafe = ex.a;
+                        if (unsafe.compareAndSwapObject(ho3Var, ho3.n, lo5Var, p)) {
+                            return;
+                        }
+                    } while (unsafe.getObjectVolatile(ho3Var, j2) == lo5Var);
+                } else if (objectVolatile instanceof Throwable) {
                     return;
-                }
-                TLRPC.Chat L0 = getMessagesController().L0(Long.valueOf(-j));
-                if (L0 != null) {
-                    c41.C(L0.title, wg2Var).j();
+                } else {
+                    do {
+                        unsafe2 = ex.a;
+                        if (unsafe2.compareAndSwapObject(ho3Var, ho3.n, objectVolatile, (Object) null)) {
+                            break loop0;
+                        }
+                    } while (unsafe2.getObjectVolatile(ho3Var, j2) == objectVolatile);
                 }
             }
+        }
+        na1Var.m(p);
+        if (!na1Var.w()) {
+            na1Var.n();
         }
     }
 }

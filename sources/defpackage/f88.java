@@ -1,64 +1,35 @@
 package defpackage;
 
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public abstract class f88 {
-    public static void a(TLRPC.Photo photo, TLRPC.User user, boolean z) {
-        ArrayList<TLRPC.PhotoSize> arrayList = photo.sizes;
-        boolean z2 = false;
-        TLRPC.PhotoSize w = bc4.w(arrayList, 100, false, null, false);
-        TLRPC.PhotoSize w2 = bc4.w(arrayList, 1000, false, null, false);
-        user.flags |= 32;
-        TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
-        user.photo = tL_userProfilePhoto;
-        tL_userProfilePhoto.personal = z;
-        tL_userProfilePhoto.photo_id = photo.id;
-        ArrayList<TLRPC.VideoSize> arrayList2 = photo.video_sizes;
-        if (arrayList2 != null && arrayList2.size() > 0) {
-            z2 = true;
-        }
-        tL_userProfilePhoto.has_video = z2;
-        if (w != null) {
-            user.photo.photo_small = w.location;
-        }
-        if (w2 != null) {
-            user.photo.photo_big = w2.location;
-        }
+import org.telegram.ui.PhotoViewer;
+public final class f88 extends si4 {
+    public final pj4 e;
+    public final PhotoViewer f;
+
+    public f88(PhotoViewer photoViewer, pj4 pj4Var) {
+        super(false);
+        this.f = photoViewer;
+        this.e = pj4Var;
     }
 
-    public static void b(int i, TLRPC.Photo photo, TLRPC.Photo photo2) {
-        TLRPC.PhotoSize w = bc4.w(photo.sizes, 100, false, null, false);
-        TLRPC.PhotoSize w2 = bc4.w(photo.sizes, 1000, false, null, false);
-        TLRPC.PhotoSize w3 = bc4.w(photo2.sizes, 100, false, null, false);
-        TLRPC.PhotoSize w4 = bc4.w(photo2.sizes, 1000, false, null, false);
-        if (w3 != null && w != null) {
-            bc4.G(i);
-            File J = bc4.J(w3, null, true, true);
-            bc4.G(i);
-            bc4.J(w, null, true, true).renameTo(J);
-            StringBuilder sb = new StringBuilder();
-            sb.append(w.location.volume_id);
-            sb.append("_");
-            String k = hg9.k(sb, w.location.local_id, "@50_50");
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(w3.location.volume_id);
-            sb2.append("_");
-            fn5.z().O(k, hg9.k(sb2, w3.location.local_id, "@50_50"), gn5.i(w, photo));
-        }
-        if (w4 != null && w2 != null) {
-            bc4.G(i);
-            File J2 = bc4.J(w4, null, true, true);
-            bc4.G(i);
-            bc4.J(w2, null, true, true).renameTo(J2);
-            StringBuilder sb3 = new StringBuilder();
-            sb3.append(w2.location.volume_id);
-            sb3.append("_");
-            String k2 = hg9.k(sb3, w2.location.local_id, "@150_150");
-            StringBuilder sb4 = new StringBuilder();
-            sb4.append(w4.location.volume_id);
-            sb4.append("_");
-            fn5.z().O(k2, hg9.k(sb4, w4.location.local_id, "@150_150"), gn5.i(w2, photo));
-        }
+    @Override
+    public final CharSequence d() {
+        PhotoViewer photoViewer = this.f;
+        int[] iArr = photoViewer.m3;
+        String str = k96.G(iArr[0], "Minutes", new Object[0]) + ' ' + k96.G(iArr[1], "Seconds", new Object[0]);
+        int[] iArr2 = photoViewer.n3;
+        return k96.a0("AccDescrPlayerDuration", null, 2131754805, str, k96.G(iArr2[0], "Minutes", new Object[0]) + ' ' + k96.G(iArr2[1], "Seconds", new Object[0]));
+    }
+
+    @Override
+    public final float k() {
+        return this.f.q3.c();
+    }
+
+    @Override
+    public final void l(float f) {
+        this.e.f(f);
+        PhotoViewer photoViewer = this.f;
+        photoViewer.q3.h(false, f);
+        photoViewer.r3.invalidate();
     }
 }

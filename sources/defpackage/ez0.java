@@ -1,69 +1,22 @@
 package defpackage;
+public interface ez0 {
+    void a(float f);
 
-import android.animation.ValueAnimator;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import android.graphics.Shader;
-public final class ez0 {
-    public final RectF a = new RectF();
-    public final fz0 b;
-    public final wy0 c;
-    public final uy0 d;
-    public final Paint e;
-    public final Matrix f;
-    public final float[] g;
-    public final float[] h;
-    public float i;
-    public ValueAnimator j;
-    public final u51 k;
-    public final Paint l;
-    public final RectF m;
-    public final Path n;
-    public final Paint o;
-    public final RadialGradient p;
-    public final Matrix q;
-    public final Paint r;
+    void b(lz0 lz0Var);
 
-    public ez0(fz0 fz0Var, wy0 wy0Var, uy0 uy0Var) {
-        Paint paint = new Paint(1);
-        this.e = paint;
-        this.f = new Matrix();
-        this.g = new float[8];
-        this.h = new float[8];
-        this.i = 0.0f;
-        this.l = new Paint(1);
-        this.m = new RectF();
-        this.n = new Path();
-        this.o = new Paint(3);
-        this.p = new RadialGradient(0.0f, 0.0f, 255.0f, new int[]{0, 805306368}, new float[]{0.5f, 1.0f}, Shader.TileMode.CLAMP);
-        this.q = new Matrix();
-        this.r = new Paint(1);
-        this.b = fz0Var;
-        this.c = wy0Var;
-        this.d = uy0Var;
-        this.k = new u51(fz0Var);
-        paint.setColor(wy0Var.r);
-    }
+    void c(long j);
 
-    public final void a(float f) {
-        ValueAnimator valueAnimator = this.j;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.i, f);
-        this.j = ofFloat;
-        ofFloat.addUpdateListener(new f0(this, (byte) 22));
-        this.j.addListener(new t7(this, f, (byte) 2));
-        int i = (Math.abs(f) > 0.1f ? 1 : (Math.abs(f) == 0.1f ? 0 : -1));
-        ValueAnimator valueAnimator2 = this.j;
-        if (i < 0) {
-            gm.n(valueAnimator2, 285.0d, 20.0d);
-        } else {
-            valueAnimator2.setInterpolator(d53.h);
-        }
-        this.j.start();
-    }
+    void d(String str);
+
+    void e(vy0 vy0Var);
+
+    void f();
+
+    void g(long j, int i, long j2);
+
+    long h();
+
+    jh i(iz0 iz0Var, hz0 hz0Var);
+
+    dz0 j(Runnable runnable, long j);
 }

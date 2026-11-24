@@ -1,11 +1,6 @@
 package defpackage;
 
-import android.text.StaticLayout;
-public final class h5b {
-    public cn a;
-    public StaticLayout b;
-    public float c;
-    public float d;
-    public float e;
-    public float f;
+import org.telegram.tgnet.TLRPC;
+public interface h5b {
+    void c(w5b w5bVar, boolean z, boolean z2, boolean z3, boolean z4, TLRPC.InputPeer inputPeer, int i, a5b a5bVar, kya kyaVar);
 }

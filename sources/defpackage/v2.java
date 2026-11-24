@@ -29,7 +29,7 @@ public class v2 implements Iterator {
                 }
                 return true;
             default:
-                if (this.b >= ((fz) obj).a) {
+                if (this.b >= ((fy) obj).a) {
                     return false;
                 }
                 return true;
@@ -47,7 +47,7 @@ public class v2 implements Iterator {
                     this.b = i + 1;
                     return ((y2) obj).get(i);
                 }
-                u36.g();
+                w26.g();
                 return null;
             case 1:
                 try {
@@ -59,11 +59,11 @@ public class v2 implements Iterator {
                     throw new NoSuchElementException(e.getMessage());
                 }
             default:
-                fz fzVar = (fz) obj;
-                String[] strArr = fzVar.c;
+                fy fyVar = (fy) obj;
+                String[] strArr = fyVar.c;
                 int i3 = this.b;
                 String str = strArr[i3];
-                String str2 = fzVar.b[i3];
+                String str2 = fyVar.b[i3];
                 if (str == null) {
                     str = "";
                 }
@@ -72,14 +72,14 @@ public class v2 implements Iterator {
                     obj2.a = str2.trim();
                     if (str2.length() != 0) {
                         obj2.b = str;
-                        obj2.c = fzVar;
+                        obj2.c = fyVar;
                         this.b++;
                         return obj2;
                     }
-                    u36.j("String must not be empty");
+                    w26.j("String must not be empty");
                     return null;
                 }
-                u36.j("Object must not be null");
+                w26.j("Object must not be null");
                 return null;
         }
     }
@@ -92,26 +92,26 @@ public class v2 implements Iterator {
             case 1:
                 throw new UnsupportedOperationException("Operation is not supported for read-only collection");
             default:
-                fz fzVar = (fz) this.c;
+                fy fyVar = (fy) this.c;
                 int i = this.b;
                 int i2 = i - 1;
                 this.b = i2;
-                int i3 = fzVar.a;
+                int i3 = fyVar.a;
                 if (i2 < i3) {
                     int i4 = (i3 - i2) - 1;
                     if (i4 > 0) {
-                        String[] strArr = fzVar.b;
+                        String[] strArr = fyVar.b;
                         System.arraycopy(strArr, i, strArr, i2, i4);
-                        String[] strArr2 = fzVar.c;
+                        String[] strArr2 = fyVar.c;
                         System.arraycopy(strArr2, i, strArr2, i2, i4);
                     }
-                    int i5 = fzVar.a - 1;
-                    fzVar.a = i5;
-                    fzVar.b[i5] = null;
-                    fzVar.c[i5] = null;
+                    int i5 = fyVar.a - 1;
+                    fyVar.a = i5;
+                    fyVar.b[i5] = null;
+                    fyVar.c[i5] = null;
                     return;
                 }
-                u36.j("Must be false");
+                w26.j("Must be false");
                 return;
         }
     }
@@ -121,9 +121,9 @@ public class v2 implements Iterator {
         this.c = y2Var;
     }
 
-    public v2(fz fzVar) {
+    public v2(fy fyVar) {
         this.a = (byte) 2;
-        this.c = fzVar;
+        this.c = fyVar;
         this.b = 0;
     }
 }

@@ -1,71 +1,47 @@
 package defpackage;
 
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-import java.util.concurrent.atomic.AtomicReferenceArray;
-import sun.misc.Unsafe;
+import android.os.Process;
+import android.os.RemoteException;
+import android.text.TextUtils;
+import android.util.Log;
+import java.util.IllegalFormatException;
+import java.util.Locale;
 public final class q0d {
-    public static final AtomicIntegerFieldUpdater b;
-    public static final AtomicIntegerFieldUpdater c;
-    public static final long d;
-    public static final long e;
-    public static final long f;
-    public static final long g;
-    public final AtomicReferenceArray a = new AtomicReferenceArray(128);
-    private volatile int blockingTasksInBuffer$volatile;
-    private volatile int consumerIndex$volatile;
-    private volatile Object lastScheduledTask$volatile;
-    private volatile int producerIndex$volatile;
+    public final String a;
 
-    static {
-        Unsafe unsafe = fy.a;
-        f = unsafe.objectFieldOffset(q0d.class.getDeclaredField("lastScheduledTask$volatile"));
-        b = AtomicIntegerFieldUpdater.newUpdater(q0d.class, "producerIndex$volatile");
-        g = unsafe.objectFieldOffset(q0d.class.getDeclaredField("producerIndex$volatile"));
-        e = unsafe.objectFieldOffset(q0d.class.getDeclaredField("consumerIndex$volatile"));
-        c = AtomicIntegerFieldUpdater.newUpdater(q0d.class, "blockingTasksInBuffer$volatile");
-        d = unsafe.objectFieldOffset(q0d.class.getDeclaredField("blockingTasksInBuffer$volatile"));
+    public q0d(String str) {
+        int myUid = Process.myUid();
+        int myPid = Process.myPid();
+        this.a = ("UID: [" + myUid + "]  PID: [" + myPid + "] ").concat(str);
     }
 
-    public final int a() {
-        return fy.a.getIntVolatile(this, g) - fy.a.getIntVolatile(this, e);
+    public static String d(String str, String str2, Object... objArr) {
+        if (objArr.length > 0) {
+            try {
+                str2 = String.format(Locale.US, str2, objArr);
+            } catch (IllegalFormatException e) {
+                Log.e("PlayCore", "Unable to format ".concat(str2), e);
+                str2 = tb4.q(str2, " [", TextUtils.join(", ", objArr), "]");
+            }
+        }
+        return tb4.y(str, " : ", str2);
     }
 
-    public final aib b() {
-        aib aibVar;
-        while (true) {
-            Unsafe unsafe = fy.a;
-            long j = e;
-            int intVolatile = unsafe.getIntVolatile(this, j);
-            if (intVolatile - unsafe.getIntVolatile(this, g) == 0) {
-                return null;
-            }
-            int i = intVolatile & 127;
-            q0d q0dVar = this;
-            if (unsafe.compareAndSwapInt(q0dVar, j, intVolatile, intVolatile + 1) && (aibVar = (aib) q0dVar.a.getAndSet(i, null)) != null) {
-                if (aibVar.b) {
-                    c.decrementAndGet(q0dVar);
-                }
-                return aibVar;
-            }
-            this = q0dVar;
+    public final void a(RemoteException remoteException, String str, Object... objArr) {
+        if (Log.isLoggable("PlayCore", 6)) {
+            Log.e("PlayCore", d(this.a, str, objArr), remoteException);
         }
     }
 
-    public final aib c(int i, boolean z) {
-        int i2 = i & 127;
-        AtomicReferenceArray atomicReferenceArray = this.a;
-        aib aibVar = (aib) atomicReferenceArray.get(i2);
-        if (aibVar == null || aibVar.b != z) {
-            return null;
+    public final void b(String str, Object... objArr) {
+        if (Log.isLoggable("PlayCore", 4)) {
+            Log.i("PlayCore", d(this.a, str, objArr));
         }
-        while (!atomicReferenceArray.compareAndSet(i2, aibVar, null)) {
-            if (atomicReferenceArray.get(i2) != aibVar) {
-                return null;
-            }
+    }
+
+    public final void c(String str, Object... objArr) {
+        if (Log.isLoggable("PlayCore", 5)) {
+            Log.w("PlayCore", d(this.a, str, objArr));
         }
-        if (z) {
-            c.decrementAndGet(this);
-        }
-        return aibVar;
     }
 }

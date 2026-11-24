@@ -1,25 +1,10 @@
 package defpackage;
+public final class ep9 {
+    public final fm4 a;
+    public final xq3 b;
 
-import android.view.Surface;
-public final class ep9 implements aq9 {
-    public final pp9 a;
-
-    public ep9(pp9 pp9Var) {
-        this.a = pp9Var;
-    }
-
-    @Override
-    public final void a(int i, int i2) {
-        gm.c3(new ku(this, i / i2, (byte) 4));
-    }
-
-    @Override
-    public final boolean b() {
-        return true;
-    }
-
-    @Override
-    public final Surface getSurface() {
-        return this.a.r0;
+    public ep9(fm4 fm4Var, xq3 xq3Var) {
+        this.a = fm4Var;
+        this.b = xq3Var;
     }
 }

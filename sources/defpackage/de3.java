@@ -1,21 +1,35 @@
 package defpackage;
-public abstract class de3 {
-    public final int a;
-    public final uzb b;
-    public final int c;
-    public final go4 d;
+public final class de3 {
+    public static final de3 c = new de3(new ie7((byte) 18));
+    public static final String d;
+    public static final String e;
+    public final int a = 0;
+    public final int b = 0;
 
-    public de3(int i, uzb uzbVar, int i2) {
-        this.a = i;
-        this.b = uzbVar;
-        this.c = i2;
-        this.d = uzbVar.d[i2];
+    static {
+        String str = g8c.a;
+        d = "1";
+        e = "2";
     }
 
-    public abstract int a();
+    public de3(ie7 ie7Var) {
+    }
 
-    public boolean b(de3 de3Var) {
-        xd3 xd3Var = (xd3) de3Var;
-        return false;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof de3) {
+                de3 de3Var = (de3) obj;
+                if (this.a == de3Var.a && this.b == de3Var.b) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return (((16337 + this.a) * 31) + this.b) * 31;
     }
 }

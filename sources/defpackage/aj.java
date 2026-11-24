@@ -1,7 +1,7 @@
 package defpackage;
-public final class aj extends lp7 {
+public final class aj extends hn7 {
     @Override
     public final CharSequence d(int i) {
-        return jb6.G(i, "Minutes", new Object[0]);
+        return k96.G(i, "Hours", new Object[0]);
     }
 }

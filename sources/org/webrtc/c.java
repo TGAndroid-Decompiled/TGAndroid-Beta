@@ -22,7 +22,7 @@ public abstract class c {
             if (context instanceof EglBase10.Context) {
                 return new EglBase10Impl(((EglBase10.Context) context).getRawContext(), iArr);
             }
-            u36.j("Unrecognized Context");
+            w26.j("Unrecognized Context");
             return null;
         }
     }

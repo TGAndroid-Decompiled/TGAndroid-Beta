@@ -1,31 +1,45 @@
 package defpackage;
-public final class g52 implements Runnable {
-    public final byte a;
-    public final n52 b;
-    public final uj5 c;
 
-    public g52(n52 n52Var, uj5 uj5Var, byte b) {
-        this.a = b;
-        this.b = n52Var;
-        this.c = uj5Var;
+import android.content.Context;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class g52 {
+    public float a;
+    public int b;
+    public int c;
+    public int d;
+    public final Object e;
+    public final Object f;
+    public Object g;
+    public final Object h;
+
+    public g52(Context context, s34 s34Var) {
+        this.b = -1;
+        this.c = -1;
+        this.d = -1;
+        this.h = new int[]{Integer.MAX_VALUE, 0};
+        this.e = context;
+        this.f = s34Var;
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        uj5 uj5Var = this.c;
-        n52 n52Var = this.b;
-        switch (b) {
-            case 0:
-                try {
-                    ((sm2) uj5Var).F();
-                } catch (Exception unused) {
-                }
-                gm.c3(new g52(n52Var, uj5Var, (byte) 1));
-                return;
-            default:
-                n52Var.T(uj5Var);
-                return;
+    public static float b(int i, int i2, float[] fArr) {
+        float f = 0.0f;
+        while (i < i2) {
+            f += fArr[i];
+            i++;
         }
+        return 1000.0f / f;
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.g52.a():void");
+    }
+
+    public g52(m52 m52Var, ArrayList arrayList) {
+        this.h = m52Var;
+        this.e = new ArrayList();
+        this.g = new HashMap();
+        this.f = arrayList;
+        a();
     }
 }

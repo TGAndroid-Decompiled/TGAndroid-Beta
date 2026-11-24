@@ -1,74 +1,181 @@
 package defpackage;
 
 import android.graphics.Bitmap;
-import android.graphics.BlurMaskFilter;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import java.nio.ByteBuffer;
-public final class ny8 implements Runnable {
-    public final byte a;
-    public final wy8 b;
-    public final int c;
+import android.text.TextUtils;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.RLottieNative;
+public class ny8 extends oy8 {
+    public volatile RLottieNative V0;
+    public boolean W0;
+    public boolean X0;
+    public volatile boolean Y0;
+    public boolean Z0;
+    public final int a1;
+    public int b1;
 
-    public ny8(wy8 wy8Var, int i, byte b) {
-        this.a = b;
-        this.b = wy8Var;
-        this.c = i;
+    public ny8(String str, int i, int i2) {
+        super(i, i2);
+        String str2;
+        this.a1 = -1;
+        this.K = (byte) 1;
+        if ("🎲".equals(str)) {
+            str2 = gl.v2(null, 2131623999);
+            this.a1 = 60;
+        } else if ("🎯".equals(str)) {
+            str2 = gl.v2(null, 2131623996);
+        } else {
+            str2 = null;
+        }
+        getPaint().setFlags(2);
+        if (TextUtils.isEmpty(str2)) {
+            return;
+        }
+        this.n0 = RLottieNative.b(str2, this.e, null, null);
     }
 
     @Override
-    public final void run() {
-        float L;
-        byte[] bArr;
-        switch (this.a) {
-            case 0:
-                wy8 wy8Var = this.b;
-                int i = this.c;
-                synchronized (wy8.class) {
-                    if (wy8.M9 != null) {
-                        bArr = wy8.M9;
-                    } else {
-                        float L2 = gm.L(30.0f) / 4.0f;
-                        int ceil = (int) Math.ceil(3.0f * L);
-                        int ceil2 = ((int) Math.ceil(L2)) + ceil + 1;
-                        int i2 = (ceil2 << 1) + 2;
-                        Bitmap createBitmap = Bitmap.createBitmap(i2, i2, Bitmap.Config.ARGB_8888);
-                        Paint paint = new Paint(1);
-                        paint.setMaskFilter(new BlurMaskFilter(aq1.f(((gm.L(24.0f) * 0.57735f) + 0.5f) / 4.0f, 0.5f, 0.57735f, 0.1f), BlurMaskFilter.Blur.NORMAL));
-                        float f = ceil;
-                        float f2 = i2 - ceil;
-                        new Canvas(createBitmap).drawRoundRect(f, f, f2, f2, L2, L2, paint);
-                        Bitmap extractAlpha = createBitmap.extractAlpha();
-                        createBitmap.recycle();
-                        int rowBytes = extractAlpha.getRowBytes();
-                        byte[] bArr2 = new byte[rowBytes * i2];
-                        byte[] bArr3 = new byte[i2 * i2];
-                        extractAlpha.copyPixelsToBuffer(ByteBuffer.wrap(bArr2));
-                        extractAlpha.recycle();
-                        for (int i3 = 0; i3 < i2; i3++) {
-                            System.arraycopy(bArr2, i3 * rowBytes, bArr3, i3 * i2, i2);
+    public void d() {
+        byte b = this.K;
+        if (b == 1) {
+            int i = this.b0 + 1;
+            int i2 = this.a1;
+            if (i2 == -1) {
+                i2 = this.e[0];
+            }
+            if (i < i2) {
+                this.b0 = i;
+                return;
+            }
+            this.b0 = 0;
+            this.O = false;
+            if (this.V0 != null) {
+                this.K = (byte) 2;
+            }
+            if (this.E) {
+                this.y = null;
+                this.E = false;
+            }
+        } else if (b == 2) {
+            int i3 = this.b0 + 1;
+            if (i3 < this.b1) {
+                this.b0 = i3;
+                return;
+            }
+            this.O = true;
+            this.N++;
+        }
+    }
+
+    @Override
+    public int e() {
+        if (this.m0) {
+            return 3;
+        }
+        if (this.n0 == null || (this.K == 2 && this.V0 == null)) {
+            return 2;
+        }
+        return 1;
+    }
+
+    @Override
+    public void k() {
+        if (this.W) {
+            i();
+            if (this.Q == null && this.n0 != null) {
+                y(true);
+            }
+        }
+        if (this.n0 == null && this.V0 == null && this.C0 == null) {
+            z();
+            return;
+        }
+        this.U = true;
+        if (!q()) {
+            stop();
+        }
+        if (this.l0) {
+            D();
+        }
+    }
+
+    @Override
+    public final boolean r() {
+        return this.Z0;
+    }
+
+    @Override
+    public final boolean u() {
+        return false;
+    }
+
+    @Override
+    public int w(Bitmap bitmap, boolean z) {
+        RLottieNative rLottieNative;
+        byte b = this.K;
+        if (b == 1) {
+            rLottieNative = this.n0;
+        } else if (b == 2) {
+            rLottieNative = this.V0;
+            if (this.Y0) {
+                this.b0 = this.b1 - 1;
+            }
+        } else {
+            rLottieNative = this.n0;
+        }
+        if (rLottieNative.c(this.b0, bitmap, z) < 0) {
+            return 2;
+        }
+        return 1;
+    }
+
+    @Override
+    public void x(boolean z) {
+        this.l0 = false;
+        this.m0 = true;
+        i();
+        g();
+        if (!this.Z0 && !this.W0) {
+            if (this.Q == null && !this.y0) {
+                y(z);
+                dk0 dk0Var = this.C0;
+                if (dk0Var != null) {
+                    RandomAccessFile randomAccessFile = dk0Var.s;
+                    if (randomAccessFile != null) {
+                        try {
+                            randomAccessFile.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
-                        wy8.N9 = i2;
-                        wy8.O9 = ceil;
-                        wy8.P9 = ceil2;
-                        wy8.M9 = bArr3;
-                        bArr = bArr3;
+                        dk0Var.s = null;
                     }
+                    dk0Var.r = true;
+                    this.C0 = null;
                 }
-                int i4 = wy8.N9;
-                Bitmap createBitmap2 = Bitmap.createBitmap(i4, i4, Bitmap.Config.ARGB_8888);
-                int[] iArr = new int[i4 * i4];
-                wy8.s(iArr, bArr, i);
-                createBitmap2.setPixels(iArr, 0, i4, 0, 0, i4, i4);
-                createBitmap2.prepareToDraw();
-                gm.c3(new v36(wy8Var, createBitmap2, iArr, i, (byte) 22));
+                z();
                 return;
-            case 1:
-                this.b.F0(this.c);
-                return;
-            default:
-                this.b.F0(this.c);
-                return;
+            }
+            this.W = true;
+            return;
+        }
+        this.X0 = true;
+    }
+
+    @Override
+    public final void y(boolean z) {
+        RLottieNative rLottieNative = this.n0;
+        RLottieNative rLottieNative2 = this.V0;
+        this.n0 = null;
+        this.V0 = null;
+        if (rLottieNative == null && rLottieNative2 == null) {
+            return;
+        }
+        lw8 lw8Var = new lw8(rLottieNative, rLottieNative2, (byte) 6);
+        if (z) {
+            eo3.a(lw8Var);
+        } else {
+            Utilities.e.c(lw8Var);
         }
     }
 }

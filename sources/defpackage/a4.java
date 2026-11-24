@@ -9,10 +9,10 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-public abstract class a4 implements t76 {
+public abstract class a4 implements t56 {
     public static final boolean d = Boolean.parseBoolean(System.getProperty("guava.concurrent.generate_cancellation_cause", "false"));
     public static final Logger e = Logger.getLogger(a4.class.getName());
-    public static final hnd f;
+    public static final fld f;
     public static final Object h;
     public volatile Object a;
     public volatile v3 b;
@@ -110,10 +110,10 @@ public abstract class a4 implements t76 {
         throw cancellationException2;
     }
 
-    public static Object h(t76 t76Var) {
+    public static Object h(t56 t56Var) {
         Object obj;
-        if (t76Var instanceof a4) {
-            Object obj2 = ((a4) t76Var).a;
+        if (t56Var instanceof a4) {
+            Object obj2 = ((a4) t56Var).a;
             if (obj2 instanceof t3) {
                 t3 t3Var = (t3) obj2;
                 if (t3Var.a) {
@@ -126,7 +126,7 @@ public abstract class a4 implements t76 {
             }
             return obj2;
         }
-        boolean isCancelled = t76Var.isCancelled();
+        boolean isCancelled = t56Var.isCancelled();
         boolean z = true;
         if ((!d) & isCancelled) {
             return t3.d;
@@ -135,7 +135,7 @@ public abstract class a4 implements t76 {
         while (true) {
             try {
                 try {
-                    obj = t76Var.get();
+                    obj = t56Var.get();
                     break;
                 } catch (InterruptedException unused) {
                     z2 = z;
@@ -147,7 +147,7 @@ public abstract class a4 implements t76 {
                 }
             } catch (CancellationException e2) {
                 if (!isCancelled) {
-                    return new u3(new IllegalArgumentException("get() threw CancellationException, despite reporting isCancelled() == false: " + t76Var, e2));
+                    return new u3(new IllegalArgumentException("get() threw CancellationException, despite reporting isCancelled() == false: " + t56Var, e2));
                 }
                 return new t3(false, e2);
             } catch (ExecutionException e3) {
@@ -257,9 +257,9 @@ public abstract class a4 implements t76 {
                 if (!(obj instanceof x3)) {
                     break;
                 }
-                t76 t76Var = ((x3) obj).b;
-                if (t76Var instanceof a4) {
-                    this = (a4) t76Var;
+                t56 t56Var = ((x3) obj).b;
+                if (t56Var instanceof a4) {
+                    this = (a4) t56Var;
                     obj = this.a;
                     if (obj == null) {
                         z3 = true;
@@ -271,7 +271,7 @@ public abstract class a4 implements t76 {
                     }
                     z4 = true;
                 } else {
-                    t76Var.cancel(z);
+                    t56Var.cancel(z);
                     break;
                 }
             } else {
@@ -294,13 +294,13 @@ public abstract class a4 implements t76 {
         Object obj = this.a;
         if (obj instanceof x3) {
             StringBuilder sb = new StringBuilder("setFuture=[");
-            t76 t76Var = ((x3) obj).b;
-            if (t76Var == this) {
+            t56 t56Var = ((x3) obj).b;
+            if (t56Var == this) {
                 valueOf = "this future";
             } else {
-                valueOf = String.valueOf(t76Var);
+                valueOf = String.valueOf(t56Var);
             }
-            return b10.j(sb, valueOf, "]");
+            return b00.j(sb, valueOf, "]");
         } else if (this instanceof ScheduledFuture) {
             return "remaining delay=[" + ((ScheduledFuture) this).getDelay(TimeUnit.MILLISECONDS) + " ms]";
         } else {
@@ -385,7 +385,7 @@ public abstract class a4 implements t76 {
                 str = "Exception thrown from implementation: " + e2.getClass();
             }
             if (str != null && !str.isEmpty()) {
-                wi8.z("PENDING, info=[", str, "]", sb);
+                ug8.z("PENDING, info=[", str, "]", sb);
             } else if (isDone()) {
                 a(sb);
             } else {
@@ -412,9 +412,9 @@ public abstract class a4 implements t76 {
             if (z3Var2 != z3Var) {
                 z3 z3Var3 = new z3();
                 do {
-                    hnd hndVar = f;
-                    hndVar.d(z3Var3, z3Var2);
-                    if (hndVar.c(this, z3Var2, z3Var3)) {
+                    fld fldVar = f;
+                    fldVar.d(z3Var3, z3Var2);
+                    if (fldVar.c(this, z3Var2, z3Var3)) {
                         do {
                             LockSupport.park(this);
                             if (!Thread.interrupted()) {

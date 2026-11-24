@@ -1,61 +1,72 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.text.Editable;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.view.inputmethod.InputConnectionWrapper;
-import android.widget.EditText;
-public final class by3 extends InputConnectionWrapper {
-    public final EditText a;
-    public final nf5 b;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class by3 extends jr9 {
+    public int h;
+    public boolean n;
+    public float r;
+    public final cy3 s;
 
-    public by3(EditText editText, InputConnection inputConnection, EditorInfo editorInfo) {
-        super(inputConnection, false);
-        int i;
-        nf5 nf5Var = new nf5((byte) 19);
-        this.a = editText;
-        this.b = nf5Var;
-        if (wx3.j != null) {
-            wx3 a = wx3.a();
-            if (a.b() != 1 || editorInfo == null) {
-                return;
+    public by3(cy3 cy3Var, Context context) {
+        super(context);
+        float f;
+        this.s = cy3Var;
+        boolean z = cy3Var.h;
+        this.n = z;
+        if (z) {
+            f = 1.0f;
+        } else {
+            f = 0.0f;
+        }
+        this.r = f;
+        setSmoothScrollingEnabled(true);
+        setHorizontalScrollBarEnabled(false);
+        setVerticalScrollBarEnabled(false);
+        setNestedScrollingEnabled(true);
+        pkb pkbVar = new pkb((byte) 5, context, this);
+        this.b = pkbVar;
+        pkbVar.setOrientation(0);
+        addView(this.b, new FrameLayout.LayoutParams(-2, -1));
+        for (int i = 0; i < 8; i++) {
+            int i2 = cy3.e0[i];
+            ay3 ay3Var = new ay3(this, context, cy3.f0[i]);
+            ay3Var.setContentDescription(cy3.f(i));
+            this.b.addView(ay3Var);
+        }
+    }
+
+    public final void d(MotionEvent motionEvent) {
+        if (this.n && !this.d) {
+            int action = motionEvent.getAction();
+            if (action != 0) {
+                if (action != 1) {
+                    if (action != 2) {
+                        return;
+                    }
+                } else {
+                    this.a = false;
+                    return;
+                }
             }
-            if (editorInfo.extras == null) {
-                editorInfo.extras = new Bundle();
+            this.a = true;
+            if (!this.d) {
+                this.e = -1;
             }
-            sk skVar = a.e;
-            skVar.getClass();
-            Bundle bundle = editorInfo.extras;
-            rf7 rf7Var = (rf7) ((e7a) skVar.c).a;
-            int a2 = rf7Var.a(4);
-            if (a2 != 0) {
-                i = rf7Var.b.getInt(a2 + rf7Var.a);
-            } else {
-                i = 0;
-            }
-            bundle.putInt("android.support.text.emoji.emojiCompat_metadataVersion", i);
-            editorInfo.extras.putBoolean("android.support.text.emoji.emojiCompat_replaceAll", false);
+            this.s.requestDisallowInterceptTouchEvent(true);
         }
     }
 
     @Override
-    public final boolean deleteSurroundingText(int i, int i2) {
-        Editable editableText = this.a.getEditableText();
-        this.b.getClass();
-        if (!hi2.y(this, editableText, i, i2, false) && !super.deleteSurroundingText(i, i2)) {
-            return false;
-        }
-        return true;
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(gl.U1(this.r, gl.L(30.0f), gl.L(Math.min(5.7f, this.b.getChildCount()) * 32.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(30.0f), 1073741824));
     }
 
     @Override
-    public final boolean deleteSurroundingTextInCodePoints(int i, int i2) {
-        Editable editableText = this.a.getEditableText();
-        this.b.getClass();
-        if (hi2.y(this, editableText, i, i2, true) || super.deleteSurroundingTextInCodePoints(i, i2)) {
-            return true;
-        }
-        return false;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        d(motionEvent);
+        return super.onTouchEvent(motionEvent);
     }
 }

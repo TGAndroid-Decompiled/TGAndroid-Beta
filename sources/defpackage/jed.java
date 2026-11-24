@@ -1,18 +1,26 @@
 package defpackage;
+public final class jed extends aad {
+    public final transient Object[] h;
+    public final transient boolean n;
+    public final transient boolean r;
 
-import j$.util.Objects;
-public final class jed implements lr2, ahf {
-    public static final CharSequence a(Object obj) {
-        Objects.requireNonNull(obj);
-        if (obj instanceof CharSequence) {
-            return (CharSequence) obj;
-        }
-        return obj.toString();
+    public jed(int i, Object[] objArr) {
+        super((byte) 0);
+        this.h = objArr;
+        this.n = i;
+        this.r = true;
     }
 
     @Override
-    public final Object X(sm2 sm2Var) {
-        hj2 hj2Var = (hj2) sm2Var.a(hj2.class);
-        return new jk2((byte) 0);
+    public final Object get(int i) {
+        l2f.a(i, this.r ? 1 : 0);
+        Object obj = this.h[(i << 1) + (this.n ? 1 : 0)];
+        obj.getClass();
+        return obj;
+    }
+
+    @Override
+    public final int size() {
+        return this.r ? 1 : 0;
     }
 }

@@ -1,98 +1,84 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class lb7 implements RequestDelegate {
+import java.util.ArrayList;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.tl.TL_stars;
+public final class lb7 implements Runnable {
     public final byte a;
-    public final z71 b;
+    public final ad7 b;
+    public final int c;
+    public final ArrayList d;
+    public final long e;
 
-    public lb7(z71 z71Var, byte b) {
-        this.a = b;
-        this.b = z71Var;
+    public lb7(ad7 ad7Var, ArrayList arrayList, int i, long j) {
+        this.a = (byte) 2;
+        this.b = ad7Var;
+        this.d = arrayList;
+        this.c = i;
+        this.e = j;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i;
-        TLRPC.TL_help_appConfig tL_help_appConfig;
-        int i2;
-        TLRPC.TL_messages_availableEffects tL_messages_availableEffects;
-        TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups;
+    public final void run() {
         byte b = this.a;
-        boolean z = true;
-        String str = "";
-        z71 z71Var = this.b;
+        long j = this.e;
+        int i = this.c;
+        ArrayList arrayList = this.d;
+        ad7 ad7Var = this.b;
         switch (b) {
             case 0:
-                if (tLObject instanceof TLRPC.TL_help_appConfigNotModified) {
-                    Boolean bool = Boolean.TRUE;
-                    z71Var.a(bool, null, 0L, bool);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_help_appConfig) {
-                    z71Var.a(Boolean.FALSE, (TLRPC.TL_help_appConfig) tLObject, Long.valueOf(tL_help_appConfig.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    if (tL_error != null) {
-                        str = tL_error.code + " " + tL_error.text;
-                    }
-                    fc4.d("getting appconfig error ".concat(str));
-                    Boolean bool2 = Boolean.FALSE;
-                    if (tL_error != null && ((i = tL_error.code) == -2000 || i == -2001)) {
-                        z = false;
-                    }
-                    z71Var.a(bool2, null, 0L, Boolean.valueOf(z));
-                    return;
-                }
+                ad7Var.getMessagesController().p4(i, j, arrayList);
+                return;
             case 1:
-                if (tLObject instanceof TLRPC.TL_messages_availableEffectsNotModified) {
-                    Boolean bool3 = Boolean.TRUE;
-                    z71Var.a(bool3, null, 0L, bool3);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_availableEffects) {
-                    z71Var.a(Boolean.FALSE, (TLRPC.TL_messages_availableEffects) tLObject, Long.valueOf(tL_messages_availableEffects.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    if (tL_error != null) {
-                        str = tL_error.code + " " + tL_error.text;
-                    }
-                    fc4.d("getting available effects error ".concat(str));
-                    Boolean bool4 = Boolean.FALSE;
-                    if (tL_error != null && ((i2 = tL_error.code) == -2000 || i2 == -2001)) {
-                        z = false;
-                    }
-                    z71Var.a(bool4, null, 0L, Boolean.valueOf(z));
-                    return;
-                }
-            case 2:
-                if (tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified) {
-                    Boolean bool5 = Boolean.TRUE;
-                    z71Var.a(bool5, null, 0L, bool5);
-                    return;
-                }
-                boolean z2 = tLObject instanceof TLRPC.TL_messages_emojiGroups;
-                Boolean bool6 = Boolean.FALSE;
-                if (z2) {
-                    z71Var.a(bool6, (TLRPC.TL_messages_emojiGroups) tLObject, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
-                    return;
-                }
-                z71Var.a(bool6, null, 0L, Boolean.TRUE);
+                ad7Var.getMessagesController().c(null, this.c, -1, this.d, this.e);
                 return;
             default:
-                if (tLObject instanceof TLRPC.TL_emojiListNotModified) {
-                    Boolean bool7 = Boolean.TRUE;
-                    z71Var.a(bool7, null, 0L, bool7);
+                SQLiteDatabase sQLiteDatabase = ad7Var.b;
+                SQLitePreparedStatement sQLitePreparedStatement = null;
+                try {
+                    try {
+                        sQLiteDatabase.executeFast("DELETE FROM star_gifts2").stepThis().dispose();
+                        if (arrayList != null) {
+                            sQLitePreparedStatement = sQLiteDatabase.executeFast("REPLACE INTO star_gifts2 VALUES(?, ?, ?, ?, ?)");
+                            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                                TL_stars.StarGift starGift = (TL_stars.StarGift) arrayList.get(i2);
+                                sQLitePreparedStatement.requery();
+                                sQLitePreparedStatement.bindLong(1, starGift.id);
+                                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(starGift.getObjectSize());
+                                starGift.serializeToStream(nativeByteBuffer);
+                                sQLitePreparedStatement.bindByteBuffer(2, nativeByteBuffer);
+                                sQLitePreparedStatement.bindLong(3, i);
+                                sQLitePreparedStatement.bindLong(4, j);
+                                sQLitePreparedStatement.bindInteger(5, i2);
+                                sQLitePreparedStatement.step();
+                                nativeByteBuffer.reuse();
+                            }
+                        }
+                        if (sQLitePreparedStatement == null) {
+                            return;
+                        }
+                    } catch (Exception e) {
+                        fa4.g(e, true);
+                        if (sQLitePreparedStatement == null) {
+                            return;
+                        }
+                    }
                     return;
+                } finally {
+                    if (sQLitePreparedStatement != null) {
+                        sQLitePreparedStatement.dispose();
+                    }
                 }
-                boolean z3 = tLObject instanceof TLRPC.TL_emojiList;
-                Boolean bool8 = Boolean.FALSE;
-                if (z3) {
-                    TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
-                    z71Var.a(bool8, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
-                    return;
-                }
-                z71Var.a(bool8, null, 0L, Boolean.TRUE);
-                return;
         }
+    }
+
+    public lb7(ad7 ad7Var, int i, ArrayList arrayList, long j, byte b) {
+        this.a = b;
+        this.b = ad7Var;
+        this.c = i;
+        this.d = arrayList;
+        this.e = j;
     }
 }

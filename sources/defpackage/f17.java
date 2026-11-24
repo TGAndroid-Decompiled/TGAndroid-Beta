@@ -1,64 +1,64 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class f17 implements Comparator {
-    public final vh6 a;
-    public final ArrayList b;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class f17 extends Drawable {
+    public Paint a;
+    public Paint b;
+    public long c;
+    public float d;
+    public boolean e;
+    public boolean f;
+    public float g;
+    public float h;
+    public float i;
+    public float j;
+    public float k;
+    public long l;
+    public gb2 m;
 
-    public f17(vh6 vh6Var, ArrayList arrayList) {
-        this.a = vh6Var;
-        this.b = arrayList;
+    public final void a() {
+        int i;
+        int i2;
+        Rect bounds = getBounds();
+        float centerX = bounds.centerX();
+        float centerY = bounds.centerY();
+        float f = bounds.left - centerX;
+        float f2 = bounds.top - centerY;
+        this.g = (float) Math.ceil(Math.sqrt(tb4.A(i2, centerY, f2, f * (i - centerX))));
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        long j;
-        long j2;
-        TLObject tLObject = (TLObject) obj;
-        TLObject tLObject2 = (TLObject) obj2;
-        if (tLObject instanceof TLRPC.User) {
-            j = ((TLRPC.User) tLObject).id;
-        } else {
-            j = -((TLRPC.Chat) tLObject).id;
-        }
-        if (tLObject2 instanceof TLRPC.User) {
-            j2 = ((TLRPC.User) tLObject2).id;
-        } else {
-            j2 = -((TLRPC.Chat) tLObject2).id;
-        }
-        vh6 vh6Var = this.a;
-        if (vh6Var.h(j) < 0 || vh6Var.h(j2) < 0) {
-            if (vh6Var.h(j) < 0) {
-                if (vh6Var.h(j2) < 0) {
-                    Long valueOf = Long.valueOf(j);
-                    ArrayList arrayList = this.b;
-                    int indexOf = arrayList.indexOf(valueOf);
-                    int indexOf2 = arrayList.indexOf(Long.valueOf(j2));
-                    if (indexOf != -1) {
-                        if (indexOf2 != -1) {
-                            if (indexOf >= indexOf2) {
-                                if (indexOf != indexOf2) {
-                                    return 1;
-                                }
-                                return 0;
-                            }
-                        } else if (indexOf2 != -1) {
-                            return 0;
-                        }
-                    } else if (indexOf2 != -1) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                } else {
-                    return 1;
-                }
-            }
-            return -1;
-        }
-        return 0;
+    public final void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.f17.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.a.setAlpha(i);
+    }
+
+    @Override
+    public final void setBounds(int i, int i2, int i3, int i4) {
+        super.setBounds(i, i2, i3, i4);
+        a();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.a.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void setBounds(Rect rect) {
+        super.setBounds(rect);
+        a();
     }
 }

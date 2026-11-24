@@ -1,67 +1,58 @@
 package defpackage;
 
+import android.content.Context;
+import android.media.session.MediaSession;
 import android.os.Bundle;
-public final class bv6 {
-    public final Bundle a;
-    public yv6 b;
+import android.os.RemoteCallbackList;
+import java.util.ArrayList;
+public class bv6 {
+    public final MediaSession a;
+    public final av6 b;
+    public final kv6 c;
+    public final Bundle e;
+    public dc8 g;
+    public ArrayList h;
+    public kr6 i;
+    public byte j;
+    public int k;
+    public yu6 l;
+    public mw6 m;
+    public final Object d = new Object();
+    public final RemoteCallbackList f = new RemoteCallbackList();
 
-    public bv6(yv6 yv6Var, boolean z) {
-        if (yv6Var != null) {
-            Bundle bundle = new Bundle();
-            this.a = bundle;
-            this.b = yv6Var;
-            bundle.putBundle("selector", yv6Var.a);
-            bundle.putBoolean("activeScan", z);
-            return;
+    public bv6(Context context, String str, Bundle bundle) {
+        MediaSession a = a(context, str, bundle);
+        this.a = a;
+        av6 av6Var = new av6(this);
+        this.b = av6Var;
+        this.c = new kv6(a.getSessionToken(), av6Var);
+        this.e = bundle;
+        a.setFlags(3);
+    }
+
+    public MediaSession a(Context context, String str, Bundle bundle) {
+        return new MediaSession(context, str);
+    }
+
+    public final yu6 b() {
+        yu6 yu6Var;
+        synchronized (this.d) {
+            yu6Var = this.l;
         }
-        u36.j("selector must not be null");
-        throw null;
+        return yu6Var;
     }
 
-    public final void a() {
-        if (this.b == null) {
-            yv6 b = yv6.b(this.a.getBundle("selector"));
-            this.b = b;
-            if (b == null) {
-                this.b = yv6.c;
-            }
+    public mw6 c() {
+        mw6 mw6Var;
+        synchronized (this.d) {
+            mw6Var = this.m;
         }
+        return mw6Var;
     }
 
-    public final boolean b() {
-        return this.a.getBoolean("activeScan");
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof bv6) {
-            bv6 bv6Var = (bv6) obj;
-            a();
-            yv6 yv6Var = this.b;
-            bv6Var.a();
-            if (yv6Var.equals(bv6Var.b) && b() == bv6Var.b()) {
-                return true;
-            }
+    public void d(mw6 mw6Var) {
+        synchronized (this.d) {
+            this.m = mw6Var;
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        a();
-        return this.b.hashCode() ^ b();
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("DiscoveryRequest{ selector=");
-        a();
-        sb.append(this.b);
-        sb.append(", activeScan=");
-        sb.append(b());
-        sb.append(", isValid=");
-        a();
-        yv6 yv6Var = this.b;
-        yv6Var.a();
-        sb.append(!yv6Var.b.contains(null));
-        sb.append(" }");
-        return sb.toString();
     }
 }

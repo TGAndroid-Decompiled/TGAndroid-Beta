@@ -1,31 +1,48 @@
 package defpackage;
-public final class jk8 implements Runnable {
-    public final byte a;
-    public final lk8 b;
+public final class jk8 implements eec {
+    public int a = 0;
+    public byte b;
+    public final mk8 c;
 
-    public jk8(lk8 lk8Var, byte b) {
-        this.a = b;
-        this.b = lk8Var;
+    public jk8(mk8 mk8Var) {
+        this.c = mk8Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        lk8 lk8Var = this.b;
-        switch (b) {
-            case 0:
-                nk3 nk3Var = new nk3(td4.j(3, "onlySelect", "dialogsType", true));
-                nk3Var.E2 = new cz6(lk8Var, "https://t.me/giftcode/" + lk8Var.M2, (byte) 25);
-                lk8Var.r1.presentFragment(nk3Var);
-                lk8Var.dismiss();
-                return;
-            default:
-                yj8 yj8Var = new yj8(lk8Var.r1, z8c.t0, null, null, null, lk8Var.J0);
-                yj8Var.E2 = true;
-                yj8Var.F2 = true;
-                yj8Var.X1 = true;
-                lk8Var.r1.showDialog(yj8Var);
-                return;
+    public final void a(int i) {
+        int i2 = this.a;
+        mk8 mk8Var = this.c;
+        ?? r2 = mk8Var.E;
+        if (i2 == 0) {
+            if (i <= r2) {
+                mk8Var.n = (byte) 1;
+            } else {
+                mk8Var.n = (byte) 2;
+            }
+            mk8Var.b();
+        } else if (i <= r2) {
+            this.b = (byte) 1;
+        } else {
+            this.b = (byte) 2;
+        }
+    }
+
+    @Override
+    public final void b(float f, int i, int i2) {
+        mk8 mk8Var = this.c;
+        mk8Var.y = i;
+        mk8Var.x = f;
+        mk8Var.d();
+    }
+
+    @Override
+    public final void c(int i) {
+        this.a = i;
+        if (i == 0) {
+            byte b = this.b;
+            mk8 mk8Var = this.c;
+            mk8Var.n = b;
+            mk8Var.b();
         }
     }
 }

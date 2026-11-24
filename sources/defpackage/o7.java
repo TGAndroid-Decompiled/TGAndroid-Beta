@@ -1,6 +1,6 @@
 package defpackage;
 public interface o7 {
-    void h2();
+    void A();
 
-    void z0();
+    void Q();
 }

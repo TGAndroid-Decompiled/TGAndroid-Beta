@@ -1,33 +1,40 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class mx0 extends AnimatorListenerAdapter {
-    public final int a;
-    public final int b;
-    public final rw0 c;
-    public final wx0 d;
+import android.content.DialogInterface;
+public final class mx0 implements DialogInterface.OnDismissListener {
+    public final byte a = 1;
+    public final p8c b;
+    public final boolean[] c;
 
-    public mx0(wx0 wx0Var, int i, int i2, rw0 rw0Var) {
-        this.d = wx0Var;
-        this.a = i;
-        this.b = i2;
-        this.c = rw0Var;
+    public mx0(p8c p8cVar, boolean[] zArr) {
+        this.b = p8cVar;
+        this.c = zArr;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int f = on2.f(1.0f, this.a, this.b);
-        wx0 wx0Var = this.d;
-        wx0Var.S = f;
-        wx0Var.h();
-        vx0 vx0Var = wx0Var.f;
-        vx0Var.invalidate();
-        tx0 tx0Var = wx0Var.Y;
-        tx0Var.setBackgroundColor(wx0Var.S);
-        rw0 rw0Var = this.c;
-        rw0Var.b(tx0Var, 1.0f);
-        wx0Var.a = rw0Var.a(cmb.yj);
-        vx0Var.invalidate();
+    public final void onDismiss(DialogInterface dialogInterface) {
+        byte b = this.a;
+        boolean[] zArr = this.c;
+        p8c p8cVar = this.b;
+        switch (b) {
+            case 0:
+                if (!zArr[0]) {
+                    p8cVar.a(Boolean.FALSE);
+                    zArr[0] = true;
+                    return;
+                }
+                return;
+            default:
+                if (!zArr[0]) {
+                    p8cVar.a(Boolean.FALSE);
+                    return;
+                }
+                return;
+        }
+    }
+
+    public mx0(boolean[] zArr, p8c p8cVar) {
+        this.c = zArr;
+        this.b = p8cVar;
     }
 }

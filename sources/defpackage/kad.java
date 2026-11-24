@@ -1,6 +1,9 @@
 package defpackage;
-public @interface kad {
-    int zza();
+public abstract class kad {
+    public static final pd5 a = new pd5((byte) 18);
 
-    ead zzb() default ead.a;
+    public static final void a(lu5 lu5Var, w4a w4aVar) {
+        w4aVar.getClass();
+        rp5.a(w4aVar.e(), v9b.b);
+    }
 }

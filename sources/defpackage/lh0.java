@@ -1,53 +1,54 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-public abstract class lh0 extends FrameLayout implements rt7 {
-    public final ylb a;
-    public final r59 b;
-    public final u46 c;
+import android.util.Log;
+import java.util.Locale;
+public final class lh0 {
+    public int a;
+    public String b;
+    public String c;
 
-    public lh0(Context context, ylb ylbVar) {
-        super(context);
-        this.a = ylbVar;
-        r59 r59Var = new r59(context, ylbVar);
-        this.b = r59Var;
-        r59Var.setNestedScrollingEnabled(true);
-        r59Var.setAdapter(a());
-        u46 u46Var = new u46(1, false);
-        this.c = u46Var;
-        r59Var.setLayoutManager(u46Var);
-        r59Var.setClipToPadding(false);
-        addView(r59Var, qoe.c(-1.0f, -1));
-    }
-
-    public y59 a() {
-        return new ny0(this, (byte) 2);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        Paint U0 = cmb.U0("paintDivider", this.a);
-        if (U0 == null) {
-            U0 = cmb.j0;
-        }
-        canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, U0);
-    }
-
-    @Override
-    public void setOffset(float f) {
-        if (Math.abs(f / getMeasuredWidth()) == 1.0f) {
-            r59 r59Var = this.b;
-            if (r59Var.K(0) == null || r59Var.K(0).a.getTop() != r59Var.getPaddingTop()) {
-                r59Var.w0(0);
+    public lh0(String str, String... strArr) {
+        String sb;
+        if (strArr.length == 0) {
+            sb = "";
+        } else {
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append('[');
+            for (String str2 : strArr) {
+                if (sb2.length() > 1) {
+                    sb2.append(",");
+                }
+                sb2.append(str2);
             }
+            sb2.append("] ");
+            sb = sb2.toString();
+        }
+        this.c = sb;
+        this.b = str;
+        int i = 2;
+        fre.c(str.length() <= 23, "tag \"%s\" is longer than the %d character maximum", str, 23);
+        while (i <= 7 && !Log.isLoggable(this.b, i)) {
+            i++;
+        }
+        this.a = i;
+    }
+
+    public final void a(String str, Object... objArr) {
+        if (this.a <= 3) {
+            Log.d(this.b, b(str, objArr));
         }
     }
 
-    public void setTopOffset(int i) {
-        this.b.setPadding(0, i, 0, 0);
+    public final String b(String str, Object... objArr) {
+        if (objArr.length > 0) {
+            str = String.format(Locale.US, str, objArr);
+        }
+        return this.c.concat(str);
+    }
+
+    public lh0(String str, int i, String str2) {
+        this.b = str;
+        this.a = i;
+        this.c = str2;
     }
 }

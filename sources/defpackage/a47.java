@@ -1,29 +1,43 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class a47 implements sm {
-    public final byte a;
-    public final Object b;
+import android.content.Context;
+public final class a47 extends ky1 {
+    public final j47 A0;
+    public final ky1 y0;
+    public final boolean z0;
 
-    public a47(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public a47(j47 j47Var, Context context, int i, wjb wjbVar, ky1 ky1Var, boolean z) {
+        super(i, wjbVar, context, false);
+        this.A0 = j47Var;
+        this.y0 = ky1Var;
+        this.z0 = z;
     }
 
     @Override
-    public final void a(TLRPC.Document document) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                gm.c3(new lj6((k47) obj, document, (byte) 21));
-                return;
-            case 1:
-                gm.c3(new jx8((tx8) obj, document));
-                return;
-            default:
-                gm.c3(new uva((s1b) obj, document, (byte) 4));
-                return;
+    public final boolean b() {
+        return this.y0.b();
+    }
+
+    @Override
+    public final boolean c() {
+        return this.y0.c();
+    }
+
+    @Override
+    public final boolean d() {
+        if (this.z0 && this.A0.u0 && this.w <= 0) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final int getFillColor() {
+        return this.y0.getFillColor();
+    }
+
+    @Override
+    public final boolean j() {
+        return this.y0.j();
     }
 }

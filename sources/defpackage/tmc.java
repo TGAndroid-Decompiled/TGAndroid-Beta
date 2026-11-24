@@ -1,45 +1,25 @@
 package defpackage;
 
-import android.text.TextUtils;
-public final class tmc implements qac {
-    public final byte a;
-    public final b61 b;
-    public final my0 c;
-    public final ylb d;
+import android.os.SystemClock;
+import j$.util.Collection;
+import java.util.WeakHashMap;
+public final class tmc implements Runnable {
+    public final umc a;
 
-    public tmc(b61 b61Var, my0 my0Var, ylb ylbVar, byte b) {
-        this.a = b;
-        this.b = b61Var;
-        this.c = my0Var;
-        this.d = ylbVar;
+    public tmc(umc umcVar) {
+        this.a = umcVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        ylb ylbVar = this.d;
-        my0 my0Var = this.c;
-        b61 b61Var = this.b;
-        String str = (String) obj;
-        switch (b) {
-            case 0:
-                b61Var.setLoading(false);
-                if (!TextUtils.isEmpty(str)) {
-                    new c41(my0Var.F, ylbVar).f0(str, false);
-                    return;
-                } else {
-                    my0Var.dismiss();
-                    return;
-                }
-            default:
-                b61Var.setLoading(false);
-                if (str != null) {
-                    new c41(my0Var.F, ylbVar).f0(str, false);
-                    return;
-                } else {
-                    my0Var.dismiss();
-                    return;
-                }
+    public final void run() {
+        long uptimeMillis = SystemClock.uptimeMillis();
+        umc umcVar = this.a;
+        WeakHashMap weakHashMap = umcVar.e;
+        Collection.EL.removeIf(weakHashMap.entrySet(), new vd((byte) 3, uptimeMillis));
+        if (weakHashMap.isEmpty()) {
+            umcVar.a();
+        } else {
+            umcVar.d.postDelayed(this, 250L);
         }
     }
 }

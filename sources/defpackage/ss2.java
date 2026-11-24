@@ -1,67 +1,84 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.TLRPC;
-public final class ss2 extends qs2 {
-    public final float d;
-    public final int e;
-    public volatile float f;
+import android.content.ContentResolver;
+import android.net.Uri;
+import android.util.Log;
+import java.util.HashMap;
+public final class ss2 implements g8d {
+    public String a;
 
-    public ss2(String str, int i, float f) {
-        super(str);
-        this.d = f;
-        this.e = i;
-        this.f = f;
+    public ss2(String str) {
+        this.a = str;
+    }
+
+    public static ss2 a(xu7 xu7Var) {
+        String str;
+        String str2;
+        xu7Var.O(2);
+        int A = xu7Var.A();
+        int i = A >> 1;
+        int A2 = ((A & 1) << 5) | ((xu7Var.A() >> 3) & 31);
+        if (i != 4 && i != 5 && i != 7 && i != 8) {
+            if (i == 9) {
+                str = "dvav";
+            } else if (i == 10) {
+                str = "dav1";
+            } else {
+                return null;
+            }
+        } else {
+            str = "dvhe";
+        }
+        StringBuilder sb = new StringBuilder(str);
+        String str3 = ".";
+        if (i >= 10) {
+            str2 = ".";
+        } else {
+            str2 = ".0";
+        }
+        sb.append(str2);
+        sb.append(i);
+        if (A2 < 10) {
+            str3 = ".0";
+        }
+        sb.append(str3);
+        sb.append(A2);
+        return new ss2(sb.toString());
     }
 
     @Override
-    public final boolean b(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-        if (jSONValue instanceof TLRPC.TL_jsonNumber) {
-            float f = (float) ((TLRPC.TL_jsonNumber) jSONValue).value;
-            if (!Float.isNaN(f) && !Float.isInfinite(f)) {
-                float max = Math.max(-3.4028235E38f, Math.min(Float.MAX_VALUE, f));
-                if (max != this.f) {
-                    this.f = max;
-                    editor.putFloat(e(), max);
-                    return true;
+    public final Object zzp() {
+        Object obj;
+        boolean z;
+        String str = this.a;
+        ContentResolver contentResolver = g6d.g.getContentResolver();
+        Uri uri = qhf.a;
+        synchronized (qhf.class) {
+            qhf.c(contentResolver);
+            obj = qhf.k;
+        }
+        HashMap hashMap = qhf.g;
+        Boolean bool = Boolean.FALSE;
+        Boolean bool2 = (Boolean) qhf.a(hashMap, str, bool);
+        if (bool2 != null) {
+            z = bool2.booleanValue();
+        } else {
+            String b = qhf.b(contentResolver, str);
+            boolean z2 = false;
+            if (b != null && !b.equals("")) {
+                if (qhf.c.matcher(b).matches()) {
+                    bool = Boolean.TRUE;
+                    z2 = true;
+                } else if (!qhf.d.matcher(b).matches()) {
+                    Log.w("Gservices", b00.i("attempt to read gservices key ", str, " (value \"", b, "\") as boolean"));
                 }
-                return false;
+                qhf.e(obj, hashMap, str, bool);
+                z = z2;
             }
-            return false;
+            bool = bool2;
+            qhf.e(obj, hashMap, str, bool);
+            z = z2;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean c(SharedPreferences.Editor editor) {
-        if (this.e == 2) {
-            float f = this.f;
-            float f2 = this.d;
-            if (f != f2) {
-                this.f = f2;
-                editor.remove(e());
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void d(SharedPreferences sharedPreferences) {
-        try {
-            this.f = Math.max(-3.4028235E38f, Math.min(Float.MAX_VALUE, sharedPreferences.getFloat(e(), this.d)));
-        } catch (ClassCastException e) {
-            fc4.g(e, true);
-            this.f = this.d;
-        }
-    }
-
-    public final float f() {
-        return this.f;
-    }
-
-    public final String toString() {
-        return this.a + "=" + this.f;
+        return Boolean.valueOf(z);
     }
 }

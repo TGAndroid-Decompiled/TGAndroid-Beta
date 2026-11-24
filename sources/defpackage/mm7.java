@@ -1,39 +1,32 @@
 package defpackage;
 
-import java.lang.ref.WeakReference;
-public final class mm7 implements jm7 {
-    public final nm7 a;
-    public final WeakReference b;
-    public final int c;
+import java.util.function.ToDoubleFunction;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class mm7 implements ToDoubleFunction {
+    public final byte a;
 
-    public mm7(nm7 nm7Var, jm7 jm7Var) {
-        this.a = nm7Var;
-        this.b = new WeakReference(jm7Var);
-        this.c = System.identityHashCode(jm7Var);
+    public mm7(byte b) {
+        this.a = b;
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        jm7 jm7Var = (jm7) this.b.get();
-        if (jm7Var != null) {
-            jm7Var.didReceivedNotification(i, i2, objArr);
-        } else {
-            this.a.n(this, i);
+    public final double applyAsDouble(Object obj) {
+        switch (this.a) {
+            case 0:
+                return ((TLRPC.TL_topPeer) obj).rating;
+            case 1:
+                return ((TLRPC.TL_topPeer) obj).rating;
+            case 2:
+                return ((TLRPC.TL_topPeer) obj).rating;
+            case 3:
+                return kna.Z0((TL_stars.starGiftAttributeBackdrop) obj);
+            case 4:
+                return kna.Z0((TL_stars.starGiftAttributePattern) obj);
+            case 5:
+                return kna.Z0((TL_stars.starGiftAttributeModel) obj);
+            default:
+                return ((dcc) obj).a;
         }
-    }
-
-    public final boolean equals(Object obj) {
-        jm7 jm7Var;
-        if (this != obj) {
-            if ((obj instanceof mm7) && (jm7Var = (jm7) this.b.get()) != null && jm7Var == ((mm7) obj).b.get()) {
-                return true;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return this.c;
     }
 }

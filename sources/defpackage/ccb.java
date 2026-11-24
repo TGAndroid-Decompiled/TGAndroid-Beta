@@ -1,27 +1,23 @@
 package defpackage;
-public final class ccb extends IllegalStateException {
-    public final byte a;
-    public final int b;
+public abstract class ccb extends gw2 implements oq4 {
+    private final int arity;
 
-    public ccb(int r3, int r4) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ccb.<init>(int, int):void");
+    public ccb(int i, fw2 fw2Var) {
+        super(fw2Var);
+        this.arity = i;
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && ccb.class == obj.getClass()) {
-                ccb ccbVar = (ccb) obj;
-                if (this.a == ccbVar.a && this.b == ccbVar.b) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public int getArity() {
+        return this.arity;
+    }
+
+    @Override
+    public String toString() {
+        if (getCompletion() == null) {
+            f59.a.getClass();
+            return g59.a(this);
         }
-        return true;
-    }
-
-    public final int hashCode() {
-        return ((527 + this.a) * 31) + this.b;
+        return super.toString();
     }
 }

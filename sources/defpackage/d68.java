@@ -1,85 +1,64 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.graphics.Paint;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import java.io.File;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class d68 extends my0 {
-    public static final int I1 = 0;
-    public final int A1;
-    public final int B1;
-    public final int C1;
-    public final boolean D1;
-    public n32 E1;
-    public final ArrayList F1;
-    public final ArrayList G1;
-    public final TLRPC.TL_userContact_old2 H1;
-    public final lj4 l1;
-    public final w58 m1;
-    public final LinearLayout n1;
-    public final x58 o1;
-    public final View p1;
-    public final View q1;
-    public final TextView r1;
-    public final d s1;
-    public boolean t1;
-    public final Paint u1;
-    public int v1;
-    public AnimatorSet w1;
-    public AnimatorSet x1;
-    public final int y1;
-    public final int z1;
-
-    public d68(org.telegram.ui.ActionBar.d r19, defpackage.yv2 r20, org.telegram.tgnet.TLRPC.User r21, android.net.Uri r22, java.io.File r23, java.lang.String r24, java.lang.String r25, java.lang.String r26, final defpackage.ylb r27) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.d68.<init>(org.telegram.ui.ActionBar.d, yv2, org.telegram.tgnet.TLRPC$User, android.net.Uri, java.io.File, java.lang.String, java.lang.String, java.lang.String, ylb):void");
-    }
-
-    @Override
-    public final boolean C() {
-        return false;
-    }
-
-    public final void D0() {
-        TextView textView = this.r1;
-        if (textView != null) {
-            int v0 = cmb.v0(cmb.Ii, this.J0);
-            if (!textView.isEnabled()) {
-                v0 &= Integer.MAX_VALUE;
-            }
-            if (textView.getCurrentTextColor() != v0) {
-                textView.setTextColor(v0);
-            }
+public abstract class d68 {
+    public static void a(TLRPC.Photo photo, TLRPC.User user, boolean z) {
+        ArrayList<TLRPC.PhotoSize> arrayList = photo.sizes;
+        boolean z2 = false;
+        TLRPC.PhotoSize w = ba4.w(arrayList, 100, false, null, false);
+        TLRPC.PhotoSize w2 = ba4.w(arrayList, 1000, false, null, false);
+        user.flags |= 32;
+        TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
+        user.photo = tL_userProfilePhoto;
+        tL_userProfilePhoto.personal = z;
+        tL_userProfilePhoto.photo_id = photo.id;
+        ArrayList<TLRPC.VideoSize> arrayList2 = photo.video_sizes;
+        if (arrayList2 != null && arrayList2.size() > 0) {
+            z2 = true;
+        }
+        tL_userProfilePhoto.has_video = z2;
+        if (w != null) {
+            user.photo.photo_small = w.location;
+        }
+        if (w2 != null) {
+            user.photo.photo_big = w2.location;
         }
     }
 
-    public final void E0(boolean r18) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.d68.E0(boolean):void");
-    }
-
-    @Override
-    public final void onStart() {
-        super.onStart();
-        u31.a((FrameLayout) this.b, new oz((byte) 10));
-    }
-
-    @Override
-    public final void onStop() {
-        super.onStop();
-        u31.h((FrameLayout) this.b);
-    }
-
-    @Override
-    public final void p0() {
-        super.p0();
-        try {
-            D0();
-        } catch (Exception e) {
-            fc4.g(e, true);
+    public static void b(int i, TLRPC.Photo photo, TLRPC.Photo photo2) {
+        TLRPC.PhotoSize w = ba4.w(photo.sizes, 100, false, null, false);
+        TLRPC.PhotoSize w2 = ba4.w(photo.sizes, 1000, false, null, false);
+        TLRPC.PhotoSize w3 = ba4.w(photo2.sizes, 100, false, null, false);
+        TLRPC.PhotoSize w4 = ba4.w(photo2.sizes, 1000, false, null, false);
+        if (w3 != null && w != null) {
+            ba4.G(i);
+            File J = ba4.J(w3, null, true, true);
+            ba4.G(i);
+            ba4.J(w, null, true, true).renameTo(J);
+            StringBuilder sb = new StringBuilder();
+            sb.append(w.location.volume_id);
+            sb.append("_");
+            String l = de9.l(sb, w.location.local_id, "@50_50");
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(w3.location.volume_id);
+            sb2.append("_");
+            fl5.z().O(l, de9.l(sb2, w3.location.local_id, "@50_50"), gl5.i(w, photo));
+        }
+        if (w4 != null && w2 != null) {
+            ba4.G(i);
+            File J2 = ba4.J(w4, null, true, true);
+            ba4.G(i);
+            ba4.J(w2, null, true, true).renameTo(J2);
+            StringBuilder sb3 = new StringBuilder();
+            sb3.append(w2.location.volume_id);
+            sb3.append("_");
+            String l2 = de9.l(sb3, w2.location.local_id, "@150_150");
+            StringBuilder sb4 = new StringBuilder();
+            sb4.append(w4.location.volume_id);
+            sb4.append("_");
+            fl5.z().O(l2, de9.l(sb4, w4.location.local_id, "@150_150"), gl5.i(w2, photo));
         }
     }
 }

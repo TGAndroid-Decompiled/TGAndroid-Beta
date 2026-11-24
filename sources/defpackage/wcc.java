@@ -1,4 +1,7 @@
 package defpackage;
-public interface wcc {
-    public static final y79 a = mo5.u(new fgf((byte) 28));
+public final class wcc implements fp7 {
+    @Override
+    public final hv2 a(hv2 hv2Var) {
+        return hv2Var;
+    }
 }

@@ -1,40 +1,48 @@
 package defpackage;
 
-import org.telegram.ui.ProfileActivity;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stars;
 public final class tp8 implements Runnable {
     public final byte a;
-    public final up8 b;
+    public final lca b;
 
-    public tp8(up8 up8Var, byte b) {
+    public tp8(lca lcaVar, byte b) {
         this.a = b;
-        this.b = up8Var;
+        this.b = lcaVar;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        up8 up8Var = this.b;
+        lca lcaVar = this.b;
         switch (b) {
             case 0:
-                ProfileActivity profileActivity = up8Var.t0;
-                gp8 gp8Var = profileActivity.Y5;
-                if (gp8Var != null) {
-                    gp8Var.dismiss();
-                    profileActivity.Y5 = null;
-                    return;
+                wsa wsaVar = lcaVar.e;
+                wsaVar.getClass();
+                TL_stars.reorderStarGiftCollections reorderstargiftcollections = new TL_stars.reorderStarGiftCollections();
+                int i = wsaVar.a;
+                reorderstargiftcollections.peer = na7.q1(i).h1(wsaVar.b);
+                ArrayList arrayList = wsaVar.e;
+                int size = arrayList.size();
+                int i2 = 0;
+                while (i2 < size) {
+                    Object obj = arrayList.get(i2);
+                    i2++;
+                    reorderstargiftcollections.order.add(Integer.valueOf(((TL_stars.TL_starGiftCollection) obj).collection_id));
                 }
+                ConnectionsManager.getInstance(i).sendRequest(reorderstargiftcollections, null);
+                wsaVar.j();
+                return;
+            case 1:
+                lcaVar.setReorderingCollections(true);
+                return;
+            case 2:
+                lcaVar.a();
                 return;
             default:
-                try {
-                    r59 currentListView = up8Var.n0.O.getCurrentListView();
-                    if (currentListView != null && currentListView.getAdapter() != null) {
-                        currentListView.getAdapter().f();
-                        return;
-                    }
-                    return;
-                } catch (Throwable unused) {
-                    return;
-                }
+                lcaVar.p();
+                return;
         }
     }
 }

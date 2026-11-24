@@ -1,10 +1,9 @@
 package defpackage;
-public final class z66 {
-    public final y66 a;
-    public final int b;
 
-    public z66(y66 y66Var, int i) {
-        this.a = y66Var;
-        this.b = i;
+import android.view.View;
+public final class z66 extends gb3 {
+    @Override
+    public final float A(View view) {
+        return 0.5f;
     }
 }

@@ -1,37 +1,44 @@
 package defpackage;
-public abstract class tc3 {
-    public static final int[] a;
 
-    static {
-        int[] iArr = new int[u26.values().length];
-        try {
-            iArr[u26.ON_CREATE.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
+import j$.util.DesugarCollections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+public final class tc3 {
+    public final String a;
+    public final qx4 b;
+
+    public tc3(Set set, qx4 qx4Var) {
+        this.a = b(set);
+        this.b = qx4Var;
+    }
+
+    public static String b(Set set) {
+        StringBuilder sb = new StringBuilder();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            y90 y90Var = (y90) it.next();
+            sb.append(y90Var.a);
+            sb.append('/');
+            sb.append(y90Var.b);
+            if (it.hasNext()) {
+                sb.append(' ');
+            }
         }
-        try {
-            iArr[u26.ON_START.ordinal()] = 2;
-        } catch (NoSuchFieldError unused2) {
+        return sb.toString();
+    }
+
+    public final String a() {
+        Set unmodifiableSet;
+        qx4 qx4Var = this.b;
+        synchronized (((HashSet) qx4Var.a)) {
+            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) qx4Var.a);
         }
-        try {
-            iArr[u26.ON_RESUME.ordinal()] = 3;
-        } catch (NoSuchFieldError unused3) {
+        boolean isEmpty = unmodifiableSet.isEmpty();
+        String str = this.a;
+        if (isEmpty) {
+            return str;
         }
-        try {
-            iArr[u26.ON_PAUSE.ordinal()] = 4;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            iArr[u26.ON_STOP.ordinal()] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            iArr[u26.ON_DESTROY.ordinal()] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            iArr[u26.ON_ANY.ordinal()] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
-        a = iArr;
+        return str + ' ' + b(qx4Var.K());
     }
 }

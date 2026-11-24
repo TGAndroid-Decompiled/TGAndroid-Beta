@@ -1,178 +1,49 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
-import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class xd4 extends View {
-    public final Paint a;
-    public final Paint b;
-    public final Path c;
-    public int d;
-    public int e;
-    public uib[] f;
-    public RectF[] h;
-    public float n;
-    public a28 r;
-    public int s;
+public final class xd4 implements d39, e39 {
+    public final he4 a;
 
-    public xd4(Context context) {
-        super(context);
-        this.a = new Paint(1);
-        this.b = new Paint(1);
-        this.c = new Path();
-        this.d = -1;
-        this.e = -1;
-        this.s = -1;
-    }
-
-    public final void a(float f, int i, int i2, Canvas canvas) {
-        uib[] uibVarArr = this.f;
-        int length = uibVarArr.length;
-        int i3 = 0;
-        float f2 = f;
-        while (i3 < length) {
-            uib uibVar = uibVarArr[i3];
-            int i4 = i2;
-            uibVar.c(f2, i / 2.0f, 1.0f, i4, canvas);
-            f2 += uibVar.j() + gm.L(24.0f);
-            i3++;
-            i2 = i4;
-        }
+    public xd4(he4 he4Var) {
+        this.a = he4Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f;
-        if (this.f == null) {
-            return;
-        }
-        int width = getWidth();
-        int height = getHeight();
-        float f2 = 4.0f;
-        int L = gm.L(4.0f) + hg9.y(24.0f, this.f.length, gm.L(4.0f));
-        int i = 0;
-        while (true) {
-            uib[] uibVarArr = this.f;
-            if (i >= uibVarArr.length) {
-                break;
-            }
-            L = (int) (uibVarArr[i].j() + L);
-            i++;
-        }
-        float L2 = (height - gm.L(36.0f)) / 2.0f;
-        float L3 = (gm.L(36.0f) + height) / 2.0f;
-        float f3 = (width - L) / 2.0f;
-        float L4 = gm.L(16.0f) + f3;
-        RectF rectF = gm.P;
-        rectF.set(f3, L2, L + f3, L3);
-        canvas.drawRoundRect(rectF, gm.L(18.0f), gm.L(18.0f), this.a);
-        float L5 = f3 + gm.L(16.0f);
-        int i2 = 0;
-        while (i2 < this.f.length) {
-            this.h[i2].set(L5 - gm.L(16.0f), L2, this.f[i2].j() + L5 + gm.L(16.0f), L3);
-            L5 += this.f[i2].j() + gm.L(24.0f);
-            i2++;
-            f2 = f2;
-        }
-        gm.L(f2);
-        int j = Utilities.j((int) Math.floor(this.n), this.f.length - 1, 0);
-        int j2 = Utilities.j((int) Math.ceil(this.n), this.f.length - 1, 0);
-        float L6 = this.h[j].left + gm.L(f);
-        float L7 = this.h[j2].left + gm.L(f);
-        float f4 = this.n;
-        float R1 = gm.R1(L6, L7, (float) (f4 - Math.floor(f4)));
-        float L8 = this.h[j].right - gm.L(f);
-        float L9 = this.h[j2].right - gm.L(f);
-        float f5 = this.n;
-        float R12 = gm.R1(L8, L9, (float) (f5 - Math.floor(f5)));
-        RectF rectF2 = gm.P;
-        rectF2.set(R1, (height - gm.L(28.0f)) / 2.0f, R12, (gm.L(28.0f) + height) / 2.0f);
-        Path path = this.c;
-        path.rewind();
-        path.addRoundRect(rectF2, gm.L(15.0f), gm.L(15.0f), Path.Direction.CW);
-        canvas.drawRoundRect(rectF2, gm.L(15.0f), gm.L(15.0f), this.b);
-        a(L4, height, this.d, canvas);
-        canvas.save();
-        canvas.clipPath(path);
-        a(L4, height, this.e, canvas);
-        canvas.restore();
+    public final boolean d(int r24, android.view.View r25) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xd4.d(int, android.view.View):boolean");
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        hs1 hs1Var;
-        int i = 0;
-        if (this.f == null || this.h == null) {
-            return false;
-        }
-        while (true) {
-            RectF[] rectFArr = this.h;
-            if (i < rectFArr.length) {
-                if (rectFArr[i].contains(motionEvent.getX(), motionEvent.getY())) {
-                    break;
+    public final void e(float f, float f2, int i, View view) {
+        he4 he4Var = this.a;
+        ce4 ce4Var = he4Var.K;
+        if (!((ti3) ce4Var).b.l2) {
+            fe4 fe4Var = (fe4) view;
+            if (he4Var.n) {
+                if (i != 0) {
+                    int L = gl.L(6.0f);
+                    RectF rectF = fe4Var.f;
+                    float f3 = L;
+                    if (rectF.left - f3 < f && rectF.right + f3 > f) {
+                        ti3 ti3Var = (ti3) he4Var.K;
+                        ti3Var.d((t97) ti3Var.b.getMessagesController().R0().get(fe4Var.b.a));
+                    }
                 }
-                i++;
+            } else if (i == he4Var.L && ce4Var != null) {
+                ((ti3) ce4Var).b.N4(true, false);
             } else {
-                i = -1;
-                break;
+                he4Var.g(fe4Var.b, i);
             }
         }
-        if (i >= 0 && i != this.s) {
-            this.s = i;
-            a28 a28Var = this.r;
-            if (a28Var != null && (hs1Var = a28Var.b.J) != null) {
-                hs1Var.E(i);
-            }
-        }
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            this.s = -1;
-        }
-        if (motionEvent.getAction() == 0 && i >= 0) {
-            return true;
-        }
-        return super.onTouchEvent(motionEvent);
     }
 
     @Override
-    public void setBackgroundColor(int i) {
-        this.a.setColor(i);
-        invalidate();
+    public final boolean q(View view) {
+        return false;
     }
 
-    public void setSelected(float f) {
-        if (Math.abs(f - this.n) > 0.001f) {
-            invalidate();
-        }
-        this.n = f;
-    }
-
-    public void setSelectedColor(int i) {
-        this.b.setColor(i);
-        invalidate();
-    }
-
-    public void setSelectedTextColor(int i) {
-        this.e = i;
-        invalidate();
-    }
-
-    public void setTabs(CharSequence... charSequenceArr) {
-        this.f = new uib[charSequenceArr.length];
-        this.h = new RectF[charSequenceArr.length];
-        for (int i = 0; i < charSequenceArr.length; i++) {
-            this.f[i] = new uib(charSequenceArr[i], 14.0f, gm.o());
-            this.h[i] = new RectF();
-        }
-        invalidate();
-    }
-
-    public void setTextColor(int i) {
-        this.d = i;
-        invalidate();
+    @Override
+    public final void l(View view, float f, float f2) {
     }
 }

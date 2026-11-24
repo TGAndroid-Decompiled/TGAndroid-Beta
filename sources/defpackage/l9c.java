@@ -1,73 +1,229 @@
 package defpackage;
 
-import android.graphics.Typeface;
-import android.text.TextUtils;
-import android.util.LruCache;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class l9c {
-    public final int a;
-    public final LruCache b = new LruCache(100);
-    public final HashMap c = new HashMap();
+public final class l9c extends m9c {
+    public final Matrix a;
+    public final ArrayList b;
+    public float c;
+    public float d;
+    public float e;
+    public float f;
+    public float g;
+    public float h;
+    public float i;
+    public final Matrix j;
+    public String k;
 
-    public l9c(int i) {
-        this.a = i;
-    }
-
-    public final v99 a(String str, String str2, qac qacVar) {
-        TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername;
-        if (TextUtils.isEmpty(str2)) {
-            LruCache lruCache = this.b;
-            k9c k9cVar = (k9c) lruCache.get(str);
-            if (k9cVar != null) {
-                long j = k9cVar.a;
-                if (System.currentTimeMillis() - k9cVar.b < 3600000) {
-                    qacVar.a(Long.valueOf(j));
-                    fc4.b("resolve username from cache " + str + " " + j);
-                    return null;
+    public l9c(l9c l9cVar, ps psVar) {
+        n9c n9cVar;
+        this.a = new Matrix();
+        this.b = new ArrayList();
+        this.c = 0.0f;
+        this.d = 0.0f;
+        this.e = 0.0f;
+        this.f = 1.0f;
+        this.g = 1.0f;
+        this.h = 0.0f;
+        this.i = 0.0f;
+        Matrix matrix = new Matrix();
+        this.j = matrix;
+        this.k = null;
+        this.c = l9cVar.c;
+        this.d = l9cVar.d;
+        this.e = l9cVar.e;
+        this.f = l9cVar.f;
+        this.g = l9cVar.g;
+        this.h = l9cVar.h;
+        this.i = l9cVar.i;
+        String str = l9cVar.k;
+        this.k = str;
+        if (str != null) {
+            psVar.put(str, this);
+        }
+        matrix.set(l9cVar.j);
+        ArrayList arrayList = l9cVar.b;
+        for (int i = 0; i < arrayList.size(); i++) {
+            Object obj = arrayList.get(i);
+            if (obj instanceof l9c) {
+                this.b.add(new l9c((l9c) obj, psVar));
+            } else {
+                if (obj instanceof k9c) {
+                    k9c k9cVar = (k9c) obj;
+                    ?? n9cVar2 = new n9c(k9cVar);
+                    n9cVar2.e = 0.0f;
+                    n9cVar2.g = 1.0f;
+                    n9cVar2.h = 1.0f;
+                    n9cVar2.i = 0.0f;
+                    n9cVar2.j = 1.0f;
+                    n9cVar2.k = 0.0f;
+                    n9cVar2.l = Paint.Cap.BUTT;
+                    n9cVar2.m = Paint.Join.MITER;
+                    n9cVar2.n = 4.0f;
+                    n9cVar2.d = k9cVar.d;
+                    n9cVar2.e = k9cVar.e;
+                    n9cVar2.g = k9cVar.g;
+                    n9cVar2.f = k9cVar.f;
+                    n9cVar2.c = k9cVar.c;
+                    n9cVar2.h = k9cVar.h;
+                    n9cVar2.i = k9cVar.i;
+                    n9cVar2.j = k9cVar.j;
+                    n9cVar2.k = k9cVar.k;
+                    n9cVar2.l = k9cVar.l;
+                    n9cVar2.m = k9cVar.m;
+                    n9cVar2.n = k9cVar.n;
+                    n9cVar = n9cVar2;
+                } else if (obj instanceof j9c) {
+                    n9cVar = new n9c((j9c) obj);
+                } else {
+                    sc8.j("Unknown object in the tree!");
+                    throw null;
                 }
-                lruCache.remove(str);
+                this.b.add(n9cVar);
+                Object obj2 = n9cVar.b;
+                if (obj2 != null) {
+                    psVar.put(obj2, n9cVar);
+                }
             }
         }
-        HashMap hashMap = this.c;
-        ArrayList arrayList = (ArrayList) hashMap.get(str);
-        if (arrayList != null) {
-            arrayList.add(qacVar);
-            return null;
-        }
-        ArrayList arrayList2 = new ArrayList();
-        arrayList2.add(qacVar);
-        hashMap.put(str, arrayList2);
-        Typeface typeface = gm.a;
-        try {
-            Double.parseDouble(str);
-            TLRPC.TL_contacts_resolvePhone tL_contacts_resolvePhone = new TLRPC.TL_contacts_resolvePhone();
-            tL_contacts_resolvePhone.phone = str;
-            tL_contacts_resolveUsername = tL_contacts_resolvePhone;
-        } catch (NumberFormatException unused) {
-            TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername2 = new TLRPC.TL_contacts_resolveUsername();
-            tL_contacts_resolveUsername2.username = str;
-            if (!TextUtils.isEmpty(str2)) {
-                tL_contacts_resolveUsername2.flags |= 1;
-                tL_contacts_resolveUsername2.referer = str2;
-            }
-            tL_contacts_resolveUsername = tL_contacts_resolveUsername2;
-        }
-        return new v99(this, str, ConnectionsManager.getInstance(this.a).sendRequest(tL_contacts_resolveUsername, new ara(this, str, (byte) 20)), (byte) 28);
     }
 
-    public final void b(TLRPC.User user, TLRPC.User user2) {
-        String str;
-        if (user != null && user2 != null && (str = user.username) != null && !TextUtils.equals(str, user2.username)) {
-            String str2 = user.username;
-            LruCache lruCache = this.b;
-            lruCache.remove(str2);
-            String str3 = user2.username;
-            if (str3 != null) {
-                lruCache.put(str3, new k9c(user2.id));
+    @Override
+    public final boolean a() {
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.b;
+            if (i >= arrayList.size()) {
+                return false;
+            }
+            if (((m9c) arrayList.get(i)).a()) {
+                return true;
+            }
+            i++;
+        }
+    }
+
+    @Override
+    public final boolean b(int[] iArr) {
+        int i = 0;
+        boolean z = false;
+        while (true) {
+            ArrayList arrayList = this.b;
+            if (i < arrayList.size()) {
+                z |= ((m9c) arrayList.get(i)).b(iArr);
+                i++;
+            } else {
+                return z;
             }
         }
+    }
+
+    public final void c() {
+        Matrix matrix = this.j;
+        matrix.reset();
+        matrix.postTranslate(-this.d, -this.e);
+        matrix.postScale(this.f, this.g);
+        matrix.postRotate(this.c, 0.0f, 0.0f);
+        matrix.postTranslate(this.h + this.d, this.i + this.e);
+    }
+
+    public String getGroupName() {
+        return this.k;
+    }
+
+    public Matrix getLocalMatrix() {
+        return this.j;
+    }
+
+    public float getPivotX() {
+        return this.d;
+    }
+
+    public float getPivotY() {
+        return this.e;
+    }
+
+    public float getRotation() {
+        return this.c;
+    }
+
+    public float getScaleX() {
+        return this.f;
+    }
+
+    public float getScaleY() {
+        return this.g;
+    }
+
+    public float getTranslateX() {
+        return this.h;
+    }
+
+    public float getTranslateY() {
+        return this.i;
+    }
+
+    public void setPivotX(float f) {
+        if (f != this.d) {
+            this.d = f;
+            c();
+        }
+    }
+
+    public void setPivotY(float f) {
+        if (f != this.e) {
+            this.e = f;
+            c();
+        }
+    }
+
+    public void setRotation(float f) {
+        if (f != this.c) {
+            this.c = f;
+            c();
+        }
+    }
+
+    public void setScaleX(float f) {
+        if (f != this.f) {
+            this.f = f;
+            c();
+        }
+    }
+
+    public void setScaleY(float f) {
+        if (f != this.g) {
+            this.g = f;
+            c();
+        }
+    }
+
+    public void setTranslateX(float f) {
+        if (f != this.h) {
+            this.h = f;
+            c();
+        }
+    }
+
+    public void setTranslateY(float f) {
+        if (f != this.i) {
+            this.i = f;
+            c();
+        }
+    }
+
+    public l9c() {
+        this.a = new Matrix();
+        this.b = new ArrayList();
+        this.c = 0.0f;
+        this.d = 0.0f;
+        this.e = 0.0f;
+        this.f = 1.0f;
+        this.g = 1.0f;
+        this.h = 0.0f;
+        this.i = 0.0f;
+        this.j = new Matrix();
+        this.k = null;
     }
 }

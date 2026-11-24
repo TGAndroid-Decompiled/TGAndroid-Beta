@@ -1,20 +1,30 @@
 package defpackage;
-public final class myc {
-    public final pxc a;
-    public final float[] b;
-    public final float[] c;
-    public final double d;
-    public final double e;
-    public final boolean f;
-    public final float[] g;
 
-    public myc(pxc pxcVar, float[] fArr, float[] fArr2, double d, double d2, boolean z, float[] fArr3) {
-        this.a = pxcVar;
-        this.b = fArr;
-        this.c = fArr2;
-        this.d = d;
-        this.e = d2;
-        this.f = z;
-        this.g = fArr3;
+import android.content.Intent;
+import android.os.Binder;
+import android.os.Process;
+import android.util.Log;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.firebase.messaging.FirebaseMessagingService;
+public final class myc extends Binder {
+    public final z24 a;
+
+    public myc(z24 z24Var) {
+        this.a = z24Var;
+    }
+
+    public final void a(nyc nycVar) {
+        if (Binder.getCallingUid() == Process.myUid()) {
+            if (Log.isLoggable("FirebaseMessaging", 3)) {
+                Log.d("FirebaseMessaging", "service received new intent via bind strategy");
+            }
+            Intent intent = nycVar.a;
+            FirebaseMessagingService firebaseMessagingService = (FirebaseMessagingService) this.a.b;
+            TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+            firebaseMessagingService.a.execute(new mg3(firebaseMessagingService, intent, taskCompletionSource, (byte) 18));
+            taskCompletionSource.getTask().addOnCompleteListener(new hc((byte) 1), new dkc(nycVar, (byte) 11));
+            return;
+        }
+        throw new SecurityException("Binding only allowed within app");
     }
 }

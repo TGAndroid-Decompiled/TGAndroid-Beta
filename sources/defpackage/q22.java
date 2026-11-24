@@ -1,35 +1,88 @@
 package defpackage;
 
 import android.content.Context;
-import android.view.View;
-public final class q22 extends b6c {
-    static {
-        b6c.h(new b6c());
-    }
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+public final class q22 extends zya {
+    public final byte L = 1;
+    public final Object M;
 
-    public static c6c i(CharSequence charSequence, String str) {
-        c6c K = c6c.K(q22.class);
-        K.m = str;
-        K.n = charSequence;
-        return K;
-    }
-
-    @Override
-    public final void b(View view, c6c c6cVar, boolean z, l7c l7cVar, q7c q7cVar) {
-        r22 r22Var = (r22) view;
-        CharSequence charSequence = c6cVar.m;
-        CharSequence charSequence2 = c6cVar.n;
-        r22Var.b.setText(charSequence);
-        r22Var.c.setText(charSequence2);
+    public q22(qvb qvbVar, Context context, pi4 pi4Var) {
+        super(context, pi4Var, 0, null);
+        this.M = qvbVar;
     }
 
     @Override
-    public final View d(Context context, r59 r59Var, int i, ylb ylbVar) {
-        return new r22(context, ylbVar);
+    public final void e(boolean z, boolean z2) {
+        switch (this.L) {
+            case 2:
+                super.e(z, z2);
+                qvb qvbVar = (qvb) this.M;
+                ttb ttbVar = qvbVar.n;
+                float f = 1.0f;
+                if (z2) {
+                    ViewPropertyAnimator animate = ((TextView) ttbVar.d).animate();
+                    if (z) {
+                        f = 0.0f;
+                    }
+                    animate.alpha(f).start();
+                    return;
+                }
+                ((TextView) ttbVar.d).animate().cancel();
+                TextView textView = (TextView) qvbVar.n.d;
+                if (z) {
+                    f = 0.0f;
+                }
+                textView.setAlpha(f);
+                return;
+            default:
+                super.e(z, z2);
+                return;
+        }
     }
 
     @Override
-    public final boolean f() {
-        return false;
+    public final float getTranslationY() {
+        switch (this.L) {
+            case 0:
+                return super.getTranslationY() - ((d32) this.M).N;
+            default:
+                return super.getTranslationY();
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        switch (this.L) {
+            case 1:
+                g0a g0aVar = ((c0a) this.M).d;
+                super.onMeasure(i, ug8.f(g0aVar.e, g0aVar.n - g0aVar.r.getPaddingTop(), 1073741824));
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
+        }
+    }
+
+    @Override
+    public final void setTranslationY(float f) {
+        switch (this.L) {
+            case 0:
+                super.setTranslationY(f + ((d32) this.M).N);
+                return;
+            default:
+                super.setTranslationY(f);
+                return;
+        }
+    }
+
+    public q22(int i, f53 f53Var, c0a c0aVar, Context context) {
+        super(context, null, i, f53Var);
+        this.M = c0aVar;
+    }
+
+    public q22(d32 d32Var, Context context, pi4 pi4Var, wjb wjbVar) {
+        super(context, pi4Var, 1, wjbVar);
+        this.M = d32Var;
     }
 }

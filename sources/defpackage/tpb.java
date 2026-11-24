@@ -1,8 +1,7 @@
 package defpackage;
-public final class tpb {
-    public static final tpb a = new Object();
-
-    public static ppb a() {
-        return new ppb(System.currentTimeMillis());
+public final class tpb extends vpb {
+    @Override
+    public final String toString() {
+        return "</" + z() + ">";
     }
 }

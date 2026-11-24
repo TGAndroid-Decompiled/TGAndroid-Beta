@@ -2,156 +2,217 @@ package defpackage;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
-import android.view.View;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.view.MotionEvent;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class cd extends FrameLayout {
-    public final ylb a;
-    public final bf0 b;
-    public final pc0 c;
-    public final tm d;
-    public final TextView e;
-    public final TextView f;
-    public final ImageView h;
-    public final ImageView n;
-    public boolean r;
+import java.util.HashSet;
+public final class cd extends LinearLayout implements tjb {
+    public boolean a;
+    public final lm b;
+    public final Paint c;
+    public final hd d;
 
-    public cd(int i, ylb ylbVar, Context context) {
+    public cd(hd hdVar, Context context) {
         super(context);
-        int i2;
-        int i3;
-        int i4;
-        float f;
-        float f2;
-        int i5;
-        pc0 pc0Var = new pc0((ylb) null);
-        this.c = pc0Var;
-        this.a = ylbVar;
-        bf0 bf0Var = new bf0(context);
-        this.b = bf0Var;
-        bf0Var.setRoundRadius(gm.L(8.0f));
-        pc0Var.r = gm.L(8.0f);
-        if (jb6.a0) {
-            i2 = 5;
-        } else {
-            i2 = 3;
-        }
-        addView(bf0Var, qoe.d(28, 28.0f, i2 | 16, 15.0f, 0.0f, 15.0f, 0.0f));
-        tm tmVar = new tm(gm.L(28.0f), 7, bf0Var, false);
-        this.d = tmVar;
-        tmVar.y = Integer.valueOf(i);
-        LinearLayout i6 = hg9.i(context, 1);
-        TextView textView = new TextView(context);
-        this.e = textView;
-        textView.setTextSize(1, 16.0f);
-        textView.setTextColor(cmb.v0(cmb.F6, ylbVar));
-        textView.setSingleLine();
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        if (jb6.a0) {
-            i3 = 5;
-        } else {
-            i3 = 3;
-        }
-        textView.setGravity(i3);
-        i6.addView(textView, qoe.o(-1, -2));
-        TextView textView2 = new TextView(context);
-        this.f = textView2;
-        textView2.setTextSize(1, 13.0f);
-        textView2.setTextColor(cmb.v0(cmb.x6, ylbVar));
-        textView2.setSingleLine();
-        textView2.setEllipsize(truncateAt);
-        if (jb6.a0) {
-            i4 = 5;
-        } else {
-            i4 = 3;
-        }
-        textView2.setGravity(i4);
-        i6.addView(textView2, qoe.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
-        boolean z = jb6.a0;
-        if (z) {
-            f = 56.0f;
-        } else {
-            f = 61.0f;
-        }
-        if (z) {
-            f2 = 61.0f;
-        } else {
-            f2 = 56.0f;
-        }
-        addView(i6, qoe.d(-1, -2.0f, 23, f, 0.0f, f2, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.h = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(2131231007);
-        int v0 = cmb.v0(cmb.Ci, ylbVar);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView.setColorFilter(new PorterDuffColorFilter(v0, mode));
-        if (jb6.a0) {
-            i5 = 3;
-        } else {
-            i5 = 5;
-        }
-        addView(imageView, qoe.d(24, 24.0f, i5 | 16, 18.0f, 0.0f, 18.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.n = imageView2;
-        imageView2.setScaleType(scaleType);
-        imageView2.setImageResource(2131232065);
-        imageView2.setColorFilter(new PorterDuffColorFilter(cmb.v0(cmb.l6, ylbVar), mode));
-        if (jb6.a0) {
-            imageView2.setScaleX(-1.0f);
-        }
-        addView(imageView2, qoe.d(24, 24.0f, (jb6.a0 ? 3 : 5) | 16, 14.0f, 0.0f, 14.0f, 0.0f));
-        setWillNotDraw(false);
-    }
-
-    public final void a(org.telegram.tgnet.tl.TL_agent.agentProvider r10, java.lang.String r11, boolean r12, boolean r13, boolean r14, boolean r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.cd.a(org.telegram.tgnet.tl.TL_agent$agentProvider, java.lang.String, boolean, boolean, boolean, boolean):void");
+        this.d = hdVar;
+        ?? obj = new Object();
+        obj.f = (short) 0;
+        obj.g = 200L;
+        obj.h = s33.f;
+        obj.a = this;
+        obj.d = 0.0f;
+        obj.c = 0.0f;
+        obj.e = false;
+        this.b = obj;
+        this.c = new Paint(1);
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.d.a();
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.d.b();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
         float L;
-        int i;
-        super.onDraw(canvas);
-        if (this.r) {
-            if (jb6.a0) {
-                L = 0.0f;
+        RectF rectF;
+        float f;
+        hd hdVar = this.d;
+        if (hdVar.U0) {
+            if (hdVar.g0 == 3 && hdVar.r != null) {
+                L = gl.L(18.0f);
+                float scaleX = hdVar.r.getScaleX() * hdVar.r.getWidth();
+                float scaleY = hdVar.r.getScaleY() * hdVar.r.getHeight();
+                rectF = gl.P;
+                rectF.set((getWidth() - scaleX) / 2.0f, (getHeight() - scaleY) / 2.0f, (getWidth() + scaleX) / 2.0f, (getHeight() + scaleY) / 2.0f);
             } else {
-                L = gm.L(61.0f);
+                L = gl.L(20.0f);
+                rectF = gl.P;
+                rectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
             }
-            float f = L;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (jb6.a0) {
-                i = gm.L(61.0f);
+            if (hdVar.G0 != null) {
+                f = 1.0f;
             } else {
-                i = 0;
+                f = 0.0f;
             }
-            canvas.drawLine(f, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, cmb.U0("paintDivider", this.a));
+            float e = this.b.e(false, f);
+            Paint paint = hdVar.G0;
+            if (paint != null) {
+                paint.setAlpha((int) (e * 255.0f));
+                canvas.drawRoundRect(rectF, L, L, hdVar.G0);
+            }
+            if (hdVar.H0 == null) {
+                Paint paint2 = new Paint(1);
+                hdVar.H0 = paint2;
+                paint2.setColor(bm2.o(-16777216, (int) (hdVar.R0 * 255.0f)));
+            }
+            canvas.drawRoundRect(rectF, L, L, hdVar.H0);
+            int i = hdVar.V0;
+            Paint paint3 = this.c;
+            paint3.setColor(i);
+            paint3.setAlpha((int) ((((hdVar.C0 - 1.0f) * e) + 1.0f) * paint3.getAlpha()));
+            canvas.drawRoundRect(rectF, L, L, paint3);
+        }
+        super.draw(canvas);
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        hd hdVar = this.d;
+        if (hdVar.I) {
+            hdVar.p();
+            return false;
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        hd hdVar = this.d;
+        int[] iArr = hdVar.y0;
+        if (hdVar.g0 == 3) {
+            int measuredWidth = ((i3 - i) - hdVar.r.getMeasuredWidth()) / 2;
+            int measuredHeight = ((i4 - i2) - hdVar.r.getMeasuredHeight()) / 2;
+            FrameLayout frameLayout = hdVar.r;
+            frameLayout.layout(measuredWidth, measuredHeight, frameLayout.getMeasuredWidth() + measuredWidth, hdVar.r.getMeasuredHeight() + measuredHeight);
+        } else {
+            xc xcVar = hdVar.w;
+            if (xcVar != null) {
+                if (hdVar.y == null) {
+                    hdVar.y = new bd(this, (byte) 0);
+                    xcVar.getViewTreeObserver().addOnScrollChangedListener(hdVar.y);
+                }
+                hdVar.y.onScrollChanged();
+            }
+        }
+        getLocationOnScreen(iArr);
+        Matrix matrix = hdVar.E0;
+        if (matrix != null && hdVar.F0 != null) {
+            matrix.reset();
+            hdVar.E0.postScale(8.0f, 8.0f);
+            hdVar.E0.postTranslate(-iArr[0], -iArr[1]);
+            hdVar.F0.setLocalMatrix(hdVar.E0);
         }
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(60.0f) + (this.r ? 1 : 0), 1073741824));
+    public final void onMeasure(int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.cd.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        hd hdVar = this.d;
+        if (hdVar.I) {
+            hdVar.p();
+            return false;
+        }
+        super.onTouchEvent(motionEvent);
+        return true;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.a) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    @Override
+    public final void updateColors() {
+        int i;
+        int e;
+        int e2;
+        hd hdVar = this.d;
+        try {
+            hdVar.r();
+            int i2 = hdVar.c1;
+            if (i2 >= 0 && (e2 = hdVar.e(i2)) != hdVar.V0) {
+                hdVar.V0 = e2;
+                Drawable drawable = hdVar.A0;
+                if (drawable != null) {
+                    drawable.setColorFilter(new PorterDuffColorFilter(hdVar.V0, PorterDuff.Mode.MULTIPLY));
+                }
+                FrameLayout frameLayout = hdVar.r;
+                if (frameLayout != null && (frameLayout.getBackground() instanceof ShapeDrawable)) {
+                    bkb.A1(hdVar.V0, hdVar.r.getBackground());
+                }
+                cd cdVar = hdVar.b1;
+                if (cdVar != null) {
+                    cdVar.invalidate();
+                }
+            }
+            j26 j26Var = hdVar.v0;
+            if (j26Var != null) {
+                j26Var.setProgressColor(hdVar.e(bkb.E5));
+                hdVar.v0.setBackColor(hdVar.e(bkb.F5));
+                hdVar.v0.invalidate();
+            }
+            if (hdVar.w != null && (e = hdVar.e(bkb.z5)) != hdVar.e1) {
+                hdVar.e1 = e;
+                gl.u3(hdVar.w, e);
+            }
+            if (!hdVar.h1) {
+                wla wlaVar = hdVar.f;
+                if (wlaVar != null && wlaVar.getCurrentTextColor() == hdVar.f1) {
+                    wla wlaVar2 = hdVar.f;
+                    int e3 = hdVar.e(bkb.i5);
+                    hdVar.f1 = e3;
+                    wlaVar2.setTextColor(e3);
+                }
+                bu3 bu3Var = hdVar.n;
+                if (bu3Var != null && bu3Var.getCurrentTextColor() == hdVar.g1) {
+                    bu3 bu3Var2 = hdVar.n;
+                    if (hdVar.X) {
+                        i = bkb.x6;
+                    } else {
+                        i = bkb.i5;
+                    }
+                    int e4 = hdVar.e(i);
+                    hdVar.g1 = e4;
+                    bu3Var2.setTextColor(e4);
+                }
+            }
+        } catch (Exception e5) {
+            fa4.g(e5, true);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

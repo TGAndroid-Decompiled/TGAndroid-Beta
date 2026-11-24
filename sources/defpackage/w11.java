@@ -1,25 +1,69 @@
 package defpackage;
-public final class w11 {
-    public static final w11 a;
-    public static final w11 b;
-    public static final w11 c;
-    public static final w11[] d;
 
-    static {
-        ?? r0 = new Enum("SUSPEND", 0);
-        a = r0;
-        ?? r1 = new Enum("DROP_OLDEST", 1);
-        b = r1;
-        ?? r3 = new Enum("DROP_LATEST", 2);
-        c = r3;
-        d = new w11[]{r0, r1, r3};
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d;
+public final class w11 implements s09 {
+    public final x11 a;
+
+    public w11(x11 x11Var) {
+        this.a = x11Var;
     }
 
-    public static w11 valueOf(String str) {
-        return (w11) Enum.valueOf(w11.class, str);
+    @Override
+    public final boolean C() {
+        return false;
     }
 
-    public static w11[] values() {
-        return (w11[]) d.clone();
+    @Override
+    public final void q(View view, h19 h19Var, boolean z, boolean z2) {
+        boolean z3;
+        x11 x11Var = this.a;
+        d dVar = x11Var.f;
+        if (x11Var.e == null) {
+            return;
+        }
+        long e = y6c.h(dVar.getCurrentAccount()).e();
+        if ((dVar instanceof mu1) && ((mu1) dVar).a() == e) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        int i = 0;
+        for (int i2 = 0; i2 < x11Var.e.size(); i2++) {
+            int keyAt = x11Var.e.keyAt(i2);
+            TLRPC.Message message = new TLRPC.Message();
+            message.dialog_id = dVar.getUserConfig().e();
+            message.id = keyAt;
+            k27 k27Var = new k27(dVar.getCurrentAccount(), message, false, false);
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(h19Var);
+            dVar.getSendMessagesHelper().r0(k27Var, arrayList, h19Var, false, false, x11Var.f, null);
+            i = message.id;
+        }
+        x11Var.f();
+        m21.e();
+        gl.d3(new v11(this, h19Var, !z3, dVar.getCurrentAccount(), i), 300L);
+    }
+
+    @Override
+    public final boolean r() {
+        return true;
+    }
+
+    @Override
+    public final boolean u() {
+        return false;
+    }
+
+    @Override
+    public final void A() {
+    }
+
+    @Override
+    public final void x(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
     }
 }

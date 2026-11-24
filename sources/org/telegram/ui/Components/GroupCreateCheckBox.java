@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.view.View;
 import java.util.HashSet;
-public class GroupCreateCheckBox extends View implements vlb {
+public class GroupCreateCheckBox extends View implements tjb {
     public float a;
 
     public float getProgress() {
@@ -30,7 +30,7 @@ public class GroupCreateCheckBox extends View implements vlb {
         }
         getMeasuredWidth();
         getMeasuredHeight();
-        Typeface typeface = gm.a;
+        Typeface typeface = gl.a;
         throw null;
     }
 
@@ -44,7 +44,7 @@ public class GroupCreateCheckBox extends View implements vlb {
 
     @Override
     public final void updateColors() {
-        cmb.u0(0);
+        bkb.u0(0);
         throw null;
     }
 

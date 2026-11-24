@@ -1,16 +1,30 @@
 package defpackage;
-public interface yzb {
-    void a(long j, int i, int i2, int i3, xzb xzbVar);
 
-    void b(yw7 yw7Var, int i, int i2);
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class yzb extends wla {
+    public final xl3 V;
+    public final b0c W;
 
-    int c(s73 s73Var, int i, boolean z);
+    public yzb(b0c b0cVar, Context context) {
+        super(context);
+        this.W = b0cVar;
+        this.V = new xl3((byte) 7);
+    }
 
-    void d(long j);
-
-    void e(int i, yw7 yw7Var);
-
-    int f(s73 s73Var, int i, boolean z);
-
-    void g(go4 go4Var);
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int L = gl.L(8.0f) + this.W.d.getWidth();
+        canvas.saveLayerAlpha(getScrollX(), 0.0f, (getWidth() + getScrollX()) - L, getHeight(), 255, 31);
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(getPaddingLeft(), getPaddingTop());
+        ama.a(canvas, getLayout());
+        canvas.restore();
+        RectF rectF = gl.P;
+        rectF.set((getWidth() - L) - gl.L(24.0f), 0.0f, getWidth() - L, getHeight());
+        this.V.s(canvas, rectF, 2, 1.0f);
+        canvas.restore();
+    }
 }

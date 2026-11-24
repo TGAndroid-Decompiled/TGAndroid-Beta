@@ -1,13 +1,17 @@
 package defpackage;
 
-import java.util.Random;
-public final class k94 extends r3 {
-    public final j94 b = new j94((byte) 0);
-
-    @Override
-    public final Random a() {
-        Object obj = this.b.get();
-        obj.getClass();
-        return (Random) obj;
-    }
+import org.telegram.tgnet.TLRPC;
+public final class k94 {
+    public int a;
+    public long b;
+    public int c;
+    public int d;
+    public long e;
+    public TLRPC.TL_upload_file f;
+    public TLRPC.TL_upload_webFile g;
+    public TLRPC.TL_upload_cdnFile h;
+    public boolean i;
+    public boolean j;
+    public boolean k;
+    public Runnable l;
 }

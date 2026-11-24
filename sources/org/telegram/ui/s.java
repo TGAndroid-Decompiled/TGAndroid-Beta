@@ -22,7 +22,7 @@ public final class s extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         boolean z;
         int i;
-        pb8 pb8Var;
+        o98 o98Var;
         int i2;
         boolean z2;
         PhotoViewer photoViewer = this.b;
@@ -30,9 +30,9 @@ public final class s extends AnimatorListenerAdapter {
         int i3 = 8;
         if (b == 1) {
             photoViewer.D1.a();
-            u43 u43Var = photoViewer.D1.b;
-            u43Var.d = null;
-            u43Var.K = false;
+            j33 j33Var = photoViewer.D1.b;
+            j33Var.d = null;
+            j33Var.K = false;
             photoViewer.V0.setVisibility(8);
             photoViewer.D1.setVisibility(8);
             CropAreaView cropAreaView = photoViewer.D1.b.a;
@@ -45,7 +45,7 @@ public final class s extends AnimatorListenerAdapter {
             try {
                 photoViewer.f0.removeView(photoViewer.J1);
             } catch (Exception e) {
-                fc4.g(e, true);
+                fa4.g(e, true);
             }
             photoViewer.J1 = null;
         } else if (b == 3) {
@@ -53,40 +53,40 @@ public final class s extends AnimatorListenerAdapter {
             try {
                 photoViewer.f0.removeView(photoViewer.M1.getView());
             } catch (Exception e2) {
-                fc4.g(e2, true);
+                fa4.g(e2, true);
             }
             photoViewer.M1 = null;
         } else if (b == 4) {
             photoViewer.P1 = true;
             photoViewer.f0.invalidate();
-            photoViewer.f0.post(new a18(this, photoViewer.O1, (byte) 12));
+            photoViewer.f0.post(new h18(this, photoViewer.O1, (byte) 11));
             photoViewer.O1 = null;
             photoViewer.u5.m(false, true);
             photoViewer.v5.m(false, true);
         } else if (b == 5) {
             photoViewer.p5.setVisibility(8);
-            wb8 wb8Var = photoViewer.p5;
-            wb8Var.d = null;
-            wb8Var.a.o(false, null, 0L, 0.0f);
+            v98 v98Var = photoViewer.p5;
+            v98Var.d = null;
+            v98Var.a.o(false, null, 0L, 0.0f);
         }
         photoViewer.o6 = null;
         byte b2 = photoViewer.t4;
         photoViewer.t4 = this.a;
-        mx5 mx5Var = photoViewer.d0().M;
+        mv5 mv5Var = photoViewer.d0().M;
         if (photoViewer.t4 != 0) {
             z = true;
         } else {
             z = false;
         }
-        mx5Var.b(z);
-        mx5 mx5Var2 = photoViewer.L1;
-        if (mx5Var2 != null) {
+        mv5Var.b(z);
+        mv5 mv5Var2 = photoViewer.L1;
+        if (mv5Var2 != null) {
             if (photoViewer.t4 != 3) {
                 z2 = true;
             } else {
                 z2 = false;
             }
-            mx5Var2.b(z2);
+            mv5Var2.b(z2);
         }
         if (photoViewer.t4 != 3) {
             photoViewer.Y5 = 0.0f;
@@ -123,29 +123,29 @@ public final class s extends AnimatorListenerAdapter {
             PhotoViewer photoViewer3 = a0Var.d;
             ArrayList arrayList = a0Var.b;
             int i4 = a0Var.a;
-            photoViewer3.d1(null, null, null, null, arrayList, null, null, i4, a0Var.c.N((k47) arrayList.get(i4), null, a0Var.a, true, false));
+            photoViewer3.d1(null, null, null, null, arrayList, null, null, i4, a0Var.c.M((k27) arrayList.get(i4), null, a0Var.a, true, false));
             photoViewer.h7 = null;
-            cb8 cb8Var = new cb8();
-            cb8Var.c = false;
-            photoViewer.u2(false, false, cb8Var);
-            photoViewer.u2(true, true, cb8Var);
+            b98 b98Var = new b98();
+            b98Var.c = false;
+            photoViewer.u2(false, false, b98Var);
+            photoViewer.u2(true, true, b98Var);
             return;
         }
         AnimatorSet animatorSet = new AnimatorSet();
         ArrayList arrayList2 = new ArrayList();
-        jp0 jp0Var = photoViewer.Q0;
+        jo0 jo0Var = photoViewer.Q0;
         Property property = View.TRANSLATION_Y;
-        arrayList2.add(ObjectAnimator.ofFloat(jp0Var, property, 0.0f));
-        jp0 jp0Var2 = photoViewer.Q0;
+        arrayList2.add(ObjectAnimator.ofFloat(jo0Var, property, 0.0f));
+        jo0 jo0Var2 = photoViewer.Q0;
         Property property2 = View.ALPHA;
-        arrayList2.add(ObjectAnimator.ofFloat(jp0Var2, property2, 1.0f));
-        n1b n1bVar = photoViewer.o5;
-        if (n1bVar != null) {
-            arrayList2.add(ObjectAnimator.ofFloat(n1bVar, property2, 1.0f));
+        arrayList2.add(ObjectAnimator.ofFloat(jo0Var2, property2, 1.0f));
+        mza mzaVar = photoViewer.o5;
+        if (mzaVar != null) {
+            arrayList2.add(ObjectAnimator.ofFloat(mzaVar, property2, 1.0f));
         }
-        yc ycVar = photoViewer.r5;
-        if (ycVar != null) {
-            arrayList2.add(ObjectAnimator.ofFloat(ycVar, property2, 1.0f));
+        rj4 rj4Var = photoViewer.r5;
+        if (rj4Var != null) {
+            arrayList2.add(ObjectAnimator.ofFloat(rj4Var, property2, 1.0f));
         }
         arrayList2.add(ObjectAnimator.ofFloat(photoViewer.T0, property, 0.0f));
         if (photoViewer.d2 != 1) {
@@ -174,21 +174,21 @@ public final class s extends AnimatorListenerAdapter {
             arrayList2.add(ObjectAnimator.ofFloat(photoViewer.f1, property2, 1.0f));
         }
         if (photoViewer.g1.getTag() != null) {
-            o96 o96Var = photoViewer.g1;
-            if (!photoViewer.e2 && photoViewer.I4 && ((pb8Var = photoViewer.d) == null || pb8Var.P())) {
+            o76 o76Var = photoViewer.g1;
+            if (!photoViewer.e2 && photoViewer.I4 && ((o98Var = photoViewer.d) == null || o98Var.O())) {
                 i = 0;
             } else {
                 i = 8;
             }
-            o96Var.setVisibility(i);
+            o76Var.setVisibility(i);
             arrayList2.add(ObjectAnimator.ofFloat(photoViewer.g1, property2, 1.0f));
         }
         if (photoViewer.h1.getTag() != null) {
-            y98 y98Var = photoViewer.h1;
+            v78 v78Var = photoViewer.h1;
             if (!photoViewer.e2) {
                 i3 = 0;
             }
-            y98Var.setVisibility(i3);
+            v78Var.setVisibility(i3);
             arrayList2.add(ObjectAnimator.ofFloat(photoViewer.h1, property2, 1.0f));
         }
         View view = photoViewer.k0;

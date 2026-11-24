@@ -58,7 +58,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -76,7 +76,7 @@ public class TL_legacy_message {
                 this.grouped_id = inputSerializedData.readInt64(z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
         }
 
@@ -193,7 +193,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -214,7 +214,7 @@ public class TL_legacy_message {
                 this.grouped_id = inputSerializedData.readInt64(z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
         }
 
@@ -336,7 +336,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -357,7 +357,7 @@ public class TL_legacy_message {
                 this.grouped_id = inputSerializedData.readInt64(z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -486,7 +486,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -507,7 +507,7 @@ public class TL_legacy_message {
                 this.grouped_id = inputSerializedData.readInt64(z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -639,7 +639,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -663,7 +663,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -803,7 +803,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -827,7 +827,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -973,7 +973,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -997,7 +997,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -1146,7 +1146,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -1170,7 +1170,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -1331,7 +1331,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -1355,7 +1355,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -1522,7 +1522,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -1546,7 +1546,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -1720,7 +1720,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -1744,7 +1744,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -1926,7 +1926,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -1950,7 +1950,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -2138,7 +2138,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -2162,7 +2162,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -2358,7 +2358,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -2382,7 +2382,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -2596,7 +2596,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -2620,7 +2620,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -2840,7 +2840,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -2864,7 +2864,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -3093,7 +3093,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -3117,7 +3117,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -3358,7 +3358,7 @@ public class TL_legacy_message {
                 this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -3382,7 +3382,7 @@ public class TL_legacy_message {
                 this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 4194304)) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new c1b((byte) 13), z);
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new v0b((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);

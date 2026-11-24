@@ -45,8 +45,8 @@ public final class v5 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                lka lkaVar = aVar.n[1];
-                if (lkaVar != null && lkaVar.getParent() != null) {
+                jia jiaVar = aVar.n[1];
+                if (jiaVar != null && jiaVar.getParent() != null) {
                     ((ViewGroup) aVar.n[1].getParent()).removeView(aVar.n[1]);
                 }
                 aVar.P0.F(aVar.n[1]);

@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import java.util.ArrayList;
-public final class k extends b84 {
+public final class k extends s64 {
     public final l o;
 
     public k(l lVar, l lVar2) {
@@ -56,7 +56,7 @@ public final class k extends b84 {
             } else {
                 i3 = 2131754930;
             }
-            u4Var.o(jb6.M0(i3, null));
+            u4Var.o(k96.M0(i3, null));
         } else if (i == 4) {
             Rect rect2 = chatActivityEnterView.J4;
             RectF rectF2 = lVar.K;
@@ -67,7 +67,7 @@ public final class k extends b84 {
             } else {
                 i2 = 2131754935;
             }
-            u4Var.o(jb6.M0(i2, null));
+            u4Var.o(k96.M0(i2, null));
         }
     }
 }

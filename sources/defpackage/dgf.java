@@ -1,3 +1,6 @@
 package defpackage;
-public abstract class dgf {
+public interface dgf {
+    sgf zzb(Class cls);
+
+    boolean zzc(Class cls);
 }

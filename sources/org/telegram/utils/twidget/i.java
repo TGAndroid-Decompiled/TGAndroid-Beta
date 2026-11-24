@@ -1,5 +1,5 @@
 package org.telegram.utils.twidget;
-public final class i implements lxc, yxc {
+public final class i implements kvc, xvc {
     public final byte a;
     public final int b;
     public final int c;
@@ -40,7 +40,7 @@ public final class i implements lxc, yxc {
     }
 
     @Override
-    public final void mo19run() {
+    public final void mo21run() {
         ((WidgetEngineBackend) this.e).lambda$canvasRun$8(this.b, this.c, this.d, (int[]) this.f);
     }
 }

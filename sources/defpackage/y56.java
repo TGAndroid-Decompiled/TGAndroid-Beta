@@ -1,8 +1,4 @@
 package defpackage;
-public final class y56 extends iy8 {
-    @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        gm.c3(new kg5(this, (byte) 18));
-    }
+public interface y56 {
+    void c(Object obj, gi4 gi4Var);
 }

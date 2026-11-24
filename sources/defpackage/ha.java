@@ -15,16 +15,16 @@ public final class ha {
     public Object g;
     public Object h;
 
-    public ha(oo8 oo8Var) {
+    public ha(v39 v39Var) {
         this.a = (byte) 0;
-        this.c = new de(30, (byte) 12);
+        this.c = new dd(30, (byte) 12);
         this.d = new ArrayList();
         this.e = new ArrayList();
         this.b = 0;
-        boolean z = e21.a;
+        boolean z = w01.a;
         this.f = new ArrayList();
-        this.g = oo8Var;
-        this.h = new k44(this, (byte) 20);
+        this.g = v39Var;
+        this.h = new pj4(this, (byte) 19);
     }
 
     public final boolean a(int i2) {
@@ -60,14 +60,14 @@ public final class ha {
         ArrayList arrayList = (ArrayList) this.e;
         int size = arrayList.size();
         for (int i2 = 0; i2 < size; i2++) {
-            ((oo8) this.g).s2((ga) arrayList.get(i2));
+            ((v39) this.g).L1((ga) arrayList.get(i2));
         }
         l(arrayList);
         this.b = 0;
     }
 
     public final void c() {
-        oo8 oo8Var = (oo8) this.g;
+        v39 v39Var = (v39) this.g;
         b();
         ArrayList arrayList = (ArrayList) this.d;
         int size = arrayList.size();
@@ -78,25 +78,25 @@ public final class ha {
                 if (b != 2) {
                     if (b != 4) {
                         if (b == 8) {
-                            oo8Var.s2(gaVar);
-                            oo8Var.v2(gaVar.b, gaVar.d);
+                            v39Var.L1(gaVar);
+                            v39Var.S1(gaVar.b, gaVar.d);
                         }
                     } else {
-                        oo8Var.s2(gaVar);
-                        oo8Var.t2(gaVar.b, gaVar.d, gaVar.c);
+                        v39Var.L1(gaVar);
+                        v39Var.P1(gaVar.b, gaVar.d, gaVar.c);
                     }
                 } else {
-                    oo8Var.s2(gaVar);
+                    v39Var.L1(gaVar);
                     int i3 = gaVar.b;
                     int i4 = gaVar.d;
-                    RecyclerView recyclerView = (RecyclerView) oo8Var.b;
+                    RecyclerView recyclerView = (RecyclerView) v39Var.b;
                     recyclerView.g0(i3, i4, true);
                     recyclerView.y0 = true;
                     recyclerView.v0.c += i4;
                 }
             } else {
-                oo8Var.s2(gaVar);
-                oo8Var.u2(gaVar.b, gaVar.d);
+                v39Var.L1(gaVar);
+                v39Var.Q1(gaVar.b, gaVar.d);
             }
         }
         l(arrayList);
@@ -105,7 +105,7 @@ public final class ha {
 
     public final void d(ga gaVar) {
         int i2;
-        de deVar = (de) this.c;
+        dd ddVar = (dd) this.c;
         byte b = gaVar.a;
         if (b != 1 && b != 8) {
             int n = n(gaVar.b, b);
@@ -115,7 +115,7 @@ public final class ha {
                 if (b2 == 4) {
                     i2 = 1;
                 } else {
-                    u36.i(gaVar, "op should be remove or update.");
+                    w26.i(gaVar, "op should be remove or update.");
                     return;
                 }
             } else {
@@ -131,7 +131,7 @@ public final class ha {
                     ga i6 = i(gaVar.c, b3, n, i4);
                     e(i6, i3);
                     i6.c = null;
-                    deVar.p0(i6);
+                    ddVar.o0(i6);
                     if (gaVar.a == 4) {
                         i3 += i4;
                     }
@@ -141,34 +141,34 @@ public final class ha {
             }
             Object obj = gaVar.c;
             gaVar.c = null;
-            deVar.p0(gaVar);
+            ddVar.o0(gaVar);
             if (i4 > 0) {
                 ga i7 = i(obj, gaVar.a, n, i4);
                 e(i7, i3);
                 i7.c = null;
-                deVar.p0(i7);
+                ddVar.o0(i7);
                 return;
             }
             return;
         }
-        u36.j("should not dispatch add or move for pre layout");
+        w26.j("should not dispatch add or move for pre layout");
     }
 
     public final void e(ga gaVar, int i2) {
-        oo8 oo8Var = (oo8) this.g;
-        oo8Var.s2(gaVar);
+        v39 v39Var = (v39) this.g;
+        v39Var.L1(gaVar);
         byte b = gaVar.a;
         if (b != 2) {
             if (b == 4) {
-                oo8Var.t2(i2, gaVar.d, gaVar.c);
+                v39Var.P1(i2, gaVar.d, gaVar.c);
                 return;
             } else {
-                u36.j("only remove and update ops can be dispatched in first pass");
+                w26.j("only remove and update ops can be dispatched in first pass");
                 return;
             }
         }
         int i3 = gaVar.d;
-        RecyclerView recyclerView = (RecyclerView) oo8Var.b;
+        RecyclerView recyclerView = (RecyclerView) v39Var.b;
         recyclerView.g0(i2, i3, true);
         recyclerView.y0 = true;
         recyclerView.v0.c += i3;
@@ -244,7 +244,7 @@ public final class ha {
     }
 
     public final ga i(Object obj, int i2, int i3, int i4) {
-        ga gaVar = (ga) ((de) this.c).U();
+        ga gaVar = (ga) ((dd) this.c).U();
         if (gaVar == null) {
             ?? obj2 = new Object();
             obj2.a = i2;
@@ -261,31 +261,31 @@ public final class ha {
     }
 
     public final void j(ga gaVar) {
-        oo8 oo8Var = (oo8) this.g;
+        v39 v39Var = (v39) this.g;
         ((ArrayList) this.e).add(gaVar);
         byte b = gaVar.a;
         if (b != 1) {
             if (b != 2) {
                 if (b != 4) {
                     if (b == 8) {
-                        oo8Var.v2(gaVar.b, gaVar.d);
+                        v39Var.S1(gaVar.b, gaVar.d);
                         return;
                     } else {
-                        u36.i(gaVar, "Unknown update op type for ");
+                        w26.i(gaVar, "Unknown update op type for ");
                         return;
                     }
                 }
-                oo8Var.t2(gaVar.b, gaVar.d, gaVar.c);
+                v39Var.P1(gaVar.b, gaVar.d, gaVar.c);
                 return;
             }
             int i2 = gaVar.b;
             int i3 = gaVar.d;
-            RecyclerView recyclerView = (RecyclerView) oo8Var.b;
+            RecyclerView recyclerView = (RecyclerView) v39Var.b;
             recyclerView.g0(i2, i3, false);
             recyclerView.y0 = true;
             return;
         }
-        oo8Var.u2(gaVar.b, gaVar.d);
+        v39Var.Q1(gaVar.b, gaVar.d);
     }
 
     public final void k() {
@@ -297,7 +297,7 @@ public final class ha {
         for (int i2 = 0; i2 < size; i2++) {
             ga gaVar = (ga) arrayList.get(i2);
             gaVar.c = null;
-            ((de) this.c).p0(gaVar);
+            ((dd) this.c).o0(gaVar);
         }
         arrayList.clear();
     }
@@ -309,7 +309,7 @@ public final class ha {
     public final int n(int i2, int i3) {
         int i4;
         int i5;
-        de deVar = (de) this.c;
+        dd ddVar = (dd) this.c;
         ArrayList arrayList = (ArrayList) this.e;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             ga gaVar = (ga) arrayList.get(size);
@@ -369,12 +369,12 @@ public final class ha {
                 if (i8 == gaVar2.b || i8 < 0) {
                     arrayList.remove(size2);
                     gaVar2.c = null;
-                    deVar.p0(gaVar2);
+                    ddVar.o0(gaVar2);
                 }
             } else if (i8 <= 0) {
                 arrayList.remove(size2);
                 gaVar2.c = null;
-                deVar.p0(gaVar2);
+                ddVar.o0(gaVar2);
             }
         }
         return i2;
@@ -383,7 +383,7 @@ public final class ha {
     public final String toString() {
         switch (this.a) {
             case 2:
-                cbb cbbVar = cbb.e;
+                a9b a9bVar = a9b.e;
                 return m();
             default:
                 return super.toString();

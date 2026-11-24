@@ -1,181 +1,205 @@
 package defpackage;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RadialGradient;
-import android.graphics.Rect;
+import android.graphics.RecordingCanvas;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.ViewGroup;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class lx4 extends Drawable {
-    public static sx4 E = new sx4();
-    public long A;
-    public Bitmap B;
-    public Paint C;
-    public int D;
-    public final ViewGroup a;
-    public final ylb b;
-    public final Paint c;
-    public final Paint d;
-    public final RectF e;
-    public final Path f;
-    public final boolean g;
-    public TL_stars.starGiftAttributeBackdrop h;
-    public int i;
-    public RadialGradient j;
-    public final Matrix k;
-    public final kx4 l;
-    public int[] m;
-    public LinearGradient n;
-    public final Matrix o;
-    public boolean p;
-    public final Paint q;
-    public final ln r;
-    public float s;
-    public boolean t;
-    public int u;
-    public boolean v;
-    public boolean w;
-    public int x;
-    public int y;
-    public Integer z;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import android.os.Build;
+public final class lx4 implements gx4, jl0, rw4 {
+    public final gx4 a;
+    public t69 c;
+    public cq3 d;
+    public int e;
+    public gx4 f;
+    public dw4 h;
+    public boolean n;
+    public boolean r;
+    public RecordingCanvas s;
+    public final e59 w = new e59(0, false);
+    public final RenderNode b = mk1.k();
 
-    public lx4(ViewGroup viewGroup, ylb ylbVar, boolean z) {
-        Paint paint = new Paint(1);
-        this.c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.e = new RectF();
-        this.f = new Path();
-        this.k = new Matrix();
-        this.o = new Matrix();
-        Paint paint3 = new Paint(1);
-        this.q = paint3;
-        this.r = new ln(new qn4(this, (byte) 9), 320L, d53.h);
-        this.s = gm.L(11.0f);
-        this.v = true;
-        this.w = false;
-        int i = cmb.c6;
-        this.y = i;
-        this.a = viewGroup;
-        this.b = ylbVar;
-        kx4 kx4Var = new kx4(this, viewGroup, gm.L(28.0f));
-        this.l = kx4Var;
-        viewGroup.addOnAttachStateChangeListener(new wd(this, (byte) 9));
-        if (viewGroup.isAttachedToWindow()) {
-            kx4Var.a();
-        }
-        this.g = z;
-        int v0 = cmb.v0(i, ylbVar);
-        this.x = v0;
-        paint.setColor(v0);
-        a(z);
-        Paint.Style style = Paint.Style.STROKE;
-        paint3.setStyle(style);
-        paint2.setStyle(style);
+    public lx4(gx4 gx4Var) {
+        this.a = gx4Var;
     }
 
-    public final void a(boolean z) {
-        int i;
-        if (z) {
-            i = cmb.v0(cmb.Z5, this.b);
+    @Override
+    public final int a() {
+        dw4 dw4Var = this.h;
+        if (dw4Var == null) {
+            dw4Var = null;
+        }
+        if (dw4Var != null) {
+            return dw4Var.a();
+        }
+        return 0;
+    }
+
+    @Override
+    public final il0 b() {
+        il0 il0Var = new il0(this, this, this);
+        c(il0Var);
+        return il0Var;
+    }
+
+    @Override
+    public final void c(il0 il0Var) {
+        this.w.add(il0Var);
+    }
+
+    @Override
+    public final void d(float f, float f2, int i, Canvas canvas, RectF rectF) {
+        cq3 cq3Var;
+        dw4 dw4Var = this.h;
+        if (dw4Var == null) {
+            dw4Var = null;
+        }
+        if (this.f != null || dw4Var == null) {
+            canvas.save();
+            float f3 = 1.0f / i;
+            canvas.scale(f3, f3);
+            canvas.translate(-f, -f2);
+            gx4 gx4Var = this.f;
+            if (gx4Var != null) {
+                float f4 = i << 1;
+                gx4Var.e(rectF.left - f4, rectF.top - f4, rectF.right + f4, rectF.bottom + f4, canvas);
+            }
+            if (dw4Var == null && Build.VERSION.SDK_INT >= 31 && (cq3Var = this.d) != null) {
+                cq3Var.c(canvas, this.e);
+            }
+            canvas.restore();
+        }
+        if (dw4Var != null) {
+            dw4Var.d(f, f2, i, canvas, rectF);
+        }
+    }
+
+    @Override
+    public final void e(float f, float f2, float f3, float f4, Canvas canvas) {
+        if (!canvas.isHardwareAccelerated()) {
+            gx4 gx4Var = this.a;
+            if (gx4Var != null) {
+                gx4Var.e(f, f2, f3, f4, canvas);
+            }
+        } else if (!this.r) {
+            gx4 gx4Var2 = this.f;
+            if (gx4Var2 != null) {
+                gx4Var2.e(f, f2, f3, f4, canvas);
+            }
+            canvas.save();
+            if (!this.n) {
+                canvas.clipRect(f, f2, f3, f4);
+            }
+            if (Build.VERSION.SDK_INT >= 31) {
+                dw4 dw4Var = this.h;
+                if (dw4Var != null) {
+                    dw4Var.e(f, f2, f3, f4, canvas);
+                } else {
+                    cq3 cq3Var = this.d;
+                    if (cq3Var != null) {
+                        cq3Var.c(canvas, this.e);
+                    }
+                }
+                canvas.restore();
+            }
+            canvas.drawRenderNode(this.b);
+            canvas.restore();
         } else {
-            i = 0;
+            sdb.a();
         }
-        if (this.t == z && (!z || this.u == i)) {
-            return;
-        }
-        this.t = z;
-        Paint paint = this.c;
-        if (z) {
-            this.u = i;
-            paint.setShadowLayer(gm.L(1.66f), 0.0f, gm.L(0.33f), i);
-            return;
-        }
-        paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-    }
-
-    public final void b(android.graphics.Canvas r33, float r34) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.lx4.b(android.graphics.Canvas, float):void");
-    }
-
-    public final void c() {
-        this.a.invalidate();
-        if (getCallback() != null) {
-            getCallback().invalidateDrawable(this);
-        }
-    }
-
-    public final void d(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        if (this.h != stargiftattributebackdrop) {
-            this.j = null;
-        }
-        this.h = stargiftattributebackdrop;
-        c();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        b(canvas, 0.0f);
-    }
-
-    public final void e(TL_stars.starGiftAttributePattern stargiftattributepattern) {
-        this.A = 0L;
-        kx4 kx4Var = this.l;
-        if (stargiftattributepattern == null) {
-            kx4Var.g(null, false);
-            return;
+    public final int f() {
+        cq3 cq3Var;
+        aq3 aq3Var;
+        dw4 dw4Var = this.h;
+        if (dw4Var == null) {
+            dw4Var = null;
         }
-        kx4Var.i(stargiftattributepattern.document, false);
-        TLRPC.Document document = stargiftattributepattern.document;
-        if (document != null) {
-            this.A = document.id;
+        if (dw4Var != null) {
+            return dw4Var.f();
         }
-    }
-
-    public final void f(boolean z, boolean z2) {
-        if (this.p == z) {
-            return;
+        if (Build.VERSION.SDK_INT >= 31 && (cq3Var = this.d) != null) {
+            int i = this.e;
+            if (cq3Var.a && cq3Var.k != 0) {
+                bq3 bq3Var = (bq3) cq3Var.j.get(0);
+                if ((i == -2 || i == -4) && (aq3Var = bq3Var.c) != null) {
+                    return aq3Var.e;
+                }
+                return bq3Var.b.e;
+            }
+            return 1;
         }
-        this.p = z;
-        if (!z2) {
-            this.r.a(z);
-        }
-        c();
-    }
-
-    public final void g(int[] iArr) {
-        if (this.m == iArr) {
-            return;
-        }
-        this.m = iArr;
-        this.n = null;
-        c();
+        return 1;
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final int g() {
+        dw4 dw4Var = this.h;
+        if (dw4Var == null) {
+            dw4Var = null;
+        }
+        if (dw4Var != null) {
+            return dw4Var.g();
+        }
+        return 0;
     }
 
     @Override
-    public final boolean getPadding(Rect rect) {
-        rect.set(gm.L(3.33f), gm.L(4.0f), gm.L(3.33f), gm.L(4.0f));
+    public final boolean h() {
+        if (f() > 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public final RecordingCanvas i(int i, int i2) {
+        if (!this.r) {
+            this.r = true;
+            this.b.setPosition(0, 0, i, i2);
+            RecordingCanvas beginRecording = this.b.beginRecording(i, i2);
+            this.s = beginRecording;
+            return beginRecording;
+        }
+        sdb.a();
+        return null;
+    }
+
+    public final void j() {
+        if (this.r) {
+            this.b.endRecording();
+            this.r = false;
+            this.s = null;
+            return;
+        }
+        sdb.a();
+    }
+
+    public final boolean k(int i, int i2) {
+        if (this.b.hasDisplayList() && this.b.getWidth() == i && this.b.getHeight() == i2) {
+            return false;
+        }
         return true;
     }
 
-    @Override
-    public final void setAlpha(int i) {
+    public final void l(float f) {
+        RenderEffect renderEffect;
+        RenderNode renderNode = this.b;
+        if (f > 0.0f) {
+            renderEffect = RenderEffect.createBlurEffect(f, f, Shader.TileMode.CLAMP);
+        } else {
+            renderEffect = null;
+        }
+        renderNode.setRenderEffect(renderEffect);
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void m(float f, RenderEffect renderEffect) {
+        this.b.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f, f, Shader.TileMode.CLAMP), renderEffect));
+    }
+
+    public final void n(int i, int i2) {
+        this.b.setPosition(0, 0, i, i2);
     }
 }

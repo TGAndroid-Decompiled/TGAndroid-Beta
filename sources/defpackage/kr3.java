@@ -1,164 +1,52 @@
 package defpackage;
 
-import android.graphics.RecordingCanvas;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-public final class kr3 {
-    public final RenderNode a = ul1.k();
-    public final RenderNode[] b;
-    public final RenderNode[] c;
-    public final boolean d;
-    public byte e;
-    public byte f;
-    public float g;
-    public float h;
-    public long i;
-    public final mr3 j;
+import android.content.Context;
+import org.telegram.tgnet.TLObject;
+public final class kr3 extends gf0 {
+    public final jia s;
+    public TLObject w;
 
-    public kr3(mr3 mr3Var, String str, int i, boolean z) {
-        this.j = mr3Var;
-        int i2 = i + 1;
-        this.b = new RenderNode[i2];
-        for (int i3 = 0; i3 < i2; i3++) {
-            RenderNode[] renderNodeArr = this.b;
-            ul1.p();
-            renderNodeArr[i3] = ul1.d(str + "_down_" + i);
-        }
-        if (i <= 0 && !z) {
-            this.c = this.b;
-        } else {
-            this.c = new RenderNode[i2];
-            for (int i4 = 0; i4 < i2; i4++) {
-                this.c[i4] = ul1.k();
-            }
-        }
-        this.d = this.c == this.b;
-        this.f = (byte) 1;
-        this.e = (byte) 1;
-    }
-
-    public final void a(RenderNode renderNode) {
-        boolean z;
-        RenderNode[] renderNodeArr;
-        boolean z2;
+    public kr3(Context context, wjb wjbVar) {
+        super(context, wjbVar);
         int i;
-        int width = renderNode.getWidth();
-        int height = renderNode.getHeight();
-        float f = width;
-        mr3 mr3Var = this.j;
-        int round = Math.round((mr3Var.d * f) / this.e);
-        float f2 = height;
-        byte b = mr3Var.d;
-        int round2 = Math.round((b * f2) / this.f);
-        float f3 = round;
-        float f4 = f3 / f;
-        float f5 = round2;
-        float f6 = f5 / f2;
-        float f7 = b;
-        float f8 = (f * f7) / f3;
-        float f9 = (f2 * f7) / f5;
-        long r = hs6.r(hs6.r(hs6.r(hs6.r(hs6.r(0L, renderNode.getUniqueId()), round), round2), width), height);
-        if (this.a.hasDisplayList() && this.b[0].hasDisplayList()) {
-            z = false;
+        float f;
+        float f2;
+        this.c.setVisibility(8);
+        jia jiaVar = this.e;
+        int i2 = bkb.A6;
+        zkb.W(jiaVar, i2, wjbVar);
+        jia jiaVar2 = new jia(context);
+        this.s = jiaVar2;
+        jiaVar2.setTextSize(16);
+        zkb.W(jiaVar2, i2, wjbVar);
+        if (k96.a0) {
+            i = 3;
         } else {
-            z = true;
+            i = 5;
         }
-        int i2 = 0;
-        while (true) {
-            int length = this.b.length;
-            z2 = this.d;
-            if (i2 >= length) {
-                break;
-            }
-            z |= !renderNodeArr[i2].hasDisplayList();
-            if (!z2) {
-                z |= !this.c[i2].hasDisplayList();
-            }
-            i2++;
-        }
-        if (this.i != r || z) {
-            this.i = r;
-            int i3 = 0;
-            this.a.setPosition(0, 0, width, height);
-            this.a.beginRecording(width, height).drawRenderNode(renderNode);
-            this.a.endRecording();
-            this.b[0].setPosition(0, 0, round, round2);
-            RecordingCanvas beginRecording = this.b[0].beginRecording(round, round2);
-            beginRecording.scale(f4, f6);
-            beginRecording.drawRenderNode(this.a);
-            this.b[0].endRecording();
-            int i4 = 0;
-            while (true) {
-                RenderNode[] renderNodeArr2 = this.b;
-                if (i4 < renderNodeArr2.length) {
-                    renderNodeArr2[i4].setPosition(i3, i3, round, round2);
-                    RecordingCanvas beginRecording2 = this.b[i4].beginRecording(round, round2);
-                    if (i4 > 0) {
-                        beginRecording2.drawRenderNode(this.b[i3]);
-                    } else {
-                        beginRecording2.scale(f4, f6);
-                        beginRecording2.drawRenderNode(this.a);
-                    }
-                    this.b[i4].endRecording();
-                    if (z2) {
-                        this.b[i4].setScaleX(f8);
-                        this.b[i4].setScaleY(f9);
-                        this.b[i4].setPivotX(0.0f);
-                        this.b[i4].setPivotY(0.0f);
-                        i = 0;
-                    } else {
-                        i = 0;
-                        this.c[i4].setPosition(0, 0, width, height);
-                        RecordingCanvas beginRecording3 = this.c[i4].beginRecording(width, height);
-                        beginRecording3.scale(f8, f9);
-                        beginRecording3.drawRenderNode(this.b[i4]);
-                        this.c[i4].endRecording();
-                    }
-                    i4++;
-                    i3 = i;
-                } else {
-                    return;
-                }
-            }
-        }
-    }
-
-    public final void b(float f, float f2) {
-        float f3;
-        RenderNode[] renderNodeArr;
-        byte b = this.e;
-        float f4 = 0.0f;
-        if (b >= 2) {
-            f3 = (this.g + f) % b;
+        jiaVar2.setGravity(i);
+        addView(jiaVar2);
+        boolean z = k96.a0;
+        int i3 = (z ? 3 : 5) | 16;
+        if (z) {
+            f = 20.0f;
         } else {
-            f3 = 0.0f;
+            f = 0.0f;
         }
-        this.g = f3;
-        byte b2 = this.f;
-        if (b2 >= 2) {
-            f4 = (this.h + f2) % b2;
+        if (z) {
+            f2 = 0.0f;
+        } else {
+            f2 = 20.0f;
         }
-        this.h = f4;
-        if (this.j.b) {
-            this.a.setTranslationX(f3);
-            this.a.setTranslationY(this.h);
-            for (RenderNode renderNode : this.c) {
-                renderNode.setTranslationX(-this.g);
-                renderNode.setTranslationY(-this.h);
-            }
-        }
+        jiaVar2.setLayoutParams(nme.d(-1, -2.0f, i3, f, 0.0f, f2, 0.0f));
     }
 
-    public final void c(float f) {
-        this.b[0].setRenderEffect(RenderEffect.createBlurEffect(mr3.a(f, this.e), mr3.a(f, this.f), Shader.TileMode.CLAMP));
+    @Override
+    public final boolean b() {
+        return true;
     }
 
-    public final void d(float f, RenderEffect renderEffect) {
-        this.b[0].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(mr3.a(f, this.e), mr3.a(f, this.f), Shader.TileMode.CLAMP), renderEffect));
-    }
-
-    public final void e(RenderEffect renderEffect) {
-        this.b[1].setRenderEffect(renderEffect);
+    public Object getGifCode() {
+        return this.w;
     }
 }

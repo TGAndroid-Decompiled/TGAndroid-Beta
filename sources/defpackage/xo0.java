@@ -1,64 +1,54 @@
 package defpackage;
 
-import org.telegram.ui.ProfileActivity;
-public final class xo0 implements Runnable {
-    public final byte a;
-    public final yv1 b;
-    public final long c;
+import android.graphics.Paint;
+import android.graphics.RectF;
+public final class xo0 {
+    public final RectF a = new RectF();
+    public final lm b;
+    public final lm c;
+    public final lm d;
+    public final lm e;
+    public final kl f;
+    public final kl g;
+    public final lm h;
+    public final lm i;
+    public final n41 j;
+    public final Paint k;
+    public final gn l;
+    public int m;
+    public final ff0 n;
+    public final ih2 o;
+    public final wd1 p;
 
-    public xo0(long j, yv1 yv1Var) {
-        this.a = (byte) 7;
-        this.c = j;
-        this.b = yv1Var;
-    }
-
-    @Override
-    public final void run() {
-        byte b = this.a;
-        yv1 yv1Var = this.b;
-        long j = this.c;
-        switch (b) {
-            case 0:
-                c41.b0(yv1Var).I(2131624221, jb6.M0(2131744781, null), gm.S2(jb6.H(',', "StarsGiveawaySentPopupInfo", (int) j))).k(true);
-                return;
-            case 1:
-                yv1Var.g9(j);
-                return;
-            case 2:
-                yv1Var.getMessagesController().a3(0, j, true);
-                return;
-            case 3:
-                yv1Var.presentFragment(yv1.ga(j));
-                return;
-            case 4:
-                yv1Var.presentFragment(ProfileActivity.S2(j));
-                return;
-            case 5:
-                yv1Var.e6.put(j, 0);
-                mzb mzbVar = yv1Var.g2;
-                if (mzbVar != null) {
-                    mzbVar.setAllTopicsHidden(false);
-                }
-                if (j == yv1Var.s4) {
-                    yv1Var.D0.J(false);
-                    return;
-                }
-                return;
-            case 6:
-                yv1 yv1Var2 = this.b;
-                u31 v = c41.v(yv1Var2.getParentActivity(), yv1Var2, null, 1, this.c, 1, yv1Var2.getThemedColor(cmb.vj), yv1Var2.getThemedColor(cmb.xj), 5000, true, null);
-                v.k = true;
-                v.k(true);
-                return;
-            default:
-                yv1Var.presentFragment(new ProfileActivity(kt6.k(j, "user_id"), null));
-                return;
-        }
-    }
-
-    public xo0(yv1 yv1Var, long j, byte b) {
-        this.a = b;
-        this.b = yv1Var;
-        this.c = j;
+    public xo0(zo0 zo0Var) {
+        s33 s33Var = s33.h;
+        this.b = new lm(zo0Var, 0L, 320L, s33Var);
+        this.c = new lm(zo0Var, 0L, 320L, s33Var);
+        this.d = new lm(zo0Var, 0L, 320L, s33Var);
+        this.e = new lm(zo0Var, 0L, 320L, s33Var);
+        this.f = new kl(zo0Var, 320L, s33Var, 0);
+        this.g = new kl(zo0Var, 320L, s33Var, 0);
+        this.h = new lm(zo0Var, 0L, 320L, s33Var);
+        this.i = new lm(zo0Var, 0L, 320L, s33Var);
+        this.j = new n41(zo0Var);
+        this.k = new Paint(1);
+        gn gnVar = new gn(true, false, true);
+        this.l = gnVar;
+        ff0 Y = bkb.Y(0, 9, 9);
+        this.n = Y;
+        ih2 ih2Var = new ih2(-1);
+        this.o = ih2Var;
+        wd1 wd1Var = new wd1();
+        this.p = wd1Var;
+        gnVar.b = 17;
+        gnVar.w(gl.L(14.0f));
+        gnVar.x(gl.o());
+        gnVar.N = gl.q.x << 2;
+        gnVar.q(true);
+        gnVar.setCallback(zo0Var);
+        ih2Var.setCallback(zo0Var);
+        Y.setCallback(zo0Var);
+        wd1Var.l = true;
+        wd1Var.m = 2.0f;
     }
 }

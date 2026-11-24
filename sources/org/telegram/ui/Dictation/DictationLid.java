@@ -17,7 +17,7 @@ public abstract class DictationLid {
     public static volatile boolean f;
     public static volatile boolean g;
     public static volatile boolean h;
-    public static final ExecutorService a = Executors.newSingleThreadExecutor(new y30((byte) 2));
+    public static final ExecutorService a = Executors.newSingleThreadExecutor(new x20((byte) 2));
     public static final ExecutorService b = Executors.newSingleThreadExecutor();
     public static final Object i = new Object();
     public static final int[] j = {1000, 2000, 5000, 10000, 20000};
@@ -28,7 +28,7 @@ public abstract class DictationLid {
         long j2;
         Context applicationContext = context.getApplicationContext();
         File file = new File(applicationContext.getFilesDir(), "tinylid.bin");
-        if (System.currentTimeMillis() - oc7.d1().getLong("tinylid_checked", 0L) > 3600000) {
+        if (System.currentTimeMillis() - na7.c1().getLong("tinylid_checked", 0L) > 3600000) {
             z = true;
         } else {
             z = false;
@@ -38,11 +38,11 @@ public abstract class DictationLid {
             if (file2.exists()) {
                 e = true;
                 g = true;
-                a.execute(new co3(file2, (byte) 1));
+                a.execute(new rm3(file2, (byte) 1));
             }
         }
-        if (file.exists() || jo3.b()) {
-            boolean i2 = jo3.i(jo3.f(jo3.a(), "tinylid"), file);
+        if (file.exists() || zm3.b()) {
+            boolean i2 = zm3.i(zm3.f(zm3.a(), "tinylid"), file);
             if (!file.exists() || z || i2) {
                 if (i2 && a.r()) {
                     z2 = true;
@@ -56,7 +56,7 @@ public abstract class DictationLid {
                 h = z2;
                 File file3 = new File(applicationContext.getFilesDir(), "tinylid.bin");
                 if (!file3.exists()) {
-                    TLRPC.TL_transcriptionModel f2 = jo3.f(jo3.a(), "tinylid");
+                    TLRPC.TL_transcriptionModel f2 = zm3.f(zm3.a(), "tinylid");
                     if (f2 != null) {
                         j2 = f2.document.size;
                     } else {
@@ -65,7 +65,7 @@ public abstract class DictationLid {
                     DictationAsr.h.putIfAbsent("tinylid.bin", new long[]{0, Math.max(j2, 4400000L)});
                     DictationAsr.n();
                 }
-                b.execute(new co3(file3, (byte) 0));
+                b.execute(new rm3(file3, (byte) 0));
             }
         }
     }
@@ -78,7 +78,7 @@ public abstract class DictationLid {
         }
     }
 
-    public static void c(int i2, eo3 eo3Var, String str, byte[] bArr) {
+    public static void c(int i2, um3 um3Var, String str, byte[] bArr) {
         long j2 = c;
         if (j2 == 0) {
             return;
@@ -87,7 +87,7 @@ public abstract class DictationLid {
         byte[] j3 = j(bArr);
         int length = j3.length / 32;
         if (length < i2) {
-            gm.c3(new bm3(eo3Var, length, (byte) 2));
+            gl.c3(new sm3(um3Var, length, (byte) 1));
             return;
         }
         float[] fArr = new float[d.length];
@@ -95,7 +95,7 @@ public abstract class DictationLid {
         if (nativePredict && str != null && !str.isEmpty()) {
             nativeRestrict(j2, fArr, str);
         }
-        gm.c3(new do3(eo3Var, nativePredict, fArr, SystemClock.elapsedRealtime() - elapsedRealtime, length));
+        gl.c3(new tm3(um3Var, nativePredict, fArr, SystemClock.elapsedRealtime() - elapsedRealtime, length));
     }
 
     public static float[] d(byte[] bArr, int[] iArr) {
@@ -169,16 +169,16 @@ public abstract class DictationLid {
         return 0.5f;
     }
 
-    public static void h(int i2, eo3 eo3Var, String str, byte[] bArr) {
+    public static void h(int i2, um3 um3Var, String str, byte[] bArr) {
         if (c == 0) {
             return;
         }
-        a.execute(new up6(bArr, i2, eo3Var, str, (byte) 22));
+        a.execute(new tn6(bArr, i2, um3Var, str, (byte) 22));
     }
 
     public static void i(String str) {
-        if (str != null && !str.equals(oc7.d1().getString("tinylid_lang", null))) {
-            oc7.d1().edit().putString("tinylid_lang", str).apply();
+        if (str != null && !str.equals(na7.c1().getString("tinylid_lang", null))) {
+            na7.c1().edit().putString("tinylid_lang", str).apply();
         }
     }
 
@@ -232,7 +232,7 @@ public abstract class DictationLid {
         return bArr2;
     }
 
-    public static fo3 k(float f2, float[] fArr) {
+    public static vm3 k(float f2, float[] fArr) {
         boolean z;
         String[] strArr = d;
         if (fArr != null && strArr != null && strArr.length == fArr.length) {
@@ -253,7 +253,7 @@ public abstract class DictationLid {
             if (z && f3 >= f2) {
                 z2 = true;
             }
-            return new fo3(str, f3, z2);
+            return new vm3(str, f3, z2);
         }
         return null;
     }

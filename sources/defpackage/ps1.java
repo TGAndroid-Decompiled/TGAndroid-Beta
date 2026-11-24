@@ -1,81 +1,46 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-public final class ps1 extends FrameLayout {
-    public final byte a;
-    public final yv1 b;
+import org.telegram.tgnet.TLRPC;
+public final class ps1 extends i98 {
+    public final k27 a;
+    public final jm6 b;
+    public final qs1 c;
 
-    public ps1(yv1 yv1Var, Context context, byte b) {
-        super(context);
-        this.a = b;
-        this.b = yv1Var;
+    public ps1(qs1 qs1Var, k27 k27Var, jm6 jm6Var) {
+        this.c = qs1Var;
+        this.a = k27Var;
+        this.b = jm6Var;
     }
 
     @Override
-    public final void measureChildWithMargins(View view, int i, int i2, int i3, int i4) {
-        int i5;
-        switch (this.a) {
-            case 1:
-                yv1 yv1Var = this.b;
-                if (view == yv1Var.j3) {
-                    ImageView imageView = yv1Var.h3;
-                    if (imageView != null && imageView.getVisibility() != 8) {
-                        i5 = 66;
-                    } else {
-                        i5 = 18;
-                    }
-                    ImageView imageView2 = yv1Var.i3;
-                    if (imageView2 != null && imageView2.getVisibility() != 8) {
-                        i5 += 48;
-                    }
-                    ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin = gm.L(i5);
-                }
-                super.measureChildWithMargins(view, i, i2, i3, i4);
-                return;
-            default:
-                super.measureChildWithMargins(view, i, i2, i3, i4);
-                return;
+    public final void L(int i, oac oacVar, boolean z, int i2, int i3, boolean z2) {
+        vs1 vs1Var = this.c.a;
+        k27 k27Var = this.a;
+        k27Var.q = true;
+        jm6 jm6Var = this.b;
+        if (jm6Var.h == null && !jm6Var.b) {
+            TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
+            TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
+            tL_photos_updateProfilePhoto.id = tL_inputPhoto;
+            TLRPC.Photo photo = k27Var.k.action.photo;
+            tL_inputPhoto.id = photo.id;
+            tL_inputPhoto.access_hash = photo.access_hash;
+            tL_inputPhoto.file_reference = photo.file_reference;
+            vs1Var.R.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new pl(this, k27Var, (byte) 17));
+            return;
         }
+        mu1 mu1Var = vs1Var.R;
+        os1 os1Var = new os1(k27Var, (byte) 0);
+        ui5 parentLayout = mu1Var.getParentLayout();
+        int currentAccount = mu1Var.getCurrentAccount();
+        wl5 wl5Var = new wl5(0, true, true);
+        wl5Var.a = mu1Var;
+        wl5Var.s(jm6Var);
+        wl5Var.b = new zm(currentAccount, os1Var, parentLayout, wl5Var);
     }
 
     @Override
-    public final void setTranslationY(float f) {
-        switch (this.a) {
-            case 2:
-                super.setTranslationY(f);
-                this.b.m1.invalidate();
-                return;
-            default:
-                super.setTranslationY(f);
-                return;
-        }
-    }
-
-    @Override
-    public final void setVisibility(int i) {
-        boolean z;
-        switch (this.a) {
-            case 0:
-                super.setVisibility(i);
-                jif jifVar = this.b.ud;
-                boolean z2 = false;
-                if (i == 0) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                if (getMeasuredWidth() > 0) {
-                    z2 = true;
-                }
-                jifVar.s(2, z, z2);
-                return;
-            default:
-                super.setVisibility(i);
-                return;
-        }
+    public final p98 M(k27 k27Var, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
+        return this.c.a.R.db.M(this.a, fileLocation, i, z, false);
     }
 }

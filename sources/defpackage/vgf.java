@@ -1,45 +1,54 @@
 package defpackage;
-public abstract class vgf implements Cloneable {
-    public final wgf a;
-    public wgf b;
 
-    public vgf(wgf wgfVar) {
-        this.a = wgfVar;
-        if (!wgfVar.g()) {
-            this.b = (wgf) wgfVar.h(4, null);
-        } else {
-            u36.j("Default instance must be immutable.");
-            throw null;
+import java.util.Iterator;
+import java.util.Map;
+public final class vgf extends tcf {
+    public final transient f7d h;
+    public final transient Object[] n;
+    public final transient boolean r;
+
+    public vgf(f7d f7dVar, Object[] objArr) {
+        super((byte) 2);
+        this.h = f7dVar;
+        this.n = objArr;
+        this.r = true;
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            if (value != null && value.equals(this.h.get(key))) {
+                return true;
+            }
         }
+        return false;
     }
 
-    public final defpackage.wgf a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.vgf.a():wgf");
-    }
-
-    public final wgf b() {
-        boolean g = this.b.g();
-        wgf wgfVar = this.b;
-        if (!g) {
-            return wgfVar;
+    @Override
+    public final int h(Object[] objArr) {
+        f7f f7fVar = this.f;
+        if (f7fVar == null) {
+            f7fVar = new jgf(this);
+            this.f = f7fVar;
         }
-        wgfVar.getClass();
-        rif.c.a(wgfVar.getClass()).a(wgfVar);
-        wgfVar.d();
-        return this.b;
+        return f7fVar.h(objArr);
     }
 
-    public final void c() {
-        if (!this.b.g()) {
-            wgf wgfVar = (wgf) this.a.h(4, null);
-            rif.c.a(wgfVar.getClass()).c(wgfVar, this.b);
-            this.b = wgfVar;
+    @Override
+    public final Iterator iterator() {
+        f7f f7fVar = this.f;
+        if (f7fVar == null) {
+            f7fVar = new jgf(this);
+            this.f = f7fVar;
         }
+        return f7fVar.listIterator(0);
     }
 
-    public final Object clone() {
-        vgf vgfVar = (vgf) this.a.h(5, null);
-        vgfVar.b = b();
-        return vgfVar;
+    @Override
+    public final int size() {
+        return this.r ? 1 : 0;
     }
 }

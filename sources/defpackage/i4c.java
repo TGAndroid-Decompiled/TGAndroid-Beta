@@ -1,55 +1,41 @@
 package defpackage;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.RunnableFuture;
-import java.util.concurrent.locks.LockSupport;
-public final class i4c extends bn4 implements RunnableFuture {
-    public volatile h4c n;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+public final class i4c extends URLSpan {
+    public final vib a;
+    public boolean b;
 
-    public i4c(Callable callable) {
-        this.n = new h4c(this, callable);
+    public i4c(String str, vib vibVar) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.a = vibVar;
     }
 
     @Override
-    public final void d() {
-        h4c h4cVar;
-        Object obj = this.a;
-        if ((obj instanceof h2) && ((h2) obj).a && (h4cVar = this.n) != null) {
-            sw swVar = h4c.e;
-            sw swVar2 = h4c.d;
-            Runnable runnable = (Runnable) h4cVar.get();
-            if (runnable instanceof Thread) {
-                qr5 qr5Var = new qr5(h4cVar);
-                qr5Var.a(Thread.currentThread());
-                if (h4cVar.compareAndSet(runnable, qr5Var)) {
-                    try {
-                        ((Thread) runnable).interrupt();
-                    } finally {
-                        if (((Runnable) h4cVar.getAndSet(swVar2)) == swVar) {
-                            LockSupport.unpark((Thread) runnable);
-                        }
-                    }
-                }
+    public final void onClick(View view) {
+        if (this.b && (view.getContext() instanceof LaunchActivity)) {
+            ((LaunchActivity) view.getContext()).X0 = true;
+        }
+        d01.q(view.getContext(), Uri.parse(getURL()), true, true);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        boolean z;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        vib vibVar = this.a;
+        if (vibVar != null) {
+            vibVar.a(textPaint);
+            if (textPaint.linkColor == color) {
+                z = true;
+            } else {
+                z = false;
             }
+            textPaint.setUnderlineText(z);
         }
-        this.n = null;
-    }
-
-    @Override
-    public final String j() {
-        h4c h4cVar = this.n;
-        if (h4cVar != null) {
-            return "task=[" + h4cVar + "]";
-        }
-        return super.j();
-    }
-
-    @Override
-    public final void run() {
-        h4c h4cVar = this.n;
-        if (h4cVar != null) {
-            h4cVar.run();
-        }
-        this.n = null;
     }
 }

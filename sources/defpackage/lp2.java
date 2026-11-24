@@ -1,65 +1,82 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Path;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class lp2 extends FrameLayout {
-    public final byte a = 1;
-    public final ln b;
-    public float c;
-    public final Path d;
-    public final my0 e;
+import java.util.Collections;
+import java.util.HashSet;
+public final class lp2 {
+    public String a = null;
+    public final HashSet b;
+    public final HashSet c;
+    public byte d;
+    public boolean e;
+    public aq2 f;
+    public final HashSet g;
 
-    public lp2(pp2 pp2Var, Context context) {
-        super(context);
-        this.e = pp2Var;
-        this.b = new ln(250L, this, d53.h);
-        this.d = new Path();
-    }
-
-    @Override
-    public final void dispatchDraw(android.graphics.Canvas r22) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.lp2.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        byte b = this.a;
-        my0 my0Var = this.e;
-        switch (b) {
-            case 0:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.c) {
-                    ((pp2) my0Var).dismiss();
-                    return true;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.c) {
-                    ((a8b) my0Var).dismiss();
-                    return true;
-                }
-                return super.dispatchTouchEvent(motionEvent);
+    public lp2(Class cls, Class... clsArr) {
+        HashSet hashSet = new HashSet();
+        this.b = hashSet;
+        this.c = new HashSet();
+        this.d = (byte) 0;
+        this.e = false;
+        this.g = new HashSet();
+        hashSet.add(xw8.a(cls));
+        for (Class cls2 : clsArr) {
+            hre.a(cls2, "Null interface");
+            this.b.add(xw8.a(cls2));
         }
     }
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.a) {
-            case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
-                return;
-            default:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
-                return;
+    public final void a(wd3 wd3Var) {
+        if (!this.b.contains(wd3Var.a)) {
+            this.c.add(wd3Var);
+        } else {
+            w26.j("Components are not allowed to depend on interfaces they themselves provide.");
         }
     }
 
-    public lp2(a8b a8bVar, Context context) {
-        super(context);
-        this.e = a8bVar;
-        this.b = new ln(250L, this, d53.h);
-        this.d = new Path();
+    public final mp2 b() {
+        boolean z;
+        if (this.f != null) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (z) {
+            String str = this.a;
+            HashSet hashSet = new HashSet(this.b);
+            HashSet hashSet2 = new HashSet(this.c);
+            byte b = this.d;
+            boolean z2 = this.e;
+            return new mp2(str, hashSet, hashSet2, b, z2 ? 1 : 0, this.f, this.g);
+        }
+        sc8.j("Missing required property: factory.");
+        return null;
+    }
+
+    public final void c(int i) {
+        boolean z;
+        if (this.d == 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (z) {
+            this.d = i;
+        } else {
+            sc8.j("Instantiation type has already been set.");
+        }
+    }
+
+    public lp2(xw8 xw8Var, xw8... xw8VarArr) {
+        HashSet hashSet = new HashSet();
+        this.b = hashSet;
+        this.c = new HashSet();
+        this.d = (byte) 0;
+        this.e = false;
+        this.g = new HashSet();
+        hashSet.add(xw8Var);
+        for (xw8 xw8Var2 : xw8VarArr) {
+            hre.a(xw8Var2, "Null interface");
+        }
+        Collections.addAll(this.b, xw8VarArr);
     }
 }

@@ -95,7 +95,7 @@ public class PeerConnectionFactory {
                 this.audioDecoderFactoryFactory = audioDecoderFactoryFactory;
                 return this;
             }
-            u36.j("PeerConnectionFactory.Builder does not accept a null AudioDecoderFactoryFactory.");
+            w26.j("PeerConnectionFactory.Builder does not accept a null AudioDecoderFactoryFactory.");
             return null;
         }
 
@@ -109,7 +109,7 @@ public class PeerConnectionFactory {
                 this.audioEncoderFactoryFactory = audioEncoderFactoryFactory;
                 return this;
             }
-            u36.j("PeerConnectionFactory.Builder does not accept a null AudioEncoderFactoryFactory.");
+            w26.j("PeerConnectionFactory.Builder does not accept a null AudioEncoderFactoryFactory.");
             return null;
         }
 
@@ -118,7 +118,7 @@ public class PeerConnectionFactory {
                 this.audioProcessingFactory = audioProcessingFactory;
                 return this;
             }
-            gxc.d("PeerConnectionFactory builder does not accept a null AudioProcessingFactory.");
+            fvc.f("PeerConnectionFactory builder does not accept a null AudioProcessingFactory.");
             return null;
         }
 
@@ -270,7 +270,7 @@ public class PeerConnectionFactory {
         if (j != 0) {
             this.nativeFactory = j;
         } else {
-            zo4.k("Failed to initialize PeerConnectionFactory!");
+            wn4.j("Failed to initialize PeerConnectionFactory!");
             throw null;
         }
     }
@@ -283,14 +283,14 @@ public class PeerConnectionFactory {
         if (NativeLibrary.isLoaded() && ContextUtils.getApplicationContext() != null) {
             return;
         }
-        dq9.m("PeerConnectionFactory.initialize was not called before creating a PeerConnectionFactory.");
+        sc8.j("PeerConnectionFactory.initialize was not called before creating a PeerConnectionFactory.");
     }
 
     private void checkPeerConnectionFactoryExists() {
         if (this.nativeFactory != 0) {
             return;
         }
-        dq9.m("PeerConnectionFactory has been disposed.");
+        sc8.j("PeerConnectionFactory has been disposed.");
     }
 
     public static String fieldTrialsFindFullName(String str) {

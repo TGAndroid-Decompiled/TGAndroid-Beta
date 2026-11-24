@@ -1,7 +1,7 @@
 package defpackage;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public final class w3 extends hnd {
+public final class w3 extends fld {
     public final AtomicReferenceFieldUpdater a;
     public final AtomicReferenceFieldUpdater b;
     public final AtomicReferenceFieldUpdater c;

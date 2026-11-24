@@ -1,45 +1,51 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class jn3 {
-    public final ln3 a;
-    public final gn3 b;
-    public final String c;
-    public final yg d;
-    public volatile int[] g;
-    public int i;
-    public boolean j;
-    public volatile boolean k;
-    public volatile boolean l;
-    public volatile String n;
-    public mo3 o;
-    public final StringBuilder e = new StringBuilder();
-    public final ArrayList f = new ArrayList();
-    public String h = "";
-    public volatile int m = -1;
+import android.os.SystemClock;
+import org.telegram.ui.Dictation.DictationLid;
+public final class jn3 implements Runnable {
+    public final byte a;
+    public final ln3 b;
 
-    public jn3(ln3 ln3Var, in3 in3Var, yg ygVar) {
-        this.a = ln3Var;
-        this.b = (gn3) in3Var.b;
-        this.c = (String) in3Var.c;
-        this.d = ygVar;
+    public jn3(ln3 ln3Var, byte b) {
+        this.a = b;
+        this.b = ln3Var;
     }
 
-    public final void a(java.lang.String r13) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jn3.a(java.lang.String):void");
-    }
-
-    public final void b(Runnable runnable) {
-        String sb = this.e.toString();
-        String str = this.h;
-        boolean z = this.j;
-        int i = this.i;
-        ArrayList arrayList = this.f;
-        int size = arrayList.size();
-        int[] iArr = new int[size];
-        for (int i2 = 0; i2 < size; i2++) {
-            iArr[i2] = ((Integer) arrayList.get(i2)).intValue();
+    @Override
+    public final void run() {
+        switch (this.a) {
+            case 0:
+                ln3 ln3Var = this.b;
+                if (!ln3Var.h && !ln3Var.g) {
+                    ln3Var.e.postDelayed(this, 700L);
+                    if (!ln3Var.r && DictationLid.c != 0) {
+                        int c = ln3Var.k.c();
+                        if (c - ln3Var.u >= 16000) {
+                            ln3Var.u = c;
+                            ln3Var.r = true;
+                            byte[] b = ln3Var.k.b(0, c);
+                            DictationLid.a.execute(new wc3(b, new pz1(this, b, (byte) 13), (byte) 22));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                ln3 ln3Var2 = this.b;
+                if (!ln3Var2.h) {
+                    long elapsedRealtime = SystemClock.elapsedRealtime();
+                    double d = elapsedRealtime - ln3Var2.D;
+                    float sin = (((float) Math.sin(d / 90.0d)) * 0.03f) + 0.04f;
+                    if (elapsedRealtime < ln3Var2.B) {
+                        sin = (((float) Math.random()) * 0.12f) + (((float) Math.sin(d / 61.0d)) * 0.28f * ((float) Math.sin((d / 173.0d) + 1.3d))) + 0.45f;
+                    }
+                    ln3Var2.c.d(Math.max(0.0f, Math.min(1.0f, sin)));
+                    ln3Var2.e.postDelayed(this, 50L);
+                    return;
+                }
+                return;
         }
-        gm.c3(new gu(this, iArr, sb, str, z, i, runnable));
     }
 }

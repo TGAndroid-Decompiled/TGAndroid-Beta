@@ -1,78 +1,67 @@
 package defpackage;
 
-import android.database.DataSetObserver;
-import org.telegram.ui.ProfileActivity;
-public final class n53 extends DataSetObserver {
-    public final byte a;
-    public final Object b;
+import java.io.IOException;
+public final class n53 implements h86 {
+    public final q53 a;
 
-    public n53(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public n53(q53 q53Var) {
+        this.a = q53Var;
     }
 
     @Override
-    public final void onChanged() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                mdb mdbVar = (mdb) obj;
-                mdbVar.a = true;
-                mdbVar.notifyDataSetChanged();
-                return;
-            case 1:
-                o76 o76Var = (o76) obj;
-                if (o76Var.P.isShowing()) {
-                    o76Var.f();
-                    return;
-                }
-                return;
-            case 2:
-                nq8 nq8Var = (nq8) obj;
-                ProfileActivity profileActivity = nq8Var.n;
-                int realCount = profileActivity.o0.getRealCount();
-                if (profileActivity.B0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.N.F) {
-                    profileActivity.B0 = (byte) 1;
-                }
-                nq8Var.a(false);
-                nq8Var.b(1.0f);
-                if (profileActivity.r0 != null) {
-                    if (profileActivity.T0.y()) {
-                        gm.d3(new pp8(nq8Var, (byte) 2), 500L);
-                        return;
-                    } else {
-                        nq8Var.c();
-                        return;
-                    }
-                }
-                return;
-            default:
-                ((ggc) obj).f();
-                return;
+    public final void U(k86 k86Var, long j, long j2) {
+        cv7 cv7Var = (cv7) k86Var;
+        q53 q53Var = this.a;
+        e86 e86Var = new e86(cv7Var.a, cv7Var.b, j);
+        zxa zxaVar = cv7Var.d;
+        e86Var.d = zxaVar.c;
+        e86Var.e = zxaVar.d;
+        e86Var.f = j2;
+        e86Var.g = zxaVar.b;
+        f86 f86Var = new f86(e86Var);
+        q53Var.n.getClass();
+        q53Var.r.p(f86Var, cv7Var.c);
+        q53Var.N = ((Long) cv7Var.f).longValue() - j;
+        q53Var.z(true);
+    }
+
+    public final void a() {
+        long j;
+        q53 q53Var = this.a;
+        synchronized (ycd.b) {
+            if (ycd.c) {
+                j = ycd.d;
+            } else {
+                j = -9223372036854775807L;
+            }
         }
+        q53Var.N = j;
+        q53Var.z(true);
     }
 
     @Override
-    public final void onInvalidated() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                mdb mdbVar = (mdb) obj;
-                mdbVar.a = false;
-                mdbVar.notifyDataSetInvalidated();
-                return;
-            case 1:
-                ((o76) obj).dismiss();
-                return;
-            case 2:
-            default:
-                super.onInvalidated();
-                return;
-            case 3:
-                ((ggc) obj).f();
-                return;
-        }
+    public final void v(k86 k86Var, long j, long j2, boolean z) {
+        this.a.x((cv7) k86Var, j, j2);
+    }
+
+    @Override
+    public final i86 w1(k86 k86Var, long j, long j2, IOException iOException, int i) {
+        cv7 cv7Var = (cv7) k86Var;
+        q53 q53Var = this.a;
+        kp kpVar = q53Var.r;
+        e86 e86Var = new e86(cv7Var.a, cv7Var.b, j);
+        zxa zxaVar = cv7Var.d;
+        e86Var.d = zxaVar.c;
+        e86Var.e = zxaVar.d;
+        e86Var.f = j2;
+        e86Var.g = zxaVar.b;
+        kpVar.s(new f86(e86Var), cv7Var.c, iOException, true);
+        q53Var.n.getClass();
+        q53Var.y(iOException);
+        return mv6.y;
+    }
+
+    @Override
+    public final void C0(k86 k86Var, long j, long j2, int i) {
     }
 }

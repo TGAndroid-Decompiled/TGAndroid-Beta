@@ -1,5 +1,5 @@
 package defpackage;
-public final class b implements zy5 {
+public final class b implements zw5 {
     public final byte a;
     public final a1 b;
 

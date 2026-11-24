@@ -1,24 +1,31 @@
 package defpackage;
+public final class g53 extends my7 {
+    public final byte c;
+    public final float d;
 
-import java.util.List;
-public final class g53 {
-    public static final c61 c = new c61(new o41((byte) 2), jk7.b);
-    public static final g53 d;
-    public static final String e;
-    public static final String f;
-    public final y79 a;
-    public final long b;
-
-    static {
-        ko5 ko5Var = mo5.b;
-        d = new g53(0L, y79.e);
-        String str = hac.a;
-        e = "0";
-        f = "1";
+    public g53(float f, byte b) {
+        super(0, Float.valueOf(Math.max(f, 0.0f)));
+        this.c = b;
+        switch (b) {
+            case 1:
+                super(2, Float.valueOf(Math.max(f, 0.0f)));
+                this.d = Math.max(f, 0.0f);
+                return;
+            default:
+                this.d = Math.max(f, 0.0f);
+                return;
+        }
     }
 
-    public g53(long j, List list) {
-        this.a = mo5.w(c, list);
-        this.b = j;
+    @Override
+    public final String toString() {
+        byte b = this.c;
+        float f = this.d;
+        switch (b) {
+            case 0:
+                return "[Dash: length=" + f + "]";
+            default:
+                return "[Gap: length=" + f + "]";
+        }
     }
 }

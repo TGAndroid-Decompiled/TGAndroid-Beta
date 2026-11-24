@@ -1,3 +1,3 @@
 package defpackage;
-public final class y3 extends hnd {
+public final class y3 extends fld {
 }

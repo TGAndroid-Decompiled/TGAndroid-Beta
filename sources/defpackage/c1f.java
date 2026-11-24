@@ -1,17 +1,15 @@
 package defpackage;
-public final class c1f implements cq7 {
-    public static final c1f a = new Object();
 
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+import android.os.StrictMode;
+import java.util.concurrent.Callable;
+public abstract class c1f {
+    public static Object a(Callable callable) {
+        StrictMode.ThreadPolicy threadPolicy = StrictMode.getThreadPolicy();
+        try {
+            StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.LAX);
+            return callable.call();
+        } finally {
+            StrictMode.setThreadPolicy(threadPolicy);
         }
-        throw new ClassCastException();
     }
 }

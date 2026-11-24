@@ -1,43 +1,25 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.graphics.RectF;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
 import android.view.View;
-import org.telegram.ui.ProfileActivity;
-public final class bo8 implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final ProfileActivity b;
+public final class bo8 extends URLSpan {
+    public final String a;
+    public final ko8 b;
 
-    public bo8(ProfileActivity profileActivity, byte b) {
-        this.a = b;
-        this.b = profileActivity;
+    public bo8(ko8 ko8Var, String str, String str2) {
+        super(str);
+        this.b = ko8Var;
+        this.a = str2;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        ProfileActivity profileActivity = this.b;
-        switch (b) {
-            case 0:
-                RectF rectF = ProfileActivity.e7;
-                profileActivity.y0.setAlpha((int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f));
-                return;
-            case 1:
-                RectF rectF2 = ProfileActivity.e7;
-                profileActivity.r3(valueAnimator.getAnimatedFraction());
-                return;
-            case 2:
-                RectF rectF3 = ProfileActivity.e7;
-                View view = profileActivity.fragmentView;
-                if (view != null) {
-                    view.invalidate();
-                }
-                profileActivity.l4(true);
-                return;
-            default:
-                RectF rectF4 = ProfileActivity.e7;
-                profileActivity.l4(true);
-                return;
-        }
+    public final void onClick(View view) {
+        d01.t(this.b.e.getParentActivity(), this.a);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(true);
     }
 }

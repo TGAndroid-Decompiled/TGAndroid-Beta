@@ -1,16 +1,15 @@
 package defpackage;
+
+import org.telegram.tgnet.RequestTimeDelegate;
 public final class vtc {
-    public final int a;
-    public final long b;
+    public final rh1 a;
+    public final au8 b;
+    public final RequestTimeDelegate c;
+    public int d;
 
-    public vtc(int i, long j) {
-        this.a = i;
-        this.b = j;
-    }
-
-    public static vtc a(vb3 vb3Var, yw7 yw7Var) {
-        vb3Var.d(yw7Var.a, 0, 8, false);
-        yw7Var.N(0);
-        return new vtc(yw7Var.m(), yw7Var.r());
+    public vtc(rh1 rh1Var, au8 au8Var, RequestTimeDelegate requestTimeDelegate) {
+        this.a = rh1Var;
+        this.b = au8Var;
+        this.c = requestTimeDelegate;
     }
 }

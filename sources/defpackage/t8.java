@@ -14,29 +14,29 @@ public final class t8 extends TextView {
     public Object b;
     public final Object c;
 
-    public t8(Activity activity, lhc lhcVar) {
+    public t8(Activity activity, lfc lfcVar) {
         super(activity);
         this.a = (byte) 7;
         this.b = new RectF();
-        this.c = lhcVar;
-        lhcVar.a(this);
-        setText(jb6.M0(2131742987, null));
-        setContentDescription(jb6.M0(2131742987, null));
+        this.c = lfcVar;
+        lfcVar.a(this);
+        setText(k96.M0(2131743061, null));
+        setContentDescription(k96.M0(2131743061, null));
         setTextColor(-1);
-        setTypeface(gm.o());
-        setPadding(gm.L(14.0f), gm.L(4.0f), gm.L(14.0f), gm.L(4.0f));
+        setTypeface(gl.o());
+        setPadding(gl.L(14.0f), gl.L(4.0f), gl.L(14.0f), gl.L(4.0f));
     }
 
     public final void a() {
-        qa6 qa6Var = (qa6) this.c;
-        b66 b66Var = (b66) this.b;
-        if (b66Var != null && qa6Var != null) {
-            b66Var.rewind();
+        r86 r86Var = (r86) this.c;
+        b46 b46Var = (b46) this.b;
+        if (b46Var != null && r86Var != null) {
+            b46Var.rewind();
             if (getLayout() != null && getLayout().getText() != null) {
-                b66Var.e(getLayout(), 0, getPaddingLeft(), getPaddingTop());
-                getLayout().getSelectionPath(0, getLayout().getText().length(), b66Var);
+                b46Var.e(getLayout(), 0, getPaddingLeft(), getPaddingTop());
+                getLayout().getSelectionPath(0, getLayout().getText().length(), b46Var);
             }
-            qa6Var.k();
+            r86Var.k();
         }
     }
 
@@ -47,42 +47,42 @@ public final class t8 extends TextView {
         switch (b) {
             case 1:
                 Paint paint = (Paint) this.b;
-                int L = gm.L(1.0f) + (getHeight() / 2);
-                int max = Math.max(1, gm.L(0.66f));
+                int L = gl.L(1.0f) + (getHeight() / 2);
+                int max = Math.max(1, gl.L(0.66f));
                 Layout layout = getLayout();
                 if (layout != null) {
-                    paint.setColor(cmb.p1(0.45f, cmb.v0(cmb.x6, ((gs0) obj).a0.c)));
+                    paint.setColor(bkb.p1(0.45f, bkb.v0(bkb.x6, ((gr0) obj).a0.c)));
                     float f = L;
                     float f2 = max / 2.0f;
                     float f3 = f - f2;
                     float f4 = f + f2;
-                    canvas.drawRect(0.0f, f3, (getWidth() - (layout.getLineWidth(0) + gm.L(16.0f))) / 2.0f, f4, paint);
-                    canvas.drawRect(((layout.getLineWidth(0) + getWidth()) + gm.L(16.0f)) / 2.0f, f3, getWidth(), f4, paint);
+                    canvas.drawRect(0.0f, f3, (getWidth() - (layout.getLineWidth(0) + gl.L(16.0f))) / 2.0f, f4, paint);
+                    canvas.drawRect(((layout.getLineWidth(0) + getWidth()) + gl.L(16.0f)) / 2.0f, f3, getWidth(), f4, paint);
                 }
                 super.dispatchDraw(canvas);
                 return;
             case 2:
                 Paint paint2 = (Paint) this.b;
-                int L2 = gm.L(1.0f) + (getHeight() / 2);
-                int max2 = Math.max(1, gm.L(0.66f));
+                int L2 = gl.L(1.0f) + (getHeight() / 2);
+                int max2 = Math.max(1, gl.L(0.66f));
                 Layout layout2 = getLayout();
                 if (layout2 != null) {
-                    paint2.setColor(cmb.p1(0.45f, cmb.v0(cmb.x6, (ylb) obj)));
+                    paint2.setColor(bkb.p1(0.45f, bkb.v0(bkb.x6, (wjb) obj)));
                     float f5 = L2;
                     float f6 = max2 / 2.0f;
                     float f7 = f5 - f6;
                     float f8 = f5 + f6;
-                    canvas.drawRect(0.0f, f7, (getWidth() - (layout2.getLineWidth(0) + gm.L(16.0f))) / 2.0f, f8, paint2);
-                    canvas.drawRect(((layout2.getLineWidth(0) + getWidth()) + gm.L(16.0f)) / 2.0f, f7, getWidth(), f8, paint2);
+                    canvas.drawRect(0.0f, f7, (getWidth() - (layout2.getLineWidth(0) + gl.L(16.0f))) / 2.0f, f8, paint2);
+                    canvas.drawRect(((layout2.getLineWidth(0) + getWidth()) + gl.L(16.0f)) / 2.0f, f7, getWidth(), f8, paint2);
                 }
                 super.dispatchDraw(canvas);
                 return;
             case 9:
                 Paint paint3 = (Paint) this.b;
-                int i = cmb.y6;
-                i46 i46Var = ((g46) obj).e;
-                int i2 = i46.R2;
-                paint3.setColor(cmb.p1(0.8f, cmb.v0(i, i46Var.J0)));
+                int i = bkb.y6;
+                h26 h26Var = ((f26) obj).e;
+                int i2 = h26.R2;
+                paint3.setColor(bkb.p1(0.8f, bkb.v0(i, h26Var.J0)));
                 paint3.setStyle(Paint.Style.STROKE);
                 paint3.setStrokeWidth(1.0f);
                 float height = getHeight() / 2.0f;
@@ -92,8 +92,8 @@ public final class t8 extends TextView {
                     i3 = Math.max(i3, (int) layout3.getLineWidth(i4));
                 }
                 float f9 = i3 / 2.0f;
-                canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - f9) - gm.L(8.0f), height, paint3);
-                canvas.drawLine((getWidth() / 2.0f) + f9 + gm.L(8.0f), height, getWidth(), height, paint3);
+                canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - f9) - gl.L(8.0f), height, paint3);
+                canvas.drawLine((getWidth() / 2.0f) + f9 + gl.L(8.0f), height, getWidth(), height, paint3);
                 super.dispatchDraw(canvas);
                 return;
             default:
@@ -112,7 +112,7 @@ public final class t8 extends TextView {
                 super.draw(canvas);
                 return;
             case 8:
-                ((vr5) obj).h.draw(canvas);
+                ((wp5) obj).h.draw(canvas);
                 super.draw(canvas);
                 return;
             default:
@@ -126,7 +126,7 @@ public final class t8 extends TextView {
         switch (this.a) {
             case 12:
                 super.onDetachedFromWindow();
-                ((qa6) this.c).b = -1L;
+                ((r86) this.c).b = -1L;
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -143,9 +143,9 @@ public final class t8 extends TextView {
             case 0:
                 super.onDraw(canvas);
                 if (((u8) obj).x) {
-                    RectF rectF = gm.P;
+                    RectF rectF = gl.P;
                     rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    ((ef1) this.b).a(getMeasuredHeight() / 2.0f, canvas, rectF, null);
+                    ((wd1) this.b).a(getMeasuredHeight() / 2.0f, canvas, rectF, null);
                     invalidate();
                     return;
                 }
@@ -158,15 +158,15 @@ public final class t8 extends TextView {
                 return;
             case 3:
                 Paint paint = (Paint) this.b;
-                paint.setColor(cmb.v0(cmb.Ei, ((i22) obj).J0));
-                canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - gm.L(14.0f), getWidth(), (getHeight() / 2.0f) + gm.L(14.0f), gm.L(14.0f), gm.L(14.0f), paint);
+                paint.setColor(bkb.v0(bkb.Ei, ((x02) obj).J0));
+                canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - gl.L(14.0f), getWidth(), (getHeight() / 2.0f) + gl.L(14.0f), gl.L(14.0f), gl.L(14.0f), paint);
                 super.onDraw(canvas);
                 return;
             case 4:
-                if (((cta) this.b) != null) {
+                if (((bra) this.b) != null) {
                     canvas.save();
                     canvas.clipPath((Path) obj);
-                    ((cta) this.b).d(canvas);
+                    ((bra) this.b).d(canvas);
                     canvas.restore();
                     invalidate();
                 }
@@ -174,51 +174,51 @@ public final class t8 extends TextView {
                 return;
             case 5:
                 Paint paint2 = (Paint) this.b;
-                paint2.setColor(((po2) obj).getThemedColor(cmb.Ei));
-                canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - gm.L(14.0f), getWidth(), gm.L(14.0f) + (getHeight() / 2.0f), gm.L(14.0f), gm.L(14.0f), paint2);
+                paint2.setColor(((en2) obj).getThemedColor(bkb.Ei));
+                canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - gl.L(14.0f), getWidth(), gl.L(14.0f) + (getHeight() / 2.0f), gl.L(14.0f), gl.L(14.0f), paint2);
                 super.onDraw(canvas);
                 return;
             case 6:
                 Paint paint3 = (Paint) this.b;
-                paint3.setColor(cmb.v0(cmb.Ei, ((hz2) obj).J0));
-                canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - gm.L(14.0f), getWidth(), (getHeight() / 2.0f) + gm.L(14.0f), gm.L(14.0f), gm.L(14.0f), paint3);
+                paint3.setColor(bkb.v0(bkb.Ei, ((xx2) obj).J0));
+                canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - gl.L(14.0f), getWidth(), (getHeight() / 2.0f) + gl.L(14.0f), gl.L(14.0f), gl.L(14.0f), paint3);
                 super.onDraw(canvas);
                 return;
             case 7:
                 RectF rectF2 = (RectF) this.b;
                 rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-                lhc lhcVar = (lhc) obj;
-                lhcVar.d(((View) getParent()).getX() + getX(), ((View) getParent()).getY() + getY());
-                canvas.drawRoundRect(rectF2, gm.L(16.0f), gm.L(16.0f), lhcVar.b());
+                lfc lfcVar = (lfc) obj;
+                lfcVar.d(((View) getParent()).getX() + getX(), ((View) getParent()).getY() + getY());
+                canvas.drawRoundRect(rectF2, gl.L(16.0f), gl.L(16.0f), lfcVar.b());
                 super.onDraw(canvas);
                 return;
             case 8:
                 super.onDraw(canvas);
-                RectF rectF3 = gm.P;
+                RectF rectF3 = gl.P;
                 rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ((ef1) this.b).a(getMeasuredHeight() / 2.0f, canvas, rectF3, null);
+                ((wd1) this.b).a(getMeasuredHeight() / 2.0f, canvas, rectF3, null);
                 invalidate();
                 return;
             case 10:
-                RectF rectF4 = gm.P;
+                RectF rectF4 = gl.P;
                 rectF4.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 Paint[] paintArr = (Paint[]) this.b;
-                om8 om8Var = (om8) obj;
-                paintArr[om8Var.y].setAlpha(255);
-                canvas.drawRoundRect(rectF4, gm.L(6.0f), gm.L(6.0f), paintArr[om8Var.y]);
-                float f = om8Var.x;
-                if (f > 0.0f && (i = om8Var.y + 1) < paintArr.length) {
+                mk8 mk8Var = (mk8) obj;
+                paintArr[mk8Var.y].setAlpha(255);
+                canvas.drawRoundRect(rectF4, gl.L(6.0f), gl.L(6.0f), paintArr[mk8Var.y]);
+                float f = mk8Var.x;
+                if (f > 0.0f && (i = mk8Var.y + 1) < paintArr.length) {
                     paintArr[i].setAlpha((int) (f * 255.0f));
-                    canvas.drawRoundRect(rectF4, gm.L(6.0f), gm.L(6.0f), paintArr[om8Var.y + 1]);
+                    canvas.drawRoundRect(rectF4, gl.L(6.0f), gl.L(6.0f), paintArr[mk8Var.y + 1]);
                 }
                 super.onDraw(canvas);
                 return;
             case 11:
                 Paint paint4 = (Paint) this.b;
-                ll0 ll0Var = ((xk9) obj).y;
-                if (ll0Var != null && ll0Var.c > 0 && ll0Var.d == 0 && !ll0Var.e) {
+                lk0 lk0Var = ((wi9) obj).y;
+                if (lk0Var != null && lk0Var.c > 0 && lk0Var.d == 0 && !lk0Var.e) {
                     paint4.setColor(getCurrentTextColor());
-                    canvas.drawCircle(getWidth() / 2.0f, getBaseline() - (getTextSize() * 0.35f), gm.N(4.3f) / 2.0f, paint4);
+                    canvas.drawCircle(getWidth() / 2.0f, getBaseline() - (getTextSize() * 0.35f), gl.N(4.3f) / 2.0f, paint4);
                     return;
                 }
                 super.onDraw(canvas);
@@ -231,28 +231,28 @@ public final class t8 extends TextView {
         switch (this.a) {
             case 4:
                 super.onLayout(z, i, i2, i3, i4);
-                cta ctaVar = new cta(10);
-                this.b = ctaVar;
-                ctaVar.N = 100;
-                ctaVar.I = false;
-                ctaVar.L = true;
-                ctaVar.G = false;
-                ctaVar.J = true;
-                ctaVar.H = true;
-                ctaVar.r = (byte) 1;
-                ctaVar.w = 0.98f;
-                ctaVar.v = 0.98f;
-                ctaVar.u = 0.98f;
-                ctaVar.g = false;
-                ctaVar.o = 0.0f;
-                ctaVar.x = (short) 750;
-                ctaVar.y = (short) 750;
-                ctaVar.c();
-                RectF rectF = gm.P;
+                bra braVar = new bra(10);
+                this.b = braVar;
+                braVar.N = 100;
+                braVar.I = false;
+                braVar.L = true;
+                braVar.G = false;
+                braVar.J = true;
+                braVar.H = true;
+                braVar.r = (byte) 1;
+                braVar.w = 0.98f;
+                braVar.v = 0.98f;
+                braVar.u = 0.98f;
+                braVar.g = false;
+                braVar.o = 0.0f;
+                braVar.x = (short) 750;
+                braVar.y = (short) 750;
+                braVar.c();
+                RectF rectF = gl.P;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                ((cta) this.b).a.set(rectF);
-                ((cta) this.b).b.set(rectF);
-                ((cta) this.b).f();
+                ((bra) this.b).a.set(rectF);
+                ((bra) this.b).b.set(rectF);
+                ((bra) this.b).f();
                 Path path = (Path) this.c;
                 path.reset();
                 path.addRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, Path.Direction.CW);
@@ -267,8 +267,8 @@ public final class t8 extends TextView {
     public final void onMeasure(int i, int i2) {
         switch (this.a) {
             case 8:
-                if (View.MeasureSpec.getSize(i) > gm.L(260.0f)) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(gm.L(320.0f), 1073741824), i2);
+                if (View.MeasureSpec.getSize(i) > gl.L(260.0f)) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(gl.L(320.0f), 1073741824), i2);
                     return;
                 } else {
                     super.onMeasure(i, i2);
@@ -306,8 +306,8 @@ public final class t8 extends TextView {
     public final void setTextColor(int i) {
         switch (this.a) {
             case 12:
-                super.setTextColor(cmb.p1(0.2f, i));
-                ((qa6) this.c).g(cmb.p1(0.03f, i), cmb.p1(0.175f, i), cmb.p1(0.2f, i), cmb.p1(0.45f, i));
+                super.setTextColor(bkb.p1(0.2f, i));
+                ((r86) this.c).g(bkb.p1(0.03f, i), bkb.p1(0.175f, i), bkb.p1(0.2f, i), bkb.p1(0.45f, i));
                 return;
             default:
                 super.setTextColor(i);
@@ -315,11 +315,11 @@ public final class t8 extends TextView {
         }
     }
 
-    public t8(om8 om8Var, Context context) {
+    public t8(mk8 mk8Var, Context context) {
         super(context);
         this.a = (byte) 10;
-        this.c = om8Var;
-        this.b = new Paint[om8Var.f.length];
+        this.c = mk8Var;
+        this.b = new Paint[mk8Var.f.length];
         int i = 0;
         while (true) {
             Paint[] paintArr = (Paint[]) this.b;
@@ -331,10 +331,10 @@ public final class t8 extends TextView {
         }
     }
 
-    public t8(xk9 xk9Var, Context context) {
+    public t8(wi9 wi9Var, Context context) {
         super(context);
         this.a = (byte) 11;
-        this.c = xk9Var;
+        this.c = wi9Var;
         this.b = new Paint(1);
     }
 
@@ -344,14 +344,14 @@ public final class t8 extends TextView {
         switch (b) {
             case 12:
                 super(context);
-                b66 b66Var = new b66(0);
-                this.b = b66Var;
-                qa6 qa6Var = new qa6();
-                this.c = qa6Var;
-                qa6Var.y = b66Var;
-                qa6Var.u = 0.65f;
-                qa6Var.j(4.0f);
-                setBackground(qa6Var);
+                b46 b46Var = new b46(0);
+                this.b = b46Var;
+                r86 r86Var = new r86();
+                this.c = r86Var;
+                r86Var.y = b46Var;
+                r86Var.u = 0.65f;
+                r86Var.j(4.0f);
+                setBackground(r86Var);
                 return;
             default:
                 this.c = new Path();
@@ -359,65 +359,65 @@ public final class t8 extends TextView {
         }
     }
 
-    public t8(hz2 hz2Var, Context context) {
+    public t8(xx2 xx2Var, Context context) {
         super(context);
         this.a = (byte) 6;
-        this.c = hz2Var;
+        this.c = xx2Var;
         this.b = new Paint(1);
     }
 
-    public t8(po2 po2Var, Context context) {
+    public t8(en2 en2Var, Context context) {
         super(context);
         this.a = (byte) 5;
-        this.c = po2Var;
+        this.c = en2Var;
         this.b = new Paint(1);
     }
 
-    public t8(vr5 vr5Var, Context context) {
+    public t8(wp5 wp5Var, Context context) {
         super(context);
         this.a = (byte) 8;
-        this.c = vr5Var;
-        ef1 ef1Var = new ef1();
-        this.b = ef1Var;
-        ef1Var.k = false;
-        ef1Var.m = 2.0f;
+        this.c = wp5Var;
+        wd1 wd1Var = new wd1();
+        this.b = wd1Var;
+        wd1Var.k = false;
+        wd1Var.m = 2.0f;
     }
 
     public t8(u8 u8Var, Context context) {
         super(context);
         this.a = (byte) 0;
         this.c = u8Var;
-        ef1 ef1Var = new ef1();
-        this.b = ef1Var;
-        ef1Var.k = false;
-        ef1Var.m = 2.0f;
+        wd1 wd1Var = new wd1();
+        this.b = wd1Var;
+        wd1Var.k = false;
+        wd1Var.m = 2.0f;
     }
 
-    public t8(gs0 gs0Var, Context context) {
+    public t8(gr0 gr0Var, Context context) {
         super(context);
         this.a = (byte) 1;
-        this.c = gs0Var;
+        this.c = gr0Var;
         this.b = new Paint(1);
     }
 
-    public t8(Context context, ylb ylbVar) {
+    public t8(Context context, wjb wjbVar) {
         super(context);
         this.a = (byte) 2;
-        this.c = ylbVar;
+        this.c = wjbVar;
         this.b = new Paint(1);
     }
 
-    public t8(g46 g46Var, Context context) {
+    public t8(f26 f26Var, Context context) {
         super(context);
         this.a = (byte) 9;
-        this.c = g46Var;
+        this.c = f26Var;
         this.b = new Paint(1);
     }
 
-    public t8(i22 i22Var, Context context) {
+    public t8(x02 x02Var, Context context) {
         super(context);
         this.a = (byte) 3;
-        this.c = i22Var;
+        this.c = x02Var;
         this.b = new Paint(1);
     }
 }

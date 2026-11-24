@@ -1,511 +1,657 @@
 package defpackage;
 
-import android.app.Dialog;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.view.SurfaceView;
-import android.webkit.WebResourceRequest;
-import android.widget.ImageView;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.security.SecureRandom;
+import android.text.TextUtils;
 import java.util.ArrayList;
-import java.util.Map;
-import org.json.JSONObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_ephemeral;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.p;
-public final class ud7 implements Runnable {
-    public final byte a;
-    public final Object b;
-    public final Object c;
-    public final Object d;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public abstract class ud7 {
+    public static final ArrayList a = new ArrayList();
+    public static final Pattern b = Pattern.compile("^mp4a\\.([a-zA-Z0-9]{2})(?:\\.([0-9]{1,2}))?$");
 
-    public ud7(i58 i58Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z) {
-        this.a = (byte) 22;
-        this.b = i58Var;
-        this.c = tL_error;
-        this.d = tLObject;
-    }
-
-    private final void a() {
-        int i;
-        cf7 cf7Var = (cf7) this.b;
-        ArrayList arrayList = (ArrayList) this.c;
-        i77 i77Var = (i77) this.d;
-        cf7Var.getClass();
-        int size = arrayList.size();
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList.get(i2);
-            i2++;
-            TL_ephemeral.EphemeralMessage ephemeralMessage = (TL_ephemeral.EphemeralMessage) obj;
-            if (ephemeralMessage.top_msg_id == 0) {
-                TL_ephemeral.EphemeralMessage U = cf7Var.U(ephemeralMessage.id, pg3.n(ephemeralMessage.peer_id));
-                if (U != null && (i = U.top_msg_id) != 0) {
-                    ephemeralMessage.top_msg_id = i;
-                    TLRPC.MessageReplyHeader messageReplyHeader = ephemeralMessage.reply_to;
-                    if (messageReplyHeader != null) {
-                        messageReplyHeader.forum_topic = true;
-                    }
-                    ephemeralMessage.flags |= 2;
-                }
-            }
+    public static boolean a(String str, String str2) {
+        zw8 f;
+        int a2;
+        if (str == null) {
+            return false;
         }
-        cf7Var.d1(arrayList, true);
-        i77Var.run();
-    }
-
-    private final void b() {
-        gm.c3(new bl7((u35) this.d, cf7.Y(((ml7) this.b).a).g0(((TLRPC.TL_contact) this.c).user_id), (byte) 4));
-    }
-
-    private final void c() {
-        TLRPC.User user;
-        ml7 ml7Var = (ml7) this.b;
-        TLObject tLObject = (TLObject) this.c;
-        u35 u35Var = (u35) this.d;
-        if (tLObject instanceof TLRPC.TL_contacts_resolvedPeer) {
-            TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
-            oc7.r1(ml7Var.a).d4(tL_contacts_resolvedPeer.users, false);
-            oc7.r1(ml7Var.a).X3(tL_contacts_resolvedPeer.chats, false);
-            long n = pg3.n(tL_contacts_resolvedPeer.peer);
-            if (n >= 0) {
-                user = oc7.r1(ml7Var.a).W1(Long.valueOf(n));
-                u35Var.a(user);
-            }
-        }
-        user = null;
-        u35Var.a(user);
-    }
-
-    private final void d() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ud7.d():void");
-    }
-
-    private final void e() {
-        boolean[] zArr = (boolean[]) this.b;
-        Runnable[] runnableArr = (Runnable[]) this.c;
-        tp7 tp7Var = (tp7) this.d;
-        if (zArr[0]) {
-            return;
-        }
-        zArr[0] = true;
-        Runnable runnable = runnableArr[0];
-        if (runnable != null) {
-            runnable.run();
-        }
-        tp7Var.a(0L);
-    }
-
-    private final void f() {
-        boolean[] zArr = (boolean[]) this.b;
-        k11 k11Var = (k11) this.c;
-        he heVar = (he) this.d;
-        if (zArr[0]) {
-            return;
-        }
-        zArr[0] = true;
-        k11Var.c(false);
-        heVar.dismiss();
-    }
-
-    private final void g() {
-        ((ss7) this.b).h0((TLObject) this.d, (TLRPC.TL_error) this.c);
-    }
-
-    private final void h() {
-        String G;
-        xz7 xz7Var = (xz7) this.b;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.c;
-        TLObject tLObject = (TLObject) this.d;
-        xz7Var.A1();
-        if (tL_error == null) {
-            TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject;
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xz7Var.getParentActivity());
-            String a0 = jb6.a0("RestoreEmailSent", null, 2131745813, tL_auth_passwordRecovery.email_pattern);
-            he heVar = alertDialog$Builder.a;
-            heVar.U = a0;
-            heVar.S = jb6.M0(2131745811, null);
-            alertDialog$Builder.j(jb6.M0(2131747564, null), new cz6(xz7Var, tL_auth_passwordRecovery, (byte) 11));
-            Dialog showDialog = xz7Var.showDialog(heVar);
-            if (showDialog != null) {
-                showDialog.setCanceledOnTouchOutside(false);
-                showDialog.setCancelable(false);
-            }
-        } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-            int intValue = Utilities.z(tL_error.text).intValue();
-            if (intValue < 60) {
-                G = jb6.G(intValue, "Seconds", new Object[0]);
-            } else {
-                G = jb6.G(intValue / 60, "Minutes", new Object[0]);
-            }
-            xz7Var.P1(jb6.M0(2131689472, null), jb6.a0("FloodWaitTime", null, 2131750618, G));
-        } else {
-            xz7Var.P1(jb6.M0(2131689472, null), tL_error.text);
-        }
-    }
-
-    private final void i() {
-        ((wm4) this.b).b0(((TLRPC.TL_error) this.d).text, (String) this.c);
-    }
-
-    private final void j() {
-        int i;
-        nz7 nz7Var = (nz7) this.b;
-        byte[] bArr = (byte[]) this.d;
-        String str = (String) this.c;
-        SecureRandom secureRandom = Utilities.b;
-        xz7 xz7Var = nz7Var.e;
-        secureRandom.setSeed(xz7Var.K.secure_random);
-        TL_account.updatePasswordSettings updatepasswordsettings = new TL_account.updatePasswordSettings();
-        TL_account.Password password = xz7Var.K;
-        TLRPC.PasswordKdfAlgo passwordKdfAlgo = password.current_algo;
-        if (passwordKdfAlgo instanceof TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
-            updatepasswordsettings.password = nq9.d(bArr, password.srp_id, password.srp_B, (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
-        }
-        updatepasswordsettings.new_settings = new TL_account.passwordInputSettings();
-        byte[] j1 = xz7.j1();
-        xz7Var.d1 = j1;
-        xz7Var.c1 = Utilities.g(Utilities.o(32L, j1));
-        TLRPC.SecurePasswordKdfAlgo securePasswordKdfAlgo = xz7Var.K.new_secure_algo;
-        if (securePasswordKdfAlgo instanceof TLRPC.TL_securePasswordKdfAlgoPBKDF2HMACSHA512iter100000) {
-            TLRPC.TL_securePasswordKdfAlgoPBKDF2HMACSHA512iter100000 tL_securePasswordKdfAlgoPBKDF2HMACSHA512iter100000 = (TLRPC.TL_securePasswordKdfAlgoPBKDF2HMACSHA512iter100000) securePasswordKdfAlgo;
-            byte[] m = Utilities.m(gm.g1(str), tL_securePasswordKdfAlgoPBKDF2HMACSHA512iter100000.salt);
-            xz7Var.f1 = m;
-            byte[] bArr2 = new byte[32];
-            System.arraycopy(m, 0, bArr2, 0, 32);
-            byte[] bArr3 = new byte[16];
-            System.arraycopy(xz7Var.f1, 32, bArr3, 0, 16);
-            byte[] bArr4 = xz7Var.d1;
-            Utilities.b(bArr4, bArr2, bArr3, 0, bArr4.length, 0, 1);
-            updatepasswordsettings.new_settings.new_secure_settings = new TLRPC.TL_secureSecretSettings();
-            TL_account.passwordInputSettings passwordinputsettings = updatepasswordsettings.new_settings;
-            TLRPC.TL_secureSecretSettings tL_secureSecretSettings = passwordinputsettings.new_secure_settings;
-            tL_secureSecretSettings.secure_algo = tL_securePasswordKdfAlgoPBKDF2HMACSHA512iter100000;
-            tL_secureSecretSettings.secure_secret = xz7Var.d1;
-            tL_secureSecretSettings.secure_secret_id = xz7Var.c1;
-            passwordinputsettings.flags |= 4;
-        }
-        i = ((d) xz7Var).currentAccount;
-        ConnectionsManager.getInstance(i).sendRequest(updatepasswordsettings, new lz7(nz7Var, (byte) 2));
-    }
-
-    private final void k() {
-        int i;
-        int i2;
-        int i3;
-        tz7 tz7Var = (tz7) this.b;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.c;
-        TL_account.verifyPhone verifyphone = (TL_account.verifyPhone) this.d;
-        int i4 = tz7Var.M;
-        xz7 xz7Var = tz7Var.R;
-        xz7Var.A1();
-        tz7Var.K = false;
-        if (tL_error == null) {
-            tz7Var.r();
-            tz7Var.q();
-            xz7Var.C1.c(xz7Var.F, (String) xz7Var.t1.get("phone"), null, null, null, null, null, null, null, null, new ny7(xz7Var, (byte) 6), null);
-            return;
-        }
-        tz7Var.L = tL_error.text;
-        if ((i4 == 3 && ((i3 = tz7Var.N) == 4 || i3 == 2)) || ((i4 == 2 && ((i = tz7Var.N) == 4 || i == 3)) || (i4 == 4 && tz7Var.N == 2))) {
-            tz7Var.p();
-        }
-        if (i4 == 2) {
-            gm.y3(true);
-            nm7.e().a(tz7Var, nm7.k4);
-        } else if (i4 == 3) {
-            gm.x3(true);
-            nm7.e().a(tz7Var, nm7.l4);
-        }
-        tz7Var.J = true;
-        if (i4 != 3) {
-            i2 = ((d) xz7Var).currentAccount;
-            ik.c0(i2, tL_error, xz7Var, verifyphone, new Object[0]);
-        }
-        xz7Var.Q1(true, false);
-        if (!tL_error.text.contains("PHONE_CODE_EMPTY") && !tL_error.text.contains("PHONE_CODE_INVALID")) {
-            if (tL_error.text.contains("PHONE_CODE_EXPIRED")) {
-                tz7Var.d(true);
-                xz7Var.N1(null, 0, true);
-                return;
-            }
-            return;
-        }
-        int i5 = 0;
-        while (true) {
-            EditTextBoldCursor[] editTextBoldCursorArr = tz7Var.d;
-            if (i5 < editTextBoldCursorArr.length) {
-                editTextBoldCursorArr[i5].setText("");
-                i5++;
-            } else {
-                editTextBoldCursorArr[0].requestFocus();
-                return;
-            }
-        }
-    }
-
-    private final void l() {
-        ((p) this.b).m0((TL_account.Password) this.c, (byte[]) this.d);
-    }
-
-    private final void m() {
-        ((p) this.b).u0((TLRPC.TL_error) this.c, (TLRPC.TL_payments_sendPaymentForm) this.d);
-    }
-
-    private final void n() {
-        p pVar = (p) this.b;
-        pVar.getClass();
-        pVar.F0 = (TLRPC.TL_payments_validatedRequestedInfo) this.c;
-        ((bl7) this.d).run();
-        pVar.J0(false);
-        pVar.N0(true, false);
-    }
-
-    private final void o() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ud7.o():void");
-    }
-
-    private final void p() {
-        v48 v48Var = (v48) this.b;
-        r63 r63Var = (r63) this.c;
-        a58 a58Var = v48Var.x;
-        ik.P(a58Var.getContext(), null, r63Var, new wu2(v48Var, (TL_stories.StoryItem) this.d, r63Var, (byte) 22));
-        v48 v48Var2 = a58Var.j1;
-        if (v48Var2 != null) {
-            v48Var2.a();
-        }
-    }
-
-    private final void q() {
-        TL_stories.StoryItem storyItem;
-        TLRPC.MessageMedia messageMedia;
-        TLRPC.Document document;
-        TLRPC.Document document2;
-        t3b t3bVar = (t3b) this.b;
-        TL_stories.StoryItem storyItem2 = (TL_stories.StoryItem) this.c;
-        qac qacVar = (qac) this.d;
-        for (int i = 0; i < t3bVar.i.size(); i++) {
-            k47 k47Var = (k47) t3bVar.i.get(i);
-            if (k47Var != null && (storyItem = k47Var.l) != null && (messageMedia = storyItem.media) != null && (document = storyItem2.media.document) != null && (document2 = messageMedia.document) != null && document2.id == document.id) {
-                qacVar.a(document2);
-                return;
-            }
-        }
-        qacVar.a(null);
-    }
-
-    private final void r() {
-        i58 i58Var = (i58) this.b;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.c;
-        TLObject tLObject = (TLObject) this.d;
-        if (tL_error == null) {
-            i58Var.r1 = (TLRPC.TL_chatInviteExported) tLObject;
-            TLRPC.ChatFull M0 = oc7.r1(i58Var.a).M0(i58Var.p1);
-            if (M0 != null) {
-                M0.exported_invite = i58Var.r1;
-            }
-            i58Var.o1.setLink(i58Var.r1.link);
-        }
-        i58Var.q1 = false;
-    }
-
-    private final void s() {
-        PhotoViewer photoViewer = (PhotoViewer) this.b;
-        boolean[] zArr = (boolean[]) this.c;
-        j88 j88Var = (j88) this.d;
-        Drawable[] drawableArr = PhotoViewer.d9;
-        if (!zArr[0]) {
-            ImageView imageView = photoViewer.x3;
-            if (imageView != null) {
-                imageView.setVisibility(0);
-            }
-            SurfaceView surfaceView = photoViewer.D2;
-            if (surfaceView != null) {
-                surfaceView.setVisibility(4);
-            }
-            zArr[0] = true;
-            j88Var.run();
-        }
-    }
-
-    private final void t() {
-        PhotoViewer photoViewer = (PhotoViewer) this.b;
-        n88 n88Var = (n88) this.d;
-        Drawable[] drawableArr = PhotoViewer.d9;
-        photoViewer.B4.f0((Bitmap) this.c);
-        photoViewer.s5.setUndoCutState(true);
-        photoViewer.k2(true, true);
-        gm.r(n88Var);
-        gm.d3(n88Var, 800L);
-    }
-
-    private final void u() {
-        PhotoViewer photoViewer = (PhotoViewer) this.b;
-        String str = (String) this.c;
-        Drawable[] drawableArr = PhotoViewer.d9;
-        ((jn5) this.d).a();
-        if (str.equals(photoViewer.B4.R)) {
-            photoViewer.v4 = (byte) 2;
-            photoViewer.w4 = str;
-        }
-    }
-
-    private final void v() {
-        ab8 ab8Var = (ab8) this.b;
-        ab8 ab8Var2 = (ab8) this.c;
-        int[] iArr = (int[]) this.d;
-        PhotoViewer photoViewer = ab8Var.d;
-        if (photoViewer.E != null && ab8Var2 == photoViewer.C8) {
-            photoViewer.C8 = null;
-            photoViewer.v8 = iArr[5];
-            photoViewer.n8 = iArr[4];
-            photoViewer.o8 = iArr[7];
-            PhotoViewer photoViewer2 = ab8Var.d;
-            photoViewer.w8 = ((photoViewer.l8 / 8) * photoViewer2.n8) / 1000.0f;
-            boolean z = photoViewer2.p8;
-            PhotoViewer photoViewer3 = ab8Var.d;
-            boolean z2 = false;
-            if (z) {
-                photoViewer3.g8 = iArr[8];
-                photoViewer3.S2();
-                if (ab8Var.d.d8 > ab8Var.d.e8 - 1) {
-                    PhotoViewer photoViewer4 = ab8Var.d;
-                    photoViewer4.d8 = photoViewer4.e8 - 1;
-                }
-                PhotoViewer photoViewer5 = ab8Var.d;
-                if (!photoViewer5.I4) {
-                    kcc kccVar = photoViewer5.k1;
-                    if (photoViewer5.e8 > 1) {
-                        z2 = true;
-                    }
-                    PhotoViewer photoViewer6 = ab8Var.d;
-                    kccVar.a(Math.min(photoViewer6.j8, ab8Var.d.k8), z2, photoViewer6.r);
-                }
-                if (e21.a) {
-                    StringBuilder sb = new StringBuilder("compressionsCount = ");
-                    sb.append(ab8Var.d.e8);
-                    sb.append(" w = ");
-                    sb.append(ab8Var.d.h8);
-                    sb.append(" h = ");
-                    sb.append(ab8Var.d.i8);
-                    sb.append(" r = ");
-                    b10.p(ab8Var.d.g8, sb);
-                }
-                ab8Var.d.T7.invalidate();
-            } else {
-                if (!photoViewer3.I4) {
-                    photoViewer3.k1.a(Math.min(photoViewer3.j8, ab8Var.d.k8), false, photoViewer3.r);
-                }
-                ab8Var.d.e8 = 0;
-            }
-            ab8Var.d.P2();
-            ab8Var.d.J2();
-        }
-    }
-
-    private final void w() {
-        InputStream errorStream;
-        JSONObject optJSONObject;
-        String optString;
-        String str = (String) this.c;
-        WebResourceRequest webResourceRequest = (WebResourceRequest) this.d;
-        ya8 ya8Var = (ya8) ((sv) this.b).b;
-        try {
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(str).openConnection();
-            httpURLConnection.setRequestMethod("POST");
-            for (Map.Entry<String, String> entry : webResourceRequest.getRequestHeaders().entrySet()) {
-                httpURLConnection.addRequestProperty(entry.getKey(), entry.getValue());
-            }
-            httpURLConnection.setDoOutput(true);
-            OutputStream outputStream = httpURLConnection.getOutputStream();
-            JSONObject jSONObject = new JSONObject();
-            JSONObject jSONObject2 = new JSONObject();
-            JSONObject put = new JSONObject().put("userAgent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36,gzip(gfe)").put("clientName", "WEB").put("clientVersion", webResourceRequest.getRequestHeaders().get("X-Youtube-Client-Version")).put("osName", "Windows").put("osVersion", "10.0");
-            outputStream.write(jSONObject.put("context", jSONObject2.put("client", put.put("originalUrl", "https://www.youtube.com/watch?v=" + ya8Var.x).put("platform", "DESKTOP"))).put("videoId", ya8Var.x).toString().getBytes("UTF-8"));
-            outputStream.close();
-            if (httpURLConnection.getResponseCode() == 200) {
-                errorStream = httpURLConnection.getInputStream();
-            } else {
-                errorStream = httpURLConnection.getErrorStream();
-            }
-            byte[] bArr = new byte[10240];
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            while (true) {
-                int read = errorStream.read(bArr);
-                if (read == -1) {
+        char c = 65535;
+        switch (str.hashCode()) {
+            case -2123537834:
+                if (str.equals("audio/eac3-joc")) {
+                    c = 0;
                     break;
                 }
-                byteArrayOutputStream.write(bArr, 0, read);
-            }
-            byteArrayOutputStream.close();
-            errorStream.close();
-            JSONObject optJSONObject2 = new JSONObject(byteArrayOutputStream.toString("UTF-8")).optJSONObject("storyboards");
-            if (optJSONObject2 != null && (optJSONObject = optJSONObject2.optJSONObject("playerStoryboardSpecRenderer")) != null && (optString = optJSONObject.optString("spec")) != null) {
-                if (ya8Var.I == 0) {
-                    ya8Var.s = optString;
-                } else {
-                    ya8Var.g(optString);
+                break;
+            case -1354451219:
+                if (str.equals("application/vnd.dvb.ait")) {
+                    c = 1;
+                    break;
+                }
+                break;
+            case -1348231605:
+                if (str.equals("application/x-icy")) {
+                    c = 2;
+                    break;
+                }
+                break;
+            case -1265048566:
+                if (str.equals("application/x-camera-motion")) {
+                    c = 3;
+                    break;
+                }
+                break;
+            case -1248341703:
+                if (str.equals("application/id3")) {
+                    c = 4;
+                    break;
+                }
+                break;
+            case -432837260:
+                if (str.equals("audio/mpeg-L1")) {
+                    c = 5;
+                    break;
+                }
+                break;
+            case -432837259:
+                if (str.equals("audio/mpeg-L2")) {
+                    c = 6;
+                    break;
+                }
+                break;
+            case -53558318:
+                if (str.equals("audio/mp4a-latm")) {
+                    c = 7;
+                    break;
+                }
+                break;
+            case -43764892:
+                if (str.equals("application/meta")) {
+                    c = '\b';
+                    break;
+                }
+                break;
+            case 187078296:
+                if (str.equals("audio/ac3")) {
+                    c = '\t';
+                    break;
+                }
+                break;
+            case 187094639:
+                if (str.equals("audio/raw")) {
+                    c = '\n';
+                    break;
+                }
+                break;
+            case 469933706:
+                if (str.equals("application/x-media3-cues")) {
+                    c = 11;
+                    break;
+                }
+                break;
+            case 1054472807:
+                if (str.equals("application/x-itut-t35")) {
+                    c = '\f';
+                    break;
+                }
+                break;
+            case 1154383568:
+                if (str.equals("application/x-emsg")) {
+                    c = '\r';
+                    break;
+                }
+                break;
+            case 1331836563:
+                if (str.equals("video/apv")) {
+                    c = 14;
+                    break;
+                }
+                break;
+            case 1504578661:
+                if (str.equals("audio/eac3")) {
+                    c = 15;
+                    break;
+                }
+                break;
+            case 1504619009:
+                if (str.equals("audio/flac")) {
+                    c = 16;
+                    break;
+                }
+                break;
+            case 1504831518:
+                if (str.equals("audio/mpeg")) {
+                    c = 17;
+                    break;
+                }
+                break;
+            case 1652648887:
+                if (str.equals("application/x-scte35")) {
+                    c = 18;
+                    break;
+                }
+                break;
+            case 1903231877:
+                if (str.equals("audio/g711-alaw")) {
+                    c = 19;
+                    break;
+                }
+                break;
+            case 1903589369:
+                if (str.equals("audio/g711-mlaw")) {
+                    c = 20;
+                    break;
+                }
+                break;
+        }
+        switch (c) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case '\b':
+            case '\t':
+            case '\n':
+            case 11:
+            case '\f':
+            case '\r':
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+                return true;
+            case 7:
+                if (str2 == null || (f = f(str2)) == null || (a2 = f.a()) == 0 || a2 == 16) {
+                    return false;
+                }
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public static String b(String str, String str2) {
+        if (str != null && str2 != null) {
+            String[] e0 = g8c.e0(str);
+            StringBuilder sb = new StringBuilder();
+            for (String str3 : e0) {
+                if (str2.equals(d(str3))) {
+                    if (sb.length() > 0) {
+                        sb.append(",");
+                    }
+                    sb.append(str3);
                 }
             }
-        } catch (Exception e) {
-            fc4.g(e, true);
+            if (sb.length() > 0) {
+                return sb.toString();
+            }
+        }
+        return null;
+    }
+
+    public static int c(String str, String str2) {
+        zw8 f;
+        str.getClass();
+        char c = 65535;
+        switch (str.hashCode()) {
+            case -2123537834:
+                if (str.equals("audio/eac3-joc")) {
+                    c = 0;
+                    break;
+                }
+                break;
+            case -1365340241:
+                if (str.equals("audio/vnd.dts.hd;profile=lbr")) {
+                    c = 1;
+                    break;
+                }
+                break;
+            case -1095064472:
+                if (str.equals("audio/vnd.dts")) {
+                    c = 2;
+                    break;
+                }
+                break;
+            case -53558318:
+                if (str.equals("audio/mp4a-latm")) {
+                    c = 3;
+                    break;
+                }
+                break;
+            case 187078296:
+                if (str.equals("audio/ac3")) {
+                    c = 4;
+                    break;
+                }
+                break;
+            case 187078297:
+                if (str.equals("audio/ac4")) {
+                    c = 5;
+                    break;
+                }
+                break;
+            case 187081724:
+                if (str.equals("audio/dsd")) {
+                    c = 6;
+                    break;
+                }
+                break;
+            case 550520934:
+                if (str.equals("audio/vnd.dts.uhd;profile=p2")) {
+                    c = 7;
+                    break;
+                }
+                break;
+            case 1504578661:
+                if (str.equals("audio/eac3")) {
+                    c = '\b';
+                    break;
+                }
+                break;
+            case 1504831518:
+                if (str.equals("audio/mpeg")) {
+                    c = '\t';
+                    break;
+                }
+                break;
+            case 1504891608:
+                if (str.equals("audio/opus")) {
+                    c = '\n';
+                    break;
+                }
+                break;
+            case 1505942594:
+                if (str.equals("audio/vnd.dts.hd")) {
+                    c = 11;
+                    break;
+                }
+                break;
+            case 1556697186:
+                if (str.equals("audio/true-hd")) {
+                    c = '\f';
+                    break;
+                }
+                break;
+        }
+        switch (c) {
+            case 0:
+                return 18;
+            case 1:
+                return 8;
+            case 2:
+                return 7;
+            case 3:
+                if (str2 == null || (f = f(str2)) == null) {
+                    return 0;
+                }
+                return f.a();
+            case 4:
+                return 5;
+            case 5:
+                return 17;
+            case 6:
+                return 31;
+            case 7:
+                return 30;
+            case '\b':
+                return 6;
+            case '\t':
+                return 9;
+            case '\n':
+                return 20;
+            case 11:
+                return 8;
+            case '\f':
+                return 14;
+            default:
+                return 0;
         }
     }
 
-    private final void x() {
-        nv1 nv1Var;
-        TLRPC.Message message;
-        xg8 xg8Var = (xg8) this.b;
-        yv1 yv1Var = (yv1) this.c;
-        k47 k47Var = xg8Var.I;
-        byte[] bArr = ((TLRPC.PollAnswer) this.d).option;
-        if (k47Var != null && (message = k47Var.k) != null && (message.media instanceof TLRPC.TL_messageMediaPoll)) {
-            k47.B0(message);
-            ?? obj = new Object();
-            obj.a = k47Var;
-            obj.b = -1;
-            obj.c = -1;
-            obj.h = true;
-            obj.e = bArr;
-            obj.f();
-            nv1Var = obj;
-        } else {
-            nv1Var = null;
+    public static String d(String str) {
+        zw8 f;
+        String str2 = null;
+        if (str != null) {
+            String c = smd.c(str.trim());
+            if (!c.startsWith("avc1") && !c.startsWith("avc3")) {
+                if (!c.startsWith("hev1") && !c.startsWith("hvc1")) {
+                    if (!c.startsWith("vvc1") && !c.startsWith("vvi1")) {
+                        if (!c.startsWith("dvav") && !c.startsWith("dva1") && !c.startsWith("dvhe") && !c.startsWith("dvh1") && !c.startsWith("dav1")) {
+                            if (c.startsWith("av01")) {
+                                return "video/av01";
+                            }
+                            if (!c.startsWith("vp9") && !c.startsWith("vp09")) {
+                                if (!c.startsWith("vp8") && !c.startsWith("vp08")) {
+                                    if (c.startsWith("mp4a")) {
+                                        if (c.startsWith("mp4a.") && (f = f(c)) != null) {
+                                            str2 = e(f.b);
+                                        }
+                                        if (str2 == null) {
+                                            return "audio/mp4a-latm";
+                                        }
+                                        return str2;
+                                    } else if (c.startsWith("mha1")) {
+                                        return "audio/mha1";
+                                    } else {
+                                        if (c.startsWith("mhm1")) {
+                                            return "audio/mhm1";
+                                        }
+                                        if (!c.startsWith("ac-3") && !c.startsWith("dac3")) {
+                                            if (!c.startsWith("ec-3") && !c.startsWith("dec3")) {
+                                                if (c.startsWith("ec+3")) {
+                                                    return "audio/eac3-joc";
+                                                }
+                                                if (!c.startsWith("ac-4") && !c.startsWith("dac4")) {
+                                                    if (c.startsWith("dtsc")) {
+                                                        return "audio/vnd.dts";
+                                                    }
+                                                    if (c.startsWith("dtse")) {
+                                                        return "audio/vnd.dts.hd;profile=lbr";
+                                                    }
+                                                    if (!c.startsWith("dtsh") && !c.startsWith("dtsl")) {
+                                                        if (c.startsWith("dtsx")) {
+                                                            return "audio/vnd.dts.uhd;profile=p2";
+                                                        }
+                                                        if (c.startsWith("opus")) {
+                                                            return "audio/opus";
+                                                        }
+                                                        if (c.startsWith("vorbis")) {
+                                                            return "audio/vorbis";
+                                                        }
+                                                        if (c.startsWith("flac")) {
+                                                            return "audio/flac";
+                                                        }
+                                                        if (c.startsWith("stpp")) {
+                                                            return "application/ttml+xml";
+                                                        }
+                                                        if (c.startsWith("wvtt")) {
+                                                            return "text/vtt";
+                                                        }
+                                                        if (c.contains("cea708")) {
+                                                            return "application/cea-708";
+                                                        }
+                                                        if (!c.contains("eia608") && !c.contains("cea608")) {
+                                                            ArrayList arrayList = a;
+                                                            if (arrayList.size() > 0) {
+                                                                arrayList.get(0).getClass();
+                                                                fyb.g();
+                                                                return null;
+                                                            }
+                                                        } else {
+                                                            return "application/cea-608";
+                                                        }
+                                                    } else {
+                                                        return "audio/vnd.dts.hd";
+                                                    }
+                                                } else {
+                                                    return "audio/ac4";
+                                                }
+                                            } else {
+                                                return "audio/eac3";
+                                            }
+                                        } else {
+                                            return "audio/ac3";
+                                        }
+                                    }
+                                } else {
+                                    return "video/x-vnd.on2.vp8";
+                                }
+                            } else {
+                                return "video/x-vnd.on2.vp9";
+                            }
+                        } else {
+                            return "video/dolby-vision";
+                        }
+                    } else {
+                        return "video/vvc";
+                    }
+                } else {
+                    return "video/hevc";
+                }
+            } else {
+                return "video/avc";
+            }
         }
-        yv1Var.ec(k47Var, nv1Var);
-        xg8Var.b(false);
+        return null;
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ud7.run():void");
+    public static String e(int i) {
+        if (i != 32) {
+            if (i != 33) {
+                if (i != 35) {
+                    if (i != 64) {
+                        if (i != 163) {
+                            if (i != 177) {
+                                if (i != 221) {
+                                    if (i != 165) {
+                                        if (i != 166) {
+                                            switch (i) {
+                                                case 96:
+                                                case 97:
+                                                case 98:
+                                                case 99:
+                                                case 100:
+                                                case 101:
+                                                    return "video/mpeg2";
+                                                case 102:
+                                                case 103:
+                                                case 104:
+                                                    return "audio/mp4a-latm";
+                                                case 105:
+                                                case 107:
+                                                    return "audio/mpeg";
+                                                case 106:
+                                                    return "video/mpeg";
+                                                case 108:
+                                                    return "image/jpeg";
+                                                default:
+                                                    switch (i) {
+                                                        case 169:
+                                                        case 172:
+                                                            return "audio/vnd.dts";
+                                                        case 170:
+                                                        case 171:
+                                                            return "audio/vnd.dts.hd";
+                                                        case 173:
+                                                            return "audio/opus";
+                                                        case 174:
+                                                            return "audio/ac4";
+                                                        default:
+                                                            return null;
+                                                    }
+                                            }
+                                        }
+                                        return "audio/eac3";
+                                    }
+                                    return "audio/ac3";
+                                }
+                                return "audio/vorbis";
+                            }
+                            return "video/x-vnd.on2.vp9";
+                        }
+                        return "video/wvc1";
+                    }
+                    return "audio/mp4a-latm";
+                }
+                return "video/hevc";
+            }
+            return "video/avc";
+        }
+        return "video/mp4v-es";
     }
 
-    public ud7(byte b, Object obj, Object obj2, String str) {
-        this.a = b;
-        this.b = obj;
-        this.d = obj2;
-        this.c = str;
+    public static zw8 f(String str) {
+        int i;
+        Matcher matcher = b.matcher(str);
+        if (matcher.matches()) {
+            String group = matcher.group(1);
+            group.getClass();
+            String group2 = matcher.group(2);
+            try {
+                int parseInt = Integer.parseInt(group, 16);
+                if (group2 != null) {
+                    i = Integer.parseInt(group2);
+                } else {
+                    i = 0;
+                }
+                return new zw8(parseInt, i, (byte) 2);
+            } catch (NumberFormatException unused) {
+                return null;
+            }
+        }
+        return null;
     }
 
-    public ud7(Object obj, Object obj2, Object obj3, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
-        this.d = obj3;
+    public static String g(String str) {
+        int indexOf;
+        if (str == null || (indexOf = str.indexOf(47)) == -1) {
+            return null;
+        }
+        return str.substring(0, indexOf);
+    }
+
+    public static int h(String str) {
+        if (!TextUtils.isEmpty(str)) {
+            if (i(str)) {
+                return 1;
+            }
+            if (m(str)) {
+                return 2;
+            }
+            if (l(str)) {
+                return 3;
+            }
+            if (k(str)) {
+                return 4;
+            }
+            if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str) && !"application/meta".equals(str) && !"application/x-itut-t35".equals(str)) {
+                if ("application/x-camera-motion".equals(str)) {
+                    return 6;
+                }
+                ArrayList arrayList = a;
+                if (arrayList.size() <= 0) {
+                    return -1;
+                }
+                arrayList.get(0).getClass();
+                fyb.g();
+                return 0;
+            }
+            return 5;
+        }
+        return -1;
+    }
+
+    public static boolean i(String str) {
+        return "audio".equals(g(str));
+    }
+
+    public static boolean j(String str, String str2) {
+        if (str == null) {
+            return false;
+        }
+        if (str.startsWith("dvhe") || str.startsWith("dvh1") || str.startsWith("dav1")) {
+            return true;
+        }
+        if (str2 == null) {
+            return false;
+        }
+        if ((!str2.startsWith("dvhe") || !str.startsWith("hev1")) && ((!str2.startsWith("dvh1") || !str.startsWith("hvc1")) && ((!str2.startsWith("dvav") || !str.startsWith("avc3")) && ((!str2.startsWith("dva1") || !str.startsWith("avc1")) && (!str2.startsWith("dav1") || !str.startsWith("av01")))))) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean k(String str) {
+        if (!"image".equals(g(str)) && !"application/x-image-uri".equals(str)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean l(String str) {
+        if (!"text".equals(g(str)) && !"application/x-media3-cues".equals(str) && !"application/cea-608".equals(str) && !"application/cea-708".equals(str) && !"application/x-mp4-cea-608".equals(str) && !"application/x-subrip".equals(str) && !"application/ttml+xml".equals(str) && !"application/x-quicktime-tx3g".equals(str) && !"application/x-mp4-vtt".equals(str) && !"application/x-rawcc".equals(str) && !"application/vobsub".equals(str) && !"application/pgs".equals(str) && !"application/dvbsubs".equals(str)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean m(String str) {
+        return "video".equals(g(str));
+    }
+
+    public static String n(String str) {
+        if (str == null) {
+            return null;
+        }
+        String c = smd.c(str);
+        c.getClass();
+        char c2 = 65535;
+        switch (c.hashCode()) {
+            case -1833600100:
+                if (c.equals("video/x-mvhevc")) {
+                    c2 = 0;
+                    break;
+                }
+                break;
+            case -1007807498:
+                if (c.equals("audio/x-flac")) {
+                    c2 = 1;
+                    break;
+                }
+                break;
+            case -979095690:
+                if (c.equals("application/x-mpegurl")) {
+                    c2 = 2;
+                    break;
+                }
+                break;
+            case -586683234:
+                if (c.equals("audio/x-wav")) {
+                    c2 = 3;
+                    break;
+                }
+                break;
+            case -432836268:
+                if (c.equals("audio/mpeg-l1")) {
+                    c2 = 4;
+                    break;
+                }
+                break;
+            case -432836267:
+                if (c.equals("audio/mpeg-l2")) {
+                    c2 = 5;
+                    break;
+                }
+                break;
+            case 187090231:
+                if (c.equals("audio/mp3")) {
+                    c2 = 6;
+                    break;
+                }
+                break;
+        }
+        switch (c2) {
+            case 0:
+                return "video/mv-hevc";
+            case 1:
+                return "audio/flac";
+            case 2:
+                return "application/x-mpegURL";
+            case 3:
+                return "audio/wav";
+            case 4:
+                return "audio/mpeg-L1";
+            case 5:
+                return "audio/mpeg-L2";
+            case 6:
+                return "audio/mpeg";
+            default:
+                return c;
+        }
     }
 }

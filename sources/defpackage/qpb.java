@@ -1,21 +1,20 @@
 package defpackage;
+public final class qpb extends fs5 {
+    public final StringBuilder e;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class qpb extends b4 {
-    public static final Parcelable.Creator<qpb> CREATOR = new sje((byte) 23);
-    public long a;
-    public long b;
+    public qpb() {
+        super(4, (byte) 2);
+        this.e = new StringBuilder();
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        long j = this.a;
-        mve.q(parcel, 2, 8);
-        parcel.writeLong(j);
-        long j2 = this.b;
-        mve.q(parcel, 3, 8);
-        parcel.writeLong(j2);
-        mve.s(parcel, r);
+    public final fs5 s() {
+        fs5.t(this.e);
+        return this;
+    }
+
+    @Override
+    public final String toString() {
+        return "<!--" + this.e.toString() + "-->";
     }
 }

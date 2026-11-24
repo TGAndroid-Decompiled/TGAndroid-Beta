@@ -1,26 +1,18 @@
 package defpackage;
+public abstract class tv9 {
+    public final az8 a;
+    public final long b;
+    public final long c;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class tv9 extends k69 {
-    public final byte a;
-    public final bo0 b;
-
-    public tv9(bo0 bo0Var, byte b) {
-        this.a = b;
-        this.b = bo0Var;
+    public tv9(az8 az8Var, long j, long j2) {
+        this.a = az8Var;
+        this.b = j;
+        this.c = j2;
     }
 
-    @Override
-    public final void b(RecyclerView recyclerView, int i, int i2) {
-        byte b = this.a;
-        bo0 bo0Var = this.b;
-        switch (b) {
-            case 0:
-                ((sj3) bo0Var.c).T();
-                return;
-            default:
-                ((sj3) bo0Var.c).T();
-                return;
-        }
+    public abstract tv9 a();
+
+    public az8 b(i89 i89Var) {
+        return this.a;
     }
 }

@@ -1,41 +1,48 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class y33 extends b4 {
-    public static final Parcelable.Creator<y33> CREATOR = new lbd((byte) 0);
-    public final String a;
-    public final String b;
+import java.util.List;
+public final class y33 implements kab {
+    public static final v41 c = new v41(new g31((byte) 3), hi7.b);
+    public final mm5 a;
+    public final long[] b;
 
-    public y33(String str, String str2) {
-        this.a = str;
-        this.b = str2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof y33)) {
-            return false;
-        }
-        y33 y33Var = (y33) obj;
-        if (fse.a(this.a, y33Var.a) && fse.a(this.b, y33Var.b)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.a, this.b});
+    public y33(defpackage.w59 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.y33.<init>(w59):void");
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        mve.l(parcel, 1, this.a);
-        mve.l(parcel, 2, this.b);
-        mve.s(parcel, r);
+    public final int b(long j) {
+        int b = g8c.b(this.b, j, false);
+        if (b < this.a.size()) {
+            return b;
+        }
+        return -1;
+    }
+
+    @Override
+    public final long h(int i) {
+        boolean z;
+        if (i < this.a.size()) {
+            z = true;
+        } else {
+            z = false;
+        }
+        gre.f(z);
+        return this.b[i];
+    }
+
+    @Override
+    public final List l(long j) {
+        int f = g8c.f(this.b, j, false);
+        if (f == -1) {
+            km5 km5Var = mm5.b;
+            return w59.e;
+        }
+        return (mm5) this.a.get(f);
+    }
+
+    @Override
+    public final int t() {
+        return this.a.size();
     }
 }

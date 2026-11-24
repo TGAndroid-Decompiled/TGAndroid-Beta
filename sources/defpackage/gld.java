@@ -1,45 +1,21 @@
 package defpackage;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-public abstract class gld {
-    public static final Charset a = Charset.forName("UTF-8");
-    public static final byte[] b;
+import java.io.Serializable;
+public enum gld {
+    VOID(Void.class, null),
+    INT(Integer.class, 0),
+    LONG(Long.class, 0L),
+    FLOAT(Float.class, Float.valueOf(0.0f)),
+    DOUBLE(Double.class, Double.valueOf(0.0d)),
+    BOOLEAN(Boolean.class, Boolean.FALSE),
+    STRING(String.class, ""),
+    BYTE_STRING(cdd.class, cdd.c),
+    ENUM(Integer.class, null),
+    MESSAGE(Object.class, null);
+    
+    public final Class a;
 
-    static {
-        Charset.forName("ISO-8859-1");
-        byte[] bArr = new byte[0];
-        b = bArr;
-        ByteBuffer.wrap(bArr);
-        int length = bArr.length;
-        try {
-            if (length >= 0) {
-                if ((0 - 0) + length <= Integer.MAX_VALUE) {
-                    return;
-                }
-                throw xmd.a();
-            }
-            throw new IOException("CodedInputStream encountered an embedded string or message which claimed to have negative size.");
-        } catch (xmd e) {
-            throw new IllegalArgumentException(e);
-        }
-    }
-
-    public static xkd a(Object obj, Object obj2) {
-        xkd xkdVar = (xkd) ((ibd) obj);
-        vkd vkdVar = (vkd) xkdVar.a(5);
-        vkdVar.a(xkdVar);
-        ibd ibdVar = (ibd) obj2;
-        if (vkdVar.a.getClass().isInstance(ibdVar)) {
-            vkdVar.a((xkd) ibdVar);
-            return vkdVar.c();
-        }
-        u36.j("mergeFrom(MessageLite) can only merge messages of the same type.");
-        return null;
-    }
-
-    public static int b(long j) {
-        return (int) (j ^ (j >>> 32));
+    gld(Class cls, Serializable serializable) {
+        this.a = cls;
     }
 }

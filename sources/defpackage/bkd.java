@@ -1,15 +1,18 @@
 package defpackage;
-public final class bkd {
-    public static final bkd a;
-    public static final bkd[] b;
 
-    static {
-        ?? r0 = new Enum("DEFAULT", 0);
-        a = r0;
-        b = new bkd[]{r0, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class bkd extends ej5 {
+    public final Boolean b;
+    public final TaskCompletionSource c;
+
+    public bkd(Boolean bool, TaskCompletionSource taskCompletionSource) {
+        this.b = bool;
+        this.c = taskCompletionSource;
     }
 
-    public static bkd[] values() {
-        return (bkd[]) b.clone();
+    @Override
+    public final void T(Status status) {
+        dve.a(status, this.b, this.c);
     }
 }

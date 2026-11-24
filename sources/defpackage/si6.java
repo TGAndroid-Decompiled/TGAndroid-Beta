@@ -1,8 +1,13 @@
 package defpackage;
-public final class si6 extends h61 {
-    public int d;
 
-    public final String toString() {
-        return kt6.q(new StringBuilder("mp3[pos="), this.b, "]");
+import java.util.ArrayList;
+public final class si6 {
+    public final fg5 a;
+    public final int b;
+    public final ArrayList c = new ArrayList();
+
+    public si6(fg5 fg5Var, int i) {
+        this.a = fg5Var;
+        this.b = i;
     }
 }

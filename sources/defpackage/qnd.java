@@ -1,50 +1,69 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class qnd extends yjd {
-    public static final qnd w = new qnd(0, new Object[0]);
-    public final transient Object[] r;
-    public final transient int s;
+import android.content.Context;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Looper;
+public final class qnd extends xx4 {
+    public final aia F;
+    public final aia G;
+    public final aia H;
 
-    public qnd(int i, Object[] objArr) {
-        super((byte) 4);
-        this.r = objArr;
-        this.s = i;
+    public qnd(ey4 ey4Var, fy4 fy4Var, ntb ntbVar, Context context, Looper looper) {
+        super(23, ey4Var, fy4Var, ntbVar, context, looper);
+        this.F = new aia(0);
+        this.G = new aia(0);
+        this.H = new aia(0);
     }
 
     @Override
-    public final Object get(int i) {
-        m2f.a(i, this.s);
-        Object obj = this.r[i];
-        Objects.requireNonNull(obj);
-        return obj;
+    public final IInterface b(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.location.internal.IGoogleLocationManagerService");
+        if (queryLocalInterface instanceof z2f) {
+            return (z2f) queryLocalInterface;
+        }
+        return new ezc(iBinder, "com.google.android.gms.location.internal.IGoogleLocationManagerService", (byte) 5);
     }
 
     @Override
-    public final int p(Object[] objArr) {
-        Object[] objArr2 = this.r;
-        int i = this.s;
-        System.arraycopy(objArr2, 0, objArr, 0, i);
-        return i;
+    public final f84[] f() {
+        return lkd.a;
     }
 
     @Override
-    public final int q() {
-        return this.s;
+    public final int i() {
+        return 11717000;
     }
 
     @Override
-    public final int s() {
-        return 0;
+    public final String l() {
+        return "com.google.android.gms.location.internal.IGoogleLocationManagerService";
     }
 
     @Override
-    public final int size() {
-        return this.s;
+    public final String n() {
+        return "com.google.android.location.internal.GoogleLocationManagerService.START";
     }
 
     @Override
-    public final Object[] v() {
-        return this.r;
+    public final void t(int i) {
+        super.t(i);
+        synchronized (this.F) {
+            this.F.clear();
+        }
+        synchronized (this.G) {
+            this.G.clear();
+        }
+        synchronized (this.H) {
+            this.H.clear();
+        }
+    }
+
+    @Override
+    public final boolean x() {
+        return true;
     }
 }

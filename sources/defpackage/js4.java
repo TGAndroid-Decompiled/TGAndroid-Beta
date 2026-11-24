@@ -1,3 +1,4 @@
 package defpackage;
-public interface js4 extends gs4 {
+public interface js4 {
+    Object m(Object obj);
 }

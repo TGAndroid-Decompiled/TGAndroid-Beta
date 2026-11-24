@@ -6,33 +6,33 @@ import android.graphics.Paint;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class n8 extends FrameLayout {
-    public final b61 a;
+    public final u41 a;
     public final View b;
-    public final ylb c;
+    public final wjb c;
     public final Paint d;
     public boolean e;
 
-    public n8(Context context, ylb ylbVar) {
+    public n8(Context context, wjb wjbVar) {
         super(context);
         this.d = new Paint(1);
-        this.c = ylbVar;
+        this.c = wjbVar;
         View view = new View(context);
         this.b = view;
-        addView(view, qoe.o(-1, -1));
-        b61 b61Var = new b61(ylbVar, context, true);
-        this.a = b61Var;
-        addView(b61Var, qoe.d(-1, 48.0f, 17, 14.0f, 0.0f, 14.0f, 0.0f));
+        addView(view, nme.o(-1, -1));
+        u41 u41Var = new u41(wjbVar, context, true);
+        this.a = u41Var;
+        addView(u41Var, nme.d(-1, 48.0f, 17, 14.0f, 0.0f, 14.0f, 0.0f));
     }
 
     public final void a(int i, boolean z) {
         this.e = true;
-        b61 b61Var = this.a;
-        b61Var.k();
-        b61Var.setShowZero(true);
-        b61Var.setEnabled(true);
-        b61Var.c(i, z);
-        b61Var.i(jb6.M0(2131753158, null), z, true);
-        anb.h(cmb.g5, this.c, this.b);
+        u41 u41Var = this.a;
+        u41Var.k();
+        u41Var.setShowZero(true);
+        u41Var.setEnabled(true);
+        u41Var.c(i, z);
+        u41Var.i(k96.M0(2131753190, null), z, true);
+        zkb.h(bkb.g5, this.c, this.b);
     }
 
     public final void b(boolean z) {
@@ -43,7 +43,7 @@ public final class n8 extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.e) {
-            int v0 = cmb.v0(cmb.Z6, this.c);
+            int v0 = bkb.v0(bkb.Z6, this.c);
             Paint paint = this.d;
             paint.setColor(v0);
             paint.setAlpha(255);
@@ -53,25 +53,25 @@ public final class n8 extends FrameLayout {
 
     public void setCloseStyle(boolean z) {
         this.e = false;
-        b61 b61Var = this.a;
-        b61Var.setShowZero(false);
-        b61Var.setEnabled(true);
-        b61Var.i(jb6.a0("Close", null, 2131751978, new Object[0]), false, true);
+        u41 u41Var = this.a;
+        u41Var.setShowZero(false);
+        u41Var.setEnabled(true);
+        u41Var.i(k96.a0("Close", null, 2131752029, new Object[0]), false, true);
         this.e = z;
     }
 
     public void setOkStyle(boolean z) {
         String a0;
         this.e = false;
-        b61 b61Var = this.a;
-        b61Var.setShowZero(false);
-        b61Var.setEnabled(true);
+        u41 u41Var = this.a;
+        u41Var.setShowZero(false);
+        u41Var.setEnabled(true);
         if (z) {
-            a0 = jb6.a0("BoostingUseLink", null, 2131753139, new Object[0]);
+            a0 = k96.a0("BoostingUseLink", null, 2131753171, new Object[0]);
         } else {
-            a0 = jb6.a0("OK", null, 2131747564, new Object[0]);
+            a0 = k96.a0("OK", null, 2131747638, new Object[0]);
         }
-        b61Var.i(a0, false, true);
+        u41Var.i(a0, false, true);
     }
 
     @Override

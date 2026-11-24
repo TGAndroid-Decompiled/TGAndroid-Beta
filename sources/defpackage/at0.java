@@ -1,79 +1,65 @@
 package defpackage;
 
-import android.content.Context;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class at0 implements Runnable {
-    public final byte a = 2;
-    public final Object b;
-    public final long c;
-    public final int d;
-    public final Object e;
-    public final Object f;
-    public final Object h;
-    public final Object n;
-    public final Object r;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_payments;
+public final class at0 {
+    public final int a;
+    public final long b;
+    public int c;
+    public boolean d;
+    public long f;
+    public boolean h;
+    public boolean i;
+    public String j;
+    public final ArrayList e = new ArrayList();
+    public int g = 1;
 
-    public at0(int i, TLRPC.TL_error tL_error, qt0 qt0Var, TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP, TwoStepVerificationActivity twoStepVerificationActivity, wz wzVar, d dVar, long j) {
-        this.d = i;
-        this.b = tL_error;
-        this.e = qt0Var;
-        this.f = tL_inputCheckPasswordSRP;
-        this.h = twoStepVerificationActivity;
-        this.n = wzVar;
-        this.r = dVar;
-        this.c = j;
+    public at0(int i, long j) {
+        this.h = false;
+        this.i = false;
+        this.j = null;
+        this.a = i;
+        this.b = j;
+        if (System.currentTimeMillis() - this.f > 900000) {
+            this.c = 0;
+            this.d = false;
+            this.i = false;
+            this.f = 0L;
+            this.j = null;
+            this.h = false;
+            a();
+        }
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.at0.run():void");
-    }
-
-    public at0(pm5 pm5Var, int i, String str, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, long j) {
-        this.b = pm5Var;
-        this.d = i;
-        this.e = str;
-        this.f = inputFile;
-        this.h = inputEncryptedFile;
-        this.n = bArr;
-        this.r = bArr2;
-        this.c = j;
-    }
-
-    public at0(TLObject tLObject, int i, he heVar, Context context, long j, ylb ylbVar, bv0 bv0Var, p pVar) {
-        this.b = tLObject;
-        this.d = i;
-        this.e = heVar;
-        this.f = context;
-        this.c = j;
-        this.h = ylbVar;
-        this.n = bv0Var;
-        this.r = pVar;
-    }
-
-    public at0(TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, d dVar, long j, qt0 qt0Var, wz wzVar, int i) {
-        this.e = tL_error;
-        this.b = tLObject;
-        this.f = twoStepVerificationActivity;
-        this.h = dVar;
-        this.c = j;
-        this.n = qt0Var;
-        this.r = wzVar;
-        this.d = i;
-    }
-
-    public at0(LaunchActivity launchActivity, TLObject tLObject, int i, String str, String str2, TLRPC.User user, String str3, long j) {
-        this.e = launchActivity;
-        this.b = tLObject;
-        this.d = i;
-        this.f = str;
-        this.h = str2;
-        this.n = user;
-        this.r = str3;
-        this.c = j;
+    public final void a() {
+        boolean z;
+        if (!this.h && !this.i && !this.d) {
+            this.f = System.currentTimeMillis();
+            boolean z2 = true;
+            this.h = true;
+            TL_payments.getSuggestedStarRefBots getsuggestedstarrefbots = new TL_payments.getSuggestedStarRefBots();
+            int i = this.a;
+            getsuggestedstarrefbots.peer = na7.q1(i).h1(this.b);
+            getsuggestedstarrefbots.limit = 20;
+            int i2 = this.g;
+            if (i2 == 3) {
+                z = true;
+            } else {
+                z = false;
+            }
+            getsuggestedstarrefbots.order_by_date = z;
+            if (i2 != 2) {
+                z2 = false;
+            }
+            getsuggestedstarrefbots.order_by_revenue = z2;
+            if (!TextUtils.isEmpty(this.j)) {
+                getsuggestedstarrefbots.offset = this.j;
+            } else {
+                getsuggestedstarrefbots.offset = "";
+            }
+            ConnectionsManager.getInstance(i).sendRequest(getsuggestedstarrefbots, new tf(this, (byte) 7));
+        }
     }
 }

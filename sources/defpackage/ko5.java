@@ -1,14 +1,11 @@
 package defpackage;
-public final class ko5 extends u2 {
-    public final mo5 d;
+public final class ko5 {
+    public static final cff c = new cff((byte) 20);
+    public final String a;
+    public final String b;
 
-    public ko5(mo5 mo5Var, int i) {
-        super(mo5Var.size(), i);
-        this.d = mo5Var;
-    }
-
-    @Override
-    public final Object a(int i) {
-        return this.d.get(i);
+    public ko5(String str, String str2) {
+        this.a = str;
+        this.b = str2;
     }
 }

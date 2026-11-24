@@ -1,133 +1,232 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.PhotoViewer;
-public final class og4 extends jb8 {
-    public final ch4 a;
+import android.content.Context;
+import android.text.TextUtils;
+import android.util.JsonReader;
+import android.util.Log;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.util.regex.Pattern;
+import java.util.zip.GZIPOutputStream;
+import org.json.JSONException;
+import org.json.JSONObject;
+public final class og4 {
+    public static final Pattern d = Pattern.compile("[0-9]+s");
+    public static final Charset e = Charset.forName("UTF-8");
+    public final Context a;
+    public final mt8 b;
+    public final jd1 c;
 
-    public og4(ch4 ch4Var) {
-        this.a = ch4Var;
+    public og4(Context context, mt8 mt8Var) {
+        this.a = context;
+        this.b = mt8Var;
+        ?? obj = new Object();
+        c6e c6eVar = c6e.E;
+        c6e c6eVar2 = c6eVar;
+        if (c6eVar == null) {
+            Pattern pattern = t8c.b;
+            ?? obj2 = new Object();
+            c6e.E = obj2;
+            c6eVar2 = obj2;
+        }
+        t8c t8cVar = t8c.c;
+        if (t8cVar == null) {
+            t8cVar = new t8c(c6eVar2);
+            t8c.c = t8cVar;
+        }
+        obj.c = t8cVar;
+        this.c = obj;
     }
 
-    @Override
-    public final CharSequence C(int i) {
-        return jb6.s(((k47) this.a.f.get(i)).k.date, false);
+    public static URL a(String str) {
+        try {
+            return new URL("https://firebaseinstallations.googleapis.com/v1/".concat(str));
+        } catch (MalformedURLException e2) {
+            throw new v30(e2.getMessage());
+        }
     }
 
-    @Override
-    public final qb8 N(k47 k47Var, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
-        ImageReceiver photoImage;
-        View pinnedHeader;
-        int i2;
-        k47 k47Var2;
-        bf0 bf0Var;
-        if (k47Var != null) {
-            fv fvVar = this.a.b;
-            int childCount = fvVar.getChildCount();
-            for (int i3 = 0; i3 < childCount; i3++) {
-                View childAt = fvVar.getChildAt(i3);
-                int[] iArr = new int[2];
-                if (childAt instanceof tha) {
-                    tha thaVar = (tha) childAt;
-                    photoImage = null;
-                    for (int i4 = 0; i4 < 6; i4++) {
-                        if (i4 >= thaVar.e) {
-                            k47Var2 = null;
-                        } else {
-                            k47Var2 = thaVar.b[i4];
-                        }
-                        if (k47Var2 == null) {
-                            break;
-                        }
-                        if (k47Var2.e1() == k47Var.e1()) {
-                            if (i4 >= thaVar.e) {
-                                bf0Var = null;
-                            } else {
-                                bf0Var = thaVar.a[i4].a;
-                            }
-                            ImageReceiver imageReceiver = bf0Var.getImageReceiver();
-                            bf0Var.getLocationInWindow(iArr);
-                            photoImage = imageReceiver;
-                        }
+    public static void b(HttpURLConnection httpURLConnection, String str, String str2, String str3) {
+        String h;
+        InputStream errorStream = httpURLConnection.getErrorStream();
+        String str4 = null;
+        if (errorStream != null) {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, e));
+            try {
+                StringBuilder sb = new StringBuilder();
+                while (true) {
+                    String readLine = bufferedReader.readLine();
+                    if (readLine == null) {
+                        break;
                     }
-                } else if (childAt instanceof ida) {
-                    ida idaVar = (ida) childAt;
-                    if (idaVar.getMessage().e1() == k47Var.e1()) {
-                        bf0 imageView = idaVar.getImageView();
-                        ImageReceiver imageReceiver2 = imageView.getImageReceiver();
-                        imageView.getLocationInWindow(iArr);
-                        photoImage = imageReceiver2;
-                    }
-                    photoImage = null;
-                } else {
-                    if (childAt instanceof lx2) {
-                        lx2 lx2Var = (lx2) childAt;
-                        k47 k47Var3 = (k47) lx2Var.getParentObject();
-                        if (k47Var3 != null && k47Var3.e1() == k47Var.e1()) {
-                            photoImage = lx2Var.getPhotoImage();
-                            lx2Var.getLocationInWindow(iArr);
-                        }
-                    }
-                    photoImage = null;
+                    sb.append(readLine);
+                    sb.append('\n');
                 }
-                if (photoImage != null) {
-                    qb8 qb8Var = new qb8();
-                    qb8Var.b = iArr[0];
-                    qb8Var.c = iArr[1];
-                    qb8Var.d = fvVar;
-                    fvVar.getLocationInWindow(iArr);
-                    qb8Var.n = -iArr[1];
-                    qb8Var.a = photoImage;
-                    qb8Var.o = false;
-                    qb8Var.h = photoImage.z();
-                    qb8Var.e = qb8Var.a.p();
-                    qb8Var.d.getLocationInWindow(iArr);
-                    qb8Var.j = 0;
-                    if (PhotoViewer.P0(k47Var) && (pinnedHeader = fvVar.getPinnedHeader()) != null) {
-                        if (childAt instanceof ida) {
-                            i2 = gm.L(8.0f);
-                        } else {
-                            i2 = 0;
-                        }
-                        int i5 = i2 - qb8Var.c;
-                        if (i5 > childAt.getHeight()) {
-                            fvVar.scrollBy(0, -(pinnedHeader.getHeight() + i5));
-                            return qb8Var;
-                        }
-                        int height = qb8Var.c - fvVar.getHeight();
-                        if (childAt instanceof ida) {
-                            height -= gm.L(8.0f);
-                        }
-                        if (height >= 0) {
-                            fvVar.scrollBy(0, childAt.getHeight() + height);
-                        }
-                    }
-                    return qb8Var;
+                str4 = String.format("Error when communicating with the Firebase Installations server API. HTTP response: [%d %s: %s]", Integer.valueOf(httpURLConnection.getResponseCode()), httpURLConnection.getResponseMessage(), sb);
+            } catch (IOException unused) {
+            } catch (Throwable th) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException unused2) {
                 }
+                throw th;
+            }
+            try {
+                bufferedReader.close();
+            } catch (IOException unused3) {
             }
         }
+        if (!TextUtils.isEmpty(str4)) {
+            Log.w("Firebase-Installations", str4);
+            if (TextUtils.isEmpty(str)) {
+                h = "";
+            } else {
+                h = b00.h(", ", str);
+            }
+            Log.w("Firebase-Installations", b00.i("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, h));
+        }
+    }
+
+    public static long d(String str) {
+        fre.a("Invalid Expiration Timestamp.", d.matcher(str).matches());
+        if (str != null && str.length() != 0) {
+            return Long.parseLong(str.substring(0, str.length() - 1));
+        }
+        return 0L;
+    }
+
+    public static w90 e(HttpURLConnection httpURLConnection) {
+        InputStream inputStream = httpURLConnection.getInputStream();
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, e));
+        byte b = (byte) (0 | 1);
+        jsonReader.beginObject();
+        long j = 0;
+        String str = null;
+        String str2 = null;
+        String str3 = null;
+        String str4 = null;
+        qa0 qa0Var = null;
+        while (jsonReader.hasNext()) {
+            String nextName = jsonReader.nextName();
+            if (nextName.equals("name")) {
+                str2 = jsonReader.nextString();
+            } else if (nextName.equals("fid")) {
+                str3 = jsonReader.nextString();
+            } else if (nextName.equals("refreshToken")) {
+                str4 = jsonReader.nextString();
+            } else if (nextName.equals("authToken")) {
+                jsonReader.beginObject();
+                while (jsonReader.hasNext()) {
+                    String nextName2 = jsonReader.nextName();
+                    if (nextName2.equals("token")) {
+                        str = jsonReader.nextString();
+                    } else if (nextName2.equals("expiresIn")) {
+                        j = d(jsonReader.nextString());
+                        b = (byte) (b | 1);
+                    } else {
+                        jsonReader.skipValue();
+                    }
+                }
+                if (b == 1) {
+                    qa0Var = new qa0(str, j, 0);
+                    jsonReader.endObject();
+                } else {
+                    sc8.j("Missing required properties: tokenExpirationTimestamp");
+                    return null;
+                }
+            } else {
+                jsonReader.skipValue();
+            }
+        }
+        jsonReader.endObject();
+        jsonReader.close();
+        inputStream.close();
+        return new w90(str2, str3, str4, qa0Var, 1);
+    }
+
+    public static qa0 f(HttpURLConnection httpURLConnection) {
+        InputStream inputStream = httpURLConnection.getInputStream();
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, e));
+        byte b = (byte) (0 | 1);
+        jsonReader.beginObject();
+        long j = 0;
+        String str = null;
+        while (jsonReader.hasNext()) {
+            String nextName = jsonReader.nextName();
+            if (nextName.equals("token")) {
+                str = jsonReader.nextString();
+            } else if (nextName.equals("expiresIn")) {
+                j = d(jsonReader.nextString());
+                b = (byte) (b | 1);
+            } else {
+                jsonReader.skipValue();
+            }
+        }
+        jsonReader.endObject();
+        jsonReader.close();
+        inputStream.close();
+        if (b == 1) {
+            return new qa0(str, j, 1);
+        }
+        sc8.j("Missing required properties: tokenExpirationTimestamp");
         return null;
     }
 
-    @Override
-    public final boolean a0() {
-        ch4 ch4Var = this.a;
-        if (!ch4Var.O) {
-            ch4Var.h(ch4Var.F, ch4Var.G, ch4Var.I, ch4Var.H, ch4Var.E, ch4Var.K, ch4Var.x, false);
-            return true;
+    public static void g(HttpURLConnection httpURLConnection, String str, String str2) {
+        try {
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put("fid", str);
+            jSONObject.put("appId", str2);
+            jSONObject.put("authVersion", "FIS_v2");
+            jSONObject.put("sdkVersion", "a:19.1.2");
+            i(httpURLConnection, jSONObject.toString().getBytes("UTF-8"));
+        } catch (JSONException e2) {
+            ho9.n(e2);
         }
-        return true;
     }
 
-    @Override
-    public final CharSequence d0(int i) {
-        return ch4.c((k47) this.a.f.get(i), true, 0, null);
+    public static void h(HttpURLConnection httpURLConnection) {
+        try {
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put("sdkVersion", "a:19.1.2");
+            JSONObject jSONObject2 = new JSONObject();
+            jSONObject2.put("installation", jSONObject);
+            i(httpURLConnection, jSONObject2.toString().getBytes("UTF-8"));
+        } catch (JSONException e2) {
+            ho9.n(e2);
+        }
     }
 
-    @Override
-    public final int x() {
-        return this.a.P;
+    public static void i(HttpURLConnection httpURLConnection, byte[] bArr) {
+        OutputStream outputStream = httpURLConnection.getOutputStream();
+        if (outputStream != null) {
+            GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
+            try {
+                gZIPOutputStream.write(bArr);
+                try {
+                    return;
+                } catch (IOException unused) {
+                    return;
+                }
+            } finally {
+                try {
+                    gZIPOutputStream.close();
+                    outputStream.close();
+                } catch (IOException unused2) {
+                }
+            }
+        }
+        k93.f("Cannot send request to FIS servers. No OutputStream available.");
+    }
+
+    public final java.net.HttpURLConnection c(java.net.URL r9, java.lang.String r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.og4.c(java.net.URL, java.lang.String):java.net.HttpURLConnection");
     }
 }

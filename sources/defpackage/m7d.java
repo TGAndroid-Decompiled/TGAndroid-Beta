@@ -1,5 +1,5 @@
 package defpackage;
 
-import java.util.RandomAccess;
-public final class m7d extends l3 implements RandomAccess {
+import android.os.IInterface;
+public interface m7d extends IInterface {
 }

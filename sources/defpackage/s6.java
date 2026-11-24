@@ -26,8 +26,8 @@ public final class s6 implements View.OnClickListener {
                 } else if (r7Var.s()) {
                     r7Var.e.m();
                     for (int i = 0; i < arrayList.size(); i++) {
-                        if (r7Var.I != null && ((sh4) arrayList.get(i)).h) {
-                            r7Var.I.j((sh4) arrayList.get(i));
+                        if (r7Var.I != null && ((rf4) arrayList.get(i)).h) {
+                            r7Var.I.j((rf4) arrayList.get(i));
                         }
                     }
                     r7Var.n();
@@ -42,7 +42,7 @@ public final class s6 implements View.OnClickListener {
                     }
                 }
                 r7Var.e.requestFocus();
-                gm.E3(r7Var.e);
+                gl.E3(r7Var.e);
                 return;
             case 1:
                 if (r7Var.y()) {

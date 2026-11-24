@@ -1,16 +1,15 @@
 package defpackage;
 
-import java.io.Closeable;
-public final class o63 implements Closeable {
-    public mv8 a;
-    public mq5 b;
-    public mv8 c;
-    public et8 d;
-    public mv8 e;
-    public mv8 f;
+import android.net.Uri;
+import java.util.Map;
+public interface o63 extends g63 {
+    void addTransferListener(vyb vybVar);
 
-    @Override
-    public final void close() {
-        ((mq9) this.e.mo8get()).close();
-    }
+    void close();
+
+    Map getResponseHeaders();
+
+    Uri getUri();
+
+    long open(u63 u63Var);
 }

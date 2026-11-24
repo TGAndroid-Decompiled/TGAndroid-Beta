@@ -1,11 +1,30 @@
 package defpackage;
+public final class eq8 implements Runnable {
+    public final byte a;
+    public final pq8 b;
 
-import android.graphics.RectF;
-import org.telegram.ui.ProfileActivity;
-public final class eq8 extends hjb {
+    public eq8(pq8 pq8Var, byte b) {
+        this.a = b;
+        this.b = pq8Var;
+    }
+
     @Override
-    public final int a(int i) {
-        RectF rectF = ProfileActivity.e7;
-        return i;
+    public final void run() {
+        byte b = this.a;
+        pq8 pq8Var = this.b;
+        switch (b) {
+            case 0:
+                pq8Var.b();
+                return;
+            case 1:
+                pq8Var.c();
+                return;
+            case 2:
+                pq8Var.f(false);
+                return;
+            default:
+                pq8Var.d();
+                return;
+        }
     }
 }

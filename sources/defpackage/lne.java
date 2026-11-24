@@ -1,42 +1,24 @@
 package defpackage;
 
-import java.util.AbstractCollection;
-import java.util.Iterator;
 import java.util.List;
 public abstract class lne {
-    public static Object a(AbstractCollection abstractCollection, String str) {
-        Iterator it = abstractCollection.iterator();
-        if (it.hasNext()) {
-            return it.next();
+    public static void a(kab kabVar, int i, us2 us2Var) {
+        long h = kabVar.h(i);
+        List l = kabVar.l(h);
+        if (!l.isEmpty()) {
+            if (i != kabVar.t() - 1) {
+                long h2 = kabVar.h(i + 1) - kabVar.h(i);
+                if (h2 > 0) {
+                    us2Var.accept(new x33(h, h2, l));
+                    return;
+                }
+                return;
+            }
+            sdb.a();
         }
-        return str;
     }
 
-    public static Object b(Iterable iterable) {
-        Object next;
-        if (iterable instanceof List) {
-            List list = (List) iterable;
-            if (!list.isEmpty()) {
-                return aq1.m(1, list);
-            }
-            u36.g();
-            return null;
-        }
-        Iterator it = iterable.iterator();
-        do {
-            next = it.next();
-        } while (it.hasNext());
-        return next;
-    }
-
-    public static void c(List list, di8 di8Var, int i, int i2) {
-        for (int size = list.size() - 1; size > i2; size--) {
-            if (di8Var.apply(list.get(size))) {
-                list.remove(size);
-            }
-        }
-        for (int i3 = i2 - 1; i3 >= i; i3--) {
-            list.remove(i3);
-        }
+    public static void b(defpackage.kab r12, defpackage.tab r13, defpackage.us2 r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.lne.b(kab, tab, us2):void");
     }
 }

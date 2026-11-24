@@ -1,6 +1,6 @@
 package defpackage;
 
-import android.os.Binder;
-public abstract class xi5 extends Binder implements yi5 {
-    public static final int a = 0;
+import android.os.IInterface;
+public interface xi5 extends IInterface {
+    public static final String g = "android$support$v4$app$INotificationSideChannel".replace('$', '.');
 }

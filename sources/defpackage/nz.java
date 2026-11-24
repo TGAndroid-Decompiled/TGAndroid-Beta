@@ -1,94 +1,131 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import android.text.InputFilter;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class nz extends bya {
-    public final tz n0;
+import android.media.AudioAttributes;
+import android.os.Build;
+import android.os.Bundle;
+public final class nz {
+    public static final nz i = new nz(0, 0, 1, 1, false, 0, true);
+    public static final String j;
+    public static final String k;
+    public static final String l;
+    public static final String m;
+    public static final String n;
+    public static final String o;
+    public static final String p;
+    public final int a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final boolean f;
+    public final boolean g;
+    public AudioAttributes h;
 
-    public nz(tz tzVar, Context context, ylb ylbVar) {
-        super(context, ylbVar);
-        this.n0 = tzVar;
+    static {
+        String str = g8c.a;
+        j = "0";
+        k = "1";
+        l = "2";
+        m = "3";
+        n = "4";
+        o = "5";
+        p = "6";
     }
 
-    @Override
-    public final boolean d(float f) {
-        if (getProgress() <= 0.99d && f <= getMeasuredWidth() * 0.9f) {
-            return false;
-        }
-        tz tzVar = this.n0;
-        Context context = tzVar.getContext();
-        Activity W = gm.W(context);
-        d Q = LaunchActivity.Q();
-        if (W != null) {
-            W.getCurrentFocus();
-        }
-        View[] viewArr = new View[1];
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, tzVar.J0, context);
-        String M0 = jb6.M0(2131750276, null);
-        he heVar = alertDialog$Builder.a;
-        heVar.S = M0;
-        heVar.U = jb6.a0(null, null, 2131750275, Integer.valueOf(tzVar.g2.d.gifts_per_round));
-        pz pzVar = new pz(context, tzVar.J0, b10.d(context, 2131232769));
-        pzVar.setTextSize(1, 18.0f);
-        anb.X(pzVar, cmb.i5, tzVar.J0);
-        anb.l(pzVar, 34, cmb.Ni, tzVar.J0);
-        pzVar.setHintText(jb6.M0(2131750274, null));
-        pzVar.setFocusable(true);
-        pzVar.setInputType(2);
-        pzVar.setFilters(new InputFilter[]{new InputFilter.LengthFilter(9)});
-        anb.F(pzVar, cmb.j6, cmb.k6, cmb.o7, tzVar.J0);
-        pzVar.setImeOptions(268435462);
-        pzVar.setBackgroundDrawable(null);
-        pzVar.l1 = gm.L(24.0f);
-        pzVar.setPadding(gm.L(24.0f), gm.L(6.0f), 0, gm.L(6.0f));
-        pzVar.addTextChangedListener(new qz(tzVar, viewArr, (byte) 0));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.addView(pzVar, qoe.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
-        alertDialog$Builder.b();
-        alertDialog$Builder.n(linearLayout);
-        heVar.a = gm.L(300.0f);
-        alertDialog$Builder.j(jb6.M0(2131750278, null), new o(tzVar, pzVar, (byte) 15));
-        alertDialog$Builder.g(jb6.M0(2131752542, null), new zg((byte) 29));
-        he[] heVarArr = {heVar};
-        if (Q != null) {
-            gm.U2(W, Q.getClassGuid());
-        }
-        heVarArr[0].setOnDismissListener(new ah(pzVar, Q, W, (byte) 2));
-        heVarArr[0].setOnShowListener(new jh(pzVar, (byte) 1));
-        heVarArr[0].show();
-        View c = heVarArr[0].c(-1);
-        viewArr[0] = c;
-        c.setAlpha(0.6f);
-        heVarArr[0].k0 = false;
-        pzVar.setSelection(pzVar.getText().length());
-        return true;
+    public nz(int i2, int i3, int i4, int i5, boolean z, int i6, boolean z2) {
+        this.a = i2;
+        this.b = i3;
+        this.c = i4;
+        this.d = i5;
+        this.e = i6;
+        this.f = z;
+        this.g = z2;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && motionEvent.getY() > getMeasuredHeight() - gm.L(48.0f)) {
-            return false;
+    public static nz a(Bundle bundle) {
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        int i6;
+        String str = j;
+        boolean z = false;
+        if (bundle.containsKey(str)) {
+            i2 = bundle.getInt(str);
+        } else {
+            i2 = 0;
         }
-        super.dispatchTouchEvent(motionEvent);
-        return true;
+        String str2 = k;
+        if (bundle.containsKey(str2)) {
+            i3 = bundle.getInt(str2);
+        } else {
+            i3 = 0;
+        }
+        String str3 = l;
+        boolean z2 = true;
+        if (bundle.containsKey(str3)) {
+            i4 = bundle.getInt(str3);
+        } else {
+            i4 = 1;
+        }
+        String str4 = m;
+        if (bundle.containsKey(str4)) {
+            i5 = bundle.getInt(str4);
+        } else {
+            i5 = 1;
+        }
+        String str5 = n;
+        if (bundle.containsKey(str5)) {
+            i6 = bundle.getInt(str5);
+        } else {
+            i6 = 0;
+        }
+        String str6 = o;
+        if (bundle.containsKey(str6)) {
+            z = bundle.getBoolean(str6);
+        }
+        boolean z3 = z;
+        String str7 = p;
+        if (bundle.containsKey(str7)) {
+            z2 = bundle.getBoolean(str7);
+        }
+        return new nz(i2, i3, i4, i5, z3, i6, z2);
     }
 
-    @Override
-    public final void e(int i) {
-        this.n0.a1(i);
+    public final AudioAttributes b() {
+        AudioAttributes audioAttributes = this.h;
+        if (audioAttributes == null) {
+            AudioAttributes.Builder usage = new AudioAttributes.Builder().setContentType(this.a).setFlags(this.b).setUsage(this.c);
+            int i2 = Build.VERSION.SDK_INT;
+            if (i2 >= 29) {
+                rr.p(usage, this.d);
+                rr.t(usage, this.g);
+            }
+            if (i2 >= 32) {
+                mz.b(usage, this.e);
+                mz.a(usage, this.f);
+            }
+            AudioAttributes build = usage.build();
+            this.h = build;
+            return build;
+        }
+        return audioAttributes;
     }
 
-    @Override
-    public final void setValue(int i) {
-        super.setValue(i);
-        this.n0.a1(i);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && nz.class == obj.getClass()) {
+            nz nzVar = (nz) obj;
+            if (this.a == nzVar.a && this.b == nzVar.b && this.c == nzVar.c && this.d == nzVar.d && this.e == nzVar.e && this.f == nzVar.f && this.g == nzVar.g) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return ((((((((((((527 + this.a) * 31) + this.b) * 31) + this.c) * 31) + this.d) * 31) + this.e) * 31) + (this.f ? 1 : 0)) * 31) + (this.g ? 1 : 0);
     }
 }

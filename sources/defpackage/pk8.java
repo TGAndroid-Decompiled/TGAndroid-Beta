@@ -1,42 +1,39 @@
 package defpackage;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class pk8 extends q59 {
-    public final fj8 c;
+import android.animation.ValueAnimator;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+public final class pk8 extends GestureDetector.SimpleOnGestureListener {
+    public boolean a;
+    public boolean b;
+    public final bgc c;
 
-    public pk8(fj8 fj8Var) {
-        this.c = fj8Var;
+    public pk8(bgc bgcVar) {
+        this.c = bgcVar;
     }
 
     @Override
-    public final boolean D(u69 u69Var) {
-        return false;
+    public final boolean onDown(MotionEvent motionEvent) {
+        this.a = true;
+        return super.onDown(motionEvent);
     }
 
     @Override
-    public final int b() {
-        return Integer.MAX_VALUE;
-    }
-
-    @Override
-    public final void t(u69 u69Var, int i) {
-        fj8 fj8Var = this.c;
-        ArrayList arrayList = fj8Var.f3;
-        if (arrayList.isEmpty()) {
-            return;
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+        float x = motionEvent.getX() - motionEvent2.getX();
+        float y = motionEvent.getY() - motionEvent2.getY();
+        if (Math.abs(x) > gl.Z0(true, 0.4f) && Math.abs(x) / 3.0f > y && this.a && !this.b) {
+            this.a = false;
+            kt ktVar = new kt(this, x, (byte) 3);
+            bgc bgcVar = this.c;
+            ValueAnimator valueAnimator = bgcVar.V;
+            if (valueAnimator != null) {
+                this.b = true;
+                gl.d3(ktVar, (valueAnimator.getDuration() - bgcVar.V.getCurrentPlayTime()) + 50);
+            } else {
+                ktVar.run();
+            }
         }
-        rk8 rk8Var = (rk8) u69Var.a;
-        rk8Var.r = (TLRPC.Document) arrayList.get(i % arrayList.size());
-        rk8Var.s = true;
-        rk8Var.a(!fj8Var.k3, false, false);
-    }
-
-    @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        rk8 rk8Var = new rk8(this.c, viewGroup.getContext());
-        rk8Var.setLayoutParams(new g69(-1, -2));
-        return new u69(rk8Var);
+        return super.onScroll(motionEvent, motionEvent2, f, f2);
     }
 }

@@ -1,14 +1,6 @@
 package defpackage;
 
-import android.view.ActionMode;
-import android.view.SearchEvent;
-import android.view.Window;
-public abstract class vyc {
-    public static boolean a(Window.Callback callback, SearchEvent searchEvent) {
-        return callback.onSearchRequested(searchEvent);
-    }
-
-    public static ActionMode b(Window.Callback callback, ActionMode.Callback callback2, int i) {
-        return callback.onWindowStartingActionMode(callback2, i);
-    }
+import java.util.EnumMap;
+public interface vyc {
+    qj0 n(String str, ze0 ze0Var, EnumMap enumMap);
 }

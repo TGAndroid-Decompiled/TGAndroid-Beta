@@ -1,9 +1,6 @@
 package defpackage;
 
-import android.view.View;
-public final class gx4 extends sc3 {
-    @Override
-    public final float A(View view) {
-        return 0.3f;
-    }
+import android.graphics.Canvas;
+public interface gx4 {
+    void e(float f, float f2, float f3, float f4, Canvas canvas);
 }

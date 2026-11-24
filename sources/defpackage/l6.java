@@ -79,13 +79,13 @@ public final class l6 implements Runnable {
             num2 = num;
         }
         if (actionBarLayout.I != null && num != null && num2 != null) {
-            int f3 = on2.f(pqe.a(actionBarLayout.L0 * 4.0f, 0.0f, 1.0f), num.intValue(), num2.intValue());
+            int f3 = bm2.f(moe.a(actionBarLayout.L0 * 4.0f, 0.0f, 1.0f), num.intValue(), num2.intValue());
             k6 k6Var = actionBarLayout.H;
             if (k6Var != null && k6Var.sheetsStack != null) {
                 for (int i = 0; i < actionBarLayout.H.sheetsStack.size(); i++) {
-                    ah0 ah0Var = actionBarLayout.H.sheetsStack.get(i);
-                    if (ah0Var.y()) {
-                        f3 = ah0Var.e(f3);
+                    zf0 zf0Var = actionBarLayout.H.sheetsStack.get(i);
+                    if (zf0Var.z()) {
+                        f3 = zf0Var.e(f3);
                     }
                 }
             }
@@ -95,13 +95,13 @@ public final class l6 implements Runnable {
             if (z2) {
                 interpolation = actionBarLayout.N.getInterpolation(actionBarLayout.L0);
             } else {
-                interpolation = d53.h.getInterpolation(actionBarLayout.L0);
+                interpolation = s33.h.getInterpolation(actionBarLayout.L0);
             }
         } else {
             interpolation = actionBarLayout.M.getInterpolation(actionBarLayout.L0);
         }
         if (z2) {
-            float a = pqe.a(interpolation, 0.0f, 1.0f);
+            float a = moe.a(interpolation, 0.0f, 1.0f);
             actionBarLayout.s.setAlpha(a);
             b bVar = actionBarLayout.s;
             if (z3) {
@@ -110,22 +110,22 @@ public final class l6 implements Runnable {
                 actionBarLayout.s.setScaleY(f4);
                 if (actionBarLayout.K != null) {
                     float f5 = 1.0f - interpolation;
-                    actionBarLayout.s.setTranslationY(gm.L(40.0f) * f5);
-                    actionBarLayout.K.setTranslationY((-gm.L(70.0f)) * f5);
+                    actionBarLayout.s.setTranslationY(gl.L(40.0f) * f5);
+                    actionBarLayout.K.setTranslationY((-gl.L(70.0f)) * f5);
                     float f6 = (interpolation * 0.05f) + 0.95f;
                     actionBarLayout.K.setScaleX(f6);
                     actionBarLayout.K.setScaleY(f6);
                 }
                 actionBarLayout.r.setAlpha((int) (46.0f * a));
-                cmb.r0.setAlpha((int) (a * 255.0f));
+                bkb.r0.setAlpha((int) (a * 255.0f));
                 actionBarLayout.s.invalidate();
                 actionBarLayout.invalidate();
             } else {
-                bVar.setTranslationX((1.0f - interpolation) * gm.L(48.0f));
+                bVar.setTranslationX((1.0f - interpolation) * gl.L(48.0f));
             }
         } else {
             float f7 = 1.0f - interpolation;
-            float a2 = pqe.a(f7, 0.0f, 1.0f);
+            float a2 = moe.a(f7, 0.0f, 1.0f);
             actionBarLayout.w.setAlpha(a2);
             b bVar2 = actionBarLayout.w;
             if (z3) {
@@ -134,12 +134,12 @@ public final class l6 implements Runnable {
                 actionBarLayout.w.setScaleY(f8);
                 actionBarLayout.r.setAlpha((int) (46.0f * a2));
                 if (actionBarLayout.K == null) {
-                    cmb.r0.setAlpha((int) (a2 * 255.0f));
+                    bkb.r0.setAlpha((int) (a2 * 255.0f));
                 }
                 actionBarLayout.s.invalidate();
                 actionBarLayout.invalidate();
             } else {
-                bVar2.setTranslationX(gm.L(48.0f) * interpolation);
+                bVar2.setTranslationX(gl.L(48.0f) * interpolation);
             }
         }
         if (actionBarLayout.L0 < 1.0f) {

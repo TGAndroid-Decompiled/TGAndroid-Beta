@@ -1,50 +1,29 @@
 package defpackage;
 
-import j$.util.Objects;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
-public final class jw5 {
-    public final String a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class jw5 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final rw5 b;
 
-    public jw5(String str, byte b) {
+    public jw5(rw5 rw5Var, byte b) {
+        this.a = b;
+        this.b = rw5Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        rw5 rw5Var = this.b;
         switch (b) {
-            case 1:
-                this.a = str;
+            case 0:
+                rw5Var.Z1.setTranslationY(0.0f);
                 return;
             default:
-                str.getClass();
-                this.a = str;
+                rw5Var.c2 = false;
+                rw5Var.Z1.setTranslationY(0.0f);
+                rw5Var.j0();
                 return;
         }
-    }
-
-    public static CharSequence c(Object obj) {
-        Objects.requireNonNull(obj);
-        if (obj instanceof CharSequence) {
-            return (CharSequence) obj;
-        }
-        return obj.toString();
-    }
-
-    public final void a(StringBuilder sb, Iterator it) {
-        try {
-            if (it.hasNext()) {
-                sb.append(c(it.next()));
-                while (it.hasNext()) {
-                    sb.append((CharSequence) this.a);
-                    sb.append(c(it.next()));
-                }
-            }
-        } catch (IOException e) {
-            bh7.j(e);
-        }
-    }
-
-    public final String b(List list) {
-        Iterator it = list.iterator();
-        StringBuilder sb = new StringBuilder();
-        a(sb, it);
-        return sb.toString();
     }
 }

@@ -3,17 +3,17 @@ package org.telegram.messenger.secretmedia;
 import android.content.Context;
 import android.net.Uri;
 import android.util.LongSparseArray;
-public final class ExtendedDefaultDataSourceFactory implements y73 {
-    private final y73 baseDataSourceFactory;
+public final class ExtendedDefaultDataSourceFactory implements m63 {
+    private final m63 baseDataSourceFactory;
     private final Context context;
-    private final w0c listener;
+    private final vyb listener;
     private final LongSparseArray<Uri> mtprotoUris;
 
-    public ExtendedDefaultDataSourceFactory(Context context, w0c w0cVar, y73 y73Var) {
+    public ExtendedDefaultDataSourceFactory(Context context, vyb vybVar, m63 m63Var) {
         this.mtprotoUris = new LongSparseArray<>();
         this.context = context.getApplicationContext();
-        this.listener = w0cVar;
-        this.baseDataSourceFactory = y73Var;
+        this.listener = vybVar;
+        this.baseDataSourceFactory = m63Var;
     }
 
     @Override
@@ -25,11 +25,11 @@ public final class ExtendedDefaultDataSourceFactory implements y73 {
         this.mtprotoUris.put(j, uri);
     }
 
-    public ExtendedDefaultDataSourceFactory(android.content.Context r3, java.lang.String r4, defpackage.w0c r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory.<init>(android.content.Context, java.lang.String, w0c):void");
+    public ExtendedDefaultDataSourceFactory(android.content.Context r3, java.lang.String r4, defpackage.vyb r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory.<init>(android.content.Context, java.lang.String, vyb):void");
     }
 
     public ExtendedDefaultDataSourceFactory(Context context, String str) {
-        this(context, str, (w0c) null);
+        this(context, str, (vyb) null);
     }
 }

@@ -1,9 +1,7 @@
 package defpackage;
-
-import android.widget.TextView;
-public final class si extends TextView {
+public final class si extends hn7 {
     @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(gw3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+    public final CharSequence d(int i) {
+        return k96.G(i + 1, "Times", new Object[0]);
     }
 }

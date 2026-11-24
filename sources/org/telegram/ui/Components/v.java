@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class v extends k69 {
+public final class v extends i49 {
     public final ThemeEditorView.EditorAlert a;
 
     public v(ThemeEditorView.EditorAlert editorAlert) {

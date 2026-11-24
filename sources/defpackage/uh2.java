@@ -1,28 +1,21 @@
 package defpackage;
-public final class uh2 extends ev5 implements th2 {
-    public final wh2 e;
 
-    public uh2(wh2 wh2Var) {
-        this.e = wh2Var;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class uh2 extends b4 {
+    public static final Parcelable.Creator<uh2> CREATOR = new x21((byte) 6);
+    public final boolean a;
+
+    public uh2(boolean z) {
+        this.a = z;
     }
 
     @Override
-    public final boolean a(Throwable th) {
-        return j().m(th);
-    }
-
-    @Override
-    public final av5 getParent() {
-        return j();
-    }
-
-    @Override
-    public final boolean k() {
-        return true;
-    }
-
-    @Override
-    public final void l(Throwable th) {
-        ((ov5) this.e).i(j());
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.getClass();
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 1, 4);
+        parcel.writeInt(this.a ? 1 : 0);
+        jte.s(parcel, r);
     }
 }

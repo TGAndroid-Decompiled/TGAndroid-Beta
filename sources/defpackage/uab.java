@@ -1,13 +1,10 @@
 package defpackage;
-public final class uab implements nd0 {
-    public final go4 a;
+public interface uab {
+    kab f(int i, int i2, byte[] bArr);
 
-    public uab(go4 go4Var) {
-        this.a = go4Var;
-    }
+    void l(byte[] bArr, int i, int i2, tab tabVar, us2 us2Var);
 
-    @Override
-    public final int getType() {
-        return 1718776947;
-    }
+    int o();
+
+    void reset();
 }

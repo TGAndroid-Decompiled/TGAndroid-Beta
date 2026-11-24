@@ -1,18 +1,17 @@
 package defpackage;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class bjd {
-    public static final int a = 0;
+public final class bjd implements zn7 {
+    public static final bjd a = new Object();
 
     static {
-        bjd.class.getClassLoader();
+        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
     }
 
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
-            return null;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        return (Parcelable) creator.createFromParcel(parcel);
+        throw new ClassCastException();
     }
 }

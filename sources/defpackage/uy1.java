@@ -1,58 +1,65 @@
 package defpackage;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
-import androidx.appcompat.widget.SearchView;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class uy1 implements TextView.OnEditorActionListener {
-    public final byte a;
-    public final Object b;
+import android.content.Context;
+import android.view.View;
+public final class uy1 extends hc0 {
+    public final byte e;
 
-    public uy1(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public uy1(byte b, Context context, boolean z) {
+        super(context, z);
+        this.e = b;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj;
-                if (i == 4) {
-                    chatActivityEnterView.w1();
-                } else if (keyEvent == null || i != 0 || keyEvent.isShiftPressed()) {
-                    return false;
-                } else {
-                    if (chatActivityEnterView.r3) {
-                        if (keyEvent.isCtrlPressed()) {
-                            return false;
-                        }
-                    } else if (!keyEvent.isCtrlPressed()) {
-                        return false;
-                    }
-                    if (keyEvent.getAction() != 0 || chatActivityEnterView.P2 != null) {
-                        return false;
-                    }
-                    chatActivityEnterView.w1();
-                }
-                return true;
+    public final void invalidate() {
+        switch (this.e) {
             case 1:
-                if (i != 6) {
-                    return false;
+                if (qg5.c) {
+                    qg5.b.add(this);
+                    return;
+                } else {
+                    super.invalidate();
+                    return;
                 }
-                ((bi3) obj).run();
-                return true;
-            case 2:
-                if (i != 6) {
-                    return false;
-                }
-                ((Runnable) obj).run();
-                return true;
             default:
-                ((SearchView) obj).p();
-                return true;
+                super.invalidate();
+                return;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int h;
+        switch (this.e) {
+            case 0:
+                int i3 = this.a.n;
+                if (i3 == 0) {
+                    h = 0;
+                } else {
+                    h = oo1.h(i3, 1, 20, 24);
+                }
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(gl.L(h), 1073741824), i2);
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
+        }
+    }
+
+    @Override
+    public final void invalidate(int i, int i2, int i3, int i4) {
+        switch (this.e) {
+            case 1:
+                if (qg5.c) {
+                    qg5.b.add(this);
+                    return;
+                } else {
+                    super.invalidate(i, i2, i3, i4);
+                    return;
+                }
+            default:
+                super.invalidate(i, i2, i3, i4);
+                return;
         }
     }
 }

@@ -1,96 +1,106 @@
 package defpackage;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.List;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class mx8 extends y59 {
-    public final gy8 c;
+public final class mx8 implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final long c;
+    public final Object d;
+    public final Object e;
 
-    public mx8(gy8 gy8Var) {
-        this.c = gy8Var;
+    public mx8(t5b t5bVar, TLRPC.Chat chat, ad7 ad7Var, long j) {
+        this.a = (byte) 14;
+        this.d = t5bVar;
+        this.e = chat;
+        this.b = ad7Var;
+        this.c = j;
+    }
+
+    private final void a() {
+        pub pubVar = (pub) this.d;
+        TLObject tLObject = (TLObject) this.b;
+        awb awbVar = (awb) this.e;
+        pubVar.getClass();
+        ArrayList arrayList = new ArrayList();
+        Object obj = null;
+        Object obj2 = null;
+        int i = 0;
+        if (tLObject instanceof TLRPC.TL_messages_forumTopics) {
+            TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
+            vf6 vf6Var = new vf6();
+            for (int i2 = 0; i2 < tL_messages_forumTopics.messages.size(); i2++) {
+                vf6Var.k(tL_messages_forumTopics.messages.get(i2), tL_messages_forumTopics.messages.get(i2).id);
+            }
+            pubVar.getMessagesController().b4(tL_messages_forumTopics.users, false);
+            pubVar.getMessagesController().V3(tL_messages_forumTopics.chats, false);
+            ArrayList<TLRPC.TL_forumTopic> arrayList2 = tL_messages_forumTopics.topics;
+            long j = this.c;
+            pubVar.u(j, arrayList2, vf6Var, false, 2, -1);
+            pubVar.getMessagesStorage().z1(pubVar.getConnectionsManager().getCurrentTime(), -j, (List) pubVar.a.f(j), true);
+            pubVar.getMessagesStorage().g1(tL_messages_forumTopics.messages, false, true, false, 0, false, 0, 0L);
+            ArrayList<TLRPC.TL_forumTopic> arrayList3 = tL_messages_forumTopics.topics;
+            int size = arrayList3.size();
+            int i3 = 0;
+            while (i3 < size) {
+                TLRPC.TL_forumTopic tL_forumTopic = arrayList3.get(i3);
+                i3++;
+                TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
+                TLRPC.TL_forumTopic f = pubVar.f(j, tL_forumTopic2.id);
+                if (f != null) {
+                    tL_forumTopic2 = f;
+                }
+                arrayList.add(tL_forumTopic2);
+            }
+            int i4 = tL_messages_forumTopics.count;
+            if (!tL_messages_forumTopics.topics.isEmpty()) {
+                TLRPC.TL_forumTopic tL_forumTopic3 = (TLRPC.TL_forumTopic) b00.f(1, tL_messages_forumTopics.topics);
+                TLRPC.Message message = (TLRPC.Message) vf6Var.f(tL_forumTopic3.top_message);
+                ?? obj3 = new Object();
+                if (tL_messages_forumTopics.order_by_create_date) {
+                    i = tL_forumTopic3.date;
+                } else if (message != null) {
+                    i = message.date;
+                }
+                obj3.a = i;
+                obj3.b = tL_forumTopic3.top_message;
+                obj3.c = tL_forumTopic3.id;
+                obj2 = obj3;
+            }
+            i = i4;
+            obj = obj2;
+        }
+        awbVar.a(arrayList, obj, Integer.valueOf(i));
     }
 
     @Override
-    public final int b() {
-        return this.c.s;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mx8.run():void");
     }
 
-    @Override
-    public final int d(int i) {
-        gy8 gy8Var = this.c;
-        qx8 qx8Var = (qx8) gy8Var.n.get(gy8Var.f(i));
-        if (qx8Var.b != null && i == qx8Var.d) {
-            return 0;
-        }
-        return 1;
+    public mx8(Object obj, long j, TLObject tLObject, Object obj2, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.c = j;
+        this.b = tLObject;
+        this.e = obj2;
     }
 
-    @Override
-    public final void t(u69 u69Var, int i) {
-        String str;
-        int i2;
-        gy8 gy8Var = this.c;
-        qx8 qx8Var = (qx8) gy8Var.n.get(gy8Var.f(i));
-        int i3 = u69Var.f;
-        View view = u69Var.a;
-        int i4 = 1;
-        int i5 = 0;
-        if (i3 == 0) {
-            px8 px8Var = (px8) view;
-            String str2 = qx8Var.b;
-            if (gy8Var.x || qx8Var.a != 2) {
-                i4 = 0;
-            }
-            TextView textView = px8Var.b;
-            TextView textView2 = px8Var.a;
-            if (str2 != null) {
-                str = str2.replace('\n', ' ');
-            } else {
-                str = null;
-            }
-            textView2.setText(str);
-            textView2.setTextColor(px8Var.c.y);
-            if (i4 != 0) {
-                i2 = 0;
-            } else {
-                i2 = 8;
-            }
-            textView.setVisibility(i2);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView2.getLayoutParams();
-            int L = gm.L(15.0f);
-            if (i4 != 0) {
-                i5 = gm.L(6.0f) + gm.L(20.0f) + gm.L(12.0f) + ((int) Math.ceil(textView.getPaint().measureText(textView.getText().toString())));
-            }
-            int i6 = L + i5;
-            if (layoutParams.rightMargin != i6) {
-                layoutParams.rightMargin = i6;
-                textView2.setLayoutParams(layoutParams);
-                return;
-            }
-            return;
-        }
-        ArrayList arrayList = qx8Var.c;
-        int i7 = i - qx8Var.d;
-        if (qx8Var.b == null) {
-            i4 = 0;
-        }
-        ((nx8) view).set((TLRPC.Document) arrayList.get(i7 - i4));
+    public mx8(Object obj, Object obj2, long j, Object obj3, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.b = obj2;
+        this.c = j;
+        this.e = obj3;
     }
 
-    @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        View nx8Var;
-        gy8 gy8Var = this.c;
-        if (i == 0) {
-            nx8Var = new px8(gy8Var, viewGroup.getContext());
-            nx8Var.setLayoutParams(new g69(-1, gm.L(44.0f)));
-        } else {
-            nx8Var = new nx8(viewGroup.getContext(), gy8Var.a);
-            nx8Var.setLayoutParams(new g69(-1, -2));
-        }
-        return new u69(nx8Var);
+    public mx8(Object obj, Object obj2, Object obj3, long j, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.b = obj2;
+        this.e = obj3;
+        this.c = j;
     }
 }

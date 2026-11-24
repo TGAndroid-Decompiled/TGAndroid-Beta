@@ -1,19 +1,83 @@
 package defpackage;
 
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
-public interface b4d {
-    void a();
+import java.util.ListIterator;
+public final class b4d extends v5c implements ListIterator {
+    public final int b;
+    public int c;
+    public final e4d d;
 
-    boolean b(x5d x5dVar);
+    public b4d(e4d e4dVar, int i) {
+        super((byte) 2);
+        int size = e4dVar.size();
+        if (i >= 0 && i <= size) {
+            this.b = size;
+            this.c = i;
+            this.d = e4dVar;
+            return;
+        }
+        k93.i(yye.c(i, size, "index"));
+        throw null;
+    }
 
-    void c();
+    public final Object a(int i) {
+        return this.d.get(i);
+    }
 
-    void d(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr);
+    @Override
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
+    }
 
-    jh0 e(jh0 jh0Var);
+    @Override
+    public final boolean hasNext() {
+        if (this.c < this.b) {
+            return true;
+        }
+        return false;
+    }
 
-    void f();
+    @Override
+    public final boolean hasPrevious() {
+        if (this.c > 0) {
+            return true;
+        }
+        return false;
+    }
 
-    boolean g();
+    @Override
+    public final Object next() {
+        if (hasNext()) {
+            int i = this.c;
+            this.c = i + 1;
+            return a(i);
+        }
+        w26.g();
+        return null;
+    }
+
+    @Override
+    public final int nextIndex() {
+        return this.c;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i = this.c - 1;
+            this.c = i;
+            return a(i);
+        }
+        w26.g();
+        return null;
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.c - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
+    }
 }

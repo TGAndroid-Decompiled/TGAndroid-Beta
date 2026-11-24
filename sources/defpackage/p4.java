@@ -29,7 +29,7 @@ public final class p4 extends View.AccessibilityDelegate {
 
     @Override
     public final AccessibilityNodeProvider getAccessibilityNodeProvider(View view) {
-        ni6 a = this.a.a(view);
+        l69 a = this.a.a(view);
         if (a != null) {
             return (AccessibilityNodeProvider) a.b;
         }
@@ -50,10 +50,10 @@ public final class p4 extends View.AccessibilityDelegate {
         Object obj;
         int i;
         u4 u4Var = new u4(accessibilityNodeInfo);
-        WeakHashMap weakHashMap = kfc.a;
+        WeakHashMap weakHashMap = jdc.a;
         ClickableSpan[] clickableSpanArr = null;
         if (Build.VERSION.SDK_INT >= 28) {
-            tag = Boolean.valueOf(ffc.c(view));
+            tag = Boolean.valueOf(edc.c(view));
         } else {
             tag = view.getTag(2131296692);
             if (!Boolean.class.isInstance(tag)) {
@@ -69,7 +69,7 @@ public final class p4 extends View.AccessibilityDelegate {
         }
         u4Var.n(z);
         if (Build.VERSION.SDK_INT >= 28) {
-            tag2 = Boolean.valueOf(ffc.b(view));
+            tag2 = Boolean.valueOf(edc.b(view));
         } else {
             tag2 = view.getTag(2131296686);
             if (!Boolean.class.isInstance(tag2)) {
@@ -80,7 +80,7 @@ public final class p4 extends View.AccessibilityDelegate {
         u4Var.k((bool2 == null || !bool2.booleanValue()) ? false : false);
         int i2 = Build.VERSION.SDK_INT;
         if (i2 >= 28) {
-            tag3 = ffc.a(view);
+            tag3 = edc.a(view);
         } else {
             tag3 = view.getTag(2131296687);
             if (!CharSequence.class.isInstance(tag3)) {
@@ -89,7 +89,7 @@ public final class p4 extends View.AccessibilityDelegate {
         }
         u4Var.m((CharSequence) tag3);
         if (i2 >= 30) {
-            obj = hfc.b(view);
+            obj = gdc.b(view);
         } else {
             Object tag4 = view.getTag(2131296693);
             if (CharSequence.class.isInstance(tag4)) {
@@ -100,7 +100,7 @@ public final class p4 extends View.AccessibilityDelegate {
         }
         CharSequence charSequence = (CharSequence) obj;
         if (i2 >= 30) {
-            via.v(accessibilityNodeInfo, charSequence);
+            tga.v(accessibilityNodeInfo, charSequence);
         } else {
             accessibilityNodeInfo.getExtras().putCharSequence("androidx.view.accessibility.AccessibilityNodeInfoCompat.STATE_DESCRIPTION_KEY", charSequence);
         }

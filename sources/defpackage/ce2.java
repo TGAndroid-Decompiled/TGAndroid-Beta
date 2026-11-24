@@ -1,29 +1,65 @@
 package defpackage;
-public final class ce2 implements Runnable {
-    public final byte a;
-    public final ke2 b;
-    public final long c;
 
-    public ce2(ke2 ke2Var, long j, byte b) {
+import android.graphics.RectF;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ProfileActivity;
+public final class ce2 implements RequestDelegate {
+    public final byte a;
+
+    public ce2(byte b) {
         this.a = b;
-        this.b = ke2Var;
-        this.c = j;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        long j = this.c;
-        ke2 ke2Var = this.b;
-        switch (b) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.a) {
             case 0:
-                ke2Var.n = j;
-                ke2Var.r = true;
-                ke2Var.d0();
+                return;
+            case 1:
+                gl.c3(new jc((byte) 10));
+                return;
+            case 2:
+                gl.c3(new ki1(tL_error, (byte) 1));
+                return;
+            case 3:
+                gl.c3(new x57(tLObject, (byte) 1));
+                return;
+            case 4:
+                RectF rectF = ProfileActivity.Z6;
+                return;
+            case 5:
+                gl.c3(new jc((byte) 10));
+                return;
+            case 6:
+                gl.c3(new jc((byte) 10));
+                return;
+            case 7:
+                gl.c3(new jc((byte) 10));
+                return;
+            case 8:
+                gl.c3(new jc((byte) 10));
+                return;
+            case 9:
+                gl.c3(new jc((byte) 10));
+                return;
+            case 10:
+                gl.c3(new jc((byte) 10));
+                return;
+            case 11:
+                gl.c3(new jc((byte) 10));
+                return;
+            case 12:
+                VoIPService.lambda$callFailed$110(tLObject, tL_error);
                 return;
             default:
-                ke2Var.i0(j);
+                VoIPService.lambda$createGroupInstance$70(tLObject, tL_error);
                 return;
         }
+    }
+
+    private final void a(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 }

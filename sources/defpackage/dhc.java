@@ -1,8 +1,30 @@
 package defpackage;
-public interface dhc {
-    void a();
 
-    void b();
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
+public final class dhc implements Runnable {
+    public final byte a;
+    public final VoIPService b;
+    public final TLRPC.GroupCallParticipant c;
 
-    void c();
+    public dhc(VoIPService voIPService, TLRPC.GroupCallParticipant groupCallParticipant, byte b) {
+        this.a = b;
+        this.b = voIPService;
+        this.c = groupCallParticipant;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        TLRPC.GroupCallParticipant groupCallParticipant = this.c;
+        VoIPService voIPService = this.b;
+        switch (b) {
+            case 0:
+                voIPService.lambda$startGroupCall$29(groupCallParticipant);
+                return;
+            default:
+                voIPService.lambda$startConferenceGroupCall$40(groupCallParticipant);
+                return;
+        }
+    }
 }

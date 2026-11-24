@@ -1,27 +1,29 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import org.telegram.messenger.a;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class uaa extends d {
-    @Override
-    public final Context getContext() {
-        return gm.W(LaunchActivity.H1);
+import android.widget.FrameLayout;
+public final class uaa extends pb0 {
+    public final byte M;
+    public final FrameLayout N;
+
+    public uaa(FrameLayout frameLayout, wjb wjbVar, byte b) {
+        super(wjbVar);
+        this.M = b;
+        this.N = frameLayout;
     }
 
     @Override
-    public final int getCurrentAccount() {
-        return this.currentAccount;
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        Activity W = gm.W(a.b);
-        if (W == null) {
-            return LaunchActivity.H1;
+    public final void invalidateSelf() {
+        byte b = this.M;
+        FrameLayout frameLayout = this.N;
+        switch (b) {
+            case 0:
+                super.invalidateSelf();
+                ((waa) frameLayout).a.invalidate();
+                return;
+            default:
+                super.invalidateSelf();
+                ((cba) frameLayout).a.invalidate();
+                return;
         }
-        return W;
     }
 }

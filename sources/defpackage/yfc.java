@@ -1,23 +1,19 @@
 package defpackage;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class yfc extends ViewOutlineProvider {
-    public final int a;
-    public final float b;
+import org.webrtc.RendererCommon;
+public final class yfc implements RendererCommon.RendererEvents {
+    public final hgc a;
 
-    public yfc(int i, float f) {
-        this.a = i;
-        this.b = f;
+    public yfc(hgc hgcVar) {
+        this.a = hgcVar;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        int width = view.getWidth();
-        int i = this.a;
-        float f = this.b;
-        int i2 = this.a;
-        outline.setRoundRect(i2, i2, width - i, view.getHeight() - i, f);
+    public final void onFirstFrameRendered() {
+        gl.c3(new kbc(this, (byte) 6));
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i, int i2, int i3) {
     }
 }

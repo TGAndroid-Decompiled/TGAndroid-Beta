@@ -1,46 +1,31 @@
 package defpackage;
+public final class eq1 implements o7, ws1 {
+    public final mu1 a;
 
-import android.view.View;
-public final class eq1 implements View.OnAttachStateChangeListener {
-    public final byte a;
-    public final tm b;
-
-    public eq1(tm tmVar, byte b) {
-        this.a = b;
-        this.b = tmVar;
+    public eq1(mu1 mu1Var) {
+        this.a = mu1Var;
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        byte b = this.a;
-        tm tmVar = this.b;
-        switch (b) {
-            case 0:
-                tmVar.a();
-                return;
-            case 1:
-                tmVar.a();
-                return;
-            default:
-                tmVar.a();
-                return;
-        }
+    public final void Q() {
+        tq9.d(new gl1(this.a, (byte) 2));
     }
 
     @Override
-    public final void onViewDetachedFromWindow(View view) {
-        byte b = this.a;
-        tm tmVar = this.b;
-        switch (b) {
-            case 0:
-                tmVar.b();
-                return;
-            case 1:
-                tmVar.b();
-                return;
-            default:
-                tmVar.b();
-                return;
-        }
+    public final void m(String str) {
+        this.a.ia(str, false);
+    }
+
+    @Override
+    public final void p(int i) {
+        this.a.J(i, 0, 0, 0, true, true);
+    }
+
+    @Override
+    public final void A() {
+    }
+
+    @Override
+    public final void l(boolean z, boolean z2) {
     }
 }

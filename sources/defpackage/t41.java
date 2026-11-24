@@ -1,10 +1,29 @@
 package defpackage;
-public class t41 extends Exception {
-    public t41(java.lang.String r2, defpackage.s41 r3) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.t41.<init>(java.lang.String, s41):void");
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class t41 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final u41 b;
+
+    public t41(u41 u41Var, byte b) {
+        this.a = b;
+        this.b = u41Var;
     }
 
-    public t41(java.lang.String r2, defpackage.s41 r3, java.lang.Exception r4) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.t41.<init>(java.lang.String, s41, java.lang.Exception):void");
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        u41 u41Var = this.b;
+        switch (b) {
+            case 0:
+                u41Var.N = false;
+                u41Var.e.t(null, false, true);
+                return;
+            default:
+                u41Var.U = 1.0f;
+                u41Var.invalidate();
+                return;
+        }
     }
 }

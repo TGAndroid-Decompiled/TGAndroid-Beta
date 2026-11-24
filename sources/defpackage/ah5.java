@@ -1,42 +1,34 @@
 package defpackage;
-public abstract class ah5 implements Comparable {
-    public final String a;
-    public final zg5 b;
-    public final long c;
-    public final int d;
-    public final long e;
-    public final as3 f;
-    public final String h;
-    public final String n;
-    public final long r;
-    public final long s;
-    public final boolean w;
 
-    public ah5(String str, zg5 zg5Var, long j, int i, long j2, as3 as3Var, String str2, String str3, long j3, long j4, boolean z) {
-        this.a = str;
-        this.b = zg5Var;
-        this.c = j;
-        this.d = i;
-        this.e = j2;
-        this.f = as3Var;
-        this.h = str2;
-        this.n = str3;
-        this.r = j3;
-        this.s = j4;
-        this.w = z;
+import java.io.InputStream;
+public abstract class ah5 extends g00 {
+    public static String b(int i, int i2, byte[] bArr) {
+        try {
+            String str = new String(bArr, i, i2, "ISO-8859-1");
+            int indexOf = str.indexOf(0);
+            if (indexOf < 0) {
+                return str;
+            }
+            return str.substring(0, indexOf);
+        } catch (Exception unused) {
+            return "";
+        }
     }
 
-    @Override
-    public final int compareTo(Object obj) {
-        Long l = (Long) obj;
-        long longValue = l.longValue();
-        long j = this.e;
-        if (j > longValue) {
-            return 1;
+    public static boolean c(InputStream inputStream) {
+        boolean z;
+        inputStream.mark(3);
+        try {
+            if (inputStream.read() == 84 && inputStream.read() == 65) {
+                if (inputStream.read() == 71) {
+                    z = true;
+                    return z;
+                }
+            }
+            z = false;
+            return z;
+        } finally {
+            inputStream.reset();
         }
-        if (j < l.longValue()) {
-            return -1;
-        }
-        return 0;
     }
 }

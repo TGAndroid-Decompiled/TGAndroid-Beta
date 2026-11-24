@@ -1,3 +1,4 @@
 package defpackage;
-public final class yre extends ire {
+public abstract class yre extends dzc implements iwe {
+    public static final int b = 0;
 }

@@ -1,41 +1,24 @@
 package defpackage;
-
-import android.content.Context;
-import org.telegram.ui.ActionBar.d;
 public final class u99 implements Runnable {
     public final byte a;
-    public final d b;
-    public final Context c;
-    public final ylb d;
-    public final il9 e;
+    public final y99 b;
 
-    public u99(d dVar, Context context, ylb ylbVar, il9 il9Var, byte b) {
+    public u99(y99 y99Var, byte b) {
         this.a = b;
-        this.b = dVar;
-        this.c = context;
-        this.d = ylbVar;
-        this.e = il9Var;
+        this.b = y99Var;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        il9 il9Var = this.e;
-        ylb ylbVar = this.d;
-        Context context = this.c;
-        d dVar = this.b;
+        y99 y99Var = this.b;
         switch (b) {
             case 0:
-                c41.b0(dVar).c(gm.N2(jb6.M0(2131754484, null), -1, 2, new dh1(context, (byte) 11), ylbVar)).j();
-                gm.c3(il9Var);
-                return;
-            case 1:
-                c41.b0(dVar).c(gm.N2(jb6.M0(2131754484, null), -1, 2, new dh1(context, (byte) 10), ylbVar)).j();
-                gm.c3(il9Var);
+                y99Var.Y0();
                 return;
             default:
-                c41.b0(dVar).c(gm.N2(jb6.M0(2131754484, null), -1, 2, new dh1(context, (byte) 14), ylbVar)).j();
-                gm.c3(il9Var);
+                y99Var.d2.O(true);
+                gl.d3(new u99(y99Var, (byte) 0), 150L);
                 return;
         }
     }

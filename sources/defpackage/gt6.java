@@ -1,86 +1,128 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.cast.MediaInfo;
-import java.util.Arrays;
-import org.json.JSONObject;
-public final class gt6 extends b4 {
-    public final MediaInfo a;
-    public final zt6 b;
-    public final Boolean c;
-    public final long d;
-    public final double e;
-    public final long[] f;
-    public String h;
-    public final JSONObject n;
-    public final String r;
-    public final String s;
-    public final String w;
-    public final String x;
-    public final long y;
-    public static final ce6 E = new ce6("MediaLoadRequestData", null);
-    public static final Parcelable.Creator<gt6> CREATOR = new jid((byte) 9);
+import android.content.Context;
+import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.View;
+import android.widget.ImageButton;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.Collections;
+public final class gt6 extends dp {
+    public eu6 E;
+    public final long F;
+    public long G;
+    public final c1 H;
+    public final gu6 f;
+    public final gs6 h;
+    public final Context n;
+    public yt6 r;
+    public ArrayList s;
+    public ft6 w;
+    public RecyclerView x;
+    public boolean y;
 
-    public gt6(MediaInfo mediaInfo, zt6 zt6Var, Boolean bool, long j, double d, long[] jArr, JSONObject jSONObject, String str, String str2, String str3, String str4, long j2) {
-        this.a = mediaInfo;
-        this.b = zt6Var;
-        this.c = bool;
-        this.d = j;
-        this.e = d;
-        this.f = jArr;
-        this.n = jSONObject;
-        this.r = str;
-        this.s = str2;
-        this.w = str3;
-        this.x = str4;
-        this.y = j2;
+    public gt6(android.content.Context r3) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.gt6.<init>(android.content.Context):void");
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final void e() {
+        if (this.E == null && this.y) {
+            this.f.getClass();
+            gu6.b();
+            ArrayList arrayList = new ArrayList(gu6.c().j);
+            int size = arrayList.size();
+            while (true) {
+                int i = size - 1;
+                if (size <= 0) {
+                    break;
+                }
+                eu6 eu6Var = (eu6) arrayList.get(i);
+                if (eu6Var.d() || !eu6Var.g || !eu6Var.h(this.r)) {
+                    arrayList.remove(i);
+                }
+                size = i;
+            }
+            Collections.sort(arrayList, is6.c);
+            long uptimeMillis = SystemClock.uptimeMillis() - this.G;
+            long j = this.F;
+            if (uptimeMillis >= j) {
+                this.G = SystemClock.uptimeMillis();
+                this.s.clear();
+                this.s.addAll(arrayList);
+                this.w.D();
+                return;
+            }
+            c1 c1Var = this.H;
+            c1Var.removeMessages(1);
+            c1Var.sendMessageAtTime(c1Var.obtainMessage(1, arrayList), this.G + j);
         }
-        if (!(obj instanceof gt6)) {
-            return false;
-        }
-        gt6 gt6Var = (gt6) obj;
-        if (vw5.a(this.n, gt6Var.n) && fse.a(this.a, gt6Var.a) && fse.a(this.b, gt6Var.b) && fse.a(this.c, gt6Var.c) && this.d == gt6Var.d && this.e == gt6Var.e && Arrays.equals(this.f, gt6Var.f) && fse.a(this.r, gt6Var.r) && fse.a(this.s, gt6Var.s) && fse.a(this.w, gt6Var.w) && fse.a(this.x, gt6Var.x) && this.y == gt6Var.y) {
-            return true;
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.a, this.b, this.c, Long.valueOf(this.d), Double.valueOf(this.e), this.f, String.valueOf(this.n), this.r, this.s, this.w, this.x, Long.valueOf(this.y)});
+    public final void f(yt6 yt6Var) {
+        if (yt6Var != null) {
+            if (!this.r.equals(yt6Var)) {
+                this.r = yt6Var;
+                if (this.y) {
+                    gu6 gu6Var = this.f;
+                    gs6 gs6Var = this.h;
+                    gu6Var.h(gs6Var);
+                    gu6Var.a(yt6Var, gs6Var, 1);
+                }
+                e();
+                return;
+            }
+            return;
+        }
+        w26.j("selector must not be null");
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        String jSONObject;
-        JSONObject jSONObject2 = this.n;
-        if (jSONObject2 == null) {
-            jSONObject = null;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.y = true;
+        this.f.a(this.r, this.h, 1);
+        e();
+    }
+
+    @Override
+    public final void onCreate(Bundle bundle) {
+        int i;
+        int a;
+        super.onCreate(bundle);
+        setContentView(2131492932);
+        View decorView = getWindow().getDecorView();
+        Context context = this.n;
+        if (voe.h(context)) {
+            i = 2131099761;
         } else {
-            jSONObject = jSONObject2.toString();
+            i = 2131099760;
         }
-        this.h = jSONObject;
-        int r = mve.r(parcel, 20293);
-        mve.k(parcel, 2, this.a, i);
-        mve.k(parcel, 3, this.b, i);
-        mve.a(parcel, 4, this.c);
-        mve.q(parcel, 5, 8);
-        parcel.writeLong(this.d);
-        mve.q(parcel, 6, 8);
-        parcel.writeDouble(this.e);
-        mve.j(parcel, 7, this.f);
-        mve.l(parcel, 8, this.h);
-        mve.l(parcel, 9, this.r);
-        mve.l(parcel, 10, this.s);
-        mve.l(parcel, 11, this.w);
-        mve.l(parcel, 12, this.x);
-        mve.q(parcel, 13, 8);
-        parcel.writeLong(this.y);
-        mve.s(parcel, r);
+        decorView.setBackgroundColor(context.getColor(i));
+        this.s = new ArrayList();
+        ((ImageButton) findViewById(2131296567)).setOnClickListener(new g6(this, (byte) 9));
+        this.w = new ft6(this);
+        RecyclerView recyclerView = (RecyclerView) findViewById(2131296569);
+        this.x = recyclerView;
+        recyclerView.setAdapter(this.w);
+        this.x.setLayoutManager(new t26());
+        int i2 = -1;
+        if (!context.getResources().getBoolean(2131034115)) {
+            a = -1;
+        } else {
+            a = roe.a(context);
+        }
+        if (context.getResources().getBoolean(2131034115)) {
+            i2 = -2;
+        }
+        getWindow().setLayout(a, i2);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.y = false;
+        this.f.h(this.h);
+        this.H.removeMessages(1);
     }
 }

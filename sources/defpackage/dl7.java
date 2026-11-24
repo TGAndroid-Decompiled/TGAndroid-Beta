@@ -1,15 +1,14 @@
 package defpackage;
 
-import java.lang.ref.WeakReference;
-import java.util.concurrent.Executor;
-public final class dl7 {
-    public final WeakReference a;
-    public final Executor b;
-    public final ow2 c;
+import android.app.Notification;
+import android.app.Person;
+import android.os.Parcelable;
+public abstract class dl7 {
+    public static Parcelable a(Person person) {
+        return person;
+    }
 
-    public dl7(ow2 ow2Var, db3 db3Var, Executor executor) {
-        this.c = ow2Var;
-        this.a = new WeakReference(db3Var);
-        this.b = executor;
+    public static Notification.MessagingStyle.Message b(CharSequence charSequence, long j, Person person) {
+        return new Notification.MessagingStyle.Message(charSequence, j, person);
     }
 }

@@ -1,78 +1,61 @@
 package defpackage;
 
-import java.security.cert.CertificateParsingException;
-import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.Calendar;
 import java.util.Locale;
-import java.util.regex.Pattern;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLException;
-import javax.net.ssl.SSLSession;
-public final class pq7 implements HostnameVerifier {
-    public static final pq7 a = new Object();
-    public static final Pattern b = Pattern.compile("([0-9a-fA-F]*:[0-9a-fA-F:.]*)|([\\d.]+)");
+public final class pq7 {
+    public int a;
+    public int b;
 
-    public static List a(X509Certificate x509Certificate, int i) {
-        Integer num;
+    public pq7(int i, int i2) {
+        this.a = i;
+        this.b = i2;
+    }
+
+    public static String a(int i) {
         String str;
-        ArrayList arrayList = new ArrayList();
-        try {
-            Collection<List<?>> subjectAlternativeNames = x509Certificate.getSubjectAlternativeNames();
-            if (subjectAlternativeNames == null) {
-                return Collections.EMPTY_LIST;
-            }
-            for (List<?> list : subjectAlternativeNames) {
-                if (list != null && list.size() >= 2 && (num = (Integer) list.get(0)) != null && num.intValue() == i && (str = (String) list.get(1)) != null) {
-                    arrayList.add(str);
-                }
-            }
-            return arrayList;
-        } catch (CertificateParsingException unused) {
-            return Collections.EMPTY_LIST;
-        }
-    }
-
-    public static boolean b(java.lang.String r18, java.security.cert.X509Certificate r19) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.pq7.b(java.lang.String, java.security.cert.X509Certificate):boolean");
-    }
-
-    public static boolean c(String str, String str2) {
-        if (str != null && str.length() != 0 && !str.startsWith(".") && !str.endsWith("..") && str2 != null && str2.length() != 0 && !str2.startsWith(".") && !str2.endsWith("..")) {
-            if (!str.endsWith(".")) {
-                str = str.concat(".");
-            }
-            if (!str2.endsWith(".")) {
-                str2 = str2.concat(".");
-            }
-            String lowerCase = str2.toLowerCase(Locale.US);
-            if (!lowerCase.contains("*")) {
-                return str.equals(lowerCase);
-            }
-            if (lowerCase.startsWith("*.") && lowerCase.indexOf(42, 1) == -1 && str.length() >= lowerCase.length() && !"*.".equals(lowerCase)) {
-                String substring = lowerCase.substring(1);
-                if (str.endsWith(substring)) {
-                    int length = str.length() - substring.length();
-                    if (length <= 0 || str.lastIndexOf(46, length - 1) == -1) {
-                        return true;
+        String str2;
+        int i2 = i % 60;
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(0, 0, 0, ((i - i2) / 60) % 24, i2);
+        k96 D0 = k96.D0();
+        if (D0.c == null) {
+            synchronized (D0) {
+                if (D0.c == null) {
+                    Locale locale = D0.y;
+                    if (locale == null) {
+                        locale = Locale.getDefault();
                     }
-                    return false;
+                    String language = locale.getLanguage();
+                    if (language == null) {
+                        language = "en";
+                    }
+                    String lowerCase = language.toLowerCase();
+                    if (!lowerCase.toLowerCase().equals("ar") && !lowerCase.toLowerCase().equals("ko")) {
+                        locale = Locale.US;
+                    }
+                    boolean z = k96.c0;
+                    if (z) {
+                        str = "HH:mm";
+                    } else {
+                        str = "h:mm a";
+                    }
+                    if (z) {
+                        str2 = "HH:mm";
+                    } else {
+                        str2 = "h:mm a";
+                    }
+                    D0.c = k96.k(locale, str, str2);
                 }
-                return false;
             }
-            return false;
         }
-        return false;
+        String format = D0.c.format(calendar.getTime());
+        if (i > 1440) {
+            return k96.a0(null, null, 2131752736, format);
+        }
+        return format;
     }
 
-    @Override
-    public final boolean verify(String str, SSLSession sSLSession) {
-        try {
-            return b(str, (X509Certificate) sSLSession.getPeerCertificates()[0]);
-        } catch (SSLException unused) {
-            return false;
-        }
+    public final String toString() {
+        return a(this.a) + " - " + a(this.b);
     }
 }

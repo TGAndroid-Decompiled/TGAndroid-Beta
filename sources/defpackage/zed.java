@@ -1,8 +1,50 @@
 package defpackage;
-public abstract class zed {
-    public static final int[] a = {1769172845, 1769172786, 1769172787, 1769172788, 1769172789, 1769172790, 1769172793, 1635148593, 1752589105, 1751479857, 1635135537, 1836069937, 1836069938, 862401121, 862401122, 862417462, 862417718, 862414134, 862414646, 1295275552, 1295270176, 1714714144, 1801741417, 1295275600, 1903435808, 1297305174, 1684175153, 1769172332, 1885955686};
+public final class zed extends efd {
+    public final transient int c;
+    public final transient int d;
+    public final efd e;
 
-    public static defpackage.bma a(defpackage.t84 r23, boolean r24) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.zed.a(t84, boolean):bma");
+    public zed(efd efdVar, int i, int i2) {
+        this.e = efdVar;
+        this.c = i;
+        this.d = i2;
+    }
+
+    @Override
+    public final Object get(int i) {
+        sze.a(i, this.d);
+        return this.e.get(i + this.c);
+    }
+
+    @Override
+    public final int i() {
+        return this.e.j() + this.c + this.d;
+    }
+
+    @Override
+    public final int j() {
+        return this.e.j() + this.c;
+    }
+
+    @Override
+    public final boolean l() {
+        return true;
+    }
+
+    @Override
+    public final Object[] m() {
+        return this.e.m();
+    }
+
+    @Override
+    public final efd subList(int i, int i2) {
+        sze.c(i, i2, this.d);
+        int i3 = this.c;
+        return this.e.subList(i + i3, i2 + i3);
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
     }
 }

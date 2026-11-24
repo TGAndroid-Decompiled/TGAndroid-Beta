@@ -1,8 +1,6 @@
 package defpackage;
-
-import android.view.MenuItem;
 public interface w17 {
-    boolean B(y17 y17Var, MenuItem menuItem);
+    iz8 a(Class cls);
 
-    void T1(y17 y17Var);
+    boolean b(Class cls);
 }

@@ -1,36 +1,34 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.ProfileActivity;
-public final class wg0 implements iac {
-    public final byte a;
-    public final Object b;
+import j$.util.Objects;
+public final class wg0 {
+    public final String a;
+    public final String b;
+    public final int c;
+    public final int d;
 
-    public wg0(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public wg0(int i, int i2, String str, String str2) {
+        this.a = str;
+        this.b = str2;
+        this.c = i;
+        this.d = i2;
     }
 
-    @Override
-    public final Object run() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                return ((d) obj).getSimpleMenuOverlay();
-            case 1:
-                return Boolean.valueOf(((EditTextBoldCursor) obj).w());
-            case 2:
-                return ((vn5) obj).getCloseIntoObject();
-            case 3:
-                return Boolean.valueOf(((qu3) obj).w());
-            case 4:
-                return ((ProfileActivity) obj).getSimpleMenuOverlay();
-            case 5:
-                return ((pp9) obj).K;
-            default:
-                return ((wsa) obj).j();
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof wg0)) {
+            return false;
+        }
+        wg0 wg0Var = (wg0) obj;
+        if (this.c == wg0Var.c && this.d == wg0Var.d && Objects.equals(this.a, wg0Var.a) && Objects.equals(this.b, wg0Var.b)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.a, this.b, Integer.valueOf(this.c), Integer.valueOf(this.d));
     }
 }

@@ -1,48 +1,48 @@
 package defpackage;
+public final class shf extends jff {
+    public static final shf r = new shf(0, new Object[0]);
+    public final transient Object[] h;
+    public final transient int n;
 
-import android.graphics.Bitmap;
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class shf extends b4 {
-    public static final Parcelable.Creator<shf> CREATOR = new e2f((byte) 28);
-    public final float[] a;
-    public final Bitmap b;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final int f;
-    public final int h;
-
-    public shf(float[] fArr, Bitmap bitmap, int i, int i2, int i3, int i4, int i5) {
-        this.a = fArr;
-        this.b = bitmap;
-        this.c = i;
-        this.d = i2;
-        this.e = i3;
-        this.f = i4;
-        this.h = i5;
+    public shf(int i, Object[] objArr) {
+        super((byte) 3);
+        this.h = objArr;
+        this.n = i;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        float[] fArr = this.a;
-        if (fArr != null) {
-            int r2 = mve.r(parcel, 1);
-            parcel.writeFloatArray(fArr);
-            mve.s(parcel, r2);
-        }
-        mve.k(parcel, 2, this.b, i);
-        mve.q(parcel, 3, 4);
-        parcel.writeInt(this.c);
-        mve.q(parcel, 4, 4);
-        parcel.writeInt(this.d);
-        mve.q(parcel, 5, 4);
-        parcel.writeInt(this.e);
-        mve.q(parcel, 6, 4);
-        parcel.writeInt(this.f);
-        mve.q(parcel, 7, 4);
-        parcel.writeInt(this.h);
-        mve.s(parcel, r);
+    public final Object get(int i) {
+        r2f.a(i, this.n);
+        Object obj = this.h[i];
+        obj.getClass();
+        return obj;
+    }
+
+    @Override
+    public final int h(Object[] objArr) {
+        Object[] objArr2 = this.h;
+        int i = this.n;
+        System.arraycopy(objArr2, 0, objArr, 0, i);
+        return i;
+    }
+
+    @Override
+    public final int i() {
+        return this.n;
+    }
+
+    @Override
+    public final int j() {
+        return 0;
+    }
+
+    @Override
+    public final Object[] k() {
+        return this.h;
+    }
+
+    @Override
+    public final int size() {
+        return this.n;
     }
 }

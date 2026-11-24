@@ -1,15 +1,25 @@
 package defpackage;
-
-import java.util.HashMap;
 public final class leb {
-    public final HashMap a = new HashMap();
+    public static final leb a;
+    public static final leb b;
+    public static final leb c;
+    public static final leb[] d;
 
-    public leb(String str) {
-        for (String str2 : str.split(";")) {
-            String[] split = str2.split(":");
-            if (split.length == 2) {
-                this.a.put(split[0].trim(), split[1].trim());
-            }
-        }
+    static {
+        ?? r0 = new Enum("LEFT", 0);
+        a = r0;
+        ?? r1 = new Enum("CENTER", 1);
+        b = r1;
+        ?? r3 = new Enum("RIGHT", 2);
+        c = r3;
+        d = new leb[]{r0, r1, r3};
+    }
+
+    public static leb valueOf(String str) {
+        return (leb) Enum.valueOf(leb.class, str);
+    }
+
+    public static leb[] values() {
+        return (leb[]) d.clone();
     }
 }

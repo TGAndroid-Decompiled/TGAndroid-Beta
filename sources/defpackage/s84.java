@@ -1,18 +1,13 @@
 package defpackage;
+public final class s84 extends gk0 {
+    public char g;
+    public int h;
+    public int i;
+    public String j;
+    public String k;
 
-import java.util.List;
-public interface s84 {
-    s84 a();
-
-    int b(t84 t84Var, u21 u21Var);
-
-    boolean c(t84 t84Var);
-
-    void d(long j, long j2);
-
-    List e();
-
-    void f(u84 u84Var);
-
-    void release();
+    @Override
+    public final void a(ild ildVar) {
+        ildVar.f(this);
+    }
 }

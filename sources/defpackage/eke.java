@@ -1,17 +1,12 @@
 package defpackage;
-public final class eke implements cq7 {
-    public static final eke a = new Object();
 
-    static {
-        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)), 3)), 4)), 5)), 6)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class eke {
+    public static Object a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() != 0) {
+            return creator.createFromParcel(parcel);
         }
-        throw new ClassCastException();
+        return null;
     }
 }

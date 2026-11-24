@@ -1,187 +1,36 @@
 package defpackage;
 
-import android.graphics.drawable.Drawable;
 import j$.util.Objects;
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-public final class tm5 {
-    public final fn5 A;
-    public Runnable b;
-    public boolean c;
-    public String d;
-    public String e;
-    public String f;
-    public String g;
-    public xw9 h;
-    public gn5 i;
-    public Object j;
-    public long k;
-    public byte l;
-    public int m;
-    public int n;
-    public int o;
-    public File p;
-    public File q;
-    public File r;
-    public sm5 s;
-    public an5 t;
-    public um5 u;
-    public boolean a = true;
-    public final ArrayList v = new ArrayList();
-    public final ArrayList w = new ArrayList();
-    public final ArrayList x = new ArrayList();
-    public final ArrayList y = new ArrayList();
-    public final ArrayList z = new ArrayList();
+public final class tm5 extends v5c {
+    public int b;
+    public Object c;
+    public final v5c d;
 
-    public tm5(fn5 fn5Var) {
-        this.A = fn5Var;
+    public tm5(v5c v5cVar) {
+        super((byte) 0);
+        this.d = v5cVar;
     }
 
-    public final void a(ImageReceiver imageReceiver, String str, String str2, int i, int i2) {
-        ArrayList arrayList = this.v;
-        int indexOf = arrayList.indexOf(imageReceiver);
-        ArrayList arrayList2 = this.w;
-        if (indexOf >= 0 && Objects.equals(((ImageReceiver) arrayList.get(indexOf)).R, str)) {
-            arrayList2.set(indexOf, Integer.valueOf(i2));
-            return;
+    @Override
+    public final boolean hasNext() {
+        if (this.b <= 0 && !this.d.hasNext()) {
+            return false;
         }
-        arrayList.add(imageReceiver);
-        arrayList2.add(Integer.valueOf(i2));
-        this.x.add(str);
-        this.y.add(str2);
-        this.z.add(Integer.valueOf(i));
-        this.A.k.put(imageReceiver.A(i), this);
+        return true;
     }
 
-    public final void b(ImageReceiver imageReceiver) {
-        ArrayList arrayList;
-        int i = this.m;
-        int i2 = 0;
-        while (true) {
-            int size = this.v.size();
-            arrayList = this.v;
-            if (i2 >= size) {
-                break;
-            }
-            ImageReceiver imageReceiver2 = (ImageReceiver) arrayList.get(i2);
-            if (imageReceiver2 == null || imageReceiver2 == imageReceiver) {
-                this.v.remove(i2);
-                this.w.remove(i2);
-                this.x.remove(i2);
-                this.y.remove(i2);
-                i = ((Integer) this.z.remove(i2)).intValue();
-                if (imageReceiver2 != null) {
-                    this.A.k.remove(imageReceiver2.A(i));
-                }
-                i2--;
-            }
-            i2++;
+    @Override
+    public final Object next() {
+        int i = this.b;
+        if (i <= 0) {
+            vn7 vn7Var = (vn7) this.d.next();
+            this.c = vn7Var.a;
+            i = vn7Var.a();
+            this.b = i;
         }
-        if (arrayList.isEmpty()) {
-            if (this.i != null && !this.A.w.containsKey(this.d)) {
-                gn5 gn5Var = this.i;
-                if (gn5Var.f != null) {
-                    bc4.G(this.o).e(null, null, null, this.i.f, this.g, null);
-                } else if (gn5Var.i != null) {
-                    bc4.G(this.o).f(this.i.i);
-                } else if (gn5Var.h != null) {
-                    bc4.G(this.o).e(null, this.i.h, null, null, null, null);
-                } else if (gn5Var.v != null) {
-                    bc4.G(this.o).e(null, null, this.i.v, null, null, null);
-                }
-            }
-            um5 um5Var = this.u;
-            if (um5Var != null) {
-                fn5 fn5Var = this.A;
-                if (i == 1) {
-                    fn5Var.q.a(um5Var);
-                } else {
-                    ((pp3) fn5Var.p.b).remove(um5Var);
-                    ix2 ix2Var = this.A.p;
-                    Runnable runnable = this.b;
-                    if (runnable == null) {
-                        ix2Var.getClass();
-                    } else {
-                        ((pp3) ix2Var.b).remove(runnable);
-                    }
-                }
-                um5 um5Var2 = this.u;
-                synchronized (um5Var2.b) {
-                    try {
-                        um5Var2.d = true;
-                        Thread thread = um5Var2.a;
-                        if (thread != null) {
-                            thread.interrupt();
-                        }
-                    } catch (Exception unused) {
-                    }
-                }
-                this.u = null;
-            }
-            an5 an5Var = this.t;
-            if (an5Var != null) {
-                this.A.n.remove(an5Var);
-                this.t.cancel(true);
-                this.t = null;
-            }
-            sm5 sm5Var = this.s;
-            if (sm5Var != null) {
-                this.A.o.remove(sm5Var);
-                this.s.cancel(true);
-                this.s = null;
-            }
-            String str = this.e;
-            if (str != null) {
-                this.A.g.remove(str);
-            }
-            String str2 = this.e;
-            if (str2 != null) {
-                this.A.h.remove(str2);
-            }
-            String str3 = this.d;
-            if (str3 != null) {
-                this.A.i.remove(str3);
-                this.A.j.remove(fn5.j(this.d));
-            }
-        }
-    }
-
-    public final void c(Drawable drawable, String str) {
-        tm5 tm5Var;
-        fn5 fn5Var;
-        ArrayList arrayList = this.w;
-        ArrayList arrayList2 = this.v;
-        if (drawable != null) {
-            tm5Var = this;
-            gm.c3(new v15(tm5Var, drawable, new ArrayList(arrayList2), new ArrayList(arrayList), str, (byte) 7));
-        } else {
-            tm5Var = this;
-        }
-        int i = 0;
-        while (true) {
-            int size = arrayList2.size();
-            fn5Var = tm5Var.A;
-            if (i >= size) {
-                break;
-            }
-            fn5Var.k.remove(((ImageReceiver) arrayList2.get(i)).A(tm5Var.m));
-            i++;
-        }
-        arrayList2.clear();
-        arrayList.clear();
-        String str2 = tm5Var.e;
-        if (str2 != null) {
-            fn5Var.g.remove(str2);
-        }
-        String str3 = tm5Var.e;
-        if (str3 != null) {
-            fn5Var.h.remove(str3);
-        }
-        String str4 = tm5Var.d;
-        if (str4 != null) {
-            fn5Var.i.remove(str4);
-            fn5Var.j.remove(fn5.j(tm5Var.d));
-        }
+        this.b = i - 1;
+        Object obj = this.c;
+        Objects.requireNonNull(obj);
+        return obj;
     }
 }

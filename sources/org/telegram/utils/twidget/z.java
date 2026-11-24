@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONObject;
 public final class z {
-    public static boolean g0;
+    public static boolean f0;
     public volatile boolean A;
     public volatile boolean B;
     public volatile long C;
@@ -26,21 +26,20 @@ public final class z {
     public boolean K;
     public volatile boolean L;
     public int M;
-    public lyc N;
-    public lyc O;
+    public kwc N;
+    public kwc O;
     public JSONObject P;
     public boolean Q;
-    public cyc R;
+    public bwc R;
     public float[] S;
-    public cyc T;
+    public bwc T;
     public String U;
     public long Z;
     public boolean a0;
     public long c0;
     public final Context e;
-    public volatile boolean e0;
+    public boolean e0;
     public final String f;
-    public boolean f0;
     public final boolean g;
     public final String h;
     public final String i;
@@ -54,7 +53,7 @@ public final class z {
     public final Handler a = new Handler(Looper.getMainLooper());
     public final WidgetSandboxBackend b = new WidgetSandboxBackend(this);
     public final b c = x.v;
-    public volatile qxc d = new qxc(null);
+    public volatile pvc d = new pvc(null);
     public volatile String j = "{}";
     public final long m = System.nanoTime();
     public final AtomicBoolean n = new AtomicBoolean();
@@ -65,12 +64,12 @@ public final class z {
     public final Object s = new Object();
     public final HashMap w = new HashMap();
     public final AtomicBoolean y = new AtomicBoolean();
-    public final jyc V = new jyc(this, (byte) 0);
-    public final jyc W = new jyc(this, (byte) 1);
-    public final jyc X = new jyc(this, (byte) 2);
-    public final gr4 Y = new gr4(this, (byte) 5);
-    public final jyc b0 = new jyc(this, (byte) 3);
-    public final jyc d0 = new jyc(this, (byte) 4);
+    public final iwc V = new iwc(this, (byte) 0);
+    public final iwc W = new iwc(this, (byte) 1);
+    public final iwc X = new iwc(this, (byte) 2);
+    public final fp4 Y = new fp4(this, (byte) 5);
+    public final iwc b0 = new iwc(this, (byte) 3);
+    public final iwc d0 = new iwc(this, (byte) 4);
 
     public z(Context context, String str, String str2, String str3, String str4) {
         this.e = context.getApplicationContext();
@@ -85,7 +84,7 @@ public final class z {
 
     public static boolean a() {
         for (int i = 0; i < 4; i++) {
-            if (z8c.h(i).o() && oc7.r1(i).l4.s0.f) {
+            if (y6c.h(i).o() && na7.q1(i).k4.s0.f) {
                 return true;
             }
         }
@@ -95,8 +94,8 @@ public final class z {
     public static void d(Context context) {
         ActivityManager activityManager;
         if (!a() && (activityManager = (ActivityManager) context.getSystemService("activity")) != null && !activityManager.isLowRamDevice()) {
-            us usVar = us.f;
-            if (usVar == null || usVar.a > 0) {
+            ur urVar = ur.f;
+            if (urVar == null || urVar.a > 0) {
                 try {
                     x xVar = x.v;
                     synchronized (xVar.a) {
@@ -109,21 +108,21 @@ public final class z {
                         xVar.u();
                     }
                 } catch (Exception e) {
-                    fc4.g(e, true);
+                    fa4.g(e, true);
                 }
             }
-            if (!g0 && usVar != null) {
-                g0 = true;
-                usVar.d.add(new kyc(context));
+            if (!f0 && urVar != null) {
+                f0 = true;
+                urVar.d.add(new jwc(context));
             }
         }
     }
 
     public final void b(boolean z) {
-        this.a.post(new n28((byte) 29, this, z));
+        this.a.post(new k08((byte) 29, this, z));
     }
 
-    public final void c(pxc pxcVar, myc[] mycVarArr, double d, int i, int i2, float f, float f2, int i3, int i4, int i5, syc sycVar) {
+    public final void c(ovc ovcVar, lwc[] lwcVarArr, double d, int i, int i2, float f, float f2, int i3, int i4, int i5, rwc rwcVar) {
         Object obj;
         boolean z = this.E;
         if (this.D == 0) {
@@ -140,15 +139,15 @@ public final class z {
             try {
                 try {
                     if (this.A) {
-                        pxcVar.b();
+                        ovcVar.b();
                         return;
                     }
-                    lyc lycVar = this.O;
-                    if (lycVar != null) {
-                        lycVar.a.b();
+                    kwc kwcVar = this.O;
+                    if (kwcVar != null) {
+                        kwcVar.a.b();
                     }
                     try {
-                        this.O = new lyc(pxcVar, mycVarArr, d, i, i2, f, f2, i3, i4, i5, sycVar, z, this.G);
+                        this.O = new kwc(ovcVar, lwcVarArr, d, i, i2, f, f2, i3, i4, i5, rwcVar, z, this.G);
                         if (!this.Q) {
                             this.Q = true;
                             this.a.post(this.V);
@@ -227,56 +226,47 @@ public final class z {
                             String str = this.k;
                             String str2 = this.j;
                             if (str != null) {
-                                JSONObject jSONObject = new JSONObject(str);
-                                JSONObject jSONObject2 = new JSONObject(str2);
-                                if (jSONObject.has("content")) {
-                                    jSONObject2.put("contentSafeArea", jSONObject.optJSONObject("content"));
-                                    jSONObject2.put("safeArea", jSONObject.optJSONObject("device"));
-                                    jSONObject2.put("viewportHeight", jSONObject.optDouble("viewportHeight", 0.0d));
-                                } else {
-                                    jSONObject2.put("contentSafeArea", jSONObject);
-                                }
-                                str2 = jSONObject2.toString();
+                                str2 = new JSONObject(str2).put("contentSafeArea", new JSONObject(str)).toString();
                             }
                             b bVar = this.c;
                             Context context = this.e;
                             String str3 = this.f;
                             String str4 = this.H;
                             float f = this.l;
-                            j = bVar.b(context, str3, str4, i / f, f, this.g ? 1 : 0, this.h, this.i, str2, jb6.M0(2131742530, null), this.L, this.b);
+                            j = bVar.b(context, str3, str4, i / f, f, this.g ? 1 : 0, this.h, this.i, str2, k96.M0(2131742604, null), this.L, this.b);
                             try {
                                 SystemClock.uptimeMillis();
-                                this.a.post(new wz(this, j, i, this.H, str, (byte) 15));
+                                this.a.post(new wy(this, j, i, this.H, str, (byte) 15));
                             } catch (Exception e) {
                                 e = e;
                                 if (j != 0) {
-                                    iyc.a.execute(new toa(this, j, (byte) 10));
+                                    hwc.a.execute(new sma(this, j, (byte) 10));
                                 }
-                                this.a.post(new ptc(this, e, (byte) 20));
+                                this.a.post(new isc(this, e, (byte) 17));
                                 throw e;
                             }
                         }
-                    } catch (Exception e2) {
-                        e = e2;
-                        j = 0;
+                    } finally {
+                        Trace.endSection();
                     }
-                } finally {
-                    Trace.endSection();
+                } catch (Exception e2) {
+                    e = e2;
+                    j = 0;
                 }
             } else {
-                dq9.m("Widgets are disabled by the app config");
+                sc8.j("Widgets are disabled by the app config");
             }
         } else {
-            dq9.m("Start WidgetSandboxSession off UI");
+            sc8.j("Start WidgetSandboxSession off UI");
         }
     }
 
     public final void i(int i, float f, float f2, int i2, boolean z, boolean z2, int i3, int i4) {
         if (i == 0 && this.L) {
-            qxc qxcVar = this.d;
-            synchronized (qxcVar) {
-                qxcVar.d++;
-                qxcVar.f = SystemClock.elapsedRealtime();
+            pvc pvcVar = this.d;
+            synchronized (pvcVar) {
+                pvcVar.d++;
+                pvcVar.f = SystemClock.elapsedRealtime();
             }
         }
         long j = this.v;

@@ -12,7 +12,7 @@ public class SQLiteDatabase {
 
     public void beginTransaction() {
         if (this.inTransaction) {
-            boolean z = e21.a;
+            boolean z = w01.a;
             commitTransaction();
         }
         this.inTransaction = true;
@@ -34,8 +34,8 @@ public class SQLiteDatabase {
                 commitTransaction();
                 closedb(this.sqliteHandle);
             } catch (SQLiteException e) {
-                if (e21.a) {
-                    fc4.e(e.getMessage(), e);
+                if (w01.a) {
+                    fa4.e(e.getMessage(), e);
                 }
             }
             this.isOpen = false;
@@ -74,7 +74,7 @@ public class SQLiteDatabase {
 
     public void explainQuery(String str, Object... objArr) {
         checkOpened();
-        SQLiteCursor query = new SQLitePreparedStatement(this, b10.h("EXPLAIN QUERY PLAN ", str)).query(objArr);
+        SQLiteCursor query = new SQLitePreparedStatement(this, b00.h("EXPLAIN QUERY PLAN ", str)).query(objArr);
         while (query.next()) {
             int columnCount = query.getColumnCount();
             StringBuilder sb = new StringBuilder();
@@ -82,7 +82,7 @@ public class SQLiteDatabase {
                 sb.append(query.stringValue(i));
                 sb.append(", ");
             }
-            fc4.b("EXPLAIN QUERY PLAN ".concat(sb.toString()));
+            fa4.b("EXPLAIN QUERY PLAN ".concat(sb.toString()));
         }
         query.dispose();
     }

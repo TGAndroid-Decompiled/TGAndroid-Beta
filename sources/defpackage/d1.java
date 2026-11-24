@@ -1,9 +1,9 @@
 package defpackage;
 
 import android.os.Looper;
-public final class d1 implements eo4 {
+public final class d1 implements dm4 {
     public final Thread c;
-    public final jd d;
+    public final jc d;
     public volatile boolean e;
     public volatile int f;
     public int g;
@@ -12,17 +12,17 @@ public final class d1 implements eo4 {
     public volatile int h = -1;
     public final c1 b = new c1(this, Looper.getMainLooper(), (byte) 0);
 
-    public d1(jd jdVar) {
+    public d1(jc jcVar) {
         boolean z;
-        this.d = jdVar;
-        us usVar = us.f;
-        if (usVar.a > 0) {
+        this.d = jcVar;
+        ur urVar = ur.f;
+        if (urVar.a > 0) {
             z = true;
         } else {
             z = false;
         }
         this.e = z;
-        usVar.d.add(this);
+        urVar.d.add(this);
         Thread thread = new Thread(new b1(this, (byte) 0), "ANRDetector");
         this.c = thread;
         thread.start();

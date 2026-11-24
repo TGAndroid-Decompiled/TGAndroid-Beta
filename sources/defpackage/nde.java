@@ -1,17 +1,18 @@
 package defpackage;
-public final class nde implements cq7 {
-    public static final nde a = new Object();
 
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+import android.os.Build;
+public abstract class nde {
+    public static boolean a(int i) {
+        if (i == 8 || i == 7) {
+            return true;
         }
-        throw new ClassCastException();
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 31 && (i == 26 || i == 27)) {
+            return true;
+        }
+        if (i2 >= 33 && i == 30) {
+            return true;
+        }
+        return false;
     }
 }

@@ -1,22 +1,17 @@
 package defpackage;
-public final class maf extends wgf {
+public final class maf extends vef {
     private static final maf zzb;
     private int zzd;
-    private int zze;
-    private int zzf;
-    private boolean zzg;
-    private boolean zzh;
-    private int zzi;
-    private int zzj;
+    private String zze = "";
 
     static {
-        ?? wgfVar = new wgf();
-        zzb = wgfVar;
-        wgf.e(maf.class, wgfVar);
+        maf mafVar = new maf();
+        zzb = mafVar;
+        vef.e(maf.class, mafVar);
     }
 
     @Override
-    public final Object h(int i, wgf wgfVar) {
+    public final Object h(int i, vef vefVar) {
         int i2 = i - 1;
         if (i2 != 0) {
             if (i2 != 2) {
@@ -27,11 +22,11 @@ public final class maf extends wgf {
                         }
                         return zzb;
                     }
-                    return new vgf(zzb);
+                    return new uef(zzb);
                 }
-                return new wgf();
+                return new maf();
             }
-            return new tif(zzb, "\u0001\u0006\u0000\u0001\u0001\u0006\u0006\u0000\u0000\u0000\u0001င\u0000\u0002᠌\u0001\u0003ဇ\u0002\u0004ဇ\u0003\u0005᠌\u0004\u0006ဆ\u0005", new Object[]{"zzd", "zze", "zzf", f8e.r, "zzg", "zzh", "zzi", q7f.r, "zzj"});
+            return new sgf(zzb, "\u0001\u0001\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0001ဈ\u0000", new Object[]{"zzd", "zze"});
         }
         return (byte) 1;
     }

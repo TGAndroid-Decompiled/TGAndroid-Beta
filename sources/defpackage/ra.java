@@ -1,5 +1,5 @@
 package defpackage;
-public final class ra implements qac {
+public final class ra implements p8c {
     public final byte a;
     public final boolean b;
     public final Object c;

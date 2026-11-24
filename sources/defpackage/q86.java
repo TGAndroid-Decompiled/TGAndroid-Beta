@@ -1,23 +1,26 @@
 package defpackage;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
-import org.telegram.ui.Dictation.DictationAsr;
-public final class q86 {
-    public final l75 a;
-    public boolean c;
-    public volatile boolean d;
-    public Thread e;
-    public final ConcurrentLinkedQueue b = new ConcurrentLinkedQueue();
-    public long f = 1;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.RadialProgressView;
+public final class q86 extends FrameLayout {
+    public final int a;
 
-    public q86(l75 l75Var) {
-        this.a = l75Var;
+    public q86(Context context, int i, int i2) {
+        super(context);
+        this.a = i2;
+        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        radialProgressView.setSize(i);
+        addView(radialProgressView, nme.e(-2, -2, 17));
     }
 
-    public static boolean a() {
-        if (!DictationAsr.E() || !oc7.d1().getBoolean("asr_live_captions", false)) {
-            return false;
-        }
-        return true;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.a, 1073741824));
+    }
+
+    public q86(Context context) {
+        this(context, gl.L(40.0f), gl.L(54.0f));
     }
 }

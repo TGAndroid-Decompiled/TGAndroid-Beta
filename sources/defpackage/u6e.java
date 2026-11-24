@@ -1,17 +1,26 @@
 package defpackage;
-public final class u6e implements cq7 {
-    public static final u6e a = new Object();
+public final class u6e extends u3e {
+    public final transient Object[] r;
+    public final transient boolean s;
+    public final transient int w;
 
-    static {
-        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)));
+    public u6e(int i, int i2, Object[] objArr) {
+        super((byte) 5);
+        this.r = objArr;
+        this.s = i;
+        this.w = i2;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final Object get(int i) {
+        p1f.a(i, this.w);
+        Object obj = this.r[(i << 1) + (this.s ? 1 : 0)];
+        obj.getClass();
+        return obj;
+    }
+
+    @Override
+    public final int size() {
+        return this.w;
     }
 }

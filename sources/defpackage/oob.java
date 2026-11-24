@@ -1,8 +1,7 @@
 package defpackage;
-public final class oob {
-    public final pob a;
-
-    public oob(pob pobVar) {
-        this.a = pobVar;
+public final class oob extends pob {
+    @Override
+    public final String toString() {
+        return this.c;
     }
 }

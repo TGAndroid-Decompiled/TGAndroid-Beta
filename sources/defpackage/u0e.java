@@ -1,19 +1,17 @@
 package defpackage;
+public final class u0e implements zn7 {
+    public static final u0e a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class u0e extends b4 {
-    public static final Parcelable.Creator<u0e> CREATOR = new t0e((byte) 8);
-    public final String a;
-
-    public u0e(String str) {
-        this.a = str;
+    static {
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        mve.l(parcel, 2, this.a);
-        mve.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

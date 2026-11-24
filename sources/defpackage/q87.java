@@ -1,54 +1,56 @@
 package defpackage;
 
-import android.util.Pair;
-import java.util.Map;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.tgnet.TLRPC;
 public final class q87 implements Runnable {
     public final byte a;
-    public final Object b;
-    public final Object c;
+    public final na7 b;
+    public final TLRPC.Dialog c;
 
-    public q87(Object obj, Object obj2, byte b) {
+    public q87(na7 na7Var, TLRPC.Dialog dialog, byte b) {
         this.a = b;
-        this.b = obj;
-        this.c = obj2;
-    }
-
-    private final void a() {
-        cf7 cf7Var = (cf7) this.b;
-        ko7 ko7Var = (ko7) this.c;
-        long j = ko7Var.a;
-        try {
-            SQLiteDatabase sQLiteDatabase = cf7Var.b;
-            sQLiteDatabase.executeFast("DELETE FROM story_pushes WHERE uid = " + j).stepThis().dispose();
-            SQLitePreparedStatement executeFast = cf7Var.b.executeFast("REPLACE INTO story_pushes VALUES(?, ?, ?, ?, ?, ?)");
-            for (Map.Entry entry : ko7Var.c.entrySet()) {
-                int intValue = ((Integer) entry.getKey()).intValue();
-                long longValue = ((Long) ((Pair) entry.getValue()).first).longValue();
-                long longValue2 = ((Long) ((Pair) entry.getValue()).second).longValue();
-                executeFast.requery();
-                executeFast.bindLong(1, j);
-                executeFast.bindInteger(2, intValue);
-                executeFast.bindLong(3, longValue);
-                String str = ko7Var.b;
-                if (str == null) {
-                    str = "";
-                    ko7Var.b = "";
-                }
-                executeFast.bindString(4, str);
-                executeFast.bindInteger(5, ko7Var.d ? 1 : 0);
-                executeFast.bindLong(6, longValue2);
-                executeFast.step();
-            }
-            executeFast.dispose();
-        } catch (Exception e) {
-            cf7Var.n(e, true);
-        }
+        this.b = na7Var;
+        this.c = dialog;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.q87.run():void");
+        byte b = this.a;
+        TLRPC.Dialog dialog = this.c;
+        na7 na7Var = this.b;
+        switch (b) {
+            case 0:
+                if (w01.a) {
+                    fa4.b("checkLastDialogMessage for " + dialog.id + " has not message");
+                }
+                if (na7Var.getMediaDataController().T(dialog.id, 0L) == null) {
+                    TLRPC.Dialog dialog2 = (TLRPC.Dialog) na7Var.R.f(dialog.id);
+                    if (dialog2 == null) {
+                        if (w01.a) {
+                            fa4.b("checkLastDialogMessage for " + dialog.id + " current dialog not found");
+                        }
+                        ad7 messagesStorage = na7Var.getMessagesStorage();
+                        messagesStorage.a.c(new go6(messagesStorage, dialog.id, new q87(na7Var, dialog, (byte) 2), (byte) 18));
+                        return;
+                    }
+                    if (w01.a) {
+                        StringBuilder sb = new StringBuilder("checkLastDialogMessage for ");
+                        sb.append(dialog.id);
+                        sb.append(" current dialog top message ");
+                        b00.p(dialog2.top_message, sb);
+                    }
+                    if (dialog2.top_message == 0) {
+                        na7Var.T(3, dialog.id, false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                na7Var.U0.e(dialog.id);
+                return;
+            default:
+                na7Var.T(3, dialog.id, false);
+                return;
+        }
     }
 }

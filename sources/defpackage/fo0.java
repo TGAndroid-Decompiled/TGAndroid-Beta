@@ -1,44 +1,42 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLRPC;
-public final class fo0 implements RequestDelegate {
-    public final byte a;
-    public final Object b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+public final class fo0 extends View {
+    public final byte a = 0;
+    public final ih2 b;
 
-    public fo0(dw9 dw9Var, TLRPC.DecryptedMessage decryptedMessage, TLRPC.EncryptedChat encryptedChat, TLRPC.Message message, k47 k47Var, String str) {
-        this.a = (byte) 14;
-        this.e = dw9Var;
-        this.b = decryptedMessage;
-        this.c = encryptedChat;
-        this.d = message;
-        this.f = k47Var;
+    public fo0(Activity activity) {
+        super(activity);
+        this.b = new ih2(gl.L(30.0f), gl.L(3.0f), bkb.w0(null, bkb.l5, false));
     }
 
     @Override
-    public final void run(org.telegram.tgnet.TLObject r27, org.telegram.tgnet.TLRPC.TL_error r28) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.fo0.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public final void onDraw(Canvas canvas) {
+        byte b = this.a;
+        ih2 ih2Var = this.b;
+        switch (b) {
+            case 0:
+                ih2Var.setBounds(0, 0, getWidth(), getHeight());
+                ih2Var.b(bkb.w0(null, bkb.l5, false));
+                ih2Var.setAlpha(255);
+                ih2Var.draw(canvas);
+                invalidate();
+                super.onDraw(canvas);
+                return;
+            default:
+                int L = gl.L(1.0f);
+                ih2Var.setBounds(L, L, (getWidth() - L) - L, (getHeight() - L) - L);
+                ih2Var.draw(canvas);
+                invalidate();
+                return;
+        }
     }
 
-    public fo0(oc7 oc7Var, Object obj, Object obj2, Object obj3, Object obj4, byte b) {
-        this.a = b;
-        this.b = oc7Var;
-        this.e = obj;
-        this.c = obj2;
-        this.d = obj3;
-        this.f = obj4;
-    }
-
-    public fo0(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, byte b) {
-        this.a = b;
-        this.e = obj;
-        this.b = obj2;
-        this.c = obj3;
-        this.d = obj4;
-        this.f = obj5;
+    public fo0(Context context) {
+        super(context);
+        this.b = new ih2(gl.L(36.0f), gl.L(2.0f), -13522392);
     }
 }

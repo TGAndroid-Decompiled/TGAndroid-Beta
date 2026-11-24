@@ -15,23 +15,23 @@ public final class pa extends ReplacementSpan {
     public float d;
     public float e;
     public int f;
-    public final ylb h;
+    public final wjb h;
 
-    public pa(ylb ylbVar) {
+    public pa(wjb wjbVar) {
         TextPaint textPaint = new TextPaint(1);
         this.a = textPaint;
         this.b = new RectF();
-        this.h = ylbVar;
-        textPaint.setTextSize(gm.L(15.0f));
-        textPaint.setColor(cmb.v0(cmb.B6, ylbVar));
+        this.h = wjbVar;
+        textPaint.setTextSize(gl.L(15.0f));
+        textPaint.setColor(bkb.v0(bkb.B6, wjbVar));
     }
 
     public final void a() {
         Layout.Alignment alignment;
         if (this.c == null) {
-            String M0 = jb6.M0(2131746141, null);
-            int i = gm.q.x;
-            if (jb6.a0) {
+            String M0 = k96.M0(2131746215, null);
+            int i = gl.q.x;
+            if (k96.a0) {
                 alignment = Layout.Alignment.ALIGN_OPPOSITE;
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
@@ -46,12 +46,12 @@ public final class pa extends ReplacementSpan {
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
         a();
-        this.a.setColor(cmb.v0(cmb.B6, this.h));
+        this.a.setColor(bkb.v0(bkb.B6, this.h));
         Rect clipBounds = canvas.getClipBounds();
         RectF rectF = this.b;
         rectF.set(clipBounds);
         canvas.saveLayerAlpha(rectF, this.f, 31);
-        canvas.translate(f + gm.L(4.0f), (((i5 - i3) / 2.0f) + i3) - (this.e / 2.0f));
+        canvas.translate(f + gl.L(4.0f), (((i5 - i3) / 2.0f) + i3) - (this.e / 2.0f));
         this.c.draw(canvas);
         canvas.restore();
     }
@@ -59,6 +59,6 @@ public final class pa extends ReplacementSpan {
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
         a();
-        return (int) (gm.L(8.0f) + this.d);
+        return (int) (gl.L(8.0f) + this.d);
     }
 }

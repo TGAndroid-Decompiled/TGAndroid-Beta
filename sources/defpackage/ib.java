@@ -4,29 +4,29 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d;
-public final class ib extends mz0 {
-    public l7c S1;
+public final class ib extends fy0 {
+    public l5c S1;
     public TLRPC.TL_channelAdminLogEventsFilter T1;
     public ArrayList U1;
-    public vh6 V1;
+    public vf6 V1;
     public final boolean W1;
-    public final ds0 X1;
+    public final dr0 X1;
     public boolean Y1;
     public boolean Z1;
     public boolean a2;
-    public cg1 b2;
+    public ue1 b2;
     public int c2;
 
-    public ib(d dVar, TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter, vh6 vh6Var, boolean z) {
+    public ib(d dVar, TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter, vf6 vf6Var, boolean z) {
         super(dVar.getContext(), dVar, false, true, 2, dVar.getResourceProvider());
         this.T1 = new TLRPC.TL_channelAdminLogEventsFilter();
         this.Y1 = false;
         this.Z1 = false;
         this.a2 = false;
         this.u1 = 0.35f;
-        J();
-        int i = cmb.h5;
-        int v0 = cmb.v0(i, this.J0);
+        K();
+        int i = bkb.h5;
+        int v0 = bkb.v0(i, this.J0);
         this.c2 = v0;
         s0(v0);
         T0();
@@ -69,53 +69,53 @@ public final class ib extends mz0 {
             tL_channelAdminLogEventsFilter2.group_call = true;
             tL_channelAdminLogEventsFilter2.invites = true;
         }
-        if (vh6Var != null) {
-            this.V1 = vh6Var.clone();
+        if (vf6Var != null) {
+            this.V1 = vf6Var.clone();
         }
         this.W1 = z;
         this.S1.O(false);
-        sc3 sc3Var = new sc3();
-        sc3Var.m = false;
-        sc3Var.C = false;
-        sc3Var.o(d53.h);
-        sc3Var.n(350L);
-        this.n1.setItemAnimator(sc3Var);
+        gb3 gb3Var = new gb3();
+        gb3Var.m = false;
+        gb3Var.C = false;
+        gb3Var.o(s33.h);
+        gb3Var.n(350L);
+        this.n1.setItemAnimator(gb3Var);
         this.n1.setOnItemClickListener(new l0(this, (byte) 5));
-        ds0 ds0Var = new ds0(getContext(), this.J0, (r59) null);
-        this.X1 = ds0Var;
-        ds0Var.setClickable(true);
-        ds0Var.setOrientation(1);
-        ds0Var.setPadding(gm.L(10.0f), gm.L(10.0f), gm.L(10.0f), gm.L(10.0f));
-        anb.h(i, this.J0, ds0Var);
-        b61 b61Var = new b61(this.J0, getContext(), true);
-        b61Var.f();
-        b61Var.i(jb6.M0(2131750940, null), false, true);
-        b61Var.setOnClickListener(new j1(this, (byte) 6));
-        ds0Var.addView(b61Var, qoe.r(-1, 48, 87));
+        dr0 dr0Var = new dr0(getContext(), this.J0, (o39) null);
+        this.X1 = dr0Var;
+        dr0Var.setClickable(true);
+        dr0Var.setOrientation(1);
+        dr0Var.setPadding(gl.L(10.0f), gl.L(10.0f), gl.L(10.0f), gl.L(10.0f));
+        zkb.h(i, this.J0, dr0Var);
+        u41 u41Var = new u41(this.J0, getContext(), true);
+        u41Var.f();
+        u41Var.i(k96.M0(2131750991, null), false, true);
+        u41Var.setOnClickListener(new j1(this, (byte) 6));
+        dr0Var.addView(u41Var, nme.r(-1, 48, 87));
         ViewGroup viewGroup = this.b;
         int i2 = this.u0;
-        viewGroup.addView(ds0Var, qoe.f(-2.0f, -1, 87, i2, 0, i2, 0));
-        r59 r59Var = this.n1;
+        viewGroup.addView(dr0Var, nme.f(-2.0f, -1, 87, i2, 0, i2, 0));
+        o39 o39Var = this.n1;
         int i3 = this.u0;
-        r59Var.setPadding(i3, 0, i3, gm.L(68.0f));
+        o39Var.setPadding(i3, 0, i3, gl.L(68.0f));
         this.n1.r1();
     }
 
     @Override
-    public final boolean C() {
+    public final boolean D() {
         return !this.n1.canScrollVertically(-1);
     }
 
     @Override
-    public final q59 G0(r59 r59Var) {
-        l7c l7cVar = new l7c(r59Var, getContext(), this.a, 0, true, new f(this, (byte) 6), this.J0);
-        this.S1 = l7cVar;
-        return l7cVar;
+    public final n39 G0(o39 o39Var) {
+        l5c l5cVar = new l5c(o39Var, getContext(), this.a, 0, true, new f(this, (byte) 6), this.J0);
+        this.S1 = l5cVar;
+        return l5cVar;
     }
 
     @Override
     public final CharSequence J0() {
-        return jb6.M0(2131751016, null);
+        return k96.M0(2131751067, null);
     }
 
     public final String Y0(int i) {
@@ -166,20 +166,20 @@ public final class ib extends mz0 {
     public final void Z0(ArrayList arrayList) {
         this.U1 = arrayList;
         if (arrayList != null && this.V1 == null) {
-            this.V1 = new vh6();
+            this.V1 = new vf6();
             ArrayList arrayList2 = this.U1;
             int size = arrayList2.size();
             int i = 0;
             while (i < size) {
                 Object obj = arrayList2.get(i);
                 i++;
-                long n = pg3.n(((TLRPC.ChannelParticipant) obj).peer);
-                this.V1.k(oc7.r1(this.a).W1(Long.valueOf(n)), n);
+                long n = cf3.n(((TLRPC.ChannelParticipant) obj).peer);
+                this.V1.k(na7.q1(this.a).V1(Long.valueOf(n)), n);
             }
         }
-        l7c l7cVar = this.S1;
-        if (l7cVar != null) {
-            l7cVar.O(true);
+        l5c l5cVar = this.S1;
+        if (l5cVar != null) {
+            l5cVar.O(true);
         }
     }
 
@@ -193,13 +193,13 @@ public final class ib extends mz0 {
     public final void p0() {
         try {
             super.p0();
-            int v0 = cmb.v0(cmb.h5, this.J0);
+            int v0 = bkb.v0(bkb.h5, this.J0);
             if (v0 != this.c2) {
                 this.c2 = v0;
                 s0(v0);
             }
         } catch (Exception e) {
-            fc4.g(e, true);
+            fa4.g(e, true);
         }
     }
 }

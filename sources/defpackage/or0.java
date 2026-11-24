@@ -1,159 +1,281 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.GradientDrawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import java.util.ArrayList;
-import java.util.Iterator;
-import org.telegram.tgnet.TLRPC;
-public abstract class or0 extends LinearLayout implements cp5, l99 {
-    public final ylb a;
-    public final FrameLayout b;
-    public TLRPC.TL_replyKeyboardMarkup c;
-    public lr0 d;
-    public int e;
-    public boolean f;
-    public int h;
-    public final ArrayList n;
-    public final ScrollView r;
-    public int s;
-    public final GradientDrawable w;
-    public int x;
-    public final m99 y;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+public final class or0 {
+    public final SensorManager a;
+    public Sensor b;
+    public long c;
+    public Sensor d;
+    public long e;
+    public Sensor f;
+    public Sensor g;
+    public long h;
+    public Sensor i;
+    public long j;
+    public cv0 k;
+    public boolean l;
+    public oz m;
+    public oz o;
+    public oz q;
+    public oz s;
+    public final lr0 n = new lr0(this, (byte) 0);
+    public final lr0 p = new lr0(this, (byte) 1);
+    public final mr0 r = new mr0(this);
+    public final nr0 t = new nr0(this);
 
-    public or0(Context context, ylb ylbVar) {
-        super(context);
-        this.n = new ArrayList();
-        this.w = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, null);
-        this.y = new m99(this, d53.h, 320L);
-        this.a = ylbVar;
-        setOrientation(1);
-        ScrollView scrollView = new ScrollView(context);
-        this.r = scrollView;
-        scrollView.setClipToPadding(false);
-        addView(scrollView);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.b = frameLayout;
-        scrollView.addView(frameLayout);
-        d();
+    public or0(Context context) {
+        this.a = (SensorManager) context.getSystemService("sensor");
     }
 
-    @Override
-    public final void a(int i) {
-        if (this.s == i) {
-            return;
+    public static int a(long j) {
+        if (j >= 160) {
+            return 3;
         }
-        this.s = i;
-        ScrollView scrollView = this.r;
-        if (scrollView.getPaddingBottom() != i) {
-            scrollView.setPadding(0, 0, 0, i);
+        if (j >= 60) {
+            return 2;
         }
-        invalidate();
+        return 1;
     }
 
-    public final void d() {
-        gm.u3(this.r, cmb.v0(cmb.yf, this.a));
-        int i = 0;
-        while (true) {
-            ArrayList arrayList = this.n;
-            if (i < arrayList.size()) {
-                ((mr0) arrayList.get(i)).a();
-                i++;
-            } else {
-                invalidate();
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        float Q0 = gm.Q0(this.s);
-        if (Q0 > 0.0f) {
-            int p1 = cmb.p1(Q0, cmb.v0(cmb.yf, this.a));
-            int i = this.x;
-            GradientDrawable gradientDrawable = this.w;
-            if (i != p1) {
-                gradientDrawable.setColors(new int[]{p1, cmb.p1(0.66f, p1), on2.p(p1, 0)});
-                this.x = p1;
-            }
-            gradientDrawable.setBounds(0, getMeasuredHeight() - this.s, getMeasuredWidth(), getMeasuredHeight());
-            gradientDrawable.draw(canvas);
-        }
-    }
-
-    @Override
-    public final void e(m99 m99Var) {
-        Iterator it = this.y.iterator();
-        while (it.hasNext()) {
-            u66 u66Var = (u66) it.next();
-            float c = u66Var.c();
-            Object obj = u66Var.a;
-            float R1 = gm.R1(0.7f, 1.0f, c);
-            ((nr0) obj).setAlpha(c);
-            ((nr0) obj).setScaleX(R1);
-            ((nr0) obj).setScaleY(R1);
-        }
-    }
-
-    public int getKeyboardHeight() {
-        TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup = this.c;
-        if (tL_replyKeyboardMarkup == null) {
-            return 0;
-        }
-        if (this.f) {
-            return this.e;
-        }
-        int L = gm.L(this.h) * tL_replyKeyboardMarkup.rows.size();
-        return hg9.y(4.0f, this.c.rows.size() - 1, gm.L(16.0f) + L);
-    }
-
-    public void setButtons(org.telegram.tgnet.TLRPC.TL_replyKeyboardMarkup r21) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.or0.setButtons(org.telegram.tgnet.TLRPC$TL_replyKeyboardMarkup):void");
-    }
-
-    public void setDelegate(lr0 lr0Var) {
-        this.d = lr0Var;
-    }
-
-    public void setPanelHeight(int i) {
-        TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup;
-        int max;
-        this.e = i;
-        if (this.f && (tL_replyKeyboardMarkup = this.c) != null && !tL_replyKeyboardMarkup.rows.isEmpty()) {
-            if (!this.f) {
-                max = 44;
-            } else {
-                max = (int) Math.max(44.0f, (((this.e - gm.L(16.0f)) - (gm.L(4.0f) * (this.c.rows.size() - 1))) / this.c.rows.size()) / gm.p);
-            }
-            this.h = max;
-            int L = gm.L(max);
-            Iterator it = this.y.iterator();
-            while (it.hasNext()) {
-                u66 u66Var = (u66) it.next();
-                int childCount = ((nr0) u66Var.a).getChildCount();
-                for (int i2 = 0; i2 < childCount; i2++) {
-                    View childAt = ((nr0) u66Var.a).getChildAt(i2);
-                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
-                    if (layoutParams.height != L) {
-                        layoutParams.height = L;
-                        childAt.setLayoutParams(layoutParams);
-                    }
+    public final void b() {
+        if (!this.l) {
+            this.l = true;
+            SensorManager sensorManager = this.a;
+            if (sensorManager != null) {
+                Sensor sensor = this.b;
+                if (sensor != null) {
+                    sensorManager.unregisterListener(this.n, sensor);
+                }
+                oz ozVar = this.m;
+                if (ozVar != null) {
+                    gl.r(ozVar);
+                    this.m = null;
+                }
+                Sensor sensor2 = this.d;
+                if (sensor2 != null) {
+                    sensorManager.unregisterListener(this.p, sensor2);
+                }
+                oz ozVar2 = this.o;
+                if (ozVar2 != null) {
+                    gl.r(ozVar2);
+                    this.o = null;
+                }
+                Sensor sensor3 = this.g;
+                mr0 mr0Var = this.r;
+                if (sensor3 != null) {
+                    sensorManager.unregisterListener(mr0Var, sensor3);
+                }
+                Sensor sensor4 = this.f;
+                if (sensor4 != null) {
+                    sensorManager.unregisterListener(mr0Var, sensor4);
+                }
+                oz ozVar3 = this.q;
+                if (ozVar3 != null) {
+                    gl.r(ozVar3);
+                    this.q = null;
+                }
+                Sensor sensor5 = this.i;
+                if (sensor5 != null) {
+                    sensorManager.unregisterListener(this.t, sensor5);
+                }
+                oz ozVar4 = this.s;
+                if (ozVar4 != null) {
+                    gl.r(ozVar4);
+                    this.s = null;
                 }
             }
         }
     }
 
-    @Override
-    public final void b(float f) {
+    public final boolean c(long j) {
+        SensorManager sensorManager = this.a;
+        if (sensorManager != null) {
+            if (this.b == null) {
+                Sensor defaultSensor = sensorManager.getDefaultSensor(1);
+                this.b = defaultSensor;
+                if (defaultSensor == null) {
+                    return false;
+                }
+                this.c = j;
+                if (!this.l) {
+                    sensorManager.registerListener(this.n, defaultSensor, a(j));
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void c() {
+    public final boolean d(long j) {
+        SensorManager sensorManager = this.a;
+        if (sensorManager != null) {
+            if (this.d == null) {
+                Sensor defaultSensor = sensorManager.getDefaultSensor(4);
+                this.d = defaultSensor;
+                if (defaultSensor == null) {
+                    return false;
+                }
+                this.e = j;
+                if (!this.l) {
+                    sensorManager.registerListener(this.p, defaultSensor, a(j));
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean e(long j, boolean z) {
+        Sensor sensor;
+        SensorManager sensorManager = this.a;
+        if (sensorManager != null) {
+            nr0 nr0Var = this.t;
+            mr0 mr0Var = this.r;
+            if (z) {
+                if (this.i != null) {
+                    oz ozVar = this.s;
+                    if (ozVar != null) {
+                        gl.r(ozVar);
+                        this.s = null;
+                    }
+                    if (!this.l && (sensor = this.i) != null) {
+                        sensorManager.unregisterListener(nr0Var, sensor);
+                    }
+                    this.i = null;
+                }
+                if (this.f == null || this.g == null) {
+                    this.g = sensorManager.getDefaultSensor(1);
+                    Sensor defaultSensor = sensorManager.getDefaultSensor(2);
+                    this.f = defaultSensor;
+                    Sensor sensor2 = this.g;
+                    if (sensor2 != null && defaultSensor != null) {
+                        this.h = j;
+                        if (!this.l) {
+                            sensorManager.registerListener(mr0Var, sensor2, a(j));
+                            sensorManager.registerListener(mr0Var, this.f, a(j));
+                            return true;
+                        }
+                    } else {
+                        return false;
+                    }
+                }
+            } else {
+                if (this.f != null || this.g != null) {
+                    oz ozVar2 = this.q;
+                    if (ozVar2 != null) {
+                        gl.r(ozVar2);
+                        this.q = null;
+                    }
+                    if (!this.l) {
+                        Sensor sensor3 = this.g;
+                        if (sensor3 != null) {
+                            sensorManager.unregisterListener(mr0Var, sensor3);
+                        }
+                        Sensor sensor4 = this.f;
+                        if (sensor4 != null) {
+                            sensorManager.unregisterListener(mr0Var, sensor4);
+                        }
+                    }
+                    this.g = null;
+                    this.f = null;
+                }
+                if (this.i == null) {
+                    Sensor defaultSensor2 = sensorManager.getDefaultSensor(15);
+                    this.i = defaultSensor2;
+                    if (defaultSensor2 == null) {
+                        return false;
+                    }
+                    this.j = j;
+                    if (!this.l) {
+                        sensorManager.registerListener(nr0Var, defaultSensor2, a(j));
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean f() {
+        SensorManager sensorManager = this.a;
+        if (sensorManager == null) {
+            return false;
+        }
+        Sensor sensor = this.b;
+        if (sensor == null) {
+            return true;
+        }
+        if (!this.l) {
+            sensorManager.unregisterListener(this.n, sensor);
+        }
+        oz ozVar = this.m;
+        if (ozVar != null) {
+            gl.r(ozVar);
+            this.m = null;
+        }
+        this.b = null;
+        return true;
+    }
+
+    public final boolean g() {
+        SensorManager sensorManager = this.a;
+        if (sensorManager == null) {
+            return false;
+        }
+        Sensor sensor = this.d;
+        if (sensor == null) {
+            return true;
+        }
+        if (!this.l) {
+            sensorManager.unregisterListener(this.p, sensor);
+        }
+        oz ozVar = this.o;
+        if (ozVar != null) {
+            gl.r(ozVar);
+            this.o = null;
+        }
+        this.d = null;
+        return true;
+    }
+
+    public final boolean h() {
+        SensorManager sensorManager = this.a;
+        if (sensorManager == null) {
+            return false;
+        }
+        Sensor sensor = this.g;
+        if (sensor == null && this.f == null && this.i == null) {
+            return true;
+        }
+        if (!this.l) {
+            mr0 mr0Var = this.r;
+            if (sensor != null) {
+                sensorManager.unregisterListener(mr0Var, sensor);
+            }
+            Sensor sensor2 = this.f;
+            if (sensor2 != null) {
+                sensorManager.unregisterListener(mr0Var, sensor2);
+            }
+            Sensor sensor3 = this.i;
+            if (sensor3 != null) {
+                sensorManager.unregisterListener(this.t, sensor3);
+            }
+        }
+        oz ozVar = this.q;
+        if (ozVar != null) {
+            gl.r(ozVar);
+            this.q = null;
+        }
+        oz ozVar2 = this.s;
+        if (ozVar2 != null) {
+            gl.r(ozVar2);
+            this.s = null;
+        }
+        this.g = null;
+        this.f = null;
+        this.i = null;
+        return true;
     }
 }

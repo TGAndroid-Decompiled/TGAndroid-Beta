@@ -1,19 +1,43 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-public final class p96 implements RequestDelegate {
-    public final byte a;
-    public final s96 b;
-    public final int c;
+import android.os.LocaleList;
+import java.util.Locale;
+public final class p96 implements o96 {
+    public final LocaleList a;
 
-    public p96(s96 s96Var, int i, byte b) {
-        this.a = b;
-        this.b = s96Var;
-        this.c = i;
+    public p96(Object obj) {
+        this.a = (LocaleList) obj;
     }
 
     @Override
-    public final void run(org.telegram.tgnet.TLObject r13, org.telegram.tgnet.TLRPC.TL_error r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.p96.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public final String a() {
+        return this.a.toLanguageTags();
+    }
+
+    @Override
+    public final Object b() {
+        return this.a;
+    }
+
+    public final boolean equals(Object obj) {
+        return this.a.equals(((o96) obj).b());
+    }
+
+    @Override
+    public final Locale get(int i) {
+        return this.a.get(i);
+    }
+
+    public final int hashCode() {
+        return this.a.hashCode();
+    }
+
+    @Override
+    public final int size() {
+        return this.a.size();
+    }
+
+    public final String toString() {
+        return this.a.toString();
     }
 }

@@ -11,11 +11,11 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
 public final class f3 extends i3 implements NavigableMap {
-    public final zi7 n;
+    public final wg7 n;
 
-    public f3(zi7 zi7Var, NavigableMap navigableMap) {
-        super(zi7Var, navigableMap);
-        this.n = zi7Var;
+    public f3(wg7 wg7Var, NavigableMap navigableMap) {
+        super(wg7Var, navigableMap);
+        this.n = wg7Var;
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class f3 extends i3 implements NavigableMap {
         return new f3(this.n, e().descendingMap());
     }
 
-    public final ho5 f(Iterator it) {
+    public final hm5 f(Iterator it) {
         if (!it.hasNext()) {
             return null;
         }
@@ -60,7 +60,7 @@ public final class f3 extends i3 implements NavigableMap {
         Collection m = this.n.m();
         m.addAll((Collection) entry.getValue());
         it.remove();
-        return new ho5(entry.getKey(), DesugarCollections.unmodifiableList((List) m));
+        return new hm5(entry.getKey(), DesugarCollections.unmodifiableList((List) m));
     }
 
     @Override

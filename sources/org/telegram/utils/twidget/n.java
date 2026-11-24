@@ -8,7 +8,7 @@ import android.os.Parcel;
 import android.os.SystemClock;
 import android.util.Log;
 import java.nio.charset.StandardCharsets;
-public final class n extends Binder implements gl5 {
+public final class n extends Binder implements hj5 {
     public static final int b = 0;
     public final WidgetEngineService a;
 
@@ -28,20 +28,20 @@ public final class n extends Binder implements gl5 {
     }
 
     @Override
-    public final long G(byte[] bArr, byte[] bArr2, float f, float f2, int i, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6, boolean z, il5 il5Var) {
+    public final long G(byte[] bArr, byte[] bArr2, float f, float f2, int i, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6, boolean z, jj5 jj5Var) {
         if (!WidgetEngineService.e) {
             SystemClock.uptimeMillis();
-            String f3 = WidgetEngineService.f(new lcc(this.a.getAssets(), (byte) 12));
+            String f3 = WidgetEngineService.f(new dkc(this.a.getAssets(), (byte) 8));
             SystemClock.uptimeMillis();
-            long create = WidgetSandboxNative.create(f3.getBytes(StandardCharsets.UTF_8), bArr, bArr2, f, f2, i, bArr3, bArr4, bArr5, bArr6, z, new WidgetEngineBackend(il5Var, f2));
-            Object obj = qfd.a;
+            long create = WidgetSandboxNative.create(f3.getBytes(StandardCharsets.UTF_8), bArr, bArr2, f, f2, i, bArr3, bArr4, bArr5, bArr6, z, new WidgetEngineBackend(jj5Var, f2));
+            Object obj = odd.a;
             synchronized (obj) {
-                qfd.b++;
+                odd.b++;
                 obj.notifyAll();
             }
             return create;
         }
-        dq9.m("Widget engine: no seccomp filter on this device");
+        sc8.j("Widget engine: no seccomp filter on this device");
         return 0L;
     }
 
@@ -62,7 +62,7 @@ public final class n extends Binder implements gl5 {
         }
         SystemClock.uptimeMillis();
         try {
-            String f = WidgetEngineService.f(new lcc(this.a.getAssets(), (byte) 12));
+            String f = WidgetEngineService.f(new dkc(this.a.getAssets(), (byte) 8));
             SystemClock.uptimeMillis();
             WidgetEngineBackend.warmFonts(this.a.getResources().getDisplayMetrics().density);
             SystemClock.uptimeMillis();
@@ -90,7 +90,7 @@ public final class n extends Binder implements gl5 {
     @Override
     public final boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) {
         Parcel parcel3;
-        il5 il5Var;
+        jj5 jj5Var;
         boolean z;
         boolean z2;
         boolean z3;
@@ -123,18 +123,18 @@ public final class n extends Binder implements gl5 {
                 }
                 IBinder readStrongBinder = parcel.readStrongBinder();
                 if (readStrongBinder == null) {
-                    il5Var = null;
+                    jj5Var = null;
                 } else {
                     IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("org.telegram.utils.twidget.IWidgetEngineCallback");
-                    if (queryLocalInterface != null && (queryLocalInterface instanceof il5)) {
-                        il5Var = (il5) queryLocalInterface;
+                    if (queryLocalInterface != null && (queryLocalInterface instanceof jj5)) {
+                        jj5Var = (jj5) queryLocalInterface;
                     } else {
                         ?? obj = new Object();
                         obj.a = readStrongBinder;
-                        il5Var = obj;
+                        jj5Var = obj;
                     }
                 }
-                long G = G(createByteArray, createByteArray2, readFloat, readFloat2, readInt, createByteArray3, createByteArray4, createByteArray5, createByteArray6, z6, il5Var);
+                long G = G(createByteArray, createByteArray2, readFloat, readFloat2, readInt, createByteArray3, createByteArray4, createByteArray5, createByteArray6, z6, jj5Var);
                 parcel2.writeNoException();
                 parcel2.writeLong(G);
                 break;
@@ -235,8 +235,8 @@ public final class n extends Binder implements gl5 {
             @Override
             public final void run() {
                 WidgetSandboxNative.destroy(j);
-                synchronized (qfd.a) {
-                    qfd.b = Math.max(0, qfd.b - 1);
+                synchronized (odd.a) {
+                    odd.b = Math.max(0, odd.b - 1);
                 }
             }
         });

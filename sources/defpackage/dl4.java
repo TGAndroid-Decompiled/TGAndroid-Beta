@@ -1,25 +1,21 @@
 package defpackage;
-public final class dl4 {
-    public final String a;
-    public final int b = 2;
-    public final Runnable c;
-    public final float d;
-    public final float e;
-    public final ro f;
+public final class dl4 implements p8c {
+    public final byte a = 0;
+    public final ui5 b;
+    public final pz1 c;
 
-    public dl4(String str, float f, float f2, ro roVar) {
-        this.a = str;
-        this.d = f;
-        this.e = f2;
-        this.f = roVar;
+    public dl4(pz1 pz1Var, ui5 ui5Var) {
+        this.c = pz1Var;
+        this.b = ui5Var;
     }
 
-    public dl4(String str) {
-        this.a = str;
+    @Override
+    public final void a(java.lang.Object r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.dl4.a(java.lang.Object):void");
     }
 
-    public dl4(String str, Runnable runnable) {
-        this.a = str;
-        this.c = runnable;
+    public dl4(ui5 ui5Var, pz1 pz1Var) {
+        this.b = ui5Var;
+        this.c = pz1Var;
     }
 }

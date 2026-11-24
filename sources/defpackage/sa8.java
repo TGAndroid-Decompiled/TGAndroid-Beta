@@ -1,85 +1,80 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.widget.FrameLayout;
-import java.io.File;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.SurfaceTexture;
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.ui.PhotoViewer;
-public final class sa8 extends ry5 {
-    public boolean i2;
-    public final PhotoViewer j2;
+import org.telegram.ui.LaunchActivity;
+public interface sa8 {
+    View C0();
 
-    public sa8(PhotoViewer photoViewer, Context context, Activity activity, int i, Bitmap bitmap, Bitmap bitmap2, int i2, ArrayList arrayList, ao6 ao6Var, n88 n88Var, ylb ylbVar) {
-        super(context, activity, i, bitmap, bitmap2, i2, arrayList, ao6Var, n88Var, ylbVar);
-        this.j2 = photoViewer;
-    }
+    boolean F2();
 
-    @Override
-    public final FrameLayout getCaptionsBulletinContainer() {
-        return this.j2.f0;
-    }
+    boolean G0();
 
-    @Override
-    public final long getCaptionsTrimEnd() {
-        PhotoViewer photoViewer = this.j2;
-        x98 x98Var = photoViewer.X7;
-        if (x98Var == null) {
-            return 0L;
-        }
-        return x98Var.getRightProgress() * ((float) photoViewer.z0());
-    }
+    void G2(int i);
 
-    @Override
-    public final long getCaptionsTrimStart() {
-        PhotoViewer photoViewer = this.j2;
-        x98 x98Var = photoViewer.X7;
-        if (x98Var == null) {
-            return 0L;
-        }
-        return x98Var.getLeftProgress() * ((float) photoViewer.z0());
-    }
+    void H0(ya8 ya8Var);
 
-    @Override
-    public final File getCaptionsVideoFile() {
-        int i;
-        PhotoViewer photoViewer = this.j2;
-        if (photoViewer.s1 && photoViewer.d5 != null && (i = photoViewer.d2) != 1 && i != 11) {
-            return new File(photoViewer.d5);
-        }
-        return null;
-    }
+    void L0();
 
-    @Override
-    public final long getCaptionsVideoPosition() {
-        ndc ndcVar = this.j2.G2;
-        if (ndcVar != null) {
-            return ndcVar.S();
-        }
-        return 0L;
-    }
+    void L1(View view);
 
-    @Override
-    public final int getPKeyboardHeight() {
-        mx5 mx5Var = this.j2.L1;
-        if (mx5Var != null) {
-            return mx5Var.l;
-        }
-        return 0;
-    }
+    void P1();
 
-    @Override
-    public final void q0(boolean z) {
-        PhotoViewer photoViewer = this.j2;
-        if (photoViewer.G2 != null) {
-            photoViewer.H2 = false;
-            photoViewer.m();
-            if (z) {
-                photoViewer.G2.f0();
-            } else if (!photoViewer.T0()) {
-                photoViewer.G2.g0();
-            }
-        }
-    }
+    int Q0();
+
+    void S0(float f);
+
+    int S1();
+
+    boolean U();
+
+    boolean a0(boolean z, float f, iv9 iv9Var);
+
+    boolean a1();
+
+    float a2();
+
+    boolean b0();
+
+    boolean d1();
+
+    void e();
+
+    void f(long j);
+
+    long getDuration();
+
+    boolean j();
+
+    void k();
+
+    oc8 k1();
+
+    long m();
+
+    void n(View view);
+
+    void n0(Rect rect);
+
+    void o2(int i, ArrayList arrayList);
+
+    View p0(LaunchActivity launchActivity);
+
+    boolean p1();
+
+    void q0(View view);
+
+    void r2(Canvas canvas, int i, int i2);
+
+    int u();
+
+    void u1();
+
+    void y(SurfaceTexture surfaceTexture, Bitmap bitmap);
+
+    void y0(View view);
 }

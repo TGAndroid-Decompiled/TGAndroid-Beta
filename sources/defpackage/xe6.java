@@ -1,40 +1,29 @@
 package defpackage;
 
-import android.content.Context;
-import org.telegram.ui.PasscodeActivity;
-public final class xe6 extends tk2 {
-    public final byte h;
-    public final Object n;
+import android.view.View;
+public final class xe6 implements View.OnClickListener {
+    public final byte a = 0;
+    public final af6 b;
 
-    public xe6(byte b, Context context, Object obj) {
-        super(context);
-        this.h = b;
-        this.n = obj;
+    public xe6(af6 af6Var) {
+        this.b = af6Var;
     }
 
     @Override
-    public final void a() {
-        byte b = this.h;
-        Object obj = this.n;
+    public final void onClick(View view) {
+        byte b = this.a;
+        af6 af6Var = this.b;
         switch (b) {
             case 0:
-                ((ze6) obj).h(null);
+                af6Var.a();
                 return;
-            case 1:
-                ((sf6) obj).h(null);
-                return;
-            case 2:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) obj;
-                if (!passcodeActivity.F) {
-                    postDelayed(new kl7(this, (byte) 11), 260L);
-                    return;
-                } else {
-                    passcodeActivity.u0();
-                    return;
-                }
             default:
-                ((p5c) obj).H0();
+                af6Var.a();
                 return;
         }
+    }
+
+    public xe6(af6 af6Var, pj4 pj4Var) {
+        this.b = af6Var;
     }
 }

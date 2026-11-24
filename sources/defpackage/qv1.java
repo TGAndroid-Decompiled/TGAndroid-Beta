@@ -1,45 +1,43 @@
 package defpackage;
 
-import android.util.SparseIntArray;
-import org.telegram.ui.ActionBar.d;
-public final class qv1 implements Runnable {
-    public final byte a;
-    public final wv1 b;
+import android.view.KeyEvent;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class qv1 implements lq0, ed, et3, k8 {
+    public final ChatActivityEnterView a;
 
-    public qv1(wv1 wv1Var, byte b) {
-        this.a = b;
-        this.b = wv1Var;
+    public qv1(ChatActivityEnterView chatActivityEnterView) {
+        this.a = chatActivityEnterView;
     }
 
     @Override
-    public final void run() {
-        tk5 tk5Var;
-        tk5 tk5Var2;
-        byte b = this.a;
-        wv1 wv1Var = this.b;
-        switch (b) {
-            case 0:
-                wv1Var.e = new SparseIntArray();
-                yv1 yv1Var = wv1Var.G;
-                m37 m37Var = (m37) yv1Var.getThemedDrawable("drawableMsgOut");
-                wv1Var.t = m37Var;
-                tk5Var = ((d) yv1Var).parentLayout;
-                m37Var.J = tk5Var.getMessageDrawableOutStart();
-                m37 m37Var2 = (m37) yv1Var.getThemedDrawable("drawableMsgOutMedia");
-                wv1Var.u = m37Var2;
-                tk5Var2 = ((d) yv1Var).parentLayout;
-                m37Var2.J = tk5Var2.getMessageDrawableOutMediaStart();
-                wv1Var.t.K = 0.0f;
-                wv1Var.u.K = 0.0f;
-                yv1Var.cd();
-                wv1Var.t(0.0f);
-                return;
-            default:
-                wv1Var.t.J = null;
-                wv1Var.u.J = null;
-                wv1Var.e = null;
-                wv1Var.t(1.0f);
-                return;
+    public final void m() {
+        int i = ChatActivityEnterView.r7;
+        ChatActivityEnterView chatActivityEnterView = this.a;
+        chatActivityEnterView.F0.f();
+        hy1 hy1Var = chatActivityEnterView.P3;
+        if (hy1Var != null) {
+            hy1Var.P0(chatActivityEnterView.F0.getTextToUse());
+        }
+    }
+
+    @Override
+    public final void r(KeyEvent keyEvent) {
+        ChatActivityEnterView chatActivityEnterView;
+        zw1 zw1Var;
+        int i = ChatActivityEnterView.r7;
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (zw1Var = (chatActivityEnterView = this.a).O0) != null && zw1Var.isShowing()) {
+            chatActivityEnterView.O0.dismiss();
+        }
+    }
+
+    @Override
+    public final void u(hd hdVar, int i) {
+        int i2 = ChatActivityEnterView.r7;
+        ChatActivityEnterView chatActivityEnterView = this.a;
+        chatActivityEnterView.R();
+        ex1 ex1Var = chatActivityEnterView.F0;
+        if (ex1Var != null) {
+            ex1Var.setText("");
         }
     }
 }

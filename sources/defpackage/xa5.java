@@ -1,20 +1,27 @@
 package defpackage;
 
-import org.webrtc.RendererCommon;
-public final class xa5 implements RendererCommon.RendererEvents {
-    public final ya5 a;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class xa5 extends FrameLayout {
+    public Drawable a;
+    public TextView b;
 
-    public xa5(ya5 ya5Var) {
-        this.a = ya5Var;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Drawable drawable = this.a;
+        drawable.setBounds(0, getMeasuredHeight() - gl.L(3.0f), getMeasuredWidth(), getMeasuredHeight());
+        drawable.draw(canvas);
     }
 
     @Override
-    public final void onFirstFrameRendered() {
-        gm.c3(new wa5(this.a, (byte) 0));
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(40.0f), 1073741824));
     }
 
-    @Override
-    public final void onFrameResolutionChanged(int i, int i2, int i3) {
-        gm.c3(new wa5(this.a, (byte) 1));
+    public void setText(String str) {
+        this.b.setText(str);
     }
 }

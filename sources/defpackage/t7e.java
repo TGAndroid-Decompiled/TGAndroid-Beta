@@ -1,17 +1,43 @@
 package defpackage;
-public final class t7e implements cq7 {
-    public static final t7e a = new Object();
+
+import java.math.RoundingMode;
+public abstract class t7e {
+    public static final int[] a;
 
     static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)), 5)), 6)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+        int[] iArr = new int[RoundingMode.values().length];
+        a = iArr;
+        try {
+            iArr[RoundingMode.UNNECESSARY.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
         }
-        throw new ClassCastException();
+        try {
+            a[RoundingMode.DOWN.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            a[RoundingMode.FLOOR.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            a[RoundingMode.UP.ordinal()] = 4;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            a[RoundingMode.CEILING.ordinal()] = 5;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            a[RoundingMode.HALF_DOWN.ordinal()] = 6;
+        } catch (NoSuchFieldError unused6) {
+        }
+        try {
+            a[RoundingMode.HALF_UP.ordinal()] = 7;
+        } catch (NoSuchFieldError unused7) {
+        }
+        try {
+            a[RoundingMode.HALF_EVEN.ordinal()] = 8;
+        } catch (NoSuchFieldError unused8) {
+        }
     }
 }

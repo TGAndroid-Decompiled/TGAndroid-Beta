@@ -1,34 +1,40 @@
 package defpackage;
 
-import android.content.SharedPreferences;
+import java.util.ArrayList;
 public final class ab6 implements Runnable {
     public final byte a;
-    public final jb6 b;
-    public final String c;
-    public final ez5 d;
+    public final eb6 b;
+    public final ArrayList c;
 
-    public ab6(jb6 jb6Var, String str, ez5 ez5Var, byte b) {
+    public ab6(eb6 eb6Var, ArrayList arrayList, byte b) {
         this.a = b;
-        this.b = jb6Var;
-        this.c = str;
-        this.d = ez5Var;
+        this.b = eb6Var;
+        this.c = arrayList;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        ez5 ez5Var = this.d;
-        String str = this.c;
-        jb6 jb6Var = this.b;
+        ArrayList arrayList = this.c;
+        eb6 eb6Var = this.b;
         switch (b) {
             case 0:
-                gm.c3(new ab6(jb6Var, str, ez5Var, (byte) 1));
+                ArrayList arrayList2 = eb6Var.b;
+                arrayList2.addAll(arrayList);
+                for (int i = 0; i < arrayList2.size(); i++) {
+                    db6 db6Var = (db6) arrayList2.get(i);
+                    eb6Var.a.k(db6Var, db6Var.a);
+                }
+                gl.c3(new ab6(eb6Var, arrayList, (byte) 1));
                 return;
             default:
-                SharedPreferences.Editor edit = oc7.d1().edit();
-                edit.putBoolean("langpack_patched" + str, true).apply();
-                ez5Var.run();
-                jb6Var.Q = false;
+                eb6Var.J.addAll(arrayList);
+                for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                    db6 db6Var2 = (db6) arrayList.get(i2);
+                    eb6Var.K.k(db6Var2, db6Var2.a);
+                }
+                eb6.q();
+                kk7.e().k(283, new Object[0]);
                 return;
         }
     }

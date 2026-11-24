@@ -1,32 +1,21 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class ha7 implements Runnable {
-    public final oc7 a;
-    public final TLRPC.TL_messages_dialogs b;
-    public final ArrayList c;
-    public final TLRPC.TL_messages_dialogs d;
-    public final byte e;
-    public final ArrayList f;
-    public final ArrayList h;
-    public final ArrayList n;
-    public final Runnable r;
+import java.util.HashSet;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+public final class ha7 {
+    public final int a;
+    public final HashSet b = new HashSet();
+    public boolean c;
+    public boolean d;
 
-    public ha7(oc7 oc7Var, TLRPC.TL_messages_dialogs tL_messages_dialogs, ArrayList arrayList, TLRPC.TL_messages_dialogs tL_messages_dialogs2, int i, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, Runnable runnable) {
-        this.a = oc7Var;
-        this.b = tL_messages_dialogs;
-        this.c = arrayList;
-        this.d = tL_messages_dialogs2;
-        this.e = i;
-        this.f = arrayList2;
-        this.h = arrayList3;
-        this.n = arrayList4;
-        this.r = runnable;
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ha7.run():void");
+    public ha7(int i) {
+        this.a = i;
+        if (!this.c && !this.d) {
+            this.c = true;
+            TL_account.getSavedMusicIds getsavedmusicids = new TL_account.getSavedMusicIds();
+            getsavedmusicids.hash = 0L;
+            ConnectionsManager.getInstance(i).sendRequest(getsavedmusicids, new n35(this, (byte) 12));
+        }
     }
 }

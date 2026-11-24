@@ -1,179 +1,38 @@
 package defpackage;
-public final class gb0 {
-    public static final int h = 0;
-    public final String a;
-    public final int b;
-    public final String c;
-    public final String d;
-    public final long e;
-    public final long f;
-    public final String g;
 
-    static {
-        byte b = (byte) (((byte) (0 | 2)) | 1);
-        if (b == 3) {
-            return;
-        }
-        StringBuilder sb = new StringBuilder();
-        if ((b & 1) == 0) {
-            sb.append(" expiresInSecs");
-        }
-        if ((b & 2) == 0) {
-            sb.append(" tokenCreationEpochInSecs");
-        }
-        dq9.m(ts2.n("Missing required properties:", sb));
+import android.animation.ValueAnimator;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.ActionBar.d;
+public final class gb0 implements ValueAnimator.AnimatorUpdateListener {
+    public final float a;
+    public final float b;
+    public final boolean c;
+    public final mb0 d;
+
+    public gb0(mb0 mb0Var, float f, float f2, boolean z) {
+        this.d = mb0Var;
+        this.a = f;
+        this.b = f2;
+        this.c = z;
     }
 
-    public gb0(String str, int i, String str2, String str3, long j, long j2, String str4) {
-        this.a = str;
-        this.b = i;
-        this.c = str2;
-        this.d = str3;
-        this.e = j;
-        this.f = j2;
-        this.g = str4;
-    }
-
-    public final fb0 a() {
-        ?? obj = new Object();
-        obj.a = this.a;
-        obj.b = this.b;
-        obj.c = this.c;
-        obj.d = this.d;
-        obj.e = this.e;
-        obj.f = this.f;
-        obj.g = this.g;
-        obj.h = (byte) 3;
-        return obj;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof gb0) {
-                gb0 gb0Var = (gb0) obj;
-                String str = gb0Var.a;
-                String str2 = this.a;
-                if (str2 == null) {
-                    if (str != null) {
-                        return false;
-                    }
-                } else if (!str2.equals(str)) {
-                    return false;
-                }
-                if (wi8.c(this.b, gb0Var.b)) {
-                    String str3 = gb0Var.c;
-                    String str4 = this.c;
-                    if (str4 == null) {
-                        if (str3 != null) {
-                            return false;
-                        }
-                    } else if (!str4.equals(str3)) {
-                        return false;
-                    }
-                    String str5 = gb0Var.d;
-                    String str6 = this.d;
-                    if (str6 == null) {
-                        if (str5 != null) {
-                            return false;
-                        }
-                    } else if (!str6.equals(str5)) {
-                        return false;
-                    }
-                    if (this.e == gb0Var.e && this.f == gb0Var.f) {
-                        String str7 = gb0Var.g;
-                        String str8 = this.g;
-                        if (str8 == null) {
-                            if (str7 == null) {
-                                return true;
-                            }
-                            return false;
-                        } else if (str8.equals(str7)) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        a aVar;
+        a aVar2;
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        mb0 mb0Var = this.d;
+        mb0Var.O = floatValue;
+        float R1 = gl.R1(this.a, this.b, floatValue);
+        aVar = ((d) mb0Var).actionBar;
+        aVar.getTitleTextView().setAlpha(mb0Var.O);
+        if (mb0Var.G && !this.c) {
+            mb0Var.m0(false, 1.0f - mb0Var.O);
         }
-        return true;
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        int hashCode2;
-        int hashCode3;
-        int i = 0;
-        String str = this.a;
-        if (str == null) {
-            hashCode = 0;
-        } else {
-            hashCode = str.hashCode();
-        }
-        int F = (((hashCode ^ 1000003) * 1000003) ^ wi8.F(this.b)) * 1000003;
-        String str2 = this.c;
-        if (str2 == null) {
-            hashCode2 = 0;
-        } else {
-            hashCode2 = str2.hashCode();
-        }
-        int i2 = (F ^ hashCode2) * 1000003;
-        String str3 = this.d;
-        if (str3 == null) {
-            hashCode3 = 0;
-        } else {
-            hashCode3 = str3.hashCode();
-        }
-        long j = this.e;
-        long j2 = this.f;
-        int i3 = (((((i2 ^ hashCode3) * 1000003) ^ ((int) ((j >>> 32) ^ j))) * 1000003) ^ ((int) ((j2 >>> 32) ^ j2))) * 1000003;
-        String str4 = this.g;
-        if (str4 != null) {
-            i = str4.hashCode();
-        }
-        return i3 ^ i;
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb = new StringBuilder("PersistedInstallationEntry{firebaseInstallationId=");
-        sb.append(this.a);
-        sb.append(", registrationStatus=");
-        int i = this.b;
-        if (i != 1) {
-            if (i != 2) {
-                if (i != 3) {
-                    if (i != 4) {
-                        if (i != 5) {
-                            str = "null";
-                        } else {
-                            str = "REGISTER_ERROR";
-                        }
-                    } else {
-                        str = "REGISTERED";
-                    }
-                } else {
-                    str = "UNREGISTERED";
-                }
-            } else {
-                str = "NOT_GENERATED";
-            }
-        } else {
-            str = "ATTEMPT_MIGRATION";
-        }
-        sb.append(str);
-        sb.append(", authToken=");
-        sb.append(this.c);
-        sb.append(", refreshToken=");
-        sb.append(this.d);
-        sb.append(", expiresInSecs=");
-        sb.append(this.e);
-        sb.append(", tokenCreationEpochInSecs=");
-        sb.append(this.f);
-        sb.append(", fisError=");
-        return b10.j(sb, this.g, "}");
+        mb0Var.r.setTranslationY(R1);
+        mb0Var.y.setTranslationY(R1);
+        mb0Var.fragmentView.invalidate();
+        aVar2 = ((d) mb0Var).actionBar;
+        aVar2.invalidate();
     }
 }

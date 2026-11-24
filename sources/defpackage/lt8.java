@@ -1,6 +1,4 @@
 package defpackage;
-
-import android.view.View;
-public abstract class lt8 extends View {
-    public static final np3 a = new np3("profileBlurQueue", true);
+public interface lt8 {
+    Object mo9get();
 }

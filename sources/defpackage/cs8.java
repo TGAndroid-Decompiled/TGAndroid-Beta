@@ -1,182 +1,101 @@
 package defpackage;
 
-import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
-import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.tl.TL_stars;
-public final class cs8 extends ogc {
-    public final int a;
-    public final ylb b;
-    public final lea c;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import java.io.File;
+import java.io.IOException;
+public abstract class cs8 {
+    public static final ea9 a = new Object();
+    public static final Object b = new Object();
+    public static ie7 c = null;
 
-    public cs8(lea leaVar, int i, ylb ylbVar) {
-        this.c = leaVar;
-        this.a = i;
-        this.b = ylbVar;
+    public static long a(Context context) {
+        PackageManager packageManager = context.getApplicationContext().getPackageManager();
+        if (Build.VERSION.SDK_INT >= 33) {
+            return as8.a(packageManager, context).lastUpdateTime;
+        }
+        return packageManager.getPackageInfo(context.getPackageName(), 0).lastUpdateTime;
     }
 
-    @Override
-    public final void a(ArrayList arrayList) {
-        lea leaVar = this.c;
-        ur8 ur8Var = leaVar.R;
-        yua yuaVar = leaVar.e;
-        ArrayList arrayList2 = new ArrayList();
-        int size = arrayList.size();
-        int i = 0;
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList.get(i2);
-            i2++;
-            Integer num = (Integer) obj;
-            int intValue = num.intValue();
-            if (intValue != -1 && intValue != -2) {
-                arrayList2.add(num);
-            }
-        }
-        yuaVar.getClass();
-        HashMap hashMap = new HashMap();
-        ArrayList arrayList3 = yuaVar.e;
-        int size2 = arrayList3.size();
-        int i3 = 0;
-        while (i3 < size2) {
-            Object obj2 = arrayList3.get(i3);
-            i3++;
-            TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj2;
-            hashMap.put(Integer.valueOf(tL_starGiftCollection.collection_id), tL_starGiftCollection);
-        }
-        ArrayList arrayList4 = new ArrayList();
-        int size3 = arrayList2.size();
-        int i4 = 0;
-        while (i4 < size3) {
-            Object obj3 = arrayList2.get(i4);
-            i4++;
-            Integer num2 = (Integer) obj3;
-            num2.getClass();
-            TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) hashMap.get(num2);
-            if (tL_starGiftCollection2 != null) {
-                arrayList4.add(tL_starGiftCollection2);
-            }
-        }
-        arrayList3.clear();
-        arrayList3.addAll(arrayList4);
-        yuaVar.j();
-        rs8 currentPage = leaVar.getCurrentPage();
-        if (currentPage != null) {
-            if (currentPage.d) {
-                i = yuaVar.f(currentPage.e.d) + 1;
-            }
-            leaVar.n.f(0.0f, i, i);
-        }
-        gm.r(ur8Var);
-        gm.d3(ur8Var, 1000L);
+    public static ie7 b() {
+        ie7 ie7Var = new ie7((byte) 24);
+        c = ie7Var;
+        a.k(ie7Var);
+        return c;
     }
 
-    @Override
-    public final void b(View view, int i, int i2) {
-        ava avaVar;
-        boolean z;
-        rs8 rs8Var = (rs8) view;
-        lea leaVar = this.c;
-        yua yuaVar = leaVar.e;
-        int i3 = 0;
-        if (i2 == 0) {
-            avaVar = leaVar.d;
-            z = false;
-        } else {
-            int i4 = i - 1;
-            if (i4 >= 0) {
-                if (i4 < yuaVar.d().size()) {
-                    avaVar = yuaVar.e(((TL_stars.TL_starGiftCollection) yuaVar.d().get(i4)).collection_id);
-                    z = true;
+    public static void c(Context context, boolean z) {
+        boolean z2;
+        boolean z3;
+        bs8 a2;
+        int i;
+        if (z || c == null) {
+            synchronized (b) {
+                if (!z) {
+                    if (c != null) {
+                        return;
+                    }
                 }
-            } else {
-                yuaVar.getClass();
+                int i2 = Build.VERSION.SDK_INT;
+                if (i2 >= 28 && i2 != 30) {
+                    File file = new File(new File("/data/misc/profiles/ref/", context.getPackageName()), "primary.prof");
+                    long length = file.length();
+                    int i3 = 0;
+                    if (file.exists() && length > 0) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    File file2 = new File(new File("/data/misc/profiles/cur/0/", context.getPackageName()), "primary.prof");
+                    long length2 = file2.length();
+                    if (file2.exists() && length2 > 0) {
+                        z3 = true;
+                    } else {
+                        z3 = false;
+                    }
+                    try {
+                        long a3 = a(context);
+                        File file3 = new File(context.getFilesDir(), "profileInstalled");
+                        if (file3.exists()) {
+                            try {
+                                a2 = bs8.a(file3);
+                            } catch (IOException unused) {
+                                b();
+                                return;
+                            }
+                        } else {
+                            a2 = null;
+                        }
+                        if (a2 != null && a2.c == a3 && (i = a2.b) != 2) {
+                            i3 = i;
+                        } else if (z2) {
+                            i3 = 1;
+                        } else if (z3) {
+                            i3 = 2;
+                        }
+                        if (z && z3 && i3 != 1) {
+                            i3 = 2;
+                        }
+                        if (a2 != null && a2.b == 2 && i3 == 1 && length < a2.d) {
+                            i3 = 3;
+                        }
+                        bs8 bs8Var = new bs8(1, i3, a3, length2);
+                        if (a2 == null || !a2.equals(bs8Var)) {
+                            try {
+                                bs8Var.b(file3);
+                            } catch (IOException unused2) {
+                            }
+                        }
+                        b();
+                        return;
+                    } catch (PackageManager.NameNotFoundException unused3) {
+                        b();
+                        return;
+                    }
+                }
+                b();
             }
-            avaVar = null;
-            z = true;
         }
-        rs8Var.d = z;
-        rs8Var.e = avaVar;
-        if (avaVar != null) {
-            avaVar.a();
-        }
-        rs8Var.f(false);
-        LinearLayout linearLayout = rs8Var.E;
-        if (linearLayout != null) {
-            if (!rs8Var.a.e.h()) {
-                i3 = 8;
-            }
-            linearLayout.setVisibility(i3);
-        }
-        rs8Var.setVisibleHeight(leaVar.U);
-        rs8Var.setHasTabs(!yuaVar.d().isEmpty());
-    }
-
-    @Override
-    public final boolean c(int i) {
-        if (i == 0) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final View d(int i) {
-        if (i == -1) {
-            return null;
-        }
-        int i2 = this.a;
-        ylb ylbVar = this.b;
-        lea leaVar = this.c;
-        rs8 rs8Var = new rs8(leaVar, i2, ylbVar);
-        sy4 sy4Var = leaVar.O;
-        if (sy4Var != null) {
-            sy4Var.b(rs8Var.f);
-        }
-        return rs8Var;
-    }
-
-    @Override
-    public final int e() {
-        return this.c.e.d().size() + 1;
-    }
-
-    @Override
-    public final int f(int i) {
-        if (i == 0) {
-            return -2;
-        }
-        return ((TL_stars.TL_starGiftCollection) this.c.e.d().get(i - 1)).collection_id;
-    }
-
-    @Override
-    public final CharSequence g(int i) {
-        if (i == 0) {
-            return jb6.M0(2131750181, null);
-        }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.c.e.d().get(i - 1);
-        if (tL_starGiftCollection == null) {
-            return null;
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_starGiftCollection.title);
-        if (tL_starGiftCollection.icon != null) {
-            TextPaint textPaint = new TextPaint(1);
-            textPaint.setTextSize(gm.L(16.0f));
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("e ");
-            spannableStringBuilder2.setSpan(new gn(tL_starGiftCollection.icon, textPaint.getFontMetricsInt()), 0, 1, 33);
-            spannableStringBuilder.insert(0, (CharSequence) spannableStringBuilder2);
-        }
-        return spannableStringBuilder;
-    }
-
-    @Override
-    public final int h(int i) {
-        if (i == 0) {
-            return 0;
-        }
-        return 1;
     }
 }

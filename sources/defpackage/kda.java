@@ -1,10 +1,17 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public interface kda {
-    void a(TLRPC.WebPage webPage, k47 k47Var);
+import android.content.Context;
+import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
+public final class kda extends ScrollSlidingTextTabStrip {
+    public final nfa q0;
 
-    boolean b();
+    public kda(nfa nfaVar, Context context, wjb wjbVar) {
+        super(context, wjbVar);
+        this.q0 = nfaVar;
+    }
 
-    void c(String str, boolean z);
+    @Override
+    public final int e(int i) {
+        return this.q0.c1(i);
+    }
 }

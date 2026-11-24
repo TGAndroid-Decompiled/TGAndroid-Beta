@@ -1,51 +1,71 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
-import java.nio.channels.WritableByteChannel;
-public final class q40 extends c4 {
-    public int f;
-    public byte h;
-    public long n;
+import android.hardware.biometrics.BiometricPrompt;
+import android.hardware.biometrics.BiometricPrompt$AuthenticationCallback;
+import android.os.Build;
+import android.security.identity.IdentityCredential;
+import java.lang.ref.WeakReference;
+import java.security.Signature;
+import javax.crypto.Cipher;
+import javax.crypto.Mac;
+public final class q40 extends BiometricPrompt$AuthenticationCallback {
+    public final t40 a;
 
-    @Override
-    public final void getBox(WritableByteChannel writableByteChannel) {
-        writableByteChannel.write(d());
-        ByteBuffer allocate = ByteBuffer.allocate(28);
-        allocate.position(6);
-        kne.d(1, allocate);
-        kne.d(0, allocate);
-        kne.d(0, allocate);
-        allocate.putInt(0);
-        kne.d(this.f, allocate);
-        kne.d(this.h, allocate);
-        kne.d(0, allocate);
-        kne.d(0, allocate);
-        boolean equals = this.e.equals("mlpa");
-        long j = this.n;
-        if (equals) {
-            allocate.putInt((int) j);
-        } else {
-            allocate.putInt((int) (j << 16));
-        }
-        writableByteChannel.write((ByteBuffer) allocate.rewind());
-        c(writableByteChannel);
+    public q40(t40 t40Var) {
+        this.a = t40Var;
     }
 
-    @Override
-    public final long getSize() {
-        int i;
-        long b = b();
-        long j = 28 + b;
-        if (b + 36 >= 4294967296L) {
-            i = 16;
-        } else {
-            i = 8;
-        }
-        return j + i;
+    public void onAuthenticationError(int i, CharSequence charSequence) {
+        this.a.a(i, charSequence);
     }
 
-    @Override
-    public final String toString() {
-        return "AudioSampleEntry{bytesPerSample=0, bytesPerFrame=0, bytesPerPacket=0, samplesPerPacket=0, packetSize=0, compressionId=0, soundVersion=0, sampleRate=" + this.n + ", sampleSize=" + ((int) this.h) + ", channelCount=" + this.f + ", boxes=" + this.b + '}';
+    public void onAuthenticationFailed() {
+        WeakReference weakReference = ((jj0) this.a).a;
+        if (weakReference.get() != null && ((lj0) weakReference.get()).l) {
+            lj0 lj0Var = (lj0) weakReference.get();
+            hh7 hh7Var = lj0Var.s;
+            if (hh7Var == null) {
+                hh7Var = new hh7();
+                lj0Var.s = hh7Var;
+            }
+            lj0.f(hh7Var, Boolean.TRUE);
+        }
+    }
+
+    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult authenticationResult) {
+        BiometricPrompt.CryptoObject cryptoObject;
+        IdentityCredential b;
+        gj0 gj0Var = null;
+        if (authenticationResult != null && (cryptoObject = authenticationResult.getCryptoObject()) != null) {
+            Cipher d = q33.d(cryptoObject);
+            if (d != null) {
+                gj0Var = new gj0(d);
+            } else {
+                Signature f = q33.f(cryptoObject);
+                if (f != null) {
+                    gj0Var = new gj0(f);
+                } else {
+                    Mac e = q33.e(cryptoObject);
+                    if (e != null) {
+                        gj0Var = new gj0(e);
+                    } else if (Build.VERSION.SDK_INT >= 30 && (b = r33.b(cryptoObject)) != null) {
+                        gj0Var = new gj0(b);
+                    }
+                }
+            }
+        }
+        int i = Build.VERSION.SDK_INT;
+        int i2 = -1;
+        if (i >= 30) {
+            if (authenticationResult != null) {
+                i2 = s40.a(authenticationResult);
+            }
+        } else if (i != 29) {
+            i2 = 2;
+        }
+        this.a.b(new fj0(gj0Var, i2));
+    }
+
+    public void onAuthenticationHelp(int i, CharSequence charSequence) {
     }
 }

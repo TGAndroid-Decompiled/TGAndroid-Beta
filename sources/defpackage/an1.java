@@ -1,51 +1,41 @@
 package defpackage;
+public final class an1 implements uc7 {
+    public final byte a;
+    public final mu1 b;
 
-import android.content.Context;
-import android.text.style.CharacterStyle;
-public final class an1 implements Runnable {
-    public final byte a = 1;
-    public final int b;
-    public final byte c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
-
-    public an1(yv1 yv1Var, int i, int i2, CharacterStyle characterStyle, rc2 rc2Var) {
-        this.d = yv1Var;
-        this.b = i;
-        this.c = i2;
-        this.e = characterStyle;
-        this.f = rc2Var;
+    public an1(mu1 mu1Var, byte b) {
+        this.a = b;
+        this.b = mu1Var;
     }
 
     @Override
-    public final void run() {
+    public final void a(int i) {
         byte b = this.a;
-        Object obj = this.f;
-        byte b2 = this.c;
-        int i = this.b;
-        Object obj2 = this.e;
-        Object obj3 = this.d;
+        mu1 mu1Var = this.b;
         switch (b) {
             case 0:
-                yv1 yv1Var = (yv1) obj3;
-                yv1Var.kc = i;
-                yv1Var.lc = b2;
-                yv1Var.mc = (CharacterStyle) obj2;
-                ((rc2) obj).invalidate();
+                if (mu1Var.getParentActivity() != null && mu1Var.fragmentView != null && i > 0) {
+                    u21.b0(mu1Var).m(t21.r, i, 0, 0, mu1Var.Ba).j();
+                    return;
+                }
+                return;
+            case 1:
+                mu1 mu1Var2 = this.b;
+                if (i == 0) {
+                    mu1Var2.E6 = false;
+                    mu1Var2.M9();
+                    return;
+                }
+                mu1Var2.J(i, 0, 0, 0, false, true);
                 return;
             default:
-                joc jocVar = (joc) obj;
-                gm.c3(new gcc((moc) obj3, new ioc(((Context) obj2).getApplicationContext(), i, b2, jocVar), jocVar, (byte) 15));
-                return;
+                if (i == 0) {
+                    mu1Var.nd(true);
+                    return;
+                } else {
+                    mu1Var.finishFragment();
+                    return;
+                }
         }
-    }
-
-    public an1(moc mocVar, Context context, int i, int i2, joc jocVar) {
-        this.d = mocVar;
-        this.e = context;
-        this.b = i;
-        this.c = i2;
-        this.f = jocVar;
     }
 }

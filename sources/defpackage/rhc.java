@@ -1,39 +1,27 @@
 package defpackage;
 
-import android.view.View;
+import android.media.AudioManager;
 import org.telegram.messenger.voip.VoIPService;
-public final class rhc implements View.OnClickListener {
+import org.telegram.messenger.voip.VoipAudioManager;
+public final class rhc implements Runnable {
     public final byte a;
-    public final iic b;
-    public final VoIPService c;
+    public final AudioManager b;
 
-    public rhc(iic iicVar, VoIPService voIPService, byte b) {
+    public rhc(AudioManager audioManager, byte b) {
         this.a = b;
-        this.b = iicVar;
-        this.c = voIPService;
+        this.b = audioManager;
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void run() {
         byte b = this.a;
-        VoIPService voIPService = this.c;
-        iic iicVar = this.b;
+        AudioManager audioManager = this.b;
         switch (b) {
             case 0:
-                gm.c3(new thc(iicVar, (byte) 8));
-                int i = iicVar.M;
-                if (i > 0) {
-                    voIPService.sendCallRating(i);
-                    return;
-                }
+                VoIPService.lambda$onDestroy$94(audioManager);
                 return;
             default:
-                gm.c3(new thc(iicVar, (byte) 10));
-                int i2 = iicVar.M;
-                if (i2 > 0) {
-                    voIPService.sendCallRating(i2);
-                    return;
-                }
+                VoipAudioManager.a(audioManager);
                 return;
         }
     }

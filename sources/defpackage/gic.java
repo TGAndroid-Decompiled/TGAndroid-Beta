@@ -1,44 +1,44 @@
 package defpackage;
 
-import android.content.Intent;
-import org.telegram.messenger.voip.VoIPService;
-public final class gic implements m4 {
-    public final iic a;
+import android.animation.ValueAnimator;
+public final class gic implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final hic b;
 
-    public gic(iic iicVar) {
-        this.a = iicVar;
+    public gic(hic hicVar, byte b) {
+        this.a = b;
+        this.b = hicVar;
     }
 
-    public final void a() {
-        iic iicVar = this.a;
-        if (iicVar.p0 == 17) {
-            Intent intent = new Intent(iicVar.b, VoIPService.class);
-            intent.putExtra("user_id", iicVar.d.id);
-            intent.putExtra("is_outgoing", true);
-            intent.putExtra("start_incall_activity", false);
-            intent.putExtra("video_call", iicVar.U0);
-            intent.putExtra("can_video_call", iicVar.U0);
-            intent.putExtra("account", iicVar.a);
-            try {
-                iicVar.b.startService(intent);
-            } catch (Throwable th) {
-                fc4.g(th, true);
-            }
-        } else if (iicVar.b.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
-            iicVar.b.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 101);
-        } else if (VoIPService.getSharedState() != null) {
-            iicVar.i(new f8c(this, (byte) 17));
-        }
-    }
-
-    public final void b() {
-        iic iicVar = this.a;
-        if (iicVar.p0 == 17) {
-            iicVar.u0.b();
-        } else if (VoIPService.getSharedState() != null) {
-            VoIPService.getSharedState().declineIncomingCall();
-        } else {
-            iicVar.u0.b();
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        hic hicVar = this.b;
+        switch (b) {
+            case 0:
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                hicVar.d = intValue;
+                hicVar.e = intValue;
+                hicVar.f = intValue;
+                hicVar.h = intValue;
+                hicVar.n = intValue;
+                hicVar.invalidate();
+                return;
+            default:
+                hicVar.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hicVar.d = gl.U1(floatValue, hicVar.G, gl.L(56.0f));
+                hicVar.e = gl.U1(floatValue, hicVar.G, gl.L(36.0f));
+                hicVar.f = gl.U1(floatValue, hicVar.G, gl.L(60.0f));
+                hicVar.h = gl.U1(floatValue, hicVar.G, gl.L(36.0f));
+                hicVar.n = gl.U1(floatValue, hicVar.G, gl.L(64.0f));
+                hicVar.r = gl.U1(floatValue, 0, gl.L(50.0f));
+                hicVar.s = gl.U1(floatValue, 0, gl.L(20.0f));
+                hicVar.w = gl.U1(floatValue, 0, 0);
+                hicVar.x = gl.U1(floatValue, 0, gl.L(-20.0f));
+                hicVar.y = gl.U1(floatValue, 0, gl.L(-40.0f));
+                hicVar.invalidate();
+                return;
         }
     }
 }

@@ -16,16 +16,16 @@ public final class v1 implements Parcelable.ClassLoaderCreator {
                 if (parcel.readParcelable(classLoader) == null) {
                     return w1.b;
                 }
-                dq9.m("superState must be null");
+                sc8.j("superState must be null");
                 return null;
             case 1:
-                return new o69(parcel, classLoader);
+                return new m49(parcel, classLoader);
             case 2:
-                return new fv9(parcel, classLoader);
+                return new dt9(parcel, classLoader);
             case 3:
-                return new hvb(parcel, classLoader);
+                return new gtb(parcel, classLoader);
             default:
-                return new fgc(parcel, classLoader);
+                return new fec(parcel, classLoader);
         }
     }
 
@@ -35,13 +35,13 @@ public final class v1 implements Parcelable.ClassLoaderCreator {
             case 0:
                 return new w1[i];
             case 1:
-                return new o69[i];
+                return new m49[i];
             case 2:
-                return new fv9[i];
+                return new dt9[i];
             case 3:
-                return new hvb[i];
+                return new gtb[i];
             default:
-                return new fgc[i];
+                return new fec[i];
         }
     }
 
@@ -52,16 +52,16 @@ public final class v1 implements Parcelable.ClassLoaderCreator {
                 if (parcel.readParcelable(null) == null) {
                     return w1.b;
                 }
-                dq9.m("superState must be null");
+                sc8.j("superState must be null");
                 return null;
             case 1:
-                return new o69(parcel, null);
+                return new m49(parcel, null);
             case 2:
-                return new fv9(parcel, null);
+                return new dt9(parcel, null);
             case 3:
-                return new hvb(parcel, null);
+                return new gtb(parcel, null);
             default:
-                return new fgc(parcel, null);
+                return new fec(parcel, null);
         }
     }
 }

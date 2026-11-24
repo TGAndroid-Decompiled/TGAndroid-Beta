@@ -1,17 +1,6 @@
 package defpackage;
-public final class ghe implements cq7 {
-    public static final ghe a = new Object();
-
-    static {
-        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+public abstract class ghe {
+    public static final java.io.Serializable a(defpackage.hk4 r4, defpackage.ik4 r5, defpackage.fw2 r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ghe.a(hk4, ik4, fw2):java.io.Serializable");
     }
 }

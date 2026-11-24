@@ -1,41 +1,75 @@
 package defpackage;
 
-import org.telegram.messenger.camera.CameraController;
-public final class t8b implements Runnable {
-    public final byte a;
-    public final v8b b;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class t8b implements Comparable, Parcelable {
+    public static final Parcelable.Creator<t8b> CREATOR = new hv6((byte) 20);
+    public static final String d;
+    public static final String e;
+    public static final String f;
+    public final int a;
+    public final int b;
+    public final int c;
 
-    public t8b(v8b v8bVar, byte b) {
-        this.a = b;
-        this.b = v8bVar;
+    static {
+        String str = g8c.a;
+        d = "0";
+        e = "1";
+        f = "2";
+    }
+
+    public t8b(Parcel parcel) {
+        this.a = parcel.readInt();
+        this.b = parcel.readInt();
+        this.c = parcel.readInt();
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        v8b v8bVar = this.b;
-        switch (b) {
-            case 0:
-                v9b v9bVar = v8bVar.a;
-                ex8 ex8Var = v9bVar.D0;
-                if (ex8Var != null) {
-                    ex8Var.f(false);
-                }
-                if (v9bVar.R1 && v9bVar.S1 && v9bVar.C0 != null) {
-                    v9bVar.i0(false);
-                    CameraController.getInstance().stopVideoRecording(v9bVar.C0.getCameraSessionRecording(), false, false);
-                    return;
-                }
-                return;
-            case 1:
-                v8bVar.a.I(1, true);
-                return;
-            case 2:
-                v8bVar.a.I(1, true);
-                return;
-            default:
-                v8bVar.a.I(1, true);
-                return;
+    public final int compareTo(Object obj) {
+        t8b t8bVar = (t8b) obj;
+        int i = this.a - t8bVar.a;
+        if (i == 0 && (i = this.b - t8bVar.b) == 0) {
+            return this.c - t8bVar.c;
         }
+        return i;
+    }
+
+    @Override
+    public final int describeContents() {
+        return 0;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && t8b.class == obj.getClass()) {
+            t8b t8bVar = (t8b) obj;
+            if (this.a == t8bVar.a && this.b == t8bVar.b && this.c == t8bVar.c) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return (((this.a * 31) + this.b) * 31) + this.c;
+    }
+
+    public final String toString() {
+        return this.a + "." + this.b + "." + this.c;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(this.a);
+        parcel.writeInt(this.b);
+        parcel.writeInt(this.c);
+    }
+
+    public t8b(int i, int i2, int i3) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
     }
 }

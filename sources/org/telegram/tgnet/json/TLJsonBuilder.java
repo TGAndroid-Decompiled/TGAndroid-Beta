@@ -23,7 +23,7 @@ public class TLJsonBuilder {
             serializable.serializeToJson(tLJsonBuilder);
             return tLJsonBuilder.result2;
         } catch (Exception e) {
-            fc4.g(e, true);
+            fa4.g(e, true);
             return null;
         }
     }
@@ -32,7 +32,7 @@ public class TLJsonBuilder {
         try {
             this.result2.putOpt(str, obj);
         } catch (JSONException e) {
-            fc4.g(e, true);
+            fa4.g(e, true);
         }
     }
 

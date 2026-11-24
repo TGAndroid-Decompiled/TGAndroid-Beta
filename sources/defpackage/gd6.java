@@ -1,416 +1,441 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
+import android.graphics.Typeface;
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
+import android.view.KeyEvent;
 import android.view.View;
-import org.telegram.messenger.ImageReceiver;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-public class gd6 extends View {
-    public final float E;
-    public float F;
-    public StaticLayout G;
-    public float H;
-    public float I;
-    public final int J;
-    public final int K;
-    public boolean L;
-    public boolean M;
-    public float N;
-    public float O;
-    public final RectF P;
-    public final ln Q;
-    public int a;
-    public String b;
-    public boolean c;
-    public final RectF d;
-    public final TextPaint e;
-    public final Paint f;
-    public final Drawable h;
-    public boolean n;
-    public final ImageReceiver r;
-    public final ImageReceiver s;
-    public TLRPC.Document w;
-    public TLRPC.Document x;
-    public boolean y;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class gd6 extends jja {
+    public boolean E;
+    public int F;
+    public int G;
+    public final mf6 H;
+    public final er7[] a;
+    public final EditTextBoldCursor[] b;
+    public final TextView c;
+    public final TextView d;
+    public final TextView e;
+    public final ImageView f;
+    public String h;
+    public String n;
+    public String r;
+    public TL_account.Password s;
+    public Bundle w;
+    public boolean x;
+    public final boolean y;
 
-    public gd6(Context context, float f) {
+    public gd6(mf6 mf6Var, Context context, int i) {
         super(context);
-        this.b = "";
-        this.d = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
-        TextPaint textPaint = new TextPaint(1);
-        this.e = textPaint;
-        this.f = new Paint(1);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.r = imageReceiver;
-        ImageReceiver imageReceiver2 = new ImageReceiver(this);
-        this.s = imageReceiver2;
-        this.F = 1.0f;
-        this.P = new RectF();
-        this.Q = new ln(350L, this, d53.h);
-        this.E = f;
-        imageReceiver.B0 = true;
-        imageReceiver.K0 = true;
-        imageReceiver2.B0 = true;
-        imageReceiver2.K0 = true;
-        int i = (int) (3.0f * f);
-        this.J = i;
-        int i2 = (int) (1.0f * f);
-        this.K = i2;
-        setPadding(i, i2, i, i2);
-        this.h = b10.d(context, 2131231653);
-        textPaint.setTextSize(f * 24.0f);
-        textPaint.setTypeface(gm.n1("fonts/rcondensedbold.ttf"));
-        nm7.i(this);
-    }
-
-    public static org.telegram.tgnet.TLRPC.Document b(org.telegram.tgnet.TLRPC.TL_messages_stickerSet r8, java.lang.String r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gd6.b(org.telegram.tgnet.TLRPC$TL_messages_stickerSet, java.lang.String):org.telegram.tgnet.TLRPC$Document");
-    }
-
-    public static f6 c(String str) {
-        cw3 f = gw3.f(str);
-        if (f instanceof fw3) {
-            ((fw3) f).a = false;
-        }
-        if (f == null) {
-            return null;
-        }
-        return new f6(f, (byte) 5);
-    }
-
-    public final void a(Canvas canvas) {
-        float f;
-        f();
-        if (this.G == null) {
-            return;
-        }
-        int i = this.J;
-        float f2 = i;
-        int i2 = this.K;
-        float f3 = i2;
-        RectF rectF = this.P;
-        rectF.set(f2, f3, this.N + f2, this.O + f3);
-        float f4 = this.O * 0.2f;
-        canvas.drawRoundRect(rectF, f4, f4, this.f);
-        boolean z = this.n;
-        float f5 = this.E;
-        RectF rectF2 = this.d;
-        if (z) {
-            float d = this.Q.d(this.M);
-            if (d > 0.0f) {
-                float u = hg9.u(rectF2.left, 2.25f, f5, f2);
-                float f6 = f5 * 21.33f;
-                float z2 = aq1.z(this.O, f6, 2.0f, f3);
-                ImageReceiver imageReceiver = this.s;
-                imageReceiver.i0(u, z2, f6, f6);
-                canvas.save();
-                canvas.scale(1.2f, 1.2f, imageReceiver.r(), imageReceiver.s());
-                imageReceiver.setAlpha(d);
-                imageReceiver.h(canvas, null);
-                canvas.restore();
-            }
-            if (d < 1.0f) {
-                float u2 = hg9.u(rectF2.left, 2.25f, f5, f2);
-                float f7 = f5 * 21.33f;
-                float z3 = aq1.z(this.O, f7, 2.0f, f3);
-                ImageReceiver imageReceiver2 = this.r;
-                imageReceiver2.i0(u2, z3, f7, f7);
-                canvas.save();
-                canvas.scale(1.2f, 1.2f, imageReceiver2.r(), imageReceiver2.s());
-                imageReceiver2.setAlpha(1.0f - d);
-                imageReceiver2.h(canvas, null);
-                canvas.restore();
-            }
-        } else if (!this.y) {
-            float f8 = rectF2.left;
-            float f9 = this.O;
-            float f10 = f5 * 21.33f;
-            Drawable drawable = this.h;
-            drawable.setBounds(((int) (f8 * f5)) + i, ((int) ((f9 - f10) / 2.0f)) + i2, i + ((int) ((f8 + 21.33f) * f5)), i2 + ((int) ((f10 + f9) / 2.0f)));
-            drawable.draw(canvas);
-        }
-        canvas.save();
-        float f11 = rectF2.left;
-        if (!this.n && !this.y) {
-            f = 0.0f;
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        boolean z;
+        this.H = mf6Var;
+        this.y = i;
+        setOrientation(1);
+        if (i == 1) {
+            i2 = 1;
         } else {
-            f = 2.25f;
+            i2 = 2;
         }
-        canvas.translate(((f11 + f + 21.33f + 3.25f) * f5) + f2, (this.O / 2.0f) + f3);
-        float f12 = this.F;
-        canvas.scale(f12, f12);
-        canvas.translate(-this.I, (-this.G.getHeight()) / 2.0f);
-        this.G.draw(canvas);
-        canvas.restore();
-    }
-
-    public final void d(int i, final String str) {
-        boolean isEmpty = TextUtils.isEmpty(str);
-        ImageReceiver imageReceiver = this.s;
-        ImageReceiver imageReceiver2 = this.r;
-        if (isEmpty) {
-            this.n = false;
-            this.w = null;
-            this.x = null;
-            imageReceiver2.f();
-            imageReceiver.f();
+        this.b = new EditTextBoldCursor[i2];
+        this.a = new er7[i2];
+        TextView textView = new TextView(context);
+        this.c = textView;
+        float f = 18.0f;
+        textView.setTextSize(1, 18.0f);
+        textView.setTypeface(gl.o());
+        float f2 = 2.0f;
+        textView.setLineSpacing(gl.L(2.0f), 1.0f);
+        textView.setGravity(49);
+        textView.setText(k96.M0(2131745330, null));
+        if (gl.M1()) {
+            i3 = 16;
         } else {
-            this.n = true;
-            this.w = null;
-            this.x = null;
-            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-            tL_inputStickerSetShortName.short_name = "StaticEmoji";
-            hs6.d0(i).m0(tL_inputStickerSetShortName, 0, false, false, new qac(this) {
-                public final gd6 b;
-
-                {
-                    this.b = this;
+            i3 = 72;
+        }
+        addView(textView, nme.t(-2, -2, 1, 8, i3, 8, 0));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setTextSize(1, 16.0f);
+        textView2.setGravity(1);
+        textView2.setLineSpacing(gl.L(2.0f), 1.0f);
+        addView(textView2, nme.t(-2, -2, 1, 8, 6, 8, 16));
+        final int i6 = 0;
+        while (i6 < this.b.length) {
+            er7 er7Var = new er7(context, null);
+            this.a[i6] = er7Var;
+            if (i == 0) {
+                if (i6 == 0) {
+                    i4 = 2131747017;
+                } else {
+                    i4 = 2131747015;
                 }
-
-                @Override
-                public final void a(Object obj) {
-                    byte b = r3;
-                    String str2 = str;
-                    gd6 gd6Var = this.b;
-                    switch (b) {
-                        case 0:
-                            gd6Var.getClass();
-                            TLRPC.Document b2 = gd6.b((TLRPC.TL_messages_stickerSet) obj, str2);
-                            gd6Var.w = b2;
-                            gd6Var.r.d0(gn5.b(b2), "80_80", gd6.c(str2), null, null, 0);
-                            gd6Var.s.Y(gn5.b(gd6Var.x), "80_80", gn5.b(gd6Var.w), "80_80", null, null, gd6.c(str2), 0L, null, null, 0);
-                            return;
-                        default:
-                            gd6Var.getClass();
-                            TLRPC.Document b3 = gd6.b((TLRPC.TL_messages_stickerSet) obj, str2);
-                            gd6Var.x = b3;
-                            if (b3 != null) {
-                                gd6Var.s.Y(gn5.b(b3), "80_80", gn5.b(gd6Var.w), "80_80", null, null, gd6.c(str2), 0L, null, null, 0);
-                                return;
-                            }
-                            return;
-                    }
-                }
-            });
-            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
-            tL_inputStickerSetShortName2.short_name = "RestrictedEmoji";
-            hs6.d0(i).m0(tL_inputStickerSetShortName2, 0, false, false, new qac(this) {
-                public final gd6 b;
-
-                {
-                    this.b = this;
-                }
-
-                @Override
-                public final void a(Object obj) {
-                    byte b = r3;
-                    String str2 = str;
-                    gd6 gd6Var = this.b;
-                    switch (b) {
-                        case 0:
-                            gd6Var.getClass();
-                            TLRPC.Document b2 = gd6.b((TLRPC.TL_messages_stickerSet) obj, str2);
-                            gd6Var.w = b2;
-                            gd6Var.r.d0(gn5.b(b2), "80_80", gd6.c(str2), null, null, 0);
-                            gd6Var.s.Y(gn5.b(gd6Var.x), "80_80", gn5.b(gd6Var.w), "80_80", null, null, gd6.c(str2), 0L, null, null, 0);
-                            return;
-                        default:
-                            gd6Var.getClass();
-                            TLRPC.Document b3 = gd6.b((TLRPC.TL_messages_stickerSet) obj, str2);
-                            gd6Var.x = b3;
-                            if (b3 != null) {
-                                gd6Var.s.Y(gn5.b(b3), "80_80", gn5.b(gd6Var.w), "80_80", null, null, gd6.c(str2), 0L, null, null, 0);
-                                return;
-                            }
-                            return;
-                    }
-                }
-            });
-            imageReceiver2.d0(gn5.b(this.w), "80_80", c(str), null, null, 0);
-            imageReceiver.Y(gn5.b(this.x), "80_80", gn5.b(this.w), "80_80", null, null, c(str), 0L, null, null, 0);
-        }
-        this.c = true;
-        requestLayout();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        a(canvas);
-    }
-
-    public final void e(int i, int i2) {
-        int i3 = -16777216;
-        Paint paint = this.f;
-        Drawable drawable = this.h;
-        TextPaint textPaint = this.e;
-        if (i == 0) {
-            paint.setColor(-16777216);
-            textPaint.setColor(-1);
-            drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        } else if (i == 1) {
-            paint.setColor(1275068416);
-            textPaint.setColor(-1);
-            drawable.setColorFilter(null);
-        } else if (i == 2) {
-            paint.setColor(-1);
-            textPaint.setColor(-16777216);
-            drawable.setColorFilter(null);
-        } else {
-            paint.setColor(i2);
-            if (gm.B(i2) < 0.721f) {
-                i3 = -1;
-            }
-            textPaint.setColor(i3);
-            drawable.setColorFilter(new PorterDuffColorFilter(i3, PorterDuff.Mode.SRC_IN));
-        }
-        invalidate();
-    }
-
-    public final void f() {
-        float f;
-        float f2;
-        float min;
-        if (!this.c) {
-            return;
-        }
-        String str = this.b;
-        TextPaint textPaint = this.e;
-        float measureText = textPaint.measureText(str);
-        int i = this.a;
-        int i2 = this.J;
-        float f3 = (i - i2) - i2;
-        RectF rectF = this.d;
-        float f4 = rectF.left;
-        float f5 = 2.25f;
-        if (!this.n && !this.y) {
-            f = 0.0f;
-        } else {
-            f = 2.25f;
-        }
-        float f6 = this.E;
-        float f7 = f3 - (((((f4 + f) + 21.33f) + 3.25f) + rectF.right) * f6);
-        float min2 = Math.min(1.0f, f7 / measureText);
-        this.F = min2;
-        if (min2 < 0.4f) {
-            f2 = 1.0f;
-            String str2 = this.b;
-            this.G = new StaticLayout(str2, textPaint, hg5.a(str2, textPaint), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        } else {
-            f2 = 1.0f;
-            this.G = new StaticLayout(this.b, textPaint, (int) Math.ceil(measureText), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        }
-        this.H = 0.0f;
-        this.I = Float.MAX_VALUE;
-        for (int i3 = 0; i3 < this.G.getLineCount(); i3++) {
-            this.H = Math.max(this.H, this.G.getLineWidth(i3));
-            this.I = Math.min(this.I, this.G.getLineLeft(i3));
-        }
-        if (this.G.getLineCount() > 2) {
-            min = 0.3f;
-            this.F = 0.3f;
-        } else {
-            min = Math.min(f2, f7 / this.H);
-            this.F = min;
-        }
-        float f8 = rectF.left;
-        if (!this.n && !this.y) {
-            f5 = 0.0f;
-        }
-        this.N = (this.H * min) + ((f8 + f5 + 21.33f + 3.25f + rectF.right) * f6);
-        this.O = Math.max(f6 * 21.33f, this.G.getHeight() * this.F) + ((rectF.top + rectF.bottom) * f6);
-        this.c = false;
-    }
-
-    public TLRPC.Document getCodeEmojiDocument() {
-        TLRPC.Document document;
-        if (this.M && (document = this.x) != null) {
-            return document;
-        }
-        return this.w;
-    }
-
-    public int getHeightInternal() {
-        int round = Math.round(this.O);
-        int i = this.K;
-        return round + i + i;
-    }
-
-    public float getRadius() {
-        return this.O * 0.2f;
-    }
-
-    public String getText() {
-        return this.b;
-    }
-
-    public int getTypesCount() {
-        return 4;
-    }
-
-    public int getWidthInternal() {
-        int round = Math.round(this.N);
-        int i = this.J;
-        return round + i + i;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.L = true;
-        if (this.M) {
-            this.s.I();
-        } else {
-            this.r.I();
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.L = false;
-        this.r.K();
-        this.s.K();
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        f();
-        setMeasuredDimension(getWidthInternal(), getHeightInternal());
-    }
-
-    public void setIsVideo(boolean z) {
-        if (this.M != z && this.L) {
-            ImageReceiver imageReceiver = this.s;
-            ImageReceiver imageReceiver2 = this.r;
-            if (z) {
-                imageReceiver2.K();
-                imageReceiver.I();
             } else {
-                imageReceiver2.I();
-                imageReceiver.K();
+                i4 = 2131747249;
+            }
+            er7Var.setText(k96.M0(i4, null));
+            this.b[i6] = new EditTextBoldCursor(context);
+            this.b[i6].setCursorSize(gl.L(20.0f));
+            this.b[i6].setCursorWidth(1.5f);
+            this.b[i6].setImeOptions(268435461);
+            this.b[i6].setTextSize(1, f);
+            this.b[i6].setMaxLines(1);
+            this.b[i6].setBackground(null);
+            int L = gl.L(16.0f);
+            this.b[i6].setPadding(L, L, L, L);
+            if (i == 0) {
+                this.b[i6].setInputType(129);
+                this.b[i6].setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
+            this.b[i6].setTypeface(Typeface.DEFAULT);
+            EditTextBoldCursor editTextBoldCursor = this.b[i6];
+            if (k96.a0) {
+                i5 = 5;
+            } else {
+                i5 = 3;
+            }
+            editTextBoldCursor.setGravity(i5);
+            EditTextBoldCursor editTextBoldCursor2 = this.b[i6];
+            if (i6 == 0 && i == 0) {
+                z = true;
+            } else {
+                z = false;
+            }
+            editTextBoldCursor2.addTextChangedListener(new fd6(this, z));
+            float f3 = f2;
+            this.b[i6].setOnFocusChangeListener(new ls0(er7Var, (byte) 7));
+            if (z) {
+                LinearLayout linearLayout = new LinearLayout(context);
+                linearLayout.setOrientation(0);
+                linearLayout.setGravity(16);
+                linearLayout.addView(this.b[i6], nme.l(1.0f, 0, -2));
+                ImageView imageView = new ImageView(context);
+                this.f = imageView;
+                imageView.setImageResource(2131232229);
+                gl.T3(imageView, true, 0.1f, true, false);
+                imageView.setOnClickListener(new View.OnClickListener(this) {
+                    public final gd6 b;
+
+                    {
+                        this.b = this;
+                    }
+
+                    @Override
+                    public final void onClick(View view) {
+                        int i7;
+                        int i8;
+                        byte b = r2;
+                        gd6 gd6Var = this.b;
+                        switch (b) {
+                            case 0:
+                                ImageView imageView2 = gd6Var.f;
+                                EditTextBoldCursor[] editTextBoldCursorArr = gd6Var.b;
+                                gd6Var.E = !gd6Var.E;
+                                for (int i9 = 0; i9 < editTextBoldCursorArr.length; i9++) {
+                                    int selectionStart = editTextBoldCursorArr[i9].getSelectionStart();
+                                    int selectionEnd = editTextBoldCursorArr[i9].getSelectionEnd();
+                                    EditTextBoldCursor editTextBoldCursor3 = editTextBoldCursorArr[i9];
+                                    if (gd6Var.E) {
+                                        i8 = 144;
+                                    } else {
+                                        i8 = 128;
+                                    }
+                                    editTextBoldCursor3.setInputType(i8 | 1);
+                                    editTextBoldCursorArr[i9].setSelection(selectionStart, selectionEnd);
+                                }
+                                imageView2.setTag(Boolean.valueOf(gd6Var.E));
+                                if (gd6Var.E) {
+                                    i7 = bkb.k6;
+                                } else {
+                                    i7 = bkb.G6;
+                                }
+                                zkb.s(imageView2, i7, null, PorterDuff.Mode.SRC_ATOP);
+                                return;
+                            default:
+                                if (!gd6Var.y) {
+                                    gd6Var.n(null, null);
+                                    return;
+                                } else {
+                                    gd6Var.n(gd6Var.n, null);
+                                    return;
+                                }
+                        }
+                    }
+                });
+                linearLayout.addView(imageView, nme.u(24.0f, 24.0f, 0, 0.0f, 0.0f, 14.0f, 0.0f));
+                er7Var.addView(linearLayout, nme.c(-2.0f, -1));
+            } else {
+                er7Var.addView(this.b[i6], nme.c(-2.0f, -1));
+            }
+            er7Var.e(this.b[i6]);
+            addView(er7Var, nme.t(-1, -2, 1, 16, 16, 16, 0));
+            this.b[i6].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public final boolean onEditorAction(TextView textView3, int i7, KeyEvent keyEvent) {
+                    gd6 gd6Var = gd6.this;
+                    if (i6 == 0) {
+                        EditTextBoldCursor[] editTextBoldCursorArr = gd6Var.b;
+                        if (editTextBoldCursorArr.length == 2) {
+                            editTextBoldCursorArr[1].requestFocus();
+                            return true;
+                        }
+                    }
+                    if (i7 == 5) {
+                        gd6Var.h(null);
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            i6++;
+            f2 = f3;
+            f = 18.0f;
+        }
+        float f4 = f2;
+        TextView textView3 = this.d;
+        if (i == 0) {
+            textView3.setText(k96.M0(2131747016, "PleaseEnterNewFirstPasswordLogin"));
+        } else {
+            textView3.setText(k96.M0(2131747247, "PasswordHintTextLogin"));
+        }
+        TextView textView4 = new TextView(context);
+        this.e = textView4;
+        textView4.setGravity(19);
+        textView4.setTextSize(1, 15.0f);
+        textView4.setLineSpacing(gl.L(f4), 1.0f);
+        textView4.setPadding(gl.L(16.0f), 0, gl.L(16.0f), 0);
+        textView4.setText(k96.M0(2131742554, null));
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.addView(textView4, nme.d(-1, 56.0f, 80, 0.0f, 0.0f, 0.0f, 32.0f));
+        addView(frameLayout, nme.r(-1, -1, 80));
+        vk9.c(textView4);
+        textView4.setOnClickListener(new View.OnClickListener(this) {
+            public final gd6 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                int i7;
+                int i8;
+                byte b = r2;
+                gd6 gd6Var = this.b;
+                switch (b) {
+                    case 0:
+                        ImageView imageView2 = gd6Var.f;
+                        EditTextBoldCursor[] editTextBoldCursorArr = gd6Var.b;
+                        gd6Var.E = !gd6Var.E;
+                        for (int i9 = 0; i9 < editTextBoldCursorArr.length; i9++) {
+                            int selectionStart = editTextBoldCursorArr[i9].getSelectionStart();
+                            int selectionEnd = editTextBoldCursorArr[i9].getSelectionEnd();
+                            EditTextBoldCursor editTextBoldCursor3 = editTextBoldCursorArr[i9];
+                            if (gd6Var.E) {
+                                i8 = 144;
+                            } else {
+                                i8 = 128;
+                            }
+                            editTextBoldCursor3.setInputType(i8 | 1);
+                            editTextBoldCursorArr[i9].setSelection(selectionStart, selectionEnd);
+                        }
+                        imageView2.setTag(Boolean.valueOf(gd6Var.E));
+                        if (gd6Var.E) {
+                            i7 = bkb.k6;
+                        } else {
+                            i7 = bkb.G6;
+                        }
+                        zkb.s(imageView2, i7, null, PorterDuff.Mode.SRC_ATOP);
+                        return;
+                    default:
+                        if (!gd6Var.y) {
+                            gd6Var.n(null, null);
+                            return;
+                        } else {
+                            gd6Var.n(gd6Var.n, null);
+                            return;
+                        }
+                }
+            }
+        });
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final boolean d(boolean z) {
+        this.H.x1(true, true);
+        this.w = null;
+        this.x = false;
+        return true;
+    }
+
+    @Override
+    public final void e() {
+        this.x = false;
+    }
+
+    @Override
+    public String getHeaderName() {
+        return k96.M0(2131748074, "NewPassword");
+    }
+
+    @Override
+    public final void h(String str) {
+        if (!this.x) {
+            EditTextBoldCursor[] editTextBoldCursorArr = this.b;
+            String obj = editTextBoldCursorArr[0].getText().toString();
+            int length = obj.length();
+            mf6 mf6Var = this.H;
+            if (length == 0) {
+                if (mf6Var.getParentActivity() != null) {
+                    try {
+                        editTextBoldCursorArr[0].performHapticFeedback(3, 2);
+                    } catch (Exception unused) {
+                    }
+                    gl.z3(editTextBoldCursorArr[0]);
+                }
+            } else if (!this.y) {
+                if (!obj.equals(editTextBoldCursorArr[1].getText().toString())) {
+                    if (mf6Var.getParentActivity() == null) {
+                        return;
+                    }
+                    try {
+                        editTextBoldCursorArr[1].performHapticFeedback(3, 2);
+                    } catch (Exception unused2) {
+                    }
+                    gl.z3(editTextBoldCursorArr[1]);
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                bundle.putString("emailCode", this.h);
+                bundle.putString("new_password", obj);
+                bundle.putString("password", this.r);
+                mf6Var.I1(10, true, bundle, false);
+            } else {
+                this.x = true;
+                mf6Var.A1(0, true);
+                n(this.n, obj);
             }
         }
-        this.M = z;
-        invalidate();
     }
 
-    public void setMaxWidth(int i) {
-        this.a = i;
-        this.c = true;
+    @Override
+    public final void j() {
+        gl.d3(new tp5(this, (byte) 19), mf6.A0);
     }
 
-    public void setText(String str) {
-        this.b = str;
-        this.c = true;
-        requestLayout();
+    @Override
+    public final void k(Bundle bundle) {
+        Bundle bundle2 = bundle.getBundle("recoveryview_params" + (this.y ? 1 : 0));
+        this.w = bundle2;
+        if (bundle2 != null) {
+            m(bundle2, true);
+        }
+    }
+
+    @Override
+    public final void l(Bundle bundle) {
+        if (this.w != null) {
+            bundle.putBundle("recoveryview_params" + (this.y ? 1 : 0), this.w);
+        }
+    }
+
+    @Override
+    public final void m(Bundle bundle, boolean z) {
+        EditTextBoldCursor[] editTextBoldCursorArr;
+        if (bundle == null) {
+            return;
+        }
+        int i = 0;
+        while (true) {
+            editTextBoldCursorArr = this.b;
+            if (i >= editTextBoldCursorArr.length) {
+                break;
+            }
+            editTextBoldCursorArr[i].setText("");
+            i++;
+        }
+        this.w = bundle;
+        this.h = bundle.getString("emailCode");
+        String string = this.w.getString("password");
+        this.r = string;
+        if (string != null) {
+            SerializedData serializedData = new SerializedData(Utilities.v(string));
+            TL_account.Password TLdeserialize = TL_account.Password.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+            this.s = TLdeserialize;
+            TwoStepVerificationActivity.e0(TLdeserialize);
+        }
+        this.n = this.w.getString("new_password");
+        this.H.L1(editTextBoldCursorArr[0]);
+        editTextBoldCursorArr[0].requestFocus();
+    }
+
+    public final void n(String str, String str2) {
+        String str3;
+        TLRPC.TL_auth_recoverPassword tL_auth_recoverPassword = new TLRPC.TL_auth_recoverPassword();
+        tL_auth_recoverPassword.code = this.h;
+        if (!TextUtils.isEmpty(str)) {
+            tL_auth_recoverPassword.flags |= 1;
+            TL_account.passwordInputSettings passwordinputsettings = new TL_account.passwordInputSettings();
+            tL_auth_recoverPassword.new_settings = passwordinputsettings;
+            passwordinputsettings.flags |= 1;
+            if (str2 != null) {
+                str3 = str2;
+            } else {
+                str3 = "";
+            }
+            passwordinputsettings.hint = str3;
+            passwordinputsettings.new_algo = this.s.new_algo;
+        }
+        Utilities.e.c(new e45(this, str, str2, tL_auth_recoverPassword, (byte) 16));
+    }
+
+    @Override
+    public final void updateColors() {
+        EditTextBoldCursor[] editTextBoldCursorArr;
+        int i;
+        this.c.setTextColor(bkb.w0(null, bkb.F6, false));
+        this.d.setTextColor(bkb.w0(null, bkb.C6, false));
+        for (EditTextBoldCursor editTextBoldCursor : this.b) {
+            editTextBoldCursor.setTextColor(bkb.w0(null, bkb.F6, false));
+            editTextBoldCursor.setCursorColor(bkb.w0(null, bkb.k6, false));
+        }
+        for (er7 er7Var : this.a) {
+            er7Var.f();
+        }
+        this.e.setTextColor(bkb.w0(null, bkb.p6, false));
+        ImageView imageView = this.f;
+        if (imageView != null) {
+            if (this.E) {
+                i = bkb.k6;
+            } else {
+                i = bkb.G6;
+            }
+            int w0 = bkb.w0(null, i, false);
+            mf6.l1(imageView, w0, this.F, PorterDuff.Mode.SRC_ATOP);
+            this.F = w0;
+            int themedColor = this.H.getThemedColor(bkb.h6);
+            mf6.m1(imageView, themedColor, this.G);
+            this.G = themedColor;
+        }
     }
 }

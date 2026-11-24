@@ -1,8 +1,15 @@
 package defpackage;
-public abstract class kjd {
-    public static final int a = 0;
+public final class kjd extends Throwable {
+    public final byte a;
 
-    static {
-        kjd.class.getClassLoader();
+    public kjd(String str, byte b) {
+        super(str);
+        this.a = b;
+    }
+
+    @Override
+    public final Throwable fillInStackTrace() {
+        byte b = this.a;
+        return this;
     }
 }

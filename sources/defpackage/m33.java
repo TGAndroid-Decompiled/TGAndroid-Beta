@@ -1,36 +1,75 @@
 package defpackage;
-public final class m33 implements Runnable {
-    public final byte a;
-    public final o33 b;
 
-    public m33(o33 o33Var, byte b) {
-        this.a = b;
-        this.b = o33Var;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class m33 extends Drawable {
+    public final Drawable a;
+    public final Drawable b;
+    public float c;
+    public float d = 255.0f;
+
+    public m33(Drawable drawable, Drawable drawable2) {
+        this.a = drawable;
+        this.b = drawable2;
+        if (drawable != null) {
+            drawable.setCallback(new l33(this, (byte) 0));
+        }
+        if (drawable2 != null) {
+            drawable2.setCallback(new l33(this, (byte) 1));
+        }
+    }
+
+    public final void a(float f) {
+        this.c = f;
+        invalidateSelf();
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        o33 o33Var = this.b;
-        switch (b) {
-            case 0:
-                a33 a33Var = o33Var.f;
-                if (a33Var != null) {
-                    a33Var.A(new n13("Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context.", (byte) 2));
-                    return;
-                } else {
-                    rr5.e("callback");
-                    throw null;
-                }
-            default:
-                a33 a33Var2 = o33Var.f;
-                if (a33Var2 != null) {
-                    a33Var2.A(new l23(new h1((byte) 26), "Upon handling create public key credential response, fido module giving null bytes indicating internal error"));
-                    return;
-                } else {
-                    rr5.e("callback");
-                    throw null;
-                }
+    public final void draw(Canvas canvas) {
+        int i = (int) ((1.0f - this.c) * this.d);
+        Drawable drawable = this.a;
+        drawable.setAlpha(i);
+        int i2 = (int) (this.d * this.c);
+        Drawable drawable2 = this.b;
+        drawable2.setAlpha(i2);
+        if (i > 0) {
+            drawable.draw(canvas);
         }
+        if (i2 > 0) {
+            drawable2.draw(canvas);
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.a.setBounds(rect);
+        this.b.setBounds(rect);
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.d = i;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.a.setColorFilter(colorFilter);
     }
 }

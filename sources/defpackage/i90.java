@@ -1,17 +1,19 @@
 package defpackage;
-public final class i90 extends xz2 {
-    public final j90 a;
 
-    public i90(j90 j90Var) {
-        this.a = j90Var;
+import java.util.List;
+public final class i90 extends cz2 {
+    public final List a;
+
+    public i90(List list) {
+        this.a = list;
     }
 
     public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof xz2) {
-            return this.a.equals(((i90) ((xz2) obj)).a);
+        if (obj instanceof cz2) {
+            return this.a.equals(((i90) ((cz2) obj)).a);
         }
         return false;
     }
@@ -21,6 +23,6 @@ public final class i90 extends xz2 {
     }
 
     public final String toString() {
-        return "ProfilingManagerInfo{profilingTrigger=" + this.a + "}";
+        return "RolloutsState{rolloutAssignments=" + this.a + "}";
     }
 }

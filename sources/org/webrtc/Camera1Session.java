@@ -91,7 +91,7 @@ public class Camera1Session implements CameraSession {
         if (Thread.currentThread() == this.cameraThreadHandler.getLooper().getThread()) {
             return;
         }
-        dq9.m("Wrong thread");
+        sc8.j("Wrong thread");
     }
 
     public static void create(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, boolean z, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) {
@@ -158,7 +158,7 @@ public class Camera1Session implements CameraSession {
 
     public int getFrameOrientation() {
         int orientation;
-        if (s96.N != null) {
+        if (t76.N != null) {
             orientation = 0;
         } else {
             orientation = this.orientationHelper.getOrientation();
@@ -186,7 +186,7 @@ public class Camera1Session implements CameraSession {
         if (this.info.facing != 1) {
             z = false;
         }
-        VideoFrame videoFrame2 = new VideoFrame(b10.a(textureBufferImpl, z, 0), getFrameOrientation(), videoFrame.getTimestampNs());
+        VideoFrame videoFrame2 = new VideoFrame(b00.a(textureBufferImpl, z, 0), getFrameOrientation(), videoFrame.getTimestampNs());
         this.events.onFrameCaptured(this, videoFrame2);
         videoFrame2.release();
     }
@@ -210,19 +210,19 @@ public class Camera1Session implements CameraSession {
 
             @Override
             public void onError(int i, Camera camera) {
-                String j;
+                String k;
                 if (i == 100) {
-                    j = "Camera server died!";
+                    k = "Camera server died!";
                 } else {
-                    j = hg9.j(i, "Camera error: ");
+                    k = de9.k(i, "Camera error: ");
                 }
-                Logging.e("Camera1Session", j);
+                Logging.e("Camera1Session", k);
                 Camera1Session.this.stopInternal();
                 Camera1Session camera1Session = Camera1Session.this;
                 if (i == 2) {
                     camera1Session.events.onCameraDisconnected(Camera1Session.this);
                 } else {
-                    camera1Session.events.onCameraError(Camera1Session.this, j);
+                    camera1Session.events.onCameraError(Camera1Session.this, k);
                 }
             }
         });

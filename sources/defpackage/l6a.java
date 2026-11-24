@@ -1,270 +1,204 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public abstract class l6a extends m8 {
-    public boolean A;
-    public i6a B;
-    public e6a C;
-    public boolean D;
-    public int E;
-    public int F;
-    public ArrayList G;
-    public f6a o;
-    public TextView p;
-    public boolean q;
-    public TLRPC.Peer r;
-    public TLRPC.TL_channels_sendAsPeers s;
-    public ne6 t;
-    public View u;
-    public r59 v;
-    public u46 w;
-    public Boolean x;
-    public boolean y;
-    public ArrayList z;
+import android.os.Bundle;
+import j$.util.Objects;
+public final class l6a {
+    public static final nc8 k;
+    public static final l6a l;
+    public static final String m;
+    public static final String n;
+    public static final String o;
+    public static final String p;
+    public static final String q;
+    public static final String r;
+    public static final String s;
+    public static final String t;
+    public static final String u;
+    public static final String v;
+    public final nc8 a;
+    public final boolean b;
+    public final long c;
+    public final long d;
+    public final long e;
+    public final int f;
+    public final long g;
+    public final long h;
+    public final long i;
+    public final long j;
 
-    @Override
-    public void dismiss() {
-        if (this.A) {
-            return;
-        }
-        i6a i6aVar = this.B;
-        if (i6aVar != null && i6aVar.getAlpha() == 1.0f) {
-            this.B.animate().alpha(0.0f).setDuration(150L).setListener(new ic8(this, (WindowManager) this.B.getContext().getSystemService("window"), (byte) 16));
-        }
-        this.A = true;
-        d(true);
+    static {
+        nc8 nc8Var = new nc8(null, 0, null, null, 0, 0L, 0L, -1, -1);
+        k = nc8Var;
+        l = new l6a(nc8Var, false, -9223372036854775807L, -9223372036854775807L, 0L, 0, 0L, -9223372036854775807L, -9223372036854775807L, 0L);
+        String str = g8c.a;
+        m = "0";
+        n = "1";
+        o = "2";
+        p = "3";
+        q = "4";
+        r = "5";
+        s = "6";
+        t = "7";
+        u = "8";
+        v = "9";
     }
 
-    public final void k(List list, Context context, yv1 yv1Var, jf jfVar, View view, int i) {
-        TLRPC.User W1;
-        TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) list.get(i);
-        if (!this.y) {
-            if (tL_sendAsPeer.premium_required && !z8c.h(z8c.t0).p()) {
-                try {
-                    view.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
-                }
-                WindowManager windowManager = (WindowManager) context.getSystemService("window");
-                if (this.B == null) {
-                    this.B = new i6a(this, context);
-                }
-                e6a e6aVar = this.C;
-                if (e6aVar != null) {
-                    gm.r(e6aVar);
-                }
-                if (this.B.getParent() == null) {
-                    WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-                    layoutParams.height = -1;
-                    layoutParams.width = -1;
-                    layoutParams.format = -3;
-                    layoutParams.type = 99;
-                    layoutParams.flags |= Integer.MIN_VALUE;
-                    if (Build.VERSION.SDK_INT >= 28) {
-                        layoutParams.layoutInDisplayCutoutMode = 1;
-                    }
-                    gm.s3(windowManager, this.B, layoutParams);
-                    windowManager.addView(this.B, layoutParams);
-                }
-                if (yv1Var != null) {
-                    i6a i6aVar = this.B;
-                    wv1 wv1Var = yv1Var.Ba;
-                    il9 il9Var = new il9(this, yv1Var, (byte) 29);
-                    ?? g31Var = new g31(context, wv1Var);
-                    Drawable drawable = context.getDrawable(2131232316);
-                    bf0 bf0Var = g31Var.a;
-                    bf0Var.setImageDrawable(drawable);
-                    int themedColor = g31Var.getThemedColor(cmb.xj);
-                    g31Var.c = themedColor;
-                    bf0Var.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN));
-                    g31Var.b.setText(gm.S2(jb6.M0(2131745389, null)));
-                    s31 s31Var = new s31(wv1Var, context, true);
-                    s31Var.e(jb6.M0(2131745388, null));
-                    s31Var.b = il9Var;
-                    g31Var.setButton(s31Var);
-                    u31 f = u31.f(i6aVar, g31Var, 1500);
-                    f.e.addCallback(new j6a(this, f));
-                    f.j();
-                }
-                e6a e6aVar2 = new e6a(this, windowManager, (byte) 0);
-                this.C = e6aVar2;
-                gm.d3(e6aVar2, 2500L);
-                return;
-            }
-            this.y = true;
-            r59 r59Var = this.v;
-            k6a k6aVar = (k6a) view;
-            TLRPC.Peer peer = tL_sendAsPeer.peer;
-            ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) jfVar.b;
-            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) jfVar.c;
-            oc7 oc7Var = (oc7) jfVar.d;
-            int i2 = ChatActivityEnterView.z7;
-            if (chatActivityEnterView.r0 == null) {
-                return;
-            }
-            if (chatFull != null) {
-                chatFull.default_send_as = peer;
-            }
-            chatActivityEnterView.A2(true);
-            uz1 uz1Var = chatActivityEnterView.P3;
-            if (uz1Var == null || !uz1Var.E0(pg3.n(peer))) {
-                long j = chatActivityEnterView.G3;
-                long n = pg3.n(peer);
-                TLRPC.ChatFull M0 = oc7Var.M0(-j);
-                if (M0 != null) {
-                    M0.default_send_as = oc7Var.x1(n);
-                    oc7Var.getMessagesStorage().K1(M0, false);
-                    oc7Var.getNotificationCenter().k(nm7.F, Long.valueOf(j), M0.default_send_as);
-                }
-                TLRPC.TL_messages_saveDefaultSendAs tL_messages_saveDefaultSendAs = new TLRPC.TL_messages_saveDefaultSendAs();
-                tL_messages_saveDefaultSendAs.peer = oc7Var.i1(j);
-                tL_messages_saveDefaultSendAs.send_as = oc7Var.i1(n);
-                oc7Var.getConnectionsManager().sendRequest(tL_messages_saveDefaultSendAs, new x67(oc7Var, j, (byte) 17), 64);
-            }
-            int[] iArr = new int[2];
-            dka dkaVar = k6aVar.a;
-            boolean isSelected = dkaVar.isSelected();
-            dkaVar.getLocationInWindow(iArr);
-            dkaVar.a(true, true);
-            dka dkaVar2 = new dka(chatActivityEnterView.getContext());
-            long j2 = peer.channel_id;
-            long j3 = 0;
-            if (j2 != 0) {
-                TLRPC.Chat L0 = oc7Var.L0(Long.valueOf(j2));
-                if (L0 != null) {
-                    dkaVar2.setAvatar(L0);
-                }
-            } else {
-                long j4 = peer.user_id;
-                if (j4 != 0 && (W1 = oc7Var.W1(Long.valueOf(j4))) != null) {
-                    dkaVar2.setAvatar(W1);
-                }
-            }
-            for (int i3 = 0; i3 < r59Var.getChildCount(); i3++) {
-                View childAt = r59Var.getChildAt(i3);
-                if ((childAt instanceof k6a) && childAt != k6aVar) {
-                    ((k6a) childAt).a.a(false, true);
-                }
-            }
-            xo1 xo1Var = new xo1(chatActivityEnterView, dkaVar2, iArr, k6aVar, (byte) 4);
-            if (!isSelected) {
-                j3 = 200;
-            }
-            gm.d3(xo1Var, j3);
+    public l6a(nc8 nc8Var, boolean z, long j, long j2, long j3, int i, long j4, long j5, long j6, long j7) {
+        boolean z2;
+        if (nc8Var.h != -1) {
+            z2 = true;
+        } else {
+            z2 = false;
         }
+        gre.f(z == z2);
+        this.a = nc8Var;
+        this.b = z;
+        this.c = j;
+        this.d = j2;
+        this.e = j3;
+        this.f = i;
+        this.g = j4;
+        this.h = j5;
+        this.i = j6;
+        this.j = j7;
     }
 
-    public final void l(zna... znaVarArr) {
-        f6a f6aVar = this.o;
-        ne6 ne6Var = this.t;
-        ArrayList arrayList = this.z;
-        ArrayList arrayList2 = new ArrayList(arrayList);
-        int size = arrayList2.size();
+    public final l6a a(boolean z, boolean z2) {
+        boolean z3;
+        nc8 nc8Var;
+        long j;
+        long j2;
+        long j3;
+        long j4;
+        long j5;
+        long j6;
+        if (z && z2) {
+            return this;
+        }
+        nc8 b = this.a.b(z, z2);
         int i = 0;
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList2.get(i2);
-            i2++;
-            ((zna) obj).d();
+        if (z && this.b) {
+            z3 = true;
+        } else {
+            z3 = false;
         }
-        arrayList.clear();
-        ne6Var.setPivotX(gm.L(8.0f));
-        ne6Var.setPivotY(ne6Var.getMeasuredHeight() - gm.L(8.0f));
-        f6aVar.setPivotX(0.0f);
-        f6aVar.setPivotY(0.0f);
-        ne6Var.setScaleX(1.0f);
-        ne6Var.setScaleY(1.0f);
-        f6aVar.setAlpha(1.0f);
-        ArrayList arrayList3 = new ArrayList();
-        zna znaVar = new zna(ne6Var, zna.q);
-        znaVar.m = aq1.j(0.25f, 750.0f, 1.0f);
-        znaVar.b(new it3(this) {
-            public final l6a b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void a(zna znaVar2, float f, float f2) {
-                byte b = r2;
-                l6a l6aVar = this.b;
-                switch (b) {
-                    case 0:
-                        l6aVar.o.setScaleX(1.0f / f);
-                        return;
-                    default:
-                        l6aVar.o.setScaleY(1.0f / f);
-                        return;
-                }
-            }
-        });
-        zna znaVar2 = new zna(ne6Var, zna.r);
-        znaVar2.m = aq1.j(0.25f, 750.0f, 1.0f);
-        boolean z = true;
-        znaVar2.b(new it3(this) {
-            public final l6a b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void a(zna znaVar22, float f, float f2) {
-                byte b = r2;
-                l6a l6aVar = this.b;
-                switch (b) {
-                    case 0:
-                        l6aVar.o.setScaleX(1.0f / f);
-                        return;
-                    default:
-                        l6aVar.o.setScaleY(1.0f / f);
-                        return;
-                }
-            }
-        });
-        gt3 gt3Var = zna.v;
-        zna znaVar3 = new zna(ne6Var, gt3Var);
-        znaVar3.m = aq1.j(0.0f, 750.0f, 1.0f);
-        zna znaVar4 = new zna(f6aVar, gt3Var);
-        znaVar4.m = aq1.j(0.25f, 750.0f, 1.0f);
-        arrayList3.addAll(Arrays.asList(znaVar, znaVar2, znaVar3, znaVar4));
-        for (zna znaVar5 : znaVarArr) {
-            if (znaVar5 != null) {
-                arrayList3.add(znaVar5);
-            }
+        if (z) {
+            j = this.d;
+            long j7 = this.e;
+            i = this.f;
+            j4 = this.g;
+            j2 = this.h;
+            j3 = this.i;
+            nc8Var = b;
+            j5 = this.j;
+            j6 = j7;
+        } else {
+            nc8Var = b;
+            j = -9223372036854775807L;
+            j2 = -9223372036854775807L;
+            j3 = -9223372036854775807L;
+            j4 = 0;
+            j5 = 0;
+            j6 = 0;
         }
-        if (znaVarArr.length <= 0) {
-            z = false;
-        }
-        this.q = z;
-        ((zna) arrayList3.get(0)).a(new hx0(this, (byte) 7));
-        int size2 = arrayList3.size();
-        while (i < size2) {
-            Object obj2 = arrayList3.get(i);
-            i++;
-            zna znaVar6 = (zna) obj2;
-            arrayList.add(znaVar6);
-            znaVar6.a(new w21(this, znaVar6, (byte) 6));
-            znaVar6.h();
-        }
+        return new l6a(nc8Var, z3, this.c, j, j6, i, j4, j2, j3, j5);
     }
 
-    @Override
-    public final void showAtLocation(View view, int i, int i2, int i3) {
-        this.E = i2;
-        this.F = i3;
-        super.showAtLocation(view, i, i2, i3);
+    public final Bundle b(int i) {
+        Bundle bundle = new Bundle();
+        nc8 nc8Var = this.a;
+        if (i < 3 || !k.a(nc8Var)) {
+            bundle.putBundle(m, nc8Var.c(i));
+        }
+        boolean z = this.b;
+        if (z) {
+            bundle.putBoolean(n, z);
+        }
+        long j = this.c;
+        if (j != -9223372036854775807L) {
+            bundle.putLong(o, j);
+        }
+        long j2 = this.d;
+        if (j2 != -9223372036854775807L) {
+            bundle.putLong(p, j2);
+        }
+        long j3 = this.e;
+        if (i < 3 || j3 != 0) {
+            bundle.putLong(q, j3);
+        }
+        int i2 = this.f;
+        if (i2 != 0) {
+            bundle.putInt(r, i2);
+        }
+        long j4 = this.g;
+        if (j4 != 0) {
+            bundle.putLong(s, j4);
+        }
+        long j5 = this.h;
+        if (j5 != -9223372036854775807L) {
+            bundle.putLong(t, j5);
+        }
+        long j6 = this.i;
+        if (j6 != -9223372036854775807L) {
+            bundle.putLong(u, j6);
+        }
+        long j7 = this.j;
+        if (i >= 3 && j7 == 0) {
+            return bundle;
+        }
+        bundle.putLong(v, j7);
+        return bundle;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && l6a.class == obj.getClass()) {
+                l6a l6aVar = (l6a) obj;
+                if (this.c == l6aVar.c && this.a.equals(l6aVar.a) && this.b == l6aVar.b && this.d == l6aVar.d && this.e == l6aVar.e && this.f == l6aVar.f && this.g == l6aVar.g && this.h == l6aVar.h && this.i == l6aVar.i && this.j == l6aVar.j) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.a, Boolean.valueOf(this.b));
+    }
+
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("SessionPositionInfo {PositionInfo {mediaItemIndex=");
+        nc8 nc8Var = this.a;
+        sb.append(nc8Var.b);
+        sb.append(", periodIndex=");
+        sb.append(nc8Var.e);
+        sb.append(", positionMs=");
+        sb.append(nc8Var.f);
+        sb.append(", contentPositionMs=");
+        sb.append(nc8Var.g);
+        sb.append(", adGroupIndex=");
+        sb.append(nc8Var.h);
+        sb.append(", adIndexInAdGroup=");
+        sb.append(nc8Var.i);
+        sb.append("}, isPlayingAd=");
+        sb.append(this.b);
+        sb.append(", eventTimeMs=");
+        sb.append(this.c);
+        sb.append(", durationMs=");
+        sb.append(this.d);
+        sb.append(", bufferedPositionMs=");
+        sb.append(this.e);
+        sb.append(", bufferedPercentage=");
+        sb.append(this.f);
+        sb.append(", totalBufferedDurationMs=");
+        sb.append(this.g);
+        sb.append(", currentLiveOffsetMs=");
+        sb.append(this.h);
+        sb.append(", contentDurationMs=");
+        sb.append(this.i);
+        sb.append(", contentBufferedPositionMs=");
+        return ls6.p(sb, this.j, "}");
     }
 }

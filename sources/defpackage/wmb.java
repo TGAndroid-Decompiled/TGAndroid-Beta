@@ -1,14 +1,24 @@
 package defpackage;
-public final class wmb {
-    public final int a;
-    public final int b;
-    public final byte c;
-    public final float d;
 
-    public wmb(int i, int i2, float f, int i3) {
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
-        this.d = f;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.ui.Components.UndoView;
+public final class wmb implements View.OnTouchListener {
+    public final byte a;
+
+    @Override
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (this.a) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                break;
+            case 4:
+            default:
+                int i = UndoView.j0;
+                break;
+        }
+        return true;
     }
 }

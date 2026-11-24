@@ -1,8 +1,6 @@
 package defpackage;
 
-import android.hardware.biometrics.BiometricPrompt;
-public abstract class xj0 {
-    public static void a(BiometricPrompt.Builder builder, int i) {
-        builder.setAllowedAuthenticators(i);
-    }
+import android.graphics.Bitmap;
+public interface xj0 {
+    Object a(Bitmap bitmap);
 }

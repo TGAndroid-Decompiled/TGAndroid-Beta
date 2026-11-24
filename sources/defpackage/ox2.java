@@ -1,85 +1,58 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.res.AssetManager;
-import android.content.res.Resources;
-import android.view.LayoutInflater;
-public final class ox2 extends ContextWrapper {
-    public int a;
-    public Resources.Theme b;
-    public LayoutInflater c;
-    public Resources d;
+import java.util.Timer;
+import java.util.TimerTask;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+public final class ox2 extends TimerTask {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public ox2(Context context, int i) {
-        super(context);
-        this.a = i;
-    }
-
-    public final void a() {
-        if (this.b == null) {
-            this.b = getResources().newTheme();
-            Resources.Theme theme = getBaseContext().getTheme();
-            if (theme != null) {
-                this.b.setTo(theme);
-            }
-        }
-        this.b.applyStyle(this.a, true);
+    public ox2(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = obj2;
     }
 
     @Override
-    public final void attachBaseContext(Context context) {
-        super.attachBaseContext(context);
-    }
-
-    @Override
-    public final AssetManager getAssets() {
-        return getResources().getAssets();
-    }
-
-    @Override
-    public final Resources getResources() {
-        Resources resources = this.d;
-        if (resources == null) {
-            Resources resources2 = super.getResources();
-            this.d = resources2;
-            return resources2;
-        }
-        return resources;
-    }
-
-    @Override
-    public final Object getSystemService(String str) {
-        if ("layout_inflater".equals(str)) {
-            LayoutInflater layoutInflater = this.c;
-            if (layoutInflater == null) {
-                LayoutInflater cloneInContext = LayoutInflater.from(getBaseContext()).cloneInContext(this);
-                this.c = cloneInContext;
-                return cloneInContext;
-            }
-            return layoutInflater;
-        }
-        return getBaseContext().getSystemService(str);
-    }
-
-    @Override
-    public final Resources.Theme getTheme() {
-        Resources.Theme theme = this.b;
-        if (theme != null) {
-            return theme;
-        }
-        if (this.a == 0) {
-            this.a = 2131755303;
-        }
-        a();
-        return this.b;
-    }
-
-    @Override
-    public final void setTheme(int i) {
-        if (this.a != i) {
-            this.a = i;
-            a();
+    public final void run() {
+        switch (this.a) {
+            case 0:
+                try {
+                    ((Timer) ((v22) this.c).h).cancel();
+                    ((v22) this.c).h = null;
+                } catch (Exception e) {
+                    fa4.g(e, true);
+                }
+                Utilities.g.c(new gu2((v22) this.c, (String) this.b, (byte) 4));
+                return;
+            case 1:
+                dq5 dq5Var = (dq5) this.c;
+                try {
+                    dq5Var.f.cancel();
+                    dq5Var.f = null;
+                } catch (Exception e2) {
+                    fa4.g(e2, true);
+                }
+                gl.c3(new cq5(this, (String) this.b, (byte) 0));
+                return;
+            case 2:
+                synchronized (((MediaController) this.c).x1) {
+                    gl.c3(new oh6(this, (k27) this.b, (byte) 6));
+                }
+                return;
+            default:
+                sr9 sr9Var = (sr9) this.c;
+                try {
+                    sr9Var.n.cancel();
+                    sr9Var.n = null;
+                } catch (Exception e3) {
+                    fa4.g(e3, true);
+                }
+                sr9Var.getClass();
+                gl.c3(new tj9(sr9Var, (String) this.b, (byte) 11));
+                return;
         }
     }
 }

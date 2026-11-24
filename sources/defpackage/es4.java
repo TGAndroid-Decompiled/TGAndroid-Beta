@@ -1,3 +1,6 @@
 package defpackage;
-public interface es4 extends gs4 {
+public final class es4 implements zu7 {
+    static {
+        b74.a();
+    }
 }

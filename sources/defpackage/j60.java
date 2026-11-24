@@ -1,14 +1,23 @@
 package defpackage;
-public final class j60 implements cq7 {
+public final class j60 implements zn7 {
     public static final j60 a = new Object();
-    public static final wa4 b = wa4.c("clearBlob");
-    public static final wa4 c = wa4.c("encryptedBlob");
+    public static final w84 b = w84.c("batteryLevel");
+    public static final w84 c = w84.c("batteryVelocity");
+    public static final w84 d = w84.c("proximityOn");
+    public static final w84 e = w84.c("orientation");
+    public static final w84 f = w84.c("ramUsed");
+    public static final w84 g = w84.c("diskUsed");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        u74 u74Var = (u74) obj;
-        dq7 dq7Var = (dq7) obj2;
-        dq7Var.a(b, ((ra0) u74Var).a);
-        dq7Var.a(c, ((ra0) u74Var).b);
+        yy2 yy2Var = (yy2) obj;
+        ao7 ao7Var = (ao7) obj2;
+        ao7Var.a(b, ((d90) yy2Var).a);
+        d90 d90Var = (d90) yy2Var;
+        ao7Var.e(c, d90Var.b);
+        ao7Var.d(d, d90Var.c);
+        ao7Var.e(e, d90Var.d);
+        ao7Var.g(f, d90Var.e);
+        ao7Var.g(g, d90Var.f);
     }
 }

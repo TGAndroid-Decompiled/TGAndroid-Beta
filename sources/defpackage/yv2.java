@@ -1,30 +1,47 @@
 package defpackage;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class yv2 {
-    public int a;
-    public String b;
-    public String c;
-    public boolean d;
-    public final ArrayList e = new ArrayList(4);
-    public final ArrayList f = new ArrayList(4);
-    public final ArrayList g = new ArrayList(4);
-    public final ArrayList h = new ArrayList(4);
-    public String i;
-    public String j;
-    public boolean k;
-    public int l;
-    public TLRPC.User m;
+import java.util.concurrent.CopyOnWriteArraySet;
+public final class yv2 implements rzd {
+    public final byte a;
+    public Object b;
+    public volatile Object c;
 
-    public static String a(String str, String str2) {
-        if (!TextUtils.isEmpty(str)) {
-            return str.substring(0, 1);
+    public yv2() {
+        this.a = (byte) 0;
+        this.b = new CopyOnWriteArraySet();
+    }
+
+    public final String toString() {
+        switch (this.a) {
+            case 2:
+                Object obj = (rzd) this.c;
+                if (obj == vi2.f) {
+                    obj = tb4.y("<supplier that returned ", String.valueOf(this.b), ">");
+                }
+                return tb4.y("Suppliers.memoize(", String.valueOf(obj), ")");
+            default:
+                return super.toString();
         }
-        if (!TextUtils.isEmpty(str2)) {
-            return str2.substring(0, 1);
+    }
+
+    @Override
+    public final Object zza() {
+        rzd rzdVar = (rzd) this.c;
+        vi2 vi2Var = vi2.f;
+        if (rzdVar != vi2Var) {
+            synchronized (this) {
+                if (((rzd) this.c) != vi2Var) {
+                    Object zza = ((rzd) this.c).zza();
+                    this.b = zza;
+                    this.c = vi2Var;
+                    return zza;
+                }
+            }
         }
-        return "#";
+        return this.b;
+    }
+
+    public yv2(byte b) {
+        this.a = b;
     }
 }

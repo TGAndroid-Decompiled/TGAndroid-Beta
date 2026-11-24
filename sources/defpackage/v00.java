@@ -1,57 +1,33 @@
 package defpackage;
 
-import android.media.AudioRecord;
-import android.os.SystemClock;
-import org.telegram.utils.recorder.audio.d;
-public final class v00 implements Runnable {
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import org.telegram.messenger.MediaController;
+public final class v00 implements i8c {
     public final byte a;
-    public final d b;
+    public final i20 b;
 
-    public v00(d dVar, byte b) {
+    public v00(i20 i20Var, byte b) {
         this.a = b;
-        this.b = dVar;
+        this.b = i20Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.a) {
+    public final void a(Object obj, Object obj2) {
+        byte b = this.a;
+        i20 i20Var = this.b;
+        switch (b) {
             case 0:
-                d dVar = this.b;
-                try {
-                    if (dVar.n) {
-                        dVar.f(null);
-                        return;
-                    }
-                    int minBufferSize = AudioRecord.getMinBufferSize(48000, 16, 2);
-                    if (minBufferSize <= 0) {
-                        minBufferSize = 7680;
-                    }
-                    int max = Math.max(minBufferSize << 1, 7680);
-                    AudioRecord audioRecord = new AudioRecord(0, 48000, 16, 2, max);
-                    dVar.p = audioRecord;
-                    if (audioRecord.getState() == 1) {
-                        dVar.p.startRecording();
-                        if (dVar.p.getRecordingState() == 3) {
-                            dVar.f.b("AudioRecord started: minBufferBytes=" + minBufferSize + ", bufferBytes=" + max + ", sessionId=" + dVar.p.getAudioSessionId());
-                            dVar.r = SystemClock.elapsedRealtime();
-                            m30 m30Var = dVar.g;
-                            ((h40) m30Var.c).i.post(new fu(m30Var, m30Var.a, (byte) 1));
-                            dVar.i.post(new v00(dVar, (byte) 2));
-                            return;
-                        }
-                        throw new IllegalStateException("Unable to start AudioRecord");
-                    }
-                    throw new IllegalStateException("Unable to initialize AudioRecord");
-                } catch (Throwable th) {
-                    dVar.f(d.a(th));
-                    return;
-                }
-            case 1:
-                this.b.f(null);
+                i20Var.R1 = !((Boolean) obj2).booleanValue();
+                MediaController w = MediaController.w();
+                v7 v7Var = i20Var.Q1;
+                float floatValue = ((Float) obj).floatValue();
+                v7Var.getClass();
+                w.l0(true, (floatValue * 2.8f) + 0.2f);
                 return;
-            case 2:
             default:
-                this.b.c();
+                Bitmap bitmap = (Bitmap) obj2;
+                i20Var.b2.setBackground(new BitmapDrawable((Bitmap) obj));
                 return;
         }
     }

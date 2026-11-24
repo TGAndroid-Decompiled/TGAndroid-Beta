@@ -10,7 +10,7 @@ public class TurnCustomizer {
         if (this.nativeTurnCustomizer != 0) {
             return;
         }
-        dq9.m("TurnCustomizer has been disposed.");
+        sc8.j("TurnCustomizer has been disposed.");
     }
 
     private static native void nativeFreeTurnCustomizer(long j);

@@ -1,2159 +1,898 @@
 package defpackage;
 
-import java.lang.reflect.Field;
-import java.security.AccessController;
-import java.util.Arrays;
+import android.content.Context;
+import android.graphics.RectF;
+import android.os.SystemClock;
+import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.session.MediaSessionCompat$QueueItem;
+import android.util.LongSparseArray;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import sun.misc.Unsafe;
-public final class o57 implements os9 {
-    public static final int[] n = new int[0];
-    public static final Unsafe o;
-    public final int[] a;
-    public final Object[] b;
-    public final int c;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.Wallet.c;
+import org.telegram.ui.o;
+public final class o57 implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final long c;
     public final int d;
-    public final gu4 e;
-    public final boolean f;
-    public final int[] g;
-    public final int h;
-    public final int i;
-    public final nl7 j;
-    public final d76 k;
-    public final t7c l;
-    public final fk6 m;
+    public final Object e;
 
-    static {
-        Unsafe unsafe;
-        try {
-            unsafe = (Unsafe) AccessController.doPrivileged(new q2((byte) 1));
-        } catch (Throwable unused) {
-            unsafe = null;
+    public o57(ad7 ad7Var, int i, long j, TLObject tLObject, byte b) {
+        this.a = b;
+        this.b = ad7Var;
+        this.d = i;
+        this.c = j;
+        this.e = tLObject;
+    }
+
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.o57.a():void");
+    }
+
+    private final void b() {
+        TLRPC.Chat O;
+        TLRPC.User h0;
+        z3a z3aVar = (z3a) this.b;
+        byte[] bArr = (byte[]) this.e;
+        StringBuilder sb = new StringBuilder();
+        long j = this.c;
+        sb.append(j);
+        sb.append("_");
+        int i = this.d;
+        sb.append(i);
+        sb.append("_");
+        sb.append(Utilities.f(bArr));
+        sb.append("_0");
+        String sb2 = sb.toString();
+        z3aVar.r.put(sb2, Boolean.TRUE);
+        HashMap hashMap = z3aVar.s;
+        List list = (List) hashMap.get(j + "_" + i);
+        if (list == null) {
+            list = new ArrayList();
+            hashMap.put(j + "_" + i, list);
         }
-        o = unsafe;
-    }
-
-    public o57(int[] iArr, Object[] objArr, int i, int i2, gu4 gu4Var, int[] iArr2, int i3, int i4, nl7 nl7Var, d76 d76Var, t7c t7cVar, l84 l84Var, fk6 fk6Var) {
-        this.a = iArr;
-        this.b = objArr;
-        this.c = i;
-        this.d = i2;
-        this.f = wi8.A(gu4Var);
-        this.g = iArr2;
-        this.h = i3;
-        this.i = i4;
-        this.j = nl7Var;
-        this.k = d76Var;
-        this.l = t7cVar;
-        this.e = gu4Var;
-        this.m = fk6Var;
-    }
-
-    public static Field F(Class cls, String str) {
-        try {
-            return cls.getDeclaredField(str);
-        } catch (NoSuchFieldException unused) {
-            Field[] declaredFields = cls.getDeclaredFields();
-            for (Field field : declaredFields) {
-                if (str.equals(field.getName())) {
-                    return field;
-                }
+        list.add(sb2);
+        if (cf3.D(j)) {
+            if (z3aVar.getMessagesController().V1(Long.valueOf(j)) == null && (h0 = z3aVar.getMessagesStorage().h0(j)) != null) {
+                z3aVar.getMessagesController().a4(h0, true, false);
             }
-            StringBuilder p = wi8.p("Field ", str, " for ");
-            p.append(cls.getName());
-            p.append(" not found. Known fields are ");
-            p.append(Arrays.toString(declaredFields));
-            throw new RuntimeException(p.toString());
-        }
-    }
-
-    public static int I(int i) {
-        return (i & 267386880) >>> 20;
-    }
-
-    public static boolean p(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj instanceof gu4) {
-            return ((gu4) obj).g();
-        }
-        return true;
-    }
-
-    public static defpackage.o57 w(defpackage.j19 r32, defpackage.nl7 r33, defpackage.d76 r34, defpackage.t7c r35, defpackage.l84 r36, defpackage.fk6 r37) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.o57.w(j19, nl7, d76, t7c, l84, fk6):o57");
-    }
-
-    public static long x(int i) {
-        return i & 1048575;
-    }
-
-    public static int y(Object obj, long j) {
-        return ((Integer) d8c.h(obj, j)).intValue();
-    }
-
-    public static long z(Object obj, long j) {
-        return ((Long) d8c.h(obj, j)).longValue();
-    }
-
-    public final int A(int i) {
-        if (i >= this.c && i <= this.d) {
-            int[] iArr = this.a;
-            int length = (iArr.length / 3) - 1;
-            int i2 = 0;
-            while (i2 <= length) {
-                int i3 = (length + i2) >>> 1;
-                int i4 = i3 * 3;
-                int i5 = iArr[i4];
-                if (i == i5) {
-                    return i4;
-                }
-                if (i < i5) {
-                    length = i3 - 1;
-                } else {
-                    i2 = i3 + 1;
-                }
-            }
-            return -1;
-        }
-        return -1;
-    }
-
-    public final void B(Object obj, long j, ag0 ag0Var, os9 os9Var, k84 k84Var) {
-        int u;
-        this.k.getClass();
-        lr5 a = d76.a(obj, j);
-        nl2 nl2Var = (nl2) ag0Var.d;
-        int i = ag0Var.a;
-        if ((i & 7) == 3) {
-            do {
-                gu4 a2 = os9Var.a();
-                ag0Var.e(a2, os9Var, k84Var);
-                os9Var.c(a2);
-                a.add(a2);
-                if (!nl2Var.c() && ag0Var.c == 0) {
-                    u = nl2Var.u();
-                } else {
-                    return;
-                }
-            } while (u == i);
-            ag0Var.c = u;
-            return;
-        }
-        throw yr5.b();
-    }
-
-    public final void C(Object obj, int i, ag0 ag0Var, os9 os9Var, k84 k84Var) {
-        int u;
-        this.k.getClass();
-        lr5 a = d76.a(obj, i & 1048575);
-        nl2 nl2Var = (nl2) ag0Var.d;
-        int i2 = ag0Var.a;
-        if ((i2 & 7) == 2) {
-            do {
-                gu4 a2 = os9Var.a();
-                ag0Var.f(a2, os9Var, k84Var);
-                os9Var.c(a2);
-                a.add(a2);
-                if (!nl2Var.c() && ag0Var.c == 0) {
-                    u = nl2Var.u();
-                } else {
-                    return;
-                }
-            } while (u == i2);
-            ag0Var.c = u;
-            return;
-        }
-        throw yr5.b();
-    }
-
-    public final void D(int i, ag0 ag0Var, Object obj) {
-        nl2 nl2Var = (nl2) ag0Var.d;
-        if ((536870912 & i) != 0) {
-            ag0Var.B(2);
-            d8c.o(obj, i & 1048575, nl2Var.t());
-            return;
-        }
-        int i2 = i & 1048575;
-        if (this.f) {
-            ag0Var.B(2);
-            d8c.o(obj, i2, nl2Var.s());
-            return;
-        }
-        d8c.o(obj, i2, ag0Var.h());
-    }
-
-    public final void E(int i, ag0 ag0Var, Object obj) {
-        boolean z;
-        if ((536870912 & i) != 0) {
-            z = true;
         } else {
-            z = false;
+            long j2 = -j;
+            if (z3aVar.getMessagesController().K0(Long.valueOf(j2)) == null && (O = z3aVar.getMessagesStorage().O(j2)) != null) {
+                z3aVar.getMessagesController().T3(O, true);
+            }
         }
-        d76 d76Var = this.k;
-        int i2 = i & 1048575;
-        if (z) {
-            d76Var.getClass();
-            ag0Var.v(d76.a(obj, i2), true);
-            return;
+        TLRPC.TL_messages_getBotCallbackAnswer tL_messages_getBotCallbackAnswer = new TLRPC.TL_messages_getBotCallbackAnswer();
+        tL_messages_getBotCallbackAnswer.peer = z3aVar.getMessagesController().h1(j);
+        tL_messages_getBotCallbackAnswer.msg_id = i;
+        tL_messages_getBotCallbackAnswer.game = false;
+        if (bArr != null) {
+            tL_messages_getBotCallbackAnswer.flags |= 1;
+            tL_messages_getBotCallbackAnswer.data = bArr;
         }
-        d76Var.getClass();
-        ag0Var.v(d76.a(obj, i2), false);
+        z3aVar.getConnectionsManager().sendRequest(tL_messages_getBotCallbackAnswer, new ck8(z3aVar, sb2, list, (byte) 8), 2);
+        z3aVar.getMessagesController().l3(j, i, i, 0, false, 0L, 0, true, 0);
     }
 
-    public final void G(int i, Object obj) {
-        int i2 = this.a[i + 2];
-        long j = 1048575 & i2;
-        if (j == 1048575) {
-            return;
+    private final void c() {
+        hgb hgbVar = (hgb) this.b;
+        ad7 ad7Var = (ad7) this.e;
+        long j = this.c;
+        int i = this.d;
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        try {
+            SQLiteDatabase sQLiteDatabase = ad7Var.b;
+            Locale locale = Locale.US;
+            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data, mid FROM media_v4 WHERE uid = " + j + " AND mid > 0 AND type = 4 ORDER BY date DESC, mid DESC", new Object[0]);
+            while (queryFinalized.next()) {
+                NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
+                if (byteBufferValue != null) {
+                    TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    TLdeserialize.readAttachPath(byteBufferValue, y6c.h(i).n);
+                    byteBufferValue.reuse();
+                    if (k27.K3(TLdeserialize)) {
+                        TLdeserialize.id = queryFinalized.intValue(1);
+                        TLdeserialize.dialog_id = j;
+                        k27 k27Var = new k27(i, TLdeserialize, false, true);
+                        arrayList.add(k27Var);
+                        arrayList2.add(new MediaSessionCompat$QueueItem(null, new MediaDescriptionCompat(j + "_" + arrayList.size(), k27Var.y1(true), k27Var.w1(true), null, null, null, null, null), arrayList2.size()));
+                    }
+                }
+            }
+            queryFinalized.dispose();
+            Collections.reverse(arrayList);
+            Collections.reverse(arrayList2);
+        } catch (Exception e) {
+            fa4.g(e, true);
         }
-        d8c.m(obj, d8c.f(obj, j) | (1 << (i2 >>> 20)), j);
-    }
-
-    public final void H(int i, int i2, Object obj) {
-        d8c.m(obj, i, this.a[i2 + 2] & 1048575);
-    }
-
-    public final int J(int i) {
-        return this.a[i + 1];
+        gl.c3(new wy(hgbVar, i, j, arrayList, arrayList2, (byte) 14));
     }
 
     @Override
-    public final gu4 a() {
-        this.j.getClass();
-        return this.e.i();
-    }
-
-    @Override
-    public final void b(Object obj, Object obj2) {
+    public final void run() {
+        Object obj;
+        int i;
+        long[] jArr;
+        Object obj2;
+        final long j;
+        final long j2;
+        long j3;
+        rp0 rp0Var;
+        int i2;
         Object obj3;
-        if (p(obj)) {
-            obj2.getClass();
-            int i = 0;
-            while (true) {
-                int[] iArr = this.a;
-                if (i < iArr.length) {
-                    int J = J(i);
-                    long j = 1048575 & J;
-                    int i2 = iArr[i];
-                    switch (I(J)) {
-                        case 0:
-                            if (n(i, obj2)) {
-                                c8c c8cVar = d8c.c;
-                                obj3 = obj;
-                                c8cVar.f(obj3, j, c8cVar.b(obj2, j));
-                                G(i, obj3);
-                                continue;
-                                i += 3;
-                                obj = obj3;
-                            }
-                            break;
-                        case 1:
-                            if (n(i, obj2)) {
-                                c8c c8cVar2 = d8c.c;
-                                c8cVar2.g(obj, j, c8cVar2.c(obj2, j));
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 2:
-                            if (n(i, obj2)) {
-                                d8c.n(obj, j, d8c.g(obj2, j));
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 3:
-                            if (n(i, obj2)) {
-                                d8c.n(obj, j, d8c.g(obj2, j));
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 4:
-                            if (n(i, obj2)) {
-                                d8c.m(obj, d8c.f(obj2, j), j);
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 5:
-                            if (n(i, obj2)) {
-                                d8c.n(obj, j, d8c.g(obj2, j));
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 6:
-                            if (n(i, obj2)) {
-                                d8c.m(obj, d8c.f(obj2, j), j);
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 7:
-                            if (n(i, obj2)) {
-                                c8c c8cVar3 = d8c.c;
-                                c8cVar3.d(obj, j, c8cVar3.a(obj2, j));
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 8:
-                            if (n(i, obj2)) {
-                                d8c.o(obj, j, d8c.h(obj2, j));
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 9:
-                            s(i, obj, obj2);
-                            break;
-                        case 10:
-                            if (n(i, obj2)) {
-                                d8c.o(obj, j, d8c.h(obj2, j));
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 11:
-                            if (n(i, obj2)) {
-                                d8c.m(obj, d8c.f(obj2, j), j);
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 12:
-                            if (n(i, obj2)) {
-                                d8c.m(obj, d8c.f(obj2, j), j);
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 13:
-                            if (n(i, obj2)) {
-                                d8c.m(obj, d8c.f(obj2, j), j);
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 14:
-                            if (n(i, obj2)) {
-                                d8c.n(obj, j, d8c.g(obj2, j));
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 15:
-                            if (n(i, obj2)) {
-                                d8c.m(obj, d8c.f(obj2, j), j);
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 16:
-                            if (n(i, obj2)) {
-                                d8c.n(obj, j, d8c.g(obj2, j));
-                                G(i, obj);
-                                break;
-                            }
-                            break;
-                        case 17:
-                            s(i, obj, obj2);
-                            break;
-                        case 18:
-                        case 19:
-                        case 20:
-                        case 21:
-                        case 22:
-                        case 23:
-                        case 24:
-                        case 25:
-                        case 26:
-                        case 27:
-                        case 28:
-                        case 29:
-                        case 30:
-                        case 31:
-                        case 32:
-                        case 33:
-                        case 34:
-                        case 35:
-                        case 36:
-                        case 37:
-                        case 38:
-                        case 39:
-                        case 40:
-                        case 41:
-                        case 42:
-                        case 43:
-                        case 44:
-                        case 45:
-                        case 46:
-                        case 47:
-                        case 48:
-                        case 49:
-                            this.k.getClass();
-                            lr5 lr5Var = (lr5) d8c.h(obj, j);
-                            lr5 lr5Var2 = (lr5) d8c.h(obj2, j);
-                            int size = lr5Var.size();
-                            int size2 = lr5Var2.size();
-                            if (size > 0 && size2 > 0) {
-                                if (!((s3) lr5Var).a) {
-                                    lr5Var = ((hv8) lr5Var).j(size2 + size);
-                                }
-                                lr5Var.addAll(lr5Var2);
-                            }
-                            if (size > 0) {
-                                lr5Var2 = lr5Var;
-                            }
-                            d8c.o(obj, j, lr5Var2);
-                            break;
-                        case 50:
-                            Class cls = rs9.a;
-                            Object h = d8c.h(obj, j);
-                            Object h2 = d8c.h(obj2, j);
-                            this.m.getClass();
-                            d8c.o(obj, j, fk6.a(h, h2));
-                            break;
-                        case 51:
-                        case 52:
-                        case 53:
-                        case 54:
-                        case 55:
-                        case 56:
-                        case 57:
-                        case 58:
-                        case 59:
-                            if (q(i2, i, obj2)) {
-                                d8c.o(obj, j, d8c.h(obj2, j));
-                                H(i2, i, obj);
-                                break;
-                            }
-                            break;
-                        case 60:
-                            t(i, obj, obj2);
-                            break;
-                        case 61:
-                        case 62:
-                        case 63:
-                        case 64:
-                        case 65:
-                        case 66:
-                        case 67:
-                            if (q(i2, i, obj2)) {
-                                d8c.o(obj, j, d8c.h(obj2, j));
-                                H(i2, i, obj);
-                                break;
-                            }
-                            break;
-                        case 68:
-                            t(i, obj, obj2);
-                            break;
-                    }
-                    obj3 = obj;
-                    i += 3;
-                    obj = obj3;
+        long[] jArr2;
+        Object obj4;
+        long j4;
+        long j5;
+        long j6;
+        rp0 rp0Var2;
+        int i3;
+        wp0 wp0Var;
+        SQLitePreparedStatement executeFast;
+        SQLiteCursor queryFinalized;
+        TLRPC.Chat chat;
+        NativeByteBuffer byteBufferValue;
+        boolean isEmpty;
+        SQLiteDatabase sQLiteDatabase;
+        SQLitePreparedStatement sQLitePreparedStatement = this.a;
+        TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+        SQLitePreparedStatement sQLitePreparedStatement2 = null;
+        SQLitePreparedStatement sQLitePreparedStatement3 = null;
+        r9 = null;
+        r9 = null;
+        r9 = null;
+        r9 = null;
+        SQLiteCursor sQLiteCursor = null;
+        SQLitePreparedStatement sQLitePreparedStatement4 = null;
+        long j7 = this.c;
+        int i4 = this.d;
+        boolean z = false;
+        int i5 = 0;
+        Object obj5 = this.e;
+        Object obj6 = this.b;
+        switch (sQLitePreparedStatement) {
+            case 0:
+                TLRPC.TL_sendMessageTextDraftAction tL_sendMessageTextDraftAction = (TLRPC.TL_sendMessageTextDraftAction) obj5;
+                final wp0 b = wp0.b(((na7) obj6).currentAccount);
+                lj9 lj9Var = b.a;
+                long j8 = tL_sendMessageTextDraftAction.random_id;
+                TLRPC.TL_textWithEntities tL_textWithEntities = tL_sendMessageTextDraftAction.text;
+                boolean z2 = tL_sendMessageTextDraftAction.can_stop;
+                boolean z3 = tL_sendMessageTextDraftAction.keep_on_stop;
+                StringBuilder sb = new StringBuilder("[BotForum] onDraftNewDraft ");
+                long j9 = this.c;
+                sb.append(j9);
+                sb.append(" ");
+                int i6 = this.d;
+                sb.append(i6);
+                sb.append(" ");
+                sb.append(j8);
+                fa4.b(sb.toString());
+                long j10 = i6;
+                LongSparseArray x = b.b.x(j9, j10);
+                if (x == null) {
+                    obj = null;
                 } else {
-                    rs9.k(this.l, obj, obj2);
+                    obj = x.get(j8);
+                }
+                if (obj != null) {
+                    fa4.b("[BotForum] onDraftNewDraft ignore " + j9 + " " + i6 + " " + j8);
                     return;
                 }
-            }
-        } else {
-            u36.i(obj, "Mutating immutable message: ");
-        }
-    }
-
-    @Override
-    public final void c(Object obj) {
-        if (p(obj)) {
-            if (obj instanceof gu4) {
-                gu4 gu4Var = (gu4) obj;
-                gu4Var.k(Integer.MAX_VALUE);
-                gu4Var.memoizedHashCode = 0;
-                gu4Var.h();
-            }
-            int[] iArr = this.a;
-            int length = iArr.length;
-            for (int i = 0; i < length; i += 3) {
-                int J = J(i);
-                long j = 1048575 & J;
-                int I = I(J);
-                Unsafe unsafe = o;
-                if (I != 9) {
-                    if (I != 60 && I != 68) {
-                        switch (I) {
-                            case 18:
-                            case 19:
-                            case 20:
-                            case 21:
-                            case 22:
-                            case 23:
-                            case 24:
-                            case 25:
-                            case 26:
-                            case 27:
-                            case 28:
-                            case 29:
-                            case 30:
-                            case 31:
-                            case 32:
-                            case 33:
-                            case 34:
-                            case 35:
-                            case 36:
-                            case 37:
-                            case 38:
-                            case 39:
-                            case 40:
-                            case 41:
-                            case 42:
-                            case 43:
-                            case 44:
-                            case 45:
-                            case 46:
-                            case 47:
-                            case 48:
-                            case 49:
-                                this.k.getClass();
-                                s3 s3Var = (s3) ((lr5) d8c.h(obj, j));
-                                if (s3Var.a) {
-                                    s3Var.a = false;
-                                    break;
-                                } else {
-                                    break;
-                                }
-                            case 50:
-                                Object object = unsafe.getObject(obj, j);
-                                if (object != null) {
-                                    this.m.getClass();
-                                    ((ek6) object).a = false;
-                                    unsafe.putObject(obj, j, object);
-                                    break;
-                                } else {
-                                    break;
-                                }
-                        }
-                    } else if (q(iArr[i], i, obj)) {
-                        m(i).c(unsafe.getObject(obj, j));
+                LongSparseArray x2 = lj9Var.x(j9, j10);
+                if (x2 != null && x2.size() > 0) {
+                    long[] jArr3 = new long[x2.size()];
+                    int size = x2.size();
+                    i = i6;
+                    for (int i7 = 0; i7 < size; i7++) {
+                        jArr3[i7] = x2.keyAt(i7);
                     }
-                }
-                if (n(i, obj)) {
-                    m(i).c(unsafe.getObject(obj, j));
-                }
-            }
-            this.l.getClass();
-            s7c s7cVar = ((gu4) obj).unknownFields;
-            if (s7cVar.e) {
-                s7cVar.e = false;
-            }
-        }
-    }
-
-    @Override
-    public final boolean d(Object obj) {
-        int i;
-        int i2;
-        int i3;
-        int i4 = 1048575;
-        int i5 = 0;
-        int i6 = 0;
-        while (i6 < this.h) {
-            int i7 = this.g[i6];
-            int[] iArr = this.a;
-            int i8 = iArr[i7];
-            int J = J(i7);
-            int i9 = iArr[i7 + 2];
-            int i10 = i9 & 1048575;
-            int i11 = 1 << (i9 >>> 20);
-            if (i10 != i4) {
-                if (i10 != 1048575) {
-                    i5 = o.getInt(obj, i10);
-                }
-                i2 = i7;
-                i3 = i5;
-                i = i10;
-            } else {
-                int i12 = i5;
-                i = i4;
-                i2 = i7;
-                i3 = i12;
-            }
-            if ((268435456 & J) == 0 || o(obj, i2, i, i3, i11)) {
-                int I = I(J);
-                if (I != 9 && I != 17) {
-                    if (I != 27) {
-                        if (I != 60 && I != 68) {
-                            if (I != 49) {
-                                if (I == 50) {
-                                    Object h = d8c.h(obj, J & 1048575);
-                                    this.m.getClass();
-                                    ek6 ek6Var = (ek6) h;
-                                    if (ek6Var.isEmpty()) {
-                                        continue;
-                                    } else {
-                                        if (((j0d) ((dk6) this.b[(i2 / 3) << 1]).a.c).a == m0d.r) {
-                                            os9 os9Var = null;
-                                            for (Object obj2 : ek6Var.values()) {
-                                                if (os9Var == null) {
-                                                    os9Var = gv8.c.a(obj2.getClass());
-                                                }
-                                                if (!os9Var.d(obj2)) {
-                                                }
-                                            }
-                                            continue;
-                                        } else {
-                                            continue;
-                                        }
-                                    }
-                                } else {
-                                    continue;
-                                }
-                                i6++;
-                                i4 = i;
-                                i5 = i3;
-                            }
-                        } else {
-                            if (q(i8, i2, obj) && !m(i2).d(d8c.h(obj, J & 1048575))) {
-                            }
-                            i6++;
-                            i4 = i;
-                            i5 = i3;
-                        }
-                    }
-                    List list = (List) d8c.h(obj, J & 1048575);
-                    if (list.isEmpty()) {
-                        continue;
-                    } else {
-                        os9 m = m(i2);
-                        for (int i13 = 0; i13 < list.size(); i13++) {
-                            if (m.d(list.get(i13))) {
-                            }
-                        }
-                        continue;
-                    }
-                    i6++;
-                    i4 = i;
-                    i5 = i3;
+                    jArr = jArr3;
                 } else {
-                    if (o(obj, i2, i, i3, i11) && !m(i2).d(d8c.h(obj, J & 1048575))) {
-                    }
-                    i6++;
-                    i4 = i;
-                    i5 = i3;
+                    i = i6;
+                    jArr = null;
                 }
-            }
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean e(defpackage.gu4 r12, defpackage.gu4 r13) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.o57.e(gu4, gu4):boolean");
-    }
-
-    @Override
-    public final int f(defpackage.gu4 r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.o57.f(gu4):int");
-    }
-
-    @Override
-    public final void g(Object obj, k6d k6dVar) {
-        int i;
-        int i2;
-        int i3;
-        o57 o57Var = this;
-        k6dVar.getClass();
-        pl2 pl2Var = (pl2) k6dVar.b;
-        int[] iArr = o57Var.a;
-        int length = iArr.length;
-        int i4 = 1048575;
-        int i5 = 1048575;
-        int i6 = 0;
-        int i7 = 0;
-        while (i6 < length) {
-            int J = o57Var.J(i6);
-            int i8 = iArr[i6];
-            int I = I(J);
-            Unsafe unsafe = o;
-            if (I <= 17) {
-                int i9 = iArr[i6 + 2];
-                i = 1;
-                int i10 = i9 & i4;
-                if (i10 != i5) {
-                    if (i10 == i4) {
-                        i7 = 0;
-                    } else {
-                        i7 = unsafe.getInt(obj, i10);
-                    }
-                    i5 = i10;
-                }
-                int i11 = 1 << (i9 >>> 20);
-                i2 = J;
-                i3 = i11;
-            } else {
-                i = 1;
-                i2 = J;
-                i3 = 0;
-            }
-            long j = i2 & i4;
-            switch (I) {
-                case 0:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.s(i8, Double.doubleToRawLongBits(d8c.c.b(obj, j)));
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 1:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.q(i8, Float.floatToRawIntBits(d8c.c.c(obj, j)));
-                        break;
-                    }
-                    break;
-                case 2:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.D(i8, unsafe.getLong(obj, j));
-                        break;
-                    }
-                    break;
-                case 3:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.D(i8, unsafe.getLong(obj, j));
-                        break;
-                    }
-                    break;
-                case 4:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.u(i8, unsafe.getInt(obj, j));
-                        break;
-                    }
-                    break;
-                case 5:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.s(i8, unsafe.getLong(obj, j));
-                        break;
-                    }
-                    break;
-                case 6:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.q(i8, unsafe.getInt(obj, j));
-                        break;
-                    }
-                    break;
-                case 7:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.n(i8, d8c.c.a(obj, j));
-                        break;
-                    }
-                    break;
-                case 8:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        Object object = unsafe.getObject(obj, j);
-                        if (object instanceof String) {
-                            pl2Var.y(i8, (String) object);
-                            break;
-                        } else {
-                            pl2Var.o(i8, (m61) object);
-                            break;
-                        }
-                    }
-                    break;
-                case 9:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.x(i8, (o3) unsafe.getObject(obj, j), o57Var.m(i6));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 10:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.o(i8, (m61) unsafe.getObject(obj, j));
-                        break;
-                    }
-                    break;
-                case 11:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.B(i8, unsafe.getInt(obj, j));
-                        break;
-                    }
-                    break;
-                case 12:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.u(i8, unsafe.getInt(obj, j));
-                        break;
-                    }
-                    break;
-                case 13:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.q(i8, unsafe.getInt(obj, j));
-                        break;
-                    }
-                    break;
-                case 14:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        pl2Var.s(i8, unsafe.getLong(obj, j));
-                        break;
-                    }
-                    break;
-                case 15:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        int i12 = unsafe.getInt(obj, j);
-                        pl2Var.B(i8, (i12 << 1) ^ (i12 >> 31));
-                        break;
-                    }
-                    break;
-                case 16:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        long j2 = unsafe.getLong(obj, j);
-                        pl2Var.D(i8, (j2 << 1) ^ (j2 >> 63));
-                        break;
-                    }
-                    break;
-                case 17:
-                    if (o57Var.o(obj, i6, i5, i7, i3)) {
-                        k6dVar.p1(i8, unsafe.getObject(obj, j), o57Var.m(i6));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 18:
-                    rs9.n(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 19:
-                    rs9.r(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 20:
-                    rs9.t(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 21:
-                    rs9.z(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 22:
-                    rs9.s(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 23:
-                    rs9.q(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 24:
-                    rs9.p(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 25:
-                    rs9.m(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 26:
-                    int i13 = iArr[i6];
-                    List list = (List) unsafe.getObject(obj, j);
-                    Class cls = rs9.a;
-                    if (list == null) {
-                        continue;
-                    } else if (!list.isEmpty()) {
-                        if (list instanceof h26) {
-                            h26 h26Var = (h26) list;
-                            for (int i14 = 0; i14 < list.size(); i14++) {
-                                Object a = h26Var.a();
-                                if (a instanceof String) {
-                                    pl2Var.y(i13, (String) a);
-                                } else {
-                                    pl2Var.o(i13, (m61) a);
-                                }
-                            }
-                        } else {
-                            for (int i15 = 0; i15 < list.size(); i15++) {
-                                pl2Var.y(i13, (String) list.get(i15));
-                            }
-                        }
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 27:
-                    int i16 = iArr[i6];
-                    List list2 = (List) unsafe.getObject(obj, j);
-                    os9 m = o57Var.m(i6);
-                    Class cls2 = rs9.a;
-                    if (list2 == null) {
-                        continue;
-                    } else if (!list2.isEmpty()) {
-                        for (int i17 = 0; i17 < list2.size(); i17++) {
-                            pl2Var.x(i16, (o3) list2.get(i17), m);
-                        }
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 28:
-                    int i18 = iArr[i6];
-                    List list3 = (List) unsafe.getObject(obj, j);
-                    Class cls3 = rs9.a;
-                    if (list3 == null) {
-                        continue;
-                    } else if (!list3.isEmpty()) {
-                        for (int i19 = 0; i19 < list3.size(); i19++) {
-                            pl2Var.o(i18, (m61) list3.get(i19));
-                        }
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 29:
-                    rs9.y(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 30:
-                    rs9.o(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 31:
-                    rs9.u(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 32:
-                    rs9.v(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 33:
-                    rs9.w(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 34:
-                    rs9.x(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, false);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 35:
-                    rs9.n(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 36:
-                    rs9.r(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 37:
-                    rs9.t(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 38:
-                    rs9.z(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 39:
-                    rs9.s(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 40:
-                    rs9.q(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 41:
-                    rs9.p(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 42:
-                    rs9.m(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 43:
-                    rs9.y(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 44:
-                    rs9.o(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 45:
-                    rs9.u(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 46:
-                    rs9.v(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 47:
-                    rs9.w(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, i == 1 ? 1 : 0);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 48:
-                    rs9.x(iArr[i6], (List) unsafe.getObject(obj, j), k6dVar, true);
-                    continue;
-                    i6 += 3;
-                    i4 = 1048575;
-                case 49:
-                    int i20 = iArr[i6];
-                    List list4 = (List) unsafe.getObject(obj, j);
-                    os9 m2 = o57Var.m(i6);
-                    Class cls4 = rs9.a;
-                    if (list4 == null) {
-                        continue;
-                    } else if (!list4.isEmpty()) {
-                        for (int i21 = 0; i21 < list4.size(); i21++) {
-                            k6dVar.p1(i20, list4.get(i21), m2);
-                        }
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 50:
-                    Object object2 = unsafe.getObject(obj, j);
-                    if (object2 != null) {
-                        Object obj2 = o57Var.b[(i6 / 3) << 1];
-                        o57Var.m.getClass();
-                        in3 in3Var = ((dk6) obj2).a;
-                        for (Map.Entry entry : ((ek6) object2).entrySet()) {
-                            pl2Var.A(i8, 2);
-                            pl2Var.C(dk6.a(in3Var, entry.getKey(), entry.getValue()));
-                            Object key = entry.getKey();
-                            Object value = entry.getValue();
-                            xa4.b(pl2Var, (h0d) in3Var.b, i, key);
-                            xa4.b(pl2Var, (j0d) in3Var.c, 2, value);
-                            i = 1;
-                        }
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 51:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.s(i8, Double.doubleToRawLongBits(((Double) d8c.h(obj, j)).doubleValue()));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 52:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.q(i8, Float.floatToRawIntBits(((Float) d8c.h(obj, j)).floatValue()));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 53:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.D(i8, z(obj, j));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 54:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.D(i8, z(obj, j));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 55:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.u(i8, y(obj, j));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 56:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.s(i8, z(obj, j));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 57:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.q(i8, y(obj, j));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 58:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.n(i8, ((Boolean) d8c.h(obj, j)).booleanValue());
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 59:
-                    if (o57Var.q(i8, i6, obj)) {
-                        Object object3 = unsafe.getObject(obj, j);
-                        if (object3 instanceof String) {
-                            pl2Var.y(i8, (String) object3);
-                        } else {
-                            pl2Var.o(i8, (m61) object3);
-                        }
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 60:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.x(i8, (o3) unsafe.getObject(obj, j), o57Var.m(i6));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 61:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.o(i8, (m61) unsafe.getObject(obj, j));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 62:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.B(i8, y(obj, j));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 63:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.u(i8, y(obj, j));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 64:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.q(i8, y(obj, j));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 65:
-                    if (o57Var.q(i8, i6, obj)) {
-                        pl2Var.s(i8, z(obj, j));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 66:
-                    if (o57Var.q(i8, i6, obj)) {
-                        int y = y(obj, j);
-                        pl2Var.B(i8, (y << 1) ^ (y >> 31));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 67:
-                    if (o57Var.q(i8, i6, obj)) {
-                        long z = z(obj, j);
-                        pl2Var.D(i8, (z << (i == 1 ? 1L : 0L)) ^ (z >> 63));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                case 68:
-                    if (o57Var.q(i8, i6, obj)) {
-                        k6dVar.p1(i8, unsafe.getObject(obj, j), o57Var.m(i6));
-                    } else {
-                        continue;
-                    }
-                    i6 += 3;
-                    i4 = 1048575;
-                default:
-                    i6 += 3;
-                    i4 = 1048575;
-            }
-            o57Var = this;
-            i6 += 3;
-            i4 = 1048575;
-        }
-        o57Var.l.getClass();
-        ((gu4) obj).unknownFields.d(k6dVar);
-    }
-
-    @Override
-    public final int h(gu4 gu4Var) {
-        int i;
-        int g;
-        int g2;
-        int g3;
-        int i2;
-        int g4;
-        int i3;
-        int g5;
-        int g6;
-        int f;
-        int g7;
-        int a;
-        int g8;
-        int a2;
-        int c;
-        int g9;
-        int size;
-        int i4;
-        int g10;
-        int g11;
-        int g12;
-        int size2;
-        int g13;
-        int i5;
-        int g14;
-        int g15;
-        int i6;
-        int g16;
-        int i7;
-        int f2;
-        o57 o57Var = this;
-        gu4 gu4Var2 = gu4Var;
-        int i8 = 0;
-        int i9 = 0;
-        int i10 = 0;
-        int i11 = 1048575;
-        while (true) {
-            int[] iArr = o57Var.a;
-            if (i8 < iArr.length) {
-                int J = o57Var.J(i8);
-                int I = I(J);
-                int i12 = iArr[i8];
-                int i13 = iArr[i8 + 2];
-                int i14 = i13 & 1048575;
-                Unsafe unsafe = o;
-                if (I <= 17) {
-                    if (i14 != i11) {
-                        if (i14 == 1048575) {
-                            i9 = 0;
-                        } else {
-                            i9 = unsafe.getInt(gu4Var2, i14);
-                        }
-                        i11 = i14;
-                    }
-                    i = 1 << (i13 >>> 20);
+                LongSparseArray x3 = lj9Var.x(j9, j10);
+                if (x3 == null) {
+                    obj2 = null;
                 } else {
-                    i = 0;
+                    obj2 = x3.get(j8);
                 }
-                long j = J & 1048575;
-                if (I >= ya4.b.a) {
-                    byte b = ya4.c.a;
-                }
-                switch (I) {
-                    case 0:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            g = pl2.g(i12);
-                            c = g + 8;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 1:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            g2 = pl2.g(i12);
-                            g6 = g2 + 4;
-                            i10 += g6;
-                        }
-                        o57Var = this;
-                        gu4Var2 = gu4Var;
-                        break;
-                    case 2:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            long j2 = unsafe.getLong(gu4Var2, j);
-                            g3 = pl2.g(i12);
-                            i2 = pl2.i(j2);
-                            i10 += i2 + g3;
-                        }
-                        o57Var = this;
-                        break;
-                    case 3:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            long j3 = unsafe.getLong(gu4Var2, j);
-                            g3 = pl2.g(i12);
-                            i2 = pl2.i(j3);
-                            i10 += i2 + g3;
-                        }
-                        o57Var = this;
-                        break;
-                    case 4:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            int i15 = unsafe.getInt(gu4Var2, j);
-                            g4 = pl2.g(i12);
-                            i3 = pl2.i(i15);
-                            i10 += i3 + g4;
-                        }
-                        o57Var = this;
-                        break;
-                    case 5:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            g5 = pl2.g(i12);
-                            g6 = g5 + 8;
-                            i10 += g6;
-                        }
-                        o57Var = this;
-                        gu4Var2 = gu4Var;
-                        break;
-                    case 6:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            g2 = pl2.g(i12);
-                            g6 = g2 + 4;
-                            i10 += g6;
-                        }
-                        o57Var = this;
-                        gu4Var2 = gu4Var;
-                        break;
-                    case 7:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            g6 = pl2.g(i12) + 1;
-                            i10 += g6;
-                        }
-                        o57Var = this;
-                        gu4Var2 = gu4Var;
-                        break;
-                    case 8:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            Object object = unsafe.getObject(gu4Var2, j);
-                            if (object instanceof m61) {
-                                int g17 = pl2.g(i12);
-                                int size3 = ((m61) object).size();
-                                f = kt6.f(size3, size3, g17, i10);
-                            } else {
-                                f = pl2.f((String) object) + pl2.g(i12) + i10;
-                            }
-                            i10 = f;
-                        }
-                        o57Var = this;
-                        break;
-                    case 9:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            Object object2 = unsafe.getObject(gu4Var2, j);
-                            os9 m = o57Var.m(i8);
-                            Class cls = rs9.a;
-                            g7 = pl2.g(i12);
-                            a = ((o3) object2).a(m);
-                            i10 = kt6.f(a, a, g7, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 10:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            int g18 = pl2.g(i12);
-                            int size4 = ((m61) unsafe.getObject(gu4Var2, j)).size();
-                            i10 = kt6.f(size4, size4, g18, i10);
-                        }
-                        o57Var = this;
-                        break;
-                    case 11:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            int i16 = unsafe.getInt(gu4Var2, j);
-                            g4 = pl2.g(i12);
-                            i3 = pl2.h(i16);
-                            i10 += i3 + g4;
-                        }
-                        o57Var = this;
-                        break;
-                    case 12:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            int i17 = unsafe.getInt(gu4Var2, j);
-                            g4 = pl2.g(i12);
-                            i3 = pl2.i(i17);
-                            i10 += i3 + g4;
-                        }
-                        o57Var = this;
-                        break;
-                    case 13:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            g2 = pl2.g(i12);
-                            g6 = g2 + 4;
-                            i10 += g6;
-                        }
-                        o57Var = this;
-                        gu4Var2 = gu4Var;
-                        break;
-                    case 14:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            g5 = pl2.g(i12);
-                            g6 = g5 + 8;
-                            i10 += g6;
-                        }
-                        o57Var = this;
-                        gu4Var2 = gu4Var;
-                        break;
-                    case 15:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            int i18 = unsafe.getInt(gu4Var2, j);
-                            g4 = pl2.g(i12);
-                            i3 = pl2.h((i18 << 1) ^ (i18 >> 31));
-                            i10 += i3 + g4;
-                        }
-                        o57Var = this;
-                        break;
-                    case 16:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            long j4 = unsafe.getLong(gu4Var2, j);
-                            g3 = pl2.g(i12);
-                            i2 = pl2.i((j4 << 1) ^ (j4 >> 63));
-                            i10 += i2 + g3;
-                        }
-                        o57Var = this;
-                        break;
-                    case 17:
-                        if (o57Var.o(gu4Var2, i8, i11, i9, i)) {
-                            os9 m2 = o57Var.m(i8);
-                            g8 = pl2.g(i12) << 1;
-                            a2 = ((o3) unsafe.getObject(gu4Var2, j)).a(m2);
-                            c = a2 + g8;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 18:
-                        c = rs9.c(i12, (List) unsafe.getObject(gu4Var2, j));
-                        i10 += c;
-                        break;
-                    case 19:
-                        c = rs9.b(i12, (List) unsafe.getObject(gu4Var2, j));
-                        i10 += c;
-                        break;
-                    case 20:
-                        List list = (List) unsafe.getObject(gu4Var2, j);
-                        Class cls2 = rs9.a;
-                        if (list.size() != 0) {
-                            g9 = (pl2.g(i12) * list.size()) + rs9.e(list);
-                            i10 += g9;
-                            break;
-                        }
-                        g9 = 0;
-                        i10 += g9;
-                    case 21:
-                        List list2 = (List) unsafe.getObject(gu4Var2, j);
-                        Class cls3 = rs9.a;
-                        size = list2.size();
-                        if (size != 0) {
-                            i4 = rs9.i(list2);
-                            g10 = pl2.g(i12);
-                            g9 = (g10 * size) + i4;
-                            i10 += g9;
-                            break;
-                        }
-                        g9 = 0;
-                        i10 += g9;
-                    case 22:
-                        List list3 = (List) unsafe.getObject(gu4Var2, j);
-                        Class cls4 = rs9.a;
-                        size = list3.size();
-                        if (size != 0) {
-                            i4 = rs9.d(list3);
-                            g10 = pl2.g(i12);
-                            g9 = (g10 * size) + i4;
-                            i10 += g9;
-                            break;
-                        }
-                        g9 = 0;
-                        i10 += g9;
-                    case 23:
-                        c = rs9.c(i12, (List) unsafe.getObject(gu4Var2, j));
-                        i10 += c;
-                        break;
-                    case 24:
-                        c = rs9.b(i12, (List) unsafe.getObject(gu4Var2, j));
-                        i10 += c;
-                        break;
-                    case 25:
-                        Class cls5 = rs9.a;
-                        int size5 = ((List) unsafe.getObject(gu4Var2, j)).size();
-                        if (size5 == 0) {
-                            g11 = 0;
-                        } else {
-                            g11 = (pl2.g(i12) + 1) * size5;
-                        }
-                        i10 += g11;
-                        break;
-                    case 26:
-                        List list4 = (List) unsafe.getObject(gu4Var2, j);
-                        Class cls6 = rs9.a;
-                        int size6 = list4.size();
-                        if (size6 != 0) {
-                            g9 = pl2.g(i12) * size6;
-                            if (list4 instanceof h26) {
-                                h26 h26Var = (h26) list4;
-                                for (int i19 = 0; i19 < size6; i19++) {
-                                    Object a3 = h26Var.a();
-                                    if (a3 instanceof m61) {
-                                        int size7 = ((m61) a3).size();
-                                        g9 = pl2.h(size7) + size7 + g9;
-                                    } else {
-                                        g9 = pl2.f((String) a3) + g9;
-                                    }
-                                }
-                            } else {
-                                for (int i20 = 0; i20 < size6; i20++) {
-                                    Object obj = list4.get(i20);
-                                    if (obj instanceof m61) {
-                                        int size8 = ((m61) obj).size();
-                                        g9 = pl2.h(size8) + size8 + g9;
-                                    } else {
-                                        g9 = pl2.f((String) obj) + g9;
-                                    }
-                                }
-                            }
-                            i10 += g9;
-                            break;
-                        }
-                        g9 = 0;
-                        i10 += g9;
-                    case 27:
-                        List list5 = (List) unsafe.getObject(gu4Var2, j);
-                        os9 m3 = o57Var.m(i8);
-                        Class cls7 = rs9.a;
-                        int size9 = list5.size();
-                        if (size9 == 0) {
-                            g12 = 0;
-                        } else {
-                            g12 = pl2.g(i12) * size9;
-                            for (int i21 = 0; i21 < size9; i21++) {
-                                int a4 = ((o3) list5.get(i21)).a(m3);
-                                g12 += pl2.h(a4) + a4;
-                            }
-                        }
-                        i10 += g12;
-                        break;
-                    case 28:
-                        List list6 = (List) unsafe.getObject(gu4Var2, j);
-                        Class cls8 = rs9.a;
-                        int size10 = list6.size();
-                        if (size10 != 0) {
-                            g9 = pl2.g(i12) * size10;
-                            for (int i22 = 0; i22 < list6.size(); i22++) {
-                                int size11 = ((m61) list6.get(i22)).size();
-                                g9 += pl2.h(size11) + size11;
-                            }
-                            i10 += g9;
-                            break;
-                        }
-                        g9 = 0;
-                        i10 += g9;
-                    case 29:
-                        List list7 = (List) unsafe.getObject(gu4Var2, j);
-                        Class cls9 = rs9.a;
-                        size = list7.size();
-                        if (size != 0) {
-                            i4 = rs9.h(list7);
-                            g10 = pl2.g(i12);
-                            g9 = (g10 * size) + i4;
-                            i10 += g9;
-                            break;
-                        }
-                        g9 = 0;
-                        i10 += g9;
-                    case 30:
-                        List list8 = (List) unsafe.getObject(gu4Var2, j);
-                        Class cls10 = rs9.a;
-                        size = list8.size();
-                        if (size != 0) {
-                            i4 = rs9.a(list8);
-                            g10 = pl2.g(i12);
-                            g9 = (g10 * size) + i4;
-                            i10 += g9;
-                            break;
-                        }
-                        g9 = 0;
-                        i10 += g9;
-                    case 31:
-                        c = rs9.b(i12, (List) unsafe.getObject(gu4Var2, j));
-                        i10 += c;
-                        break;
-                    case 32:
-                        c = rs9.c(i12, (List) unsafe.getObject(gu4Var2, j));
-                        i10 += c;
-                        break;
-                    case 33:
-                        List list9 = (List) unsafe.getObject(gu4Var2, j);
-                        Class cls11 = rs9.a;
-                        size = list9.size();
-                        if (size != 0) {
-                            i4 = rs9.f(list9);
-                            g10 = pl2.g(i12);
-                            g9 = (g10 * size) + i4;
-                            i10 += g9;
-                            break;
-                        }
-                        g9 = 0;
-                        i10 += g9;
-                    case 34:
-                        List list10 = (List) unsafe.getObject(gu4Var2, j);
-                        Class cls12 = rs9.a;
-                        size = list10.size();
-                        if (size != 0) {
-                            i4 = rs9.g(list10);
-                            g10 = pl2.g(i12);
-                            g9 = (g10 * size) + i4;
-                            i10 += g9;
-                            break;
-                        }
-                        g9 = 0;
-                        i10 += g9;
-                    case 35:
-                        Class cls13 = rs9.a;
-                        size2 = ((List) unsafe.getObject(gu4Var2, j)).size() << 3;
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 36:
-                        Class cls14 = rs9.a;
-                        size2 = ((List) unsafe.getObject(gu4Var2, j)).size() << 2;
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 37:
-                        size2 = rs9.e((List) unsafe.getObject(gu4Var2, j));
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 38:
-                        size2 = rs9.i((List) unsafe.getObject(gu4Var2, j));
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 39:
-                        size2 = rs9.d((List) unsafe.getObject(gu4Var2, j));
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 40:
-                        Class cls15 = rs9.a;
-                        size2 = ((List) unsafe.getObject(gu4Var2, j)).size() << 3;
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 41:
-                        Class cls16 = rs9.a;
-                        size2 = ((List) unsafe.getObject(gu4Var2, j)).size() << 2;
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 42:
-                        Class cls17 = rs9.a;
-                        size2 = ((List) unsafe.getObject(gu4Var2, j)).size();
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 43:
-                        size2 = rs9.h((List) unsafe.getObject(gu4Var2, j));
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 44:
-                        size2 = rs9.a((List) unsafe.getObject(gu4Var2, j));
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 45:
-                        Class cls18 = rs9.a;
-                        size2 = ((List) unsafe.getObject(gu4Var2, j)).size() << 2;
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 46:
-                        Class cls19 = rs9.a;
-                        size2 = ((List) unsafe.getObject(gu4Var2, j)).size() << 3;
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 47:
-                        size2 = rs9.f((List) unsafe.getObject(gu4Var2, j));
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 48:
-                        size2 = rs9.g((List) unsafe.getObject(gu4Var2, j));
-                        if (size2 > 0) {
-                            g13 = pl2.g(i12);
-                            i10 = kt6.f(size2, g13, size2, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 49:
-                        List list11 = (List) unsafe.getObject(gu4Var2, j);
-                        os9 m4 = o57Var.m(i8);
-                        Class cls20 = rs9.a;
-                        int size12 = list11.size();
-                        if (size12 == 0) {
-                            i5 = 0;
-                        } else {
-                            i5 = 0;
-                            for (int i23 = 0; i23 < size12; i23++) {
-                                i5 += ((o3) list11.get(i23)).a(m4) + (pl2.g(i12) << 1);
-                            }
-                        }
-                        i10 += i5;
-                        break;
-                    case 50:
-                        Object object3 = unsafe.getObject(gu4Var2, j);
-                        Object obj2 = o57Var.b[(i8 / 3) << 1];
-                        o57Var.m.getClass();
-                        ek6 ek6Var = (ek6) object3;
-                        dk6 dk6Var = (dk6) obj2;
-                        if (!ek6Var.isEmpty()) {
-                            g9 = 0;
-                            for (Map.Entry entry : ek6Var.entrySet()) {
-                                Object key = entry.getKey();
-                                Object value = entry.getValue();
-                                dk6Var.getClass();
-                                int g19 = pl2.g(i12);
-                                int a5 = dk6.a(dk6Var.a, key, value);
-                                g9 = kt6.f(a5, a5, g19, g9);
-                            }
-                            i10 += g9;
-                            break;
-                        }
-                        g9 = 0;
-                        i10 += g9;
-                    case 51:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            g = pl2.g(i12);
-                            c = g + 8;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 52:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            g14 = pl2.g(i12);
-                            c = g14 + 4;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 53:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            long z = z(gu4Var2, j);
-                            g15 = pl2.g(i12);
-                            i6 = pl2.i(z);
-                            i10 += i6 + g15;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 54:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            long z2 = z(gu4Var2, j);
-                            g15 = pl2.g(i12);
-                            i6 = pl2.i(z2);
-                            i10 += i6 + g15;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 55:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            int y = y(gu4Var2, j);
-                            g16 = pl2.g(i12);
-                            i7 = pl2.i(y);
-                            c = i7 + g16;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 56:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            g = pl2.g(i12);
-                            c = g + 8;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 57:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            g14 = pl2.g(i12);
-                            c = g14 + 4;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 58:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            c = pl2.g(i12) + 1;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 59:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            Object object4 = unsafe.getObject(gu4Var2, j);
-                            if (object4 instanceof m61) {
-                                int g20 = pl2.g(i12);
-                                int size13 = ((m61) object4).size();
-                                f2 = kt6.f(size13, size13, g20, i10);
-                            } else {
-                                f2 = pl2.f((String) object4) + pl2.g(i12) + i10;
-                            }
-                            i10 = f2;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 60:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            Object object5 = unsafe.getObject(gu4Var2, j);
-                            os9 m5 = o57Var.m(i8);
-                            Class cls21 = rs9.a;
-                            g7 = pl2.g(i12);
-                            a = ((o3) object5).a(m5);
-                            i10 = kt6.f(a, a, g7, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 61:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            int g21 = pl2.g(i12);
-                            int size14 = ((m61) unsafe.getObject(gu4Var2, j)).size();
-                            i10 = kt6.f(size14, size14, g21, i10);
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 62:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            int y2 = y(gu4Var2, j);
-                            g16 = pl2.g(i12);
-                            i7 = pl2.h(y2);
-                            c = i7 + g16;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 63:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            int y3 = y(gu4Var2, j);
-                            g16 = pl2.g(i12);
-                            i7 = pl2.i(y3);
-                            c = i7 + g16;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 64:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            g14 = pl2.g(i12);
-                            c = g14 + 4;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 65:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            g = pl2.g(i12);
-                            c = g + 8;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 66:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            int y4 = y(gu4Var2, j);
-                            g16 = pl2.g(i12);
-                            i7 = pl2.h((y4 << 1) ^ (y4 >> 31));
-                            c = i7 + g16;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 67:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            long z3 = z(gu4Var2, j);
-                            g15 = pl2.g(i12);
-                            i6 = pl2.i((z3 << 1) ^ (z3 >> 63));
-                            i10 += i6 + g15;
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 68:
-                        if (o57Var.q(i12, i8, gu4Var2)) {
-                            os9 m6 = o57Var.m(i8);
-                            g8 = pl2.g(i12) << 1;
-                            a2 = ((o3) unsafe.getObject(gu4Var2, j)).a(m6);
-                            c = a2 + g8;
-                            i10 += c;
-                            break;
-                        } else {
-                            break;
-                        }
-                }
-                i8 += 3;
-            } else {
-                o57Var.l.getClass();
-                return gu4Var2.unknownFields.b() + i10;
-            }
-        }
-    }
-
-    @Override
-    public final void i(java.lang.Object r21, defpackage.ag0 r22, defpackage.k84 r23) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.o57.i(java.lang.Object, ag0, k84):void");
-    }
-
-    public final boolean j(gu4 gu4Var, gu4 gu4Var2, int i) {
-        if (n(i, gu4Var) == n(i, gu4Var2)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void k(int i, Object obj, Object obj2) {
-        int i2 = this.a[i];
-        if (d8c.h(obj, J(i) & 1048575) == null) {
-            return;
-        }
-        l(i);
-    }
-
-    public final void l(int i) {
-        if (this.b[((i / 3) << 1) + 1] == null) {
-            return;
-        }
-        rjb.p();
-    }
-
-    public final os9 m(int i) {
-        int i2 = (i / 3) << 1;
-        Object[] objArr = this.b;
-        os9 os9Var = (os9) objArr[i2];
-        if (os9Var != null) {
-            return os9Var;
-        }
-        os9 a = gv8.c.a((Class) objArr[i2 + 1]);
-        objArr[i2] = a;
-        return a;
-    }
-
-    public final boolean n(int r8, java.lang.Object r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.o57.n(int, java.lang.Object):boolean");
-    }
-
-    public final boolean o(Object obj, int i, int i2, int i3, int i4) {
-        if (i2 == 1048575) {
-            return n(i, obj);
-        }
-        if ((i3 & i4) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean q(int i, int i2, Object obj) {
-        if (d8c.f(obj, this.a[i2 + 2] & 1048575) == i) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void r(java.lang.Object r8, int r9, java.lang.Object r10, defpackage.k84 r11, defpackage.ag0 r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.o57.r(java.lang.Object, int, java.lang.Object, k84, ag0):void");
-    }
-
-    public final void s(int i, Object obj, Object obj2) {
-        if (!n(i, obj2)) {
-            return;
-        }
-        long J = J(i) & 1048575;
-        Unsafe unsafe = o;
-        Object object = unsafe.getObject(obj2, J);
-        if (object != null) {
-            os9 m = m(i);
-            if (!n(i, obj)) {
-                if (!p(object)) {
-                    unsafe.putObject(obj, J, object);
+                rp0 rp0Var3 = (rp0) obj2;
+                if (rp0Var3 == null) {
+                    rp0 rp0Var4 = new rp0(j8, b.getUserConfig().i());
+                    j = j8;
+                    lj9Var.G(j9, j10, j, rp0Var4);
+                    j3 = j10;
+                    j2 = j9;
+                    rp0Var = rp0Var4;
                 } else {
-                    gu4 a = m.a();
-                    m.b(a, object);
-                    unsafe.putObject(obj, J, a);
+                    j = j8;
+                    j2 = j9;
+                    j3 = j10;
+                    rp0Var = rp0Var3;
                 }
-                G(i, obj);
+                rp0Var.d = z3;
+                rp0Var.c = z2;
+                if (jArr != null) {
+                    int length = jArr.length;
+                    int i8 = 0;
+                    while (i8 < length) {
+                        long j11 = jArr[i8];
+                        if (j11 == j) {
+                            i2 = i;
+                        } else {
+                            Runnable runnable = ((rp0) x2.get(j11)).f;
+                            if (runnable != null) {
+                                gl.r(runnable);
+                            }
+                            int i9 = i;
+                            long j12 = j2;
+                            b.e(j12, i9, j11);
+                            j2 = j12;
+                            i2 = i9;
+                        }
+                        i8++;
+                        i = i2;
+                    }
+                }
+                final int i10 = i;
+                Runnable runnable2 = rp0Var.f;
+                if (runnable2 != null) {
+                    gl.r(runnable2);
+                }
+                long j13 = j2;
+                rp0Var.f = new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r7) {
+                            case 0:
+                                b.e(j2, i10, j);
+                                return;
+                            default:
+                                b.e(j2, i10, j);
+                                return;
+                        }
+                    }
+                };
+                rp0Var.g = tL_textWithEntities;
+                int i11 = rp0Var.b;
+                TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                tL_message.dialog_id = j13;
+                tL_message.peer_id = b.getMessagesController().w1(j13);
+                tL_message.from_id = b.getMessagesController().w1(j13);
+                tL_message.local_id = i11;
+                tL_message.id = i11;
+                tL_message.random_id = j;
+                tL_message.message = tL_textWithEntities.text;
+                tL_message.entities = tL_textWithEntities.entities;
+                tL_message.flags |= 128;
+                tL_message.date = b.getConnectionsManager().getCurrentTime();
+                TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
+                tL_message.reply_to = tL_messageReplyHeader;
+                tL_message.flags |= 16;
+                tL_messageReplyHeader.forum_topic = true;
+                tL_messageReplyHeader.reply_to_top_id = i10;
+                tL_messageReplyHeader.flags |= 2;
+                tL_message.media = new TLRPC.TL_messageMediaEmpty();
+                tL_message.flags |= 512;
+                k27 k27Var = new k27(b.currentAccount, tL_message, false, true);
+                k27Var.Y1 = true;
+                k27Var.S1 = false;
+                rp0Var.h = k27Var;
+                gl.d3(rp0Var.f, b.getAppGlobalConfig().z.g(timeUnit));
+                b.getNotificationCenter().k(342, new tp0(j13, j3, rp0Var.h));
                 return;
-            }
-            Object object2 = unsafe.getObject(obj, J);
-            if (!p(object2)) {
-                gu4 a2 = m.a();
-                m.b(a2, object2);
-                unsafe.putObject(obj, J, a2);
-                object2 = a2;
-            }
-            m.b(object2, object);
-            return;
-        }
-        throw new IllegalStateException("Source subfield " + this.a[i] + " is present but null: " + obj2);
-    }
-
-    public final void t(int i, Object obj, Object obj2) {
-        int[] iArr = this.a;
-        int i2 = iArr[i];
-        if (!q(i2, i, obj2)) {
-            return;
-        }
-        long J = J(i) & 1048575;
-        Unsafe unsafe = o;
-        Object object = unsafe.getObject(obj2, J);
-        if (object != null) {
-            os9 m = m(i);
-            if (!q(i2, i, obj)) {
-                if (!p(object)) {
-                    unsafe.putObject(obj, J, object);
+            case 1:
+                TLRPC.TL_sendMessageRichMessageDraftAction tL_sendMessageRichMessageDraftAction = (TLRPC.TL_sendMessageRichMessageDraftAction) obj5;
+                wp0 b2 = wp0.b(((na7) obj6).currentAccount);
+                lj9 lj9Var2 = b2.a;
+                long j14 = tL_sendMessageRichMessageDraftAction.random_id;
+                TL_iv.RichMessage richMessage = tL_sendMessageRichMessageDraftAction.rich_message;
+                boolean z4 = tL_sendMessageRichMessageDraftAction.can_stop;
+                boolean z5 = tL_sendMessageRichMessageDraftAction.keep_on_stop;
+                StringBuilder sb2 = new StringBuilder("[BotForum] onDraftNewDraft (rich_message) ");
+                long j15 = this.c;
+                sb2.append(j15);
+                sb2.append(" ");
+                int i12 = this.d;
+                sb2.append(i12);
+                sb2.append(" ");
+                sb2.append(j14);
+                fa4.b(sb2.toString());
+                long j16 = i12;
+                LongSparseArray x4 = b2.b.x(j15, j16);
+                if (x4 == null) {
+                    obj3 = null;
                 } else {
-                    gu4 a = m.a();
-                    m.b(a, object);
-                    unsafe.putObject(obj, J, a);
+                    obj3 = x4.get(j14);
                 }
-                H(i2, i, obj);
+                if (obj3 != null) {
+                    fa4.b("[BotForum] onDraftNewDraft (rich_message) ignore " + j15 + " " + i12 + " " + j14);
+                    return;
+                }
+                LongSparseArray x5 = lj9Var2.x(j15, j16);
+                if (x5 != null && x5.size() > 0) {
+                    jArr2 = new long[x5.size()];
+                    int size2 = x5.size();
+                    for (int i13 = 0; i13 < size2; i13++) {
+                        jArr2[i13] = x5.keyAt(i13);
+                    }
+                } else {
+                    jArr2 = null;
+                }
+                LongSparseArray x6 = lj9Var2.x(j15, j16);
+                if (x6 == null) {
+                    obj4 = null;
+                } else {
+                    obj4 = x6.get(j14);
+                }
+                rp0 rp0Var5 = (rp0) obj4;
+                if (rp0Var5 == null) {
+                    rp0 rp0Var6 = new rp0(j14, b2.getUserConfig().i());
+                    j4 = j15;
+                    lj9Var2.G(j4, j16, j14, rp0Var6);
+                    j6 = j16;
+                    j5 = j14;
+                    rp0Var2 = rp0Var6;
+                } else {
+                    j4 = j15;
+                    j5 = j14;
+                    j6 = j16;
+                    rp0Var2 = rp0Var5;
+                }
+                rp0Var2.d = z5;
+                rp0Var2.c = z4;
+                if (jArr2 != null) {
+                    int length2 = jArr2.length;
+                    int i14 = 0;
+                    while (i14 < length2) {
+                        long j17 = jArr2[i14];
+                        if (j17 == j5) {
+                            i3 = i12;
+                            wp0Var = b2;
+                        } else {
+                            Runnable runnable3 = ((rp0) x5.get(j17)).f;
+                            if (runnable3 != null) {
+                                gl.r(runnable3);
+                            }
+                            i3 = i12;
+                            wp0Var = b2;
+                            wp0Var.e(j4, i3, j17);
+                        }
+                        i14++;
+                        b2 = wp0Var;
+                        i12 = i3;
+                    }
+                }
+                final int i15 = i12;
+                final wp0 wp0Var2 = b2;
+                Runnable runnable4 = rp0Var2.f;
+                if (runnable4 != null) {
+                    gl.r(runnable4);
+                }
+                final long j18 = j4;
+                final long j19 = j5;
+                rp0Var2.f = new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r7) {
+                            case 0:
+                                wp0Var2.e(j18, i15, j19);
+                                return;
+                            default:
+                                wp0Var2.e(j18, i15, j19);
+                                return;
+                        }
+                    }
+                };
+                int i16 = rp0Var2.b;
+                TLRPC.TL_message tL_message2 = new TLRPC.TL_message();
+                tL_message2.dialog_id = j18;
+                tL_message2.peer_id = wp0Var2.getMessagesController().w1(j18);
+                tL_message2.from_id = wp0Var2.getMessagesController().w1(j18);
+                tL_message2.local_id = i16;
+                tL_message2.id = i16;
+                tL_message2.random_id = j5;
+                tL_message2.message = "";
+                tL_message2.flags |= 8192;
+                tL_message2.rich_message = richMessage;
+                tL_message2.date = wp0Var2.getConnectionsManager().getCurrentTime();
+                TLRPC.TL_messageReplyHeader tL_messageReplyHeader2 = new TLRPC.TL_messageReplyHeader();
+                tL_message2.reply_to = tL_messageReplyHeader2;
+                tL_message2.flags |= 16;
+                tL_messageReplyHeader2.forum_topic = true;
+                tL_messageReplyHeader2.reply_to_top_id = i15;
+                tL_messageReplyHeader2.flags |= 2;
+                tL_message2.media = new TLRPC.TL_messageMediaEmpty();
+                tL_message2.flags |= 512;
+                k27 k27Var2 = new k27(wp0Var2.currentAccount, tL_message2, false, true);
+                k27Var2.Y1 = true;
+                k27Var2.S1 = false;
+                rp0Var2.h = k27Var2;
+                gl.d3(rp0Var2.f, wp0Var2.getAppGlobalConfig().z.g(timeUnit));
+                wp0Var2.getNotificationCenter().k(342, new tp0(j18, j6, rp0Var2.h));
                 return;
-            }
-            Object object2 = unsafe.getObject(obj, J);
-            if (!p(object2)) {
-                gu4 a2 = m.a();
-                m.b(a2, object2);
-                unsafe.putObject(obj, J, a2);
-                object2 = a2;
-            }
-            m.b(object2, object);
-            return;
+            case 2:
+                o oVar = (o) obj6;
+                TLObject tLObject = (TLObject) obj5;
+                if (oVar.I0 != 0) {
+                    oVar.I0 = 0;
+                    oVar.Z(false);
+                    if (tLObject != null) {
+                        TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
+                        na7.q1(i4).b4(tL_contacts_resolvedPeer.users, false);
+                        ad7.Y(i4).j1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
+                        if (!tL_contacts_resolvedPeer.users.isEmpty()) {
+                            oVar.N(j7, tL_contacts_resolvedPeer.users.get(0));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 3:
+                vz0 vz0Var = (vz0) obj6;
+                byte[] bArr = (byte[]) obj5;
+                if (!vz0Var.u) {
+                    vz0Var.f.put(Long.valueOf(j7), new sz0(i4, bArr));
+                    if (j7 == vz0Var.m) {
+                        vz0Var.m = -1L;
+                    }
+                    if (!vz0Var.t && !vz0Var.u) {
+                        vz0Var.t = true;
+                        vz0Var.c.postDelayed(new tz0(vz0Var, (byte) 2), 16L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                p pVar = (p) obj6;
+                long currentTimeMillis = System.currentTimeMillis();
+                Float valueOf = Float.valueOf(((int[]) obj5)[0] / i4);
+                if (currentTimeMillis - j7 > 250) {
+                    z = true;
+                }
+                pVar.a(valueOf, Boolean.valueOf(z));
+                return;
+            case 5:
+                buc bucVar = (buc) obj5;
+                p15 p15Var = ((o15) obj6).c;
+                if (!p15Var.c(bucVar, i4)) {
+                    p15Var.d("closing stale connected websocket; attempt=" + i4);
+                    bucVar.c();
+                    return;
+                }
+                p15Var.d("websocket connected after " + (SystemClock.elapsedRealtime() - j7) + " ms");
+                m15 m15Var = p15Var.o;
+                try {
+                    JSONArray put = new JSONArray().put(p15Var.b);
+                    StringBuilder sb3 = new StringBuilder("wallet-");
+                    int i17 = p15Var.g + 1;
+                    p15Var.g = i17;
+                    sb3.append(i17);
+                    p15Var.f = sb3.toString();
+                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", p15Var.f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
+                    gl.r(m15Var);
+                    gl.d3(m15Var, 30000L);
+                    p15Var.g(put2.toString());
+                    return;
+                } catch (JSONException unused) {
+                    p15Var.f("could not encode subscription");
+                    return;
+                }
+            case 6:
+                w25 w25Var = (w25) obj6;
+                w25Var.getClass();
+                TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
+                long j20 = this.c;
+                tonconnectgetpending.session_id = Long.valueOf(j20);
+                w25Var.f.sendRequestTyped(tonconnectgetpending, new hc((byte) 0), new g25(w25Var, (u15) obj5, j20, this.d, (byte) 0));
+                return;
+            case 7:
+                hq6 hq6Var = (hq6) obj6;
+                TLRPC.TL_attachMenuBots tL_attachMenuBots = (TLRPC.TL_attachMenuBots) obj5;
+                try {
+                    if (tL_attachMenuBots != null) {
+                        hq6Var.getMessagesStorage().b.executeFast("DELETE FROM attach_menu_bots").stepThis().dispose();
+                        SQLitePreparedStatement executeFast2 = hq6Var.getMessagesStorage().b.executeFast("REPLACE INTO attach_menu_bots VALUES(?, ?, ?)");
+                        executeFast2.requery();
+                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_attachMenuBots.getObjectSize());
+                        tL_attachMenuBots.serializeToStream(nativeByteBuffer);
+                        executeFast2.bindByteBuffer(1, nativeByteBuffer);
+                        executeFast2.bindLong(2, j7);
+                        executeFast2.bindInteger(3, i4);
+                        executeFast2.step();
+                        nativeByteBuffer.reuse();
+                        executeFast2.dispose();
+                    } else {
+                        SQLitePreparedStatement executeFast3 = hq6Var.getMessagesStorage().b.executeFast("UPDATE attach_menu_bots SET date = ?");
+                        executeFast3.requery();
+                        executeFast3.bindLong(1, i4);
+                        executeFast3.step();
+                        executeFast3.dispose();
+                    }
+                    return;
+                } catch (Exception e) {
+                    fa4.g(e, true);
+                    return;
+                }
+            case 8:
+                hq6 hq6Var2 = (hq6) obj6;
+                if (((ArrayList) obj5) != null && j7 != 0) {
+                    hq6Var2.Y[i4] = j7;
+                }
+                hq6Var2.b1(i4, false, false);
+                return;
+            case 9:
+                na7 na7Var = (na7) obj6;
+                TLRPC.TL_help_promoData tL_help_promoData = (TLRPC.TL_help_promoData) obj5;
+                na7Var.A4 = na7Var.getConnectionsManager().getCurrentTime();
+                TLRPC.Dialog dialog = na7Var.q2;
+                long j21 = this.c;
+                if (dialog != null && j21 != dialog.id) {
+                    na7Var.m4();
+                }
+                TLRPC.Dialog dialog2 = (TLRPC.Dialog) na7Var.R.f(j21);
+                na7Var.q2 = dialog2;
+                if (dialog2 != null) {
+                    na7Var.n2 = false;
+                    na7Var.Z4(null);
+                    na7Var.getNotificationCenter().k(3, Boolean.TRUE);
+                    return;
+                }
+                vf6 vf6Var = new vf6();
+                vf6 vf6Var2 = new vf6();
+                for (int i18 = 0; i18 < tL_help_promoData.users.size(); i18++) {
+                    TLRPC.User user = tL_help_promoData.users.get(i18);
+                    vf6Var.k(user, user.id);
+                }
+                for (int i19 = 0; i19 < tL_help_promoData.chats.size(); i19++) {
+                    TLRPC.Chat chat2 = tL_help_promoData.chats.get(i19);
+                    vf6Var2.k(chat2, chat2.id);
+                }
+                TLRPC.TL_messages_getPeerDialogs tL_messages_getPeerDialogs = new TLRPC.TL_messages_getPeerDialogs();
+                TLRPC.TL_inputDialogPeer tL_inputDialogPeer = new TLRPC.TL_inputDialogPeer();
+                TLRPC.Peer peer = tL_help_promoData.peer;
+                if (peer == null) {
+                    TLRPC.Dialog dialog3 = na7Var.q2;
+                    if (dialog3 != null) {
+                        long j22 = dialog3.id;
+                        if (j22 < 0) {
+                            TLRPC.Chat K0 = na7Var.K0(Long.valueOf(-j22));
+                            if (hc2.r0(K0) || K0.restricted) {
+                                na7Var.i4(na7Var.q2);
+                            }
+                        } else {
+                            na7Var.i4(dialog3);
+                        }
+                        na7Var.q2 = null;
+                        na7Var.Z4(null);
+                        na7Var.getNotificationCenter().k(3, new Object[0]);
+                        return;
+                    }
+                    return;
+                }
+                if (peer.user_id != 0) {
+                    TLRPC.TL_inputPeerUser tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
+                    tL_inputDialogPeer.peer = tL_inputPeerUser;
+                    long j23 = tL_help_promoData.peer.user_id;
+                    tL_inputPeerUser.user_id = j23;
+                    TLRPC.User user2 = (TLRPC.User) vf6Var.f(j23);
+                    if (user2 != null) {
+                        tL_inputDialogPeer.peer.access_hash = user2.access_hash;
+                    }
+                } else if (peer.chat_id != 0) {
+                    TLRPC.TL_inputPeerChat tL_inputPeerChat = new TLRPC.TL_inputPeerChat();
+                    tL_inputDialogPeer.peer = tL_inputPeerChat;
+                    long j24 = tL_help_promoData.peer.chat_id;
+                    tL_inputPeerChat.chat_id = j24;
+                    TLRPC.Chat chat3 = (TLRPC.Chat) vf6Var2.f(j24);
+                    if (chat3 != null) {
+                        tL_inputDialogPeer.peer.access_hash = chat3.access_hash;
+                    }
+                } else {
+                    TLRPC.TL_inputPeerChannel tL_inputPeerChannel = new TLRPC.TL_inputPeerChannel();
+                    tL_inputDialogPeer.peer = tL_inputPeerChannel;
+                    long j25 = tL_help_promoData.peer.channel_id;
+                    tL_inputPeerChannel.channel_id = j25;
+                    TLRPC.Chat chat4 = (TLRPC.Chat) vf6Var2.f(j25);
+                    if (chat4 != null) {
+                        tL_inputDialogPeer.peer.access_hash = chat4.access_hash;
+                    }
+                }
+                tL_messages_getPeerDialogs.peers.add(tL_inputDialogPeer);
+                na7Var.o2 = na7Var.getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new mg(na7Var, this.d, tL_help_promoData, j21, (byte) 5));
+                return;
+            case 10:
+                ((ad7) obj6).getMessagesController().g4.D(j7, (TLRPC.TL_forumTopic) obj5, i4);
+                return;
+            case 11:
+                ad7 ad7Var = (ad7) obj6;
+                TLRPC.Message message = (TLRPC.Message) obj5;
+                try {
+                    try {
+                        ad7Var.b.beginTransaction();
+                        TLRPC.TL_message c0 = ad7Var.c0(i4, j7);
+                        c0.voiceTranscriptionOpen = message.voiceTranscriptionOpen;
+                        c0.voiceTranscriptionRated = message.voiceTranscriptionRated;
+                        c0.voiceTranscriptionFinal = message.voiceTranscriptionFinal;
+                        c0.voiceTranscriptionForce = message.voiceTranscriptionForce;
+                        c0.voiceTranscriptionId = message.voiceTranscriptionId;
+                        while (true) {
+                            SQLiteDatabase sQLiteDatabase2 = ad7Var.b;
+                            if (i5 < 2) {
+                                if (i5 == 0) {
+                                    executeFast = sQLiteDatabase2.executeFast("UPDATE messages_v2 SET custom_params = ? WHERE mid = ? AND uid = ?");
+                                } else {
+                                    executeFast = sQLiteDatabase2.executeFast("UPDATE messages_topics SET custom_params = ? WHERE mid = ? AND uid = ?");
+                                }
+                                try {
+                                    executeFast.requery();
+                                    NativeByteBuffer c = l17.c(c0);
+                                    if (c != null) {
+                                        executeFast.bindByteBuffer(1, c);
+                                    } else {
+                                        executeFast.bindNull(1);
+                                    }
+                                    executeFast.bindInteger(2, i4);
+                                    executeFast.bindLong(3, j7);
+                                    executeFast.step();
+                                    executeFast.dispose();
+                                    if (c != null) {
+                                        c.reuse();
+                                    }
+                                    i5++;
+                                } catch (Exception e2) {
+                                    e = e2;
+                                    sQLitePreparedStatement2 = executeFast;
+                                    ad7Var.n(e, true);
+                                    SQLiteDatabase sQLiteDatabase3 = ad7Var.b;
+                                    if (sQLiteDatabase3 != null) {
+                                        sQLiteDatabase3.commitTransaction();
+                                    }
+                                    if (sQLitePreparedStatement2 != null) {
+                                        sQLitePreparedStatement2.dispose();
+                                        return;
+                                    }
+                                    return;
+                                } catch (Throwable th) {
+                                    th = th;
+                                    sQLitePreparedStatement4 = executeFast;
+                                    SQLiteDatabase sQLiteDatabase4 = ad7Var.b;
+                                    if (sQLiteDatabase4 != null) {
+                                        sQLiteDatabase4.commitTransaction();
+                                    }
+                                    if (sQLitePreparedStatement4 != null) {
+                                        sQLitePreparedStatement4.dispose();
+                                    }
+                                    throw th;
+                                }
+                            } else {
+                                sQLiteDatabase2.commitTransaction();
+                                SQLiteDatabase sQLiteDatabase5 = ad7Var.b;
+                                if (sQLiteDatabase5 != null) {
+                                    sQLiteDatabase5.commitTransaction();
+                                    return;
+                                }
+                                return;
+                            }
+                        }
+                    } catch (Throwable th2) {
+                        th = th2;
+                    }
+                } catch (Exception e3) {
+                    e = e3;
+                }
+            case 12:
+                ad7 ad7Var2 = (ad7) obj6;
+                TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) obj5;
+                try {
+                    try {
+                        SQLiteDatabase sQLiteDatabase6 = ad7Var2.b;
+                        Locale locale = Locale.US;
+                        queryFinalized = sQLiteDatabase6.queryFinalized("SELECT data FROM chats WHERE uid = " + j7, new Object[0]);
+                    } catch (Throwable th3) {
+                        th = th3;
+                    }
+                    try {
+                        if (queryFinalized.next() && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {
+                            chat = TLRPC.Chat.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                            byteBufferValue.reuse();
+                        } else {
+                            chat = null;
+                        }
+                        queryFinalized.dispose();
+                    } catch (Exception e4) {
+                        e = e4;
+                        sQLiteCursor = queryFinalized;
+                        sQLitePreparedStatement = 0;
+                    } catch (Throwable th4) {
+                        th = th4;
+                        sQLiteCursor = queryFinalized;
+                        sQLitePreparedStatement = 0;
+                        if (sQLiteCursor != null) {
+                            sQLiteCursor.dispose();
+                        }
+                        if (sQLitePreparedStatement != 0) {
+                            sQLitePreparedStatement.dispose();
+                        }
+                        throw th;
+                    }
+                } catch (Exception e5) {
+                    e = e5;
+                    sQLitePreparedStatement = 0;
+                } catch (Throwable th5) {
+                    th = th5;
+                    sQLitePreparedStatement = 0;
+                }
+                if (chat != null) {
+                    if (chat.default_banned_rights == null || i4 >= chat.version) {
+                        chat.default_banned_rights = tL_chatBannedRights;
+                        chat.flags |= 262144;
+                        chat.version = i4;
+                        sQLitePreparedStatement = ad7Var2.b.executeFast("UPDATE chats SET data = ? WHERE uid = ?");
+                        try {
+                            NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(chat.getObjectSize());
+                            chat.serializeToStream(nativeByteBuffer2);
+                            sQLitePreparedStatement.bindByteBuffer(1, nativeByteBuffer2);
+                            sQLitePreparedStatement.bindLong(2, chat.id);
+                            sQLitePreparedStatement.step();
+                            nativeByteBuffer2.reuse();
+                            sQLitePreparedStatement.dispose();
+                        } catch (Exception e6) {
+                            e = e6;
+                            ad7Var2.n(e, true);
+                            if (sQLiteCursor != null) {
+                                sQLiteCursor.dispose();
+                            }
+                            if (sQLitePreparedStatement != 0) {
+                                sQLitePreparedStatement.dispose();
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 13:
+                a();
+                return;
+            case 14:
+                ad7 ad7Var3 = (ad7) obj6;
+                String str = (String) obj5;
+                try {
+                    try {
+                        isEmpty = str.isEmpty();
+                        sQLiteDatabase = ad7Var3.b;
+                    } catch (Throwable th6) {
+                        if (0 != 0) {
+                            sQLitePreparedStatement2.dispose();
+                        }
+                        throw th6;
+                    }
+                } catch (Exception e7) {
+                    ad7Var3.n(e7, true);
+                    if (0 == 0) {
+                        return;
+                    }
+                }
+                if (isEmpty) {
+                    Locale locale2 = Locale.US;
+                    sQLiteDatabase.executeFast("DELETE FROM widget_state WHERE uid = " + j7 + " AND mid = " + i4).stepThis().dispose();
+                    return;
+                }
+                sQLitePreparedStatement3 = sQLiteDatabase.executeFast("REPLACE INTO widget_state VALUES(?, ?, ?)");
+                sQLitePreparedStatement3.bindLong(1, j7);
+                sQLitePreparedStatement3.bindInteger(2, i4);
+                sQLitePreparedStatement3.bindString(3, str);
+                sQLitePreparedStatement3.step();
+                sQLitePreparedStatement3.dispose();
+                return;
+            case 15:
+                ((boolean[]) obj6)[0] = true;
+                vp7.b.add(Long.valueOf(j7));
+                vp7.j(j7, 60000L);
+                vp7.d.put(vp7.a(i4, j7), Long.valueOf(SystemClock.elapsedRealtime() + 600000));
+                vp7.c();
+                m21 Q = vp7.h().Q(2131623990, 36, k96.a0(null, null, 2131749570, (String) obj5));
+                Q.t = true;
+                Q.j();
+                return;
+            case 16:
+                RectF rectF = ProfileActivity.Z6;
+                ((ProfileActivity) obj6).getMessagesController().M1().a(i4, j7, (ArrayList) obj5);
+                return;
+            case 17:
+                b();
+                return;
+            case 18:
+                ((u41) obj6).setLoading(false);
+                fx0 fx0Var = ((fx0[]) obj5)[0];
+                if (fx0Var != null) {
+                    fx0Var.dismiss();
+                }
+                gta.v(i4, false).O();
+                d S = LaunchActivity.S();
+                if (S != null) {
+                    S.presentFragment(mu1.W9(j7));
+                    return;
+                }
+                return;
+            case 19:
+                c();
+                return;
+            case 20:
+                b1c b1cVar = (b1c) obj6;
+                k27 k27Var3 = (k27) obj5;
+                k27Var3.k.originalLanguage = "und";
+                b1cVar.getMessagesStorage().U1(j7, k27Var3.k);
+                b1cVar.w.remove(Integer.valueOf(i4));
+                return;
+            default:
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, (wjb) obj5, (Context) obj6);
+                String M0 = k96.M0(2131742829, null);
+                hd hdVar = alertDialog$Builder.a;
+                hdVar.S = M0;
+                hdVar.U = gl.R2(k96.V(null, null, 2131742827, c.C(i4).q(j7, true)));
+                b00.t(null, 2131742819, alertDialog$Builder, null);
+                return;
         }
-        throw new IllegalStateException("Source subfield " + iArr[i] + " is present but null: " + obj2);
     }
 
-    public final Object u(int i, Object obj) {
-        os9 m = m(i);
-        long J = J(i) & 1048575;
-        if (!n(i, obj)) {
-            return m.a();
-        }
-        Object object = o.getObject(obj, J);
-        if (p(object)) {
-            return object;
-        }
-        gu4 a = m.a();
-        if (object != null) {
-            m.b(a, object);
-        }
-        return a;
+    public o57(Object obj, long j, int i, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = j;
+        this.d = i;
+        this.e = obj2;
     }
 
-    public final Object v(int i, int i2, Object obj) {
-        os9 m = m(i2);
-        if (!q(i, i2, obj)) {
-            return m.a();
-        }
-        Object object = o.getObject(obj, J(i2) & 1048575);
-        if (p(object)) {
-            return object;
-        }
-        gu4 a = m.a();
-        if (object != null) {
-            m.b(a, object);
-        }
-        return a;
+    public o57(Object obj, long j, Object obj2, int i, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = j;
+        this.e = obj2;
+        this.d = i;
+    }
+
+    public o57(Object obj, Object obj2, int i, long j, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.e = obj2;
+        this.d = i;
+        this.c = j;
+    }
+
+    public o57(Object obj, Object obj2, long j, int i, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.e = obj2;
+        this.c = j;
+        this.d = i;
     }
 }

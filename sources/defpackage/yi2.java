@@ -1,17 +1,5 @@
 package defpackage;
-public abstract class yi2 extends qt7 {
-    public abstract int j();
 
-    public final int k(int i) {
-        int size = ((sr8) this).c.size();
-        int j = j();
-        if (i < j) {
-            return ((size - (j << 1)) - ((j - i) - 1)) - 1;
-        }
-        int i2 = size - j;
-        if (i >= i2) {
-            return i - i2;
-        }
-        return i - j;
-    }
+import java.util.NoSuchElementException;
+public final class yi2 extends NoSuchElementException {
 }

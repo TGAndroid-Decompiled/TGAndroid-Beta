@@ -1,135 +1,109 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.os.Bundle;
-import android.util.SparseArray;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ActionBar.d;
-public final class nu1 extends hkb {
-    public yv1 w0;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class nu1 extends LinearLayout {
+    public final wjb a;
+    public final gl2 b;
+    public final gl2 c;
+    public float d;
 
-    @Override
-    public final void H(int i, int i2, k47 k47Var) {
-        a aVar;
-        a aVar2;
-        f47 T6;
-        yv1 yv1Var = this.w0;
-        if (yv1Var != null) {
-            int min = Math.min(i2, yv1Var.getMessagesController().l4.N1.f() + i);
-            if (k47Var.c1() != 0 && (T6 = this.w0.T6(k47Var.c1())) != null && !T6.i) {
-                k47Var = T6.h;
-            }
-            if (k47Var != null) {
-                nv1 b = nv1.b(i, min, k47Var);
-                if (b.i != null) {
-                    ms1 ms1Var = this.w0.a0;
-                    boolean z = false;
-                    if (ms1Var != null && ms1Var.getVisibility() == 0) {
-                        aVar = ((d) this.w0).actionBar;
-                        if (aVar != null) {
-                            aVar2 = ((d) this.w0).actionBar;
-                            if (aVar2.y()) {
-                                this.w0.M5(false);
-                            }
-                        }
-                        this.w0.ec(k47Var, b);
-                        ms1 ms1Var2 = this.w0.a0;
-                        if (ms1Var2 != null) {
-                            ms1Var2.j1();
-                            return;
-                        }
-                        return;
-                    }
-                    yv1 yv1Var2 = this.w0;
-                    yv1Var2.D5 = b;
-                    yv1Var2.F5 = k47Var;
-                    if (yv1Var2.h != null) {
-                        z = true;
-                    }
-                    yv1Var2.x5 = new o47(z, yv1Var2.a8(), sd2.p0(this.w0.e));
-                    yv1 yv1Var3 = this.w0;
-                    yv1Var3.x5.f(yv1Var3.F5, yv1Var3.T6(k47Var.c1()), this.w0.a(), this.w0.D5);
-                    Bundle j = td4.j(3, "onlySelect", "dialogsType", true);
-                    j.putBoolean("quote", true);
-                    j.putInt("messagesCount", 1);
-                    j.putBoolean("canSelectTopics", true);
-                    nk3 nk3Var = new nk3(j);
-                    yv1 yv1Var4 = this.w0;
-                    nk3Var.E2 = yv1Var4;
-                    yv1Var4.presentFragment(nk3Var);
-                }
-            }
+    public nu1(kl0 kl0Var, wp1 wp1Var, wjb wjbVar, Context context) {
+        super(context);
+        gl2 gl2Var = new gl2(this);
+        this.b = gl2Var;
+        gl2 gl2Var2 = new gl2(this);
+        this.c = gl2Var2;
+        this.a = wjbVar;
+        ou1 c = ou1.c(kl0Var, wp1Var, wjbVar, context);
+        gl2Var.b = c;
+        c.setOnClickListener(new x00((byte) 1));
+        ote.b((ou1) gl2Var.b, 0.065f, 2.0f);
+        ou1 c2 = ou1.c(kl0Var, wp1Var, wjbVar, context);
+        gl2Var2.b = c2;
+        c2.setOnClickListener(new x00((byte) 1));
+        ote.b((ou1) gl2Var2.b, 0.065f, 2.0f);
+        a(gl2Var, k96.M0(2131746070, null), 2131231514, false);
+        a(gl2Var2, k96.M0(2131750570, null), 2131231506, true);
+        setOrientation(0);
+        setClipChildren(false);
+        addView((ou1) gl2Var.b, nme.m(1.0f, 0, 56, 1, -1, 0));
+        addView((ou1) gl2Var2.b, nme.m(1.0f, 0, 56, -1, 1, 0));
+    }
+
+    public final void a(gl2 gl2Var, String str, int i, boolean z) {
+        Drawable drawable;
+        TextView textView = new TextView(getContext());
+        textView.setText(str);
+        textView.setGravity(16);
+        textView.setTextSize(1, 15.0f);
+        textView.setPadding(gl.L(21.0f), 0, gl.L(21.0f), 0);
+        textView.setCompoundDrawablePadding(gl.L(6.0f));
+        int i2 = bkb.Nl;
+        wjb wjbVar = this.a;
+        zkb.X(textView, i2, wjbVar);
+        textView.setTypeface(gl.o());
+        Drawable mutate = getContext().getResources().getDrawable(i).mutate();
+        zkb.x(this, mutate, bkb.Ml, wjbVar, PorterDuff.Mode.MULTIPLY);
+        if (z) {
+            drawable = mutate;
+            mutate = null;
+        } else {
+            drawable = null;
         }
+        textView.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, mutate, (Drawable) null);
+        gl2Var.c = textView;
+        ((ou1) gl2Var.b).addView(textView, nme.e(-2, -2, 17));
     }
 
-    @Override
-    public final boolean a() {
-        yv1 yv1Var;
-        yv1 yv1Var2 = this.w0;
-        if ((yv1Var2 == null || yv1Var2.a() != 489000) && (yv1Var = this.w0) != null) {
-            if (pg3.B(yv1Var.a()) || !this.w0.a8()) {
-                nkb nkbVar = this.W;
-                if (nkbVar != null && ((rc2) nkbVar).getMessageObject() != null && ((rc2) this.W).getMessageObject().k != null && ((rc2) this.W).getMessageObject().k.noforwards) {
-                    return false;
-                }
-                return true;
-            }
-            return false;
+    public final void b(gl2 gl2Var) {
+        int i;
+        float f = this.d * ((fm0) gl2Var.d).e;
+        float f2 = (1.0f - f) * (-gl.L(54.0f));
+        float interpolation = (1.0f - tn.a.getInterpolation(f)) * (getMeasuredWidth() / 2.0f);
+        if (gl2Var == this.b) {
+            interpolation *= -1.0f;
         }
-        return true;
-    }
-
-    public final void c0(yv1 yv1Var) {
-        int i = 0;
-        while (true) {
-            SparseArray sparseArray = this.p0;
-            if (i < sparseArray.size()) {
-                ((Animator) sparseArray.get(sparseArray.keyAt(i))).cancel();
-                i++;
-            } else {
-                sparseArray.clear();
-                e(false);
-                this.C = null;
-                this.w0 = yv1Var;
-                return;
-            }
+        ((ou1) gl2Var.b).setTranslationX(interpolation);
+        ((ou1) gl2Var.b).setTranslationY(f2);
+        ((ou1) gl2Var.b).setAlpha(f);
+        ou1 ou1Var = (ou1) gl2Var.b;
+        if (f > 0.0f) {
+            i = 0;
+        } else {
+            i = 4;
         }
+        ou1Var.setVisibility(i);
+    }
+
+    public View getForwardButton() {
+        return (ou1) this.c.b;
     }
 
     @Override
-    public final boolean d() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.nu1.d():boolean");
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        b(this.c);
+        b(this.b);
     }
 
-    @Override
-    public final int n() {
-        yv1 yv1Var = this.w0;
-        if (yv1Var == null) {
-            return 0;
+    public void setForwardButtonOnClickListener(View.OnClickListener onClickListener) {
+        ((ou1) this.c.b).setOnClickListener(onClickListener);
+    }
+
+    public void setReplyButtonOnClickListener(View.OnClickListener onClickListener) {
+        ((ou1) this.b.b).setOnClickListener(onClickListener);
+    }
+
+    public void setTotalVisibilityFactor(float f) {
+        if (this.d != f) {
+            this.d = f;
+            b(this.c);
+            b(this.b);
         }
-        return yv1Var.Ya;
-    }
-
-    @Override
-    public final int o() {
-        yv1 yv1Var = this.w0;
-        if (yv1Var == null) {
-            return 0;
-        }
-        return (int) yv1Var.P9;
-    }
-
-    @Override
-    public final ylb p() {
-        yv1 yv1Var = this.w0;
-        if (yv1Var != null) {
-            return yv1Var.Ba;
-        }
-        return null;
-    }
-
-    @Override
-    public final int s(int i) {
-        return cmb.v0(i, this.w0.Ba);
     }
 }

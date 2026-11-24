@@ -1,20 +1,24 @@
 package defpackage;
 
-import java.util.List;
+import java.util.ArrayList;
 public final class i53 {
-    public final mo5 a;
-    public final long b;
-    public final long c;
-    public final long d;
+    public final fm4 a;
+    public final mm5 b;
+    public final tv9 c;
+    public final String d;
+    public final ArrayList e;
+    public final ArrayList f;
+    public final ArrayList g;
+    public final ArrayList h;
 
-    public i53(long j, long j2, List list) {
-        this.a = mo5.q(list);
-        this.b = j;
-        this.c = j2;
-        long j3 = -9223372036854775807L;
-        if (j != -9223372036854775807L && j2 != -9223372036854775807L) {
-            j3 = j + j2;
-        }
-        this.d = j3;
+    public i53(fm4 fm4Var, ArrayList arrayList, tv9 tv9Var, String str, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5) {
+        this.a = fm4Var;
+        this.b = mm5.q(arrayList);
+        this.c = tv9Var;
+        this.d = str;
+        this.e = arrayList2;
+        this.f = arrayList3;
+        this.g = arrayList4;
+        this.h = arrayList5;
     }
 }

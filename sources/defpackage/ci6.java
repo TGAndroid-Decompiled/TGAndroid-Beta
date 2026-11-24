@@ -1,19 +1,149 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class ci6 extends b4 {
-    public static final Parcelable.Creator<ci6> CREATOR = new sje((byte) 10);
-    public String a;
-    public di6 b;
-    public qpb c;
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+public final class ci6 extends LinkedHashMap {
+    public static final ci6 b;
+    public boolean a = true;
+
+    static {
+        ci6 ci6Var = new ci6();
+        b = ci6Var;
+        ci6Var.a = false;
+    }
+
+    public final void b() {
+        if (this.a) {
+            return;
+        }
+        fvc.b();
+    }
+
+    public final ci6 c() {
+        if (isEmpty()) {
+            return new ci6();
+        }
+        ?? linkedHashMap = new LinkedHashMap(this);
+        linkedHashMap.a = true;
+        return linkedHashMap;
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        mve.l(parcel, 2, this.a);
-        mve.k(parcel, 3, this.b, i);
-        mve.k(parcel, 5, this.c, i);
-        mve.s(parcel, r);
+    public final void clear() {
+        b();
+        super.clear();
+    }
+
+    @Override
+    public final Set entrySet() {
+        if (isEmpty()) {
+            return Collections.EMPTY_SET;
+        }
+        return super.entrySet();
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        boolean equals;
+        if (obj instanceof Map) {
+            Map map = (Map) obj;
+            if (this != map) {
+                if (size() == map.size()) {
+                    for (Map.Entry entry : entrySet()) {
+                        if (map.containsKey(entry.getKey())) {
+                            Object value = entry.getValue();
+                            Object obj2 = map.get(entry.getKey());
+                            if ((value instanceof byte[]) && (obj2 instanceof byte[])) {
+                                equals = Arrays.equals((byte[]) value, (byte[]) obj2);
+                                continue;
+                            } else {
+                                equals = value.equals(obj2);
+                                continue;
+                            }
+                            if (!equals) {
+                                return false;
+                            }
+                        } else {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int hashCode() {
+        int hashCode;
+        int i = 0;
+        for (Map.Entry entry : entrySet()) {
+            Object key = entry.getKey();
+            int i2 = 1;
+            if (key instanceof byte[]) {
+                byte[] bArr = (byte[]) key;
+                int length = bArr.length;
+                Charset charset = mp5.a;
+                hashCode = length;
+                for (byte b2 : bArr) {
+                    hashCode = (hashCode * 31) + b2;
+                }
+                if (hashCode == 0) {
+                    hashCode = 1;
+                }
+            } else {
+                hashCode = key.hashCode();
+            }
+            Object value = entry.getValue();
+            if (value instanceof byte[]) {
+                byte[] bArr2 = (byte[]) value;
+                int length2 = bArr2.length;
+                Charset charset2 = mp5.a;
+                int i3 = length2;
+                for (byte b3 : bArr2) {
+                    i3 = (i3 * 31) + b3;
+                }
+                if (i3 != 0) {
+                    i2 = i3;
+                }
+            } else {
+                i2 = value.hashCode();
+            }
+            i += hashCode ^ i2;
+        }
+        return i;
+    }
+
+    @Override
+    public final Object put(Object obj, Object obj2) {
+        b();
+        Charset charset = mp5.a;
+        obj.getClass();
+        obj2.getClass();
+        return super.put(obj, obj2);
+    }
+
+    @Override
+    public final void putAll(Map map) {
+        b();
+        for (Object obj : map.keySet()) {
+            Charset charset = mp5.a;
+            obj.getClass();
+            map.get(obj).getClass();
+        }
+        super.putAll(map);
+    }
+
+    @Override
+    public final Object remove(Object obj) {
+        b();
+        return super.remove(obj);
     }
 }

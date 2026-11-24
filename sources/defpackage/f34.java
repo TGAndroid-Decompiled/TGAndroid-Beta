@@ -1,22 +1,20 @@
 package defpackage;
-public final class f34 extends ui6 {
-    public final byte g;
+
+import java.util.regex.Pattern;
+public final class f34 extends tn5 {
+    public static final Pattern e = Pattern.compile("^&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
 
     @Override
-    public final void a(knd kndVar) {
-        switch (this.g) {
-            case 0:
-                kndVar.e(this);
-                return;
-            case 1:
-                kndVar.r(this);
-                return;
-            case 2:
-                kndVar.t(this);
-                return;
-            default:
-                kndVar.u(this);
-                return;
+    public final tg6 b() {
+        String a = a(e);
+        if (a != null) {
+            return e(bg5.a(a));
         }
+        return null;
+    }
+
+    @Override
+    public final char c() {
+        return '&';
     }
 }

@@ -1,158 +1,97 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.view.View;
-import org.telegram.ui.ActionBar.d;
-public final class jj3 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final boolean b;
-    public final nk3 c;
+import android.widget.TextView;
+public final class jj3 extends lk3 {
+    public final oj3 f;
 
-    public jj3(nk3 nk3Var, boolean z, byte b) {
-        this.a = b;
-        this.c = nk3Var;
-        this.b = z;
-    }
+    public jj3(oj3 oj3Var, Context context) {
+        super(context);
+        this.f = oj3Var;
+        this.a = y6c.t0;
+        setOrientation(1);
+        zkb.h(bkb.Z6, null, this);
+        f7 f7Var = new f7(context, (byte) 2);
+        f7Var.b = new Path();
+        Paint paint = new Paint(1);
+        f7Var.c = paint;
+        paint.setColor(bkb.w0(null, bkb.c6, false));
+        paint.setShadowLayer(gl.L(1.33f), 0.0f, gl.L(0.33f), 503316480);
+        f7Var.setWillNotDraw(false);
+        f7Var.setOrientation(1);
+        f7Var.setPadding(gl.L(32.0f), gl.L(16.0f), gl.L(32.0f), gl.L(32.0f));
+        be0 be0Var = new be0(context);
+        this.b = be0Var;
+        be0Var.setOnClickListener(new View.OnClickListener(this) {
+            public final jj3 b;
 
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.a) {
-            case 0:
-                nk3 nk3Var = this.c;
-                nk3Var.r3.e();
-                if (nk3Var.y1 == animator) {
-                    mk3[] mk3VarArr = nk3Var.f0;
-                    if (this.b) {
-                        mk3VarArr[0].a.d1();
-                    } else {
-                        jk3 jk3Var = mk3VarArr[0].a;
-                        if (jk3Var.h1) {
-                            jk3Var.h1 = false;
-                            jk3Var.L0(false);
-                        }
-                    }
-                    nk3Var.y1 = null;
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
+            {
+                this.b = this;
+            }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i;
-        r7 r7Var;
-        byte b = this.a;
-        int i2 = 0;
-        float f = 0.0f;
-        boolean z = this.b;
-        nk3 nk3Var = this.c;
-        switch (b) {
-            case 0:
-                nk3Var.r3.e();
-                if (nk3Var.y1 == animator) {
-                    nk3Var.U4(false, true);
-                    if (z) {
-                        nk3Var.f0[0].a.d1();
-                        aj3 aj3Var = nk3Var.F0;
-                        if (aj3Var != null) {
-                            aj3Var.setVisibility(8);
-                        }
-                        nk3Var.t3 = true;
-                        Activity parentActivity = nk3Var.getParentActivity();
-                        i = ((d) nk3Var).classGuid;
-                        gm.V2(parentActivity, i);
-                        nk3Var.k0.setVisibility(8);
-                        dj3 dj3Var = nk3Var.H3;
-                        if (dj3Var != null) {
-                            dj3Var.setVisibility(8);
-                        }
-                    } else {
-                        nk3Var.u3 = false;
-                        sj3 sj3Var = nk3Var.D0;
-                        if (sj3Var != null) {
-                            sj3Var.setVisibility(8);
-                        }
-                        zj3 zj3Var = nk3Var.Y;
-                        if (zj3Var != null) {
-                            zj3Var.c();
-                        }
-                        sj3 sj3Var2 = nk3Var.D0;
-                        if (sj3Var2 != null) {
-                            sj3Var2.D0.clear();
-                            sj3Var2.L();
-                        }
-                        jk3 jk3Var = nk3Var.f0[0].a;
-                        if (jk3Var.h1) {
-                            jk3Var.h1 = false;
-                            jk3Var.L0(false);
-                        }
-                        nk3Var.t3 = false;
-                        dj3 dj3Var2 = nk3Var.H3;
-                        if (dj3Var2 != null) {
-                            dj3Var2.setVisibility(0);
-                        }
-                    }
-                    View view = nk3Var.fragmentView;
-                    if (view != null) {
-                        view.requestLayout();
-                    }
-                    if (z) {
-                        f = 1.0f;
-                    }
-                    nk3Var.X4(f);
-                    nk3Var.f0[0].a.setVerticalScrollBarEnabled(true);
-                    sj3 sj3Var3 = nk3Var.D0;
-                    if (sj3Var3 != null) {
-                        sj3Var3.setBackground(null);
-                    }
-                    nk3Var.y1 = null;
-                    return;
-                }
-                return;
-            case 1:
-                nk3Var.V3 = null;
-                if (!z && (r7Var = nk3Var.n0) != null) {
-                    r7Var.setVisibility(8);
-                    return;
-                }
-                return;
-            default:
-                nk3Var.J = null;
-                nk3Var.L = z;
-                if (!z && !nk3Var.M) {
-                    nk3Var.F0.setVisibility(8);
-                }
-                if (!z) {
-                    nk3Var.W4(0.0f);
-                    nk3Var.A3 = gm.L(81.0f);
-                } else {
-                    nk3Var.A3 = -gm.L(81.0f);
-                    nk3Var.W4(-nk3Var.r3());
-                }
-                while (true) {
-                    mk3[] mk3VarArr = nk3Var.f0;
-                    if (i2 < mk3VarArr.length) {
-                        mk3 mk3Var = mk3VarArr[i2];
-                        if (mk3Var != null) {
-                            mk3Var.a.requestLayout();
-                        }
-                        i2++;
-                    } else {
-                        View view2 = nk3Var.fragmentView;
-                        if (view2 != null) {
-                            view2.requestLayout();
-                            return;
-                        }
+            @Override
+            public final void onClick(View view) {
+                byte b = r2;
+                jj3 jj3Var = this.b;
+                switch (b) {
+                    case 0:
+                        jj3Var.b.getImageReceiver().w0(false);
                         return;
-                    }
+                    default:
+                        jj3Var.f.L();
+                        return;
                 }
-                break;
-        }
+            }
+        });
+        a();
+        f7Var.addView(be0Var, nme.r(130, 130, 49));
+        TextView textView = new TextView(context);
+        this.c = textView;
+        textView.setGravity(17);
+        textView.setTextSize(1, 18.0f);
+        zkb.X(textView, bkb.F6, null);
+        textView.setTypeface(gl.o());
+        f7Var.addView(textView, nme.t(-1, -2, 49, 0, 6, 0, 0));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setGravity(17);
+        textView2.setTextSize(1, 14.0f);
+        zkb.X(textView2, bkb.x6, null);
+        f7Var.addView(textView2, nme.t(-1, -2, 49, 0, 7, 0, 0));
+        TextView textView3 = new TextView(context);
+        this.e = textView3;
+        textView3.setGravity(17);
+        textView3.setBackground(sjb.f(bkb.Ei, 8.0f));
+        textView3.setTextSize(1, 14.0f);
+        zkb.X(textView3, bkb.Ii, null);
+        textView3.setTypeface(gl.o());
+        textView3.setPadding(gl.L(14.0f), gl.L(14.0f), gl.L(14.0f), gl.L(14.0f));
+        textView3.setOnClickListener(new View.OnClickListener(this) {
+            public final jj3 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                byte b = r2;
+                jj3 jj3Var = this.b;
+                switch (b) {
+                    case 0:
+                        jj3Var.b.getImageReceiver().w0(false);
+                        return;
+                    default:
+                        jj3Var.f.L();
+                        return;
+                }
+            }
+        });
+        f7Var.addView(textView3, nme.t(-1, -2, 49, 0, 18, 0, 0));
+        addView(f7Var, nme.o(-1, -2));
+        set(null);
     }
 }

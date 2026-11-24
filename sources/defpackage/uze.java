@@ -1,47 +1,59 @@
 package defpackage;
 
-import android.content.Context;
-import com.google.android.gms.tasks.Task;
-import java.util.HashMap;
-public final class uze {
-    public static tjf j;
-    public static final e8d k;
-    public final String a;
-    public final String b;
-    public final bze c;
-    public final uha d;
-    public final Task e;
-    public final Task f;
-    public final String g;
-    public final int h;
-    public final HashMap i = new HashMap();
+import j$.util.DesugarCollections;
+import java.util.AbstractList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+public final class uze extends AbstractList implements ere, RandomAccess {
+    public final pqe a;
 
-    static {
-        Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
-        objArr[0].getClass();
-        objArr[1].getClass();
-        k = new e8d(objArr);
+    public uze(pqe pqeVar) {
+        this.a = pqeVar;
     }
 
-    public uze(Context context, uha uhaVar, bze bzeVar, String str) {
-        int i;
-        this.a = context.getPackageName();
-        this.b = ao2.a(context);
-        this.d = uhaVar;
-        this.c = bzeVar;
-        k1f.o();
-        this.g = str;
-        ni6.q();
-        this.e = ni6.E(new mg7(this, (byte) 5));
-        ni6.q();
-        uhaVar.getClass();
-        this.f = ni6.E(new kze(uhaVar, (byte) 0));
-        e8d e8dVar = k;
-        if (e8dVar.containsKey(str)) {
-            i = nt3.d(context, (String) e8dVar.get(str), false);
-        } else {
-            i = -1;
-        }
-        this.h = i;
+    @Override
+    public final Object d(int i) {
+        return this.a.b.get(i);
+    }
+
+    @Override
+    public final void e(sie sieVar) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final Object get(int i) {
+        return (String) this.a.get(i);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        dcd dcdVar = new dcd((byte) 3);
+        dcdVar.b = this.a.iterator();
+        return dcdVar;
+    }
+
+    @Override
+    public final ListIterator listIterator(int i) {
+        fzd fzdVar = new fzd((byte) 1);
+        fzdVar.b = this.a.listIterator(i);
+        return fzdVar;
+    }
+
+    @Override
+    public final int size() {
+        return this.a.size();
+    }
+
+    @Override
+    public final List zzd() {
+        return DesugarCollections.unmodifiableList(this.a.b);
+    }
+
+    @Override
+    public final ere zze() {
+        return this;
     }
 }

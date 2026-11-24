@@ -1,17 +1,19 @@
 package defpackage;
-public enum xsb extends rub {
-    public xsb() {
-        super("CharacterReferenceInData", 1);
+public final class xsb implements Runnable {
+    public final byte a;
+    public final ysb b;
+    public final String c;
+    public final int d;
+
+    public xsb(ysb ysbVar, String str, int i, byte b) {
+        this.a = b;
+        this.b = ysbVar;
+        this.c = str;
+        this.d = i;
     }
 
     @Override
-    public final void c(bsb bsbVar, hl1 hl1Var) {
-        int[] c = bsbVar.c(null, false);
-        if (c == null) {
-            bsbVar.f('&');
-        } else {
-            bsbVar.h(new String(c, 0, c.length));
-        }
-        bsbVar.c = rub.a;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xsb.run():void");
     }
 }

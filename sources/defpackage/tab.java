@@ -1,39 +1,29 @@
 package defpackage;
+public final class tab {
+    public static final tab c = new tab(-9223372036854775807L, false);
+    public long a;
+    public boolean b;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.tl.TL_stories;
-public final class tab extends kn5 {
-    public final ArrayList a;
-    public float b;
-    public float c;
-    public float d;
-    public float e;
-
-    public tab(TL_stories.StoryItem storyItem) {
-        for (int i = 0; i < storyItem.media_areas.size(); i++) {
-            if (storyItem.media_areas.get(i) instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
-                if (this.a == null) {
-                    this.a = new ArrayList();
-                }
-                this.a.add(new qab(this, (TL_stories.TL_mediaAreaSuggestedReaction) storyItem.media_areas.get(i)));
-            } else if (storyItem.media_areas.get(i) instanceof TL_stories.TL_mediaAreaWeather) {
-                if (this.a == null) {
-                    this.a = new ArrayList();
-                }
-                this.a.add(new sab(this, (TL_stories.TL_mediaAreaWeather) storyItem.media_areas.get(i)));
-            }
-        }
+    public tab(long j, boolean z) {
+        this.a = j;
+        this.b = z;
     }
 
-    @Override
-    public final void a(ImageReceiver imageReceiver) {
-        ArrayList arrayList = this.a;
-        if (arrayList != null) {
-            for (int i = 0; i < arrayList.size(); i++) {
-                ((pab) arrayList.get(i)).c(imageReceiver.e);
-                ((pab) arrayList.get(i)).b(true);
-            }
+    public final void a(long j) {
+        this.a = hq6.r(this.a, j);
+    }
+
+    public final void b(boolean z) {
+        long j;
+        if (z) {
+            j = 1;
+        } else {
+            j = 0;
         }
+        a(j);
+    }
+
+    public final void c(float f) {
+        a(Float.floatToIntBits(f));
     }
 }

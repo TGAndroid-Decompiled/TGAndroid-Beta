@@ -1,33 +1,33 @@
 package defpackage;
 
-import android.text.SpannableStringBuilder;
-import android.util.SparseArray;
-public abstract class og3 {
-    public static final SparseArray a = new SparseArray(6);
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class og3 implements Runnable {
+    public final byte a;
+    public final cj3 b;
+    public final TLRPC.TL_attachMenuBot c;
+    public final LaunchActivity d;
 
-    public static SpannableStringBuilder a(int i, CharSequence charSequence, boolean z) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (charSequence instanceof SpannableStringBuilder) {
-            spannableStringBuilder = (SpannableStringBuilder) charSequence;
-        } else {
-            spannableStringBuilder = new SpannableStringBuilder(charSequence);
+    public og3(cj3 cj3Var, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity, byte b) {
+        this.a = b;
+        this.b = cj3Var;
+        this.c = tL_attachMenuBot;
+        this.d = launchActivity;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        LaunchActivity launchActivity = this.d;
+        TLRPC.TL_attachMenuBot tL_attachMenuBot = this.c;
+        cj3 cj3Var = this.b;
+        switch (b) {
+            case 0:
+                cj3Var.Y3(tL_attachMenuBot, launchActivity);
+                return;
+            default:
+                cj3Var.a4(tL_attachMenuBot, launchActivity);
+                return;
         }
-        if (z) {
-            spannableStringBuilder.insert(0, (CharSequence) "* \u2068");
-        } else {
-            spannableStringBuilder.insert(0, (CharSequence) "* ");
-        }
-        SparseArray sparseArray = a;
-        pn2 pn2Var = (pn2) sparseArray.get(i);
-        if (pn2Var == null) {
-            pn2Var = new pn2(i, 0);
-            pn2Var.a(cmb.Yl);
-            sparseArray.put(i, pn2Var);
-        }
-        spannableStringBuilder.setSpan(pn2Var, 0, 1, 33);
-        if (z) {
-            spannableStringBuilder.append((char) 8297);
-        }
-        return spannableStringBuilder;
     }
 }

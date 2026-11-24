@@ -1,47 +1,46 @@
 package defpackage;
-
-import org.telegram.messenger.video.VideoPlayerHolderBase;
-import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.voip.VoipAudioManager;
 public final class c04 implements Runnable {
     public final byte a;
-    public final boolean b;
-    public final boolean c;
+    public final float b;
+    public final int c;
     public final Object d;
 
-    public c04(Object obj, boolean z, boolean z2, byte b) {
+    public c04(Object obj, float f, int i, byte b) {
         this.a = b;
         this.d = obj;
-        this.b = z;
-        this.c = z2;
+        this.b = f;
+        this.c = i;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        boolean z = this.c;
-        boolean z2 = this.b;
+        int i = this.c;
+        float f = this.b;
         Object obj = this.d;
         switch (b) {
             case 0:
-                ((e34) obj).O(false, z2, z);
-                return;
-            case 1:
-                ((NativeInstance) obj).lambda$onNetworkStateUpdated$0(z2, z);
-                return;
-            case 2:
-                ((VideoPlayerHolderBase) obj).lambda$setAudioEnabled$8(z2, z);
-                return;
-            case 3:
-                ((VoIPService) obj).lambda$createGroupInstance$75(z2, z);
-                return;
-            case 4:
-                VoipAudioManager.lambda$isBluetoothAndSpeakerOnAsync$3((jac) obj, z2, z);
-                return;
+                t14 t14Var = ((d04) obj).G;
+                try {
+                    v26 v26Var = new v26(t14Var.Q.getContext(), 0, f);
+                    v26Var.a = i;
+                    t14Var.R.v0(v26Var);
+                    return;
+                } catch (Exception e) {
+                    fa4.g(e, true);
+                    return;
+                }
             default:
-                ((rhb) ((dmc) obj).c).l(z2, z);
-                return;
+                tx9 tx9Var = (tx9) obj;
+                try {
+                    v26 v26Var2 = new v26(tx9Var.i0.getContext(), 0, f);
+                    v26Var2.a = i;
+                    tx9Var.s0.v0(v26Var2);
+                    return;
+                } catch (Exception e2) {
+                    fa4.g(e2, true);
+                    return;
+                }
         }
     }
 }

@@ -3,19 +3,19 @@ package org.telegram.messenger;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-public class ImportingService extends Service implements jm7 {
-    public an7 a;
+public class ImportingService extends Service implements gk7 {
+    public xk7 a;
 
     public ImportingService() {
         for (int i = 0; i < 4; i++) {
-            nm7.f(i).a(this, nm7.v1);
-            nm7.f(i).a(this, nm7.w1);
+            kk7.f(i).a(this, kk7.u1);
+            kk7.f(i).a(this, kk7.v1);
         }
     }
 
     public static boolean a() {
         for (int i = 0; i < 4; i++) {
-            if (a6a.B(i).G.size() != 0) {
+            if (z3a.B(i).G.size() != 0) {
                 return true;
             }
         }
@@ -24,7 +24,7 @@ public class ImportingService extends Service implements jm7 {
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if ((i == nm7.v1 || i == nm7.w1) && !a() && !a()) {
+        if ((i == kk7.u1 || i == kk7.v1) && !a() && !a()) {
             stopSelf();
         }
     }
@@ -41,13 +41,13 @@ public class ImportingService extends Service implements jm7 {
             stopForeground(true);
         } catch (Throwable unused) {
         }
-        new sn7(a.b).b(5, null);
+        new pl7(a.b).b(5, null);
         for (int i = 0; i < 4; i++) {
-            nm7.f(i).n(this, nm7.v1);
-            nm7.f(i).n(this, nm7.w1);
+            kk7.f(i).n(this, kk7.u1);
+            kk7.f(i).n(this, kk7.v1);
         }
-        if (e21.a) {
-            fc4.b("destroy import service");
+        if (w01.a) {
+            fa4.b("destroy import service");
         }
     }
 
@@ -56,28 +56,28 @@ public class ImportingService extends Service implements jm7 {
         boolean z;
         if (!a()) {
             for (int i3 = 0; i3 < 4; i3++) {
-                if (a6a.B(i3).E.m() == 0) {
+                if (z3a.B(i3).E.m() == 0) {
                 }
             }
             stopSelf();
             return 2;
         }
-        if (e21.a) {
-            fc4.b("start import service");
+        if (w01.a) {
+            fa4.b("start import service");
         }
         if (this.a == null) {
-            lo7.c();
-            an7 an7Var = new an7(a.b, null);
-            this.a = an7Var;
-            an7Var.F.icon = 17301640;
-            an7Var.F.when = System.currentTimeMillis();
-            an7 an7Var2 = this.a;
-            an7Var2.y = lo7.k0;
-            an7Var2.e(jb6.M0(2131689472, null));
+            im7.c();
+            xk7 xk7Var = new xk7(a.b, null);
+            this.a = xk7Var;
+            xk7Var.F.icon = 17301640;
+            xk7Var.F.when = System.currentTimeMillis();
+            xk7 xk7Var2 = this.a;
+            xk7Var2.y = im7.k0;
+            xk7Var2.e(k96.M0(2131689472, null));
             int i4 = 0;
             while (true) {
                 if (i4 < 4) {
-                    if (a6a.B(i4).E.m() != 0) {
+                    if (z3a.B(i4).E.m() != 0) {
                         z = true;
                         break;
                     }
@@ -87,30 +87,30 @@ public class ImportingService extends Service implements jm7 {
                     break;
                 }
             }
-            an7 an7Var3 = this.a;
+            xk7 xk7Var3 = this.a;
             if (z) {
-                an7Var3.k(jb6.M0(2131749024, null));
-                this.a.d(jb6.M0(2131749024, null));
+                xk7Var3.k(k96.M0(2131749075, null));
+                this.a.d(k96.M0(2131749075, null));
             } else {
-                an7Var3.k(jb6.M0(2131749023, null));
-                this.a.d(jb6.M0(2131749023, null));
+                xk7Var3.k(k96.M0(2131749074, null));
+                this.a.d(k96.M0(2131749074, null));
             }
         }
-        an7 an7Var4 = this.a;
-        an7Var4.n = (byte) 100;
-        an7Var4.o = 0;
-        an7Var4.p = true;
+        xk7 xk7Var4 = this.a;
+        xk7Var4.n = (byte) 100;
+        xk7Var4.o = 0;
+        xk7Var4.p = true;
         try {
-            startForeground(5, an7Var4.b());
+            startForeground(5, xk7Var4.b());
         } catch (Throwable th) {
-            fc4.g(th, true);
+            fa4.g(th, true);
         }
-        new sn7(a.b).e(null, 5, this.a.b());
+        new pl7(a.b).e(null, 5, this.a.b());
         return 2;
     }
 
     public final void onTimeout(int i, int i2) {
-        fc4.b("ImportingService timeout, type = " + i2);
+        fa4.b("ImportingService timeout, type = " + i2);
         try {
             stopForeground(true);
         } catch (Throwable unused) {

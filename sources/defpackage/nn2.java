@@ -1,27 +1,22 @@
 package defpackage;
 
-import android.content.res.ColorStateList;
-import android.content.res.Resources;
-import android.content.res.XmlResourceParser;
-import android.util.AttributeSet;
-import android.util.Xml;
-import org.xmlpull.v1.XmlPullParserException;
-public abstract class nn2 {
-    public static final ThreadLocal a = new ThreadLocal();
+import android.view.View;
+import java.io.Serializable;
+public final class nn2 implements n8c, no7 {
+    public final pn2 a;
 
-    public static ColorStateList a(Resources resources, XmlResourceParser xmlResourceParser, Resources.Theme theme) {
-        int next;
-        AttributeSet asAttributeSet = Xml.asAttributeSet(xmlResourceParser);
-        do {
-            next = xmlResourceParser.next();
-            if (next == 2) {
-                return b(resources, xmlResourceParser, asAttributeSet, theme);
-            }
-        } while (next != 1);
-        throw new XmlPullParserException("No start tag found");
+    @Override
+    public final vxc W(View view, vxc vxcVar) {
+        this.a.Y(vxcVar.a.f(519).d);
+        return vxc.b;
     }
 
-    public static android.content.res.ColorStateList b(android.content.res.Resources r33, android.content.res.XmlResourceParser r34, android.util.AttributeSet r35, android.content.res.Resources.Theme r36) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.nn2.b(android.content.res.Resources, android.content.res.XmlResourceParser, android.util.AttributeSet, android.content.res.Resources$Theme):android.content.res.ColorStateList");
+    @Override
+    public final void j(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f = (Float) serializable;
+        Float f2 = (Float) serializable2;
+        this.a.Z((c4c) obj);
     }
 }

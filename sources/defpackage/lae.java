@@ -1,17 +1,6 @@
 package defpackage;
-public final class lae implements cq7 {
-    public static final lae a = new Object();
-
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+public abstract class lae {
+    public static String a(int i) {
+        return tb4.n(i, "activity with result code: ", " indicating not RESULT_OK");
     }
 }

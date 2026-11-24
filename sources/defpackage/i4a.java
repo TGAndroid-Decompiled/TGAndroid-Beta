@@ -1,43 +1,43 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class i4a implements Runnable {
-    public final byte a;
-    public final int b;
-    public final int c;
-    public final boolean d;
-    public final boolean e;
-    public final jm7 f;
-    public final Object h;
-    public final Object n;
-    public final Object r;
+import android.content.Context;
+import android.text.TextUtils;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class i4a extends LinearLayout {
+    public final bia a;
+    public final TextView b;
+    public final TextView c;
 
-    public i4a(a6a a6aVar, int i, TLRPC.Message message, int i2, int i3, TLRPC.Message message2, k47 k47Var, int i4) {
-        this.a = (byte) 0;
-        this.f = a6aVar;
-        this.b = i;
-        this.h = message;
-        this.d = i2;
-        this.e = i3;
-        this.n = message2;
-        this.r = k47Var;
-        this.c = i4;
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.i4a.run():void");
-    }
-
-    public i4a(v9b v9bVar, z8b z8bVar, int i, int i2, g6b g6bVar, boolean z, boolean z2, Runnable runnable, byte b) {
-        this.a = b;
-        this.f = v9bVar;
-        this.h = z8bVar;
-        this.b = i;
-        this.c = i2;
-        this.n = g6bVar;
-        this.d = z;
-        this.e = z2;
-        this.r = runnable;
+    public i4a(Context context, wjb wjbVar) {
+        super(context);
+        setLayoutParams(new e49(-1, -2));
+        setOrientation(0);
+        setGravity(16);
+        int L = gl.L(14.0f);
+        int i = L / 2;
+        setPadding(L, i, L, i);
+        bia biaVar = new bia(context);
+        this.a = biaVar;
+        addView(biaVar, nme.c(40.0f, 40));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, nme.m(1.0f, 0, -1, 12, 0, 0));
+        TextView textView = new TextView(context);
+        this.b = textView;
+        int i2 = bkb.D8;
+        zkb.X(textView, i2, wjbVar);
+        textView.setTextSize(1, 16.0f);
+        textView.setTag(textView);
+        textView.setMaxLines(1);
+        linearLayout.addView(textView);
+        TextView textView2 = new TextView(context);
+        this.c = textView2;
+        zkb.Y(textView2, zkb.g(i2, 102), wjbVar);
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTag(textView2);
+        textView2.setMaxLines(1);
+        textView2.setEllipsize(TextUtils.TruncateAt.END);
+        linearLayout.addView(textView2);
     }
 }

@@ -1,64 +1,35 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.SQLite.SQLitePreparedStatement;
-public final class zc7 implements Runnable {
-    public final byte a;
-    public final cf7 b;
-    public final ArrayList c;
-    public final ArrayList d;
+import j$.util.Objects;
+public final class zc7 {
+    public long a;
+    public long b;
 
-    public zc7(cf7 cf7Var, ArrayList arrayList, ArrayList arrayList2, byte b) {
-        this.a = b;
-        this.b = cf7Var;
-        this.c = arrayList;
-        this.d = arrayList2;
+    public static zc7 a(long j, long j2) {
+        ?? obj = new Object();
+        obj.a = j;
+        obj.b = j2;
+        return obj;
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        ArrayList arrayList = this.d;
-        ArrayList arrayList2 = this.c;
-        cf7 cf7Var = this.b;
-        switch (b) {
-            case 0:
-                SQLitePreparedStatement sQLitePreparedStatement = null;
-                try {
-                    try {
-                        sQLitePreparedStatement = cf7Var.b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
-                        int size = arrayList2.size();
-                        for (int i = 0; i < size; i++) {
-                            sQLitePreparedStatement.requery();
-                            sQLitePreparedStatement.bindInteger(1, ((Integer) arrayList.get(i)).intValue());
-                            sQLitePreparedStatement.bindLong(2, ((Long) arrayList2.get(i)).longValue());
-                            sQLitePreparedStatement.step();
-                        }
-                        sQLitePreparedStatement.dispose();
-                        return;
-                    } catch (Exception e) {
-                        cf7Var.n(e, true);
-                        if (sQLitePreparedStatement != null) {
-                            sQLitePreparedStatement.dispose();
-                            return;
-                        }
-                        return;
-                    }
-                } catch (Throwable th) {
-                    if (sQLitePreparedStatement != null) {
-                        sQLitePreparedStatement.dispose();
-                    }
-                    throw th;
-                }
-            default:
-                if (!arrayList2.isEmpty()) {
-                    cf7Var.getMessagesController().d4(arrayList2, true);
-                }
-                if (!arrayList.isEmpty()) {
-                    cf7Var.getMessagesController().X3(arrayList, true);
-                    return;
-                }
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj != null && zc7.class == obj.getClass()) {
+            zc7 zc7Var = (zc7) obj;
+            if (this.a == zc7Var.a && this.b == zc7Var.b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Long.valueOf(this.a), Long.valueOf(this.b));
+    }
+
+    public final String toString() {
+        return "TopicKey{dialogId=" + this.a + ", topicId=" + this.b + '}';
     }
 }

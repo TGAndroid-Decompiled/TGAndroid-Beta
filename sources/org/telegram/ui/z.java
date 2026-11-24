@@ -21,10 +21,10 @@ public final class z extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        yv1 yv1Var = this.a.k4;
-        if (yv1Var != null) {
-            yv1Var.i6();
-            UndoView undoView = yv1Var.N3;
+        mu1 mu1Var = this.a.k4;
+        if (mu1Var != null) {
+            mu1Var.b6();
+            UndoView undoView = mu1Var.N3;
             if (undoView != null && undoView.getVisibility() == 0) {
                 canvas.save();
                 View view = (View) undoView.getParent();
@@ -55,13 +55,13 @@ public final class z extends FrameLayout {
                 photoViewer.R.e(false);
             }
             if (photoViewer.K0()) {
-                photoViewer.x(true);
+                photoViewer.z(true);
                 return false;
-            } else if (hx2.e().E) {
-                hx2.e().c();
+            } else if (xv2.e().E) {
+                xv2.e().c();
                 return false;
             } else {
-                PhotoViewer.r0().A(true, false);
+                PhotoViewer.r0().B(true, false);
                 return true;
             }
         }
@@ -139,7 +139,7 @@ public final class z extends FrameLayout {
             }
             CheckBox checkBox = photoViewer.O0;
             if (checkBox != null) {
-                checkBox.post(new q78(this, (byte) 11));
+                checkBox.post(new w88(this, (byte) 4));
             }
         }
         if (photoViewer.T5) {
@@ -153,12 +153,12 @@ public final class z extends FrameLayout {
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
         PhotoViewer photoViewer = this.a;
-        if (!photoViewer.s && gm.y) {
-            int i3 = gm.q.y;
+        if (!photoViewer.s && gl.y) {
+            int i3 = gl.q.y;
             if (size2 > i3) {
                 size2 = i3;
             }
-            size2 += gm.m;
+            size2 += gl.m;
         }
         setMeasuredDimension(size, size2);
         int i4 = size2 - photoViewer.t2.bottom;

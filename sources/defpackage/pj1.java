@@ -1,38 +1,23 @@
 package defpackage;
+public final class pj1 extends wj1 {
+    public final wj1 a;
+    public final wj1 b;
 
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class pj1 implements Runnable {
-    public final byte a;
-    public final ik1 b;
-    public final xza c;
-    public final TwoStepVerificationActivity d;
-
-    public pj1(ik1 ik1Var, xza xzaVar, TwoStepVerificationActivity twoStepVerificationActivity, byte b) {
-        this.a = b;
-        this.b = ik1Var;
-        this.c = xzaVar;
-        this.d = twoStepVerificationActivity;
+    public pj1(wj1 wj1Var, wj1 wj1Var2) {
+        this.a = wj1Var;
+        wj1Var2.getClass();
+        this.b = wj1Var2;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
-        xza xzaVar = this.c;
-        ik1 ik1Var = this.b;
-        switch (b) {
-            case 0:
-                ik1Var.A0.setLoading(false);
-                xzaVar.presentFragment(twoStepVerificationActivity);
-                return;
-            case 1:
-                ik1Var.G0.setLoading(false);
-                xzaVar.presentFragment(twoStepVerificationActivity);
-                return;
-            default:
-                ik1Var.G0.setLoading(false);
-                xzaVar.presentFragment(twoStepVerificationActivity);
-                return;
+    public final boolean b(char c) {
+        if (this.a.b(c) && this.b.b(c)) {
+            return true;
         }
+        return false;
+    }
+
+    public final String toString() {
+        return "CharMatcher.and(" + this.a + ", " + this.b + ")";
     }
 }

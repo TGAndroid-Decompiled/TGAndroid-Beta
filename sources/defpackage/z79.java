@@ -1,35 +1,28 @@
 package defpackage;
 
-import j$.util.Objects;
-import java.util.AbstractMap;
-public final class z79 extends mo5 {
-    public final a89 c;
+import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+public final class z79 extends it3 {
+    public final a89 F;
 
-    public z79(a89 a89Var) {
-        this.c = a89Var;
+    public z79(a89 a89Var, Context context, wjb wjbVar) {
+        super(context, "", true, false, 1024, wjbVar);
+        this.F = a89Var;
     }
 
     @Override
-    public final Object get(int i) {
-        a89 a89Var = this.c;
-        jte.j(i, a89Var.h);
-        Object[] objArr = a89Var.e;
-        int i2 = i << 1;
-        boolean z = a89Var.f;
-        Object obj = objArr[i2 + (z ? 1 : 0)];
-        Objects.requireNonNull(obj);
-        Object obj2 = objArr[i2 + (!z ? 1 : 0)];
-        Objects.requireNonNull(obj2);
-        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
-    }
-
-    @Override
-    public final boolean m() {
-        return true;
-    }
-
-    @Override
-    public final int size() {
-        return this.c.h;
+    public final void b(Editable editable) {
+        boolean z;
+        a89 a89Var = this.F;
+        u41 u41Var = a89Var.s;
+        if (u41Var != null) {
+            if (!a89Var.d.optional && TextUtils.isEmpty(a89Var.n.getText())) {
+                z = false;
+            } else {
+                z = true;
+            }
+            u41Var.setEnabled(z);
+        }
     }
 }

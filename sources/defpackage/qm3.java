@@ -1,158 +1,86 @@
 package defpackage;
 
-import android.opengl.GLES20;
-import android.opengl.GLSurfaceView;
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-public final class qm3 implements GLSurfaceView.Renderer {
-    public long a;
-    public boolean b;
-    public int c;
-    public final sm3 d;
+import android.content.Context;
+import android.icu.util.ULocale;
+import android.os.Build;
+import android.provider.Settings;
+import android.text.TextUtils;
+import android.view.inputmethod.InputMethodInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.view.inputmethod.InputMethodSubtype;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+public abstract class qm3 {
+    public static final HashMap a = new HashMap();
 
-    public qm3(sm3 sm3Var) {
-        this.d = sm3Var;
+    public static void a(LinkedHashMap linkedHashMap, Locale locale) {
+        if (locale != null) {
+            String language = locale.getLanguage();
+            if (!TextUtils.isEmpty(language) && !"und".equals(language) && !linkedHashMap.containsKey(language)) {
+                String country = locale.getCountry();
+                if (TextUtils.isEmpty(country) && Build.VERSION.SDK_INT >= 24) {
+                    country = ULocale.addLikelySubtags(z2.a(language)).getCountry();
+                }
+                if (country == null) {
+                    country = "";
+                }
+                linkedHashMap.put(language, new Locale(language, country).toLanguageTag());
+            }
+        }
     }
 
-    @Override
-    public final void onDrawFrame(GL10 gl10) {
-        float min;
-        if (this.d.r) {
-            GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-            GLES20.glClear(16384);
-        } else if (!this.d.y) {
-            GLES20.glBindFramebuffer(36160, 0);
-            GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-            GLES20.glClear(16384);
-            if (!this.d.E) {
-                this.d.E = true;
-                final int i = this.d.F;
-                this.d.post(new Runnable(this) {
-                    public final qm3 b;
-
-                    {
-                        this.b = this;
-                    }
-
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                qm3 qm3Var = this.b;
-                                qm3Var.d.d(i);
-                                return;
-                            default:
-                                qm3 qm3Var2 = this.b;
-                                int i2 = i;
-                                sm3 sm3Var = qm3Var2.d;
-                                if (sm3Var.e && !sm3Var.r && i2 == qm3Var2.d.H) {
-                                    sm3 sm3Var2 = qm3Var2.d;
-                                    sm3Var2.s = true;
-                                    Runnable runnable = sm3Var2.w;
-                                    sm3Var2.w = null;
-                                    if (runnable != null) {
-                                        runnable.run();
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
+    public static void b(LinkedHashMap linkedHashMap, Context context) {
+        try {
+            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService("input_method");
+            if (inputMethodManager != null) {
+                a(linkedHashMap, d(inputMethodManager.getCurrentInputMethodSubtype()));
+                String string = Settings.Secure.getString(context.getContentResolver(), "default_input_method");
+                for (InputMethodInfo inputMethodInfo : inputMethodManager.getEnabledInputMethodList()) {
+                    if (TextUtils.equals(inputMethodInfo.getId(), string)) {
+                        for (InputMethodSubtype inputMethodSubtype : inputMethodManager.getEnabledInputMethodSubtypeList(inputMethodInfo, true)) {
+                            a(linkedHashMap, d(inputMethodSubtype));
                         }
                     }
-                });
+                }
             }
+        } catch (Exception e) {
+            fa4.g(e, true);
+        }
+    }
+
+    public static ArrayList c(Context context, long j) {
+        ArrayList arrayList = (ArrayList) a.get(Long.valueOf(j));
+        if (arrayList != null && !arrayList.isEmpty()) {
+            return new ArrayList(arrayList);
+        }
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        b(linkedHashMap, context);
+        return new ArrayList(linkedHashMap.values());
+    }
+
+    public static Locale d(InputMethodSubtype inputMethodSubtype) {
+        String str;
+        if (inputMethodSubtype == null || !"keyboard".equals(inputMethodSubtype.getMode())) {
+            return null;
+        }
+        if (Build.VERSION.SDK_INT >= 24) {
+            str = inputMethodSubtype.getLanguageTag();
         } else {
-            try {
-                long nanoTime = System.nanoTime();
-                vs4 vs4Var = this.d.a;
-                long j = this.a;
-                if (j == 0) {
-                    min = 0.016666668f;
-                } else {
-                    min = Math.min(0.1f, ((float) (nanoTime - j)) / 1.0E9f);
-                }
-                vs4Var.G = min;
-                this.a = nanoTime;
-                sm3 sm3Var = this.d;
-                sm3Var.a.c.A = sm3Var.x;
-                this.d.a.onDrawFrame(gl10);
-                int glGetError = GLES20.glGetError();
-                if (glGetError == 0) {
-                    if (!this.b) {
-                        this.b = true;
-                        final int i2 = this.c;
-                        this.d.post(new Runnable(this) {
-                            public final qm3 b;
-
-                            {
-                                this.b = this;
-                            }
-
-                            @Override
-                            public final void run() {
-                                switch (r3) {
-                                    case 0:
-                                        qm3 qm3Var = this.b;
-                                        qm3Var.d.d(i2);
-                                        return;
-                                    default:
-                                        qm3 qm3Var2 = this.b;
-                                        int i22 = i2;
-                                        sm3 sm3Var2 = qm3Var2.d;
-                                        if (sm3Var2.e && !sm3Var2.r && i22 == qm3Var2.d.H) {
-                                            sm3 sm3Var22 = qm3Var2.d;
-                                            sm3Var22.s = true;
-                                            Runnable runnable = sm3Var22.w;
-                                            sm3Var22.w = null;
-                                            if (runnable != null) {
-                                                runnable.run();
-                                                return;
-                                            }
-                                            return;
-                                        }
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    }
-                    return;
-                }
-                throw new IllegalStateException("Diamond GL error: " + glGetError);
-            } catch (RuntimeException e) {
-                fc4.g(e, true);
-                this.d.r = true;
-                this.d.post(new bi3(this, (byte) 12));
+            str = null;
+        }
+        if (TextUtils.isEmpty(str)) {
+            String locale = inputMethodSubtype.getLocale();
+            if (locale == null) {
+                str = null;
+            } else {
+                str = locale.replace('_', '-');
             }
         }
-    }
-
-    @Override
-    public final void onSurfaceChanged(GL10 gl10, int i, int i2) {
-        this.b = false;
-        this.c = this.d.H;
-        if (!this.d.r) {
-            this.d.a.onSurfaceChanged(gl10, i, i2);
+        if (TextUtils.isEmpty(str)) {
+            return null;
         }
-    }
-
-    @Override
-    public final void onSurfaceCreated(GL10 gl10, EGLConfig eGLConfig) {
-        sm3 sm3Var = this.d;
-        int i = sm3Var.H + 1;
-        sm3Var.H = i;
-        this.c = i;
-        this.b = false;
-        this.a = 0L;
-        this.d.r = false;
-        vs4 vs4Var = this.d.a;
-        vs4Var.c = null;
-        try {
-            vs4Var.onSurfaceCreated(gl10, eGLConfig);
-        } catch (RuntimeException e) {
-            fc4.g(e, true);
-            this.d.r = true;
-            this.d.post(new bi3(this, (byte) 12));
-        }
+        return Locale.forLanguageTag(str);
     }
 }

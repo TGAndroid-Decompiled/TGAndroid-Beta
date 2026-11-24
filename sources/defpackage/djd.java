@@ -1,18 +1,8 @@
 package defpackage;
+public interface djd {
+    public static final int D = 0;
 
-import android.os.Build;
-import android.util.Log;
-import j$.util.Objects;
-public final class djd extends ClassLoader {
-    @Override
-    public final Class loadClass(String str, boolean z) {
-        if (Objects.equals(str, "com.google.android.gms.iid.MessengerCompat")) {
-            if (Log.isLoggable("CloudMessengerCompat", 3) || (Build.VERSION.SDK_INT == 23 && Log.isLoggable("CloudMessengerCompat", 3))) {
-                Log.d("CloudMessengerCompat", "Using renamed FirebaseIidMessengerCompat class");
-                return kpd.class;
-            }
-            return kpd.class;
-        }
-        return super.loadClass(str, z);
+    static {
+        qid.c(3, new Object[]{"com.android.vending.billing.PURCHASES_UPDATED", dke.PURCHASES_UPDATED_ACTION, "com.android.vending.billing.LOCAL_BROADCAST_PURCHASES_UPDATED", dke.LOCAL_PURCHASES_UPDATED_ACTION, "com.android.vending.billing.ALTERNATIVE_BILLING", dke.ALTERNATIVE_BILLING_ACTION}, null);
     }
 }

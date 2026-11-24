@@ -1,60 +1,36 @@
 package defpackage;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.RunnableFuture;
-import java.util.concurrent.locks.LockSupport;
-public final class fff extends wdf implements RunnableFuture {
-    public volatile h4c n;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class fff extends b4 {
+    public static final Parcelable.Creator<fff> CREATOR = new c0f((byte) 27);
+    public final int a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final long e;
 
-    public fff(Callable callable) {
-        this.n = new h4c(this, callable);
+    public fff(int i, int i2, int i3, long j, int i4) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+        this.d = i4;
+        this.e = j;
     }
 
     @Override
-    public final String a() {
-        h4c h4cVar = this.n;
-        if (h4cVar != null) {
-            return kt6.o("task=[", h4cVar.toString(), "]");
-        }
-        return super.a();
-    }
-
-    @Override
-    public final void d() {
-        h4c h4cVar;
-        Object obj = this.a;
-        if ((obj instanceof odf) && ((odf) obj).a && (h4cVar = this.n) != null) {
-            sw swVar = h4c.h;
-            sw swVar2 = h4c.f;
-            Runnable runnable = (Runnable) h4cVar.get();
-            if (runnable instanceof Thread) {
-                kef kefVar = new kef(h4cVar);
-                kef.a(kefVar, Thread.currentThread());
-                if (h4cVar.compareAndSet(runnable, kefVar)) {
-                    try {
-                        Thread thread = (Thread) runnable;
-                        thread.interrupt();
-                        if (((Runnable) h4cVar.getAndSet(swVar2)) == swVar) {
-                            LockSupport.unpark(thread);
-                        }
-                    } catch (Throwable th) {
-                        if (((Runnable) h4cVar.getAndSet(swVar2)) == swVar) {
-                            LockSupport.unpark((Thread) runnable);
-                        }
-                        throw th;
-                    }
-                }
-            }
-        }
-        this.n = null;
-    }
-
-    @Override
-    public final void run() {
-        h4c h4cVar = this.n;
-        if (h4cVar != null) {
-            h4cVar.run();
-        }
-        this.n = null;
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 1, 4);
+        parcel.writeInt(this.a);
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(this.b);
+        jte.q(parcel, 3, 4);
+        parcel.writeInt(this.c);
+        jte.q(parcel, 4, 4);
+        parcel.writeInt(this.d);
+        jte.q(parcel, 5, 8);
+        parcel.writeLong(this.e);
+        jte.s(parcel, r);
     }
 }

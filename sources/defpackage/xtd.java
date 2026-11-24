@@ -1,17 +1,10 @@
 package defpackage;
-public final class xtd implements cq7 {
-    public static final xtd a = new Object();
-
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)), 9)), 10)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+public abstract class xtd {
+    public static final oh2 a(w4a w4aVar) {
+        w4aVar.getClass();
+        if (w4aVar instanceof x4a) {
+            return a(((x4a) w4aVar).a);
         }
-        throw new ClassCastException();
+        return null;
     }
 }

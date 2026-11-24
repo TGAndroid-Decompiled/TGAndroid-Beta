@@ -1,20 +1,28 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class no9 implements vp9 {
-    public final oo9 a;
-
-    public no9(oo9 oo9Var) {
-        this.a = oo9Var;
-    }
+import android.os.Parcel;
+import android.os.ParcelFileDescriptor;
+import android.os.Parcelable;
+import com.google.android.gms.common.data.DataHolder;
+public final class no9 extends b4 {
+    public static final Parcelable.Creator<no9> CREATOR = new rhe((byte) 8);
+    public String a;
+    public DataHolder b;
+    public ParcelFileDescriptor c;
+    public long d;
+    public byte[] e;
 
     @Override
-    public final void onRejoinRequested() {
-        gm.c3(new kf9(this, (byte) 11));
-    }
-
-    @Override
-    public final void onStreamChannels(ArrayList arrayList) {
-        gm.c3(new il9(this, arrayList, (byte) 9));
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.l(parcel, 2, this.a);
+        jte.k(parcel, 3, this.b, i);
+        jte.k(parcel, 4, this.c, i);
+        long j = this.d;
+        jte.q(parcel, 5, 8);
+        parcel.writeLong(j);
+        jte.c(parcel, 6, this.e);
+        jte.s(parcel, r);
+        this.c = null;
     }
 }

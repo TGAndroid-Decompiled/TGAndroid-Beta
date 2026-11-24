@@ -1,37 +1,37 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class k85 extends m8 {
-    public final g95 o;
+import android.animation.ValueAnimator;
+public final class k85 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final o85 b;
 
-    public k85(g95 g95Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.o = g95Var;
+    public k85(o85 o85Var, byte b) {
+        this.a = b;
+        this.b = o85Var;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        g95 g95Var = this.o;
-        if (g95Var.U4 != this) {
-            return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        o85 o85Var = this.b;
+        switch (b) {
+            case 0:
+                o85Var.s.x = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o85Var.i();
+                m85 m85Var = o85Var.a;
+                if (m85Var.getParent() != null) {
+                    o85Var.n.updateViewLayout(m85Var, o85Var.s);
+                    return;
+                }
+                return;
+            default:
+                o85Var.s.y = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m85 m85Var2 = o85Var.a;
+                if (m85Var2.getParent() != null) {
+                    o85Var.n.updateViewLayout(m85Var2, o85Var.s);
+                    return;
+                }
+                return;
         }
-        g95Var.U4 = null;
-        AnimatorSet animatorSet = g95Var.T4;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            g95Var.T4 = null;
-        }
-        g95Var.R1.X = true;
-        g95Var.T4 = new AnimatorSet();
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(ObjectAnimator.ofInt(g95Var.L4, so.b, 0));
-        g95Var.T4.playTogether(arrayList);
-        g95Var.T4.setDuration(220L);
-        g95Var.T4.addListener(new kh2(this, (byte) 29));
-        g95Var.T4.start();
     }
 }

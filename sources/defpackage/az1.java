@@ -1,193 +1,180 @@
 package defpackage;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.RectF;
+import android.text.TextPaint;
+import android.util.Log;
+import android.util.LongSparseArray;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.c;
-import org.telegram.ui.LaunchActivity;
-public final class az1 implements Runnable {
-    public final byte a;
-    public final int b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
-    public final Object h;
-    public final Object n;
-    public final Object r;
-    public final Object s;
+public final class az1 extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
+    public static final RectF I = new RectF();
+    public final yy1 E;
+    public ViewTreeObserver F;
+    public boolean G;
+    public TextPaint H;
+    public final boolean a;
+    public final RectF b;
+    public final RectF c;
+    public long d;
+    public int e;
+    public ViewGroup f;
+    public jq1 h;
+    public long n;
+    public yy1 r;
+    public long s;
+    public final ArrayList w;
+    public final LongSparseArray x;
+    public final LongSparseArray y;
 
-    public az1(wg6 wg6Var, TLObject tLObject, TLRPC.TL_error tL_error, in8 in8Var, int i, ln8 ln8Var, TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, String str, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
-        this.a = (byte) 3;
-        this.c = wg6Var;
-        this.d = tLObject;
-        this.e = tL_error;
-        this.f = in8Var;
-        this.b = i;
-        this.h = ln8Var;
-        this.n = tL_inputStorePaymentAuthCode;
-        this.r = str;
-        this.s = tL_payments_canPurchaseStore;
+    public az1(Context context) {
+        super(context);
+        this.b = new RectF();
+        this.c = new RectF();
+        this.w = new ArrayList();
+        this.x = new LongSparseArray();
+        this.y = new LongSparseArray();
+        this.E = new yy1(this, (byte) 1);
+        this.a = gba.c1;
     }
 
-    @Override
-    public final void run() {
-        String H;
-        byte b = this.a;
-        int i = this.b;
-        Object obj = this.s;
-        Object obj2 = this.r;
-        Object obj3 = this.n;
-        Object obj4 = this.h;
-        Object obj5 = this.f;
-        Object obj6 = this.e;
-        Object obj7 = this.d;
-        Object obj8 = this.c;
-        switch (b) {
-            case 0:
-                c cVar = (c) obj8;
-                FrameLayout frameLayout = (FrameLayout) obj6;
-                View view = (View) obj5;
-                RectF rectF = (RectF) obj4;
-                cVar.getClass();
-                int[] iArr = new int[2];
-                int[] iArr2 = new int[2];
-                ((ykc) obj7).getLocationInWindow(iArr);
-                frameLayout.getLocationInWindow(iArr2);
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-                layoutParams.leftMargin = Math.round((rectF.left + iArr[0]) - iArr2[0]);
-                layoutParams.topMargin = Math.round((rectF.top + iArr[1]) - iArr2[1]);
-                view.setLayoutParams(layoutParams);
-                view.post(new bz1(cVar, view, frameLayout, layoutParams, (ArrayList) obj3, (ArrayList) obj2, this.b, (zkc) obj));
-                return;
-            case 1:
-                LaunchActivity launchActivity = (LaunchActivity) obj8;
-                TLObject tLObject = (TLObject) obj7;
-                int[] iArr3 = (int[]) obj6;
-                k16 k16Var = (k16) obj5;
-                Integer num = (Integer) obj4;
-                Integer num2 = (Integer) obj3;
-                Long l = (Long) obj2;
-                Integer num3 = (Integer) obj;
-                String str = LaunchActivity.C1;
-                if (tLObject instanceof TLRPC.TL_messages_chats) {
-                    TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject;
-                    if (!tL_messages_chats.chats.isEmpty()) {
-                        oc7.r1(launchActivity.P).X3(tL_messages_chats.chats, false);
-                        iArr3[0] = launchActivity.z0(this.b, k16Var, num, num2, l, num3, null, tL_messages_chats.chats.get(0), null, null, 0, -1);
-                        return;
-                    }
-                }
-                try {
-                    k16Var.run();
-                } catch (Exception e) {
-                    fc4.g(e, true);
-                }
-                launchActivity.F0(ik.E(launchActivity, jb6.M0(2131751391, null), jb6.M0(2131748652, null)));
-                return;
-            case 2:
-                LaunchActivity launchActivity2 = (LaunchActivity) obj8;
-                k16 k16Var2 = (k16) obj7;
-                TLObject tLObject2 = (TLObject) obj6;
-                TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) obj5;
-                TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj4;
-                String str2 = (String) obj3;
-                String str3 = (String) obj2;
-                String str4 = (String) obj;
-                String str5 = LaunchActivity.C1;
-                try {
-                    k16Var2.run();
-                } catch (Exception e2) {
-                    fc4.g(e2, true);
-                }
-                if (tLObject2 != null) {
-                    oc7.r1(i).d4(authorizationform.users, false);
-                    launchActivity2.t0(new xz7(5, getauthorizationform.bot_id, getauthorizationform.scope, getauthorizationform.public_key, str2, str3, str4, authorizationform, (TL_account.Password) tLObject2));
-                    return;
-                }
-                return;
-            case 3:
-                wg6 wg6Var = (wg6) obj8;
-                TLObject tLObject3 = (TLObject) obj7;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj6;
-                in8 in8Var = (in8) obj5;
-                ln8 ln8Var = (ln8) obj4;
-                TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = (TLRPC.TL_inputStorePaymentAuthCode) obj3;
-                String str6 = (String) obj2;
-                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
-                mh6 mh6Var = wg6Var.w;
-                b61 b61Var = wg6Var.b;
-                fc4.b("LoginBilling canPurchaseStore returned " + tLObject3 + " " + tL_error);
-                if (tLObject3 instanceof TLRPC.TL_boolTrue) {
-                    b61Var.i(jb6.a0(null, null, 2131745701, in8Var.a), false, true);
-                    if (i == 7) {
-                        H = jb6.M0(2131745705, null);
-                    } else {
-                        H = jb6.H(',', "SMSFeePurchaseTextDays", i);
-                    }
-                    b61Var.g(H, false);
-                    b61Var.setLoading(false);
-                    b61Var.setOnClickListener(new oh(wg6Var, ln8Var, tL_inputStorePaymentAuthCode, str6, tL_payments_canPurchaseStore, (byte) 9));
-                    return;
-                } else if (tLObject3 instanceof TLRPC.TL_boolFalse) {
-                    wg6Var.e = "RESPONSE_FALSE";
-                    new c41(mh6Var.a0, null).H(2131624012, jb6.a0(null, null, 2131743565, "RESPONSE_FALSE"));
-                    return;
-                } else if (tL_error != null) {
-                    wg6Var.e = tL_error.text;
-                    new c41(mh6Var.a0, null).g0(tL_error, false);
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                jva jvaVar = (jva) obj8;
-                ((boolean[]) obj7)[0] = true;
-                jvaVar.X((k47) obj6, (TLRPC.InputInvoice) obj5, (TLRPC.TL_payments_paymentFormStars) obj4, new pta(jvaVar, (boolean[]) obj3, this.b, (qac) obj2, (qac) obj));
-                return;
+    public final void a() {
+        yy1 yy1Var = this.r;
+        if (yy1Var != null) {
+            gl.r(yy1Var);
+            this.r = null;
+        }
+        ArrayList arrayList = this.w;
+        if (!arrayList.isEmpty()) {
+            TLRPC.TL_messages_reportReadMetrics tL_messages_reportReadMetrics = new TLRPC.TL_messages_reportReadMetrics();
+            tL_messages_reportReadMetrics.peer = na7.q1(this.e).h1(this.d);
+            tL_messages_reportReadMetrics.metrics = new ArrayList<>(arrayList);
+            ConnectionsManager.getInstance(this.e).sendRequestTyped(tL_messages_reportReadMetrics, null, new np0((byte) 0));
+            arrayList.clear();
         }
     }
 
-    public az1(jva jvaVar, boolean[] zArr, k47 k47Var, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, boolean[] zArr2, int i, qac qacVar, qac qacVar2) {
-        this.a = (byte) 4;
-        this.c = jvaVar;
-        this.d = zArr;
-        this.e = k47Var;
-        this.f = inputInvoice;
-        this.h = tL_payments_paymentFormStars;
-        this.n = zArr2;
-        this.b = i;
-        this.r = qacVar;
-        this.s = qacVar2;
+    public final void b(int i, long j, ViewGroup viewGroup, jq1 jq1Var) {
+        this.d = j;
+        this.e = i;
+        this.f = viewGroup;
+        this.h = jq1Var;
     }
 
-    public az1(c cVar, ykc ykcVar, FrameLayout frameLayout, View view, RectF rectF, ArrayList arrayList, ArrayList arrayList2, int i, zkc zkcVar) {
-        this.a = (byte) 0;
-        this.c = cVar;
-        this.d = ykcVar;
-        this.e = frameLayout;
-        this.f = view;
-        this.h = rectF;
-        this.n = arrayList;
-        this.r = arrayList2;
-        this.b = i;
-        this.s = zkcVar;
+    public final void c() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.az1.c():void");
     }
 
-    public az1(LaunchActivity launchActivity, Object obj, Object obj2, int i, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, byte b) {
-        this.a = b;
-        this.c = launchActivity;
-        this.d = obj;
-        this.e = obj2;
-        this.b = i;
-        this.f = obj3;
-        this.h = obj4;
-        this.n = obj5;
-        this.r = obj6;
-        this.s = obj7;
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.s = 0L;
+        ViewTreeObserver viewTreeObserver = getViewTreeObserver();
+        this.F = viewTreeObserver;
+        viewTreeObserver.addOnPreDrawListener(this);
+        this.F.addOnGlobalLayoutListener(this);
+        this.F.addOnScrollChangedListener(this);
+        gl.d3(this.E, 400L);
+        if (w01.a) {
+            Log.d("ViewMetrics", "attach");
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        ViewTreeObserver viewTreeObserver = this.F;
+        if (viewTreeObserver != null && viewTreeObserver.isAlive()) {
+            this.F.removeOnPreDrawListener(this);
+            this.F.removeOnGlobalLayoutListener(this);
+            this.F.removeOnScrollChangedListener(this);
+        }
+        this.F = null;
+        this.s = 0L;
+        gl.r(this.E);
+        if (w01.a) {
+            Log.d("ViewMetrics", "detach");
+        }
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int round;
+        if (this.a) {
+            if (this.H == null) {
+                TextPaint textPaint = new TextPaint(1);
+                this.H = textPaint;
+                textPaint.setColor(-16776961);
+                this.H.setTextSize(gl.L(10.0f));
+            }
+            super.onDraw(canvas);
+            Paint paint = bkb.Im;
+            RectF rectF = this.c;
+            canvas.drawRect(rectF, paint);
+            LongSparseArray longSparseArray = this.x;
+            int size = longSparseArray.size();
+            for (int i = 0; i < size; i++) {
+                zy1 zy1Var = (zy1) longSparseArray.valueAt(i);
+                RectF rectF2 = zy1Var.c;
+                canvas.drawRect(rectF2, bkb.Jm);
+                canvas.save();
+                canvas.translate(rectF2.left, moe.a(moe.a(rectF2.centerY() - gl.L(20.0f), rectF.top - gl.L(40.0f), rectF.bottom), rectF2.top, rectF2.bottom - gl.L(40.0f)));
+                canvas.drawRect(0.0f, 0.0f, rectF2.width(), gl.L(40.0f), bkb.Hm);
+                canvas.translate(gl.L(10.0f), gl.L(16.0f));
+                canvas.save();
+                canvas.drawText("time_in_view_ms: " + zy1Var.g, 0.0f, 0.0f, this.H);
+                canvas.translate(0.0f, (float) gl.L(16.0f));
+                canvas.drawText("active_time_in_view_ms: " + zy1Var.h, 0.0f, 0.0f, this.H);
+                canvas.restore();
+                canvas.save();
+                canvas.translate(getWidth() / 2.0f, 0.0f);
+                StringBuilder sb = new StringBuilder("height_to_viewport_ratio_permille: ");
+                float f = zy1Var.k;
+                if (f == 0.0f) {
+                    round = 1000;
+                } else {
+                    round = Math.round((zy1Var.j / f) * 1000.0f);
+                }
+                sb.append(round);
+                canvas.drawText(sb.toString(), 0.0f, 0.0f, this.H);
+                canvas.translate(0.0f, gl.L(16.0f));
+                canvas.drawText("seen_range_ratio_permille: " + zy1Var.b(), 0.0f, 0.0f, this.H);
+                canvas.restore();
+                canvas.restore();
+            }
+        }
+    }
+
+    @Override
+    public final void onGlobalLayout() {
+        this.G = true;
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        RectF rectF = this.b;
+        this.c.set(rectF.left, rectF.top, getMeasuredWidth() - rectF.right, getMeasuredHeight() - rectF.bottom);
+    }
+
+    @Override
+    public final boolean onPreDraw() {
+        if (this.G) {
+            c();
+            this.G = false;
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onScrollChanged() {
+        this.G = true;
     }
 }

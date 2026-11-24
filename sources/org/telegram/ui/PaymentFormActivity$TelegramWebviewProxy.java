@@ -10,6 +10,6 @@ class PaymentFormActivity$TelegramWebviewProxy {
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
-        gm.c3(new h(this, str, str2, (byte) 1));
+        gl.c3(new h(this, str, str2, (byte) 1));
     }
 }

@@ -1,8 +1,17 @@
 package defpackage;
-public abstract class xid {
-    public static final int a = 0;
+public final class xid implements zn7 {
+    public static final xid a = new Object();
 
     static {
-        xid.class.getClassLoader();
+        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

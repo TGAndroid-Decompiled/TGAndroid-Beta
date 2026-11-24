@@ -1,4 +1,3 @@
 package defpackage;
-public interface kpb {
-    void run();
+public abstract class kpb {
 }

@@ -1,7 +1,7 @@
 package org.telegram.utils.twidget;
 
 import android.os.SystemClock;
-public final class s implements yxc {
+public final class s implements xvc {
     public final byte a;
     public final w b;
     public final byte[] c;
@@ -32,11 +32,11 @@ public final class s implements yxc {
                             wVar.f = min - 1.0d;
                             wVar.b.signal(i, b);
                         } else {
-                            dq9.m("Widget engine: too many signals");
+                            sc8.j("Widget engine: too many signals");
                         }
                     }
                 } else {
-                    u36.j("Signal too long");
+                    w26.j("Signal too long");
                 }
                 return null;
             default:
@@ -46,7 +46,7 @@ public final class s implements yxc {
                 if (bArr2 != null && bArr2.length <= 262144) {
                     return Float.valueOf(wVar2.b.textWidth(i2, bArr2));
                 }
-                u36.j("Text too long");
+                w26.j("Text too long");
                 return null;
         }
     }

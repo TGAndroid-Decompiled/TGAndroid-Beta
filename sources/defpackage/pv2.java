@@ -1,62 +1,65 @@
 package defpackage;
 
+import android.view.View;
 import java.util.ArrayList;
-import java.util.HashMap;
-public final class pv2 implements Runnable {
-    public final byte a;
-    public final bw2 b;
-    public final HashMap c;
-    public final ArrayList d;
-    public final HashMap e;
+import org.telegram.tgnet.TLRPC;
+public final class pv2 implements View.OnClickListener {
+    public final ArrayList a;
+    public final boolean b;
+    public final tv2 c;
 
-    public pv2(bw2 bw2Var, ArrayList arrayList, HashMap hashMap, HashMap hashMap2) {
-        this.a = (byte) 4;
-        this.b = bw2Var;
-        this.d = arrayList;
-        this.c = hashMap;
-        this.e = hashMap2;
+    public pv2(tv2 tv2Var, ArrayList arrayList, boolean z) {
+        this.c = tv2Var;
+        this.a = arrayList;
+        this.b = z;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        HashMap hashMap = this.e;
-        HashMap hashMap2 = this.c;
-        ArrayList arrayList = this.d;
-        bw2 bw2Var = this.b;
-        switch (b) {
-            case 0:
-                bw2Var.E(hashMap2, arrayList, hashMap, true);
-                bw2Var.N();
-                bw2Var.getNotificationCenter().k(25, new Object[0]);
-                bw2Var.getNotificationCenter().k(26, new Object[0]);
-                return;
-            case 1:
-                bw2Var.E(hashMap2, arrayList, hashMap, true);
-                bw2Var.N();
-                bw2Var.getNotificationCenter().k(25, new Object[0]);
-                bw2Var.getNotificationCenter().k(26, new Object[0]);
-                return;
-            case 2:
-                bw2Var.E(hashMap2, arrayList, hashMap, true);
-                return;
-            case 3:
-                bw2Var.E(hashMap2, arrayList, hashMap, true);
-                bw2Var.getNotificationCenter().k(26, new Object[0]);
-                return;
-            default:
-                bw2Var.d0 = arrayList;
-                bw2Var.e0 = hashMap2;
-                bw2Var.c0 = hashMap;
-                return;
+    public final void onClick(View view) {
+        xv2 xv2Var = this.c.a;
+        if (xv2Var.w != null) {
+            int intValue = ((Integer) view.getTag()).intValue();
+            ArrayList arrayList = this.a;
+            if (((Integer) arrayList.get(intValue)).intValue() != 0 && ((Integer) arrayList.get(intValue)).intValue() != 6) {
+                if (((Integer) arrayList.get(intValue)).intValue() == 1) {
+                    vv2 vv2Var = xv2Var.l;
+                    if (vv2Var != null) {
+                        vv2Var.O(xv2Var.a0, xv2Var.i);
+                    }
+                } else if (((Integer) arrayList.get(intValue)).intValue() == 2) {
+                    hq6.d0(xv2Var.r).d(2, xv2Var.b0, xv2Var.W, (int) (System.currentTimeMillis() / 1000), this.b);
+                } else if (((Integer) arrayList.get(intValue)).intValue() == 3) {
+                    TLRPC.Document document = xv2Var.W;
+                    Object obj = xv2Var.b0;
+                    String str = xv2Var.Y;
+                    vv2 vv2Var2 = xv2Var.l;
+                    if (vv2Var2 == null) {
+                        return;
+                    }
+                    ij.I(xv2Var.w, vv2Var2.a(), new lt((Object) vv2Var2, (Object) document, obj, str, (byte) 8));
+                } else if (((Integer) arrayList.get(intValue)).intValue() == 4) {
+                    hq6.d0(xv2Var.r).d(0, xv2Var.b0, xv2Var.W, (int) (System.currentTimeMillis() / 1000), true);
+                } else if (((Integer) arrayList.get(intValue)).intValue() == 5) {
+                    xv2Var.l.I(xv2Var.X);
+                } else if (((Integer) arrayList.get(intValue)).intValue() == 7) {
+                    xv2Var.l.m(xv2Var.W);
+                } else if (((Integer) arrayList.get(intValue)).intValue() == 8) {
+                    xv2Var.l.B(xv2Var.W);
+                }
+            } else {
+                vv2 vv2Var3 = xv2Var.l;
+                if (vv2Var3 != null) {
+                    TLRPC.Document document2 = xv2Var.W;
+                    String str2 = xv2Var.Y;
+                    boolean z = true;
+                    Object obj2 = xv2Var.b0;
+                    if (((Integer) arrayList.get(intValue)).intValue() != 0) {
+                        z = false;
+                    }
+                    vv2Var3.k(document2, str2, obj2, z, 0, 0);
+                }
+            }
+            xv2Var.d();
         }
-    }
-
-    public pv2(bw2 bw2Var, HashMap hashMap, ArrayList arrayList, HashMap hashMap2, byte b) {
-        this.a = b;
-        this.b = bw2Var;
-        this.c = hashMap;
-        this.d = arrayList;
-        this.e = hashMap2;
     }
 }

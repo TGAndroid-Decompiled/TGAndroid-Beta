@@ -1,120 +1,97 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.res.AssetManager;
-import android.net.Uri;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-public final class ly extends qg0 {
-    public final AssetManager a;
-    public Uri b;
-    public InputStream c;
-    public long d;
-    public boolean e;
+import android.os.Bundle;
+import android.view.View;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public final class ly implements View.OnClickListener {
+    public final byte a;
+    public final long b;
+    public final Object c;
 
-    public ly(Context context) {
-        super(false);
-        this.a = context.getAssets();
+    public ly(Object obj, long j, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = j;
     }
 
     @Override
-    public final void close() {
-        this.b = null;
-        try {
-            try {
-                InputStream inputStream = this.c;
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-            } catch (IOException e) {
-                throw new d83(e, 2000);
-            }
-        } finally {
-            this.c = null;
-            if (this.e) {
-                this.e = false;
-                transferEnded();
-            }
-        }
-    }
-
-    @Override
-    public final Uri getUri() {
-        return this.b;
-    }
-
-    @Override
-    public final long open(g83 g83Var) {
-        int i;
-        try {
-            Uri uri = g83Var.a;
-            long j = g83Var.e;
-            this.b = uri;
-            String path = uri.getPath();
-            path.getClass();
-            if (path.startsWith("/android_asset/")) {
-                path = path.substring(15);
-            } else if (path.startsWith("/")) {
-                path = path.substring(1);
-            }
-            transferInitializing(g83Var);
-            InputStream open = this.a.open(path, 1);
-            this.c = open;
-            if (open.skip(j) >= j) {
-                long j2 = g83Var.f;
-                if (j2 != -1) {
-                    this.d = j2;
-                } else {
-                    long available = this.c.available();
-                    this.d = available;
-                    if (available == 2147483647L) {
-                        this.d = -1L;
+    public final void onClick(View view) {
+        byte b = this.a;
+        long j = this.b;
+        Object obj = this.c;
+        switch (b) {
+            case 0:
+                ty tyVar = (ty) obj;
+                d S = LaunchActivity.S();
+                if (S != null) {
+                    if (!l7c.C(j)) {
+                        Bundle bundle = new Bundle();
+                        if (j > 0) {
+                            bundle.putLong("user_id", j);
+                            if (j == y6c.h(tyVar.a).e()) {
+                                bundle.putBoolean("my_profile", true);
+                            }
+                        } else {
+                            bundle.putLong("chat_id", -j);
+                        }
+                        bundle.putBoolean("open_gifts", true);
+                        S.presentFragment(new ProfileActivity(bundle, null));
+                    } else {
+                        return;
                     }
                 }
-                this.e = true;
-                transferStarted(g83Var);
-                return this.d;
-            }
-            throw new d83((Exception) null, 2008);
-        } catch (ky e) {
-            throw e;
-        } catch (IOException e2) {
-            if (e2 instanceof FileNotFoundException) {
-                i = 2005;
-            } else {
-                i = 2000;
-            }
-            throw new d83(e2, i);
-        }
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i, int i2) {
-        if (i2 == 0) {
-            return 0;
-        }
-        long j = this.d;
-        if (j != 0) {
-            if (j != -1) {
-                try {
-                    i2 = (int) Math.min(j, i2);
-                } catch (IOException e) {
-                    throw new d83(e, 2000);
+                Runnable runnable = tyVar.i2;
+                if (runnable != null) {
+                    runnable.run();
                 }
-            }
-            InputStream inputStream = this.c;
-            String str = hac.a;
-            int read = inputStream.read(bArr, i, i2);
-            if (read != -1) {
-                long j2 = this.d;
-                if (j2 != -1) {
-                    this.d = j2 - read;
+                tyVar.dismiss();
+                return;
+            case 1:
+                cj3 cj3Var = (cj3) obj;
+                na7 messagesController = cj3Var.getMessagesController();
+                long j2 = this.b;
+                boolean n2 = messagesController.n2(j2, 0L, null);
+                if (!n2) {
+                    cj3Var.getNotificationsController().T(j2, 3, 0L);
+                } else {
+                    cj3Var.getNotificationsController().T(j2, 4, 0L);
                 }
-                bytesTransferred(read);
-                return read;
-            }
+                u21.A(cj3Var, !n2, null).j();
+                cj3Var.finishPreviewFragment();
+                return;
+            case 2:
+                tv4 tv4Var = (tv4) obj;
+                d S2 = LaunchActivity.S();
+                if (S2 != null) {
+                    tv4Var.dismiss();
+                    S2.presentFragment(ProfileActivity.P2(j));
+                    return;
+                }
+                return;
+            case 3:
+                fu5 fu5Var = (fu5) obj;
+                fu5Var.dismiss();
+                TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
+                tL_messages_importChatInvite.hash = fu5Var.m1;
+                ConnectionsManager.getInstance(fu5Var.a).sendRequestTyped(tL_messages_importChatInvite, null, new et4(fu5Var, this.b, tL_messages_importChatInvite, (byte) 1), 2);
+                return;
+            case 4:
+                y28 y28Var = (y28) obj;
+                Bundle bundle2 = new Bundle();
+                if (j >= 0) {
+                    bundle2.putLong("user_id", j);
+                } else {
+                    bundle2.putLong("chat_id", -j);
+                }
+                y28Var.z0.L(new ProfileActivity(bundle2, null));
+                return;
+            default:
+                ((b29) obj).f.a(Long.valueOf(j));
+                return;
         }
-        return -1;
     }
 }

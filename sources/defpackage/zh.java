@@ -1,83 +1,254 @@
 package defpackage;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.p;
-public final class zh implements DialogInterface.OnClickListener {
+import android.graphics.Canvas;
+import android.graphics.Point;
+import android.widget.LinearLayout;
+public final class zh extends LinearLayout {
     public final byte a;
-    public final Object b;
+    public boolean b;
     public final Object c;
-    public final Object d;
-    public final Object e;
+    public Object d;
+    public final hn7 e;
 
-    public zh(Object obj, Object obj2, Object obj3, Object obj4, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
-        this.d = obj3;
-        this.e = obj4;
+    public zh(Activity activity, yh yhVar) {
+        super(activity);
+        this.a = (byte) 0;
+        this.e = yhVar;
+        this.c = new tgb(":", 18.0f, null);
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i) {
-        int i2;
-        byte b = this.a;
-        Object obj = this.e;
-        Object obj2 = this.d;
-        Object obj3 = this.c;
-        Object obj4 = this.b;
-        switch (b) {
+    public final void dispatchDraw(Canvas canvas) {
+        boolean z;
+        tgb tgbVar;
+        String str;
+        switch (this.a) {
             case 0:
-                Context context = (Context) obj3;
-                r63 r63Var = (r63) obj2;
-                yh yhVar = (yh) obj;
-                int i3 = ((int[]) obj4)[i];
-                if (i3 == 100) {
-                    new wj(context, i3, r63Var, yhVar).show();
-                    return;
-                } else {
-                    yhVar.a(Integer.valueOf(i3), "");
-                    return;
-                }
-            default:
-                p pVar = (p) obj4;
-                ArrayList arrayList = (ArrayList) obj2;
-                ArrayList arrayList2 = (ArrayList) obj;
-                m18 m18Var = new m18(pVar, (Runnable) obj3);
-                TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard = pVar.z0;
-                if (tL_paymentSavedCredentialsCard == null && pVar.y0 == null) {
-                    i2 = 0;
-                } else {
-                    i2 = 1;
-                }
-                if ((tL_paymentSavedCredentialsCard == null && pVar.y0 == null) || i != 0) {
-                    if (i >= i2 && i < arrayList.size() + i2) {
-                        TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard2 = (TLRPC.TL_paymentSavedCredentialsCard) arrayList.get(i - i2);
-                        pVar.z0 = tL_paymentSavedCredentialsCard2;
-                        m18Var.c(null, tL_paymentSavedCredentialsCard2.title, true, null, tL_paymentSavedCredentialsCard2);
-                        return;
-                    } else if (i < arrayList2.size() - 1) {
-                        p pVar2 = new p(pVar.c1, pVar.D0, pVar.O0, pVar.P0, 2, pVar.F0, pVar.H0, pVar.I0, null, pVar.y0, pVar.J0, pVar.V0, null, pVar.s0, pVar.X0);
-                        pVar2.d1 = pVar.d1;
-                        pVar2.e1 = pVar.e1;
-                        pVar2.G0 = pVar.D0.additional_methods.get((i - arrayList.size()) - i2);
-                        pVar2.U = m18Var;
-                        pVar.presentFragment(pVar2);
-                        return;
-                    } else if (i == arrayList2.size() - 1) {
-                        p pVar3 = new p(pVar.c1, pVar.D0, pVar.O0, pVar.P0, 2, pVar.F0, pVar.H0, pVar.I0, null, pVar.y0, pVar.J0, pVar.V0, null, pVar.s0, pVar.X0);
-                        pVar3.d1 = pVar.d1;
-                        pVar3.e1 = pVar.e1;
-                        pVar3.U = m18Var;
-                        pVar.presentFragment(pVar3);
-                        return;
+                Object obj = this.c;
+                int i = bkb.F6;
+                ((tgb) obj).c((getWidth() - ((tgb) obj).c) / 2.0f, getHeight() / 2.0f, 1.0f, bkb.w0(null, i, false), canvas);
+                if (!k96.c0) {
+                    if (((yh) this.e).getValue() % 24 < 12) {
+                        z = true;
                     } else {
-                        return;
+                        z = false;
                     }
+                    if (this.b != z || (tgbVar = (tgb) this.d) == null) {
+                        this.b = z;
+                        if (z) {
+                            str = "AM";
+                        } else {
+                            str = "PM";
+                        }
+                        tgbVar = new tgb(str, 18.0f, null);
+                        this.d = tgbVar;
+                    }
+                    tgbVar.c((getWidth() / 2.0f) + gl.L(43.0f), (getHeight() / 2.0f) + gl.L(1.0f), 1.0f, bkb.w0(null, i, false), canvas);
                 }
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
                 return;
         }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        byte b = this.a;
+        int i3 = 5;
+        Object obj = this.c;
+        hn7 hn7Var = this.e;
+        switch (b) {
+            case 1:
+                di diVar = (di) hn7Var;
+                ci ciVar = (ci) this.d;
+                hn7 hn7Var2 = (hn7) obj;
+                this.b = true;
+                Point point = gl.q;
+                if (point.x > point.y) {
+                    i3 = 3;
+                }
+                hn7Var2.setItemCount(i3);
+                ciVar.setItemCount(i3);
+                diVar.setItemCount(i3);
+                hn7Var2.getLayoutParams().height = gl.L(42.0f) * i3;
+                ciVar.getLayoutParams().height = gl.L(42.0f) * i3;
+                diVar.getLayoutParams().height = gl.L(42.0f) * i3;
+                this.b = false;
+                super.onMeasure(i, i2);
+                return;
+            case 2:
+                gi giVar = (gi) hn7Var;
+                ei eiVar = (ei) this.d;
+                hn7 hn7Var3 = (hn7) obj;
+                this.b = true;
+                Point point2 = gl.q;
+                if (point2.x > point2.y) {
+                    i3 = 3;
+                }
+                hn7Var3.setItemCount(i3);
+                eiVar.setItemCount(i3);
+                giVar.setItemCount(i3);
+                hn7Var3.getLayoutParams().height = gl.L(42.0f) * i3;
+                eiVar.getLayoutParams().height = gl.L(42.0f) * i3;
+                giVar.getLayoutParams().height = gl.L(42.0f) * i3;
+                this.b = false;
+                super.onMeasure(i, i2);
+                return;
+            case 3:
+                li liVar = (li) hn7Var;
+                ki kiVar = (ki) this.d;
+                hn7 hn7Var4 = (hn7) obj;
+                this.b = true;
+                Point point3 = gl.q;
+                if (point3.x > point3.y) {
+                    i3 = 3;
+                }
+                hn7Var4.setItemCount(i3);
+                kiVar.setItemCount(i3);
+                liVar.setItemCount(i3);
+                hn7Var4.getLayoutParams().height = gl.L(42.0f) * i3;
+                kiVar.getLayoutParams().height = gl.L(42.0f) * i3;
+                liVar.getLayoutParams().height = gl.L(42.0f) * i3;
+                this.b = false;
+                super.onMeasure(i, i2);
+                return;
+            case 4:
+                oi oiVar = (oi) hn7Var;
+                ni niVar = (ni) this.d;
+                hn7 hn7Var5 = (hn7) obj;
+                this.b = true;
+                Point point4 = gl.q;
+                if (point4.x > point4.y) {
+                    i3 = 3;
+                }
+                hn7Var5.setItemCount(i3);
+                niVar.setItemCount(i3);
+                oiVar.setItemCount(i3);
+                hn7Var5.getLayoutParams().height = gl.L(42.0f) * i3;
+                niVar.getLayoutParams().height = gl.L(42.0f) * i3;
+                oiVar.getLayoutParams().height = gl.L(42.0f) * i3;
+                this.b = false;
+                super.onMeasure(i, i2);
+                return;
+            case 5:
+                ti tiVar = (ti) this.d;
+                si siVar = (si) obj;
+                this.b = true;
+                Point point5 = gl.q;
+                if (point5.x > point5.y) {
+                    i3 = 3;
+                }
+                siVar.setItemCount(i3);
+                siVar.getLayoutParams().height = gl.L(42.0f) * i3;
+                tiVar.setItemCount(i3);
+                tiVar.getLayoutParams().height = gl.L(42.0f) * i3;
+                hn7Var.setItemCount(i3);
+                hn7Var.getLayoutParams().height = gl.L(42.0f) * i3;
+                this.b = false;
+                super.onMeasure(i, i2);
+                return;
+            case 6:
+                hn7 hn7Var6 = (hn7) this.d;
+                hn7 hn7Var7 = (hn7) obj;
+                this.b = true;
+                Point point6 = gl.q;
+                if (point6.x > point6.y) {
+                    i3 = 3;
+                }
+                hn7Var7.setItemCount(i3);
+                hn7Var6.setItemCount(i3);
+                hn7Var.setItemCount(i3);
+                hn7Var7.getLayoutParams().height = gl.L(42.0f) * i3;
+                hn7Var6.getLayoutParams().height = gl.L(42.0f) * i3;
+                hn7Var.getLayoutParams().height = gl.L(42.0f) * i3;
+                this.b = false;
+                super.onMeasure(i, i2);
+                return;
+            case 7:
+                bj bjVar = (bj) hn7Var;
+                aj ajVar = (aj) this.d;
+                hn7 hn7Var8 = (hn7) obj;
+                this.b = true;
+                Point point7 = gl.q;
+                if (point7.x > point7.y) {
+                    i3 = 3;
+                }
+                hn7Var8.setItemCount(i3);
+                ajVar.setItemCount(i3);
+                bjVar.setItemCount(i3);
+                hn7Var8.getLayoutParams().height = gl.L(42.0f) * i3;
+                ajVar.getLayoutParams().height = gl.L(42.0f) * i3;
+                bjVar.getLayoutParams().height = gl.L(42.0f) * i3;
+                this.b = false;
+                super.onMeasure(i, i2);
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        switch (this.a) {
+            case 1:
+                if (!this.b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            case 2:
+                if (!this.b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            case 3:
+                if (!this.b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            case 4:
+                if (!this.b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            case 5:
+                if (!this.b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            case 6:
+                if (!this.b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            case 7:
+                if (!this.b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                super.requestLayout();
+                return;
+        }
+    }
+
+    public zh(Context context, hn7 hn7Var, hn7 hn7Var2, hn7 hn7Var3, byte b) {
+        super(context);
+        this.a = b;
+        this.c = hn7Var;
+        this.d = hn7Var2;
+        this.e = hn7Var3;
+        this.b = false;
     }
 }

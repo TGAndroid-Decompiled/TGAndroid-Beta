@@ -1,36 +1,22 @@
 package defpackage;
 
-import org.telegram.ui.ContactsActivity;
-public final class uu2 implements we7 {
-    public final byte a;
-    public final ContactsActivity b;
-
-    public uu2(ContactsActivity contactsActivity, byte b) {
-        this.a = b;
-        this.b = contactsActivity;
-    }
-
+import android.accounts.Account;
+import android.accounts.OperationCanceledException;
+import android.content.AbstractThreadedSyncAdapter;
+import android.content.ContentProviderClient;
+import android.content.SyncResult;
+import android.os.Bundle;
+import org.telegram.messenger.ContactsSyncAdapterService;
+public final class uu2 extends AbstractThreadedSyncAdapter {
     @Override
-    public final void a(int i) {
-        boolean z;
-        byte b = this.a;
-        ContactsActivity contactsActivity = this.b;
-        switch (b) {
-            case 0:
-                if (i != 0) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                contactsActivity.Y = z;
-                if (i != 0) {
-                    contactsActivity.c0(false);
-                    return;
-                }
-                return;
-            default:
-                contactsActivity.j0(i);
-                return;
+    public final void onPerformSync(Account account, Bundle bundle, String str, ContentProviderClient contentProviderClient, SyncResult syncResult) {
+        try {
+            uu2 uu2Var = ContactsSyncAdapterService.a;
+            if (w01.a) {
+                fa4.b("performSync: " + account.toString());
+            }
+        } catch (OperationCanceledException e) {
+            fa4.g(e, true);
         }
     }
 }

@@ -29,7 +29,7 @@ public class FabBackgroundDrawable extends Drawable {
             canvas.drawBitmap(bitmap, getBounds().centerX() - (this.c.getWidth() / 2), getBounds().centerY() - (this.c.getHeight() / 2), this.b);
         }
         float f = min / 2;
-        canvas.drawCircle(f, f, i - gm.L(4.0f), this.a);
+        canvas.drawCircle(f, f, i - gl.L(4.0f), this.a);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class FabBackgroundDrawable extends Drawable {
 
     @Override
     public final boolean getPadding(Rect rect) {
-        int L = gm.L(4.0f);
+        int L = gl.L(4.0f);
         rect.set(L, L, L, L);
         return true;
     }
@@ -54,7 +54,7 @@ public class FabBackgroundDrawable extends Drawable {
         }
         this.c = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
         float f = min / 2;
-        new Canvas(this.c).drawCircle(f, f, i - gm.L(4.0f), new Paint(1));
+        new Canvas(this.c).drawCircle(f, f, i - gl.L(4.0f), new Paint(1));
     }
 
     public void setColor(int i) {

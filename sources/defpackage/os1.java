@@ -1,76 +1,51 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.widget.TextView;
-public final class os1 extends jw1 {
-    public fg0 e;
-    public int f;
-    public final boolean h;
-    public final yv1 n;
+import org.telegram.tgnet.TLRPC;
+public final class os1 implements Runnable {
+    public final byte a;
+    public final k27 b;
 
-    public os1(yv1 yv1Var, Context context, boolean z) {
-        super(context);
-        this.n = yv1Var;
-        this.h = z;
+    public os1(z3a z3aVar, k27 k27Var) {
+        this.a = (byte) 2;
+        this.b = k27Var;
     }
 
     @Override
-    public final void d() {
-        int i;
-        try {
-            int themedColor = this.n.getThemedColor(cmb.mf);
-            if (this.e != null) {
-                Drawable background = getBackground();
-                Drawable drawable = this.e;
-                if (background == drawable) {
-                    if (themedColor != this.f) {
-                        cmb.F1(drawable, 436207615 & themedColor, true);
-                    }
-                    if (getImageView() != null && (themedColor != this.f || getImageView().getColorFilter() == null)) {
-                        getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
-                    }
-                    this.f = themedColor;
-                    if (getTextView() == null && getTextView().getCurrentTextColor() != themedColor) {
-                        getTextView().setTextColor(themedColor);
-                        return;
-                    }
+    public final void run() {
+        TLRPC.Message message;
+        byte b = this.a;
+        k27 k27Var = this.b;
+        switch (b) {
+            case 0:
+                k27Var.q = false;
+                return;
+            case 1:
+                if (uyb.k(k27Var)) {
+                    uyb.z(k27Var, false, null);
+                    return;
                 }
-            }
-            if (this.h) {
-                i = gm.L(4.0f);
-            } else {
-                i = 0;
-            }
-            int i2 = i;
-            fg0 W = cmb.W(gm.L(19.0f), themedColor & 436207615, i2, gm.L(3.0f), 0, gm.L(3.0f));
-            this.e = W;
-            setBackground(W);
-            if (getImageView() != null) {
-                getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
-            }
-            this.f = themedColor;
-            if (getTextView() == null) {
-            }
-        } catch (Exception e) {
-            fc4.g(e, true);
+                return;
+            case 2:
+                if (k27Var != null && (message = k27Var.k) != null) {
+                    message.reqId = 0;
+                    return;
+                }
+                return;
+            case 3:
+                n40 n40Var = (n40) bkb.d5.remove(k27Var);
+                if (n40Var != null) {
+                    n40Var.i = null;
+                    return;
+                }
+                return;
+            default:
+                kk7.f(k27Var.K1).k(115, k27Var);
+                return;
         }
     }
 
-    @Override
-    public final void setEditButton(boolean z) {
-        int i;
-        super.setEditButton(z);
-        if (this.h) {
-            TextView textView = getTextView();
-            if (z) {
-                i = gm.L(116.0f);
-            } else {
-                i = Integer.MAX_VALUE;
-            }
-            textView.setMaxWidth(i);
-        }
+    public os1(k27 k27Var, byte b) {
+        this.a = b;
+        this.b = k27Var;
     }
 }

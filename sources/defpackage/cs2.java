@@ -1,47 +1,50 @@
 package defpackage;
 
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Comparator;
-public final class cs2 extends at7 implements Serializable {
-    public final Comparator[] a;
+import android.os.Bundle;
+public final class cs2 {
+    public static final String f;
+    public static final String g;
+    public static final String h;
+    public static final String i;
+    public static final String j;
+    public static final String k;
+    public final int a;
+    public final int b;
+    public final String c;
+    public final int d;
+    public final Bundle e;
 
-    public cs2(c61 c61Var, c61 c61Var2) {
-        this.a = new Comparator[]{c61Var, c61Var2};
+    static {
+        String str = g8c.a;
+        f = "0";
+        g = "1";
+        h = "2";
+        i = "3";
+        j = "4";
+        k = "5";
     }
 
-    @Override
-    public final int compare(Object obj, Object obj2) {
-        int i = 0;
-        while (true) {
-            Comparator[] comparatorArr = this.a;
-            if (i >= comparatorArr.length) {
-                return 0;
-            }
-            int compare = comparatorArr[i].compare(obj, obj2);
-            if (compare != 0) {
-                return compare;
-            }
-            i++;
+    public cs2(int i2, int i3, String str, int i4, Bundle bundle, int i5) {
+        this.a = i2;
+        this.b = i3;
+        this.c = str;
+        this.d = i4;
+        this.e = bundle;
+    }
+
+    public static cs2 a(Bundle bundle) {
+        int i2 = bundle.getInt(f, 0);
+        int i3 = bundle.getInt(j, 0);
+        String string = bundle.getString(g);
+        string.getClass();
+        String str = h;
+        gre.f(bundle.containsKey(str));
+        int i4 = bundle.getInt(str);
+        Bundle bundle2 = bundle.getBundle(i);
+        int i5 = bundle.getInt(k, 0);
+        if (bundle2 == null) {
+            bundle2 = Bundle.EMPTY;
         }
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof cs2) {
-            return Arrays.equals(this.a, ((cs2) obj).a);
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(this.a);
-    }
-
-    public final String toString() {
-        return b10.j(new StringBuilder("Ordering.compound("), Arrays.toString(this.a), ")");
+        return new cs2(i2, i3, string, i4, bundle2, i5);
     }
 }

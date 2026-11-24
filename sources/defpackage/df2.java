@@ -1,7 +1,13 @@
 package defpackage;
-public final class df2 extends v46 {
-    @Override
-    public final int n(int i) {
-        return super.n(i) * 6;
-    }
+
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public interface df2 {
+    void a(TLRPC.User user);
+
+    void b(long j);
+
+    void c(long j, TLObject tLObject);
+
+    void d(long j);
 }

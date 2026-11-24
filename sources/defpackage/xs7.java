@@ -1,40 +1,28 @@
 package defpackage;
-public final class xs7 implements nv8 {
-    public static final bh7 c = new bh7((byte) 8);
-    public static final nr2 d = new nr2((byte) 6);
-    public ke3 a;
-    public volatile nv8 b;
+public final class xs7 implements Runnable {
+    public final byte a;
+    public final x6b b;
 
-    public xs7(bh7 bh7Var, nv8 nv8Var) {
-        this.a = bh7Var;
-        this.b = nv8Var;
-    }
-
-    public final void a(ke3 ke3Var) {
-        nv8 nv8Var;
-        nv8 nv8Var2;
-        nv8 nv8Var3 = this.b;
-        nr2 nr2Var = d;
-        if (nv8Var3 != nr2Var) {
-            ke3Var.f(nv8Var3);
-            return;
-        }
-        synchronized (this) {
-            nv8Var = this.b;
-            if (nv8Var != nr2Var) {
-                nv8Var2 = nv8Var;
-            } else {
-                this.a = new cz6(this.a, ke3Var, (byte) 7);
-                nv8Var2 = null;
-            }
-        }
-        if (nv8Var2 != null) {
-            ke3Var.f(nv8Var);
-        }
+    public xs7(x6b x6bVar, byte b) {
+        this.a = b;
+        this.b = x6bVar;
     }
 
     @Override
-    public final Object get() {
-        return this.b.get();
+    public final void run() {
+        byte b = this.a;
+        x6b x6bVar = this.b;
+        switch (b) {
+            case 0:
+                mt7 mt7Var = x6bVar.e2;
+                if (mt7Var != null) {
+                    mt7Var.I0();
+                    return;
+                }
+                return;
+            default:
+                x6bVar.u2.q1.setVisibility(8);
+                return;
+        }
     }
 }

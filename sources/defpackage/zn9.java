@@ -1,10 +1,10 @@
 package defpackage;
 
-import android.media.MediaCodec;
-import android.media.MediaFormat;
-import java.nio.ByteBuffer;
+import android.view.Surface;
 public interface zn9 {
-    void l(ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo);
+    void a(int i, int i2);
 
-    void o(MediaFormat mediaFormat);
+    boolean b();
+
+    Surface getSurface();
 }

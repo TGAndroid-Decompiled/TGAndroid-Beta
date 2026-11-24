@@ -1,42 +1,51 @@
 package defpackage;
-public enum utb extends rub {
-    public utb() {
-        super("CommentEndBang", 49);
+
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.d;
+public final class utb extends tx9 {
+    public boolean f2;
+    public final vtb g2;
+
+    public utb(vtb vtbVar, vtb vtbVar2, Activity activity) {
+        super(vtbVar2, activity, false, null, 3, null);
+        this.g2 = vtbVar;
+        this.f2 = true;
     }
 
     @Override
-    public final void c(bsb bsbVar, hl1 hl1Var) {
-        rrb rrbVar = bsbVar.n;
-        char d = hl1Var.d();
-        qtb qtbVar = rub.k0;
-        if (d != 0) {
-            if (d != '-') {
-                msb msbVar = rub.a;
-                if (d != '>') {
-                    if (d != 65535) {
-                        StringBuilder sb = rrbVar.e;
-                        sb.append("--!");
-                        sb.append(d);
-                        bsbVar.c = qtbVar;
-                        return;
-                    }
-                    bsbVar.l(this);
-                    bsbVar.i();
-                    bsbVar.c = msbVar;
-                    return;
-                }
-                bsbVar.i();
-                bsbVar.c = msbVar;
-                return;
+    public final void o(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i;
+        int i2;
+        long j;
+        vtb vtbVar = this.g2;
+        i = ((d) vtbVar).currentAccount;
+        boolean z = false;
+        if (!TextUtils.isEmpty(y6c.h(i).f0)) {
+            hq6 mediaDataController = vtbVar.getMediaDataController();
+            i2 = ((d) vtbVar).currentAccount;
+            TLRPC.TL_messages_stickerSet o0 = mediaDataController.o0(y6c.h(i2).f0);
+            if (o0 == null) {
+                j = 0;
+            } else {
+                j = o0.set.id;
             }
-            rrbVar.e.append("--!");
-            bsbVar.c = rub.l0;
-            return;
+            if (j == hq6.r0(document)) {
+                z = true;
+            }
         }
-        bsbVar.m(this);
-        StringBuilder sb2 = rrbVar.e;
-        sb2.append("--!");
-        sb2.append((char) 65533);
-        bsbVar.c = qtbVar;
+        vtbVar.f0(l, z);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        if (this.f2) {
+            this.f2 = false;
+            this.g2.f.r(null);
+        }
     }
 }

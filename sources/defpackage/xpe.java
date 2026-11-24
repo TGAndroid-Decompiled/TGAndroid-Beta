@@ -1,17 +1,11 @@
 package defpackage;
-public final class xpe implements cq7 {
-    public static final xpe a = new Object();
-
-    static {
-        mlb.z(mlb.q(ikd.class, new cid(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+public abstract class xpe {
+    public static void a(int i, Object[] objArr) {
+        for (int i2 = 0; i2 < i; i2++) {
+            if (objArr[i2] == null) {
+                fvc.f(de9.k(i2, "at index "));
+                return;
+            }
         }
-        throw new ClassCastException();
     }
 }

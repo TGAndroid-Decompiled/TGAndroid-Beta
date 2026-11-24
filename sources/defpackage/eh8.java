@@ -1,343 +1,353 @@
 package defpackage;
 
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.text.TextUtils;
-import android.util.Property;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.graphics.drawable.Drawable;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
-import j$.util.Objects;
+import android.view.WindowManager;
+import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.PollVotesAlert$UserCell;
-public final class eh8 extends m59 {
-    public final Context r;
-    public final ih8 s;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.SecretMediaViewer;
+import org.telegram.ui.Stories.ProfileStoriesView;
+import org.telegram.ui.UsersSelectActivity;
+public final class eh8 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public eh8(ih8 ih8Var, Context context) {
-        this.s = ih8Var;
-        this.r = context;
+    public eh8(t29 t29Var, pi4 pi4Var, d49 d49Var) {
+        this.a = (byte) 6;
+        this.c = t29Var;
+        this.b = pi4Var;
     }
 
     @Override
-    public final String F(int i) {
-        return null;
-    }
-
-    @Override
-    public final void G(r59 r59Var, float f, int[] iArr) {
-        iArr[0] = 0;
-        iArr[1] = 0;
-    }
-
-    @Override
-    public final int M(int i) {
-        int i2 = 1;
-        if (i == 0) {
-            return 1;
-        }
-        hh8 hh8Var = (hh8) this.s.w1.get(i - 1);
-        int b = hh8Var.b() + 1;
-        if (TextUtils.isEmpty(hh8Var.c) && !hh8Var.e) {
-            i2 = 0;
-        }
-        return b + i2;
-    }
-
-    @Override
-    public final Object O(int i, int i2) {
-        int i3;
-        ArrayList arrayList = this.s.w1;
-        if (i == 0) {
-            return 293145;
-        }
-        int i4 = i - 1;
-        if (i2 == 0) {
-            return -928312;
-        }
-        if (i4 >= 0 && i4 < arrayList.size() && (i3 = i2 - 1) < ((hh8) arrayList.get(i4)).b()) {
-            return Integer.valueOf(Objects.hash(Long.valueOf(pg3.n(((TLRPC.MessagePeerVote) ((hh8) arrayList.get(i4)).b.get(i3)).peer))));
-        }
-        return -182734;
-    }
-
-    @Override
-    public final int P(int i, int i2) {
-        if (i == 0) {
-            return 1;
-        }
-        if (i2 == 0) {
-            return 2;
-        }
-        if (i2 - 1 < ((hh8) this.s.w1.get(i - 1)).b()) {
-            return 0;
-        }
-        return 3;
-    }
-
-    @Override
-    public final int R() {
-        return this.s.w1.size() + 1;
-    }
-
-    @Override
-    public final View T(int i, View view) {
-        ArrayList<TLRPC.MessageEntity> arrayList;
-        String str;
-        TLRPC.Message message;
-        ih8 ih8Var = this.s;
-        TLRPC.Poll poll = ih8Var.s1;
-        k47 k47Var = ih8Var.r1;
-        if (view == null) {
-            view = new dh8(this, this.r);
-        }
-        gh8 gh8Var = (gh8) view;
-        if (i == 0) {
-            gh8Var.setAlpha(0.0f);
-            return view;
-        }
-        view.setAlpha(1.0f);
-        hh8 hh8Var = (hh8) ih8Var.w1.get(i - 1);
-        int size = poll.answers.size();
-        int i2 = 0;
-        for (int i3 = 0; i3 < size; i3++) {
-            TLRPC.PollAnswer pollAnswer = poll.answers.get(i3);
-            if (Arrays.equals(pollAnswer.option, hh8Var.d) && ((fh8) ih8Var.v1.get(hh8Var)) != null) {
-                TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
-                if (k47Var != null && k47Var.L2 && (message = k47Var.k) != null && message.translatedPoll != null) {
-                    while (true) {
-                        if (i2 >= k47Var.k.translatedPoll.b.size()) {
-                            break;
-                        }
-                        TLRPC.PollAnswer pollAnswer2 = (TLRPC.PollAnswer) k47Var.k.translatedPoll.b.get(i2);
-                        if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
-                            tL_textWithEntities = pollAnswer2.text;
-                            break;
-                        }
-                        i2++;
-                    }
-                }
-                if (tL_textWithEntities == null) {
-                    str = "";
-                    arrayList = null;
-                } else {
-                    String str2 = tL_textWithEntities.text;
-                    arrayList = tL_textWithEntities.entities;
-                    str = str2;
-                }
-                gh8Var.a(str, arrayList, ih8Var.E0(hh8Var.d), hh8Var.a, hh8Var.a(), false);
-                gh8Var.setTag(2131296587, hh8Var);
-                return view;
-            }
-        }
-        return view;
-    }
-
-    @Override
-    public final boolean V(int i, int i2, u69 u69Var) {
-        if (i != 0 && i2 != 0) {
-            ArrayList arrayList = this.s.z1;
-            if (arrayList == null || arrayList.isEmpty()) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void W(int i, int i2, u69 u69Var) {
-        ArrayList<TLRPC.MessageEntity> arrayList;
-        String str;
-        TLRPC.Message message;
-        ih8 ih8Var = this.s;
-        TLRPC.Poll poll = ih8Var.s1;
-        ArrayList arrayList2 = ih8Var.w1;
-        k47 k47Var = ih8Var.r1;
-        int i3 = u69Var.f;
-        View view = u69Var.a;
-        int i4 = 0;
-        if (i3 != 2) {
-            if (i3 == 3) {
-                hh8 hh8Var = (hh8) arrayList2.get(i - 1);
-                ((xib) view).o(2131230872, jb6.G(hh8Var.a - hh8Var.b(), "ShowVotes", new Object[0]), false);
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.a) {
+            case 20:
+                ((dfc) this.b).a();
                 return;
-            }
-            return;
-        }
-        gh8 gh8Var = (gh8) view;
-        hh8 hh8Var2 = (hh8) arrayList2.get(i - 1);
-        ArrayList arrayList3 = hh8Var2.b;
-        byte[] bArr = hh8Var2.d;
-        TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) arrayList3.get(0);
-        int size = poll.answers.size();
-        for (int i5 = 0; i5 < size; i5++) {
-            TLRPC.PollAnswer pollAnswer = poll.answers.get(i5);
-            if (Arrays.equals(pollAnswer.option, bArr) && ((fh8) ih8Var.v1.get(hh8Var2)) != null) {
-                TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
-                if (k47Var != null && k47Var.L2 && (message = k47Var.k) != null && message.translatedPoll != null) {
-                    while (true) {
-                        if (i4 >= k47Var.k.translatedPoll.b.size()) {
-                            break;
-                        }
-                        TLRPC.PollAnswer pollAnswer2 = (TLRPC.PollAnswer) k47Var.k.translatedPoll.b.get(i4);
-                        if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
-                            tL_textWithEntities = pollAnswer2.text;
-                            break;
-                        }
-                        i4++;
-                    }
-                }
-                if (tL_textWithEntities == null) {
-                    str = "";
-                    arrayList = null;
-                } else {
-                    String str2 = tL_textWithEntities.text;
-                    arrayList = tL_textWithEntities.entities;
-                    str = str2;
-                }
-                gh8Var.a(str, arrayList, ih8Var.E0(bArr), hh8Var2.a, hh8Var2.a(), false);
-                gh8Var.setTag(2131296587, hh8Var2);
+            default:
+                super.onAnimationCancel(animator);
                 return;
-            }
         }
     }
 
     @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        xib xibVar;
-        ih8 ih8Var = this.s;
-        View view = ih8Var.x1;
-        Context context = this.r;
-        if (i != 0) {
-            if (i != 1) {
-                if (i != 2) {
-                    xib xibVar2 = new xib(23, context, true);
-                    xibVar2.setOffsetFromImage(65);
-                    anb.h(cmb.g5, ih8Var.J0, xibVar2);
-                    xibVar2.g(cmb.M6, cmb.p6);
-                    xibVar = xibVar2;
-                } else {
-                    View dh8Var = new dh8(this, context);
-                    dh8Var.setTag(-33024);
-                    xibVar = dh8Var;
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        Object obj = this.c;
+        Object obj2 = this.b;
+        switch (b) {
+            case 0:
+                ((jh8) obj).v1 = false;
+                ((xg8) obj2).setOffset(0.0f);
+                super.onAnimationEnd(animator);
+                return;
+            case 1:
+                xh8 xh8Var = (xh8) obj;
+                xh8Var.C2 = false;
+                xh8Var.B2 = 1.0f;
+                xh8Var.n2.invalidate();
+                Drawable drawable = (Drawable) obj2;
+                if (drawable != null) {
+                    ValueAnimator ofInt = ValueAnimator.ofInt(0, 255);
+                    ofInt.addUpdateListener(new pk(this, drawable, (byte) 20));
+                    ofInt.start();
                 }
-            } else {
-                ViewParent parent = view.getParent();
-                xibVar = view;
-                if (parent != null) {
-                    ((ViewGroup) view.getParent()).removeView(view);
-                    xibVar = view;
+                super.onAnimationEnd(animator);
+                return;
+            case 2:
+                ei8 ei8Var = (ei8) obj;
+                PremiumPreviewFragment premiumPreviewFragment = ei8Var.n;
+                ((t98) obj2).setVisibility(8);
+                for (int i = 0; i < premiumPreviewFragment.V.getChildCount(); i++) {
+                    View childAt = premiumPreviewFragment.V.getChildAt(i);
+                    if (childAt != ei8Var.e) {
+                        childAt.setTranslationY(0.0f);
+                    }
                 }
-            }
-        } else {
-            xibVar = new PollVotesAlert$UserCell(ih8Var, context);
+                return;
+            case 3:
+                ProfileStoriesView profileStoriesView = (ProfileStoriesView) obj;
+                boolean[] zArr = (boolean[]) obj2;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    int i2 = ProfileStoriesView.t0;
+                    if (gba.o() > 0) {
+                        gl.W3(profileStoriesView);
+                        gl.d3(new sr8(profileStoriesView, (byte) 1), 180L);
+                    }
+                }
+                profileStoriesView.a0 = 1.0f;
+                profileStoriesView.invalidate();
+                return;
+            case 4:
+                e09 e09Var = (e09) obj;
+                boolean[] zArr2 = (boolean[]) obj2;
+                if (!zArr2[0]) {
+                    zArr2[0] = true;
+                    e09Var.t0.b(e09Var.A0, false);
+                }
+                e09Var.setRotationY(0.0f);
+                e09Var.B0 = 1.0f;
+                return;
+            case 5:
+                q29 q29Var = (q29) obj;
+                cu6 cu6Var = q29Var.e;
+                if (((ValueAnimator) cu6Var.h) != null) {
+                    ((o39) cu6Var.e).W1 = false;
+                    ArrayList arrayList = q29Var.b;
+                    int size = arrayList.size();
+                    int i3 = 0;
+                    while (i3 < size) {
+                        Object obj3 = arrayList.get(i3);
+                        i3++;
+                        View view = (View) obj3;
+                        if (view instanceof ni5) {
+                            ((ni5) view).b(false, true);
+                        }
+                        view.setTranslationY(0.0f);
+                        ((t26) cu6Var.f).getClass();
+                        d49.w0(view);
+                        ((o39) cu6Var.e).removeView(view);
+                        kse kseVar = (kse) cu6Var.r;
+                        if (kseVar != null) {
+                            kseVar.d(view);
+                        }
+                    }
+                    ((o39) cu6Var.e).setScrollEnabled(true);
+                    ((o39) cu6Var.e).setVerticalScrollBarEnabled(true);
+                    boolean z = w01.a;
+                    int childCount = ((o39) cu6Var.e).getChildCount();
+                    for (int i4 = 0; i4 < childCount; i4++) {
+                        View childAt2 = ((o39) cu6Var.e).getChildAt(i4);
+                        if (childAt2 instanceof ni5) {
+                            ((ni5) childAt2).b(false, false);
+                        }
+                        childAt2.setTranslationY(0.0f);
+                    }
+                    ArrayList arrayList2 = (ArrayList) obj2;
+                    int size2 = arrayList2.size();
+                    int i5 = 0;
+                    while (i5 < size2) {
+                        Object obj4 = arrayList2.get(i5);
+                        i5++;
+                        View view2 = (View) obj4;
+                        if (view2 instanceof ni5) {
+                            ((ni5) view2).b(false, false);
+                        }
+                        view2.setTranslationY(0.0f);
+                    }
+                    r29 r29Var = q29Var.d;
+                    if (r29Var != null) {
+                        r29Var.E();
+                    }
+                    kse kseVar2 = (kse) cu6Var.r;
+                    if (kseVar2 != null) {
+                        kseVar2.a();
+                    }
+                    ((SparseArray) cu6Var.s).clear();
+                    cu6Var.h = null;
+                    return;
+                }
+                return;
+            case 6:
+                pi4 pi4Var = (pi4) obj2;
+                pi4Var.setAlpha(1.0f);
+                d49.w0(pi4Var);
+                t29 t29Var = (t29) obj;
+                t29Var.c.remove(pi4Var);
+                t29Var.a.removeView(pi4Var);
+                return;
+            case 7:
+                super.onAnimationEnd(animator);
+                t29 t29Var2 = (t29) ((a32) obj).d;
+                t29Var2.g.remove((AnimatorSet) obj2);
+                if (t29Var2.g.isEmpty()) {
+                    t29Var2.b.clear();
+                    t29Var2.d = true;
+                    t29Var2.a.invalidate();
+                    return;
+                }
+                return;
+            case 8:
+                hd9 hd9Var = (hd9) obj;
+                hd9Var.F = false;
+                hd9Var.w.setAlpha(1.0f);
+                hd9Var.w.q2.setVisibility(0);
+                hd9Var.y.r(gl.L(22.0f));
+                hd9Var.y.setAlpha(255);
+                j92 j92Var = hd9Var.s;
+                j92Var.e = true;
+                j92Var.invalidate();
+                ((Runnable) obj2).run();
+                return;
+            case 9:
+                nh9 nh9Var = (nh9) obj;
+                nh9Var.b = true;
+                nh9Var.f = null;
+                View view3 = (View) obj2;
+                if (view3 != null) {
+                    view3.invalidate();
+                    return;
+                }
+                return;
+            case 10:
+                rh3 rh3Var = (rh3) obj;
+                if (rh3Var.h != null) {
+                    rh3Var.h = null;
+                    rh3Var.n.e();
+                    ((yh3) obj2).onTransitionAnimationEnd(true, false);
+                    rh3Var.e = 1.0f;
+                    rh3Var.g();
+                    rh3Var.d(false);
+                    return;
+                }
+                return;
+            case 11:
+                pb1 pb1Var = (pb1) obj;
+                ((am9) obj2).setDraw(true);
+                if (pb1Var.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) pb1Var.getParent()).removeView(pb1Var);
+                    return;
+                }
+                return;
+            case 12:
+                p98 p98Var = (p98) obj2;
+                if (p98Var != null) {
+                    p98Var.a.v0(true, true);
+                }
+                ((SecretMediaViewer) obj).s = false;
+                gl.c3(new zk9(this, (byte) 15));
+                return;
+            case 13:
+                ((jx9) obj2).run();
+                tx9 tx9Var = (tx9) obj;
+                jw9 jw9Var = tx9Var.Y0;
+                if (jw9Var != null) {
+                    jw9Var.dismiss();
+                    tx9Var.Y0 = null;
+                    return;
+                }
+                return;
+            case 14:
+                gz9 gz9Var = (gz9) obj;
+                gz9Var.removeView((ya5) obj2);
+                gz9Var.h.clear();
+                gz9Var.b = null;
+                gz9Var.c = false;
+                ((hz9) gz9Var.n).b.setAllowDrawCursor(true);
+                return;
+            case 15:
+                j4a j4aVar = (j4a) obj;
+                try {
+                    ((WindowManager) obj2).removeViewImmediate(j4aVar.B);
+                } catch (Exception unused) {
+                }
+                tj9 tj9Var = j4aVar.C;
+                if (tj9Var != null) {
+                    gl.r(tj9Var);
+                    return;
+                }
+                return;
+            case 16:
+                xza xzaVar = (xza) obj;
+                xzaVar.b = 0.0f;
+                xzaVar.invalidate();
+                ((er9) obj2).invalidate();
+                return;
+            case 17:
+                gz9 gz9Var2 = (gz9) obj;
+                gz9Var2.removeView((ya5) obj2);
+                gz9Var2.h.clear();
+                gz9Var2.b = null;
+                gz9Var2.c = false;
+                v5b v5bVar = (v5b) gz9Var2.n;
+                v5bVar.b.setAllowDrawCursor(true);
+                l5b l5bVar = v5bVar.h;
+                if (l5bVar != null) {
+                    l5bVar.run();
+                }
+                if (v5bVar.M) {
+                    v5bVar.fullScroll(130);
+                    v5bVar.M = false;
+                    return;
+                }
+                return;
+            case 18:
+                obb obbVar = (obb) obj;
+                obbVar.b.remove((nbb) obj2);
+                obbVar.i();
+                return;
+            case 19:
+                c8c c8cVar = (c8c) obj;
+                c8cVar.removeView((ya5) obj2);
+                c8cVar.e = null;
+                c8cVar.a = null;
+                c8cVar.b = false;
+                UsersSelectActivity usersSelectActivity = c8cVar.f;
+                usersSelectActivity.c.setAllowDrawCursor(true);
+                if (usersSelectActivity.Q.isEmpty()) {
+                    usersSelectActivity.c.t(true, true);
+                    return;
+                }
+                return;
+            case 20:
+                ((dfc) obj2).c();
+                return;
+            case 21:
+                ((Runnable) obj2).run();
+                hgc hgcVar = (hgc) obj;
+                hgcVar.f0.setScaleX(1.15f);
+                hgcVar.f0.setScaleY(1.15f);
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) hgcVar.f0.getLayoutParams();
+                marginLayoutParams.leftMargin = gl.L(10.0f);
+                marginLayoutParams.rightMargin = gl.L(10.0f);
+                hgcVar.f0.setVisibility(8);
+                return;
+            case 22:
+                TextView textView = ((ric) obj).d;
+                textView.setText((String) obj2);
+                textView.setTranslationY(0.0f);
+                textView.setAlpha(1.0f);
+                return;
+            case 23:
+                ((ric) obj).removeView((qic) obj2);
+                return;
+            default:
+                ((gxc) obj2).a.d(1.0f);
+                cxc.e((View) obj);
+                return;
         }
-        return new u69(xibVar);
     }
 
     @Override
-    public final void y(u69 u69Var) {
-        boolean z;
-        if (u69Var.f == 0) {
-            int b = u69Var.b();
-            int S = S(b);
-            int Q = Q(b) - 1;
-            PollVotesAlert$UserCell pollVotesAlert$UserCell = (PollVotesAlert$UserCell) u69Var.a;
-            ih8 ih8Var = this.s;
-            hh8 hh8Var = (hh8) ih8Var.w1.get(S - 1);
-            TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) hh8Var.b.get(Q);
-            TLObject a2 = oc7.r1(ih8Var.a).a2(pg3.n(messagePeerVote.peer));
-            int i = messagePeerVote.date;
-            boolean z2 = true;
-            if (Q == hh8Var.b() - 1 && TextUtils.isEmpty(hh8Var.c) && !hh8Var.e) {
-                z = false;
-            } else {
-                z = true;
-            }
-            bf0 bf0Var = pollVotesAlert$UserCell.a;
-            lka lkaVar = pollVotesAlert$UserCell.b;
-            if (a2 instanceof TLRPC.User) {
-                pollVotesAlert$UserCell.h = (TLRPC.User) a2;
-                pollVotesAlert$UserCell.n = null;
-            } else if (a2 instanceof TLRPC.Chat) {
-                pollVotesAlert$UserCell.n = (TLRPC.Chat) a2;
-                pollVotesAlert$UserCell.h = null;
-            } else {
-                pollVotesAlert$UserCell.h = null;
-                pollVotesAlert$UserCell.n = null;
-            }
-            long j = i;
-            pollVotesAlert$UserCell.d.setText(jb6.D0().o0().format(1000 * j));
-            pollVotesAlert$UserCell.c.setText(jb6.r(j, true));
-            pollVotesAlert$UserCell.s = z;
-            if (a2 != null) {
-                z2 = false;
-            }
-            pollVotesAlert$UserCell.x = z2;
-            pollVotesAlert$UserCell.w = Q;
-            if (a2 == null) {
-                lkaVar.l("", false);
-                bf0Var.setImageDrawable(null);
-            } else {
-                pc0 pc0Var = pollVotesAlert$UserCell.e;
-                TLRPC.User user = pollVotesAlert$UserCell.h;
-                if (user != null) {
-                    pc0Var.q(user);
-                    TLRPC.UserStatus userStatus = pollVotesAlert$UserCell.h.status;
-                } else {
-                    TLRPC.Chat chat = pollVotesAlert$UserCell.n;
-                    if (chat != null) {
-                        pc0Var.p(chat);
-                    }
-                }
-                TLRPC.User user2 = pollVotesAlert$UserCell.h;
-                if (user2 != null) {
-                    String r = m9c.r(user2);
-                    pollVotesAlert$UserCell.r = r;
-                    pollVotesAlert$UserCell.r = b10.e(lkaVar, r, false, null, 0);
-                } else {
-                    TLRPC.Chat chat2 = pollVotesAlert$UserCell.n;
-                    if (chat2 != null) {
-                        String str = chat2.title;
-                        pollVotesAlert$UserCell.r = str;
-                        pollVotesAlert$UserCell.r = b10.e(lkaVar, str, false, null, 0);
-                    } else {
-                        pollVotesAlert$UserCell.r = "";
-                    }
-                }
-                lkaVar.l(pollVotesAlert$UserCell.r, false);
-                d0b d0bVar = pollVotesAlert$UserCell.f;
-                TLRPC.User user3 = pollVotesAlert$UserCell.h;
-                TLRPC.Chat chat3 = pollVotesAlert$UserCell.n;
-                int i2 = cmb.y9;
-                ih8 ih8Var2 = pollVotesAlert$UserCell.F;
-                pn pnVar = ih8.L1;
-                lkaVar.i(d0bVar.b(user3, chat3, cmb.v0(i2, ih8Var2.J0), false));
-                TLRPC.Chat chat4 = pollVotesAlert$UserCell.n;
-                if (chat4 != null) {
-                    bf0Var.f(chat4, pc0Var);
-                } else {
-                    TLRPC.User user4 = pollVotesAlert$UserCell.h;
-                    if (user4 != null) {
-                        bf0Var.f(user4, pc0Var);
-                    } else {
-                        bf0Var.setImageDrawable(pc0Var);
-                    }
-                }
-            }
-            ArrayList arrayList = pollVotesAlert$UserCell.E;
-            if (arrayList != null) {
-                Property property = View.ALPHA;
-                arrayList.add(ObjectAnimator.ofFloat(bf0Var, property, 0.0f, 1.0f));
-                pollVotesAlert$UserCell.E.add(ObjectAnimator.ofFloat(lkaVar, property, 0.0f, 1.0f));
-                pollVotesAlert$UserCell.E.add(ObjectAnimator.ofFloat(pollVotesAlert$UserCell, ih8.L1, 1.0f, 0.0f));
-            } else if (!pollVotesAlert$UserCell.x) {
-                pollVotesAlert$UserCell.y = 0.0f;
-            }
+    public final void onAnimationStart(Animator animator) {
+        switch (this.a) {
+            case 20:
+                ((dfc) this.b).b();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
+    }
+
+    public eh8(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = obj2;
+    }
+
+    public eh8(Object obj, View view, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = view;
     }
 }

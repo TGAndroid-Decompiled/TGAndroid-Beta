@@ -1,299 +1,304 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.text.TextUtils;
-import android.util.Property;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public abstract class c30 extends FrameLayout {
-    public final TextView[] a;
-    public final float[] b;
-    public final int c;
-    public final Matrix d;
-    public final Paint e;
-    public final Paint f;
-    public boolean h;
-    public AnimatorSet n;
-    public LinearGradient r;
-    public int s;
-    public final RectF w;
-    public int x;
-    public boolean y;
+import java.util.ArrayList;
+import org.telegram.ui.LaunchActivity;
+public final class c30 {
+    public boolean a;
+    public Object b;
+    public Object c;
+    public Object d;
+    public Object e;
+    public Object f;
+    public Object g;
 
-    public c30(Context context) {
-        super(context);
-        this.a = new TextView[2];
-        this.b = new float[]{0.0f, 0.75f};
-        this.c = gm.L(24.0f);
-        this.s = -1;
-        this.w = new RectF();
-        for (int i = 0; i < 2; i++) {
-            this.a[i] = a();
-            if (i == 1) {
-                this.a[i].setAlpha(0.0f);
-                this.a[i].setVisibility(8);
-            }
-            addView(this.a[i], qoe.c(-1.0f, -2));
-        }
-        this.d = new Matrix();
-        Paint paint = new Paint(1);
-        this.e = paint;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        Paint paint2 = new Paint(1);
-        this.f = paint2;
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-    }
-
-    public abstract TextView a();
-
-    public final void b(CharSequence charSequence, boolean z) {
-        boolean z2 = this.h;
-        TextView[] textViewArr = this.a;
-        CharSequence text = textViewArr[z2 ? 1 : 0].getText();
-        if (!TextUtils.isEmpty(text) && z) {
-            if (TextUtils.equals(charSequence, text)) {
+    public c30(Context context, byte b) {
+        switch (b) {
+            case 2:
+                this.b = context;
+                this.c = rz.f;
                 return;
-            }
-            this.s = 0;
-            int min = Math.min(charSequence.length(), text.length());
-            for (int i = 0; i < min && charSequence.charAt(i) == text.charAt(i); i++) {
-                this.s++;
-            }
-            if (this.s <= 3) {
-                this.s = -1;
-            }
-            boolean z3 = this.h;
-            boolean z4 = !z3 ? 1 : 0;
-            this.h = z4;
-            AnimatorSet animatorSet = this.n;
-            if (animatorSet != null) {
-                animatorSet.cancel();
-            }
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            this.n = animatorSet2;
-            animatorSet2.addListener(new y7(this, z3 ? 1 : 0, (byte) 3));
-            textViewArr[z4 ? 1 : 0].setText(charSequence);
-            textViewArr[z4 ? 1 : 0].bringToFront();
-            textViewArr[z4 ? 1 : 0].setVisibility(0);
-            float[] fArr = this.b;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr[z3 ? 1 : 0], 0.75f);
-            ofFloat.setDuration(200L);
-            final int i2 = z3 ? 1 : 0;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final c30 b;
-
-                {
-                    this.b = this;
-                }
-
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    byte b = r3;
-                    boolean z5 = i2;
-                    c30 c30Var = this.b;
-                    switch (b) {
-                        case 0:
-                            c30Var.b[z5 ? 1 : 0] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            c30Var.invalidate();
-                            return;
-                        default:
-                            c30Var.b[z5 ? 1 : 0] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            c30Var.invalidate();
-                            return;
-                    }
-                }
-            });
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(fArr[z4 ? 1 : 0], 0.0f);
-            ofFloat2.setStartDelay(100L);
-            ofFloat2.setDuration(200L);
-            final int i3 = z4 ? 1 : 0;
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final c30 b;
-
-                {
-                    this.b = this;
-                }
-
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    byte b = r3;
-                    boolean z5 = i3;
-                    c30 c30Var = this.b;
-                    switch (b) {
-                        case 0:
-                            c30Var.b[z5 ? 1 : 0] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            c30Var.invalidate();
-                            return;
-                        default:
-                            c30Var.b[z5 ? 1 : 0] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            c30Var.invalidate();
-                            return;
-                    }
-                }
-            });
-            Property property = View.ALPHA;
-            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textViewArr[z3 ? 1 : 0], property, 0.0f);
-            ofFloat3.setStartDelay(75L);
-            ofFloat3.setDuration(150L);
-            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(textViewArr[z4 ? 1 : 0], property, 1.0f);
-            ofFloat4.setStartDelay(75L);
-            ofFloat4.setDuration(150L);
-            this.n.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
-            this.n.start();
-            return;
+            default:
+                this.d = e30.a;
+                this.a = true;
+                this.g = h30.H;
+                this.b = context;
+                return;
         }
-        textViewArr[this.h ? 1 : 0].setText(charSequence);
     }
 
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        char c;
+    public static void n(h45 h45Var) {
+        ?? obj = new Object();
+        obj.b = new su2(obj, (byte) 0);
+        obj.d = h45Var;
+        int i = y6c.t0;
+        obj.g = new mk2(obj, (byte) 9);
+        obj.f = qu2.r(i);
+        obj.e = kk7.f(i);
+        obj.c = new Handler(Looper.myLooper());
+        if (!obj.o(false)) {
+            ((kk7) obj.e).a((su2) obj.b, kk7.N);
+            ((Handler) obj.c).postDelayed((mk2) obj.g, 1000L);
+        }
+    }
+
+    public final c30 a(w4a w4aVar) {
+        c30 c30Var;
+        c30[] c30VarArr = (c30[]) this.e;
+        w4aVar.getClass();
+        lu5 lu5Var = (lu5) this.c;
+        uyc b = lye.b(lu5Var, w4aVar);
+        char c = b.a;
+        e31 e31Var = (e31) this.b;
+        e31Var.l(c);
+        e31Var.b = true;
+        String str = (String) this.f;
+        if (str != null) {
+            String str2 = (String) this.g;
+            if (str2 == null) {
+                str2 = w4aVar.a();
+            }
+            e31Var.k();
+            e31Var.m(str);
+            e31Var.l(':');
+            k(str2);
+            this.f = null;
+            this.g = null;
+        }
+        if (((uyc) this.d) == b) {
+            return this;
+        }
+        if (c30VarArr != null && (c30Var = c30VarArr[b.ordinal()]) != null) {
+            return c30Var;
+        }
+        return new c30(e31Var, lu5Var, b, c30VarArr);
+    }
+
+    public final q93 b() {
         boolean z;
-        Canvas canvas2;
-        Paint paint;
-        TextView[] textViewArr = this.a;
+        Context context;
+        Context context2 = (Context) this.b;
         boolean z2 = true;
-        if (view == textViewArr[0]) {
-            c = 0;
-        } else {
-            c = 1;
+        gre.p(!this.a);
+        this.a = true;
+        if (((mv6) this.d) == null) {
+            this.d = new mv6(new p20[0]);
         }
-        if (this.y) {
-            this.s = -1;
-        }
-        if (this.s > 0) {
-            int length = textViewArr.length;
-            int i = 0;
-            while (true) {
-                if (i >= length) {
-                    break;
-                }
-                TextView textView = textViewArr[i];
-                if ((textView instanceof fl6) && ((fl6) textView).d) {
-                    this.s = -1;
-                    break;
-                }
-                i++;
+        l40 l40Var = (l40) this.f;
+        m93 m93Var = (m93) this.g;
+        if (l40Var == null) {
+            if (m93Var == null) {
+                this.g = new m93(context2);
             }
-        }
-        int i2 = this.s;
-        RectF rectF = this.w;
-        if (i2 > 0 && textViewArr[this.h ? 1 : 0].getAlpha() != 1.0f && textViewArr[this.h ? 1 : 0].getLayout() != null) {
-            float primaryHorizontal = textViewArr[this.h ? 1 : 0].getLayout().getPrimaryHorizontal(0);
-            float primaryHorizontal2 = textViewArr[this.h ? 1 : 0].getLayout().getPrimaryHorizontal(this.s);
-            if (primaryHorizontal == primaryHorizontal2) {
-                z2 = false;
-            } else if (primaryHorizontal2 > primaryHorizontal) {
-                rectF.set(primaryHorizontal, 0.0f, primaryHorizontal2, getMeasuredHeight());
+            if (((ie7) this.e) == null) {
+                this.e = ie7.b;
+            }
+            ?? obj = new Object();
+            rz rzVar = null;
+            if (context2 != null) {
+                context = context2.getApplicationContext();
             } else {
-                rectF.set(primaryHorizontal2, 0.0f, primaryHorizontal, getMeasuredHeight());
+                context = null;
             }
-            if (z2 && c == this.h) {
-                canvas.save();
-                canvas.clipRect(rectF);
-                textViewArr[0].draw(canvas);
-                canvas.restore();
+            obj.a = context;
+            obj.c = ie7.b;
+            if (context2 == null) {
+                obj.d = rz.f;
             }
-            z = z2;
+            if (context2 == null) {
+                rzVar = (rz) this.c;
+            }
+            Context context3 = (Context) obj.a;
+            if (context3 == null) {
+                obj.d = rzVar;
+            }
+            m93 m93Var2 = (m93) this.g;
+            obj.b = m93Var2;
+            obj.c = (ie7) this.e;
+            if (m93Var2 == null) {
+                obj.b = new m93(context3);
+            }
+            this.f = new l40(obj);
         } else {
-            z = false;
+            if (m93Var == null) {
+                z = true;
+            } else {
+                z = false;
+            }
+            gre.p(z);
+            if (((ie7) this.e) != null) {
+                z2 = false;
+            }
+            gre.p(z2);
         }
-        float[] fArr = this.b;
-        if (fArr[c] <= 0.0f && !z) {
-            return super.drawChild(canvas, view, j);
-        }
-        float min = Math.min(view.getWidth(), getWidth());
-        float min2 = Math.min(view.getHeight(), getHeight());
-        int saveLayer = canvas.saveLayer(0.0f, 0.0f, min, min2, null, 31);
-        boolean drawChild = super.drawChild(canvas, view, j);
-        float f = (1.0f - fArr[c]) * min;
-        float f2 = this.c + f;
-        Matrix matrix = this.d;
-        matrix.setTranslate(f, 0.0f);
-        this.r.setLocalMatrix(matrix);
-        canvas.drawRect(f, 0.0f, f2, min2, this.e);
-        int i3 = (min > f2 ? 1 : (min == f2 ? 0 : -1));
-        Paint paint2 = this.f;
-        if (i3 > 0) {
-            paint = paint2;
-            canvas.drawRect(f2, 0.0f, min, min2, paint);
-            canvas2 = canvas;
-        } else {
-            canvas2 = canvas;
-            paint = paint2;
-        }
-        if (z) {
-            canvas2.drawRect(rectF, paint);
-        }
-        canvas2.restoreToCount(saveLayer);
-        return drawChild;
+        return new q93(this);
     }
 
-    public int getCustomPaddingRight() {
-        return this.x;
-    }
-
-    public TextView getNextTextView() {
-        return this.a[!this.h ? 1 : 0];
-    }
-
-    public TextView getTextView() {
-        return this.a[this.h ? 1 : 0];
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        if (this.y) {
-            int i5 = 0;
-            while (true) {
-                TextView[] textViewArr = this.a;
-                if (i5 < textViewArr.length) {
-                    TextView textView = textViewArr[i5];
-                    if (textView != null && textView.getMeasuredWidth() < getMeasuredWidth()) {
-                        int measuredWidth = (getMeasuredWidth() - textView.getMeasuredWidth()) / 2;
-                        textView.layout(measuredWidth, 0, textView.getMeasuredWidth() + measuredWidth, textView.getMeasuredHeight());
+    public final void c(w4a w4aVar, int i) {
+        e31 e31Var = (e31) this.b;
+        w4aVar.getClass();
+        int ordinal = ((uyc) this.d).ordinal();
+        boolean z = true;
+        if (ordinal != 1) {
+            if (ordinal != 2) {
+                if (ordinal != 3) {
+                    if (!e31Var.b) {
+                        e31Var.l(',');
                     }
-                    i5++;
-                } else {
+                    e31Var.k();
+                    kad.a((lu5) this.c, w4aVar);
+                    k(w4aVar.g(i));
+                    e31Var.l(':');
+                    e31Var.n();
                     return;
                 }
+                if (i == 0) {
+                    this.a = true;
+                }
+                if (i == 1) {
+                    e31Var.l(',');
+                    e31Var.n();
+                    this.a = false;
+                    return;
+                }
+                return;
+            } else if (!e31Var.b) {
+                if (i % 2 == 0) {
+                    e31Var.l(',');
+                    e31Var.k();
+                } else {
+                    e31Var.l(':');
+                    e31Var.n();
+                    z = false;
+                }
+                this.a = z;
+                return;
+            } else {
+                this.a = true;
+                e31Var.k();
+                return;
             }
+        }
+        if (!e31Var.b) {
+            e31Var.l(',');
+        }
+        e31Var.k();
+    }
+
+    public final void d(int i) {
+        if (this.a) {
+            k(String.valueOf(i));
+        } else {
+            ((nj1) ((e31) this.b).c).c(String.valueOf(i));
         }
     }
 
-    @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        LinearGradient linearGradient = new LinearGradient(this.c, 0.0f, 0.0f, 0.0f, 0, -16777216, Shader.TileMode.CLAMP);
-        this.r = linearGradient;
-        this.e.setShader(linearGradient);
-    }
-
-    public void setCustomPaddingRight(int i) {
-        TextView[] textViewArr;
-        this.x = i;
-        for (TextView textView : this.a) {
-            if (textView instanceof fl6) {
-                ((fl6) textView).setCustomPaddingRight(i);
-            }
+    public final void e(long j) {
+        if (this.a) {
+            k(String.valueOf(j));
+        } else {
+            ((nj1) ((e31) this.b).c).c(String.valueOf(j));
         }
-        invalidate();
     }
 
-    public void setText(CharSequence charSequence) {
-        b(charSequence, true);
+    public final void f(w4a w4aVar, int i, long j) {
+        w4aVar.getClass();
+        c(w4aVar, i);
+        e(j);
+    }
+
+    public final void g() {
+        ((nj1) ((e31) this.b).c).c("null");
+    }
+
+    public final void h(w4a w4aVar, int i, cv5 cv5Var, Object obj) {
+        w4aVar.getClass();
+        cv5Var.getClass();
+        w4aVar.getClass();
+        cv5Var.getClass();
+        c(w4aVar, i);
+        if (cv5Var.d().c()) {
+            j(cv5Var, obj);
+        } else if (obj == null) {
+            g();
+        } else {
+            j(cv5Var, obj);
+        }
+    }
+
+    public final void i(w4a w4aVar, int i, cv5 cv5Var, Object obj) {
+        w4aVar.getClass();
+        cv5Var.getClass();
+        c(w4aVar, i);
+        j(cv5Var, obj);
+    }
+
+    public final void j(defpackage.cv5 r5, java.lang.Object r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.c30.j(cv5, java.lang.Object):void");
+    }
+
+    public final void k(String str) {
+        str.getClass();
+        ((e31) this.b).m(str);
+    }
+
+    public final void l(w4a w4aVar) {
+        w4aVar.getClass();
+        e31 e31Var = (e31) this.b;
+        e31Var.b = false;
+        e31Var.l(((uyc) this.d).b);
+    }
+
+    public final void m() {
+        ArrayList arrayList = (ArrayList) this.g;
+        for (int i = 0; i < arrayList.size(); i++) {
+            ((View) arrayList.get(i)).invalidate();
+        }
+    }
+
+    public final boolean o(boolean z) {
+        if (!this.a) {
+            if (((qu2) this.f).h || z) {
+                kk7 kk7Var = (kk7) this.e;
+                if (kk7Var != null) {
+                    kk7Var.n((su2) this.b, kk7.N);
+                }
+                Handler handler = (Handler) this.c;
+                if (handler != null) {
+                    handler.removeCallbacks((mk2) this.g);
+                }
+                this.a = true;
+                h45 h45Var = (h45) this.d;
+                Intent intent = (Intent) h45Var.c;
+                String str = LaunchActivity.C1;
+                ((LaunchActivity) h45Var.b).V(intent, true, false, false, null, true, false);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final boolean p(w4a w4aVar) {
+        return false;
+    }
+
+    public c30(e31 e31Var, lu5 lu5Var, uyc uycVar, c30[] c30VarArr) {
+        this.b = e31Var;
+        this.c = lu5Var;
+        this.d = uycVar;
+        this.e = c30VarArr;
+        int ordinal = uycVar.ordinal();
+        if (c30VarArr != null) {
+            c30 c30Var = c30VarArr[ordinal];
+            if (c30Var == null && c30Var == this) {
+                return;
+            }
+            c30VarArr[ordinal] = this;
+        }
     }
 }

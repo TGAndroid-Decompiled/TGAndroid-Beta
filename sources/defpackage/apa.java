@@ -1,32 +1,19 @@
 package defpackage;
 
-import android.content.Context;
-public final class apa extends mz0 {
-    public gl3 S1;
+import org.telegram.tgnet.RequestDelegate;
+public final class apa implements RequestDelegate {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public apa(Context context) {
-        super(context, null, true, false, null);
-        J();
-        this.y1 = true;
-        this.x1 = true;
-        T0();
-        r59 r59Var = this.n1;
-        int i = this.u0;
-        r59Var.setPadding(i, 0, i, 0);
-        this.n1.j(new so7(this, (byte) 24));
-        this.n1.setOnItemClickListener(new s19(this, (byte) 11));
+    public apa(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final q59 G0(r59 r59Var) {
-        gl3 gl3Var = new gl3(r59Var, getContext(), this.a, 0, true, this.J0);
-        this.S1 = gl3Var;
-        gl3Var.r = false;
-        return gl3Var;
-    }
-
-    @Override
-    public final CharSequence J0() {
-        return jb6.M0(2131745555, null);
+    public final void run(org.telegram.tgnet.TLObject r13, org.telegram.tgnet.TLRPC.TL_error r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.apa.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

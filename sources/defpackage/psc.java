@@ -1,91 +1,45 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class psc {
-    public static final Rect f = new Rect();
-    public final kz4 a = new kz4();
-    public final jz4 b = new jz4();
-    public final mx6 c = new mx6(new rjb((byte) 22));
-    public final mx6 d = new mx6(new rjb((byte) 23));
-    public final mx6 e = new mx6(new rjb((byte) 24));
+    public ag2 a;
+    public hd b;
+    public TextView c;
 
-    public final int a(iz4 iz4Var) {
-        if (iz4Var instanceof kz4) {
-            return ((kz4) iz4Var).b;
-        }
-        if (iz4Var instanceof jz4) {
-            return ((Integer) this.d.H(((jz4) iz4Var).d)).intValue();
-        } else if (iz4Var instanceof oz4) {
-            return a(((oz4) iz4Var).a);
-        } else {
-            return 0;
-        }
-    }
-
-    public final int b(iz4 iz4Var) {
-        if (iz4Var instanceof kz4) {
-            return ((kz4) iz4Var).b;
-        }
-        if (iz4Var instanceof jz4) {
-            return ((Integer) this.e.H(((jz4) iz4Var).d)).intValue();
-        } else if (iz4Var instanceof oz4) {
-            return b(((oz4) iz4Var).a);
-        } else {
-            return 0;
-        }
-    }
-
-    public final iz4 c(Drawable drawable) {
-        boolean z = drawable instanceof ColorDrawable;
-        kz4 kz4Var = this.a;
-        if (z) {
-            kz4Var.a(((ColorDrawable) drawable).getColor());
-            return kz4Var;
-        }
-        boolean z2 = drawable instanceof ah7;
-        jz4 jz4Var = this.b;
-        if (z2) {
-            ah7 ah7Var = (ah7) drawable;
-            if (ah7Var.q < 0) {
-                kz4Var.a(-16777216);
-                return kz4Var;
-            }
-            jz4Var.a(ah7Var.k);
-            return jz4Var;
-        }
-        boolean z3 = drawable instanceof BitmapDrawable;
-        mx6 mx6Var = this.c;
-        if (z3) {
-            jz4Var.a((Bitmap) mx6Var.H(((BitmapDrawable) drawable).getBitmap()));
-            return jz4Var;
-        } else if (drawable instanceof a92) {
-            return c(((a92) drawable).c(false));
-        } else {
-            if (drawable != null) {
-                Bitmap bitmap = jz4Var.f;
-                if (bitmap != null && !bitmap.isRecycled() && jz4Var.f.getWidth() == 120 && jz4Var.f.getHeight() == 120) {
-                    jz4Var.f.eraseColor(0);
-                } else {
-                    jz4Var.f = Bitmap.createBitmap(120, 120, Bitmap.Config.ARGB_8888);
-                }
-                Canvas canvas = new Canvas(jz4Var.f);
-                canvas.scale(1.0f, 1.3333334f);
-                Rect bounds = drawable.getBounds();
-                Rect rect = f;
-                rect.set(bounds);
-                drawable.setBounds(0, 0, 120, 160);
-                drawable.draw(canvas);
-                drawable.setBounds(rect);
-                jz4Var.a(jz4Var.f);
-                jz4Var.f = null;
-                jz4Var.a((Bitmap) mx6Var.H(jz4Var.d));
-            }
-            return jz4Var;
-        }
+    public static void a(Context context, p8c p8cVar, Runnable runnable) {
+        ?? obj = new Object();
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
+        String M0 = k96.M0(2131743954, null);
+        hd hdVar = alertDialog$Builder.a;
+        hdVar.S = M0;
+        LinearLayout j = de9.j(context, 1);
+        TextView textView = new TextView(context);
+        textView.setLetterSpacing(0.025f);
+        zkb.X(textView, bkb.i5, null);
+        textView.setTextSize(1, 14.0f);
+        j.addView(textView, nme.t(-1, -2, 0, 24, 0, 24, 0));
+        ag2 ag2Var = new ag2(1, null, context);
+        obj.a = ag2Var;
+        ag2Var.getTextView().getLayoutParams().width = -1;
+        obj.a.getTextView().setTextSize(1, 14.0f);
+        j.addView(obj.a, nme.t(-1, 48, 3, 8, 0, 8, 0));
+        boolean[] zArr = new boolean[1];
+        textView.setText(gl.S2(k96.M0(2131752907, null)));
+        obj.a.e(gl.N2(k96.M0(2131752908, null), -1, 0, new vf1(context, (byte) 28), null), "", false, false, false);
+        alertDialog$Builder.n(j);
+        alertDialog$Builder.j(k96.M0(2131751759, null), new ah((byte) 1, p8cVar, zArr));
+        alertDialog$Builder.g(k96.M0(2131752577, null), new fyb((byte) 20));
+        obj.b = hdVar;
+        hdVar.show();
+        TextView textView2 = (TextView) obj.b.c(-1);
+        obj.c = textView2;
+        textView2.setEnabled(false);
+        obj.c.setAlpha(0.5f);
+        obj.a.setOnClickListener(new osc(obj, (byte) 0));
+        obj.a.setBackground(bkb.f0(bkb.w0(null, bkb.h6, false), 7, -1));
+        obj.b.setOnDismissListener(new vf(zArr, runnable));
     }
 }

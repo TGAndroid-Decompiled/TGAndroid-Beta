@@ -1,36 +1,27 @@
 package defpackage;
 
-import java.util.Set;
-public final class bo5 extends kq {
-    public final x79 C() {
-        if (this.b == 0) {
-            return x79.r;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputConnectionWrapper;
+import android.view.inputmethod.InputContentInfo;
+public final class bo5 extends InputConnectionWrapper {
+    public final do5 a;
+
+    public bo5(InputConnection inputConnection, do5 do5Var) {
+        super(inputConnection, false);
+        this.a = do5Var;
+    }
+
+    @Override
+    public final boolean commitContent(InputContentInfo inputContentInfo, int i, Bundle bundle) {
+        gi3 gi3Var = null;
+        if (inputContentInfo != null && Build.VERSION.SDK_INT >= 25) {
+            gi3Var = new gi3(new eo5(inputContentInfo));
         }
-        return new x79(this.b, (Object[]) this.c);
-    }
-
-    public final void D(uzb uzbVar, String str) {
-        super.w(uzbVar, str);
-    }
-
-    public final void E(Set set) {
-        super.x(set);
-    }
-
-    @Override
-    public final qo5 f() {
-        throw new UnsupportedOperationException("Not supported for bimaps");
-    }
-
-    @Override
-    public final kq w(Object obj, Object obj2) {
-        super.w(obj, obj2);
-        return this;
-    }
-
-    @Override
-    public final kq x(Set set) {
-        super.x(set);
-        return this;
+        if (this.a.a(gi3Var, i, bundle)) {
+            return true;
+        }
+        return super.commitContent(inputContentInfo, i, bundle);
     }
 }

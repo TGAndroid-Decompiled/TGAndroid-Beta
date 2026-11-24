@@ -1,9 +1,9 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public interface n32 {
-    void a(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2);
-
-    void b(TLRPC.TL_userContact_old2 tL_userContact_old2, boolean z, int i, long j);
+import android.widget.LinearLayout;
+public final class n32 extends LinearLayout {
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, 0);
+    }
 }

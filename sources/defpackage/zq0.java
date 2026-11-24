@@ -1,46 +1,95 @@
 package defpackage;
-public final class zq0 implements Runnable {
-    public final byte a = 1;
-    public final long b;
-    public final long c;
-    public final long d;
-    public final Object e;
 
-    public zq0(long j, long j2, long j3, h92 h92Var) {
-        this.b = j;
-        this.c = j2;
-        this.d = j3;
-        this.e = h92Var;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class zq0 extends c49 {
+    public final byte a;
+    public final gr0 b;
+
+    public zq0(gr0 gr0Var, byte b) {
+        this.a = b;
+        this.b = gr0Var;
     }
 
     @Override
-    public final void run() {
+    public final void e(Rect rect, View view, RecyclerView recyclerView, p49 p49Var) {
+        boolean z;
+        boolean z2;
+        boolean z3;
+        boolean z4;
         byte b = this.a;
-        Object obj = this.e;
+        boolean z5 = true;
+        gr0 gr0Var = this.b;
         switch (b) {
             case 0:
-                br0 br0Var = (br0) obj;
-                long j = this.d;
-                long j2 = this.b;
-                long j3 = this.c;
-                br0Var.c(j2, j3, j, true);
-                ewe.c(br0Var.currentAccount, j3);
+                if (view instanceof qfa) {
+                    qfa qfaVar = (qfa) view;
+                    gr0Var.f.getClass();
+                    int R = RecyclerView.R(qfaVar);
+                    int i = gr0Var.h.J;
+                    if (R < i) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    qfaVar.b0 = z;
+                    int i2 = R % i;
+                    if (i2 == 0) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    qfaVar.W = z2;
+                    if (i2 != i - 1) {
+                        z5 = false;
+                    }
+                    qfaVar.a0 = z5;
+                    rect.left = 0;
+                    rect.top = 0;
+                    rect.bottom = 0;
+                    rect.right = 0;
+                    return;
+                }
+                rect.left = 0;
+                rect.top = 0;
+                rect.bottom = 0;
+                rect.right = 0;
                 return;
             default:
-                long j4 = this.b;
-                long j5 = this.c;
-                y71.l0 = Long.valueOf(j4 * j5);
-                Long valueOf = Long.valueOf(this.d * j5);
-                y71.m0 = valueOf;
-                ((h92) obj).a(y71.l0, valueOf);
+                if (view instanceof qfa) {
+                    qfa qfaVar2 = (qfa) view;
+                    gr0Var.r.getClass();
+                    int R2 = RecyclerView.R(qfaVar2);
+                    int i3 = gr0Var.s.J;
+                    if (R2 < i3) {
+                        z3 = true;
+                    } else {
+                        z3 = false;
+                    }
+                    qfaVar2.b0 = z3;
+                    int i4 = R2 % i3;
+                    if (i4 == 0) {
+                        z4 = true;
+                    } else {
+                        z4 = false;
+                    }
+                    qfaVar2.W = z4;
+                    if (i4 != i3 - 1) {
+                        z5 = false;
+                    }
+                    qfaVar2.a0 = z5;
+                    rect.left = 0;
+                    rect.top = 0;
+                    rect.bottom = 0;
+                    rect.right = 0;
+                    return;
+                }
+                rect.left = 0;
+                rect.top = 0;
+                rect.bottom = 0;
+                rect.right = 0;
                 return;
         }
-    }
-
-    public zq0(br0 br0Var, long j, long j2, long j3) {
-        this.e = br0Var;
-        this.b = j;
-        this.c = j2;
-        this.d = j3;
     }
 }

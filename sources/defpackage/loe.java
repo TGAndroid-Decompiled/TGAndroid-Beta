@@ -1,38 +1,14 @@
 package defpackage;
 public abstract class loe {
-    public static final int[] a;
-    public static final int[] b;
+    public static float a(float f, float f2, float f3, float f4) {
+        double d = f - f3;
+        double d2 = f2 - f4;
+        return (float) Math.sqrt((d2 * d2) + (d * d));
+    }
 
-    static {
-        int[] iArr = new int[sre.values().length];
-        b = iArr;
-        try {
-            iArr[sre.BYTE_STRING.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            b[sre.MESSAGE.ordinal()] = 2;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            int[] iArr2 = b;
-            sre sreVar = sre.VOID;
-            iArr2[6] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        int[] iArr3 = new int[wi8.G(4).length];
-        a = iArr3;
-        try {
-            iArr3[3] = 1;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            a[1] = 2;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            a[0] = 3;
-        } catch (NoSuchFieldError unused6) {
-        }
+    public static float b(int i, int i2, int i3, int i4) {
+        double d = i - i3;
+        double d2 = i2 - i4;
+        return (float) Math.sqrt((d2 * d2) + (d * d));
     }
 }

@@ -1,79 +1,77 @@
 package defpackage;
 
-import java.util.Map;
-public final class kbd extends m3 {
-    public final Object b;
-    public int c;
-    public final dq2 d;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class kbd extends b4 {
+    public static final Parcelable.Creator<kbd> CREATOR = new xff((byte) 13);
+    public int a;
+    public final boolean b;
+    public final String c;
+    public final String d;
+    public final byte[] e;
+    public final boolean f;
 
-    public kbd(dq2 dq2Var, int i) {
-        super((byte) 1, false);
-        this.d = dq2Var;
-        Object[] objArr = dq2Var.d;
-        objArr.getClass();
-        this.b = objArr[i];
-        this.c = i;
+    public kbd() {
+        this.a = 0;
+        this.b = true;
+        this.c = null;
+        this.d = null;
+        this.e = null;
+        this.f = false;
     }
 
-    public final void a() {
-        int i = this.c;
-        Object obj = this.b;
-        dq2 dq2Var = this.d;
-        if (i != -1 && i < dq2Var.size()) {
-            int i2 = this.c;
-            Object[] objArr = dq2Var.d;
-            objArr.getClass();
-            if (u5f.a(obj, objArr[i2])) {
-                return;
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("MetadataImpl { { eventStatus: '");
+        sb.append(this.a);
+        sb.append("' } { uploadable: '");
+        sb.append(this.b);
+        sb.append("' } ");
+        String str = this.c;
+        if (str != null) {
+            ug8.z("{ completionToken: '", str, "' } ", sb);
+        }
+        String str2 = this.d;
+        if (str2 != null) {
+            ug8.z("{ accountName: '", str2, "' } ", sb);
+        }
+        byte[] bArr = this.e;
+        if (bArr != null) {
+            sb.append("{ ssbContext: [ ");
+            for (byte b : bArr) {
+                sb.append("0x");
+                sb.append(Integer.toHexString(b));
+                sb.append(" ");
             }
+            sb.append("] } ");
         }
-        Object obj2 = dq2.w;
-        this.c = dq2Var.x(obj);
+        sb.append("{ contextOnly: '");
+        sb.append(this.f);
+        sb.append("' } }");
+        return sb.toString();
     }
 
     @Override
-    public final Object getKey() {
-        return this.b;
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        int i2 = this.a;
+        jte.q(parcel, 1, 4);
+        parcel.writeInt(i2);
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(this.b ? 1 : 0);
+        jte.l(parcel, 3, this.c);
+        jte.l(parcel, 4, this.d);
+        jte.c(parcel, 5, this.e);
+        jte.q(parcel, 6, 4);
+        parcel.writeInt(this.f ? 1 : 0);
+        jte.s(parcel, r);
     }
 
-    @Override
-    public final Object getValue() {
-        dq2 dq2Var = this.d;
-        Map n = dq2Var.n();
-        if (n != null) {
-            return n.get(this.b);
-        }
-        a();
-        int i = this.c;
-        if (i == -1) {
-            return null;
-        }
-        Object[] objArr = dq2Var.e;
-        objArr.getClass();
-        return objArr[i];
-    }
-
-    @Override
-    public final Object setValue(Object obj) {
-        dq2 dq2Var = this.d;
-        Map n = dq2Var.n();
-        Object obj2 = this.b;
-        if (n != null) {
-            return n.put(obj2, obj);
-        }
-        a();
-        int i = this.c;
-        if (i == -1) {
-            dq2Var.put(obj2, obj);
-            return null;
-        }
-        Object[] objArr = dq2Var.e;
-        objArr.getClass();
-        Object obj3 = objArr[i];
-        int i2 = this.c;
-        Object[] objArr2 = dq2Var.e;
-        objArr2.getClass();
-        objArr2[i2] = obj;
-        return obj3;
+    public kbd(int i, boolean z, String str, String str2, byte[] bArr, boolean z2) {
+        this.a = i;
+        this.b = z;
+        this.c = str;
+        this.d = str2;
+        this.e = bArr;
+        this.f = z2;
     }
 }

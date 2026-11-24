@@ -1,39 +1,22 @@
 package defpackage;
+public final class lc8 {
+    public final gi4 a;
 
-import android.view.View;
-public final class lc8 implements View.OnClickListener {
-    public final byte a;
-    public final mc8 b;
-    public final Runnable c;
-
-    public lc8(mc8 mc8Var, Runnable runnable, byte b) {
-        this.a = b;
-        this.b = mc8Var;
-        this.c = runnable;
+    public lc8(gi4 gi4Var) {
+        this.a = gi4Var;
     }
 
-    @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        Runnable runnable = this.c;
-        mc8 mc8Var = this.b;
-        switch (b) {
-            case 0:
-                bka bkaVar = mc8Var.d;
-                if (bkaVar.I) {
-                    mc8Var.I = runnable;
-                    bkaVar.a(true);
-                    return;
-                }
-                return;
-            default:
-                bka bkaVar2 = mc8Var.d;
-                if (bkaVar2.I) {
-                    mc8Var.I = runnable;
-                    bkaVar2.a(true);
-                    return;
-                }
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof lc8)) {
+            return false;
+        }
+        return this.a.equals(((lc8) obj).a);
+    }
+
+    public final int hashCode() {
+        return this.a.hashCode();
     }
 }

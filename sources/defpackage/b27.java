@@ -1,6 +1,10 @@
 package defpackage;
-public interface b27 {
-    void B(y17 y17Var, c27 c27Var);
 
-    void g0(y17 y17Var, c27 c27Var);
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class b27 extends CharacterStyle {
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setColor(bkb.n2.linkColor);
+    }
 }

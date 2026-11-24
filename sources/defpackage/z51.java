@@ -1,41 +1,27 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class z51 implements ValueAnimator.AnimatorUpdateListener {
+import org.telegram.messenger.Utilities;
+public final class z51 implements Runnable {
     public final byte a;
-    public final b61 b;
+    public final r61 b;
+    public final p c;
+    public final h61 d;
 
-    public z51(b61 b61Var, byte b) {
+    public z51(r61 r61Var, p pVar, h61 h61Var, byte b) {
         this.a = b;
-        this.b = b61Var;
+        this.b = r61Var;
+        this.c = pVar;
+        this.d = h61Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        b61 b61Var = this.b;
-        switch (b) {
+    public final void run() {
+        switch (this.a) {
             case 0:
-                b61Var.U = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                b61Var.invalidate();
-                return;
-            case 1:
-                b61Var.d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b61Var.invalidate();
-                return;
-            case 2:
-                b61Var.Q = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b61Var.invalidate();
-                return;
-            case 3:
-                b61Var.getClass();
-                b61Var.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b61Var.invalidate();
+                Utilities.e.c(new z51(this.b, this.c, this.d, (byte) 1));
                 return;
             default:
-                b61Var.getClass();
-                b61Var.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b61Var.invalidate();
+                this.b.f0(this.c, this.d);
                 return;
         }
     }

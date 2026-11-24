@@ -1,35 +1,46 @@
 package defpackage;
-public enum jub extends rub {
-    public jub() {
-        super("DoctypeSystemIdentifier_singleQuoted", 63);
+
+import android.content.SharedPreferences;
+public final class jub implements Runnable {
+    public final byte a;
+    public final pub b;
+
+    public jub(pub pubVar, byte b) {
+        this.a = b;
+        this.b = pubVar;
     }
 
     @Override
-    public final void c(bsb bsbVar, hl1 hl1Var) {
-        srb srbVar = bsbVar.m;
-        char d = hl1Var.d();
-        if (d != 0) {
-            if (d != '\'') {
-                msb msbVar = rub.a;
-                if (d != '>') {
-                    if (d != 65535) {
-                        srbVar.g.append(d);
-                        return;
-                    }
-                    bsbVar.l(this);
-                    bsbVar.j();
-                    bsbVar.c = msbVar;
-                    return;
-                }
-                bsbVar.m(this);
-                bsbVar.j();
-                bsbVar.c = msbVar;
+    public final void run() {
+        byte b = this.a;
+        pub pubVar = this.b;
+        switch (b) {
+            case 0:
+                kk7 f = kk7.f(pubVar.currentAccount);
+                int i = na7.q5;
+                f.k(2, 512);
                 return;
-            }
-            bsbVar.c = rub.C0;
-            return;
+            default:
+                pubVar.a.b();
+                pubVar.b.b();
+                pubVar.d.clear();
+                SharedPreferences.Editor edit = pubVar.getUserConfig().j().edit();
+                for (String str : pubVar.getUserConfig().j().getAll().keySet()) {
+                    if (str.startsWith("topics_load_offset_message_id_")) {
+                        edit.remove(str);
+                    }
+                    if (str.startsWith("topics_load_offset_date_")) {
+                        edit.remove(str);
+                    }
+                    if (str.startsWith("topics_load_offset_topic_id_")) {
+                        edit.remove(str);
+                    }
+                    if (str.startsWith("topics_end_reached_")) {
+                        edit.remove(str);
+                    }
+                }
+                edit.apply();
+                return;
         }
-        bsbVar.m(this);
-        srbVar.g.append((char) 65533);
     }
 }

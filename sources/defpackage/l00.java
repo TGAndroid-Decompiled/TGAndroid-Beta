@@ -1,21 +1,11 @@
 package defpackage;
+public final class l00 extends Exception {
+    public final int a;
+    public final boolean b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-public final class l00 extends FrameLayout {
-    public final float a;
-
-    public l00(Context context, float f) {
-        super(context);
-        this.a = f;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipRect(0.0f, 0.0f, getWidth() * this.a, getHeight());
-        super.dispatchDraw(canvas);
-        canvas.restore();
+    public l00(int i, boolean z) {
+        super(de9.k(i, "AudioOutput write failed: "));
+        this.b = z;
+        this.a = i;
     }
 }

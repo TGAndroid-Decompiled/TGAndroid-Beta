@@ -1,17 +1,10 @@
 package defpackage;
-public final class ghd implements cq7 {
-    public static final ghd a = new Object();
+public final class ghd {
+    public final ltd a;
+    public final u44 b;
 
-    static {
-        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public ghd(ltd ltdVar, u44 u44Var) {
+        this.a = ltdVar;
+        this.b = u44Var;
     }
 }

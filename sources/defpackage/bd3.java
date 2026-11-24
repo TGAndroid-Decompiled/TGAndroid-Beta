@@ -1,107 +1,109 @@
 package defpackage;
 
-import java.util.List;
-public final class bd3 implements s84 {
-    public final byte a;
-    public final Object b;
+import java.nio.ByteBuffer;
+import sun.misc.Unsafe;
+public abstract class bd3 {
+    public static final lo5 a = new lo5("CLOSED");
 
-    public bd3() {
-        this.a = (byte) 1;
-        this.b = new sh7(tcb.B, 16);
-    }
-
-    @Override
-    public final s84 a() {
-        switch (this.a) {
-            case 0:
-                return this;
-            default:
-                return (sh7) this.b;
-        }
-    }
-
-    @Override
-    public final int b(t84 t84Var, u21 u21Var) {
-        switch (this.a) {
-            case 0:
-                if (((vb3) t84Var).l(Integer.MAX_VALUE) == -1) {
-                    return -1;
+    public static void a(dd ddVar, dd ddVar2) {
+        boolean g0;
+        int[] iArr = {0};
+        do {
+            g0 = ddVar.g0(iArr[0]);
+            iArr[0] = iArr[0] + 1;
+            int m0 = ddVar.m0(iArr, 2);
+            if (m0 != 0) {
+                if (m0 != 1) {
+                    if (m0 == 2) {
+                        iq[] iqVarArr = new iq[2];
+                        cd3.d(ddVar, iArr, iqVarArr);
+                        c(ddVar, iArr, ddVar2, iqVarArr[0], iqVarArr[1]);
+                    } else {
+                        throw new Exception(String.format("[%s] Bad compression type '11' at the bit index '%d'.", bd3.class.getSimpleName(), Integer.valueOf(iArr[0])));
+                    }
+                } else {
+                    c(ddVar, iArr, ddVar2, xh4.e, sh4.e);
                 }
-                return 0;
-            default:
-                return ((sh7) this.b).b(t84Var, u21Var);
+            } else {
+                int i = ((iArr[0] + 7) & (-8)) / 8;
+                int e0 = (ddVar.e0(i) & 255) + ((ddVar.e0(i + 1) & 255) << 8);
+                int i2 = i + 4;
+                ddVar2.getClass();
+                byte[] array = ((ByteBuffer) ddVar.c).array();
+                int capacity = ((ByteBuffer) ddVar2.c).capacity();
+                int i3 = ddVar2.b + e0;
+                if (capacity < i3) {
+                    ddVar2.b0(i3 + 1024);
+                }
+                ((ByteBuffer) ddVar2.c).put(array, i2, e0);
+                ddVar2.b += e0;
+                iArr[0] = (i2 + e0) << 3;
+            }
+            if (ddVar.b <= iArr[0] / 8) {
+                g0 = true;
+                continue;
+            }
+        } while (!g0);
+    }
+
+    public static final Object b(nv9 nv9Var, long j, eq4 eq4Var) {
+        while (true) {
+            nv9 nv9Var2 = nv9Var;
+            while (true) {
+                if (nv9Var2.d >= j && !nv9Var2.d()) {
+                    return nv9Var2;
+                }
+                Object objectVolatile = ex.a.getObjectVolatile(nv9Var2, uq2.a);
+                lo5 lo5Var = a;
+                if (objectVolatile == lo5Var) {
+                    return lo5Var;
+                }
+                nv9Var = (nv9) ((uq2) objectVolatile);
+                if (nv9Var == null) {
+                    nv9 nv9Var3 = (nv9) eq4Var.invoke(Long.valueOf(nv9Var2.d + 1), nv9Var2);
+                    while (true) {
+                        Unsafe unsafe = ex.a;
+                        long j2 = uq2.a;
+                        if (unsafe.compareAndSwapObject(nv9Var2, j2, (Object) null, nv9Var3)) {
+                            if (nv9Var2.d()) {
+                                nv9Var2.e();
+                            }
+                            nv9Var2 = nv9Var3;
+                        } else if (unsafe.getObjectVolatile(nv9Var2, j2) != null) {
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 
-    @Override
-    public final boolean c(t84 t84Var) {
-        switch (this.a) {
-            case 0:
-                return true;
-            default:
-                return ((sh7) this.b).c(t84Var);
-        }
-    }
-
-    @Override
-    public final void d(long j, long j2) {
-        switch (this.a) {
-            case 0:
+    public static void c(dd ddVar, int[] iArr, dd ddVar2, iq iqVar, iq iqVar2) {
+        while (true) {
+            int m = iqVar.m(ddVar, iArr);
+            if (m == 256) {
                 return;
-            default:
-                ((sh7) this.b).d(j, j2);
-                return;
+            }
+            if (m >= 0 && m <= 255) {
+                ddVar2.k0(m);
+            } else {
+                int e = cd3.e(ddVar, iArr, m);
+                int c = cd3.c(ddVar, iArr, iqVar2);
+                int i = ddVar2.b;
+                byte[] bArr = new byte[e];
+                int i2 = i - c;
+                int i3 = 0;
+                int i4 = i2;
+                while (i3 < e) {
+                    if (i <= i4) {
+                        i4 = i2;
+                    }
+                    bArr[i3] = ddVar2.e0(i4);
+                    i3++;
+                    i4++;
+                }
+                ddVar2.l0(bArr);
+            }
         }
-    }
-
-    @Override
-    public final List e() {
-        switch (this.a) {
-            case 0:
-                ko5 ko5Var = mo5.b;
-                return y79.e;
-            default:
-                return ((sh7) this.b).m;
-        }
-    }
-
-    @Override
-    public final void f(u84 u84Var) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                yzb c0 = u84Var.c0(0, 3);
-                u84Var.f0(new od0(-9223372036854775807L));
-                u84Var.B();
-                go4 go4Var = (go4) obj;
-                fo4 a = go4Var.a();
-                a.s = wf7.n("text/x-unknown");
-                a.k = go4Var.t;
-                mlb.w(a, c0);
-                return;
-            default:
-                ((sh7) obj).f(new cf9(u84Var, (byte) 3));
-                return;
-        }
-    }
-
-    @Override
-    public final void release() {
-        byte b = this.a;
-    }
-
-    public bd3(go4 go4Var) {
-        this.a = (byte) 0;
-        this.b = go4Var;
-    }
-
-    private final void g() {
-    }
-
-    private final void h() {
-    }
-
-    private final void i(long j, long j2) {
     }
 }

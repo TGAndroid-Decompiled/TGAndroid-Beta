@@ -1,73 +1,61 @@
 package defpackage;
 
-import sun.misc.Unsafe;
-public final class hpb extends ev5 {
-    public static final long h = fy.a.objectFieldOffset(hpb.class.getDeclaredField("_state$volatile"));
-    private volatile int _state$volatile;
-    public final Thread e = Thread.currentThread();
-    public xp3 f;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+public final class hpb extends gb2 {
+    public final Path Ld;
+    public final Paint Md;
+    public final int Nd;
+    public final int Od;
+    public final int Pd;
+    public final jpb Qd;
 
-    public static void n(int i) {
-        throw new IllegalStateException(("Illegal state " + i).toString());
+    public hpb(jpb jpbVar, Context context, int i, wjb wjbVar, int i2, int i3, int i4) {
+        super(context, i, false, null, wjbVar);
+        this.Qd = jpbVar;
+        this.Nd = i2;
+        this.Od = i3;
+        this.Pd = i4;
+        this.Ld = new Path();
+        this.Md = new Paint(1);
     }
 
     @Override
-    public final boolean k() {
-        return true;
+    public final void j1(Canvas canvas) {
+        this.S4 = 0;
+        this.T4 = this.Q4.size() - 1;
+        super.j1(canvas);
     }
 
     @Override
-    public final void l(Throwable th) {
-        while (true) {
-            Unsafe unsafe = fy.a;
-            long j = h;
-            int intVolatile = unsafe.getIntVolatile(this, j);
-            if (intVolatile != 0) {
-                if (intVolatile != 1 && intVolatile != 2 && intVolatile != 3) {
-                    n(intVolatile);
-                    throw null;
-                }
-                return;
-            }
-            hpb hpbVar = this;
-            if (unsafe.compareAndSwapInt(hpbVar, h, intVolatile, 2)) {
-                hpbVar.e.interrupt();
-                unsafe.putIntVolatile(hpbVar, j, 3);
-                return;
-            }
-            this = hpbVar;
-        }
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        int e2 = e2(this.Nd);
+        float X1 = X1(e2);
+        float W1 = W1(e2);
+        RectF rectF = gl.P;
+        rectF.set(getPollButtonsLeft(), X1, getPollButtonsRight(), W1);
+        Path path = this.Ld;
+        path.rewind();
+        path.addRoundRect(rectF, gl.L(8.0f), gl.L(8.0f), Path.Direction.CW);
+        Paint paint = this.Md;
+        paint.setColor(0);
+        paint.setShadowLayer(gl.L(2.0f), 0.0f, gl.L(0.66f), bkb.p1(this.Qd.y * 0.2f, -16777216));
+        canvas.drawRoundRect(rectF, gl.L(8.0f), gl.L(8.0f), paint);
+        canvas.clipPath(path);
+        d1(canvas);
+        canvas.restore();
     }
 
-    public final void m() {
-        hpb hpbVar;
-        while (true) {
-            Unsafe unsafe = fy.a;
-            long j = h;
-            int intVolatile = unsafe.getIntVolatile(this, j);
-            if (intVolatile != 0) {
-                if (intVolatile != 2) {
-                    if (intVolatile == 3) {
-                        Thread.interrupted();
-                        return;
-                    } else {
-                        n(intVolatile);
-                        throw null;
-                    }
-                }
-                hpbVar = this;
-            } else {
-                hpbVar = this;
-                if (unsafe.compareAndSwapInt(hpbVar, j, intVolatile, 1)) {
-                    xp3 xp3Var = hpbVar.f;
-                    if (xp3Var != null) {
-                        xp3Var.dispose();
-                        return;
-                    }
-                    return;
-                }
-            }
-            this = hpbVar;
-        }
+    @Override
+    public final void onMeasure(int i, int i2) {
+        setMeasuredDimension(this.Od, this.Pd);
+    }
+
+    @Override
+    public final void setPressed(boolean z) {
     }
 }

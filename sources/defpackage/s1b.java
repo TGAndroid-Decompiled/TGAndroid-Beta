@@ -1,867 +1,264 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.TLObject;
+import java.util.List;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class s1b extends FrameLayout implements vlb {
-    public final TextView E;
-    public final TextView F;
-    public final cj8 G;
-    public final ImageView H;
-    public AnimatorSet I;
-    public final byte a;
-    public final qz8 b;
-    public final TextView c;
-    public final bf0 d;
-    public final jh2 e;
-    public boolean f;
-    public final ImageView h;
-    public final ImageView n;
-    public TLRPC.TL_messages_stickerSet r;
-    public boolean s;
-    public final Rect w;
-    public boolean x;
-    public final FrameLayout y;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_stories;
+public final class s1b extends y1b {
+    public boolean C;
+    public boolean D;
+    public final String E;
+    public int F;
+    public final ArrayList G;
+    public final ArrayList H;
+    public int I;
 
-    public s1b(Context context, int i) {
-        super(context);
-        int i2;
-        float f;
-        float f2;
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        int i7;
-        float f3;
-        float f4;
-        int i8;
-        int i9;
-        int i10;
-        this.w = new Rect();
-        this.a = i;
-        bf0 bf0Var = new bf0(context);
-        this.d = bf0Var;
-        bf0Var.setAspectFit(true);
-        bf0Var.setLayerNum(1);
-        boolean z = jb6.a0;
-        if (z) {
-            i2 = 5;
-        } else {
-            i2 = 3;
-        }
-        int i11 = i2 | 48;
-        if (z) {
-            f = 0.0f;
-        } else {
-            f = 13.0f;
-        }
-        if (z) {
-            f2 = 13.0f;
-        } else {
-            f2 = 0.0f;
-        }
-        addView(bf0Var, qoe.d(40, 40.0f, i11, f, 9.0f, f2, 0.0f));
-        if (i != 0) {
-            ImageView imageView = new ImageView(context);
-            this.h = imageView;
-            imageView.setFocusable(false);
-            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-            imageView.setScaleType(scaleType);
-            if (i != 3) {
-                int i12 = cmb.Li;
-                fg0 f0 = cmb.f0(cmb.w0(null, i12, false), 1, -1);
-                wmb M = anb.M(i12);
-                imageView.setBackground(f0);
-                anb.j(imageView, f0, null, M, null);
-            }
-            if (i == 1) {
-                int i13 = cmb.Ki;
-                PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-                anb.s(imageView, i13, null, mode);
-                imageView.setImageResource(2131232047);
-                imageView.setContentDescription(jb6.M0(2131754838, null));
-                if (jb6.a0) {
-                    i10 = 3;
-                } else {
-                    i10 = 5;
-                }
-                addView(imageView, qoe.e(40, 40, i10 | 16));
-                ImageView imageView2 = new ImageView(context);
-                this.n = imageView2;
-                imageView2.setAlpha(0.0f);
-                imageView2.setVisibility(8);
-                imageView2.setScaleType(scaleType);
-                imageView2.setImageResource(2131231632);
-                anb.s(imageView2, i13, null, mode);
-                addView(imageView2, qoe.h(58.0f, 58.0f, 8388613));
-                jh2 jh2Var = new jh2(21, null, context);
-                this.e = jh2Var;
-                jh2Var.b(-1, cmb.c6, cmb.j7);
-                jh2Var.setDrawUnchecked(false);
-                jh2Var.setDrawBackgroundAsArc(3);
-                addView(jh2Var, qoe.i(24.0f, 24.0f, 8388611, 34.0f, 30.0f, 0.0f, 0.0f));
-            } else if (i == 3) {
-                anb.s(imageView, cmb.Ci, null, PorterDuff.Mode.MULTIPLY);
-                imageView.setImageResource(2131231199);
-                boolean z2 = jb6.a0;
-                if (z2) {
-                    i8 = 3;
-                } else {
-                    i8 = 5;
-                }
-                int i14 = i8 | 48;
-                if (z2) {
-                    i9 = 10;
-                } else {
-                    i9 = 0;
-                }
-                addView(imageView, qoe.d(40, 40.0f, i14, i9, 9.0f, z2 ? 0 : 10, 0.0f));
-            }
-        }
-        FrameLayout frameLayout = new FrameLayout(getContext());
-        this.y = frameLayout;
-        TextView textView = new TextView(context);
-        this.E = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(gm.o());
-        textView.setText(jb6.M0(2131754483, null));
-        anb.X(textView, cmb.Ii, null);
-        int i15 = cmb.Ei;
-        int w0 = cmb.w0(null, i15, false);
-        int i16 = cmb.Gi;
-        fg0 d = ulb.d(w0, cmb.w0(null, i16, false), 14.0f);
-        wmb M2 = anb.M(i15);
-        wmb M3 = anb.M(i16);
-        textView.setBackground(d);
-        anb.j(textView, d, M2, M3, null);
-        textView.setPadding(gm.L(14.0f), 0, gm.L(14.0f), 0);
-        textView.setGravity(17);
-        textView.setOnClickListener(new x10(this, (byte) 15));
-        if (jb6.a0) {
-            i3 = 3;
-        } else {
-            i3 = 5;
-        }
-        frameLayout.addView(textView, qoe.h(-2.0f, 28.0f, i3 | 16));
-        rve.a(textView);
-        TextView textView2 = new TextView(context);
-        this.F = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(gm.o());
-        textView2.setText(jb6.M0(2131744544, null));
-        anb.X(textView2, cmb.Hi, null);
-        fg0 d2 = ulb.d(0, cmb.w0(null, i15, false) & 452984831, 14.0f);
-        wmb g = anb.g(i15, 26);
-        textView2.setBackground(d2);
-        anb.j(textView2, d2, null, g, null);
-        textView2.setPadding(gm.L(12.0f), 0, gm.L(12.0f), 0);
-        textView2.setGravity(17);
-        textView2.setOnClickListener(new x10(this, (byte) 15));
-        if (jb6.a0) {
-            i4 = 3;
-        } else {
-            i4 = 5;
-        }
-        frameLayout.addView(textView2, qoe.i(-2.0f, 32.0f, i4 | 16, 0.0f, -2.0f, 0.0f, 0.0f));
-        rve.a(textView2);
-        cj8 cj8Var = new cj8(gm.L(4.0f), null, context, false);
-        this.G = cj8Var;
-        cj8Var.setIcon(2131624310);
-        cj8Var.b(jb6.M0(2131743563, null), new x10(this, (byte) 15), false);
-        try {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) cj8Var.getIconView().getLayoutParams();
-            marginLayoutParams.leftMargin = gm.L(1.0f);
-            marginLayoutParams.topMargin = gm.L(1.0f);
-            int L = gm.L(20.0f);
-            marginLayoutParams.height = L;
-            marginLayoutParams.width = L;
-            ((ViewGroup.MarginLayoutParams) cj8Var.getTextView().getLayoutParams()).leftMargin = gm.L(3.0f);
-            cj8Var.getChildAt(0).setPadding(gm.L(8.0f), 0, gm.L(8.0f), 0);
-        } catch (Exception unused) {
-        }
-        FrameLayout frameLayout2 = this.y;
-        cj8 cj8Var2 = this.G;
-        if (jb6.a0) {
-            i5 = 3;
-        } else {
-            i5 = 5;
-        }
-        frameLayout2.addView(cj8Var2, qoe.h(-2.0f, 28.0f, i5 | 16));
-        rve.a(this.G);
-        this.y.setPadding(gm.L(10.0f), 0, gm.L(10.0f), 0);
-        View view = this.y;
-        if (jb6.a0) {
-            i6 = 3;
-        } else {
-            i6 = 5;
-        }
-        addView(view, qoe.d(-2, -1.0f, i6, 0.0f, 0.0f, 0.0f, 0.0f));
-        this.y.setOnClickListener(new oha(this, (byte) 13));
-        qz8 qz8Var = new qz8(context, (byte) 4);
-        this.b = qz8Var;
-        nm7.i(qz8Var);
-        anb.X(qz8Var, cmb.F6, null);
-        qz8Var.setTextSize(1, 16.0f);
-        qz8Var.setTypeface(gm.o());
-        qz8Var.setLines(1);
-        qz8Var.setMaxLines(1);
-        qz8Var.setSingleLine(true);
-        qz8Var.setEllipsize(TextUtils.TruncateAt.END);
-        qz8Var.setGravity(qoe.y());
-        addView(qz8Var, qoe.i(-2.0f, -2.0f, 8388611, 71.0f, 9.0f, 70.0f, 0.0f));
-        TextView textView3 = new TextView(context);
-        this.c = textView3;
-        anb.X(textView3, cmb.y6, null);
-        wi8.w(textView3, 1, 13.0f, 1, 1);
-        textView3.setSingleLine(true);
-        textView3.setGravity(qoe.y());
-        addView(textView3, qoe.i(-2.0f, -2.0f, 8388611, 71.0f, 32.0f, 70.0f, 0.0f));
-        if (i == 3) {
-            ImageView imageView3 = new ImageView(context);
-            this.H = imageView3;
-            imageView3.setImageResource(2131232102);
-            imageView3.setPadding(gm.L(8.0f), gm.L(8.0f), gm.L(8.0f), gm.L(8.0f));
-            anb.s(imageView3, cmb.x6, null, PorterDuff.Mode.SRC_IN);
-            int i17 = cmb.h6;
-            fg0 f02 = cmb.f0(cmb.w0(null, i17, false), 1, -1);
-            wmb M4 = anb.M(i17);
-            imageView3.setBackground(f02);
-            anb.j(imageView3, f02, null, M4, null);
-            imageView3.setVisibility(8);
-            boolean z3 = jb6.a0;
-            if (z3) {
-                i7 = 3;
-            } else {
-                i7 = 5;
-            }
-            int i18 = i7 | 16;
-            if (z3) {
-                f3 = 4.0f;
-            } else {
-                f3 = 0.0f;
-            }
-            if (z3) {
-                f4 = 0.0f;
-            } else {
-                f4 = 4.0f;
-            }
-            addView(imageView3, qoe.d(-2, -2.0f, i18, f3, 0.0f, f4, 0.0f));
-        }
-        e(0);
-    }
-
-    public final boolean a() {
-        byte b = this.a;
-        if (b == 1) {
-            return this.e.a.q;
-        }
-        if (b == 3) {
-            if (this.h.getVisibility() != 0) {
-                return false;
-            }
-        } else if (!this.x || this.y.getVisibility() != 0) {
-            return false;
-        }
-        return true;
+    public s1b(int i, long j, String str, l1b l1bVar) {
+        super(i, j, 4, -1, l1bVar);
+        this.G = new ArrayList();
+        this.H = new ArrayList();
+        this.I = 0;
+        this.E = str;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(cmb.l6));
+    public final void C(ArrayList arrayList, boolean z) {
+        ArrayList arrayList2 = new ArrayList();
+        ArrayList arrayList3 = new ArrayList();
+        TL_bots.reorderPreviewMedias reorderpreviewmedias = new TL_bots.reorderPreviewMedias();
+        int i = this.c;
+        reorderpreviewmedias.bot = na7.q1(i).m1(this.d);
+        reorderpreviewmedias.lang_code = this.E;
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            Integer num = (Integer) obj;
+            k27 f = f(num.intValue());
+            if (f != null) {
+                reorderpreviewmedias.order.add(na7.f5(f.l.media));
+                arrayList2.add(f);
+                arrayList3.add(num);
+            }
+        }
+        ConnectionsManager.getInstance(i).sendRequest(reorderpreviewmedias, null);
+        ArrayList arrayList4 = this.H;
+        if (arrayList4.isEmpty()) {
+            arrayList4.add(new ArrayList());
+        }
+        ((ArrayList) arrayList4.get(0)).clear();
+        ((ArrayList) arrayList4.get(0)).addAll(arrayList3);
+        ArrayList arrayList5 = this.i;
+        arrayList5.clear();
+        arrayList5.addAll(arrayList2);
     }
 
-    public final void b(boolean z, boolean z2) {
-        float f;
-        float f2;
-        byte b = this.a;
-        if (b == 1) {
-            this.e.a(z, z2);
-            return;
-        }
-        int i = 4;
-        float f3 = 0.0f;
-        float f4 = 0.1f;
-        if (b == 3) {
-            ImageView imageView = this.h;
-            if (z2) {
-                imageView.animate().cancel();
-                ViewPropertyAnimator listener = imageView.animate().setListener(new q1b(this, z, (byte) 0));
-                if (z) {
-                    f3 = 1.0f;
-                }
-                ViewPropertyAnimator alpha = listener.alpha(f3);
-                if (z) {
-                    f2 = 1.0f;
-                } else {
-                    f2 = 0.1f;
-                }
-                ViewPropertyAnimator scaleX = alpha.scaleX(f2);
-                if (z) {
-                    f4 = 1.0f;
-                }
-                scaleX.scaleY(f4).setDuration(150L).start();
-                return;
+    public final void F(ArrayList arrayList) {
+        int i = 0;
+        while (true) {
+            ArrayList arrayList2 = this.i;
+            if (i >= arrayList2.size()) {
+                break;
             }
-            if (z) {
-                i = 0;
-            }
-            imageView.setVisibility(i);
-            if (!z) {
-                imageView.setAlpha(0.0f);
-                imageView.setScaleX(0.1f);
-                imageView.setScaleY(0.1f);
-                return;
-            }
-            imageView.setAlpha(1.0f);
-            imageView.setScaleX(1.0f);
-            imageView.setScaleY(1.0f);
-        } else if (this.x) {
-            FrameLayout frameLayout = this.y;
-            if (z2) {
-                frameLayout.animate().cancel();
-                ViewPropertyAnimator listener2 = frameLayout.animate().setListener(new q1b(this, z, (byte) 1));
-                if (z) {
-                    f3 = 1.0f;
-                }
-                ViewPropertyAnimator alpha2 = listener2.alpha(f3);
-                if (z) {
-                    f = 1.0f;
-                } else {
-                    f = 0.1f;
-                }
-                ViewPropertyAnimator scaleX2 = alpha2.scaleX(f);
-                if (z) {
-                    f4 = 1.0f;
-                }
-                scaleX2.scaleY(f4).setDuration(150L).start();
-                return;
-            }
-            if (z) {
-                i = 0;
-            }
-            frameLayout.setVisibility(i);
-            if (!z) {
-                frameLayout.setAlpha(0.0f);
-                frameLayout.setScaleX(0.1f);
-                frameLayout.setScaleY(0.1f);
-                return;
-            }
-            frameLayout.setAlpha(1.0f);
-            frameLayout.setScaleX(1.0f);
-            frameLayout.setScaleY(1.0f);
-        }
-    }
-
-    public final void c(final boolean z) {
-        float f;
-        if (this.a == 1) {
-            float f2 = 0.0f;
-            float f3 = 1.0f;
-            if (z) {
-                f = 1.0f;
-            } else {
-                f = 0.0f;
-                f2 = 1.0f;
-            }
-            float[] fArr = {f, f2};
-            float f4 = 0.66f;
-            if (z) {
-                f3 = 0.66f;
-                f4 = 1.0f;
-            }
-            float[] fArr2 = {f4, f3};
-            ImageView imageView = this.n;
-            imageView.setVisibility(0);
-            ViewPropertyAnimator duration = imageView.animate().alpha(fArr[0]).scaleX(fArr2[0]).scaleY(fArr2[0]).setDuration(200L);
-            d53 d53Var = vt3.a;
-            duration.setInterpolator(d53Var).withEndAction(new Runnable(this) {
-                public final s1b b;
-
-                {
-                    this.b = this;
-                }
-
-                @Override
-                public final void run() {
-                    byte b = r3;
-                    boolean z2 = z;
-                    s1b s1bVar = this.b;
-                    switch (b) {
-                        case 0:
-                            if (!z2) {
-                                s1bVar.n.setVisibility(8);
-                                return;
-                            }
-                            return;
-                        case 1:
-                            if (z2) {
-                                s1bVar.y.setVisibility(8);
-                                return;
-                            }
-                            return;
-                        default:
-                            if (z2) {
-                                s1bVar.h.setVisibility(8);
-                                return;
-                            }
-                            return;
-                    }
-                }
-            }).start();
-            if (this.x) {
-                FrameLayout frameLayout = this.y;
-                frameLayout.setVisibility(0);
-                frameLayout.animate().alpha(fArr[1]).scaleX(fArr2[1]).scaleY(fArr2[1]).setDuration(200L).setInterpolator(d53Var).withEndAction(new Runnable(this) {
-                    public final s1b b;
-
-                    {
-                        this.b = this;
-                    }
-
-                    @Override
-                    public final void run() {
-                        byte b = r3;
-                        boolean z2 = z;
-                        s1b s1bVar = this.b;
-                        switch (b) {
-                            case 0:
-                                if (!z2) {
-                                    s1bVar.n.setVisibility(8);
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                if (z2) {
-                                    s1bVar.y.setVisibility(8);
-                                    return;
-                                }
-                                return;
-                            default:
-                                if (z2) {
-                                    s1bVar.h.setVisibility(8);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                }).start();
-                return;
-            }
-            ImageView imageView2 = this.h;
-            imageView2.setVisibility(0);
-            imageView2.animate().alpha(fArr[1]).scaleX(fArr2[1]).scaleY(fArr2[1]).setDuration(200L).setInterpolator(d53Var).withEndAction(new Runnable(this) {
-                public final s1b b;
-
-                {
-                    this.b = this;
-                }
-
-                @Override
-                public final void run() {
-                    byte b = r3;
-                    boolean z2 = z;
-                    s1b s1bVar = this.b;
-                    switch (b) {
-                        case 0:
-                            if (!z2) {
-                                s1bVar.n.setVisibility(8);
-                                return;
-                            }
-                            return;
-                        case 1:
-                            if (z2) {
-                                s1bVar.y.setVisibility(8);
-                                return;
-                            }
-                            return;
-                        default:
-                            if (z2) {
-                                s1bVar.h.setVisibility(8);
-                                return;
-                            }
-                            return;
-                    }
-                }
-            }).start();
-        }
-    }
-
-    public final void d(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, boolean z, boolean z2) {
-        int i;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet2;
-        String str;
-        TLRPC.Document document;
-        gn5 k;
-        int i2;
-        String str2;
-        this.f = z;
-        this.r = tL_messages_stickerSet;
-        this.s = z2;
-        bf0 bf0Var = this.d;
-        bf0Var.setVisibility(0);
-        qz8 qz8Var = this.b;
-        qz8Var.setTranslationY(0.0f);
-        qz8Var.setText(this.r.set.title);
-        boolean z3 = this.r.set.archived;
-        TextView textView = this.c;
-        if (z3) {
-            qz8Var.setAlpha(0.5f);
-            textView.setAlpha(0.5f);
-            bf0Var.setAlpha(0.5f);
-        } else {
-            qz8Var.setAlpha(1.0f);
-            textView.setAlpha(1.0f);
-            bf0Var.setAlpha(1.0f);
-        }
-        boolean z4 = tL_messages_stickerSet.set.emojis;
-        this.x = z4;
-        int i3 = 8;
-        if (z4) {
-            i = 0;
-        } else {
-            i = 8;
-        }
-        this.y.setVisibility(i);
-        if (!this.x) {
-            i3 = 0;
-        }
-        this.h.setVisibility(i3);
-        bf0Var.setColorFilter(null);
-        ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet.documents;
-        String str3 = "Stickers";
-        if (arrayList != null && !arrayList.isEmpty()) {
-            if (this.x) {
-                str3 = "EmojiCount";
-            }
-            textView.setText(jb6.G(arrayList.size(), str3, new Object[0]));
-            int i4 = 0;
+            k27 k27Var = (k27) arrayList2.get(i);
+            int i2 = 0;
             while (true) {
-                if (i4 < arrayList.size()) {
-                    document = arrayList.get(i4);
-                    if (document != null && document.id == tL_messages_stickerSet.set.thumb_document_id) {
+                if (i2 >= arrayList.size()) {
+                    break;
+                } else if (na7.q0(k27Var.l.media, (TLRPC.MessageMedia) arrayList.get(i2))) {
+                    arrayList2.remove(i);
+                    ArrayList arrayList3 = this.H;
+                    if (!arrayList3.isEmpty() && k27Var.e1() < ((ArrayList) arrayList3.get(0)).size()) {
+                        ((ArrayList) arrayList3.get(0)).remove(k27Var.e1());
+                    }
+                    i--;
+                } else {
+                    i2++;
+                }
+            }
+            i++;
+        }
+        TL_bots.deletePreviewMedia deletepreviewmedia = new TL_bots.deletePreviewMedia();
+        int i3 = this.c;
+        deletepreviewmedia.bot = na7.q1(i3).m1(this.d);
+        for (int i4 = 0; i4 < arrayList.size(); i4++) {
+            deletepreviewmedia.media.add(na7.f5((TLRPC.MessageMedia) arrayList.get(i4)));
+        }
+        ConnectionsManager.getInstance(i3).sendRequest(deletepreviewmedia, null);
+        v1b v1bVar = this.q;
+        gl.r(v1bVar);
+        gl.c3(v1bVar);
+    }
+
+    public final void G(TLRPC.InputMedia inputMedia, TL_bots.botPreviewMedia botpreviewmedia) {
+        ArrayList arrayList;
+        k27 k27Var;
+        int e1;
+        TL_stories.StoryItem storyItem;
+        TLRPC.MessageMedia messageMedia;
+        TLRPC.Document document;
+        int i = 0;
+        while (true) {
+            arrayList = this.i;
+            if (i < arrayList.size()) {
+                k27Var = (k27) arrayList.get(i);
+                if (inputMedia != null && (storyItem = k27Var.l) != null && (messageMedia = storyItem.media) != null) {
+                    if (inputMedia instanceof TLRPC.TL_inputMediaPhoto) {
+                        TLRPC.Photo photo = messageMedia.photo;
+                        if (photo != null && photo.id == ((TLRPC.TL_inputMediaPhoto) inputMedia).id.id) {
+                            break;
+                        }
+                    } else if ((inputMedia instanceof TLRPC.TL_inputMediaDocument) && (document = messageMedia.document) != null && document.id == ((TLRPC.TL_inputMediaDocument) inputMedia).id.id) {
                         break;
                     }
-                    i4++;
-                } else {
-                    document = null;
-                    break;
                 }
-            }
-            if (document == null) {
-                document = arrayList.get(0);
-            }
-            TLRPC.Document document2 = document;
-            e86.e(1);
-            TLObject w = bc4.w(tL_messages_stickerSet.set.thumbs, 90, false, null, false);
-            if (w == null) {
-                w = document2;
-            }
-            meb d = eq3.d(tL_messages_stickerSet.set.thumbs, cmb.Z6, 1.0f, false);
-            boolean z5 = w instanceof TLRPC.Document;
-            if (z5) {
-                k = gn5.c(bc4.w(document2.thumbs, 90, false, null, false), document2);
+                i++;
             } else {
-                k = gn5.k((TLRPC.PhotoSize) w, document2, tL_messages_stickerSet.set.thumb_version);
-            }
-            gn5 gn5Var = k;
-            if (this.x) {
-                i2 = 16388;
-            } else {
-                i2 = 1;
-            }
-            if (!e86.e(i2)) {
-                str2 = "_firstframe";
-            } else {
-                str2 = "";
-            }
-            String concat = "50_50".concat(str2);
-            if (z5 && (k47.K2(document2, true) || k47.M4(document2))) {
-                if (d != null) {
-                    bf0Var.p(gn5.b(document2), concat, d, tL_messages_stickerSet);
-                    tL_messages_stickerSet2 = tL_messages_stickerSet;
-                } else {
-                    bf0Var.h(gn5.b(document2), concat, gn5Var, null, 0, tL_messages_stickerSet);
-                    tL_messages_stickerSet2 = tL_messages_stickerSet;
-                }
-                if (k47.B4(document2)) {
-                    bf0Var.setColorFilter(cmb.u3);
-                }
-            } else {
-                tL_messages_stickerSet2 = tL_messages_stickerSet;
-                if (gn5Var != null && gn5Var.p == 1) {
-                    bf0Var.n(gn5Var, concat, "tgs", d, tL_messages_stickerSet2);
-                } else {
-                    bf0Var.n(gn5Var, concat, "webp", d, tL_messages_stickerSet2);
-                }
-            }
-        } else {
-            tL_messages_stickerSet2 = tL_messages_stickerSet;
-            if (tL_messages_stickerSet2.set.emojis) {
-                str3 = "EmojiCount";
-            }
-            textView.setText(jb6.G(0, str3, new Object[0]));
-            bf0Var.setImageDrawable(null);
-            if (tL_messages_stickerSet2.set.thumb_document_id != 0) {
-                vm.g(z8c.t0).b(tL_messages_stickerSet2.set.thumb_document_id, new a47(this, (byte) 2));
-            }
-        }
-        if (this.s) {
-            if (tL_messages_stickerSet2.set.emojis) {
-                str = "t.me/addemoji/";
-            } else {
-                str = "t.me/addstickers/";
-            }
-            textView.setText(str + tL_messages_stickerSet2.set.short_name);
-        }
-    }
-
-    public final void e(int i) {
-        boolean z;
-        boolean z2;
-        boolean z3;
-        float f;
-        float f2;
-        float f3;
-        int i2;
-        float f4;
-        float f5;
-        float f6;
-        int i3;
-        float f7;
-        AnimatorSet animatorSet = this.I;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            this.I = null;
-        }
-        int i4 = 0;
-        cj8 cj8Var = this.G;
-        if (i == 1) {
-            cj8Var.b(jb6.M0(2131743563, null), new x10(this, (byte) 15), false);
-        } else if (i == 2) {
-            cj8Var.b(jb6.M0(2131745815, null), new x10(this, (byte) 15), false);
-        }
-        if (i != 1 && i != 2) {
-            z = false;
-        } else {
-            z = true;
-        }
-        cj8Var.setEnabled(z);
-        if (i == 3) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        TextView textView = this.E;
-        textView.setEnabled(z2);
-        if (i == 4) {
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        TextView textView2 = this.F;
-        textView2.setEnabled(z3);
-        float f8 = 0.0f;
-        float f9 = 1.0f;
-        if (i != 1 && i != 2) {
-            f = 0.0f;
-        } else {
-            f = 1.0f;
-        }
-        cj8Var.setAlpha(f);
-        if (i != 1 && i != 2) {
-            f2 = 0.6f;
-        } else {
-            f2 = 1.0f;
-        }
-        cj8Var.setScaleX(f2);
-        if (i != 1 && i != 2) {
-            f3 = 0.6f;
-        } else {
-            f3 = 1.0f;
-        }
-        cj8Var.setScaleY(f3);
-        if (i != 1 && i != 2) {
-            i2 = 8;
-        } else {
-            i2 = 0;
-        }
-        cj8Var.setVisibility(i2);
-        if (i == 3) {
-            f4 = 1.0f;
-        } else {
-            f4 = 0.0f;
-        }
-        textView.setAlpha(f4);
-        if (i == 3) {
-            f5 = 1.0f;
-        } else {
-            f5 = 0.6f;
-        }
-        textView.setScaleX(f5);
-        if (i == 3) {
-            f6 = 1.0f;
-        } else {
-            f6 = 0.6f;
-        }
-        textView.setScaleY(f6);
-        if (i == 3) {
-            i3 = 0;
-        } else {
-            i3 = 8;
-        }
-        textView.setVisibility(i3);
-        if (i == 4) {
-            f8 = 1.0f;
-        }
-        textView2.setAlpha(f8);
-        if (i == 4) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.6f;
-        }
-        textView2.setScaleX(f7);
-        if (i != 4) {
-            f9 = 0.6f;
-        }
-        textView2.setScaleY(f9);
-        if (i != 4) {
-            i4 = 8;
-        }
-        textView2.setVisibility(i4);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(gm.L(58.0f), 1073741824);
-        FrameLayout frameLayout = this.y;
-        frameLayout.measure(-2146483649, makeMeasureSpec);
-        int measuredWidth = frameLayout.getMeasuredWidth() + gm.L(26.0f);
-        boolean z4 = jb6.a0;
-        TextView textView3 = this.c;
-        qz8 qz8Var = this.b;
-        if (z4) {
-            ((ViewGroup.MarginLayoutParams) qz8Var.getLayoutParams()).leftMargin = measuredWidth;
-            ((ViewGroup.MarginLayoutParams) textView3.getLayoutParams()).leftMargin = measuredWidth;
-            return;
-        }
-        ((ViewGroup.MarginLayoutParams) qz8Var.getLayoutParams()).rightMargin = measuredWidth;
-        ((ViewGroup.MarginLayoutParams) textView3.getLayoutParams()).rightMargin = measuredWidth;
-    }
-
-    public TLRPC.TL_messages_stickerSet getStickersSet() {
-        return this.r;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float L;
-        int i;
-        if (this.f) {
-            if (jb6.a0) {
-                L = 0.0f;
-            } else {
-                L = gm.L(71.0f);
-            }
-            float f = L;
-            float height = getHeight() - 1;
-            int width = getWidth() - getPaddingRight();
-            if (jb6.a0) {
-                i = gm.L(71.0f);
-            } else {
+                k27Var = null;
                 i = 0;
-            }
-            canvas.drawLine(f, height, width - i, getHeight() - 1, cmb.j0);
-        }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        jh2 jh2Var = this.e;
-        if (jh2Var != null && jh2Var.a.q) {
-            accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(true);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(58.0f) + (this.f ? 1 : 0), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        FrameLayout frameLayout;
-        ImageView imageView;
-        Drawable background = getBackground();
-        Rect rect = this.w;
-        if (background != null && (imageView = this.h) != null) {
-            imageView.getHitRect(rect);
-            if (rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                return true;
+                break;
             }
         }
-        if (getBackground() != null && this.x && (frameLayout = this.y) != null) {
-            frameLayout.getHitRect(rect);
-            if (rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                return true;
+        ArrayList arrayList2 = this.H;
+        if (k27Var != null) {
+            arrayList.remove(k27Var);
+            if (arrayList2.isEmpty()) {
+                arrayList2.add(new ArrayList());
+            }
+            if (i > 0 && i < ((ArrayList) arrayList2.get(0)).size()) {
+                ((ArrayList) arrayList2.get(0)).remove(i);
             }
         }
-        return super.onTouchEvent(motionEvent);
+        q1b q1bVar = new q1b(this, this.d, botpreviewmedia);
+        k27 k27Var2 = new k27(this.c, q1bVar);
+        TLRPC.Message message = k27Var2.k;
+        if (k27Var == null) {
+            e1 = this.I;
+            this.I = e1 + 1;
+        } else {
+            e1 = k27Var.e1();
+        }
+        message.id = e1;
+        q1bVar.id = e1;
+        k27Var2.j = this;
+        k27Var2.r0(false);
+        if (arrayList2.isEmpty()) {
+            arrayList2.add(new ArrayList());
+        }
+        ((ArrayList) arrayList2.get(0)).add(i, Integer.valueOf(k27Var2.e1()));
+        arrayList.add(i, k27Var2);
+        v1b v1bVar = this.q;
+        gl.r(v1bVar);
+        gl.c3(v1bVar);
     }
 
-    public void setChecked(boolean z) {
-        b(z, true);
-    }
-
-    public void setDeleteAction(View.OnClickListener onClickListener) {
-        int i;
-        ImageView imageView = this.H;
-        if (imageView != null) {
-            if (onClickListener == null) {
-                i = 8;
+    public final boolean H(Runnable runnable) {
+        TL_bots.getPreviewMedias getpreviewmedias;
+        if (!this.C && !this.D) {
+            long j = this.d;
+            String str = this.E;
+            int i = this.c;
+            if (str != null) {
+                TL_bots.getPreviewInfo getpreviewinfo = new TL_bots.getPreviewInfo();
+                getpreviewinfo.bot = na7.q1(i).m1(j);
+                getpreviewinfo.lang_code = str;
+                getpreviewmedias = getpreviewinfo;
             } else {
-                i = 0;
+                TL_bots.getPreviewMedias getpreviewmedias2 = new TL_bots.getPreviewMedias();
+                getpreviewmedias2.bot = na7.q1(i).m1(j);
+                getpreviewmedias = getpreviewmedias2;
             }
-            imageView.setVisibility(i);
-            imageView.setOnClickListener(onClickListener);
+            this.C = true;
+            this.F = ConnectionsManager.getInstance(i).sendRequest(getpreviewmedias, new apa(this, runnable, (byte) 8));
+            return true;
         }
+        return false;
     }
 
-    public void setNeedDivider(boolean z) {
-        this.f = z;
-    }
-
-    public void setOnOptionsClick(View.OnClickListener onClickListener) {
-        ImageView imageView = this.h;
-        if (imageView == null) {
-            return;
+    public final void I(TL_bots.botPreviewMedia botpreviewmedia) {
+        q1b q1bVar = new q1b(this, this.d, botpreviewmedia);
+        k27 k27Var = new k27(this.c, q1bVar);
+        TLRPC.Message message = k27Var.k;
+        int i = this.I;
+        this.I = i + 1;
+        message.id = i;
+        q1bVar.id = i;
+        k27Var.j = this;
+        k27Var.r0(false);
+        ArrayList arrayList = this.H;
+        if (arrayList.isEmpty()) {
+            arrayList.add(new ArrayList());
         }
-        imageView.setOnClickListener(onClickListener);
-    }
-
-    public void setOnReorderButtonTouchListener(View.OnTouchListener onTouchListener) {
-        this.n.setOnTouchListener(onTouchListener);
-    }
-
-    public void setReorderable(boolean z) {
-        c(z);
+        ((ArrayList) arrayList.get(0)).add(0, Integer.valueOf(k27Var.e1()));
+        this.i.add(0, k27Var);
+        v1b v1bVar = this.q;
+        gl.r(v1bVar);
+        gl.c3(v1bVar);
     }
 
     @Override
-    public final void updateColors() {
+    public final k27 f(int i) {
+        int i2 = 0;
+        while (true) {
+            ArrayList arrayList = this.i;
+            if (i2 < arrayList.size()) {
+                if (((k27) arrayList.get(i2)).e1() == i) {
+                    return (k27) arrayList.get(i2);
+                }
+                i2++;
+            } else {
+                return null;
+            }
+        }
+    }
+
+    @Override
+    public final int g() {
+        return this.i.size();
+    }
+
+    @Override
+    public final ArrayList h() {
+        return this.H;
+    }
+
+    @Override
+    public final int i() {
+        return this.i.size();
+    }
+
+    @Override
+    public final boolean k() {
+        return this.C;
+    }
+
+    @Override
+    public final boolean l() {
+        return false;
+    }
+
+    @Override
+    public final boolean q(int i, List list, boolean z) {
+        return H(null);
+    }
+
+    @Override
+    public final boolean r(int i) {
+        return false;
+    }
+
+    @Override
+    public final void j() {
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void x() {
     }
 }

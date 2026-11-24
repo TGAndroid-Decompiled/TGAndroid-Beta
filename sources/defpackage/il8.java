@@ -1,25 +1,25 @@
 package defpackage;
-public final class il8 {
-    public final wm4 a;
-    public final long b;
 
-    public il8(kl8 kl8Var, wm4 wm4Var) {
-        long length;
-        long j;
-        this.a = wm4Var;
-        long length2 = ((kl8Var.b.length() + kl8Var.a.length()) << 1) + 128;
-        f26 f26Var = (f26) wm4Var.b;
-        if (f26Var == null) {
-            j = 1024;
-        } else {
-            long length3 = (((int[]) f26Var.b).length << 2) + 64;
-            if (((int[]) f26Var.c) == null) {
-                length = 0;
-            } else {
-                length = ((int[]) f26Var.c).length << 2;
+import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
+public final class il8 {
+    public final ArrayList a;
+
+    public il8(JSONArray jSONArray) {
+        ArrayList arrayList = new ArrayList();
+        if (jSONArray != null) {
+            for (int i = 0; i < jSONArray.length(); i++) {
+                JSONObject optJSONObject = jSONArray.optJSONObject(i);
+                if (optJSONObject != null) {
+                    arrayList.add(new hl8(optJSONObject));
+                }
             }
-            j = length + length3;
         }
-        this.b = length2 + j;
+        this.a = arrayList;
+    }
+
+    public il8(ArrayList arrayList) {
+        this.a = arrayList;
     }
 }

@@ -1,35 +1,83 @@
 package defpackage;
+public final class vm5 extends ym5 {
+    public final byte d;
+    public final wm5 e;
 
-import j$.util.concurrent.ConcurrentHashMap;
-public final class vm5 implements Runnable {
-    public final byte a;
-    public final wm5 b;
-    public final long c;
-    public final long d;
-
-    public vm5(wm5 wm5Var, long j, long j2, byte b) {
-        this.a = b;
-        this.b = wm5Var;
-        this.c = j;
-        this.d = j2;
+    public vm5(wm5 wm5Var, byte b) {
+        this.d = b;
+        this.e = wm5Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.a) {
+    public final boolean contains(Object obj) {
+        byte b = this.d;
+        wm5 wm5Var = this.e;
+        switch (b) {
             case 0:
-                wm5 wm5Var = this.b;
-                ConcurrentHashMap concurrentHashMap = wm5Var.i.u;
-                String str = wm5Var.a;
-                long j = this.c;
-                long j2 = this.d;
-                concurrentHashMap.put(str, new long[]{j, j2});
-                gm.c3(new vm5(wm5Var, j, j2, (byte) 1));
-                return;
+                if (obj instanceof vn7) {
+                    vn7 vn7Var = (vn7) obj;
+                    if (vn7Var.a() > 0) {
+                        if (((c69) wm5Var).e.b(vn7Var.a) == vn7Var.a()) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
             default:
-                wm5 wm5Var2 = this.b;
-                nm7.f(wm5Var2.h).k(142, wm5Var2.a, Long.valueOf(this.c), Long.valueOf(this.d));
-                return;
+                return ((c69) wm5Var).contains(obj);
+        }
+    }
+
+    @Override
+    public final int hashCode() {
+        switch (this.d) {
+            case 0:
+                return this.e.hashCode();
+            default:
+                return super.hashCode();
+        }
+    }
+
+    @Override
+    public final int i(int i, Object[] objArr) {
+        return h().i(i, objArr);
+    }
+
+    @Override
+    public final boolean m() {
+        switch (this.d) {
+            case 0:
+                return false;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public final v5c iterator() {
+        return h().listIterator(0);
+    }
+
+    @Override
+    public final mm5 r() {
+        return new kn5(this);
+    }
+
+    @Override
+    public final int size() {
+        byte b = this.d;
+        wm5 wm5Var = this.e;
+        switch (b) {
+            case 0:
+                c69 c69Var = (c69) wm5Var;
+                vm5 vm5Var = c69Var.h;
+                if (vm5Var == null) {
+                    vm5Var = new vm5(c69Var, (byte) 1);
+                    c69Var.h = vm5Var;
+                }
+                return vm5Var.size();
+            default:
+                return ((c69) wm5Var).e.c;
         }
     }
 }

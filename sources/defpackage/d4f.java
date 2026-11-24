@@ -1,53 +1,66 @@
 package defpackage;
+public final class d4f extends vef {
+    private static final d4f zzb;
+    private int zzd;
+    private int zze;
+    private int zzf;
+    private int zzg;
+    private int zzh;
+    private int zzi;
 
-import java.math.RoundingMode;
-public abstract class d4f {
-    public static int a(int i, int i2) {
-        RoundingMode roundingMode = RoundingMode.CEILING;
-        roundingMode.getClass();
+    static {
+        ?? vefVar = new vef();
+        zzb = vefVar;
+        vef.e(d4f.class, vefVar);
+    }
+
+    public static b4f l() {
+        return (b4f) zzb.j();
+    }
+
+    public static void m(d4f d4fVar, int i) {
+        d4fVar.zzd |= 2;
+        d4fVar.zzf = i;
+    }
+
+    public static void n(d4f d4fVar, int i) {
+        d4fVar.zzd |= 4;
+        d4fVar.zzg = i;
+    }
+
+    public static void o(d4f d4fVar, int i) {
+        d4fVar.zzd |= 8;
+        d4fVar.zzh = i;
+    }
+
+    public static void p(d4f d4fVar, int i) {
+        d4fVar.zzd |= 16;
+        d4fVar.zzi = i;
+    }
+
+    public static void q(d4f d4fVar, int i) {
+        d4fVar.zze = i - 1;
+        d4fVar.zzd |= 1;
+    }
+
+    @Override
+    public final Object h(int i, vef vefVar) {
+        int i2 = i - 1;
         if (i2 != 0) {
-            int i3 = i / i2;
-            int i4 = i - (i2 * i3);
-            if (i4 != 0) {
-                int i5 = ((i ^ i2) >> 31) | 1;
-                switch (u9e.a[roundingMode.ordinal()]) {
-                    case 1:
-                        throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
-                    case 2:
-                        return i3;
-                    case 3:
-                        if (i5 >= 0) {
-                            return i3;
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 != 5) {
+                            return null;
                         }
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        if (i5 <= 0) {
-                            return i3;
-                        }
-                        break;
-                    case 6:
-                    case 7:
-                    case 8:
-                        int abs = Math.abs(i4);
-                        int abs2 = abs - (Math.abs(i2) - abs);
-                        if (abs2 == 0) {
-                            RoundingMode roundingMode2 = RoundingMode.HALF_UP;
-                            RoundingMode roundingMode3 = RoundingMode.HALF_EVEN;
-                            return i3;
-                        } else if (abs2 <= 0) {
-                            return i3;
-                        }
-                        break;
-                    default:
-                        zo4.f();
-                        return 0;
+                        return zzb;
+                    }
+                    return new uef(zzb);
                 }
-                return i3 + i5;
+                return new vef();
             }
-            return i3;
+            return new sgf(zzb, "\u0001\u0005\u0000\u0001\u0001\u0005\u0005\u0000\u0000\u0000\u0001᠌\u0000\u0002င\u0001\u0003င\u0002\u0004င\u0003\u0005င\u0004", new Object[]{"zzd", "zze", cff.y, "zzf", "zzg", "zzh", "zzi"});
         }
-        throw new ArithmeticException("/ by zero");
+        return (byte) 1;
     }
 }

@@ -1,87 +1,37 @@
 package defpackage;
 
-import android.text.InputFilter;
-import android.text.method.PasswordTransformationMethod;
-import android.text.method.TransformationMethod;
-import android.util.SparseArray;
-import android.widget.TextView;
-public final class nz3 extends fhe {
-    public final TextView a;
-    public final dy3 b;
-    public boolean c = true;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d;
+public final class nz3 extends qx3 {
+    public final TLRPC.StickerSet Q1;
+    public final t14 R1;
 
-    public nz3(TextView textView) {
-        this.a = textView;
-        this.b = new dy3(textView);
+    public nz3(t14 t14Var, d dVar, Context context, wjb wjbVar, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
+        super(dVar, context, wjbVar, arrayList);
+        this.R1 = t14Var;
+        this.Q1 = stickerSet;
     }
 
     @Override
-    public final InputFilter[] a(InputFilter[] inputFilterArr) {
-        if (!this.c) {
-            SparseArray sparseArray = new SparseArray(1);
-            for (int i = 0; i < inputFilterArr.length; i++) {
-                InputFilter inputFilter = inputFilterArr[i];
-                if (inputFilter instanceof dy3) {
-                    sparseArray.put(i, inputFilter);
-                }
-            }
-            if (sparseArray.size() == 0) {
-                return inputFilterArr;
-            }
-            int length = inputFilterArr.length;
-            InputFilter[] inputFilterArr2 = new InputFilter[inputFilterArr.length - sparseArray.size()];
-            int i2 = 0;
-            for (int i3 = 0; i3 < length; i3++) {
-                if (sparseArray.indexOfKey(i3) < 0) {
-                    inputFilterArr2[i2] = inputFilterArr[i3];
-                    i2++;
-                }
-            }
-            return inputFilterArr2;
-        }
-        int length2 = inputFilterArr.length;
-        int i4 = 0;
-        while (true) {
-            dy3 dy3Var = this.b;
-            if (i4 < length2) {
-                if (inputFilterArr[i4] == dy3Var) {
-                    return inputFilterArr;
-                }
-                i4++;
-            } else {
-                InputFilter[] inputFilterArr3 = new InputFilter[inputFilterArr.length + 1];
-                System.arraycopy(inputFilterArr, 0, inputFilterArr3, 0, length2);
-                inputFilterArr3[length2] = dy3Var;
-                return inputFilterArr3;
-            }
-        }
-    }
-
-    @Override
-    public final void b(boolean z) {
+    public final void F0(boolean z) {
+        t14 t14Var = this.R1;
+        ArrayList arrayList = t14Var.q1;
+        TLRPC.StickerSet stickerSet = this.Q1;
         if (z) {
-            d();
+            if (!arrayList.contains(Long.valueOf(stickerSet.id))) {
+                arrayList.add(Long.valueOf(stickerSet.id));
+            }
+        } else {
+            arrayList.remove(Long.valueOf(stickerSet.id));
         }
+        t14Var.U();
     }
 
     @Override
-    public final void c(boolean z) {
-        this.c = z;
-        d();
-        TextView textView = this.a;
-        textView.setFilters(a(textView.getFilters()));
-    }
-
-    public final void d() {
-        TextView textView = this.a;
-        TransformationMethod transformationMethod = textView.getTransformationMethod();
-        if (this.c) {
-            if (!(transformationMethod instanceof uz3) && !(transformationMethod instanceof PasswordTransformationMethod)) {
-                transformationMethod = new uz3(transformationMethod);
-            }
-        } else if (transformationMethod instanceof uz3) {
-            transformationMethod = ((uz3) transformationMethod).a;
-        }
-        textView.setTransformationMethod(transformationMethod);
+    public final void dismiss() {
+        this.R1.w2 = false;
+        super.dismiss();
     }
 }

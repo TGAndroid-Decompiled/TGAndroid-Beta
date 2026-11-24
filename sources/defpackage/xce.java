@@ -1,23 +1,17 @@
 package defpackage;
+public final class xce implements zn7 {
+    public static final xce a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class xce extends b4 {
-    public static final Parcelable.Creator<xce> CREATOR = new t0e((byte) 17);
-    public final int a;
-    public final nrd b;
-
-    public xce(int i, nrd nrdVar) {
-        this.a = i;
-        this.b = nrdVar;
+    static {
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)), 6)));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        mve.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        mve.k(parcel, 3, this.b, i);
-        mve.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

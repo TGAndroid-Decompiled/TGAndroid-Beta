@@ -1,15 +1,33 @@
 package defpackage;
-public final class ra9 implements qac {
+public abstract class ra9 extends of0 implements oq4 {
     public final byte a;
-    public final zb9 b;
 
-    public ra9(zb9 zb9Var, byte b) {
-        this.a = b;
-        this.b = zb9Var;
+    public ra9(int i, fw2 fw2Var) {
+        super(fw2Var);
+        if (fw2Var != null && fw2Var.getContext() != z14.a) {
+            w26.j("Coroutines with restricted suspension must have EmptyCoroutineContext");
+            throw null;
+        } else {
+            this.a = i;
+        }
     }
 
     @Override
-    public final void a(java.lang.Object r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ra9.a(java.lang.Object):void");
+    public final int getArity() {
+        return this.a;
+    }
+
+    @Override
+    public final sw2 getContext() {
+        return z14.a;
+    }
+
+    @Override
+    public final String toString() {
+        if (getCompletion() == null) {
+            f59.a.getClass();
+            return g59.a(this);
+        }
+        return super.toString();
     }
 }

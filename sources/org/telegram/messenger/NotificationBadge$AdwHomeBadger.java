@@ -3,15 +3,15 @@ package org.telegram.messenger;
 import android.content.Intent;
 import java.util.Arrays;
 import java.util.List;
-public class NotificationBadge$AdwHomeBadger implements bm7 {
+public class NotificationBadge$AdwHomeBadger implements yj7 {
     @Override
     public final void a(int i) {
         Intent intent = new Intent("org.adw.launcher.counter.SEND");
-        intent.putExtra("PNAME", dm7.d.getPackageName());
-        intent.putExtra("CNAME", dm7.d.getClassName());
+        intent.putExtra("PNAME", ak7.d.getPackageName());
+        intent.putExtra("CNAME", ak7.d.getClassName());
         intent.putExtra("COUNT", i);
-        if (dm7.a(intent)) {
-            gm.c3(new hl(intent, (byte) 1));
+        if (ak7.a(intent)) {
+            gl.c3(new hk(intent, (byte) 1));
         }
     }
 

@@ -13,13 +13,13 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public class ShareActivity extends Activity {
     public static final int b = 0;
-    public tca a;
+    public taa a;
 
     @Override
     public final void onCreate(Bundle bundle) {
         org.telegram.messenger.a.v();
-        gm.v(this, getResources().getConfiguration());
-        gm.r3(getWindow());
+        gl.v(this, getResources().getConfiguration());
+        gl.r3(getWindow());
         requestWindowFeature(1);
         setTheme(2131755339);
         super.onCreate(bundle);
@@ -46,17 +46,17 @@ public class ShareActivity extends Activity {
                 TLdeserialize.readAttachPath(serializedData, 0L);
                 serializedData.cleanup();
                 String string2 = sharedPreferences.getString(queryParameter + "_link", null);
-                k47 k47Var = new k47(z8c.t0, TLdeserialize, false, true);
-                k47Var.k.with_my_score = true;
+                k27 k27Var = new k27(y6c.t0, TLdeserialize, false, true);
+                k27Var.k.with_my_score = true;
                 try {
-                    tca G0 = tca.G0(this, k47Var, null, false, string2);
+                    taa G0 = taa.G0(this, k27Var, null, false, string2);
                     this.a = G0;
                     G0.setCanceledOnTouchOutside(true);
-                    this.a.setOnDismissListener(new qj8(this, (byte) 7));
+                    this.a.setOnDismissListener(new ph8(this, (byte) 7));
                     this.a.show();
                     return;
                 } catch (Exception e) {
-                    fc4.g(e, true);
+                    fa4.g(e, true);
                     finish();
                     return;
                 }
@@ -71,13 +71,13 @@ public class ShareActivity extends Activity {
     public final void onPause() {
         super.onPause();
         try {
-            tca tcaVar = this.a;
-            if (tcaVar != null && tcaVar.isShowing()) {
+            taa taaVar = this.a;
+            if (taaVar != null && taaVar.isShowing()) {
                 this.a.dismiss();
                 this.a = null;
             }
         } catch (Exception e) {
-            fc4.g(e, true);
+            fa4.g(e, true);
         }
     }
 }

@@ -3,13 +3,13 @@ package defpackage;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
-public class e3 extends p9a {
+public class e3 extends o7a {
     public final Map b;
-    public final zi7 c;
+    public final wg7 c;
 
-    public e3(zi7 zi7Var, Map map) {
+    public e3(wg7 wg7Var, Map map) {
         super((byte) 0);
-        this.c = zi7Var;
+        this.c = wg7Var;
         map.getClass();
         this.b = map;
     }

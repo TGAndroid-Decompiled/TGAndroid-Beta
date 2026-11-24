@@ -1,18 +1,21 @@
 package defpackage;
-public final class rs2 extends ns2 {
-    public float d;
 
-    public final ss2 u(bt2 bt2Var) {
-        boolean z;
-        float f = this.d;
-        if (f >= -3.4028235E38f && f <= Float.MAX_VALUE) {
-            z = true;
-        } else {
-            z = false;
+import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicReference;
+public final class rs2 implements n4a {
+    public final AtomicReference a;
+
+    public rs2(t4a t4aVar) {
+        this.a = new AtomicReference(t4aVar);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        n4a n4aVar = (n4a) this.a.getAndSet(null);
+        if (n4aVar != null) {
+            return n4aVar.iterator();
         }
-        r(z, Float.valueOf(f));
-        ss2 ss2Var = new ss2(s(), this.a, this.d);
-        q(bt2Var, ss2Var);
-        return ss2Var;
+        sc8.j("This sequence can be consumed only once.");
+        return null;
     }
 }

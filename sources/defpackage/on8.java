@@ -1,32 +1,13 @@
 package defpackage;
-public enum on8 {
-    d(2131231157, 2131232511, "MESSAGE"),
-    e(2131231158, 2131232512, "NOTIFICATION_MUTE"),
-    f(2131231164, 2131232517, "NOTIFICATION_UNMUTE"),
-    h(2131231157, 2131232511, "DISCUSS"),
-    n(2131231220, 2131231508, "GIFT"),
-    r(2131230863, 2131232369, "SHARE"),
-    s(2131231154, 2131232508, "CALL"),
-    w(2131231165, 2131232518, "VIDEO"),
-    x(2131231156, 2131232510, "JOIN"),
-    y(2131232692, 2131232339, "REPORT"),
-    E(2131231625, 2131231625, "LEAVE"),
-    F(2131231638, 2131231638, "VOICE_CHAT"),
-    G(2131231638, 2131231638, "STREAM"),
-    H(2131231163, 2131232516, "STORY"),
-    I(2131231162, 2131232515, "STOP"),
-    J(2131231159, 2131232513, "SET_PHOTO"),
-    EF16(2131231155, 2131232509, "EDIT_USERNAME"),
-    K(2131231155, 2131232509, "EDIT_INFO"),
-    L(2131231161, 2131232514, "SETTINGS");
-    
-    public final int a;
-    public final int b;
-    public final int c;
 
-    on8(int i, int i2, String str) {
-        this.a = r2;
-        this.b = i;
-        this.c = i2;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+public final class on8 extends nd4 {
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        canvas.save();
+        canvas.translate(gl.L(2.0f), 0.0f);
+        super.draw(canvas, charSequence, i, i2, f, i3, i4, i5, paint);
+        canvas.restore();
     }
 }

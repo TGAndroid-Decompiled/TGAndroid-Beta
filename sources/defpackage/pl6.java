@@ -1,12 +1,27 @@
 package defpackage;
-public final class pl6 {
-    public long a;
-    public long b;
-    public long c;
-    public boolean d;
-    public long e;
-    public String f;
-    public String g;
-    public String h;
-    public String i;
+
+import java.io.File;
+public final class pl6 extends File {
+    public final byte a;
+
+    public pl6(File file, String str, byte b) {
+        super(file, str);
+        this.a = b;
+    }
+
+    @Override
+    public final boolean delete() {
+        switch (this.a) {
+            case 0:
+                if (w01.a) {
+                    fa4.d("delete voice file (trimmed)");
+                }
+                return super.delete();
+            default:
+                if (w01.a) {
+                    fa4.d("delete voice file (from resume)");
+                }
+                return super.delete();
+        }
+    }
 }

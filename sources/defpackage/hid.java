@@ -1,19 +1,40 @@
 package defpackage;
-public final class hid extends h9d {
-    public final transient Object[] e;
 
-    public hid(Object[] objArr) {
-        super((byte) 2);
-        this.e = objArr;
+import java.util.Iterator;
+public final class hid extends xfd {
+    public final transient qid c;
+    public final transient kid d;
+
+    public hid(qid qidVar, kid kidVar) {
+        this.c = qidVar;
+        this.d = kidVar;
     }
 
     @Override
-    public final java.lang.Object get(java.lang.Object r3) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.hid.get(java.lang.Object):java.lang.Object");
+    public final boolean contains(Object obj) {
+        if (this.c.get(obj) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int h(Object[] objArr) {
+        return this.d.h(objArr);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return this.d.listIterator(0);
+    }
+
+    @Override
+    public final efd k() {
+        return this.d;
     }
 
     @Override
     public final int size() {
-        return 1;
+        return this.c.h;
     }
 }

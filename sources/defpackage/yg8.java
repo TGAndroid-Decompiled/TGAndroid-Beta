@@ -1,109 +1,72 @@
 package defpackage;
 
-import android.text.TextUtils;
-import android.util.SparseArray;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class yg8 {
-    public final TLRPC.TL_messageMediaPoll a;
-    public final TLRPC.TL_inputMediaPoll b;
-    public final long c;
-    public final String d;
-    public final ArrayList e;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class yg8 extends hn {
+    public final byte s;
+    public final ah8 w;
 
-    public yg8(wf8 wf8Var, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, long j, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.c = j;
-        this.d = str;
-        this.e = arrayList;
-        TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
-        TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
-        tL_inputMediaPoll.poll = tL_poll;
-        TLRPC.Poll poll = tL_messageMediaPoll.poll;
-        tL_poll.id = poll.id;
-        tL_poll.flags = poll.flags;
-        tL_poll.closed = poll.closed;
-        tL_poll.public_voters = poll.public_voters;
-        tL_poll.multiple_choice = poll.multiple_choice;
-        tL_poll.open_answers = poll.open_answers;
-        tL_poll.revoting_disabled = poll.revoting_disabled;
-        tL_poll.shuffle_answers = poll.shuffle_answers;
-        tL_poll.subscribers_only = poll.subscribers_only;
-        tL_poll.countries_iso2 = poll.countries_iso2;
-        tL_poll.hide_results_until_close = poll.hide_results_until_close;
-        tL_poll.creator = poll.creator;
-        tL_poll.quiz = poll.quiz;
-        tL_poll.answers = new ArrayList<>(tL_messageMediaPoll.poll.answers);
-        ArrayList<TLRPC.PollAnswer> arrayList3 = tL_messageMediaPoll.poll.answers;
-        int size = arrayList3.size();
-        int i = 0;
-        while (i < size) {
-            TLRPC.PollAnswer pollAnswer = arrayList3.get(i);
-            i++;
-            new TLRPC.TL_inputPollAnswer().text = pollAnswer.text;
-        }
-        TLRPC.Poll poll2 = tL_inputMediaPoll.poll;
-        TLRPC.Poll poll3 = tL_messageMediaPoll.poll;
-        poll2.question = poll3.question;
-        poll2.close_period = poll3.close_period;
-        poll2.close_date = poll3.close_date;
-        poll2.hash = poll3.hash;
-        TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
-        if (pollResults != null && !TextUtils.isEmpty(pollResults.solution)) {
-            TLRPC.PollResults pollResults2 = tL_messageMediaPoll.results;
-            tL_inputMediaPoll.solution = pollResults2.solution;
-            tL_inputMediaPoll.solution_entities = pollResults2.solution_entities;
-            tL_inputMediaPoll.flags |= 2;
-        }
-        if (arrayList2 != null && !arrayList2.isEmpty()) {
-            tL_inputMediaPoll.correct_answers = new ArrayList<>(arrayList2);
-            tL_inputMediaPoll.flags |= 1;
-        }
-        if (wf8Var != null) {
-            SparseArray sparseArray = wf8Var.a;
-            int size2 = sparseArray.size();
-            for (int i2 = 0; i2 < size2; i2++) {
-                int keyAt = sparseArray.keyAt(i2);
-                nf8 nf8Var = (nf8) sparseArray.valueAt(i2);
-                if (nf8Var instanceof sf8) {
-                    TLRPC.TL_inputMediaWebPage tL_inputMediaWebPage = new TLRPC.TL_inputMediaWebPage();
-                    tL_inputMediaWebPage.url = ((sf8) nf8Var).b;
-                    tL_inputMediaWebPage.optional = true;
-                    wf8.k(tL_inputMediaPoll, keyAt, tL_inputMediaWebPage);
-                } else if (nf8Var instanceof uf8) {
-                    wf8.k(tL_inputMediaPoll, keyAt, brb.h(((uf8) nf8Var).b));
-                } else if (nf8Var instanceof xf8) {
-                    TLRPC.TL_inputMediaDocument tL_inputMediaDocument = new TLRPC.TL_inputMediaDocument();
-                    TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    TLRPC.Document document = ((xf8) nf8Var).b;
-                    tL_inputDocument.id = document.id;
-                    tL_inputDocument.access_hash = document.access_hash;
-                    tL_inputDocument.file_reference = document.file_reference;
-                    tL_inputMediaDocument.id = tL_inputDocument;
-                    wf8.k(tL_inputMediaPoll, keyAt, tL_inputMediaDocument);
+    public yg8(ah8 ah8Var, Context context, byte b) {
+        super(context, true, true, true);
+        this.s = b;
+        this.w = ah8Var;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        byte b = this.s;
+        ah8 ah8Var = this.w;
+        switch (b) {
+            case 0:
+                if (ah8Var.P > 0.0f) {
+                    if (ah8Var.O == null) {
+                        ah8Var.O = new ih2(ah8Var.f.getTextColor());
+                    }
+                    int L = (int) ((1.0f - ah8Var.P) * gl.L(24.0f));
+                    ah8Var.O.setBounds(0, L, getWidth(), getHeight() + L);
+                    ah8Var.O.setAlpha((int) (ah8Var.P * 255.0f));
+                    ah8Var.O.draw(canvas);
+                    invalidate();
                 }
-            }
-            int size3 = sparseArray.size();
-            for (int i3 = 0; i3 < size3; i3++) {
-                int keyAt2 = sparseArray.keyAt(i3);
-                nf8 nf8Var2 = (nf8) sparseArray.valueAt(i3);
-                if (nf8Var2 instanceof sf8) {
-                    TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = new TLRPC.TL_messageMediaWebPage();
-                    TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
-                    tL_messageMediaWebPage.webpage = tL_webPage;
-                    String str2 = ((sf8) nf8Var2).b;
-                    tL_webPage.display_url = str2;
-                    tL_webPage.url = str2;
-                    wf8.l(tL_messageMediaPoll, keyAt2, tL_messageMediaWebPage);
-                } else if (nf8Var2 instanceof uf8) {
-                    wf8.l(tL_messageMediaPoll, keyAt2, ((uf8) nf8Var2).b);
-                } else if (nf8Var2 instanceof xf8) {
-                    TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-                    tL_messageMediaDocument.document = ((xf8) nf8Var2).b;
-                    wf8.l(tL_messageMediaPoll, keyAt2, tL_messageMediaDocument);
+                float f = ah8Var.P;
+                if (f < 1.0f) {
+                    if (f != 0.0f) {
+                        canvas.save();
+                        canvas.translate(0.0f, (int) (ah8Var.P * gl.L(-24.0f)));
+                        canvas.scale(1.0f, 1.0f - (ah8Var.P * 0.4f));
+                        super.onDraw(canvas);
+                        canvas.restore();
+                        return;
+                    }
+                    super.onDraw(canvas);
+                    return;
                 }
-            }
+                return;
+            default:
+                if (ah8Var.P > 0.0f) {
+                    if (ah8Var.O == null) {
+                        ah8Var.O = new ih2(ah8Var.f.getTextColor());
+                    }
+                    int L2 = (int) ((1.0f - ah8Var.P) * gl.L(24.0f));
+                    ah8Var.O.setBounds(0, L2, getWidth(), getHeight() + L2);
+                    ah8Var.O.setAlpha((int) (ah8Var.P * 255.0f));
+                    ah8Var.O.draw(canvas);
+                    invalidate();
+                }
+                float f2 = ah8Var.P;
+                if (f2 < 1.0f) {
+                    if (f2 != 0.0f) {
+                        canvas.save();
+                        canvas.translate(0.0f, (int) (ah8Var.P * gl.L(-24.0f)));
+                        canvas.scale(1.0f, 1.0f - (ah8Var.P * 0.4f));
+                        super.onDraw(canvas);
+                        canvas.restore();
+                        return;
+                    }
+                    super.onDraw(canvas);
+                    return;
+                }
+                return;
         }
-        this.a = tL_messageMediaPoll;
-        this.b = tL_inputMediaPoll;
     }
 }

@@ -1,17 +1,19 @@
 package defpackage;
-public final class r8e implements cq7 {
-    public static final r8e a = new Object();
+
+import j$.util.Objects;
+import java.util.Comparator;
+public abstract class r8e {
+    public static final Comparator a;
 
     static {
-        mlb.z(mlb.p(kad.class, new d9d(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+        Comparator comparator;
+        try {
+            Object[] enumConstants = Class.forName(r8e.class.getName().concat("$UnsafeComparator")).getEnumConstants();
+            Objects.requireNonNull(enumConstants);
+            comparator = (Comparator) enumConstants[0];
+        } catch (Throwable unused) {
+            comparator = m8e.a;
         }
-        throw new ClassCastException();
+        a = comparator;
     }
 }

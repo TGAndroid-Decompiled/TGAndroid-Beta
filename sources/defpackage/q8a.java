@@ -1,67 +1,59 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.os.SystemClock;
-public final class q8a {
-    public static final String e;
-    public static final String f;
-    public static final String g;
-    public static final String h;
-    public final int a;
-    public final Bundle b;
-    public final long c;
-    public final d8a d;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public abstract class q8a extends LinearLayout {
+    public TextView a;
+    public l46 b;
+    public TextView c;
+    public TextView d;
+    public int e;
+    public int f;
 
-    static {
-        String str = hac.a;
-        e = "0";
-        f = "1";
-        g = "2";
-        h = "3";
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
     }
 
-    public q8a(int i, Bundle bundle, long j, d8a d8aVar) {
-        boolean z = true;
-        if (d8aVar != null && i >= 0 && i != 1) {
-            z = false;
-        }
-        jte.f(z);
-        this.a = i;
-        this.b = new Bundle(bundle);
-        this.c = j;
-        if (d8aVar == null && i < 0) {
-            d8aVar = new d8a(i);
-        }
-        this.d = d8aVar;
-    }
-
-    public static q8a a(Bundle bundle) {
-        d8a d8aVar;
-        int i = bundle.getInt(e, -1);
-        Bundle o = hac.o(bundle.getBundle(f));
-        long j = bundle.getLong(g, SystemClock.elapsedRealtime());
-        Bundle bundle2 = bundle.getBundle(h);
-        if (bundle2 != null) {
-            int i2 = bundle2.getInt(d8a.d, 1000);
-            String string = bundle2.getString(d8a.e, "");
-            Bundle o2 = hac.o(bundle2.getBundle(d8a.f));
-            if (o2 == null) {
-                o2 = Bundle.EMPTY;
+    public void setType(int i) {
+        int i2 = this.f;
+        TextView textView = this.c;
+        l46 l46Var = this.b;
+        TextView textView2 = this.a;
+        TextView textView3 = this.d;
+        this.e = i;
+        if (i == 0) {
+            textView2.setText(k96.a0(null, null, 2131752144, yjb.k(new StringBuilder("+"), na7.q1(i2).V1(Long.valueOf(y6c.h(i2).n)).phone, p38.f())));
+            String M0 = k96.M0(2131752143, null);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(M0);
+            int indexOf = M0.indexOf("**");
+            int lastIndexOf = M0.lastIndexOf("**");
+            if (indexOf >= 0 && lastIndexOf >= 0 && indexOf != lastIndexOf) {
+                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
+                spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
+                try {
+                    spannableStringBuilder.setSpan(new g4c(k96.M0(2131752142, null), (vib) null), indexOf, lastIndexOf - 2, 33);
+                } catch (Exception e) {
+                    fa4.g(e, true);
+                }
             }
-            d8aVar = new d8a(string, i2, o2);
-        } else if (i != 0) {
-            d8aVar = new d8a(i);
-        } else {
-            d8aVar = null;
+            l46Var.setText(spannableStringBuilder);
+            textView.setText(k96.M0(2131752140, null));
+            textView3.setVisibility(0);
+            textView3.setText(k96.M0(2131752141, null));
+        } else if (i == 1) {
+            textView2.setText(k96.M0(2131742540, null));
+            l46Var.setText(k96.M0(2131742539, null));
+            textView.setText(k96.M0(2131742537, null));
+            textView3.setVisibility(0);
+            textView3.setText(k96.M0(2131742538, null));
+        } else if (i == 2) {
+            textView2.setText(k96.M0(2131749351, null));
+            l46Var.setText(k96.M0(2131749352, null));
+            textView.setText(k96.M0(2131749353, null));
+            textView3.setVisibility(8);
         }
-        d8a d8aVar2 = d8aVar;
-        if (o == null) {
-            o = Bundle.EMPTY;
-        }
-        return new q8a(i, o, j, d8aVar2);
-    }
-
-    public q8a(int i) {
-        this(i, Bundle.EMPTY, SystemClock.elapsedRealtime(), null);
     }
 }

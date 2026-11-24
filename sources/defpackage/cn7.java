@@ -1,16 +1,24 @@
 package defpackage;
+public final class cn7 extends yu9 {
+    public final hn7 d;
 
-import android.app.Notification;
-public abstract class cn7 {
-    public static Notification.MessagingStyle a(Notification.MessagingStyle messagingStyle, Notification.MessagingStyle.Message message) {
-        return messagingStyle.addMessage(message);
+    public cn7(hn7 hn7Var) {
+        this.d = hn7Var;
     }
 
-    public static Notification.MessagingStyle b(CharSequence charSequence) {
-        return new Notification.MessagingStyle(charSequence);
+    @Override
+    public final void c(boolean z) {
+        this.d.a(!z);
     }
 
-    public static Notification.MessagingStyle c(Notification.MessagingStyle messagingStyle, CharSequence charSequence) {
-        return messagingStyle.setConversationTitle(charSequence);
+    @Override
+    public final CharSequence d() {
+        hn7 hn7Var = this.d;
+        q8c q8cVar = hn7Var.v0;
+        int i = hn7Var.I;
+        if (q8cVar != null) {
+            return (CharSequence) q8cVar.a(Integer.valueOf(i));
+        }
+        return hn7Var.d(i);
     }
 }

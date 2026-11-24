@@ -1,84 +1,21 @@
 package defpackage;
 
-import android.os.Binder;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.Parcel;
-import android.os.RemoteException;
-import java.util.List;
-public final class e41 extends Binder {
-    public final mo5 a;
+import android.text.TextUtils;
+import org.telegram.tgnet.tl.TL_account;
+public final class e41 {
+    public TL_account.TL_businessChatLink a;
 
-    public e41(List list) {
-        this.a = mo5.q(list);
-    }
-
-    public static mo5 a(IBinder iBinder) {
-        int readInt;
-        if (iBinder instanceof e41) {
-            return ((e41) iBinder).a;
+    public final boolean equals(Object obj) {
+        TL_account.TL_businessChatLink tL_businessChatLink = this.a;
+        if (this == obj) {
+            return true;
         }
-        jo5 p = mo5.p();
-        int i = 0;
-        int i2 = 1;
-        while (i2 != 0) {
-            Parcel obtain = Parcel.obtain();
-            Parcel obtain2 = Parcel.obtain();
-            try {
-                obtain.writeInt(i);
-                try {
-                    iBinder.transact(1, obtain, obtain2, 0);
-                    while (true) {
-                        readInt = obtain2.readInt();
-                        if (readInt == 1) {
-                            Bundle readBundle = obtain2.readBundle();
-                            readBundle.getClass();
-                            p.c(readBundle);
-                            i++;
-                        }
-                    }
-                    obtain2.recycle();
-                    obtain.recycle();
-                    i2 = readInt;
-                } catch (RemoteException e) {
-                    throw new RuntimeException(e);
-                }
-            } catch (Throwable th) {
-                obtain2.recycle();
-                obtain.recycle();
-                throw th;
+        if (obj != null && e41.class == obj.getClass()) {
+            TL_account.TL_businessChatLink tL_businessChatLink2 = ((e41) obj).a;
+            if (tL_businessChatLink.views == tL_businessChatLink2.views && TextUtils.equals(tL_businessChatLink.link, tL_businessChatLink2.link) && TextUtils.equals(tL_businessChatLink.title, tL_businessChatLink2.title) && TextUtils.equals(tL_businessChatLink.message, tL_businessChatLink2.message) && hq6.M(tL_businessChatLink.entities, tL_businessChatLink2.entities)) {
+                return true;
             }
         }
-        return p.f();
-    }
-
-    @Override
-    public final boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) {
-        if (i != 1) {
-            return super.onTransact(i, parcel, parcel2, i2);
-        }
-        int i3 = 0;
-        if (parcel2 == null) {
-            return false;
-        }
-        mo5 mo5Var = this.a;
-        int size = mo5Var.size();
-        int readInt = parcel.readInt();
-        while (true) {
-            if (readInt < size) {
-                if (parcel2.dataSize() < n61.a) {
-                    parcel2.writeInt(1);
-                    parcel2.writeBundle((Bundle) mo5Var.get(readInt));
-                    readInt++;
-                } else {
-                    i3 = 2;
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-        parcel2.writeInt(i3);
-        return true;
+        return false;
     }
 }

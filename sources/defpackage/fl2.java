@@ -1,92 +1,69 @@
 package defpackage;
+public final class fl2 {
+    public final int a;
+    public int b;
+    public int c;
+    public int d;
+    public int e;
+    public int f;
+    public int g;
+    public int h;
+    public int i;
+    public final gl2 j;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class fl2 implements ActionMode.Callback {
-    public final byte a;
-    public final EditTextBoldCursor b;
-
-    public fl2(EditTextBoldCursor editTextBoldCursor, byte b) {
-        this.a = b;
-        this.b = editTextBoldCursor;
+    public fl2(gl2 gl2Var, int i, int i2) {
+        this.j = gl2Var;
+        this.a = i;
+        this.b = i2;
+        a();
     }
 
-    @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        tk2 tk2Var;
-        ClipboardManager clipboardManager;
-        ClipData primaryClip;
-        int i;
-        switch (this.a) {
-            case 0:
-                gl2 gl2Var = (gl2) this.b;
-                if (menuItem.getItemId() == 16908322) {
-                    if (gl2Var.getParent() instanceof tk2) {
-                        tk2Var = (tk2) gl2Var.getParent();
-                    } else {
-                        tk2Var = null;
-                    }
-                    if (tk2Var != null && (clipboardManager = (ClipboardManager) gl2Var.getContext().getSystemService(ClipboardManager.class)) != null && (primaryClip = clipboardManager.getPrimaryClip()) != null) {
-                        String charSequence = primaryClip.getItemAt(0).getText().toString();
-                        try {
-                            i = Integer.parseInt(charSequence);
-                        } catch (Exception unused) {
-                            i = -1;
-                        }
-                        if (i > 0) {
-                            tk2Var.c(charSequence, true);
-                        }
-                    }
-                    gl2Var.m();
-                }
-                return true;
-            default:
-                return false;
+    public final void a() {
+        gl2 gl2Var = this.j;
+        int[] iArr = (int[]) gl2Var.b;
+        int[] iArr2 = (int[]) gl2Var.c;
+        int i = Integer.MAX_VALUE;
+        int i2 = Integer.MIN_VALUE;
+        int i3 = Integer.MIN_VALUE;
+        int i4 = 0;
+        int i5 = Integer.MAX_VALUE;
+        int i6 = Integer.MAX_VALUE;
+        int i7 = Integer.MIN_VALUE;
+        for (int i8 = this.a; i8 <= this.b; i8++) {
+            int i9 = iArr[i8];
+            i4 += iArr2[i9];
+            int i10 = (i9 >> 10) & 31;
+            int i11 = (i9 >> 5) & 31;
+            int i12 = i9 & 31;
+            if (i10 > i7) {
+                i7 = i10;
+            }
+            if (i10 < i) {
+                i = i10;
+            }
+            if (i11 > i2) {
+                i2 = i11;
+            }
+            if (i11 < i5) {
+                i5 = i11;
+            }
+            if (i12 > i3) {
+                i3 = i12;
+            }
+            if (i12 < i6) {
+                i6 = i12;
+            }
         }
+        this.d = i;
+        this.e = i7;
+        this.f = i5;
+        this.g = i2;
+        this.h = i6;
+        this.i = i3;
+        this.c = i4;
     }
 
-    @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.a) {
-            case 0:
-                menu.add(0, 16908322, 0, 17039371);
-                return true;
-            default:
-                return true;
-        }
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.a) {
-            case 0:
-                return true;
-            default:
-                if (((ne9) this.b).length() != 0) {
-                    return false;
-                }
-                for (int size = menu.size() - 1; size >= 0; size--) {
-                    int itemId = menu.getItem(size).getItemId();
-                    if (itemId != 16908322 && itemId != 16908337) {
-                        menu.removeItem(itemId);
-                    }
-                }
-                return true;
-        }
-    }
-
-    private final void a(ActionMode actionMode) {
-    }
-
-    private final void b(ActionMode actionMode) {
+    public final int b() {
+        return ((this.i - this.h) + 1) * ((this.g - this.f) + 1) * ((this.e - this.d) + 1);
     }
 }

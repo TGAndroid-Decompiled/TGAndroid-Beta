@@ -1,43 +1,54 @@
 package defpackage;
 
-import java.io.ByteArrayOutputStream;
-import java.util.zip.CRC32;
-public abstract class rfd {
-    public static final byte[] a = {-119, 80, 78, 71, 13, 10, 26, 10};
+import java.util.Iterator;
+import java.util.Map;
+public final class rfd extends add {
+    public final transient f7d h;
+    public final transient Object[] n;
+    public final transient boolean r;
 
-    public static long a(int i, byte[] bArr) {
-        return ((bArr[i] & 255) << 24) | ((bArr[i + 1] & 255) << 16) | ((bArr[i + 2] & 255) << 8) | (bArr[i + 3] & 255);
+    public rfd(f7d f7dVar, Object[] objArr) {
+        super((byte) 1);
+        this.h = f7dVar;
+        this.n = objArr;
+        this.r = true;
     }
 
-    public static void b(long j, byte[] bArr, int i) {
-        bArr[i] = (byte) (j >>> 24);
-        bArr[i + 1] = (byte) (j >>> 16);
-        bArr[i + 2] = (byte) (j >>> 8);
-        bArr[i + 3] = (byte) j;
-    }
-
-    public static boolean c(int i, String str, byte[] bArr) {
-        for (int i2 = 0; i2 < 4; i2++) {
-            if (bArr[i + i2] != str.charAt(i2)) {
-                return false;
+    @Override
+    public final boolean contains(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            if (value != null && value.equals(this.h.get(key))) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
-    public static void d(ByteArrayOutputStream byteArrayOutputStream, String str, byte[] bArr, CRC32 crc32) {
-        byte[] bArr2 = new byte[8];
-        b(bArr.length, bArr2, 0);
-        for (int i = 0; i < 4; i++) {
-            bArr2[i + 4] = (byte) str.charAt(i);
+    @Override
+    public final int h(Object[] objArr) {
+        ncd ncdVar = this.f;
+        if (ncdVar == null) {
+            ncdVar = new mfd(this);
+            this.f = ncdVar;
         }
-        byteArrayOutputStream.write(bArr2, 0, 8);
-        byteArrayOutputStream.write(bArr, 0, bArr.length);
-        crc32.reset();
-        crc32.update(bArr2, 4, 4);
-        crc32.update(bArr, 0, bArr.length);
-        byte[] bArr3 = new byte[4];
-        b(crc32.getValue(), bArr3, 0);
-        byteArrayOutputStream.write(bArr3, 0, 4);
+        return ncdVar.h(objArr);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        ncd ncdVar = this.f;
+        if (ncdVar == null) {
+            ncdVar = new mfd(this);
+            this.f = ncdVar;
+        }
+        return ncdVar.listIterator(0);
+    }
+
+    @Override
+    public final int size() {
+        return this.r ? 1 : 0;
     }
 }

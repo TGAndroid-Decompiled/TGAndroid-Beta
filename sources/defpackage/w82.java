@@ -1,50 +1,51 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class w82 implements y70 {
-    public final m8[] a;
-    public final z82 b;
+import android.content.Context;
+import android.text.TextUtils;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class w82 extends c6 {
+    public final Context a;
+    public final f92 b;
 
-    public w82(z82 z82Var, m8[] m8VarArr) {
-        this.b = z82Var;
-        this.a = m8VarArr;
+    public w82(f92 f92Var, Context context) {
+        this.b = f92Var;
+        this.a = context;
     }
 
     @Override
-    public final void dismiss() {
-        m8 m8Var = this.a[0];
-        if (m8Var != null) {
-            m8Var.dismiss();
-        }
-    }
-
-    @Override
-    public final void l(int i, int i2) {
+    public final void b(int i) {
+        int i2;
         int i3;
-        yv1 yv1Var = this.b.H;
-        if (yv1Var != null) {
-            yv1Var.getMessagesController().P4(i, yv1Var.a());
-            TLRPC.ChatFull chatFull = yv1Var.r8;
-            TLRPC.UserFull userFull = yv1Var.s8;
-            if (userFull != null || chatFull != null) {
-                yv1Var.i6();
-                UndoView undoView = yv1Var.N3;
-                if (undoView != null) {
-                    long a = yv1Var.a();
-                    TLRPC.User h = yv1Var.h();
-                    if (userFull != null) {
-                        i3 = userFull.ttl_period;
+        f92 f92Var = this.b;
+        if (i == -1) {
+            f92Var.finishFragment();
+        } else if (i == 1) {
+            sha shaVar = f92Var.r;
+            if (shaVar == null || !shaVar.y.f) {
+                String K = hc2.K(f92Var.Y, false);
+                if (f92Var.W && !TextUtils.isEmpty(K)) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, f92Var.getResourceProvider(), this.a);
+                    if (f92Var.b0) {
+                        i2 = 2131748510;
                     } else {
-                        i3 = chatFull.ttl_period;
+                        i2 = 2131748508;
                     }
-                    undoView.k(a, i2, h, Integer.valueOf(i3), null, null);
+                    String M0 = k96.M0(i2, null);
+                    hd hdVar = alertDialog$Builder.a;
+                    hdVar.S = M0;
+                    if (f92Var.b0) {
+                        i3 = 2131748511;
+                    } else {
+                        i3 = 2131748509;
+                    }
+                    hdVar.U = gl.S2(k96.a0(null, null, i3, ls6.o(f92Var.getMessagesController().N2, "/", K, new StringBuilder())));
+                    alertDialog$Builder.j(k96.M0(2131751759, null), new rh1(this, (byte) 20));
+                    alertDialog$Builder.g(k96.M0(2131752577, null), null);
+                    f92Var.showDialog(hdVar);
+                    return;
                 }
+                f92Var.d0();
             }
         }
-    }
-
-    @Override
-    public final void n() {
     }
 }

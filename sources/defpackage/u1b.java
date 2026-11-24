@@ -1,138 +1,113 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class u1b extends Drawable {
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stories;
+public final class u1b {
     public final int a;
-    public final int b;
-    public final vm[] c;
-    public final boolean e;
-    public int d = 255;
-    public final RectF f = new RectF();
-    public boolean g = false;
+    public final long b;
+    public final boolean c;
+    public boolean d;
+    public boolean e;
+    public boolean f;
+    public final ArrayList g = new ArrayList();
+    public final ArrayList h = new ArrayList();
+    public boolean i;
+    public final g2b j;
 
-    public u1b(int i, ArrayList arrayList, boolean z) {
-        int i2;
-        this.e = z;
-        int max = (int) Math.max(1.0d, Math.sqrt(arrayList.size()));
-        this.a = max;
-        int min = Math.min(max * max, arrayList.size());
-        this.b = min;
-        this.c = new vm[min];
-        if (!arrayList.isEmpty()) {
-            k47.H2((TLRPC.Document) arrayList.get(0));
-        }
-        if (max < 2) {
-            i2 = 1;
+    public u1b(int i, long j, g2b g2bVar) {
+        boolean z;
+        this.j = g2bVar;
+        this.a = i;
+        this.b = j;
+        if (j == y6c.h(i).e()) {
+            z = true;
         } else {
-            i2 = 0;
+            z = false;
         }
-        for (int i3 = 0; i3 < this.b; i3++) {
-            this.c[i3] = vm.l(i, i2, (TLRPC.Document) arrayList.get(i3));
-        }
+        this.c = z;
+        d();
     }
 
-    public final void a(rc2 rc2Var) {
-        for (int i = 0; i < this.b; i++) {
-            this.c[i].o(rc2Var);
-        }
-    }
-
-    public final boolean b(ArrayList arrayList) {
-        long j;
-        vm[] vmVarArr = this.c;
-        if (vmVarArr.length == arrayList.size()) {
-            for (int i = 0; i < vmVarArr.length; i++) {
-                TLRPC.Document document = vmVarArr[i].e;
-                if (document == null) {
-                    j = 0;
-                } else {
-                    j = document.id;
-                }
-                if (j == ((TLRPC.Document) arrayList.get(i)).id) {
-                }
-            }
+    public final boolean a() {
+        if ((this.c || this.j.h(this.b)) && this.f && this.h.size() < na7.q1(this.a).k4.y.f()) {
             return true;
         }
         return false;
     }
 
-    public final void c() {
-        this.g = false;
+    public final z1b b(int i) {
+        int i2 = 0;
+        while (true) {
+            ArrayList arrayList = this.h;
+            if (i2 < arrayList.size()) {
+                z1b z1bVar = (z1b) arrayList.get(i2);
+                if (i == z1bVar.a) {
+                    return z1bVar;
+                }
+                i2++;
+            } else {
+                return null;
+            }
+        }
+    }
+
+    public final int c(int i) {
+        int i2 = 0;
+        while (true) {
+            ArrayList arrayList = this.h;
+            if (i2 < arrayList.size()) {
+                if (i == ((z1b) arrayList.get(i2)).a) {
+                    return i2;
+                }
+                i2++;
+            } else {
+                return -1;
+            }
+        }
     }
 
     public final void d() {
-        this.g = true;
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        vm vmVar;
-        PorterDuffColorFilter porterDuffColorFilter;
-        if (this.d <= 0) {
-            return;
-        }
-        Rect bounds = getBounds();
-        RectF rectF = this.f;
-        rectF.set(bounds);
-        float centerX = rectF.centerX() - (gm.L(48.0f) / 2.0f);
-        float centerY = rectF.centerY() - (gm.L(48.0f) / 2.0f);
-        int L = gm.L(48.0f);
-        int i = this.a;
-        float f = L / i;
-        float L2 = gm.L(48.0f) / i;
-        canvas.save();
-        canvas.clipRect(centerX, centerY, gm.L(48.0f) + centerX, gm.L(48.0f) + centerY);
-        for (int i2 = 0; i2 < i; i2++) {
-            for (int i3 = 0; i3 < i; i3++) {
-                int i4 = (i2 * i) + i3;
-                if (i4 >= 0) {
-                    vm[] vmVarArr = this.c;
-                    if (i4 < vmVarArr.length && (vmVar = vmVarArr[i4]) != null) {
-                        vmVar.setBounds((int) ((i3 * f) + centerX), (int) ((i2 * L2) + centerY), (int) (((i3 + 1) * f) + centerX), (int) (((i2 + 1) * L2) + centerY));
-                        vmVarArr[i4].setAlpha(this.d);
-                        vm vmVar2 = vmVarArr[i4];
-                        if (this.e) {
-                            porterDuffColorFilter = cmb.v3;
-                        } else {
-                            porterDuffColorFilter = cmb.u3;
-                        }
-                        vmVar2.setColorFilter(porterDuffColorFilter);
-                        vmVarArr[i4].draw(canvas);
-                    }
-                }
+        if (!this.e && !this.f) {
+            this.e = true;
+            boolean z = this.d;
+            long j = this.b;
+            int i = this.a;
+            if (!z) {
+                ad7 Y = ad7.Y(i);
+                Y.a.c(new go6(Y, j, new km8(this, (byte) 1), (byte) 11));
+                return;
             }
+            TL_stories.TL_getAlbums tL_getAlbums = new TL_stories.TL_getAlbums();
+            tL_getAlbums.peer = na7.q1(i).h1(j);
+            ConnectionsManager.getInstance(i).sendRequest(tL_getAlbums, new wx9(this, (byte) 10));
         }
-        canvas.restore();
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return gm.L(48.0f);
+    public final void e() {
+        TL_stories.TL_reorderAlbums tL_reorderAlbums = new TL_stories.TL_reorderAlbums();
+        int i = this.a;
+        tL_reorderAlbums.peer = na7.q1(i).h1(this.b);
+        tL_reorderAlbums.order = new ArrayList<>();
+        ArrayList arrayList = this.h;
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            tL_reorderAlbums.order.add(Integer.valueOf(((z1b) obj).a));
+        }
+        ConnectionsManager.getInstance(i).sendRequest(tL_reorderAlbums, null);
     }
 
-    @Override
-    public final int getIntrinsicWidth() {
-        return gm.L(48.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.d = i;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void f(boolean z) {
+        int i = this.a;
+        ad7 Y = ad7.Y(i);
+        co3 co3Var = Y.a;
+        long j = this.b;
+        co3Var.c(new jc7(Y, j, this.h, (byte) 4));
+        if (z) {
+            kk7.f(i).k(kk7.k3, Long.valueOf(j), this);
+        }
     }
 }

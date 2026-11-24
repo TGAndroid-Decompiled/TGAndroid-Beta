@@ -1,18 +1,32 @@
 package defpackage;
-public abstract class a69 {
-    public abstract void a();
 
-    public void c(int i, int i2, Object obj) {
-        b(i, i2);
+import j$.util.Objects;
+public final class a69 extends mm5 {
+    public final transient Object[] c;
+    public final transient boolean d;
+    public final transient int e;
+
+    public a69(int i, int i2, Object[] objArr) {
+        this.c = objArr;
+        this.d = i;
+        this.e = i2;
     }
 
-    public abstract void d(int i, int i2);
-
-    public abstract void f(int i, int i2);
-
-    public void b(int i, int i2) {
+    @Override
+    public final Object get(int i) {
+        gre.j(i, this.e);
+        Object obj = this.c[(i << 1) + (this.d ? 1 : 0)];
+        Objects.requireNonNull(obj);
+        return obj;
     }
 
-    public void e(int i, int i2) {
+    @Override
+    public final boolean m() {
+        return true;
+    }
+
+    @Override
+    public final int size() {
+        return this.e;
     }
 }

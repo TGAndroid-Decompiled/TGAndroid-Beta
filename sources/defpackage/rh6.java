@@ -1,209 +1,61 @@
 package defpackage;
 
-import java.io.Serializable;
-public final class rh6 {
-    public int a;
-    public int b;
-    public int c;
-    public int d = 0;
-    public Serializable e;
+import android.content.Context;
+import android.widget.LinearLayout;
+import org.telegram.tgnet.TLRPC;
+public final class rh6 extends LinearLayout implements gk7 {
+    public final be0 a;
+    public final int b;
 
-    public rh6(byte[] bArr, int i, int i2) {
-        this.e = bArr;
-        this.b = i;
-        this.c = i;
-        this.a = i2;
-        a();
+    public rh6(Context context) {
+        super(context);
+        this.b = y6c.t0;
+        setPadding(0, gl.L(12.0f), 0, gl.L(12.0f));
+        setOrientation(1);
+        be0 be0Var = new be0(context);
+        this.a = be0Var;
+        addView(be0Var, nme.t(104, 104, 49, 0, 2, 0, 0));
     }
 
     public final void a() {
         boolean z;
-        int i;
-        int i2 = this.c;
-        if (i2 >= 0 && (i2 < (i = this.a) || (i2 == i && this.d == 0))) {
+        int i = this.b;
+        TLRPC.TL_messages_stickerSet q0 = hq6.d0(i).q0("tg_placeholders_android");
+        if (q0 == null) {
+            q0 = hq6.d0(i).o0("tg_placeholders_android");
+        }
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = q0;
+        if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 4) {
+            TLRPC.Document document = tL_messages_stickerSet.documents.get(3);
+            this.a.n(gl5.b(document), "104_104", "tgs", uo3.f(document, bkb.Z6, 1.0f, null), tL_messages_stickerSet);
+            return;
+        }
+        hq6 d0 = hq6.d0(i);
+        if (tL_messages_stickerSet == null) {
             z = true;
         } else {
             z = false;
         }
-        jte.p(z);
+        d0.d1("tg_placeholders_android", false, z);
     }
 
-    public final boolean b(int i) {
-        int i2 = this.c;
-        int i3 = i / 8;
-        int i4 = i2 + i3;
-        int i5 = (this.d + i) - (i3 << 3);
-        if (i5 > 7) {
-            i4++;
-            i5 -= 8;
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == kk7.x0 && "tg_placeholders_android".equals((String) objArr[0])) {
+            a();
         }
-        while (true) {
-            i2++;
-            if (i2 > i4 || i4 > this.a) {
-                break;
-            } else if (i(i2)) {
-                i4++;
-                i2 += 2;
-            }
-        }
-        int i6 = this.a;
-        if (i4 < i6 || (i4 == i6 && i5 == 0)) {
-            return true;
-        }
-        return false;
     }
 
-    public final boolean c() {
-        boolean z;
-        int i = this.c;
-        int i2 = this.d;
-        int i3 = 0;
-        while (this.c < this.a && !d()) {
-            i3++;
-        }
-        if (this.c == this.a) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.c = i;
-        this.d = i2;
-        if (z || !b((i3 << 1) + 1)) {
-            return false;
-        }
-        return true;
-    }
-
-    public final boolean d() {
-        boolean z;
-        if ((((byte[]) this.e)[this.c] & (128 >> this.d)) != 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        j();
-        return z;
-    }
-
-    public final int e(int i) {
-        int i2;
-        int i3;
-        this.d += i;
-        int i4 = 0;
-        while (true) {
-            i2 = this.d;
-            i3 = 2;
-            if (i2 <= 8) {
-                break;
-            }
-            int i5 = i2 - 8;
-            this.d = i5;
-            int i6 = this.c;
-            i4 |= (((byte[]) this.e)[i6] & 255) << i5;
-            if (!i(i6 + 1)) {
-                i3 = 1;
-            }
-            this.c = i6 + i3;
-        }
-        int i7 = this.c;
-        int i8 = (i4 | ((((byte[]) this.e)[i7] & 255) >> (8 - i2))) & ((-1) >>> (32 - i));
-        if (i2 == 8) {
-            this.d = 0;
-            if (!i(i7 + 1)) {
-                i3 = 1;
-            }
-            this.c = i7 + i3;
-        }
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
         a();
-        return i8;
+        kk7.f(this.b).b(this, kk7.x0);
     }
 
-    public final int f() {
-        int i = 0;
-        int i2 = 0;
-        while (!d()) {
-            i2++;
-        }
-        int i3 = (1 << i2) - 1;
-        if (i2 > 0) {
-            i = e(i2);
-        }
-        return i3 + i;
-    }
-
-    public final int g() {
-        int i;
-        int f = f();
-        if (f % 2 == 0) {
-            i = -1;
-        } else {
-            i = 1;
-        }
-        return ((f + 1) / 2) * i;
-    }
-
-    public final long h() {
-        int i = this.c;
-        if (i != 0) {
-            int i2 = this.a;
-            long j = ((long[]) this.e)[i2];
-            this.a = (i2 + 1) & this.d;
-            this.c = i - 1;
-            return j;
-        }
-        u36.g();
-        return 0L;
-    }
-
-    public final boolean i(int i) {
-        int i2 = i - 2;
-        if (this.b <= i2 && i < this.a) {
-            byte[] bArr = (byte[]) this.e;
-            if (bArr[i] == 3 && bArr[i2] == 0 && bArr[i - 1] == 0) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final void j() {
-        int i = 1;
-        int i2 = this.d + 1;
-        this.d = i2;
-        if (i2 == 8) {
-            this.d = 0;
-            int i3 = this.c;
-            if (i(i3 + 1)) {
-                i = 2;
-            }
-            this.c = i3 + i;
-        }
-        a();
-    }
-
-    public final void k(int i) {
-        int i2 = this.c;
-        int i3 = i / 8;
-        int i4 = i2 + i3;
-        this.c = i4;
-        int i5 = (i - (i3 << 3)) + this.d;
-        this.d = i5;
-        if (i5 > 7) {
-            this.c = i4 + 1;
-            this.d = i5 - 8;
-        }
-        while (true) {
-            i2++;
-            if (i2 <= this.c) {
-                if (i(i2)) {
-                    this.c++;
-                    i2 += 2;
-                }
-            } else {
-                a();
-                return;
-            }
-        }
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        kk7.f(this.b).n(this, kk7.x0);
     }
 }

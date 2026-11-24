@@ -1,87 +1,51 @@
 package defpackage;
 
-import android.view.ViewGroup;
-import org.telegram.ui.ActionBar.d;
-public final class ixb extends ka {
-    public final sxb d;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class ixb extends b4c {
+    public static final int b = 0;
 
-    public ixb(sxb sxbVar) {
-        this.d = sxbVar;
+    static {
+        b4c.h(new b4c());
     }
 
     @Override
-    public final boolean D(u69 u69Var) {
-        int i = u69Var.f;
-        if (i != 0 && i != 3) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int b() {
-        return this.d.b.size() + 1;
-    }
-
-    @Override
-    public final int d(int i) {
-        if (i == b() - 1) {
-            return 2;
-        }
-        return ((jxb) this.d.b.get(i)).a;
-    }
-
-    @Override
-    public final void f() {
-        this.d.c = b();
-        super.f();
-    }
-
-    @Override
-    public final void t(defpackage.u69 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ixb.t(u69, int):void");
-    }
-
-    @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        boolean z;
-        int i2;
-        int i3;
-        int i4;
-        sxb sxbVar = this.d;
-        if (i != 0 && i != 3) {
-            if (i == 2) {
-                hxb hxbVar = new hxb(this, sxbVar.getParentActivity());
-                sxbVar.F0 = hxbVar;
-                return new u69(hxbVar);
+    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
+        boolean z2;
+        jxb jxbVar = (jxb) view;
+        boolean z3 = false;
+        if (c4cVar.s) {
+            jxbVar.e();
+        } else {
+            Object obj = c4cVar.H;
+            if (obj == null) {
+                if (c4cVar.C == -2) {
+                    jxbVar.b(c4cVar.r, c4cVar.e);
+                } else {
+                    if ((c4cVar.z & 1) != 0) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    jxbVar.c(z2, c4cVar.r, c4cVar.e);
+                }
+            } else if (obj instanceof TLRPC.TL_forumTopic) {
+                if (!c4cVar.J) {
+                    jxbVar.f((TLRPC.TL_forumTopic) obj, c4cVar.e);
+                } else {
+                    jxbVar.a(c4cVar.y, (TLRPC.TL_forumTopic) obj, c4cVar.e);
+                }
             }
-            tk4 tk4Var = new tk4(viewGroup.getContext(), null);
-            tk4Var.setViewType(24);
-            tk4Var.setIsSingleCell(true);
-            tk4Var.x = true;
-            return new u69(tk4Var);
         }
-        pxb pxbVar = new pxb(sxbVar, viewGroup.getContext(), false);
-        if (i == 3) {
-            i2 = ((d) sxbVar).currentAccount;
-            boolean x = m9c.x(oc7.r1(i2).W1(Long.valueOf(-sxbVar.a)));
-            pxbVar.setForumIcon(no4.e(ko4.k[0], ""));
-            if (!x) {
-                i3 = 2131753031;
-            } else {
-                i3 = 2131753033;
-            }
-            pxbVar.setTitleOverride(jb6.M0(i3, null));
-            if (!x) {
-                i4 = 2131753032;
-            } else {
-                i4 = 2131753034;
-            }
-            pxbVar.setCustomMessage(jb6.M0(i4, null));
+        if (q5cVar != null && q5cVar.k3 && jxbVar.F) {
+            z3 = true;
         }
-        z = ((d) sxbVar).inPreviewMode;
-        pxbVar.l0 = z;
-        pxbVar.setArchivedPullAnimation(sxbVar.x);
-        return new u69(pxbVar);
+        jxbVar.setReorder(z3);
+    }
+
+    @Override
+    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
+        return new jxb(i, wjbVar, context);
     }
 }

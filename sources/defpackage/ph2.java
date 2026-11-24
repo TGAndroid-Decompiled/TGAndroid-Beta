@@ -1,80 +1,54 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class ph2 extends ReplacementSpan {
-    public final byte a;
-    public final Object b;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+public final class ph2 {
+    public final HashMap a = new HashMap();
+    public final HashMap b;
 
-    public ph2(p09 p09Var) {
-        this.a = (byte) 0;
-        this.b = p09Var;
-    }
-
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        switch (this.a) {
-            case 0:
-                Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
-                int i6 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2) + i4;
-                p09 p09Var = (p09) this.b;
-                int i7 = (int) f;
-                p09Var.setBounds(i7, i6 - gm.L(12.0f), gm.L(24.0f) + i7, gm.L(12.0f) + i6);
-                p09Var.setAlpha(paint.getAlpha());
-                p09Var.draw(canvas);
-                return;
-            case 1:
-            case 2:
-            case 3:
-            default:
-                return;
+    public ph2(HashMap hashMap) {
+        this.b = hashMap;
+        for (Map.Entry entry : hashMap.entrySet()) {
+            u06 u06Var = (u06) entry.getValue();
+            List list = (List) this.a.get(u06Var);
+            if (list == null) {
+                list = new ArrayList();
+                this.a.put(u06Var, list);
+            }
+            list.add((qh2) entry.getKey());
         }
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                if (fontMetricsInt != null) {
-                    Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
-                    int i3 = fontMetricsInt2.ascent;
-                    int i4 = (fontMetricsInt2.descent + i3) / 2;
-                    int x = b10.x(12.0f, i4, i3);
-                    fontMetricsInt.top = x;
-                    fontMetricsInt.ascent = x;
-                    int e = kt6.e(12.0f, i4, fontMetricsInt2.descent);
-                    fontMetricsInt.bottom = e;
-                    fontMetricsInt.descent = e;
+    public static void a(List list, e16 e16Var, u06 u06Var, Object obj) {
+        if (list != null) {
+            for (int size = list.size() - 1; size >= 0; size--) {
+                qh2 qh2Var = (qh2) list.get(size);
+                Method method = qh2Var.b;
+                try {
+                    byte b = qh2Var.a;
+                    if (b != 0) {
+                        if (b != 1) {
+                            if (b == 2) {
+                                method.invoke(obj, e16Var, u06Var);
+                            }
+                        } else {
+                            method.invoke(obj, e16Var);
+                        }
+                    } else {
+                        method.invoke(obj, null);
+                    }
+                } catch (IllegalAccessException e) {
+                    sdb.b(e);
+                    return;
+                } catch (InvocationTargetException e2) {
+                    fyb.j("Failed to call observer method", e2.getCause());
+                    return;
                 }
-                return gm.L(32.0f);
-            case 1:
-                return ((j37) obj).y;
-            case 2:
-                return (int) ((ji7) obj).i2;
-            case 3:
-                return ((dw3) obj).getSize(paint, charSequence, i, i2, fontMetricsInt);
-            default:
-                return (int) ((t9c) obj).n2;
+            }
         }
-    }
-
-    public ph2(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
-    }
-
-    private final void a(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-    }
-
-    private final void b(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-    }
-
-    private final void c(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-    }
-
-    private final void d(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
     }
 }

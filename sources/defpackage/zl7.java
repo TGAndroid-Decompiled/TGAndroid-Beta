@@ -1,26 +1,19 @@
 package defpackage;
+public final class zl7 implements Runnable {
+    public final byte a;
+    public final im7 b;
+    public final long c;
+    public final int d;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class zl7 extends b4 {
-    public static final Parcelable.Creator<zl7> CREATOR = new yhf((byte) 9);
-    public final String a;
-    public final int b;
-    public final String c;
-
-    public zl7(String str, int i, String str2) {
-        this.a = str;
-        this.b = i;
-        this.c = str2;
+    public zl7(im7 im7Var, long j, int i, byte b) {
+        this.a = b;
+        this.b = im7Var;
+        this.c = j;
+        this.d = i;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        mve.l(parcel, 2, this.a);
-        mve.q(parcel, 3, 4);
-        parcel.writeInt(this.b);
-        mve.l(parcel, 4, this.c);
-        mve.s(parcel, r);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.zl7.run():void");
     }
 }

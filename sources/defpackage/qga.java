@@ -1,9 +1,21 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class qga extends k47 {
-    @Override
-    public final boolean s(TLRPC.Chat chat, boolean z) {
-        return false;
+import java.util.ArrayList;
+import java.util.List;
+public abstract class qga {
+    public Object a(List list) {
+        return null;
+    }
+
+    public List b() {
+        return new ArrayList();
+    }
+
+    public Object c() {
+        return null;
+    }
+
+    public Object d(List list) {
+        return null;
     }
 }

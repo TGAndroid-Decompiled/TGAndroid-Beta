@@ -1,265 +1,113 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class kc0 extends bf0 {
-    public final byte H;
-    public final Object I;
+import java.util.ArrayList;
+public final class kc0 {
+    public final ArrayList a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final int g;
+    public final int h;
+    public final int i;
+    public final int j;
+    public final float k;
+    public final String l;
 
-    public kc0(qw0 qw0Var, Context context) {
-        super(context);
-        this.H = (byte) 1;
-        this.I = qw0Var;
-        this.a = new mm(this, this, (byte) 1);
+    public kc0(ArrayList arrayList, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, float f, String str) {
+        this.a = arrayList;
+        this.b = i;
+        this.c = i2;
+        this.d = i3;
+        this.e = i4;
+        this.f = i5;
+        this.g = i6;
+        this.h = i7;
+        this.i = i8;
+        this.j = i9;
+        this.k = f;
+        this.l = str;
     }
 
-    @Override
-    public final ImageReceiver c() {
-        switch (this.H) {
-            case 6:
-                return new mm(this, this, (byte) 4);
-            default:
-                return super.c();
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        byte b = this.H;
-        Object obj = this.I;
-        switch (b) {
-            case 0:
-                super.invalidate();
-                ((lc0) obj).invalidate();
-                return;
-            case 1:
-            case 6:
-            default:
-                super.invalidate();
-                return;
-            case 2:
-                a91 a91Var = ((fj1) obj).h;
-                if (a91Var != null) {
-                    a91Var.invalidate();
+    public static kc0 a(xu7 xu7Var) {
+        String str;
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        int i6;
+        float f;
+        int i7;
+        int i8;
+        try {
+            xu7Var.O(4);
+            int A = (xu7Var.A() & 3) + 1;
+            if (A != 3) {
+                ArrayList arrayList = new ArrayList();
+                int A2 = xu7Var.A() & 31;
+                for (int i9 = 0; i9 < A2; i9++) {
+                    int H = xu7Var.H();
+                    int i10 = xu7Var.b;
+                    xu7Var.O(H);
+                    byte[] bArr = xu7Var.a;
+                    byte[] bArr2 = new byte[H + 4];
+                    System.arraycopy(wj2.a, 0, bArr2, 0, 4);
+                    System.arraycopy(bArr, i10, bArr2, 4, H);
+                    arrayList.add(bArr2);
                 }
-                super.invalidate();
-                return;
-            case 3:
-                a91 a91Var2 = ((ba2) obj).f;
-                if (a91Var2 != null) {
-                    a91Var2.invalidate();
+                int A3 = xu7Var.A();
+                for (int i11 = 0; i11 < A3; i11++) {
+                    int H2 = xu7Var.H();
+                    int i12 = xu7Var.b;
+                    xu7Var.O(H2);
+                    byte[] bArr3 = xu7Var.a;
+                    byte[] bArr4 = new byte[H2 + 4];
+                    System.arraycopy(wj2.a, 0, bArr4, 0, 4);
+                    System.arraycopy(bArr3, i12, bArr4, 4, H2);
+                    arrayList.add(bArr4);
                 }
-                super.invalidate();
-                return;
-            case 4:
-                if (!oi5.b(this)) {
-                    super.invalidate();
-                    ((jz3) obj).f();
-                    return;
+                if (A2 > 0) {
+                    wh7 k = yad.k(4, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
+                    int i13 = k.e;
+                    int i14 = k.f;
+                    int i15 = k.p;
+                    int i16 = k.q;
+                    int i17 = k.r;
+                    int i18 = k.s;
+                    float f2 = k.g;
+                    int i19 = k.a;
+                    int i20 = k.b;
+                    int i21 = k.c;
+                    byte[] bArr5 = wj2.a;
+                    str = String.format("avc1.%02X%02X%02X", Integer.valueOf(i19), Integer.valueOf(i20), Integer.valueOf(i21));
+                    i6 = i18;
+                    f = f2;
+                    i7 = i16;
+                    i8 = i17;
+                    i4 = k.i + 8;
+                    i5 = i15;
+                    i2 = i14;
+                    i3 = k.h + 8;
+                    i = i13;
+                } else {
+                    str = null;
+                    i = -1;
+                    i2 = -1;
+                    i3 = -1;
+                    i4 = -1;
+                    i5 = -1;
+                    i6 = 16;
+                    f = 1.0f;
+                    i7 = -1;
+                    i8 = -1;
                 }
-                return;
-            case 5:
-                a91 a91Var3 = ((uc5) obj).e;
-                if (a91Var3 != null) {
-                    a91Var3.invalidate();
-                }
-                super.invalidate();
-                return;
-            case 7:
-                a91 a91Var4 = ((zf6) obj).h;
-                if (a91Var4 != null) {
-                    a91Var4.invalidate();
-                }
-                super.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        byte b = this.H;
-        float f = 1.0f;
-        Object obj = this.I;
-        switch (b) {
-            case 1:
-                if (((qw0) obj).w) {
-                    super.onDraw(canvas);
-                    return;
-                }
-                Drawable t = this.a.t();
-                if (t != null) {
-                    this.a.i0(0.0f, 0.0f, getWidth(), (getWidth() / t.getIntrinsicWidth()) * t.getIntrinsicHeight());
-                    this.a.h(canvas, null);
-                    return;
-                }
-                return;
-            case 8:
-                if (this.a.R0) {
-                    RectF rectF = gm.P;
-                    rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    ((x48) obj).a(1.0f, canvas, rectF, true);
-                }
-                super.onDraw(canvas);
-                return;
-            case 9:
-                ida idaVar = (ida) obj;
-                kc0 kc0Var = idaVar.b;
-                if (kc0Var.getImageReceiver().B()) {
-                    f = 1.0f - kc0Var.getImageReceiver().i1;
-                }
-                idaVar.d.setAlpha(f);
-                idaVar.a.setAlpha(f);
-                super.onDraw(canvas);
-                return;
-            case 10:
-                w8c w8cVar = (w8c) obj;
-                u82 u82Var = w8cVar.U;
-                if (w8cVar.G) {
-                    u82Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    y4b.h(w8cVar.V, canvas, this.a, u82Var);
-                    return;
-                }
-                super.onDraw(canvas);
-                return;
-            case 11:
-                super.onDraw(canvas);
-                rsc rscVar = (rsc) obj;
-                ssc sscVar = rscVar.s;
-                Object obj2 = rscVar.h;
-                if ((obj2 instanceof mtc) || (obj2 instanceof ntc)) {
-                    canvas.drawLine(1.0f, 0.0f, getMeasuredWidth() - 1, 0.0f, sscVar.n);
-                    canvas.drawLine(0.0f, 0.0f, 0.0f, getMeasuredHeight(), sscVar.n);
-                    canvas.drawLine(getMeasuredWidth() - 1, 0.0f, getMeasuredWidth() - 1, getMeasuredHeight(), sscVar.n);
-                    canvas.drawLine(1.0f, getMeasuredHeight() - 1, getMeasuredWidth() - 1, getMeasuredHeight() - 1, sscVar.n);
-                }
-                if (rscVar.e) {
-                    sscVar.r.setColor(cmb.b0);
-                    int measuredWidth = getMeasuredWidth() / 2;
-                    int measuredHeight = getMeasuredHeight() / 2;
-                    canvas.drawCircle(measuredWidth, measuredHeight, gm.L(20.0f), sscVar.r);
-                    Drawable drawable = sscVar.w;
-                    drawable.setBounds(aq1.A(2, measuredWidth, drawable), aq1.y(2, measuredHeight, sscVar.w), aq1.w(2, measuredWidth, sscVar.w), aq1.i(2, measuredHeight, sscVar.w));
-                    sscVar.w.draw(canvas);
-                    return;
-                }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.H) {
-            case 6:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(240.0f), 1073741824));
-                return;
-            default:
-                super.onMeasure(i, i2);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.H) {
-            case 10:
-                if (((w8c) this.I).U.a(this, motionEvent)) {
-                    return true;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        switch (this.H) {
-            case 6:
-                if (drawable != ((oc6) this.I).n && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
-            default:
-                return super.verifyDrawable(drawable);
-        }
-    }
-
-    public kc0(byte b, Context context, Object obj) {
-        super(context);
-        this.H = b;
-        this.I = obj;
-    }
-
-    @Override
-    public final void invalidate(Rect rect) {
-        switch (this.H) {
-            case 0:
-                super.invalidate(rect);
-                ((lc0) this.I).invalidate();
-                return;
-            default:
-                super.invalidate(rect);
-                return;
-        }
-    }
-
-    @Override
-    public final void invalidate(int i, int i2, int i3, int i4) {
-        byte b = this.H;
-        Object obj = this.I;
-        switch (b) {
-            case 0:
-                super.invalidate(i, i2, i3, i4);
-                ((lc0) obj).invalidate();
-                return;
-            case 1:
-            case 6:
-            default:
-                super.invalidate(i, i2, i3, i4);
-                return;
-            case 2:
-                a91 a91Var = ((fj1) obj).h;
-                if (a91Var != null) {
-                    a91Var.invalidate();
-                }
-                super.invalidate(i, i2, i3, i4);
-                return;
-            case 3:
-                a91 a91Var2 = ((ba2) obj).f;
-                if (a91Var2 != null) {
-                    a91Var2.invalidate();
-                }
-                super.invalidate(i, i2, i3, i4);
-                return;
-            case 4:
-                if (oi5.b(this)) {
-                    return;
-                }
-                super.invalidate(i, i2, i3, i4);
-                return;
-            case 5:
-                a91 a91Var3 = ((uc5) obj).e;
-                if (a91Var3 != null) {
-                    a91Var3.invalidate();
-                }
-                super.invalidate(i, i2, i3, i4);
-                return;
-            case 7:
-                a91 a91Var4 = ((zf6) obj).h;
-                if (a91Var4 != null) {
-                    a91Var4.invalidate();
-                }
-                super.invalidate(i, i2, i3, i4);
-                return;
+                return new kc0(arrayList, A, i, i2, i3, i4, i5, i7, i8, i6, f, str);
+            }
+            throw new IllegalStateException();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw av7.a("Error parsing AVC config", e);
         }
     }
 }

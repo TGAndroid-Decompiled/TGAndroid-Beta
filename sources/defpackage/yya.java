@@ -1,12 +1,30 @@
 package defpackage;
 
-import android.graphics.Canvas;
-public final class yya extends iza {
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class yya extends AnimatorListenerAdapter {
+    public final byte a;
+    public final zya b;
+
+    public yya(zya zyaVar, byte b) {
+        this.a = b;
+        this.b = zyaVar;
+    }
+
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (getTranslationY() != 0.0f) {
-            canvas.drawColor(cmb.w0(null, cmb.c6, false));
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        zya zyaVar = this.b;
+        switch (b) {
+            case 0:
+                zyaVar.s.setVisibility(8);
+                return;
+            case 1:
+                zyaVar.s.setVisibility(8);
+                return;
+            default:
+                zyaVar.s.setVisibility(8);
+                return;
         }
-        super.onDraw(canvas);
     }
 }

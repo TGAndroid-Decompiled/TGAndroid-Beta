@@ -1,45 +1,42 @@
 package defpackage;
 
-import android.view.View;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-public final class z69 extends FrameLayout {
-    public View a;
+import android.os.Looper;
+public final class z69 implements Runnable {
+    public final byte a;
+    public final a79 b;
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        View view = this.a;
-        if (view == null) {
-            ViewParent parent = getParent();
-            while (true) {
-                if (parent instanceof View) {
-                    if (parent instanceof RecyclerView) {
-                        view = (RecyclerView) parent;
-                        break;
-                    }
-                    parent = parent.getParent();
-                } else {
-                    view = null;
-                    break;
-                }
-            }
-        }
-        int i3 = 0;
-        if (view != null) {
-            i3 = Math.max(0, (view.getMeasuredHeight() - view.getPaddingTop()) - view.getPaddingBottom());
-        }
-        if (i3 > 0) {
-            i2 = View.MeasureSpec.makeMeasureSpec(i3, 1073741824);
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+    public z69(a79 a79Var, byte b) {
+        this.a = b;
+        this.b = a79Var;
     }
 
-    public void setViewportView(View view) {
-        if (this.a == view) {
-            return;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        a79 a79Var = this.b;
+        switch (b) {
+            case 0:
+                bg7 bg7Var = a79Var.x;
+                z69 z69Var = a79Var.s;
+                if (z69Var != null) {
+                    a79Var.cancelRunnable(z69Var);
+                    a79Var.s = null;
+                }
+                a79Var.cancelRunnable(bg7Var);
+                a79Var.postRunnable(bg7Var);
+                return;
+            case 1:
+                a79Var.s = null;
+                a79Var.x.run();
+                return;
+            default:
+                a79Var.finish();
+                Looper myLooper = Looper.myLooper();
+                if (myLooper != null) {
+                    myLooper.quit();
+                    return;
+                }
+                return;
         }
-        this.a = view;
-        requestLayout();
     }
 }

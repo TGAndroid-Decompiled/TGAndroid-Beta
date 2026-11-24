@@ -1,17 +1,23 @@
 package defpackage;
-public final class kae implements cq7 {
-    public static final kae a = new Object();
 
-    static {
-        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)), 3)), 4)), 5)), 6)), 7)));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class kae extends b4 {
+    public static final Parcelable.Creator<kae> CREATOR = new qyd((byte) 16);
+    public final int a;
+    public final String b;
+
+    public kae(int i, String str) {
+        this.a = i;
+        this.b = str;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        jte.l(parcel, 3, this.b);
+        jte.s(parcel, r);
     }
 }

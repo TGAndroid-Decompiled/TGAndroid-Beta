@@ -1,29 +1,13 @@
 package defpackage;
-public final class v7d extends bq2 {
-    public final byte f;
-    public final dq2 h;
 
-    public v7d(dq2 dq2Var, byte b) {
-        super(dq2Var, (byte) 0);
-        this.f = b;
-        this.h = dq2Var;
-    }
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.regex.Pattern;
+public abstract class v7d {
+    public static final wn a = new Object();
 
-    @Override
-    public final Object b(int i) {
-        byte b = this.f;
-        dq2 dq2Var = this.h;
-        switch (b) {
-            case 0:
-                Object[] objArr = dq2Var.d;
-                objArr.getClass();
-                return objArr[i];
-            case 1:
-                return new m9d(dq2Var, i);
-            default:
-                Object[] objArr2 = dq2Var.e;
-                objArr2.getClass();
-                return objArr2[i];
-        }
+    static {
+        Charset charset = StandardCharsets.UTF_8;
+        Pattern pattern = id1.a;
     }
 }

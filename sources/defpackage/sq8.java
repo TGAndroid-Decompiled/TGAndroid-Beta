@@ -1,126 +1,35 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.DataAutoDownloadActivity;
-import org.telegram.ui.DataSettingsActivity;
-import org.telegram.ui.NotificationsCustomSettingsActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.ProxyListActivity;
-import org.telegram.ui.ThemeActivity;
-public final class sq8 implements Runnable {
-    public final byte a;
-    public final d b;
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.tgnet.tl.TL_stars;
+public final class sq8 extends fx0 {
+    public long l1;
 
-    public sq8(d dVar, byte b) {
-        this.a = b;
-        this.b = dVar;
-    }
-
-    @Override
-    public final void run() {
-        byte b = this.a;
-        d dVar = this.b;
-        switch (b) {
-            case 0:
-                dVar.presentFragment(new y71());
-                return;
-            case 1:
-                dVar.presentFragment(new y71());
-                return;
-            case 2:
-                dVar.presentFragment(new t93());
-                return;
-            case 3:
-                dVar.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
-                return;
-            case 4:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 5:
-                dVar.presentFragment(new DataAutoDownloadActivity(0));
-                return;
-            case 6:
-                dVar.presentFragment(new DataAutoDownloadActivity(1));
-                return;
-            case 7:
-                dVar.presentFragment(new DataAutoDownloadActivity(2));
-                return;
-            case 8:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 9:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 10:
-                kj8 kj8Var = new kj8(dVar, 3, false);
-                kj8Var.F0();
-                dVar.showDialog(kj8Var);
-                return;
-            case 11:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 12:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 13:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 14:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 15:
-                dVar.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
-                return;
-            case 16:
-                dVar.presentFragment(new ProxyListActivity());
-                return;
-            case 17:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 18:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 19:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 20:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 21:
-                kj8 kj8Var2 = new kj8(dVar, 4, false);
-                kj8Var2.F0();
-                dVar.showDialog(kj8Var2);
-                return;
-            case 22:
-                dVar.presentFragment(new goc());
-                return;
-            case 23:
-                goc.L0(dVar.getContext(), dVar.getResourceProvider());
-                return;
-            case 24:
-                ik.q0(7, null, dVar);
-                return;
-            case 25:
-                ik.q0(8, null, dVar);
-                return;
-            case 26:
-                ThemeActivity themeActivity = new ThemeActivity(0);
-                themeActivity.V0 = true;
-                dVar.presentFragment(themeActivity);
-                return;
-            case 27:
-                hg9.n(1, dVar);
-                return;
-            case 28:
-                dVar.presentFragment(new PremiumPreviewFragment(0, "summarize_limit"));
-                return;
-            default:
-                if (c41.a(dVar)) {
-                    c41.b0(dVar).I(2131623990, jb6.M0(2131742833, null), jb6.M0(2131742832, null)).j();
-                    return;
-                }
-                return;
-        }
+    public sq8(Context context, long j, TL_stars.SavedStarGift savedStarGift, wjb wjbVar, h8c h8cVar) {
+        super(1, wjbVar, context, false);
+        this.l1 = 0L;
+        K();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        TextView b = hve.b(context, 20.0f, bkb.F6, true, wjbVar);
+        b.setText(k96.M0(2131749865, null));
+        linearLayout.addView(b, nme.k(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
+        TextView b2 = hve.b(context, 14.0f, bkb.x6, false, wjbVar);
+        b2.setText(k96.M0(2131749866, null));
+        linearLayout.addView(b2, nme.k(22.0f, 4.33f, 22.0f, 10.0f, -1, -2));
+        u41 u41Var = new u41(wjbVar, context, true);
+        xsa D = gta.v(this.a, false).D(j, true);
+        q5c q5cVar = new q5c(context, this.a, 0, false, new w77(this, D, (byte) 8), new kq8(this, u41Var, (byte) 1), null, wjbVar);
+        q5cVar.setSpanCount(3);
+        q5cVar.setOverScrollMode(2);
+        q5cVar.setScrollEnabled(false);
+        linearLayout.addView(q5cVar, nme.k(11.0f, 0.0f, 11.0f, 0.0f, -1, -2));
+        u41Var.i(k96.M0(2131749867, null), false, true);
+        linearLayout.addView(u41Var, nme.k(22.0f, 9.0f, 22.0f, 9.0f, -1, 48));
+        u41Var.setEnabled(false);
+        u41Var.setOnClickListener(new ee(this, D, savedStarGift, h8cVar, (byte) 15));
+        this.O = linearLayout;
     }
 }

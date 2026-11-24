@@ -1,55 +1,71 @@
 package defpackage;
 
-import android.view.WindowInsets;
-public class jzc extends mzc {
-    public final WindowInsets.Builder c;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
+import android.os.Build;
+import android.util.Base64;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Iterator;
+public abstract class jzc {
+    public static final q0d a = new q0d("PhoneskyVerificationUtils");
 
-    public jzc(wzc wzcVar) {
-        super(wzcVar);
-        WindowInsets.Builder h;
-        WindowInsets g = wzcVar.g();
-        if (g != null) {
-            h = ul1.i(g);
-        } else {
-            h = ul1.h();
+    public static int a(Context context) {
+        try {
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo("com.android.vending", 64);
+            ApplicationInfo applicationInfo = packageInfo.applicationInfo;
+            if (applicationInfo != null && applicationInfo.enabled && b(packageInfo.signatures)) {
+                return packageInfo.versionCode;
+            }
+            return 0;
+        } catch (PackageManager.NameNotFoundException unused) {
+            return 0;
         }
-        this.c = h;
     }
 
-    @Override
-    public wzc b() {
-        a();
-        wzc h = wzc.h(null, this.c.build());
-        h.a.q(this.b);
-        return h;
-    }
-
-    @Override
-    public void d(iq5 iq5Var) {
-        this.c.setMandatorySystemGestureInsets(iq5Var.d());
-    }
-
-    @Override
-    public void e(iq5 iq5Var) {
-        this.c.setStableInsets(iq5Var.d());
-    }
-
-    @Override
-    public void f(iq5 iq5Var) {
-        this.c.setSystemGestureInsets(iq5Var.d());
-    }
-
-    @Override
-    public void g(iq5 iq5Var) {
-        this.c.setSystemWindowInsets(iq5Var.d());
-    }
-
-    @Override
-    public void h(iq5 iq5Var) {
-        this.c.setTappableElementInsets(iq5Var.d());
-    }
-
-    public jzc() {
-        this.c = ul1.h();
+    public static boolean b(Signature[] signatureArr) {
+        String str;
+        q0d q0dVar = a;
+        if (signatureArr != null && (r2 = signatureArr.length) != 0) {
+            ArrayList arrayList = new ArrayList();
+            for (Signature signature : signatureArr) {
+                byte[] byteArray = signature.toByteArray();
+                try {
+                    MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+                    messageDigest.update(byteArray);
+                    str = Base64.encodeToString(messageDigest.digest(), 11);
+                } catch (NoSuchAlgorithmException unused) {
+                    str = "";
+                }
+                arrayList.add(str);
+                if (!"8P1sW0EPJcslw7UzRsiXL64w-O50Ed-RBICtay1g24M".equals(str)) {
+                    String str2 = Build.TAGS;
+                    if ((str2.contains("dev-keys") || str2.contains("test-keys")) && "GXWy8XF3vIml3_MfnmSmyuKBpT3B0dWbHRR_4cgq-gA".equals(str)) {
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            }
+            StringBuilder sb = new StringBuilder();
+            Iterator it = arrayList.iterator();
+            if (it.hasNext()) {
+                while (true) {
+                    sb.append((CharSequence) it.next());
+                    if (!it.hasNext()) {
+                        break;
+                    }
+                    sb.append((CharSequence) ", ");
+                }
+            }
+            q0dVar.c(tb4.y("Play Store package certs are not valid. Found these sha256 certs: [", sb.toString(), "]."), new Object[0]);
+            return false;
+        }
+        q0dVar.c("Play Store package is not signed -- possibly self-built package. Could not verify.", new Object[0]);
+        return false;
     }
 }

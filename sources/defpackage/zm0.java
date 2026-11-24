@@ -14,10 +14,10 @@ public final class zm0 implements Runnable {
         dn0 dn0Var = this.b;
         switch (b) {
             case 0:
-                dn0Var.l0();
+                dn0Var.dismiss();
                 return;
             default:
-                dn0Var.l0();
+                dn0Var.onBackPressed();
                 return;
         }
     }

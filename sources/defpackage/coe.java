@@ -1,20 +1,25 @@
 package defpackage;
 
-import android.util.Log;
+import java.util.Map;
 public abstract class coe {
-    public static void a(Exception exc, String str, Object... objArr) {
-        if (Log.isLoggable("Vision", 6)) {
-            if (Log.isLoggable("Vision", 3)) {
-                Log.e("Vision", String.format(str, objArr), exc);
-                return;
-            }
-            String format = String.format(str, objArr);
-            String valueOf = String.valueOf(exc);
-            StringBuilder sb = new StringBuilder(valueOf.length() + format.length() + 2);
-            sb.append(format);
-            sb.append(": ");
-            sb.append(valueOf);
-            Log.e("Vision", sb.toString());
+    public static int a(int i) {
+        if (i < 3) {
+            krd.b(i, "expectedSize");
+            return i + 1;
+        } else if (i < 1073741824) {
+            return (int) Math.ceil(i / 0.75d);
+        } else {
+            return Integer.MAX_VALUE;
         }
+    }
+
+    public static boolean b(Map map, Object obj) {
+        if (map == obj) {
+            return true;
+        }
+        if (obj instanceof Map) {
+            return map.entrySet().equals(((Map) obj).entrySet());
+        }
+        return false;
     }
 }

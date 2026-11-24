@@ -1,21 +1,26 @@
 package defpackage;
 
-import android.os.Bundle;
+import android.content.Context;
 import java.util.ArrayList;
-public abstract class w0f {
-    public static final ArrayList a(ArrayList arrayList) {
-        ArrayList arrayList2 = new ArrayList();
+public final class w0f implements o0f {
+    public final ArrayList a;
+
+    public w0f(Context context, j0f j0fVar) {
+        ArrayList arrayList = new ArrayList();
+        this.a = arrayList;
+        j0fVar.getClass();
+        arrayList.add(new t1f(context, j0fVar));
+    }
+
+    @Override
+    public final void a(aec aecVar) {
+        ArrayList arrayList = this.a;
         int size = arrayList.size();
         int i = 0;
         while (i < size) {
             Object obj = arrayList.get(i);
             i++;
-            a2d a2dVar = (a2d) obj;
-            Bundle bundle = new Bundle();
-            bundle.putInt("event_type", a2dVar.a);
-            bundle.putLong("event_timestamp", a2dVar.b);
-            arrayList2.add(bundle);
+            ((o0f) obj).a(aecVar);
         }
-        return arrayList2;
     }
 }

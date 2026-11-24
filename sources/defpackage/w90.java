@@ -1,74 +1,141 @@
 package defpackage;
-
-import java.util.List;
-public final class w90 extends c03 {
+public final class w90 {
     public final String a;
     public final String b;
-    public final List c;
-    public final c03 d;
+    public final String c;
+    public final qa0 d;
     public final int e;
 
-    public w90(String str, String str2, List list, c03 c03Var, int i) {
+    public w90(String str, String str2, String str3, qa0 qa0Var, int i) {
         this.a = str;
         this.b = str2;
-        this.c = list;
-        this.d = c03Var;
+        this.c = str3;
+        this.d = qa0Var;
         this.e = i;
     }
 
     public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof c03) {
-            w90 w90Var = (w90) ((c03) obj);
-            if (this.a.equals(w90Var.a)) {
-                String str = w90Var.b;
-                String str2 = this.b;
-                if (str2 != null ? str2.equals(str) : str == null) {
-                    if (this.c.equals(w90Var.c)) {
-                        c03 c03Var = w90Var.d;
-                        c03 c03Var2 = this.d;
-                        if (c03Var2 != null ? c03Var2.equals(c03Var) : c03Var == null) {
-                            if (this.e == w90Var.e) {
-                                return true;
-                            }
-                        }
+        if (obj != this) {
+            if (obj instanceof w90) {
+                w90 w90Var = (w90) obj;
+                String str = w90Var.a;
+                String str2 = this.a;
+                if (str2 == null) {
+                    if (str != null) {
+                        return false;
                     }
+                } else if (!str2.equals(str)) {
+                    return false;
+                }
+                String str3 = w90Var.b;
+                String str4 = this.b;
+                if (str4 == null) {
+                    if (str3 != null) {
+                        return false;
+                    }
+                } else if (!str4.equals(str3)) {
+                    return false;
+                }
+                String str5 = w90Var.c;
+                String str6 = this.c;
+                if (str6 == null) {
+                    if (str5 != null) {
+                        return false;
+                    }
+                } else if (!str6.equals(str5)) {
+                    return false;
+                }
+                qa0 qa0Var = w90Var.d;
+                qa0 qa0Var2 = this.d;
+                if (qa0Var2 == null) {
+                    if (qa0Var != null) {
+                        return false;
+                    }
+                } else if (!qa0Var2.equals(qa0Var)) {
+                    return false;
+                }
+                int i = w90Var.e;
+                int i2 = this.e;
+                if (i2 == 0) {
+                    if (i == 0) {
+                        return true;
+                    }
+                    return false;
+                } else if (ug8.c(i2, i)) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = (this.a.hashCode() ^ 1000003) * 1000003;
+        int hashCode2;
+        int hashCode3;
+        int hashCode4;
         int i = 0;
-        String str = this.b;
+        String str = this.a;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
-        int hashCode3 = (((hashCode2 ^ hashCode) * 1000003) ^ this.c.hashCode()) * 1000003;
-        c03 c03Var = this.d;
-        if (c03Var != null) {
-            i = c03Var.hashCode();
+        int i2 = (hashCode ^ 1000003) * 1000003;
+        String str2 = this.b;
+        if (str2 == null) {
+            hashCode2 = 0;
+        } else {
+            hashCode2 = str2.hashCode();
         }
-        return ((hashCode3 ^ i) * 1000003) ^ this.e;
+        int i3 = (i2 ^ hashCode2) * 1000003;
+        String str3 = this.c;
+        if (str3 == null) {
+            hashCode3 = 0;
+        } else {
+            hashCode3 = str3.hashCode();
+        }
+        int i4 = (i3 ^ hashCode3) * 1000003;
+        qa0 qa0Var = this.d;
+        if (qa0Var == null) {
+            hashCode4 = 0;
+        } else {
+            hashCode4 = qa0Var.hashCode();
+        }
+        int i5 = (i4 ^ hashCode4) * 1000003;
+        int i6 = this.e;
+        if (i6 != 0) {
+            i = ug8.F(i6);
+        }
+        return i5 ^ i;
     }
 
     public final String toString() {
-        StringBuilder sb = new StringBuilder("Exception{type=");
+        String str;
+        StringBuilder sb = new StringBuilder("InstallationResponse{uri=");
         sb.append(this.a);
-        sb.append(", reason=");
+        sb.append(", fid=");
         sb.append(this.b);
-        sb.append(", frames=");
+        sb.append(", refreshToken=");
         sb.append(this.c);
-        sb.append(", causedBy=");
+        sb.append(", authToken=");
         sb.append(this.d);
-        sb.append(", overflowCount=");
-        return hg9.k(sb, this.e, "}");
+        sb.append(", responseCode=");
+        int i = this.e;
+        if (i != 1) {
+            if (i != 2) {
+                str = "null";
+            } else {
+                str = "BAD_CONFIG";
+            }
+        } else {
+            str = "OK";
+        }
+        sb.append(str);
+        sb.append("}");
+        return sb.toString();
     }
 }

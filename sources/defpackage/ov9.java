@@ -1,31 +1,117 @@
 package defpackage;
 
-import android.app.Activity;
-public final class ov9 extends mm3 {
-    public final nk3 J0;
-    public final Activity K0;
-    public final sj3 L0;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+public abstract class ov9 extends tv9 {
+    public final long d;
+    public final long e;
+    public final ArrayList f;
+    public final long g;
+    public final long h;
+    public final long i;
 
-    public ov9(sj3 sj3Var, Activity activity, nk3 nk3Var, int i, int i2, sc3 sc3Var, boolean z, nk3 nk3Var2, Activity activity2) {
-        super(activity, nk3Var, i, i2, sc3Var, z);
-        this.L0 = sj3Var;
-        this.J0 = nk3Var2;
-        this.K0 = activity2;
+    public ov9(az8 az8Var, long j, long j2, long j3, long j4, ArrayList arrayList, long j5, long j6, long j7) {
+        super(az8Var, j, j2);
+        this.d = j3;
+        this.e = j4;
+        this.f = arrayList;
+        this.i = j5;
+        this.g = j6;
+        this.h = j7;
     }
 
-    @Override
-    public final void f() {
-        pu9 pu9Var;
-        int i = this.C0;
-        super.f();
-        sj3 sj3Var = this.L0;
-        if (!sj3Var.L0 && (pu9Var = sj3Var.b0) != null) {
-            pu9Var.w0(0);
-            sj3Var.L0 = true;
+    public final long c(long j, long j2) {
+        long e = e(j);
+        if (e != -1) {
+            return e;
         }
-        if (b() != 0 || i == 0 || this.E0 > 0) {
-            return;
+        return (int) (g((j2 - this.h) + this.i, j) - d(j, j2));
+    }
+
+    public final long d(long j, long j2) {
+        int i = (e(j) > (-1L) ? 1 : (e(j) == (-1L) ? 0 : -1));
+        long j3 = this.d;
+        if (i == 0) {
+            long j4 = this.g;
+            if (j4 != -9223372036854775807L) {
+                return Math.max(j3, g((j2 - this.h) - j4, j));
+            }
         }
-        sj3Var.c0.e(false, false);
+        return j3;
+    }
+
+    public abstract long e(long j);
+
+    public final long f(long j, long j2) {
+        long j3 = this.b;
+        long j4 = this.d;
+        ArrayList arrayList = this.f;
+        if (arrayList != null) {
+            return (((rv9) arrayList.get((int) (j - j4))).b * 1000000) / j3;
+        }
+        long e = e(j2);
+        if (e != -1 && j == (j4 + e) - 1) {
+            return j2 - h(j);
+        }
+        return (this.e * 1000000) / j3;
+    }
+
+    public final long g(long j, long j2) {
+        long e = e(j2);
+        int i = (e > 0L ? 1 : (e == 0L ? 0 : -1));
+        long j3 = this.d;
+        if (i != 0) {
+            if (this.f == null) {
+                long j4 = (j / ((this.e * 1000000) / this.b)) + j3;
+                if (j4 >= j3) {
+                    if (e == -1) {
+                        return j4;
+                    }
+                    return Math.min(j4, (j3 + e) - 1);
+                }
+            } else {
+                long j5 = (e + j3) - 1;
+                long j6 = j3;
+                while (j6 <= j5) {
+                    long j7 = ((j5 - j6) / 2) + j6;
+                    int i2 = (h(j7) > j ? 1 : (h(j7) == j ? 0 : -1));
+                    if (i2 < 0) {
+                        j6 = j7 + 1;
+                    } else if (i2 > 0) {
+                        j5 = j7 - 1;
+                    } else {
+                        return j7;
+                    }
+                }
+                if (j6 == j3) {
+                    return j6;
+                }
+                return j5;
+            }
+        }
+        return j3;
+    }
+
+    public final long h(long j) {
+        long j2;
+        ArrayList arrayList = this.f;
+        long j3 = j - this.d;
+        if (arrayList != null) {
+            j2 = ((rv9) arrayList.get((int) j3)).a - this.c;
+        } else {
+            j2 = j3 * this.e;
+        }
+        long j4 = j2;
+        String str = g8c.a;
+        return g8c.b0(j4, 1000000L, this.b, RoundingMode.DOWN);
+    }
+
+    public abstract az8 i(g89 g89Var, long j);
+
+    public boolean j() {
+        if (this.f != null) {
+            return true;
+        }
+        return false;
     }
 }

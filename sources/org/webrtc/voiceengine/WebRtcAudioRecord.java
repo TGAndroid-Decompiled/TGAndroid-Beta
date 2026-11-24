@@ -88,7 +88,7 @@ public class WebRtcAudioRecord {
                             WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.this;
                             webRtcAudioRecord.nativeDataIsRecorded(read, webRtcAudioRecord.nativeAudioRecord);
                         } catch (UnsatisfiedLinkError e) {
-                            fc4.g(e, true);
+                            fa4.g(e, true);
                             this.keepAlive = false;
                         }
                     }
@@ -182,7 +182,7 @@ public class WebRtcAudioRecord {
         if (z) {
             return;
         }
-        bh7.j("Expected condition to be true");
+        fi7.g("Expected condition to be true");
     }
 
     private int channelCountToConfiguration(int i) {
@@ -244,7 +244,7 @@ public class WebRtcAudioRecord {
                         try {
                             MediaProjection mediaProjection = VideoCapturerDevice.getMediaProjection();
                             if (mediaProjection != null) {
-                                ul1.r();
+                                mk1.r();
                                 AudioPlaybackCaptureConfiguration.Builder builder = new AudioPlaybackCaptureConfiguration.Builder(mediaProjection);
                                 builder.addMatchingUsage(1);
                                 builder.addMatchingUsage(14);
@@ -283,7 +283,7 @@ public class WebRtcAudioRecord {
                 releaseAudioResources(false);
                 return -1;
             }
-            reportWebRtcAudioRecordInitError(hg9.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+            reportWebRtcAudioRecordInitError(de9.k(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
             return -1;
         }
         return -1;
@@ -428,7 +428,7 @@ public class WebRtcAudioRecord {
         try {
             this.audioRecord.stop();
         } catch (Throwable th) {
-            fc4.g(th, true);
+            fa4.g(th, true);
         }
         releaseAudioResources(false);
         return true;
@@ -444,7 +444,7 @@ public class WebRtcAudioRecord {
             if (minBufferSize != -1 && minBufferSize != -2) {
                 int max = Math.max(minBufferSize << 1, this.deviceByteBuffer.capacity());
                 try {
-                    ul1.r();
+                    mk1.r();
                     AudioPlaybackCaptureConfiguration.Builder builder = new AudioPlaybackCaptureConfiguration.Builder(mediaProjection);
                     builder.addMatchingUsage(1);
                     builder.addMatchingUsage(14);
@@ -478,7 +478,7 @@ public class WebRtcAudioRecord {
                     return;
                 }
             }
-            reportWebRtcAudioRecordInitError(hg9.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+            reportWebRtcAudioRecordInitError(de9.k(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
         }
     }
 
@@ -490,7 +490,7 @@ public class WebRtcAudioRecord {
         try {
             audioRecord.stop();
         } catch (Throwable th) {
-            fc4.g(th, true);
+            fa4.g(th, true);
         }
         releaseAudioResources(true);
     }

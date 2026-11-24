@@ -1,11 +1,27 @@
 package defpackage;
-public final class ey2 implements by2 {
-    public final rr4 a;
-    public final by2 b;
+public final class ey2 implements Runnable {
+    public final byte a;
+    public final rc1 b;
+    public final dv8 c;
 
-    public ey2(by2 by2Var, rr4 rr4Var) {
-        by2Var.getClass();
-        this.a = rr4Var;
-        this.b = by2Var instanceof ey2 ? ((ey2) by2Var).b : by2Var;
+    public ey2(rc1 rc1Var, dv8 dv8Var, byte b) {
+        this.a = b;
+        this.b = rc1Var;
+        this.c = dv8Var;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        dv8 dv8Var = this.c;
+        rc1 rc1Var = this.b;
+        switch (b) {
+            case 0:
+                rc1Var.a(dv8Var);
+                return;
+            default:
+                rc1Var.a(dv8Var);
+                return;
+        }
     }
 }

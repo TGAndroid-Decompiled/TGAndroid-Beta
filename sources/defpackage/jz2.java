@@ -1,47 +1,119 @@
 package defpackage;
 
-import android.util.Log;
-import j$.util.Objects;
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
-public final class jz2 {
-    public final i73 a;
-    public final mx6 b;
+import java.nio.charset.Charset;
+public final class jz2 implements kz2, yyb, x56 {
+    public final byte a;
 
-    public jz2(i73 i73Var, jd4 jd4Var) {
-        this.a = i73Var;
-        this.b = new mx6(jd4Var);
+    public jz2(tj tjVar, int i, int i2) {
+        this.a = (byte) 29;
     }
 
-    public final String a(String str) {
-        String substring;
-        mx6 mx6Var = this.b;
-        synchronized (mx6Var) {
-            if (Objects.equals((String) mx6Var.c, str)) {
-                return (String) mx6Var.d;
-            }
-            iz2 iz2Var = mx6.n;
-            File file = new File((File) ((jd4) mx6Var.b).d, str);
-            file.mkdirs();
-            List e = jd4.e(file.listFiles(iz2Var));
-            if (e.isEmpty()) {
-                substring = null;
-                Log.w("FirebaseCrashlytics", "Unable to read App Quality Sessions session id.", null);
-            } else {
-                substring = ((File) Collections.min(e, mx6.r)).getName().substring(4);
-            }
-            return substring;
+    @Override
+    public final java.lang.Object a(android.util.JsonReader r20) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.jz2.a(android.util.JsonReader):java.lang.Object");
+    }
+
+    @Override
+    public final Object apply(Object obj) {
+        w73.b.getClass();
+        return lz2.a.q((hz2) obj).getBytes(Charset.forName("UTF-8"));
+    }
+
+    @Override
+    public final void invoke(Object obj) {
+        uj ujVar = (uj) obj;
+        switch (this.a) {
+            case 9:
+                ujVar.getClass();
+                return;
+            case 10:
+                ujVar.getClass();
+                return;
+            case 11:
+                ujVar.getClass();
+                return;
+            case 12:
+                ujVar.getClass();
+                return;
+            case 13:
+                ujVar.getClass();
+                return;
+            case 14:
+                ujVar.getClass();
+                return;
+            case 15:
+                ujVar.getClass();
+                return;
+            case 16:
+                ujVar.getClass();
+                return;
+            case 17:
+                ujVar.getClass();
+                return;
+            case 18:
+                ujVar.getClass();
+                return;
+            case 19:
+                ujVar.getClass();
+                return;
+            case 20:
+                ujVar.getClass();
+                return;
+            case 21:
+                ujVar.getClass();
+                return;
+            case 22:
+                ujVar.getClass();
+                return;
+            case 23:
+                ujVar.getClass();
+                return;
+            case 24:
+                ujVar.getClass();
+                return;
+            case 25:
+                ujVar.getClass();
+                return;
+            case 26:
+                ujVar.getClass();
+                return;
+            case 27:
+                ujVar.getClass();
+                return;
+            case 28:
+                ujVar.getClass();
+                return;
+            default:
+                ujVar.getClass();
+                return;
         }
     }
 
-    public final void b(String str) {
-        mx6 mx6Var = this.b;
-        synchronized (mx6Var) {
-            if (!Objects.equals((String) mx6Var.c, str)) {
-                mx6.d0((jd4) mx6Var.b, str, (String) mx6Var.d);
-                mx6Var.c = str;
-            }
-        }
+    public jz2(tj tjVar, int i, byte b) {
+        this.a = b;
+    }
+
+    public jz2(byte b) {
+        this.a = b;
+    }
+
+    public jz2(tj tjVar, int i, int i2, boolean z) {
+        this.a = (byte) 21;
+    }
+
+    public jz2(tj tjVar, Object obj, byte b) {
+        this.a = b;
+    }
+
+    public jz2(tj tjVar, String str, long j, long j2, byte b) {
+        this.a = b;
+    }
+
+    public jz2(tj tjVar, boolean z) {
+        this.a = (byte) 14;
+    }
+
+    public jz2(tj tjVar, boolean z, int i, byte b) {
+        this.a = b;
     }
 }

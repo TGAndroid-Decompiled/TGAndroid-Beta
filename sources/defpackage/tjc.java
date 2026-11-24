@@ -1,28 +1,23 @@
 package defpackage;
 
-import org.telegram.messenger.voip.VoIPService;
-public final class tjc implements jac {
-    public final byte a;
-    public final VoIPService b;
+import android.media.VolumeProvider;
+public final class tjc extends VolumeProvider {
+    public final tx3 a;
 
-    public tjc(VoIPService voIPService, byte b) {
-        this.a = b;
-        this.b = voIPService;
+    public tjc(tx3 tx3Var, int i, int i2, int i3, String str) {
+        super(i, i2, i3, str);
+        this.a = tx3Var;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        byte b = this.a;
-        VoIPService voIPService = this.b;
-        Boolean bool = (Boolean) obj;
-        Boolean bool2 = (Boolean) obj2;
-        switch (b) {
-            case 0:
-                voIPService.lambda$switchToSpeaker$87(bool, bool2);
-                return;
-            default:
-                voIPService.lambda$toggleSpeakerphoneOrShowRouteSheet$91(bool, bool2);
-                return;
-        }
+    public final void onAdjustVolume(int i) {
+        tx3 tx3Var = this.a;
+        ((ux4) ((xl3) tx3Var.f).d).a.post(new sx4(tx3Var, i, (byte) 1));
+    }
+
+    @Override
+    public final void onSetVolumeTo(int i) {
+        tx3 tx3Var = this.a;
+        ((ux4) ((xl3) tx3Var.f).d).a.post(new sx4(tx3Var, i, (byte) 0));
     }
 }

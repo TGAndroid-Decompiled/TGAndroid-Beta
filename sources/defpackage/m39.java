@@ -1,43 +1,25 @@
 package defpackage;
+public final class m39 {
+    public static final m39 a;
+    public static final m39 b;
+    public static final m39[] c;
+    m39 EF0;
 
-import android.os.Bundle;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.ProfileActivity;
-public final class m39 implements Runnable {
-    public final byte a = 1;
-    public final long b;
-    public final d c;
-
-    public m39(long j, d dVar) {
-        this.b = j;
-        this.c = dVar;
+    static {
+        Enum r0 = new Enum("FULL_BACKGROUND", 0);
+        Enum r1 = new Enum("SECTION_COLOR_BACKGROUND", 1);
+        ?? r3 = new Enum("OPTIMIZED_BACKGROUND", 2);
+        a = r3;
+        ?? r5 = new Enum("DRAW_VERTICES", 3);
+        b = r5;
+        c = new m39[]{r0, r1, r3, r5};
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        d dVar = this.c;
-        long j = this.b;
-        switch (b) {
-            case 0:
-                dVar.presentFragment(xza.e0(dVar.getMessagesController().L0(Long.valueOf(-j)), true));
-                return;
-            default:
-                Bundle bundle = new Bundle();
-                if (j >= 0) {
-                    bundle.putLong("user_id", j);
-                } else {
-                    bundle.putLong("chat_id", -j);
-                }
-                bundle.putBoolean("my_profile", true);
-                bundle.putBoolean("open_gifts", true);
-                dVar.presentFragment(new ProfileActivity(bundle, null));
-                return;
-        }
+    public static m39 valueOf(String str) {
+        return (m39) Enum.valueOf(m39.class, str);
     }
 
-    public m39(d dVar, long j) {
-        this.c = dVar;
-        this.b = j;
+    public static m39[] values() {
+        return (m39[]) c.clone();
     }
 }

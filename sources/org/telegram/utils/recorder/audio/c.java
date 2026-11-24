@@ -42,8 +42,8 @@ public final class c implements Runnable {
                             long d = dVar.t.d();
                             dVar.x = elapsedRealtime;
                             if (d >= 0) {
-                                m30 m30Var = dVar.g;
-                                ((h40) m30Var.c).a((f40) m30Var.b, d);
+                                m20 m20Var = dVar.g;
+                                ((h30) m20Var.c).a((f30) m20Var.b, d);
                             }
                         }
                     }
@@ -55,15 +55,15 @@ public final class c implements Runnable {
                 }
                 return;
             default:
-                h40 h40Var = (h40) this.b;
-                f40 f40Var = (f40) this.c;
+                h30 h30Var = (h30) this.b;
+                f30 f30Var = (f30) this.c;
                 try {
-                    bArr = AudioRecorderNative.e(f40Var.b.getAbsolutePath());
+                    bArr = AudioRecorderNative.e(f30Var.b.getAbsolutePath());
                 } catch (Throwable th) {
-                    h40Var.h.a("waveform extraction failed", th);
+                    h30Var.h.a("waveform extraction failed", th);
                     bArr = null;
                 }
-                h40Var.i.post(new op6(h40Var, f40Var, bArr, (byte) 11));
+                h30Var.i.post(new nn6(h30Var, f30Var, bArr, (byte) 11));
                 return;
         }
     }

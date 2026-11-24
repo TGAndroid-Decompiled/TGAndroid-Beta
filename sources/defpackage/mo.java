@@ -2,287 +2,219 @@ package defpackage;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.text.InputFilter;
 import android.util.AttributeSet;
-import org.xmlpull.v1.XmlPullParser;
-public final class mo extends jq2 implements Animatable {
-    public final Context d;
-    public final jo e = new jo(this, (byte) 0);
-    public final ko c = new Drawable.ConstantState();
+import android.widget.CheckBox;
+public final class mo extends CheckBox implements zob {
+    public final oo a;
+    public final ko b;
+    public final pq c;
+    public ip d;
 
-    public mo(Context context) {
-        this.d = context;
+    public mo(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet, 2130968716);
+        xob.a(context);
+        cnb.a(getContext(), this);
+        oo ooVar = new oo(this);
+        this.a = ooVar;
+        ooVar.e(attributeSet, 2130968716);
+        ko koVar = new ko(this);
+        this.b = koVar;
+        koVar.g(attributeSet, 2130968716);
+        pq pqVar = new pq(this);
+        this.c = pqVar;
+        pqVar.f(attributeSet, 2130968716);
+        getEmojiTextViewHelper().a(attributeSet, 2130968716);
+    }
+
+    private ip getEmojiTextViewHelper() {
+        ip ipVar = this.d;
+        if (ipVar == null) {
+            ip ipVar2 = new ip(this);
+            this.d = ipVar2;
+            return ipVar2;
+        }
+        return ipVar;
     }
 
     @Override
-    public final void applyTheme(Resources.Theme theme) {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            drawable.applyTheme(theme);
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        ko koVar = this.b;
+        if (koVar != null) {
+            koVar.b();
+        }
+        pq pqVar = this.c;
+        if (pqVar != null) {
+            pqVar.b();
         }
     }
 
     @Override
-    public final boolean canApplyTheme() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return drawable.canApplyTheme();
+    public int getCompoundPaddingLeft() {
+        int compoundPaddingLeft = super.getCompoundPaddingLeft();
+        oo ooVar = this.a;
+        if (ooVar != null) {
+            ooVar.getClass();
         }
-        return false;
+        return compoundPaddingLeft;
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            drawable.draw(canvas);
-            return;
-        }
-        ko koVar = this.c;
-        koVar.a.draw(canvas);
-        if (koVar.b.isStarted()) {
-            invalidateSelf();
-        }
-    }
-
-    @Override
-    public final int getAlpha() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return drawable.getAlpha();
-        }
-        return this.c.a.getAlpha();
-    }
-
-    @Override
-    public final int getChangingConfigurations() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return drawable.getChangingConfigurations();
-        }
-        int changingConfigurations = super.getChangingConfigurations();
-        this.c.getClass();
-        return changingConfigurations;
-    }
-
-    @Override
-    public final ColorFilter getColorFilter() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return drawable.getColorFilter();
-        }
-        return this.c.a.getColorFilter();
-    }
-
-    @Override
-    public final Drawable.ConstantState getConstantState() {
-        if (((Drawable) this.b) != null && Build.VERSION.SDK_INT >= 24) {
-            return new lo(((Drawable) this.b).getConstantState());
+    public ColorStateList getSupportBackgroundTintList() {
+        ko koVar = this.b;
+        if (koVar != null) {
+            return koVar.e();
         }
         return null;
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return drawable.getIntrinsicHeight();
+    public PorterDuff.Mode getSupportBackgroundTintMode() {
+        ko koVar = this.b;
+        if (koVar != null) {
+            return koVar.f();
         }
-        return this.c.a.getIntrinsicHeight();
+        return null;
     }
 
-    @Override
-    public final int getIntrinsicWidth() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return drawable.getIntrinsicWidth();
+    public ColorStateList getSupportButtonTintList() {
+        oo ooVar = this.a;
+        if (ooVar != null) {
+            return (ColorStateList) ooVar.a;
         }
-        return this.c.a.getIntrinsicWidth();
+        return null;
     }
 
-    @Override
-    public final int getOpacity() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return drawable.getOpacity();
+    public PorterDuff.Mode getSupportButtonTintMode() {
+        oo ooVar = this.a;
+        if (ooVar != null) {
+            return (PorterDuff.Mode) ooVar.b;
         }
-        return this.c.a.getOpacity();
+        return null;
+    }
+
+    public ColorStateList getSupportCompoundDrawablesTintList() {
+        return this.c.d();
+    }
+
+    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
+        return this.c.e();
     }
 
     @Override
-    public final void inflate(android.content.res.Resources r21, org.xmlpull.v1.XmlPullParser r22, android.util.AttributeSet r23, android.content.res.Resources.Theme r24) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.mo.inflate(android.content.res.Resources, org.xmlpull.v1.XmlPullParser, android.util.AttributeSet, android.content.res.Resources$Theme):void");
+    public void setAllCaps(boolean z) {
+        super.setAllCaps(z);
+        getEmojiTextViewHelper().b(z);
     }
 
     @Override
-    public final boolean isAutoMirrored() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return drawable.isAutoMirrored();
-        }
-        return this.c.a.isAutoMirrored();
-    }
-
-    @Override
-    public final boolean isRunning() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return ((AnimatedVectorDrawable) drawable).isRunning();
-        }
-        return this.c.b.isRunning();
-    }
-
-    @Override
-    public final boolean isStateful() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return drawable.isStateful();
-        }
-        return this.c.a.isStateful();
-    }
-
-    @Override
-    public final Drawable mutate() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            drawable.mutate();
-        }
-        return this;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            drawable.setBounds(rect);
-        } else {
-            this.c.a.setBounds(rect);
+    public void setBackgroundDrawable(Drawable drawable) {
+        super.setBackgroundDrawable(drawable);
+        ko koVar = this.b;
+        if (koVar != null) {
+            koVar.h();
         }
     }
 
     @Override
-    public final boolean onLevelChange(int i) {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return drawable.setLevel(i);
-        }
-        return this.c.a.setLevel(i);
-    }
-
-    @Override
-    public final boolean onStateChange(int[] iArr) {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return drawable.setState(iArr);
-        }
-        return this.c.a.setState(iArr);
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            drawable.setAlpha(i);
-        } else {
-            this.c.a.setAlpha(i);
+    public void setBackgroundResource(int i) {
+        super.setBackgroundResource(i);
+        ko koVar = this.b;
+        if (koVar != null) {
+            koVar.i(i);
         }
     }
 
     @Override
-    public final void setAutoMirrored(boolean z) {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            drawable.setAutoMirrored(z);
-        } else {
-            this.c.a.setAutoMirrored(z);
+    public void setButtonDrawable(Drawable drawable) {
+        super.setButtonDrawable(drawable);
+        oo ooVar = this.a;
+        if (ooVar != null) {
+            if (ooVar.e) {
+                ooVar.e = false;
+                return;
+            }
+            ooVar.e = true;
+            ooVar.a();
         }
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
-        } else {
-            this.c.a.setColorFilter(colorFilter);
+    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
+        pq pqVar = this.c;
+        if (pqVar != null) {
+            pqVar.b();
         }
     }
 
     @Override
-    public final void setTint(int i) {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            drawable.setTint(i);
-        } else {
-            this.c.a.setTint(i);
+    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
+        pq pqVar = this.c;
+        if (pqVar != null) {
+            pqVar.b();
+        }
+    }
+
+    public void setEmojiCompatEnabled(boolean z) {
+        getEmojiTextViewHelper().c(z);
+    }
+
+    @Override
+    public void setFilters(InputFilter[] inputFilterArr) {
+        super.setFilters(((efe) getEmojiTextViewHelper().b.a).a(inputFilterArr));
+    }
+
+    public void setSupportBackgroundTintList(ColorStateList colorStateList) {
+        ko koVar = this.b;
+        if (koVar != null) {
+            koVar.m(colorStateList);
+        }
+    }
+
+    public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
+        ko koVar = this.b;
+        if (koVar != null) {
+            koVar.n(mode);
+        }
+    }
+
+    public void setSupportButtonTintList(ColorStateList colorStateList) {
+        oo ooVar = this.a;
+        if (ooVar != null) {
+            ooVar.a = colorStateList;
+            ooVar.c = true;
+            ooVar.a();
+        }
+    }
+
+    public void setSupportButtonTintMode(PorterDuff.Mode mode) {
+        oo ooVar = this.a;
+        if (ooVar != null) {
+            ooVar.b = mode;
+            ooVar.d = true;
+            ooVar.a();
         }
     }
 
     @Override
-    public final void setTintList(ColorStateList colorStateList) {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            drawable.setTintList(colorStateList);
-        } else {
-            this.c.a.setTintList(colorStateList);
-        }
+    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
+        pq pqVar = this.c;
+        pqVar.l(colorStateList);
+        pqVar.b();
     }
 
     @Override
-    public final void setTintMode(PorterDuff.Mode mode) {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            drawable.setTintMode(mode);
-        } else {
-            this.c.a.setTintMode(mode);
-        }
+    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
+        pq pqVar = this.c;
+        pqVar.m(mode);
+        pqVar.b();
     }
 
     @Override
-    public final boolean setVisible(boolean z, boolean z2) {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            return drawable.setVisible(z, z2);
-        }
-        this.c.a.setVisible(z, z2);
-        return super.setVisible(z, z2);
-    }
-
-    @Override
-    public final void start() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            ((AnimatedVectorDrawable) drawable).start();
-            return;
-        }
-        ko koVar = this.c;
-        if (koVar.b.isStarted()) {
-            return;
-        }
-        koVar.b.start();
-        invalidateSelf();
-    }
-
-    @Override
-    public final void stop() {
-        Drawable drawable = (Drawable) this.b;
-        if (drawable != null) {
-            ((AnimatedVectorDrawable) drawable).stop();
-        } else {
-            this.c.b.end();
-        }
-    }
-
-    @Override
-    public final void inflate(Resources resources, XmlPullParser xmlPullParser, AttributeSet attributeSet) {
-        inflate(resources, xmlPullParser, attributeSet, null);
+    public void setButtonDrawable(int i) {
+        setButtonDrawable(hmd.a(getContext(), i));
     }
 }

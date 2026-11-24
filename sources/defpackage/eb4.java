@@ -1,32 +1,16 @@
 package defpackage;
-public final class eb4 implements Runnable {
-    public final byte a;
-    public final kb4 b;
 
-    public eb4(kb4 kb4Var, byte b) {
-        this.a = b;
-        this.b = kb4Var;
-    }
+import java.util.LinkedHashSet;
+public final class eb4 {
+    public static final LinkedHashSet d = new LinkedHashSet();
+    public static final Object e = new Object();
+    public final a5a a;
+    public final qp4 b;
+    public final op4 c;
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        kb4 kb4Var = this.b;
-        switch (b) {
-            case 0:
-                Runnable runnable = kb4Var.l;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                Runnable runnable2 = kb4Var.l;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
-                return;
-        }
+    public eb4(a5a a5aVar, qp4 qp4Var, op4 op4Var) {
+        this.a = a5aVar;
+        this.b = qp4Var;
+        this.c = op4Var;
     }
 }

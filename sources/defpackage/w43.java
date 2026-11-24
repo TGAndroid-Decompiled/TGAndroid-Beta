@@ -1,72 +1,32 @@
 package defpackage;
 
-import android.graphics.drawable.Drawable;
-public final class w43 implements Drawable.Callback {
-    public final byte a;
-    public final x43 b;
+import android.os.Bundle;
+import android.text.Spanned;
+public abstract class w43 {
+    public static final String a;
+    public static final String b;
+    public static final String c;
+    public static final String d;
+    public static final String e;
 
-    public w43(x43 x43Var, byte b) {
-        this.a = b;
-        this.b = x43Var;
+    static {
+        String str = g8c.a;
+        a = "0";
+        b = "1";
+        c = "2";
+        d = "3";
+        e = "4";
     }
 
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        byte b = this.a;
-        x43 x43Var = this.b;
-        switch (b) {
-            case 0:
-                if (x43Var.c < 1.0f) {
-                    x43Var.invalidateSelf();
-                    return;
-                }
-                return;
-            default:
-                if (x43Var.c > 0.0f) {
-                    x43Var.invalidateSelf();
-                    return;
-                }
-                return;
+    public static Bundle a(Spanned spanned, Object obj, int i, Bundle bundle) {
+        Bundle bundle2 = new Bundle();
+        bundle2.putInt(a, spanned.getSpanStart(obj));
+        bundle2.putInt(b, spanned.getSpanEnd(obj));
+        bundle2.putInt(c, spanned.getSpanFlags(obj));
+        bundle2.putInt(d, i);
+        if (bundle != null) {
+            bundle2.putBundle(e, bundle);
         }
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
-        byte b = this.a;
-        x43 x43Var = this.b;
-        switch (b) {
-            case 0:
-                if (x43Var.c < 1.0f) {
-                    x43Var.scheduleSelf(runnable, j);
-                    return;
-                }
-                return;
-            default:
-                if (x43Var.c > 0.0f) {
-                    x43Var.scheduleSelf(runnable, j);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        byte b = this.a;
-        x43 x43Var = this.b;
-        switch (b) {
-            case 0:
-                if (x43Var.c < 1.0f) {
-                    x43Var.unscheduleSelf(runnable);
-                    return;
-                }
-                return;
-            default:
-                if (x43Var.c > 0.0f) {
-                    x43Var.unscheduleSelf(runnable);
-                    return;
-                }
-                return;
-        }
+        return bundle2;
     }
 }

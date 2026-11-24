@@ -1,13 +1,11 @@
 package defpackage;
-public final class z21 extends b31 {
-    public l66 d;
 
-    @Override
-    public void setTextColor(int i) {
-        super.setTextColor(i);
-        l66 l66Var = this.d;
-        if (l66Var != null) {
-            l66Var.setTextColor(i);
-        }
+import android.os.Binder;
+public final class z21 extends Binder {
+    public static final int b = 0;
+    public final c31 a;
+
+    public z21(c31 c31Var) {
+        this.a = c31Var;
     }
 }

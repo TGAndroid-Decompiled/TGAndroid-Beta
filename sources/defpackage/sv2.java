@@ -1,23 +1,22 @@
 package defpackage;
 
-import java.io.Serializable;
-public final class sv2 implements Runnable {
-    public final byte a;
-    public final byte b;
-    public final Object c;
-    public final Object d;
-    public final Serializable e;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class sv2 extends m8 {
+    public final tv2 o;
 
-    public sv2(Object obj, Object obj2, int i, Serializable serializable, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.d = obj2;
-        this.b = i;
-        this.e = serializable;
+    public sv2(tv2 tv2Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.o = tv2Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.sv2.run():void");
+    public final void dismiss() {
+        d(true);
+        xv2 xv2Var = this.o.a;
+        xv2Var.k = null;
+        xv2Var.K = false;
+        if (xv2Var.R) {
+            xv2Var.b();
+        }
     }
 }

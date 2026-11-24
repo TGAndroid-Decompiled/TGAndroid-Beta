@@ -1,42 +1,17 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class gv4 implements jac {
-    public final byte a;
-    public final qac b;
+import android.content.Context;
+public final class gv4 extends h1a {
+    public final tv4 u2;
 
-    public gv4(qac qacVar, byte b) {
-        this.a = b;
-        this.b = qacVar;
+    public gv4(tv4 tv4Var, Context context, int i, mu4 mu4Var, long j, av4 av4Var) {
+        super(context, i, null, mu4Var, j, av4Var, false, false);
+        this.u2 = tv4Var;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        byte b = this.a;
-        qac qacVar = this.b;
-        switch (b) {
-            case 0:
-                TL_stars.starGiftUpgradeAttributes stargiftupgradeattributes = (TL_stars.starGiftUpgradeAttributes) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (stargiftupgradeattributes != null) {
-                    qacVar.a(stargiftupgradeattributes.attributes);
-                    return;
-                } else {
-                    qacVar.a(null);
-                    return;
-                }
-            default:
-                TLRPC.messages_FoundStickerSets messages_foundstickersets = (TLRPC.messages_FoundStickerSets) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                if (messages_foundstickersets instanceof TLRPC.TL_messages_foundStickerSets) {
-                    qacVar.a(((TLRPC.TL_messages_foundStickerSets) messages_foundstickersets).sets);
-                    return;
-                } else {
-                    qacVar.a(new ArrayList());
-                    return;
-                }
-        }
+    public final u21 Z0() {
+        tv4 tv4Var = this.u2;
+        return new u21(tv4Var.c, tv4Var.J0);
     }
 }

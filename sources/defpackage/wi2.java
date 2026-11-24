@@ -1,75 +1,47 @@
 package defpackage;
 
-import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-public class wi2 extends Drawable {
-    public static final l94 h = new l94();
-    public float a;
-    public final float b;
-    public long c;
-    public final float[] d;
-    public final Paint e;
-    public float f;
-    public final RectF g;
+public abstract class wi2 extends Drawable {
+    public final Paint a;
+    public long b;
+    public final RectF c;
+    public float d;
+    public boolean e;
+    public int f;
+    public int g;
 
-    public wi2(float f, float f2, int i) {
-        this.a = gm.L(18.0f);
-        this.b = gm.L(2.25f);
-        this.c = -1L;
-        this.d = new float[2];
-        Paint paint = new Paint();
-        this.e = paint;
-        paint.setStyle(Paint.Style.STROKE);
+    public wi2(float f) {
+        Paint paint = new Paint(1);
+        this.a = paint;
+        this.c = new RectF();
+        this.g = 255;
+        paint.setColor(-1);
+        paint.setStrokeWidth(gl.L(f));
         paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.g = new RectF();
-        this.a = f;
-        this.b = f2;
-        b(i);
+        paint.setStyle(Paint.Style.STROKE);
+        this.f = gl.L(8.0f);
     }
 
-    public static void a(float f, float[] fArr) {
-        int i;
-        float f2 = (1520.0f * f) / 5400.0f;
-        fArr[0] = Math.max(0.0f, f2 - 20.0f);
-        fArr[1] = f2;
-        for (int i2 = 0; i2 < 4; i2++) {
-            l94 l94Var = h;
-            fArr[1] = (l94Var.getInterpolation((f - (i2 * 1350)) / 667.0f) * 250.0f) + fArr[1];
-            fArr[0] = (l94Var.getInterpolation((f - (i + 667)) / 667.0f) * 250.0f) + fArr[0];
-        }
-    }
-
-    public final void b(int i) {
-        this.e.setColor(i);
+    public int a() {
+        return bkb.w0(null, bkb.eg, false);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.c < 0) {
-            this.c = SystemClock.elapsedRealtime();
-        }
-        float[] fArr = this.d;
-        a((float) ((SystemClock.elapsedRealtime() - this.c) % 5400), fArr);
-        float f = this.f;
-        float f2 = fArr[0];
-        Paint paint = this.e;
-        canvas.drawArc(this.g, f + f2, fArr[1] - f2, false, paint);
-        invalidateSelf();
+    public final void draw(android.graphics.Canvas r18) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.wi2.draw(android.graphics.Canvas):void");
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return (int) (this.a + this.b);
+    public final int getIntrinsicHeight() {
+        return gl.L(24.0f);
     }
 
     @Override
-    public int getIntrinsicWidth() {
-        return (int) (this.a + this.b);
+    public final int getIntrinsicWidth() {
+        return gl.L(24.0f);
     }
 
     @Override
@@ -79,37 +51,13 @@ public class wi2 extends Drawable {
 
     @Override
     public final void setAlpha(int i) {
-        this.e.setAlpha(i);
-    }
-
-    @Override
-    public final void setBounds(int i, int i2, int i3, int i4) {
-        float f = i;
-        float f2 = i3 - i;
-        float f3 = this.b;
-        float f4 = this.a;
-        float f5 = i2;
-        float f6 = i4 - i2;
-        this.g.set(aq1.z(f2 - (f3 / 2.0f), f4, 2.0f, f), (((f6 - (f3 / 2.0f)) - f4) / 2.0f) + f5, ((((f3 / 2.0f) + f2) + f4) / 2.0f) + f, ((((f3 / 2.0f) + f6) + f4) / 2.0f) + f5);
-        super.setBounds(i, i2, i3, i4);
-        this.e.setStrokeWidth(f3);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
     }
 
-    public wi2(int i) {
-        this.a = gm.L(18.0f);
-        this.b = gm.L(2.25f);
-        this.c = -1L;
-        this.d = new float[2];
-        Paint paint = new Paint();
-        this.e = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.g = new RectF();
-        b(i);
+    public wi2() {
+        this(2.0f);
     }
 }

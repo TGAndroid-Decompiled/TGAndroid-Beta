@@ -1,15 +1,13 @@
 package defpackage;
 
-import android.app.Activity;
 import android.view.View;
-public interface vq5 {
-    void G(jo6 jo6Var, rcc rccVar, boolean z, int i, boolean z2, long j);
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class vq5 extends FrameLayout {
+    public TextView a;
 
-    int getClassGuid();
-
-    View getFragmentView();
-
-    Activity getParentActivity();
-
-    boolean x();
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(84.0f), 1073741824));
+    }
 }

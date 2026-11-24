@@ -1,59 +1,70 @@
 package defpackage;
 
-import java.io.File;
-import java.util.Comparator;
-public final class z32 implements Comparator {
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.ActionBar.a;
+public final class z32 extends i49 {
     public final byte a;
-    public final p42 b;
+    public final c42 b;
 
-    public z32(p42 p42Var, byte b) {
+    public z32(c42 c42Var, byte b) {
         this.a = b;
-        this.b = p42Var;
+        this.b = c42Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
+    public final void a(RecyclerView recyclerView, int i) {
+        y29 y29Var;
         byte b = this.a;
-        p42 p42Var = this.b;
-        i42 i42Var = (i42) obj;
-        i42 i42Var2 = (i42) obj2;
+        c42 c42Var = this.b;
+        boolean z = true;
         switch (b) {
             case 0:
-                File file = i42Var.f;
-                if (file != null) {
-                    if (i42Var2.f == null) {
-                        return 1;
-                    }
-                    boolean isDirectory = file.isDirectory();
-                    if (isDirectory != i42Var2.f.isDirectory()) {
-                        if (!isDirectory) {
-                            return 1;
-                        }
-                    } else if (!isDirectory && !p42Var.d0) {
-                        int i = (i42Var.f.lastModified() > i42Var2.f.lastModified() ? 1 : (i42Var.f.lastModified() == i42Var2.f.lastModified() ? 0 : -1));
-                        if (i == 0) {
-                            return 0;
-                        }
-                        if (i <= 0) {
-                            return 1;
-                        }
-                    } else {
-                        return i42Var.f.getName().compareToIgnoreCase(i42Var2.f.getName());
-                    }
+                fu fuVar = c42Var.M;
+                if (i == 0) {
+                    z = false;
                 }
-                return -1;
+                c42Var.I = z;
+                if (!z && c42Var.G != null) {
+                    c42Var.G = null;
+                }
+                if (i == 0) {
+                    int L = gl.L(13.0f);
+                    x02 x02Var = c42Var.b;
+                    int i2 = x02Var.t0;
+                    if (((x02Var.Y3[0] - i2) - L) + i2 < a.getCurrentActionBarHeight() && (y29Var = (y29) fuVar.K(0)) != null) {
+                        View view = y29Var.a;
+                        if (view.getTop() > 0) {
+                            fuVar.x0(0, view.getTop(), null);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
             default:
-                if (p42Var.d0) {
-                    return i42Var.f.getName().compareToIgnoreCase(i42Var2.f.getName());
+                if (i == 1 && c42Var.d0 && c42Var.e0) {
+                    gl.t1(c42Var.b.getCurrentFocus());
+                    return;
                 }
-                int i2 = (i42Var.f.lastModified() > i42Var2.f.lastModified() ? 1 : (i42Var.f.lastModified() == i42Var2.f.lastModified() ? 0 : -1));
-                if (i2 == 0) {
-                    return 0;
+                return;
+        }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i, int i2) {
+        switch (this.a) {
+            case 0:
+                c42 c42Var = this.b;
+                c42Var.h0();
+                if (c42Var.G != null) {
+                    c42Var.H += i2;
                 }
-                if (i2 <= 0) {
-                    return 1;
-                }
-                return -1;
+                c42Var.b.H1(c42Var, i2);
+                return;
+            default:
+                return;
         }
     }
 }

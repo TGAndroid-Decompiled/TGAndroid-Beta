@@ -1,33 +1,24 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-public final class ak4 extends View {
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ak4 extends AnimatorListenerAdapter {
     public final byte a;
-    public final byte b;
+    public final ek4 b;
 
-    public ak4(Context context, int i, byte b) {
-        super(context);
+    public ak4(ek4 ek4Var, byte b) {
         this.a = b;
-        switch (b) {
-            case 1:
-                this.b = i;
-                super(context);
-                return;
-            default:
-                this.b = i;
-                return;
-        }
+        this.b = ek4Var;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public final void onAnimationEnd(Animator animator) {
         switch (this.a) {
             case 0:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(this.b), 1073741824));
+                kk7.f(y6c.t0).d(new s54(this, (byte) 21));
                 return;
             default:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(this.b), 1073741824));
+                kk7.f(y6c.t0).d(new s54(this, (byte) 22));
                 return;
         }
     }

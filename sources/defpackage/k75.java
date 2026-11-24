@@ -1,45 +1,69 @@
 package defpackage;
 
-import android.os.Bundle;
-import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class k75 implements p95 {
-    public final g95 a;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class k75 extends zde {
+    public final ArrayList a;
+    public final ArrayList b;
+    public final n75 c;
 
-    public k75(g95 g95Var) {
-        this.a = g95Var;
+    public k75(n75 n75Var, ArrayList arrayList, ArrayList arrayList2) {
+        this.c = n75Var;
+        this.a = arrayList;
+        this.b = arrayList2;
     }
 
-    public final void a(GroupCallMessage groupCallMessage) {
-        d Q = LaunchActivity.Q();
-        if (Q == null) {
-            return;
+    @Override
+    public final boolean a(int i, int i2) {
+        return true;
+    }
+
+    @Override
+    public final boolean b(int i, int i2) {
+        TLRPC.GroupCallParticipant groupCallParticipant;
+        TLRPC.GroupCallParticipant groupCallParticipant2;
+        ArrayList arrayList = this.a;
+        int size = arrayList.size();
+        n75 n75Var = this.c;
+        if (i < size && i2 < n75Var.e.size()) {
+            return ((gc2) arrayList.get(i)).equals(n75Var.e.get(i2));
         }
-        boolean z = Q instanceof ProfileActivity;
-        g95 g95Var = this.a;
-        if (z && ((ProfileActivity) Q).a() == groupCallMessage.fromId) {
-            g95Var.dismiss();
-            return;
+        int size2 = i - arrayList.size();
+        ArrayList arrayList2 = n75Var.e;
+        ArrayList arrayList3 = n75Var.e;
+        ArrayList arrayList4 = n75Var.f;
+        int size3 = i2 - arrayList2.size();
+        ArrayList arrayList5 = this.b;
+        if (size3 >= 0 && size3 < arrayList4.size() && size2 >= 0 && size2 < arrayList5.size()) {
+            if (k27.B1(((TLRPC.GroupCallParticipant) arrayList5.get(size2)).peer) == k27.B1(((TLRPC.GroupCallParticipant) arrayList4.get(size3)).peer)) {
+                return true;
+            }
+            return false;
         }
-        int F0 = g95Var.F0();
-        Bundle bundle = new Bundle();
-        long j = groupCallMessage.fromId;
-        if (j > 0) {
-            bundle.putLong("user_id", j);
+        if (i < arrayList.size()) {
+            groupCallParticipant = ((gc2) arrayList.get(i)).a;
         } else {
-            bundle.putLong("chat_id", -j);
+            groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList5.get(size2);
         }
-        boolean z2 = true;
-        if (groupCallMessage.fromId == z8c.h(g95Var.n1.a).e()) {
-            bundle.putBoolean("my_profile", true);
+        if (i2 < arrayList3.size()) {
+            groupCallParticipant2 = ((gc2) arrayList3.get(i2)).a;
+        } else {
+            groupCallParticipant2 = (TLRPC.GroupCallParticipant) arrayList4.get(size3);
         }
-        ProfileActivity profileActivity = new ProfileActivity(bundle, null);
-        if (F0 > 0 && F0 != Integer.MAX_VALUE) {
-            z2 = false;
+        if (k27.B1(groupCallParticipant.peer) == k27.B1(groupCallParticipant2.peer)) {
+            return true;
         }
-        Q.presentFragment(profileActivity, false, z2);
-        g95Var.dismiss();
+        return false;
+    }
+
+    @Override
+    public final int c() {
+        n75 n75Var = this.c;
+        return n75Var.f.size() + n75Var.e.size();
+    }
+
+    @Override
+    public final int d() {
+        return this.b.size() + this.a.size();
     }
 }

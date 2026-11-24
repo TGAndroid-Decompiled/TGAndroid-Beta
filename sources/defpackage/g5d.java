@@ -1,12 +1,53 @@
 package defpackage;
 
-import android.app.AlertDialog;
-public final class g5d extends y0f {
-    public final AlertDialog a;
-    public final zka b;
+import android.content.Context;
+import android.os.Build;
+import android.os.UserManager;
+public abstract class g5d {
+    public static volatile UserManager a;
+    public static volatile boolean b;
 
-    public g5d(zka zkaVar, AlertDialog alertDialog) {
-        this.a = alertDialog;
-        this.b = zkaVar;
+    static {
+        boolean z;
+        if (Build.VERSION.SDK_INT >= 24) {
+            z = true;
+        } else {
+            z = false;
+        }
+        b = !z;
+    }
+
+    public static boolean a(Context context) {
+        if (Build.VERSION.SDK_INT >= 24) {
+            boolean z = b;
+            if (!z) {
+                UserManager userManager = a;
+                if (userManager == null) {
+                    synchronized (g5d.class) {
+                        userManager = a;
+                        if (userManager == null) {
+                            UserManager userManager2 = (UserManager) context.getSystemService(UserManager.class);
+                            a = userManager2;
+                            if (userManager2 == null) {
+                                b = true;
+                                z = true;
+                            } else {
+                                userManager = userManager2;
+                            }
+                        }
+                    }
+                }
+                z = userManager.isUserUnlocked();
+                b = z;
+                if (z) {
+                    a = null;
+                }
+            }
+            if (!z) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }

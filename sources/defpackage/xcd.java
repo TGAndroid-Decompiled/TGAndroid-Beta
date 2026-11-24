@@ -1,41 +1,8 @@
 package defpackage;
+public abstract class xcd {
+    public static final int[] a = {1769172845, 1769172786, 1769172787, 1769172788, 1769172789, 1769172790, 1769172793, 1635148593, 1752589105, 1751479857, 1635135537, 1836069937, 1836069938, 862401121, 862401122, 862417462, 862417718, 862414134, 862414646, 1295275552, 1295270176, 1714714144, 1801741417, 1295275600, 1903435808, 1297305174, 1684175153, 1769172332, 1885955686};
 
-import java.util.Set;
-public abstract class xcd extends zad implements Set {
-    public transient ccd f;
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this || obj == this) {
-            return true;
-        }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
-            try {
-                if (size() == set.size()) {
-                    if (containsAll(set)) {
-                        return true;
-                    }
-                    return false;
-                }
-            } catch (ClassCastException | NullPointerException unused) {
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final int hashCode() {
-        int i;
-        int i2 = 0;
-        for (Object obj : this) {
-            if (obj != null) {
-                i = obj.hashCode();
-            } else {
-                i = 0;
-            }
-            i2 += i;
-        }
-        return i2;
+    public static defpackage.aka a(defpackage.k74 r23, boolean r24) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xcd.a(k74, boolean):aka");
     }
 }

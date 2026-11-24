@@ -50,16 +50,16 @@ public final class f0 implements TextWatcher {
         int length = obj.length();
         ThemeEditorView.EditorAlert editorAlert = this.a.c;
         if (length != 0) {
-            r34 r34Var = editorAlert.o1;
-            if (r34Var != null) {
-                r34Var.setText(jb6.M0(2131747901, null));
+            g24 g24Var = editorAlert.o1;
+            if (g24Var != null) {
+                g24Var.setText(k96.M0(2131747975, null));
             }
         } else {
-            y59 adapter = editorAlert.m1.getAdapter();
+            w39 adapter = editorAlert.m1.getAdapter();
             ThemeEditorView.EditorAlert editorAlert2 = this.a.c;
             if (adapter != editorAlert2.r1) {
                 int D0 = editorAlert2.D0();
-                this.a.c.o1.setText(jb6.M0(2131747964, null));
+                this.a.c.o1.setText(k96.M0(2131748038, null));
                 this.a.c.o1.c();
                 ThemeEditorView.EditorAlert editorAlert3 = this.a.c;
                 editorAlert3.m1.setAdapter(editorAlert3.r1);
@@ -87,7 +87,7 @@ public final class f0 implements TextWatcher {
             }
             int i2 = c0Var.d + 1;
             c0Var.d = i2;
-            c0Var.h = new v99(c0Var, obj, i2, (byte) 23);
+            c0Var.h = new t79(c0Var, obj, i2, (byte) 23);
             Utilities.g.d(c0Var.h, 300L);
         }
     }

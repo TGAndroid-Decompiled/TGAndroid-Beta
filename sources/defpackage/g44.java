@@ -1,121 +1,109 @@
 package defpackage;
+public abstract class g44 implements Runnable, Comparable, no3 {
+    private volatile Object _heap;
+    public long a;
+    public int b = -1;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-public final class g44 extends View {
-    public fg0 a;
-    public final Paint b;
-    public final Paint c;
-    public final Paint d;
-    public final RectF e;
-    public final Drawable f;
-    public final String h;
-    public int n;
-    public int r;
-    public int s;
-    public int w;
-
-    public g44(Activity activity) {
-        super(activity);
-        this.b = new Paint(1);
-        Paint paint = new Paint(1);
-        this.c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.e = new RectF();
-        this.n = -761748;
-        this.r = gm.L(26.0f);
-        this.s = 255;
-        this.w = 0;
-        Drawable mutate = getContext().getDrawable(2131230919).mutate();
-        this.f = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-        paint.setTextSize(gm.L(18.0f));
-        paint.setTypeface(gm.o());
-        Paint.Align align = Paint.Align.CENTER;
-        paint.setTextAlign(align);
-        paint.setColor(-16777216);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        paint2.setTextSize(gm.L(18.0f));
-        paint2.setTypeface(gm.o());
-        paint2.setTextAlign(align);
-        paint2.setColor(-16777216);
-        setLayerType(2, null);
-        setClickable(true);
-        this.h = jb6.M0(2131751978, null);
+    public g44(long j) {
+        this.a = j;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!isEnabled()) {
-            return false;
+    public final enb b() {
+        Object obj = this._heap;
+        if (obj instanceof enb) {
+            return (enb) obj;
         }
-        return super.dispatchTouchEvent(motionEvent);
+        return null;
     }
 
-    @Override
-    public final void drawableStateChanged() {
-        super.drawableStateChanged();
-        fg0 fg0Var = this.a;
-        if (fg0Var != null) {
-            fg0Var.setState(getDrawableState());
+    public final int c(long j, h44 h44Var, i44 i44Var) {
+        g44 g44Var;
+        boolean z;
+        synchronized (this) {
+            if (this._heap == z8d.a) {
+                return 2;
+            }
+            synchronized (h44Var) {
+                g44[] g44VarArr = h44Var.a;
+                if (g44VarArr != null) {
+                    g44Var = g44VarArr[0];
+                } else {
+                    g44Var = null;
+                }
+                int i = i44.s;
+                if (ex.a.getIntVolatile(i44Var, i44.n) != 0) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                if (z) {
+                    return 1;
+                }
+                if (g44Var == null) {
+                    h44Var.c = j;
+                } else {
+                    long j2 = g44Var.a;
+                    if (j2 - j < 0) {
+                        j = j2;
+                    }
+                    long j3 = h44Var.c;
+                    if (j - j3 > 0) {
+                        h44Var.c = j;
+                    } else {
+                        j = j3;
+                    }
+                }
+                if (this.a - j < 0) {
+                    this.a = j;
+                }
+                h44Var.a(this);
+                return 0;
+            }
         }
     }
 
     @Override
-    public final void jumpDrawablesToCurrentState() {
-        super.jumpDrawablesToCurrentState();
-        fg0 fg0Var = this.a;
-        if (fg0Var != null) {
-            fg0Var.jumpToCurrentState();
+    public final int compareTo(Object obj) {
+        int i = ((this.a - ((g44) obj).a) > 0L ? 1 : ((this.a - ((g44) obj).a) == 0L ? 0 : -1));
+        if (i > 0) {
+            return 1;
+        }
+        if (i < 0) {
+            return -1;
+        }
+        return 0;
+    }
+
+    public final void d(h44 h44Var) {
+        if (this._heap != z8d.a) {
+            this._heap = h44Var;
+        } else {
+            w26.j("Failed requirement.");
         }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        int i = this.n;
-        Paint paint = this.b;
-        paint.setColor(i);
-        RectF rectF = this.e;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        float f = this.r;
-        canvas.drawRoundRect(rectF, f, f, paint);
-        Drawable drawable = this.f;
-        drawable.setBounds((int) (width - (drawable.getIntrinsicWidth() / 2.0f)), (int) (height - (drawable.getIntrinsicHeight() / 2)), (int) ((drawable.getIntrinsicWidth() / 2) + width), (int) ((drawable.getIntrinsicHeight() / 2) + height));
-        drawable.setAlpha(this.s);
-        drawable.draw(canvas);
-        int i2 = this.w;
-        Paint paint2 = this.c;
-        paint2.setAlpha(i2);
-        Paint paint3 = this.d;
-        paint3.setAlpha((this.w / 255) * 38);
-        String str = this.h;
-        canvas.drawText(str, width, gm.L(6.0f) + height, paint2);
-        canvas.drawText(str, width, height + gm.L(6.0f), paint3);
-        if (this.a == null) {
-            fg0 Y = cmb.Y(cmb.w0(null, cmb.h6, false), 8, 8);
-            this.a = Y;
-            Y.setCallback(this);
+    public final void dispose() {
+        h44 h44Var;
+        synchronized (this) {
+            Object obj = this._heap;
+            lo5 lo5Var = z8d.a;
+            if (obj == lo5Var) {
+                return;
+            }
+            if (obj instanceof h44) {
+                h44Var = (h44) obj;
+            } else {
+                h44Var = null;
+            }
+            if (h44Var != null) {
+                h44Var.c(this);
+            }
+            this._heap = lo5Var;
         }
-        this.a.setBounds(0, 0, getWidth(), getHeight());
-        this.a.draw(canvas);
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.a != drawable && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public String toString() {
+        return "Delayed[nanos=" + this.a + ']';
     }
 }

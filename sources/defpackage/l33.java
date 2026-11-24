@@ -1,39 +1,72 @@
 package defpackage;
-public final class l33 implements Runnable {
-    public final byte a;
-    public final o33 b;
-    public final Throwable c;
 
-    public l33(o33 o33Var, Throwable th, byte b) {
+import android.graphics.drawable.Drawable;
+public final class l33 implements Drawable.Callback {
+    public final byte a;
+    public final m33 b;
+
+    public l33(m33 m33Var, byte b) {
         this.a = b;
-        this.b = o33Var;
-        this.c = th;
+        this.b = m33Var;
     }
 
     @Override
-    public final void run() {
+    public final void invalidateDrawable(Drawable drawable) {
         byte b = this.a;
-        Throwable th = this.c;
-        o33 o33Var = this.b;
+        m33 m33Var = this.b;
         switch (b) {
             case 0:
-                a33 a33Var = o33Var.f;
-                if (a33Var != null) {
-                    a33Var.A(new l23(new h1((byte) 26), th.getMessage()));
+                if (m33Var.c < 1.0f) {
+                    m33Var.invalidateSelf();
                     return;
-                } else {
-                    rr5.e("callback");
-                    throw null;
                 }
+                return;
             default:
-                a33 a33Var2 = o33Var.f;
-                if (a33Var2 != null) {
-                    a33Var2.A(new n13(th.getMessage(), (byte) 2));
+                if (m33Var.c > 0.0f) {
+                    m33Var.invalidateSelf();
                     return;
-                } else {
-                    rr5.e("callback");
-                    throw null;
                 }
+                return;
+        }
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+        byte b = this.a;
+        m33 m33Var = this.b;
+        switch (b) {
+            case 0:
+                if (m33Var.c < 1.0f) {
+                    m33Var.scheduleSelf(runnable, j);
+                    return;
+                }
+                return;
+            default:
+                if (m33Var.c > 0.0f) {
+                    m33Var.scheduleSelf(runnable, j);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        byte b = this.a;
+        m33 m33Var = this.b;
+        switch (b) {
+            case 0:
+                if (m33Var.c < 1.0f) {
+                    m33Var.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+            default:
+                if (m33Var.c > 0.0f) {
+                    m33Var.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
         }
     }
 }

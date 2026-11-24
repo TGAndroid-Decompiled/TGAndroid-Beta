@@ -1,34 +1,63 @@
 package defpackage;
 
-import android.app.Notification;
-import android.app.PendingIntent;
-import androidx.core.graphics.drawable.IconCompat;
-public abstract class wm7 {
-    public static Notification.BubbleMetadata a(ym7 ym7Var) {
-        PendingIntent pendingIntent;
-        boolean z;
-        if (ym7Var == null || (pendingIntent = ym7Var.a) == null) {
-            return null;
+import android.content.SharedPreferences;
+public final class wm7 {
+    public final int a;
+
+    public wm7(int i) {
+        this.a = i;
+    }
+
+    public final void a(org.telegram.tgnet.TLRPC.NotificationSound r17, android.content.SharedPreferences.Editor r18, long r19, long r21, int r23) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.wm7.a(org.telegram.tgnet.TLRPC$NotificationSound, android.content.SharedPreferences$Editor, long, long, int):void");
+    }
+
+    public final SharedPreferences b() {
+        return na7.q1(this.a).W3;
+    }
+
+    public final int c(int i, long j, long j2, String str) {
+        String p = im7.p(j, j2, true);
+        SharedPreferences b = b();
+        if (b.contains(str + p)) {
+            return ls6.g(str, p, b(), i);
         }
-        Notification.BubbleMetadata.Builder builder = new Notification.BubbleMetadata.Builder();
-        IconCompat iconCompat = ym7Var.b;
-        iconCompat.getClass();
-        Notification.BubbleMetadata.Builder deleteIntent = builder.setIcon(pme.a(iconCompat, null)).setIntent(pendingIntent).setDeleteIntent(null);
-        boolean z2 = true;
-        if ((ym7Var.d & 1) != 0) {
-            z = true;
-        } else {
-            z = false;
+        return ls6.g(str, im7.p(j, 0L, true), b(), i);
+    }
+
+    public final long d(long j, long j2) {
+        String p = im7.p(j, j2, true);
+        SharedPreferences b = b();
+        if (b.contains("sound_document_id_" + p)) {
+            SharedPreferences b2 = b();
+            return b2.getLong("sound_document_id_" + p, 0L);
         }
-        Notification.BubbleMetadata.Builder autoExpandBubble = deleteIntent.setAutoExpandBubble(z);
-        if ((ym7Var.d & 2) == 0) {
-            z2 = false;
+        String p2 = im7.p(j, 0L, true);
+        SharedPreferences b3 = b();
+        return b3.getLong("sound_document_id_" + p2, 0L);
+    }
+
+    public final boolean e(long j, long j2) {
+        String p = im7.p(j, j2, false);
+        SharedPreferences b = b();
+        if (b.contains("custom_" + p)) {
+            SharedPreferences b2 = b();
+            return b2.getBoolean("custom_" + p, false);
         }
-        Notification.BubbleMetadata.Builder suppressNotification = autoExpandBubble.setSuppressNotification(z2);
-        int i = ym7Var.c;
-        if (i != 0) {
-            suppressNotification.setDesiredHeight(i);
+        String p2 = im7.p(j, 0L, false);
+        SharedPreferences b3 = b();
+        return b3.getBoolean("custom_" + p2, false);
+    }
+
+    public final String f(long j, long j2) {
+        String p = im7.p(j, j2, false);
+        SharedPreferences b = b();
+        if (b.contains("sound_path_" + p)) {
+            SharedPreferences b2 = b();
+            return b2.getString("sound_path_" + p, null);
         }
-        return suppressNotification.build();
+        String p2 = im7.p(j, 0L, false);
+        SharedPreferences b3 = b();
+        return b3.getString("sound_path_" + p2, null);
     }
 }

@@ -1,27 +1,19 @@
 package defpackage;
-public final class fv5 extends vb1 {
-    public final ov5 r;
 
-    public fv5(px2 px2Var, ov5 ov5Var) {
-        super(1, px2Var);
-        this.r = ov5Var;
+import android.os.Bundle;
+public final class fv5 extends v51 {
+    public final cj3 f;
+
+    public fv5(Bundle bundle, cj3 cj3Var) {
+        super(bundle);
+        this.f = cj3Var;
     }
 
     @Override
-    public final Throwable p(ov5 ov5Var) {
-        Throwable c;
-        Object v = this.r.v();
-        if ((v instanceof hv5) && (c = ((hv5) v).c()) != null) {
-            return c;
+    public final void onTransitionAnimationEnd(boolean z, boolean z2) {
+        super.onTransitionAnimationEnd(z, z2);
+        if (z && !z2) {
+            this.f.removeSelfFromStack();
         }
-        if (v instanceof qq2) {
-            return ((qq2) v).a;
-        }
-        return ov5Var.getCancellationException();
-    }
-
-    @Override
-    public final String y() {
-        return "AwaitContinuation";
     }
 }

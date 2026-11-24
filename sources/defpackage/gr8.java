@@ -1,67 +1,162 @@
 package defpackage;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.d;
-public final class gr8 implements dg3 {
-    public final d a;
-    public final Context b;
-    public final bq8 c;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class gr8 extends LinearLayout implements tjb {
+    public final wjb a;
+    public final r86 b;
+    public final ImageReceiver c;
+    public final TextView d;
+    public boolean e;
 
-    public gr8(bq8 bq8Var, d dVar, Context context) {
-        this.c = bq8Var;
-        this.a = dVar;
-        this.b = context;
+    public gr8(Context context, wjb wjbVar) {
+        super(context);
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.c = imageReceiver;
+        this.a = wjbVar;
+        setOrientation(1);
+        r86 r86Var = new r86();
+        this.b = r86Var;
+        int i6 = bkb.F6;
+        int v0 = bkb.v0(i6, wjbVar);
+        r86Var.g(bkb.p1(0.05f, v0), bkb.p1(0.15f, v0), bkb.p1(0.1f, v0), bkb.p1(0.3f, v0));
+        r86Var.j(4.0f);
+        r86Var.x.setStrokeWidth(gl.L(1.0f));
+        imageReceiver.q0(gl.L(4.0f));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        if (k96.a0) {
+            i = 5;
+        } else {
+            i = 3;
+        }
+        textView.setGravity(i);
+        zkb.X(textView, i6, wjbVar);
+        textView.setTextSize(1, 16.0f);
+        boolean z = k96.a0;
+        if (z) {
+            i2 = 70;
+        } else {
+            i2 = 18;
+        }
+        if (z) {
+            i3 = 18;
+        } else {
+            i3 = 70;
+        }
+        addView(textView, nme.t(-1, -2, 55, i2, 10, i3, 4));
+        TextView textView2 = new TextView(context);
+        textView2.setGravity(k96.a0 ? 5 : 3);
+        ug8.x(textView2, bkb.y6, wjbVar, null, 2131752677);
+        textView2.setTextSize(1, 13.0f);
+        boolean z2 = k96.a0;
+        if (z2) {
+            i4 = 70;
+        } else {
+            i4 = 18;
+        }
+        if (z2) {
+            i5 = 18;
+        } else {
+            i5 = 70;
+        }
+        addView(textView2, nme.t(-1, -2, 55, i4, 0, i5, 8));
+        setWillNotDraw(false);
+    }
+
+    public final void a(TLRPC.TL_businessLocation tL_businessLocation, boolean z) {
+        if (tL_businessLocation != null) {
+            this.d.setText(tL_businessLocation.address);
+            TLRPC.GeoPoint geoPoint = tL_businessLocation.geo_point;
+            ImageReceiver imageReceiver = this.c;
+            if (geoPoint != null) {
+                imageReceiver.c0(gl5.p(usc.b(tL_businessLocation.geo_point, gl.L(44.0f), gl.L(44.0f), 15, Math.min(2, (int) Math.ceil(gl.p)))), "44_44", this.b, 0L, null, null, 0);
+            } else {
+                imageReceiver.g0(null);
+            }
+        }
+        this.e = z;
+        setPadding(0, 0, 0, z ? 1 : 0);
+        invalidate();
     }
 
     @Override
-    public final void k(hg3 hg3Var) {
-        d dVar = this.a;
-        if (dVar.getMessagesController().N1().J(hg3Var.getDialogId())) {
-            dVar.getOrCreateStoryViewer().getClass();
-            dVar.getOrCreateStoryViewer().H(dVar.getContext(), hg3Var.getDialogId(), new q4b(this.c));
+    public final void onDraw(Canvas canvas) {
+        int width;
+        float f;
+        if (k96.a0) {
+            width = gl.L(16.0f);
+        } else {
+            width = getWidth() - gl.L(60.0f);
+        }
+        float f2 = width;
+        ImageReceiver imageReceiver = this.c;
+        imageReceiver.i0(f2, gl.L(8.0f), gl.L(44.0f), gl.L(44.0f));
+        imageReceiver.h(canvas, null);
+        super.onDraw(canvas);
+        if (this.e) {
+            Paint U0 = bkb.U0("paintDivider", this.a);
+            if (U0 == null) {
+                U0 = bkb.j0;
+            }
+            Paint paint = U0;
+            float f3 = 21.33f;
+            if (k96.a0) {
+                f = 0.0f;
+            } else {
+                f = 21.33f;
+            }
+            float L = gl.L(f);
+            float measuredHeight = getMeasuredHeight() - 1;
+            int width2 = getWidth();
+            if (!k96.a0) {
+                f3 = 0.0f;
+            }
+            canvas.drawRect(L, measuredHeight, width2 - gl.L(f3), getMeasuredHeight(), paint);
         }
     }
 
     @Override
-    public final boolean m() {
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+    }
+
+    @Override
+    public final void updateColors() {
+        r86 r86Var = this.b;
+        if (r86Var != null) {
+            try {
+                int v0 = bkb.v0(bkb.F6, this.a);
+                r86Var.g(bkb.p1(0.05f, v0), bkb.p1(0.15f, v0), bkb.p1(0.1f, v0), bkb.p1(0.3f, v0));
+                invalidate();
+            } catch (Exception e) {
+                fa4.g(e, true);
+            }
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.b && !super.verifyDrawable(drawable)) {
+            return false;
+        }
         return true;
     }
 
     @Override
-    public final void r() {
-        boolean z;
-        d dVar = this.a;
-        h4b N1 = dVar.getMessagesController().N1();
-        ArrayList arrayList = N1.h;
-        if (arrayList.isEmpty()) {
-            return;
-        }
-        if (N1.D(0, pg3.n(((TL_stories.PeerStories) arrayList.get(0)).peer)) != 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        ArrayList arrayList2 = new ArrayList();
-        for (int i = 0; i < arrayList.size(); i++) {
-            long n = pg3.n(((TL_stories.PeerStories) arrayList.get(i)).peer);
-            if (!z || N1.D(0, n) != 0) {
-                arrayList2.add(Long.valueOf(n));
-            }
-        }
-        dVar.getOrCreateStoryViewer().K(this.b, null, arrayList2, 0, null, null, new q4b(this.c), false);
-    }
-
-    @Override
-    public final void o(hg3 hg3Var) {
-    }
-
-    @Override
-    public final void u(hg3 hg3Var) {
-    }
-
-    @Override
-    public final void v(hg3 hg3Var) {
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

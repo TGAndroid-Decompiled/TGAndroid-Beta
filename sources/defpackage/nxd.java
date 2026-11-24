@@ -1,17 +1,11 @@
 package defpackage;
-public final class nxd implements cq7 {
-    public static final nxd a = new Object();
+
+import java.util.Collections;
+import java.util.Map;
+public abstract class nxd {
+    public static final int a = 0;
 
     static {
-        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)), 4)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+        Map map = Collections.EMPTY_MAP;
     }
 }

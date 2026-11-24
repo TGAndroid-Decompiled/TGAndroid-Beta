@@ -69,12 +69,12 @@ public final class z implements TextWatcher {
             if (i8 >= arrayList.size() || (i3 = i2 + i8) >= linearLayout.getChildCount()) {
                 break;
             }
-            u2c u2cVar = (u2c) arrayList.get(i8);
-            String str2 = u2cVar.d;
+            u0c u0cVar = (u0c) arrayList.get(i8);
+            String str2 = u0cVar.d;
             if (str2 == null) {
-                str2 = (u2cVar.b + " " + u2cVar.c).toLowerCase();
+                str2 = (u0cVar.b + " " + u0cVar.c).toLowerCase();
             }
-            if (!isEmpty && !str2.contains(lowerCase) && ((str = u2cVar.a) == null || !str.toLowerCase().startsWith(lowerCase))) {
+            if (!isEmpty && !str2.contains(lowerCase) && ((str = u0cVar.a) == null || !str.toLowerCase().startsWith(lowerCase))) {
                 z = false;
             } else {
                 z = true;

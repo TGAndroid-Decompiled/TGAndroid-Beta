@@ -11,9 +11,9 @@ public class ContactsWidgetService extends RemoteViewsService {
         Context applicationContext = getApplicationContext();
         ?? obj = new Object();
         obj.a = new ArrayList();
-        obj.g = new vh6();
+        obj.g = new vf6();
         obj.b = applicationContext;
-        cmb.S(applicationContext);
+        bkb.S(applicationContext);
         boolean z = false;
         int intExtra = intent.getIntExtra("appWidgetId", 0);
         obj.c = intExtra;

@@ -1,7 +1,22 @@
 package defpackage;
+public final class u14 extends tg6 {
+    public final byte g;
 
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class u14 extends FrameLayout {
-    public TextView a;
+    @Override
+    public final void a(ild ildVar) {
+        switch (this.g) {
+            case 0:
+                ildVar.e(this);
+                return;
+            case 1:
+                ildVar.r(this);
+                return;
+            case 2:
+                ildVar.t(this);
+                return;
+            default:
+                ildVar.u(this);
+                return;
+        }
+    }
 }

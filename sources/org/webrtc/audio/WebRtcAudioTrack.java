@@ -92,7 +92,7 @@ public class WebRtcAudioTrack {
                     Logging.e("WebRtcAudioTrackExternal", "AudioTrack.write played invalid number of bytes: " + writeBytes);
                     if (writeBytes < 0) {
                         this.keepAlive = false;
-                        WebRtcAudioTrack.this.reportWebRtcAudioTrackError(hg9.j(writeBytes, "AudioTrack.write failed: "));
+                        WebRtcAudioTrack.this.reportWebRtcAudioTrackError(de9.k(writeBytes, "AudioTrack.write failed: "));
                     }
                 }
                 if (WebRtcAudioTrack.this.useLowLatency) {
@@ -108,7 +108,7 @@ public class WebRtcAudioTrack {
                     try {
                         Thread.sleep(nanoTime / 1000000, (int) (nanoTime % 1000000));
                     } catch (InterruptedException e) {
-                        fc4.g(e, true);
+                        fa4.g(e, true);
                     }
                 } else {
                     this.targetTimeNs = System.nanoTime();
@@ -161,7 +161,7 @@ public class WebRtcAudioTrack {
         if (z) {
             return;
         }
-        bh7.j("Expected condition to be true");
+        fi7.g("Expected condition to be true");
     }
 
     private int channelCountToConfiguration(int i) {

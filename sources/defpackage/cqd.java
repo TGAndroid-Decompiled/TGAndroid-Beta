@@ -1,24 +1,24 @@
 package defpackage;
 
-import java.io.File;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 public abstract class cqd {
-    public static boolean a(File file) {
-        if (file.isDirectory()) {
-            File[] listFiles = file.listFiles();
-            if (listFiles == null) {
-                return false;
-            }
-            boolean z = true;
-            for (File file2 : listFiles) {
-                if (a(file2) && z) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-            }
-            return z;
+    public static void a(InputStream inputStream, ByteArrayOutputStream byteArrayOutputStream) {
+        inputStream.getClass();
+        byte[] bArr = new byte[8192];
+        int read = inputStream.read(bArr);
+        while (read >= 0) {
+            byteArrayOutputStream.write(bArr, 0, read);
+            read = inputStream.read(bArr);
         }
-        file.delete();
-        return true;
+    }
+
+    public static final byte[] b(InputStream inputStream) {
+        inputStream.getClass();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(Math.max(8192, inputStream.available()));
+        a(inputStream, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        byteArray.getClass();
+        return byteArray;
     }
 }

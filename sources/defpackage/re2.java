@@ -1,54 +1,30 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-public final class re2 implements Runnable {
-    public final byte a;
-    public final if2 b;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class re2 implements wc2 {
+    public final TLObject a;
+    public final kf2 b;
 
-    public re2(if2 if2Var, byte b) {
-        this.a = b;
-        this.b = if2Var;
+    public re2(kf2 kf2Var, TLObject tLObject) {
+        this.b = kf2Var;
+        this.a = tLObject;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        if2 if2Var = this.b;
-        switch (b) {
-            case 0:
-                if2Var.q1.f();
-                return;
-            case 1:
-                if2Var.E0(true);
-                return;
-            case 2:
-                yv1 yv1Var = if2Var.u1;
-                d e0 = xza.e0(yv1Var.getMessagesController().L0(Long.valueOf(-yv1Var.a())), true);
-                ?? obj = new Object();
-                obj.a = true;
-                e0.setResourceProvider(yv1Var.getResourceProvider());
-                obj.c = new jd((byte) 23);
-                obj.d = new re2(if2Var, (byte) 3);
-                obj.b = new re2(if2Var, (byte) 4);
-                obj.e = true;
-                if2Var.Q1 = e0;
-                yv1Var.showAsSheet(e0, obj);
-                return;
-            case 3:
-                if2Var.I0();
-                return;
-            case 4:
-                if2Var.Q1 = null;
-                return;
-            case 5:
-                if2Var.I0();
-                return;
-            case 6:
-                if2Var.Q1 = null;
-                return;
-            default:
-                if2Var.N1.c(if2Var.z1);
-                return;
+    public final void a(TLRPC.User user) {
+        this.b.v0(user);
+    }
+
+    @Override
+    public final void b(int i, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLObject tLObject = this.a;
+        if (tLObject instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
+            channelParticipant.admin_rights = tL_chatAdminRights;
+            channelParticipant.banned_rights = tL_chatBannedRights;
+            channelParticipant.rank = str;
+            this.b.D0(channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
         }
     }
 }

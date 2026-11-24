@@ -1,47 +1,30 @@
 package defpackage;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.SurfaceView;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.ui.PhotoViewer;
-public final class ga8 extends AnimatorListenerAdapter {
+public final class ga8 implements Runnable {
     public final byte a;
-    public final View b;
-    public final PhotoViewer c;
+    public final ja8 b;
 
-    public ga8(PhotoViewer photoViewer, View view, byte b) {
+    public ga8(ja8 ja8Var, byte b) {
         this.a = b;
-        this.c = photoViewer;
-        this.b = view;
+        this.b = ja8Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final void run() {
         byte b = this.a;
-        View view = this.b;
-        PhotoViewer photoViewer = this.c;
+        ja8 ja8Var = this.b;
         switch (b) {
             case 0:
-                photoViewer.B3 = false;
-                photoViewer.i4.run();
-                gm.d3(new a18(this, view, (byte) 10), 100L);
+                ja8Var.d.a(false);
                 return;
             default:
-                photoViewer.B3 = false;
-                view.setOutlineProvider(null);
-                ImageView imageView = photoViewer.x3;
-                if (imageView != null) {
-                    imageView.setOutlineProvider(null);
+                Runnable runnable = ja8Var.I;
+                ja8Var.I = null;
+                if (runnable != null) {
+                    runnable.run();
                 }
-                kb8 kb8Var = photoViewer.F2;
-                if (kb8Var != null) {
-                    kb8Var.setOutlineProvider(null);
-                }
-                SurfaceView surfaceView = photoViewer.D2;
-                if (surfaceView != null) {
-                    surfaceView.setVisibility(0);
+                Runnable runnable2 = ja8Var.J;
+                if (runnable2 != null) {
+                    runnable2.run();
                     return;
                 }
                 return;

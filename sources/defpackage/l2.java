@@ -1,7 +1,7 @@
 package defpackage;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public final class l2 extends smd {
+public final class l2 extends qkd {
     public final AtomicReferenceFieldUpdater a;
     public final AtomicReferenceFieldUpdater b;
     public final AtomicReferenceFieldUpdater c;

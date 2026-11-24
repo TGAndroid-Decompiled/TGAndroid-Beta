@@ -1,17 +1,12 @@
 package defpackage;
-public final class vqe implements cq7 {
-    public static final vqe a = new Object();
-
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)));
+public final class vqe extends e0e {
+    public final void c(boolean z) {
+        b();
+        dre.n((dre) this.b, z);
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void d() {
+        b();
+        dre.o((dre) this.b);
     }
 }

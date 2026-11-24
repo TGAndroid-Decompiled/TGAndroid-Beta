@@ -1,227 +1,86 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Typeface;
-import android.text.TextUtils;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class cjb extends FrameLayout {
-    public final TextView a;
-    public final TextView b;
-    public final jh2 c;
-    public boolean d;
-    public boolean e;
-    public int f;
-    public float h;
+import android.graphics.Bitmap;
+import android.opengl.GLES20;
+import android.opengl.GLUtils;
+import android.os.Build;
+import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
+public final class cjb {
+    public final Bitmap a;
+    public int b;
 
-    static {
-        new pn("animationProgress", (byte) 17);
+    public cjb(Bitmap bitmap) {
+        this.a = bitmap;
     }
 
-    public cjb(Context context) {
-        super(context);
-        int i;
-        int i2;
-        float f;
-        float f2;
-        int i3;
-        int i4;
-        float f3;
-        float f4;
-        this.f = 50;
-        TextView textView = new TextView(context);
-        this.a = textView;
-        anb.X(textView, cmb.F6, null);
-        wi8.w(textView, 1, 16.0f, 1, 1);
-        textView.setSingleLine(true);
-        if (jb6.a0) {
-            i = 5;
-        } else {
-            i = 3;
-        }
-        textView.setGravity(i | 16);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        boolean z = jb6.a0;
-        if (z) {
-            i2 = 5;
-        } else {
-            i2 = 3;
-        }
-        int i5 = i2 | 48;
-        if (z) {
-            f = 21.0f;
-        } else {
-            f = 64.0f;
-        }
-        if (z) {
-            f2 = 64.0f;
-        } else {
-            f2 = 21.0f;
-        }
-        addView(textView, qoe.d(-1, -1.0f, i5, f, 0.0f, f2, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.b = textView2;
-        anb.X(textView2, cmb.y6, null);
-        textView2.setTextSize(1, 13.0f);
-        if (jb6.a0) {
-            i3 = 5;
-        } else {
-            i3 = 3;
-        }
-        textView2.setGravity(i3);
-        textView2.setLines(1);
-        textView2.setMaxLines(1);
-        textView2.setSingleLine(true);
-        textView2.setPadding(0, 0, 0, 0);
-        textView2.setEllipsize(truncateAt);
-        boolean z2 = jb6.a0;
-        if (z2) {
-            i4 = 5;
-        } else {
-            i4 = 3;
-        }
-        int i6 = i4 | 48;
-        if (z2) {
-            f3 = 21.0f;
-        } else {
-            f3 = 64.0f;
-        }
-        if (z2) {
-            f4 = 64.0f;
-        } else {
-            f4 = 21.0f;
-        }
-        addView(textView2, qoe.d(-2, -2.0f, i6, f3, 36.0f, f4, 0.0f));
-        jh2 jh2Var = new jh2(21, null, context);
-        this.c = jh2Var;
-        jh2Var.setDrawUnchecked(true);
-        jh2Var.setDrawBackgroundAsArc(10);
-        jh2Var.setDuration(100L);
-        jh2Var.b(cmb.g7, cmb.i7, cmb.j7);
-        addView(jh2Var, qoe.d(20, 20.0f, (jb6.a0 ? 5 : 3) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
-        setClipChildren(false);
+    public static int b(via viaVar) {
+        int i = (int) viaVar.a;
+        int i2 = (int) viaVar.b;
+        int[] iArr = new int[1];
+        GLES20.glGenTextures(1, iArr, 0);
+        int i3 = iArr[0];
+        GLES20.glBindTexture(3553, i3);
+        GLES20.glTexParameteri(3553, 10242, 33071);
+        GLES20.glTexParameteri(3553, 10243, 33071);
+        GLES20.glTexParameteri(3553, 10240, 9729);
+        GLES20.glTexParameteri(3553, 10241, 9729);
+        GLES20.glTexImage2D(3553, 0, 6408, i, i2, 0, 6408, 5121, null);
+        return i3;
     }
 
-    public void setAnimationProgress(float f) {
-        this.h = f;
-        getMeasuredWidth();
-        gm.L(40.0f);
-        getMeasuredHeight();
-    }
-
-    public final void b(String str, String str2, boolean z, boolean z2) {
-        TextView textView = this.a;
-        textView.setText(str);
-        TextView textView2 = this.b;
-        textView2.setText(str2);
-        this.d = z2;
-        textView2.setVisibility(0);
-        this.e = z;
-        if (z) {
-            textView2.setLines(0);
-            textView2.setMaxLines(0);
-            textView2.setSingleLine(false);
-            textView2.setEllipsize(null);
-            textView2.setPadding(0, 0, 0, gm.L(11.0f));
-        } else {
-            textView2.setLines(1);
-            textView2.setMaxLines(1);
-            textView2.setSingleLine(true);
-            textView2.setEllipsize(TextUtils.TruncateAt.END);
-            textView2.setPadding(0, 0, 0, 0);
-        }
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
-        layoutParams.height = -2;
-        layoutParams.topMargin = gm.L(10.0f);
-        textView.setLayoutParams(layoutParams);
-        setWillNotDraw(!z2);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float L;
-        int i;
-        if (this.d) {
-            if (jb6.a0) {
-                L = 0.0f;
-            } else {
-                L = gm.L(64.0f);
+    public final void a(boolean z) {
+        Bitmap bitmap;
+        int i = this.b;
+        if (i != 0) {
+            GLES20.glDeleteTextures(1, new int[]{i}, 0);
+            this.b = 0;
+            if (z && (bitmap = this.a) != null && !bitmap.isRecycled()) {
+                bitmap.recycle();
             }
-            float f = L;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (jb6.a0) {
-                i = gm.L(64.0f);
-            } else {
-                i = 0;
+        }
+    }
+
+    public final int c() {
+        int i = this.b;
+        if (i != 0) {
+            return i;
+        }
+        Bitmap bitmap = this.a;
+        if (bitmap == null || bitmap.isRecycled()) {
+            return 0;
+        }
+        int[] iArr = new int[1];
+        GLES20.glGenTextures(1, iArr, 0);
+        int i2 = iArr[0];
+        this.b = i2;
+        GLES20.glBindTexture(3553, i2);
+        GLES20.glTexParameteri(3553, 10242, 33071);
+        GLES20.glTexParameteri(3553, 10243, 33071);
+        GLES20.glTexParameteri(3553, 10240, 9729);
+        GLES20.glTexParameteri(3553, 10241, 9729);
+        try {
+            GLUtils.texImage2D(3553, 0, 6408, this.a, 5121, 0);
+        } catch (Exception e) {
+            fa4.g(e, true);
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+            int i3 = width * height;
+            int[] iArr2 = new int[i3];
+            this.a.getPixels(iArr2, 0, width, 0, 0, width, height);
+            for (int i4 = 0; i4 < i3; i4++) {
+                int i5 = iArr2[i4];
+                iArr2[i4] = (i5 & (-16711936)) | ((i5 & 255) << 16) | ((i5 >> 16) & 255);
             }
-            canvas.drawLine(f, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, cmb.j0);
+            GLES20.glTexImage2D(3553, 0, 6408, width, height, 0, 6408, 5121, IntBuffer.wrap(iArr2));
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.checkbox");
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.c.a.q);
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.a.getText());
-        TextView textView = this.b;
-        if (textView != null) {
-            sb.append("\n");
-            sb.append(textView.getText());
+        if (!bitmap.isRecycled() && Build.VERSION.SDK_INT <= 28) {
+            int pixel = bitmap.getPixel(0, 0);
+            ByteBuffer allocateDirect = ByteBuffer.allocateDirect(4);
+            allocateDirect.putInt(((-16711936) & pixel) | ((pixel & 255) << 16) | ((pixel >> 16) & 255)).position(0);
+            GLES20.glTexSubImage2D(3553, 0, 0, 0, 1, 1, 6408, 5121, allocateDirect);
         }
-        accessibilityNodeInfo.setText(sb);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        float f;
-        if (this.e) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), 0);
-            return;
-        }
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
-        if (this.b.getVisibility() == 0) {
-            f = 64.0f;
-        } else {
-            f = this.f;
-        }
-        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(gm.L(f) + (this.d ? 1 : 0), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        motionEvent.getX();
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public void setBackgroundColor(int i) {
-        clearAnimation();
-        super.setBackgroundColor(i);
-    }
-
-    public void setChecked(boolean z) {
-        this.c.a(z, true);
-    }
-
-    public void setHeight(int i) {
-        this.f = i;
-    }
-
-    @Override
-    public void setPressed(boolean z) {
-        super.setPressed(z);
-    }
-
-    public void setTypeface(Typeface typeface) {
-        this.a.setTypeface(typeface);
+        qxe.a();
+        return this.b;
     }
 }

@@ -1,39 +1,51 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class o15 implements ee {
-    public final byte a;
-    public final TwoStepVerificationActivity b;
+import org.json.JSONException;
+import org.json.JSONObject;
+public final class o15 {
+    public final int a;
+    public final long b;
+    public final p15 c;
 
-    public o15(TwoStepVerificationActivity twoStepVerificationActivity, byte b) {
-        this.a = b;
-        this.b = twoStepVerificationActivity;
+    public o15(p15 p15Var, int i, long j) {
+        this.c = p15Var;
+        this.a = i;
+        this.b = j;
     }
 
-    @Override
-    public final void r(he heVar, int i) {
-        byte b = this.a;
-        TwoStepVerificationActivity twoStepVerificationActivity = this.b;
-        switch (b) {
-            case 0:
-                twoStepVerificationActivity.presentFragment(new p5c(6, null));
-                return;
-            case 1:
-                twoStepVerificationActivity.finishFragment();
-                return;
-            case 2:
-                twoStepVerificationActivity.getConnectionsManager().sendRequest(new TL_account.declinePasswordReset(), new t4c(twoStepVerificationActivity, (byte) 2));
-                return;
-            case 3:
-                twoStepVerificationActivity.d0();
-                return;
-            case 4:
-                twoStepVerificationActivity.z0();
-                return;
-            default:
-                twoStepVerificationActivity.z0();
-                return;
+    public final void a(buc bucVar, fuc fucVar, fuc fucVar2, boolean z) {
+        Integer valueOf;
+        StringBuilder sb = new StringBuilder("websocket disconnected; closedByServer=");
+        sb.append(z);
+        sb.append(", serverCloseCode=");
+        Object obj = "none";
+        if (fucVar == null) {
+            valueOf = "none";
+        } else {
+            valueOf = Integer.valueOf(fucVar.b());
+        }
+        sb.append(valueOf);
+        sb.append(", clientCloseCode=");
+        if (fucVar2 != null) {
+            obj = Integer.valueOf(fucVar2.b());
+        }
+        sb.append(obj);
+        gl.c3(new tn6(this.c, bucVar, this.a, sb.toString(), (byte) 24));
+    }
+
+    public final void b(buc bucVar, String str) {
+        StringBuilder sb = new StringBuilder("[gram-wallet-streaming] account=");
+        sb.append(this.c.a);
+        sb.append(" generation=");
+        int i = this.a;
+        sb.append(i);
+        sb.append(" receive <- ");
+        sb.append(str);
+        fa4.b(sb.toString());
+        try {
+            gl.c3(new tn6(this, bucVar, i, new JSONObject(str), (byte) 25));
+        } catch (JSONException unused) {
+            gl.c3(new va7(this, bucVar, i, (byte) 29));
         }
     }
 }

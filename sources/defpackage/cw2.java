@@ -1,50 +1,112 @@
 package defpackage;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class cw2 extends LinearLayout {
-    public final bf0 a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import java.util.HashSet;
+public final class cw2 extends View implements tjb {
+    public final Paint a;
+    public final Paint b;
+    public final RectF c;
+    public int d;
+    public long e;
+    public int f;
+    public int h;
+    public int n;
+    public int r;
 
-    public cw2(Context context) {
+    public cw2(Context context, int i) {
         super(context);
-        setOrientation(1);
-        bf0 bf0Var = new bf0(context);
-        this.a = bf0Var;
-        bf0Var.setImageDrawable(new ua6(bf0Var, "m418 282.6c13.4-21.1 20.2-44.9 20.2-70.8 0-88.3-79.8-175.3-178.9-175.3-100.1 0-178.9 88-178.9 175.3 0 46.6 16.9 73.1 29.1 86.1-19.3 23.4-30.9 52.3-34.6 86.1-2.5 22.7 3.2 41.4 17.4 57.3 14.3 16 51.7 35 148.1 35 41.2 0 119.9-5.3 156.7-18.3 49.5-17.4 59.2-41.1 59.2-76.2 0-41.5-12.9-74.8-38.3-99.2z", gm.L(110.0f), gm.L(110.0f)));
-        if (!gm.O1()) {
-            addView(bf0Var, qoe.r(110, 110, 49));
+        Paint paint = new Paint(1);
+        this.a = paint;
+        Paint paint2 = new Paint(1);
+        this.b = paint2;
+        this.c = new RectF();
+        this.d = 0;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(gl.L(2.0f));
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(gl.L(2.0f));
+        paint2.setStrokeCap(Paint.Cap.ROUND);
+        if (i == 0) {
+            this.f = bkb.A7;
+            this.h = bkb.B7;
+        } else if (i == 1) {
+            this.f = bkb.C7;
+            this.h = bkb.D7;
+        } else if (i == 2) {
+            this.f = bkb.E7;
+            this.h = bkb.F7;
+        } else if (i == 3) {
+            this.f = bkb.G7;
+            this.h = bkb.H7;
         }
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 20.0f);
-        anb.X(textView, cmb.F6, null);
-        textView.setGravity(1);
-        textView.setText(jb6.M0(2131747953, null));
-        textView.setTypeface(gm.o());
-        addView(textView, qoe.t(-2, -2, 49, 0, 15, 0, 7));
-        TextView textView2 = new TextView(context);
-        textView2.setTextSize(1, 14.0f);
-        anb.X(textView2, cmb.b7, null);
-        textView2.setGravity(1);
-        textView2.setText(jb6.M0(2131747952, null));
-        textView2.setMaxWidth(gm.L(260.0f));
-        textView2.setLineSpacing(gm.L(2.0f), 1.0f);
-        addView(textView2, qoe.t(-2, -2, 49, 0, 0, 0, 19));
-        b61 b61Var = new b61(null, context, true);
-        b61Var.setUseWrapContent(true);
-        b61Var.f();
-        b61Var.setPadding(gm.L(28.0f), 0, gm.L(28.0f), 0);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
-        spannableStringBuilder.setSpan(new pn2(2131231135, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) jb6.M0(2131748040, null));
-        b61Var.i(spannableStringBuilder, false, true);
-        addView(b61Var, qoe.r(-2, 44, 49));
+        updateColors();
+    }
+
+    public final void a(int i, int i2) {
+        this.f = -1;
+        this.h = -1;
+        this.n = i;
+        this.r = i2;
+        updateColors();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.a.setImageDrawable(new p09(2131624315, gm.L(110.0f), gm.L(110.0f)));
+        this.e = System.currentTimeMillis();
+        invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (getVisibility() != 0) {
+            return;
+        }
+        long currentTimeMillis = System.currentTimeMillis();
+        long j = currentTimeMillis - this.e;
+        this.e = currentTimeMillis;
+        this.d = (int) ((((float) (j * 360)) / 1000.0f) + this.d);
+        int measuredWidth = (getMeasuredWidth() / 2) - gl.L(9.0f);
+        int measuredHeight = (getMeasuredHeight() / 2) - gl.L(9.0f);
+        RectF rectF = this.c;
+        rectF.set(measuredWidth, measuredHeight, gl.L(18.0f) + measuredWidth, gl.L(18.0f) + measuredHeight);
+        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, gl.L(9.0f), this.a);
+        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.b);
+        invalidate();
+    }
+
+    @Override
+    public void setVisibility(int i) {
+        super.setVisibility(i);
+        this.e = System.currentTimeMillis();
+        invalidate();
+    }
+
+    @Override
+    public final void updateColors() {
+        int i = this.f;
+        Paint paint = this.a;
+        if (i >= 0) {
+            paint.setColor(bkb.w0(null, i, false));
+        } else {
+            paint.setColor(this.n);
+        }
+        int i2 = this.h;
+        Paint paint2 = this.b;
+        if (i2 >= 0) {
+            paint2.setColor(bkb.w0(null, i2, false));
+        } else {
+            paint2.setColor(this.r);
+        }
+        invalidate();
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -1,36 +1,17 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.RectF;
+import android.content.Context;
 import android.view.View;
-import org.telegram.ui.ProfileActivity;
-public final class go8 implements View.OnClickListener {
-    public final byte a;
-    public final ProfileActivity b;
-    public final String c;
+public final class go8 extends View {
+    public final int a;
 
-    public go8(ProfileActivity profileActivity, String str, byte b) {
-        this.a = b;
-        this.b = profileActivity;
-        this.c = str;
+    public go8(Context context, int i) {
+        super(context);
+        this.a = i;
     }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        String str = this.c;
-        ProfileActivity profileActivity = this.b;
-        switch (b) {
-            case 0:
-                RectF rectF = ProfileActivity.e7;
-                Activity parentActivity = profileActivity.getParentActivity();
-                l11.u(parentActivity, "https://" + profileActivity.getMessagesController().N2 + "/nft/" + str);
-                return;
-            default:
-                RectF rectF2 = ProfileActivity.e7;
-                Activity parentActivity2 = profileActivity.getParentActivity();
-                l11.u(parentActivity2, "https://" + profileActivity.getMessagesController().N2 + "/nft/" + str);
-                return;
-        }
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.a, 1073741824));
     }
 }

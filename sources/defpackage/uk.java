@@ -1,22 +1,29 @@
 package defpackage;
-public interface uk {
-    void i(ft6 ft6Var);
 
-    void j(ia3 ia3Var);
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+public final class uk extends AnimatorListenerAdapter {
+    public final byte a;
+    public final View b;
 
-    void k(tk tkVar, int i, long j);
+    public uk(View view, byte b) {
+        this.a = b;
+        this.b = view;
+    }
 
-    void n(jec jecVar);
-
-    void onRenderedFirstFrame(tk tkVar);
-
-    void onSeekStarted(tk tkVar);
-
-    void s(u64 u64Var);
-
-    void u(tk tkVar, ft6 ft6Var);
-
-    void w(tk tkVar, int i);
-
-    void y(h74 h74Var, hi2 hi2Var);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.a) {
+            case 0:
+                this.b.setTranslationX(0.0f);
+                return;
+            case 1:
+                gl.B2(this.b);
+                return;
+            default:
+                gl.B2(this.b);
+                return;
+        }
+    }
 }

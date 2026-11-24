@@ -1,11 +1,10 @@
 package defpackage;
-
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
 public interface r56 {
-    void a(TLRPC.TL_chatInviteExported tL_chatInviteExported);
+    void C(int i, int i2);
 
-    void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject);
+    void f2(int i, int i2);
 
-    void c(TLObject tLObject);
+    void j1(int i, int i2);
+
+    void o0(int i, int i2);
 }

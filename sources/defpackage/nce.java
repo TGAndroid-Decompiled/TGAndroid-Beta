@@ -1,17 +1,12 @@
 package defpackage;
-public final class nce implements cq7 {
-    public static final nce a = new Object();
 
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)));
+import java.util.Date;
+public abstract class nce {
+    public static long a(Date date) {
+        return (date.getTime() / 1000) + 2082844800;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public static Date b(long j) {
+        return new Date((j - 2082844800) * 1000);
     }
 }

@@ -1,47 +1,63 @@
 package defpackage;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.tgnet.TLRPC;
-public final class dc6 extends c6 {
-    public final pc6 a;
+import android.os.Build;
+import android.text.TextUtils;
+import android.util.Log;
+import java.util.Locale;
+public final class dc6 {
+    public final String a;
+    public final boolean b;
+    public final String c;
 
-    public dc6(pc6 pc6Var) {
-        this.a = pc6Var;
+    public dc6(String str, String str2) {
+        boolean z;
+        String y;
+        fre.g(str, "The log tag cannot be null or empty.");
+        this.a = str;
+        if (str.length() <= 23) {
+            z = true;
+        } else {
+            z = false;
+        }
+        this.b = z;
+        if (TextUtils.isEmpty(str2)) {
+            y = null;
+        } else {
+            y = tb4.y("[", str2, "] ");
+        }
+        this.c = y;
     }
 
-    @Override
-    public final void b(int i) {
-        pc6 pc6Var = this.a;
-        if (i == -1) {
-            pc6Var.finishFragment();
-            return;
-        }
-        int i2 = 1;
-        if (i == 1) {
-            try {
-                TLRPC.GeoPoint geoPoint = pc6Var.J0.k.media.geo;
-                double d = geoPoint.lat;
-                double d2 = geoPoint._long;
-                pc6Var.getParentActivity().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d2 + "?q=" + d + "," + d2)));
-            } catch (Exception e) {
-                fc4.g(e, true);
+    public final void a(Exception exc, String str, Object... objArr) {
+        if (!Build.TYPE.equals("user") && this.b) {
+            String str2 = this.a;
+            if (Log.isLoggable(str2, 3)) {
+                Log.d(str2, d(str, objArr), exc);
             }
-        } else if (i == 5) {
-            pc6Var.C0(false);
-        } else if (i == 6) {
-            pc6Var.B0(null);
-        } else if ((i == 2 || i == 3 || i == 4) && pc6Var.F != null) {
-            pc6Var.D0();
-            s05 s05Var = pc6Var.F;
-            if (i != 3) {
-                if (i == 4) {
-                    i2 = 2;
-                } else {
-                    i2 = 0;
-                }
-            }
-            s05Var.j(i2);
         }
+    }
+
+    public final void b(String str, Object... objArr) {
+        if (!Build.TYPE.equals("user") && this.b) {
+            String str2 = this.a;
+            if (Log.isLoggable(str2, 3)) {
+                Log.d(str2, d(str, objArr));
+            }
+        }
+    }
+
+    public final void c(Object... objArr) {
+        Log.e(this.a, d("Bundle is null", objArr));
+    }
+
+    public final String d(String str, Object... objArr) {
+        if (objArr.length != 0) {
+            str = String.format(Locale.ROOT, str, objArr);
+        }
+        String str2 = this.c;
+        if (!TextUtils.isEmpty(str2)) {
+            return String.valueOf(str2).concat(str);
+        }
+        return str;
     }
 }

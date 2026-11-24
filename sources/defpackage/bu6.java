@@ -1,15 +1,16 @@
 package defpackage;
+public final class bu6 implements Runnable {
+    public final byte a;
+    public final cu6 b;
 
-import android.media.MediaRouter2;
-import android.media.MediaRouter2$ControllerCallback;
-public final class bu6 extends MediaRouter2$ControllerCallback {
-    public final gu6 a;
-
-    public bu6(gu6 gu6Var) {
-        this.a = gu6Var;
+    public bu6(cu6 cu6Var, byte b) {
+        this.a = b;
+        this.b = cu6Var;
     }
 
-    public final void onControllerUpdated(MediaRouter2.RoutingController routingController) {
-        this.a.r(routingController);
+    @Override
+    public final void run() {
+        byte b = this.a;
+        this.b.i();
     }
 }

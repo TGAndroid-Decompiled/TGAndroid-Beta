@@ -1,70 +1,37 @@
 package defpackage;
+public final class c94 implements Runnable {
+    public final byte a;
+    public final l94 b;
+    public final int c;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.TextView;
-import org.telegram.tgnet.TLRPC;
-public final class c94 implements TextWatcher {
-    public boolean a;
-    public final int b;
-    public final a94 c;
-    public final TextView[] d;
-    public final TLRPC.TL_factCheck e;
-
-    public c94(int i, a94 a94Var, TextView[] textViewArr, TLRPC.TL_factCheck tL_factCheck) {
-        this.b = i;
-        this.c = a94Var;
-        this.d = textViewArr;
-        this.e = tL_factCheck;
+    public c94(l94 l94Var, int i, byte b) {
+        this.a = b;
+        this.b = l94Var;
+        this.c = i;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i;
-        int i2;
-        if (!this.a) {
-            int length = editable.length();
-            boolean z = true;
-            int i3 = this.b;
-            if (length > i3) {
-                this.a = true;
-                editable.delete(i3, editable.length());
-                a94 a94Var = this.c;
-                gm.z3(a94Var);
-                try {
-                    a94Var.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
+    public final void run() {
+        byte b = this.a;
+        int i = this.c;
+        l94 l94Var = this.b;
+        switch (b) {
+            case 0:
+                l94Var.F0.add(Integer.valueOf(i));
+                return;
+            case 1:
+                l94Var.F0.remove(Integer.valueOf(i));
+                return;
+            case 2:
+                l94Var.F0.remove(Integer.valueOf(i));
+                return;
+            default:
+                z94 z94Var = l94Var.g0;
+                if (z94Var != null) {
+                    z94Var.b(l94Var, i);
                 }
-                this.a = false;
-            }
-            TextView[] textViewArr = this.d;
-            if (textViewArr[0] != null) {
-                if (editable.length() <= 0 && this.e != null) {
-                    z = false;
-                }
-                TextView textView = textViewArr[0];
-                if (z) {
-                    i = 2131751291;
-                } else {
-                    i = 2131746054;
-                }
-                textView.setText(jb6.M0(i, null));
-                TextView textView2 = textViewArr[0];
-                if (z) {
-                    i2 = cmb.G5;
-                } else {
-                    i2 = cmb.p7;
-                }
-                textView2.setTextColor(cmb.w0(null, i2, false));
-            }
+                l94Var.g();
+                return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

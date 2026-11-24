@@ -1,43 +1,28 @@
 package defpackage;
 
-import android.content.Context;
 import android.view.View;
-public final class rt4 extends bf0 {
-    public final byte H;
+public final class rt4 implements View.OnClickListener {
+    public final byte a;
+    public final vt4 b;
+    public final Runnable c;
 
-    public rt4(Context context, byte b) {
-        super(context);
-        this.H = b;
+    public rt4(vt4 vt4Var, Runnable runnable, byte b) {
+        this.a = b;
+        this.b = vt4Var;
+        this.c = runnable;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.H) {
+    public final void onClick(View view) {
+        byte b = this.a;
+        Runnable runnable = this.c;
+        vt4 vt4Var = this.b;
+        switch (b) {
             case 0:
-                int size = View.MeasureSpec.getSize(i);
-                setMeasuredDimension(size, size);
+                vt4Var.c(runnable);
                 return;
             default:
-                super.onMeasure(i, i2);
-                return;
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f) {
-        int i;
-        switch (this.H) {
-            case 1:
-                super.setAlpha(f);
-                if (f > 0.0f) {
-                    i = 0;
-                } else {
-                    i = 4;
-                }
-                setVisibility(i);
-                return;
-            default:
-                super.setAlpha(f);
+                vt4Var.c(runnable);
                 return;
         }
     }

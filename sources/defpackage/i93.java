@@ -1,28 +1,105 @@
 package defpackage;
-public final class i93 {
-    public static final w03 b = new Object();
-    public static final String c = a("hts/cahyiseot-agolai.o/1frlglgc/aclg", "tp:/rsltcrprsp.ogepscmv/ieo/eaybtho");
-    public static final String d = a("AzSBpY4F0rHiHFdinTvM", "IayrSTFL9eJ69YeSUO2");
-    public static final u03 e = new u03((byte) 9);
-    public final ha9 a;
+public final class i93 implements x56 {
+    public final byte a;
 
-    public i93(ha9 ha9Var) {
-        this.a = ha9Var;
+    @Override
+    public final void invoke(Object obj) {
+        uj ujVar = (uj) obj;
+        switch (this.a) {
+            case 0:
+                ujVar.getClass();
+                return;
+            case 1:
+                ujVar.getClass();
+                return;
+            case 2:
+                ujVar.getClass();
+                return;
+            case 3:
+                ujVar.getClass();
+                return;
+            case 4:
+                ujVar.getClass();
+                return;
+            case 5:
+                ujVar.getClass();
+                return;
+            case 6:
+                ujVar.getClass();
+                return;
+            case 7:
+                ujVar.getClass();
+                return;
+            case 8:
+                ujVar.getClass();
+                return;
+            case 9:
+                ujVar.getClass();
+                return;
+            case 10:
+                ujVar.getClass();
+                return;
+            case 11:
+                ujVar.getClass();
+                return;
+            case 12:
+                ujVar.getClass();
+                return;
+            case 13:
+                ujVar.getClass();
+                return;
+            case 14:
+                ujVar.getClass();
+                return;
+            case 15:
+                ujVar.getClass();
+                return;
+            case 16:
+                ujVar.getClass();
+                return;
+            case 17:
+                ujVar.getClass();
+                return;
+            case 18:
+                ujVar.getClass();
+                return;
+            case 19:
+                ujVar.getClass();
+                return;
+            case 20:
+                ujVar.getClass();
+                return;
+            case 21:
+                ujVar.getClass();
+                return;
+            case 22:
+                ujVar.getClass();
+                return;
+            case 23:
+                ujVar.getClass();
+                return;
+            case 24:
+                ujVar.getClass();
+                return;
+            case 25:
+                ujVar.getClass();
+                return;
+            case 26:
+                ujVar.getClass();
+                return;
+            case 27:
+                ujVar.getClass();
+                return;
+            case 28:
+                ujVar.getClass();
+                return;
+            default:
+                ujVar.getClass();
+                return;
+        }
     }
 
-    public static String a(String str, String str2) {
-        int length = str.length() - str2.length();
-        if (length >= 0 && length <= 1) {
-            StringBuilder sb = new StringBuilder(str2.length() + str.length());
-            for (int i = 0; i < str.length(); i++) {
-                sb.append(str.charAt(i));
-                if (str2.length() > i) {
-                    sb.append(str2.charAt(i));
-                }
-            }
-            return sb.toString();
-        }
-        u36.j("Invalid input received");
-        return null;
+    public i93(tj tjVar, byte b) {
+        this.a = b;
     }
 }

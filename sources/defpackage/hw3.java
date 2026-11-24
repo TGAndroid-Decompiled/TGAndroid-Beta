@@ -1,55 +1,35 @@
 package defpackage;
 
-import android.view.View;
-public final class hw3 implements Runnable {
-    public final int a;
-    public final int b;
-    public final kw3 c;
+import java.util.ArrayList;
+public final class hw3 extends afe {
+    public final sj a;
 
-    public hw3(kw3 kw3Var, int i, int i2) {
-        this.c = kw3Var;
-        this.a = i;
-        this.b = i2;
+    public hw3(sj sjVar) {
+        this.a = sjVar;
     }
 
     @Override
-    public final void run() {
-        rc2 rc2Var;
-        yv1 yv1Var;
-        kw3 kw3Var = this.c;
-        vr1 vr1Var = kw3Var.I;
-        if (kw3Var.n) {
-            int i = 0;
-            while (true) {
-                if (i < vr1Var.getChildCount()) {
-                    View childAt = vr1Var.getChildAt(i);
-                    if (childAt instanceof rc2) {
-                        rc2Var = (rc2) childAt;
-                        String V1 = rc2Var.getMessageObject().V1();
-                        if (V1 == null) {
-                            V1 = rc2Var.getMessageObject().k.message;
-                        }
-                        if (rc2Var.getPhotoImage().E() && V1 != null && rc2Var.getMessageObject().e1() == this.a) {
-                            break;
-                        }
-                    }
-                    i++;
-                } else {
-                    rc2Var = null;
-                    break;
-                }
-            }
-            if (rc2Var != null && (yv1Var = kw3Var.a) != null) {
-                yv1Var.hb(rc2Var);
-                String V12 = rc2Var.getMessageObject().V1();
-                if (!zx3.a(V12) && !"🍑".equals(V12) && !"⚰".equals(V12) && !rc2Var.getMessageObject().V3() && !rc2Var.getMessageObject().F2()) {
-                    try {
-                        rc2Var.performHapticFeedback(3);
-                    } catch (Exception unused) {
-                    }
-                }
-                kw3Var.n(rc2Var, this.b, false, true);
-            }
+    public final void a(Throwable th) {
+        ((lw3) this.a.b).d(th);
+    }
+
+    @Override
+    public final void b(wtc wtcVar) {
+        sj sjVar = this.a;
+        sjVar.c = wtcVar;
+        sjVar.a = new lv6((wtc) sjVar.c, new vi2((byte) 19), ((lw3) sjVar.b).h);
+        lw3 lw3Var = (lw3) sjVar.b;
+        ArrayList arrayList = new ArrayList();
+        lw3Var.a.writeLock().lock();
+        try {
+            lw3Var.c = (byte) 1;
+            arrayList.addAll(lw3Var.b);
+            lw3Var.b.clear();
+            lw3Var.a.writeLock().unlock();
+            lw3Var.d.post(new jw3(arrayList, lw3Var.c, null));
+        } catch (Throwable th) {
+            lw3Var.a.writeLock().unlock();
+            throw th;
         }
     }
 }

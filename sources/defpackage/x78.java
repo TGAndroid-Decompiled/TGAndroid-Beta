@@ -2,158 +2,196 @@ package defpackage;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
-import android.view.MotionEvent;
-import android.view.TextureView;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class x78 extends FrameLayout {
-    public final byte a = 1;
-    public final bf0 b;
-    public final View c;
-    public final View d;
-    public final View e;
-    public final Object f;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.z;
+public final class x78 extends mb1 {
+    public final Path t1;
+    public final PhotoViewer u1;
 
-    public x78(z78 z78Var, Context context) {
-        super(context);
-        this.f = z78Var;
-        bf0 bf0Var = new bf0(context);
-        this.b = bf0Var;
-        addView(bf0Var, qoe.c(-1.0f, -1));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        linearLayout.setBackgroundResource(2131230868);
-        addView(linearLayout, qoe.e(-1, 60, 83));
-        TextView textView = new TextView(context);
-        this.c = textView;
-        textView.setTextSize(1, 13.0f);
-        textView.setTextColor(-1);
-        textView.setSingleLine(true);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        textView.setMaxLines(1);
-        textView.setGravity(80);
-        TextView m = wi8.m(linearLayout, textView, qoe.m(1.0f, 0, -1, 8, 0, 5), context);
-        this.d = m;
-        m.setTextSize(1, 13.0f);
-        m.setTextColor(-1);
-        m.setSingleLine(true);
-        m.setEllipsize(truncateAt);
-        m.setMaxLines(1);
-        m.setGravity(80);
-        linearLayout.addView(m, qoe.k(4.0f, 0.0f, 7.0f, 5.0f, -2, -1));
-        View view = new View(context);
-        this.e = view;
-        view.setBackgroundDrawable(cmb.L0(false));
-        addView(view, qoe.c(-1.0f, -1));
-    }
-
-    public final void a(android.graphics.Canvas r19) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.x78.a(android.graphics.Canvas):void");
+    public x78(PhotoViewer photoViewer, Context context, z zVar, cja cjaVar, FrameLayout frameLayout, wjb wjbVar, sl0 sl0Var, l68 l68Var) {
+        super(context, zVar, cjaVar, frameLayout, wjbVar, sl0Var, l68Var);
+        this.u1 = photoViewer;
+        this.t1 = new Path();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f;
-        oc8 oc8Var;
-        switch (this.a) {
-            case 1:
-                pc8 pc8Var = (pc8) this.f;
-                float[] fArr = pc8Var.Q;
-                if (pc8Var.C == null) {
-                    float f2 = pc8Var.P;
-                    if (f2 != 1.0f) {
-                        float f3 = f2 + 0.07272727f;
-                        pc8Var.P = f3;
-                        if (f3 > 1.0f) {
-                            pc8Var.P = 1.0f;
-                        } else {
-                            pc8Var.e();
-                        }
-                    }
-                }
-                float interpolation = d53.f.getInterpolation(pc8Var.P) * pc8Var.A;
-                float measuredHeight = getMeasuredHeight();
-                float f4 = 0.0f;
-                if (interpolation != 1.0f && (oc8Var = pc8Var.F) != null) {
-                    oc8Var.a(fArr);
-                    canvas.save();
-                    float f5 = 1.0f - interpolation;
-                    float f6 = fArr[0] * f5;
-                    float measuredHeight2 = (fArr[1] * f5) + (getMeasuredHeight() * interpolation);
-                    canvas.clipRect(0.0f, f6, getMeasuredWidth(), measuredHeight2);
-                    a(canvas);
-                    super.dispatchDraw(canvas);
-                    canvas.restore();
-                    f = measuredHeight2;
-                    f4 = f6;
-                } else {
-                    a(canvas);
-                    super.dispatchDraw(canvas);
-                    f = measuredHeight;
-                }
-                pc8Var.c(canvas, 1.0f - interpolation, pc8Var.o - getLeft(), pc8Var.p - getTop(), f4, f);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+    public final void A() {
+        Drawable[] drawableArr = PhotoViewer.d9;
+        this.u1.v2();
+    }
+
+    @Override
+    public final void B() {
+        z();
+        y78 y78Var = this.u1.W1;
+        if (y78Var != null) {
+            y78Var.z();
         }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.a) {
-            case 0:
-                Paint paint = ((z78) this.f).e;
-                bf0 bf0Var = this.b;
-                if (!bf0Var.getImageReceiver().E() || bf0Var.getImageReceiver().i1 != 1.0f) {
-                    paint.setColor(cmb.w0(null, cmb.W9, false));
-                    canvas.drawRect(0.0f, 0.0f, bf0Var.getMeasuredWidth(), bf0Var.getMeasuredHeight(), paint);
-                    return;
-                }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+    public final boolean G() {
+        o98 o98Var = this.u1.d;
+        if (o98Var != null && o98Var.l()) {
+            return true;
         }
+        return false;
+    }
+
+    public final void I() {
+        boolean z;
+        PhotoViewer photoViewer = this.u1;
+        o98 o98Var = photoViewer.d;
+        if (o98Var != null && o98Var.l() && (photoViewer.V1.M.c() || (!photoViewer.s1 && !TextUtils.isEmpty(photoViewer.d0().getText())))) {
+            z = true;
+        } else {
+            z = false;
+        }
+        D(z, true);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.a) {
-            case 0:
-                this.e.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
+    public final boolean e() {
+        PhotoViewer photoViewer = this.u1;
+        m21 m21Var = photoViewer.s7;
+        if (m21Var != null && m21.w == m21Var) {
+            return false;
         }
+        return photoViewer.c2(photoViewer.f0);
     }
 
-    public x78(pc8 pc8Var, Context context) {
-        super(context);
-        this.f = pc8Var;
-        new Paint(1);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.c = frameLayout;
-        frameLayout.setOutlineProvider(new xj((byte) 10));
-        frameLayout.setClipToOutline(true);
-        bf0 bf0Var = new bf0(context);
-        this.b = bf0Var;
-        frameLayout.addView(bf0Var);
-        frameLayout.setWillNotDraw(false);
-        jy jyVar = new jy(context);
-        this.e = jyVar;
-        jyVar.setBackgroundColor(0);
-        frameLayout.addView(jyVar, qoe.e(-1, -1, 17));
-        TextureView textureView = new TextureView(context);
-        this.d = textureView;
-        textureView.setOpaque(false);
-        jyVar.addView(textureView, qoe.c(-1.0f, -1));
-        addView(frameLayout, qoe.c(-2.0f, -2));
-        setWillNotDraw(false);
+    @Override
+    public final void h(wl0 wl0Var, Canvas canvas, RectF rectF, float f, boolean z, float f2, float f3, boolean z2) {
+        int i;
+        int i2;
+        canvas.save();
+        Path path = this.t1;
+        path.rewind();
+        path.addRoundRect(rectF, f, f, Path.Direction.CW);
+        canvas.clipPath(path);
+        PhotoViewer photoViewer = this.u1;
+        if (z2) {
+            canvas.translate(((-getX()) - photoViewer.Y1.getX()) + f2, ((-getY()) - photoViewer.Y1.getY()) + f3);
+        } else {
+            canvas.translate(f2, f3);
+        }
+        if (z) {
+            i = -8882056;
+        } else {
+            i = -14277082;
+        }
+        int p1 = bkb.p1(1.0f, i);
+        if (z2) {
+            if (z) {
+                i2 = 0;
+            } else {
+                i2 = 855638016;
+            }
+        } else {
+            i2 = 1140850688;
+        }
+        int p12 = bkb.p1(1.0f, i2);
+        boolean z3 = false;
+        boolean z4 = !z;
+        if (!z && z2) {
+            z3 = true;
+        }
+        photoViewer.Q(canvas, wl0Var, p1, p12, false, z4, z3);
+        canvas.restore();
+    }
+
+    @Override
+    public final void invalidate() {
+        byte b;
+        if (gba.Z && ((b = this.u1.m4) == 1 || b == 2 || b == 3)) {
+            return;
+        }
+        super.invalidate();
+    }
+
+    @Override
+    public final boolean l(float f, float f2) {
+        if (!this.p0 && this.u1.t4 != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void setText(CharSequence charSequence) {
+        super.setText(charSequence);
+        I();
+    }
+
+    @Override
+    public final void u(float f) {
+        int i;
+        int i2;
+        super.u(f);
+        PhotoViewer photoViewer = this.u1;
+        c7 c7Var = photoViewer.f1;
+        float f2 = 1.0f - f;
+        int i3 = 0;
+        if (c7Var.getTag() != null) {
+            i = 1;
+        } else {
+            i = 0;
+        }
+        c7Var.setAlpha(i * f2);
+        o76 o76Var = photoViewer.g1;
+        if (o76Var.getTag() != null) {
+            i2 = 1;
+        } else {
+            i2 = 0;
+        }
+        o76Var.setAlpha(i2 * f2);
+        FrameLayout frameLayout = photoViewer.W7;
+        if (frameLayout.getTag() != null) {
+            i3 = 1;
+        }
+        frameLayout.setAlpha(f2 * i3);
+    }
+
+    @Override
+    public final void w() {
+        this.N.getAdapter().c = false;
+        this.N.getAdapter().d = false;
+        this.N.getAdapter().e = false;
+        PhotoViewer photoViewer = this.u1;
+        mu1 mu1Var = photoViewer.k4;
+        eb1 eb1Var = this.N;
+        boolean z = true;
+        if (mu1Var != null) {
+            eb1Var.getAdapter().n0 = false;
+            this.N.getAdapter().V(photoViewer.k4.r8);
+            kz6 adapter = this.N.getAdapter();
+            if (photoViewer.k4.e == null) {
+                z = false;
+            }
+            adapter.f0 = z;
+        } else {
+            eb1Var.getAdapter().n0 = true;
+            this.N.getAdapter().V(null);
+            this.N.getAdapter().f0 = false;
+        }
+        this.N.getAdapter().g0 = false;
+    }
+
+    @Override
+    public final void x(int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.x78.x(int):void");
+    }
+
+    @Override
+    public final void y() {
+        eb1 eb1Var = this.N;
+        if (eb1Var != null) {
+            eb1Var.setTranslationY(((-getEditTextHeight()) - gl.L(14.0f)) - this.M.l);
+        }
     }
 }

@@ -32,7 +32,7 @@ public class GeoGebraLogoBox extends Box {
         Color color = graphics2D.getColor();
         Stroke stroke = graphics2D.getStroke();
         float f3 = this.height;
-        graphics2D.translate(kt6.d(f3, 0.25f, 2.15f, f), f2 - (f3 * 0.81395346f));
+        graphics2D.translate(ls6.d(f3, 0.25f, 2.15f, f), f2 - (f3 * 0.81395346f));
         graphics2D.setColor(gray);
         graphics2D.setStroke(st);
         float f4 = this.height;

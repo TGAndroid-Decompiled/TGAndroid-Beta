@@ -1,14 +1,15 @@
 package defpackage;
+
+import java.util.Arrays;
+import java.util.List;
 public final class n74 {
     public final int a;
-    public final int b;
-    public final int c;
-    public final yia d;
+    public final List b;
+    public final List c;
 
-    public n74(int i, int i2, int i3, yia yiaVar) {
+    public n74(int i, ww5[] ww5VarArr, eef[] eefVarArr) {
         this.a = i;
-        this.b = i2;
-        this.c = i3;
-        this.d = yiaVar;
+        this.b = Arrays.asList(ww5VarArr);
+        this.c = Arrays.asList(eefVarArr);
     }
 }

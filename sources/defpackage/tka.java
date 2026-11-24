@@ -1,61 +1,166 @@
 package defpackage;
-public final class tka extends ph0 {
-    public final int F;
-    public final go4 G;
-    public long H;
-    public boolean I;
 
-    public tka(a83 a83Var, g83 g83Var, go4 go4Var, int i, Object obj, long j, long j2, long j3, int i2, go4 go4Var2) {
-        super(a83Var, g83Var, go4Var, i, obj, j, j2, -9223372036854775807L, -9223372036854775807L, j3);
-        this.F = i2;
-        this.G = go4Var2;
-    }
+import android.media.AudioDescriptor;
+import android.media.AudioDeviceInfo;
+import android.media.AudioProfile;
+import android.os.Build;
+import j$.util.Comparator$CC;
+import j$.util.Comparator$EL;
+import j$.util.List;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeSet;
+public abstract class tka {
+    public static final w59 a = mm5.u(12);
 
-    @Override
-    public final void a() {
-        hr9[] hr9VarArr;
-        c0b c0bVar = this.r;
-        lx6 lx6Var = this.y;
-        lx6Var.getClass();
-        int i = 0;
-        for (hr9 hr9Var : (hr9[]) lx6Var.c) {
-            if (hr9Var.I != 0) {
-                hr9Var.I = 0L;
-                hr9Var.C = true;
-            }
-        }
-        yzb R = lx6Var.R(this.F);
-        R.g(this.G);
-        try {
-            long open = c0bVar.open(this.b.b(this.H));
-            if (open != -1) {
-                open += this.H;
-            }
-            vb3 vb3Var = new vb3(c0bVar, this.H, open);
-            while (true) {
-                long j = this.H;
-                if (i != -1) {
-                    this.H = j + i;
-                    i = R.f(vb3Var, Integer.MAX_VALUE, true);
-                } else {
-                    R.a(this.h, 1, (int) j, 0, null);
-                    wde.a(c0bVar);
-                    this.I = true;
-                    return;
+    public static mm5 a(AudioDeviceInfo audioDeviceInfo) {
+        List<AudioProfile> audioProfiles = audioDeviceInfo.getAudioProfiles();
+        TreeSet treeSet = new TreeSet(Comparator$EL.reversed(Comparator$CC.comparing(new xz((byte) 0))));
+        for (AudioProfile audioProfile : audioProfiles) {
+            if (audioProfile.getEncapsulationType() != 1 && g8c.N(audioProfile.getFormat())) {
+                for (int i : audioProfile.getChannelMasks()) {
+                    treeSet.add(Integer.valueOf(i));
                 }
             }
-        } catch (Throwable th) {
-            wde.a(c0bVar);
-            throw th;
         }
+        return mm5.q(treeSet);
     }
 
-    @Override
-    public final boolean c() {
-        return this.I;
-    }
-
-    @Override
-    public final void e() {
+    public static mm5 b(AudioDeviceInfo audioDeviceInfo) {
+        int type;
+        mm5 mm5Var;
+        int speakerLayoutChannelMask;
+        boolean a2 = nde.a(audioDeviceInfo.getType());
+        w59 w59Var = a;
+        if (!a2) {
+            if (audioDeviceInfo.getType() == 1) {
+                return mm5.u(4);
+            }
+            int type2 = audioDeviceInfo.getType();
+            int i = Build.VERSION.SDK_INT;
+            if (type2 == 2) {
+                if (i >= 36 && (speakerLayoutChannelMask = audioDeviceInfo.getSpeakerLayoutChannelMask()) != 0 && speakerLayoutChannelMask != 1) {
+                    return mm5.u(Integer.valueOf(speakerLayoutChannelMask));
+                }
+                lad.f("SpeakerLayoutUtil", "Built-in speaker's getSpeakerLayoutChannelMask not usable, defaulting to stereo.");
+                return w59Var;
+            }
+            if (i >= 31) {
+                if (audioDeviceInfo.getType() == 10) {
+                    mm5 a3 = a(audioDeviceInfo);
+                    if (!a3.isEmpty()) {
+                        return a3;
+                    }
+                    mm5 l = yz.l(audioDeviceInfo.getAudioDescriptors());
+                    if (!l.isEmpty()) {
+                        return l;
+                    }
+                } else {
+                    int type3 = audioDeviceInfo.getType();
+                    if (i >= 31 && type3 == 29) {
+                        mm5 a4 = a(audioDeviceInfo);
+                        if (!a4.isEmpty()) {
+                            return a4;
+                        }
+                        List<AudioDescriptor> audioDescriptors = audioDeviceInfo.getAudioDescriptors();
+                        if (i >= 34) {
+                            if (i >= 34 && audioDescriptors != null) {
+                                ArrayList arrayList = new ArrayList();
+                                for (AudioDescriptor audioDescriptor : audioDescriptors) {
+                                    AudioDescriptor a5 = wz.a(audioDescriptor);
+                                    if (a5.getStandard() == 2) {
+                                        byte[] descriptor = a5.getDescriptor();
+                                        if (descriptor.length != 3) {
+                                            lad.f("AudioDescriptorUtil", "Invalid SADB length: " + descriptor.length);
+                                        } else {
+                                            int i2 = 0;
+                                            if (Build.VERSION.SDK_INT >= 34 && descriptor.length == 3) {
+                                                byte b = descriptor[0];
+                                                if ((b & 1) != 0) {
+                                                    i2 = 12;
+                                                }
+                                                if ((b & 2) != 0) {
+                                                    i2 |= 32;
+                                                }
+                                                if ((b & 4) != 0) {
+                                                    i2 |= 16;
+                                                }
+                                                if ((b & 8) != 0) {
+                                                    i2 |= 192;
+                                                }
+                                                if ((b & 16) != 0) {
+                                                    i2 |= 1024;
+                                                }
+                                                if ((b & 32) != 0) {
+                                                    i2 |= 768;
+                                                }
+                                                if ((b & 128) != 0) {
+                                                    i2 |= 201326592;
+                                                }
+                                                byte b2 = descriptor[1];
+                                                if ((b2 & 1) != 0) {
+                                                    i2 |= 81920;
+                                                }
+                                                if ((b2 & 2) != 0) {
+                                                    i2 |= 8192;
+                                                }
+                                                if ((b2 & 4) != 0) {
+                                                    i2 |= 32768;
+                                                }
+                                                if ((b2 & 8) != 0) {
+                                                    i2 |= 6144;
+                                                }
+                                                if ((b2 & 16) != 0) {
+                                                    i2 |= 33554432;
+                                                }
+                                                if ((b2 & 32) != 0) {
+                                                    i2 |= 262144;
+                                                }
+                                                if ((b2 & 64) != 0) {
+                                                    i2 |= 6144;
+                                                }
+                                                if ((b2 & 128) != 0) {
+                                                    i2 |= 3145728;
+                                                }
+                                                byte b3 = descriptor[2];
+                                                if ((b3 & 1) != 0) {
+                                                    i2 |= 655360;
+                                                }
+                                                if ((b3 & 2) != 0) {
+                                                    i2 |= 8388608;
+                                                }
+                                                if ((b3 & 4) != 0) {
+                                                    i2 |= 20971520;
+                                                }
+                                            }
+                                            arrayList.add(Integer.valueOf(i2));
+                                        }
+                                    }
+                                }
+                                List.EL.sort(arrayList, new sa((byte) 3));
+                                mm5Var = mm5.q(arrayList);
+                            } else {
+                                km5 km5Var = mm5.b;
+                                mm5Var = w59.e;
+                            }
+                            if (!mm5Var.isEmpty()) {
+                                return mm5Var;
+                            }
+                        }
+                        mm5 l2 = yz.l(audioDescriptors);
+                        if (!l2.isEmpty()) {
+                            return l2;
+                        }
+                    }
+                }
+            }
+            if (i >= 31 && ((type = audioDeviceInfo.getType()) == 11 || type == 12 || (i >= 31 && type == 22))) {
+                mm5 a6 = a(audioDeviceInfo);
+                if (!a6.isEmpty()) {
+                    return a6;
+                }
+            }
+        }
+        return w59Var;
     }
 }

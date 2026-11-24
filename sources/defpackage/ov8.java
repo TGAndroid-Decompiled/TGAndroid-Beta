@@ -1,53 +1,40 @@
 package defpackage;
 
-import java.util.Locale;
-public final class ov8 implements hp7, jp7 {
-    public final byte a;
-    public final tv8 b;
+import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class ov8 extends FrameLayout {
+    public final TextView a;
+    public final TextView b;
+    public final ew8 c;
 
-    public ov8(tv8 tv8Var, byte b) {
-        this.a = b;
-        this.b = tv8Var;
-    }
-
-    @Override
-    public final String c(int i) {
-        byte b = this.a;
-        tv8 tv8Var = this.b;
-        switch (b) {
-            case 0:
-                if (tv8Var.P) {
-                    return jb6.a0("MilesShort", null, 2131748184, Integer.valueOf(i));
-                }
-                return jb6.a0("KMetersShort", null, 2131748818, Integer.valueOf(i));
-            default:
-                if (tv8Var.P) {
-                    if (i == 1) {
-                        return jb6.a0("FootsShort", null, 2131750533, 250);
-                    }
-                    if (i > 1) {
-                        i--;
-                    }
-                    Locale locale = Locale.US;
-                    return hg9.j(i, ".");
-                } else if (i == 1) {
-                    return jb6.a0("MetersShort", null, 2131748199, 50);
-                } else {
-                    if (i > 1) {
-                        i--;
-                    }
-                    return jb6.a0("MetersShort", null, 2131748199, Integer.valueOf(i * 100));
-                }
-        }
-    }
-
-    @Override
-    public final void g(lp7 lp7Var, int i) {
-        tv8 tv8Var = this.b;
-        try {
-            tv8Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-        tv8Var.c(true);
+    public ov8(ew8 ew8Var, Context context) {
+        super(context);
+        this.c = ew8Var;
+        TextView textView = new TextView(context);
+        this.a = textView;
+        textView.setTextColor(ew8Var.y);
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(gl.o());
+        textView.setSingleLine();
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setGravity(16);
+        addView(textView, nme.d(-1, -1.0f, 51, 15.0f, 8.0f, 15.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.b = textView2;
+        textView2.setTextColor(-1);
+        textView2.setTextSize(1, 13.0f);
+        textView2.setTypeface(gl.o());
+        textView2.setGravity(17);
+        textView2.setPadding(gl.L(10.0f), 0, gl.L(10.0f), 0);
+        textView2.setText(k96.M0(2131743637, null));
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setColor(620756991);
+        gradientDrawable.setCornerRadius(gl.L(13.0f));
+        textView2.setBackground(gradientDrawable);
+        textView2.setOnClickListener(new ik8(this, (byte) 4));
+        addView(textView2, nme.d(-2, 26.0f, 21, 0.0f, 4.0f, 12.0f, 0.0f));
     }
 }

@@ -1,56 +1,86 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
-public final class tt8 extends xib {
-    public final yxa a0;
-    public final int b0;
-    public final pp8 c0;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+public final class tt8 extends Drawable {
+    public final Drawable a;
+    public final Drawable b;
+    public final Paint c;
+    public final RectF d;
+    public int e;
+    public long f;
+    public float g;
+    public boolean h;
+    public boolean i;
 
-    public tt8(int i, ylb ylbVar, Context context) {
-        super(context, ylbVar);
-        int i2;
-        this.a0 = new yxa(1, 15);
-        this.c0 = new pp8(this, (byte) 6);
-        if (i == 1) {
-            i2 = cmb.Vk;
-        } else {
-            i2 = cmb.Ck;
+    public tt8(Context context) {
+        Paint paint = new Paint(1);
+        this.c = paint;
+        this.d = new RectF();
+        this.e = 0;
+        this.a = b00.d(context, 2131232512);
+        this.b = b00.d(context, 2131232511);
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(gl.L(1.66f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        this.f = SystemClock.elapsedRealtime();
+    }
+
+    public final void a(Drawable drawable) {
+        Rect bounds = getBounds();
+        drawable.setBounds(oo1.A(2, bounds.centerX(), drawable), oo1.y(2, bounds.centerY(), drawable), oo1.w(2, bounds.centerX(), drawable), oo1.i(2, bounds.centerY(), drawable));
+    }
+
+    public final void b(boolean z, boolean z2, boolean z3) {
+        float f;
+        this.i = z;
+        this.h = z2;
+        this.f = SystemClock.elapsedRealtime();
+        if (!z3) {
+            if (this.h) {
+                f = 1.0f;
+            } else {
+                f = 0.0f;
+            }
+            this.g = f;
         }
-        this.b0 = i2;
+        invalidateSelf();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean e = e86.e(131072);
-        pp8 pp8Var = this.c0;
-        if (e) {
-            yxa yxaVar = this.a0;
-            yxaVar.d();
-            yxaVar.a(canvas, cmb.w0(null, this.b0, false));
-            fi2.d().a(15, pp8Var);
-        } else {
-            fi2.d().g(pp8Var);
-        }
-        super.dispatchDraw(canvas);
+    public final void draw(android.graphics.Canvas r13) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.tt8.draw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        fi2.d().g(this.c0);
+    public final int getIntrinsicHeight() {
+        return gl.L(24.0f);
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        s09 s09Var = this.e;
-        float width = (s09Var.getWidth() / 2.0f) + s09Var.getX();
-        float y = s09Var.getY();
-        float height = ((s09Var.getHeight() / 2.0f) + (y + s09Var.getPaddingTop())) - gm.L(3.0f);
-        RectF rectF = gm.P;
-        rectF.set(width - gm.L(16.0f), height - gm.L(16.0f), width + gm.L(16.0f), height + gm.L(16.0f));
-        this.a0.g(rectF);
+    public final int getIntrinsicWidth() {
+        return gl.L(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.a.setColorFilter(colorFilter);
+        this.b.setColorFilter(colorFilter);
+        this.c.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void setAlpha(int i) {
     }
 }

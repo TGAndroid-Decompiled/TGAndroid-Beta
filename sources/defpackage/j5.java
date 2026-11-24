@@ -24,19 +24,19 @@ public final class j5 {
         return j5Var2;
     }
 
-    public final oc7 b() {
-        return oc7.r1(this.a);
+    public final na7 b() {
+        return na7.q1(this.a);
     }
 
-    public final nm7 c() {
-        return nm7.f(this.a);
+    public final kk7 c() {
+        return kk7.f(this.a);
     }
 
     public final SharedPreferences d() {
-        return oc7.r1(this.a).W3;
+        return na7.q1(this.a).W3;
     }
 
-    public final z8c e() {
-        return z8c.h(this.a);
+    public final y6c e() {
+        return y6c.h(this.a);
     }
 }

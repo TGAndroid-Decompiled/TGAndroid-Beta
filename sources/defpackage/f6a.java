@@ -1,25 +1,18 @@
 package defpackage;
+public final class f6a extends gw2 {
+    public Object a;
+    public final g6a b;
+    public int c;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-public final class f6a extends LinearLayout {
-    public final int a;
-    public final int b;
-
-    public f6a(Context context, int i, int i2) {
-        super(context);
-        this.a = i;
-        this.b = i2;
+    public f6a(g6a g6aVar, gw2 gw2Var) {
+        super(gw2Var);
+        this.b = g6aVar;
     }
 
     @Override
-    public final int getSuggestedMinimumWidth() {
-        return gm.L(260.0f);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), this.a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i2), this.b), View.MeasureSpec.getMode(i2)));
+    public final Object invokeSuspend(Object obj) {
+        this.a = obj;
+        this.c |= Integer.MIN_VALUE;
+        return this.b.a(this);
     }
 }

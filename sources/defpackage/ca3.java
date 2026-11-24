@@ -1,20 +1,21 @@
 package defpackage;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-public final class ca3 extends tca {
-    public final da3 U2;
+import android.os.Handler;
+public final class ca3 implements xq3 {
+    public final vq3 a;
+    public sq3 b;
+    public boolean c;
+    public final da3 d;
 
-    public ca3(da3 da3Var, Activity activity, String str) {
-        super(activity, null, str, false, null, false, null);
-        this.U2 = da3Var;
+    public ca3(da3 da3Var, vq3 vq3Var) {
+        this.d = da3Var;
+        this.a = vq3Var;
     }
 
     @Override
-    public final void L0(vh6 vh6Var, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-        if (!z) {
-            return;
-        }
-        gm.d3(new mv2(this, vh6Var, i), 250L);
+    public final void release() {
+        Handler handler = this.d.K;
+        handler.getClass();
+        g8c.X(handler, new mk2(this, (byte) 20));
     }
 }

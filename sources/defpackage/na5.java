@@ -1,28 +1,45 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-public final class na5 extends AnimatorListenerAdapter {
-    public final ma5 a;
-    public final yd b;
-    public final WindowManager c;
-    public final FrameLayout d;
-    public final z81 e;
-    public final oa5 f;
+import android.content.Context;
+import android.view.View;
+public final class na5 extends zya {
+    public final byte L;
 
-    public na5(oa5 oa5Var, ma5 ma5Var, yd ydVar, WindowManager windowManager, FrameLayout frameLayout, z81 z81Var) {
-        this.f = oa5Var;
-        this.a = ma5Var;
-        this.b = ydVar;
-        this.c = windowManager;
-        this.d = frameLayout;
-        this.e = z81Var;
+    public na5(Context context, View view, int i, wjb wjbVar, byte b) {
+        super(context, view, i, wjbVar);
+        this.L = b;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        nm7.f(this.f.h).d(new v15(this.a, this.b, this.c, this.d, this.e, (byte) 6));
+    public final void onAttachedToWindow() {
+        switch (this.L) {
+            case 0:
+                super.onAttachedToWindow();
+                this.b.getImageReceiver().w0(false);
+                return;
+            case 1:
+                super.onAttachedToWindow();
+                this.b.getImageReceiver().w0(false);
+                return;
+            default:
+                super.onAttachedToWindow();
+                return;
+        }
+    }
+
+    @Override
+    public final void setVisibility(int i) {
+        switch (this.L) {
+            case 2:
+                super.setVisibility(i);
+                if (i != 0) {
+                    e(false, false);
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i);
+                return;
+        }
     }
 }

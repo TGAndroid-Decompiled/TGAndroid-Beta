@@ -1,34 +1,30 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class fb1 implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final lb1 b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.ImageView;
+public final class fb1 extends ImageView {
+    public final float a;
+    public final n41 b;
 
-    public fb1(lb1 lb1Var, byte b) {
-        this.a = b;
-        this.b = lb1Var;
+    public fb1(Context context) {
+        super(context);
+        this.b = new n41(this);
+        this.a = 0.2f;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        lb1 lb1Var = this.b;
-        switch (b) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lb1Var.Z = floatValue;
-                lb1Var.b.setAlpha(1.0f - floatValue);
-                if (lb1Var.X == 3) {
-                    lb1Var.c.setAlpha(1.0f - lb1Var.Z);
-                }
-                lb1Var.s.setAlpha(1.0f - lb1Var.Z);
-                lb1Var.x = (lb1Var.Z * 0.25f) + 0.5f;
-                lb1Var.fragmentView.invalidate();
-                return;
-            default:
-                lb1Var.s.invalidate();
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        canvas.save();
+        float a = this.b.a(this.a);
+        canvas.scale(a, a, getWidth() / 2.0f, getHeight() / 2.0f);
+        super.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public void setPressed(boolean z) {
+        super.setPressed(z);
+        this.b.c(z);
     }
 }

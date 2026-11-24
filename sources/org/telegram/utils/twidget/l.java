@@ -1,5 +1,5 @@
 package org.telegram.utils.twidget;
-public final class l implements lxc, yxc {
+public final class l implements kvc, xvc {
     public final byte a;
     public final byte[] b;
     public final Object c;
@@ -11,13 +11,13 @@ public final class l implements lxc, yxc {
     }
 
     @Override
-    public final void mo19run() {
+    public final void mo21run() {
         byte b = this.a;
         byte[] bArr = this.b;
         Object obj = this.c;
         switch (b) {
             case 0:
-                ((mxc) obj).a(bArr);
+                ((lvc) obj).a(bArr);
                 return;
             default:
                 ((WidgetEngineBackend) obj).lambda$send$11(bArr);

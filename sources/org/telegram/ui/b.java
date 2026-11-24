@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class b extends ro {
+public final class b extends qn {
     @Override
     public final void c(Object obj, float f) {
         ((ArticleViewer$WindowView) obj).setInnerTranslationX(f);

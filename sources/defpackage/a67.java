@@ -1,43 +1,30 @@
 package defpackage;
 
-import android.content.Context;
-public final class a67 extends xz1 {
-    public final j67 A0;
-    public final xz1 y0;
-    public final boolean z0;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class a67 implements Runnable {
+    public final byte a;
+    public final na7 b;
+    public final int c;
+    public final ArrayList d;
+    public final boolean e;
+    public final TLRPC.TL_messages_peerDialogs f;
+    public final vf6 h;
+    public final TLRPC.TL_messages_dialogs n;
 
-    public a67(j67 j67Var, Context context, int i, ylb ylbVar, xz1 xz1Var, boolean z) {
-        super(i, ylbVar, context, false);
-        this.A0 = j67Var;
-        this.y0 = xz1Var;
-        this.z0 = z;
+    public a67(na7 na7Var, int i, ArrayList arrayList, boolean z, TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs, vf6 vf6Var, TLRPC.TL_messages_dialogs tL_messages_dialogs, byte b) {
+        this.a = b;
+        this.b = na7Var;
+        this.c = i;
+        this.d = arrayList;
+        this.e = z;
+        this.f = tL_messages_peerDialogs;
+        this.h = vf6Var;
+        this.n = tL_messages_dialogs;
     }
 
     @Override
-    public final boolean b() {
-        return this.y0.b();
-    }
-
-    @Override
-    public final boolean c() {
-        return this.y0.c();
-    }
-
-    @Override
-    public final boolean d() {
-        if (this.z0 && this.A0.u0 && this.w <= 0) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int getFillColor() {
-        return this.y0.getFillColor();
-    }
-
-    @Override
-    public final boolean j() {
-        return this.y0.j();
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.a67.run():void");
     }
 }

@@ -1,45 +1,67 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class tkb implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final ukb b;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import java.lang.ref.WeakReference;
+public final class tkb {
+    public int a;
+    public int b = -1;
+    public byte c;
+    public float d;
+    public WeakReference e;
+    public wjb f;
+    public int g;
+    public PorterDuff.Mode h;
+    public PorterDuffColorFilter i;
+    public WeakReference j;
+    public boolean k;
+    public byte l;
+    public boolean m;
+    public wkb n;
+    public xkb o;
 
-    public tkb(ukb ukbVar, byte b) {
-        this.a = b;
-        this.b = ukbVar;
+    public final boolean a() {
+        WeakReference weakReference = this.e;
+        if (weakReference != null && weakReference.get() == null) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        ukb ukbVar = this.b;
-        switch (b) {
-            case 0:
-                ukbVar.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ukbVar.invalidate();
-                return;
-            case 1:
-                ukbVar.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ukbVar.invalidate();
-                return;
-            case 2:
-                ukbVar.f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ukbVar.invalidate();
-                return;
-            case 3:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ukbVar.s = floatValue;
-                ukbVar.x = (int) ((ukbVar.h * floatValue) + 0.0f);
-                ukbVar.invalidate();
-                return;
-            default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ukbVar.w = floatValue2;
-                int i = ukbVar.r;
-                ukbVar.y = i + ((int) Math.ceil((ukbVar.n - i) * floatValue2));
-                ukbVar.invalidate();
-                return;
+    public final int b() {
+        int i = this.a;
+        int i2 = this.b;
+        byte b = this.c;
+        float f = this.d;
+        wjb wjbVar = this.f;
+        if (wjbVar == null) {
+            WeakReference weakReference = this.e;
+            if (weakReference != null) {
+                wjbVar = (wjb) weakReference.get();
+            } else {
+                wjbVar = null;
+            }
         }
+        return zkb.P(i, i2, b, f, wjbVar);
+    }
+
+    public final void c(int i, int i2, int i3, float f, wjb wjbVar) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+        this.d = f;
+        if (wjbVar == null) {
+            this.e = null;
+            this.f = null;
+            return;
+        }
+        Class<?> cls = wjbVar.getClass();
+        if (!cls.isSynthetic() && !cls.getName().contains("$$Lambda") && !cls.getName().contains("$$ExternalSynthetic")) {
+            this.e = new WeakReference(wjbVar);
+            this.f = null;
+            return;
+        }
+        this.e = null;
+        this.f = wjbVar;
     }
 }

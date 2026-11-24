@@ -1,32 +1,13 @@
 package defpackage;
-public final class xh2 implements Runnable {
-    public final byte a;
-    public final yh2 b;
 
-    public xh2(yh2 yh2Var, byte b) {
-        this.a = b;
-        this.b = yh2Var;
-    }
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class xh2 extends b4 {
+    public static final Parcelable.Creator<xh2> CREATOR = new x21((byte) 7);
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        yh2 yh2Var = this.b;
-        switch (b) {
-            case 0:
-                va vaVar = yh2Var.a;
-                if (vaVar != null) {
-                    vaVar.g3.O(true);
-                    return;
-                }
-                return;
-            default:
-                va vaVar2 = yh2Var.a;
-                if (vaVar2 != null) {
-                    vaVar2.g3.O(true);
-                    return;
-                }
-                return;
-        }
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.getClass();
+        jte.s(parcel, jte.r(parcel, 20293));
     }
 }

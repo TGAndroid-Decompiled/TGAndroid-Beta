@@ -1,44 +1,63 @@
 package defpackage;
 
 import android.content.Context;
-import android.os.Build;
-import android.util.Log;
-import android.widget.PopupWindow;
-import java.lang.reflect.Method;
-public final class q27 extends o76 implements b27 {
-    public static final Method U;
-    public nl9 T;
+import android.view.MotionEvent;
+import android.view.View;
+public final class q27 extends wec {
+    public final l37 W;
 
-    static {
-        try {
-            if (Build.VERSION.SDK_INT <= 28) {
-                U = PopupWindow.class.getDeclaredMethod("setTouchModal", Boolean.TYPE);
+    public q27(l37 l37Var, Context context, h37 h37Var) {
+        super(context, h37Var);
+        this.W = l37Var;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z;
+        int i = 0;
+        while (true) {
+            View[] viewArr = this.W.f.e;
+            if (i < viewArr.length) {
+                View view = viewArr[i];
+                if (view != null) {
+                    f37 f37Var = (f37) view;
+                    if (f37Var.a == 0) {
+                        z = f37Var.e.i;
+                        break;
+                    }
+                }
+                i++;
+            } else {
+                z = false;
+                break;
             }
-        } catch (NoSuchMethodException unused) {
-            Log.i("MenuPopupWindow", "Could not find method setTouchModal() on PopupWindow. Oh well.");
+        }
+        if (z) {
+            return false;
+        }
+        return B(motionEvent);
+    }
+
+    @Override
+    public final void u() {
+        View view = this.e[0];
+        if (view instanceof f37) {
+            ((f37) view).e.U();
         }
     }
 
     @Override
-    public final void B(y17 y17Var, c27 c27Var) {
-        nl9 nl9Var = this.T;
-        if (nl9Var != null) {
-            nl9Var.B(y17Var, c27Var);
+    public final void w(boolean z) {
+        l37 l37Var = this.W;
+        l37Var.e.setSelectedTab(l37Var.f.getPositionAnimated());
+        View[] viewArr = this.e;
+        View view = viewArr[0];
+        if (view instanceof f37) {
+            ((f37) view).e.F();
         }
-    }
-
-    @Override
-    public final void g0(y17 y17Var, c27 c27Var) {
-        nl9 nl9Var = this.T;
-        if (nl9Var != null) {
-            nl9Var.g0(y17Var, c27Var);
+        View view2 = viewArr[1];
+        if (view2 instanceof f37) {
+            ((f37) view2).e.F();
         }
-    }
-
-    @Override
-    public final os3 o(Context context, boolean z) {
-        p27 p27Var = new p27(context, z);
-        p27Var.setHoverListener(this);
-        return p27Var;
     }
 }

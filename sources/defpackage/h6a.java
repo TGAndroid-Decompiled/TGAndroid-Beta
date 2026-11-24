@@ -1,38 +1,41 @@
 package defpackage;
 
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-public final class h6a extends k69 {
-    public final hy1 a;
+import java.util.Locale;
+import java.util.UUID;
+public final class h6a {
+    public final snb a;
+    public final v8c b;
 
-    public h6a(hy1 hy1Var) {
-        this.a = hy1Var;
+    public h6a(snb snbVar, v8c v8cVar) {
+        snbVar.getClass();
+        v8cVar.getClass();
+        this.a = snbVar;
+        this.b = v8cVar;
     }
 
-    @Override
-    public final void b(RecyclerView recyclerView, int i, int i2) {
-        boolean z;
-        float f;
-        hy1 hy1Var = this.a;
-        View view = hy1Var.u;
-        if (hy1Var.w.H0() != 0) {
-            z = true;
+    public final a6a a(a6a a6aVar) {
+        String str;
+        int i;
+        String str2;
+        this.b.getClass();
+        UUID randomUUID = UUID.randomUUID();
+        randomUUID.getClass();
+        String uuid = randomUUID.toString();
+        uuid.getClass();
+        String lowerCase = n9b.c(uuid, "-", "").toLowerCase(Locale.ROOT);
+        lowerCase.getClass();
+        if (a6aVar != null && (str2 = a6aVar.b) != null) {
+            str = str2;
         } else {
-            z = false;
+            str = lowerCase;
         }
-        Boolean bool = hy1Var.x;
-        if (bool != null && z == bool.booleanValue()) {
-            return;
-        }
-        view.animate().cancel();
-        ViewPropertyAnimator animate = view.animate();
-        if (z) {
-            f = 1.0f;
+        if (a6aVar != null) {
+            i = a6aVar.c + 1;
         } else {
-            f = 0.0f;
+            i = 0;
         }
-        animate.alpha(f).setDuration(150L).start();
-        hy1Var.x = Boolean.valueOf(z);
+        int i2 = i;
+        this.a.getClass();
+        return new a6a(snb.a().b, lowerCase, str, i2);
     }
 }

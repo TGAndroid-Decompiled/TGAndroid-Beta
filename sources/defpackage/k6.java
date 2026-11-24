@@ -1,7 +1,7 @@
 package defpackage;
 
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class k6 extends i34 {
+public final class k6 extends x14 {
     public final ActionBarLayout a;
 
     public k6(ActionBarLayout actionBarLayout) {

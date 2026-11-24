@@ -1,11 +1,17 @@
 package defpackage;
+public final class rc0 implements nc0 {
+    public final int a;
+    public final int b;
+    public final int c;
 
-import android.content.Context;
-public final class rc0 extends bd0 {
-    public final yh4 H;
+    public rc0(int i, int i2, int i3) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+    }
 
-    public rc0(yh4 yh4Var, Context context, ylb ylbVar, uc0 uc0Var) {
-        super(context, ylbVar, uc0Var);
-        this.H = yh4Var;
+    @Override
+    public final int getType() {
+        return 1751742049;
     }
 }

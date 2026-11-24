@@ -1,6 +1,21 @@
 package defpackage;
-public final class o1b extends q31 {
-    public o1b(android.content.Context r15, org.telegram.tgnet.TLObject r16, int r17, int r18, org.telegram.tgnet.TLRPC.Document r19, defpackage.ylb r20) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.o1b.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, ylb):void");
+
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class o1b implements RequestDelegate {
+    public final long a;
+    public final vx5 b;
+    public final g2b c;
+
+    public o1b(g2b g2bVar, long j, vx5 vx5Var) {
+        this.c = g2bVar;
+        this.a = j;
+        this.b = vx5Var;
+    }
+
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        gl.c3(new mx8(this, tLObject, this.a, this.b, (byte) 11));
     }
 }

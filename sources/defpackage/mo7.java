@@ -1,52 +1,78 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.ui.NotificationsCustomSettingsActivity;
-public final class mo7 implements Runnable {
-    public final byte a;
-    public final NotificationsCustomSettingsActivity b;
-    public final zo7 c;
-    public final View d;
+import java.security.cert.CertificateParsingException;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+import java.util.regex.Pattern;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLSession;
+public final class mo7 implements HostnameVerifier {
+    public static final mo7 a = new Object();
+    public static final Pattern b = Pattern.compile("([0-9a-fA-F]*:[0-9a-fA-F:.]*)|([\\d.]+)");
 
-    public mo7(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, zo7 zo7Var, View view, int i, byte b) {
-        this.a = b;
-        this.b = notificationsCustomSettingsActivity;
-        this.c = zo7Var;
-        this.d = view;
-    }
-
-    @Override
-    public final void run() {
-        byte b = this.a;
-        View view = this.d;
-        zo7 zo7Var = this.c;
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.b;
-        switch (b) {
-            case 0:
-                notificationsCustomSettingsActivity.p0(zo7Var, view, false);
-                return;
-            case 1:
-                notificationsCustomSettingsActivity.f0(zo7Var, view);
-                return;
-            case 2:
-                notificationsCustomSettingsActivity.l0(zo7Var, view);
-                return;
-            case 3:
-                notificationsCustomSettingsActivity.m0(zo7Var, view);
-                return;
-            case 4:
-                notificationsCustomSettingsActivity.f0(zo7Var, view);
-                return;
-            default:
-                notificationsCustomSettingsActivity.p0(zo7Var, view, true);
-                return;
+    public static List a(X509Certificate x509Certificate, int i) {
+        Integer num;
+        String str;
+        ArrayList arrayList = new ArrayList();
+        try {
+            Collection<List<?>> subjectAlternativeNames = x509Certificate.getSubjectAlternativeNames();
+            if (subjectAlternativeNames == null) {
+                return Collections.EMPTY_LIST;
+            }
+            for (List<?> list : subjectAlternativeNames) {
+                if (list != null && list.size() >= 2 && (num = (Integer) list.get(0)) != null && num.intValue() == i && (str = (String) list.get(1)) != null) {
+                    arrayList.add(str);
+                }
+            }
+            return arrayList;
+        } catch (CertificateParsingException unused) {
+            return Collections.EMPTY_LIST;
         }
     }
 
-    public mo7(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, zo7 zo7Var, View view, boolean z, byte b) {
-        this.a = b;
-        this.b = notificationsCustomSettingsActivity;
-        this.c = zo7Var;
-        this.d = view;
+    public static boolean b(java.lang.String r18, java.security.cert.X509Certificate r19) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mo7.b(java.lang.String, java.security.cert.X509Certificate):boolean");
+    }
+
+    public static boolean c(String str, String str2) {
+        if (str != null && str.length() != 0 && !str.startsWith(".") && !str.endsWith("..") && str2 != null && str2.length() != 0 && !str2.startsWith(".") && !str2.endsWith("..")) {
+            if (!str.endsWith(".")) {
+                str = str.concat(".");
+            }
+            if (!str2.endsWith(".")) {
+                str2 = str2.concat(".");
+            }
+            String lowerCase = str2.toLowerCase(Locale.US);
+            if (!lowerCase.contains("*")) {
+                return str.equals(lowerCase);
+            }
+            if (lowerCase.startsWith("*.") && lowerCase.indexOf(42, 1) == -1 && str.length() >= lowerCase.length() && !"*.".equals(lowerCase)) {
+                String substring = lowerCase.substring(1);
+                if (str.endsWith(substring)) {
+                    int length = str.length() - substring.length();
+                    if (length <= 0 || str.lastIndexOf(46, length - 1) == -1) {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean verify(String str, SSLSession sSLSession) {
+        try {
+            return b(str, (X509Certificate) sSLSession.getPeerCertificates()[0]);
+        } catch (SSLException unused) {
+            return false;
+        }
     }
 }

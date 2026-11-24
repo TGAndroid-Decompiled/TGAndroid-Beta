@@ -1,139 +1,36 @@
 package defpackage;
+public final class h2f extends vef {
+    private static final zef zzb = new Object();
+    private static final h2f zzd;
+    private int zze;
+    private String zzf = "";
+    private String zzg = "";
+    private yef zzh = wef.d;
 
-import sun.misc.Unsafe;
-public final class h2f extends c8c {
-    public final byte b;
-
-    public h2f(Unsafe unsafe, byte b) {
-        super(unsafe);
-        this.b = b;
+    static {
+        h2f h2fVar = new h2f();
+        zzd = h2fVar;
+        vef.e(h2f.class, h2fVar);
     }
 
     @Override
-    public final byte j(Object obj, long j) {
-        switch (this.b) {
-            case 0:
-                if (k2f.g) {
-                    return k2f.n(obj, j);
-                }
-                return k2f.o(obj, j);
-            default:
-                if (k2f.g) {
-                    return k2f.n(obj, j);
-                }
-                return k2f.o(obj, j);
-        }
-    }
-
-    @Override
-    public final void l(long j, Object obj, byte b) {
-        switch (this.b) {
-            case 0:
-                if (k2f.g) {
-                    k2f.h(j, obj, b);
-                    return;
-                } else {
-                    k2f.j(obj, j, b);
-                    return;
-                }
-            default:
-                if (k2f.g) {
-                    k2f.h(j, obj, b);
-                    return;
-                } else {
-                    k2f.j(obj, j, b);
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public final void m(Object obj, long j, double d) {
-        switch (this.b) {
-            case 0:
-                this.a.putLong(obj, j, Double.doubleToLongBits(d));
-                return;
-            default:
-                this.a.putLong(obj, j, Double.doubleToLongBits(d));
-                return;
-        }
-    }
-
-    @Override
-    public final void n(Object obj, long j, float f) {
-        switch (this.b) {
-            case 0:
-                this.a.putInt(obj, j, Float.floatToIntBits(f));
-                return;
-            default:
-                this.a.putInt(obj, j, Float.floatToIntBits(f));
-                return;
-        }
-    }
-
-    @Override
-    public final void o(Object obj, long j, boolean z) {
-        switch (this.b) {
-            case 0:
-                if (k2f.g) {
-                    k2f.h(j, obj, z ? (byte) 1 : (byte) 0);
-                    return;
-                } else {
-                    k2f.j(obj, j, z ? (byte) 1 : (byte) 0);
-                    return;
-                }
-            default:
-                if (k2f.g) {
-                    k2f.h(j, obj, z ? (byte) 1 : (byte) 0);
-                    return;
-                } else {
-                    k2f.j(obj, j, z ? (byte) 1 : (byte) 0);
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public final boolean q(Object obj, long j) {
-        switch (this.b) {
-            case 0:
-                if (k2f.g) {
-                    if (k2f.n(obj, j) == 0) {
-                        return false;
+    public final Object h(int i, vef vefVar) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 != 5) {
+                            return null;
+                        }
+                        return zzd;
                     }
-                } else if (k2f.o(obj, j) == 0) {
-                    return false;
+                    return new uef(zzd);
                 }
-                return true;
-            default:
-                if (k2f.g) {
-                    if (k2f.n(obj, j) == 0) {
-                        return false;
-                    }
-                } else if (k2f.o(obj, j) == 0) {
-                    return false;
-                }
-                return true;
+                return new h2f();
+            }
+            return new sgf(zzd, "\u0001\u0003\u0000\u0001\u0001\u0003\u0003\u0000\u0001\u0000\u0001ဈ\u0000\u0002ဈ\u0001\u0003ࠞ", new Object[]{"zze", "zzf", "zzg", "zzh", ize.E});
         }
-    }
-
-    @Override
-    public final float r(Object obj, long j) {
-        switch (this.b) {
-            case 0:
-                return Float.intBitsToFloat(this.a.getInt(obj, j));
-            default:
-                return Float.intBitsToFloat(this.a.getInt(obj, j));
-        }
-    }
-
-    @Override
-    public final double t(Object obj, long j) {
-        switch (this.b) {
-            case 0:
-                return Double.longBitsToDouble(this.a.getLong(obj, j));
-            default:
-                return Double.longBitsToDouble(this.a.getLong(obj, j));
-        }
+        return (byte) 1;
     }
 }

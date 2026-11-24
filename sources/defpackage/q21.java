@@ -1,18 +1,17 @@
 package defpackage;
-public interface q21 {
-    boolean a();
+public final class q21 implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    void b(float f);
+    public q21(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
+    }
 
-    void c(u31 u31Var);
-
-    boolean d();
-
-    int e(int i);
-
-    boolean f(int i);
-
-    void g(u31 u31Var);
-
-    int h(int i);
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.q21.run():void");
+    }
 }

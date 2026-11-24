@@ -31,18 +31,18 @@ public final class t5 extends r6 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ela elaVar = this.h.L0;
-        if (elaVar != null) {
-            elaVar.P.add(this);
+        cja cjaVar = this.h.L0;
+        if (cjaVar != null) {
+            cjaVar.P.add(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ela elaVar = this.h.L0;
-        if (elaVar != null) {
-            elaVar.P.remove(this);
+        cja cjaVar = this.h.L0;
+        if (cjaVar != null) {
+            cjaVar.P.remove(this);
         }
     }
 

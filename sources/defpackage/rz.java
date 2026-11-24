@@ -1,110 +1,91 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.tgnet.TLRPC;
-public final class rz extends LinearLayout implements jm7 {
-    public final bf0 a;
-    public final io b;
-    public final io c;
-    public final io d;
-    public final pn2[] e;
-    public boolean f;
+import android.util.SparseArray;
+import j$.util.Objects;
+import java.util.List;
+public final class rz {
+    public static final w59 e;
+    public static final rz f;
+    public static final w59 g;
+    public static final qm5 h;
+    public final SparseArray a = new SparseArray();
+    public final int b;
+    public final mm5 c;
+    public final mm5 d;
 
-    public rz(Context context, ylb ylbVar) {
-        super(context);
-        this.e = new pn2[1];
-        setOrientation(0);
-        io ioVar = new io(context, false, false, false);
-        this.c = ioVar;
-        int i = cmb.F6;
-        anb.U(ioVar, i, ylbVar);
-        ioVar.setTextSize(gm.L(15.0f));
-        ioVar.setPadding(gm.L(12.0f), 0, gm.L(12.0f), 0);
-        ioVar.setEllipsizeByGradient(true);
-        io ioVar2 = new io(context, false, false, false);
-        this.d = ioVar2;
-        anb.U(ioVar2, cmb.x6, ylbVar);
-        ioVar2.setTextSize(gm.L(15.0f));
-        bf0 bf0Var = new bf0(context);
-        this.a = bf0Var;
-        io ioVar3 = new io(context, false, false, false);
-        this.b = ioVar3;
-        ioVar3.setTextSize(gm.L(15.0f));
-        ioVar3.setPadding(gm.L(20.0f), 0, 0, 0);
-        anb.U(ioVar3, i, ylbVar);
-        ioVar3.setTypeface(gm.o());
-        ioVar3.setGravity(17);
-        addView(ioVar3, qoe.p(66, -2, 0.0f, 16));
-        addView(bf0Var, qoe.p(32, 32, 0.0f, 16));
-        addView(ioVar, qoe.p(0, -2, 1.0f, 16));
-        addView(ioVar2, qoe.q(-2, -2, 0.0f, 16, 0, 0, 20, 0));
+    static {
+        w59 u = mm5.u(12);
+        e = u;
+        f = new rz(mm5.u(qz.d), u, w59.e);
+        Object[] objArr = {2, 5, 6};
+        xpe.a(3, objArr);
+        g = mm5.o(3, objArr);
+        kp kpVar = new kp(4);
+        kpVar.w(5, 6);
+        kpVar.w(17, 6);
+        kpVar.w(7, 6);
+        kpVar.w(30, 10);
+        kpVar.w(18, 6);
+        kpVar.w(6, 8);
+        kpVar.w(8, 8);
+        kpVar.w(14, 8);
+        h = kpVar.c(true);
     }
 
-    public final void a(int i, boolean z, boolean z2) {
-        io ioVar = this.b;
-        if (z && i <= 3) {
-            if (i == 1) {
-                ioVar.c(gw3.o("🥇", ioVar.getPaint().getFontMetricsInt(), 20, null), z2, true);
-                return;
-            } else if (i == 2) {
-                ioVar.c(gw3.o("🥈", ioVar.getPaint().getFontMetricsInt(), 20, null), z2, true);
-                return;
-            } else if (i == 3) {
-                ioVar.c(gw3.o("🥉", ioVar.getPaint().getFontMetricsInt(), 20, null), z2, true);
-                return;
-            } else {
-                return;
+    public rz(w59 w59Var, mm5 mm5Var, List list) {
+        for (int i = 0; i < w59Var.d; i++) {
+            qz qzVar = (qz) w59Var.get(i);
+            this.a.put(qzVar.a, qzVar);
+        }
+        int i2 = 0;
+        for (int i3 = 0; i3 < this.a.size(); i3++) {
+            i2 = Math.max(i2, ((qz) this.a.valueAt(i3)).b);
+        }
+        this.b = i2;
+        this.c = mm5.q(mm5Var);
+        this.d = mm5.q(list);
+    }
+
+    public static w59 a(int[] iArr, int i) {
+        jm5 p = mm5.p();
+        if (iArr == null) {
+            iArr = new int[0];
+        }
+        for (int i2 : iArr) {
+            p.c(new qz(i2, i));
+        }
+        return p.f();
+    }
+
+    public static defpackage.rz b(android.content.Context r8, android.content.Intent r9, defpackage.nz r10, android.media.AudioDeviceInfo r11, java.util.List r12) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rz.b(android.content.Context, android.content.Intent, nz, android.media.AudioDeviceInfo, java.util.List):rz");
+    }
+
+    public final android.util.Pair c(defpackage.nz r14, defpackage.fm4 r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rz.c(nz, fm4):android.util.Pair");
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof rz) {
+                rz rzVar = (rz) obj;
+                if (g8c.m(this.a, rzVar.a) && this.b == rzVar.b && Objects.equals(this.c, rzVar.c) && Objects.equals(this.d, rzVar.d)) {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
-        if (i >= 10000) {
-            ioVar.setTextSize(gm.L(12.0f));
-        } else if (i >= 1000) {
-            ioVar.setTextSize(gm.L(14.0f));
-        } else {
-            ioVar.setTextSize(gm.L(15.0f));
-        }
-        ioVar.c(Integer.toString(i), z2, true);
+        return true;
     }
 
-    public final void b(TLRPC.User user) {
-        pc0 pc0Var = new pc0((ylb) null);
-        pc0Var.q(user);
-        bf0 bf0Var = this.a;
-        bf0Var.f(user, pc0Var);
-        bf0Var.setRoundRadius(gm.L(16.0f));
-        this.c.setText(m9c.r(user));
+    public final int hashCode() {
+        int n = g8c.n(this.a);
+        int hashCode = Objects.hashCode(this.c);
+        return Objects.hashCode(this.d) + ((hashCode + ((n + (this.b * 31)) * 31)) * 31);
     }
 
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        this.b.invalidate();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (this.f) {
-            canvas.drawLine(gm.L(112.0f), getMeasuredHeight() - 1, getMeasuredWidth() - gm.L(16.0f), getMeasuredHeight(), cmb.j0);
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        nm7.e().b(this, nm7.m4);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        nm7.e().n(this, nm7.m4);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(52.0f), 1073741824));
+    public final String toString() {
+        return "AudioCapabilities[maxChannelCount=" + this.b + ", audioProfiles=" + this.a + ", speakerLayoutChannelMasks=" + this.c + ", spatializerChannelMasks=" + this.d + "]";
     }
 }

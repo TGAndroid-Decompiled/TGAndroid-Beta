@@ -1,32 +1,36 @@
 package defpackage;
 
-import android.os.IBinder;
-import android.os.IInterface;
-public final class cpe extends zz4 {
-    @Override
-    public final IInterface b(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
+import j$.util.Objects;
+import java.util.ArrayList;
+public abstract class cpe {
+    public static String a(ArrayList arrayList) {
+        int size = arrayList.size();
+        boolean z = false;
+        String str = null;
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            String str2 = ((xxb) obj).a.g.t;
+            if (ud7.m(str2)) {
+                return "video/mp4";
+            }
+            if (ud7.i(str2)) {
+                z = true;
+            } else if (ud7.k(str2)) {
+                if (Objects.equals(str2, "image/heic")) {
+                    str = "image/heif";
+                } else if (Objects.equals(str2, "image/avif")) {
+                    str = "image/avif";
+                }
+            }
         }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.clearcut.internal.IClearcutLoggerService");
-        if (queryLocalInterface instanceof l7f) {
-            return (l7f) queryLocalInterface;
+        if (z) {
+            return "audio/mp4";
         }
-        return new l7f(iBinder);
-    }
-
-    @Override
-    public final int i() {
-        return 11925000;
-    }
-
-    @Override
-    public final String l() {
-        return "com.google.android.gms.clearcut.internal.IClearcutLoggerService";
-    }
-
-    @Override
-    public final String n() {
-        return "com.google.android.gms.clearcut.service.START";
+        if (str != null) {
+            return str;
+        }
+        return "application/mp4";
     }
 }

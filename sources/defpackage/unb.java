@@ -1,32 +1,49 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.widget.FrameLayout;
-public final class unb extends FrameLayout {
-    public final int a;
-    public final Rect b;
-    public final rob c;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
+public final class unb extends g2 {
+    public static final z24 f;
+    public static final z24 h;
+    public List e;
 
-    public unb(rob robVar, Context context, int i, Rect rect) {
-        super(context);
-        this.c = robVar;
-        this.a = i;
-        this.b = rect;
+    static {
+        z74 z74Var = new z74(unb.class, "TimeToSampleBox.java");
+        z74Var.e(z74Var.d("getEntries", "com.coremedia.iso.boxes.TimeToSampleBox", "", "", "java.util.List"));
+        f = z74Var.e(z74Var.d("setEntries", "com.coremedia.iso.boxes.TimeToSampleBox", "java.util.List", "entries", "void"));
+        h = z74Var.e(z74Var.d("toString", "com.coremedia.iso.boxes.TimeToSampleBox", "", "", "java.lang.String"));
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        rob robVar = this.c;
-        Drawable drawable = robVar.r;
-        Rect rect = this.b;
-        if (this.a == 0) {
-            drawable.setBounds(robVar.X.getLeft() - rect.left, 0, robVar.X.getRight() + rect.right, getMeasuredHeight());
-        } else {
-            drawable.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
+    public final void _parseDetails(ByteBuffer byteBuffer) {
+        f(byteBuffer);
+        int a = mqd.a(hle.g(byteBuffer));
+        this.e = new ArrayList(a);
+        for (int i = 0; i < a; i++) {
+            this.e.add(new tnb(hle.g(byteBuffer), hle.g(byteBuffer)));
         }
-        robVar.r.draw(canvas);
+    }
+
+    @Override
+    public final void getContent(ByteBuffer byteBuffer) {
+        i(byteBuffer);
+        byteBuffer.putInt(this.e.size());
+        for (tnb tnbVar : this.e) {
+            byteBuffer.putInt((int) tnbVar.a);
+            byteBuffer.putInt((int) tnbVar.b);
+        }
+    }
+
+    @Override
+    public final long getContentSize() {
+        return (this.e.size() << 3) + 8;
+    }
+
+    public final String toString() {
+        c5a b = z74.b(h, this, this);
+        n89.a().getClass();
+        n89.b(b);
+        return "TimeToSampleBox[entryCount=" + this.e.size() + "]";
     }
 }

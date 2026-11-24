@@ -1,43 +1,36 @@
 package defpackage;
 
-import android.view.WindowInsets;
-public class ozc extends nzc {
-    public iq5 n;
+import j$.util.Objects;
+public final class ozc extends nzc {
+    public static final ozc s = new ozc(new Object[0]);
+    public final transient Object[] r;
 
-    public ozc(wzc wzcVar, WindowInsets windowInsets) {
-        super(wzcVar, windowInsets);
-        this.n = null;
+    public ozc(Object[] objArr) {
+        super((byte) 0);
+        this.r = objArr;
     }
 
     @Override
-    public wzc b() {
-        return wzc.h(null, this.c.consumeStableInsets());
+    public final Object get(int i) {
+        qye.a(i, 0);
+        Object obj = this.r[i];
+        Objects.requireNonNull(obj);
+        return obj;
     }
 
     @Override
-    public wzc c() {
-        return wzc.h(null, this.c.consumeSystemWindowInsets());
+    public final int h(Object[] objArr) {
+        System.arraycopy(this.r, 0, objArr, 0, 0);
+        return 0;
     }
 
     @Override
-    public final iq5 i() {
-        iq5 iq5Var = this.n;
-        if (iq5Var == null) {
-            WindowInsets windowInsets = this.c;
-            iq5 b = iq5.b(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
-            this.n = b;
-            return b;
-        }
-        return iq5Var;
+    public final Object[] k() {
+        return this.r;
     }
 
     @Override
-    public boolean n() {
-        return this.c.isConsumed();
-    }
-
-    @Override
-    public void s(iq5 iq5Var) {
-        this.n = iq5Var;
+    public final int size() {
+        return 0;
     }
 }

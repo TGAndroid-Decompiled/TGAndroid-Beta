@@ -60,7 +60,7 @@ public class VideoFileRenderer implements VideoSink {
             });
             return;
         }
-        u36.j("Does not support uneven width or height");
+        w26.j("Does not support uneven width or height");
         throw null;
     }
 
@@ -93,7 +93,7 @@ public class VideoFileRenderer implements VideoSink {
             Logging.d("VideoFileRenderer", "Video written to disk as " + this.outputFileName + ". The number of frames is " + this.frameCount + " and the dimensions of the frames are " + this.outputFileWidth + "x" + this.outputFileHeight + ".");
             this.fileThread.quit();
         } catch (IOException e) {
-            rjb.k("Error closing output file", e);
+            fyb.j("Error closing output file", e);
         }
     }
 
@@ -105,7 +105,7 @@ public class VideoFileRenderer implements VideoSink {
             this.videoOutFile.write(this.outputFrameBuffer.array(), this.outputFrameBuffer.arrayOffset(), this.outputFrameSize);
             this.frameCount++;
         } catch (IOException e) {
-            rjb.k("Error writing video to disk", e);
+            fyb.j("Error writing video to disk", e);
         }
     }
 
@@ -138,20 +138,20 @@ public class VideoFileRenderer implements VideoSink {
         videoFrame.release();
         VideoFrame.I420Buffer i420 = cropAndScale.toI420();
         cropAndScale.release();
-        this.fileThreadHandler.post(new gcc(this, i420, videoFrame, (byte) 1));
+        this.fileThreadHandler.post(new r1b(this, i420, videoFrame, (byte) 28));
     }
 
     @Override
     public void onFrame(VideoFrame videoFrame) {
         videoFrame.retain();
-        this.renderThreadHandler.post(new x4c(this, videoFrame, (byte) 16));
+        this.renderThreadHandler.post(new l3c(this, videoFrame, (byte) 14));
     }
 
     public void release() {
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        this.renderThreadHandler.post(new x4c(this, countDownLatch, (byte) 17));
+        this.renderThreadHandler.post(new l3c(this, countDownLatch, (byte) 15));
         ThreadUtils.awaitUninterruptibly(countDownLatch);
-        this.fileThreadHandler.post(new f8c(this, (byte) 4));
+        this.fileThreadHandler.post(new cib(this, (byte) 26));
         try {
             this.fileThread.join();
         } catch (InterruptedException e) {

@@ -1,39 +1,17 @@
 package defpackage;
 
-import android.graphics.drawable.GradientDrawable;
-public abstract class ue0 {
-    public static final int[] a;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class ue0 extends b4 {
+    public static final Parcelable.Creator<ue0> CREATOR = new rhe((byte) 15);
+    public String a;
+    public String b;
 
-    static {
-        int[] iArr = new int[GradientDrawable.Orientation.values().length];
-        a = iArr;
-        try {
-            iArr[GradientDrawable.Orientation.TOP_BOTTOM.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            a[GradientDrawable.Orientation.TR_BL.ordinal()] = 2;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            a[GradientDrawable.Orientation.RIGHT_LEFT.ordinal()] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            a[GradientDrawable.Orientation.BR_TL.ordinal()] = 4;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            a[GradientDrawable.Orientation.BOTTOM_TOP.ordinal()] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            a[GradientDrawable.Orientation.BL_TR.ordinal()] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            a[GradientDrawable.Orientation.LEFT_RIGHT.ordinal()] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.l(parcel, 2, this.a);
+        jte.l(parcel, 3, this.b);
+        jte.s(parcel, r);
     }
 }

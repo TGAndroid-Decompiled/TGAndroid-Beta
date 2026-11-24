@@ -1,53 +1,37 @@
 package defpackage;
 
-import android.view.View;
-import java.io.Serializable;
-public final class lj1 implements bja, ee, oac {
-    public final ik1 a;
+import java.util.Arrays;
+public final class lj1 extends uj5 {
+    public final String b;
+    public final boolean c;
+    public final boolean d;
+    public final String[] e;
+    public final uj5[] f;
 
-    public lj1(ik1 ik1Var) {
-        this.a = ik1Var;
+    public lj1(String str, boolean z, boolean z2, String[] strArr, uj5[] uj5VarArr) {
+        super("CTOC");
+        this.b = str;
+        this.c = z;
+        this.d = z2;
+        this.e = strArr;
+        this.f = uj5VarArr;
     }
 
-    @Override
-    public final int b() {
-        return this.a.R0;
-    }
-
-    @Override
-    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f = (Float) serializable;
-        Float f2 = (Float) serializable2;
-        ik1 ik1Var = this.a;
-        mj1 mj1Var = ik1Var.s1;
-        int i = ik1Var.o0;
-        long j = ik1Var.p0;
-        int i2 = ((c6c) obj).d;
-        if (i2 == 1) {
-            if (ik1Var.r0 < oc7.r1(i).l4.T1.f()) {
-                if (ik1Var.q0 != null) {
-                    xza xzaVar = ik1Var.m0;
-                    i46 i46Var = new i46(30, ik1Var.o0, ik1Var.n0, ik1Var.getContext(), xzaVar);
-                    i46Var.s1(j);
-                    i46Var.q1(ik1Var.q0, true);
-                    oc7.r1(i).F0().b(j, ik1Var.q0, new x0(ik1Var, i46Var, (byte) 17));
-                    return;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && lj1.class == obj.getClass()) {
+                lj1 lj1Var = (lj1) obj;
+                if (this.c == lj1Var.c && this.d == lj1Var.d && this.b.equals(lj1Var.b) && Arrays.equals(this.e, lj1Var.e) && Arrays.equals(this.f, lj1Var.f)) {
+                    return true;
                 }
-                return;
+                return false;
             }
-            ik1Var.j1 = !ik1Var.j1;
-            gm.r(mj1Var);
-            gm.d3(mj1Var, 1000L);
-            ik1Var.X0.g3.O(true);
-        } else if (i2 == 4) {
-            ik1Var.m0.presentFragment(new mh1(j));
+            return false;
         }
+        return true;
     }
 
-    @Override
-    public final void r(he heVar, int i) {
-        this.a.m0.presentFragment(new p5c(6, null));
+    public final int hashCode() {
+        return this.b.hashCode() + ((((527 + (this.c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31);
     }
 }

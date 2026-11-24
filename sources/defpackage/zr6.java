@@ -1,134 +1,220 @@
 package defpackage;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class zr6 implements RequestDelegate {
-    public final byte a = 0;
-    public final qqb b;
-    public final long c;
-    public final boolean d;
-    public final rqb e;
-    public final Runnable f;
-    public final Object g;
-    public final Cloneable h;
-    public final Serializable i;
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.cast.MediaInfo;
+import java.util.Arrays;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+public final class zr6 extends b4 {
+    public static final Parcelable.Creator<zr6> CREATOR = new igd((byte) 15);
+    public MediaInfo a;
+    public int b;
+    public boolean c;
+    public double d;
+    public double e;
+    public double f;
+    public long[] h;
+    public String n;
+    public JSONObject r;
 
-    public zr6(hs6 hs6Var, qqb qqbVar, long j, vh6 vh6Var, boolean z, rqb rqbVar, AtomicInteger atomicInteger, Runnable runnable) {
-        this.g = hs6Var;
-        this.b = qqbVar;
-        this.c = j;
-        this.h = vh6Var;
-        this.d = z;
-        this.e = rqbVar;
-        this.i = atomicInteger;
-        this.f = runnable;
+    public zr6(MediaInfo mediaInfo, int i, boolean z, double d, double d2, double d3, long[] jArr, String str) {
+        this.a = mediaInfo;
+        this.b = i;
+        this.c = z;
+        this.d = d;
+        this.e = d2;
+        this.f = d3;
+        this.h = jArr;
+        this.n = str;
+        if (str != null) {
+            try {
+                this.r = new JSONObject(this.n);
+                return;
+            } catch (JSONException unused) {
+                this.r = null;
+                this.n = null;
+                return;
+            }
+        }
+        this.r = null;
+    }
+
+    public final boolean b(JSONObject jSONObject) {
+        boolean z;
+        long[] jArr;
+        boolean z2;
+        int i;
+        boolean z3 = false;
+        if (jSONObject.has("media")) {
+            this.a = new MediaInfo(jSONObject.getJSONObject("media"));
+            z = true;
+        } else {
+            z = false;
+        }
+        if (jSONObject.has("itemId") && this.b != (i = jSONObject.getInt("itemId"))) {
+            this.b = i;
+            z = true;
+        }
+        if (jSONObject.has("autoplay") && this.c != (z2 = jSONObject.getBoolean("autoplay"))) {
+            this.c = z2;
+            z = true;
+        }
+        double optDouble = jSONObject.optDouble("startTime");
+        if (Double.isNaN(optDouble) != Double.isNaN(this.d) || (!Double.isNaN(optDouble) && Math.abs(optDouble - this.d) > 1.0E-7d)) {
+            this.d = optDouble;
+            z = true;
+        }
+        if (jSONObject.has("playbackDuration")) {
+            double d = jSONObject.getDouble("playbackDuration");
+            if (Math.abs(d - this.e) > 1.0E-7d) {
+                this.e = d;
+                z = true;
+            }
+        }
+        if (jSONObject.has("preloadTime")) {
+            double d2 = jSONObject.getDouble("preloadTime");
+            if (Math.abs(d2 - this.f) > 1.0E-7d) {
+                this.f = d2;
+                z = true;
+            }
+        }
+        if (jSONObject.has("activeTrackIds")) {
+            JSONArray jSONArray = jSONObject.getJSONArray("activeTrackIds");
+            int length = jSONArray.length();
+            jArr = new long[length];
+            for (int i2 = 0; i2 < length; i2++) {
+                jArr[i2] = jSONArray.getLong(i2);
+            }
+            long[] jArr2 = this.h;
+            if (jArr2 != null && jArr2.length == length) {
+                for (int i3 = 0; i3 < length; i3++) {
+                    if (this.h[i3] == jArr[i3]) {
+                    }
+                }
+            }
+            z3 = true;
+            break;
+        } else {
+            jArr = null;
+        }
+        if (z3) {
+            this.h = jArr;
+            z = true;
+        }
+        if (jSONObject.has("customData")) {
+            this.r = jSONObject.getJSONObject("customData");
+            return true;
+        }
+        return z;
+    }
+
+    public final JSONObject c() {
+        JSONObject jSONObject = new JSONObject();
+        try {
+            MediaInfo mediaInfo = this.a;
+            if (mediaInfo != null) {
+                jSONObject.put("media", mediaInfo.b());
+            }
+            int i = this.b;
+            if (i != 0) {
+                jSONObject.put("itemId", i);
+            }
+            jSONObject.put("autoplay", this.c);
+            if (!Double.isNaN(this.d)) {
+                jSONObject.put("startTime", this.d);
+            }
+            double d = this.e;
+            if (d != Double.POSITIVE_INFINITY) {
+                jSONObject.put("playbackDuration", d);
+            }
+            jSONObject.put("preloadTime", this.f);
+            if (this.h != null) {
+                JSONArray jSONArray = new JSONArray();
+                for (long j : this.h) {
+                    jSONArray.put(j);
+                }
+                jSONObject.put("activeTrackIds", jSONArray);
+            }
+            JSONObject jSONObject2 = this.r;
+            if (jSONObject2 != null) {
+                jSONObject.put("customData", jSONObject2);
+            }
+        } catch (JSONException unused) {
+        }
+        return jSONObject;
+    }
+
+    public final boolean equals(Object obj) {
+        boolean z;
+        boolean z2;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof zr6)) {
+            return false;
+        }
+        zr6 zr6Var = (zr6) obj;
+        JSONObject jSONObject = this.r;
+        if (jSONObject != null) {
+            z = false;
+        } else {
+            z = true;
+        }
+        JSONObject jSONObject2 = zr6Var.r;
+        if (jSONObject2 != null) {
+            z2 = false;
+        } else {
+            z2 = true;
+        }
+        if (z != z2) {
+            return false;
+        }
+        if ((jSONObject == null || jSONObject2 == null || vu5.a(jSONObject, jSONObject2)) && id1.d(this.a, zr6Var.a) && this.b == zr6Var.b && this.c == zr6Var.c && (((Double.isNaN(this.d) && Double.isNaN(zr6Var.d)) || this.d == zr6Var.d) && this.e == zr6Var.e && this.f == zr6Var.f && Arrays.equals(this.h, zr6Var.h))) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, Integer.valueOf(this.b), Boolean.valueOf(this.c), Double.valueOf(this.d), Double.valueOf(this.e), Double.valueOf(this.f), Integer.valueOf(Arrays.hashCode(this.h)), String.valueOf(this.r)});
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        char c;
-        byte b = this.a;
-        Runnable runnable = this.f;
-        Serializable serializable = this.i;
-        rqb rqbVar = this.e;
-        boolean z = this.d;
-        Cloneable cloneable = this.h;
-        qqb qqbVar = this.b;
-        Object obj = this.g;
-        switch (b) {
-            case 0:
-                hs6 hs6Var = (hs6) obj;
-                vh6 vh6Var = (vh6) cloneable;
-                AtomicInteger atomicInteger = (AtomicInteger) serializable;
-                rqb.a(qqbVar);
-                if (tL_error == null) {
-                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                    int i = 0;
-                    while (true) {
-                        int size = messages_messages.messages.size();
-                        ArrayList<TLRPC.Message> arrayList = messages_messages.messages;
-                        long j = this.c;
-                        if (i < size) {
-                            TLRPC.Message message = arrayList.get(i);
-                            if (message.dialog_id == 0) {
-                                message.dialog_id = j;
-                            }
-                            i++;
-                        } else {
-                            fn5.S(arrayList);
-                            hs6Var.n(messages_messages.messages, vh6Var, messages_messages.users, messages_messages.chats, j, false);
-                            hs6Var.getMessagesStorage().j1(messages_messages.users, messages_messages.chats, true, true);
-                            hs6Var.W1(vh6Var, messages_messages.messages, z);
-                        }
-                    }
-                } else {
-                    rqb.c(rqbVar, "messages.getMessages error: " + tL_error.code + " " + tL_error.text);
-                }
-                if (atomicInteger.decrementAndGet() == 0 && runnable != null) {
-                    gm.c3(runnable);
-                    return;
-                }
-                return;
-            default:
-                t4b t4bVar = (t4b) obj;
-                ArrayList arrayList2 = (ArrayList) cloneable;
-                int[] iArr = (int[]) serializable;
-                int i2 = t4bVar.a;
-                rqb.a(qqbVar);
-                if (tLObject != null) {
-                    TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
-                    for (int i3 = 0; i3 < arrayList2.size(); i3++) {
-                        k47 k47Var = (k47) arrayList2.get(i3);
-                        int i4 = 0;
-                        while (true) {
-                            int size2 = tL_stories_stories.stories.size();
-                            long j2 = this.c;
-                            if (i4 < size2) {
-                                if (tL_stories_stories.stories.get(i4).id == t4b.d(k47Var)) {
-                                    t4b.a(i2, j2, k47Var, tL_stories_stories.stories.get(i4));
-                                } else {
-                                    i4++;
-                                }
-                            } else {
-                                TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
-                                tL_storyItemDeleted.id = t4b.d(k47Var);
-                                t4b.a(i2, j2, k47Var, tL_storyItemDeleted);
-                            }
-                        }
-                        if (z) {
-                            t4bVar.b.a.c(new uva(t4bVar, arrayList2, (byte) 17));
-                        }
-                    }
-                    c = 0;
-                } else {
-                    c = 0;
-                    if (tL_error != null) {
-                        rqb.c(rqbVar, "fillMessagesWithStories: getStoriesByID error " + tL_error.code + " " + tL_error.text);
-                    }
-                }
-                int i5 = iArr[c] - 1;
-                iArr[c] = i5;
-                if (i5 == 0) {
-                    runnable.run();
-                    return;
-                }
-                return;
+    public final void writeToParcel(Parcel parcel, int i) {
+        String jSONObject;
+        JSONObject jSONObject2 = this.r;
+        if (jSONObject2 == null) {
+            jSONObject = null;
+        } else {
+            jSONObject = jSONObject2.toString();
         }
+        this.n = jSONObject;
+        int r = jte.r(parcel, 20293);
+        jte.k(parcel, 2, this.a, i);
+        int i2 = this.b;
+        jte.q(parcel, 3, 4);
+        parcel.writeInt(i2);
+        boolean z = this.c;
+        jte.q(parcel, 4, 4);
+        parcel.writeInt(z ? 1 : 0);
+        double d = this.d;
+        jte.q(parcel, 5, 8);
+        parcel.writeDouble(d);
+        double d2 = this.e;
+        jte.q(parcel, 6, 8);
+        parcel.writeDouble(d2);
+        double d3 = this.f;
+        jte.q(parcel, 7, 8);
+        parcel.writeDouble(d3);
+        jte.j(parcel, 8, this.h);
+        jte.l(parcel, 9, this.n);
+        jte.s(parcel, r);
     }
 
-    public zr6(t4b t4bVar, qqb qqbVar, ArrayList arrayList, long j, boolean z, rqb rqbVar, int[] iArr, Runnable runnable) {
-        this.g = t4bVar;
-        this.b = qqbVar;
-        this.h = arrayList;
-        this.c = j;
-        this.d = z;
-        this.e = rqbVar;
-        this.i = iArr;
-        this.f = runnable;
+    public zr6(JSONObject jSONObject) {
+        this(null, 0, true, Double.NaN, Double.POSITIVE_INFINITY, 0.0d, null, null);
+        b(jSONObject);
     }
 }

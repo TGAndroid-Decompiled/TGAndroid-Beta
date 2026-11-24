@@ -1,9 +1,12 @@
 package defpackage;
-public final class ny4 {
-    public boolean a;
-    public final sy4 b;
+public final class ny4 implements ph5 {
+    public m1d a;
 
-    public ny4(sy4 sy4Var) {
-        this.b = sy4Var;
+    public final boolean a() {
+        z1d z1dVar = this.a.d;
+        if (z1dVar != null && z1dVar.g()) {
+            return true;
+        }
+        return false;
     }
 }

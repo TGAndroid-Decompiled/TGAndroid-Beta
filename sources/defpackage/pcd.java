@@ -1,3 +1,4 @@
 package defpackage;
-public final class pcd extends f1d {
+public interface pcd {
+    byte[] c(int i, int i2, byte[] bArr);
 }

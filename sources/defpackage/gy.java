@@ -1,3 +1,10 @@
 package defpackage;
-public abstract class gy {
+
+import android.content.AttributionSource;
+public final class gy {
+    public final AttributionSource a;
+
+    public gy(AttributionSource attributionSource) {
+        this.a = attributionSource;
+    }
 }

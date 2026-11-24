@@ -1,61 +1,34 @@
 package defpackage;
 
-import java.util.Calendar;
-import java.util.Locale;
-public final class rs7 {
-    public int a;
-    public int b;
-
-    public rs7(int i, int i2) {
-        this.a = i;
-        this.b = i2;
+import android.view.ViewGroup;
+public final class rs7 extends n39 {
+    @Override
+    public final boolean D(s49 s49Var) {
+        return true;
     }
 
-    public static String a(int i) {
-        String str;
-        String str2;
-        int i2 = i % 60;
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(0, 0, 0, ((i - i2) / 60) % 24, i2);
-        jb6 D0 = jb6.D0();
-        if (D0.c == null) {
-            synchronized (D0) {
-                if (D0.c == null) {
-                    Locale locale = D0.y;
-                    if (locale == null) {
-                        locale = Locale.getDefault();
-                    }
-                    String language = locale.getLanguage();
-                    if (language == null) {
-                        language = "en";
-                    }
-                    String lowerCase = language.toLowerCase();
-                    if (!lowerCase.toLowerCase().equals("ar") && !lowerCase.toLowerCase().equals("ko")) {
-                        locale = Locale.US;
-                    }
-                    boolean z = jb6.c0;
-                    if (z) {
-                        str = "HH:mm";
-                    } else {
-                        str = "h:mm a";
-                    }
-                    if (z) {
-                        str2 = "HH:mm";
-                    } else {
-                        str2 = "h:mm a";
-                    }
-                    D0.c = jb6.k(locale, str, str2);
-                }
-            }
-        }
-        String format = D0.c.format(calendar.getTime());
-        if (i > 1440) {
-            return jb6.a0(null, null, 2131752701, format);
-        }
-        return format;
+    @Override
+    public final int b() {
+        return qs7.a().size();
     }
 
-    public final String toString() {
-        return a(this.a) + " - " + a(this.b);
+    @Override
+    public final void t(s49 s49Var, int i) {
+        gs7 gs7Var = (gs7) s49Var.a;
+        qs7 qs7Var = (qs7) qs7.a().get(i);
+        gs7Var.getClass();
+        gs7Var.setTypeface(qs7Var.b());
+        String str = qs7Var.c;
+        if (str == null) {
+            str = k96.N0(qs7Var.b);
+        }
+        gs7Var.setText(str);
+    }
+
+    @Override
+    public final s49 x(ViewGroup viewGroup, int i) {
+        gs7 gs7Var = new gs7(viewGroup.getContext());
+        gs7Var.setLayoutParams(new e49(-1, -2));
+        return new s49(gs7Var);
     }
 }

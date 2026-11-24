@@ -1,174 +1,82 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.app.Activity;
+import android.view.KeyEvent;
 import java.util.HashSet;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class ji1 extends FrameLayout implements vlb {
-    public lka a;
-    public uib b;
-    public tm c;
-    public ylb d;
-    public boolean e;
-    public int f;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class ji1 implements RequestDelegate {
+    public final byte a;
+    public final boolean b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
 
-    public final void a(int i, int i2, boolean z) {
-        fc7 fc7Var;
-        ec7 ec7Var = null;
-        if (i2 < 0) {
-            b(null);
-        } else if (i2 < 7) {
-            this.f = cmb.v0(cmb.q8[i2], this.d);
-        } else {
-            oc7 r1 = oc7.r1(i);
-            if (z) {
-                fc7Var = r1.E3;
-            } else {
-                fc7Var = r1.F3;
-            }
-            if (fc7Var != null) {
-                ec7Var = fc7Var.d(i2);
-            }
-            b(ec7Var);
-        }
-        invalidate();
+    public ji1(lv3 lv3Var, boolean z, TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults, String str) {
+        this.a = (byte) 4;
+        this.c = lv3Var;
+        this.b = z;
+        this.d = tL_messages_getInlineBotResults;
+        this.e = str;
     }
 
-    public final void b(ec7 ec7Var) {
-        ylb ylbVar = this.d;
-        if (ec7Var == null) {
-            int i = cmb.r8;
-            if (gm.B(cmb.v0(i, ylbVar)) > 0.8f) {
-                this.f = cmb.v0(cmb.m6, ylbVar);
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        Object obj = this.d;
+        Object obj2 = this.e;
+        Object obj3 = this.c;
+        switch (b) {
+            case 0:
+                gl.c3(new z2a((KeyEvent.Callback) ((zi1) obj3), tL_error, (Object) ((TwoStepVerificationActivity) obj), (Object) ((Activity) obj2), this.b, tLObject, (byte) 2));
                 return;
-            } else if (gm.B(cmb.v0(i, ylbVar)) < 0.2f) {
-                this.f = cmb.p1(0.5f, cmb.v0(cmb.z8, ylbVar));
+            case 1:
+                gl.c3(new z77((Object) ((mu1) obj3), (Object) ((op1) obj), (Object) tLObject, (Object) ((jl1) obj2), this.b, (byte) 7));
                 return;
-            } else {
-                this.f = cmb.v(cmb.v0(cmb.c6, ylbVar), cmb.p1(0.7f, d38.z0(cmb.v0(i, ylbVar))));
+            case 2:
+                gl.c3(new z2a((c92) obj3, (TLRPC.TL_channels_toggleUsername) obj, tLObject, (TLRPC.TL_username) obj2, this.b, tL_error));
                 return;
-            }
-        }
-        this.f = ec7Var.e(0, ylbVar);
-    }
-
-    public final void c(long j, boolean z, boolean z2) {
-        int i = (j > 0L ? 1 : (j == 0L ? 0 : -1));
-        tm tmVar = this.c;
-        if (i == 0) {
-            tmVar.g(null, z2);
-            if (this.b == null) {
-                this.b = new uib(jb6.M0(2131752249, null), 16.0f, null);
-            }
-        } else {
-            tmVar.j(j, z2);
-            this.b = null;
-        }
-        tmVar.m(z, z2);
-    }
-
-    public final void d(TLRPC.Document document) {
-        tm tmVar = this.c;
-        if (document == null) {
-            tmVar.g(null, false);
-            if (this.b == null) {
-                this.b = new uib(jb6.M0(2131752249, null), 16.0f, null);
-            }
-        } else {
-            tmVar.i(document, false);
-            this.b = null;
-        }
-        tmVar.m(false, false);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        Paint paint;
-        float L;
-        int i;
-        ylb ylbVar = this.d;
-        super.dispatchDraw(canvas);
-        f();
-        tm tmVar = this.c;
-        tmVar.k(Integer.valueOf(this.f));
-        uib uibVar = this.b;
-        if (uibVar != null) {
-            canvas2 = canvas;
-            uibVar.c((getMeasuredWidth() - this.b.j()) - gm.L(19.0f), getMeasuredHeight() / 2.0f, 1.0f, cmb.v0(cmb.p6, ylbVar), canvas2);
-        } else {
-            canvas2 = canvas;
-            tmVar.draw(canvas2);
-        }
-        if (this.e) {
-            if (ylbVar != null) {
-                paint = ylbVar.d("paintDivider");
-            } else {
-                paint = cmb.j0;
-            }
-            Paint paint2 = paint;
-            if (paint2 != null) {
-                if (jb6.a0) {
-                    L = 0.0f;
-                } else {
-                    L = gm.L(23.0f);
-                }
-                float f = L;
-                float measuredHeight = getMeasuredHeight() - 1;
-                int measuredWidth = getMeasuredWidth();
-                if (jb6.a0) {
-                    i = gm.L(23.0f);
-                } else {
-                    i = 0;
-                }
-                canvas2.drawLine(f, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, paint2);
-            }
+            case 3:
+                gl.c3(new z2a((q03) obj3, tLObject, (u41) obj, this.b, (HashSet) obj2, tL_error));
+                return;
+            case 4:
+                gl.c3(new z77((lv3) obj3, tLObject, this.b, (TLRPC.TL_messages_getInlineBotResults) obj, (String) obj2, (byte) 11));
+                return;
+            case 5:
+                gl.c3(new z77((b14) obj3, (String) obj, this.b, (String) obj2, tLObject, (byte) 12));
+                return;
+            case 6:
+                gl.c3(new z77((v74) obj3, tLObject, (TLRPC.TL_textWithEntities) obj, this.b, (hd) obj2, (byte) 13));
+                return;
+            default:
+                gl.c3(new z2a((KeyEvent.Callback) ((vqa) obj3), tL_error, (Object) ((m25) obj2), (Object) ((TwoStepVerificationActivity) obj), this.b, tLObject, (byte) 12));
+                return;
         }
     }
 
-    public final void e(int i) {
-        lka lkaVar = this.a;
-        if (i <= 0) {
-            lkaVar.i(null);
-            return;
-        }
-        lkaVar.i(new hd(i, this.d, getContext(), false));
-        lkaVar.setDrawablePadding(gm.L(6.0f));
+    public ji1(vqa vqaVar, m25 m25Var, TwoStepVerificationActivity twoStepVerificationActivity, boolean z) {
+        this.a = (byte) 7;
+        this.c = vqaVar;
+        this.e = m25Var;
+        this.d = twoStepVerificationActivity;
+        this.b = z;
     }
 
-    public final void f() {
-        tm tmVar = this.c;
-        tmVar.setBounds((getWidth() - tmVar.s) - gm.L(21.0f), (getHeight() - tmVar.s) / 2, getWidth() - gm.L(21.0f), (getHeight() + tmVar.s) / 2);
+    public ji1(Object obj, Object obj2, Object obj3, boolean z, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.b = z;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.c.a();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.c.b();
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(50.0f), 1073741824));
-    }
-
-    @Override
-    public final void updateColors() {
-        lka lkaVar = this.a;
-        if (lkaVar != null) {
-            lkaVar.setTextColor(cmb.v0(cmb.F6, this.d));
-        }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public ji1(Object obj, Object obj2, boolean z, Object obj3, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.d = obj2;
+        this.b = z;
+        this.e = obj3;
     }
 }

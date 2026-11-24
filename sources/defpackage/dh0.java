@@ -1,119 +1,71 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import j$.util.Objects;
-import org.telegram.ui.ProfileActivity;
-public final class dh0 implements vi5 {
-    public final byte a;
-    public final Object b;
-    public final Object c;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+public final class dh0 extends b4 {
+    public static final Parcelable.Creator<dh0> CREATOR = new b1d((byte) 19);
+    public final boolean a;
+    public final String b;
+    public final String c;
+    public final boolean d;
+    public final String e;
+    public final ArrayList f;
+    public final boolean h;
 
-    public dh0(Object obj, Object obj2, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.b = obj2;
-    }
-
-    @Override
-    public final void a(ucb ucbVar, RectF rectF) {
-        byte b = this.a;
-        ucbVar.b = true;
-    }
-
-    @Override
-    public final void g(Canvas canvas, RectF rectF) {
-        float f;
-        Canvas canvas2;
-        float f2;
-        byte b = this.a;
-        Object obj = this.b;
-        Object obj2 = this.c;
-        switch (b) {
-            case 0:
-                ww9 ww9Var = (ww9) obj2;
-                tl0.a(ww9Var, canvas, rectF, ww9Var, (FrameLayout) obj);
-                return;
-            case 1:
-                r59 r59Var = (r59) obj2;
-                tl0.a(r59Var, canvas, rectF, r59Var, (FrameLayout) obj);
-                return;
-            case 2:
-                ((au0) obj2).f.d(canvas, rectF, (je) obj);
-                return;
-            case 3:
-                ((y71) obj2).c0.d(canvas, rectF, (xg0) obj);
-                return;
-            case 4:
-                t93 t93Var = (t93) obj2;
-                a6 a6Var = (a6) obj;
-                int childCount = t93Var.a.getChildCount();
-                for (int i = 0; i < childCount; i++) {
-                    View childAt = t93Var.a.getChildAt(i);
-                    if (childAt instanceof r59) {
-                        r59 r59Var2 = (r59) childAt;
-                        tl0.a(r59Var2, canvas, rectF, r59Var2, a6Var);
-                    }
-                }
-                return;
-            case 5:
-                ((re5) obj2).n.w(canvas, rectF, (FrameLayout) obj);
-                return;
-            case 6:
-                ((cm6) obj2).S.w(canvas, rectF, (ne6) obj);
-                return;
-            case 7:
-                ProfileActivity profileActivity = (ProfileActivity) obj2;
-                nfc nfcVar = (nfc) obj;
-                RectF rectF2 = ProfileActivity.e7;
-                Paint paint = profileActivity.Y6;
-                ViewGroup viewGroup = (ViewGroup) profileActivity.fragmentView;
-                wp8 wp8Var = profileActivity.O;
-                if (wp8Var != null && wp8Var.getParent() == profileActivity.a) {
-                    f = profileActivity.b6;
-                } else {
-                    f = 0.0f;
-                }
-                int i2 = (f > 1.0f ? 1 : (f == 1.0f ? 0 : -1));
-                if (i2 < 0) {
-                    xq8 xq8Var = profileActivity.d1;
-                    RectF rectF3 = ProfileActivity.e7;
-                    if (zgc.c(xq8Var, viewGroup, rectF3) && RectF.intersects(rectF3, rectF)) {
-                        tl0.a(new ms0(profileActivity, (byte) 8), canvas, rectF, profileActivity.d1, viewGroup);
-                    }
-                    po8 po8Var = profileActivity.a;
-                    Objects.requireNonNull(po8Var);
-                    tl0.a(new ms0(po8Var, (byte) 9), canvas, rectF, profileActivity.a, viewGroup);
-                    nfcVar.g(canvas, rectF);
-                }
-                if (f > 0.0f) {
-                    if (i2 < 0) {
-                        f2 = profileActivity.O.getY() + profileActivity.a.getY();
-                    } else {
-                        f2 = Float.MAX_VALUE;
-                    }
-                    paint.setColor(cmb.v0(cmb.Z6, profileActivity.A0));
-                    paint.setAlpha((int) (f * 255.0f));
-                    canvas2 = canvas;
-                    canvas2.drawRect(rectF.left, rectF.top, rectF.right, Math.min(rectF.bottom, f2), paint);
-                } else {
-                    canvas2 = canvas;
-                }
-                profileActivity.O.w(canvas2, rectF, viewGroup);
-                ProfileActivity.G1(profileActivity.u0, canvas2, rectF, viewGroup);
-                ProfileActivity.G1(profileActivity.o0, canvas2, rectF, viewGroup);
-                ProfileActivity.G1(profileActivity.n0, canvas2, rectF, viewGroup);
-                return;
-            case 8:
-                ((nxa) obj2).V.d(canvas, rectF, (kwa) obj);
-                return;
-            default:
-                ((yfb) obj2).V.d(canvas, rectF, (kwa) obj);
-                return;
+    public dh0(boolean z, String str, String str2, boolean z2, String str3, ArrayList arrayList, boolean z3) {
+        boolean z4 = true;
+        if (z2 && z3) {
+            z4 = false;
         }
+        fre.a("filterByAuthorizedAccounts and requestVerifiedPhoneNumber must not both be true; the Verified Phone Number feature only works in sign-ups.", z4);
+        this.a = z;
+        if (z) {
+            fre.i(str, "serverClientId must be provided if Google ID tokens are requested");
+        }
+        this.b = str;
+        this.c = str2;
+        this.d = z2;
+        ArrayList arrayList2 = null;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            arrayList2 = new ArrayList(arrayList);
+            Collections.sort(arrayList2);
+        }
+        this.f = arrayList2;
+        this.e = str3;
+        this.h = z3;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof dh0) {
+            dh0 dh0Var = (dh0) obj;
+            if (this.a == dh0Var.a && cqe.a(this.b, dh0Var.b) && cqe.a(this.c, dh0Var.c) && this.d == dh0Var.d && cqe.a(this.e, dh0Var.e) && cqe.a(this.f, dh0Var.f) && this.h == dh0Var.h) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.a), this.b, this.c, Boolean.valueOf(this.d), this.e, this.f, Boolean.valueOf(this.h)});
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 1, 4);
+        parcel.writeInt(this.a ? 1 : 0);
+        jte.l(parcel, 2, this.b);
+        jte.l(parcel, 3, this.c);
+        jte.q(parcel, 4, 4);
+        parcel.writeInt(this.d ? 1 : 0);
+        jte.l(parcel, 5, this.e);
+        jte.n(parcel, 6, this.f);
+        jte.q(parcel, 7, 4);
+        parcel.writeInt(this.h ? 1 : 0);
+        jte.s(parcel, r);
     }
 }

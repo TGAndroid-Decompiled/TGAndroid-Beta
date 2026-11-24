@@ -1,393 +1,585 @@
 package defpackage;
 
-import android.app.Activity;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Rect;
-import android.os.Bundle;
-import android.os.SystemClock;
-import android.text.TextUtils;
+import android.graphics.RectF;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.view.ViewParent;
 import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.voip.GroupCallMessagesController;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.DataSettingsActivity;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ProfileActivity;
-public final class fu implements Runnable {
-    public final byte a;
-    public final long b;
-    public final Object c;
+public final class fu extends o39 {
+    public final byte f3;
+    public final Object g3;
 
-    public fu(long j, Object obj, byte b) {
-        this.a = b;
-        this.b = j;
-        this.c = obj;
+    public fu(t14 t14Var, Context context, r14 r14Var) {
+        super(context, null);
+        this.f3 = (byte) 16;
+        this.g3 = t14Var;
+        setNestedScrollingEnabled(true);
+        setSelectorRadius(gl.L(4.0f));
+        zkb.l(this, 20, bkb.h6, this.o2);
+        setTag(9);
+        setItemAnimator(null);
+        setLayoutAnimation(null);
+        zr zrVar = new zr((byte) 6);
+        zrVar.i1(0);
+        setLayoutManager(zrVar);
+        setAdapter(r14Var);
     }
 
     @Override
-    public final void run() {
+    public final boolean F0(float f) {
         int i;
-        Context context;
-        boolean z;
         int i2;
-        int i3;
-        int L;
-        boolean z2;
-        int i4;
-        byte b = this.a;
-        ylb ylbVar = null;
-        boolean z3 = false;
-        int i5 = 0;
-        long j = this.b;
-        Object obj = this.c;
+        byte b = this.f3;
+        Object obj = this.g3;
         switch (b) {
-            case 0:
-                sx sxVar = (sx) obj;
-                if (sxVar != null) {
-                    sxVar.a(true);
-                }
-                d S = LaunchActivity.S();
-                if (S != null) {
-                    S.presentFragment(new yv1(kt6.k(j, "user_id")));
-                    return;
-                }
-                return;
-            case 1:
-                h40 h40Var = (h40) ((m30) obj).c;
-                if (j == h40Var.o && (i = h40Var.G) != 9 && i != 10 && i != 8) {
-                    SystemClock.elapsedRealtime();
-                    h40Var.w = false;
-                    h40Var.s(3);
-                    h40Var.i.removeCallbacks(h40Var.D);
-                    h40Var.h.b("recording started: retainedDurationMs=" + h40.r(h40Var.p));
-                    return;
-                }
-                return;
-            case 2:
-                String str = hac.a;
-                xa3 xa3Var = ((c74) ((o40) ((lx6) obj).c)).a.s;
-                tk U = xa3Var.U();
-                xa3Var.V(U, 1010, new ua3(U, j));
-                return;
-            case 3:
-                ((rv0) obj).presentFragment(yv1.ga(j));
-                return;
-            case 4:
-                ((c01) obj).a(j);
-                return;
-            case 5:
-                y71 y71Var = (y71) obj;
-                y71Var.getClass();
-                u31 Q = c41.b0(y71Var).Q(2131624052, 36, jb6.a0(null, null, 2131752598, gm.i0(j, false, false)));
-                Q.s = false;
-                Q.j();
-                return;
-            case 6:
-                ((iz1) obj).presentFragment(yv1.ga(j));
-                return;
-            case 7:
-                c52 c52Var = (c52) obj;
-                i22 i22Var = c52Var.b;
-                if (!c52Var.L && c52Var.M0 && c52Var.isShown()) {
-                    v12 v12Var = i22Var.o3;
-                    d dVar = i22Var.Z1;
-                    if ((v12Var.Q() <= gm.L(20.0f) || c52Var.C0 || c52Var.L0) && SystemClock.uptimeMillis() < j) {
-                        c52Var.postDelayed(c52Var.P0, 32L);
-                        return;
-                    }
-                    c52Var.P0 = null;
-                    ylb ylbVar2 = c52Var.a;
-                    if (dVar != null && dVar.getParentActivity() != null) {
-                        context = dVar.getParentActivity();
-                    } else {
-                        context = c52Var.getContext();
-                    }
-                    if (context != null) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ylbVar2, context);
-                        String M0 = jb6.M0(2131742888, null);
-                        he heVar = alertDialog$Builder.a;
-                        heVar.S = M0;
-                        a52 a52Var = new a52(c52Var, context);
-                        a52Var.setTextSize(1, 18.0f);
-                        anb.X(a52Var, cmb.i5, ylbVar2);
-                        anb.D(a52Var, cmb.s5, ylbVar2);
-                        a52Var.setHint(jb6.M0(2131742852, null));
-                        a52Var.setText(c52Var.t0);
-                        a52Var.setSelection(a52Var.length());
-                        a52Var.setInputType(147457);
-                        a52Var.setMaxLines(5);
-                        a52Var.setImeOptions(6);
-                        anb.F(a52Var, cmb.j6, cmb.k6, cmb.o7, ylbVar2);
-                        a52Var.setBackground(null);
-                        a52Var.setPadding(0, gm.L(10.0f), gm.L(48.0f), gm.L(10.0f));
-                        oh2 oh2Var = new oh2(1, ylbVar2, context);
-                        int i6 = cmb.h6;
-                        fg0 f0 = cmb.f0(cmb.v0(i6, ylbVar2), 7, gm.L(12.0f));
-                        wmb M = anb.M(i6);
-                        oh2Var.setBackground(f0);
-                        anb.j(oh2Var, f0, null, M, ylbVar2);
-                        String M02 = jb6.M0(2131742759, null);
-                        if (c52Var.u0 && c52Var.getPublicKey() != null) {
-                            z = false;
-                        } else {
-                            z = true;
-                        }
-                        oh2Var.e(M02, "", z, false, false);
-                        oh2Var.setMultiline(true);
-                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) oh2Var.getCheckBoxView().getLayoutParams();
-                        layoutParams.topMargin = 0;
-                        if (jb6.a0) {
-                            i2 = 5;
-                        } else {
-                            i2 = 3;
-                        }
-                        layoutParams.gravity = i2 | 16;
-                        oh2Var.getCheckBoxView().setLayoutParams(layoutParams);
-                        if (jb6.a0) {
-                            i3 = gm.L(4.0f);
-                        } else {
-                            i3 = 0;
-                        }
-                        int L2 = gm.L(12.0f);
-                        if (jb6.a0) {
-                            L = 0;
-                        } else {
-                            L = gm.L(4.0f);
-                        }
-                        oh2Var.setPadding(i3, L2, L, gm.L(12.0f));
-                        if (c52Var.getPublicKey() != null) {
-                            z2 = true;
-                        } else {
-                            z2 = false;
-                        }
-                        oh2Var.setEnabled(z2);
-                        oh2Var.setOnClickListener(new kf(oh2Var, (byte) 1));
-                        LinearLayout linearLayout = new LinearLayout(context);
-                        linearLayout.setOrientation(1);
-                        linearLayout.addView(a52Var, qoe.k(24.0f, 4.0f, 24.0f, 4.0f, -1, -2));
-                        linearLayout.addView(oh2Var, qoe.t(-1, -2, 83, 8, 0, 8, 0));
-                        heVar.H = (byte) 6;
-                        alertDialog$Builder.n(linearLayout);
-                        heVar.a = gm.L(292.0f);
-                        alertDialog$Builder.g(jb6.M0(2131752542, null), new a32((byte) 1));
-                        alertDialog$Builder.j(jb6.M0(2131754483, null), new jf(c52Var, a52Var, oh2Var, (byte) 22));
-                        c52Var.U0 = heVar;
-                        heVar.k0 = false;
-                        heVar.setOnShowListener(new jh(a52Var, (byte) 3));
-                        heVar.setOnDismissListener(new n1(c52Var, (byte) 15));
-                        heVar.create();
-                        Window window = heVar.getWindow();
-                        Rect rect = new Rect();
-                        i22Var.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-                        if (window != null && rect.height() > 0) {
-                            WindowManager.LayoutParams attributes = window.getAttributes();
-                            View decorView = window.getDecorView();
-                            int i7 = attributes.width;
-                            if (i7 <= 0) {
-                                i7 = rect.width();
-                            }
-                            if (attributes.width > 0) {
-                                i4 = 1073741824;
-                            } else {
-                                i4 = Integer.MIN_VALUE;
-                            }
-                            decorView.measure(View.MeasureSpec.makeMeasureSpec(i7, i4), View.MeasureSpec.makeMeasureSpec(rect.height(), Integer.MIN_VALUE));
-                            attributes.gravity = 49;
-                            attributes.y = Math.max(0, (rect.height() - decorView.getMeasuredHeight()) / 2);
-                            window.setAttributes(attributes);
-                        }
-                        heVar.show();
-                        View c = heVar.c(-1);
-                        if ((c instanceof TextView) && !TextUtils.isEmpty(c52Var.t0)) {
-                            a52Var.addTextChangedListener(new b52(a52Var, (TextView) c));
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                c52Var.P0 = null;
-                return;
             case 8:
-                p82 p82Var = (p82) obj;
-                ik.J(p82Var.b.Z1.getParentActivity(), j, new ni6(p82Var, (byte) 18), p82Var.a);
-                return;
-            case 9:
-                gm.c3(new ra2((qu0) obj, f0f.b(f0f.c(j)), (byte) 13));
-                return;
-            case 10:
-                pp2 pp2Var = (pp2) obj;
-                oc7.r1(pp2Var.a).V2(this.b, pp2Var.o1, true, false, new dp2(pp2Var, (byte) 1));
-                return;
+                x02 x02Var = ((k22) obj).b;
+                int L = gl.L(30.0f) + x02Var.Y3[0];
+                if (!x02Var.a2) {
+                    i = gl.m;
+                } else {
+                    i = 0;
+                }
+                if (f >= L + i) {
+                    return true;
+                }
+                return false;
             case 11:
-                xp2 xp2Var = (xp2) obj;
-                xp2Var.i = null;
-                xp2Var.g.l(j);
-                xp2Var.l++;
-                xp2Var.a();
-                wp2 wp2Var = xp2Var.h;
-                if (wp2Var != null) {
-                    wp2Var.U();
-                    return;
+                x02 x02Var2 = ((p62) obj).b;
+                int L2 = gl.L(30.0f) + x02Var2.Y3[0];
+                if (!x02Var2.a2) {
+                    i2 = gl.m;
+                } else {
+                    i2 = 0;
                 }
-                return;
-            case 12:
-                ConnectionsManager.lambda$getHostByName$20((String) obj, j);
-                return;
-            case 13:
-                ((ih3) obj).s.g0(j, false);
-                return;
-            case 14:
-                nk3 nk3Var = (nk3) obj;
-                nk3Var.U4(true, true);
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(bf7.a(j, 0L));
-                nk3Var.E2.q(nk3Var, arrayList, null, false, nk3Var.L2, nk3Var.M2, nk3Var.N2, null);
-                return;
-            case 15:
-                ov9 ov9Var = (ov9) obj;
-                ov9Var.getClass();
-                try {
-                    cf7.Y(ov9Var.t0).b.executeFast("DELETE FROM search_recent WHERE did = " + j).stepThis().dispose();
-                    return;
-                } catch (Exception e) {
-                    fc4.g(e, true);
-                    return;
+                if (f >= L2 + i2) {
+                    return true;
                 }
-            case 16:
-                ((g95) obj).e1(j, false);
-                return;
-            case 17:
-                ((GroupCallMessagesController) obj).lambda$pushMessageToList$7(j);
-                return;
+                return false;
+            default:
+                return super.F0(f);
+        }
+    }
+
+    @Override
+    public final boolean G0(View view) {
+        byte b = this.f3;
+        Object obj = this.g3;
+        switch (b) {
+            case 3:
+                if (view == ((r61) obj).X) {
+                    return false;
+                }
+                return true;
             case 18:
-                ((z56) obj).presentFragment(yv1.ga(j));
-                return;
-            case 19:
-                dd6 dd6Var = (dd6) obj;
-                ArrayList arrayList2 = dd6Var.b;
-                vh6 vh6Var = dd6Var.a;
-                cd6 cd6Var = (cd6) vh6Var.f(j);
-                vh6Var.l(j);
-                if (cd6Var != null) {
-                    TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-                    tL_messages_editMessage.peer = dd6Var.getMessagesController().i1(cd6Var.a);
-                    tL_messages_editMessage.id = cd6Var.b;
-                    tL_messages_editMessage.flags |= 16384;
-                    TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
-                    tL_messages_editMessage.media = tL_inputMediaGeoLive;
-                    tL_inputMediaGeoLive.stopped = true;
-                    tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPointEmpty();
-                    dd6Var.getConnectionsManager().sendRequest(tL_messages_editMessage, new vc6(dd6Var, (byte) 0));
-                    arrayList2.remove(cd6Var);
-                    dd6Var.l(cd6Var, 1);
-                    gm.c3(new wc6(dd6Var, cd6Var, (byte) 0));
-                    if (arrayList2.isEmpty()) {
-                        dd6Var.r(true);
-                        return;
+                he4 he4Var = (he4) obj;
+                if (!he4Var.isEnabled() || ((ti3) he4Var.K).b.l2) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.G0(view);
+        }
+    }
+
+    @Override
+    public final boolean I0(View view, float f, float f2) {
+        byte b = this.f3;
+        Object obj = this.g3;
+        switch (b) {
+            case 2:
+                return ((fy0) obj).E0(view, f, f2);
+            case 18:
+                if (((he4) obj).n) {
+                    int L = gl.L(6.0f);
+                    RectF rectF = ((fe4) view).f;
+                    float f3 = L;
+                    if (rectF.left - f3 < f && rectF.right + f3 > f) {
+                        return false;
                     }
+                }
+                return true;
+            default:
+                return super.I0(view, f, f2);
+        }
+    }
+
+    @Override
+    public final Integer W0(int i) {
+        gd4 gd4Var;
+        byte b = this.f3;
+        Object obj = this.g3;
+        wjb wjbVar = this.o2;
+        switch (b) {
+            case 14:
+                if (i == DataSettingsActivity.Y((DataSettingsActivity) obj)) {
+                    return Integer.valueOf(bkb.p1(0.1f, bkb.v0(bkb.o7, wjbVar)));
+                }
+                return Integer.valueOf(bkb.v0(bkb.h6, wjbVar));
+            case 17:
+                ArrayList arrayList = ((pd4) obj).Q;
+                if (i >= 0 && i < arrayList.size()) {
+                    gd4Var = (gd4) arrayList.get(i);
+                } else {
+                    gd4Var = null;
+                }
+                if (gd4Var != null && gd4Var.l) {
+                    return Integer.valueOf(bkb.p1(0.12f, bkb.v0(bkb.o7, wjbVar)));
+                }
+                return Integer.valueOf(bkb.v0(bkb.h6, wjbVar));
+            case 24:
+                return 0;
+            default:
+                return super.W0(i);
+        }
+    }
+
+    @Override
+    public final void dispatchDraw(android.graphics.Canvas r31) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.fu.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        yc ycVar;
+        s49 K;
+        byte b = this.f3;
+        Object obj = this.g3;
+        switch (b) {
+            case 9:
+                if (motionEvent.getActionMasked() == 0) {
+                    c42 c42Var = (c42) obj;
+                    if (motionEvent.getY() < c42Var.t0 && (ycVar = c42Var.K) != null && ycVar.getVisibility() == 0 && (K = K(0)) != null && motionEvent.getY() >= gl.L(32.0f) + Math.max(0, K.a.getTop())) {
+                        return false;
+                    }
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            case 22:
+                if (((sr4) obj).L) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            case 24:
+                if (((l18) obj).g0) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            case 25:
+                if (motionEvent.getActionMasked() == 0 && motionEvent.getY() < ((qa6) obj).b0) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            case 28:
+                t09 t09Var = (t09) obj;
+                if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                    if (motionEvent.getAction() == 1 && t09Var.getPullingLeftProgress() > 0.95f) {
+                        t09Var.o();
+                    } else if (t09Var.C0 != 0.0f) {
+                        ValueAnimator valueAnimator = t09Var.z0;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                        }
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(t09Var.C0, 0.0f);
+                        t09Var.z0 = ofFloat;
+                        ofFloat.addUpdateListener(new u28(t09Var, (byte) 25));
+                        t09Var.z0.setDuration(150L);
+                        t09Var.z0.start();
+                    }
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public final boolean drawChild(android.graphics.Canvas r12, android.view.View r13, long r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.fu.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
+    }
+
+    @Override
+    public final void invalidate() {
+        byte b = this.f3;
+        Object obj = this.g3;
+        switch (b) {
+            case 13:
+                super.invalidate();
+                View view = ((kf2) obj).fragmentView;
+                if (view != null) {
+                    view.invalidate();
                     return;
                 }
-                return;
-            case 20:
-                yv1 yv1Var = ((nq1) obj).f;
-                yv1Var.N5(true);
-                Bundle bundle = new Bundle();
-                bundle.putLong("user_id", j);
-                if (j == yv1Var.getUserConfig().e()) {
-                    bundle.putBoolean("my_profile", true);
-                }
-                yv1Var.presentFragment(new ProfileActivity(bundle, null));
-                return;
-            case 21:
-                ((js7) obj).a(Long.valueOf(j));
-                return;
-            case 22:
-                yr7.b.add(Long.valueOf(j));
-                yr7.j(j, 60000L);
-                ((ud7) obj).run();
-                u31 Q2 = yr7.h().Q(2131623990, 36, jb6.M0(2131749496, null));
-                Q2.u = true;
-                Q2.j();
-                return;
-            case 23:
-                a58 a58Var = ((u38) obj).a;
-                if (j <= 0) {
-                    z3 = true;
-                }
-                a58Var.a0(z3);
                 return;
             case 24:
-                gm.d3((p48) obj, Math.max(0L, 500 - (System.currentTimeMillis() - j)));
-                return;
-            case 25:
-                bc8 bc8Var = (bc8) obj;
-                bc8Var.getClass();
-                bc8Var.h("seekTo(" + Math.round(((float) j) / 1000.0f) + ", true);");
-                gm.d3(new xb8(bc8Var, (byte) 1), 100L);
-                return;
-            case 26:
-                ed8 ed8Var = (ed8) obj;
-                ot4 ot4Var = jd8.b;
-                if (ed8Var != null) {
-                    ot4Var.put(Long.valueOf(j), ed8Var);
-                }
-                if (ot4Var.get(Long.valueOf(j)) == null) {
-                    jd8.c.put(Long.valueOf(j), Boolean.TRUE);
-                }
-                ArrayList arrayList3 = (ArrayList) jd8.d.remove(Long.valueOf(j));
-                if (arrayList3 != null) {
-                    int size = arrayList3.size();
-                    while (i5 < size) {
-                        Object obj2 = arrayList3.get(i5);
-                        i5++;
-                        ((Runnable) obj2).run();
-                    }
-                    return;
-                }
+                super.invalidate();
+                ((l18) obj).invalidate();
                 return;
             case 27:
-                ai8 ai8Var = (ai8) obj;
-                Activity u0 = gm.u0();
-                d S2 = LaunchActivity.S();
-                if (!PhotoViewer.r0().V0()) {
-                    if (S2 != null) {
-                        if (!S2.hasShownSheet()) {
-                            ylbVar = S2.getResourceProvider();
-                        }
-                    }
-                    new dxa(u0, ylbVar, this.b, 15, "", new xh8(ai8Var, (byte) 0), 0L).show();
+                super.invalidate();
+                i08 i08Var = ((z08) obj).G;
+                if (i08Var != null) {
+                    i08Var.run();
                     return;
                 }
-                ylbVar = new r63();
-                new dxa(u0, ylbVar, this.b, 15, "", new xh8(ai8Var, (byte) 0), 0L).show();
-                return;
-            case 28:
-                jf9 jf9Var = (jf9) obj;
-                ik.J(jf9Var.getParentActivity(), j, new x59(jf9Var, (byte) 4), jf9Var.getResourceProvider());
                 return;
             default:
-                b1a b1aVar = (b1a) obj;
-                HashSet hashSet = b1aVar.Z1;
-                hashSet.remove(Long.valueOf(j));
-                b1aVar.T1.b(true, hashSet, new w0a(b1aVar, (byte) 5), null);
-                b1aVar.i1(true, false);
+                super.invalidate();
                 return;
         }
     }
 
-    public fu(Object obj, long j, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.b = j;
+    @Override
+    public final void l0(int i) {
+        switch (this.f3) {
+            case 26:
+                if (i == 0) {
+                    ((f37) this.g3).e.U();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void m0(int i) {
+        boolean z;
+        byte b = this.f3;
+        Object obj = this.g3;
+        switch (b) {
+            case 10:
+                m52 m52Var = (m52) obj;
+                m52Var.invalidate();
+                m52Var.b.H1(m52Var, i);
+                l52 l52Var = m52Var.w;
+                boolean z2 = true;
+                int i2 = 0;
+                if (l52Var.y == null) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                if (!z) {
+                    boolean[] d = l52Var.d();
+                    if (d.length == l52Var.y.length) {
+                        while (true) {
+                            if (i2 < d.length) {
+                                if (d[i2] == l52Var.y[i2]) {
+                                    i2++;
+                                }
+                            } else {
+                                z2 = z;
+                            }
+                        }
+                    }
+                    z = z2;
+                } else {
+                    l52Var.y = l52Var.d();
+                }
+                if (z) {
+                    l52Var.invalidate();
+                    return;
+                }
+                return;
+            case 11:
+                return;
+            case 26:
+                ((f37) obj).e.F();
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        switch (this.f3) {
+            case 6:
+                super.onAttachedToWindow();
+                ra7 ra7Var = ((mu1) this.g3).b4;
+                if (ra7Var != null) {
+                    kk7.f(ra7Var.r).b(ra7Var, 329);
+                    return;
+                }
+                return;
+            default:
+                super.onAttachedToWindow();
+                return;
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        switch (this.f3) {
+            case 6:
+                super.onDetachedFromWindow();
+                ra7 ra7Var = ((mu1) this.g3).b4;
+                if (ra7Var != null) {
+                    gl.r(ra7Var.F);
+                    kk7.f(ra7Var.r).n(ra7Var, 329);
+                    return;
+                }
+                return;
+            default:
+                super.onDetachedFromWindow();
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        byte b = this.f3;
+        boolean z = false;
+        Object obj = this.g3;
+        switch (b) {
+            case 7:
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < ((v12) obj).b.Y3[0] - gl.L(80.0f)) {
+                    return false;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            case 10:
+                if (((m52) obj).K != null) {
+                    return false;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            case 12:
+                if (((zc2) obj).I) {
+                    return false;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            case 15:
+                nv3 nv3Var = (nv3) obj;
+                boolean g = xv2.e().g(motionEvent, nv3Var.b, nv3Var.f, this.o2);
+                if (super.onInterceptTouchEvent(motionEvent) || g) {
+                    return true;
+                }
+                return false;
+            case 16:
+                if (getParent() != null && getParent().getParent() != null) {
+                    ViewParent parent = getParent().getParent();
+                    if (canScrollHorizontally(-1) || canScrollHorizontally(1)) {
+                        z = true;
+                    }
+                    parent.requestDisallowInterceptTouchEvent(z);
+                    ((t14) obj).h.requestDisallowInterceptTouchEvent(true);
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            case 22:
+                if (((sr4) obj).L) {
+                    return false;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int i5;
+        k27 k27Var;
+        byte b = this.f3;
+        int i6 = 0;
+        Object obj = this.g3;
+        switch (b) {
+            case 2:
+                ((fy0) obj).D0();
+                super.onLayout(z, i, i2, i3, i4);
+                return;
+            case 5:
+                nf1 nf1Var = (nf1) obj;
+                if (nf1Var.w != null && nf1Var.y != null && (i5 = nf1Var.N0) >= 0) {
+                    if (nf1Var.M0 != 0) {
+                        while (true) {
+                            kf1 kf1Var = nf1Var.F;
+                            if (i6 < kf1Var.d) {
+                                if (i6 >= kf1Var.f && i6 < kf1Var.h) {
+                                    ArrayList arrayList = kf1Var.n.p0;
+                                    k27Var = (k27) arrayList.get((arrayList.size() - (i6 - kf1Var.f)) - 1);
+                                } else {
+                                    k27Var = null;
+                                }
+                                if (k27Var != null && k27Var.T == nf1Var.M0) {
+                                    i5 = i6;
+                                } else {
+                                    i6++;
+                                }
+                            }
+                        }
+                    }
+                    nf1Var.y.h1(i5, nf1Var.O0, true);
+                    nf1Var.N0 = -1;
+                    nf1Var.M0 = 0L;
+                }
+                super.onLayout(z, i, i2, i3, i4);
+                return;
+            case 7:
+                super.onLayout(z, i, i2, i3, i4);
+                PhotoViewer.r0().t();
+                return;
+            case 9:
+                super.onLayout(z, i, i2, i3, i4);
+                c42 c42Var = (c42) obj;
+                c42Var.j0();
+                c42Var.h0();
+                return;
+            case 26:
+                f37 f37Var = (f37) obj;
+                int i7 = f37Var.a;
+                if (f37Var.L) {
+                    if (i7 != 0) {
+                        w0(0);
+                    }
+                    f37Var.L = false;
+                }
+                super.onLayout(z, i, i2, i3, i4);
+                f37Var.j();
+                fu fuVar = f37Var.f;
+                if (f37Var.V) {
+                    if (fuVar.computeVerticalScrollRange() > fuVar.computeVerticalScrollExtent()) {
+                        f37Var.postDelayed(new w27(f37Var, (byte) 0), 0L);
+                    }
+                    f37Var.V = false;
+                }
+                if (f37Var.O && i7 == 0) {
+                    int i8 = f37Var.M;
+                    int i9 = f37Var.N;
+                    f37Var.O = false;
+                    post(new bt(this, i8, i9, (byte) 12));
+                    return;
+                }
+                return;
+            case 29:
+                super.onLayout(z, i, i2, i3, i4);
+                ((hs9) obj).a();
+                return;
+            default:
+                super.onLayout(z, i, i2, i3, i4);
+                return;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        switch (this.f3) {
+            case 24:
+                int size = View.MeasureSpec.getSize(i);
+                View.MeasureSpec.getSize(i2);
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, View.MeasureSpec.getMode(i2)));
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        byte b = this.f3;
+        Object obj = this.g3;
+        switch (b) {
+            case 7:
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < ((v12) obj).b.Y3[0] - gl.L(80.0f)) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            case 10:
+                if (((m52) obj).K != null) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            case 12:
+                if (((zc2) obj).I) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            case 21:
+                if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                    gl.d3(new s54(this, (byte) 13), 250L);
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public final boolean requestFocus(int i, Rect rect) {
+        switch (this.f3) {
+            case 17:
+                return false;
+            default:
+                return super.requestFocus(i, rect);
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        byte b = this.f3;
+        Object obj = this.g3;
+        switch (b) {
+            case 0:
+                if (!((mu) obj).r) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            case 20:
+                if (!((cf4) obj).s1) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                super.requestLayout();
+                return;
+        }
+    }
+
+    @Override
+    public final void setAlpha(float f) {
+        switch (this.f3) {
+            case 18:
+                super.setAlpha(f);
+                ((he4) this.g3).invalidate();
+                return;
+            default:
+                super.setAlpha(f);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean u1(View view) {
+        switch (this.f3) {
+            case 21:
+                if ((view instanceof ff4) && ((ff4) view).getDraggingProgress() > 0.0f) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.u1(view);
+        }
+    }
+
+    private final void z1(int i) {
+    }
+
+    public fu(Object obj, Context context, wjb wjbVar, byte b) {
+        super(context, wjbVar);
+        this.f3 = b;
+        this.g3 = obj;
+    }
+
+    public fu(byte b, Context context, Object obj) {
+        super(context, null);
+        this.f3 = b;
+        this.g3 = obj;
     }
 }

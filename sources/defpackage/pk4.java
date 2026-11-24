@@ -1,11 +1,13 @@
 package defpackage;
+public final class pk4 extends gw2 {
+    public c59 a;
+    public Object b;
+    public int c;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.ImageView;
-public final class pk4 extends ImageView implements qk4 {
     @Override
-    public void setInvert(float f) {
-        setColorFilter(new PorterDuffColorFilter(on2.f(f, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+    public final Object invokeSuspend(Object obj) {
+        this.b = obj;
+        this.c |= Integer.MIN_VALUE;
+        return ghe.a(null, null, this);
     }
 }

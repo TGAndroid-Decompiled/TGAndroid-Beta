@@ -1,10 +1,10 @@
 package defpackage;
-
-import android.view.View;
-public interface g59 {
-    void d(float f, float f2, int i, View view);
-
-    void p(View view, float f, float f2);
-
-    boolean u(View view);
+public final class g59 {
+    public static String a(oq4 oq4Var) {
+        String obj = oq4Var.getClass().getGenericInterfaces()[0].toString();
+        if (obj.startsWith("kotlin.jvm.functions.")) {
+            return obj.substring(21);
+        }
+        return obj;
+    }
 }

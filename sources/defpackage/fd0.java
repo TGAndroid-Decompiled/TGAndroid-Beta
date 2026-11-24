@@ -1,17 +1,25 @@
 package defpackage;
 
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import android.window.BackEvent;
 public final class fd0 {
-    public pc0 a;
-    public vb5 b;
-    public long c;
-    public long d;
-    public ImageReceiver e;
-    public TLRPC.GroupCallParticipant f;
-    public long g;
-    public TLObject h;
-    public int i;
-    public int j;
+    public final float a;
+    public final float b;
+    public final float c;
+    public final int d;
+
+    public fd0(BackEvent backEvent) {
+        xn xnVar = xn.a;
+        float d = xnVar.d(backEvent);
+        float e = xnVar.e(backEvent);
+        float b = xnVar.b(backEvent);
+        int c = xnVar.c(backEvent);
+        this.a = d;
+        this.b = e;
+        this.c = b;
+        this.d = c;
+    }
+
+    public final String toString() {
+        return "BackEventCompat{touchX=" + this.a + ", touchY=" + this.b + ", progress=" + this.c + ", swipeEdge=" + this.d + '}';
+    }
 }

@@ -1,52 +1,83 @@
 package defpackage;
 
-import android.os.Parcel;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.Status;
-public final class h6d extends jh0 {
-    public final byte q;
+import java.util.ListIterator;
+public final class h6d extends v5c implements ListIterator {
+    public final int b;
+    public int c;
+    public final a7d d;
 
-    public h6d(z3d z3dVar, byte b) {
-        super(o50.a, z3dVar);
-        this.q = b;
-    }
-
-    @Override
-    public final void a(uc9 uc9Var) {
-        a(uc9Var);
-    }
-
-    @Override
-    public final uc9 d(Status status) {
-        byte b = this.q;
-        return status;
-    }
-
-    @Override
-    public final void n(zz4 zz4Var) {
-        switch (this.q) {
-            case 0:
-                b6d b6dVar = (b6d) zz4Var;
-                l6d l6dVar = (l6d) b6dVar.k();
-                e6d e6dVar = new e6d(this, (byte) 0);
-                GoogleSignInOptions googleSignInOptions = b6dVar.F;
-                Parcel e = l6dVar.e();
-                int i = y5d.a;
-                e.writeStrongBinder(e6dVar);
-                y5d.c(e, googleSignInOptions);
-                l6dVar.f(e, 102);
-                return;
-            default:
-                b6d b6dVar2 = (b6d) zz4Var;
-                l6d l6dVar2 = (l6d) b6dVar2.k();
-                e6d e6dVar2 = new e6d(this, (byte) 1);
-                GoogleSignInOptions googleSignInOptions2 = b6dVar2.F;
-                Parcel e2 = l6dVar2.e();
-                int i2 = y5d.a;
-                e2.writeStrongBinder(e6dVar2);
-                y5d.c(e2, googleSignInOptions2);
-                l6dVar2.f(e2, 103);
-                return;
+    public h6d(a7d a7dVar, int i) {
+        super((byte) 5);
+        int size = a7dVar.size();
+        if (i >= 0 && i <= size) {
+            this.b = size;
+            this.c = i;
+            this.d = a7dVar;
+            return;
         }
+        k93.i(u3f.c(i, size, "index"));
+        throw null;
+    }
+
+    public final Object a(int i) {
+        return this.d.get(i);
+    }
+
+    @Override
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean hasNext() {
+        if (this.c < this.b) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean hasPrevious() {
+        if (this.c > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Object next() {
+        if (hasNext()) {
+            int i = this.c;
+            this.c = i + 1;
+            return a(i);
+        }
+        w26.g();
+        return null;
+    }
+
+    @Override
+    public final int nextIndex() {
+        return this.c;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i = this.c - 1;
+            this.c = i;
+            return a(i);
+        }
+        w26.g();
+        return null;
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.c - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

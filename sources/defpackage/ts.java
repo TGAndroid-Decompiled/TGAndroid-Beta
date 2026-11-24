@@ -1,56 +1,97 @@
 package defpackage;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.ConnectionsManager;
-public final class ts extends BroadcastReceiver {
+import android.view.WindowManager;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.a;
+import org.telegram.ui.o;
+public final class ts implements Runnable {
     public final byte a;
+    public final o b;
 
-    public ts(byte b) {
+    public ts(o oVar, byte b) {
         this.a = b;
+        this.b = oVar;
     }
 
     @Override
-    public final void onReceive(Context context, Intent intent) {
-        switch (this.a) {
+    public final void run() {
+        float f;
+        byte b = this.a;
+        o oVar = this.b;
+        switch (b) {
             case 0:
-                try {
-                    a.c = a.e.getActiveNetworkInfo();
-                } catch (Throwable unused) {
-                }
-                boolean p = a.p();
-                for (int i = 0; i < 4; i++) {
-                    ConnectionsManager.getInstance(i).checkConnection();
-                    bc4.K.c(new y8c((byte) 17, bc4.G(i), p));
-                }
+                oVar.d0();
                 return;
             case 1:
-                e86.h(intent);
+                float currentProgress = 0.7f - oVar.i0.e0.getCurrentProgress();
+                if (currentProgress > 0.0f) {
+                    if (currentProgress < 0.25f) {
+                        f = 0.01f;
+                    } else {
+                        f = 0.02f;
+                    }
+                    j26 j26Var = oVar.i0.e0;
+                    j26Var.a(true, j26Var.getCurrentProgress() + f);
+                    gl.d3(oVar.k0, 100L);
+                    return;
+                }
                 return;
             case 2:
-                if ("android.media.AUDIO_BECOMING_NOISY".equals(intent.getAction())) {
-                    MediaController.w().Q(MediaController.w().v0, true);
+                gl.c3(new ts(oVar, (byte) 0));
+                return;
+            case 3:
+                gl.c3(new ts(oVar, (byte) 0));
+                return;
+            case 4:
+                oVar.L.a(true);
+                return;
+            case 5:
+                oVar.L.a(true);
+                return;
+            case 6:
+                try {
+                    if (oVar.g0.getParent() != null) {
+                        ((WindowManager) oVar.M.getSystemService("window")).removeView(oVar.g0);
+                        return;
+                    }
+                    return;
+                } catch (Exception e) {
+                    fa4.g(e, true);
+                    return;
+                }
+            case 7:
+                oVar.a0();
+                return;
+            case 8:
+                oVar.f0();
+                return;
+            case 9:
+                a aVar = oVar.h0;
+                if (aVar != null) {
+                    aVar.setLayerType(0, null);
+                    oVar.a0 = (byte) 0;
+                    oVar.K();
+                    return;
+                }
+                return;
+            case 10:
+                d S = LaunchActivity.S();
+                if (S != 0) {
+                    ?? obj = new Object();
+                    obj.a = true;
+                    S.showAsSheet(new tsc(new ws(oVar, (byte) 3)), obj);
                     return;
                 }
                 return;
             default:
-                if (intent.getAction().equals("android.intent.action.SCREEN_OFF")) {
-                    if (e21.a) {
-                        fc4.b("screen off");
-                    }
-                    ConnectionsManager.getInstance(z8c.t0).setAppPaused(true, true);
-                    a.w = false;
-                } else if (intent.getAction().equals("android.intent.action.SCREEN_ON")) {
-                    if (e21.a) {
-                        fc4.b("screen on");
-                    }
-                    ConnectionsManager.getInstance(z8c.t0).setAppPaused(false, true);
-                    a.w = true;
+                a aVar2 = oVar.h0;
+                if (aVar2 != null && oVar.g0 != null) {
+                    aVar2.setLayerType(0, null);
+                    oVar.a0 = (byte) 0;
+                    gl.t1(oVar.M.getCurrentFocus());
+                    return;
                 }
-                nm7.e().k(292, new Object[0]);
                 return;
         }
     }

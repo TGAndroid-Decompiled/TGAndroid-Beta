@@ -1,52 +1,57 @@
 package defpackage;
 
-import android.content.Context;
-import org.telegram.tgnet.TLObject;
-public final class us3 extends gg0 {
-    public final lka s;
-    public TLObject w;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class us3 implements TextWatcher {
+    public final int a;
+    public final gt3 b;
+    public final boolean c;
+    public final ws3 d;
 
-    public us3(Context context, ylb ylbVar) {
-        super(context, ylbVar);
-        int i;
-        float f;
-        float f2;
-        this.c.setVisibility(8);
-        lka lkaVar = this.e;
-        int i2 = cmb.A6;
-        anb.W(lkaVar, i2, ylbVar);
-        lka lkaVar2 = new lka(context);
-        this.s = lkaVar2;
-        lkaVar2.setTextSize(16);
-        anb.W(lkaVar2, i2, ylbVar);
-        if (jb6.a0) {
-            i = 3;
-        } else {
-            i = 5;
-        }
-        lkaVar2.setGravity(i);
-        addView(lkaVar2);
-        boolean z = jb6.a0;
-        int i3 = (z ? 3 : 5) | 16;
-        if (z) {
-            f = 20.0f;
-        } else {
-            f = 0.0f;
-        }
-        if (z) {
-            f2 = 0.0f;
-        } else {
-            f2 = 20.0f;
-        }
-        lkaVar2.setLayoutParams(qoe.d(-1, -2.0f, i3, f, 0.0f, f2, 0.0f));
+    public us3(ws3 ws3Var, int i, gt3 gt3Var, boolean z) {
+        this.d = ws3Var;
+        this.a = i;
+        this.b = gt3Var;
+        this.c = z;
     }
 
     @Override
-    public final boolean b() {
-        return true;
+    public final void afterTextChanged(Editable editable) {
+        ws3 ws3Var = this.d;
+        boolean z = ws3Var.a;
+        int i = this.a;
+        if (!z) {
+            if (i > 0 && editable != null && editable.length() > i) {
+                ws3Var.a = true;
+                CharSequence subSequence = editable.subSequence(0, i);
+                gt3 gt3Var = this.b;
+                gt3Var.setText(subSequence);
+                gt3Var.setSelection(gt3Var.length());
+                ws3Var.a = false;
+            }
+            ws3Var.b(editable);
+        }
+        if (this.c) {
+            while (true) {
+                int indexOf = editable.toString().indexOf("\n");
+                if (indexOf < 0) {
+                    break;
+                }
+                editable.delete(indexOf, indexOf + 1);
+            }
+        }
+        gn gnVar = ws3Var.y;
+        if (gnVar != null && i > 0) {
+            gnVar.a();
+            ws3Var.c();
+        }
     }
 
-    public Object getGifCode() {
-        return this.w;
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

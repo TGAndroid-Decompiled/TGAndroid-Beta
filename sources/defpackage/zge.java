@@ -1,17 +1,47 @@
 package defpackage;
-public final class zge implements cq7 {
-    public static final zge a = new Object();
+public final class zge extends sie {
+    public final int e;
+    public final int f;
 
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)), 5)), 6)), 7)));
+    public zge(byte[] bArr, int i, int i2) {
+        super(bArr);
+        sie.l(i, i + i2, bArr.length);
+        this.e = i;
+        this.f = i2;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+    public final byte h(int i) {
+        int i2 = this.f;
+        if (((i2 - (i + 1)) | i) < 0) {
+            if (i < 0) {
+                StringBuilder sb = new StringBuilder(22);
+                sb.append("Index < 0: ");
+                sb.append(i);
+                throw new ArrayIndexOutOfBoundsException(sb.toString());
+            }
+            StringBuilder sb2 = new StringBuilder(40);
+            sb2.append("Index > length: ");
+            sb2.append(i);
+            sb2.append(", ");
+            sb2.append(i2);
+            throw new ArrayIndexOutOfBoundsException(sb2.toString());
         }
-        throw new ClassCastException();
+        return this.b[this.e + i];
+    }
+
+    @Override
+    public final int i() {
+        return this.f;
+    }
+
+    @Override
+    public final byte k(int i) {
+        return this.b[this.e + i];
+    }
+
+    @Override
+    public final int m() {
+        return this.e;
     }
 }

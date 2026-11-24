@@ -1,10 +1,17 @@
 package defpackage;
-public final class iwd {
-    public final xkd a;
-    public final jwd b;
+public final class iwd implements zn7 {
+    public static final iwd a = new Object();
 
-    public iwd(xkd xkdVar, String str, Object[] objArr) {
-        this.a = xkdVar;
-        this.b = new jwd(xkdVar.getClass(), str, objArr);
+    static {
+        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

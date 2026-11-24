@@ -1,33 +1,50 @@
 package defpackage;
-public final class ng implements jp7 {
-    public final byte a;
-    public final lp7 b;
-    public final lp7 c;
-    public final lp7 d;
 
-    public ng(lp7 lp7Var, lp7 lp7Var2, lp7 lp7Var3, byte b) {
+import android.view.KeyEvent;
+import android.widget.TextView;
+public final class ng implements TextView.OnEditorActionListener {
+    public final byte a;
+
+    public ng(byte b) {
         this.a = b;
-        this.b = lp7Var;
-        this.c = lp7Var2;
-        this.d = lp7Var3;
     }
 
     @Override
-    public final void g(lp7 lp7Var, int i) {
-        byte b = this.a;
-        lp7 lp7Var2 = this.d;
-        lp7 lp7Var3 = this.c;
-        lp7 lp7Var4 = this.b;
-        switch (b) {
+    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+        switch (this.a) {
             case 0:
-                ik.v0(lp7Var4, lp7Var3, lp7Var2);
-                return;
+                gl.t1(textView);
+                return false;
             case 1:
-                ik.v0(lp7Var4, lp7Var3, lp7Var2);
-                return;
+                if (i != 6) {
+                    return false;
+                }
+                gl.t1(textView);
+                return true;
+            case 2:
+                if (i == 6) {
+                    textView.clearFocus();
+                    gl.t1(textView);
+                }
+                return false;
+            case 3:
+                if (i == 6) {
+                    textView.clearFocus();
+                    gl.t1(textView);
+                }
+                return false;
+            case 4:
+                if (i != 6) {
+                    return false;
+                }
+                gl.t1(textView);
+                return true;
             default:
-                ik.b(lp7Var4, lp7Var3, lp7Var2);
-                return;
+                if (i != 6) {
+                    return false;
+                }
+                gl.t1(textView);
+                return true;
         }
     }
 }

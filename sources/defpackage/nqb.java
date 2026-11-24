@@ -1,11 +1,16 @@
 package defpackage;
+public enum nqb extends qsb {
+    public nqb() {
+        super("ScriptDataEscapeStartDash", 20);
+    }
 
-import java.util.concurrent.CancellationException;
-public final class nqb extends CancellationException {
-    public final transient oqb a;
-
-    public nqb(String str, oqb oqbVar) {
-        super(str);
-        this.a = oqbVar;
+    @Override
+    public final void c(aqb aqbVar, zj1 zj1Var) {
+        if (zj1Var.m('-')) {
+            aqbVar.f('-');
+            aqbVar.a(qsb.N);
+            return;
+        }
+        aqbVar.c = qsb.f;
     }
 }

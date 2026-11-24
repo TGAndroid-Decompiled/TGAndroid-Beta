@@ -1,480 +1,182 @@
 package defpackage;
 
-import android.content.ClipboardManager;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-import java.util.Timer;
-import org.telegram.tgnet.TLRPC;
-public final class pf6 extends kla {
-    public boolean E;
-    public int F;
-    public int G;
-    public String H;
-    public String I;
-    public String J;
-    public String K;
-    public String L;
-    public Bundle M;
-    public boolean N;
-    public Timer O;
-    public final Object P;
-    public int Q;
-    public double R;
-    public boolean S;
-    public Bundle T;
-    public TLRPC.TL_auth_sentCode U;
-    public final nf6 V;
-    public final nf6 W;
-    public final byte a;
-    public float a0;
-    public final gt7 b;
-    public final mh6 b0;
-    public final l7 c;
-    public final pe6 d;
-    public final TextView e;
-    public final TextView f;
-    public final s09 h;
-    public final TextView n;
-    public final TextView r;
-    public final TextView s;
-    public final ng6 w;
-    public boolean x;
-    public boolean y;
+import android.app.Dialog;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.PasscodeActivity;
+import org.telegram.ui.Wallet.c;
+public final class pf6 extends d {
+    public s20 a;
+    public o39 b;
+    public int c;
+    public int d;
+    public int e;
+    public int f;
+    public int h;
+    public int n;
+    public int r;
+    public int s;
+    public int w;
 
-    public pf6(defpackage.mh6 r33, android.content.Context r34, int r35) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.pf6.<init>(mh6, android.content.Context, int):void");
-    }
-
-    public static String s(String str) {
-        int length = str.length();
-        int i = 0;
-        while (i < length && str.charAt(i) <= ' ') {
-            i++;
-        }
-        if (i <= 0 && length >= str.length()) {
-            return str;
-        }
-        return str.substring(i, length);
-    }
-
-    @Override
-    public final boolean b() {
-        return true;
-    }
-
-    @Override
-    public final boolean d(boolean z) {
-        mh6 mh6Var = this.b0;
-        mh6Var.y1(true, true);
-        int i = this.G;
-        if (i != 0) {
-            mh6Var.J1(i, true, null, true);
-            return false;
-        }
-        this.M = null;
-        this.S = false;
-        return true;
-    }
-
-    @Override
-    public final void e() {
-        this.S = false;
-    }
-
-    @Override
-    public final void g() {
-        gm.r(this.V);
-    }
-
-    @Override
-    public String getHeaderName() {
-        return jb6.M0(2131748023, "NewPassword");
-    }
-
-    @Override
-    public final void h(String str) {
-        if (this.S) {
-            return;
-        }
-        String obj = this.c.getText().toString();
-        if (obj.length() == 0) {
-            r(false);
-        } else if (!o(obj)) {
-            r(true);
-        } else {
-            this.S = true;
-            TLRPC.TL_auth_signIn tL_auth_signIn = new TLRPC.TL_auth_signIn();
-            tL_auth_signIn.phone_number = this.H;
-            tL_auth_signIn.phone_code = obj;
-            tL_auth_signIn.phone_code_hash = this.I;
-            tL_auth_signIn.flags |= 1;
-            mh6 mh6Var = this.b0;
-            mh6Var.B1(mh6Var.getConnectionsManager().sendRequest(tL_auth_signIn, new jf6(this, tL_auth_signIn, (byte) 0), 10), true);
-            mh6Var.K1(true, true);
-        }
-    }
-
-    @Override
-    public final void i() {
-        p(true);
-    }
-
-    @Override
-    public final void j() {
-        gm.d3(new nf6(this, (byte) 3), mh6.A0);
-    }
-
-    @Override
-    public final void k(Bundle bundle) {
-        Bundle bundle2 = bundle.getBundle("recoveryview_word" + ((int) this.a));
-        this.M = bundle2;
-        if (bundle2 != null) {
-            m(bundle2, true);
-        }
-    }
-
-    @Override
-    public final void l(Bundle bundle) {
-        if (this.M != null) {
-            bundle.putBundle("recoveryview_word" + ((int) this.a), this.M);
-        }
-    }
-
-    @Override
-    public final void m(Bundle bundle, boolean z) {
-        boolean z2;
-        int i;
-        int i2;
-        int i3;
-        ng6 ng6Var = this.w;
-        if (bundle == null) {
-            if (this.T != null && this.U != null) {
-                anb.X(ng6Var, cmb.H6, null);
-                int i4 = this.F;
-                if (i4 == 17) {
-                    i3 = 2131745783;
-                } else if (i4 == 16) {
-                    i3 = 2131745781;
-                } else if (i4 == 3) {
-                    i3 = 2131745780;
-                } else {
-                    i3 = 2131745782;
-                }
-                ng6Var.setText(gm.E2(jb6.M0(i3, null), true, gm.L(1.0f), gm.L(1.0f)));
-                return;
-            }
-            return;
-        }
-        l7 l7Var = this.c;
-        l7Var.setText("");
-        this.M = bundle;
-        this.L = null;
-        this.F = bundle.getInt("nextType");
-        this.G = bundle.getInt("prevType", 0);
-        this.J = bundle.getString("ephone");
-        if (this.M.containsKey("beginning")) {
-            this.L = this.M.getString("beginning");
-        }
-        this.H = bundle.getString("phoneFormated");
-        this.I = bundle.getString("phoneHash");
-        this.K = this.M.getString("phone");
-        this.Q = bundle.getInt("timeout");
-        int i5 = this.G;
-        pe6 pe6Var = this.d;
-        if (i5 == 17) {
-            pe6Var.setVisibility(0);
-            pe6Var.setText(gm.E2(jb6.M0(2131753719, null), true, gm.L(-1.0f), gm.L(1.0f)));
-        } else if (i5 == 16) {
-            pe6Var.setVisibility(0);
-            pe6Var.setText(gm.E2(jb6.M0(2131753718, null), true, gm.L(-1.0f), gm.L(1.0f)));
-        } else if (i5 != 1 && i5 != 2 && i5 != 4 && i5 != 3 && i5 != 15) {
-            pe6Var.setVisibility(8);
-        } else {
-            pe6Var.setVisibility(0);
-            pe6Var.setText(gm.E2(jb6.M0(2131753720, null), true, gm.L(-1.0f), gm.L(1.0f)));
-        }
-        this.T = null;
-        this.U = null;
-        this.S = false;
-        this.N = false;
-        mh6 mh6Var = this.b0;
-        mh6Var.r0 = false;
-        ng6Var.invalidate();
-        if (this.a == 16) {
-            z2 = false;
-        } else {
-            z2 = true;
-        }
-        String str = "+" + r58.f().e(r58.h(this.K, false));
-        String str2 = this.L;
-        TextView textView = this.r;
-        if (str2 == null) {
-            if (!z2) {
-                i2 = 2131745685;
-            } else {
-                i2 = 2131745693;
-            }
-            hg9.q(null, null, i2, new Object[]{str}, textView);
-        } else {
-            if (!z2) {
-                i = 2131745689;
-            } else {
-                i = 2131745697;
-            }
-            hg9.q(null, null, i, new Object[]{str, str2}, textView);
-        }
-        mh6Var.M1(l7Var);
-        l7Var.requestFocus();
-        s09 s09Var = this.h;
-        if (s09Var.getAnimatedDrawable() != null) {
-            s09Var.getAnimatedDrawable().I(0, false, false);
-        }
-        gm.d3(new kg5(s09Var, (byte) 28), 500L);
-        p(false);
-        n(false);
-        this.R = System.currentTimeMillis();
-        int i6 = cmb.x6;
-        anb.X(ng6Var, i6, null);
-        int i7 = this.F;
-        if (i7 != 2 && i7 != 4 && i7 != 3) {
-            ng6Var.setVisibility(8);
-        } else if (this.O != null) {
-        } else {
-            anb.X(ng6Var, i6, null);
-            ng6Var.setTag(2131296388, Integer.valueOf(i6));
-            Timer timer = new Timer();
-            this.O = timer;
-            timer.schedule(new lx3(this, (byte) 1), 0L, 1000L);
-        }
-    }
-
-    public final void n(boolean z) {
-        float f;
-        this.y = z;
-        float f2 = 0.0f;
-        if (z) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
-        }
-        this.b.a(f);
-        float f3 = (f * 0.1f) + 0.9f;
-        float f4 = -5.0f;
-        ViewPropertyAnimator translationY = this.e.animate().scaleX(f3).scaleY(f3).alpha(f).translationY((1.0f - f) * gm.L(-5.0f));
-        d53 d53Var = d53.h;
-        wi8.t(translationY, d53Var, 290L);
-        if (this.x && !this.y) {
-            f2 = 1.0f;
-        }
-        float f5 = (0.1f * f2) + 0.9f;
-        ViewPropertyAnimator alpha = this.f.animate().scaleX(f5).scaleY(f5).alpha(f2);
-        float f6 = 1.0f - f2;
-        if (this.y) {
-            f4 = 5.0f;
-        }
-        alpha.translationY(f6 * gm.L(f4)).setInterpolator(d53Var).setDuration(290L).start();
-    }
-
-    public final boolean o(String str) {
-        if (this.L != null) {
-            String lowerCase = s(str).toLowerCase();
-            String lowerCase2 = this.L.toLowerCase();
-            int min = Math.min(lowerCase.length(), lowerCase2.length());
-            if (min <= 0) {
-                return true;
-            }
-            return TextUtils.equals(lowerCase.substring(0, min), lowerCase2.substring(0, min));
-        }
-        return true;
-    }
-
-    public final void p(boolean z) {
-        boolean z2;
-        float f;
-        float f2;
-        float f3;
-        float f4;
-        float f5;
-        float f6;
-        nf6 nf6Var = this.V;
-        gm.r(nf6Var);
-        ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
-        if (TextUtils.isEmpty(this.c.getText()) && clipboardManager != null && clipboardManager.hasPrimaryClip()) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        if (this.x != z2) {
-            this.x = z2;
-            float f7 = -5.0f;
-            TextView textView = this.s;
-            float f8 = 0.9f;
-            float f9 = 0.7f;
-            TextView textView2 = this.f;
-            float f10 = 0.0f;
-            float f11 = 1.0f;
-            if (z) {
-                ViewPropertyAnimator animate = textView.animate();
-                if (z2) {
-                    f4 = 1.0f;
-                } else {
-                    f4 = 0.0f;
-                }
-                ViewPropertyAnimator alpha = animate.alpha(f4);
-                if (z2) {
-                    f5 = 1.0f;
-                } else {
-                    f5 = 0.7f;
-                }
-                ViewPropertyAnimator scaleX = alpha.scaleX(f5);
-                if (z2) {
-                    f9 = 1.0f;
-                }
-                ViewPropertyAnimator scaleY = scaleX.scaleY(f9);
-                d53 d53Var = d53.h;
-                scaleY.setInterpolator(d53Var).setDuration(300L).start();
-                ViewPropertyAnimator animate2 = textView2.animate();
-                if (this.x && !this.y) {
-                    f6 = 1.0f;
-                } else {
-                    f6 = 0.9f;
-                }
-                ViewPropertyAnimator scaleX2 = animate2.scaleX(f6);
-                if (this.x && !this.y) {
-                    f8 = 1.0f;
-                }
-                ViewPropertyAnimator scaleY2 = scaleX2.scaleY(f8);
-                if (!this.x || this.y) {
-                    f11 = 0.0f;
-                }
-                ViewPropertyAnimator alpha2 = scaleY2.alpha(f11);
-                if (!this.x || this.y) {
-                    if (this.y) {
-                        f7 = 5.0f;
+    public final void Y(int i) {
+        Integer num = null;
+        if (i == this.c) {
+            int i2 = 0;
+            for (int i3 = 3; i3 >= 0; i3--) {
+                if (!y6c.h(i3).o()) {
+                    i2++;
+                    if (num == null) {
+                        num = Integer.valueOf(i3);
                     }
-                    f10 = gm.L(f7);
                 }
-                alpha2.translationY(f10).setInterpolator(d53Var).setDuration(300L).start();
+            }
+            if (!y6c.n()) {
+                i2--;
+            }
+            if (i2 > 0 && num != null) {
+                presentFragment(new mf6(num.intValue()));
+            } else if (!y6c.n()) {
+                showDialog(new h26(7, this.currentAccount, null, getParentActivity(), this));
+            }
+        } else if (i == this.d) {
+            presentFragment(PasscodeActivity.m0());
+        } else if (i == this.e) {
+            presentFragment(new r61());
+        } else if (i == this.f) {
+            presentFragment(new u8(3));
+        } else if (i == this.h) {
+            showDialog(ij.R(this, null));
+        } else if (i == this.r && getParentActivity() != null) {
+            hd hdVar = new hd(3, null, getParentActivity());
+            hdVar.q(500L);
+            int i4 = this.currentAccount;
+            kz5 kz5Var = new kz5(this, hdVar, (byte) 28);
+            c[] cVarArr = c.R;
+            if (!na7.q1(i4).k4.n0.f) {
+                kz5Var.run();
             } else {
-                if (z2) {
-                    f = 1.0f;
-                } else {
-                    f = 0.0f;
-                }
-                textView.setAlpha(f);
-                if (z2) {
-                    f2 = 1.0f;
-                } else {
-                    f2 = 0.7f;
-                }
-                textView.setScaleX(f2);
-                if (z2) {
-                    f9 = 1.0f;
-                }
-                textView.setScaleY(f9);
-                if (this.x && !this.y) {
-                    f3 = 1.0f;
-                } else {
-                    f3 = 0.9f;
-                }
-                textView2.setScaleX(f3);
-                if (this.x && !this.y) {
-                    f8 = 1.0f;
-                }
-                textView2.setScaleY(f8);
-                if (!this.x || this.y) {
-                    f11 = 0.0f;
-                }
-                textView2.setAlpha(f11);
-                if (!this.x || this.y) {
-                    if (this.y) {
-                        f7 = 5.0f;
-                    }
-                    f10 = gm.L(f7);
-                }
-                textView2.setTranslationY(f10);
+                gl.c3(new sm3(i4, kz5Var, (byte) 9));
             }
-        }
-        gm.d3(nf6Var, 5000L);
-    }
-
-    public final void q() {
-        ng6 ng6Var = this.w;
-        int i = cmb.x6;
-        anb.X(ng6Var, i, null);
-        this.w.setTag(2131296388, Integer.valueOf(i));
-        try {
-            synchronized (this.P) {
-                Timer timer = this.O;
-                if (timer != null) {
-                    timer.cancel();
-                    this.O = null;
-                }
-            }
-        } catch (Exception e) {
-            fc4.g(e, true);
         }
     }
 
-    public final void r(boolean z) {
-        boolean z2;
-        int i;
-        int i2;
-        l7 l7Var = this.c;
-        if (this.b0.getParentActivity() == null) {
-            return;
-        }
-        try {
-            l7Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-        if (this.a == 16) {
-            z2 = false;
-        } else {
-            z2 = true;
-        }
-        TextView textView = this.e;
-        if (z) {
-            if (!z2) {
-                i2 = 2131745690;
-            } else {
-                i2 = 2131745698;
-            }
-            textView.setText(jb6.M0(i2, null));
-        } else if (TextUtils.isEmpty(l7Var.getText())) {
-            textView.setText("");
-        } else {
-            if (!z2) {
-                i = 2131745688;
-            } else {
-                i = 2131745696;
-            }
-            textView.setText(jb6.M0(i, null));
-        }
-        if (!this.y && !this.E) {
-            gm.A3(this.a0, l7Var, null);
-            gm.A3(this.a0, textView, null);
-        }
-        nf6 nf6Var = this.W;
-        gm.r(nf6Var);
-        n(true);
-        gm.d3(nf6Var, 10000L);
-        this.a0 = -this.a0;
+    public final void Z(defpackage.hd r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.pf6.Z(hd):void");
+    }
+
+    public final void a0() {
+        na7.q1(this.currentAccount).C3(1);
     }
 
     @Override
-    public final void updateColors() {
-        int i = cmb.F6;
-        mh6 mh6Var = this.b0;
-        this.n.setTextColor(mh6Var.getThemedColor(i));
-        this.r.setTextColor(mh6Var.getThemedColor(cmb.C6));
-        int themedColor = mh6Var.getThemedColor(i);
-        l7 l7Var = this.c;
-        l7Var.setTextColor(themedColor);
-        l7Var.setCursorColor(mh6Var.getThemedColor(cmb.k6));
-        l7Var.setHintTextColor(mh6Var.getThemedColor(cmb.G6));
-        this.b.f();
+    public final void addThemeColorKeys(HashSet hashSet) {
+        super.addThemeColorKeys(hashSet);
+        hashSet.add(Integer.valueOf(bkb.l6));
+        hashSet.add(Integer.valueOf(bkb.y6));
+        hashSet.add(Integer.valueOf(bkb.F6));
+        hashSet.add(Integer.valueOf(bkb.A6));
+        hashSet.add(Integer.valueOf(bkb.a7));
+        hashSet.add(Integer.valueOf(bkb.K6));
+        hashSet.add(Integer.valueOf(bkb.o7));
+        hashSet.add(Integer.valueOf(bkb.c7));
+        hashSet.add(Integer.valueOf(bkb.h6));
+        hashSet.add(Integer.valueOf(bkb.s8));
+        hashSet.add(Integer.valueOf(bkb.z8));
+        hashSet.add(Integer.valueOf(bkb.u8));
+        hashSet.add(Integer.valueOf(bkb.r8));
+        hashSet.add(Integer.valueOf(bkb.c6));
+    }
+
+    @Override
+    public final View createView(Context context) {
+        setHasOwnBackground(true);
+        this.simpleActionBar.setBackButtonImage(2131231243);
+        this.simpleActionBar.setTitle(k96.M0(2131748549, null));
+        ui5 ui5Var = this.parentLayout;
+        if (ui5Var != null && ((ActionBarLayout) ui5Var).T0) {
+            this.simpleActionBar.setOccupyStatusBar(false);
+        }
+        this.simpleActionBar.setActionBarMenuOnItemClick(new bq5(this, (byte) 6));
+        this.a = new s20(this, context, (byte) 7);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        o39 o39Var = new o39(context, null);
+        this.b = o39Var;
+        o39Var.setVerticalScrollBarEnabled(false);
+        this.b.setLayoutManager(new t26(1, false));
+        frameLayout.addView(this.b, nme.e(-1, -1, 51));
+        this.b.setAdapter(this.a);
+        this.b.setOnItemClickListener(new of6(this));
+        this.b.r1();
+        this.b.setSectionsDrawBackground(true);
+        return this.fragmentView;
+    }
+
+    @Override
+    public final o39 getListViewForSimpleGlass() {
+        return this.b;
+    }
+
+    @Override
+    public final ArrayList getThemeDescriptions() {
+        return new ArrayList();
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
+    public final void onDialogDismiss(Dialog dialog) {
+        up3.q(this.currentAccount).g();
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        super.onFragmentCreate();
+        this.w = 1;
+        if (y6c.c() < 4) {
+            int i = this.w;
+            this.w = i + 1;
+            this.c = i;
+        } else {
+            this.c = -1;
+        }
+        if (gba.r.length() <= 0) {
+            int i2 = this.w;
+            this.w = i2 + 1;
+            this.d = i2;
+        } else {
+            this.d = -1;
+        }
+        int i3 = this.w;
+        this.e = i3;
+        this.f = i3 + 1;
+        this.h = i3 + 2;
+        this.n = i3 + 3;
+        this.r = i3 + 4;
+        this.w = i3 + 6;
+        this.s = i3 + 5;
+        return true;
+    }
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        s20 s20Var = this.a;
+        if (s20Var != null) {
+            s20Var.f();
+        }
+    }
+
+    @Override
+    public final boolean useSimpleActionBar() {
+        return true;
     }
 }

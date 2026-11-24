@@ -1,25 +1,18 @@
 package defpackage;
-public final class b70 implements cq7 {
+public final class b70 implements zn7 {
     public static final b70 a = new Object();
-    public static final wa4 b = wa4.c("execution");
-    public static final wa4 c = wa4.c("customAttributes");
-    public static final wa4 d = wa4.c("internalKeys");
-    public static final wa4 e = wa4.c("background");
-    public static final wa4 f = wa4.c("currentProcessDetails");
-    public static final wa4 g = wa4.c("appProcessDetails");
-    public static final wa4 h = wa4.c("uiOrientation");
+    public static final w84 b = new w84("window", b00.m(b00.l(et8.class, new vx(1))));
+    public static final w84 c = new w84("logSourceMetrics", b00.m(b00.l(et8.class, new vx(2))));
+    public static final w84 d = new w84("globalMetrics", b00.m(b00.l(et8.class, new vx(3))));
+    public static final w84 e = new w84("appNamespace", b00.m(b00.l(et8.class, new vx(4))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        i03 i03Var = (i03) obj;
-        dq7 dq7Var = (dq7) obj2;
-        dq7Var.a(b, ((t90) i03Var).a);
-        t90 t90Var = (t90) i03Var;
-        dq7Var.a(c, t90Var.b);
-        dq7Var.a(d, t90Var.c);
-        dq7Var.a(e, t90Var.d);
-        dq7Var.a(f, t90Var.e);
-        dq7Var.a(g, t90Var.f);
-        dq7Var.e(h, t90Var.g);
+        mi2 mi2Var = (mi2) obj;
+        ao7 ao7Var = (ao7) obj2;
+        ao7Var.a(b, mi2Var.a);
+        ao7Var.a(c, mi2Var.b);
+        ao7Var.a(d, mi2Var.c);
+        ao7Var.a(e, mi2Var.d);
     }
 }

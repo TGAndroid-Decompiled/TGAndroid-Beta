@@ -1,100 +1,113 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.View;
-public final class mn0 extends View {
-    public final ho a;
-    public float b;
-    public ValueAnimator c;
-    public int d;
-    public final Paint e;
+import java.io.File;
+import org.telegram.messenger.ShortcutResultReceiver;
+import org.telegram.ui.LaunchActivity;
+public final class mn0 implements Runnable {
+    public final byte a;
+    public final p8c b;
 
-    public mn0(Context context) {
-        super(context);
-        this.b = 1.0f;
-        ho hoVar = new ho(false, false, true);
-        this.a = hoVar;
-        hoVar.n(0.3f, 250L, d53.h);
-        hoVar.setCallback(this);
-        hoVar.w(gm.L(11.5f));
-        hoVar.x(gm.o());
-        hoVar.u(-1);
-        hoVar.t("", true, true);
-        hoVar.b = 17;
-        Paint paint = new Paint(1);
-        this.e = paint;
-        paint.setColor(-6915073);
-        setVisibility(8);
+    public mn0(p8c p8cVar, byte b) {
+        this.a = b;
+        this.b = p8cVar;
     }
 
-    public final void a(int i, boolean z) {
-        if (!oo0.k()) {
-            i = 0;
-        }
-        if (i > 0) {
-            setVisibility(0);
-        }
-        ho hoVar = this.a;
-        if (z) {
-            hoVar.a();
-            if (i != this.d && i > 0) {
-                ValueAnimator valueAnimator = this.c;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    this.c = null;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        p8c p8cVar = this.b;
+        switch (b) {
+            case 0:
+                gl.c3(new mn0(p8cVar, (byte) 2));
+                return;
+            case 1:
+                p8cVar.a(null);
+                return;
+            case 2:
+                p8cVar.a(null);
+                return;
+            case 3:
+                r61.i0 = false;
+                long m0 = r61.m0(ba4.j(4), 5);
+                long m02 = r61.m0(ba4.j(4), 4);
+                long m03 = r61.m0(ba4.j(100), 0) + r61.m0(ba4.j(0), 0);
+                long m04 = r61.m0(ba4.j(101), 0) + r61.m0(ba4.j(2), 0);
+                long m05 = r61.m0(ba4.j(5), 1) + r61.m0(ba4.j(3), 1);
+                long m06 = r61.m0(ba4.j(5), 2) + r61.m0(ba4.j(3), 2);
+                long m07 = r61.m0(ba4.j(4), 3) + r61.m0(new File(ba4.j(4), "acache"), 0);
+                long m08 = r61.m0(ba4.j(1), 0);
+                long m09 = r61.m0(ba4.j(6), 0);
+                long m010 = r61.m0(gl.O0(), 1);
+                boolean z = w01.a;
+                long j = m0 + m02 + m04 + m08 + m03 + m05 + m06 + m07 + m09 + m010;
+                r61.k0 = Long.valueOf(j);
+                r61.j0 = System.currentTimeMillis();
+                if (!r61.i0) {
+                    gl.c3(new lf(p8cVar, j, (byte) 1));
+                    return;
                 }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.c = ofFloat;
-                ofFloat.addUpdateListener(new f0(this, (byte) 16));
-                this.c.addListener(new g0(this, (byte) 22));
-                b10.n(2.0f, this.c);
-                this.c.setDuration(200L);
-                this.c.start();
-            }
+                return;
+            case 4:
+                if (p8cVar != null) {
+                    p8cVar.a(null);
+                    return;
+                }
+                return;
+            case 5:
+                if (p8cVar != null) {
+                    p8cVar.a(null);
+                    return;
+                }
+                return;
+            case 6:
+                if (p8cVar != null) {
+                    p8cVar.a(null);
+                    return;
+                }
+                return;
+            case 7:
+                if (p8cVar != null) {
+                    p8cVar.a(null);
+                    return;
+                }
+                return;
+            case 8:
+                if (p8cVar != null) {
+                    p8cVar.a(null);
+                    return;
+                }
+                return;
+            case 9:
+                p8cVar.a(null);
+                return;
+            case 10:
+                if (p8cVar != null) {
+                    p8cVar.a(null);
+                    return;
+                }
+                return;
+            case 11:
+                if (p8cVar != null) {
+                    p8cVar.a(null);
+                    return;
+                }
+                return;
+            case 12:
+                int i = ShortcutResultReceiver.a;
+                p8cVar.a(Boolean.TRUE);
+                return;
+            case 13:
+                p8cVar.a(LaunchActivity.S());
+                return;
+            case 14:
+                p8cVar.a("Wallet engine is closed");
+                return;
+            case 15:
+                p8cVar.a(null);
+                return;
+            default:
+                p8cVar.a(null);
+                return;
         }
-        this.d = i;
-        int length = hoVar.i.length();
-        hoVar.t("x" + i, z, true);
-        int length2 = hoVar.i.length();
-        invalidate();
-        if (length != length2) {
-            requestLayout();
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        canvas.save();
-        canvas.translate(gm.L(3.0f), gm.L(3.0f));
-        Rect rect = gm.Q;
-        int L = gm.L(8.0f);
-        ho hoVar = this.a;
-        rect.set(0, 0, L + ((int) hoVar.c()), gm.L(20.0f));
-        RectF rectF = gm.P;
-        rectF.set(rect);
-        if (this.b != 1.0f) {
-            canvas.save();
-            float f = this.b;
-            canvas.scale(f, f, rect.centerX(), rect.centerY());
-        }
-        canvas.drawRoundRect(rectF, gm.L(10.0f), gm.L(10.0f), this.e);
-        rect.set(0, 0, (int) rectF.width(), gm.L(19.0f));
-        hoVar.setBounds(rect);
-        hoVar.draw(canvas);
-        if (this.b != 1.0f) {
-            canvas.restore();
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (this.a.e() + gm.L(15.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(26.0f), 1073741824));
     }
 }

@@ -1,84 +1,110 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.messenger.camera.CameraView;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-public final class m62 extends CameraView {
-    public final s20 a;
-    public boolean b;
-    public final ChatAttachAlertPhotoLayout c;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class m62 extends j39 {
+    public final ArrayList r;
+    public final int s;
+    public final Context w;
+    public final p62 x;
 
-    public m62(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, boolean z, boolean z2) {
-        super(context, z, z2);
-        this.c = chatAttachAlertPhotoLayout;
-        this.a = new s20(this, (byte) 6);
+    public m62(p62 p62Var, Context context) {
+        this.x = p62Var;
+        ArrayList arrayList = new ArrayList();
+        this.r = arrayList;
+        int i = y6c.t0;
+        this.s = i;
+        this.w = context;
+        arrayList.addAll(ox8.f(i).e());
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f;
-        RectF rectF;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.c;
-        i22 i22Var = chatAttachAlertPhotoLayout.b;
-        if (gm.m0) {
-            return;
+    public final String F(int i) {
+        return null;
+    }
+
+    @Override
+    public final void G(o39 o39Var, float f, int[] iArr) {
+        iArr[0] = 0;
+        iArr[1] = 0;
+    }
+
+    @Override
+    public final int M(int i) {
+        if (i != 0 && i != 2) {
+            return this.r.size();
         }
-        if (!this.b && (chatAttachAlertPhotoLayout.e0 || !chatAttachAlertPhotoLayout.c0)) {
-            float translationY = (i22Var.b.getTranslationY() + (i22Var.D2[1] + chatAttachAlertPhotoLayout.X0)) - chatAttachAlertPhotoLayout.Q.getTranslationY();
-            lc1 lc1Var = i22Var.B4;
-            if (lc1Var != null) {
-                f = lc1Var.d() + gm.L(8.0f);
-            } else {
-                f = 0.0f;
+        return 1;
+    }
+
+    @Override
+    public final Object O(int i, int i2) {
+        if (i != 0 && i2 >= 0) {
+            ArrayList arrayList = this.r;
+            if (i2 < arrayList.size()) {
+                return arrayList.get(i2);
             }
-            int min = (int) Math.min(translationY - f, getMeasuredHeight());
-            boolean z = chatAttachAlertPhotoLayout.e0;
-            if (z) {
-                rectF = gm.P;
-                float f2 = chatAttachAlertPhotoLayout.o1;
-                float f3 = 1.0f - chatAttachAlertPhotoLayout.f0;
-                rectF.set((0.0f * f3) + f2, (f3 * chatAttachAlertPhotoLayout.a0) + chatAttachAlertPhotoLayout.l1, chatAttachAlertPhotoLayout.n1, gm.R1(Math.min(min, chatAttachAlertPhotoLayout.m1), getMeasuredHeight(), chatAttachAlertPhotoLayout.f0));
-            } else if (!z && !chatAttachAlertPhotoLayout.c0) {
-                gm.P.set(0.0f, chatAttachAlertPhotoLayout.a0, getMeasuredWidth(), Math.min(min, getMeasuredHeight()));
-                return;
-            } else {
-                rectF = gm.P;
-                rectF.set(0.0f, 0.0f, getMeasuredWidth(), Math.min(min, getMeasuredHeight()));
-            }
-            canvas.save();
-            canvas.clipRect(rectF);
-            super.dispatchDraw(canvas);
-            canvas.restore();
-            return;
         }
-        super.dispatchDraw(canvas);
+        return null;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.c;
-        u31.a(chatAttachAlertPhotoLayout.Q, this.a);
-        chatAttachAlertPhotoLayout.F.invalidate();
+    public final View T(int i, View view) {
+        return null;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        u31.h(this.c.Q);
+    public final boolean V(int i, int i2, s49 s49Var) {
+        if (i != 0 && i != 2 && i2 < this.r.size()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void setVisibility(int i) {
-        super.setVisibility(i);
-        this.c.F.invalidate();
+    public final void W(int i, int i2, s49 s49Var) {
+        if (s49Var.f == 0) {
+            jx8 jx8Var = (jx8) s49Var.a;
+            Object O = O(i, i2);
+            boolean z = true;
+            if (i == 1 && i2 == M(i) - 1) {
+                z = false;
+            }
+            if (O instanceof nx8) {
+                nx8 nx8Var = (nx8) O;
+                jx8Var.a(nx8Var, null, z);
+                jx8Var.d.a(this.x.x.contains(Integer.valueOf(nx8Var.a)), false);
+            }
+        }
     }
 
     @Override
-    public final void showTexture(boolean z, boolean z2) {
-        super.showTexture(z, z2);
-        this.c.F.invalidate();
+    public final void f() {
+        ArrayList arrayList = this.r;
+        arrayList.clear();
+        arrayList.addAll(ox8.f(this.s).e());
+        X(false);
+        this.x.Q();
+    }
+
+    @Override
+    public final s49 x(ViewGroup viewGroup, int i) {
+        View jx8Var;
+        Context context = this.w;
+        if (i != 0) {
+            if (i != 1) {
+                jx8Var = new View(context);
+                jx8Var.setTag(-33024);
+            } else {
+                jx8Var = new View(context);
+                jx8Var.setLayoutParams(new e49(-1, gl.L(56.0f)));
+                jx8Var.setTag(-33024);
+            }
+        } else {
+            jx8Var = new jx8(this.x.a, context, false);
+        }
+        return new s49(jx8Var);
     }
 }

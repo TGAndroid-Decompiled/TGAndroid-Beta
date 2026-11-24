@@ -1,190 +1,174 @@
 package defpackage;
 
-import android.graphics.PointF;
+import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-public final class h20 implements it3 {
-    public final byte a;
-    public final Object b;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+public final class h20 extends n39 {
+    public final Activity c;
+    public ArrayList d = new ArrayList();
+    public String e;
+    public f20 f;
+    public boolean h;
+    public final i20 n;
 
-    public h20(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public h20(i20 i20Var, Activity activity) {
+        this.n = i20Var;
+        this.c = activity;
     }
 
     @Override
-    public final void a(zna znaVar, float f, float f2) {
-        int i;
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                ((i30) obj).M1.setBufferedProgress(f / 1000.0f);
-                return;
-            case 1:
-                u31 u31Var = (u31) obj;
-                u31Var.p = (int) f;
-                u31Var.l();
-                return;
-            case 2:
-                if (Math.abs(f) > ((y21) obj).getWidth()) {
-                    znaVar.d();
-                    return;
-                }
-                return;
-            case 3:
-                i22 i22Var = (i22) ((q12) obj).d;
-                a22 a22Var = i22Var.w2;
-                if (a22Var == i22Var.g2 || a22Var == i22Var.h2 || (i22Var.z1 && i22Var.q3 != null)) {
-                    i22Var.K1(1);
-                }
-                i22Var.w2.m(i22Var.i4);
-                i22Var.X0.g();
-                i22Var.b.invalidate();
-                return;
-            case 4:
-                c52 c52Var = (c52) obj;
-                c52Var.n0 = f;
-                c52Var.m0();
-                return;
-            case 5:
-                ll4 ll4Var = (ll4) obj;
-                float f3 = f / 1000.0f;
-                su suVar = ll4Var.a;
-                suVar.setPivotX(gm.L(28.0f));
-                suVar.setPivotY(gm.L(28.0f));
-                suVar.setScaleX(f3);
-                suVar.setScaleY(f3);
-                suVar.setAlpha(pqe.a(f3, 0.0f, 1.0f));
-                ll4Var.invalidate();
-                return;
-            case 6:
-                ry5 ry5Var = (ry5) obj;
-                float f4 = f / 1000.0f;
-                ry5Var.t1 = f4;
-                tu7 tu7Var = ry5Var.l1;
-                tu7Var.setAlpha(f4);
-                tu7Var.invalidate();
-                ry5Var.T0.invalidate();
-                ry5Var.k1.getTypefaceCell().setAlpha(1.0f - ry5Var.t1);
-                return;
-            case 7:
-                bh6 bh6Var = ((mh6) obj).c0;
-                if (bh6Var != null) {
-                    int i2 = bh6.G;
-                    View view = bh6Var.c;
-                    ViewGroup viewGroup = bh6Var.b;
-                    PointF pointF = bh6Var.E;
-                    zgc.b(view, viewGroup, pointF);
-                    wp4 wp4Var = bh6Var.h;
-                    wp4Var.setTranslationX(pointF.x);
-                    wp4Var.setTranslationY(pointF.y);
-                    bh6Var.requestLayout();
-                    return;
-                }
-                return;
-            case 8:
-                xv7 xv7Var = (xv7) obj;
-                float f5 = f / 1000.0f;
-                xv7Var.j1 = f5;
-                tu7 tu7Var2 = xv7Var.c1;
-                tu7Var2.setAlpha(f5);
-                tu7Var2.invalidate();
-                xv7Var.K0.invalidate();
-                xv7Var.b1.getTypefaceCell().setAlpha(1.0f - xv7Var.j1);
-                return;
-            case 9:
-                ((ah7) obj).x();
-                return;
-            case 10:
-                t18 t18Var = (t18) obj;
-                float f6 = f / 100.0f;
-                t18Var.b = f6;
-                TextView textView = t18Var.d.V;
-                if (textView != null) {
-                    textView.setAlpha((f6 * 0.2f) + 0.8f);
-                }
-                t18Var.invalidate();
-                return;
-            case 11:
-                eb8 eb8Var = (eb8) obj;
-                eb8Var.c0 = f;
-                eb8Var.e0 = f2;
-                eb8Var.G();
-                return;
-            case 12:
-                vb8 vb8Var = (vb8) obj;
-                if (vb8Var.e > vb8Var.f) {
-                    i = gm.L(48.0f);
-                } else {
-                    i = 0;
-                }
-                vdc vdcVar = vb8Var.s.q3;
-                int measuredHeight = vb8Var.getMeasuredHeight();
-                vdcVar.h = (int) (((vb8Var.getMeasuredWidth() - gm.L(16.0f)) - f) - i);
-                vdcVar.i = measuredHeight;
-                View view2 = vdcVar.v;
-                if (view2 != null) {
-                    view2.invalidate();
-                    return;
-                }
-                return;
-            case 13:
-                dj3 dj3Var = (dj3) obj;
-                dj3Var.E = f / 1000.0f;
-                dj3Var.invalidate();
-                return;
-            case 14:
-                ((op9) obj).k(f);
-                return;
-            case 15:
-                mw9 mw9Var = (mw9) obj;
-                vdc vdcVar2 = mw9Var.r.P;
-                int measuredHeight2 = mw9Var.getMeasuredHeight();
-                vdcVar2.h = (int) (((mw9Var.getMeasuredWidth() - gm.L(16.0f)) - f) - 0.0f);
-                vdcVar2.i = measuredHeight2;
-                View view3 = vdcVar2.v;
-                if (view3 != null) {
-                    view3.invalidate();
-                    return;
-                }
-                return;
-            case 16:
-                wca wcaVar = (wca) obj;
-                float f7 = f / 1000.0f;
-                lka lkaVar = wcaVar.c;
-                lkaVar.setAlpha(f7);
-                qz8 qz8Var = wcaVar.b;
-                float f8 = 1.0f - f7;
-                qz8Var.setAlpha(f8);
-                lkaVar.setTranslationX(f8 * (-gm.L(10.0f)));
-                qz8Var.setTranslationX(f7 * gm.L(10.0f));
-                return;
-            case 17:
-                l5b l5bVar = (l5b) obj;
-                l5bVar.d0 = f;
-                l5bVar.f0 = f2;
-                return;
-            case 18:
-                m0c m0cVar = (m0c) obj;
-                m0cVar.H = f;
-                m0cVar.c();
-                return;
-            case 19:
-                xqc xqcVar = (xqc) obj;
-                xqcVar.e = f;
-                xqcVar.setScaleX(f);
-                xqcVar.setScaleY(f);
-                return;
-            case 20:
-                rrc rrcVar = (rrc) obj;
-                rrcVar.c0 = f;
-                rrcVar.G0();
-                return;
-            default:
-                ((qrc) obj).d.setConversionWobble(f);
-                return;
+    public final boolean D(s49 s49Var) {
+        if (this.n.o2 && s49Var.b() == 0) {
+            return false;
         }
+        return true;
+    }
+
+    public final void E(String str) {
+        if (this.f != null) {
+            Utilities.g.a(this.f);
+            this.f = null;
+        }
+        if (str == null) {
+            this.e = null;
+            this.d.clear();
+            f();
+            return;
+        }
+        co3 co3Var = Utilities.g;
+        f20 f20Var = new f20(this, str, (byte) 0);
+        this.f = f20Var;
+        co3Var.d(f20Var, 300L);
+    }
+
+    @Override
+    public final int b() {
+        int size;
+        i20 i20Var = this.n;
+        boolean z = i20Var.o2;
+        if (i20Var.p1) {
+            size = this.d.size();
+        } else if (i20Var.q2.size() > 1) {
+            size = i20Var.q2.size();
+        } else {
+            return 0;
+        }
+        return size + (z ? 1 : 0);
+    }
+
+    @Override
+    public final int d(int i) {
+        if (this.n.o2 && i == 0) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void f() {
+        boolean z;
+        boolean z2;
+        super.f();
+        i20 i20Var = this.n;
+        View view = i20Var.o1;
+        p10 p10Var = i20Var.r1;
+        int i = 0;
+        if (i20Var.q2.size() > 1) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (z != this.h) {
+            if (i20Var.q2.size() > 1) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            this.h = z2;
+            if (z2) {
+                p10Var.setVisibility(0);
+                p10Var.setTranslationY(gl.q.y);
+                p10Var.animate().translationY(0.0f).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                    public final h20 b;
+
+                    {
+                        this.b = this;
+                    }
+
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        byte b = r2;
+                        h20 h20Var = this.b;
+                        switch (b) {
+                            case 0:
+                                h20Var.n.b.invalidate();
+                                return;
+                            default:
+                                h20Var.n.b.invalidate();
+                                return;
+                        }
+                    }
+                }).setDuration(420L).setInterpolator(s33.h).start();
+            } else {
+                p10Var.animate().translationY(gl.q.y).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                    public final h20 b;
+
+                    {
+                        this.b = this;
+                    }
+
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        byte b = r2;
+                        h20 h20Var = this.b;
+                        switch (b) {
+                            case 0:
+                                h20Var.n.b.invalidate();
+                                return;
+                            default:
+                                h20Var.n.b.invalidate();
+                                return;
+                        }
+                    }
+                }).setDuration(420L).setInterpolator(s33.h).withEndAction(new oz(this, (byte) 2)).start();
+            }
+        }
+        int size = i20Var.q2.size();
+        k10 k10Var = i20Var.x1;
+        if (size > 1) {
+            zkb.h(bkb.Hj, i20Var.J0, k10Var);
+            view.setVisibility(0);
+            p10Var.setPadding(0, p10Var.getPaddingTop(), 0, gl.L(231.0f));
+        } else {
+            zkb.h(bkb.Hj, i20Var.J0, k10Var);
+            view.setVisibility(0);
+            p10Var.setPadding(0, p10Var.getPaddingTop(), 0, 0);
+        }
+        i20Var.u1.setVisibility((i20Var.q1 && i20Var.t1.b() == 0) ? 8 : 8);
+        i20Var.T0();
+    }
+
+    @Override
+    public final void t(defpackage.s49 r10, int r11) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.h20.t(s49, int):void");
+    }
+
+    @Override
+    public final s49 x(ViewGroup viewGroup, int i) {
+        Activity activity = this.c;
+        int i2 = 1;
+        if (i == 1) {
+            d62 d62Var = new d62(activity, (byte) 3);
+            d62Var.setTag(-33024);
+            return new s49(d62Var);
+        }
+        if (MediaController.w().D0 == null) {
+            i2 = 0;
+        }
+        return new s49(new j20(i2, this.n.J0, activity));
     }
 }

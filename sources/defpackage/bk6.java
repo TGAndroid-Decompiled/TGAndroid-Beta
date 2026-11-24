@@ -1,26 +1,10 @@
 package defpackage;
-public final class bk6 implements w37 {
-    public w37[] a;
+public interface bk6 {
+    public static final i2f z = new i2f((byte) 21);
 
-    @Override
-    public final j19 a(Class cls) {
-        w37[] w37VarArr;
-        for (w37 w37Var : this.a) {
-            if (w37Var.b(cls)) {
-                return w37Var.a(cls);
-            }
-        }
-        rjb.j("No factory is available for message type: ".concat(cls.getName()));
-        return null;
-    }
+    long a();
 
-    @Override
-    public final boolean b(Class cls) {
-        for (w37 w37Var : this.a) {
-            if (w37Var.b(cls)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    long h();
+
+    boolean next();
 }

@@ -1,20 +1,61 @@
 package defpackage;
 
-import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.graphics.drawable.NinePatchDrawable;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import org.telegram.messenger.a;
 public abstract class rpe {
-    public static xq2 a(String str, String str2) {
-        ya0 ya0Var = new ya0(str, str2);
-        wq2 b = xq2.b(ya0.class);
-        b.e = true;
-        b.f = new vq2(ya0Var, (byte) 1);
-        return b.b();
+    public static NinePatchDrawable a(Bitmap bitmap, Rect rect, int i, int i2) {
+        if (bitmap != null) {
+            if (!bitmap.isRecycled()) {
+                if (i >= 0 && i < bitmap.getWidth() && i2 >= 0 && i2 < bitmap.getHeight()) {
+                    return new NinePatchDrawable(a.b.getResources(), bitmap, c(i, i + 1, i2, i2 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i, i2)).array(), rect, null);
+                }
+                StringBuilder p = ir2.p("center pixel is outside bitmap: (", i, ", ", i2, ") for ");
+                p.append(bitmap.getWidth());
+                p.append("x");
+                fvc.e(bitmap.getHeight(), p);
+                return null;
+            }
+            w26.j("bitmap is recycled");
+            return null;
+        }
+        w26.j("bitmap == null");
+        return null;
     }
 
-    public static xq2 b(String str, h64 h64Var) {
-        wq2 b = xq2.b(ya0.class);
-        b.e = true;
-        b.a(if3.b(Context.class));
-        b.f = new nv4(str, h64Var);
-        return b.b();
+    public static android.graphics.drawable.NinePatchDrawable b(android.graphics.Bitmap[] r39, int r40, float[] r41, float r42, int r43, float r44, int r45) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rpe.b(android.graphics.Bitmap[], int, float[], float, int, float, int):android.graphics.drawable.NinePatchDrawable");
+    }
+
+    public static ByteBuffer c(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9) {
+        ByteBuffer order = ByteBuffer.allocate(84).order(ByteOrder.nativeOrder());
+        order.put((byte) 1);
+        order.put((byte) 2);
+        order.put((byte) 2);
+        order.put((byte) 9);
+        order.putInt(0);
+        order.putInt(0);
+        order.putInt(i5);
+        order.putInt(i7);
+        order.putInt(i6);
+        order.putInt(i8);
+        order.putInt(0);
+        order.putInt(i);
+        order.putInt(i2);
+        order.putInt(i3);
+        order.putInt(i4);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(i9);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        return order;
     }
 }

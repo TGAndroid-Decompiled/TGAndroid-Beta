@@ -1,29 +1,20 @@
 package defpackage;
-public final class e26 implements nv8 {
-    public static final Object c = new Object();
-    public volatile Object a = c;
-    public volatile nv8 b;
 
-    public e26(nv8 nv8Var) {
-        this.b = nv8Var;
+import android.content.Context;
+import org.telegram.ui.Components.Premium.LimitPreviewView;
+public final class e26 extends LimitPreviewView {
+    public final f26 q0;
+
+    public e26(f26 f26Var, Context context, int i, int i2, int i3, float f, wjb wjbVar) {
+        super(context, i, i2, i3, f, wjbVar);
+        this.q0 = f26Var;
     }
 
     @Override
-    public final Object get() {
-        Object obj;
-        Object obj2 = this.a;
-        Object obj3 = c;
-        if (obj2 == obj3) {
-            synchronized (this) {
-                obj = this.a;
-                if (obj == obj3) {
-                    obj = this.b.get();
-                    this.a = obj;
-                    this.b = null;
-                }
-            }
-            return obj;
+    public final void invalidate() {
+        if (this.q0.e.a2) {
+            return;
         }
-        return obj2;
+        super.invalidate();
     }
 }

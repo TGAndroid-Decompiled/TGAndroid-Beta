@@ -1,17 +1,26 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.d;
-public final class qk5 {
-    public final d a;
-    public boolean b;
-    public boolean c;
-    public boolean d = true;
-    public boolean e;
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f;
-    public boolean g;
+import android.graphics.Bitmap;
+public abstract class qk5 {
+    public static final int[] a;
 
-    public qk5(d dVar) {
-        this.a = dVar;
+    static {
+        Bitmap.CompressFormat compressFormat;
+        int[] iArr = new int[Bitmap.CompressFormat.values().length];
+        a = iArr;
+        try {
+            iArr[Bitmap.CompressFormat.WEBP.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            int[] iArr2 = a;
+            compressFormat = Bitmap.CompressFormat.WEBP_LOSSY;
+            iArr2[compressFormat.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            a[Bitmap.CompressFormat.WEBP_LOSSLESS.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
     }
 }

@@ -1,23 +1,54 @@
 package defpackage;
 
-import android.content.pm.PackageInfo;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-public abstract class ced {
-    public static final dhf a = new dhf((byte) 23);
+import java.util.Iterator;
+import java.util.Map;
+public final class ced extends vad {
+    public final transient f7d h;
+    public final transient Object[] n;
+    public final transient boolean r;
 
-    public static void a(PackageInfo packageInfo, File file) {
-        try {
-            DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(new File(file, "profileinstaller_profileWrittenFor_lastUpdateTime.dat")));
-            dataOutputStream.writeLong(packageInfo.lastUpdateTime);
-            dataOutputStream.close();
-        } catch (IOException unused) {
-        }
+    public ced(f7d f7dVar, Object[] objArr) {
+        super((byte) 0);
+        this.h = f7dVar;
+        this.n = objArr;
+        this.r = true;
     }
 
-    public static void b(android.content.Context r18, java.util.concurrent.Executor r19, defpackage.ft8 r20, boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ced.b(android.content.Context, java.util.concurrent.Executor, ft8, boolean):void");
+    @Override
+    public final boolean contains(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            if (value != null && value.equals(this.h.get(key))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final int h(Object[] objArr) {
+        aad aadVar = this.f;
+        if (aadVar == null) {
+            aadVar = new wdd(this);
+            this.f = aadVar;
+        }
+        return aadVar.h(objArr);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        aad aadVar = this.f;
+        if (aadVar == null) {
+            aadVar = new wdd(this);
+            this.f = aadVar;
+        }
+        return aadVar.listIterator(0);
+    }
+
+    @Override
+    public final int size() {
+        return this.r ? 1 : 0;
     }
 }

@@ -39,7 +39,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         if (!this.isDisposed) {
             return;
         }
-        zo4.k("capturer is disposed.");
+        wn4.j("capturer is disposed.");
     }
 
     private void createVirtualDisplay() {
@@ -47,7 +47,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         try {
             this.virtualDisplay = this.mediaProjection.createVirtualDisplay("WebRTC_ScreenCapture", this.width, this.height, 400, 3, new Surface(this.surfaceTextureHelper.getSurfaceTexture()), null, null);
         } catch (Throwable th) {
-            fc4.g(th, true);
+            fa4.g(th, true);
         }
     }
 
@@ -90,7 +90,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         if (this.virtualDisplay == null) {
             return;
         }
-        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new cu(this, i, i2, (byte) 14));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new bt(this, i, i2, (byte) 14));
     }
 
     @Override
@@ -151,7 +151,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     @Override
     public synchronized void stopCapture() {
         checkNotDisposed();
-        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new kf9(this, (byte) 16));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new zk9(this, (byte) 8));
     }
 
     @Override

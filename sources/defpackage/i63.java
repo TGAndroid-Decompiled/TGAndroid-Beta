@@ -1,106 +1,38 @@
 package defpackage;
 
-import android.os.Binder;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import android.os.Parcel;
-import android.os.ParcelFileDescriptor;
-import com.google.android.gms.common.api.Status;
-public final class i63 extends Binder implements IInterface {
-    public final byte a = 1;
-    public final Object b;
+import org.telegram.ui.DataSettingsActivity;
+public final class i63 implements Runnable {
+    public final byte a;
+    public final DataSettingsActivity b;
 
-    public i63(k1f k1fVar) {
-        attachInterface(this, "android.support.customtabs.ICustomTabsCallback");
-        this.b = new Handler(Looper.getMainLooper());
+    public i63(DataSettingsActivity dataSettingsActivity, byte b) {
+        this.a = b;
+        this.b = dataSettingsActivity;
     }
 
     @Override
-    public final IBinder asBinder() {
+    public final void run() {
+        ?? r9;
         byte b = this.a;
-        return this;
-    }
-
-    @Override
-    public final boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) {
-        switch (this.a) {
+        DataSettingsActivity dataSettingsActivity = this.b;
+        switch (b) {
             case 0:
-                Handler handler = (Handler) this.b;
-                Bundle bundle = null;
-                if (i != 2) {
-                    if (i != 3) {
-                        if (i != 4) {
-                            if (i != 5) {
-                                if (i != 1598968902) {
-                                    return super.onTransact(i, parcel, parcel2, i2);
-                                }
-                                parcel2.writeString("android.support.customtabs.ICustomTabsCallback");
-                                return true;
-                            }
-                            parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
-                            String readString = parcel.readString();
-                            if (parcel.readInt() != 0) {
-                                bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-                            }
-                            handler.post(new sw(this, readString, bundle, (byte) 5));
-                            parcel2.writeNoException();
-                            return true;
-                        }
-                        parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
-                        if (parcel.readInt() != 0) {
-                            bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-                        }
-                        handler.post(new sw(this, bundle, (byte) 4));
-                        parcel2.writeNoException();
-                        return true;
-                    }
-                    parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
-                    String readString2 = parcel.readString();
-                    if (parcel.readInt() != 0) {
-                        bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-                    }
-                    handler.post(new sw(this, readString2, bundle, (byte) 3));
-                    parcel2.writeNoException();
-                    return true;
+                dataSettingsActivity.getMediaDataController().G(true);
+                return;
+            case 1:
+                dataSettingsActivity.X = true;
+                if (dataSettingsActivity.a != null && (r9 = dataSettingsActivity.s) >= 0) {
+                    dataSettingsActivity.r0(r9 == true ? 1 : 0);
+                    return;
                 }
-                parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
-                int readInt = parcel.readInt();
-                if (parcel.readInt() != 0) {
-                    bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-                }
-                handler.post(new sw(this, readInt, bundle));
-                parcel2.writeNoException();
-                return true;
+                return;
             default:
-                if (i > 16777215) {
-                    if (super.onTransact(i, parcel, parcel2, i2)) {
-                        return true;
-                    }
-                } else {
-                    parcel.enforceInterface(getInterfaceDescriptor());
-                }
-                if (i != 1) {
-                    if (i != 2) {
-                        if (i != 4) {
-                            return false;
-                        }
-                        y6f y6fVar = (y6f) qid.a(parcel, y6f.CREATOR);
-                        return true;
-                    }
-                    Status status = (Status) qid.a(parcel, Status.CREATOR);
-                    ParcelFileDescriptor parcelFileDescriptor = (ParcelFileDescriptor) qid.a(parcel, ParcelFileDescriptor.CREATOR);
-                    return true;
-                }
-                ((jbf) this.b).a((Status) qid.a(parcel, Status.CREATOR));
-                return true;
+                r61.k0 = null;
+                DataSettingsActivity dataSettingsActivity2 = this.b;
+                i63 i63Var = new i63(dataSettingsActivity2, (byte) 1);
+                gl.d3(i63Var, 100L);
+                r61.c0(new p0c(dataSettingsActivity2, i63Var, System.currentTimeMillis(), (byte) 1));
+                return;
         }
-    }
-
-    public i63(jbf jbfVar) {
-        attachInterface(this, "com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearchCallbacks");
-        this.b = jbfVar;
     }
 }

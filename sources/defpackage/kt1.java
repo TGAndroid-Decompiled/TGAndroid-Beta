@@ -1,65 +1,42 @@
 package defpackage;
 
-import android.app.Activity;
-import android.text.style.CharacterStyle;
-import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.LaunchActivity;
-public final class kt1 extends UndoView {
-    public final byte k0 = 1;
-    public final Object l0;
+import org.telegram.tgnet.TLRPC;
+public final class kt1 implements uc7 {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public kt1(yv1 yv1Var, Activity activity, yv1 yv1Var2, ylb ylbVar) {
-        super(activity, yv1Var2, true, ylbVar);
-        this.l0 = yv1Var;
+    public kt1(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final void b(CharacterStyle characterStyle) {
-        switch (this.k0) {
+    public final void a(int i) {
+        t21 t21Var;
+        byte b = this.a;
+        Object obj = this.c;
+        Object obj2 = this.b;
+        switch (b) {
             case 0:
-                ((yv1) this.l0).m6(characterStyle, false, null, null);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        switch (this.k0) {
-            case 1:
-                super.invalidate();
-                ((c75) this.l0).invalidate();
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public final void k(long j, int i, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        float f;
-        int i2;
-        switch (this.k0) {
-            case 0:
-                gs1 gs1Var = ((yv1) this.l0).m2;
-                if (gs1Var != null && (((i2 = gs1Var.U) == 1 || i2 == 3) && gs1Var.T)) {
-                    f = gm.L(gs1Var.getStyleHeight());
-                } else {
-                    f = 0.0f;
+                TLRPC.Document document = (TLRPC.Document) obj;
+                mu1 mu1Var = ((wt1) obj2).a;
+                if (i > 0 && mu1Var.getParentActivity() != null && mu1Var.fragmentView != null) {
+                    u21 b0 = u21.b0(mu1Var);
+                    if (k27.J3(document)) {
+                        t21Var = t21.H;
+                    } else {
+                        t21Var = t21.J;
+                    }
+                    b0.m(t21Var, i, 0, 0, mu1Var.Ba).j();
+                    return;
                 }
-                setAdditionalTranslationY(f);
-                super.k(j, i, obj, obj2, runnable, runnable2);
                 return;
             default:
-                super.k(j, i, obj, obj2, runnable, runnable2);
+                ((int[]) obj2)[0] = i;
+                ((sb2) obj).run();
                 return;
         }
-    }
-
-    public kt1(c75 c75Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.l0 = c75Var;
     }
 }

@@ -1,62 +1,37 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class lg2 implements pg2 {
-    public final wg2 a;
+import android.view.ContextThemeWrapper;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class lg2 {
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout a;
+    public final LinearLayout b;
+    public final s68 c;
 
-    public lg2(wg2 wg2Var) {
-        this.a = wg2Var;
-    }
-
-    @Override
-    public final void c(long j, TLObject tLObject) {
-        wg2 wg2Var = this.a;
-        vh6 vh6Var = wg2Var.K;
-        ArrayList arrayList = wg2Var.F;
-        if (vh6Var.f(j) == null) {
-            qg2 A0 = wg2Var.A0();
-            arrayList.add(tLObject);
-            wg2Var.K.k(tLObject, j);
-            Collections.sort(arrayList, new cg2(wg2Var, wg2Var.getConnectionsManager().getCurrentTime(), (byte) 0));
-            wg2Var.D0(A0);
+    public lg2(ContextThemeWrapper contextThemeWrapper, rf8 rf8Var, s68 s68Var) {
+        this.c = s68Var;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, null, contextThemeWrapper);
+        this.a = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
+        a8 c = r7.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 2131232062, k96.M0(2131753753, null), false, null);
+        c.setOnClickListener(new w60(rf8Var, (byte) 2));
+        c.d(-328966, -328966);
+        c.setSelectorColor(268435455);
+        View a6Var = new a6(contextThemeWrapper, (byte) 7);
+        a6Var.setMinimumWidth(gl.L(196.0f));
+        a6Var.setBackgroundColor(-15198184);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(a6Var);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) a6Var.getLayoutParams();
+        if (k96.a0) {
+            layoutParams.gravity = 5;
         }
-    }
-
-    @Override
-    public final void d(long j) {
-        wg2 wg2Var = this.a;
-        vh6 vh6Var = wg2Var.K;
-        ArrayList arrayList = wg2Var.F;
-        if (vh6Var.f(j) == null) {
-            qg2 A0 = wg2Var.A0();
-            TLRPC.TL_channelParticipantBanned tL_channelParticipantBanned = new TLRPC.TL_channelParticipantBanned();
-            if (j > 0) {
-                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                tL_channelParticipantBanned.peer = tL_peerUser;
-                tL_peerUser.user_id = j;
-            } else {
-                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
-                tL_channelParticipantBanned.peer = tL_peerChannel;
-                tL_peerChannel.channel_id = -j;
-            }
-            tL_channelParticipantBanned.date = wg2Var.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantBanned.kicked_by = z8c.h(wg2Var.getAccountInstance().a).n;
-            wg2Var.r.kicked_count++;
-            arrayList.add(tL_channelParticipantBanned);
-            wg2Var.K.k(tL_channelParticipantBanned, j);
-            Collections.sort(arrayList, new cg2(wg2Var, wg2Var.getConnectionsManager().getCurrentTime(), (byte) 0));
-            wg2Var.D0(A0);
-        }
-    }
-
-    @Override
-    public final void a(TLRPC.User user) {
-    }
-
-    @Override
-    public final void b(long j) {
+        layoutParams.width = -1;
+        layoutParams.height = gl.L(8.0f);
+        a6Var.setLayoutParams(layoutParams);
+        LinearLayout linearLayout = new LinearLayout(contextThemeWrapper);
+        this.b = linearLayout;
+        linearLayout.setOrientation(1);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(linearLayout);
     }
 }

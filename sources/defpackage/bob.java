@@ -1,18 +1,43 @@
 package defpackage;
-public final class bob extends rob {
-    public final yv1 m2;
-    public final boolean n2;
+public final class bob implements Runnable {
+    public final byte a;
+    public final kob b;
 
-    public bob(Object obj, yv1 yv1Var, boolean z) {
-        super(obj, null, true);
-        this.m2 = yv1Var;
-        this.n2 = z;
+    public bob(kob kobVar, byte b) {
+        this.a = b;
+        this.b = kobVar;
     }
 
     @Override
-    public final void onFragmentClosed() {
-        super.onFragmentClosed();
-        wv1 wv1Var = this.m2.Ba;
-        wv1Var.q(wv1Var.f, wv1Var.g, false, Boolean.valueOf(this.n2), false);
+    public final void run() {
+        byte b = this.a;
+        kob kobVar = this.b;
+        switch (b) {
+            case 0:
+                iob iobVar = kobVar.N;
+                if (iobVar != null) {
+                    long j = iobVar.a;
+                    if (j > 0) {
+                        kobVar.I = j;
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                eob eobVar = kobVar.a;
+                if (eobVar != null) {
+                    eobVar.p1();
+                    return;
+                }
+                return;
+            default:
+                eob eobVar2 = kobVar.a;
+                if (eobVar2 != null) {
+                    eobVar2.K();
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -1,139 +1,56 @@
 package defpackage;
 
-import android.view.View;
-import java.util.ArrayList;
+import android.os.SystemClock;
+import org.telegram.tgnet.TLRPC;
 public final class dc2 implements Runnable {
-    public final byte a;
-    public final rc2 b;
+    public final fc2 a;
 
-    public dc2(rc2 rc2Var, byte b) {
-        this.a = b;
-        this.b = rc2Var;
+    public dc2(fc2 fc2Var) {
+        this.a = fc2Var;
     }
 
     @Override
     public final void run() {
-        byte b = this.a;
-        int i = 0;
-        rc2 rc2Var = this.b;
-        switch (b) {
-            case 0:
-                rc2Var.r2();
-                return;
-            case 1:
-                rc2Var.s2();
-                return;
-            case 2:
-                qa4 qa4Var = rc2Var.x;
-                qa4Var.a(rc2Var.kc);
-                qa4Var.a(rc2Var.lc);
-                rc2Var.k3();
-                k47 k47Var = rc2Var.Q5;
-                if (k47Var != null) {
-                    k47Var.n0(null);
-                    k47 k47Var2 = rc2Var.Q5;
-                    if (k47Var2.z != null) {
-                        k47Var2.z = null;
-                        k47Var2.k0();
+        int i;
+        fc2 fc2Var = this.a;
+        vf6 vf6Var = fc2Var.P;
+        long uptimeMillis = SystemClock.uptimeMillis();
+        int i2 = 0;
+        boolean z = false;
+        while (i2 < vf6Var.m()) {
+            long j = vf6Var.j(i2);
+            if (uptimeMillis - ((TLRPC.GroupCallParticipant) vf6Var.f(j)).lastSpeakTime >= 500) {
+                vf6Var.l(j);
+                int i3 = (j > 0L ? 1 : (j == 0L ? 0 : -1));
+                j5 j5Var = fc2Var.C;
+                String str = null;
+                if (i3 > 0) {
+                    TLRPC.User V1 = na7.q1(j5Var.a).V1(Long.valueOf(j));
+                    StringBuilder o = ug8.o(j, "remove from speaking ", " ");
+                    if (V1 != null) {
+                        str = V1.first_name;
                     }
-                    mc2 mc2Var = rc2Var.eb;
-                    if (mc2Var != null) {
-                        mc2Var.D0(rc2Var, true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 3:
-                if (rc2Var.e8 && !rc2Var.f8 && rc2Var.g8) {
-                    rc2Var.f8 = true;
-                    rc2Var.Wa.setState(new int[]{16842919, 16842910});
-                    return;
-                }
-                return;
-            case 4:
-                rc2Var.Wa.setState(new int[0]);
-                rc2Var.invalidate();
-                return;
-            case 5:
-                rc2Var.Wa.setState(new int[0]);
-                rc2Var.invalidate();
-                return;
-            case 6:
-                rc2Var.P5 = false;
-                rc2Var.getMessageObject().N0 = true;
-                i47 i47Var = rc2Var.q3;
-                if (i47Var != null) {
-                    ArrayList arrayList = i47Var.e;
-                    int size = arrayList.size();
-                    int i2 = 0;
-                    while (i2 < size) {
-                        Object obj = arrayList.get(i2);
-                        i2++;
-                        ((h47) obj).y.clear();
-                    }
-                }
-                i47 i47Var2 = rc2Var.m3;
-                if (i47Var2 != null) {
-                    ArrayList arrayList2 = i47Var2.e;
-                    int size2 = arrayList2.size();
-                    while (i < size2) {
-                        Object obj2 = arrayList2.get(i);
-                        i++;
-                        ((h47) obj2).y.clear();
-                    }
+                    ir2.x(o, str, "GroupCall");
+                    i = i2;
                 } else {
-                    ArrayList arrayList3 = rc2Var.Q5.B2;
-                    if (arrayList3 != null) {
-                        int size3 = arrayList3.size();
-                        while (i < size3) {
-                            Object obj3 = arrayList3.get(i);
-                            i++;
-                            ((h47) obj3).y.clear();
-                        }
+                    i = i2;
+                    TLRPC.Chat K0 = na7.q1(j5Var.a).K0(Long.valueOf(-j));
+                    StringBuilder o2 = ug8.o(j, "remove from speaking ", " ");
+                    if (K0 != null) {
+                        str = K0.title;
                     }
+                    ir2.x(o2, str, "GroupCall");
                 }
-                rc2Var.invalidate();
-                return;
-            case 7:
-                rc2Var.getMessageObject().C.N0 = true;
-                rc2Var.fc.clear();
-                rc2Var.invalidate();
-                return;
-            case 8:
-                mc2 mc2Var2 = rc2Var.eb;
-                if (mc2Var2 != null) {
-                    mc2Var2.D0(rc2Var, false);
-                    return;
-                }
-                return;
-            case 9:
-                rc2Var.post(new dc2(rc2Var, (byte) 6));
-                return;
-            case 10:
-                mc2 mc2Var3 = rc2Var.eb;
-                if (mc2Var3 != null) {
-                    mc2Var3.Z0(rc2Var);
-                    return;
-                }
-                return;
-            case 11:
-                rc2Var.k3();
-                return;
-            case 12:
-                rc2Var.invalidate();
-                if (rc2Var.getParent() instanceof View) {
-                    ((View) rc2Var.getParent()).invalidate();
-                    return;
-                }
-                return;
-            default:
-                rc2Var.invalidate();
-                if (rc2Var.getParent() instanceof View) {
-                    ((View) rc2Var.getParent()).invalidate();
-                    return;
-                }
-                return;
+                i2 = i - 1;
+                z = true;
+            }
+            i2++;
+        }
+        if (vf6Var.m() > 0) {
+            gl.d3(fc2Var.Q, 550L);
+        }
+        if (z) {
+            kk7.f(fc2Var.C.a).k(kk7.x2, Long.valueOf(fc2Var.c), Long.valueOf(fc2Var.b.id), Boolean.FALSE);
         }
     }
 }

@@ -1,158 +1,79 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.WindowManager;
-import android.widget.PopupWindow;
-import java.lang.reflect.Field;
-public abstract class mz9 extends PopupWindow {
-    public static final Field c;
-    public static final e8 d = new Object();
-    public final ViewTreeObserver.OnScrollChangedListener a;
-    public ViewTreeObserver b;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import java.util.ArrayList;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.tl.TL_stories;
+public final class mz9 {
+    public final ImageReceiver a;
+    public int b;
+    public StaticLayout c;
+    public final TextPaint d;
+    public m0a e;
+    public final nz9 f;
 
-    static {
-        Field field = null;
-        try {
-            field = PopupWindow.class.getDeclaredField("mOnScrollChangedListener");
-            field.setAccessible(true);
-        } catch (NoSuchFieldException unused) {
-        }
-        c = field;
+    public mz9(nz9 nz9Var) {
+        this.f = nz9Var;
+        ImageReceiver imageReceiver = new ImageReceiver(nz9Var);
+        this.a = imageReceiver;
+        TextPaint textPaint = new TextPaint(1);
+        this.d = textPaint;
+        imageReceiver.A1 = true;
+        imageReceiver.q0(gl.L(6.0f));
+        textPaint.setColor(-1);
+        textPaint.setTextSize(gl.L(13.0f));
     }
 
-    public mz9(vz9 vz9Var) {
-        super(vz9Var, -2, -2);
-        setFocusable(true);
-        setAnimationStyle(0);
-        setOutsideTouchable(true);
-        setClippingEnabled(true);
-        setInputMethodMode(0);
-        setSoftInputMode(4);
-        Field field = c;
-        if (field != null) {
-            try {
-                this.a = (ViewTreeObserver.OnScrollChangedListener) field.get(this);
-                field.set(this, d);
-            } catch (Exception unused) {
-                this.a = null;
+    public final void a(int i) {
+        nz9 nz9Var = this.f;
+        ArrayList arrayList = nz9Var.F;
+        if (i >= 0 && i < arrayList.size()) {
+            this.e = (m0a) arrayList.get(i);
+            boolean z = nz9Var.w;
+            ImageReceiver imageReceiver = this.a;
+            if (z) {
+                imageReceiver.I();
             }
+            m0a m0aVar = this.e;
+            TL_stories.StoryItem storyItem = m0aVar.a;
+            if (storyItem != null) {
+                x2b.x(imageReceiver, storyItem);
+            } else {
+                f2b f2bVar = m0aVar.b;
+                kz4[] kz4VarArr = x2b.a;
+                if (f2bVar.c.K) {
+                    imageReceiver.Z(gl5.g(f2bVar.f), "320_180", null, null, null, 0L, null, null, 0);
+                } else {
+                    imageReceiver.Z(gl5.g(f2bVar.e), "320_180", null, null, null, 0L, null, null, 0);
+                }
+            }
+            b();
         }
-    }
-
-    public final void a() {
-        View rootView = getContentView().getRootView();
-        WindowManager.LayoutParams layoutParams = (WindowManager.LayoutParams) rootView.getLayoutParams();
-        layoutParams.flags |= 2;
-        layoutParams.dimAmount = 0.2f;
-        ((WindowManager) getContentView().getContext().getSystemService("window")).updateViewLayout(rootView, layoutParams);
     }
 
     public final void b() {
-        super.dismiss();
-    }
-
-    public final void c(View view) {
-        ViewTreeObserver viewTreeObserver;
-        if (getContentView() instanceof vz9) {
-            ((vz9) getContentView()).r(new lz9(this, (byte) 1));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        TL_stories.StoryItem storyItem = this.e.a;
+        if (storyItem != null) {
+            nz9.a(spannableStringBuilder, storyItem.views, false);
         }
-        ViewTreeObserver.OnScrollChangedListener onScrollChangedListener = this.a;
-        if (onScrollChangedListener != null) {
-            if (view.getWindowToken() != null) {
-                viewTreeObserver = view.getViewTreeObserver();
-            } else {
-                viewTreeObserver = null;
-            }
-            ViewTreeObserver viewTreeObserver2 = this.b;
-            if (viewTreeObserver != viewTreeObserver2) {
-                if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                    this.b.removeOnScrollChangedListener(onScrollChangedListener);
-                }
-                this.b = viewTreeObserver;
-                if (viewTreeObserver != null) {
-                    viewTreeObserver.addOnScrollChangedListener(onScrollChangedListener);
-                }
-            }
-        }
-    }
-
-    @Override
-    public void dismiss() {
-        if (getContentView() instanceof vz9) {
-            vz9 vz9Var = (vz9) getContentView();
-            lz9 lz9Var = new lz9(this, (byte) 0);
-            Integer num = vz9Var.a2;
-            if (num != null) {
-                vz9.e2.put(num, vz9Var.s0.d0());
-            }
-            ValueAnimator valueAnimator = vz9Var.X1;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                vz9Var.X1 = null;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            vz9Var.X1 = ofFloat;
-            ofFloat.addUpdateListener(new yx9(vz9Var, (byte) 3));
-            vz9Var.X1.addListener(new ic8(vz9Var, lz9Var, (byte) 14));
-            vz9Var.X1.setDuration(200L);
-            vz9Var.X1.setInterpolator(d53.h);
-            vz9Var.X1.start();
-            ny9 ny9Var = vz9Var.g0;
-            if (ny9Var != null) {
-                gm.t1(ny9Var.h);
-            }
-            View rootView = getContentView().getRootView();
-            WindowManager windowManager = (WindowManager) getContentView().getContext().getSystemService("window");
-            if (rootView.getLayoutParams() != null && (rootView.getLayoutParams() instanceof WindowManager.LayoutParams)) {
-                WindowManager.LayoutParams layoutParams = (WindowManager.LayoutParams) rootView.getLayoutParams();
-                try {
-                    int i = layoutParams.flags;
-                    if ((i & 2) != 0) {
-                        layoutParams.flags = i & (-3);
-                        layoutParams.dimAmount = 0.0f;
-                        windowManager.updateViewLayout(rootView, layoutParams);
-                        return;
-                    }
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            }
+        if (spannableStringBuilder.length() == 0) {
+            this.c = null;
             return;
         }
-        super.dismiss();
-    }
-
-    @Override
-    public final void showAsDropDown(View view) {
-        super.showAsDropDown(view);
-        c(view);
-    }
-
-    @Override
-    public final void showAtLocation(View view, int i, int i2, int i3) {
-        ViewTreeObserver viewTreeObserver;
-        super.showAtLocation(view, i, i2, i3);
-        ViewTreeObserver.OnScrollChangedListener onScrollChangedListener = this.a;
-        if (onScrollChangedListener != null && (viewTreeObserver = this.b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.b.removeOnScrollChangedListener(onScrollChangedListener);
-            }
-            this.b = null;
+        nz9 nz9Var = this.f;
+        int i = (int) (nz9Var.K + 1.0f);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        TextPaint textPaint = this.d;
+        StaticLayout c = lwa.c(spannableStringBuilder, textPaint, i, alignment, 0.0f, null, Integer.MAX_VALUE, 1, true);
+        this.c = c;
+        if (c.getLineCount() > 1) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("");
+            nz9.a(spannableStringBuilder2, this.e.a.views, true);
+            this.c = lwa.c(spannableStringBuilder2, textPaint, (int) (nz9Var.K + 1.0f), alignment, 0.0f, null, Integer.MAX_VALUE, 2, true);
         }
-    }
-
-    @Override
-    public final void showAsDropDown(View view, int i, int i2) {
-        super.showAsDropDown(view, i, i2);
-        c(view);
-    }
-
-    @Override
-    public final void showAsDropDown(View view, int i, int i2, int i3) {
-        super.showAsDropDown(view, i, i2, i3);
-        c(view);
     }
 }

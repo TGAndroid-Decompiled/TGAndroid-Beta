@@ -18,7 +18,7 @@ public final class l implements Runnable {
         EditTextBoldCursor editTextBoldCursor = this.b;
         switch (b) {
             case 0:
-                gm.t1(editTextBoldCursor);
+                gl.t1(editTextBoldCursor);
                 return;
             case 1:
                 editTextBoldCursor.y = false;
@@ -26,13 +26,13 @@ public final class l implements Runnable {
                 editTextBoldCursor.h();
                 ArrayList arrayList = editTextBoldCursor.a;
                 if (!arrayList.isEmpty()) {
-                    ((rna) arrayList.get(0)).q = new l(editTextBoldCursor, (byte) 2);
+                    ((qla) arrayList.get(0)).q = new l(editTextBoldCursor, (byte) 2);
                     float sqrt = (float) Math.sqrt(Math.pow(editTextBoldCursor.getHeight(), 2.0d) + Math.pow(editTextBoldCursor.getWidth(), 2.0d));
                     int size = arrayList.size();
                     while (i < size) {
                         Object obj = arrayList.get(i);
                         i++;
-                        ((rna) obj).j(editTextBoldCursor.w, editTextBoldCursor.x, sqrt, true);
+                        ((qla) obj).j(editTextBoldCursor.w, editTextBoldCursor.x, sqrt, true);
                     }
                     return;
                 }
@@ -45,33 +45,33 @@ public final class l implements Runnable {
                 return;
             case 4:
                 editTextBoldCursor.requestFocus();
-                gm.E3(editTextBoldCursor);
+                gl.E3(editTextBoldCursor);
                 return;
             case 5:
                 editTextBoldCursor.requestFocus();
-                gm.E3(editTextBoldCursor);
+                gl.E3(editTextBoldCursor);
                 return;
             case 6:
-                gm.E3(editTextBoldCursor);
+                gl.E3(editTextBoldCursor);
                 return;
             case 7:
-                gm.E3(editTextBoldCursor);
+                gl.E3(editTextBoldCursor);
                 return;
             case 8:
                 editTextBoldCursor.requestFocus();
-                gm.E3(editTextBoldCursor);
+                gl.E3(editTextBoldCursor);
                 return;
             case 9:
-                gm.E3(editTextBoldCursor);
+                gl.E3(editTextBoldCursor);
                 return;
             case 10:
                 editTextBoldCursor.requestFocus();
-                gm.E3(editTextBoldCursor);
+                gl.E3(editTextBoldCursor);
                 return;
             default:
                 editTextBoldCursor.requestFocus();
                 editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
-                gm.E3(editTextBoldCursor);
+                gl.E3(editTextBoldCursor);
                 return;
         }
     }

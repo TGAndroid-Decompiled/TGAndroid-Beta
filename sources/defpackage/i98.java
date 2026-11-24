@@ -1,132 +1,263 @@
 package defpackage;
 
-import android.graphics.RectF;
-import android.net.Uri;
-import android.os.SystemClock;
-import android.text.TextUtils;
-import android.view.View;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import java.util.Map;
-import org.telegram.messenger.PushListenerController;
-import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ProfileActivity;
-public final class i98 implements ee, kac, gla, OnCompleteListener, ke3, pac, ku4, Vector.TLDeserializer, NativeInstance.AudioLevelsCallback, v84 {
-    public final byte a;
-
-    public i98(byte b) {
-        this.a = b;
-    }
-
-    public static void g() {
-        throw new IllegalArgumentException();
-    }
-
-    public static void h(Object obj, Object obj2, String str) {
-        throw new RuntimeException(str + obj + obj2);
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.TLRPC;
+public class i98 implements o98 {
+    @Override
+    public CharSequence B(int i) {
+        return null;
     }
 
     @Override
-    public final Object b(c6c c6cVar, View view, Integer num, Float f, Float f2) {
-        return Boolean.FALSE;
+    public int D(int i, oac oacVar) {
+        return -1;
     }
 
     @Override
-    public final TLObject deserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-        return TL_iv.RichText.TLdeserialize(inputSerializedData, i, z);
-    }
-
-    @Override
-    public final s84[] e(Uri uri, Map map) {
-        return new s84[]{new bd3()};
-    }
-
-    @Override
-    public final void f(nv8 nv8Var) {
-        nv8Var.get().getClass();
-        throw new ClassCastException();
-    }
-
-    @Override
-    public final void i(int i) {
-        gda.X0 = i;
-        gda.x();
-    }
-
-    @Override
-    public final Object j(Integer num, Object obj) {
-        Integer num2 = (Integer) obj;
-        if (num.intValue() == 0) {
-            return nxa.b1(false, jb6.H(',', "Stars", num2.intValue()), 0.66f, null);
-        }
-        return jb6.E(num2.intValue(), ',');
-    }
-
-    @Override
-    public final Object l(Object obj) {
-        Integer num = (Integer) obj;
-        int i = yb9.f2;
+    public int G() {
         return 0;
     }
 
     @Override
-    public final void onComplete(Task task) {
-        gda.i = SystemClock.elapsedRealtime();
-        if (!task.isSuccessful()) {
-            if (e21.a) {
-                fc4.b("Failed to get regid");
-            }
-            gda.g = "__FIREBASE_FAILED__";
-            PushListenerController.sendRegistrationToServer(2, null);
-            return;
-        }
-        String str = (String) task.getResult();
-        if (!TextUtils.isEmpty(str)) {
-            PushListenerController.sendRegistrationToServer(2, str);
-        }
+    public boolean H() {
+        return true;
     }
 
     @Override
-    public final void r(he heVar, int i) {
-        switch (this.a) {
-            case 0:
-                heVar.dismiss();
-                return;
-            case 1:
-                heVar.dismiss();
-                return;
-            case 2:
-            case 3:
-            case 6:
-            default:
-                heVar.dismiss();
-                return;
-            case 4:
-                RectF rectF = ProfileActivity.e7;
-                heVar.dismiss();
-                return;
-            case 5:
-                heVar.dismiss();
-                return;
-            case 7:
-                heVar.dismiss();
-                return;
-        }
-    }
-
-    public i98(Object obj, byte b) {
-        this.a = b;
+    public boolean J() {
+        return false;
     }
 
     @Override
-    public final void m() {
+    public boolean K() {
+        return this instanceof ms1;
     }
 
     @Override
-    public final void run(int[] iArr, float[] fArr, boolean[] zArr) {
+    public p98 M(k27 k27Var, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
+        return null;
+    }
+
+    @Override
+    public boolean N() {
+        return true;
+    }
+
+    @Override
+    public boolean O() {
+        return false;
+    }
+
+    @Override
+    public boolean P() {
+        return false;
+    }
+
+    @Override
+    public boolean Q() {
+        return this instanceof k0b;
+    }
+
+    @Override
+    public int R(Object obj) {
+        return -1;
+    }
+
+    @Override
+    public int S(int i) {
+        return -1;
+    }
+
+    @Override
+    public boolean T() {
+        return !(this instanceof gs1);
+    }
+
+    @Override
+    public final boolean U() {
+        return !(this instanceof is1);
+    }
+
+    @Override
+    public k27 V() {
+        return null;
+    }
+
+    @Override
+    public boolean Z() {
+        return false;
+    }
+
+    @Override
+    public long a() {
+        return 0L;
+    }
+
+    @Override
+    public boolean b() {
+        return false;
+    }
+
+    @Override
+    public String b0() {
+        return null;
+    }
+
+    @Override
+    public CharSequence c0(int i) {
+        return null;
+    }
+
+    @Override
+    public ArrayList d() {
+        return null;
+    }
+
+    @Override
+    public boolean h() {
+        return !(this instanceof gs1);
+    }
+
+    @Override
+    public boolean i() {
+        return false;
+    }
+
+    @Override
+    public jl5 k(int i) {
+        return null;
+    }
+
+    @Override
+    public boolean l() {
+        return false;
+    }
+
+    @Override
+    public boolean o() {
+        return false;
+    }
+
+    @Override
+    public boolean p() {
+        return false;
+    }
+
+    @Override
+    public boolean q() {
+        return false;
+    }
+
+    @Override
+    public boolean s() {
+        return !(this instanceof m82);
+    }
+
+    @Override
+    public boolean t() {
+        return !(this instanceof v42);
+    }
+
+    @Override
+    public HashMap u() {
+        return null;
+    }
+
+    @Override
+    public boolean v() {
+        return false;
+    }
+
+    @Override
+    public boolean w(int i) {
+        return false;
+    }
+
+    @Override
+    public int x() {
+        return -1;
+    }
+
+    @Override
+    public boolean y() {
+        return !(this instanceof o02);
+    }
+
+    @Override
+    public boolean z() {
+        return false;
+    }
+
+    @Override
+    public void C() {
+    }
+
+    @Override
+    public void F() {
+    }
+
+    @Override
+    public void I() {
+    }
+
+    @Override
+    public void W() {
+    }
+
+    @Override
+    public void e() {
+    }
+
+    @Override
+    public void j() {
+    }
+
+    @Override
+    public void m() {
+    }
+
+    @Override
+    public void n() {
+    }
+
+    @Override
+    public void r() {
+    }
+
+    @Override
+    public void A(int i) {
+    }
+
+    @Override
+    public void E(boolean z) {
+    }
+
+    @Override
+    public void X(int i) {
+    }
+
+    @Override
+    public void Y(int i) {
+    }
+
+    @Override
+    public void a0(int i) {
+    }
+
+    @Override
+    public void c(oac oacVar) {
+    }
+
+    @Override
+    public void f(CharSequence charSequence) {
+    }
+
+    @Override
+    public void g(String str, String str2, boolean z) {
+    }
+
+    @Override
+    public void L(int i, oac oacVar, boolean z, int i2, int i3, boolean z2) {
     }
 }

@@ -230,7 +230,7 @@ public class TeXParser {
                 insert(this.spos, this.pos, (String) macroInfo.invoke(this, optsArgs));
                 return null;
             }
-            qn0.g("Macro expansion limit exceeded");
+            qm0.g("Macro expansion limit exceeded");
             return null;
         }
         return (Atom) macroInfo.invoke(this, optsArgs);
@@ -252,7 +252,7 @@ public class TeXParser {
                 if (this.isPartial) {
                     return new ColorAtom(new RomanAtom(new TeXFormula("\\backslash ".concat(command)).root), (Color) null, Color.RED);
                 }
-                qn0.g(kt6.o("Unknown symbol or command or predefined TeXFormula: '", command, "'"));
+                qm0.g(tb4.y("Unknown symbol or command or predefined TeXFormula: '", command, "'"));
                 return null;
             }
         } catch (FormulaNotFoundException unused2) {
@@ -288,7 +288,7 @@ public class TeXParser {
         if (this.arrayMode) {
             ((ArrayOfAtoms) this.formula).addRow();
         } else {
-            qn0.g("You can add a row only in array mode !");
+            qm0.g("You can add a row only in array mode !");
         }
     }
 
@@ -366,7 +366,7 @@ public class TeXParser {
                 }
                 return new JavaFontRenderingAtom(this.parseString.substring(i4, i5 + 1), externalFont);
             } else if (this.isPartial) {
-                return new ColorAtom(new RomanAtom(new TeXFormula(td4.o(convertToRomanNumber, "\\text{(Unknown char ", ")}")).root), (Color) null, Color.RED);
+                return new ColorAtom(new RomanAtom(new TeXFormula(tb4.n(convertToRomanNumber, "\\text{(Unknown char ", ")}")).root), (Color) null, Color.RED);
             } else {
                 throw new ParseException("Unknown character : '" + Character.toString(convertToRomanNumber) + "' (or " + ((int) convertToRomanNumber) + ")");
             }
@@ -618,7 +618,7 @@ public class TeXParser {
             this.pos--;
             return substring;
         }
-        qn0.g("Illegal end,  missing '}' !");
+        qm0.g("Illegal end,  missing '}' !");
         return null;
     }
 

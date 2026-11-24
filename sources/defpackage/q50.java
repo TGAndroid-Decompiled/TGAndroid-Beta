@@ -1,71 +1,29 @@
 package defpackage;
+public final class q50 implements zn7 {
+    public static final q50 a = new Object();
+    public static final w84 b = w84.c("pid");
+    public static final w84 c = w84.c("processName");
+    public static final w84 d = w84.c("reasonCode");
+    public static final w84 e = w84.c("importance");
+    public static final w84 f = w84.c("pss");
+    public static final w84 g = w84.c("rss");
+    public static final w84 h = w84.c("timestamp");
+    public static final w84 i = w84.c("traceFile");
+    public static final w84 j = w84.c("buildIdMappingForArch");
 
-import android.hardware.biometrics.BiometricPrompt;
-import android.hardware.biometrics.BiometricPrompt$AuthenticationCallback;
-import android.os.Build;
-import android.security.identity.IdentityCredential;
-import java.lang.ref.WeakReference;
-import java.security.Signature;
-import javax.crypto.Cipher;
-import javax.crypto.Mac;
-public final class q50 extends BiometricPrompt$AuthenticationCallback {
-    public final t50 a;
-
-    public q50(t50 t50Var) {
-        this.a = t50Var;
-    }
-
-    public void onAuthenticationError(int i, CharSequence charSequence) {
-        this.a.a(i, charSequence);
-    }
-
-    public void onAuthenticationFailed() {
-        WeakReference weakReference = ((jk0) this.a).a;
-        if (weakReference.get() != null && ((lk0) weakReference.get()).l) {
-            lk0 lk0Var = (lk0) weakReference.get();
-            kj7 kj7Var = lk0Var.s;
-            if (kj7Var == null) {
-                kj7Var = new kj7();
-                lk0Var.s = kj7Var;
-            }
-            lk0.f(kj7Var, Boolean.TRUE);
-        }
-    }
-
-    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult authenticationResult) {
-        BiometricPrompt.CryptoObject cryptoObject;
-        IdentityCredential b;
-        gk0 gk0Var = null;
-        if (authenticationResult != null && (cryptoObject = authenticationResult.getCryptoObject()) != null) {
-            Cipher d = b53.d(cryptoObject);
-            if (d != null) {
-                gk0Var = new gk0(d);
-            } else {
-                Signature f = b53.f(cryptoObject);
-                if (f != null) {
-                    gk0Var = new gk0(f);
-                } else {
-                    Mac e = b53.e(cryptoObject);
-                    if (e != null) {
-                        gk0Var = new gk0(e);
-                    } else if (Build.VERSION.SDK_INT >= 30 && (b = c53.b(cryptoObject)) != null) {
-                        gk0Var = new gk0(b);
-                    }
-                }
-            }
-        }
-        int i = Build.VERSION.SDK_INT;
-        int i2 = -1;
-        if (i >= 30) {
-            if (authenticationResult != null) {
-                i2 = s50.a(authenticationResult);
-            }
-        } else if (i != 29) {
-            i2 = 2;
-        }
-        this.a.b(new fk0(gk0Var, i2));
-    }
-
-    public void onAuthenticationHelp(int i, CharSequence charSequence) {
+    @Override
+    public final void a(Object obj, Object obj2) {
+        hy2 hy2Var = (hy2) obj;
+        ao7 ao7Var = (ao7) obj2;
+        ao7Var.e(b, ((d80) hy2Var).a);
+        d80 d80Var = (d80) hy2Var;
+        ao7Var.a(c, d80Var.b);
+        ao7Var.e(d, d80Var.c);
+        ao7Var.e(e, d80Var.d);
+        ao7Var.g(f, d80Var.e);
+        ao7Var.g(g, d80Var.f);
+        ao7Var.g(h, d80Var.g);
+        ao7Var.a(i, d80Var.h);
+        ao7Var.a(j, d80Var.i);
     }
 }

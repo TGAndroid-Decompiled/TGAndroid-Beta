@@ -1,19 +1,19 @@
 package defpackage;
 
-import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-public final class m49 implements ds9 {
-    public final LinkedHashSet a = new LinkedHashSet();
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class m49 extends w1 {
+    public static final Parcelable.Creator<m49> CREATOR = new v1((byte) 1);
+    public Parcelable c;
 
-    public m49(op opVar) {
-        opVar.f("androidx.savedstate.Restarter", this);
+    public m49(Parcel parcel, ClassLoader classLoader) {
+        super(parcel, classLoader);
+        this.c = parcel.readParcelable(classLoader == null ? d49.class.getClassLoader() : classLoader);
     }
 
     @Override
-    public final Bundle c() {
-        Bundle bundle = new Bundle();
-        bundle.putStringArrayList("classes_to_restore", new ArrayList<>(this.a));
-        return bundle;
+    public final void writeToParcel(Parcel parcel, int i) {
+        super.writeToParcel(parcel, i);
+        parcel.writeParcelable(this.c, 0);
     }
 }

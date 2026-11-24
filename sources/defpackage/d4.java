@@ -2,25 +2,25 @@ package defpackage;
 
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
-public final class d4 extends bn4 implements Runnable {
-    public t76 n;
+public final class d4 extends bl4 implements Runnable {
+    public t56 n;
     public Object r;
 
-    public static d4 o(t76 t76Var, bs4 bs4Var) {
+    public static d4 o(t56 t56Var, aq4 aq4Var) {
         ?? obj = new Object();
-        t76Var.getClass();
-        obj.n = t76Var;
-        obj.r = bs4Var;
-        t76Var.b(obj, fp3.a);
+        t56Var.getClass();
+        obj.n = t56Var;
+        obj.r = aq4Var;
+        t56Var.b(obj, vn3.a);
         return obj;
     }
 
     @Override
     public final void d() {
         boolean z;
-        t76 t76Var = this.n;
+        t56 t56Var = this.n;
         boolean z2 = false;
-        if (t76Var != null) {
+        if (t56Var != null) {
             z = true;
         } else {
             z = false;
@@ -30,7 +30,7 @@ public final class d4 extends bn4 implements Runnable {
             if ((obj instanceof h2) && ((h2) obj).a) {
                 z2 = true;
             }
-            t76Var.cancel(z2);
+            t56Var.cancel(z2);
         }
         this.n = null;
         this.r = null;
@@ -39,11 +39,11 @@ public final class d4 extends bn4 implements Runnable {
     @Override
     public final String j() {
         String str;
-        t76 t76Var = this.n;
+        t56 t56Var = this.n;
         Object obj = this.r;
         String j = super.j();
-        if (t76Var != null) {
-            str = "inputFuture=[" + t76Var + "], ";
+        if (t56Var != null) {
+            str = "inputFuture=[" + t56Var + "], ";
         } else {
             str = "";
         }
@@ -59,11 +59,11 @@ public final class d4 extends bn4 implements Runnable {
     @Override
     public final void run() {
         boolean z;
-        t76 t76Var = this.n;
+        t56 t56Var = this.n;
         Object obj = this.r;
         boolean z2 = this.a instanceof h2;
         boolean z3 = true;
-        if (t76Var == null) {
+        if (t56Var == null) {
             z = true;
         } else {
             z = false;
@@ -76,13 +76,13 @@ public final class d4 extends bn4 implements Runnable {
             return;
         }
         this.n = null;
-        if (t76Var.isCancelled()) {
-            n(t76Var);
+        if (t56Var.isCancelled()) {
+            n(t56Var);
             return;
         }
         try {
             try {
-                Object apply = ((bs4) obj).apply(kke.a(t76Var));
+                Object apply = ((aq4) obj).apply(jie.a(t56Var));
                 this.r = null;
                 l(apply);
             } catch (Throwable th) {

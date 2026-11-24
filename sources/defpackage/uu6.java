@@ -1,33 +1,23 @@
 package defpackage;
 
-import android.widget.SeekBar;
-public final class uu6 implements SeekBar.OnSeekBarChangeListener {
-    public final o04 a = new o04(this, (byte) 27);
-    public final wu6 b;
+import android.content.Context;
+import android.os.Bundle;
+import java.util.HashMap;
+public final class uu6 {
+    public static final Object c = new Object();
+    public static final HashMap d = new HashMap();
+    public final tv6 a;
+    public qu6 b;
 
-    public uu6(wu6 wu6Var) {
-        this.b = wu6Var;
-    }
-
-    @Override
-    public final void onProgressChanged(SeekBar seekBar, int i, boolean z) {
-        if (z) {
-            short s = wu6.G0;
-            ((ew6) seekBar.getTag()).j(i);
+    public uu6(Context context, String str, oc8 oc8Var, w59 w59Var, w59 w59Var2, w59 w59Var3, cff cffVar, Bundle bundle, Bundle bundle2, wj0 wj0Var) {
+        synchronized (c) {
+            HashMap hashMap = d;
+            if (!hashMap.containsKey(str)) {
+                hashMap.put(str, this);
+            } else {
+                throw new IllegalStateException("Session ID must be unique. ID=".concat(str));
+            }
         }
-    }
-
-    @Override
-    public final void onStartTrackingTouch(SeekBar seekBar) {
-        wu6 wu6Var = this.b;
-        if (wu6Var.d0 != null) {
-            wu6Var.b0.removeCallbacks(this.a);
-        }
-        wu6Var.d0 = (ew6) seekBar.getTag();
-    }
-
-    @Override
-    public final void onStopTrackingTouch(SeekBar seekBar) {
-        this.b.b0.postDelayed(this.a, 500L);
+        this.a = new tv6(this, context, str, oc8Var, w59Var, w59Var2, w59Var3, cffVar, bundle, bundle2, wj0Var);
     }
 }

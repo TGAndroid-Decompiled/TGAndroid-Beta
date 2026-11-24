@@ -1,3 +1,3 @@
 package defpackage;
-public final class ceb extends IllegalArgumentException {
+public abstract class ceb {
 }

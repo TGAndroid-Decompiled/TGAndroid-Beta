@@ -1,19 +1,36 @@
 package defpackage;
+public final class wp3 implements sp3 {
+    public long a;
+    public long b;
+    public final String c;
+    public final xp3 d;
 
-import java.util.concurrent.ScheduledFuture;
-public final class wp3 implements xp3 {
-    public final ScheduledFuture a;
-
-    public wp3(ScheduledFuture scheduledFuture) {
-        this.a = scheduledFuture;
+    public wp3(xp3 xp3Var, String str) {
+        this.d = xp3Var;
+        this.c = str;
     }
 
     @Override
-    public final void dispose() {
-        this.a.cancel(false);
+    public final int getObserverTag() {
+        return 0;
     }
 
-    public final String toString() {
-        return "DisposableFutureHandle[" + this.a + ']';
+    @Override
+    public final void i(long j, long j2) {
+        this.b = j;
+        this.a = j2;
+        this.d.b();
+    }
+
+    @Override
+    public final void B(boolean z) {
+    }
+
+    @Override
+    public final void N(String str) {
+    }
+
+    @Override
+    public final void l(long j, long j2) {
     }
 }

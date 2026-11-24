@@ -1,57 +1,45 @@
 package defpackage;
-public final class nb0 {
-    public final String a;
-    public final String b;
-    public final String c;
-    public final String d;
-    public final byte e;
-    public final hi2 f;
 
-    public nb0(String str, String str2, String str3, String str4, int i, hi2 hi2Var) {
-        if (str != null) {
-            this.a = str;
-            if (str2 != null) {
-                this.b = str2;
-                if (str3 != null) {
-                    this.c = str3;
-                    if (str4 != null) {
-                        this.d = str4;
-                        this.e = i;
-                        this.f = hi2Var;
-                        return;
-                    }
-                    gxc.d("Null installUuid");
-                    throw null;
+import org.telegram.tgnet.TLRPC;
+public final class nb0 implements Runnable {
+    public final d52 a;
+
+    public nb0(d52 d52Var) {
+        this.a = d52Var;
+    }
+
+    @Override
+    public final void run() {
+        ml mlVar;
+        d52 d52Var = this.a;
+        gl.d3(d52Var.E, 1000L);
+        TLRPC.TL_emojiList tL_emojiList = d52Var.n;
+        if (tL_emojiList != null && !tL_emojiList.document_id.isEmpty() && d52Var.x == 1.0f) {
+            if (d52Var.y || ((mlVar = d52Var.b.k) != null && mlVar.C())) {
+                int i = d52Var.w + 1;
+                d52Var.w = i;
+                d52Var.s++;
+                if (i > tL_emojiList.document_id.size() - 1) {
+                    d52Var.w = 0;
                 }
-                gxc.d("Null versionName");
-                throw null;
+                if (d52Var.s > 6) {
+                    d52Var.s = 0;
+                }
+                vl vlVar = new vl(4, d52Var.r, tL_emojiList.document_id.get(d52Var.w).longValue());
+                d52Var.a = vlVar;
+                d52Var.d.setAnimatedEmojiDrawable(vlVar);
+                int[] iArr = mb0.d0[d52Var.s];
+                int i2 = iArr[0];
+                int i3 = iArr[1];
+                int i4 = iArr[2];
+                int i5 = iArr[3];
+                kz4 kz4Var = new kz4();
+                d52Var.f = kz4Var;
+                kz4Var.d(i2, i3, i4, i5);
+                d52Var.x = 0.0f;
+                d52Var.b();
+                d52Var.invalidate();
             }
-            gxc.d("Null versionCode");
-            throw null;
         }
-        gxc.d("Null appIdentifier");
-        throw null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof nb0) {
-            nb0 nb0Var = (nb0) obj;
-            if (this.a.equals(nb0Var.a) && this.b.equals(nb0Var.b) && this.c.equals(nb0Var.c) && this.d.equals(nb0Var.d) && this.e == nb0Var.e && this.f == nb0Var.f) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return ((((((((((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b.hashCode()) * 1000003) ^ this.c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003) ^ this.e) * 1000003) ^ this.f.hashCode();
-    }
-
-    public final String toString() {
-        return "AppData{appIdentifier=" + this.a + ", versionCode=" + this.b + ", versionName=" + this.c + ", installUuid=" + this.d + ", deliveryMechanism=" + ((int) this.e) + ", developmentPlatformProvider=" + this.f + "}";
     }
 }

@@ -1,34 +1,50 @@
 package defpackage;
-public final class p7f extends wgf {
-    private static final p7f zzb;
-    private int zzd;
-    private String zze = "";
-    private long zzf;
 
-    static {
-        p7f p7fVar = new p7f();
-        zzb = p7fVar;
-        wgf.e(p7f.class, p7fVar);
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
+public final class p7f extends xx4 {
+    @Override
+    public final IInterface b(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.fido.fido2.internal.regular.IFido2AppService");
+        if (queryLocalInterface instanceof qcf) {
+            return (qcf) queryLocalInterface;
+        }
+        return new qcf(iBinder, "com.google.android.gms.fido.fido2.internal.regular.IFido2AppService");
     }
 
     @Override
-    public final Object h(int i, wgf wgfVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
-                    }
-                    return new vgf(zzb);
-                }
-                return new p7f();
-            }
-            return new tif(zzb, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဈ\u0000\u0002ဂ\u0001", new Object[]{"zzd", "zze", "zzf"});
-        }
-        return (byte) 1;
+    public final f84[] f() {
+        return new f84[]{bed.b, bed.a};
+    }
+
+    @Override
+    public final Bundle h() {
+        Bundle bundle = new Bundle();
+        bundle.putString("FIDO2_ACTION_START_SERVICE", "com.google.android.gms.fido.fido2.regular.START");
+        return bundle;
+    }
+
+    @Override
+    public final int i() {
+        return 13000000;
+    }
+
+    @Override
+    public final String l() {
+        return "com.google.android.gms.fido.fido2.internal.regular.IFido2AppService";
+    }
+
+    @Override
+    public final String n() {
+        return "com.google.android.gms.fido.fido2.regular.START";
+    }
+
+    @Override
+    public final boolean x() {
+        return true;
     }
 }

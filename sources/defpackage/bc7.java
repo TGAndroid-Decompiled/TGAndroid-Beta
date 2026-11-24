@@ -1,45 +1,59 @@
 package defpackage;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.SerializedData;
-public final class bc7 {
-    public final String a;
-    public final String[] b;
-    public final String c;
-    public int d;
+import org.telegram.tgnet.TLRPC;
+public final class bc7 implements Runnable {
+    public final int E;
+    public final boolean F;
+    public final int G;
+    public final long H;
+    public final int I;
+    public final boolean J;
+    public final int K;
+    public final boolean L;
+    public final boolean M;
+    public final qob N;
+    public final ad7 a;
+    public final TLRPC.TL_messages_messages b;
+    public final int c;
+    public final long d;
+    public final long e;
+    public final int f;
+    public final int h;
+    public final int n;
+    public final int r;
+    public final int s;
+    public final int w;
+    public final int x;
+    public final int y;
 
-    public bc7(String str, String[] strArr, String str2) {
-        this.a = str;
-        this.b = strArr;
-        this.c = str2;
+    public bc7(ad7 ad7Var, TLRPC.TL_messages_messages tL_messages_messages, int i, long j, long j2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, boolean z, int i11, long j3, int i12, boolean z2, int i13, boolean z3, boolean z4, qob qobVar) {
+        this.a = ad7Var;
+        this.b = tL_messages_messages;
+        this.c = i;
+        this.d = j;
+        this.e = j2;
+        this.f = i2;
+        this.h = i3;
+        this.n = i4;
+        this.r = i5;
+        this.s = i6;
+        this.w = i7;
+        this.x = i8;
+        this.y = i9;
+        this.E = i10;
+        this.F = z;
+        this.G = i11;
+        this.H = j3;
+        this.I = i12;
+        this.J = z2;
+        this.K = i13;
+        this.L = z3;
+        this.M = z4;
+        this.N = qobVar;
     }
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof bc7)) {
-            return false;
-        }
-        return this.a.equals(((bc7) obj).a);
-    }
-
-    public final String toString() {
-        int i;
-        SerializedData serializedData = new SerializedData();
-        serializedData.writeInt32(this.d);
-        serializedData.writeInt32(0);
-        serializedData.writeString(this.a);
-        String[] strArr = this.b;
-        if (strArr != null) {
-            i = strArr.length;
-        } else {
-            i = 0;
-        }
-        serializedData.writeInt32(i);
-        if (strArr != null) {
-            for (String str : strArr) {
-                serializedData.writeString(str);
-            }
-        }
-        serializedData.writeString(this.c);
-        return Utilities.f(serializedData.toByteArray());
+    @Override
+    public final void run() {
+        this.a.getMessagesController().N3(this.b, this.c, this.d, this.e, this.f, this.h, this.n, true, this.r, this.s, this.w, this.x, this.y, this.E, this.F, this.G, this.H, this.I, this.J, this.K, this.L, this.M, this.N);
     }
 }

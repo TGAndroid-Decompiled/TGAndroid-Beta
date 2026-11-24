@@ -1,4 +1,4 @@
 package defpackage;
 public interface sx6 {
-    void d(rw6 rw6Var, int i);
+    void a(qg0 qg0Var, aob aobVar);
 }

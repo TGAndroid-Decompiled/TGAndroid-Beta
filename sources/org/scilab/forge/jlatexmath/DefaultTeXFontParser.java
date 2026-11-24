@@ -91,7 +91,7 @@ public class DefaultTeXFontParser {
         if (!attribute.equals("")) {
             return attribute;
         }
-        wa3.f("DefaultTeXFont.xml", element.getTagName(), str, null);
+        k93.g("DefaultTeXFont.xml", element.getTagName(), str, null);
         return null;
     }
 
@@ -99,7 +99,7 @@ public class DefaultTeXFontParser {
         try {
             return (float) Double.parseDouble(getAttrValueAndCheckIfNotNull(str, element));
         } catch (NumberFormatException unused) {
-            wa3.f("DefaultTeXFont.xml", element.getTagName(), str, "has an invalid real value!");
+            k93.g("DefaultTeXFont.xml", element.getTagName(), str, "has an invalid real value!");
             return 0.0f;
         }
     }
@@ -108,7 +108,7 @@ public class DefaultTeXFontParser {
         try {
             return Integer.parseInt(getAttrValueAndCheckIfNotNull(str, element));
         } catch (NumberFormatException unused) {
-            wa3.f("DefaultTeXFont.xml", element.getTagName(), str, "has an invalid integer value!");
+            k93.g("DefaultTeXFont.xml", element.getTagName(), str, "has an invalid integer value!");
             return 0;
         }
     }
@@ -121,7 +121,7 @@ public class DefaultTeXFontParser {
         try {
             return (float) Double.parseDouble(attribute);
         } catch (NumberFormatException unused) {
-            wa3.f("DefaultTeXFont.xml", element.getTagName(), str, "has an invalid float value!");
+            k93.g("DefaultTeXFont.xml", element.getTagName(), str, "has an invalid float value!");
             return 0.0f;
         }
     }
@@ -134,7 +134,7 @@ public class DefaultTeXFontParser {
         try {
             return Integer.parseInt(attribute);
         } catch (NumberFormatException unused) {
-            wa3.f("DefaultTeXFont.xml", element.getTagName(), str, "has an invalid integer value!");
+            k93.g("DefaultTeXFont.xml", element.getTagName(), str, "has an invalid integer value!");
             return 0;
         }
     }
@@ -168,7 +168,7 @@ public class DefaultTeXFontParser {
                             charFontArr[num.intValue()] = new CharFont((char) intAndCheck, Font_ID.indexOf(attrValueAndCheckIfNotNull2), Font_ID.indexOf(str));
                         }
                     } else {
-                        wa3.f("DefaultTeXFont.xml", "MapRange", "code", kt6.o("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull3, "'!"));
+                        k93.g("DefaultTeXFont.xml", "MapRange", "code", tb4.y("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull3, "'!"));
                         return null;
                     }
                 }
@@ -231,14 +231,14 @@ public class DefaultTeXFontParser {
                         if (this.parsedTextStyles.get(attrValueAndCheckIfNotNull2)[intValue] != null) {
                             strArr[intValue] = attrValueAndCheckIfNotNull2;
                         } else {
-                            throw new XMLResourceParseException(b10.i("DefaultTeXFont.xml: the default text style mapping '", attrValueAndCheckIfNotNull2, "' for the range '", attrValueAndCheckIfNotNull, "' contains no mapping for that range!"));
+                            throw new XMLResourceParseException(b00.i("DefaultTeXFont.xml: the default text style mapping '", attrValueAndCheckIfNotNull2, "' for the range '", attrValueAndCheckIfNotNull, "' contains no mapping for that range!"));
                         }
                     } else {
-                        wa3.f("DefaultTeXFont.xml", "MapStyle", "textStyle", kt6.o("contains an unknown text style '", attrValueAndCheckIfNotNull2, "'!"));
+                        k93.g("DefaultTeXFont.xml", "MapStyle", "textStyle", tb4.y("contains an unknown text style '", attrValueAndCheckIfNotNull2, "'!"));
                         return null;
                     }
                 } else {
-                    wa3.f("DefaultTeXFont.xml", "MapStyle", "code", kt6.o("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull, "'!"));
+                    k93.g("DefaultTeXFont.xml", "MapStyle", "code", tb4.y("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull, "'!"));
                     return null;
                 }
             }
@@ -324,9 +324,9 @@ public class DefaultTeXFontParser {
                 this.parsedTextStyles = parseStyleMappings();
                 return (FontInfo[]) arrayList.toArray(fontInfoArr);
             }
-            throw new FontAlreadyLoadedException(kt6.o("Font ", attrValueAndCheckIfNotNull2, " is already loaded !"));
+            throw new FontAlreadyLoadedException(tb4.y("Font ", attrValueAndCheckIfNotNull2, " is already loaded !"));
         } catch (Exception e) {
-            StringBuilder p = wi8.p("Cannot find the file ", str, "!");
+            StringBuilder p = ug8.p("Cannot find the file ", str, "!");
             p.append(e.toString());
             throw new XMLResourceParseException(p.toString());
         }
@@ -395,7 +395,7 @@ public class DefaultTeXFontParser {
                         }
                     }
                 } catch (Exception unused2) {
-                    throw new XMLResourceParseException(kt6.o("Cannot find the file ", attrValueAndCheckIfNotNull, "!"));
+                    throw new XMLResourceParseException(tb4.y("Cannot find the file ", attrValueAndCheckIfNotNull, "!"));
                 }
             }
             return hashMap;

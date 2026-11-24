@@ -11,53 +11,53 @@ import java.util.HashSet;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
-public final class y0 extends FrameLayout implements vlb {
+public final class y0 extends FrameLayout implements tjb {
     public final int a;
-    public final ylb b;
+    public final wjb b;
     public int c;
     public boolean d;
     public TL_aicompose.AiComposeTone e;
     public boolean f;
-    public final bf0 h;
+    public final be0 h;
     public final TextView n;
     public float r;
 
-    public y0(int i, ylb ylbVar, Context context) {
+    public y0(int i, wjb wjbVar, Context context) {
         super(context);
         this.d = true;
         this.a = i;
-        this.b = ylbVar;
+        this.b = wjbVar;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setClipToPadding(false);
         linearLayout.setOrientation(1);
-        addView(linearLayout, qoe.d(-2, -2.0f, 17, 0.0f, 2.0f, 0.0f, 2.0f));
-        bf0 bf0Var = new bf0(context);
-        this.h = bf0Var;
-        nm7.i(bf0Var);
-        linearLayout.addView(bf0Var, qoe.t(24, 24, 49, 0, 4, 0, 0));
+        addView(linearLayout, nme.d(-2, -2.0f, 17, 0.0f, 2.0f, 0.0f, 2.0f));
+        be0 be0Var = new be0(context);
+        this.h = be0Var;
+        kk7.i(be0Var);
+        linearLayout.addView(be0Var, nme.t(24, 24, 49, 0, 4, 0, 0));
         TextView textView = new TextView(context);
         this.n = textView;
-        textView.setTypeface(gm.o());
+        textView.setTypeface(gl.o());
         textView.setTextSize(1, 12.0f);
         textView.setGravity(17);
         textView.setSingleLine();
-        linearLayout.addView(textView, qoe.t(-2, -2, 49, 0, 2, 0, 0));
-        rve.b(this, 0.05f, 1.5f);
+        linearLayout.addView(textView, nme.t(-2, -2, 49, 0, 2, 0, 0));
+        ote.b(this, 0.05f, 1.5f);
         b(true, 0.0f);
     }
 
     public final void a(String str, CharSequence charSequence, Long l) {
         int i;
         this.f = true;
-        bf0 bf0Var = this.h;
-        bf0Var.setColorFilter(null);
-        bf0Var.setImageDrawable(gw3.g(str));
+        be0 be0Var = this.h;
+        be0Var.setColorFilter(null);
+        be0Var.setImageDrawable(vu3.g(str));
         this.n.setText(charSequence);
         int i2 = this.a;
         if (ConnectionsManager.getInstance(i2).isTestBackend()) {
             i = 0;
             while (i < 4) {
-                if (z8c.h(i).o() && !ConnectionsManager.getInstance(i).isTestBackend()) {
+                if (y6c.h(i).o() && !ConnectionsManager.getInstance(i).isTestBackend()) {
                     break;
                 }
                 i++;
@@ -65,19 +65,19 @@ public final class y0 extends FrameLayout implements vlb {
         }
         i = i2;
         if (l != null) {
-            bf0Var.setAnimatedEmojiDrawable(new vm(9, i2, l.longValue()));
+            be0Var.setAnimatedEmojiDrawable(new vl(9, i2, l.longValue()));
         } else if (!TextUtils.isEmpty(str)) {
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
             tL_inputStickerSetShortName.short_name = "RestrictedEmoji";
-            hs6.d0(i).m0(tL_inputStickerSetShortName, null, false, false, new x0(this, str, (byte) 0));
+            hq6.d0(i).m0(tL_inputStickerSetShortName, null, false, false, new x0(this, str, (byte) 0));
         }
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(cmb.F6));
-        hashSet.add(Integer.valueOf(cmb.Ei));
-        hashSet.add(Integer.valueOf(cmb.h6));
+        hashSet.add(Integer.valueOf(bkb.F6));
+        hashSet.add(Integer.valueOf(bkb.Ei));
+        hashSet.add(Integer.valueOf(bkb.h6));
     }
 
     public final void b(boolean z, float f) {
@@ -86,21 +86,21 @@ public final class y0 extends FrameLayout implements vlb {
             return;
         }
         this.r = f;
-        int i = cmb.F6;
-        ylb ylbVar = this.b;
-        int v0 = cmb.v0(i, ylbVar);
-        int i2 = cmb.Ei;
-        int f2 = on2.f(f, v0, cmb.v0(i2, ylbVar));
-        int f3 = on2.f(f, cmb.v0(i, ylbVar), cmb.v0(i2, ylbVar));
+        int i = bkb.F6;
+        wjb wjbVar = this.b;
+        int v0 = bkb.v0(i, wjbVar);
+        int i2 = bkb.Ei;
+        int f2 = bm2.f(f, v0, bkb.v0(i2, wjbVar));
+        int f3 = bm2.f(f, bkb.v0(i, wjbVar), bkb.v0(i2, wjbVar));
         if (!this.f) {
             porterDuffColorFilter = new PorterDuffColorFilter(f2, PorterDuff.Mode.SRC_IN);
         } else {
             porterDuffColorFilter = null;
         }
-        bf0 bf0Var = this.h;
-        bf0Var.setColorFilter(porterDuffColorFilter);
-        bf0Var.setEmojiColorFilter(new PorterDuffColorFilter(f2, PorterDuff.Mode.SRC_IN));
-        bf0Var.invalidate();
+        be0 be0Var = this.h;
+        be0Var.setColorFilter(porterDuffColorFilter);
+        be0Var.setEmojiColorFilter(new PorterDuffColorFilter(f2, PorterDuff.Mode.SRC_IN));
+        be0Var.invalidate();
         this.n.setTextColor(f3);
     }
 
@@ -109,13 +109,13 @@ public final class y0 extends FrameLayout implements vlb {
         int v0;
         b(true, this.r);
         boolean z = this.d;
-        ylb ylbVar = this.b;
+        wjb wjbVar = this.b;
         if (z) {
-            v0 = cmb.p1(0.1f, cmb.v0(cmb.Ei, ylbVar));
+            v0 = bkb.p1(0.1f, bkb.v0(bkb.Ei, wjbVar));
         } else {
-            v0 = cmb.v0(cmb.h6, ylbVar);
+            v0 = bkb.v0(bkb.h6, wjbVar);
         }
         int i = this.c;
-        setBackground(cmb.Y(v0, i, i));
+        setBackground(bkb.Y(v0, i, i));
     }
 }

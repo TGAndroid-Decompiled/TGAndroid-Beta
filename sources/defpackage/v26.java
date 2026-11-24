@@ -1,31 +1,96 @@
 package defpackage;
-public final class v26 {
-    public static final v26 a;
-    public static final v26 b;
-    public static final v26 c;
-    public static final v26 d;
-    public static final v26 e;
-    public static final v26[] f;
 
-    static {
-        ?? r0 = new Enum("DESTROYED", 0);
-        a = r0;
-        ?? r1 = new Enum("INITIALIZED", 1);
-        b = r1;
-        ?? r3 = new Enum("CREATED", 2);
-        c = r3;
-        ?? r5 = new Enum("STARTED", 3);
-        d = r5;
-        ?? r7 = new Enum("RESUMED", 4);
-        e = r7;
-        f = new v26[]{r0, r1, r3, r5, r7};
+import android.content.Context;
+import android.graphics.PointF;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+public class v26 extends o49 {
+    public final LinearInterpolator i;
+    public final DecelerateInterpolator j;
+    public final float k;
+    public int l;
+    public int m;
+    public final byte n;
+    public final float o;
+    public int p;
+
+    public v26(Context context, int i) {
+        this.i = new LinearInterpolator();
+        this.j = new DecelerateInterpolator(1.5f);
+        this.l = 0;
+        this.m = 0;
+        this.o = 1.0f;
+        this.k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
+        this.n = i;
     }
 
-    public static v26 valueOf(String str) {
-        return (v26) Enum.valueOf(v26.class, str);
+    @Override
+    public final PointF a(int i) {
+        d49 d49Var = this.c;
+        if (d49Var instanceof t26) {
+            return ((t26) d49Var).D0(i);
+        }
+        return null;
     }
 
-    public static v26[] values() {
-        return (v26[]) f.clone();
+    @Override
+    public final void d(int i, int i2, n49 n49Var) {
+        if (this.b.y.r() == 0) {
+            h();
+            return;
+        }
+        int i3 = this.l;
+        int i4 = i3 - i;
+        int i5 = 0;
+        if (i3 * i4 <= 0) {
+            i4 = 0;
+        }
+        this.l = i4;
+        int i6 = this.m;
+        int i7 = i6 - i2;
+        if (i6 * i7 > 0) {
+            i5 = i7;
+        }
+        this.m = i5;
+        if (i4 == 0 && i5 == 0) {
+            PointF a = a(this.a);
+            if (a != null && (a.x != 0.0f || a.y != 0.0f)) {
+                o49.b(a);
+                this.l = (int) (a.x * 10000.0f);
+                this.m = (int) (a.y * 10000.0f);
+                n49Var.b((int) (this.l * 1.2f), (int) (this.m * 1.2f), (int) (((int) Math.ceil(10000.0f * this.k)) * 1.2f), this.i);
+                return;
+            }
+            n49Var.d = this.a;
+            h();
+        }
+    }
+
+    @Override
+    public final void f() {
+        this.m = 0;
+        this.l = 0;
+    }
+
+    @Override
+    public final void g(android.view.View r8, defpackage.n49 r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.v26.g(android.view.View, n49):void");
+    }
+
+    @Override
+    public void e() {
+    }
+
+    public void i() {
+    }
+
+    public v26(Context context, int i, float f) {
+        this.i = new LinearInterpolator();
+        this.j = new DecelerateInterpolator(1.5f);
+        this.l = 0;
+        this.m = 0;
+        this.o = f;
+        this.k = (25.0f / context.getResources().getDisplayMetrics().densityDpi) * f;
+        this.n = i;
     }
 }

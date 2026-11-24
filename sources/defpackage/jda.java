@@ -1,27 +1,30 @@
 package defpackage;
-public final class jda implements Runnable {
-    public final byte a;
-    public final lda b;
 
-    public jda(lda ldaVar, byte b) {
+import android.animation.ValueAnimator;
+public final class jda implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final iea b;
+    public final nfa c;
+
+    public jda(nfa nfaVar, iea ieaVar, byte b) {
         this.a = b;
-        this.b = ldaVar;
+        this.c = nfaVar;
+        this.b = ieaVar;
     }
 
     @Override
-    public final void run() {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        lda ldaVar = this.b;
+        iea ieaVar = this.b;
+        nfa nfaVar = this.c;
         switch (b) {
             case 0:
-                ldaVar.post(new jda(ldaVar, (byte) 1));
+                nfaVar.q1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ieaVar.h.invalidate();
                 return;
             default:
-                ldaVar.c0.N0 = true;
-                ldaVar.I.clear();
-                ldaVar.J.clear();
-                ldaVar.K.clear();
-                ldaVar.invalidate();
+                nfaVar.q1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ieaVar.h.invalidate();
                 return;
         }
     }

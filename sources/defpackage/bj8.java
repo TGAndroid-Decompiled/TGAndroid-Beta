@@ -1,70 +1,86 @@
 package defpackage;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class bj8 extends FrameLayout {
-    public final byte a = 1;
-    public final cj8 b;
+import java.util.List;
+public final class bj8 implements w4a {
+    public final String a;
+    public final aj8 b;
 
-    public bj8(Context context, ylb ylbVar) {
-        super(context);
-        LinearLayout linearLayout = new LinearLayout(context);
-        addView(linearLayout, qoe.e(-1, -2, 80));
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(context);
-        anb.Y(textView, anb.g(cmb.F6, 100), ylbVar);
-        textView.setTextSize(1, 13.0f);
-        hg9.p(textView, 17, null, 2131743543);
-        linearLayout.addView(textView, qoe.t(-1, -2, 0, 16, 17, 17, 16));
-        cj8 cj8Var = new cj8(ylbVar, context, false);
-        this.b = cj8Var;
-        String M0 = jb6.M0(2131743544, null);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) "d ").setSpan(new pn2(0, context.getDrawable(2131232315)), 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) M0);
-        cj8Var.f.setText(spannableStringBuilder);
-        linearLayout.addView(cj8Var, qoe.t(-1, 48, 0, 16, 0, 16, 16));
+    public bj8(String str, aj8 aj8Var) {
+        aj8Var.getClass();
+        this.a = str;
+        this.b = aj8Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        CharSequence charSequence;
-        aj8 aj8Var;
-        aj8 aj8Var2;
-        switch (this.a) {
-            case 0:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setClassName("android.widget.Button");
-                cj8 cj8Var = this.b;
-                if (cj8Var.r && (aj8Var2 = cj8Var.h) != null) {
-                    charSequence = aj8Var2.getText();
-                } else {
-                    charSequence = null;
-                }
-                if (charSequence == null && (aj8Var = cj8Var.f) != null) {
-                    charSequence = aj8Var.getText();
-                }
-                if (charSequence != null) {
-                    accessibilityNodeInfo.setText(charSequence);
-                    if (getContentDescription() == null) {
-                        accessibilityNodeInfo.setContentDescription(charSequence);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
+    public final String a() {
+        return this.a;
     }
 
-    public bj8(cj8 cj8Var, Context context) {
-        super(context);
-        this.b = cj8Var;
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int d(String str) {
+        str.getClass();
+        throw new IllegalStateException("Primitive descriptor does not have elements");
+    }
+
+    @Override
+    public final vte e() {
+        return this.b;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof bj8) {
+                bj8 bj8Var = (bj8) obj;
+                if (this.a.equals(bj8Var.a) && rp5.a(this.b, bj8Var.b)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final String g(int i) {
+        throw new IllegalStateException("Primitive descriptor does not have elements");
+    }
+
+    @Override
+    public final List getAnnotations() {
+        return c24.a;
+    }
+
+    @Override
+    public final List h(int i) {
+        throw new IllegalStateException("Primitive descriptor does not have elements");
+    }
+
+    public final int hashCode() {
+        return (this.b.hashCode() * 31) + this.a.hashCode();
+    }
+
+    @Override
+    public final w4a i(int i) {
+        throw new IllegalStateException("Primitive descriptor does not have elements");
+    }
+
+    @Override
+    public final boolean isInline() {
+        return false;
+    }
+
+    public final String toString() {
+        return "PrimitiveDescriptor(" + this.a + ')';
     }
 }

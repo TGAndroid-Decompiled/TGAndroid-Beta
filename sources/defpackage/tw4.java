@@ -1,27 +1,65 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class tw4 extends b6c {
-    public static final int b = 0;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.RenderNode;
+public final class tw4 extends xie {
+    public final RenderNode a = mk1.o();
+    public final Paint b = new Paint(1);
+    public final ww4 c;
 
-    static {
-        b6c.h(new b6c());
+    public tw4(ww4 ww4Var) {
+        this.c = ww4Var;
     }
 
     @Override
-    public final void b(View view, c6c c6cVar, boolean z, l7c l7cVar, q7c q7cVar) {
-        m1a m1aVar = (m1a) view;
-        m1aVar.setUser((TLRPC.User) c6cVar.H);
-        m1aVar.c(c6cVar.e, false);
-        m1aVar.setDivider(z);
+    public final void a(Rect rect, RectF rectF) {
+        float f;
+        ww4 ww4Var = this.c;
+        if (!ww4Var.x && this.a.hasDisplayList()) {
+            return;
+        }
+        int width = rect.width();
+        int height = rect.height();
+        int i = ww4Var.y;
+        if (i != 1 && i != 4) {
+            f = width;
+        } else {
+            f = height;
+        }
+        float f2 = f;
+        xw4 xw4Var = ww4Var.G;
+        xw4Var.getClass();
+        LinearGradient l = ww4Var.l(xw4Var, f2, 0.0f, ww4Var.K, 1);
+        Paint paint = this.b;
+        paint.setShader(l);
+        this.a.setPosition(0, 0, width, height);
+        this.a.beginRecording().drawRect(0.0f, 0.0f, width, height, paint);
+        this.a.endRecording();
+        paint.setShader(null);
+        ww4Var.x = false;
     }
 
     @Override
-    public final View d(Context context, r59 r59Var, int i, ylb ylbVar) {
-        m1a m1aVar = new m1a(context, false, true, ylbVar, false);
-        m1aVar.setCellBackgroundVisible(false);
-        return m1aVar;
+    public final void b() {
+        this.a.discardDisplayList();
+    }
+
+    @Override
+    public final void c(Canvas canvas) {
+        canvas.drawRenderNode(this.a);
+    }
+
+    @Override
+    public final boolean d() {
+        return this.a.hasDisplayList();
+    }
+
+    @Override
+    public final void e(float f) {
+        this.a.setAlpha(f);
     }
 }

@@ -1,82 +1,45 @@
 package defpackage;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-public final class m82 implements g22 {
-    public final i22 a;
-    public final p82 b;
+public final class m82 extends i98 {
+    public final p82 a;
 
-    public m82(p82 p82Var, i22 i22Var) {
-        this.b = p82Var;
-        this.a = i22Var;
+    public m82(p82 p82Var) {
+        this.a = p82Var;
     }
 
     @Override
-    public final boolean B() {
-        return false;
+    public final void F() {
+        this.a.e.getImageReceiver().v0(true, true);
     }
 
     @Override
-    public final void E0(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2) {
-        ch9 ch9Var = this.b.r;
-        i22 i22Var = this.a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = i22Var.d2;
-        if (i == 7 || i == 8) {
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            ll0 ll0Var = ch9Var.j4;
-            ch9Var.j4 = null;
-            int i4 = 0;
-            while (true) {
-                if (i4 >= selectedPhotosOrder.size()) {
-                    break;
-                }
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i4));
-                if (obj instanceof jo6) {
-                    if (ll0Var != null) {
-                        ch9Var.P1(ll0Var, (jo6) obj);
-                    } else {
-                        ch9Var.a2((jo6) obj);
-                    }
-                } else {
-                    i4++;
-                }
-            }
+    public final defpackage.p98 M(defpackage.k27 r7, org.telegram.tgnet.TLRPC.FileLocation r8, int r9, boolean r10, boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.m82.M(k27, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):p98");
+    }
+
+    @Override
+    public final boolean N() {
+        p82 p82Var = this.a;
+        long j = p82Var.C0;
+        if (j == 0) {
+            return true;
         }
-        ch9Var.j4 = null;
-        i22Var.a(true);
-    }
-
-    @Override
-    public final boolean K0() {
+        TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
+        tL_photos_updateProfilePhoto.bot = p82Var.getMessagesController().m1(j);
+        tL_photos_updateProfilePhoto.flags |= 2;
+        tL_photos_updateProfilePhoto.id = new TLRPC.TL_inputPhotoEmpty();
+        p82Var.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new tf(this, (byte) 12));
         return false;
     }
 
     @Override
-    public final void a1(vr0 vr0Var) {
-        nm7.f(this.b.n).d(vr0Var);
+    public final void g(String str, String str2, boolean z) {
+        this.a.s.p(str, str2, z);
     }
 
     @Override
-    public final void I() {
-    }
-
-    @Override
-    public final void b0() {
-    }
-
-    @Override
-    public final void f0(Object obj) {
-    }
-
-    @Override
-    public final void z0(TLRPC.User user) {
-    }
-
-    @Override
-    public final void n0(ArrayList arrayList, Editable editable, boolean z, int i, int i2, long j, boolean z2, long j2) {
+    public final int x() {
+        return 1;
     }
 }

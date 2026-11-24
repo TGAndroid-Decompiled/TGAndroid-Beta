@@ -1,17 +1,23 @@
 package defpackage;
-public final class m9e implements cq7 {
-    public static final m9e a = new Object();
 
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class m9e extends b4 {
+    public static final Parcelable.Creator<m9e> CREATOR = new qyd((byte) 14);
+    public final int a;
+    public final oed b;
+
+    public m9e(int i, oed oedVar) {
+        this.a = i;
+        this.b = oedVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        jte.k(parcel, 3, this.b, i);
+        jte.s(parcel, r);
     }
 }

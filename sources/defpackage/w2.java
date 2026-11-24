@@ -11,7 +11,7 @@ public final class w2 extends v2 implements ListIterator {
         if (i >= 0 && i <= h) {
             this.b = i;
         } else {
-            wa3.i(b10.g(i, h, "index: ", ", size: "));
+            k93.i(b00.g(i, h, "index: ", ", size: "));
             throw null;
         }
     }
@@ -41,7 +41,7 @@ public final class w2 extends v2 implements ListIterator {
             this.b = i;
             return this.d.get(i);
         }
-        u36.g();
+        w26.g();
         return null;
     }
 

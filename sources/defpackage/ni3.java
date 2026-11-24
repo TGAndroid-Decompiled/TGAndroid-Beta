@@ -1,56 +1,57 @@
 package defpackage;
 
-import android.graphics.Point;
-import android.view.View;
-import java.util.ArrayList;
-public final class ni3 implements tc5, i59 {
-    public final nk3 a;
+import android.view.ViewTreeObserver;
+public final class ni3 implements ViewTreeObserver.OnPreDrawListener {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public ni3(nk3 nk3Var) {
-        this.a = nk3Var;
+    public ni3(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = obj2;
     }
 
     @Override
-    public final void a(uc5 uc5Var, long j) {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(bf7.a(-j, 0L));
-        nk3 nk3Var = this.a;
-        hk3 hk3Var = nk3Var.E2;
-        if (nk3Var.D2) {
-            nk3Var.removeSelfFromStack();
-        }
-        hk3Var.q(nk3Var, arrayList, null, true, nk3Var.L2, nk3Var.M2, nk3Var.N2, null);
-    }
-
-    @Override
-    public final boolean mo14d(float f, float f2, int i, View view) {
-        boolean z = view instanceof ut8;
-        nk3 nk3Var = this.a;
-        if (z) {
-            ut8 ut8Var = (ut8) view;
-            if (ut8Var.o0) {
-                nk3Var.i5(ut8Var.getDialogId(), view);
+    public final boolean onPreDraw() {
+        float f;
+        byte b = this.a;
+        Object obj = this.c;
+        Object obj2 = this.b;
+        switch (b) {
+            case 0:
+                ((ih3) obj).a.f0[0].a.getViewTreeObserver().removeOnPreDrawListener(this);
+                gl.d3((sma) obj2, 100L);
+                return false;
+            case 1:
+                h75 h75Var = (h75) obj;
+                h75Var.J1.getViewTreeObserver().removeOnPreDrawListener(this);
+                h75Var.i4 = null;
+                h75Var.T3.h((gc2) obj2);
+                gl.V3(h75Var.e4);
+                h75Var.b.requestLayout();
+                return false;
+            default:
+                ((ViewTreeObserver) obj2).removeOnPreDrawListener(this);
+                vx8 vx8Var = (vx8) obj;
+                t11 t11Var = vx8Var.X;
+                if (t11Var != null) {
+                    int[] iArr = vx8.e0;
+                    t11Var.getLocationInWindow(iArr);
+                    float f2 = iArr[0];
+                    float translationY = iArr[1] - vx8Var.X.getTranslationY();
+                    t11 t11Var2 = vx8Var.X;
+                    if (t11Var2.top) {
+                        f = t11Var2.getTopOffset();
+                    } else {
+                        f = -t11Var2.getBottomOffset();
+                    }
+                    vx8Var.a.getLocationInWindow(iArr);
+                    vx8Var.Y = (vx8Var.X.a.getMeasuredWidth() / 2.0f) + (f2 - iArr[0]) + vx8Var.X.a.getLeft();
+                    vx8Var.Z = (vx8Var.X.a.getMeasuredHeight() / 2.0f) + ((translationY + f) - iArr[1]) + vx8Var.X.a.getTop();
+                }
+                vx8Var.c();
                 return true;
-            }
-        }
-        sj3 sj3Var = nk3Var.D0;
-        pu9 pu9Var = sj3Var.b0;
-        return nk3Var.D4(view, i, f, sj3Var.e0);
-    }
-
-    @Override
-    public final void i() {
-        Point point = gm.q;
-        if (point.x > point.y) {
-            this.a.finishPreviewFragment();
-        }
-    }
-
-    @Override
-    public final void k(float f) {
-        Point point = gm.q;
-        if (point.x > point.y) {
-            this.a.movePreviewFragment(f);
         }
     }
 }

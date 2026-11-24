@@ -1,76 +1,43 @@
 package defpackage;
+public abstract class b9b {
+    public static final String[] a;
+    public static final byte[] b;
 
-import android.app.Activity;
-import android.app.Dialog;
-import org.telegram.ui.ActionBar.d;
-public final class b9b extends d {
-    public final byte a;
-    public final v9b b;
-
-    public b9b(v9b v9bVar, byte b) {
-        super(null);
-        this.a = b;
-        switch (b) {
-            case 1:
-                this.b = v9bVar;
-                super(null);
-                this.currentAccount = v9bVar.c;
-                return;
-            default:
-                this.b = v9bVar;
-                return;
+    static {
+        String[] strArr = new String[93];
+        for (int i = 0; i < 32; i++) {
+            strArr[i] = "\\u" + a(i >> 12) + a(i >> 8) + a(i >> 4) + a(i);
         }
+        strArr[34] = "\\\"";
+        strArr[92] = "\\\\";
+        strArr[9] = "\\t";
+        strArr[8] = "\\b";
+        strArr[10] = "\\n";
+        strArr[13] = "\\r";
+        strArr[12] = "\\f";
+        a = strArr;
+        byte[] bArr = new byte[93];
+        for (int i2 = 0; i2 < 32; i2++) {
+            bArr[i2] = 1;
+        }
+        bArr[34] = 34;
+        bArr[92] = 92;
+        bArr[9] = 116;
+        bArr[8] = 98;
+        bArr[10] = 110;
+        bArr[13] = 114;
+        bArr[12] = 102;
+        b = bArr;
     }
 
-    @Override
-    public final Activity getParentActivity() {
-        byte b = this.a;
-        v9b v9bVar = this.b;
-        switch (b) {
-            case 0:
-                return v9bVar.b;
-            default:
-                return v9bVar.b;
+    public static final char a(int i) {
+        int i2;
+        int i3 = i & 15;
+        if (i3 < 10) {
+            i2 = i3 + 48;
+        } else {
+            i2 = i3 + 87;
         }
-    }
-
-    @Override
-    public final ylb getResourceProvider() {
-        byte b = this.a;
-        v9b v9bVar = this.b;
-        switch (b) {
-            case 0:
-                return new pv0(v9bVar.a, (byte) 8);
-            default:
-                return new pv0(v9bVar.a, (byte) 9);
-        }
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        byte b = this.a;
-        return false;
-    }
-
-    @Override
-    public final boolean presentFragment(d dVar) {
-        switch (this.a) {
-            case 0:
-                this.b.S();
-                return false;
-            default:
-                return super.presentFragment(dVar);
-        }
-    }
-
-    @Override
-    public final Dialog showDialog(Dialog dialog) {
-        switch (this.a) {
-            case 1:
-                dialog.show();
-                return dialog;
-            default:
-                return super.showDialog(dialog);
-        }
+        return (char) i2;
     }
 }

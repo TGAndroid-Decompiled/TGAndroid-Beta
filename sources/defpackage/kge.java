@@ -1,34 +1,17 @@
 package defpackage;
-public abstract class kge {
-    public static final Class a;
-    public static final boolean b;
+public final class kge implements zn7 {
+    public static final kge a = new Object();
 
     static {
-        Class<?> cls;
-        boolean z;
-        Class<?> cls2 = null;
-        try {
-            cls = Class.forName("libcore.io.Memory");
-        } catch (Throwable unused) {
-            cls = null;
-        }
-        a = cls;
-        try {
-            cls2 = Class.forName("org.robolectric.Robolectric");
-        } catch (Throwable unused2) {
-        }
-        if (cls2 != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        b = z;
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
     }
 
-    public static boolean a() {
-        if (a != null && !b) {
-            return true;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        return false;
+        throw new ClassCastException();
     }
 }

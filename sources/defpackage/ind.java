@@ -1,21 +1,15 @@
 package defpackage;
 
-import java.io.Serializable;
-public enum ind {
-    VOID(Void.class, null),
-    INT(Integer.class, 0),
-    LONG(Long.class, 0L),
-    FLOAT(Float.class, Float.valueOf(0.0f)),
-    DOUBLE(Double.class, Double.valueOf(0.0d)),
-    BOOLEAN(Boolean.class, Boolean.FALSE),
-    STRING(String.class, ""),
-    BYTE_STRING(efd.class, efd.c),
-    ENUM(Integer.class, null),
-    MESSAGE(Object.class, null);
-    
-    public final Class a;
+import java.lang.ref.PhantomReference;
+import java.lang.ref.ReferenceQueue;
+import java.util.Set;
+public final class ind extends PhantomReference {
+    public final Set a;
+    public final sv b;
 
-    ind(Class cls, Serializable serializable) {
-        this.a = cls;
+    public ind(th2 th2Var, ReferenceQueue referenceQueue, Set set, sv svVar) {
+        super(th2Var, referenceQueue);
+        this.a = set;
+        this.b = svVar;
     }
 }

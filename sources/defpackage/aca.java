@@ -1,77 +1,30 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class aca implements TextWatcher {
-    public final byte a;
-    public final tca b;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.d;
+public final class aca implements yc7, ed {
+    public final nfa a;
+    public final TL_stories.StoryItem b;
 
-    public aca(tca tcaVar, byte b) {
-        this.a = b;
-        this.b = tcaVar;
+    public aca(nfa nfaVar, TL_stories.StoryItem storyItem) {
+        this.a = nfaVar;
+        this.b = storyItem;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.a) {
-            case 0:
-                gm.c3(new c0a(this, (byte) 9));
-                return;
-            default:
-                tca tcaVar = this.b;
-                mca mcaVar = tcaVar.F1;
-                a1b a1bVar = tcaVar.L1;
-                oq4 oq4Var = tcaVar.t2;
-                if (!TextUtils.isEmpty(oq4Var.r.getText())) {
-                    tcaVar.D0(false);
-                }
-                if (tcaVar.v2) {
-                    String obj = oq4Var.r.getText().toString();
-                    if (obj.length() != 0) {
-                        if (a1bVar != null) {
-                            a1bVar.d.setText(jb6.M0(2131747901, null));
-                        }
-                    } else if (tcaVar.A1.getAdapter() != mcaVar) {
-                        int H0 = tcaVar.H0();
-                        a1bVar.d.setText(jb6.M0(2131747901, null));
-                        a1bVar.e(false, true);
-                        tcaVar.D0(false);
-                        mcaVar.f();
-                        if (H0 > 0) {
-                            tcaVar.C1.g1(0, -H0);
-                        }
-                    }
-                    qca qcaVar = tcaVar.H1;
-                    if (qcaVar != null) {
-                        qcaVar.E(obj);
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
+    public final void a(String str) {
+        this.a.y0(this.b, str);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        byte b = this.a;
-    }
-
-    private final void a(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void b(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void c(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void d(int i, int i2, int i3, CharSequence charSequence) {
+    public final void u(hd hdVar, int i) {
+        ArrayList arrayList = new ArrayList(1);
+        arrayList.add(this.b);
+        nfa nfaVar = this.a;
+        d dVar = nfaVar.y1;
+        dVar.getMessagesController().M1().r(arrayList, nfaVar.m1);
+        u21.b0(dVar).Q(2131624052, 36, k96.G(1, "StoriesDeleted", new Object[0])).j();
+        nfaVar.E(false);
     }
 }

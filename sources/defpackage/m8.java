@@ -29,7 +29,7 @@ public class m8 extends PopupWindow {
     public boolean g;
     public ViewTreeObserver.OnScrollChangedListener h;
     public ViewTreeObserver i;
-    public po j;
+    public on j;
 
     static {
         Field field = null;
@@ -47,7 +47,7 @@ public class m8 extends PopupWindow {
         this.b = true;
         this.c = (short) 150;
         this.f = -1L;
-        this.j = new po(null);
+        this.j = new on(null);
         e();
     }
 
@@ -174,7 +174,7 @@ public class m8 extends PopupWindow {
                 } else {
                     f = -5.0f;
                 }
-                animatorSet3.playTogether(ObjectAnimator.ofFloat(viewGroup, property, translationY + gm.L(f)), ObjectAnimator.ofFloat(viewGroup, View.ALPHA, 0.0f));
+                animatorSet3.playTogether(ObjectAnimator.ofFloat(viewGroup, property, translationY + gl.L(f)), ObjectAnimator.ofFloat(viewGroup, View.ALPHA, 0.0f));
                 this.a.setDuration(this.c);
             }
             this.a.addListener(new g8(this, (byte) 1));
@@ -245,7 +245,7 @@ public class m8 extends PopupWindow {
             }
             k.invoke(this, Boolean.TRUE);
         } catch (Exception e) {
-            fc4.g(e, true);
+            fa4.g(e, true);
         }
     }
 
@@ -317,7 +317,7 @@ public class m8 extends PopupWindow {
             super.showAsDropDown(view, i, i2);
             f(view);
         } catch (Exception e) {
-            fc4.g(e, true);
+            fa4.g(e, true);
         }
     }
 

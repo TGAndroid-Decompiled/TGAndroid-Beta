@@ -1,16 +1,29 @@
 package defpackage;
 
-import android.media.MediaCodec;
-public final class y43 {
-    public final MediaCodec.CryptoInfo a;
-    public final MediaCodec.CryptoInfo.Pattern b = z2.b();
+import android.os.StrictMode;
+import java.util.Locale;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicLong;
+public final class y43 implements ThreadFactory {
+    public static final ThreadFactory e = Executors.defaultThreadFactory();
+    public final AtomicLong a = new AtomicLong();
+    public final String b;
+    public final byte c;
+    public final StrictMode.ThreadPolicy d;
 
-    public y43(MediaCodec.CryptoInfo cryptoInfo) {
-        this.a = cryptoInfo;
+    public y43(String str, int i, StrictMode.ThreadPolicy threadPolicy) {
+        this.b = str;
+        this.c = i;
+        this.d = threadPolicy;
     }
 
-    public final void a(int i, int i2) {
-        this.b.set(i, i2);
-        this.a.setPattern(this.b);
+    @Override
+    public final Thread newThread(Runnable runnable) {
+        Thread newThread = e.newThread(new gu2(this, runnable, (byte) 25));
+        Locale locale = Locale.ROOT;
+        long andIncrement = this.a.getAndIncrement();
+        newThread.setName(this.b + " Thread #" + andIncrement);
+        return newThread;
     }
 }

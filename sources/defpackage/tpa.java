@@ -1,65 +1,96 @@
 package defpackage;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class tpa implements qac {
-    public final wsa a;
-    public final fw4 b;
-    public final ok c;
-    public final TL_stars.TL_starGiftUnique d;
-    public final long e;
-    public final TLRPC.TL_textWithEntities f;
-    public final boolean g;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RadialGradient;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+public final class tpa extends Drawable {
+    public Drawable g;
+    public int h;
+    public int i;
+    public final Paint b = new Paint(1);
+    public final Shader[] c = new Shader[2];
+    public final Matrix d = new Matrix();
+    public final lm e = new lm(1.0f, new z6a(this, (byte) 21), 0, 420, s33.h);
+    public final RectF f = new RectF();
+    public final boolean a = true;
 
-    public tpa(wsa wsaVar, fw4 fw4Var, ok okVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z) {
-        this.a = wsaVar;
-        this.b = fw4Var;
-        this.c = okVar;
-        this.d = tL_starGiftUnique;
-        this.e = j;
-        this.f = tL_textWithEntities;
-        this.g = z;
+    public final void a(int i, int i2) {
+        if (this.h == i && this.i == i2) {
+            return;
+        }
+        Shader[] shaderArr = this.c;
+        shaderArr[0] = shaderArr[1];
+        if (!this.a) {
+            this.h = i;
+            this.i = i2;
+            shaderArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i, i2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        } else {
+            this.h = i;
+            this.i = i2;
+            shaderArr[1] = new RadialGradient(0.0f, 0.0f, gl.L(340.0f), new int[]{i, i2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        }
+        this.e.e(true, 0.0f);
+        invalidateSelf();
     }
 
     @Override
-    public final void a(Object obj) {
-        TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift = (TLRPC.TL_payments_paymentFormStarGift) obj;
-        final wsa wsaVar = this.a;
-        wsaVar.f2.setLoading(false);
-        final fw4 fw4Var = this.b;
-        if (fw4Var != null && fw4Var.F1) {
-            fw4Var.F1 = false;
-            fw4Var.B1.h(false);
-        }
-        if (tL_payments_paymentFormStarGift == null) {
-            return;
-        }
-        yra yraVar = new yra(this.c, tL_payments_paymentFormStarGift);
-        Context context = wsaVar.getContext();
-        ylb ylbVar = wsaVar.J0;
-        int i = wsaVar.a;
-        String s1 = wsaVar.s1();
-        final TL_stars.TL_starGiftUnique tL_starGiftUnique = this.d;
-        final long j = this.e;
-        final TLRPC.TL_textWithEntities tL_textWithEntities = this.f;
-        final boolean z = this.g;
-        asa asaVar = new asa(context, ylbVar, tL_starGiftUnique, yraVar, i, j, s1, false, new jac() {
-            @Override
-            public final void a(Object obj2, Object obj3) {
-                yra yraVar2 = (yra) obj2;
-                k11 k11Var = (k11) obj3;
-                k11Var.d();
-                wsa wsaVar2 = wsa.this;
-                jva u = jva.u(wsaVar2.a, yraVar2.a);
-                TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift2 = yraVar2.b;
-                TL_stars.TL_starGiftUnique tL_starGiftUnique2 = tL_starGiftUnique;
-                long j2 = j;
-                u.f(tL_payments_paymentFormStarGift2, tL_starGiftUnique2, j2, tL_textWithEntities, z, new d28(wsaVar2, k11Var, tL_starGiftUnique2, j2, fw4Var, (byte) 1));
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f;
+        rectF.set(bounds);
+        rectF.right = rectF.width() + rectF.left;
+        int i = 0;
+        float e = this.e.e(false, 1.0f);
+        while (true) {
+            Shader[] shaderArr = this.c;
+            if (i >= shaderArr.length) {
+                break;
             }
-        });
-        asaVar.o = tL_textWithEntities;
-        asaVar.p = z;
-        asaVar.b();
+            if (shaderArr[i] != null) {
+                float pow = (float) Math.pow(1.0f - Math.abs(i - e), 0.25d);
+                if (pow > 0.0f) {
+                    Matrix matrix = this.d;
+                    matrix.reset();
+                    if (this.a) {
+                        matrix.postTranslate(rectF.centerX(), gl.L(145.0f));
+                    } else {
+                        matrix.postScale(getBounds().width() / 100.0f, 1.0f);
+                    }
+                    shaderArr[i].setLocalMatrix(matrix);
+                    Shader shader = shaderArr[i];
+                    Paint paint = this.b;
+                    paint.setShader(shader);
+                    paint.setAlpha((int) (pow * 255.0f));
+                    canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
+                }
+            }
+            i++;
+        }
+        if (this.g != null) {
+            canvas.save();
+            canvas.translate(rectF.centerX(), gl.L(145.0f));
+            ana.a(canvas, 0, this.g, rectF.width(), gl.L(290.0f), 2.0f, 1.0f);
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

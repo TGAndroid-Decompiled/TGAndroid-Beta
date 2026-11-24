@@ -1,26 +1,28 @@
 package defpackage;
+public final class kc3 extends qc3 implements Comparable {
+    public final int e;
+    public final int f;
 
-import android.animation.ValueAnimator;
-public final class kc3 implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final sc3 b;
-
-    public kc3(sc3 sc3Var, u69 u69Var, byte b) {
-        this.a = b;
-        this.b = sc3Var;
+    public kc3(int i, sxb sxbVar, int i2, nc3 nc3Var, int i3) {
+        super(i, sxbVar, i2);
+        int i4;
+        this.e = ls6.c(i3, nc3Var.B0) ? 1 : 0;
+        fm4 fm4Var = this.d;
+        int i5 = fm4Var.A;
+        int i6 = -1;
+        if (i5 != -1 && (i4 = fm4Var.B) != -1) {
+            i6 = i5 * i4;
+        }
+        this.f = i6;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        sc3 sc3Var = this.b;
-        switch (b) {
-            case 0:
-                sc3Var.Q();
-                return;
-            default:
-                sc3Var.M();
-                return;
-        }
+    public final int a() {
+        return this.e;
+    }
+
+    @Override
+    public final int compareTo(Object obj) {
+        return Integer.compare(this.f, ((kc3) obj).f);
     }
 }

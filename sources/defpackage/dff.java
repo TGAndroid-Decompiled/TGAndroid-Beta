@@ -1,3 +1,7 @@
 package defpackage;
-public abstract class dff {
+
+import java.util.List;
+import java.util.RandomAccess;
+public interface dff extends List, RandomAccess {
+    dff zzg(int i);
 }

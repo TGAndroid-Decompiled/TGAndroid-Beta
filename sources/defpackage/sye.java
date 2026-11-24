@@ -1,12 +1,17 @@
 package defpackage;
-public final class sye {
-    public final ote a;
-    public final mze b;
-    public final wse c;
+public final class sye implements zn7 {
+    public static final sye a = new Object();
 
-    public sye(uqd uqdVar) {
-        this.a = (ote) uqdVar.b;
-        this.b = (mze) uqdVar.c;
-        this.c = (wse) uqdVar.d;
+    static {
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

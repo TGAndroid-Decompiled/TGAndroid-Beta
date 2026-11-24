@@ -1,26 +1,26 @@
 package defpackage;
 
-import android.util.SparseArray;
-public final class sq2 {
-    public static final sq2 a;
-    public static final sq2[] b;
-    sq2 EF0;
+import java.util.concurrent.ThreadFactory;
+public final class sq2 implements ThreadFactory {
+    public final byte a;
+    public final String b;
 
-    static {
-        Enum r0 = new Enum("NOT_SET", 0);
-        ?? r1 = new Enum("EVENT_OVERRIDE", 1);
-        a = r1;
-        b = new sq2[]{r0, r1};
-        SparseArray sparseArray = new SparseArray();
-        sparseArray.put(0, r0);
-        sparseArray.put(5, r1);
+    public sq2(String str, byte b) {
+        this.a = b;
+        this.b = str;
     }
 
-    public static sq2 valueOf(String str) {
-        return (sq2) Enum.valueOf(sq2.class, str);
-    }
-
-    public static sq2[] values() {
-        return (sq2[]) b.clone();
+    @Override
+    public final Thread newThread(Runnable runnable) {
+        byte b = this.a;
+        String str = this.b;
+        switch (b) {
+            case 0:
+                Thread thread = new Thread(runnable, str);
+                thread.setPriority(10);
+                return thread;
+            default:
+                return new Thread(runnable, str);
+        }
     }
 }

@@ -1,3 +1,9 @@
 package defpackage;
-public abstract class jg7 {
+
+import android.text.Layout;
+import android.view.View;
+public interface jg7 {
+    Layout a();
+
+    View e();
 }

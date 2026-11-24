@@ -1,37 +1,15 @@
 package defpackage;
+public final class ji6 implements aq4 {
+    public final gi3 a;
+    public final Object b;
 
-import android.util.Base64InputStream;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FilterInputStream;
-import java.util.HashMap;
-public final class ji6 {
-    public final HashMap a = new HashMap();
-    public File b;
-    public long c;
-    public long d;
+    public ji6(gi3 gi3Var, Object obj) {
+        this.a = gi3Var;
+        this.b = obj;
+    }
 
-    public final FilterInputStream a() {
-        String str;
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(new ii6(this.c, this.d, this.b));
-        HashMap hashMap = this.a;
-        ki6 ki6Var = (ki6) hashMap.get("content-transfer-encoding");
-        String str2 = null;
-        if (ki6Var == null) {
-            str = null;
-        } else {
-            str = ki6Var.a;
-        }
-        if ("base64".equals(str)) {
-            return new Base64InputStream(bufferedInputStream, 0);
-        }
-        ki6 ki6Var2 = (ki6) hashMap.get("content-transfer-encoding");
-        if (ki6Var2 != null) {
-            str2 = ki6Var2.a;
-        }
-        if ("quoted-printable".equalsIgnoreCase(str2)) {
-            return new li6(bufferedInputStream, (byte) 0);
-        }
-        return bufferedInputStream;
+    @Override
+    public final Object apply(Object obj) {
+        return ((aq4) this.a.a).apply(obj);
     }
 }

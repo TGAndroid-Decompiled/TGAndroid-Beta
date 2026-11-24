@@ -1,35 +1,17 @@
 package defpackage;
+public final class j8e implements zn7 {
+    public static final j8e a = new Object();
 
-import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-public final class j8e extends a4f implements Serializable {
-    public final MessageDigest a;
-    public final int b;
-    public final boolean c;
-    public final String d;
-
-    public j8e() {
-        boolean z;
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            this.a = messageDigest;
-            this.b = messageDigest.getDigestLength();
-            this.d = "Hashing.sha256()";
-            try {
-                messageDigest.clone();
-                z = true;
-            } catch (CloneNotSupportedException unused) {
-                z = false;
-            }
-            this.c = z;
-        } catch (NoSuchAlgorithmException e) {
-            bh7.j(e);
-            throw null;
-        }
+    static {
+        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)), 4)), 5)), 6)), 7)));
     }
 
-    public final String toString() {
-        return this.d;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

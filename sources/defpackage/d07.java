@@ -1,24 +1,21 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class d07 implements wz6 {
-    public final kl6 a;
-    public int d;
-    public boolean e;
-    public final ArrayList c = new ArrayList();
-    public final Object b = new Object();
+import android.view.ActionProvider;
+public final class d07 implements ActionProvider.VisibilityListener {
+    public final ActionProvider a;
+    public z24 b;
 
-    public d07(rh0 rh0Var, boolean z) {
-        this.a = new kl6(rh0Var, z);
+    public d07(g07 g07Var, ActionProvider actionProvider) {
+        this.a = actionProvider;
     }
 
     @Override
-    public final Object a() {
-        return this.b;
-    }
-
-    @Override
-    public final bqb b() {
-        return this.a.o;
+    public final void onActionProviderVisibilityChanged(boolean z) {
+        z24 z24Var = this.b;
+        if (z24Var != null) {
+            yz6 yz6Var = ((c07) z24Var.b).n;
+            yz6Var.h = true;
+            yz6Var.p(true);
+        }
     }
 }

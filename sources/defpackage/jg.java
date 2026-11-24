@@ -1,91 +1,63 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.KeyEvent;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class jg implements Runnable {
+import android.content.DialogInterface;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.DatePicker;
+public final class jg implements DialogInterface.OnShowListener {
     public final byte a;
-    public final int b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
-    public final Object h;
+    public final View b;
 
-    public jg(b61 b61Var, TLObject tLObject, my0[] my0VarArr, ylb ylbVar, int i, TLRPC.TL_messages_checkChatInvite tL_messages_checkChatInvite) {
-        this.a = (byte) 11;
-        this.c = b61Var;
-        this.d = tLObject;
-        this.e = my0VarArr;
-        this.h = ylbVar;
-        this.b = i;
-        this.f = tL_messages_checkChatInvite;
+    public jg(View view, byte b) {
+        this.a = b;
+        this.b = view;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jg.run():void");
-    }
-
-    public jg(y5b y5bVar, TLObject tLObject, Object obj, ArrayList arrayList, boolean[] zArr, int i) {
-        this.a = (byte) 12;
-        this.c = y5bVar;
-        this.d = tLObject;
-        this.e = obj;
-        this.f = arrayList;
-        this.h = zArr;
-        this.b = i;
-    }
-
-    public jg(KeyEvent.Callback callback, Object obj, int i, Object obj2, Object obj3, TLObject tLObject, byte b) {
-        this.a = b;
-        this.c = callback;
-        this.d = obj;
-        this.b = i;
-        this.e = obj2;
-        this.f = obj3;
-        this.h = tLObject;
-    }
-
-    public jg(Object obj, int i, TLObject tLObject, Object obj2, Object obj3, Object obj4, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.b = i;
-        this.d = tLObject;
-        this.e = obj2;
-        this.f = obj3;
-        this.h = obj4;
-    }
-
-    public jg(Object obj, Object obj2, Object obj3, int i, Object obj4, Object obj5, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.b = i;
-        this.f = obj4;
-        this.h = obj5;
-    }
-
-    public jg(Object obj, Object obj2, Object obj3, Object obj4, int i, Object obj5, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f = obj4;
-        this.b = i;
-        this.h = obj5;
-    }
-
-    public jg(TLObject tLObject, int i, he heVar, Context context, ylb ylbVar, dc5 dc5Var) {
-        this.a = (byte) 4;
-        this.c = tLObject;
-        this.b = i;
-        this.d = heVar;
-        this.e = context;
-        this.h = ylbVar;
-        this.f = dc5Var;
+    public final void onShow(DialogInterface dialogInterface) {
+        byte b = this.a;
+        View view = this.b;
+        switch (b) {
+            case 0:
+                mi miVar = (mi) view;
+                miVar.requestFocus();
+                gl.E3(miVar);
+                return;
+            case 1:
+                py pyVar = (py) view;
+                pyVar.requestFocus();
+                gl.E3(pyVar);
+                return;
+            case 2:
+                c41 c41Var = (c41) view;
+                c41Var.requestFocus();
+                gl.E3(c41Var);
+                return;
+            case 3:
+                p32 p32Var = (p32) view;
+                p32Var.requestFocus();
+                gl.E3(p32Var);
+                return;
+            case 4:
+                DatePicker datePicker = (DatePicker) view;
+                int childCount = datePicker.getChildCount();
+                for (int i = 0; i < childCount; i++) {
+                    View childAt = datePicker.getChildAt(i);
+                    ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
+                    layoutParams.width = -1;
+                    childAt.setLayoutParams(layoutParams);
+                }
+                return;
+            case 5:
+                dq8 dq8Var = (dq8) view;
+                dq8Var.requestFocus();
+                gl.E3(dq8Var);
+                return;
+            default:
+                p32 p32Var2 = (p32) view;
+                p32Var2.requestFocus();
+                gl.E3(p32Var2);
+                return;
+        }
     }
 }

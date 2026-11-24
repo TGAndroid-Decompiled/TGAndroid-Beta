@@ -138,7 +138,7 @@ public class TL_phone {
             this.g_a_or_b = inputSerializedData.readByteArray(z);
             this.key_fingerprint = inputSerializedData.readInt64(z);
             this.protocol = PhoneCallProtocol.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.connections = Vector.deserialize(inputSerializedData, new sfb((byte) 8), z);
+            this.connections = Vector.deserialize(inputSerializedData, new rdb((byte) 2), z);
             this.start_date = inputSerializedData.readInt32(z);
             if (TLObject.hasFlag(this.flags, 128)) {
                 this.custom_parameters = TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -366,7 +366,7 @@ public class TL_phone {
             this.g_a_or_b = inputSerializedData.readByteArray(z);
             this.key_fingerprint = inputSerializedData.readInt64(z);
             this.protocol = PhoneCallProtocol.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.connections = Vector.deserialize(inputSerializedData, new sfb((byte) 8), z);
+            this.connections = Vector.deserialize(inputSerializedData, new rdb((byte) 2), z);
             this.start_date = inputSerializedData.readInt32(z);
         }
 
@@ -409,7 +409,7 @@ public class TL_phone {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.phone_call = PhoneCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
+            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
         }
 
         @Override
@@ -893,10 +893,10 @@ public class TL_phone {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.call = TLRPC.GroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.participants = Vector.deserialize(inputSerializedData, new sfb((byte) 9), z);
+            this.participants = Vector.deserialize(inputSerializedData, new rdb((byte) 3), z);
             this.participants_next_offset = inputSerializedData.readString(z);
-            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
-            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
+            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
+            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
         }
 
         @Override
@@ -979,9 +979,9 @@ public class TL_phone {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.total_stars = inputSerializedData.readInt64(z);
-            this.top_donors = Vector.deserialize(inputSerializedData, new sfb((byte) 10), z);
-            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
-            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
+            this.top_donors = Vector.deserialize(inputSerializedData, new rdb((byte) 4), z);
+            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
+            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
         }
 
         @Override
@@ -1010,7 +1010,7 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.channels = Vector.deserialize(inputSerializedData, new sfb((byte) 11), z);
+            this.channels = Vector.deserialize(inputSerializedData, new rdb((byte) 5), z);
         }
 
         @Override
@@ -1071,10 +1071,10 @@ public class TL_phone {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.count = inputSerializedData.readInt32(z);
-            this.participants = Vector.deserialize(inputSerializedData, new sfb((byte) 9), z);
+            this.participants = Vector.deserialize(inputSerializedData, new rdb((byte) 3), z);
             this.next_offset = inputSerializedData.readString(z);
-            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
-            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
+            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
+            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
             this.version = inputSerializedData.readInt32(z);
         }
 
@@ -1149,9 +1149,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peers = Vector.deserialize(inputSerializedData, new yy6((byte) 25), z);
-            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
-            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
+            this.peers = Vector.deserialize(inputSerializedData, new yw6((byte) 23), z);
+            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
+            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
         }
 
         @Override

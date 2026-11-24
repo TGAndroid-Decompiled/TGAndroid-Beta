@@ -1,23 +1,29 @@
 package defpackage;
 
-import android.app.Activity;
-import android.widget.FrameLayout;
-public final class pi extends FrameLayout {
-    public final oh2[] a;
+import android.content.Context;
+public final class pi extends hn7 {
+    public final int[] z0;
 
-    public pi(Activity activity, oh2[] oh2VarArr) {
-        super(activity);
-        this.a = oh2VarArr;
+    public pi(Context context, wjb wjbVar, int[] iArr) {
+        super(context, wjbVar);
+        this.z0 = iArr;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        oh2[] oh2VarArr = this.a;
-        if (oh2VarArr[0] != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            setMeasuredDimension(measuredWidth, gm.L(7.0f) + oh2VarArr[0].getMeasuredHeight() + measuredHeight);
+    public final CharSequence d(int i) {
+        int i2 = this.z0[i];
+        if (i2 == 0) {
+            return k96.M0(2131753846, null);
         }
+        if (i2 < 10080) {
+            return k96.G(i2 / 1440, "Days", new Object[0]);
+        }
+        if (i2 < 44640) {
+            return k96.G(i2 / 1440, "Weeks", new Object[0]);
+        }
+        if (i2 < 525600) {
+            return k96.G(i2 / 10080, "Months", new Object[0]);
+        }
+        return k96.G(((i2 * 5) / 31) * 1440, "Years", new Object[0]);
     }
 }

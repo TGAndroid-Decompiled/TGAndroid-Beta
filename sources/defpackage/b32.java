@@ -1,108 +1,101 @@
 package defpackage;
 
-import android.graphics.Typeface;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.ViewGroup;
-public final class b32 extends GestureDetector.SimpleOnGestureListener {
+import android.view.ViewTreeObserver;
+public final class b32 implements ViewTreeObserver.OnPreDrawListener {
     public final byte a;
-    public final int b;
-    public final ViewGroup c;
+    public final k27 b;
+    public final boolean c;
+    public final ViewGroup d;
+    public final n39 e;
 
-    public b32(ViewGroup viewGroup, int i, byte b) {
+    public b32(n39 n39Var, ViewGroup viewGroup, k27 k27Var, boolean z, byte b) {
         this.a = b;
-        this.c = viewGroup;
-        this.b = i;
+        this.e = n39Var;
+        this.d = viewGroup;
+        this.b = k27Var;
+        this.c = z;
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        switch (this.a) {
-            case 1:
-                d63 d63Var = (d63) this.c;
-                a63 a63Var = d63Var.r;
-                if (d63Var.n) {
-                    d63Var.removeCallbacks(a63Var);
-                }
-                d63Var.n = true;
-                d63Var.postDelayed(a63Var, 200L);
-                d63Var.h.run();
-                return true;
-            case 2:
-                return true;
-            default:
-                return super.onDown(motionEvent);
-        }
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-        mw0 mw0Var;
+    public final boolean onPreDraw() {
         byte b = this.a;
-        ViewGroup viewGroup = this.c;
+        n39 n39Var = this.e;
+        ViewGroup viewGroup = this.d;
+        k27 k27Var = this.b;
+        boolean z = this.c;
         switch (b) {
             case 0:
-                d32 d32Var = (d32) viewGroup;
-                if (d32Var.d || !d32Var.N) {
-                    return false;
-                }
-                if (d32Var.K && !d32Var.M) {
-                    return false;
-                }
-                if (d32Var.O && !d32Var.b(false)) {
-                    return false;
-                }
-                float x = motionEvent.getX();
-                float y = motionEvent.getY();
-                float x2 = motionEvent2.getX();
-                float y2 = motionEvent2.getY();
-                Typeface typeface = gm.a;
-                float f3 = x2 - x;
-                float f4 = y2 - y;
-                float sqrt = (float) Math.sqrt((f4 * f4) + (f3 * f3));
-                float eventTime = (float) (motionEvent2.getEventTime() - motionEvent.getEventTime());
-                if (f2 >= gm.L(650.0f) && ((sqrt > gm.L(200.0f) || eventTime > 250.0f) && ((mw0Var = d32Var.y) == null || mw0Var.getScrollY() == 0))) {
-                    d32Var.x = true;
-                    float f5 = d32Var.r;
-                    int i = d32Var.I;
-                    if (f5 < i && !d32Var.K) {
-                        d32Var.d(0.0f);
-                    } else if (d32Var.K && d32Var.M && (d32Var.R == (-d32Var.f) + d32Var.e || (f5 <= (-i) && f2 < gm.L(1200.0f)))) {
-                        d32Var.d((-d32Var.f) + d32Var.e);
-                    } else {
-                        c32 c32Var = d32Var.G;
-                        if (c32Var != null) {
-                            c32Var.e(false);
-                        }
-                    }
-                } else if (f2 > -700.0f) {
-                    return false;
+                iba ibaVar = (iba) viewGroup;
+                ibaVar.getViewTreeObserver().removeOnPreDrawListener(this);
+                c32 c32Var = (c32) n39Var;
+                se4 se4Var = c32Var.I;
+                d32 d32Var = c32Var.Y;
+                if (d32Var.b.U2.y()) {
+                    int e1 = k27Var.e1();
+                    se4Var.a = k27.B0(k27Var.k);
+                    se4Var.b = e1;
+                    ibaVar.b(d32Var.U.containsKey(se4Var), z);
                 } else {
-                    float f6 = d32Var.r;
-                    float f7 = (-d32Var.f) + d32Var.e;
-                    if (f6 <= f7) {
-                        return false;
-                    }
-                    d32Var.x = true;
-                    d32Var.d(f7);
+                    ibaVar.b(false, z);
                 }
                 return true;
             case 1:
-            default:
-                return super.onFling(motionEvent, motionEvent2, f, f2);
-            case 2:
-                th8 th8Var = (th8) viewGroup;
-                if (!th8Var.f && !th8Var.h && f >= 600.0f) {
-                    th8Var.e = false;
-                    th8Var.h = false;
-                    th8Var.a(0.0f, f / 6000.0f);
+                ue3 ue3Var = (ue3) viewGroup;
+                ue3Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                af4 af4Var = ((te4) n39Var).c;
+                if (af4Var.p0.t()) {
+                    se4 se4Var2 = af4Var.T;
+                    int e12 = k27Var.e1();
+                    se4Var2.a = k27.B0(k27Var.k);
+                    se4Var2.b = e12;
+                    ue3Var.e0(af4Var.p0.b(af4Var.T), z);
+                } else {
+                    ue3Var.e0(false, z);
                 }
-                return false;
+                return true;
+            case 2:
+                iba ibaVar2 = (iba) viewGroup;
+                ibaVar2.getViewTreeObserver().removeOnPreDrawListener(this);
+                af4 af4Var2 = ((ve4) n39Var).w;
+                if (af4Var2.p0.t()) {
+                    se4 se4Var3 = af4Var2.T;
+                    int e13 = k27Var.e1();
+                    se4Var3.a = k27.B0(k27Var.k);
+                    se4Var3.b = e13;
+                    ibaVar2.b(af4Var2.p0.b(af4Var2.T), z);
+                } else {
+                    ibaVar2.b(false, z);
+                }
+                return true;
+            case 3:
+                eba ebaVar = (eba) viewGroup;
+                ebaVar.getViewTreeObserver().removeOnPreDrawListener(this);
+                af4 af4Var3 = ((ve4) n39Var).w;
+                if (af4Var3.p0.t()) {
+                    se4 se4Var4 = af4Var3.T;
+                    int e14 = k27Var.e1();
+                    se4Var4.a = k27.B0(k27Var.k);
+                    se4Var4.b = e14;
+                    ebaVar.e(af4Var3.p0.b(af4Var3.T), z);
+                } else {
+                    ebaVar.e(false, z);
+                }
+                return true;
+            default:
+                lba lbaVar = (lba) viewGroup;
+                lbaVar.getViewTreeObserver().removeOnPreDrawListener(this);
+                af4 af4Var4 = ((xe4) n39Var).w;
+                if (af4Var4.p0.t()) {
+                    se4 se4Var5 = af4Var4.T;
+                    int e15 = k27Var.e1();
+                    se4Var5.a = k27.B0(k27Var.k);
+                    se4Var5.b = e15;
+                    lbaVar.f(af4Var4.p0.b(af4Var4.T), z);
+                } else {
+                    lbaVar.f(false, z);
+                }
+                return true;
         }
-    }
-
-    @Override
-    public final boolean onScroll(android.view.MotionEvent r17, android.view.MotionEvent r18, float r19, float r20) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.b32.onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float):boolean");
     }
 }

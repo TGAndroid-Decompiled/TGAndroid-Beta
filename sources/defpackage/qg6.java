@@ -1,27 +1,14 @@
 package defpackage;
 
-import java.util.TimerTask;
-public final class qg6 extends TimerTask {
-    public final byte a;
-    public final rg6 b;
+import java.util.logging.Logger;
+public final class qg6 extends g00 {
+    public static final Logger r = Logger.getLogger(qg6.class.getName());
 
-    public qg6(rg6 rg6Var, byte b) {
-        this.a = b;
-        this.b = rg6Var;
+    public qg6(java.io.BufferedInputStream r28, long r29) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.qg6.<init>(java.io.BufferedInputStream, long):void");
     }
 
-    @Override
-    public final void run() {
-        switch (this.a) {
-            case 0:
-                gm.c3(new pg6(this, (byte) 0));
-                return;
-            default:
-                if (this.b.U != null) {
-                    gm.c3(new pg6(this, (byte) 1));
-                    return;
-                }
-                return;
-        }
+    public static long b(defpackage.rg6 r29, long r30, defpackage.m11 r32) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.qg6.b(rg6, long, m11):long");
     }
 }

@@ -1,74 +1,87 @@
 package defpackage;
 
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.zip.Inflater;
-public final class tkc implements vcb {
-    public static final i53 e;
-    public final yw7 a = new yw7();
-    public final yw7 b = new yw7();
-    public final skc c;
-    public Inflater d;
+import android.view.View;
+import java.util.Locale;
+import org.telegram.tgnet.TLRPC;
+public final class tkc implements p8c {
+    public final byte a;
+    public final hmc b;
 
-    static {
-        ko5 ko5Var = mo5.b;
-        e = new i53(-9223372036854775807L, -9223372036854775807L, y79.e);
+    public tkc(hmc hmcVar, byte b) {
+        this.a = b;
+        this.b = hmcVar;
     }
 
-    public tkc(List list) {
-        String[] split;
-        int i;
-        skc skcVar = new skc();
-        this.c = skcVar;
-        String trim = new String((byte[]) list.get(0), StandardCharsets.UTF_8).trim();
-        String str = hac.a;
-        for (String str2 : trim.split("\\r?\\n", -1)) {
-            if (str2.startsWith("palette: ")) {
-                String[] split2 = str2.substring(9).split(",", -1);
-                skcVar.f = new int[split2.length];
-                for (int i2 = 0; i2 < split2.length; i2++) {
-                    int[] iArr = skcVar.f;
-                    try {
-                        i = Integer.parseInt(split2[i2].trim(), 16);
-                    } catch (RuntimeException e2) {
-                        ncd.g("VobsubParser", "Parsing color failed", e2);
-                        i = 0;
-                    }
-                    iArr[i2] = i;
+    @Override
+    public final void a(Object obj) {
+        byte b = this.a;
+        int i = 0;
+        hmc hmcVar = this.b;
+        switch (b) {
+            case 0:
+                Boolean bool = (Boolean) obj;
+                hmcVar.E0.setClickable(!bool.booleanValue());
+                hmcVar.F0.setClickable(!bool.booleanValue());
+                if (bool.booleanValue()) {
+                    hmcVar.f0 = 1;
+                    hmcVar.s0.setPosition(1);
+                    hmcVar.s0.post(new qkc(hmcVar, (byte) 3));
+                    return;
                 }
-            } else if (str2.startsWith("size: ")) {
-                String[] split3 = str2.substring(6).trim().split("x", -1);
-                if (split3.length != 2) {
-                    ncd.f("VobsubParser", "Ignoring malformed IDX size line: '" + str2 + "'");
+                return;
+            case 1:
+                hmcVar.l0 = ((String) obj).trim().toLowerCase(Locale.ROOT);
+                q5c[] q5cVarArr = hmcVar.u0;
+                q5c q5cVar = q5cVarArr[1];
+                if (q5cVar != null) {
+                    hmc.c1(q5cVar, true);
+                    q5cVarArr[1].w0(0);
+                    q5cVarArr[1].post(new qkc(hmcVar, (byte) 3));
+                    return;
+                }
+                return;
+            case 2:
+                float floatValue = ((Float) obj).floatValue();
+                if (hmcVar.D0 != floatValue) {
+                    hmcVar.D0 = floatValue;
+                    float x = oo1.x(floatValue, 0.6f, 1.0f, 0.0f);
+                    int i2 = 0;
+                    while (true) {
+                        int childCount = hmcVar.C0.getChildCount();
+                        pkb pkbVar = hmcVar.C0;
+                        if (i2 < childCount) {
+                            View childAt = pkbVar.getChildAt(i2);
+                            childAt.setAlpha(x);
+                            childAt.setPivotY(0.0f);
+                            childAt.setScaleY(1.0f - floatValue);
+                            i2++;
+                        } else {
+                            if (floatValue != 0.0f) {
+                                i = 4;
+                            }
+                            pkbVar.setImportantForAccessibility(i);
+                            hmcVar.C0.requestLayout();
+                            return;
+                        }
+                    }
                 } else {
-                    try {
-                        skcVar.g = Integer.parseInt(split3[0]);
-                        skcVar.h = Integer.parseInt(split3[1]);
-                        skcVar.d = true;
-                    } catch (RuntimeException e3) {
-                        ncd.g("VobsubParser", "Parsing IDX failed", e3);
+                    return;
+                }
+            case 3:
+                hmcVar.E0((String) obj);
+                return;
+            default:
+                TLRPC.User user = (TLRPC.User) obj;
+                if (!hmcVar.isFinished) {
+                    if (user == null) {
+                        gl.c3(new qkc(hmcVar, (byte) 9));
+                        return;
+                    } else {
+                        hmcVar.presentFragment(new qpc(user));
+                        return;
                     }
                 }
-            }
+                return;
         }
-    }
-
-    @Override
-    public final lcb g(int i, int i2, byte[] bArr) {
-        return hg9.c(this, bArr, i2);
-    }
-
-    @Override
-    public final void p(byte[] r26, int r27, int r28, defpackage.ucb r29, defpackage.fu2 r30) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.tkc.p(byte[], int, int, ucb, fu2):void");
-    }
-
-    @Override
-    public final int r() {
-        return 2;
-    }
-
-    @Override
-    public final void reset() {
     }
 }

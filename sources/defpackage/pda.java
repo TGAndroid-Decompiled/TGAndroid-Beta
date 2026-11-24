@@ -1,87 +1,159 @@
 package defpackage;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.util.SparseBooleanArray;
 import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.d;
-public final class pda implements View.OnClickListener {
-    public final byte a;
-    public final nha b;
+import android.view.ViewTreeObserver;
+import androidx.recyclerview.widget.RecyclerView;
+public final class pda implements ViewTreeObserver.OnPreDrawListener {
+    public final sca a;
+    public final SparseBooleanArray b;
+    public final pi4 c;
+    public final int d;
+    public final nfa e;
 
-    public pda(nha nhaVar, byte b) {
-        this.a = b;
-        this.b = nhaVar;
+    public pda(nfa nfaVar, sca scaVar, SparseBooleanArray sparseBooleanArray, pi4 pi4Var, int i) {
+        this.e = nfaVar;
+        this.a = scaVar;
+        this.b = sparseBooleanArray;
+        this.c = pi4Var;
+        this.d = i;
     }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        nha nhaVar = this.b;
-        switch (b) {
-            case 0:
-                int closestTab = nhaVar.getClosestTab();
-                bu5 I = bu5.I(nhaVar.y1, view);
-                I.J = false;
-                if (nhaVar.K(closestTab, new x59(I, (byte) 12))) {
-                    if (closestTab != 13 && closestTab != 11) {
-                        I.b0 = true;
-                    } else {
-                        I.b0(0.0f, -gm.L(52.0f));
-                    }
-                    I.s = (short) 0;
-                    I.a0();
-                    return;
+    public final boolean onPreDraw() {
+        View childAt;
+        nfa nfaVar = this.e;
+        nfaVar.getViewTreeObserver().removeOnPreDrawListener(this);
+        final sca scaVar = this.a;
+        w39 adapter = scaVar.getAdapter();
+        if (adapter != nfaVar.K && adapter != nfaVar.N && adapter != nfaVar.P && adapter != nfaVar.O) {
+            int childCount = scaVar.getChildCount();
+            AnimatorSet animatorSet = new AnimatorSet();
+            for (int i = 0; i < childCount; i++) {
+                View childAt2 = scaVar.getChildAt(i);
+                pi4 pi4Var = this.c;
+                if (childAt2 != pi4Var && RecyclerView.R(childAt2) >= this.d - 1) {
+                    childAt2.setAlpha(0.0f);
+                    ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt2, View.ALPHA, 0.0f, 1.0f);
+                    ofFloat.setStartDelay((int) ((Math.min(scaVar.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / scaVar.getMeasuredHeight()) * 100.0f));
+                    ofFloat.setDuration(200L);
+                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            byte b = r2;
+                            sca scaVar2 = scaVar;
+                            switch (b) {
+                                case 0:
+                                    if (scaVar2.c1()) {
+                                        scaVar2.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                case 1:
+                                    if (scaVar2.c1()) {
+                                        scaVar2.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    if (scaVar2.c1()) {
+                                        scaVar2.invalidate();
+                                        return;
+                                    }
+                                    return;
+                            }
+                        }
+                    });
+                    animatorSet.playTogether(ofFloat);
                 }
-                return;
-            case 1:
-                zja zjaVar = nhaVar.J;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = zjaVar.b;
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.d();
-                }
-                if (nhaVar.K(nhaVar.getClosestTab(), new et8(nhaVar, (byte) 11))) {
-                    zjaVar.U(null, null);
-                    return;
-                }
-                return;
-            case 2:
-                nhaVar.E(true);
-                return;
-            case 3:
-                oea oeaVar = nhaVar.c0;
-                lea leaVar = nhaVar.b0;
-                if (nhaVar.t0.getAlpha() >= 0.1f) {
-                    if (leaVar != null && leaVar.g()) {
-                        leaVar.i();
-                    }
-                    if (oeaVar != null && oeaVar.f) {
-                        mha t1 = nhaVar.t1(nhaVar.s1(nhaVar.getClosestTab()));
-                        iga P = nhaVar.P(t1.a);
-                        if (P != null) {
-                            oeaVar.setReorderingAlbums(false);
-                            sea seaVar = P.h;
-                            for (int i = 0; i < seaVar.getChildCount(); i++) {
-                                View childAt = seaVar.getChildAt(i);
-                                if (childAt instanceof sha) {
-                                    ((sha) childAt).l(false, true);
+                if (pi4Var != null && pi4Var.getParent() == null) {
+                    scaVar.addView(pi4Var);
+                    d49 layoutManager = scaVar.getLayoutManager();
+                    if (layoutManager != null) {
+                        layoutManager.L(pi4Var);
+                        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(pi4Var, View.ALPHA, pi4Var.getAlpha(), 0.0f);
+                        ofFloat2.addListener(new ng9(this, layoutManager));
+                        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                byte b = r2;
+                                sca scaVar2 = scaVar;
+                                switch (b) {
+                                    case 0:
+                                        if (scaVar2.c1()) {
+                                            scaVar2.invalidate();
+                                            return;
+                                        }
+                                        return;
+                                    case 1:
+                                        if (scaVar2.c1()) {
+                                            scaVar2.invalidate();
+                                            return;
+                                        }
+                                        return;
+                                    default:
+                                        if (scaVar2.c1()) {
+                                            scaVar2.invalidate();
+                                            return;
+                                        }
+                                        return;
                                 }
                             }
-                            lha lhaVar = t1.c;
-                            if (lhaVar != null && lhaVar.y) {
-                                lhaVar.y = false;
-                                return;
-                            }
-                            return;
-                        }
-                        return;
+                        });
+                        ofFloat2.start();
                     }
-                    return;
                 }
-                return;
-            default:
-                d dVar = nhaVar.y1;
-                dVar.getMessagesController().X3.edit().putBoolean("story_keep", true).apply();
-                v9b.C(dVar.getParentActivity(), dVar.getCurrentAccount()).Q(null);
-                return;
+            }
+            animatorSet.start();
+            return true;
         }
+        SparseBooleanArray sparseBooleanArray = this.b;
+        if (sparseBooleanArray != null) {
+            int childCount2 = scaVar.getChildCount();
+            for (int i2 = 0; i2 < childCount2; i2++) {
+                int Q = nfa.Q(scaVar.getChildAt(i2));
+                if (Q != 0 && sparseBooleanArray.get(Q, false)) {
+                    nfaVar.S1.put(Q, Float.valueOf(0.0f));
+                    ValueAnimator ofFloat3 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    ofFloat3.addUpdateListener(new j24(this, Q, scaVar));
+                    ofFloat3.addListener(new cn(this, Q, (byte) 12));
+                    ofFloat3.setStartDelay((int) ((Math.min(scaVar.getMeasuredHeight(), Math.max(0, childAt.getTop())) / scaVar.getMeasuredHeight()) * 100.0f));
+                    ofFloat3.setDuration(250L);
+                    ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            byte b = r2;
+                            sca scaVar2 = scaVar;
+                            switch (b) {
+                                case 0:
+                                    if (scaVar2.c1()) {
+                                        scaVar2.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                case 1:
+                                    if (scaVar2.c1()) {
+                                        scaVar2.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    if (scaVar2.c1()) {
+                                        scaVar2.invalidate();
+                                        return;
+                                    }
+                                    return;
+                            }
+                        }
+                    });
+                    ofFloat3.start();
+                }
+                scaVar.invalidate();
+            }
+        }
+        return true;
     }
 }

@@ -1,34 +1,30 @@
 package defpackage;
 
-import android.view.View;
-import java.util.ArrayList;
-public abstract class ogc {
-    public void b(View view, int i, int i2) {
-        f57 f57Var = (f57) view;
-        f57Var.i();
-        f57Var.l(false);
+import android.app.Activity;
+import android.content.Intent;
+public final class ogc implements ed {
+    public final byte a;
+    public final Activity b;
+    public final Intent c;
+
+    public ogc(Activity activity, Intent intent, byte b) {
+        this.a = b;
+        this.b = activity;
+        this.c = intent;
     }
 
-    public boolean c(int i) {
-        return false;
-    }
-
-    public abstract View d(int i);
-
-    public abstract int e();
-
-    public CharSequence g(int i) {
-        return "";
-    }
-
-    public int h(int i) {
-        return 0;
-    }
-
-    public void a(ArrayList arrayList) {
-    }
-
-    public int f(int i) {
-        return i;
+    @Override
+    public final void u(hd hdVar, int i) {
+        byte b = this.a;
+        Intent intent = this.c;
+        Activity activity = this.b;
+        switch (b) {
+            case 0:
+                activity.startActivity(intent);
+                return;
+            default:
+                activity.startActivity(intent);
+                return;
+        }
     }
 }

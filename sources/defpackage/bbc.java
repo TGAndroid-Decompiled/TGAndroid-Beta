@@ -1,43 +1,48 @@
 package defpackage;
-public final class bbc {
-    public float a;
-    public float b;
-    public float c;
 
-    public bbc(float f) {
-        d(f);
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+public final class bbc extends b4 {
+    public final int a;
+    public final int b;
+    public final int c;
+    public static final dc6 d = new dc6("VideoInfo", null);
+    public static final Parcelable.Creator<bbc> CREATOR = new rpd((byte) 9);
+
+    public bbc(int i, int i2, int i3) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
     }
 
-    public final boolean a(float f) {
-        float f2 = this.b;
-        float A = td4.A(this.c, f2, f, f2);
-        if (this.a != A) {
-            this.a = A;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof bbc)) {
+            return false;
+        }
+        bbc bbcVar = (bbc) obj;
+        if (this.b == bbcVar.b && this.a == bbcVar.a && this.c == bbcVar.c) {
             return true;
         }
         return false;
     }
 
-    public final boolean b(float f) {
-        if (this.c != f) {
-            return true;
-        }
-        return false;
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.b), Integer.valueOf(this.a), Integer.valueOf(this.c)});
     }
 
-    public final void c(boolean z) {
-        if (z) {
-            float f = this.c;
-            this.a = f;
-            this.b = f;
-            return;
-        }
-        this.b = this.a;
-    }
-
-    public final void d(float f) {
-        this.b = f;
-        this.c = f;
-        this.a = f;
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        jte.q(parcel, 3, 4);
+        parcel.writeInt(this.b);
+        jte.q(parcel, 4, 4);
+        parcel.writeInt(this.c);
+        jte.s(parcel, r);
     }
 }

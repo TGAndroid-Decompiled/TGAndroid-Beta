@@ -1,7 +1,12 @@
 package defpackage;
-
-import org.telegram.tgnet.TLRPC;
 public final class tp0 {
-    public TLRPC.User a;
-    public boolean b;
+    public final long a;
+    public final long b;
+    public final k27 c;
+
+    public tp0(long j, long j2, k27 k27Var) {
+        this.a = j;
+        this.b = j2;
+        this.c = k27Var;
+    }
 }

@@ -1,9 +1,6 @@
 package defpackage;
+public interface pqd {
+    boolean zza(Class cls);
 
-import android.graphics.Canvas;
-public abstract class pqd {
-    public abstract void b(Canvas canvas, iz4 iz4Var);
-
-    public void a() {
-    }
+    fud zzb(Class cls);
 }

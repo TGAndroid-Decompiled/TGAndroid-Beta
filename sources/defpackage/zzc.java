@@ -1,58 +1,36 @@
 package defpackage;
+public final class zzc {
+    public final byte a;
+    public final long b;
 
-import android.view.View;
-import android.view.Window;
-import android.view.WindowInsetsController;
-public class zzc extends m0f {
-    public final WindowInsetsController a;
-    public final Window b;
-
-    public zzc(Window window, x59 x59Var) {
-        this.a = window.getInsetsController();
-        this.b = window;
+    public zzc(int i, long j) {
+        this.a = i;
+        this.b = j;
     }
 
-    @Override
-    public final void a() {
-        this.a.hide(519);
-    }
-
-    @Override
-    public final void b() {
-        g(16);
-        this.a.setSystemBarsAppearance(0, 16);
-    }
-
-    @Override
-    public final void c(boolean z) {
-        if (z) {
-            f(8192);
-            this.a.setSystemBarsAppearance(8, 8);
-            return;
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof zzc) {
+                zzc zzcVar = (zzc) obj;
+                if (this.a == zzcVar.a && this.b == zzcVar.b) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
-        g(8192);
-        this.a.setSystemBarsAppearance(0, 8);
+        return true;
     }
 
-    @Override
-    public void d() {
-        this.b.getDecorView().setTag(356039078, 2);
-        g(2048);
-        f(4096);
+    public final int hashCode() {
+        long j = this.b;
+        return ((this.a ^ 1000003) * 1000003) ^ ((int) ((j >>> 32) ^ j));
     }
 
-    @Override
-    public final void e() {
-        this.a.show(519);
-    }
-
-    public final void f(int i) {
-        View decorView = this.b.getDecorView();
-        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | i);
-    }
-
-    public final void g(int i) {
-        View decorView = this.b.getDecorView();
-        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & (~i));
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("EventRecord{eventType=");
+        sb.append((int) this.a);
+        sb.append(", eventTimestamp=");
+        return ls6.p(sb, this.b, "}");
     }
 }

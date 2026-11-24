@@ -1,79 +1,53 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
-import android.view.ViewConfiguration;
-import org.telegram.ui.PhotoViewer;
-public final class ou4 {
-    public static final int x;
-    public static final int y;
-    public final int a;
-    public final int b;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final c1 f;
-    public final nu4 g;
-    public mu4 h;
-    public boolean i;
-    public boolean j;
-    public boolean k;
-    public boolean l;
-    public boolean m;
-    public MotionEvent n;
-    public MotionEvent o;
-    public MotionEvent p;
-    public boolean q;
-    public float r;
-    public float s;
-    public float t;
-    public float u;
-    public boolean v;
-    public VelocityTracker w;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class ou4 implements p8c {
+    public final byte a;
+    public final xu4 b;
 
-    static {
-        ViewConfiguration.getLongPressTimeout();
-        x = ViewConfiguration.getTapTimeout();
-        y = ViewConfiguration.getDoubleTapTimeout();
+    public ou4(xu4 xu4Var, byte b) {
+        this.a = b;
+        this.b = xu4Var;
     }
 
-    public ou4(Context context, nu4 nu4Var) {
-        int scaledTouchSlop;
-        int i;
-        int i2;
-        this.f = new c1(this, (byte) 4);
-        this.g = nu4Var;
-        if (nu4Var instanceof mu4) {
-            this.h = (mu4) nu4Var;
+    @Override
+    public final void a(Object obj) {
+        TL_account.TL_birthday tL_birthday;
+        byte b = this.a;
+        xu4 xu4Var = this.b;
+        switch (b) {
+            case 0:
+                ((Boolean) obj).getClass();
+                xu4Var.dismiss();
+                return;
+            case 1:
+                ArrayList arrayList = xu4Var.h2;
+                arrayList.clear();
+                arrayList.addAll((List) obj);
+                return;
+            default:
+                TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
+                TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
+                updatebirthday.flags |= 1;
+                updatebirthday.birthday = tL_birthday2;
+                TLRPC.UserFull W1 = na7.q1(xu4Var.a).W1(y6c.h(xu4Var.a).e());
+                if (W1 != null) {
+                    tL_birthday = W1.birthday;
+                    W1.flags2 |= 32;
+                    W1.birthday = tL_birthday2;
+                } else {
+                    tL_birthday = null;
+                }
+                ConnectionsManager.getInstance(xu4Var.a).sendRequest(updatebirthday, new en0(xu4Var, W1, tL_birthday, (byte) 27), 1024);
+                na7.q1(xu4Var.a).h2();
+                na7.q1(xu4Var.a).n4(0L, "BIRTHDAY_SETUP");
+                kk7.f(xu4Var.a).k(107, new Object[0]);
+                xu4Var.i2.O(true);
+                return;
         }
-        this.v = true;
-        if (context == null) {
-            i = ViewConfiguration.getTouchSlop();
-            this.d = ViewConfiguration.getMinimumFlingVelocity();
-            this.e = ViewConfiguration.getMaximumFlingVelocity();
-            i2 = 100;
-            scaledTouchSlop = i;
-        } else {
-            ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
-            int scaledTouchSlop2 = viewConfiguration.getScaledTouchSlop();
-            scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
-            int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
-            this.d = viewConfiguration.getScaledMinimumFlingVelocity();
-            this.e = viewConfiguration.getScaledMaximumFlingVelocity();
-            i = scaledTouchSlop2;
-            i2 = scaledDoubleTapSlop;
-        }
-        this.a = i * i;
-        this.b = scaledTouchSlop * scaledTouchSlop;
-        this.c = i2 * i2;
-    }
-
-    public final boolean a(android.view.MotionEvent r29) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ou4.a(android.view.MotionEvent):boolean");
-    }
-
-    public ou4(Context context, PhotoViewer photoViewer) {
-        this(context, (nu4) photoViewer);
     }
 }

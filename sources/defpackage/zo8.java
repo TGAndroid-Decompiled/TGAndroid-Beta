@@ -1,20 +1,38 @@
 package defpackage;
 
-import android.content.Context;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ProfileActivity;
-public final class zo8 extends tr8 {
-    public final ProfileActivity t1;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+public final class zo8 implements ll5 {
+    public final Runnable[] a;
 
-    public zo8(ProfileActivity profileActivity, Context context, long j, a aVar, po8 po8Var, yo8 yo8Var, pr8 pr8Var, lr8 lr8Var) {
-        super(context, j, aVar, po8Var, yo8Var, pr8Var, lr8Var);
-        this.t1 = profileActivity;
+    public zo8(Runnable[] runnableArr) {
+        this.a = runnableArr;
     }
 
     @Override
-    public final void setCustomAvatarProgress(float f) {
-        ProfileActivity profileActivity = this.t1;
-        profileActivity.y5 = f;
-        profileActivity.J1();
+    public final void C(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        if (imageReceiver.B()) {
+            Runnable[] runnableArr = this.a;
+            if (runnableArr[0] != null) {
+                oy8 y = imageReceiver.y();
+                if (y == null) {
+                    runnableArr[0].run();
+                    runnableArr[0] = null;
+                } else if (y.t()) {
+                    y.B0 = new w88(runnableArr, (byte) 27);
+                } else {
+                    runnableArr[0].run();
+                    runnableArr[0] = null;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void v(ImageReceiver imageReceiver) {
+    }
+
+    @Override
+    public final void E(int i, Drawable drawable) {
     }
 }

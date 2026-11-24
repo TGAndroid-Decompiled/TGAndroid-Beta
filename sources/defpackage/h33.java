@@ -1,106 +1,96 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.CancellationSignal;
-import android.os.Handler;
-import android.os.Looper;
-import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
-import java.util.LinkedHashMap;
-import java.util.concurrent.Executor;
-import org.json.JSONException;
-import org.json.JSONObject;
-public final class h33 extends j33 {
-    public final Context e;
-    public a33 f;
-    public Executor g;
-    public CancellationSignal h;
-    public final j23 i;
+import android.graphics.Matrix;
+public final class h33 {
+    public float a;
+    public float b;
+    public float f;
+    public float h;
+    public boolean j;
+    public final j33 l;
+    public float c = 0.0f;
+    public float d = 0.0f;
+    public float e = 1.0f;
+    public final float g = 0.0f;
+    public float i = 0.0f;
+    public final Matrix k = new Matrix();
 
-    public h33(Context context) {
-        context.getClass();
-        this.e = context;
-        this.i = new j23(this, new Handler(Looper.getMainLooper()), (byte) 1);
+    public h33(j33 j33Var, int i, int i2) {
+        this.l = j33Var;
+        this.a = i;
+        this.b = i2;
     }
 
-    public final defpackage.yu4 d(defpackage.hja r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.h33.d(hja):yu4");
+    public final float a() {
+        if ((this.h + this.g) % 180.0f != 0.0f) {
+            return this.a;
+        }
+        return this.b;
     }
 
-    public final a33 e() {
-        a33 a33Var = this.f;
-        if (a33Var != null) {
-            return a33Var;
+    public final float b() {
+        if ((this.h + this.g) % 180.0f != 0.0f) {
+            return this.b;
         }
-        rr5.e("callback");
-        throw null;
+        return this.a;
     }
 
-    public final Executor f() {
-        Executor executor = this.g;
-        if (executor != null) {
-            return executor;
+    public final boolean c() {
+        if (Math.abs(this.c) <= 1.0E-5f && Math.abs(this.d) <= 1.0E-5f && Math.abs(this.e - this.f) <= 1.0E-5f && Math.abs(this.i) <= 1.0E-5f && Math.abs(this.h) <= 1.0E-5f) {
+            return false;
         }
-        rr5.e("executor");
-        throw null;
+        return true;
     }
 
-    public final void g(xu4 xu4Var, CancellationSignal cancellationSignal, Executor executor, a33 a33Var) {
-        boolean z;
-        xu4Var.getClass();
-        a33Var.getClass();
-        executor.getClass();
-        this.h = cancellationSignal;
-        this.f = a33Var;
-        this.g = executor;
-        CredentialProviderPlayServicesImpl.Companion.getClass();
-        if (w33.a(cancellationSignal)) {
-            return;
-        }
-        Context context = this.e;
-        context.getClass();
-        gi0 gi0Var = new gi0(false);
-        di0 di0Var = new di0(false, null, null, true, null, null, false);
-        fi0 fi0Var = new fi0(false, null, null);
-        ei0 ei0Var = new ei0(null, false);
-        PackageManager packageManager = context.getPackageManager();
-        packageManager.getClass();
-        long j = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
-        fi0 fi0Var2 = fi0Var;
-        ei0 ei0Var2 = ei0Var;
-        boolean z2 = false;
-        for (c33 c33Var : xu4Var.a) {
-            if ((c33Var instanceof cv4) && !z2) {
-                if (j >= 231815000) {
-                    LinkedHashMap linkedHashMap = mw8.a;
-                    ei0Var2 = new ei0(((cv4) c33Var).e, true);
-                } else {
-                    LinkedHashMap linkedHashMap2 = mw8.a;
-                    JSONObject jSONObject = new JSONObject(((cv4) c33Var).e);
-                    String optString = jSONObject.optString("rpId", "");
-                    optString.getClass();
-                    if (optString.length() != 0) {
-                        fi0Var2 = new fi0(true, xte.a(jSONObject), optString);
-                    } else {
-                        throw new JSONException("GetPublicKeyCredentialOption - rpId not specified in the request or is unexpectedly empty");
-                    }
-                }
-                z2 = true;
-            }
-        }
-        if (j > 241217000) {
-            z = xu4Var.b;
+    public final void d(float f) {
+        Matrix matrix = this.k;
+        matrix.reset();
+        this.c = 0.0f;
+        this.d = 0.0f;
+        this.i = 0.0f;
+        this.h = f;
+        h();
+        float f2 = this.f;
+        this.e = f2;
+        matrix.postScale(f2, f2);
+    }
+
+    public final void e(float f) {
+        this.i += f;
+        this.k.postRotate(f, 0.0f, 0.0f);
+    }
+
+    public final void f(float f, float f2, float f3) {
+        this.e *= f;
+        this.k.postScale(f, f, f2, f3);
+    }
+
+    public final void g(float f, float f2) {
+        this.c += f;
+        this.d += f2;
+        this.k.postTranslate(f, f2);
+    }
+
+    public final void h() {
+        float f;
+        float f2;
+        float f3 = this.h;
+        float f4 = this.g;
+        if ((f3 + f4) % 180.0f != 0.0f) {
+            f = this.b;
         } else {
-            z = false;
+            f = this.a;
         }
-        s5d a = ume.a(context);
-        new di0(false, null, null, true, null, null, false);
-        hi0 hi0Var = new hi0(gi0Var, di0Var, a.l, false, 0, fi0Var2, ei0Var2, z);
-        bib b = cib.b();
-        b.c = new o94[]{new o94("auth_api_credentials_begin_sign_in", 8L)};
-        b.a = new cf9(a, hi0Var);
-        b.b = false;
-        b.d = (char) 1553;
-        a.e(0, b.a()).addOnSuccessListener(new wm2(new f33(cancellationSignal, this, (byte) 0), (byte) 9)).addOnFailureListener(new x92(this, cancellationSignal, (byte) 12));
+        if ((f3 + f4) % 180.0f != 0.0f) {
+            f2 = this.a;
+        } else {
+            f2 = this.b;
+        }
+        j33 j33Var = this.l;
+        if (j33Var.y) {
+            this.f = j33Var.a.getCropWidth() / f;
+        } else {
+            this.f = Math.max(j33Var.a.getCropWidth() / f, j33Var.a.getCropHeight() / f2);
+        }
     }
 }

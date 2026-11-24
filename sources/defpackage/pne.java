@@ -1,25 +1,17 @@
 package defpackage;
-public abstract class pne {
-    public static final void a(cy2 cy2Var) {
-        av5 av5Var = (av5) cy2Var.get(nf5.c);
-        if (av5Var != null && !av5Var.isActive()) {
-            throw av5Var.getCancellationException();
-        }
+public final class pne implements zn7 {
+    public static final pne a = new Object();
+
+    static {
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
     }
 
-    public static final av5 b(cy2 cy2Var) {
-        av5 av5Var = (av5) cy2Var.get(nf5.c);
-        if (av5Var != null) {
-            return av5Var;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        zo4.p(cy2Var, "Current context doesn't contain Job in it: ");
-        return null;
-    }
-
-    public static final xp3 c(av5 av5Var, boolean z, ev5 ev5Var) {
-        if (av5Var instanceof ov5) {
-            return ((ov5) av5Var).z(z, ev5Var);
-        }
-        return av5Var.invokeOnCompletion(ev5Var.k(), z, new qs4(1, ev5Var, ev5.class, "invoke", "invoke(Ljava/lang/Throwable;)V", 0));
+        throw new ClassCastException();
     }
 }

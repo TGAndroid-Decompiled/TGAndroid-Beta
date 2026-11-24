@@ -1,20 +1,17 @@
 package defpackage;
+public final class xge implements zn7 {
+    public static final xge a = new Object();
 
-import android.os.Build;
-import android.widget.EdgeEffect;
-public abstract class xge {
-    public static float a(EdgeEffect edgeEffect) {
-        if (Build.VERSION.SDK_INT >= 31) {
-            return xt3.b(edgeEffect);
-        }
-        return 0.0f;
+    static {
+        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)));
     }
 
-    public static float b(EdgeEffect edgeEffect, float f, float f2) {
-        if (Build.VERSION.SDK_INT >= 31) {
-            return xt3.c(edgeEffect, f, f2);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        wt3.a(edgeEffect, f, f2);
-        return f;
+        throw new ClassCastException();
     }
 }

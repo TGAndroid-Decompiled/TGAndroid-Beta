@@ -1,101 +1,47 @@
 package defpackage;
 
-import java.util.Iterator;
-public final class vnd extends okd {
-    public static final Object[] F;
-    public static final vnd G;
-    public final transient int E;
-    public final transient Object[] s;
-    public final transient int w;
-    public final transient Object[] x;
-    public final transient int y;
-
-    static {
-        Object[] objArr = new Object[0];
-        F = objArr;
-        G = new vnd(0, 0, 0, objArr, objArr);
-    }
-
-    public vnd(int i, int i2, int i3, Object[] objArr, Object[] objArr2) {
-        super((byte) 4);
-        this.s = objArr;
-        this.w = i;
-        this.x = objArr2;
-        this.y = i2;
-        this.E = i3;
-    }
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+public final class vnd extends tmd {
+    public static final Class c = DesugarCollections.unmodifiableList(Collections.EMPTY_LIST).getClass();
 
     @Override
-    public final yjd B() {
-        return yjd.A(this.E, this.s);
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (obj != null) {
-            Object[] objArr = this.x;
-            if (objArr.length != 0) {
-                int rotateLeft = (int) (Integer.rotateLeft((int) (obj.hashCode() * (-862048943)), 15) * 461845907);
-                while (true) {
-                    int i = rotateLeft & this.y;
-                    Object obj2 = objArr[i];
-                    if (obj2 != null) {
-                        if (obj2.equals(obj)) {
-                            return true;
-                        }
-                        rotateLeft = i + 1;
-                    } else {
-                        return false;
-                    }
-                }
+    public final void b(vid vidVar, vid vidVar2, long j) {
+        ArrayList arrayList;
+        List list = (List) uzd.l(vidVar2, j);
+        int size = list.size();
+        List list2 = (List) uzd.l(vidVar, j);
+        if (list2.isEmpty()) {
+            if (list2 instanceof omd) {
+                list2 = new cmd(size);
             } else {
-                return false;
+                list2 = new ArrayList(size);
             }
+            uzd.d(vidVar, j, list2);
         } else {
-            return false;
+            if (c.isAssignableFrom(list2.getClass())) {
+                ArrayList arrayList2 = new ArrayList(list2.size() + size);
+                arrayList2.addAll(list2);
+                arrayList = arrayList2;
+            } else if (list2 instanceof ezd) {
+                ezd ezdVar = (ezd) list2;
+                List cmdVar = new cmd(ezdVar.a.size() + size);
+                cmdVar.addAll(ezdVar);
+                arrayList = cmdVar;
+            }
+            uzd.d(vidVar, j, arrayList);
+            list2 = arrayList;
         }
-    }
-
-    @Override
-    public final int hashCode() {
-        return this.w;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return A().listIterator(0);
-    }
-
-    @Override
-    public final int p(Object[] objArr) {
-        Object[] objArr2 = this.s;
-        int i = this.E;
-        System.arraycopy(objArr2, 0, objArr, 0, i);
-        return i;
-    }
-
-    @Override
-    public final int q() {
-        return this.E;
-    }
-
-    @Override
-    public final int s() {
-        return 0;
-    }
-
-    @Override
-    public final int size() {
-        return this.E;
-    }
-
-    @Override
-    public final v7c u() {
-        return A().listIterator(0);
-    }
-
-    @Override
-    public final Object[] v() {
-        return this.s;
+        int size2 = list2.size();
+        int size3 = list.size();
+        if (size2 > 0 && size3 > 0) {
+            list2.addAll(list);
+        }
+        if (size2 > 0) {
+            list = list2;
+        }
+        uzd.d(vidVar, j, list);
     }
 }

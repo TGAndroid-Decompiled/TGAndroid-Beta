@@ -1,41 +1,16 @@
 package defpackage;
 
-import org.telegram.messenger.voip.VoIPService;
-public final class djc implements Runnable {
-    public final byte a;
-    public final VoIPService b;
+import java.util.ArrayList;
+public final class djc {
+    public final String a;
+    public final ArrayList b;
     public final int c;
+    public final go2 d;
 
-    public djc(VoIPService voIPService, int i, byte b) {
-        this.a = b;
-        this.b = voIPService;
+    public djc(String str, ArrayList arrayList, int i, go2 go2Var) {
+        this.a = str;
+        this.b = arrayList;
         this.c = i;
-    }
-
-    @Override
-    public final void run() {
-        byte b = this.a;
-        int i = this.c;
-        VoIPService voIPService = this.b;
-        switch (b) {
-            case 0:
-                VoIPService.k1(voIPService, i);
-                return;
-            case 1:
-                VoIPService.t(voIPService, i);
-                return;
-            case 2:
-                VoIPService.B(voIPService, i);
-                return;
-            case 3:
-                VoIPService.C0(voIPService, i);
-                return;
-            case 4:
-                VoIPService.r1(voIPService, i);
-                return;
-            default:
-                VoIPService.Q0(voIPService, i);
-                return;
-        }
+        this.d = go2Var;
     }
 }

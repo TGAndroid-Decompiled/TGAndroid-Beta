@@ -1,60 +1,33 @@
 package defpackage;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
-public final class f5d implements Handler.Callback {
-    public final et8 a;
-    public final q79 n;
-    public final ArrayList b = new ArrayList();
-    public final ArrayList c = new ArrayList();
-    public final ArrayList d = new ArrayList();
-    public volatile boolean e = false;
-    public final AtomicInteger f = new AtomicInteger(0);
-    public boolean h = false;
-    public final Object r = new Object();
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+public final class f5d implements IInterface {
+    public final IBinder a;
 
-    public f5d(Looper looper, et8 et8Var) {
-        this.a = et8Var;
-        this.n = new q79(looper, this);
+    public f5d(IBinder iBinder) {
+        this.a = iBinder;
     }
 
-    public final void a(g05 g05Var) {
-        ite.h(g05Var);
-        synchronized (this.r) {
-            ArrayList arrayList = this.d;
-            if (arrayList.contains(g05Var)) {
-                String valueOf = String.valueOf(g05Var);
-                StringBuilder sb = new StringBuilder(valueOf.length() + 67);
-                sb.append("registerConnectionFailedListener(): listener ");
-                sb.append(valueOf);
-                sb.append(" is already registered");
-                Log.w("GmsClientEvents", sb.toString());
-            } else {
-                arrayList.add(g05Var);
-            }
+    public final void a(nnd nndVar, ct4 ct4Var) {
+        Parcel obtain = Parcel.obtain();
+        Parcel obtain2 = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("com.google.android.gms.common.internal.IGmsServiceBroker");
+            obtain.writeStrongBinder(nndVar);
+            obtain.writeInt(1);
+            c0f.a(ct4Var, obtain, 0);
+            this.a.transact(46, obtain, obtain2, 0);
+            obtain2.readException();
+        } finally {
+            obtain2.recycle();
+            obtain.recycle();
         }
     }
 
     @Override
-    public final boolean handleMessage(Message message) {
-        int i = message.what;
-        if (i == 1) {
-            f05 f05Var = (f05) message.obj;
-            synchronized (this.r) {
-                if (this.e && this.a.q() && this.b.contains(f05Var)) {
-                    f05Var.onConnected(null);
-                }
-            }
-            return true;
-        }
-        StringBuilder sb = new StringBuilder(String.valueOf(i).length() + 34);
-        sb.append("Don't know how to handle message: ");
-        sb.append(i);
-        Log.wtf("GmsClientEvents", sb.toString(), new Exception());
-        return false;
+    public final IBinder asBinder() {
+        return this.a;
     }
 }

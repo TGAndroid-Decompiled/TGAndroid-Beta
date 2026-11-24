@@ -1,22 +1,19 @@
 package defpackage;
+public final class bx2 {
+    public static final bx2 a;
+    public static final bx2[] b;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class bx2 extends m8 {
-    public final dx2 o;
-
-    public bx2(dx2 dx2Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.o = dx2Var;
+    static {
+        ?? r0 = new Enum("COROUTINE_SUSPENDED", 0);
+        a = r0;
+        b = new bx2[]{r0, new Enum("UNDECIDED", 1), new Enum("RESUMED", 2)};
     }
 
-    @Override
-    public final void dismiss() {
-        d(true);
-        hx2 hx2Var = this.o.a;
-        hx2Var.k = null;
-        hx2Var.K = false;
-        if (hx2Var.R) {
-            hx2Var.b();
-        }
+    public static bx2 valueOf(String str) {
+        return (bx2) Enum.valueOf(bx2.class, str);
+    }
+
+    public static bx2[] values() {
+        return (bx2[]) b.clone();
     }
 }

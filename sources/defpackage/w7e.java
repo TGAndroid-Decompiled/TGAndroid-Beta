@@ -1,8 +1,17 @@
 package defpackage;
-public abstract class w7e {
-    public static final int a = 0;
+public final class w7e implements zn7 {
+    public static final w7e a = new Object();
 
     static {
-        kce kceVar = kce.c;
+        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

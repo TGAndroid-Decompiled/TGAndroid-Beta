@@ -1,44 +1,43 @@
 package defpackage;
 
-import org.telegram.tgnet.TLObject;
+import android.widget.LinearLayout;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_stories;
-public final class iua implements Runnable {
-    public final byte a = 0;
-    public final boolean b;
+public final class iua extends i98 {
+    public final be0 a;
+    public final LinearLayout b;
     public final long c;
-    public final boolean d;
-    public final Object e;
-    public final Object f;
-    public final TLObject h;
-    public final TLObject n;
-    public final Object r;
 
-    public iua(jva jvaVar, boolean[] zArr, TL_stars.StarGift starGift, boolean z, boolean z2, long j, TLRPC.TL_textWithEntities tL_textWithEntities, y2a y2aVar) {
-        this.e = jvaVar;
-        this.f = zArr;
-        this.h = starGift;
-        this.b = z;
-        this.d = z2;
+    public iua(be0 be0Var, LinearLayout linearLayout, long j) {
+        this.a = be0Var;
+        this.b = linearLayout;
         this.c = j;
-        this.n = tL_textWithEntities;
-        this.r = y2aVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.iua.run():void");
+    public final boolean K() {
+        return true;
     }
 
-    public iua(v9b v9bVar, TLObject tLObject, TL_stories.TL_startLive tL_startLive, boolean z, long j, boolean z2, TLRPC.TL_error tL_error, nsa nsaVar) {
-        this.e = v9bVar;
-        this.f = tLObject;
-        this.h = tL_startLive;
-        this.b = z;
-        this.c = j;
-        this.d = z2;
-        this.n = tL_error;
-        this.r = nsaVar;
+    @Override
+    public final p98 M(k27 k27Var, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
+        be0 be0Var = this.a;
+        ImageReceiver imageReceiver = be0Var.getImageReceiver();
+        int[] iArr = new int[2];
+        be0Var.getLocationInWindow(iArr);
+        p98 p98Var = new p98();
+        p98Var.b = iArr[0];
+        p98Var.c = iArr[1];
+        p98Var.d = this.b;
+        p98Var.m = null;
+        p98Var.a = imageReceiver;
+        if (z) {
+            p98Var.e = imageReceiver.p();
+        }
+        p98Var.h = imageReceiver.z();
+        p98Var.f = this.c;
+        p98Var.j = 0;
+        p98Var.i = 0;
+        return p98Var;
     }
 }

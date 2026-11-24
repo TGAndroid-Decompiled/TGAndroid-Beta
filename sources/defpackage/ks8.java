@@ -1,49 +1,73 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.ProfileActivity;
-public final class ks8 implements qac {
-    public final byte a;
-    public final rs8 b;
-    public final TL_stars.SavedStarGift c;
+import j$.util.Objects;
+public final class ks8 {
+    public final String a;
+    public final String b;
+    public final String c;
+    public final String d;
+    public final String e;
 
-    public ks8(rs8 rs8Var, TL_stars.SavedStarGift savedStarGift, byte b) {
-        this.a = b;
-        this.b = rs8Var;
-        this.c = savedStarGift;
+    public ks8(String str, String str2, String str3, String str4, String str5) {
+        this.a = str;
+        this.b = str2;
+        this.c = str3;
+        this.d = str4;
+        this.e = str5;
     }
 
-    @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        TL_stars.SavedStarGift savedStarGift = this.c;
-        rs8 rs8Var = this.b;
-        switch (b) {
-            case 0:
-                rs8Var.a.e.b(new ks8(rs8Var, savedStarGift, (byte) 1), (String) obj);
-                return;
-            default:
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
-                lea leaVar = rs8Var.a;
-                yua yuaVar = leaVar.e;
-                int i = tL_starGiftCollection.collection_id;
-                yuaVar.getClass();
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(savedStarGift);
-                yuaVar.a(i, arrayList);
-                leaVar.f(true);
-                vgc vgcVar = leaVar.n;
-                int i2 = tL_starGiftCollection.collection_id;
-                vgcVar.e(i2, leaVar.e.f(i2) + 1);
-                d dVar = leaVar.a;
-                if (dVar instanceof ProfileActivity) {
-                    ((ProfileActivity) dVar).n3(true);
-                }
-                leaVar.o();
-                c41.b0(dVar).R(savedStarGift.gift.getDocument(), gm.S2(jb6.a0(null, null, 2131750326, wsa.t1(savedStarGift.gift), tL_starGiftCollection.title))).j();
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof ks8)) {
+            return false;
+        }
+        ks8 ks8Var = (ks8) obj;
+        if (Objects.equals(this.a, ks8Var.a) && Objects.equals(this.b, ks8Var.b) && Objects.equals(this.c, ks8Var.c) && Objects.equals(this.d, ks8Var.d) && Objects.equals(this.e, ks8Var.e)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        int i5 = 0;
+        String str = this.a;
+        if (str != null) {
+            i = str.hashCode();
+        } else {
+            i = 0;
+        }
+        int i6 = (527 + i) * 31;
+        String str2 = this.b;
+        if (str2 != null) {
+            i2 = str2.hashCode();
+        } else {
+            i2 = 0;
+        }
+        int i7 = (i6 + i2) * 31;
+        String str3 = this.c;
+        if (str3 != null) {
+            i3 = str3.hashCode();
+        } else {
+            i3 = 0;
+        }
+        int i8 = (i7 + i3) * 31;
+        String str4 = this.d;
+        if (str4 != null) {
+            i4 = str4.hashCode();
+        } else {
+            i4 = 0;
+        }
+        int i9 = (i8 + i4) * 31;
+        String str5 = this.e;
+        if (str5 != null) {
+            i5 = str5.hashCode();
+        }
+        return i9 + i5;
     }
 }

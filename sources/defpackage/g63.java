@@ -1,4 +1,4 @@
 package defpackage;
-public abstract class g63 {
-    public static final du2 a = new du2("RESUME_TOKEN", (byte) 2);
+public interface g63 {
+    int read(byte[] bArr, int i, int i2);
 }

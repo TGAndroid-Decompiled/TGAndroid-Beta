@@ -1,60 +1,109 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class gzb extends b6c {
-    public static final int b = 0;
+import android.net.Uri;
+import android.util.Log;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import org.json.JSONArray;
+import org.json.JSONTokener;
+public final class gzb extends Thread {
+    public final String a;
+    public final String b;
+    public final String c;
+    public final i8c d;
 
-    static {
-        b6c.h(new b6c());
+    public gzb(String str, String str2, String str3, i8c i8cVar) {
+        this.a = str;
+        this.b = str2;
+        this.c = str3;
+        this.d = i8cVar;
     }
 
     @Override
-    public final void b(View view, c6c c6cVar, boolean z, l7c l7cVar, q7c q7cVar) {
-        boolean z2;
-        int i;
-        hzb hzbVar = (hzb) view;
-        boolean z3 = false;
-        if (c6cVar.s) {
-            hzbVar.f();
-        } else {
-            Object obj = c6cVar.H;
-            if (obj == null) {
-                if (c6cVar.d == -2) {
-                    hzbVar.c();
-                } else {
-                    if ((c6cVar.z & 1) != 0) {
-                        z2 = true;
-                    } else {
-                        z2 = false;
-                    }
-                    hzbVar.d(z2, c6cVar.r, c6cVar.e);
+    public final void run() {
+        HttpURLConnection httpURLConnection;
+        Integer num;
+        String str;
+        i8c i8cVar = this.d;
+        String str2 = this.c;
+        boolean z = false;
+        String str3 = null;
+        try {
+            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.a) + "&tl=" + Uri.encode(this.b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
+        } catch (Exception e) {
+            e = e;
+            httpURLConnection = null;
+        }
+        try {
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestProperty("User-Agent", rzb.R1[(int) Math.round(Math.random() * 5.0d)]);
+            httpURLConnection.setRequestProperty("Content-Type", "application/json");
+            StringBuilder sb = new StringBuilder();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), ck1.a));
+            while (true) {
+                int read = bufferedReader.read();
+                if (read == -1) {
+                    break;
                 }
-            } else if (obj instanceof TLRPC.TL_forumTopic) {
-                boolean z4 = c6cVar.J;
-                long j = c6cVar.y;
-                if (!z4) {
-                    hzbVar.g(j, (TLRPC.TL_forumTopic) obj, c6cVar.e);
-                } else {
-                    hzbVar.b(j, (TLRPC.TL_forumTopic) obj, c6cVar.e);
+                sb.append((char) read);
+            }
+            bufferedReader.close();
+            JSONArray jSONArray = new JSONArray(new JSONTokener(sb.toString()));
+            JSONArray jSONArray2 = jSONArray.getJSONArray(0);
+            try {
+                str = jSONArray.getString(2);
+            } catch (Exception unused) {
+                str = null;
+            }
+            if (str != null && str.contains("-")) {
+                str.substring(0, str.indexOf("-"));
+            }
+            String str4 = "";
+            for (int i = 0; i < jSONArray2.length(); i++) {
+                String string = jSONArray2.getJSONArray(i).getString(0);
+                if (string != null && !string.equals("null")) {
+                    str4 = str4 + string;
                 }
             }
+            if (str2.length() > 0 && str2.charAt(0) == '\n') {
+                str4 = "\n" + str4;
+            }
+            gl.c3(new fzb(i8cVar, str4, (byte) 0));
+        } catch (Exception e2) {
+            e = e2;
+            try {
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append("failed to translate a text ");
+                if (httpURLConnection != null) {
+                    num = Integer.valueOf(httpURLConnection.getResponseCode());
+                } else {
+                    num = null;
+                }
+                sb2.append(num);
+                sb2.append(" ");
+                if (httpURLConnection != null) {
+                    str3 = httpURLConnection.getResponseMessage();
+                }
+                sb2.append(str3);
+                Log.e("translate", sb2.toString());
+            } catch (IOException e3) {
+                e3.printStackTrace();
+            }
+            e.printStackTrace();
+            if (httpURLConnection != null) {
+                try {
+                    if (httpURLConnection.getResponseCode() == 429) {
+                        z = true;
+                    }
+                } catch (Exception unused2) {
+                    gl.c3(new c05(i8cVar, (byte) 7));
+                    return;
+                }
+            }
+            gl.c3(new k08((byte) 23, i8cVar, z));
         }
-        if (iqd.a(c6cVar.z, 8)) {
-            i = gm.L(10.0f);
-        } else {
-            i = 0;
-        }
-        hzbVar.M = i;
-        if (q7cVar != null && q7cVar.k3 && hzbVar.s) {
-            z3 = true;
-        }
-        hzbVar.setReorder(z3);
-    }
-
-    @Override
-    public final View d(Context context, r59 r59Var, int i, ylb ylbVar) {
-        return new hzb(i, ylbVar, context);
     }
 }

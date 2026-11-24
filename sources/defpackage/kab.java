@@ -1,8 +1,12 @@
 package defpackage;
+
+import java.util.List;
 public interface kab {
-    void e(boolean z);
+    int b(long j);
 
-    boolean h(long j, int i, int i2, int i3, lab labVar);
+    long h(int i);
 
-    void q0(long j, int i, j48 j48Var);
+    List l(long j);
+
+    int t();
 }

@@ -1,62 +1,55 @@
 package defpackage;
-public final class o9b extends q9b {
-    public final byte g;
-    public final Object h;
 
-    public o9b(Object obj, byte b) {
-        this.g = b;
-        this.h = obj;
+import android.os.AsyncTask;
+import java.util.Locale;
+import org.telegram.ui.p;
+public final class o9b extends AsyncTask {
+    public final String a;
+    public final rc1 b;
+    public final z24 c;
+    public final g29 d;
+
+    public o9b(g29 g29Var, String str, rc1 rc1Var, z24 z24Var) {
+        this.d = g29Var;
+        this.a = str;
+        this.b = rc1Var;
+        this.c = z24Var;
     }
 
     @Override
-    public final void e() {
-        byte b = this.g;
-        Object obj = this.h;
-        switch (b) {
-            case 0:
-                yo8 yo8Var = (yo8) obj;
-                yo8Var.R = false;
-                yo8Var.invalidate();
-                return;
-            case 1:
-                a58 w = ((oab) obj).w();
-                if (w != null) {
-                    w.c0(true);
-                    return;
-                }
-                return;
-            default:
-                bf0 bf0Var = (bf0) obj;
-                bf0Var.post(new nsa(bf0Var, (byte) 27));
-                return;
+    public final Object doInBackground(Object[] objArr) {
+        Void[] voidArr = (Void[]) objArr;
+        g29 g29Var = this.d;
+        try {
+            vk9 c = r9b.c(rue.a(this.b), new g29(this.a, (byte) 3));
+            Object obj = g29Var.b;
+            return new p9b(c, null);
+        } catch (s9b e) {
+            Object obj2 = g29Var.b;
+            return new p9b(null, e);
         }
     }
 
     @Override
-    public final void f(boolean z) {
-        byte b = this.g;
-        Object obj = this.h;
-        switch (b) {
-            case 0:
-                yo8 yo8Var = (yo8) obj;
-                yo8Var.R = true;
-                yo8Var.invalidate();
+    public final void onPostExecute(Object obj) {
+        p9b p9bVar = (p9b) obj;
+        Object obj2 = this.d.b;
+        vk9 vk9Var = p9bVar.a;
+        z24 z24Var = this.c;
+        if (vk9Var != null) {
+            p pVar = (p) z24Var.b;
+            if (pVar.R0) {
                 return;
-            case 1:
-                a58 w = ((oab) obj).w();
-                if (w != null) {
-                    w.c0(false);
-                }
-                g48 g48Var = this.f;
-                if (g48Var != null) {
-                    g48Var.setTranslationX(0.0f);
-                    this.f.setTranslationY(0.0f);
-                    return;
-                }
-                return;
-            default:
-                ((bf0) obj).setVisibility(0);
-                return;
+            }
+            pVar.x0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) vk9Var.c, (String) vk9Var.b);
+            gl.c3(new oq7(z24Var, (byte) 12));
+            return;
+        }
+        s9b s9bVar = p9bVar.b;
+        if (s9bVar != null) {
+            z24Var.V(s9bVar);
+        } else {
+            z24Var.V(new RuntimeException("Somehow got neither a token response or an error response"));
         }
     }
 }

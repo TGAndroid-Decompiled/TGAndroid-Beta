@@ -1,31 +1,39 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-public final class j66 extends lka {
-    public final ylb N0;
-    public final i66 O0;
-    public m66 P0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.TextView;
+public final class j66 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final float b;
+    public final k66 c;
 
-    public j66(Context context, ylb ylbVar) {
-        super(context);
-        this.O0 = new i66(this);
-        this.N0 = ylbVar;
+    public j66(k66 k66Var, float f, byte b) {
+        this.a = b;
+        this.c = k66Var;
+        this.b = f;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        canvas.save();
-        canvas.translate(getLayoutX(), getLayoutY());
-        if (this.O0.g(canvas)) {
-            invalidate();
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        float f = this.b;
+        k66 k66Var = this.c;
+        switch (b) {
+            case 0:
+                TextView textView = k66Var.f;
+                int w0 = bkb.w0(null, bkb.x6, false);
+                int w02 = bkb.w0(null, bkb.m6, false);
+                k66Var.s = f;
+                textView.setTextColor(bm2.f(f, w0, w02));
+                return;
+            default:
+                TextView textView2 = k66Var.d;
+                int w03 = bkb.w0(null, bkb.x6, false);
+                int w04 = bkb.w0(null, bkb.m6, false);
+                k66Var.x = f;
+                textView2.setTextColor(bm2.f(f, w03, w04));
+                return;
         }
-        canvas.restore();
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.j66.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

@@ -1,5 +1,5 @@
 package org.telegram.utils.twidget;
-public final class g implements mxc, lxc {
+public final class g implements lvc, kvc {
     public final Object a;
 
     public g(Object obj) {
@@ -12,7 +12,7 @@ public final class g implements mxc, lxc {
     }
 
     @Override
-    public final void mo19run() {
-        WidgetEngineBackend.m((mxc) this.a);
+    public final void mo21run() {
+        WidgetEngineBackend.m((lvc) this.a);
     }
 }

@@ -31,10 +31,10 @@ public class r6 extends LinearLayout {
         } else {
             i3 = aVar.q0;
         }
-        return c(i, i2, null, i3, null, gm.L(48.0f), null, null);
+        return c(i, i2, null, i3, null, gl.L(48.0f), null, null);
     }
 
-    public final r7 b(int i, int i2, ylb ylbVar) {
+    public final r7 b(int i, int i2, wjb wjbVar) {
         int i3;
         boolean z = this.c;
         a aVar = this.b;
@@ -43,17 +43,17 @@ public class r6 extends LinearLayout {
         } else {
             i3 = aVar.q0;
         }
-        return c(i, i2, null, i3, null, gm.L(48.0f), null, ylbVar);
+        return c(i, i2, null, i3, null, gl.L(48.0f), null, wjbVar);
     }
 
-    public final r7 c(int i, int i2, String str, int i3, Drawable drawable, int i4, String str2, ylb ylbVar) {
+    public final r7 c(int i, int i2, String str, int i3, Drawable drawable, int i4, String str2, wjb wjbVar) {
         ArrayList arrayList = this.e;
         if (arrayList == null) {
             arrayList = new ArrayList();
             this.e = arrayList;
         }
         arrayList.add(Integer.valueOf(i));
-        return f(-1, i, i2, str, i3, drawable, i4, str2, ylbVar);
+        return f(-1, i, i2, str, i3, drawable, i4, str2, wjbVar);
     }
 
     public final r7 d(int i, Drawable drawable) {
@@ -65,7 +65,7 @@ public class r6 extends LinearLayout {
         } else {
             i2 = aVar.q0;
         }
-        return c(i, 0, null, i2, drawable, gm.L(48.0f), null, null);
+        return c(i, 0, null, i2, drawable, gl.L(48.0f), null, null);
     }
 
     public final r7 e(int i, String str) {
@@ -80,7 +80,7 @@ public class r6 extends LinearLayout {
         return c(i, 0, str, i2, null, 0, str, null);
     }
 
-    public final r7 f(int i, int i2, int i3, String str, int i4, Drawable drawable, int i5, String str2, ylb ylbVar) {
+    public final r7 f(int i, int i2, int i3, String str, int i4, Drawable drawable, int i5, String str2, wjb wjbVar) {
         int i6;
         boolean z;
         int i7;
@@ -98,7 +98,7 @@ public class r6 extends LinearLayout {
         } else {
             z = false;
         }
-        r7 r7Var = new r7(context, this, i4, i8, z, ylbVar);
+        r7 r7Var = new r7(context, this, i4, i8, z, wjbVar);
         r7Var.setTag(Integer.valueOf(i2));
         if (str != null) {
             r7Var.F.setText(str);
@@ -108,20 +108,20 @@ public class r6 extends LinearLayout {
                 i7 = -2;
             }
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(i7, -1);
-            int L = gm.L(14.0f);
+            int L = gl.L(14.0f);
             layoutParams.rightMargin = L;
             layoutParams.leftMargin = L;
             addView(r7Var, i, layoutParams);
         } else {
-            s09 s09Var = r7Var.y;
+            ry8 ry8Var = r7Var.y;
             if (drawable != null) {
-                if (drawable instanceof p09) {
-                    s09Var.setAnimation((p09) drawable);
+                if (drawable instanceof oy8) {
+                    ry8Var.setAnimation((oy8) drawable);
                 } else {
-                    s09Var.setImageDrawable(drawable);
+                    ry8Var.setImageDrawable(drawable);
                 }
             } else if (i3 != 0) {
-                s09Var.setImageResource(i3);
+                ry8Var.setImageResource(i3);
             }
             addView(r7Var, i, new LinearLayout.LayoutParams(i5, -1));
         }
@@ -273,7 +273,7 @@ public class r6 extends LinearLayout {
         return i;
     }
 
-    public final q6 l(int i, int i2, int i3, Drawable drawable, int i4, ylb ylbVar) {
+    public final q6 l(int i, int i2, int i3, Drawable drawable, int i4, wjb wjbVar) {
         ArrayList arrayList = this.e;
         if (arrayList == null) {
             arrayList = new ArrayList();
@@ -289,11 +289,11 @@ public class r6 extends LinearLayout {
         obj.e = i3;
         obj.f = drawable;
         obj.g = i4;
-        obj.h = ylbVar;
+        obj.h = wjbVar;
         return obj;
     }
 
-    public final q6 m(ylb ylbVar) {
+    public final q6 m(wjb wjbVar) {
         int i;
         boolean z = this.c;
         a aVar = this.b;
@@ -302,10 +302,10 @@ public class r6 extends LinearLayout {
         } else {
             i = aVar.q0;
         }
-        return l(32, 2131230912, i, null, gm.L(48.0f), ylbVar);
+        return l(32, 2131230911, i, null, gl.L(48.0f), wjbVar);
     }
 
-    public final q6 n(Drawable drawable, ylb ylbVar) {
+    public final q6 n(Drawable drawable, wjb wjbVar) {
         int i;
         boolean z = this.c;
         a aVar = this.b;
@@ -314,7 +314,7 @@ public class r6 extends LinearLayout {
         } else {
             i = aVar.q0;
         }
-        return l(14, 0, i, drawable, gm.L(48.0f), ylbVar);
+        return l(14, 0, i, drawable, gl.L(48.0f), wjbVar);
     }
 
     public final void o(int i) {
@@ -333,7 +333,7 @@ public class r6 extends LinearLayout {
         }
         a aVar = this.b;
         if (aVar != null) {
-            aVar.n();
+            aVar.m();
         }
     }
 
@@ -347,8 +347,8 @@ public class r6 extends LinearLayout {
                     ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
                     if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
                         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
-                        marginLayoutParams.leftMargin = -gm.L(5.0f);
-                        marginLayoutParams.rightMargin = -gm.L(5.0f);
+                        marginLayoutParams.leftMargin = -gl.L(5.0f);
+                        marginLayoutParams.rightMargin = -gl.L(5.0f);
                     }
                 }
             }
@@ -400,7 +400,7 @@ public class r6 extends LinearLayout {
                 } else {
                     i = aVar.q0;
                 }
-                childAt.setBackgroundDrawable(cmb.f0(i, 1, -1));
+                childAt.setBackgroundDrawable(bkb.f0(i, 1, -1));
             }
         }
     }
@@ -414,7 +414,7 @@ public class r6 extends LinearLayout {
         }
     }
 
-    public void setFilter(sh4 sh4Var) {
+    public void setFilter(rf4 rf4Var) {
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
@@ -422,7 +422,7 @@ public class r6 extends LinearLayout {
                 r7 r7Var = (r7) childAt;
                 if (r7Var.v()) {
                     ArrayList arrayList = r7Var.h0;
-                    arrayList.add(sh4Var);
+                    arrayList.add(rf4Var);
                     if (r7Var.G.getTag() != null) {
                         r7Var.i0 = arrayList.size() - 1;
                     }

@@ -2,7 +2,7 @@ package org.telegram.utils.code.highlight;
 public final class PrismaHighlighter implements AutoCloseable {
     public long a;
     public final String[] b;
-    public final nl8 c;
+    public final kj8 c;
 
     public PrismaHighlighter(byte[] bArr) {
         if (bArr != null) {
@@ -13,7 +13,7 @@ public final class PrismaHighlighter implements AutoCloseable {
                     String[] nativeGetTokenNames = nativeGetTokenNames(nativeCreate);
                     this.b = nativeGetTokenNames;
                     if (nativeGetTokenNames != null && nativeGetTokenNames.length != 0 && "".equals(nativeGetTokenNames[0])) {
-                        this.c = new nl8(nativeGetTokenNames);
+                        this.c = new kj8(nativeGetTokenNames);
                         return;
                     }
                     throw new IllegalStateException("Invalid native token name table");
@@ -22,10 +22,10 @@ public final class PrismaHighlighter implements AutoCloseable {
                     throw e;
                 }
             }
-            dq9.m("Native highlighter was not created");
+            sc8.j("Native highlighter was not created");
             throw null;
         }
-        gxc.d("grammars");
+        fvc.f("grammars");
         throw null;
     }
 
@@ -50,20 +50,20 @@ public final class PrismaHighlighter implements AutoCloseable {
                     if (i8 >= 0) {
                         int i9 = i8 * 5;
                         if (i4 < iArr[i9] || i5 > iArr[i9 + 1]) {
-                            dq9.m("Native token is outside its parent");
+                            sc8.j("Native token is outside its parent");
                             return;
                         }
                     }
                     i2 += 5;
                     i3 = i4;
                 } else {
-                    dq9.m("Invalid native token range");
+                    sc8.j("Invalid native token range");
                     return;
                 }
             }
             return;
         }
-        dq9.m("Invalid native token array");
+        sc8.j("Invalid native token array");
     }
 
     private static native long nativeCreate(byte[] bArr);
@@ -86,7 +86,7 @@ public final class PrismaHighlighter implements AutoCloseable {
         return nativeGetLanguages(j);
     }
 
-    public final synchronized f26 c(String str, String str2) {
+    public final synchronized f06 c(String str, String str2) {
         int[] nativeHighlight;
         long j = this.a;
         if (j != 0) {
@@ -99,7 +99,7 @@ public final class PrismaHighlighter implements AutoCloseable {
         } else {
             throw new IllegalStateException("Highlighter is closed");
         }
-        return new f26(nativeHighlight, this.c);
+        return new f06(nativeHighlight, this.c);
     }
 
     @Override

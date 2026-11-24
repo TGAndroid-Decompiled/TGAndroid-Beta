@@ -31,7 +31,7 @@ public class EncodedImage implements RefCounted {
                     return frameType;
                 }
             }
-            u36.j(hg9.j(i, "Unknown native frame type: "));
+            w26.j(de9.k(i, "Unknown native frame type: "));
             return null;
         }
 

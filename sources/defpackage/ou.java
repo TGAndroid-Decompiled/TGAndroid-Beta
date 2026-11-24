@@ -1,156 +1,173 @@
 package defpackage;
 
 import android.app.Activity;
-import android.content.Context;
-import android.text.TextUtils;
-import android.widget.Toast;
-import java.io.File;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Components.AnimatedArrowDrawable;
 import org.telegram.ui.o;
-public final class ou implements RequestDelegate {
-    public final byte a = 6;
-    public final int b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
-    public final Object g;
+public final class ou extends View implements Drawable.Callback, eib {
+    public final vg5 a;
+    public final dx b;
+    public bw c;
+    public int d;
+    public int e;
+    public final AnimatedArrowDrawable f;
+    public TL_iv.pageBlockDetails h;
 
-    public ou(int i, boolean[] zArr, File file, TL_phone.setCallRating setcallrating, ArrayList arrayList, Activity activity) {
-        this.b = i;
-        this.c = zArr;
-        this.d = file;
-        this.e = setcallrating;
-        this.f = arrayList;
-        this.g = activity;
+    public ou(Activity activity, vg5 vg5Var, dx dxVar) {
+        super(activity);
+        this.a = vg5Var;
+        this.b = dxVar;
+        this.f = new AnimatedArrowDrawable(bkb.w0(null, bkb.x6, false), true);
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        byte b = this.a;
-        int i = this.b;
-        Object obj = this.g;
-        Object obj2 = this.f;
-        Object obj3 = this.e;
-        Object obj4 = this.d;
-        Object obj5 = this.c;
-        switch (b) {
-            case 0:
-                gm.c3(new qu((o) obj5, this.b, (vu) obj4, tLObject, (String) obj3, (nu) obj2, (TLRPC.TL_messages_getWebPage) obj, (byte) 0));
-                return;
-            case 1:
-                gm.c3(new qu(tLObject, (he) obj5, (Context) obj4, this.b, (TL_phone.exportGroupCallInvite) obj3, (ylb) obj2, (dc5) obj));
-                return;
-            case 2:
-                String str = LaunchActivity.C1;
-                gm.c3(new qu((LaunchActivity) obj5, tLObject, this.b, (nk3) obj4, (d) obj2, (TLRPC.User) obj, (String) obj3));
-                return;
-            case 3:
-                gm.c3(new bz1(tLObject, (d) obj5, (TLRPC.TL_inputStorePaymentPremiumSubscription) obj4, (ik8) obj3, (ohd) obj2, this.b, tL_error, (TLRPC.TL_payments_canPurchaseStore) obj, (byte) 4));
-                return;
-            case 4:
-                Context context = (Context) obj5;
-                ylb ylbVar = (ylb) obj4;
-                byte[] bArr = (byte[]) obj3;
-                d dVar = (d) obj2;
-                il9 il9Var = (il9) obj;
-                if (tLObject != null) {
-                    if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
-                        gm.c3(new e77((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject, context, ylbVar, bArr, dVar, il9Var, (byte) 22));
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
-                        gm.d3(new u99(dVar, context, ylbVar, il9Var, (byte) 0), 200L);
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
-                        gm.d3(new v99(dVar, i, il9Var, (byte) 0), 200L);
-                        return;
-                    } else {
-                        return;
-                    }
-                } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    gm.d3(new u99(dVar, context, ylbVar, il9Var, (byte) 1), 200L);
-                    return;
-                } else {
-                    return;
-                }
-            case 5:
-                gm.c3(new qu((a6a) obj5, tLObject, (TLRPC.InputFile) obj4, (TLRPC.TL_inputMediaUploadedDocument) obj2, (m5a) obj, this.b, (String) obj3, (byte) 18));
-                return;
-            default:
-                boolean[] zArr = (boolean[]) obj5;
-                File file = (File) obj4;
-                TL_phone.setCallRating setcallrating = (TL_phone.setCallRating) obj3;
-                ArrayList arrayList = (ArrayList) obj2;
-                Activity activity = (Activity) obj;
-                if (tLObject instanceof TLRPC.TL_updates) {
-                    oc7.r1(i).T3((TLRPC.TL_updates) tLObject, false);
-                }
-                if (zArr[0] && file.exists() && setcallrating.rating < 4) {
-                    a6a.S(j5.a(z8c.t0), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, true, null, null);
-                    Toast.makeText(activity, jb6.M0(2131752555, null), 1).show();
-                    return;
-                }
-                return;
+    public final void invalidateDrawable(Drawable drawable) {
+        invalidate();
+    }
+
+    @Override
+    public final void k(ArrayList arrayList) {
+        bw bwVar = this.c;
+        if (bwVar != null) {
+            arrayList.add(bwVar);
         }
     }
 
-    public ou(he heVar, Context context, int i, TL_phone.exportGroupCallInvite exportgroupcallinvite, ylb ylbVar, dc5 dc5Var) {
-        this.c = heVar;
-        this.d = context;
-        this.b = i;
-        this.e = exportgroupcallinvite;
-        this.f = ylbVar;
-        this.g = dc5Var;
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        bw bwVar = this.c;
+        if (bwVar != null) {
+            bwVar.i(this);
+        }
     }
 
-    public ou(a6a a6aVar, TLRPC.InputFile inputFile, TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument, m5a m5aVar, int i, String str) {
-        this.c = a6aVar;
-        this.d = inputFile;
-        this.f = tL_inputMediaUploadedDocument;
-        this.g = m5aVar;
-        this.b = i;
-        this.e = str;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        bw bwVar = this.c;
+        if (bwVar != null) {
+            bwVar.f(this);
+        }
     }
 
-    public ou(Context context, ylb ylbVar, byte[] bArr, d dVar, il9 il9Var, int i) {
-        this.c = context;
-        this.d = ylbVar;
-        this.e = bArr;
-        this.f = dVar;
-        this.g = il9Var;
-        this.b = i;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.h == null) {
+            return;
+        }
+        canvas.save();
+        vg5 vg5Var = this.a;
+        vg5Var.getClass();
+        canvas.translate(gl.L(18.0f), ((getMeasuredHeight() - gl.L(13.0f)) - 1) / 2);
+        this.f.draw(canvas);
+        canvas.restore();
+        if (this.c != null) {
+            canvas.save();
+            canvas.translate(this.d, this.e);
+            o.s(vg5Var, canvas, this, 0);
+            this.c.d(canvas, this);
+            canvas.restore();
+        }
+        float measuredHeight = getMeasuredHeight() - 1;
+        canvas.drawLine(0.0f, measuredHeight, getMeasuredWidth(), measuredHeight, o.t1);
     }
 
-    public ou(d dVar, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, ik8 ik8Var, ohd ohdVar, int i, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
-        this.c = dVar;
-        this.d = tL_inputStorePaymentPremiumSubscription;
-        this.e = ik8Var;
-        this.f = ohdVar;
-        this.b = i;
-        this.g = tL_payments_canPurchaseStore;
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        int i;
+        CharSequence g;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.TextView");
+        accessibilityNodeInfo.setEnabled(true);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        bw bwVar = this.c;
+        if (bwVar != null && (g = o.g(this.a, this.b, bwVar)) != null) {
+            spannableStringBuilder.append(g).append((CharSequence) ", ");
+        }
+        spannableStringBuilder.append((CharSequence) k96.M0(2131754868, null)).append((CharSequence) ", ");
+        TL_iv.pageBlockDetails pageblockdetails = this.h;
+        if (pageblockdetails != null && pageblockdetails.open) {
+            i = 2131754865;
+        } else {
+            i = 2131754869;
+        }
+        spannableStringBuilder.append((CharSequence) k96.M0(i, null));
+        accessibilityNodeInfo.setText(spannableStringBuilder);
     }
 
-    public ou(o oVar, int i, vu vuVar, String str, nu nuVar, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) {
-        this.c = oVar;
-        this.b = i;
-        this.d = vuVar;
-        this.e = str;
-        this.f = nuVar;
-        this.g = tL_messages_getWebPage;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        ou ouVar;
+        Layout.Alignment alignment;
+        int size = View.MeasureSpec.getSize(i);
+        int L = gl.L(39.0f);
+        this.d = gl.L(50.0f);
+        this.e = gl.L(11.0f) + 1;
+        TL_iv.pageBlockDetails pageblockdetails = this.h;
+        if (pageblockdetails != null) {
+            TL_iv.RichText richText = pageblockdetails.title;
+            vg5 vg5Var = this.a;
+            int h = ug8.h(vg5Var, 54.0f, size);
+            TL_iv.pageBlockDetails pageblockdetails2 = this.h;
+            dx dxVar = this.b;
+            if (dxVar != null && dxVar.H) {
+                alignment = lwa.a();
+            } else {
+                alignment = Layout.Alignment.ALIGN_NORMAL;
+            }
+            ouVar = this;
+            bw n = o.n(vg5Var, ouVar, null, richText, h, 0, pageblockdetails2, alignment, 0, this.b);
+            ouVar.c = n;
+            if (n != null) {
+                L = Math.max(L, ouVar.c.d.getHeight() + gl.L(21.0f));
+                int L2 = ((gl.L(21.0f) + ouVar.c.d.getHeight()) - ouVar.c.d.getHeight()) / 2;
+                ouVar.e = L2;
+                bw bwVar = ouVar.c;
+                bwVar.s = ouVar.d;
+                bwVar.w = L2;
+            }
+        } else {
+            ouVar = this;
+        }
+        ouVar.setMeasuredDimension(size, L + 1);
     }
 
-    public ou(LaunchActivity launchActivity, int i, nk3 nk3Var, d dVar, TLRPC.User user, String str) {
-        this.c = launchActivity;
-        this.b = i;
-        this.d = nk3Var;
-        this.f = dVar;
-        this.g = user;
-        this.e = str;
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!o.i(this.a, this.b, motionEvent, this, this.c, this.d, this.e) && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void setBlock(TL_iv.pageBlockDetails pageblockdetails) {
+        float f;
+        this.h = pageblockdetails;
+        if (pageblockdetails.open) {
+            f = 0.0f;
+        } else {
+            f = 1.0f;
+        }
+        AnimatedArrowDrawable animatedArrowDrawable = this.f;
+        animatedArrowDrawable.setAnimationProgress(f);
+        animatedArrowDrawable.setCallback(this);
+        requestLayout();
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
     }
 }

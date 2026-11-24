@@ -143,7 +143,7 @@ public final class u4 {
         ArrayList arrayList = new ArrayList();
         int size = actionList.size();
         for (int i = 0; i < size; i++) {
-            arrayList.add(new r4(actionList.get(i), 0, null, null, null));
+            arrayList.add(new r4(actionList.get(i), 0, null, null));
         }
         return arrayList;
     }
@@ -313,7 +313,7 @@ public final class u4 {
         sb.append(accessibilityNodeInfo.getMaxTextLength());
         sb.append("; stateDescription: ");
         if (i >= 30) {
-            charSequence = via.l(accessibilityNodeInfo);
+            charSequence = tga.l(accessibilityNodeInfo);
         } else {
             charSequence = accessibilityNodeInfo.getExtras().getCharSequence("androidx.view.accessibility.AccessibilityNodeInfoCompat.STATE_DESCRIPTION_KEY");
         }
@@ -395,11 +395,11 @@ public final class u4 {
         ArrayList d = d();
         for (int i2 = 0; i2 < d.size(); i2++) {
             r4 r4Var = (r4) d.get(i2);
-            int a = r4Var.a();
             Object obj = r4Var.a;
-            String e = e(a);
-            if (e.equals("ACTION_UNKNOWN") && ((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel() != null) {
-                e = ((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel().toString();
+            Object obj2 = r4Var.a;
+            String e = e(((AccessibilityNodeInfo.AccessibilityAction) obj).getId());
+            if (e.equals("ACTION_UNKNOWN") && ((AccessibilityNodeInfo.AccessibilityAction) obj2).getLabel() != null) {
+                e = ((AccessibilityNodeInfo.AccessibilityAction) obj2).getLabel().toString();
             }
             sb.append(e);
             if (i2 != d.size() - 1) {

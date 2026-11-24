@@ -1,17 +1,15 @@
 package defpackage;
-public final class zyd implements cq7 {
+public final class zyd implements zn7 {
     public static final zyd a = new Object();
-
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)));
-    }
+    public static final w84 b = new w84("confidence", b00.m(yjb.o(i8d.class, new b7d(1))));
+    public static final w84 c = new w84("languageCode", b00.m(yjb.o(i8d.class, new b7d(2))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+        eme emeVar = (eme) obj;
+        ao7 ao7Var = (ao7) obj2;
+        emeVar.getClass();
+        ao7Var.a(b, null);
+        ao7Var.a(c, emeVar.a);
     }
 }

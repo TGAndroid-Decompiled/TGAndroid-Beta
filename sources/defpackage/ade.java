@@ -1,17 +1,20 @@
 package defpackage;
-public final class ade implements cq7 {
-    public static final ade a = new Object();
 
-    static {
-        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.KeyEvent;
+public abstract class ade {
+    public static KeyEvent a(Intent intent) {
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            try {
+                if (extras.containsKey("android.intent.extra.KEY_EVENT")) {
+                    return (KeyEvent) extras.getParcelable("android.intent.extra.KEY_EVENT");
+                }
+            } catch (RuntimeException e) {
+                lad.g("DefaultActionFactory", "Failed to get parcelable key event", e);
+            }
         }
-        throw new ClassCastException();
+        return null;
     }
 }

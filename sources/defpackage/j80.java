@@ -1,14 +1,28 @@
 package defpackage;
-public final class j80 implements cq7 {
-    public static final j80 a = new Object();
-    public static final wa4 b = new wa4("currentCacheSizeBytes", b10.m(b10.l(fv8.class, new wy(1))));
-    public static final wa4 c = new wa4("maxCacheSizeBytes", b10.m(b10.l(fv8.class, new wy(2))));
+public final class j80 extends ly2 {
+    public final int a;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        h3b h3bVar = (h3b) obj;
-        dq7 dq7Var = (dq7) obj2;
-        dq7Var.g(b, h3bVar.a);
-        dq7Var.g(c, h3bVar.b);
+    public j80(int i) {
+        this.a = i;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof ly2) {
+            if (this.a == ((j80) ((ly2) obj)).a) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return 1000003 ^ this.a;
+    }
+
+    public final String toString() {
+        return de9.l(new StringBuilder("ProfilingTrigger{trigger="), this.a, "}");
     }
 }

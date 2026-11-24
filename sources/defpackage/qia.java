@@ -1,136 +1,99 @@
 package defpackage;
 
-import android.app.Person;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ShortcutInfo;
-import android.os.Build;
-import android.os.PersistableBundle;
-import android.text.TextUtils;
-import androidx.core.graphics.drawable.IconCompat;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-public final class qia {
-    public Context a;
-    public String b;
-    public Intent[] c;
-    public ComponentName d;
-    public CharSequence e;
-    public CharSequence f;
-    public CharSequence g;
-    public IconCompat h;
-    public n58[] i;
-    public Set j;
-    public td6 k;
-    public boolean l;
-    public int m;
-    public PersistableBundle n;
+public final class qia implements j74 {
+    public final int a;
+    public final int b;
+    public final String c;
+    public int d;
+    public byte e;
+    public l74 f;
+    public wxb g;
 
-    public static ArrayList a(Context context, List list) {
-        ArrayList arrayList = new ArrayList(list.size());
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            arrayList.add(new pia(context, (ShortcutInfo) it.next()).a());
-        }
-        return arrayList;
+    public qia(int i, int i2, String str) {
+        this.a = i;
+        this.b = i2;
+        this.c = str;
     }
 
-    public final Intent b() {
-        Intent[] intentArr = this.c;
-        return intentArr[intentArr.length - 1];
+    @Override
+    public final int b(k74 k74Var, m11 m11Var) {
+        byte b = this.e;
+        if (b != 1) {
+            if (b == 2) {
+                return -1;
+            }
+            sdb.a();
+            return 0;
+        }
+        wxb wxbVar = this.g;
+        wxbVar.getClass();
+        int f = wxbVar.f(k74Var, 1024, true);
+        if (f == -1) {
+            this.e = (byte) 2;
+            this.g.a(0L, 1, this.d, 0, null);
+            this.d = 0;
+            return 0;
+        }
+        this.d += f;
+        return 0;
     }
 
-    public final ShortcutInfo c() {
-        String str;
-        ShortcutInfo.Builder intents = new ShortcutInfo.Builder(this.a, this.b).setShortLabel(this.e).setIntents(this.c);
-        IconCompat iconCompat = this.h;
-        if (iconCompat != null) {
-            intents.setIcon(pme.a(iconCompat, this.a));
-        }
-        if (!TextUtils.isEmpty(this.f)) {
-            intents.setLongLabel(this.f);
-        }
-        if (!TextUtils.isEmpty(this.g)) {
-            intents.setDisabledMessage(this.g);
-        }
-        ComponentName componentName = this.d;
-        if (componentName != null) {
-            intents.setActivity(componentName);
-        }
-        Set<String> set = this.j;
-        if (set != null) {
-            intents.setCategories(set);
-        }
-        intents.setRank(this.m);
-        PersistableBundle persistableBundle = this.n;
-        if (persistableBundle != null) {
-            intents.setExtras(persistableBundle);
-        }
-        int i = 0;
-        if (Build.VERSION.SDK_INT >= 29) {
-            n58[] n58VarArr = this.i;
-            if (n58VarArr != null && n58VarArr.length > 0) {
-                int length = n58VarArr.length;
-                Person[] personArr = new Person[length];
-                while (i < length) {
-                    n58 n58Var = this.i[i];
-                    n58Var.getClass();
-                    personArr[i] = fp.G(n58Var);
-                    i++;
-                }
-                intents.setPersons(personArr);
-            }
-            td6 td6Var = this.k;
-            if (td6Var != null) {
-                intents.setLocusId(td6Var.b);
-            }
-            intents.setLongLived(this.l);
+    @Override
+    public final boolean c(k74 k74Var) {
+        boolean z;
+        int i = this.b;
+        int i2 = this.a;
+        if (i2 != -1 && i != -1) {
+            z = true;
         } else {
-            PersistableBundle persistableBundle2 = this.n;
-            if (persistableBundle2 == null) {
-                persistableBundle2 = new PersistableBundle();
-                this.n = persistableBundle2;
-            }
-            n58[] n58VarArr2 = this.i;
-            if (n58VarArr2 != null && n58VarArr2.length > 0) {
-                persistableBundle2.putInt("extraPersonCount", n58VarArr2.length);
-                while (i < this.i.length) {
-                    PersistableBundle persistableBundle3 = this.n;
-                    StringBuilder sb = new StringBuilder("extraPerson_");
-                    int i2 = i + 1;
-                    sb.append(i2);
-                    String sb2 = sb.toString();
-                    n58 n58Var2 = this.i[i];
-                    n58Var2.getClass();
-                    PersistableBundle persistableBundle4 = new PersistableBundle();
-                    CharSequence charSequence = n58Var2.a;
-                    if (charSequence != null) {
-                        str = charSequence.toString();
-                    } else {
-                        str = null;
-                    }
-                    persistableBundle4.putString("name", str);
-                    persistableBundle4.putString("uri", n58Var2.c);
-                    persistableBundle4.putString("key", n58Var2.d);
-                    persistableBundle4.putBoolean("isBot", n58Var2.e);
-                    persistableBundle4.putBoolean("isImportant", n58Var2.f);
-                    persistableBundle3.putPersistableBundle(sb2, persistableBundle4);
-                    i = i2;
-                }
-            }
-            td6 td6Var2 = this.k;
-            if (td6Var2 != null) {
-                this.n.putString("extraLocusId", td6Var2.a);
-            }
-            this.n.putBoolean("extraLongLived", this.l);
-            intents.setExtras(this.n);
+            z = false;
         }
-        if (Build.VERSION.SDK_INT >= 33) {
-            s4.k(intents);
+        gre.p(z);
+        xu7 xu7Var = new xu7(i);
+        ((ja3) k74Var).d(xu7Var.a, 0, i, false);
+        if (xu7Var.H() == i2) {
+            return true;
         }
-        return intents.build();
+        return false;
+    }
+
+    @Override
+    public final void d(long j, long j2) {
+        if (j != 0 && this.e != 1) {
+            return;
+        }
+        this.e = (byte) 1;
+        this.d = 0;
+    }
+
+    @Override
+    public final List e() {
+        km5 km5Var = mm5.b;
+        return w59.e;
+    }
+
+    @Override
+    public final void f(l74 l74Var) {
+        this.f = l74Var;
+        wxb S = l74Var.S(1024, 4);
+        this.g = S;
+        em4 em4Var = new em4();
+        String str = this.c;
+        em4Var.r = ud7.n(str);
+        em4Var.s = ud7.n(str);
+        yjb.v(em4Var, S);
+        this.f.z();
+        this.f.g0(new Object());
+        this.e = (byte) 1;
+    }
+
+    @Override
+    public final j74 a() {
+        return this;
+    }
+
+    @Override
+    public final void release() {
     }
 }

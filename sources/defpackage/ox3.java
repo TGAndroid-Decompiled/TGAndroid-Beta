@@ -1,189 +1,105 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class ox3 extends View {
-    public final RectF E;
-    public final RectF F;
-    public float G;
-    public lw3 H;
-    public int I;
-    public final TextPaint a;
-    public final Paint b;
-    public StaticLayout c;
-    public float d;
-    public float e;
-    public StaticLayout f;
-    public float h;
-    public float n;
-    public StaticLayout r;
-    public float s;
-    public float w;
-    public final RectF x;
-    public final RectF y;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d;
+public abstract class ox3 implements gk7 {
+    public final ArrayList a;
+    public ArrayList b;
+    public ArrayList[] c;
+    public final int d;
+    public boolean e = false;
+    public final qx3 f;
 
-    public ox3(Context context) {
-        super(context);
-        this.a = new TextPaint(1);
-        this.b = new Paint(1);
-        this.x = new RectF();
-        this.y = new RectF();
-        this.E = new RectF();
-        this.F = new RectF();
+    public ox3(qx3 qx3Var, int i, ArrayList arrayList) {
+        this.f = qx3Var;
+        this.d = i;
+        this.a = arrayList == null ? new ArrayList() : arrayList;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        RectF rectF;
-        RectF rectF2;
-        canvas.drawColor(-14737633);
-        Paint paint = this.b;
-        paint.setColor(-13224394);
-        float f = this.G;
-        int i = (int) f;
-        RectF rectF3 = this.E;
-        RectF rectF4 = this.y;
-        RectF rectF5 = this.x;
-        if (i <= 0) {
-            rectF = rectF5;
-        } else if (i == 1) {
-            rectF = rectF4;
-        } else {
-            rectF = rectF3;
-        }
-        int ceil = (int) Math.ceil(f);
-        if (ceil <= 0) {
-            rectF2 = rectF5;
-        } else if (ceil == 1) {
-            rectF2 = rectF4;
-        } else {
-            rectF2 = rectF3;
-        }
-        float f2 = this.G;
-        RectF rectF6 = this.F;
-        gm.X1(rectF, rectF2, f2 - ((int) f2), rectF6);
-        canvas.drawRoundRect(rectF6, gm.L(20.0f), gm.L(20.0f), paint);
-        StaticLayout staticLayout = this.c;
-        TextPaint textPaint = this.a;
-        if (staticLayout != null) {
-            canvas.save();
-            canvas.translate((rectF5.left + gm.L(12.0f)) - this.e, aq1.z(rectF5.height(), this.c.getHeight(), 2.0f, rectF5.top));
-            textPaint.setColor(on2.f(Utilities.i(1.0f - Math.abs(this.G - 0.0f), 1.0f, 0.0f), -8158333, -1));
-            this.c.draw(canvas);
-            canvas.restore();
-        }
-        if (this.f != null) {
-            canvas.save();
-            canvas.translate((rectF4.left + gm.L(12.0f)) - this.n, aq1.z(rectF4.height(), this.f.getHeight(), 2.0f, rectF4.top));
-            textPaint.setColor(on2.f(Utilities.i(1.0f - Math.abs(this.G - 1.0f), 1.0f, 0.0f), -8158333, -1));
-            this.f.draw(canvas);
-            canvas.restore();
-        }
-        if (this.r != null) {
-            canvas.save();
-            canvas.translate((rectF3.left + gm.L(12.0f)) - this.w, aq1.z(rectF3.height(), this.r.getHeight(), 2.0f, rectF3.top));
-            textPaint.setColor(on2.f(Utilities.i(1.0f - Math.abs(this.G - 2.0f), 1.0f, 0.0f), -8158333, -1));
-            this.r.draw(canvas);
-            canvas.restore();
+    public final void a(int i, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        int i2;
+        ArrayList<Long> arrayList;
+        if (i >= 0) {
+            ArrayList[] arrayListArr = this.c;
+            if (i < arrayListArr.length) {
+                if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents != null) {
+                    arrayListArr[i] = new ArrayList();
+                    for (int i3 = 0; i3 < tL_messages_stickerSet.documents.size(); i3++) {
+                        TLRPC.Document document = tL_messages_stickerSet.documents.get(i3);
+                        if (document == null) {
+                            this.c[i].add(null);
+                        } else {
+                            ?? obj = new Object();
+                            long j = document.id;
+                            for (int i4 = 0; i4 < tL_messages_stickerSet.packs.size() && ((arrayList = tL_messages_stickerSet.packs.get(i4).documents) == null || !arrayList.contains(Long.valueOf(j))); i4++) {
+                            }
+                            obj.a = tL_messages_stickerSet;
+                            obj.b = document.id;
+                            this.c[i].add(obj);
+                            if (this.f.B1) {
+                                TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
+                                if (stickerSet != null && !stickerSet.emojis) {
+                                    i2 = 10;
+                                } else {
+                                    i2 = 16;
+                                }
+                                if (this.c[i].size() >= i2) {
+                                    return;
+                                }
+                            } else {
+                                continue;
+                            }
+                        }
+                    }
+                    return;
+                }
+                arrayListArr[i] = new ArrayList(12);
+                for (int i5 = 0; i5 < 12; i5++) {
+                    this.c[i].add(null);
+                }
+            }
         }
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        float f;
-        float f2;
-        float f3;
-        float f4;
-        float f5;
-        setMeasuredDimension(View.MeasureSpec.getSize(i), gm.L(40.0f) + gm.n);
-        if (getMeasuredWidth() != this.I || this.c == null) {
-            TextPaint textPaint = this.a;
-            textPaint.setTextSize(gm.L(14.0f));
-            textPaint.setTypeface(gm.o());
-            String N0 = jb6.N0("Emoji");
-            int measuredWidth = getMeasuredWidth();
-            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            StaticLayout staticLayout = new StaticLayout(N0, textPaint, measuredWidth, alignment, 1.0f, 0.0f, false);
-            this.c = staticLayout;
-            float f6 = 0.0f;
-            if (staticLayout.getLineCount() >= 1) {
-                f = this.c.getLineWidth(0);
-            } else {
-                f = 0.0f;
-            }
-            this.d = f;
-            if (this.c.getLineCount() >= 1) {
-                f2 = this.c.getLineLeft(0);
-            } else {
-                f2 = 0.0f;
-            }
-            this.e = f2;
-            StaticLayout staticLayout2 = new StaticLayout(jb6.N0("AccDescrStickers"), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
-            this.f = staticLayout2;
-            if (staticLayout2.getLineCount() >= 1) {
-                f3 = this.f.getLineWidth(0);
-            } else {
-                f3 = 0.0f;
-            }
-            this.h = f3;
-            if (this.f.getLineCount() >= 1) {
-                f4 = this.f.getLineLeft(0);
-            } else {
-                f4 = 0.0f;
-            }
-            this.n = f4;
-            StaticLayout staticLayout3 = new StaticLayout(jb6.M0(2131754879, null), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
-            this.r = staticLayout3;
-            if (staticLayout3.getLineCount() >= 1) {
-                f5 = this.r.getLineWidth(0);
-            } else {
-                f5 = 0.0f;
-            }
-            this.s = f5;
-            if (this.r.getLineCount() >= 1) {
-                f6 = this.r.getLineLeft(0);
-            }
-            this.w = f6;
-            float L = gm.L(14.0f) / 2.0f;
-            float L2 = gm.L(66.0f) / 2.0f;
-            float measuredWidth2 = (getMeasuredWidth() - ((((((gm.L(12.0f) + this.d) + gm.L(36.0f)) + this.h) + gm.L(36.0f)) + this.s) + gm.L(12.0f))) / 2.0f;
-            this.x.set(measuredWidth2, L, this.d + measuredWidth2 + gm.L(24.0f), L2);
-            float L3 = this.d + gm.L(36.0f) + measuredWidth2;
-            this.y.set(L3, L, this.h + L3 + gm.L(24.0f), L2);
-            float L4 = this.h + gm.L(36.0f) + L3;
-            this.E.set(L4, L, this.s + L4 + gm.L(24.0f), L2);
-            gm.L(36.0f);
-        }
-        this.I = getMeasuredWidth();
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() != 0) {
-            if (motionEvent.getAction() == 1 && this.H != null) {
-                if (this.x.contains(motionEvent.getX(), motionEvent.getY())) {
-                    this.H.a(0);
-                    return true;
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        TLRPC.StickerSet stickerSet;
+        ar1 ar1Var;
+        if (i == kk7.A0) {
+            for (int i3 = 0; i3 < this.b.size(); i3++) {
+                if (this.b.get(i3) == null) {
+                    hq6 d0 = hq6.d0(this.d);
+                    ArrayList arrayList = this.a;
+                    TLRPC.TL_messages_stickerSet n0 = d0.n0((TLRPC.InputStickerSet) arrayList.get(i3), true);
+                    if (this.b.size() == 1 && n0 != null && (stickerSet = n0.set) != null && !stickerSet.emojis) {
+                        qx3 qx3Var = this.f;
+                        qx3Var.dismiss();
+                        Context context = qx3Var.getContext();
+                        d dVar = qx3Var.m1;
+                        TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) arrayList.get(i3);
+                        d dVar2 = qx3Var.m1;
+                        if (dVar2 instanceof mu1) {
+                            ar1Var = ((mu1) dVar2).a0;
+                        } else {
+                            ar1Var = null;
+                        }
+                        new u0b(context, dVar, inputStickerSet, null, ar1Var, qx3Var.J0).show();
+                        return;
+                    }
+                    this.b.set(i3, n0);
+                    if (n0 != null) {
+                        a(i3, n0);
+                    }
                 }
-                if (this.y.contains(motionEvent.getX(), motionEvent.getY())) {
-                    this.H.a(1);
-                    return true;
-                }
-                if (this.E.contains(motionEvent.getX(), motionEvent.getY())) {
-                    this.H.a(2);
-                }
-            } else {
-                return super.onTouchEvent(motionEvent);
+            }
+            qx3 qx3Var2 = ((bx3) this).h;
+            qx3Var2.I0();
+            hw hwVar = qx3Var2.q1;
+            if (hwVar != null && hwVar.getAdapter() != null) {
+                hwVar.getAdapter().f();
             }
         }
-        return true;
     }
 }

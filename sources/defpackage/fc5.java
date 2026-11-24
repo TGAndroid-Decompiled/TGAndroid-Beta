@@ -1,36 +1,32 @@
 package defpackage;
+public final class fc5 {
+    public final wxb a;
+    public long b;
+    public boolean c;
+    public int d;
+    public long e;
+    public boolean f;
+    public boolean g;
+    public boolean h;
+    public boolean i;
+    public boolean j;
+    public long k;
+    public long l;
+    public boolean m;
 
-import android.content.Context;
-public final class fc5 extends sq4 {
-    public final oc5 r;
-
-    public fc5(oc5 oc5Var, Context context, int i) {
-        super(context, i);
-        this.r = oc5Var;
+    public fc5(wxb wxbVar) {
+        this.a = wxbVar;
     }
 
-    @Override
-    public final void a(wc5 wc5Var) {
-        super.a(wc5Var);
-        this.r.v0();
-    }
-
-    @Override
-    public final void b() {
-        super.b();
-        this.r.v0();
-    }
-
-    @Override
-    public final void c(wc5 wc5Var) {
-        oc5 oc5Var = this.r;
-        if (wc5Var == oc5Var.Y) {
-            oc5Var.Y = null;
+    public final void a(int i) {
+        long j = this.l;
+        if (j != -9223372036854775807L) {
+            long j2 = this.b;
+            long j3 = this.k;
+            if (j2 != j3) {
+                boolean z = this.m;
+                this.a.a(j, z ? 1 : 0, (int) (j2 - j3), i, null);
+            }
         }
-        if (wc5Var == oc5Var.Z) {
-            oc5Var.Z = null;
-        }
-        super.c(wc5Var);
-        oc5Var.v0();
     }
 }

@@ -65,7 +65,7 @@ public interface CameraVideoCapturer extends VideoCapturer {
                 surfaceTextureHelper.getHandler().postDelayed(runnable, 2000L);
                 return;
             }
-            u36.j("SurfaceTextureHelper is null");
+            w26.j("SurfaceTextureHelper is null");
             throw null;
         }
 
@@ -79,7 +79,7 @@ public interface CameraVideoCapturer extends VideoCapturer {
             if (Thread.currentThread() == this.surfaceTextureHelper.getHandler().getLooper().getThread()) {
                 return;
             }
-            dq9.m("Wrong thread");
+            sc8.j("Wrong thread");
         }
 
         public void addFrame() {

@@ -1,189 +1,103 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.ViewGroup;
+import android.os.Bundle;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class nd6 extends w44 {
-    public final gd6 s0;
-    public boolean t0;
-    public int u0;
-    public int v0;
-    public TLRPC.MessageMedia w0;
-    public TL_stories.MediaArea x0;
+public final class nd6 implements Runnable {
+    public final byte a = 0;
+    public final qd6 b;
+    public final TLRPC.TL_error c;
+    public final Bundle d;
+    public final TLObject e;
 
-    public nd6(Context context, PointF pointF, int i, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f, int i2) {
-        super(context, pointF);
-        gd6 gd6Var = new gd6(context, f);
-        this.s0 = gd6Var;
-        gd6Var.setMaxWidth(i2);
-        r(i, messageMedia, mediaArea);
-        gd6Var.e(0, this.u0);
-        addView(gd6Var, qoe.e(-2, -2, 51));
-        setClipChildren(false);
-        setClipToPadding(false);
-        k();
+    public nd6(qd6 qd6Var, TLObject tLObject, Bundle bundle, TLRPC.TL_error tL_error) {
+        this.b = qd6Var;
+        this.e = tLObject;
+        this.d = bundle;
+        this.c = tL_error;
     }
 
-    public static String q(double d) {
+    @Override
+    public final void run() {
         String str;
-        String str2;
-        String str3;
-        double abs = Math.abs(d);
-        double floor = Math.floor(abs);
-        String str4 = "";
-        String k = hg9.k(new StringBuilder(""), (int) floor, "°");
-        double floor2 = Math.floor((abs - floor) * 60.0d);
-        StringBuilder sb = new StringBuilder(k);
-        if (floor2 > 0.0d) {
-            str = "";
-        } else {
-            str = "0";
+        byte b = this.a;
+        TLObject tLObject = this.e;
+        Bundle bundle = this.d;
+        TLRPC.TL_error tL_error = this.c;
+        qd6 qd6Var = this.b;
+        switch (b) {
+            case 0:
+                mf6 mf6Var = qd6Var.b0;
+                qd6Var.N = false;
+                qd6Var.w.invalidate();
+                if (tLObject != null) {
+                    qd6Var.T = bundle;
+                    TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject;
+                    qd6Var.U = tL_auth_sentCode;
+                    mf6Var.p1(bundle, tL_auth_sentCode, true);
+                    return;
+                } else if (tL_error != null && (str = tL_error.text) != null) {
+                    if (str.contains("PHONE_NUMBER_INVALID")) {
+                        mf6Var.y1(k96.M0(2131745878, null), k96.M0(2131748987, null));
+                        return;
+                    } else if (!tL_error.text.contains("PHONE_CODE_EMPTY") && !tL_error.text.contains("PHONE_CODE_INVALID")) {
+                        if (tL_error.text.contains("PHONE_CODE_EXPIRED")) {
+                            qd6Var.d(true);
+                            mf6Var.I1(0, true, null, true);
+                            mf6Var.y1(k96.M0(2131745878, null), k96.M0(2131752009, null));
+                            return;
+                        } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                            mf6Var.y1(k96.M0(2131745878, null), k96.M0(2131750670, null));
+                            return;
+                        } else if (tL_error.code != -1000) {
+                            String M0 = k96.M0(2131745878, null);
+                            mf6Var.y1(M0, k96.M0(2131751093, null) + "\n" + tL_error.text);
+                            return;
+                        } else {
+                            return;
+                        }
+                    } else {
+                        mf6Var.y1(k96.M0(2131745878, null), k96.M0(2131748991, null));
+                        return;
+                    }
+                } else {
+                    return;
+                }
+            default:
+                mf6 mf6Var2 = qd6Var.b0;
+                qd6Var.S = false;
+                if (tL_error == null) {
+                    mf6Var2.p1(bundle, (TLRPC.TL_auth_sentCode) tLObject, true);
+                } else {
+                    String str2 = tL_error.text;
+                    if (str2 != null) {
+                        if (str2.contains("PHONE_NUMBER_INVALID")) {
+                            mf6Var2.y1(k96.M0(2131745878, null), k96.M0(2131748987, null));
+                        } else if (!tL_error.text.contains("PHONE_CODE_EMPTY") && !tL_error.text.contains("PHONE_CODE_INVALID")) {
+                            if (tL_error.text.contains("PHONE_CODE_EXPIRED")) {
+                                qd6Var.d(true);
+                                mf6Var2.I1(0, true, null, true);
+                                mf6Var2.y1(k96.M0(2131745878, null), k96.M0(2131752009, null));
+                            } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                                mf6Var2.y1(k96.M0(2131745878, null), k96.M0(2131750670, null));
+                            } else if (tL_error.code != -1000) {
+                                String M02 = k96.M0(2131745878, null);
+                                mf6Var2.y1(M02, k96.M0(2131751093, null) + "\n" + tL_error.text);
+                            }
+                        } else {
+                            mf6Var2.y1(k96.M0(2131745878, null), k96.M0(2131748991, null));
+                        }
+                    }
+                }
+                mf6Var2.x1(false, true);
+                return;
         }
-        sb.append(str);
-        if (floor2 >= 10.0d) {
-            str2 = "";
-        } else {
-            str2 = "0";
-        }
-        sb.append(str2);
-        String k2 = hg9.k(sb, (int) floor2, "'");
-        double floor3 = Math.floor(Math.floor(floor2) * 60.0d);
-        StringBuilder sb2 = new StringBuilder(k2);
-        if (floor3 > 0.0d) {
-            str3 = "";
-        } else {
-            str3 = "0";
-        }
-        sb2.append(str3);
-        if (floor3 < 10.0d) {
-            str4 = "0";
-        }
-        sb2.append(str4);
-        return hg9.k(sb2, (int) floor3, "\"");
     }
 
-    @Override
-    public final v44 a() {
-        return new n66(this, getContext());
-    }
-
-    public int getColor() {
-        return this.u0;
-    }
-
-    @Override
-    public float getMaxScale() {
-        return 1.5f;
-    }
-
-    @Override
-    public o49 getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new Object();
-        }
-        float scaleX = viewGroup.getScaleX();
-        float scale = getScale();
-        float L = (gm.L(64.0f) / scaleX) + (scale * getMeasuredWidth());
-        float scale2 = getScale();
-        float L2 = (gm.L(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float e = hg9.e(L, 2.0f, getPositionX(), scaleX);
-        return new o49(e, hg9.e(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + e) - e, L2 * scaleX);
-    }
-
-    @Override
-    public float getStickyPaddingBottom() {
-        return this.s0.K;
-    }
-
-    @Override
-    public float getStickyPaddingLeft() {
-        return this.s0.J;
-    }
-
-    @Override
-    public float getStickyPaddingRight() {
-        return this.s0.J;
-    }
-
-    @Override
-    public float getStickyPaddingTop() {
-        return this.s0.K;
-    }
-
-    public int getType() {
-        return this.v0;
-    }
-
-    public int getTypesCount() {
-        return this.s0.getTypesCount() - (!this.t0 ? 1 : 0);
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        k();
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        k();
-    }
-
-    public final void r(int i, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea) {
-        String str;
-        String str2;
-        String str3;
-        this.w0 = messageMedia;
-        this.x0 = mediaArea;
-        String str4 = null;
-        if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
-            TLRPC.GeoPoint geoPoint = messageMedia.geo;
-            double d = geoPoint.lat;
-            double d2 = geoPoint._long;
-            StringBuilder sb = new StringBuilder(q(d));
-            if (d > 0.0d) {
-                str2 = "N";
-            } else {
-                str2 = "S";
-            }
-            sb.append(str2);
-            sb.append(" ");
-            sb.append(q(d2));
-            if (d2 > 0.0d) {
-                str3 = "E";
-            } else {
-                str3 = "W";
-            }
-            sb.append(str3);
-            str = sb.toString();
-        } else if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
-            String upperCase = messageMedia.title.toUpperCase();
-            str4 = ((TLRPC.TL_messageMediaVenue) messageMedia).emoji;
-            str = upperCase;
-        } else {
-            str = "";
-        }
-        gd6 gd6Var = this.s0;
-        gd6Var.d(i, str4);
-        gd6Var.setText(str);
-        m();
-    }
-
-    public void setColor(int i) {
-        this.t0 = true;
-        this.u0 = i;
-    }
-
-    public void setMaxWidth(int i) {
-        this.s0.setMaxWidth(i);
-    }
-
-    public void setType(int i) {
-        this.v0 = i;
-        this.s0.e(i, this.u0);
+    public nd6(qd6 qd6Var, TLRPC.TL_error tL_error, Bundle bundle, TLObject tLObject) {
+        this.b = qd6Var;
+        this.c = tL_error;
+        this.d = bundle;
+        this.e = tLObject;
     }
 }

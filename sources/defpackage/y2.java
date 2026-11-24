@@ -26,7 +26,7 @@ public abstract class y2 implements List, Collection {
             return false;
         }
         for (Object obj2 : this) {
-            if (rr5.a(obj2, obj)) {
+            if (rp5.a(obj2, obj)) {
                 return true;
             }
         }
@@ -62,7 +62,7 @@ public abstract class y2 implements List, Collection {
         }
         Iterator it = collection.iterator();
         for (Object obj2 : this) {
-            if (!rr5.a(obj2, it.next())) {
+            if (!rp5.a(obj2, it.next())) {
                 return false;
             }
         }
@@ -91,7 +91,7 @@ public abstract class y2 implements List, Collection {
     public int indexOf(Object obj) {
         int i = 0;
         for (Object obj2 : this) {
-            if (rr5.a(obj2, obj)) {
+            if (rp5.a(obj2, obj)) {
                 return i;
             }
             i++;
@@ -116,7 +116,7 @@ public abstract class y2 implements List, Collection {
     public int lastIndexOf(Object obj) {
         ListIterator listIterator = listIterator(size());
         while (listIterator.hasPrevious()) {
-            if (rr5.a(listIterator.previous(), obj)) {
+            if (rp5.a(listIterator.previous(), obj)) {
                 return listIterator.nextIndex();
             }
         }
@@ -161,11 +161,11 @@ public abstract class y2 implements List, Collection {
     @Override
     public Object[] toArray(Object[] objArr) {
         objArr.getClass();
-        return ea3.c(this, objArr);
+        return s83.c(this, objArr);
     }
 
     public final String toString() {
-        return km2.f(this, ", ", "[", "]", new z1(this, (byte) 0), 24);
+        return yk2.f(this, ", ", "[", "]", new z1(this, (byte) 0), 24);
     }
 
     @Override
@@ -190,6 +190,6 @@ public abstract class y2 implements List, Collection {
 
     @Override
     public Object[] toArray() {
-        return ea3.b(this);
+        return s83.b(this);
     }
 }

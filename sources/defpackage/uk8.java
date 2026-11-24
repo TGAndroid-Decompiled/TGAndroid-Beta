@@ -1,3 +1,6 @@
 package defpackage;
-public abstract class uk8 {
+public final class uk8 {
+    public final cv5 serializer() {
+        return tk8.a;
+    }
 }

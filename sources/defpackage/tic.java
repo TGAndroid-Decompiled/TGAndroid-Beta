@@ -1,82 +1,74 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-public final class tic extends FrameLayout {
-    public String a;
-    public final ImageView b;
-    public final TextView c;
-    public boolean d;
-    public final lhc e;
-    public final RectF f;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.zip.Inflater;
+public final class tic implements uab {
+    public static final x33 e;
+    public final xu7 a = new xu7();
+    public final xu7 b = new xu7();
+    public final sic c;
+    public Inflater d;
 
-    public tic(Context context, lhc lhcVar, int i) {
-        super(context);
-        this.f = new RectF();
-        setFocusable(true);
-        setFocusableInTouchMode(true);
-        this.e = lhcVar;
-        lhcVar.a(this);
-        ImageView imageView = new ImageView(context);
-        this.b = imageView;
-        addView(imageView, qoe.d(24, 24.0f, 16, 8.0f, 2.0f, 8.0f, 2.0f));
-        TextView textView = new TextView(context);
-        this.c = textView;
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 14.0f);
-        addView(textView, qoe.d(-2, -2.0f, 16, i != 0 ? 36.0f : 14.0f, 2.0f, 14.0f, 2.0f));
+    static {
+        km5 km5Var = mm5.b;
+        e = new x33(-9223372036854775807L, -9223372036854775807L, w59.e);
+    }
+
+    public tic(List list) {
+        String[] split;
+        int i;
+        sic sicVar = new sic();
+        this.c = sicVar;
+        String trim = new String((byte[]) list.get(0), StandardCharsets.UTF_8).trim();
+        String str = g8c.a;
+        for (String str2 : trim.split("\\r?\\n", -1)) {
+            if (str2.startsWith("palette: ")) {
+                String[] split2 = str2.substring(9).split(",", -1);
+                sicVar.f = new int[split2.length];
+                for (int i2 = 0; i2 < split2.length; i2++) {
+                    int[] iArr = sicVar.f;
+                    try {
+                        i = Integer.parseInt(split2[i2].trim(), 16);
+                    } catch (RuntimeException e2) {
+                        lad.g("VobsubParser", "Parsing color failed", e2);
+                        i = 0;
+                    }
+                    iArr[i2] = i;
+                }
+            } else if (str2.startsWith("size: ")) {
+                String[] split3 = str2.substring(6).trim().split("x", -1);
+                if (split3.length != 2) {
+                    lad.f("VobsubParser", "Ignoring malformed IDX size line: '" + str2 + "'");
+                } else {
+                    try {
+                        sicVar.g = Integer.parseInt(split3[0]);
+                        sicVar.h = Integer.parseInt(split3[1]);
+                        sicVar.d = true;
+                    } catch (RuntimeException e3) {
+                        lad.g("VobsubParser", "Parsing IDX failed", e3);
+                    }
+                }
+            }
+        }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Paint b;
-        Paint b2;
-        Paint b3;
-        RectF rectF = this.f;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        float x = ((View) getParent()).getX() + getX();
-        float y = ((View) getParent()).getY() + getY();
-        lhc lhcVar = this.e;
-        lhcVar.d(x, y);
-        Paint paint = lhcVar.l;
-        if (this.d) {
-            b = paint;
-        } else {
-            b = lhcVar.b();
-        }
-        int alpha = b.getAlpha();
-        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), alpha, 31);
-        if (this.d) {
-            b2 = paint;
-        } else {
-            b2 = lhcVar.b();
-        }
-        b2.setAlpha(255);
-        float L = gm.L(16.0f);
-        float L2 = gm.L(16.0f);
-        if (this.d) {
-            b3 = paint;
-        } else {
-            b3 = lhcVar.b();
-        }
-        canvas.drawRoundRect(rectF, L, L2, b3);
-        if (!this.d) {
-            paint = lhcVar.b();
-        }
-        paint.setAlpha(alpha);
-        if (lhcVar.e) {
-            int alpha2 = ((Paint) lhcVar.d.a).getAlpha();
-            ((Paint) lhcVar.d.a).setAlpha(255);
-            canvas.drawRoundRect(rectF, gm.L(16.0f), gm.L(16.0f), (Paint) lhcVar.d.a);
-            ((Paint) lhcVar.d.a).setAlpha(alpha2);
-        }
-        canvas.restore();
-        super.dispatchDraw(canvas);
+    public final kab f(int i, int i2, byte[] bArr) {
+        return de9.c(this, bArr, i2);
+    }
+
+    @Override
+    public final void l(byte[] r26, int r27, int r28, defpackage.tab r29, defpackage.us2 r30) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.tic.l(byte[], int, int, tab, us2):void");
+    }
+
+    @Override
+    public final int o() {
+        return 2;
+    }
+
+    @Override
+    public final void reset() {
     }
 }

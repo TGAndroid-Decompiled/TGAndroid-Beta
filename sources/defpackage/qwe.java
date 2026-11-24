@@ -1,9 +1,12 @@
 package defpackage;
-public abstract class qwe {
-    public static String a(String str) {
-        if (!"null".equals(str) && !"".equals(str)) {
-            return str;
-        }
-        return null;
+public final class qwe {
+    public final lre a;
+    public final kxe b;
+    public final tqe c;
+
+    public qwe(rod rodVar) {
+        this.a = (lre) rodVar.b;
+        this.b = (kxe) rodVar.c;
+        this.c = (tqe) rodVar.d;
     }
 }

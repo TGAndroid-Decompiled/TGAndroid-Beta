@@ -6,16 +6,16 @@ import android.content.Intent;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.util.Log;
-public class WearAuthListenerService extends Service implements nh1 {
+public class WearAuthListenerService extends Service implements fg1 {
     public static final int r = 0;
     public ComponentName a;
-    public w4f b;
-    public g7d c;
+    public u2f b;
+    public e5d c;
     public Intent d;
     public Looper e;
     public boolean h;
     public final Object f = new Object();
-    public final bed n = new bed(new Object());
+    public final zbd n = new zbd(new Object());
 
     @Override
     public final android.os.IBinder onBind(android.content.Intent r4) {
@@ -36,11 +36,11 @@ public class WearAuthListenerService extends Service implements nh1 {
             looper = handlerThread.getLooper();
             this.e = looper;
         }
-        this.b = new w4f(this, looper);
+        this.b = new u2f(this, looper);
         Intent intent = new Intent("com.google.android.gms.wearable.BIND_LISTENER");
         this.d = intent;
         intent.setComponent(this.a);
-        this.c = new g7d(this);
+        this.c = new e5d(this);
     }
 
     @Override
@@ -50,10 +50,10 @@ public class WearAuthListenerService extends Service implements nh1 {
         }
         synchronized (this.f) {
             this.h = true;
-            w4f w4fVar = this.b;
-            if (w4fVar != null) {
-                w4fVar.getLooper().quit();
-                w4fVar.a("quit");
+            u2f u2fVar = this.b;
+            if (u2fVar != null) {
+                u2fVar.getLooper().quit();
+                u2fVar.a("quit");
             } else {
                 throw new IllegalStateException("onDestroy: mServiceHandler not set, did you override onCreate() but forget to call super.onCreate()? component=".concat(String.valueOf(this.a)));
             }
@@ -62,18 +62,18 @@ public class WearAuthListenerService extends Service implements nh1 {
     }
 
     @Override
-    public final void a(pgd pgdVar) {
+    public final void a(oed oedVar) {
     }
 
     @Override
-    public final void b(pgd pgdVar) {
+    public final void b(oed oedVar) {
     }
 
     @Override
-    public final void c(pgd pgdVar) {
+    public final void c(oed oedVar) {
     }
 
     @Override
-    public final void d(pgd pgdVar) {
+    public final void d(oed oedVar) {
     }
 }

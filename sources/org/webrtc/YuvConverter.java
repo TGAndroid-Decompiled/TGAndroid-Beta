@@ -109,7 +109,7 @@ public class YuvConverter {
                     i3 = i3;
                     byteBuffer = nativeAllocateByteBuffer;
                     b = 1;
-                    fc4.g(e, true);
+                    fa4.g(e, true);
                     int i8 = i * height;
                     int i9 = i / 2;
                     int i10 = i8 + i9;
@@ -124,7 +124,7 @@ public class YuvConverter {
                     byteBuffer.limit(i10 + i11);
                     ByteBuffer slice3 = byteBuffer.slice();
                     textureBuffer2.release();
-                    return JavaI420Buffer.wrap(width, height, slice, i, slice2, i, slice3, i, new xu5(byteBuffer, b));
+                    return JavaI420Buffer.wrap(width, height, slice, i, slice2, i, slice3, i, new ys5(byteBuffer, b));
                 }
                 try {
                     GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
@@ -134,7 +134,7 @@ public class YuvConverter {
                 } catch (Exception e2) {
                     e = e2;
                     b = 1;
-                    fc4.g(e, true);
+                    fa4.g(e, true);
                     int i82 = i * height;
                     int i92 = i / 2;
                     int i102 = i82 + i92;
@@ -149,7 +149,7 @@ public class YuvConverter {
                     byteBuffer.limit(i102 + i112);
                     ByteBuffer slice32 = byteBuffer.slice();
                     textureBuffer2.release();
-                    return JavaI420Buffer.wrap(width, height, slice4, i, slice22, i, slice32, i, new xu5(byteBuffer, b));
+                    return JavaI420Buffer.wrap(width, height, slice4, i, slice22, i, slice32, i, new ys5(byteBuffer, b));
                 }
             } catch (Exception e3) {
                 e = e3;
@@ -174,7 +174,7 @@ public class YuvConverter {
         byteBuffer.limit(i1022 + i1122);
         ByteBuffer slice322 = byteBuffer.slice();
         textureBuffer2.release();
-        return JavaI420Buffer.wrap(width, height, slice42, i, slice222, i, slice322, i, new xu5(byteBuffer, b));
+        return JavaI420Buffer.wrap(width, height, slice42, i, slice222, i, slice322, i, new ys5(byteBuffer, b));
     }
 
     public void release() {

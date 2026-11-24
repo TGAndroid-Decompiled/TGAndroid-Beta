@@ -1,32 +1,33 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class i0b {
-    public final String a;
-    public final String b;
-    public final j0b c;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d;
+public final class i0b extends taa {
+    public final u0b U2;
 
-    public i0b(String str, String str2, j0b j0bVar) {
-        this.a = str;
-        this.b = str2;
-        this.c = j0bVar;
+    public i0b(u0b u0bVar, Context context, String str, String str2, wjb wjbVar) {
+        super(context, null, str, false, str2, false, wjbVar);
+        this.U2 = u0bVar;
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof i0b) {
-                i0b i0bVar = (i0b) obj;
-                if (this.a.equals(i0bVar.a) && this.b.equals(i0bVar.b) && this.c.equals(i0bVar.c)) {
-                    return true;
-                }
-                return false;
+    @Override
+    public final void I() {
+        super.I();
+        d dVar = this.U2.F1;
+        if (dVar instanceof mu1) {
+            gl.V2(dVar.getParentActivity(), dVar.getClassGuid());
+            if (((mu1) dVar).a0.getVisibility() == 0) {
+                dVar.getFragmentView().requestLayout();
             }
-            return false;
         }
-        return true;
     }
 
-    public final int hashCode() {
-        return Objects.hash(this.a, this.b, this.c);
+    @Override
+    public final void L0(vf6 vf6Var, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+        if (!z) {
+            return;
+        }
+        gl.d3(new t79(this, vf6Var, i, (byte) 17), 100L);
     }
 }

@@ -1,26 +1,33 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-public final class ly5 extends e99 {
-    public final Bitmap F;
-    public final sa8 G;
+import android.content.DialogInterface;
+import org.telegram.ui.LaunchActivity;
+public final class ly5 implements DialogInterface.OnDismissListener {
+    public final byte a;
+    public final LaunchActivity b;
 
-    public ly5(sa8 sa8Var, Context context, hw7 hw7Var, Bitmap bitmap, Bitmap bitmap2) {
-        super(context, hw7Var, bitmap, null, null);
-        this.G = sa8Var;
-        this.F = bitmap2;
+    public ly5(LaunchActivity launchActivity, byte b) {
+        this.a = b;
+        this.b = launchActivity;
     }
 
     @Override
-    public final void g(u11 u11Var) {
-        int indexOf = u11.a.indexOf(u11Var);
-        int i = indexOf + 1;
-        if (i <= 1 || this.F != null) {
-            indexOf = i;
+    public final void onDismiss(DialogInterface dialogInterface) {
+        byte b = this.a;
+        LaunchActivity launchActivity = this.b;
+        switch (b) {
+            case 0:
+                String str = LaunchActivity.C1;
+                launchActivity.w1 = false;
+                return;
+            case 1:
+                String str2 = LaunchActivity.C1;
+                gl.d3(new rx5(launchActivity, (byte) 7), 30000L);
+                return;
+            default:
+                String str3 = LaunchActivity.C1;
+                gl.d3(new rx5(launchActivity, (byte) 10), 30000L);
+                return;
         }
-        sa8 sa8Var = this.G;
-        sa8Var.j1.b(indexOf);
-        sa8Var.s(u11Var);
     }
 }

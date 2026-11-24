@@ -1,3 +1,3 @@
 package defpackage;
-public final class pgf {
+public interface pgf {
 }

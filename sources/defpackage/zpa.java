@@ -1,45 +1,35 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class zpa implements RequestDelegate {
-    public final byte a = 1;
-    public final wsa b;
-    public final long c;
-    public final long d;
-    public final long e;
-    public final Object f;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class zpa extends FrameLayout {
+    public final int[] a;
+    public final aqa b;
 
-    public zpa(wsa wsaVar, long j, long j2, qac qacVar, long j3) {
-        this.b = wsaVar;
-        this.c = j;
-        this.d = j2;
-        this.f = qacVar;
-        this.e = j3;
+    public zpa(aqa aqaVar, Context context) {
+        super(context);
+        this.b = aqaVar;
+        this.a = new int[2];
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        byte b = this.a;
-        Object obj = this.f;
-        switch (b) {
-            case 0:
-                wsa wsaVar = this.b;
-                wsaVar.getClass();
-                gm.c3(new gqa(wsaVar, (he) obj, tLObject, this.c, this.d, this.e, tL_error));
-                return;
-            default:
-                gm.c3(new gqa(this.b, tLObject, this.c, this.d, (qac) obj, tL_error, this.e));
-                return;
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        FrameLayout frameLayout;
+        super.onLayout(z, i, i2, i3, i4);
+        aqa aqaVar = this.b;
+        xf5 xf5Var = aqaVar.i;
+        if (xf5Var != null && xf5Var.d.getChildCount() >= 2 && aqaVar.t != null && (frameLayout = aqaVar.m) != null) {
+            int[] iArr = this.a;
+            frameLayout.getLocationInWindow(iArr);
+            float translationX = iArr[0] - aqaVar.m.getTranslationX();
+            float translationY = iArr[1] - aqaVar.m.getTranslationY();
+            View childAt = xf5Var.d.getChildAt(1);
+            childAt.getLocationInWindow(iArr);
+            float translationY2 = iArr[1] - childAt.getTranslationY();
+            je5 je5Var = aqaVar.t;
+            je5Var.setTranslationY(((translationY2 - translationY) - je5Var.getMeasuredHeight()) - xf5Var.getMeasuredHeight());
+            aqaVar.t.o(0.0f, ((childAt.getMeasuredWidth() / 2.0f) + ((iArr[0] - childAt.getTranslationX()) - translationX)) - gl.L(12.0f));
         }
-    }
-
-    public zpa(wsa wsaVar, he heVar, long j, long j2, long j3) {
-        this.b = wsaVar;
-        this.f = heVar;
-        this.c = j;
-        this.d = j2;
-        this.e = j3;
     }
 }

@@ -1,17 +1,23 @@
 package defpackage;
-public final class tmd implements cq7 {
-    public static final tmd a = new Object();
 
-    static {
-        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)));
-    }
+import j$.util.DesugarCollections;
+import java.util.List;
+public abstract class tmd {
+    public static final vnd a = new Object();
+    public static final wnd b = new Object();
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+    public void a(Object obj, long j) {
+        Object unmodifiableList;
+        List list = (List) uzd.l(obj, j);
+        if (list instanceof omd) {
+            unmodifiableList = ((omd) list).g();
+        } else if (vnd.c.isAssignableFrom(list.getClass())) {
+            return;
+        } else {
+            unmodifiableList = DesugarCollections.unmodifiableList(list);
         }
-        throw new ClassCastException();
+        uzd.d(obj, j, unmodifiableList);
     }
+
+    public abstract void b(vid vidVar, vid vidVar2, long j);
 }

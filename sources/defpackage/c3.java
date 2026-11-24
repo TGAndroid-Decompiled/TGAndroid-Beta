@@ -33,7 +33,7 @@ public class c3 implements Iterator {
         if (l3Var.c == ((Collection) this.c)) {
             return;
         }
-        zg.b();
+        zf.b();
     }
 
     public final void b() {
@@ -44,7 +44,7 @@ public class c3 implements Iterator {
                 l3 l3Var = (l3) obj;
                 l3Var.zzb();
                 if (l3Var.c != ((Collection) this.c)) {
-                    zg.b();
+                    zf.b();
                     return;
                 }
                 return;
@@ -52,7 +52,7 @@ public class c3 implements Iterator {
                 l3 l3Var2 = (l3) obj;
                 l3Var2.zzb();
                 if (l3Var2.c != ((Collection) this.c)) {
-                    zg.b();
+                    zf.b();
                     return;
                 }
                 return;
@@ -110,14 +110,14 @@ public class c3 implements Iterator {
                 Map.Entry entry3 = (Map.Entry) it.next();
                 this.c = (Collection) entry3.getValue();
                 Object key = entry3.getKey();
-                wjf wjfVar = (wjf) ((d3) obj).e;
+                vhf vhfVar = (vhf) ((d3) obj).e;
                 List list = (List) ((Collection) entry3.getValue());
                 if (list instanceof RandomAccess) {
-                    l3Var = new l3(wjfVar, key, list, (l3) null);
+                    l3Var = new l3(vhfVar, key, list, (l3) null);
                 } else {
-                    l3Var = new l3(wjfVar, key, list, (l3) null);
+                    l3Var = new l3(vhfVar, key, list, (l3) null);
                 }
-                return new cbd(key, l3Var);
+                return new a9d(key, l3Var);
             case 5:
                 b();
                 return it.next();
@@ -125,14 +125,14 @@ public class c3 implements Iterator {
                 Map.Entry entry4 = (Map.Entry) it.next();
                 this.c = (Collection) entry4.getValue();
                 Object key2 = entry4.getKey();
-                l9d l9dVar = (l9d) ((d3) obj).e;
+                j7d j7dVar = (j7d) ((d3) obj).e;
                 List list2 = (List) ((Collection) entry4.getValue());
                 if (list2 instanceof RandomAccess) {
-                    l3Var2 = new l3(l9dVar, key2, list2, (l3) null);
+                    l3Var2 = new l3(j7dVar, key2, list2, (l3) null);
                 } else {
-                    l3Var2 = new l3(l9dVar, key2, list2, (l3) null);
+                    l3Var2 = new l3(j7dVar, key2, list2, (l3) null);
                 }
-                return new vdd(key2, l3Var2);
+                return new tbd(key2, l3Var2);
             default:
                 Map.Entry entry5 = (Map.Entry) it.next();
                 this.c = entry5;
@@ -151,9 +151,9 @@ public class c3 implements Iterator {
                 if (((Collection) this.c) != null) {
                     z = true;
                 }
-                jte.o("no calls to next() since the last call to remove()", z);
+                gre.o("no calls to next() since the last call to remove()", z);
                 it.remove();
-                ((zi7) ((d3) obj).e).f -= ((Collection) this.c).size();
+                ((wg7) ((d3) obj).e).f -= ((Collection) this.c).size();
                 ((Collection) this.c).clear();
                 this.c = null;
                 return;
@@ -161,7 +161,7 @@ public class c3 implements Iterator {
                 if (((Map.Entry) this.c) != null) {
                     z = true;
                 }
-                jte.o("no calls to next() since the last call to remove()", z);
+                gre.o("no calls to next() since the last call to remove()", z);
                 Collection collection = (Collection) ((Map.Entry) this.c).getValue();
                 it.remove();
                 ((e3) obj).c.f -= collection.size();
@@ -171,14 +171,14 @@ public class c3 implements Iterator {
             case 2:
                 it.remove();
                 l3 l3Var = (l3) obj;
-                ((zi7) l3Var.f).f--;
+                ((wg7) l3Var.f).f--;
                 l3Var.j();
                 return;
             case 3:
                 it.remove();
                 l3 l3Var2 = (l3) obj;
-                l9d l9dVar = (l9d) l3Var2.f;
-                l9dVar.d--;
+                j7d j7dVar = (j7d) l3Var2.f;
+                j7dVar.d--;
                 l3Var2.l();
                 return;
             case 4:
@@ -192,7 +192,7 @@ public class c3 implements Iterator {
                     this.c = null;
                     return;
                 }
-                dq9.m("no calls to next() since the last call to remove()");
+                sc8.j("no calls to next() since the last call to remove()");
                 return;
             case 5:
                 it.remove();
@@ -204,12 +204,12 @@ public class c3 implements Iterator {
                 }
                 if (z) {
                     it.remove();
-                    ((l9d) ((d3) obj).e).d -= ((Collection) this.c).size();
+                    ((j7d) ((d3) obj).e).d -= ((Collection) this.c).size();
                     ((Collection) this.c).clear();
                     this.c = null;
                     return;
                 }
-                dq9.m("no calls to next() since the last call to remove()");
+                sc8.j("no calls to next() since the last call to remove()");
                 return;
             default:
                 Map.Entry entry = (Map.Entry) this.c;
@@ -219,12 +219,12 @@ public class c3 implements Iterator {
                 if (z) {
                     Collection collection2 = (Collection) entry.getValue();
                     it.remove();
-                    ((f7d) obj).c.d -= collection2.size();
+                    ((d5d) obj).c.d -= collection2.size();
                     collection2.clear();
                     this.c = null;
                     return;
                 }
-                dq9.m("no calls to next() since the last call to remove()");
+                sc8.j("no calls to next() since the last call to remove()");
                 return;
         }
     }
@@ -245,13 +245,13 @@ public class c3 implements Iterator {
     public c3(d3 d3Var, byte b) {
         this.a = (byte) 4;
         this.d = d3Var;
-        this.b = ((dq2) d3Var.d).entrySet().iterator();
+        this.b = ((so2) d3Var.d).entrySet().iterator();
     }
 
     public c3(d3 d3Var, char c) {
         this.a = (byte) 6;
         this.d = d3Var;
-        this.b = ((dq2) d3Var.d).entrySet().iterator();
+        this.b = ((so2) d3Var.d).entrySet().iterator();
     }
 
     public c3(l3 l3Var, ListIterator listIterator, byte b) {

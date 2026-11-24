@@ -1,27 +1,15 @@
 package defpackage;
+public final class uub extends i49 {
+    public int a;
+    public int b;
+    public final qvb c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class uub extends AnimatorListenerAdapter {
-    public final byte a;
-    public final vub b;
-
-    public uub(vub vubVar, byte b) {
-        this.a = b;
-        this.b = vubVar;
+    public uub(qvb qvbVar) {
+        this.c = qvbVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        vub vubVar = this.b;
-        switch (b) {
-            case 0:
-                vubVar.b.s.setVisibility(8);
-                return;
-            default:
-                vubVar.b.a.setVisibility(8);
-                return;
-        }
+    public final void b(androidx.recyclerview.widget.RecyclerView r5, int r6, int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.uub.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
     }
 }

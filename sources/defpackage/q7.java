@@ -12,56 +12,48 @@ import java.util.HashSet;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class q7 extends FrameLayout implements g94, vlb {
+public final class q7 extends FrameLayout implements x74, tjb {
     public int E;
     public int F;
-    public sn2 G;
+    public fm2 G;
     public int H;
     public int I;
     public ColorFilter J;
     public int K;
-    public final fn0 a;
-    public sn2 b;
-    public final bf0 c;
+    public final fm0 a;
+    public fm2 b;
+    public final be0 c;
     public final ImageView d;
     public final TextView e;
-    public sh4 f;
+    public rf4 f;
     public final b1 h;
-    public final ylb n;
+    public final wjb n;
     public boolean r;
     public boolean s;
     public int w;
     public int x;
-    public sn2 y;
+    public fm2 y;
 
-    public q7(Context context, ylb ylbVar) {
+    public q7(Context context, wjb wjbVar) {
         super(context);
-        this.a = new fn0(0, this, d53.h, 380L, false);
+        this.a = new fm0(0, this, s33.h, 380L, false);
         this.h = new b1(this, (byte) 4);
-        this.n = ylbVar;
-        bf0 bf0Var = new bf0(context);
-        this.c = bf0Var;
-        addView(bf0Var, qoe.c(32.0f, 32));
+        this.n = wjbVar;
+        be0 be0Var = new be0(context);
+        this.c = be0Var;
+        addView(be0Var, nme.c(32.0f, 32));
         ImageView imageView = new ImageView(context);
         this.d = imageView;
-        imageView.setImageResource(2131231273);
-        addView(imageView, qoe.d(24, 24.0f, 16, 8.0f, 0.0f, 0.0f, 0.0f));
+        imageView.setImageResource(2131231272);
+        addView(imageView, nme.d(24, 24.0f, 16, 8.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.e = textView;
         textView.setSingleLine();
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setTextSize(1, 14.0f);
-        addView(textView, qoe.d(-2, -2.0f, 16, 38.0f, 0.0f, 12.0f, 0.0f));
-        this.x = gm.L(28.0f);
+        addView(textView, nme.d(-2, -2.0f, 16, 38.0f, 0.0f, 12.0f, 0.0f));
+        this.x = gl.L(28.0f);
         updateColors();
-    }
-
-    @Override
-    public final void D(int i, float f, float f2, h94 h94Var) {
-        if (i == 0) {
-            updateColors();
-            invalidate();
-        }
     }
 
     @Override
@@ -69,85 +61,93 @@ public final class q7 extends FrameLayout implements g94, vlb {
         float width = getWidth();
         float height = getHeight();
         int i = this.x;
-        canvas.drawRoundRect(0.0f, 0.0f, width, height, i, i, cmb.l0(this.w));
+        canvas.drawRoundRect(0.0f, 0.0f, width, height, i, i, bkb.l0(this.w));
         super.dispatchDraw(canvas);
     }
 
-    public sh4 getFilter() {
+    public rf4 getFilter() {
         return this.f;
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
         if (this.s) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(gm.L(135.0f), Integer.MIN_VALUE), i2);
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(gl.L(135.0f), Integer.MIN_VALUE), i2);
         } else {
             super.onMeasure(i, i2);
         }
     }
 
-    public void setData(sh4 sh4Var) {
-        this.f = sh4Var;
+    @Override
+    public final void p(int i, float f, float f2, y74 y74Var) {
+        if (i == 0) {
+            updateColors();
+            invalidate();
+        }
+    }
+
+    public void setData(rf4 rf4Var) {
+        this.f = rf4Var;
         this.s = false;
-        String str = sh4Var.c;
+        String str = rf4Var.c;
         if (str == null) {
-            str = jb6.M0(sh4Var.b, null);
+            str = k96.M0(rf4Var.b, null);
         }
         this.e.setText(str);
-        sn2 M = cmb.M(gm.L(32.0f), sh4Var.a);
+        fm2 M = bkb.M(gl.L(32.0f), rf4Var.a);
         this.b = M;
-        int i = cmb.Ei;
-        ylb ylbVar = this.n;
-        cmb.z1(M, cmb.v0(i, ylbVar), false);
-        sn2 sn2Var = this.b;
-        int i2 = cmb.Ii;
-        cmb.z1(sn2Var, cmb.v0(i2, ylbVar), true);
-        byte b = sh4Var.d;
+        int i = bkb.Ei;
+        wjb wjbVar = this.n;
+        bkb.z1(M, bkb.v0(i, wjbVar), false);
+        fm2 fm2Var = this.b;
+        int i2 = bkb.Ii;
+        bkb.z1(fm2Var, bkb.v0(i2, wjbVar), true);
+        byte b = rf4Var.d;
         float f = 16.0f;
-        bf0 bf0Var = this.c;
+        be0 be0Var = this.c;
         if (b == 4) {
-            TLObject tLObject = sh4Var.f;
+            TLObject tLObject = rf4Var.f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (z8c.h(z8c.t0).f().id == user.id) {
-                    sn2 M2 = cmb.M(gm.L(32.0f), 2131231003);
-                    int L = gm.L(16.0f);
-                    int L2 = gm.L(16.0f);
+                if (y6c.h(y6c.t0).f().id == user.id) {
+                    fm2 M2 = bkb.M(gl.L(32.0f), 2131231002);
+                    int L = gl.L(16.0f);
+                    int L2 = gl.L(16.0f);
                     M2.e = L;
                     M2.f = L2;
-                    cmb.z1(M2, cmb.v0(i, ylbVar), false);
-                    cmb.z1(M2, cmb.v0(i2, ylbVar), true);
-                    bf0Var.setImageDrawable(M2);
+                    bkb.z1(M2, bkb.v0(i, wjbVar), false);
+                    bkb.z1(M2, bkb.v0(i2, wjbVar), true);
+                    be0Var.setImageDrawable(M2);
                     return;
                 }
-                bf0Var.getImageReceiver().q0(gm.L(16.0f));
-                bf0Var.getImageReceiver().U(user, this.b, null);
+                be0Var.getImageReceiver().q0(gl.L(16.0f));
+                be0Var.getImageReceiver().U(user, this.b, null);
             } else if (tLObject instanceof TLRPC.Chat) {
                 TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                this.s = sd2.Y(chat);
-                ImageReceiver imageReceiver = bf0Var.getImageReceiver();
+                this.s = hc2.Y(chat);
+                ImageReceiver imageReceiver = be0Var.getImageReceiver();
                 if (this.s) {
                     f = 10.0f;
                 }
-                int L3 = gm.L(f);
+                int L3 = gl.L(f);
                 this.x = L3;
                 imageReceiver.q0(L3);
-                bf0Var.getImageReceiver().U(chat, this.b, null);
+                be0Var.getImageReceiver().U(chat, this.b, null);
             }
         } else if (b == 7) {
-            sn2 M3 = cmb.M(gm.L(32.0f), 2131230996);
-            int L4 = gm.L(16.0f);
-            int L5 = gm.L(16.0f);
+            fm2 M3 = bkb.M(gl.L(32.0f), 2131230995);
+            int L4 = gl.L(16.0f);
+            int L5 = gl.L(16.0f);
             M3.e = L4;
             M3.f = L5;
-            cmb.z1(M3, cmb.v0(i, ylbVar), false);
-            cmb.z1(M3, cmb.v0(i2, ylbVar), true);
-            bf0Var.setImageDrawable(M3);
+            bkb.z1(M3, bkb.v0(i, wjbVar), false);
+            bkb.z1(M3, bkb.v0(i2, wjbVar), true);
+            be0Var.setImageDrawable(M3);
             this.y = M3;
-            this.E = cmb.v0(i, ylbVar);
-            this.F = cmb.v0(i2, ylbVar);
+            this.E = bkb.v0(i, wjbVar);
+            this.F = bkb.v0(i2, wjbVar);
         } else {
-            bf0Var.setImageDrawable(this.b);
+            be0Var.setImageDrawable(this.b);
         }
     }
 
@@ -162,13 +162,13 @@ public final class q7 extends FrameLayout implements g94, vlb {
     }
 
     public void setSelectedForDelete(boolean z) {
-        fn0 fn0Var = this.a;
-        if (fn0Var.f != z) {
+        fm0 fm0Var = this.a;
+        if (fm0Var.f != z) {
             b1 b1Var = this.h;
-            gm.r(b1Var);
-            fn0Var.a(z, true);
+            gl.r(b1Var);
+            fm0Var.a(z, true);
             if (z) {
-                gm.d3(b1Var, 2000L);
+                gl.d3(b1Var, 2000L);
             }
         }
     }
@@ -178,19 +178,19 @@ public final class q7 extends FrameLayout implements g94, vlb {
         int v0;
         float f = this.a.e;
         boolean z = this.r;
-        ylb ylbVar = this.n;
+        wjb wjbVar = this.n;
         if (z) {
-            v0 = cmb.p1(0.075f, cmb.v0(cmb.F6, ylbVar));
+            v0 = bkb.p1(0.075f, bkb.v0(bkb.F6, wjbVar));
         } else {
-            v0 = cmb.v0(cmb.Si, ylbVar);
+            v0 = bkb.v0(bkb.Si, wjbVar);
         }
-        int i = cmb.Ei;
-        int v02 = cmb.v0(i, ylbVar);
-        int v03 = cmb.v0(cmb.F6, ylbVar);
-        int i2 = cmb.Ii;
-        int v04 = cmb.v0(i2, ylbVar);
-        this.w = on2.f(f, v0, v02);
-        this.e.setTextColor(on2.f(f, v03, v04));
+        int i = bkb.Ei;
+        int v02 = bkb.v0(i, wjbVar);
+        int v03 = bkb.v0(bkb.F6, wjbVar);
+        int i2 = bkb.Ii;
+        int v04 = bkb.v0(i2, wjbVar);
+        this.w = bm2.f(f, v0, v02);
+        this.e.setTextColor(bm2.f(f, v03, v04));
         ImageView imageView = this.d;
         if (imageView.getColorFilter() != this.J || this.K != v04) {
             imageView.setColorFilter(v04);
@@ -201,32 +201,32 @@ public final class q7 extends FrameLayout implements g94, vlb {
         float f2 = 0.82f * f;
         imageView.setScaleX(f2);
         imageView.setScaleY(f2);
-        int v05 = cmb.v0(i, ylbVar);
-        int v06 = cmb.v0(i2, ylbVar);
-        sn2 sn2Var = this.b;
-        if (sn2Var != null && (sn2Var != this.G || v05 != this.H || v06 != this.I)) {
-            cmb.z1(sn2Var, v05, false);
-            cmb.z1(this.b, v06, true);
+        int v05 = bkb.v0(i, wjbVar);
+        int v06 = bkb.v0(i2, wjbVar);
+        fm2 fm2Var = this.b;
+        if (fm2Var != null && (fm2Var != this.G || v05 != this.H || v06 != this.I)) {
+            bkb.z1(fm2Var, v05, false);
+            bkb.z1(this.b, v06, true);
             this.G = this.b;
             this.H = v05;
             this.I = v06;
         }
         float f3 = 1.0f - f;
-        bf0 bf0Var = this.c;
-        bf0Var.setAlpha(f3);
-        sh4 sh4Var = this.f;
-        if (sh4Var != null && sh4Var.d == 7) {
-            sn2 sn2Var2 = this.y;
-            if (sn2Var2 != null) {
+        be0 be0Var = this.c;
+        be0Var.setAlpha(f3);
+        rf4 rf4Var = this.f;
+        if (rf4Var != null && rf4Var.d == 7) {
+            fm2 fm2Var2 = this.y;
+            if (fm2Var2 != null) {
                 if (v05 != this.E || v06 != this.F) {
-                    cmb.z1(sn2Var2, v05, false);
-                    cmb.z1(this.y, v06, true);
+                    bkb.z1(fm2Var2, v05, false);
+                    bkb.z1(this.y, v06, true);
                     this.E = v05;
                     this.F = v06;
-                    bf0Var.invalidate();
+                    be0Var.invalidate();
                 }
             } else {
-                setData(sh4Var);
+                setData(rf4Var);
             }
         }
         invalidate();
@@ -237,6 +237,6 @@ public final class q7 extends FrameLayout implements g94, vlb {
     }
 
     @Override
-    public final void V(float f, int i) {
+    public final void F(float f, int i) {
     }
 }

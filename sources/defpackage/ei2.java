@@ -1,11 +1,21 @@
 package defpackage;
-public final class ei2 {
-    public final long a;
-    public final g79 b = new g79(0, false);
-    public final g79 c = new g79(0, false);
-    public g79 d;
 
-    public ei2(long j) {
-        this.a = j;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class ei2 extends b4 {
+    public static final Parcelable.Creator<ei2> CREATOR = new x21((byte) 9);
+    public final boolean a;
+
+    public ei2(boolean z) {
+        this.a = z;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.getClass();
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 1, 4);
+        parcel.writeInt(this.a ? 1 : 0);
+        jte.s(parcel, r);
     }
 }

@@ -1,96 +1,144 @@
 package defpackage;
 
-import android.text.TextUtils;
-public final class zs3 {
-    public final int a;
-    public final int b;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final int f;
+import android.graphics.Rect;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import java.lang.reflect.Field;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class zs3 extends ActionMode.Callback2 {
+    public final byte a;
+    public final ActionMode.Callback b;
+    public final Object c;
 
-    public zs3(int i, int i2, int i3, int i4, int i5, int i6) {
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
-        this.d = i4;
-        this.e = i5;
-        this.f = i6;
+    public zs3(EditTextBoldCursor editTextBoldCursor, ActionMode.Callback callback) {
+        this.a = (byte) 0;
+        this.c = editTextBoldCursor;
+        this.b = callback;
     }
 
-    public static zs3 a(String str) {
-        char c;
-        jte.f(str.startsWith("Format:"));
-        String[] split = TextUtils.split(str.substring(7), ",");
-        int i = -1;
-        int i2 = -1;
-        int i3 = -1;
-        int i4 = -1;
-        int i5 = -1;
-        for (int i6 = 0; i6 < split.length; i6++) {
-            String c2 = vod.c(split[i6].trim());
-            c2.getClass();
-            switch (c2.hashCode()) {
-                case 100571:
-                    if (c2.equals("end")) {
-                        c = 0;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                case 3556653:
-                    if (c2.equals("text")) {
-                        c = 1;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                case 102749521:
-                    if (c2.equals("layer")) {
-                        c = 2;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                case 109757538:
-                    if (c2.equals("start")) {
-                        c = 3;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                case 109780401:
-                    if (c2.equals("style")) {
-                        c = 4;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                default:
-                    c = 65535;
-                    break;
-            }
-            switch (c) {
-                case 0:
-                    i3 = i6;
-                    break;
-                case 1:
-                    i5 = i6;
-                    break;
-                case 2:
-                    i = i6;
-                    break;
-                case 3:
-                    i2 = i6;
-                    break;
-                case 4:
-                    i4 = i6;
-                    break;
-            }
+    @Override
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        byte b = this.a;
+        ActionMode.Callback callback = this.b;
+        switch (b) {
+            case 0:
+                return callback.onActionItemClicked(actionMode, menuItem);
+            case 1:
+                return ((dt3) this.c).onActionItemClicked(actionMode, menuItem);
+            default:
+                ((dt3) callback).onActionItemClicked(actionMode, menuItem);
+                return true;
         }
-        if (i2 != -1 && i3 != -1 && i5 != -1) {
-            return new zs3(i, i2, i3, i4, i5, split.length);
+    }
+
+    @Override
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        byte b = this.a;
+        ActionMode.Callback callback = this.b;
+        switch (b) {
+            case 0:
+                return callback.onCreateActionMode(actionMode, menu);
+            case 1:
+                return ((dt3) this.c).onCreateActionMode(actionMode, menu);
+            default:
+                ((dt3) callback).onCreateActionMode(actionMode, menu);
+                return true;
         }
-        return null;
+    }
+
+    @Override
+    public final void onDestroyActionMode(ActionMode actionMode) {
+        byte b = this.a;
+        Object obj = this.c;
+        switch (b) {
+            case 0:
+                this.b.onDestroyActionMode(actionMode);
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
+                Field field = EditTextBoldCursor.E1;
+                editTextBoldCursor.m();
+                editTextBoldCursor.Z0 = null;
+                return;
+            case 1:
+                ((dt3) obj).onDestroyActionMode(actionMode);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void onGetContentRect(ActionMode actionMode, View view, Rect rect) {
+        int i;
+        byte b = this.a;
+        ActionMode.Callback callback = this.b;
+        switch (b) {
+            case 0:
+                if (callback instanceof ActionMode.Callback2) {
+                    ((ActionMode.Callback2) callback).onGetContentRect(actionMode, view, rect);
+                    return;
+                } else {
+                    super.onGetContentRect(actionMode, view, rect);
+                    return;
+                }
+            case 1:
+                if (callback instanceof ActionMode.Callback2) {
+                    ((ActionMode.Callback2) callback).onGetContentRect(actionMode, view, rect);
+                    return;
+                } else {
+                    super.onGetContentRect(actionMode, view, rect);
+                    return;
+                }
+            default:
+                rib ribVar = (rib) this.c;
+                if (ribVar.w()) {
+                    ribVar.N();
+                    int[] k = ribVar.k();
+                    int i2 = 1;
+                    if (ribVar.W != null) {
+                        int[] A = ribVar.A(ribVar.u);
+                        i = A[0] + ribVar.a;
+                        int L = (((-ribVar.l()) / 2) + ((A[1] + ribVar.b) + k[1])) - gl.L(4.0f);
+                        if (L >= 1) {
+                            i2 = L;
+                        }
+                    } else {
+                        i = 0;
+                    }
+                    int width = ribVar.F.getWidth();
+                    ribVar.M();
+                    if (ribVar.W != null) {
+                        width = ribVar.A(ribVar.v)[0] + ribVar.a;
+                    }
+                    rect.set(Math.min(i, width), i2, Math.max(i, width), i2 + 1);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        byte b = this.a;
+        ActionMode.Callback callback = this.b;
+        switch (b) {
+            case 0:
+                return callback.onPrepareActionMode(actionMode, menu);
+            case 1:
+                return ((ActionMode.Callback) ((dt3) this.c).b).onPrepareActionMode(actionMode, menu);
+            default:
+                ((dt3) callback).onPrepareActionMode(actionMode, menu);
+                return true;
+        }
+    }
+
+    public zs3(Object obj, ActionMode.Callback callback, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = callback;
+    }
+
+    private final void a(ActionMode actionMode) {
     }
 }

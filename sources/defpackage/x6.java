@@ -20,7 +20,7 @@ public final class x6 implements PopupWindow.OnDismissListener {
             case 0:
                 o7 o7Var = ((r7) obj).R;
                 if (o7Var != null) {
-                    o7Var.z0();
+                    o7Var.A();
                     return;
                 }
                 return;
@@ -35,34 +35,34 @@ public final class x6 implements PopupWindow.OnDismissListener {
                 }
                 return;
             case 2:
-                yv1 yv1Var = (yv1) obj;
-                yv1Var.g9 = null;
-                yv1Var.l9 = null;
-                yv1Var.k9 = null;
-                yv1Var.C0.R = true;
-                yv1Var.y6(false, true, 0.0f);
-                ms1 ms1Var = yv1Var.a0;
-                if (ms1Var != null && ms1Var.getEditField() != null) {
-                    yv1Var.a0.getEditField().setAllowDrawCursor(true);
+                mu1 mu1Var = (mu1) obj;
+                mu1Var.g9 = null;
+                mu1Var.l9 = null;
+                mu1Var.k9 = null;
+                mu1Var.C0.R = true;
+                mu1Var.r6(false, true, 0.0f);
+                ar1 ar1Var = mu1Var.a0;
+                if (ar1Var != null && ar1Var.getEditField() != null) {
+                    mu1Var.a0.getEditField().setAllowDrawCursor(true);
                     return;
                 }
                 return;
             case 3:
-                or1 or1Var = (or1) obj;
-                or1Var.b = null;
-                yv1 yv1Var2 = or1Var.x;
-                yv1Var2.g9 = null;
-                yv1Var2.l9 = null;
-                yv1Var2.k9 = null;
-                yv1Var2.C0.R = true;
-                if (yv1Var2.h9) {
-                    yv1Var2.y6(false, true, 0.0f);
+                bq1 bq1Var = (bq1) obj;
+                bq1Var.b = null;
+                mu1 mu1Var2 = bq1Var.x;
+                mu1Var2.g9 = null;
+                mu1Var2.l9 = null;
+                mu1Var2.k9 = null;
+                mu1Var2.C0.R = true;
+                if (mu1Var2.h9) {
+                    mu1Var2.r6(false, true, 0.0f);
                 } else {
-                    yv1Var2.h9 = true;
+                    mu1Var2.h9 = true;
                 }
-                ms1 ms1Var2 = yv1Var2.a0;
-                if (ms1Var2 != null && ms1Var2.getEditField() != null) {
-                    yv1Var2.a0.getEditField().setAllowDrawCursor(true);
+                ar1 ar1Var2 = mu1Var2.a0;
+                if (ar1Var2 != null && ar1Var2.getEditField() != null) {
+                    mu1Var2.a0.getEditField().setAllowDrawCursor(true);
                     return;
                 }
                 return;
@@ -72,15 +72,15 @@ public final class x6 implements PopupWindow.OnDismissListener {
                 f9Var.a = false;
                 return;
             case 5:
-                ((ry5) obj).I1.d();
+                ((rw5) obj).I1.d();
                 return;
             case 6:
-                ((xv7) obj).y1.d();
+                ((wt7) obj).y1.d();
                 return;
             default:
-                nsc nscVar = (nsc) obj;
-                nscVar.getViewTreeObserver().removeOnGlobalLayoutListener(nscVar.I);
-                nscVar.getViewTreeObserver().removeOnScrollChangedListener(nscVar.J);
+                lqc lqcVar = (lqc) obj;
+                lqcVar.getViewTreeObserver().removeOnGlobalLayoutListener(lqcVar.I);
+                lqcVar.getViewTreeObserver().removeOnScrollChangedListener(lqcVar.J);
                 return;
         }
     }

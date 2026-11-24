@@ -1,80 +1,32 @@
 package defpackage;
 
-import android.opengl.GLES20;
-public class pd0 {
-    public int a;
-    public int b;
-    public int c;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+public abstract class pd0 {
+    public static ExecutorService a;
+    public static final int[] b = {16842755, 16843041, 16843093, 16843097, 16843551, 16843754, 16843771, 16843778, 16843779};
+    public static final int[] c = {16842755, 16843189, 16843190, 16843556, 16843557, 16843558, 16843866, 16843867};
+    public static final int[] d = {16842755, 16843780, 16843781, 16843782, 16843783, 16843784, 16843785, 16843786, 16843787, 16843788, 16843789, 16843979, 16843980, 16844062};
+    public static final int[] e = {16842755, 16843781, 16844062};
+    public static final int[] f = {16843161};
+    public static final int[] g = {16842755, 16843213};
+    public static final int[] h = {16843073, 16843160, 16843198, 16843199, 16843200, 16843486, 16843487, 16843488};
+    public static final int[] i = {16843490};
+    public static final int[] j = {16843486, 16843487, 16843488, 16843489};
+    public static final int[] k = {16842788, 16843073, 16843488, 16843992};
+    public static final int[] l = {16843489, 16843781, 16843892, 16843893};
 
-    public pd0(String str, String str2) {
-        int l = um9.l(35633, str);
-        this.b = l;
-        int l2 = um9.l(35632, str2);
-        this.c = l2;
-        int glCreateProgram = GLES20.glCreateProgram();
-        GLES20.glAttachShader(glCreateProgram, l);
-        GLES20.glAttachShader(glCreateProgram, l2);
-        GLES20.glBindAttribLocation(glCreateProgram, 0, "aPosition");
-        GLES20.glBindAttribLocation(glCreateProgram, 1, "aTextureCoord");
-        GLES20.glLinkProgram(glCreateProgram);
-        int[] iArr = new int[1];
-        GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
-        if (iArr[0] != 0) {
-            this.a = glCreateProgram;
-            int glGetUniformLocation = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
-            GLES20.glUseProgram(glCreateProgram);
-            GLES20.glUniform1i(glGetUniformLocation, 0);
-            return;
-        }
-        String glGetProgramInfoLog = GLES20.glGetProgramInfoLog(glCreateProgram);
-        GLES20.glDeleteProgram(glCreateProgram);
-        dq9.m(b10.h("Unable to link program: ", glGetProgramInfoLog));
-        throw null;
-    }
-
-    public static pd0 a(int i, byte[] bArr) {
-        ?? obj = new Object();
-        obj.a = bArr;
-        obj.b = Math.min(i, bArr.length);
-        if (obj.b() == -1590787827) {
-            obj.c();
-            obj.b();
-            int b = obj.b();
-            if (!obj.d && b > 0) {
-                int b2 = obj.b();
-                obj.c();
-                int b3 = obj.b();
-                obj.b();
-                if (!obj.d && b2 >= 0) {
-                    long j = obj.c + b2;
-                    if (j <= i) {
-                        int i2 = (int) j;
-                        return new pd0(b3, i2, i - i2);
-                    }
-                    return null;
-                }
-                return null;
+    public static synchronized Executor a() {
+        ExecutorService executorService;
+        synchronized (pd0.class) {
+            executorService = a;
+            if (executorService == null) {
+                String str = g8c.a;
+                executorService = Executors.newSingleThreadExecutor(new sq2("ExoPlayer:BackgroundExecutor", (byte) 1));
+                a = executorService;
             }
-            return null;
         }
-        return null;
-    }
-
-    public final void b() {
-        GLES20.glDeleteProgram(this.a);
-        GLES20.glDeleteShader(this.b);
-        GLES20.glDeleteShader(this.c);
-    }
-
-    public pd0(int i, int i2, int i3) {
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
-    }
-
-    public pd0() {
-        this.a = 0;
-        this.b = 0;
-        this.c = 0;
+        return executorService;
     }
 }

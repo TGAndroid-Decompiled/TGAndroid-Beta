@@ -1,17 +1,6 @@
 package defpackage;
-public final class l8e implements cq7 {
-    public static final l8e a = new Object();
+public interface l8e {
+    vae zzb(Class cls);
 
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
-    }
+    boolean zzc(Class cls);
 }

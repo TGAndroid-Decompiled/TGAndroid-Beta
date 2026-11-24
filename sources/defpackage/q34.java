@@ -1,93 +1,44 @@
 package defpackage;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
-public final class q34 implements Set, Serializable {
-    public static final q34 a = new Object();
-
-    @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        return false;
-    }
-
-    @Override
-    public final boolean containsAll(Collection collection) {
-        collection.getClass();
-        return collection.isEmpty();
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if ((obj instanceof Set) && ((Set) obj).isEmpty()) {
-            return true;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_ephemeral;
+public final class q34 extends p34 {
+    public final void b(int i, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i2) {
+        ArrayList arrayList = this.a;
+        int size = arrayList.size();
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList.get(i3);
+            i3++;
+            TLRPC.TL_message b = t34.b((TL_ephemeral.EphemeralMessage) obj);
+            int i4 = i;
+            ConcurrentHashMap concurrentHashMap3 = concurrentHashMap;
+            ConcurrentHashMap concurrentHashMap4 = concurrentHashMap2;
+            k27 k27Var = new k27(i4, (TLRPC.Message) b, (AbstractMap) concurrentHashMap3, (AbstractMap) concurrentHashMap4, true, true);
+            long B0 = k27.B0(b);
+            if (i2 != 0) {
+                b.edit_date = i2;
+                b.flags |= 32768;
+            }
+            vf6 vf6Var = this.b;
+            TLRPC.TL_messages_messages tL_messages_messages = (TLRPC.TL_messages_messages) vf6Var.f(B0);
+            if (tL_messages_messages == null) {
+                tL_messages_messages = new TLRPC.TL_messages_messages();
+                vf6Var.k(tL_messages_messages, B0);
+            }
+            tL_messages_messages.messages.add(b);
+            vf6 vf6Var2 = this.c;
+            ArrayList arrayList2 = (ArrayList) vf6Var2.f(B0);
+            if (arrayList2 == null) {
+                arrayList2 = tb4.s(vf6Var2, B0);
+            }
+            arrayList2.add(k27Var);
+            i = i4;
+            concurrentHashMap = concurrentHashMap3;
+            concurrentHashMap2 = concurrentHashMap4;
         }
-        return false;
-    }
-
-    @Override
-    public final int hashCode() {
-        return 0;
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        return true;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return m34.a;
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final int size() {
-        return 0;
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        objArr.getClass();
-        return ea3.c(this, objArr);
-    }
-
-    public final String toString() {
-        return "[]";
-    }
-
-    @Override
-    public final Object[] toArray() {
-        return ea3.b(this);
     }
 }

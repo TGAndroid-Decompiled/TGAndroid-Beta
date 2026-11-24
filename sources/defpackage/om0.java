@@ -1,63 +1,46 @@
 package defpackage;
-public final class om0 implements mm0 {
-    public final byte a;
-    public final ylb b;
 
-    public om0(ylb ylbVar, byte b) {
+import java.util.Calendar;
+public final class om0 implements dn7 {
+    public final byte a;
+    public final long b;
+    public final Calendar c;
+    public final int d;
+
+    public om0(long j, Calendar calendar, int i, byte b) {
         this.a = b;
-        this.b = ylbVar;
+        this.b = j;
+        this.c = calendar;
+        this.d = i;
     }
 
     @Override
-    public final int o(ylb ylbVar, boolean z) {
-        float f;
-        float f2;
-        int i;
-        float f3;
-        int i2;
+    public final String c(int i) {
         byte b = this.a;
-        ylb ylbVar2 = this.b;
+        int i2 = this.d;
+        Calendar calendar = this.c;
+        long j = this.b;
         switch (b) {
             case 0:
-                if (!qqd.d(z8c.t0, ylbVar2)) {
-                    return on2.p(cmb.v0(cmb.Ie, ylbVar), 255);
+                if (i == 0) {
+                    return k96.M0(2131748339, "MessageScheduleToday");
                 }
-                if (e86.e(262144)) {
-                    f = 0.85f;
-                } else {
-                    f = 0.76f;
+                long j2 = (i * 86400000) + j;
+                calendar.setTimeInMillis(j2);
+                if (calendar.get(1) == i2) {
+                    return k96.D0().v0().format(j2);
                 }
-                return cmb.p1(f, cmb.v0(cmb.Ie, ylbVar));
-            case 1:
-                if (!qqd.d(z8c.t0, ylbVar2)) {
-                    if (z) {
-                        i = cmb.r8;
-                    } else {
-                        i = cmb.Se;
-                    }
-                    return on2.p(cmb.v0(i, ylbVar), 255);
-                }
-                if (e86.e(262144)) {
-                    f2 = 0.85f;
-                } else {
-                    f2 = 0.76f;
-                }
-                return cmb.p1(f2, cmb.v0(cmb.Se, ylbVar));
+                return k96.D0().x0().format(j2);
             default:
-                if (!qqd.d(z8c.t0, ylbVar2)) {
-                    if (z) {
-                        i2 = cmb.r8;
-                    } else {
-                        i2 = cmb.Se;
-                    }
-                    return on2.p(cmb.v0(i2, ylbVar), 255);
+                if (i == 0) {
+                    return k96.M0(2131748339, null);
                 }
-                if (e86.e(262144)) {
-                    f3 = 0.85f;
-                } else {
-                    f3 = 0.76f;
+                long j3 = (i * 86400000) + j;
+                calendar.setTimeInMillis(j3);
+                if (calendar.get(1) == i2) {
+                    return k96.D0().z0().format(j3) + " " + k96.D0().v0().format(j3);
                 }
-                return cmb.p1(f3, cmb.v0(cmb.Se, ylbVar));
+                return k96.D0().x0().format(j3);
         }
     }
 }

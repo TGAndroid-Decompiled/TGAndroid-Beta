@@ -1,17 +1,23 @@
 package defpackage;
-public final class qwd implements cq7 {
-    public static final qwd a = new Object();
 
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class qwd extends b4 {
+    public static final Parcelable.Creator<qwd> CREATOR = new rpd((byte) 27);
+    public final int a;
+    public final a9e b;
+
+    public qwd(int i, a9e a9eVar) {
+        this.a = i;
+        this.b = a9eVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        jte.k(parcel, 3, this.b, i);
+        jte.s(parcel, r);
     }
 }

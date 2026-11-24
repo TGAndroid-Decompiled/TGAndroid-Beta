@@ -1,22 +1,59 @@
 package defpackage;
-public final class tja {
-    public static final tja a;
-    public static final tja b;
-    public static final tja[] c;
 
-    static {
-        ?? r0 = new Enum("GLASS", 0);
-        a = r0;
-        ?? r1 = new Enum("ACCENT", 1);
-        b = r1;
-        c = new tja[]{r0, r1};
+import java.util.ArrayList;
+public final class tja implements jd7 {
+    public final ArrayList a;
+
+    public tja(ArrayList arrayList) {
+        this.a = arrayList;
+        boolean z = false;
+        if (!arrayList.isEmpty()) {
+            long j = ((sja) arrayList.get(0)).b;
+            int i = 1;
+            while (true) {
+                if (i >= arrayList.size()) {
+                    break;
+                } else if (((sja) arrayList.get(i)).a < j) {
+                    z = true;
+                    break;
+                } else {
+                    j = ((sja) arrayList.get(i)).b;
+                    i++;
+                }
+            }
+        }
+        gre.f(!z);
     }
 
-    public static tja valueOf(String str) {
-        return (tja) Enum.valueOf(tja.class, str);
+    @Override
+    public final fm4 a() {
+        return null;
     }
 
-    public static tja[] values() {
-        return (tja[]) c.clone();
+    @Override
+    public final byte[] c() {
+        return null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && tja.class == obj.getClass()) {
+            return this.a.equals(((tja) obj).a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.a.hashCode();
+    }
+
+    public final String toString() {
+        return "SlowMotion: segments=" + this.a;
+    }
+
+    @Override
+    public final void b(hr6 hr6Var) {
     }
 }

@@ -1,46 +1,62 @@
 package defpackage;
 
-import java.util.HashMap;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class v4a implements Runnable {
-    public final byte a = 0;
-    public final a6a b;
-    public final boolean c;
-    public final TLRPC.TL_error d;
-    public final TLRPC.Message e;
-    public final TLObject f;
-    public final k47 h;
-    public final HashMap n;
-    public final String r;
-    public final TLObject s;
+import java.util.ArrayDeque;
+import java.util.concurrent.Executor;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.logging.Logger;
+public final class v4a implements Executor {
+    public static final Logger f = Logger.getLogger(v4a.class.getName());
+    public final Executor a;
+    public final ArrayDeque b = new ArrayDeque();
+    public int c = 1;
+    public long d = 0;
+    public final tq4 e = new tq4(this);
 
-    public v4a(a6a a6aVar, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, k47 k47Var, String str, HashMap hashMap, boolean z, TLObject tLObject2) {
-        this.b = a6aVar;
-        this.d = tL_error;
-        this.e = message;
-        this.f = tLObject;
-        this.h = k47Var;
-        this.r = str;
-        this.n = hashMap;
-        this.c = z;
-        this.s = tLObject2;
+    public v4a(Executor executor) {
+        fre.h(executor);
+        this.a = executor;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.v4a.run():void");
+    public final void execute(Runnable runnable) {
+        fre.h(runnable);
+        synchronized (this.b) {
+            int i = this.c;
+            if (i != 4 && i != 3) {
+                long j = this.d;
+                boolean z = true;
+                xo9 xo9Var = new xo9(runnable, (byte) 1);
+                this.b.add(xo9Var);
+                this.c = 2;
+                try {
+                    this.a.execute(this.e);
+                    if (this.c == 2) {
+                        synchronized (this.b) {
+                            if (this.d == j && this.c == 2) {
+                                this.c = 3;
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Error | RuntimeException e) {
+                    synchronized (this.b) {
+                        int i2 = this.c;
+                        if ((i2 != 1 && i2 != 2) || !this.b.removeLastOccurrence(xo9Var)) {
+                            z = false;
+                        }
+                        if (!(e instanceof RejectedExecutionException) || z) {
+                            throw e;
+                        }
+                    }
+                    return;
+                }
+            }
+            this.b.add(runnable);
+        }
     }
 
-    public v4a(a6a a6aVar, boolean z, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, k47 k47Var, HashMap hashMap, String str, TLObject tLObject2) {
-        this.b = a6aVar;
-        this.c = z;
-        this.d = tL_error;
-        this.e = message;
-        this.f = tLObject;
-        this.h = k47Var;
-        this.n = hashMap;
-        this.r = str;
-        this.s = tLObject2;
+    public final String toString() {
+        return "SequentialExecutor@" + System.identityHashCode(this) + "{" + this.a + "}";
     }
 }

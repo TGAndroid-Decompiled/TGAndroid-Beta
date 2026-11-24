@@ -31,15 +31,15 @@ public abstract class a extends Application {
     public static boolean G = false;
     public static volatile long H = 0;
     public static b I = null;
-    public static k1f J = null;
-    public static in3 K = null;
+    public static ize J = null;
+    public static xl3 K = null;
     public static a a = null;
     public static volatile Context b = null;
     public static volatile NetworkInfo c = null;
     public static volatile Handler d = null;
     public static ConnectivityManager e = null;
     public static volatile boolean f = false;
-    public static volatile vs h = null;
+    public static volatile vr h = null;
     public static long n = 0;
     public static int r = -1;
     public static long s = 0;
@@ -50,20 +50,20 @@ public abstract class a extends Application {
     public static void a(Throwable th) {
         ((ApplicationLoaderImpl) a).getClass();
         try {
-            ni4 ni4Var = (ni4) li4.c().b(ni4.class);
-            if (ni4Var != null) {
+            lg4 lg4Var = (lg4) jg4.c().b(lg4.class);
+            if (lg4Var != null) {
                 if (th == null) {
                     Log.w("FirebaseCrashlytics", "A null value was passed to recordException. Ignoring.", null);
                     return;
                 }
-                zd1 zd1Var = ni4Var.a;
+                rc1 rc1Var = lg4Var.a;
                 Map map = Collections.EMPTY_MAP;
-                ((a13) ((mx6) zd1Var.n).b).a(new mv2(zd1Var, th));
+                ((pz2) ((mv6) rc1Var.n).b).a(new gu2(rc1Var, th));
                 return;
             }
             throw new NullPointerException("FirebaseCrashlytics component is not present.");
         } catch (Throwable th2) {
-            fc4.g(th2, false);
+            fa4.g(th2, false);
         }
     }
 
@@ -112,7 +112,7 @@ public abstract class a extends Application {
             }
             return 0;
         } catch (Exception e2) {
-            fc4.g(e2, true);
+            fa4.g(e2, true);
             return 0;
         }
     }
@@ -139,7 +139,7 @@ public abstract class a extends Application {
             file.mkdirs();
             return file;
         } catch (Exception e2) {
-            fc4.g(e2, true);
+            fa4.g(e2, true);
             return new File("/data/data/org.telegram.messenger/files");
         }
     }
@@ -147,22 +147,22 @@ public abstract class a extends Application {
     public static ILocationServiceProvider i() {
         if (K == null) {
             a.getClass();
-            in3 in3Var = new in3((byte) 6);
-            K = in3Var;
-            in3Var.init(b);
+            xl3 xl3Var = new xl3((byte) 6);
+            K = xl3Var;
+            xl3Var.init(b);
         }
         return K;
     }
 
     public static IMapsProvider j() {
-        k1f k1fVar = J;
-        if (k1fVar == null) {
+        ize izeVar = J;
+        if (izeVar == null) {
             a.getClass();
-            k1f k1fVar2 = new k1f((byte) 20);
-            J = k1fVar2;
-            return k1fVar2;
+            ize izeVar2 = new ize((byte) 20);
+            J = izeVar2;
+            return izeVar2;
         }
-        return k1fVar;
+        return izeVar;
     }
 
     public static PushListenerController.IPushListenerServiceProvider k() {
@@ -197,7 +197,7 @@ public abstract class a extends Application {
             }
             return false;
         } catch (Exception e2) {
-            fc4.g(e2, true);
+            fa4.g(e2, true);
             return false;
         }
     }
@@ -212,7 +212,7 @@ public abstract class a extends Application {
             }
             return false;
         } catch (Exception e2) {
-            fc4.g(e2, true);
+            fa4.g(e2, true);
             return false;
         }
     }
@@ -249,7 +249,7 @@ public abstract class a extends Application {
             }
             return false;
         } catch (Exception e2) {
-            fc4.g(e2, true);
+            fa4.g(e2, true);
             return false;
         }
     }
@@ -261,83 +261,79 @@ public abstract class a extends Application {
     public static void v() {
         if (!f && b != null) {
             f = true;
-            ik7.c(b);
+            gi7.c(b);
             try {
-                jb6.D0();
+                k96.D0();
             } catch (Exception e2) {
                 e2.printStackTrace();
             }
             try {
                 e = (ConnectivityManager) b.getSystemService("connectivity");
-                b.registerReceiver(new ts((byte) 0), new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+                b.registerReceiver(new tr((byte) 0), new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
             } catch (Exception e3) {
                 e3.printStackTrace();
             }
             try {
                 IntentFilter intentFilter = new IntentFilter("android.intent.action.SCREEN_ON");
                 intentFilter.addAction("android.intent.action.SCREEN_OFF");
-                b.registerReceiver(new ts((byte) 3), intentFilter);
+                b.registerReceiver(new tr((byte) 3), intentFilter);
             } catch (Exception e4) {
                 e4.printStackTrace();
             }
             try {
-                e86.h(b.registerReceiver(new ts((byte) 1), new IntentFilter("android.intent.action.BATTERY_CHANGED")));
+                e66.h(b.registerReceiver(new tr((byte) 1), new IntentFilter("android.intent.action.BATTERY_CHANGED")));
             } catch (Throwable th) {
-                fc4.g(th, true);
+                fa4.g(th, true);
             }
             try {
                 w = ((PowerManager) b.getSystemService("power")).isScreenOn();
-                if (e21.a) {
-                    fc4.b("screen state = " + w);
+                if (w01.a) {
+                    fa4.b("screen state = " + w);
                 }
             } catch (Exception e5) {
                 e5.printStackTrace();
             }
-            gda.s();
-            ewe.a = b.getSharedPreferences("webview_bots", 0);
+            gba.s();
+            bue.a = b.getSharedPreferences("webview_bots", 0);
             for (int i = 0; i < 4; i++) {
-                z8c.h(i).r();
-                oc7.r1(i);
+                y6c.h(i).r();
+                na7.q1(i);
                 if (i == 0) {
-                    gda.g = "__FIREBASE_GENERATING_SINCE_" + ConnectionsManager.getInstance(i).getCurrentTime() + "__";
+                    gba.g = "__FIREBASE_GENERATING_SINCE_" + ConnectionsManager.getInstance(i).getCurrentTime() + "__";
                 } else {
                     ConnectionsManager.getInstance(i);
                 }
-                TLRPC.User f2 = z8c.h(i).f();
+                TLRPC.User f2 = y6c.h(i).f();
                 if (f2 != null) {
-                    oc7.r1(i).c4(f2, true, false);
-                    cf7 messagesStorage = a6a.B(i).getMessagesStorage();
-                    messagesStorage.a.c(new xd7(messagesStorage, (byte) 22));
-                    String f3 = ia4.f(i);
-                    if (f3 != null) {
-                        ia4.d.postRunnable(new iv2(f3, (byte) 1));
-                    }
+                    na7.q1(i).a4(f2, true, false);
+                    ad7 messagesStorage = z3a.B(i).getMessagesStorage();
+                    messagesStorage.a.c(new vb7(messagesStorage, (byte) 22));
                 }
             }
             ((a) b).getClass();
-            gm.d3(new jd((byte) 8), 1000L);
-            if (e21.a) {
-                fc4.b("app initied");
+            gl.d3(new jc((byte) 8), 1000L);
+            if (w01.a) {
+                fa4.b("app initied");
             }
             MediaController.w();
             for (int i2 = 0; i2 < 4; i2++) {
-                bw2 r2 = bw2.r(i2);
+                qu2 r2 = qu2.r(i2);
                 r2.a = null;
-                Utilities.e.c(new hv2(r2, (byte) 0));
-                er3.q(i2);
+                Utilities.e.c(new wt2(r2, (byte) 0));
+                up3.q(i2);
             }
-            cj0.h().q();
-            gm.d3(new jd((byte) 4), 3000L);
+            ci0.h().q();
+            gl.d3(new jc((byte) 4), 3000L);
         }
     }
 
     public static void w() {
         boolean z;
-        SharedPreferences e1 = oc7.e1();
-        if (e1.contains("pushService")) {
-            z = e1.getBoolean("pushService", true);
+        SharedPreferences d1 = na7.d1();
+        if (d1.contains("pushService")) {
+            z = d1.getBoolean("pushService", true);
         } else {
-            z = oc7.r1(z8c.t0).X3.getBoolean("keepAliveService", false);
+            z = na7.q1(y6c.t0).X3.getBoolean("keepAliveService", false);
         }
         if (z) {
             try {
@@ -357,14 +353,14 @@ public abstract class a extends Application {
 
     public final boolean b(Context context) {
         if (Build.VERSION.SDK_INT >= 26 && !b.getPackageManager().canRequestPackageInstalls()) {
-            ik.j(context, null).show();
+            ij.j(context, null).show();
             return false;
         }
         return true;
     }
 
     public final File g() {
-        oi0 e2 = oi0.e();
+        oh0 e2 = oh0.e();
         if (e2.d == null) {
             return null;
         }
@@ -381,10 +377,10 @@ public abstract class a extends Application {
     public final void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
         try {
-            jb6.D0().W0(configuration);
-            gm.v(b, configuration);
+            k96.D0().W0(configuration);
+            gl.v(b, configuration);
             VideoCapturerDevice.checkScreenCapturerSize();
-            gm.Y2();
+            gl.Y2();
         } catch (Exception e2) {
             e2.printStackTrace();
         }
@@ -402,13 +398,13 @@ public abstract class a extends Application {
         if (WidgetEngineService.d()) {
             return;
         }
-        Typeface typeface = gm.a;
-        if (e21.a) {
-            fc4.b("Hello World!");
+        Typeface typeface = gl.a;
+        if (w01.a) {
+            fa4.b("Hello World!");
             StringBuilder sb = new StringBuilder("app start time = ");
             long elapsedRealtime = SystemClock.elapsedRealtime();
             s = elapsedRealtime;
-            wi8.q(elapsedRealtime, sb);
+            ug8.q(elapsedRealtime, sb);
             try {
                 PackageInfo packageInfo = b.getPackageManager().getPackageInfo(b.getPackageName(), 0);
                 int i = packageInfo.versionCode % 10;
@@ -421,9 +417,9 @@ public abstract class a extends Application {
                 Locale locale = Locale.US;
                 String str2 = packageInfo.versionName;
                 int i2 = packageInfo.versionCode;
-                fc4.b("buildVersion = ".concat("v" + str2 + " (" + (i2 / 10) + "[" + (i2 % 10) + "]) " + str));
+                fa4.b("buildVersion = ".concat("v" + str2 + " (" + (i2 / 10) + "[" + (i2 % 10) + "]) " + str));
             } catch (Exception e2) {
-                fc4.g(e2, true);
+                fa4.g(e2, true);
             }
             StringBuilder sb2 = new StringBuilder("device = manufacturer=");
             sb2.append(Build.MANUFACTURER);
@@ -432,43 +428,43 @@ public abstract class a extends Application {
             sb2.append(", model=");
             sb2.append(Build.MODEL);
             sb2.append(", product=");
-            hg9.r(Build.PRODUCT, sb2);
+            de9.s(Build.PRODUCT, sb2);
         }
         if (b == null) {
             b = getApplicationContext();
         }
-        ik7.c(b);
+        gi7.c(b);
         try {
             ConnectionsManager.native_setJava(false);
-            new us(this);
-            new d1(new jd((byte) 5));
-            if (e21.a) {
-                fc4.b("load libs time = " + (SystemClock.elapsedRealtime() - s));
+            new ur(this);
+            new d1(new jc((byte) 5));
+            if (w01.a) {
+                fa4.b("load libs time = " + (SystemClock.elapsedRealtime() - s));
             }
             d = new Handler(b.getMainLooper());
-            gm.c3(new jd((byte) 6));
-            c26[] values = c26.values();
+            gl.c3(new jc((byte) 6));
+            c06[] values = c06.values();
             int length = values.length;
             int i3 = 0;
             while (true) {
                 if (i3 < length) {
-                    if (moe.a(values[i3])) {
+                    if (jme.a(values[i3])) {
                         break;
                     }
                     i3++;
                 } else {
-                    moe.b(c26.DEFAULT);
+                    jme.b(c06.DEFAULT);
                     break;
                 }
             }
-            aw8 aw8Var = aw8.c;
+            zt8 zt8Var = zt8.c;
             for (int i4 = 0; i4 < 4; i4++) {
-                nm7.f(i4).a(aw8Var, nm7.T1);
+                kk7.f(i4).a(zt8Var, kk7.S1);
             }
-            nm7.e().a(aw8Var, nm7.F4);
-            nm7.e().a(aw8Var, nm7.E4);
+            kk7.e().a(zt8Var, kk7.D4);
+            kk7.e().a(zt8Var, kk7.C4);
         } catch (UnsatisfiedLinkError unused2) {
-            throw new RuntimeException("can't load native libraries " + Build.CPU_ABI + " lookup folder " + ik7.a());
+            throw new RuntimeException("can't load native libraries " + Build.CPU_ABI + " lookup folder " + gi7.a());
         }
     }
 

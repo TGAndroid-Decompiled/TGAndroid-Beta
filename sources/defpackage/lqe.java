@@ -1,16 +1,79 @@
 package defpackage;
 public abstract class lqe {
-    public static void a(long j, String str) {
-        if (j >= 0) {
-            return;
+    public static boolean a(int i, CharSequence charSequence) {
+        if (i < charSequence.length()) {
+            char charAt = charSequence.charAt(i);
+            switch (charAt) {
+                case '!':
+                case '\"':
+                case '#':
+                case '$':
+                case '%':
+                case '&':
+                case '\'':
+                case '(':
+                case ')':
+                case '*':
+                case '+':
+                case ',':
+                case '-':
+                case '.':
+                case '/':
+                    return true;
+                default:
+                    switch (charAt) {
+                        case ':':
+                        case ';':
+                        case '<':
+                        case '=':
+                        case '>':
+                        case '?':
+                        case '@':
+                            return true;
+                        default:
+                            switch (charAt) {
+                                case '[':
+                                case '\\':
+                                case ']':
+                                case '^':
+                                case '_':
+                                case '`':
+                                    return true;
+                                default:
+                                    switch (charAt) {
+                                        case '{':
+                                        case '|':
+                                        case '}':
+                                        case '~':
+                                            return true;
+                                        default:
+                                            return false;
+                                    }
+                            }
+                    }
+            }
         }
-        throw new IllegalArgumentException(str + " (" + j + ") must be >= 0");
+        return false;
     }
 
-    public static void b(boolean z) {
-        if (z) {
-            return;
+    public static int b(char c, String str, int i, int i2) {
+        while (i < i2) {
+            if (str.charAt(i) != c) {
+                return i;
+            }
+            i++;
         }
-        throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
+        return i2;
+    }
+
+    public static int c(int i, int i2, CharSequence charSequence) {
+        while (i < i2) {
+            char charAt = charSequence.charAt(i);
+            if (charAt != '\t' && charAt != ' ') {
+                return i;
+            }
+            i++;
+        }
+        return i2;
     }
 }

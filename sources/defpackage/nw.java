@@ -1,52 +1,63 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.o;
-public final class nw extends qt7 {
-    public final pw c;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.util.SparseArray;
+public final class nw {
+    public TextPaint a;
+    public final SparseArray b = new SparseArray();
+    public final SparseArray c = new SparseArray();
+    public final SparseArray d = new SparseArray();
+    public final SparseArray e = new SparseArray();
+    public final SparseArray f = new SparseArray();
+    public final SparseArray g = new SparseArray();
+    public final SparseArray h = new SparseArray();
+    public final SparseArray i = new SparseArray();
+    public final SparseArray j = new SparseArray();
+    public final SparseArray k = new SparseArray();
+    public final SparseArray l = new SparseArray();
+    public final SparseArray m = new SparseArray();
+    public final SparseArray n = new SparseArray();
+    public final SparseArray o = new SparseArray();
+    public final SparseArray p = new SparseArray();
+    public final SparseArray q = new SparseArray();
+    public final SparseArray r = new SparseArray();
+    public final SparseArray s = new SparseArray();
+    public final SparseArray t = new SparseArray();
+    public final SparseArray u = new SparseArray();
+    public final SparseArray v = new SparseArray();
+    public final SparseArray w = new SparseArray();
+    public final SparseArray x = new SparseArray();
+    public final SparseArray y = new SparseArray();
+    public final SparseArray z = new SparseArray();
+    public final SparseArray A = new SparseArray();
 
-    public nw(pw pwVar) {
-        this.c = pwVar;
-    }
-
-    @Override
-    public final int b() {
-        TL_iv.pageBlockSlideshow pageblockslideshow = this.c.e;
-        if (pageblockslideshow == null) {
-            return 0;
+    public static void a(vg5 vg5Var, SparseArray sparseArray) {
+        for (int i = 0; i < sparseArray.size(); i++) {
+            int keyAt = sparseArray.keyAt(i);
+            TextPaint textPaint = (TextPaint) sparseArray.valueAt(i);
+            if (textPaint != null) {
+                if ((keyAt & 8) == 0 && (keyAt & 512) == 0) {
+                    textPaint.setColor(bkb.w0(null, bkb.F6, false));
+                } else {
+                    textPaint.setColor(bkb.w0(null, bkb.I6, false));
+                }
+            }
         }
-        return pageblockslideshow.items.size();
     }
 
-    @Override
-    public final int c(Object obj) {
-        if (this.c.e.items.contains(((mw) obj).a)) {
-            return -1;
-        }
-        return -2;
-    }
-
-    @Override
-    public final Object e(ggc ggcVar, int i) {
-        xw xwVar;
-        pw pwVar = this.c;
-        ey eyVar = pwVar.y;
-        o oVar = pwVar.E;
-        TL_iv.PageBlock pageBlock = pwVar.e.items.get(i);
-        if (pageBlock instanceof TL_iv.pageBlockPhoto) {
-            cw cwVar = new cw(pwVar.getContext(), oVar, eyVar, 1);
-            cwVar.a((TL_iv.pageBlockPhoto) pageBlock, eyVar.F.cached_page, false, true);
-            xwVar = cwVar;
+    public static void b(int i, TextPaint textPaint, Typeface typeface, Typeface typeface2, Typeface typeface3, Typeface typeface4) {
+        if ((i & 1) != 0) {
+            if ((i & 2) != 0) {
+                textPaint.setTypeface(typeface2);
+            } else {
+                textPaint.setTypeface(typeface3);
+            }
+        } else if ((i & 2) != 0) {
+            textPaint.setTypeface(typeface4);
+        } else if ((i & 4) != 0) {
         } else {
-            xw xwVar2 = new xw(pwVar.getContext(), oVar, eyVar, 1);
-            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
-            xwVar2.b(pageblockvideo, (yw) oVar.E.f(pageblockvideo.video_id), false, true);
-            xwVar = xwVar2;
+            textPaint.setTypeface(typeface);
         }
-        ggcVar.addView(xwVar);
-        ?? obj = new Object();
-        obj.b = xwVar;
-        obj.a = pageBlock;
-        return obj;
     }
 }

@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.regex.Pattern;
 import org.telegram.messenger.a;
-public final class EncryptedFileDataSource extends qg0 {
+public final class EncryptedFileDataSource extends qf0 {
     private int bytesRemaining;
     EncryptedFileInputStream fileInputStream;
     private boolean opened;
@@ -20,10 +20,10 @@ public final class EncryptedFileDataSource extends qg0 {
     }
 
     @Deprecated
-    public EncryptedFileDataSource(w0c w0cVar) {
+    public EncryptedFileDataSource(vyb vybVar) {
         this();
-        if (w0cVar != null) {
-            addTransferListener(w0cVar);
+        if (vybVar != null) {
+            addTransferListener(vybVar);
         }
     }
 
@@ -53,34 +53,34 @@ public final class EncryptedFileDataSource extends qg0 {
     }
 
     @Override
-    public long open(g83 g83Var) {
-        this.uri = g83Var.a;
-        File file = new File(g83Var.a.getPath());
+    public long open(u63 u63Var) {
+        this.uri = u63Var.a;
+        File file = new File(u63Var.a.getPath());
         String name = file.getName();
-        Pattern pattern = bc4.J;
-        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(a.b.getCacheDir(), td4.p(name, ".key")));
+        Pattern pattern = ba4.J;
+        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(a.b.getCacheDir(), tb4.o(name, ".key")));
         this.fileInputStream = encryptedFileInputStream;
-        encryptedFileInputStream.skip(g83Var.e);
+        encryptedFileInputStream.skip(u63Var.e);
         int length = (int) file.length();
-        transferInitializing(g83Var);
-        long j = g83Var.e;
+        transferInitializing(u63Var);
+        long j = u63Var.e;
         long j2 = length;
         if (j <= j2) {
             int i = (int) (j2 - j);
             this.bytesRemaining = i;
-            long j3 = g83Var.f;
+            long j3 = u63Var.f;
             if (j3 != -1) {
                 this.bytesRemaining = (int) Math.min(i, j3);
             }
             this.opened = true;
-            transferStarted(g83Var);
-            long j4 = g83Var.f;
+            transferStarted(u63Var);
+            long j4 = u63Var.f;
             if (j4 != -1) {
                 return j4;
             }
             return this.bytesRemaining;
         }
-        throw new d83(2008);
+        throw new r63(2008);
     }
 
     @Override

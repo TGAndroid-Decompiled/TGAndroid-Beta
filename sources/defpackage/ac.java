@@ -11,15 +11,15 @@ public final class ac extends FrameLayout {
     public final TextView b;
     public final TextView c;
 
-    public ac(ylb ylbVar, Context context, boolean z) {
+    public ac(wjb wjbVar, Context context, boolean z) {
         super(context);
         float f;
         ImageView imageView = new ImageView(context);
         this.a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        int i = cmb.F6;
-        anb.s(imageView, i, ylbVar, PorterDuff.Mode.SRC_IN);
-        addView(imageView, qoe.d(24, 24.0f, 51, 20.0f, 11.46f, 0.0f, 0.0f));
+        int i = bkb.F6;
+        zkb.s(imageView, i, wjbVar, PorterDuff.Mode.SRC_IN);
+        addView(imageView, nme.d(24, 24.0f, 51, 20.0f, 11.46f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         if (z) {
@@ -27,17 +27,17 @@ public final class ac extends FrameLayout {
         } else {
             f = 9.8f;
         }
-        addView(linearLayout, qoe.d(-1, -2.0f, 23, 64.0f, f, 24.0f, z ? 4.0f : 9.8f));
+        addView(linearLayout, nme.d(-1, -2.0f, 23, 64.0f, f, 24.0f, z ? 4.0f : 9.8f));
         TextView textView = new TextView(context);
         this.b = textView;
-        anb.X(textView, i, ylbVar);
-        textView.setTypeface(gm.o());
+        zkb.X(textView, i, wjbVar);
+        textView.setTypeface(gl.o());
         textView.setTextSize(1, 14.0f);
-        TextView m = wi8.m(linearLayout, textView, qoe.t(-1, -2, 55, 0, 0, 0, 1), context);
+        TextView m = ug8.m(linearLayout, textView, nme.t(-1, -2, 55, 0, 0, 0, 1), context);
         this.c = m;
-        anb.X(m, cmb.y6, ylbVar);
+        zkb.X(m, bkb.y6, wjbVar);
         m.setTextSize(1, 14.0f);
-        linearLayout.addView(m, qoe.t(-1, -2, 55, 0, 0, 0, 0));
+        linearLayout.addView(m, nme.t(-1, -2, 55, 0, 0, 0, 0));
     }
 
     public final void a(int i, CharSequence charSequence, CharSequence charSequence2) {

@@ -1,41 +1,26 @@
 package defpackage;
-public final class j65 extends yp {
-    public final g95 c;
 
-    public j65(g95 g95Var) {
-        this.c = g95Var;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class j65 extends taa {
+    public final h75 U2;
+
+    public j65(h75 h75Var, Context context, String str, String str2, String str3, String str4) {
+        super(context, null, str, str2, false, str3, str4, true);
+        this.U2 = h75Var;
     }
 
     @Override
-    public final int i(int i) {
-        int i2;
-        b95 b95Var;
-        int i3;
-        int i4;
-        int i5;
-        if (g95.u5) {
-            i2 = 6;
-        } else {
-            i2 = 2;
+    public final void L0(vf6 vf6Var, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+        if (!z) {
+            return;
         }
-        if (!g95.v5 && i >= (i3 = (b95Var = this.c.I1).H) && i < (i4 = b95Var.I)) {
-            int i6 = i4 - i3;
-            if (i == i4 - 1 && (g95.u5 || i6 % 2 != 0)) {
-                i5 = 2;
-            } else {
-                i5 = 1;
-            }
-            if (g95.u5) {
-                if (i6 == 1) {
-                    return 6;
-                }
-                if (i6 != 2) {
-                    return 2;
-                }
-                return 3;
-            }
-            return i5;
+        int m = vf6Var.m();
+        h75 h75Var = this.U2;
+        if (m == 1) {
+            h75Var.c1().m(Integer.valueOf(i), 41, ((TLRPC.Dialog) vf6Var.n(0)).id);
+            return;
         }
-        return i2;
+        h75Var.c1().k(0L, 41, Integer.valueOf(i), Integer.valueOf(vf6Var.m()), null, null);
     }
 }

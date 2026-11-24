@@ -1,444 +1,176 @@
 package defpackage;
 
-import android.net.Uri;
-import android.os.Build;
-import android.text.TextUtils;
-import android.util.Base64;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import j$.util.concurrent.atomic.DesugarAtomicInteger;
-import java.net.IDN;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.nio.ByteBuffer;
+import android.content.Context;
+import android.os.SystemClock;
+import android.view.Choreographer;
 import java.nio.charset.StandardCharsets;
-import java.security.SecureRandom;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Locale;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import org.json.JSONObject;
-import org.telegram.messenger.a;
-public final class bwc implements eo4 {
-    public static bwc A;
-    public static final Object y = new Object();
-    public static bwc z;
+import org.telegram.utils.twidget.b;
+import org.telegram.utils.twidget.z;
+public final class bwc {
+    public long A;
+    public int B;
+    public long C;
+    public final String a;
     public final String b;
-    public final String c;
-    public final String d;
-    public final String e;
-    public final String f;
-    public final String g;
-    public final String h;
-    public final ServerSocket i;
-    public WebView o;
-    public yu5 p;
-    public boolean q;
-    public boolean r;
-    public boolean s;
-    public boolean t;
-    public boolean u;
-    public boolean v;
-    public int w;
-    public vvc x;
-    public final Object a = new Object();
-    public final ExecutorService j = Executors.newCachedThreadPool();
-    public final ExecutorService k = Executors.newSingleThreadExecutor();
-    public final AtomicInteger l = new AtomicInteger(1);
-    public final HashMap m = new HashMap();
-    public final ArrayDeque n = new ArrayDeque();
+    public final Context c;
+    public c6e d;
+    public z e;
+    public kwc f;
+    public gwc g;
+    public int h;
+    public int i;
+    public int j;
+    public boolean k;
+    public boolean m;
+    public boolean n;
+    public boolean o;
+    public int p;
+    public int q;
+    public String r;
+    public String s;
+    public String t;
+    public volatile String w;
+    public boolean x;
+    public boolean y;
+    public boolean z;
+    public String u = "{}";
+    public String v = "{}";
+    public boolean l = false;
 
-    public bwc(wm9 wm9Var, String str, byte[] bArr) {
-        String r;
-        this.b = (String) wm9Var.d;
-        String str2 = (String) wm9Var.b;
-        this.c = str2;
-        String str3 = (String) wm9Var.c;
-        String o = str3.isEmpty() ? "/" : kt6.o("/", str3, "/");
-        this.d = o;
-        this.e = str;
-        String concat = "https://".concat(str2);
-        this.f = concat;
-        byte[] bArr2 = new byte[32];
-        new SecureRandom().nextBytes(bArr2);
-        String encodeToString = Base64.encodeToString(bArr2, 11);
-        this.h = encodeToString;
-        if (str3.isEmpty()) {
-            r = "tdesktop-web-proxy-bridge-v1\n".concat(str2);
-        } else {
-            r = td4.r("tdesktop-web-proxy-bridge-v2\n", str2, "\n", str3);
-        }
-        Mac mac = Mac.getInstance("HmacSHA256");
-        mac.init(new SecretKeySpec(bArr, "HmacSHA256"));
-        StringBuilder m = mlb.m(concat, o, "?bridge=", Base64.encodeToString(mac.doFinal(r.getBytes(StandardCharsets.UTF_8)), 11), "#android=");
-        m.append(encodeToString);
-        this.g = m.toString();
-        this.i = new ServerSocket(0, 64, InetAddress.getByName("127.0.0.1"));
+    public bwc(Context context, String str, String str2) {
+        this.c = context.getApplicationContext();
+        this.a = str;
+        this.b = str2;
     }
 
-    public static byte[] f(String str) {
-        byte[] bArr;
-        if (str == null) {
-            return null;
+    public final void a() {
+        z zVar;
+        boolean z;
+        if (this.n || z.a()) {
+            return;
         }
-        String trim = str.trim();
-        if ((trim.length() == 32 || trim.length() == 34) && trim.matches("[0-9a-fA-F]+")) {
-            int length = trim.length() / 2;
-            bArr = new byte[length];
-            for (int i = 0; i < length; i++) {
-                int i2 = i << 1;
-                bArr[i] = (byte) Integer.parseInt(trim.substring(i2, i2 + 2), 16);
-            }
+        this.n = true;
+        z zVar2 = this.e;
+        if (zVar2 != null) {
+            zVar2.I = true;
+            return;
+        }
+        String str = this.r;
+        if (str == null && this.s == null && this.t == null) {
+            zVar = new z(this.c, this.b, mwc.d(this.l), null, null);
         } else {
+            Context context = this.c;
+            String str2 = this.b;
+            if (str == null) {
+                str = mwc.d(this.l);
+            }
+            zVar = new z(context, str2, str, this.s, this.t);
+        }
+        String str3 = "{\"data\":" + this.u + ",\"context\":" + this.v + "}";
+        if (str3 != null) {
+            zVar.j = str3;
             try {
-                bArr = Base64.decode(trim, 10);
+                zVar.d = new pvc(new JSONObject(str3).optJSONObject("context"));
             } catch (Exception unused) {
-                return null;
+                zVar.d = new pvc(null);
             }
         }
-        if (bArr.length != 16 && (bArr.length != 17 || (bArr[0] & 255) != 221)) {
-            return null;
+        zVar.f(this.w);
+        zVar.z = this.A;
+        zVar.R = this;
+        zVar.T = this;
+        if (this.m && !this.o) {
+            z = true;
+        } else {
+            z = false;
         }
-        return bArr;
+        zVar.g(z);
+        this.e = zVar;
+        this.p++;
+        hwc.a.execute(new awc(zVar, this.i, (byte) 0));
     }
 
-    public static wm9 k(String str) {
-        String str2;
-        String str3;
-        String[] split;
-        if (str != null) {
-            int indexOf = str.indexOf(47);
-            if (indexOf >= 0) {
-                str2 = str.substring(0, indexOf);
+    public final void b(int i, String str, long j) {
+        boolean z;
+        byte[] bytes;
+        z zVar = this.e;
+        if (zVar != null) {
+            pvc pvcVar = zVar.d;
+            if (i == 0) {
+                z = true;
             } else {
-                str2 = str;
+                z = false;
             }
-            String l = l(str2);
-            if (indexOf >= 0) {
-                str3 = str.substring(indexOf + 1);
-            } else {
-                str3 = "";
-            }
-            if (!TextUtils.isEmpty(l) && str3.length() <= 128) {
-                if (!str3.isEmpty()) {
-                    for (String str4 : str3.split("/", -1)) {
-                        if (!str4.isEmpty() && Character.isLetterOrDigit(str4.charAt(0))) {
-                            for (int i = 0; i < str4.length(); i++) {
-                                char charAt = str4.charAt(i);
-                                if ((charAt < 'A' || charAt > 'Z') && ((charAt < 'a' || charAt > 'z') && ((charAt < '0' || charAt > '9') && charAt != '_' && charAt != '-'))) {
-                                    return null;
-                                }
-                            }
-                        } else {
-                            return null;
-                        }
-                    }
+            synchronized (pvcVar) {
+                if (pvcVar.j && z) {
+                    pvcVar.h = SystemClock.elapsedRealtime();
                 }
-                return new wm9(l, str3);
+                pvcVar.j = false;
+                pvcVar.i = false;
             }
-            return null;
-        }
-        return null;
-    }
-
-    public static String l(String str) {
-        String[] split;
-        if (str == null) {
-            return "";
-        }
-        String trim = str.trim();
-        if (trim.endsWith(".")) {
-            trim = ts2.m(1, 0, trim);
-        }
-        try {
-            String lowerCase = IDN.toASCII(trim, 2).toLowerCase(Locale.US);
-            if (lowerCase.length() <= 253 && lowerCase.indexOf(46) > 0 && !lowerCase.contains(":") && !lowerCase.matches("[0-9.]+")) {
-                for (String str2 : lowerCase.split("\\.", -1)) {
-                    if (str2.isEmpty() || str2.length() > 63 || str2.startsWith("-") || str2.endsWith("-")) {
-                        return "";
-                    }
+            long j2 = zVar.v;
+            if (!zVar.A && j2 != 0) {
+                b bVar = zVar.c;
+                if (str == null) {
+                    bytes = null;
+                } else {
+                    bytes = str.getBytes(StandardCharsets.UTF_8);
                 }
-                return lowerCase;
-            }
-        } catch (Exception unused) {
-        }
-        return "";
-    }
-
-    public static int o(String str, String str2) {
-        boolean z2;
-        wm9 k = k(str);
-        byte[] f = f(str2);
-        if (k != null && f != null) {
-            try {
-                z2 = nwc.a("WEB_MESSAGE_LISTENER");
-            } catch (Throwable th) {
-                fc4.g(th, true);
-                z2 = false;
-            }
-            if (z2) {
-                synchronized (y) {
-                    bwc bwcVar = z;
-                    if (bwcVar != null && !bwcVar.i.isClosed() && z.b.equals((String) k.d) && z.e.equals(str2)) {
-                        return z.i.getLocalPort();
-                    }
-                    bwc bwcVar2 = z;
-                    if (bwcVar2 != null) {
-                        bwcVar2.q();
-                        z = null;
-                    }
-                    try {
-                        bwc bwcVar3 = new bwc(k, str2, f);
-                        z = bwcVar3;
-                        us usVar = us.f;
-                        if (usVar != null) {
-                            usVar.d.add(bwcVar3);
-                        }
-                        bwcVar3.j.execute(new yvc(bwcVar3, (byte) 1));
-                        gm.c3(new yvc(bwcVar3, (byte) 2));
-                        return z.i.getLocalPort();
-                    } catch (Exception e) {
-                        fc4.g(e, true);
-                        bwc bwcVar4 = z;
-                        if (bwcVar4 != null) {
-                            bwcVar4.q();
-                            z = null;
-                        }
-                    }
-                }
+                bVar.a(j2, j, i, bytes);
             }
         }
-        return 0;
-    }
-
-    public static void p() {
-        synchronized (y) {
-            bwc bwcVar = z;
-            if (bwcVar != null) {
-                bwcVar.q();
-                z = null;
-            }
-        }
-    }
-
-    @Override
-    public final void b() {
-        gm.c3(new yvc(this, (byte) 2));
     }
 
     public final void c() {
-        int andUpdate;
-        while (true) {
-            try {
-                Socket accept = this.i.accept();
-                accept.setTcpNoDelay(true);
-                synchronized (this.a) {
-                    if (!this.u && this.m.size() < 64) {
-                        while (true) {
-                            andUpdate = DesugarAtomicInteger.getAndUpdate(this.l, new Object());
-                            if (andUpdate != 0 && !this.m.containsKey(Integer.valueOf(andUpdate))) {
-                                break;
-                            }
-                        }
-                        awc awcVar = new awc(andUpdate, accept);
-                        this.m.put(Integer.valueOf(andUpdate), awcVar);
-                        if (this.t) {
-                            awcVar.e = true;
-                            n(1, andUpdate, null);
-                        }
-                        this.j.execute(new ptc(this, awcVar, (byte) 8));
-                    } else {
-                        try {
-                            accept.close();
-                        } catch (Exception unused) {
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                synchronized (this.a) {
-                    if (this.u) {
-                        return;
-                    }
-                    fc4.g(e, true);
-                    h();
-                    return;
-                }
+        int i;
+        z zVar = this.e;
+        if (zVar != null && !zVar.A && zVar.v != 0 && !zVar.K) {
+            kwc kwcVar = zVar.N;
+            if (kwcVar == null || (((i = zVar.M) != 0 && Math.abs(kwcVar.d - i) > 1) || !kwcVar.a())) {
+                zVar.K = true;
+                zVar.c.g(zVar.v);
             }
         }
     }
 
-    public final void d(awc awcVar, boolean z2) {
-        boolean z3;
-        synchronized (this.a) {
-            if (this.m.get(Integer.valueOf(awcVar.a)) != awcVar) {
-                return;
-            }
-            this.m.remove(Integer.valueOf(awcVar.a));
-            if (z2 && this.t && awcVar.e) {
-                z3 = true;
-            } else {
-                z3 = false;
-            }
-            this.a.notifyAll();
-            try {
-                awcVar.b.close();
-            } catch (Exception unused) {
-            }
-            if (z3) {
-                n(3, awcVar.a, null);
-            }
+    public final kwc d() {
+        kwc kwcVar;
+        z zVar = this.e;
+        if (zVar == null) {
+            kwcVar = null;
+        } else {
+            kwcVar = zVar.N;
         }
+        if (kwcVar != null && (this.f == null || zVar.B)) {
+            return kwcVar;
+        }
+        kwc kwcVar2 = this.f;
+        if (kwcVar2 != null && Math.abs(kwcVar2.d - this.i) <= 1) {
+            return this.f;
+        }
+        if (kwcVar != null) {
+            return kwcVar;
+        }
+        return this.f;
     }
 
-    public final void e() {
-        boolean z2;
-        synchronized (this.a) {
-            if (!this.u && this.o == null) {
-                us usVar = us.f;
-                if (usVar != null) {
-                    if (usVar.a == 0) {
-                        z2 = true;
-                    } else {
-                        z2 = false;
+    public final boolean e() {
+        z zVar;
+        kwc kwcVar;
+        if (this.q != this.p && (zVar = this.e) != null && (kwcVar = zVar.N) != null) {
+            if (kwcVar.h || zVar.F) {
+                this.q = this.p;
+                if (this.d != null) {
+                    vvc.b();
+                    svc g = vvc.g(this);
+                    if (g != null) {
+                        vvc.s(g);
+                        return true;
                     }
-                    if (z2) {
-                        this.v = true;
-                        return;
-                    }
+                    return true;
                 }
-                this.v = false;
-                g();
-                try {
-                    WebView webView = new WebView(a.b);
-                    this.o = webView;
-                    this.q = nwc.a("WEB_MESSAGE_ARRAY_BUFFER");
-                    this.r = false;
-                    webView.setBackgroundColor(0);
-                    WebSettings settings = webView.getSettings();
-                    settings.setJavaScriptEnabled(true);
-                    settings.setDomStorageEnabled(false);
-                    settings.setDatabaseEnabled(false);
-                    settings.setAllowFileAccess(false);
-                    settings.setAllowContentAccess(false);
-                    settings.setCacheMode(2);
-                    settings.setJavaScriptCanOpenWindowsAutomatically(false);
-                    settings.setSupportMultipleWindows(false);
-                    settings.setGeolocationEnabled(false);
-                    settings.setMediaPlaybackRequiresUserGesture(true);
-                    settings.setMixedContentMode(1);
-                    if (Build.VERSION.SDK_INT >= 26) {
-                        settings.setSafeBrowsingEnabled(true);
-                    }
-                    webView.setWebViewClient(new sv(this, (byte) 3));
-                    HashSet hashSet = new HashSet();
-                    hashSet.add(this.f);
-                    kwc.a(webView, "TelegramWebProxy", hashSet, new lcc(this, (byte) 10));
-                    webView.loadUrl(this.g);
-                } catch (Exception e) {
-                    fc4.g(e, true);
-                    h();
-                }
-            }
-        }
-    }
-
-    public final void g() {
-        WebView webView = this.o;
-        this.o = null;
-        this.p = null;
-        this.r = false;
-        if (webView != null) {
-            try {
-                webView.stopLoading();
-                webView.loadUrl("about:blank");
-                webView.removeAllViews();
-                webView.destroy();
-            } catch (Exception e) {
-                fc4.g(e, true);
-            }
-        }
-    }
-
-    public final void h() {
-        synchronized (this.a) {
-            if (!this.u && !this.v) {
-                this.v = true;
-                int i = 0;
-                this.t = false;
-                this.p = null;
-                this.n.clear();
-                this.w = 0;
-                ArrayList arrayList = new ArrayList(this.m.values());
-                this.m.clear();
-                this.a.notifyAll();
-                int size = arrayList.size();
-                while (i < size) {
-                    Object obj = arrayList.get(i);
-                    i++;
-                    try {
-                        ((awc) obj).b.close();
-                    } catch (Exception unused) {
-                    }
-                }
-                gm.c3(new yvc(this, (byte) 3));
-            }
-        }
-    }
-
-    public final void i(String str, yu5 yu5Var) {
-        bwc bwcVar;
-        try {
-            JSONObject jSONObject = new JSONObject(str);
-            String optString = jSONObject.optString("t");
-            if ("tproxy-android-init".equals(optString) && jSONObject.optInt("v") == 1 && this.h.equals(jSONObject.optString("nonce"))) {
-                synchronized (this.a) {
-                    if (!this.u && this.p == null) {
-                        this.p = yu5Var;
-                        if (this.q) {
-                            this.r = true;
-                            n(16, 0, new byte[]{1});
-                            return;
-                        }
-                        WebView webView = this.o;
-                        gcc gccVar = new gcc(this, webView, yu5Var, (byte) 25);
-                        gm.d3(gccVar, 5000L);
-                        try {
-                            bwcVar = this;
-                        } catch (Exception e) {
-                            e = e;
-                            bwcVar = this;
-                        }
-                        try {
-                            webView.evaluateJavascript("(function(){\n'use strict';\ntry {\n var bridge=window.TelegramWebProxy;\n if(!bridge||typeof bridge.postMessage!=='function'||typeof bridge.onmessage!=='function')return false;\n var nativePost=bridge.postMessage;\n var receive=bridge.onmessage;\n var prefix='tproxy-base64:';\n var maxBytes=1048584;\n var maxChars=1398112;\n function post(value){\n  if(value instanceof ArrayBuffer){\n   if(value.byteLength>maxBytes)throw new Error('WEB proxy frame too large');\n   var bytes=new Uint8Array(value),parts=[];\n   for(var i=0;i<bytes.length;i+=8192){\n    parts.push(String.fromCharCode.apply(null,bytes.subarray(i,Math.min(i+8192,bytes.length))));\n   }\n   nativePost.call(bridge,prefix+btoa(parts.join('')));\n  }else nativePost.call(bridge,value);\n }\n function onmessage(event){\n  var data=event.data;\n  if(typeof data==='string'&&data.indexOf(prefix)===0){\n   try {\n    var encoded=data.substring(prefix.length);\n    if(encoded.length>maxChars)throw new Error('WEB proxy frame too large');\n    var binary=atob(encoded);\n    if(binary.length>maxBytes)throw new Error('WEB proxy frame too large');\n    var bytes=new Uint8Array(binary.length);\n    for(var i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);\n    receive.call(bridge,{data:bytes.buffer});\n   }catch(error){nativePost.call(bridge,'{\"t\":\"close\"}');}\n  }else receive.call(bridge,event);\n }\n bridge.postMessage=post;\n bridge.onmessage=onmessage;\n return bridge.postMessage===post&&bridge.onmessage===onmessage;\n}catch(error){return false;}\n})()\n", new xuc(bwcVar, gccVar, webView, yu5Var, (byte) 2));
-                        } catch (Exception e2) {
-                            e = e2;
-                            Exception exc = e;
-                            gm.r(gccVar);
-                            fc4.g(exc, true);
-                            fc4.d("WEB proxy: Base64 bridge installation threw an exception; transport stopped");
-                            bwcVar.q();
-                        }
-                    }
-                }
-            } else if ("close".equals(optString) || "failed".equals(jSONObject.optString("state"))) {
-                h();
-            }
-        } catch (Exception unused) {
-        }
-    }
-
-    public final boolean j(WebView webView) {
-        String url = webView.getUrl();
-        if (url != null) {
-            Uri parse = Uri.parse(url);
-            if ("https".equalsIgnoreCase(parse.getScheme()) && this.c.equalsIgnoreCase(parse.getHost()) && parse.getUserInfo() == null && parse.getPort() == -1 && this.d.equals(parse.getPath())) {
                 return true;
             }
             return false;
@@ -446,64 +178,189 @@ public final class bwc implements eo4 {
         return false;
     }
 
-    public final void m(byte[] r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.bwc.m(byte[]):void");
-    }
-
-    public final void n(int i, int i2, byte[] bArr) {
-        if (bArr == null) {
-            bArr = new byte[0];
+    public final void f(String str) {
+        if (this.d != null) {
+            fa4.d("widget " + this.a + ": " + str);
         }
-        byte[] array = ByteBuffer.allocate(bArr.length + 8).put((byte) i).put((byte) (i2 >> 16)).put((byte) (i2 >> 8)).put((byte) i2).putInt(bArr.length).put(bArr).array();
-        synchronized (this.a) {
-            if (!this.u && this.n.size() < 8192 && this.w <= 67108864 - array.length) {
-                this.n.add(array);
-                this.w += array.length;
-                gm.c3(new yvc(this, (byte) 4));
-                return;
-            }
-            h();
+        gwc gwcVar = this.g;
+        if (gwcVar != null) {
+            gwcVar.a.g();
         }
     }
 
-    public final void q() {
-        synchronized (this.a) {
-            if (this.u) {
-                return;
-            }
-            this.u = true;
-            this.t = false;
-            this.v = false;
-            ArrayList arrayList = new ArrayList(this.m.values());
-            this.m.clear();
-            this.n.clear();
-            this.w = 0;
-            this.a.notifyAll();
-            try {
-                this.i.close();
-            } catch (Exception unused) {
-            }
-            us usVar = us.f;
-            if (usVar != null) {
-                usVar.d.remove(this);
-            }
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                try {
-                    ((awc) obj).b.close();
-                } catch (Exception unused2) {
+    public final void g(z zVar) {
+        kwc kwcVar;
+        Object[] objArr;
+        svc g;
+        gwc gwcVar;
+        if (zVar == this.e && (kwcVar = zVar.N) != null) {
+            if (this.f == null || zVar.B) {
+                this.f = null;
+                this.j = kwcVar.d;
+                boolean z = kwcVar.i;
+                boolean z2 = false;
+                if (z != this.k) {
+                    objArr = 1;
+                } else {
+                    objArr = null;
+                }
+                this.k = z;
+                int max = Math.max(1, kwcVar.e);
+                if (max != this.h) {
+                    z2 = true;
+                }
+                this.h = max;
+                gwc gwcVar2 = this.g;
+                if (gwcVar2 != null) {
+                    fwc fwcVar = gwcVar2.a;
+                    if (z2) {
+                        fwcVar.j();
+                    }
+                    fwcVar.g();
+                }
+                if ((z2 || objArr != null) && this.d != null && (g = vvc.g(this)) != null && this.h > 0) {
+                    int e = vvc.e(this.j);
+                    int max2 = Math.max(50, Math.min(600, vvc.e(this.h)));
+                    boolean z3 = this.k;
+                    if (e > 0 && g.f == 0 && !g.k && vvc.k(g.a()).a(e, max2, z3)) {
+                        ad7 Y = ad7.Y(g.b);
+                        Y.a.c(new ac7(Y, g.c, g.d, e, max2, z3 ? 1 : 0, (byte) 1));
+                    }
+                    zi9 zi9Var = g.u;
+                    if (zi9Var != null) {
+                        zi9Var.p0("frame off screen");
+                    }
+                }
+                if (e() && !z2 && (gwcVar = this.g) != null) {
+                    fwc fwcVar2 = gwcVar.a;
+                    fwcVar2.j();
+                    fwcVar2.g();
                 }
             }
-            gm.c3(new yvc(this, (byte) 0));
-            this.j.shutdownNow();
-            this.k.shutdownNow();
         }
     }
 
-    @Override
-    public final void a() {
+    public final void h(String str) {
+        if (str != null && !str.equals(this.u)) {
+            this.u = str;
+            z zVar = this.e;
+            if (zVar != null) {
+                long j = zVar.v;
+                if (!zVar.A && j != 0) {
+                    zVar.c.c(j, str.getBytes(StandardCharsets.UTF_8));
+                }
+            }
+        }
+    }
+
+    public final synchronized void i(float f, float f2, boolean z) {
+        boolean z2;
+        if (f > 0.0f) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        if (!z) {
+            if (this.x && z2 == this.y) {
+                return;
+            }
+        }
+        this.x = z;
+        this.y = z2;
+        String format = String.format(Locale.US, "{\"top\":0,\"right\":0,\"bottom\":%.2f,\"left\":0,\"cornerLeft\":0,\"cornerRight\":%.2f}", Float.valueOf(f), Float.valueOf(f2));
+        if (format.equals(this.w)) {
+            return;
+        }
+        this.w = format;
+        gl.c3(new frc(this, (byte) 9));
+    }
+
+    public final void j(String str) {
+        if (str != null && !str.equals(this.r)) {
+            this.r = str;
+            this.l = str.contains("\"dark\"");
+            z zVar = this.e;
+            if (zVar != null && !zVar.A && str != null && !str.equals(zVar.H)) {
+                zVar.H = str;
+                str.contains("\"dark\"");
+                long j = zVar.v;
+                if (j != 0) {
+                    zVar.c.i(j, str.getBytes(StandardCharsets.UTF_8));
+                }
+            }
+        }
+    }
+
+    public final void k(boolean z) {
+        boolean z2;
+        this.m = z;
+        z zVar = this.e;
+        if (zVar != null) {
+            if (z && !this.o) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            zVar.g(z2);
+        }
+    }
+
+    public final void l(int i) {
+        if (i > 0 && i != this.i) {
+            this.i = i;
+            z zVar = this.e;
+            if (zVar != null && i > 0 && i != zVar.M && !zVar.A) {
+                zVar.M = i;
+                long j = zVar.v;
+                if (j != 0) {
+                    zVar.c.m(j, i / zVar.l);
+                }
+            }
+        }
+    }
+
+    public final void m() {
+        this.n = false;
+        if (this.e != null) {
+            kwc d = d();
+            if (d != null) {
+                this.f = d;
+            }
+            z zVar = this.e;
+            if (!zVar.A) {
+                zVar.A = true;
+                zVar.R = null;
+                zVar.a.removeCallbacks(zVar.W);
+                zVar.a.removeCallbacks(zVar.V);
+                zVar.a.removeCallbacks(zVar.X);
+                zVar.a.removeCallbacks(zVar.b0);
+                if (zVar.J) {
+                    Choreographer.getInstance().removeFrameCallback(zVar.Y);
+                }
+                zVar.J = false;
+                synchronized (zVar.s) {
+                    kwc kwcVar = zVar.O;
+                    if (kwcVar != null) {
+                        kwcVar.a.b();
+                    }
+                    zVar.O = null;
+                    zVar.P = null;
+                }
+                long j = zVar.v;
+                zVar.v = 0L;
+                if (j != 0) {
+                    hwc.a.execute(new sma(zVar, j, (byte) 10));
+                }
+            }
+            this.e = null;
+            if (this.z) {
+                this.z = false;
+                c6e c6eVar = this.d;
+                if (c6eVar != null) {
+                    c6eVar.getClass();
+                    vvc.E();
+                }
+            }
+        }
     }
 }

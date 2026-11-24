@@ -1,119 +1,51 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-public final class xn5 {
-    public float a;
-    public float b;
-    public float c;
-    public boolean e;
-    public final plc f;
-    public final plc g;
-    public ValueAnimator j;
-    public int k;
-    public float d = 0.0f;
-    public boolean h = false;
-    public float i = 1.0f;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class xn5 extends AnimatorListenerAdapter {
+    public final hd8 a;
+    public final float b;
+    public final m01 c;
+    public final boolean d;
+    public final w69 e;
+    public final yn5 f;
 
-    public xn5(int i, int i2, int i3, int i4) {
-        ?? fl0Var = new fl0(i4 - 1);
-        this.f = fl0Var;
-        ?? fl0Var2 = new fl0(i4);
-        this.g = fl0Var2;
-        fl0Var.a = i;
-        fl0Var.b = i2;
-        fl0Var2.a = i - i3;
-        fl0Var2.b = i2 - i3;
-        fl0Var.b();
-        fl0Var2.b();
-        fl0Var.d.setColor(-1);
-        fl0Var.d.setAlpha(20);
-        fl0Var2.d.setColor(-1);
-        fl0Var2.d.setAlpha(36);
+    public xn5(yn5 yn5Var, hd8 hd8Var, float f, m01 m01Var, boolean z, w69 w69Var) {
+        this.f = yn5Var;
+        this.a = hd8Var;
+        this.b = f;
+        this.c = m01Var;
+        this.d = z;
+        this.e = w69Var;
     }
 
-    public final void a(Canvas canvas, float f, float f2, View view) {
-        plc plcVar = this.f;
-        Paint paint = plcVar.d;
-        float f3 = (this.a * 0.4f) + 0.8f;
-        if (this.e || this.d != 0.0f) {
-            canvas.save();
-            float interpolation = d53.f.getInterpolation(this.d) * f3;
-            canvas.scale(interpolation, interpolation, f, f2);
-            plcVar.g(this.a, this.i);
-            plcVar.a(f, f2, canvas, paint);
-            float f4 = this.a;
-            float f5 = this.i;
-            plc plcVar2 = this.g;
-            plcVar2.g(f4, f5);
-            plcVar2.a(f, f2, canvas, paint);
-            canvas.restore();
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        int currentColor;
+        b79 b79Var;
+        yn5 yn5Var = this.f;
+        yn5Var.x = null;
+        dy7 dy7Var = new dy7(new hd8[]{this.a});
+        c79 c79Var = yn5Var.a;
+        dy7Var.c = c79Var.getCurrentColor();
+        dy7Var.d = this.b * 1.0f;
+        m01 m01Var = this.c;
+        dy7Var.e = m01Var;
+        m01Var.getClass();
+        if (m01Var instanceof i01) {
+            currentColor = -1;
+        } else {
+            currentColor = c79Var.getCurrentColor();
         }
-        if (!this.h || this.k != 0) {
-            int i = this.k;
-            if (i != 0) {
-                this.k = i - 1;
-            }
-            if (this.d != 0.0f) {
-                view.invalidate();
-            }
+        gu7 painting = c79Var.getPainting();
+        boolean z = this.d;
+        painting.c(dy7Var, currentColor, z, null);
+        if (z && (b79Var = c79Var.a) != null) {
+            b79Var.P();
         }
-    }
-
-    public final void b(double d) {
-        float f = ((float) d) / 80.0f;
-        float f2 = 0.0f;
-        if (!this.e) {
-            f = 0.0f;
-        }
-        if (f > 1.0f) {
-            f2 = 1.0f;
-        } else if (f >= 0.0f) {
-            f2 = f;
-        }
-        this.b = f2;
-        this.c = (f2 - this.a) / 200.0f;
-    }
-
-    public final void c() {
-        float f = this.b;
-        float f2 = this.a;
-        if (f != f2) {
-            float f3 = this.c;
-            float f4 = (16.0f * f3) + f2;
-            this.a = f4;
-            if (f3 > 0.0f) {
-                if (f4 > f) {
-                    this.a = f;
-                }
-            } else if (f4 < f) {
-                this.a = f;
-            }
-        }
-        boolean z = this.e;
-        if (z) {
-            float f5 = this.d;
-            if (f5 != 1.0f) {
-                float f6 = f5 + 0.045714285f;
-                this.d = f6;
-                if (f6 > 1.0f) {
-                    this.d = 1.0f;
-                    return;
-                }
-                return;
-            }
-        }
-        if (!z) {
-            float f7 = this.d;
-            if (f7 != 0.0f) {
-                float f8 = f7 - 0.045714285f;
-                this.d = f8;
-                if (f8 < 0.0f) {
-                    this.d = 0.0f;
-                }
-            }
+        w69 w69Var = this.e;
+        if (w69Var != null) {
+            w69Var.run();
         }
     }
 }

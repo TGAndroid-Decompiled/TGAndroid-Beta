@@ -1,50 +1,37 @@
 package defpackage;
 
-import android.content.Context;
-import java.util.ArrayList;
-public final class fc6 extends qc6 {
-    public boolean e0;
-    public final pc6 f0;
+import android.animation.ValueAnimator;
+public final class fc6 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final mf6 b;
 
-    public fc6(pc6 pc6Var, Context context, int i, long j, ylb ylbVar, boolean z, boolean z2) {
-        super(context, i, j, false, ylbVar, false, z, z2);
-        this.f0 = pc6Var;
-        this.e0 = true;
+    public fc6(mf6 mf6Var, byte b) {
+        this.a = b;
+        this.b = mf6Var;
     }
 
     @Override
-    public final void J() {
-        this.f0.B0(null);
-    }
-
-    @Override
-    public final void N(ArrayList arrayList) {
-        int i;
-        pc6 pc6Var = this.f0;
-        k47 k47Var = pc6Var.J0;
-        if (k47Var != null && k47Var.C3()) {
-            int i2 = 0;
-            if (arrayList != null) {
-                i = 0;
-                for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                    kc6 kc6Var = (kc6) arrayList.get(i3);
-                    if (kc6Var != null && !m9c.D(kc6Var.c)) {
-                        i++;
-                    }
-                }
-            } else {
-                i = 0;
-            }
-            if (this.e0 && i == 1) {
-                pc6Var.q0 = ((kc6) arrayList.get(0)).a;
-            }
-            this.e0 = false;
-            zja zjaVar = pc6Var.W;
-            if (i != 1) {
-                i2 = 8;
-            }
-            zjaVar.setVisibility(i2);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        mf6 mf6Var = this.b;
+        switch (b) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mf6Var.c.setAlpha(floatValue);
+                mf6Var.c.setTranslationY((1.0f - floatValue) * gl.L(230.0f));
+                return;
+            case 1:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float f = (0.9f * floatValue2) + 0.1f;
+                mf6Var.W.setScaleX(f);
+                mf6Var.W.setScaleY(f);
+                mf6Var.W.setAlpha(floatValue2);
+                return;
+            default:
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mf6Var.c.setAlpha(floatValue3);
+                mf6Var.c.setTranslationY((1.0f - floatValue3) * gl.L(230.0f));
+                return;
         }
-        super.N(arrayList);
     }
 }

@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.util.TypedValue;
 import j$.util.Objects;
 import java.util.ArrayList;
-public class AnimatedPhoneNumberEditText extends dg5 {
+public class AnimatedPhoneNumberEditText extends fe5 {
     public static final int b2 = 0;
     public final ArrayList P1;
     public final ArrayList Q1;
@@ -17,12 +17,12 @@ public class AnimatedPhoneNumberEditText extends dg5 {
     public ObjectAnimator S1;
     public float T1;
     public String U1;
-    public final sn V1;
+    public final sm V1;
     public final ArrayList W1;
     public final ArrayList X1;
     public Boolean Y1;
     public String Z1;
-    public np6 a2;
+    public mn6 a2;
 
     public AnimatedPhoneNumberEditText(Context context) {
         super(context);
@@ -30,7 +30,7 @@ public class AnimatedPhoneNumberEditText extends dg5 {
         this.Q1 = new ArrayList();
         this.R1 = new TextPaint(1);
         this.U1 = "";
-        this.V1 = new sn(this, (byte) 0);
+        this.V1 = new sm(this, (byte) 0);
         this.W1 = new ArrayList();
         this.X1 = new ArrayList();
     }
@@ -51,7 +51,7 @@ public class AnimatedPhoneNumberEditText extends dg5 {
         while (i < size) {
             Object obj = arrayList.get(i);
             i++;
-            ((zna) obj).d();
+            ((yla) obj).d();
         }
         if (!z) {
             super.setHintText(str);
@@ -86,7 +86,7 @@ public class AnimatedPhoneNumberEditText extends dg5 {
             while (i < size) {
                 Object obj = arrayList2.get(i);
                 i++;
-                ((zna) obj).d();
+                ((yla) obj).d();
             }
             arrayList2.clear();
             this.Y1 = Boolean.valueOf(z);
@@ -106,7 +106,7 @@ public class AnimatedPhoneNumberEditText extends dg5 {
         }
         if (isEmpty) {
             int length = str2.length();
-            np6 np6Var = new np6(this, z, str, (byte) 6);
+            mn6 mn6Var = new mn6(this, z, str, (byte) 6);
             Runnable runnable = this.a2;
             if (runnable != null) {
                 removeCallbacks(runnable);
@@ -119,21 +119,21 @@ public class AnimatedPhoneNumberEditText extends dg5 {
                 } else {
                     f = 1.0f;
                 }
-                zna znaVar = new zna(Integer.valueOf(i2), this.V1);
+                yla ylaVar = new yla(Integer.valueOf(i2), this.V1);
                 float f3 = f2 * 100.0f;
-                aoa aoaVar = new aoa(f3);
-                aoaVar.b(500.0f);
-                aoaVar.a(1.0f);
-                aoaVar.i = f3;
-                znaVar.m = aoaVar;
-                znaVar.b = 100.0f * f;
-                znaVar.c = true;
-                arrayList2.add(znaVar);
+                zla zlaVar = new zla(f3);
+                zlaVar.b(500.0f);
+                zlaVar.a(1.0f);
+                zlaVar.i = f3;
+                ylaVar.m = zlaVar;
+                ylaVar.b = 100.0f * f;
+                ylaVar.c = true;
+                arrayList2.add(ylaVar);
                 arrayList.add(Float.valueOf(f));
-                postDelayed(new b1(znaVar, (byte) 18), i2 * 5);
+                postDelayed(new b1(ylaVar, (byte) 16), i2 * 5);
             }
-            this.a2 = np6Var;
-            postDelayed(np6Var, (length * 5) + 150);
+            this.a2 = mn6Var;
+            postDelayed(mn6Var, (length * 5) + 150);
         }
     }
 
@@ -186,7 +186,7 @@ public class AnimatedPhoneNumberEditText extends dg5 {
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", -1.0f, 0.0f);
                 this.S1 = ofFloat;
                 ofFloat.setDuration(150L);
-                this.S1.addListener(new defpackage.g0(this, (byte) 10));
+                this.S1.addListener(new defpackage.g0(this, (byte) 8));
                 this.S1.start();
             }
             this.U1 = str;

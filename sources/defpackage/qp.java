@@ -1,52 +1,52 @@
 package defpackage;
 
-import android.view.ViewGroup;
-import java.util.WeakHashMap;
-public final class qp implements Runnable {
-    public final byte a;
-    public final bq b;
-
-    public qp(bq bqVar, byte b) {
-        this.a = b;
-        this.b = bqVar;
+import android.app.Activity;
+import android.content.ClipData;
+import android.os.Build;
+import android.text.Selection;
+import android.text.Spannable;
+import android.view.DragEvent;
+import android.view.View;
+import android.widget.TextView;
+public abstract class qp {
+    public static boolean a(DragEvent dragEvent, TextView textView, Activity activity) {
+        dv2 dv2Var;
+        activity.requestDragAndDropPermissions(dragEvent);
+        int offsetForPosition = textView.getOffsetForPosition(dragEvent.getX(), dragEvent.getY());
+        textView.beginBatchEdit();
+        try {
+            Selection.setSelection((Spannable) textView.getText(), offsetForPosition);
+            ClipData clipData = dragEvent.getClipData();
+            if (Build.VERSION.SDK_INT >= 31) {
+                dv2Var = new cv2(clipData, 3);
+            } else {
+                ev2 ev2Var = new ev2();
+                ev2Var.b = clipData;
+                ev2Var.c = (byte) 3;
+                dv2Var = ev2Var;
+            }
+            jdc.i(textView, dv2Var.build());
+            textView.endBatchEdit();
+            return true;
+        } catch (Throwable th) {
+            textView.endBatchEdit();
+            throw th;
+        }
     }
 
-    @Override
-    public final void run() {
-        ViewGroup viewGroup;
-        byte b = this.a;
-        bq bqVar = this.b;
-        switch (b) {
-            case 0:
-                if ((bqVar.j0 & 1) != 0) {
-                    bqVar.j(0);
-                }
-                if ((bqVar.j0 & 4096) != 0) {
-                    bqVar.j(108);
-                }
-                bqVar.i0 = false;
-                bqVar.j0 = 0;
-                return;
-            default:
-                bqVar.F.showAtLocation(bqVar.E, 55, 0, 0);
-                ahc ahcVar = bqVar.H;
-                if (ahcVar != null) {
-                    ahcVar.b();
-                }
-                if (bqVar.J && (viewGroup = bqVar.K) != null) {
-                    WeakHashMap weakHashMap = kfc.a;
-                    if (viewGroup.isLaidOut()) {
-                        bqVar.E.setAlpha(0.0f);
-                        ahc a = kfc.a(bqVar.E);
-                        a.a(1.0f);
-                        bqVar.H = a;
-                        a.d(new rp(this, (byte) 0));
-                        return;
-                    }
-                }
-                bqVar.E.setAlpha(1.0f);
-                bqVar.E.setVisibility(0);
-                return;
+    public static boolean b(DragEvent dragEvent, View view, Activity activity) {
+        dv2 dv2Var;
+        activity.requestDragAndDropPermissions(dragEvent);
+        ClipData clipData = dragEvent.getClipData();
+        if (Build.VERSION.SDK_INT >= 31) {
+            dv2Var = new cv2(clipData, 3);
+        } else {
+            ev2 ev2Var = new ev2();
+            ev2Var.b = clipData;
+            ev2Var.c = (byte) 3;
+            dv2Var = ev2Var;
         }
+        jdc.i(view, dv2Var.build());
+        return true;
     }
 }

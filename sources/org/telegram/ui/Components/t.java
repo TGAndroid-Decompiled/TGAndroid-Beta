@@ -29,14 +29,14 @@ public final class t extends FrameLayout {
         boolean z2;
         ThemeEditorView.EditorAlert editorAlert = this.d;
         Drawable drawable = editorAlert.x1;
-        int L = gm.L(6.0f) + (editorAlert.y1 - editorAlert.t0);
-        int L2 = (editorAlert.y1 - editorAlert.t0) - gm.L(13.0f);
-        int L3 = gm.L(30.0f) + getMeasuredHeight();
+        int L = gl.L(6.0f) + (editorAlert.y1 - editorAlert.t0);
+        int L2 = (editorAlert.y1 - editorAlert.t0) - gl.L(13.0f);
+        int L3 = gl.L(30.0f) + getMeasuredHeight();
         int i2 = editorAlert.t0;
         int i3 = L3 + i2;
         boolean z3 = true;
         if (!editorAlert.W) {
-            int i4 = gm.m;
+            int i4 = gl.m;
             L2 += i4;
             L += i4;
             i3 -= i4;
@@ -45,13 +45,13 @@ public final class t extends FrameLayout {
                 int min = Math.min(i4, (i5 - L2) - i2);
                 L2 -= min;
                 i3 += min;
-                f = 1.0f - Math.min(1.0f, (min << 1) / gm.m);
+                f = 1.0f - Math.min(1.0f, (min << 1) / gl.m);
             } else {
                 f = 1.0f;
             }
             int i6 = editorAlert.t0;
             int i7 = L2 + i6;
-            int i8 = gm.m;
+            int i8 = gl.m;
             if (i7 < i8) {
                 i = Math.min(i8, (i8 - L2) - i6);
             } else {
@@ -66,20 +66,20 @@ public final class t extends FrameLayout {
         int i9 = (f > 1.0f ? 1 : (f == 1.0f ? 0 : -1));
         RectF rectF = this.b;
         if (i9 != 0) {
-            cmb.s0.setColor(-1);
-            rectF.set(editorAlert.u0, editorAlert.t0 + L2, getMeasuredWidth() - editorAlert.u0, gm.L(24.0f) + editorAlert.t0 + L2);
-            canvas.drawRoundRect(rectF, gm.L(12.0f) * f, gm.L(12.0f) * f, cmb.s0);
+            bkb.s0.setColor(-1);
+            rectF.set(editorAlert.u0, editorAlert.t0 + L2, getMeasuredWidth() - editorAlert.u0, gl.L(24.0f) + editorAlert.t0 + L2);
+            canvas.drawRoundRect(rectF, gl.L(12.0f) * f, gl.L(12.0f) * f, bkb.s0);
         }
-        int L4 = gm.L(36.0f);
-        rectF.set((getMeasuredWidth() - L4) / 2, L, (getMeasuredWidth() + L4) / 2, gm.L(4.0f) + L);
-        cmb.s0.setColor(-1973016);
-        cmb.s0.setAlpha((int) (editorAlert.m1.getAlpha() * 255.0f));
-        canvas.drawRoundRect(rectF, gm.L(2.0f), gm.L(2.0f), cmb.s0);
+        int L4 = gl.L(36.0f);
+        rectF.set((getMeasuredWidth() - L4) / 2, L, (getMeasuredWidth() + L4) / 2, gl.L(4.0f) + L);
+        bkb.s0.setColor(-1973016);
+        bkb.s0.setAlpha((int) (editorAlert.m1.getAlpha() * 255.0f));
+        canvas.drawRoundRect(rectF, gl.L(2.0f), gl.L(2.0f), bkb.s0);
         if (i > 0) {
-            cmb.s0.setColor(cmb.w0(null, cmb.g5, false));
-            canvas.drawRect(editorAlert.u0, gm.m - i, getMeasuredWidth() - editorAlert.u0, gm.m, cmb.s0);
+            bkb.s0.setColor(bkb.w0(null, bkb.g5, false));
+            canvas.drawRect(editorAlert.u0, gl.m - i, getMeasuredWidth() - editorAlert.u0, gl.m, bkb.s0);
         }
-        if (i > gm.m / 2) {
+        if (i > gl.m / 2) {
             z = true;
         } else {
             z = false;
@@ -88,21 +88,21 @@ public final class t extends FrameLayout {
         if (bool != null && bool.booleanValue() == z) {
             return;
         }
-        int i10 = cmb.g5;
+        int i10 = bkb.g5;
         int i11 = ThemeEditorView.EditorAlert.G1;
-        if (gm.B(cmb.v0(i10, editorAlert.J0)) > 0.721f) {
+        if (gl.B(bkb.v0(i10, editorAlert.J0)) > 0.721f) {
             z2 = true;
         } else {
             z2 = false;
         }
-        if (gm.B(cmb.v(cmb.v0(cmb.r8, editorAlert.J0), 855638016)) <= 0.721f) {
+        if (gl.B(bkb.v(bkb.v0(bkb.r8, editorAlert.J0), 855638016)) <= 0.721f) {
             z3 = false;
         }
         this.c = Boolean.valueOf(z);
         if (!z) {
             z2 = z3;
         }
-        gm.n3(editorAlert.getWindow(), z2);
+        gl.n3(editorAlert.getWindow(), z2);
     }
 
     @Override
@@ -134,14 +134,14 @@ public final class t extends FrameLayout {
         if (!editorAlert.W) {
             this.a = true;
             int i4 = editorAlert.u0;
-            setPadding(i4, gm.m, i4, 0);
+            setPadding(i4, gl.m, i4, 0);
             this.a = false;
         }
-        int L = (gm.L(8.0f) + (size2 - gm.m)) - Math.min(size, size2 - gm.m);
+        int L = (gl.L(8.0f) + (size2 - gl.m)) - Math.min(size, size2 - gl.m);
         if (uVar.getPaddingTop() != L) {
             this.a = true;
             uVar.getPaddingTop();
-            uVar.setPadding(0, L, 0, gm.L(48.0f));
+            uVar.setPadding(0, L, 0, gl.L(48.0f));
             if (editorAlert.l1.getVisibility() == 0) {
                 editorAlert.setScrollOffsetY(uVar.getPaddingTop());
                 editorAlert.A1 = 0;

@@ -1,88 +1,157 @@
 package defpackage;
 
-import android.content.Context;
+import android.animation.AnimatorSet;
+import android.app.Activity;
+import android.net.Uri;
+import android.text.TextUtils;
 import android.view.View;
+import org.json.JSONObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d;
-public final class t53 extends vz9 {
-    public final v29 f2;
-    public final d g2;
-    public final x53 h2;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.DataAutoDownloadActivity;
+import org.telegram.ui.Wallet.c;
+public final class t53 implements View.OnClickListener {
+    public final byte a = 0;
+    public final int b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
+    public final Object f;
+    public final Object h;
+    public final Object n;
 
-    public t53(x53 x53Var, d dVar, Context context, int i, boolean z, ylb ylbVar, v29 v29Var, d dVar2) {
-        super(dVar, context, false, null, i, z, ylbVar, 16);
-        this.h2 = x53Var;
-        this.f2 = v29Var;
-        this.g2 = dVar2;
+    public t53(u41 u41Var, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, boolean[] zArr, fx0 fx0Var, u41 u41Var2, hv0 hv0Var, int i) {
+        this.c = u41Var;
+        this.d = tL_messages_requestUrlAuth;
+        this.e = zArr;
+        this.f = fx0Var;
+        this.h = u41Var2;
+        this.n = hv0Var;
+        this.b = i;
     }
 
     @Override
-    public final void l() {
-        this.h2.a.invalidate();
-    }
-
-    @Override
-    public final void o(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        long longValue;
-        su suVar = this.h2.c;
-        v29 v29Var = this.f2;
-        d dVar = this.g2;
-        if (dVar != null && !v29Var.B0 && v29Var.getWindowType() != 13 && !z8c.h(dVar.getCurrentAccount()).p()) {
-            try {
-                suVar.performHapticFeedback(3);
-            } catch (Exception unused) {
-            }
-            new c41(suVar, null).r(document, gm.S2(jb6.M0(2131743548, null)), jb6.M0(2131746768, null), new xf2(this, (byte) 22)).j();
-        } else if (l == null && document == null) {
-        } else {
-            if (document != null) {
-                vm.g(z8c.t0).e(document);
-            }
-            if (l == null) {
-                longValue = document.id;
-            } else {
-                longValue = l.longValue();
-            }
-            ?? obj = new Object();
-            obj.g = longValue;
-            obj.h = longValue;
-            v29Var.i(view, obj, false);
-            gm.t1(suVar);
+    public final void onClick(View view) {
+        byte b = this.a;
+        JSONObject jSONObject = null;
+        int i = this.b;
+        Object obj = this.n;
+        Object obj2 = this.h;
+        Object obj3 = this.f;
+        Object obj4 = this.e;
+        Object obj5 = this.d;
+        Object obj6 = this.c;
+        switch (b) {
+            case 0:
+                ((DataAutoDownloadActivity) obj6).n0((xgb) obj5, (xgb[]) obj4, this.b, (rj6[]) obj3, (ahb[]) obj2, (AnimatorSet[]) obj, view);
+                return;
+            case 1:
+                TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) obj5;
+                boolean[] zArr = (boolean[]) obj4;
+                fx0 fx0Var = (fx0) obj3;
+                u41 u41Var = (u41) obj2;
+                hv0 hv0Var = (hv0) obj;
+                if (!((u41) obj6).R) {
+                    if (tL_messages_requestUrlAuth != null && !TextUtils.isEmpty(tL_messages_requestUrlAuth.url)) {
+                        if (!u41Var.R) {
+                            u41Var.setLoading(true);
+                            if (hv0Var != null) {
+                                boolean z = hv0.R0;
+                                try {
+                                    jSONObject = new JSONObject();
+                                } catch (Exception unused) {
+                                }
+                                hv0Var.v("oauth_result_failed", jSONObject);
+                            }
+                            TLRPC.TL_messages_declineUrlAuth tL_messages_declineUrlAuth = new TLRPC.TL_messages_declineUrlAuth();
+                            tL_messages_declineUrlAuth.url = tL_messages_requestUrlAuth.url;
+                            ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_declineUrlAuth, new hc((byte) 0), new w77(zArr, fx0Var, (byte) 3));
+                            return;
+                        }
+                        return;
+                    }
+                    zArr[0] = true;
+                    fx0Var.dismiss();
+                    return;
+                }
+                return;
+            case 2:
+                u41 u41Var2 = (u41) obj6;
+                TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) obj5;
+                fx0[] fx0VarArr = (fx0[]) obj4;
+                wjb wjbVar = (wjb) obj3;
+                boolean[] zArr2 = (boolean[]) obj2;
+                Activity activity = (Activity) obj;
+                if (!u41Var2.R) {
+                    u41Var2.setLoading(true);
+                    if (starsSubscription.chat_invite_hash != null) {
+                        TLRPC.TL_messages_checkChatInvite tL_messages_checkChatInvite = new TLRPC.TL_messages_checkChatInvite();
+                        tL_messages_checkChatInvite.hash = starsSubscription.chat_invite_hash;
+                        int i2 = this.b;
+                        ConnectionsManager.getInstance(i2).sendRequest(tL_messages_checkChatInvite, new vt0(u41Var2, fx0VarArr, wjbVar, i2, tL_messages_checkChatInvite));
+                        return;
+                    } else if (starsSubscription.invoice_slug != null) {
+                        zArr2[0] = true;
+                        d01.s(activity, Uri.parse("https://t.me/$" + starsSubscription.invoice_slug), true, false, false, new nua(u41Var2), null, false, true, false, false);
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
+            default:
+                boolean[] zArr3 = (boolean[]) obj6;
+                cj7[] cj7VarArr = (cj7[]) obj5;
+                wjb wjbVar2 = (wjb) obj4;
+                wla wlaVar = (wla) obj3;
+                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj2;
+                String str = (String) obj;
+                if (!zArr3[0]) {
+                    zArr3[0] = true;
+                    eu0 eu0Var = new eu0(zArr3, cj7VarArr, wjbVar2, wlaVar, (byte) 16);
+                    if (wallettransaction.comment_encrypted_preparing) {
+                        eu0Var.a(wallettransaction.comment, null);
+                        return;
+                    }
+                    c C = c.C(i);
+                    String str2 = wallettransaction.comment;
+                    c.O("decrypting transaction comment");
+                    C.E(true, false, false, new p(C, eu0Var, str, str2));
+                    return;
+                }
+                return;
         }
     }
 
-    @Override
-    public final void p() {
-        x53 x53Var = this.h2;
-        if (!x53Var.v) {
-            x53Var.v = true;
-            if (!x53Var.d) {
-                x53Var.b.updateViewLayout(x53Var.c, x53Var.b(true));
-            }
-            d dVar = this.g2;
-            if (dVar instanceof yv1) {
-                ((yv1) dVar).ea();
-            }
-            v29 v29Var = this.f2;
-            if (v29Var.getDelegate() != null) {
-                v29Var.getDelegate().l();
-            }
-        }
+    public t53(u41 u41Var, TL_stars.StarsSubscription starsSubscription, int i, fx0[] fx0VarArr, wjb wjbVar, boolean[] zArr, Activity activity) {
+        this.c = u41Var;
+        this.d = starsSubscription;
+        this.b = i;
+        this.e = fx0VarArr;
+        this.f = wjbVar;
+        this.h = zArr;
+        this.n = activity;
     }
 
-    @Override
-    public final void q(fz9 fz9Var, k39 k39Var) {
-        this.f2.i(fz9Var, k39Var, false);
-        gm.t1(this.h2.c);
+    public t53(DataAutoDownloadActivity dataAutoDownloadActivity, xgb xgbVar, xgb[] xgbVarArr, int i, rj6[] rj6VarArr, ahb[] ahbVarArr, AnimatorSet[] animatorSetArr) {
+        this.c = dataAutoDownloadActivity;
+        this.d = xgbVar;
+        this.e = xgbVarArr;
+        this.b = i;
+        this.f = rj6VarArr;
+        this.h = ahbVarArr;
+        this.n = animatorSetArr;
     }
 
-    @Override
-    public final boolean t() {
-        v29 v29Var = this.f2;
-        if (v29Var.getDelegate() != null) {
-            return v29Var.getDelegate().l();
-        }
-        return false;
+    public t53(boolean[] zArr, cj7[] cj7VarArr, wjb wjbVar, wla wlaVar, TL_wallet.walletTransaction wallettransaction, int i, String str) {
+        this.c = zArr;
+        this.d = cj7VarArr;
+        this.e = wjbVar;
+        this.f = wlaVar;
+        this.h = wallettransaction;
+        this.b = i;
+        this.n = str;
     }
 }

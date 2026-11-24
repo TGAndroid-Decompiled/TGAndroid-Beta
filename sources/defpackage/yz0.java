@@ -1,229 +1,133 @@
 package defpackage;
 
-import android.util.Pair;
-import java.nio.charset.StandardCharsets;
-public abstract class yz0 {
-    public static final byte[] a;
+import android.os.Handler;
+import android.os.HandlerThread;
+import java.util.ArrayList;
+import org.telegram.messenger.voip.NativeInstance;
+import org.telegram.tgnet.TLRPC;
+public final class yz0 implements ez0 {
+    public final HandlerThread a;
+    public final Handler b;
+    public final zz0 c;
+    public final pz0 d;
+    public final NativeInstance e;
+    public final xz0 f;
+    public final Object g = new Object();
+    public boolean h;
+    public final wz0 i;
 
-    static {
-        String str = hac.a;
-        a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+    public yz0(int i, TLRPC.InputGroupCall inputGroupCall, int i2, NativeInstance nativeInstance, xz0 xz0Var) {
+        this.e = nativeInstance;
+        this.f = xz0Var;
+        HandlerThread handlerThread = new HandlerThread("BroadcastListener");
+        this.a = handlerThread;
+        handlerThread.start();
+        Handler handler = new Handler(handlerThread.getLooper());
+        this.b = handler;
+        this.c = new zz0(i, inputGroupCall, i2, false, new g40(handler, (byte) 0), null);
+        this.d = new pz0(this, true);
+        this.i = new wz0(nativeInstance);
     }
 
-    public static void a(yw7 yw7Var) {
-        int i = yw7Var.b;
-        yw7Var.O(4);
-        if (yw7Var.m() != 1751411826) {
-            i += 4;
-        }
-        yw7Var.N(i);
-    }
-
-    public static void b(defpackage.yw7 r48, int r49, int r50, int r51, int r52, java.lang.String r53, boolean r54, defpackage.as3 r55, defpackage.uz0 r56, int r57) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yz0.b(yw7, int, int, int, int, java.lang.String, boolean, as3, uz0, int):void");
-    }
-
-    public static sz0 c(int i, yw7 yw7Var) {
-        long j;
-        yw7Var.N(i + 12);
-        yw7Var.O(1);
-        d(yw7Var);
-        yw7Var.O(2);
-        int A = yw7Var.A();
-        if ((A & 128) != 0) {
-            yw7Var.O(2);
-        }
-        if ((A & 64) != 0) {
-            yw7Var.O(yw7Var.A());
-        }
-        if ((A & 32) != 0) {
-            yw7Var.O(2);
-        }
-        yw7Var.O(1);
-        d(yw7Var);
-        String e = wf7.e(yw7Var.A());
-        if (!"audio/mpeg".equals(e) && !"audio/vnd.dts".equals(e) && !"audio/vnd.dts.hd".equals(e)) {
-            yw7Var.O(4);
-            long C = yw7Var.C();
-            long C2 = yw7Var.C();
-            yw7Var.O(1);
-            int d = d(yw7Var);
-            long j2 = C2;
-            byte[] bArr = new byte[d];
-            yw7Var.k(0, d, bArr);
-            if (j2 <= 0) {
-                j2 = -1;
+    @Override
+    public final void b(lz0 lz0Var) {
+        synchronized (this.g) {
+            if (this.h) {
+                return;
             }
-            if (C > 0) {
-                j = C;
-            } else {
-                j = -1;
+            int i = lz0Var.d;
+            if (i > 0 && !this.e.deliverListenerAudio(lz0Var.a, lz0Var.c, i)) {
+                d("segment " + lz0Var.a + " was not queued");
             }
-            return new sz0(e, bArr, j2, j);
+            ArrayList arrayList = lz0Var.f;
+            int size = arrayList.size();
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList.get(i2);
+                i2++;
+                oz0 oz0Var = (oz0) obj;
+                if (!this.i.a(lz0Var.a, oz0Var)) {
+                    this.e.deliverListenerVideo(lz0Var.a, oz0Var.d, oz0Var.e);
+                }
+            }
         }
-        return new sz0(e, null, -1L, -1L);
     }
 
-    public static int d(yw7 yw7Var) {
-        int A = yw7Var.A();
-        int i = A & 127;
-        while ((A & 128) == 128) {
-            A = yw7Var.A();
-            i = (i << 7) | (A & 127);
+    @Override
+    public final void d(String str) {
+        if (w01.a) {
+            fa4.b("[BroadcastListener] ".concat(str));
         }
-        return i;
     }
 
-    public static int e(int i) {
-        return (i >> 24) & 255;
+    @Override
+    public final void e(vy0 vy0Var) {
+        this.c.b(vy0Var);
     }
 
-    public static defpackage.nf7 f(defpackage.oh7 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yz0.f(oh7):nf7");
-    }
-
-    public static uh7 g(yw7 yw7Var) {
-        long u;
-        long u2;
-        yw7Var.N(8);
-        if (e(yw7Var.m()) == 0) {
-            u = yw7Var.C();
-            u2 = yw7Var.C();
-        } else {
-            u = yw7Var.u();
-            u2 = yw7Var.u();
-        }
-        return new uh7(u, u2, yw7Var.C());
-    }
-
-    public static Pair h(yw7 yw7Var, int i, int i2) {
+    @Override
+    public final void f() {
         boolean z;
-        boolean z2;
-        boolean z3;
-        Integer num;
-        szb szbVar;
-        Pair create;
-        int i3;
-        int i4;
-        Integer num2;
-        boolean z4;
-        int i5 = yw7Var.b;
-        while (i5 - i < i2) {
-            yw7Var.N(i5);
-            int m = yw7Var.m();
-            boolean z5 = false;
-            if (m > 0) {
-                z = true;
-            } else {
-                z = false;
-            }
-            zhe.a("childAtomSize must be positive", z);
-            if (yw7Var.m() == 1936289382) {
-                int i6 = i5 + 8;
-                int i7 = 0;
-                int i8 = -1;
-                Integer num3 = null;
-                String str = null;
-                while (i6 - i5 < m) {
-                    yw7Var.N(i6);
-                    int m2 = yw7Var.m();
-                    int m3 = yw7Var.m();
-                    if (m3 == 1718775137) {
-                        num3 = Integer.valueOf(yw7Var.m());
-                    } else if (m3 == 1935894637) {
-                        yw7Var.O(4);
-                        str = yw7Var.y(4, StandardCharsets.UTF_8);
-                    } else if (m3 == 1935894633) {
-                        i8 = i6;
-                        i7 = m2;
-                    }
-                    i6 += m2;
-                }
-                byte[] bArr = null;
-                if (!"cenc".equals(str) && !"cbc1".equals(str) && !"cens".equals(str) && !"cbcs".equals(str)) {
-                    create = null;
-                } else {
-                    if (num3 != null) {
-                        z2 = true;
-                    } else {
-                        z2 = false;
-                    }
-                    zhe.a("frma atom is mandatory", z2);
-                    if (i8 != -1) {
-                        z3 = true;
-                    } else {
-                        z3 = false;
-                    }
-                    zhe.a("schi atom is mandatory", z3);
-                    int i9 = i8 + 8;
-                    while (true) {
-                        if (i9 - i8 < i7) {
-                            yw7Var.N(i9);
-                            int m4 = yw7Var.m();
-                            if (yw7Var.m() == 1952804451) {
-                                int e = e(yw7Var.m());
-                                yw7Var.O(1);
-                                if (e == 0) {
-                                    yw7Var.O(1);
-                                    i4 = 0;
-                                    i3 = 0;
-                                } else {
-                                    int A = yw7Var.A();
-                                    i3 = A & 15;
-                                    i4 = (A & 240) >> 4;
-                                }
-                                if (yw7Var.A() == 1) {
-                                    num2 = num3;
-                                    z4 = true;
-                                } else {
-                                    num2 = num3;
-                                    z4 = false;
-                                }
-                                int A2 = yw7Var.A();
-                                byte[] bArr2 = new byte[16];
-                                yw7Var.k(0, 16, bArr2);
-                                if (z4 && A2 == 0) {
-                                    int A3 = yw7Var.A();
-                                    byte[] bArr3 = new byte[A3];
-                                    yw7Var.k(0, A3, bArr3);
-                                    bArr = bArr3;
-                                }
-                                num = num2;
-                                szbVar = new szb(z4, str, A2, bArr2, i4, i3, bArr);
-                            } else {
-                                i9 += m4;
-                            }
-                        } else {
-                            num = num3;
-                            szbVar = null;
-                            break;
-                        }
-                    }
-                    if (szbVar != null) {
-                        z5 = true;
-                    }
-                    zhe.a("tenc atom is mandatory", z5);
-                    String str2 = hac.a;
-                    create = Pair.create(num, szbVar);
-                }
-                if (create != null) {
-                    return create;
-                }
-            }
-            i5 += m;
+        xz0 xz0Var = this.f;
+        synchronized (this.g) {
+            z = this.h;
         }
-        return null;
+        if (!z) {
+            xz0Var.onRejoinRequested();
+        }
     }
 
-    public static defpackage.uz0 i(defpackage.yw7 r62, defpackage.wz0 r63, java.lang.String r64, defpackage.as3 r65, boolean r66) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yz0.i(yw7, wz0, java.lang.String, as3, boolean):uz0");
+    @Override
+    public final void g(long j, int i, long j2) {
+        synchronized (this.g) {
+            if (this.h) {
+                return;
+            }
+            this.e.playListenerAudio(j, j2 * 1000, i);
+            this.i.d(j, i, j2);
+        }
     }
 
-    public static java.util.ArrayList j(defpackage.oh7 r58, defpackage.au4 r59, long r60, defpackage.as3 r62, boolean r63, boolean r64, defpackage.bs4 r65, boolean r66) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yz0.j(oh7, au4, long, as3, boolean, boolean, bs4, boolean):java.util.ArrayList");
+    @Override
+    public final long h() {
+        return System.nanoTime() / 1000000;
     }
 
-    public static defpackage.nf7 k(defpackage.ph7 r24, boolean r25) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yz0.k(ph7, boolean):nf7");
+    @Override
+    public final jh i(iz0 iz0Var, hz0 hz0Var) {
+        return this.c.a(iz0Var, new o(iz0Var, hz0Var, (byte) 27));
+    }
+
+    @Override
+    public final dz0 j(Runnable runnable, long j) {
+        z20 z20Var = new z20(this, runnable, (byte) 26);
+        this.b.postDelayed(z20Var, Math.max(0L, j));
+        return new o(this, z20Var, (byte) 26);
+    }
+
+    public final void k() {
+        synchronized (this.g) {
+            this.h = true;
+        }
+        wz0 wz0Var = this.i;
+        wz0Var.f = true;
+        ArrayList arrayList = new ArrayList(wz0Var.b.keySet());
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            wz0Var.e((String) obj);
+        }
+        wz0Var.e.clear();
+        this.b.post(new nv0(this, (byte) 6));
+    }
+
+    @Override
+    public final void a(float f) {
+    }
+
+    @Override
+    public final void c(long j) {
     }
 }

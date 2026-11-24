@@ -1,17 +1,15 @@
 package defpackage;
-public final class ond implements cq7 {
-    public static final ond a = new Object();
 
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)));
-    }
-
+import dalvik.system.PathClassLoader;
+public final class ond extends PathClassLoader {
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+    public final Class loadClass(String str, boolean z) {
+        if (!str.startsWith("java.") && !str.startsWith("android.")) {
+            try {
+                return findClass(str);
+            } catch (ClassNotFoundException unused) {
+            }
         }
-        throw new ClassCastException();
+        return super.loadClass(str, z);
     }
 }

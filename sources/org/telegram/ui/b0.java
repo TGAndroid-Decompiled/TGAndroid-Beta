@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
-public final class b0 extends q59 {
+public final class b0 extends n39 {
     public final PremiumPreviewFragment c;
 
     public b0(PremiumPreviewFragment premiumPreviewFragment) {
@@ -14,8 +14,8 @@ public final class b0 extends q59 {
     }
 
     @Override
-    public final boolean D(u69 u69Var) {
-        int i = u69Var.f;
+    public final boolean D(s49 s49Var) {
+        int i = s49Var.f;
         if (i == 1 || i == 8) {
             return true;
         }
@@ -58,70 +58,70 @@ public final class b0 extends q59 {
     }
 
     @Override
-    public final void t(u69 u69Var, int i) {
+    public final void t(s49 s49Var, int i) {
         String str;
-        View view = u69Var.a;
+        View view = s49Var.a;
         PremiumPreviewFragment premiumPreviewFragment = this.c;
         boolean z = premiumPreviewFragment.i0;
         ?? r2 = premiumPreviewFragment.n;
         boolean z2 = true;
         if (i >= r2 && i < premiumPreviewFragment.r) {
-            lj8 lj8Var = (lj8) view;
-            hk8 hk8Var = (hk8) premiumPreviewFragment.b.get(i - (r2 == true ? 1 : 0));
+            kh8 kh8Var = (kh8) view;
+            fi8 fi8Var = (fi8) premiumPreviewFragment.b.get(i - (r2 == true ? 1 : 0));
             if (i == premiumPreviewFragment.r - 1) {
                 z2 = false;
             }
-            lj8Var.a(hk8Var, z2);
+            kh8Var.a(fi8Var, z2);
             return;
         }
         int i2 = premiumPreviewFragment.w;
         if (i >= i2 && i < premiumPreviewFragment.x) {
-            lj8 lj8Var2 = (lj8) view;
-            hk8 hk8Var2 = (hk8) premiumPreviewFragment.c.get(i - i2);
+            kh8 kh8Var2 = (kh8) view;
+            fi8 fi8Var2 = (fi8) premiumPreviewFragment.c.get(i - i2);
             if (i == premiumPreviewFragment.x - 1) {
                 z2 = false;
             }
-            lj8Var2.a(hk8Var2, z2);
+            kh8Var2.a(fi8Var2, z2);
         } else if (i == premiumPreviewFragment.y) {
-            njb njbVar = (njb) view;
-            njbVar.setText("");
-            njbVar.setFixedSize(12);
+            mhb mhbVar = (mhb) view;
+            mhbVar.setText("");
+            mhbVar.setFixedSize(12);
         } else if (i != premiumPreviewFragment.E && i != premiumPreviewFragment.F && i != premiumPreviewFragment.I) {
             if (i == premiumPreviewFragment.s) {
-                ((jf5) view).setText(jb6.M0(2131746729, null));
+                ((ld5) view).setText(k96.M0(2131746803, null));
             } else if (i == premiumPreviewFragment.H) {
-                ((jf5) view).setText(jb6.M0(2131745084, null));
+                ((ld5) view).setText(k96.M0(2131745158, null));
             } else if (i == premiumPreviewFragment.showAdsRow) {
-                TLRPC.UserFull X1 = premiumPreviewFragment.getMessagesController().X1(premiumPreviewFragment.getUserConfig().e());
-                xib xibVar = (xib) view;
-                String M0 = jb6.M0(2131745086, null);
-                if (X1 != null && !X1.sponsored_enabled) {
+                TLRPC.UserFull W1 = premiumPreviewFragment.getMessagesController().W1(premiumPreviewFragment.getUserConfig().e());
+                wgb wgbVar = (wgb) view;
+                String M0 = k96.M0(2131745160, null);
+                if (W1 != null && !W1.sponsored_enabled) {
                     z2 = false;
                 }
-                xibVar.l(M0, z2, false);
+                wgbVar.l(M0, z2, false);
             }
         } else {
-            njb njbVar2 = (njb) view;
+            mhb mhbVar2 = (mhb) view;
             if (!z) {
-                njbVar2.setTextColor(cmb.p1(0.75f, -1));
-                njbVar2.getTextView().setLinkTextColor(-1);
-                njbVar2.setLinkTextRippleColor(Integer.valueOf(cmb.p1(0.15f, -1)));
+                mhbVar2.setTextColor(bkb.p1(0.75f, -1));
+                mhbVar2.getTextView().setLinkTextColor(-1);
+                mhbVar2.setLinkTextRippleColor(Integer.valueOf(bkb.p1(0.15f, -1)));
             }
-            njbVar2.setFixedSize(0);
+            mhbVar2.setFixedSize(0);
             if (i == premiumPreviewFragment.I) {
-                njbVar2.setText(gm.D2(gm.N2(jb6.M0(2131745085, null), -1, 0, new q78(this, (byte) 23), null), true));
+                mhbVar2.setText(gl.D2(gl.N2(k96.M0(2131745159, null), -1, 0, new w88(this, (byte) 16), null), true));
             } else if (i == premiumPreviewFragment.E) {
                 if (premiumPreviewFragment.h0) {
-                    njbVar2.setText(jb6.M0(2131746728, null));
+                    mhbVar2.setText(k96.M0(2131746802, null));
                     return;
                 }
                 TLRPC.TL_help_premiumPromo tL_help_premiumPromo = premiumPreviewFragment.getMediaDataController().E;
                 if (tL_help_premiumPromo != null) {
                     SpannableString spannableString = new SpannableString(tL_help_premiumPromo.status_text);
-                    hs6.h(tL_help_premiumPromo.status_entities, tL_help_premiumPromo.status_text, spannableString, -1);
-                    for (xkb xkbVar : (xkb[]) spannableString.getSpans(0, spannableString.length(), xkb.class)) {
-                        wkb wkbVar = xkbVar.b;
-                        TLRPC.MessageEntity messageEntity = wkbVar.d;
+                    hq6.h(tL_help_premiumPromo.status_entities, tL_help_premiumPromo.status_text, spannableString, -1);
+                    for (wib wibVar : (wib[]) spannableString.getSpans(0, spannableString.length(), wib.class)) {
+                        vib vibVar = wibVar.b;
+                        TLRPC.MessageEntity messageEntity = vibVar.d;
                         if (messageEntity != null) {
                             String str2 = tL_help_premiumPromo.status_text;
                             int i3 = messageEntity.offset;
@@ -129,93 +129,93 @@ public final class b0 extends q59 {
                         } else {
                             str = null;
                         }
-                        TLRPC.MessageEntity messageEntity2 = wkbVar.d;
+                        TLRPC.MessageEntity messageEntity2 = vibVar.d;
                         if (messageEntity2 instanceof TLRPC.TL_messageEntityBotCommand) {
-                            spannableString.setSpan(new d6c(str, 0, wkbVar), wkbVar.b, wkbVar.c, 33);
+                            spannableString.setSpan(new d4c(str, 0, vibVar), vibVar.b, vibVar.c, 33);
                         } else if (!(messageEntity2 instanceof TLRPC.TL_messageEntityHashtag) && !(messageEntity2 instanceof TLRPC.TL_messageEntityMention) && !(messageEntity2 instanceof TLRPC.TL_messageEntityCashtag)) {
                             if (messageEntity2 instanceof TLRPC.TL_messageEntityEmail) {
-                                spannableString.setSpan(new i6c(b10.h("mailto:", str), wkbVar), wkbVar.b, wkbVar.c, 33);
+                                spannableString.setSpan(new i4c(b00.h("mailto:", str), vibVar), vibVar.b, vibVar.c, 33);
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityUrl) {
                                 if (!str.toLowerCase().contains("://")) {
-                                    spannableString.setSpan(new e6c("http://".concat(str), wkbVar), wkbVar.b, wkbVar.c, 33);
+                                    spannableString.setSpan(new e4c("http://".concat(str), vibVar), vibVar.b, vibVar.c, 33);
                                 } else {
-                                    spannableString.setSpan(new e6c(str, wkbVar), wkbVar.b, wkbVar.c, 33);
+                                    spannableString.setSpan(new e4c(str, vibVar), vibVar.b, vibVar.c, 33);
                                 }
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityBankCard) {
-                                spannableString.setSpan(new g6c(b10.h("card:", str), wkbVar), wkbVar.b, wkbVar.c, 33);
+                                spannableString.setSpan(new g4c(b00.h("card:", str), vibVar), vibVar.b, vibVar.c, 33);
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityPhone) {
-                                String h = r58.h(str, false);
+                                String h = p38.h(str, false);
                                 if (str.startsWith("+")) {
-                                    h = b10.h("+", h);
+                                    h = b00.h("+", h);
                                 }
-                                spannableString.setSpan(new e6c(b10.h("tel:", h), wkbVar), wkbVar.b, wkbVar.c, 33);
+                                spannableString.setSpan(new e4c(b00.h("tel:", h), vibVar), vibVar.b, vibVar.c, 33);
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityTextUrl) {
-                                i6c i6cVar = new i6c(wkbVar.d.url, wkbVar);
-                                i6cVar.b = true;
-                                spannableString.setSpan(i6cVar, wkbVar.b, wkbVar.c, 33);
+                                i4c i4cVar = new i4c(vibVar.d.url, vibVar);
+                                i4cVar.b = true;
+                                spannableString.setSpan(i4cVar, vibVar.b, vibVar.c, 33);
                                 if (!z) {
-                                    spannableString.setSpan(new z5c(gm.o()), wkbVar.b, wkbVar.c, 33);
+                                    spannableString.setSpan(new z3c(gl.o()), vibVar.b, vibVar.c, 33);
                                 }
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityMentionName) {
-                                spannableString.setSpan(new j6c(String.valueOf(((TLRPC.TL_messageEntityMentionName) wkbVar.d).user_id), 0, wkbVar), wkbVar.b, wkbVar.c, 33);
+                                spannableString.setSpan(new j4c(String.valueOf(((TLRPC.TL_messageEntityMentionName) vibVar.d).user_id), 0, vibVar), vibVar.b, vibVar.c, 33);
                             } else if (messageEntity2 instanceof TLRPC.TL_inputMessageEntityMentionName) {
-                                spannableString.setSpan(new j6c(String.valueOf(((TLRPC.TL_inputMessageEntityMentionName) wkbVar.d).user_id.user_id), 0, wkbVar), wkbVar.b, wkbVar.c, 33);
-                            } else if ((wkbVar.a & 4) != 0) {
-                                spannableString.setSpan(new f6c(spannableString, wkbVar.b, wkbVar.c, (byte) 0, wkbVar), wkbVar.b, wkbVar.c, 33);
+                                spannableString.setSpan(new j4c(String.valueOf(((TLRPC.TL_inputMessageEntityMentionName) vibVar.d).user_id.user_id), 0, vibVar), vibVar.b, vibVar.c, 33);
+                            } else if ((vibVar.a & 4) != 0) {
+                                spannableString.setSpan(new f4c(spannableString, vibVar.b, vibVar.c, (byte) 0, vibVar), vibVar.b, vibVar.c, 33);
                             } else {
-                                spannableString.setSpan(new xkb(wkbVar, 0), wkbVar.b, wkbVar.c, 33);
+                                spannableString.setSpan(new wib(vibVar, 0), vibVar.b, vibVar.c, 33);
                             }
                         } else {
-                            spannableString.setSpan(new g6c(str, wkbVar), wkbVar.b, wkbVar.c, 33);
+                            spannableString.setSpan(new g4c(str, vibVar), vibVar.b, vibVar.c, 33);
                         }
-                        if ((wkbVar.a & 256) != 0) {
-                            spannableString.setSpan(new xkb(wkbVar, 0), wkbVar.b, wkbVar.c, 33);
+                        if ((vibVar.a & 256) != 0) {
+                            spannableString.setSpan(new wib(vibVar, 0), vibVar.b, vibVar.c, 33);
                         }
                     }
-                    njbVar2.setText(spannableString);
+                    mhbVar2.setText(spannableString);
                 }
             }
         }
     }
 
     @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        View xj8Var;
-        View bbaVar;
-        ylb ylbVar;
+    public final s49 x(ViewGroup viewGroup, int i) {
+        View wh8Var;
+        View b9aVar;
+        wjb wjbVar;
         Context context = viewGroup.getContext();
         switch (i) {
             case 1:
-                xj8Var = new xj8(this, context);
+                wh8Var = new wh8(this, context);
                 break;
             case 2:
-                bbaVar = new bba(context, 0, 0);
-                xj8Var = bbaVar;
+                b9aVar = new b9a(context, 0, 0);
+                wh8Var = b9aVar;
                 break;
             case 3:
             default:
-                xj8Var = new sb((byte) 28, context, this);
-                xj8Var.setTag(-33024);
+                wh8Var = new sb((byte) 27, context, this);
+                wh8Var.setTag(-33024);
                 break;
             case 4:
-                bbaVar = new t1(context, (byte) 0);
-                xj8Var = bbaVar;
+                b9aVar = new t1(context, (byte) 0);
+                wh8Var = b9aVar;
                 break;
             case 5:
-                xj8Var = new njb(context);
+                wh8Var = new mhb(context);
                 break;
             case 6:
-                xj8Var = new View(context);
-                xj8Var.setTag(-33024);
+                wh8Var = new View(context);
+                wh8Var.setTag(-33024);
                 break;
             case 7:
-                xj8Var = new jf5(context);
+                wh8Var = new ld5(context);
                 break;
             case 8:
-                ylbVar = ((org.telegram.ui.ActionBar.d) this.c).resourceProvider;
-                xj8Var = new xib(23, ylbVar, context, false, true);
+                wjbVar = ((org.telegram.ui.ActionBar.d) this.c).resourceProvider;
+                wh8Var = new wgb(23, wjbVar, context, false, true);
                 break;
         }
-        return kt6.h(xj8Var, xj8Var, -1, -2);
+        return ls6.h(wh8Var, wh8Var, -1, -2);
     }
 }

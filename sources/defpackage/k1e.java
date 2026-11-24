@@ -1,17 +1,18 @@
 package defpackage;
-public final class k1e implements cq7 {
-    public static final k1e a = new Object();
+public enum k1e implements boe {
+    MODE_UNKNOWN(0),
+    MODE_ACCURATE(1),
+    MODE_FAST(2),
+    MODE_SELFIE(3);
+    
+    public final byte a;
 
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)));
+    k1e(int i) {
+        this.a = i;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final String toString() {
+        return "<" + k1e.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
     }
 }

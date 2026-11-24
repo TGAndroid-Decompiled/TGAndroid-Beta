@@ -1,32 +1,23 @@
 package defpackage;
-
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-public final class le2 implements sh8 {
+public final class le2 implements Runnable {
     public final byte a;
-    public final ViewGroup b;
+    public final kf2 b;
 
-    public le2(ViewGroup viewGroup, byte b) {
+    public le2(kf2 kf2Var, byte b) {
         this.a = b;
-        this.b = viewGroup;
+        this.b = kf2Var;
     }
 
     @Override
-    public final void a(float f, float f2) {
+    public final void run() {
         byte b = this.a;
-        ViewGroup viewGroup = this.b;
+        kf2 kf2Var = this.b;
         switch (b) {
             case 0:
-                me2 me2Var = (me2) viewGroup;
-                FrameLayout frameLayout = me2Var.c;
-                if (frameLayout != null) {
-                    frameLayout.setAlpha(1.0f - f2);
-                }
-                me2Var.f = f2;
-                me2Var.b();
+                kf2Var.t0();
                 return;
             default:
-                ((bka) viewGroup).invalidate();
+                kf2Var.getMessagesController().Y2(0, kf2Var.N, true);
                 return;
         }
     }

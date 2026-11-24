@@ -1,22 +1,50 @@
 package defpackage;
+public final class tia extends ym5 {
+    public final transient Object d;
 
-import androidx.sharetarget.ShortcutInfoCompatSaverImpl;
-import java.util.ArrayList;
-public final class tia implements Runnable {
-    public final byte a;
-    public final ArrayList b;
-    public final ec9 c;
-    public final ShortcutInfoCompatSaverImpl d;
-
-    public tia(ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl, ArrayList arrayList, ec9 ec9Var, byte b) {
-        this.a = b;
-        this.d = shortcutInfoCompatSaverImpl;
-        this.b = arrayList;
-        this.c = ec9Var;
+    public tia(Object obj) {
+        obj.getClass();
+        this.d = obj;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.tia.run():void");
+    public final boolean contains(Object obj) {
+        return this.d.equals(obj);
+    }
+
+    @Override
+    public final mm5 h() {
+        return mm5.u(this.d);
+    }
+
+    @Override
+    public final int hashCode() {
+        return this.d.hashCode();
+    }
+
+    @Override
+    public final int i(int i, Object[] objArr) {
+        objArr[i] = this.d;
+        return i + 1;
+    }
+
+    @Override
+    public final boolean m() {
+        return false;
+    }
+
+    @Override
+    public final v5c iterator() {
+        return new ns5(this.d);
+    }
+
+    @Override
+    public final int size() {
+        return 1;
+    }
+
+    @Override
+    public final String toString() {
+        return "[" + this.d.toString() + ']';
     }
 }

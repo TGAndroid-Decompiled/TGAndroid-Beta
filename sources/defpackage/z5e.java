@@ -1,17 +1,13 @@
 package defpackage;
-public final class z5e implements cq7 {
-    public static final z5e a = new Object();
+public final class z5e {
+    public final Throwable a;
 
     static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)));
+        new z5e(new i2("Failure occurred while trying to finish a future.", (byte) 3));
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public z5e(Throwable th) {
+        boolean z = y4f.d;
+        this.a = th;
     }
 }

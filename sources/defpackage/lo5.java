@@ -1,68 +1,46 @@
 package defpackage;
+public final class lo5 implements gs3 {
+    public final byte a;
+    public String b;
 
-import java.util.Iterator;
-import java.util.ListIterator;
-public final class lo5 extends mo5 {
-    public final transient int c;
-    public final transient int d;
-    public final mo5 e;
-
-    public lo5(mo5 mo5Var, int i, int i2) {
-        this.e = mo5Var;
-        this.c = i;
-        this.d = i2;
+    public lo5(String str) {
+        this.a = (byte) 2;
+        this.b = str;
     }
 
     @Override
-    public final Object get(int i) {
-        jte.j(i, this.d);
-        return this.e.get(i + this.c);
+    public final int b(int i) {
+        return -1;
     }
 
     @Override
-    public final Iterator iterator() {
-        return listIterator(0);
+    public final boolean c(int i) {
+        return false;
     }
 
     @Override
-    public final Object[] j() {
-        return this.e.j();
+    public final char charAt(int i) {
+        return this.b.charAt(i);
     }
 
     @Override
-    public final int k() {
-        return this.e.l() + this.c + this.d;
+    public final int length() {
+        return this.b.length();
     }
 
     @Override
-    public final int l() {
-        return this.e.l() + this.c;
+    public final CharSequence subSequence(int i, int i2) {
+        return this.b.subSequence(i, i2);
     }
 
-    @Override
-    public final ListIterator listIterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public final boolean m() {
-        return true;
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
-    }
-
-    @Override
-    public final mo5 subList(int i, int i2) {
-        jte.n(i, i2, this.d);
-        int i3 = this.c;
-        return this.e.subList(i + i3, i2 + i3);
-    }
-
-    @Override
-    public final ListIterator listIterator(int i) {
-        return listIterator(i);
+    public final String toString() {
+        switch (this.a) {
+            case 1:
+                return this.b;
+            case 2:
+                return "<" + this.b + '>';
+            default:
+                return super.toString();
+        }
     }
 }

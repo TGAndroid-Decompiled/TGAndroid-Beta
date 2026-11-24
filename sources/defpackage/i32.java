@@ -1,42 +1,50 @@
 package defpackage;
 
-import android.view.View;
-import java.util.ArrayList;
+import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC;
-public final class i32 implements h59, n32 {
-    public final w32 a;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class i32 implements i8c {
+    public final byte a;
+    public final r32 b;
 
-    public i32(w32 w32Var) {
-        this.a = w32Var;
+    public i32(r32 r32Var, byte b) {
+        this.a = b;
+        this.b = r32Var;
     }
 
     @Override
-    public final void b(TLRPC.TL_userContact_old2 tL_userContact_old2, boolean z, int i, long j) {
-        w32 w32Var = this.a;
-        w32Var.b.a(true);
-        w32Var.K.b(tL_userContact_old2, z, i, j);
-    }
-
-    @Override
-    public final boolean g(int i, View view) {
-        Object O;
-        w32 w32Var = this.a;
-        y59 adapter = w32Var.s.getAdapter();
-        s32 s32Var = w32Var.G;
-        if (adapter == s32Var) {
-            O = s32Var.E(i);
-        } else {
-            q32 q32Var = w32Var.F;
-            O = q32Var.O(q32Var.S(i), q32Var.Q(i));
+    public final void a(Object obj, Object obj2) {
+        byte b = this.a;
+        r32 r32Var = this.b;
+        switch (b) {
+            case 0:
+                TL_wallet.walletUserAddress walletuseraddress = (TL_wallet.walletUserAddress) obj;
+                String str = (String) obj2;
+                TLRPC.User user = r32Var.r;
+                if (!r32Var.L) {
+                    r32Var.J = false;
+                    if (TextUtils.equals(str, "WALLET_USER_UNAVAILABLE")) {
+                        r32Var.K = true;
+                    }
+                    if (walletuseraddress != null && walletuseraddress.user_id == user.id) {
+                        r32Var.H = walletuseraddress.address;
+                        r32Var.I = walletuseraddress.public_key;
+                    }
+                    r32Var.w.a(r32Var.H, user);
+                    r32Var.i0();
+                    r32Var.Y();
+                    return;
+                }
+                return;
+            default:
+                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
+                String str2 = (String) obj2;
+                if (!r32Var.L && wallettransaction != null) {
+                    r32Var.h0 = wallettransaction.fee;
+                    r32Var.j0();
+                    return;
+                }
+                return;
         }
-        if (O != null) {
-            w32Var.P((v32) view, O);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void a(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2) {
     }
 }

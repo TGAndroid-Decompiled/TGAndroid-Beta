@@ -1,4 +1,7 @@
 package defpackage;
-public interface mcc {
-    void a(uf4 uf4Var);
+
+import android.graphics.Bitmap;
+public final class mcc {
+    public Bitmap a;
+    public float b;
 }

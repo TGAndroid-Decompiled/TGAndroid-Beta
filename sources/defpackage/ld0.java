@@ -1,228 +1,97 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
-public final class ld0 extends y1 {
-    public static final ai4 E;
-    public static final ai4 b;
-    public static final ai4 c;
-    public static final ai4 d;
-    public static final ai4 e;
-    public static final ai4 f;
-    public static final ai4 h;
-    public static final ai4 n;
-    public static final ai4 r;
-    public static final ai4 s;
-    public static final ai4 w;
-    public static final ai4 x;
-    public static final ai4 y;
-    public md0 a;
+import org.telegram.tgnet.TLRPC;
+public abstract class ld0 {
+    public static String[] a = {"Rosewood", "Carmine", "Fire Engine", "Seal Brown", "Chestnut", "Coral Red", "Strawberry", "Chocolate", "Mystic Pearl", "Burnt Sienna", "Tomato", "Cappuccino", "Copper", "Carrot Juice", "Persimmon", "Desert Sand", "Orange", "Caramel", "Old Gold", "Mustard", "Satin Gold", "Amber", "Pure Gold", "Light Olive", "Khaki Green", "Lemongrass", "Malachite", "Camo Green", "Pistachio", "Shamrock Green", "Dark Green", "Ranger Green", "Hunter Green", "Mint Green", "Emerald", "Pine Green", "Gunship Green", "Pacific Green", "Tactical Pine", "Jade Green", "Aquamarine", "Pacific Cyan", "Deep Cyan", "Turquoise", "Moonstone", "Sky Blue", "Azure Blue", "Gunmetal", "Celtic Blue", "Sapphire", "Silver Blue", "Indigo Dye", "French Blue", "Navy Blue", "Cobalt Blue", "Marine Blue", "Midnight Blue", "Neon Blue", "Cyberpunk", "Electric Indigo", "Lavender", "Grape", "French Violet", "English Violet", "Purple", "Electric Purple", "Dark Lilac", "Fandango", "Mexican Pink", "Burgundy", "Raspberry", "Black", "Onyx Black", "Rifle Green", "Battleship Grey", "Feldgrau", "Steel Grey", "Roman Silver", "Platinum", "Ivory White"};
+    public static int[] b = {-4752777, -2074806, -1024177, -10072763, -4296876, -2455189, -2257297, -6001064, -3110035, -2724036, -1672898, -5140354, -3111338, -2385817, -1595558, -5005438, -3040710, -3106510, -4879048, -2844659, -4220089, -2444475, -3364031, -4018332, -5394320, -5326758, -6966185, -9071539, -6836100, -7687837, -11443391, -10520503, -7360904, -8467582, -8862331, -9721476, -11171227, -9451629, -12287381, -11156324, -10440299, -10830170, -13519446, -10567496, -8474188, -10963768, -10636853, -11772573, -12207891, -10968120, -8346440, -11306607, -10708028, -9658659, -10450737, -11638628, -10720891, -9070855, -8024077, -5668621, -4748828, -6458175, -4038426, -5142853, -5346130, -3510074, -5145179, -1930570, -1874286, -6070682, -2065531, -13224136, -12170675, -10196644, -7566203, -7761272, -6839636, -6051659, -5067097, -4540751};
+    public static int[] c = {-8303534, -5752773, -3917495, -12110290, -6731720, -3906225, -4760992, -9157573, -5220496, -4895955, -2863553, -8625322, -6462159, -3707057, -3840161, -8490149, -4165817, -4754383, -7050971, -3901678, -7506119, -5144534, -6784206, -7831995, -9732780, -11168955, -12740779, -11242687, -10714804, -11168955, -13941457, -12824773, -11828645, -12214694, -12410511, -12682896, -12753321, -12870524, -13671575, -12871305, -12145740, -12741190, -15166055, -12742002, -10976368, -11301950, -12285013, -13681854, -13072679, -11306558, -10453871, -12491655, -13143142, -10719543, -11443528, -12891270, -13287337, -9936156, -7970861, -10788136, -7710020, -8827488, -7254311, -7906671, -8108156, -6921516, -7579782, -6006645, -3585668, -9617078, -4826752, -15855857, -14144466, -11840959, -9671578, -10589341, -10259844, -8617846, -7830402, -6185577};
+    public static int[] d = {-11199454, -11599616, -9895927, -16120315, -10480376, -7794176, -5698548, -12711422, -6617818, -9762558, -8385792, -1321784, -10475263, -7462656, -5435904, -11516887, -6473465, -8571392, -11586814, -8772352, -10667264, -8769280, -9421824, -10925052, -13021157, -12162553, -16487674, -15321343, -14137573, -15570176, -16775935, -15719927, -14923489, -16618718, -16751310, -16037837, -16308707, -16752311, -16767452, -16496335, -16556185, -16620403, -16756913, -15641780, -15317678, -16293733, -16625548, -16513014, -16761211, -15907402, -15386805, -16573655, -16303268, -15582814, -15522692, -16709599, -16578024, -14145348, -12379994, -13163861, -10809173, -12711317, -11927158, -11263393, -12121017, -10350668, -10147758, -7469746, -9108944, -13368569, -7797192, -9672600, -16777216, -15789557, -13948384, -14932449, -13417134, -12630704, -12765139, -10068142};
+    public static int[] e = {-1193267, -18515, -18522, -2835275, -80199, -9774, -11309, -1788244, -74272, -13136, -13123, -11914714, -730946, -10294, -6953, -858675, -7741, -9805, -8820, -8548, -72535, -4665, -6741, -660548, -2890053, -2559294, -4001858, -3151687, -2493751, -2753592, -4206167, -4733771, -2558498, -4325428, -4589095, -2558491, -4857644, -3735568, -4725037, -4260121, -3670530, -4788225, -3014659, -4327182, -2427395, -3282691, -4854529, -4799028, -4003841, -4071681, -3545868, -4006674, -4070407, -2891265, -4008971, -4469774, -4207392, -3154433, -2041345, -2565889, -1519105, -2048514, -1325057, -1652755, -799757, -1323265, -998174, -14357, -10522, -1590080, -10522, -7565423, -6381150, -3946563, -3158332, -2168351, -2104088, -2433054, -1447966, -658190};
+    public static final String[] f = {"Black", "Onyx Black", "Gunmetal", "Midnight Blue", "Steel Grey", "Roman Silver", "Raspberry", "Carmine", "Fire Engine", "Burnt Sienna", "Tomato", "Copper", "Persimmon", "Orange", "Caramel", "Mustard", "Old Gold", "Satin Gold", "Amber", "Pure Gold", "Lemongrass", "Malachite", "Shamrock Green", "Mint Green", "Emerald", "Pacific Green", "Jade Green", "Deep Cyan", "Celtic Blue", "Cobalt Blue", "Neon Blue", "Cyberpunk", "Electric Indigo", "Lavender", "Grape", "French Violet", "Purple", "Electric Purple", "Fandango", "Mexican Pink", "Burgundy", "Rosewood", "Chestnut", "Coral Red", "Strawberry", "Mystic Pearl", "Carrot Juice", "Light Olive", "Khaki Green", "Camo Green", "Pistachio", "Hunter Green", "Pine Green", "Gunship Green", "Tactical Pine", "Aquamarine", "Pacific Cyan", "Turquoise", "Moonstone", "Sky Blue", "Azure Blue", "Sapphire", "Silver Blue", "Indigo Dye", "French Blue", "Navy Blue", "English Violet", "Dark Lilac", "Seal Brown", "Chocolate", "Cappuccino", "Desert Sand", "Dark Green", "Ranger Green", "Marine Blue", "Ivory White", "Platinum", "Battleship Grey", "Rifle Green", "Feldgrau"};
+    public static int[] g;
+    public static int[] h;
 
-    static {
-        i94 i94Var = new i94(ld0.class, "AvcConfigurationBox.java");
-        i94Var.e(i94Var.d("getConfigurationVersion", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
-        i94Var.e(i94Var.d("getAvcProfileIndication", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
-        e = i94Var.e(i94Var.d("setAvcLevelIndication", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "avcLevelIndication", "void"));
-        f = i94Var.e(i94Var.d("setLengthSizeMinusOne", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "lengthSizeMinusOne", "void"));
-        h = i94Var.e(i94Var.d("setSequenceParameterSets", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "java.util.List", "sequenceParameterSets", "void"));
-        n = i94Var.e(i94Var.d("setPictureParameterSets", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "java.util.List", "pictureParameterSets", "void"));
-        i94Var.e(i94Var.d("getChromaFormat", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
-        r = i94Var.e(i94Var.d("setChromaFormat", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "chromaFormat", "void"));
-        i94Var.e(i94Var.d("getBitDepthLumaMinus8", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
-        s = i94Var.e(i94Var.d("setBitDepthLumaMinus8", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "bitDepthLumaMinus8", "void"));
-        i94Var.e(i94Var.d("getBitDepthChromaMinus8", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
-        w = i94Var.e(i94Var.d("setBitDepthChromaMinus8", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "bitDepthChromaMinus8", "void"));
-        i94Var.e(i94Var.d("getProfileCompatibility", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
-        i94Var.e(i94Var.d("getSequenceParameterSetExts", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "java.util.List"));
-        i94Var.e(i94Var.d("setSequenceParameterSetExts", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "java.util.List", "sequenceParameterSetExts", "void"));
-        i94Var.e(i94Var.d("hasExts", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "boolean"));
-        i94Var.e(i94Var.d("setHasExts", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "boolean", "hasExts", "void"));
-        x = i94Var.e(i94Var.d("getContentSize", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "long"));
-        y = i94Var.e(i94Var.d("getContent", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "java.nio.ByteBuffer", "byteBuffer", "void"));
-        i94Var.e(i94Var.d("getSPS", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "[Ljava.lang.String;"));
-        i94Var.e(i94Var.d("getPPS", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "[Ljava.lang.String;"));
-        i94Var.e(i94Var.d("getavcDecoderConfigurationRecord", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "com.mp4parser.iso14496.part15.AvcDecoderConfigurationRecord"));
-        E = i94Var.e(i94Var.d("toString", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "java.lang.String"));
-        i94Var.e(i94Var.d("getAvcLevelIndication", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
-        i94Var.e(i94Var.d("getLengthSizeMinusOne", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "int"));
-        i94Var.e(i94Var.d("getSequenceParameterSets", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "java.util.List"));
-        i94Var.e(i94Var.d("getPictureParameterSets", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "", "", "java.util.List"));
-        b = i94Var.e(i94Var.d("setConfigurationVersion", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "configurationVersion", "void"));
-        c = i94Var.e(i94Var.d("setAvcProfileIndication", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "avcProfileIndication", "void"));
-        d = i94Var.e(i94Var.d("setProfileCompatibility", "com.mp4parser.iso14496.part15.AvcConfigurationBox", "int", "profileCompatibility", "void"));
-    }
-
-    @Override
-    public final void _parseDetails(ByteBuffer byteBuffer) {
-        int i;
-        ?? obj = new Object();
-        obj.f = new ArrayList();
-        obj.g = new ArrayList();
-        obj.h = true;
-        obj.i = 1;
-        obj.j = 0;
-        obj.k = 0;
-        obj.l = new ArrayList();
-        obj.m = 63;
-        obj.n = 7;
-        obj.o = 31;
-        obj.p = 31;
-        obj.q = 31;
-        obj.a = jne.i(byteBuffer);
-        obj.b = jne.a(byteBuffer.get());
-        obj.c = jne.a(byteBuffer.get());
-        obj.d = jne.a(byteBuffer.get());
-        lq7 lq7Var = new lq7(byteBuffer, (byte) 1);
-        obj.m = lq7Var.a(6);
-        obj.e = lq7Var.a(2);
-        obj.n = lq7Var.a(3);
-        int a = lq7Var.a(5);
-        for (int i2 = 0; i2 < a; i2++) {
-            byte[] bArr = new byte[jne.f(byteBuffer)];
-            byteBuffer.get(bArr);
-            obj.f.add(bArr);
-        }
-        long a2 = jne.a(byteBuffer.get());
-        for (int i3 = 0; i3 < a2; i3++) {
-            byte[] bArr2 = new byte[jne.f(byteBuffer)];
-            byteBuffer.get(bArr2);
-            obj.g.add(bArr2);
-        }
-        if (byteBuffer.remaining() < 4) {
-            obj.h = false;
-        }
-        if (obj.h && ((i = obj.b) == 100 || i == 110 || i == 122 || i == 144)) {
-            lq7 lq7Var2 = new lq7(byteBuffer, (byte) 1);
-            obj.o = lq7Var2.a(6);
-            obj.i = lq7Var2.a(2);
-            obj.p = lq7Var2.a(5);
-            obj.j = lq7Var2.a(3);
-            obj.q = lq7Var2.a(5);
-            obj.k = lq7Var2.a(3);
-            long a3 = jne.a(byteBuffer.get());
-            for (int i4 = 0; i4 < a3; i4++) {
-                byte[] bArr3 = new byte[jne.f(byteBuffer)];
-                byteBuffer.get(bArr3);
-                obj.l.add(bArr3);
-            }
-        } else {
-            obj.i = -1;
-            obj.j = -1;
-            obj.k = -1;
-        }
-        this.a = obj;
-    }
-
-    public final void d(int i) {
-        aq1.r(i94.c(e, this, this, new Integer(i)));
-        this.a.d = i;
-    }
-
-    public final void e(int i) {
-        aq1.r(i94.c(c, this, this, new Integer(i)));
-        this.a.b = i;
-    }
-
-    @Override
-    public final void getContent(ByteBuffer byteBuffer) {
-        aq1.r(i94.c(y, this, this, byteBuffer));
-        md0 md0Var = this.a;
-        kne.f(md0Var.a, byteBuffer);
-        byteBuffer.put((byte) (md0Var.b & 255));
-        byteBuffer.put((byte) (md0Var.c & 255));
-        byteBuffer.put((byte) (md0Var.d & 255));
-        lq7 lq7Var = new lq7(byteBuffer, (byte) 2);
-        lq7Var.c(md0Var.m, 6);
-        lq7Var.c(md0Var.e, 2);
-        lq7Var.c(md0Var.n, 3);
-        lq7Var.c(md0Var.g.size(), 5);
-        ArrayList arrayList = md0Var.f;
-        int size = arrayList.size();
-        int i = 0;
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList.get(i2);
-            i2++;
-            byte[] bArr = (byte[]) obj;
-            kne.d(bArr.length, byteBuffer);
-            byteBuffer.put(bArr);
-        }
-        byteBuffer.put((byte) (md0Var.g.size() & 255));
-        ArrayList arrayList2 = md0Var.g;
-        int size2 = arrayList2.size();
-        int i3 = 0;
-        while (i3 < size2) {
-            Object obj2 = arrayList2.get(i3);
-            i3++;
-            byte[] bArr2 = (byte[]) obj2;
-            kne.d(bArr2.length, byteBuffer);
-            byteBuffer.put(bArr2);
-        }
-        if (md0Var.h) {
-            int i4 = md0Var.b;
-            if (i4 == 100 || i4 == 110 || i4 == 122 || i4 == 144) {
-                lq7 lq7Var2 = new lq7(byteBuffer, (byte) 2);
-                lq7Var2.c(md0Var.o, 6);
-                lq7Var2.c(md0Var.i, 2);
-                lq7Var2.c(md0Var.p, 5);
-                lq7Var2.c(md0Var.j, 3);
-                lq7Var2.c(md0Var.q, 5);
-                lq7Var2.c(md0Var.k, 3);
-                ArrayList arrayList3 = md0Var.l;
-                int size3 = arrayList3.size();
-                while (i < size3) {
-                    Object obj3 = arrayList3.get(i);
-                    i++;
-                    byte[] bArr3 = (byte[]) obj3;
-                    kne.d(bArr3.length, byteBuffer);
-                    byteBuffer.put(bArr3);
+    public static boolean a(ArrayList arrayList) {
+        if (arrayList != null && !arrayList.isEmpty()) {
+            int i = -1;
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                if ("Black".equals(((TLRPC.TL_shareThemeBackdropOption) arrayList.get(i2)).name)) {
+                    i = i2;
                 }
             }
-        }
-    }
-
-    @Override
-    public final long getContentSize() {
-        int i;
-        aq1.r(i94.b(x, this, this));
-        md0 md0Var = this.a;
-        ArrayList arrayList = md0Var.f;
-        int size = arrayList.size();
-        long j = 6;
-        int i2 = 0;
-        int i3 = 0;
-        while (i3 < size) {
-            Object obj = arrayList.get(i3);
-            i3++;
-            j = j + 2 + ((byte[]) obj).length;
-        }
-        long j2 = j + 1;
-        ArrayList arrayList2 = md0Var.g;
-        int size2 = arrayList2.size();
-        int i4 = 0;
-        while (i4 < size2) {
-            Object obj2 = arrayList2.get(i4);
-            i4++;
-            j2 = j2 + 2 + ((byte[]) obj2).length;
-        }
-        if (md0Var.h && ((i = md0Var.b) == 100 || i == 110 || i == 122 || i == 144)) {
-            long j3 = j2 + 4;
-            ArrayList arrayList3 = md0Var.l;
-            int size3 = arrayList3.size();
-            while (i2 < size3) {
-                Object obj3 = arrayList3.get(i2);
-                i2++;
-                j3 = j3 + 2 + ((byte[]) obj3).length;
+            if (i >= 0) {
+                int size = arrayList.size();
+                a = new String[size];
+                b = new int[size];
+                c = new int[size];
+                d = new int[size];
+                e = new int[size];
+                h = new int[size];
+                for (int i3 = 0; i3 < size; i3++) {
+                    TLRPC.TL_shareThemeBackdropOption tL_shareThemeBackdropOption = (TLRPC.TL_shareThemeBackdropOption) arrayList.get(i3);
+                    a[i3] = tL_shareThemeBackdropOption.name;
+                    b[i3] = tL_shareThemeBackdropOption.center_color | (-16777216);
+                    c[i3] = tL_shareThemeBackdropOption.edge_color | (-16777216);
+                    d[i3] = tL_shareThemeBackdropOption.pattern_color | (-16777216);
+                    e[i3] = tL_shareThemeBackdropOption.text_color | (-16777216);
+                    h[i3] = tL_shareThemeBackdropOption.backdrop_id;
+                }
+                g = null;
+                int b2 = b("Neon Blue");
+                vw8.F9 = i;
+                vw8.G9 = b2;
+                vw8.E9 = null;
+                vw8.D9 = null;
+                vw8.C9 = null;
+                return true;
             }
-            return j3;
         }
-        return j2;
+        return false;
     }
 
-    public final String toString() {
-        xvc b2 = i94.b(E, this, this);
-        pa9.a().getClass();
-        pa9.b(b2);
-        return "AvcConfigurationBox{avcDecoderConfigurationRecord=" + this.a + '}';
+    public static int b(String str) {
+        int i = 0;
+        while (true) {
+            String[] strArr = a;
+            if (i < strArr.length) {
+                if (str.equals(strArr[i])) {
+                    return i;
+                }
+                i++;
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    public static int c(int i) {
+        if (h != null) {
+            return i;
+        }
+        int[] iArr = g;
+        if (iArr == null) {
+            int length = a.length;
+            int[] iArr2 = new int[length];
+            boolean[] zArr = new boolean[length];
+            int i2 = 0;
+            for (int i3 = 0; i3 < 80; i3++) {
+                int b2 = b(f[i3]);
+                if (b2 >= 0 && !zArr[b2]) {
+                    zArr[b2] = true;
+                    iArr2[i2] = b2;
+                    i2++;
+                }
+            }
+            for (int i4 = 0; i4 < length; i4++) {
+                if (!zArr[i4]) {
+                    iArr2[i2] = i4;
+                    i2++;
+                }
+            }
+            g = iArr2;
+            iArr = iArr2;
+        }
+        return iArr[i];
     }
 }

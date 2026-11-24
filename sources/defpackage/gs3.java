@@ -1,12 +1,12 @@
 package defpackage;
 public interface gs3 {
-    void I(int i, rz6 rz6Var);
+    int b(int i);
 
-    void N(int i, rz6 rz6Var, jk2 jk2Var);
+    boolean c(int i);
 
-    void i(int i, rz6 rz6Var, Exception exc);
+    char charAt(int i);
 
-    void n(int i, rz6 rz6Var, int i2);
+    int length();
 
-    void y(int i, rz6 rz6Var);
+    CharSequence subSequence(int i, int i2);
 }

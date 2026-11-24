@@ -1,30 +1,43 @@
 package defpackage;
+public final class qeb {
+    public final byte a;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-public final class qeb extends lp7 {
-    public final reb z0;
-
-    public qeb(reb rebVar, Context context) {
-        super(13, null, context);
-        this.z0 = rebVar;
+    public qeb(byte b) {
+        this.a = b;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int w0 = cmb.w0(null, cmb.i5, false);
-        reb rebVar = this.z0;
-        Paint paint = rebVar.e;
-        if (w0 != rebVar.a) {
-            rebVar.a = w0;
-            setTextColor(w0);
+    public final int a(xeb xebVar, int i) {
+        switch (this.a) {
+            case 0:
+            case 3:
+            default:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i;
         }
-        super.onDraw(canvas);
-        float L = gm.L(31.0f);
-        paint.setColor(cmb.w0(null, cmb.g7, false));
-        canvas.drawLine(gm.L(2.0f), L, getMeasuredWidth() - gm.L(2.0f), L, paint);
-        float measuredHeight = getMeasuredHeight() - gm.L(31.0f);
-        canvas.drawLine(gm.L(2.0f), measuredHeight, getMeasuredWidth() - gm.L(2.0f), measuredHeight, paint);
+    }
+
+    public final int b(xeb xebVar, int i) {
+        switch (this.a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+            case 3:
+            default:
+                return 0;
+            case 2:
+                return i;
+        }
+    }
+
+    public final int c(int i, int i2) {
+        switch (this.a) {
+            case 4:
+                return i2;
+            default:
+                return i;
+        }
     }
 }

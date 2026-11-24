@@ -1,9 +1,6 @@
 package defpackage;
-public final class lf5 extends gl0 {
-    public int g;
+public interface lf5 {
+    bv7 d(hf5 hf5Var, df5 df5Var);
 
-    @Override
-    public final void a(knd kndVar) {
-        kndVar.g(this);
-    }
+    bv7 o();
 }

@@ -1,67 +1,124 @@
 package defpackage;
 
-import java.util.Arrays;
-public enum hdd {
-    RESPONSE_CODE_UNSPECIFIED(-999),
-    SERVICE_TIMEOUT(-3),
-    FEATURE_NOT_SUPPORTED(-2),
-    SERVICE_DISCONNECTED(-1),
-    OK(0),
-    USER_CANCELED(1),
-    SERVICE_UNAVAILABLE(2),
-    BILLING_UNAVAILABLE(3),
-    ITEM_UNAVAILABLE(4),
-    DEVELOPER_ERROR(5),
-    ERROR(6),
-    ITEM_ALREADY_OWNED(7),
-    ITEM_NOT_OWNED(8),
-    EXPIRED_OFFER_TOKEN(11),
-    NETWORK_ERROR(12);
-    
-    public static final skd c;
-    public final int a;
+import android.os.Parcel;
+public final class hdd extends dzc {
+    public final k6a b;
+    public final Class c;
 
-    static {
-        hdd[] values;
-        kq kqVar = new kq((byte) 19, false);
-        kqVar.c = new Object[8];
-        kqVar.b = 0;
-        for (hdd hddVar : values()) {
-            Integer valueOf = Integer.valueOf(hddVar.a);
-            Object[] objArr = (Object[]) kqVar.c;
-            int length = objArr.length;
-            int i = (kqVar.b + 1) << 1;
-            if (i > length) {
-                if (i > length) {
-                    length = length + (length >> 1) + 1;
-                    length = length < i ? Integer.highestOneBit(i - 1) << 1 : length;
-                    if (length < 0) {
-                        length = Integer.MAX_VALUE;
-                    }
-                }
-                objArr = Arrays.copyOf(objArr, length);
-                kqVar.c = objArr;
-            }
-            int i2 = kqVar.b;
-            int i3 = i2 << 1;
-            objArr[i3] = valueOf;
-            objArr[i3 + 1] = hddVar;
-            kqVar.b = i2 + 1;
-        }
-        jhd jhdVar = (jhd) kqVar.d;
-        if (jhdVar == null) {
-            skd c2 = skd.c(kqVar.b, (Object[]) kqVar.c, kqVar);
-            jhd jhdVar2 = (jhd) kqVar.d;
-            if (jhdVar2 == null) {
-                c = c2;
-                return;
-            }
-            throw jhdVar2.a();
-        }
-        throw jhdVar.a();
+    public hdd(k6a k6aVar) {
+        super("com.google.android.gms.cast.framework.ISessionManagerListener", (byte) 4);
+        this.b = k6aVar;
+        this.c = ed1.class;
     }
 
-    hdd(int i) {
-        this.a = i;
+    @Override
+    public final boolean d(int i, Parcel parcel, Parcel parcel2) {
+        boolean z = false;
+        Class cls = this.c;
+        k6a k6aVar = this.b;
+        switch (i) {
+            case 1:
+                bo7 bo7Var = new bo7(k6aVar);
+                parcel2.writeNoException();
+                jgd.d(parcel2, bo7Var);
+                return true;
+            case 2:
+                yi5 T = bo7.T(parcel.readStrongBinder());
+                jgd.b(parcel);
+                d5a d5aVar = (d5a) bo7.U(T);
+                if (cls.isInstance(d5aVar) && k6aVar != null) {
+                    k6aVar.p((d5a) cls.cast(d5aVar));
+                }
+                parcel2.writeNoException();
+                return true;
+            case 3:
+                yi5 T2 = bo7.T(parcel.readStrongBinder());
+                String readString = parcel.readString();
+                jgd.b(parcel);
+                d5a d5aVar2 = (d5a) bo7.U(T2);
+                if (cls.isInstance(d5aVar2) && k6aVar != null) {
+                    k6aVar.T((d5a) cls.cast(d5aVar2), readString);
+                }
+                parcel2.writeNoException();
+                return true;
+            case 4:
+                yi5 T3 = bo7.T(parcel.readStrongBinder());
+                int readInt = parcel.readInt();
+                jgd.b(parcel);
+                d5a d5aVar3 = (d5a) bo7.U(T3);
+                if (cls.isInstance(d5aVar3) && k6aVar != null) {
+                    k6aVar.K((d5a) cls.cast(d5aVar3), readInt);
+                }
+                parcel2.writeNoException();
+                return true;
+            case 5:
+                yi5 T4 = bo7.T(parcel.readStrongBinder());
+                jgd.b(parcel);
+                d5a d5aVar4 = (d5a) bo7.U(T4);
+                if (cls.isInstance(d5aVar4) && k6aVar != null) {
+                    k6aVar.z((d5a) cls.cast(d5aVar4));
+                }
+                parcel2.writeNoException();
+                return true;
+            case 6:
+                yi5 T5 = bo7.T(parcel.readStrongBinder());
+                int readInt2 = parcel.readInt();
+                jgd.b(parcel);
+                d5a d5aVar5 = (d5a) bo7.U(T5);
+                if (cls.isInstance(d5aVar5) && k6aVar != null) {
+                    k6aVar.n((d5a) cls.cast(d5aVar5), readInt2);
+                }
+                parcel2.writeNoException();
+                return true;
+            case 7:
+                yi5 T6 = bo7.T(parcel.readStrongBinder());
+                String readString2 = parcel.readString();
+                jgd.b(parcel);
+                d5a d5aVar6 = (d5a) bo7.U(T6);
+                if (cls.isInstance(d5aVar6) && k6aVar != null) {
+                    k6aVar.R((d5a) cls.cast(d5aVar6), readString2);
+                }
+                parcel2.writeNoException();
+                return true;
+            case 8:
+                yi5 T7 = bo7.T(parcel.readStrongBinder());
+                int i2 = jgd.a;
+                if (parcel.readInt() != 0) {
+                    z = true;
+                }
+                jgd.b(parcel);
+                d5a d5aVar7 = (d5a) bo7.U(T7);
+                if (cls.isInstance(d5aVar7) && k6aVar != null) {
+                    k6aVar.E((d5a) cls.cast(d5aVar7), z);
+                }
+                parcel2.writeNoException();
+                return true;
+            case 9:
+                yi5 T8 = bo7.T(parcel.readStrongBinder());
+                int readInt3 = parcel.readInt();
+                jgd.b(parcel);
+                d5a d5aVar8 = (d5a) bo7.U(T8);
+                if (cls.isInstance(d5aVar8) && k6aVar != null) {
+                    k6aVar.F((d5a) cls.cast(d5aVar8), readInt3);
+                }
+                parcel2.writeNoException();
+                return true;
+            case 10:
+                yi5 T9 = bo7.T(parcel.readStrongBinder());
+                int readInt4 = parcel.readInt();
+                jgd.b(parcel);
+                d5a d5aVar9 = (d5a) bo7.U(T9);
+                if (cls.isInstance(d5aVar9) && k6aVar != null) {
+                    k6aVar.q((d5a) cls.cast(d5aVar9), readInt4);
+                }
+                parcel2.writeNoException();
+                return true;
+            case 11:
+                parcel2.writeNoException();
+                parcel2.writeInt(12451000);
+                return true;
+            default:
+                return false;
+        }
     }
 }

@@ -1,46 +1,35 @@
 package defpackage;
-public final class n1d extends o1d {
-    public final transient int r;
-    public final transient int s;
-    public final o1d w;
 
-    public n1d(o1d o1dVar, int i, int i2) {
-        super((byte) 0);
-        this.w = o1dVar;
-        this.r = i;
-        this.s = i2;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class n1d extends b4 {
+    public static final Parcelable.Creator<n1d> CREATOR = new b1d((byte) 4);
+    public final int a;
+    public final String b;
+    public final long c;
+    public final int d;
+    public final boolean e;
+
+    public n1d(int i, int i2, long j, String str, boolean z) {
+        this.a = i;
+        this.b = str;
+        this.c = j;
+        this.d = i2;
+        this.e = z;
     }
 
     @Override
-    public final Object get(int i) {
-        s0f.a(i, this.s);
-        return this.w.get(i + this.r);
-    }
-
-    @Override
-    public final int i() {
-        return this.w.j() + this.r + this.s;
-    }
-
-    @Override
-    public final int j() {
-        return this.w.j() + this.r;
-    }
-
-    @Override
-    public final Object[] k() {
-        return this.w.k();
-    }
-
-    @Override
-    public final int size() {
-        return this.s;
-    }
-
-    @Override
-    public final o1d subList(int i, int i2) {
-        s0f.b(i, i2, this.s);
-        int i3 = this.r;
-        return this.w.subList(i + i3, i2 + i3);
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 1, 4);
+        parcel.writeInt(this.a);
+        jte.l(parcel, 2, this.b);
+        jte.q(parcel, 3, 8);
+        parcel.writeLong(this.c);
+        jte.q(parcel, 4, 4);
+        parcel.writeInt(this.d);
+        jte.q(parcel, 5, 4);
+        parcel.writeInt(this.e ? 1 : 0);
+        jte.s(parcel, r);
     }
 }

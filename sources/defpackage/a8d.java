@@ -1,23 +1,40 @@
 package defpackage;
 
-import android.content.Intent;
-import android.os.Bundle;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-public final class a8d implements Continuation, z0c, ahf {
-    public static final a8d a = new Object();
+import android.util.Base64;
+import android.util.Log;
+import java.io.IOException;
+public final class a8d extends g6d {
+    public final Object i;
+    public String j;
+    public gbe k;
 
-    @Override
-    public final Object apply(Object obj) {
-        return ((wqe) obj).a();
+    public a8d(vk9 vk9Var, String str, gbe gbeVar) {
+        super(vk9Var, str, gbeVar);
+        this.i = new Object();
     }
 
     @Override
-    public final Object then(Task task) {
-        Intent intent = (Intent) ((Bundle) task.getResult()).getParcelable("notification_data");
-        if (intent != null) {
-            return new ok2(intent);
+    public final Object d(String str) {
+        gbe gbeVar;
+        try {
+            synchronized (this.i) {
+                if (!str.equals(this.j)) {
+                    gbe g = gbe.g(Base64.decode(str, 3));
+                    this.j = str;
+                    this.k = g;
+                }
+                gbeVar = this.k;
+            }
+            return gbeVar;
+        } catch (IOException | IllegalArgumentException unused) {
+            String str2 = this.b;
+            StringBuilder sb = new StringBuilder(String.valueOf(str).length() + str2.length() + 27);
+            sb.append("Invalid byte[] value for ");
+            sb.append(str2);
+            sb.append(": ");
+            sb.append(str);
+            Log.e("PhenotypeFlag", sb.toString());
+            return null;
         }
-        return null;
     }
 }

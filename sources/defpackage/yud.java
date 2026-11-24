@@ -1,15 +1,17 @@
 package defpackage;
-public abstract class yud {
-    public static final rud a;
-    public static final rud b;
+public final class yud implements zn7 {
+    public static final yud a = new Object();
 
     static {
-        rud rudVar = null;
-        try {
-            rudVar = (rud) Class.forName("com.google.protobuf.NewInstanceSchemaFull").getDeclaredConstructor(null).newInstance(null);
-        } catch (Exception unused) {
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        a = rudVar;
-        b = new Object();
+        throw new ClassCastException();
     }
 }

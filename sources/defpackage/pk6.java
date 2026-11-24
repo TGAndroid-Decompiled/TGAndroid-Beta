@@ -1,4 +1,4 @@
 package defpackage;
 public interface pk6 {
-    Object f(Object obj, Object obj2);
+    int a(Object obj);
 }

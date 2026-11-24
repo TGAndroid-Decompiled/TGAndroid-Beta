@@ -1,483 +1,255 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.RectF;
-import android.text.TextUtils;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.AbstractCollection;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Locale;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ProfileActivity;
-public final class hy6 implements Runnable {
-    public final byte a;
-    public final boolean b;
-    public final boolean c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
+import java.util.Map;
+import java.util.Set;
+public final class hy6 {
+    public static final nm5 f;
+    public static final pj1 g;
+    public static final HashMap h;
+    public static final hy6 i;
+    public static final s34 j;
+    public final String a;
+    public final String b;
+    public final nm5 c;
+    public String d;
+    public int e;
 
-    public hy6(c99 c99Var, boolean z, boolean z2, Bitmap[] bitmapArr, CountDownLatch countDownLatch) {
-        this.a = (byte) 3;
-        this.d = c99Var;
-        this.b = z;
-        this.c = z2;
-        this.e = bitmapArr;
-        this.f = countDownLatch;
-    }
-
-    @Override
-    public final void run() {
-        qac qacVar;
-        boolean z;
-        byte b = this.a;
-        boolean z2 = this.c;
-        boolean z3 = this.b;
-        Object obj = this.f;
-        Object obj2 = this.e;
-        Object obj3 = this.d;
-        switch (b) {
-            case 0:
-                sw6 sw6Var = (sw6) obj;
-                tx6 tx6Var = ((ly6) ((s34) obj3).d).j;
-                tx6Var.t();
-                cf8 cf8Var = tx6Var.t;
-                zqe.b(cf8Var, (tw6) obj2);
-                int h = cf8Var.h();
-                if (z3) {
-                    if (h == 1) {
-                        if (cf8Var.m0(2)) {
-                            cf8Var.a();
-                        }
-                    } else if (h == 4 && cf8Var.m0(4)) {
-                        cf8Var.E();
-                    }
-                }
-                if (z2 && cf8Var.m0(1)) {
-                    cf8Var.j();
-                }
-                me8 me8Var = new me8();
-                me8Var.a.d(31, 2);
-                me8Var.a(1, z2);
-                me8Var.b();
-                tx6Var.n(sw6Var);
-                return;
-            case 1:
-                wp5 wp5Var = (wp5) obj;
-                ((hw7) obj3).l((f08) obj2, z3, z2);
-                if (wp5Var != null) {
-                    wp5Var.run();
-                    return;
-                }
-                return;
-            case 2:
-                RectF rectF = ProfileActivity.e7;
-                ((ProfileActivity) obj3).H2((TLRPC.User) obj2, (String) obj, z3, z2);
-                return;
-            case 3:
-                Bitmap[] bitmapArr = (Bitmap[]) obj2;
-                CountDownLatch countDownLatch = (CountDownLatch) obj;
-                hw7 hw7Var = ((c99) obj3).E.c;
-                xka xkaVar = hw7Var.g;
-                mj4 h2 = hw7Var.h(new RectF(0.0f, 0.0f, xkaVar.a, xkaVar.b), false, z3, z2);
-                if (h2 != null) {
-                    bitmapArr[0] = (Bitmap) h2.b;
-                }
-                countDownLatch.countDown();
-                return;
-            case 4:
-                final vz9 vz9Var = (vz9) obj3;
-                final String str = (String) obj2;
-                String[] strArr = (String[]) obj;
-                final LinkedHashSet linkedHashSet = new LinkedHashSet();
-                final LinkedHashSet linkedHashSet2 = new LinkedHashSet();
-                final HashMap hashMap = hs6.d0(vz9Var.W).r;
-                final ArrayList arrayList = new ArrayList();
-                final ArrayList arrayList2 = new ArrayList();
-                boolean d = gw3.d(str);
-                final ArrayList arrayList3 = new ArrayList();
-                HashMap hashMap2 = new HashMap();
-                final ArrayList arrayList4 = new ArrayList();
-                final boolean z4 = this.b;
-                final boolean z5 = this.c;
-                qac qacVar2 = new qac() {
-                    @Override
-                    public final void a(Object obj4) {
-                        Runnable runnable = (Runnable) obj4;
-                        final vz9 vz9Var2 = vz9.this;
-                        final String str2 = str;
-                        final boolean z6 = z4;
-                        final ArrayList arrayList5 = arrayList;
-                        final HashMap hashMap3 = hashMap;
-                        final ArrayList arrayList6 = arrayList2;
-                        final LinkedHashSet linkedHashSet3 = linkedHashSet;
-                        final LinkedHashSet linkedHashSet4 = linkedHashSet2;
-                        final ArrayList arrayList7 = arrayList4;
-                        final ArrayList arrayList8 = arrayList3;
-                        final boolean z7 = z5;
-                        gm.c3(new Runnable() {
-                            @Override
-                            public final void run() {
-                                vz9 vz9Var3 = vz9.this;
-                                zx9 zx9Var = vz9Var3.K1;
-                                if (zx9Var != null) {
-                                    gm.r(zx9Var);
-                                    vz9Var3.K1 = null;
-                                }
-                                String str3 = vz9Var3.B1;
-                                String str4 = str2;
-                                if (str4 != str3) {
-                                    return;
-                                }
-                                vz9Var3.A1 = true;
-                                vz9Var3.z(true, z6);
-                                ny9 ny9Var = vz9Var3.g0;
-                                if (ny9Var != null) {
-                                    ny9Var.d(true);
-                                }
-                                ArrayList arrayList9 = vz9Var3.C1;
-                                if (arrayList9 == null) {
-                                    vz9Var3.C1 = new ArrayList();
-                                } else {
-                                    arrayList9.clear();
-                                }
-                                ArrayList arrayList10 = vz9Var3.F1;
-                                if (arrayList10 == null) {
-                                    vz9Var3.F1 = new ArrayList();
-                                } else {
-                                    arrayList10.clear();
-                                }
-                                ArrayList arrayList11 = vz9Var3.E1;
-                                if (arrayList11 == null) {
-                                    vz9Var3.E1 = new ArrayList();
-                                } else {
-                                    arrayList11.clear();
-                                }
-                                ArrayList arrayList12 = vz9Var3.D1;
-                                if (arrayList12 == null) {
-                                    vz9Var3.D1 = new ArrayList();
-                                } else {
-                                    arrayList12.clear();
-                                }
-                                int i = 0;
-                                vz9Var3.j0.w0(0);
-                                int i2 = vz9Var3.a0;
-                                if (i2 == 1 || i2 == 14 || i2 == 11 || i2 == 2) {
-                                    ArrayList arrayList13 = arrayList5;
-                                    if (!arrayList13.isEmpty()) {
-                                        vz9Var3.C1.addAll(arrayList13);
-                                    } else {
-                                        TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) hashMap3.get(str4);
-                                        if (tL_availableReaction != null) {
-                                            vz9Var3.C1.add(k39.c(tL_availableReaction));
-                                        }
-                                    }
-                                    ArrayList arrayList14 = arrayList6;
-                                    if (!arrayList14.isEmpty()) {
-                                        vz9Var3.D1.addAll(arrayList14);
-                                    }
-                                }
-                                Iterator it = linkedHashSet3.iterator();
-                                while (it.hasNext()) {
-                                    Long l = (Long) it.next();
-                                    l.getClass();
-                                    ArrayList arrayList15 = vz9Var3.C1;
-                                    ?? obj5 = new Object();
-                                    long longValue = l.longValue();
-                                    obj5.g = longValue;
-                                    obj5.h = longValue;
-                                    arrayList15.add(obj5);
-                                }
-                                Iterator it2 = linkedHashSet4.iterator();
-                                while (it2.hasNext()) {
-                                    vz9Var3.C1.add(k39.b((String) it2.next()));
-                                }
-                                vz9Var3.F1.addAll(arrayList7);
-                                ArrayList arrayList16 = arrayList8;
-                                int size = arrayList16.size();
-                                while (i < size) {
-                                    Object obj6 = arrayList16.get(i);
-                                    i++;
-                                    vz9Var3.E1.addAll((ArrayList) obj6);
-                                }
-                                vz9Var3.r0.E(!z7);
-                            }
-                        });
-                    }
-                };
-                int i = vz9Var.a0;
-                if (i == 13) {
-                    Utilities.u(0, new qac() {
-                        @Override
-                        public final void a(Object obj4) {
-                            switch (r4) {
-                                case 0:
-                                    vz9 vz9Var2 = vz9Var;
-                                    hs6.d0(vz9Var2.W).X(vz9.c2, str, false, new xr8(linkedHashSet2, (Runnable) obj4, (byte) 16), false, false, false, false, 0);
-                                    return;
-                                default:
-                                    vz9 vz9Var3 = vz9Var;
-                                    String str2 = str;
-                                    hs6 d0 = hs6.d0(vz9Var3.W);
-                                    gy9 gy9Var = new gy9(linkedHashSet2, (Runnable) obj4, (byte) 0);
-                                    if (str2 == null) {
-                                        gy9Var.a(new ArrayList());
-                                        return;
-                                    }
-                                    Utilities.g.c(new d65(str2, d0.t0(5), d0.t0[1], gy9Var, (byte) 28));
-                                    return;
-                            }
-                        }
-                    }, qacVar2);
-                    return;
-                } else if (i == 14) {
-                    if (d) {
-                        qacVar = new qac() {
-                            @Override
-                            public final void a(Object obj4) {
-                                ArrayList arrayList5;
-                                switch (r5) {
-                                    case 0:
-                                        String str2 = str;
-                                        Runnable runnable = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects D0 = oc7.r1(vz9Var.W).D0();
-                                        if (D0 != null) {
-                                            for (int i2 = 0; i2 < D0.effects.size(); i2++) {
-                                                try {
-                                                    TLRPC.TL_availableEffect tL_availableEffect = D0.effects.get(i2);
-                                                    if (str2.contains(tL_availableEffect.emoticon)) {
-                                                        if (tL_availableEffect.effect_animation_id == 0) {
-                                                            arrayList5 = arrayList2;
-                                                        } else {
-                                                            arrayList5 = arrayList;
-                                                        }
-                                                        arrayList5.add(k39.e(tL_availableEffect));
-                                                    }
-                                                } catch (Exception unused) {
-                                                }
-                                            }
-                                        }
-                                        runnable.run();
-                                        return;
-                                    default:
-                                        vz9 vz9Var2 = vz9Var;
-                                        hs6.d0(vz9Var2.W).X(vz9.c2, str, false, new lu(vz9Var2, arrayList2, arrayList, (Runnable) obj4, (byte) 17), false, false, false, false, 0);
-                                        return;
-                                }
-                            }
-                        };
-                    } else {
-                        qacVar = new qac() {
-                            @Override
-                            public final void a(Object obj4) {
-                                ArrayList arrayList5;
-                                switch (r5) {
-                                    case 0:
-                                        String str2 = str;
-                                        Runnable runnable = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects D0 = oc7.r1(vz9Var.W).D0();
-                                        if (D0 != null) {
-                                            for (int i2 = 0; i2 < D0.effects.size(); i2++) {
-                                                try {
-                                                    TLRPC.TL_availableEffect tL_availableEffect = D0.effects.get(i2);
-                                                    if (str2.contains(tL_availableEffect.emoticon)) {
-                                                        if (tL_availableEffect.effect_animation_id == 0) {
-                                                            arrayList5 = arrayList2;
-                                                        } else {
-                                                            arrayList5 = arrayList;
-                                                        }
-                                                        arrayList5.add(k39.e(tL_availableEffect));
-                                                    }
-                                                } catch (Exception unused) {
-                                                }
-                                            }
-                                        }
-                                        runnable.run();
-                                        return;
-                                    default:
-                                        vz9 vz9Var2 = vz9Var;
-                                        hs6.d0(vz9Var2.W).X(vz9.c2, str, false, new lu(vz9Var2, arrayList2, arrayList, (Runnable) obj4, (byte) 17), false, false, false, false, 0);
-                                        return;
-                                }
-                            }
-                        };
-                    }
-                    Utilities.u(0, qacVar, qacVar2);
-                    return;
-                } else {
-                    Utilities.u(0, new z52(d, str, linkedHashSet, (byte) 4), new qac() {
-                        @Override
-                        public final void a(Object obj4) {
-                            switch (r4) {
-                                case 0:
-                                    vz9 vz9Var2 = vz9Var;
-                                    hs6.d0(vz9Var2.W).X(vz9.c2, str, false, new xr8(linkedHashSet, (Runnable) obj4, (byte) 16), false, false, false, false, 0);
-                                    return;
-                                default:
-                                    vz9 vz9Var3 = vz9Var;
-                                    String str2 = str;
-                                    hs6 d0 = hs6.d0(vz9Var3.W);
-                                    gy9 gy9Var = new gy9(linkedHashSet, (Runnable) obj4, (byte) 0);
-                                    if (str2 == null) {
-                                        gy9Var.a(new ArrayList());
-                                        return;
-                                    }
-                                    Utilities.g.c(new d65(str2, d0.t0(5), d0.t0[1], gy9Var, (byte) 28));
-                                    return;
-                            }
-                        }
-                    }, new jv0(vz9Var, strArr, str, linkedHashSet, (byte) 19), new un8(vz9Var, d, linkedHashSet, str, hashMap, arrayList), new jv0((Object) vz9Var, str, (Object) arrayList3, (Object) hashMap2, (byte) 20), new i48(vz9Var, str, arrayList4, (byte) 5), qacVar2);
-                    return;
-                }
-            case 5:
-                h4b h4bVar = (h4b) obj3;
-                TL_stories.TL_stories_getAllStories tL_stories_getAllStories = (TL_stories.TL_stories_getAllStories) obj2;
-                TLObject tLObject = (TLObject) obj;
-                int i2 = h4bVar.a;
-                SharedPreferences sharedPreferences = h4bVar.l;
-                if (z3) {
-                    h4bVar.r = false;
-                } else {
-                    h4bVar.q = false;
-                }
-                fc4.b("StoriesController loaded stories from server state=" + tL_stories_getAllStories.state + " more=" + tL_stories_getAllStories.next + "  " + tLObject);
-                if (tLObject instanceof TL_stories.TL_stories_allStories) {
-                    TL_stories.TL_stories_allStories tL_stories_allStories = (TL_stories.TL_stories_allStories) tLObject;
-                    cf7.Y(i2).j1(tL_stories_allStories.users, null, true, true);
-                    int i3 = tL_stories_allStories.count;
-                    if (!z3) {
-                        h4bVar.u = i3;
-                        h4bVar.p = tL_stories_allStories.has_more;
-                        h4bVar.o = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state", h4bVar.o).putBoolean("last_stories_has_more", h4bVar.p).putInt("total_stores", h4bVar.u).apply();
-                    } else {
-                        h4bVar.v = i3;
-                        h4bVar.z = tL_stories_allStories.has_more;
-                        h4bVar.y = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", h4bVar.y).putBoolean("last_stories_has_more_hidden", h4bVar.z).putInt("total_stores_hidden", h4bVar.v).apply();
-                    }
-                    h4bVar.a0(tL_stories_allStories, z3, false, z2);
-                    return;
-                } else if (tLObject instanceof TL_stories.TL_stories_allStoriesNotModified) {
-                    if (!z3) {
-                        h4bVar.p = sharedPreferences.getBoolean("last_stories_has_more", false);
-                        h4bVar.o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state", h4bVar.o).apply();
-                        z = h4bVar.p;
-                    } else {
-                        h4bVar.z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
-                        h4bVar.y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", h4bVar.y).apply();
-                        z = h4bVar.z;
-                    }
-                    if (z) {
-                        nm7.f(i2).k(329, new Object[0]);
-                        return;
-                    }
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                t4b t4bVar = (t4b) obj3;
-                ArrayList arrayList5 = (ArrayList) obj2;
-                jd jdVar = (jd) obj;
-                int i4 = t4bVar.a;
-                cf7 cf7Var = t4bVar.b;
-                SQLiteDatabase sQLiteDatabase = cf7Var.b;
-                for (int i5 = 0; i5 < arrayList5.size(); i5++) {
-                    TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList5.get(i5);
-                    long n = pg3.n(peerStories.peer);
-                    try {
-                        ArrayList<TL_stories.StoryItem> arrayList6 = peerStories.stories;
-                        for (int i6 = 0; i6 < arrayList6.size(); i6++) {
-                            if (arrayList6.get(i6) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem e = t4bVar.e(arrayList6.get(i6).id, n);
-                                if (e instanceof TL_stories.TL_storyItem) {
-                                    arrayList6.set(i6, e);
-                                }
-                            }
-                        }
-                    } catch (Exception e2) {
-                        fc4.g(e2, true);
-                    }
-                }
-                if (!z3) {
-                    try {
-                        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT DISTINCT dialog_id FROM stories", new Object[0]);
-                        ArrayList arrayList7 = new ArrayList();
-                        while (queryFinalized.next()) {
-                            long longValue = queryFinalized.longValue(0);
-                            if (longValue > 0) {
-                                TLRPC.User W1 = oc7.r1(i4).W1(Long.valueOf(longValue));
-                                if (W1 == null) {
-                                    W1 = cf7.Y(i4).g0(longValue);
-                                }
-                                if (W1 == null || (W1.stories_hidden == z2 && !arrayList7.contains(Long.valueOf(longValue)))) {
-                                    arrayList7.add(Long.valueOf(longValue));
-                                }
-                            } else {
-                                long j = -longValue;
-                                TLRPC.Chat L0 = oc7.r1(i4).L0(Long.valueOf(j));
-                                if (L0 == null) {
-                                    L0 = cf7.Y(i4).N(j);
-                                }
-                                if (L0 == null || (L0.stories_hidden == z2 && !arrayList7.contains(Long.valueOf(longValue)))) {
-                                    arrayList7.add(Long.valueOf(longValue));
-                                }
-                            }
-                        }
-                        if (e21.a) {
-                            fc4.b("StoriesStorage delete dialogs " + TextUtils.join(",", arrayList7));
-                        }
-                        Locale locale = Locale.US;
-                        String join = TextUtils.join(",", arrayList7);
-                        sQLiteDatabase.executeFast("DELETE FROM stories WHERE dialog_id IN(" + join + ")").stepThis().dispose();
-                    } catch (Throwable th) {
-                        cf7Var.n(th, true);
-                    }
-                }
-                for (int i7 = 0; i7 < arrayList5.size(); i7++) {
-                    TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) arrayList5.get(i7);
-                    t4bVar.g(pg3.n(peerStories2.peer), peerStories2);
-                }
-                gm.c3(jdVar);
-                return;
+    static {
+        nm5 nm5Var;
+        String c = smd.c(StandardCharsets.UTF_8.name());
+        krd.a("charset", c);
+        so2 b = so2.b();
+        fm5 fm5Var = (fm5) b.get("charset");
+        if (fm5Var == null) {
+            km5 km5Var = mm5.b;
+            krd.b(4, "expectedSize");
+            fm5Var = new em5(4);
+            b.put("charset", fm5Var);
         }
+        fm5Var.a(c);
+        Set entrySet = b.entrySet();
+        if (((AbstractCollection) entrySet).isEmpty()) {
+            nm5Var = a24.h;
+        } else {
+            po2 po2Var = (po2) entrySet;
+            kp kpVar = new kp(po2Var.b.size());
+            Iterator it = po2Var.iterator();
+            int i2 = 0;
+            while (it.hasNext()) {
+                Map.Entry entry = (Map.Entry) it.next();
+                Object key = entry.getKey();
+                w59 f2 = ((jm5) entry.getValue()).f();
+                kpVar.w(key, f2);
+                i2 += f2.d;
+            }
+            nm5Var = new nm5(kpVar.c(true), i2);
+        }
+        f = nm5Var;
+        qj1 qj1Var = qj1.d;
+        qj1 qj1Var2 = qj1.e;
+        qj1Var2.getClass();
+        rj1 rj1Var = new rj1(qj1Var2);
+        qj1Var.getClass();
+        g = new pj1(new pj1(new pj1(qj1Var, rj1Var), new tj1(' ', (byte) 1)), wj1.a("()<>@,;:\\\"/[]?=").c());
+        wj1.a("\"\\\r").c().getClass();
+        wj1.a(" \t\r\n");
+        h = new HashMap();
+        a("*", "*");
+        a("text", "*");
+        a("image", "*");
+        a("audio", "*");
+        a("video", "*");
+        a("application", "*");
+        a("font", "*");
+        b("text", "cache-manifest");
+        b("text", "css");
+        b("text", "csv");
+        b("text", "html");
+        b("text", "calendar");
+        b("text", "markdown");
+        b("text", "plain");
+        b("text", "javascript");
+        b("text", "tab-separated-values");
+        b("text", "vcard");
+        b("text", "vnd.wap.wml");
+        b("text", "xml");
+        b("text", "vtt");
+        a("image", "bmp");
+        a("image", "x-canon-crw");
+        a("image", "gif");
+        a("image", "vnd.microsoft.icon");
+        a("image", "jpeg");
+        a("image", "png");
+        a("image", "vnd.adobe.photoshop");
+        b("image", "svg+xml");
+        a("image", "tiff");
+        a("image", "webp");
+        a("image", "heif");
+        a("image", "jp2");
+        a("audio", "mp4");
+        a("audio", "mpeg");
+        a("audio", "ogg");
+        a("audio", "webm");
+        a("audio", "l16");
+        a("audio", "l24");
+        a("audio", "basic");
+        a("audio", "aac");
+        a("audio", "vorbis");
+        a("audio", "x-ms-wma");
+        a("audio", "x-ms-wax");
+        a("audio", "vnd.rn-realaudio");
+        a("audio", "vnd.wave");
+        a("video", "mp4");
+        a("video", "mpeg");
+        a("video", "ogg");
+        a("video", "quicktime");
+        a("video", "webm");
+        a("video", "x-ms-wmv");
+        a("video", "x-flv");
+        a("video", "3gpp");
+        a("video", "3gpp2");
+        b("application", "xml");
+        b("application", "atom+xml");
+        a("application", "x-bzip2");
+        b("application", "dart");
+        a("application", "vnd.apple.pkpass");
+        a("application", "vnd.ms-fontobject");
+        a("application", "epub+zip");
+        a("application", "x-www-form-urlencoded");
+        a("application", "pkcs12");
+        a("application", "binary");
+        a("application", "geo+json");
+        a("application", "x-gzip");
+        a("application", "hal+json");
+        b("application", "javascript");
+        a("application", "jose");
+        a("application", "jose+json");
+        i = b("application", "json");
+        a("application", "jwt");
+        b("application", "manifest+json");
+        a("application", "vnd.google-earth.kml+xml");
+        a("application", "vnd.google-earth.kmz");
+        a("application", "mbox");
+        a("application", "x-apple-aspen-config");
+        a("application", "vnd.ms-excel");
+        a("application", "vnd.ms-outlook");
+        a("application", "vnd.ms-powerpoint");
+        a("application", "msword");
+        a("application", "dash+xml");
+        a("application", "wasm");
+        a("application", "x-nacl");
+        a("application", "x-pnacl");
+        a("application", "octet-stream");
+        a("application", "ogg");
+        a("application", "vnd.openxmlformats-officedocument.wordprocessingml.document");
+        a("application", "vnd.openxmlformats-officedocument.presentationml.presentation");
+        a("application", "vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        a("application", "vnd.oasis.opendocument.graphics");
+        a("application", "vnd.oasis.opendocument.presentation");
+        a("application", "vnd.oasis.opendocument.spreadsheet");
+        a("application", "vnd.oasis.opendocument.text");
+        b("application", "opensearchdescription+xml");
+        a("application", "pdf");
+        a("application", "postscript");
+        a("application", "protobuf");
+        b("application", "rdf+xml");
+        b("application", "rtf");
+        a("application", "font-sfnt");
+        a("application", "x-shockwave-flash");
+        a("application", "vnd.sketchup.skp");
+        b("application", "soap+xml");
+        a("application", "x-tar");
+        a("application", "font-woff");
+        a("application", "font-woff2");
+        b("application", "xhtml+xml");
+        b("application", "xrd+xml");
+        a("application", "zip");
+        a("font", "collection");
+        a("font", "otf");
+        a("font", "sfnt");
+        a("font", "ttf");
+        a("font", "woff");
+        a("font", "woff2");
+        j = new s34(new zb3("; "), (byte) 9);
     }
 
-    public hy6(h4b h4bVar, boolean z, TL_stories.TL_stories_getAllStories tL_stories_getAllStories, TLObject tLObject, boolean z2) {
-        this.a = (byte) 5;
-        this.d = h4bVar;
-        this.b = z;
-        this.e = tL_stories_getAllStories;
-        this.f = tLObject;
-        this.c = z2;
+    public hy6(String str, String str2, nm5 nm5Var) {
+        this.a = str;
+        this.b = str2;
+        this.c = nm5Var;
     }
 
-    public hy6(Object obj, Object obj2, boolean z, boolean z2, Object obj3, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.e = obj2;
-        this.b = z;
-        this.c = z2;
-        this.f = obj3;
+    public static void a(String str, String str2) {
+        hy6 hy6Var = new hy6(str, str2, a24.h);
+        h.put(hy6Var, hy6Var);
     }
 
-    public hy6(ProfileActivity profileActivity, TLRPC.User user, String str, boolean z, boolean z2) {
-        this.a = (byte) 2;
-        this.d = profileActivity;
-        this.e = user;
-        this.f = str;
-        this.b = z;
-        this.c = z2;
+    public static hy6 b(String str, String str2) {
+        hy6 hy6Var = new hy6(str, str2, f);
+        h.put(hy6Var, hy6Var);
+        StandardCharsets.UTF_8.getClass();
+        return hy6Var;
+    }
+
+    public final oi6 c() {
+        return new oi6(this.c.a(), new gi3(new g31((byte) 13)));
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof hy6) {
+                hy6 hy6Var = (hy6) obj;
+                if (this.a.equals(hy6Var.a) && this.b.equals(hy6Var.b) && c().equals(hy6Var.c())) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int i2 = this.e;
+        if (i2 == 0) {
+            int hashCode = Arrays.hashCode(new Object[]{this.a, this.b, c()});
+            this.e = hashCode;
+            return hashCode;
+        }
+        return i2;
+    }
+
+    public final String toString() {
+        String str = this.d;
+        if (str == null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(this.a);
+            sb.append('/');
+            sb.append(this.b);
+            nm5 nm5Var = this.c;
+            if (nm5Var.f != 0) {
+                sb.append("; ");
+                Collection g2 = new xg7(nm5Var, new gi3(new g31((byte) 12))).g();
+                s34 s34Var = j;
+                s34Var.getClass();
+                try {
+                    s34Var.k(sb, g2.iterator());
+                } catch (IOException e) {
+                    fi7.g(e);
+                    return null;
+                }
+            }
+            String sb2 = sb.toString();
+            this.d = sb2;
+            return sb2;
+        }
+        return str;
     }
 }

@@ -1,85 +1,51 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.text.TextPaint;
-import android.util.TypedValue;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public class dg5 extends EditTextBoldCursor {
-    public final TextPaint M1;
-    public String N1;
-    public final Rect O1;
+import java.util.regex.Pattern;
+public final class dg5 extends x1 {
+    public static final Pattern[][] e = {new Pattern[]{null, null}, new Pattern[]{Pattern.compile("^<(?:script|pre|style)(?:\\s|>|$)", 2), Pattern.compile("</(?:script|pre|style)>", 2)}, new Pattern[]{Pattern.compile("^<!--"), Pattern.compile("-->")}, new Pattern[]{Pattern.compile("^<[?]"), Pattern.compile("\\?>")}, new Pattern[]{Pattern.compile("^<![A-Z]"), Pattern.compile(">")}, new Pattern[]{Pattern.compile("^<!\\[CDATA\\["), Pattern.compile("\\]\\]>")}, new Pattern[]{Pattern.compile("^</?(?:address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(?:\\s|[/]?[>]|$)", 2), null}, new Pattern[]{Pattern.compile("^(?:<[A-Za-z][A-Za-z0-9-]*(?:\\s+[a-zA-Z_:][a-zA-Z0-9:._-]*(?:\\s*=\\s*(?:[^\"'=<>`\\x00-\\x20]+|'[^']*'|\"[^\"]*\"))?)*\\s*/?>|</[A-Za-z][A-Za-z0-9-]*\\s*[>])\\s*$", 2), null}};
+    public final Pattern b;
+    public final cg5 a = new tg6();
+    public boolean c = false;
+    public dd d = new dd((byte) 1);
 
-    public dg5(Context context) {
-        super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.M1 = textPaint;
-        this.O1 = new Rect();
-        textPaint.setColor(cmb.w0(null, cmb.G6, false));
-    }
-
-    public String getHintText() {
-        return this.N1;
+    public dg5(Pattern pattern) {
+        this.b = pattern;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        float measureText;
-        Rect rect;
-        Canvas canvas2;
-        if (this.N1 != null && length() < this.N1.length()) {
-            int i = 0;
-            float f = 0.0f;
-            while (i < this.N1.length()) {
-                int length = length();
-                TextPaint textPaint = this.M1;
-                if (i < length) {
-                    measureText = getPaint().measureText(getText(), i, i + 1);
-                } else {
-                    measureText = textPaint.measureText(this.N1, i, i + 1);
-                }
-                if (i < length()) {
-                    f += measureText;
-                    canvas2 = canvas;
-                } else {
-                    int color = textPaint.getColor();
-                    canvas.save();
-                    String str = this.N1;
-                    textPaint.getTextBounds(str, 0, str.length(), this.O1);
-                    A(i);
-                    canvas2 = canvas;
-                    canvas2.drawText(this.N1, i, i + 1, f, (rect.height() + getHeight()) / 2.0f, (Paint) textPaint);
-                    f += measureText;
-                    canvas2.restore();
-                    textPaint.setColor(color);
-                }
-                i++;
-                canvas = canvas2;
-            }
+    public final void a(CharSequence charSequence) {
+        dd ddVar = this.d;
+        StringBuilder sb = (StringBuilder) ddVar.c;
+        if (ddVar.b != 0) {
+            sb.append('\n');
         }
-        super.onDraw(canvas);
+        sb.append(charSequence);
+        ddVar.b++;
+        Pattern pattern = this.b;
+        if (pattern != null && pattern.matcher(charSequence).find()) {
+            this.c = true;
+        }
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        invalidate();
-    }
-
-    public void setHintText(String str) {
-        this.N1 = str;
-        invalidate();
-        setText(getText());
+    public final void d() {
+        this.a.g = ((StringBuilder) this.d.c).toString();
+        this.d = null;
     }
 
     @Override
-    public void setTextSize(int i, float f) {
-        super.setTextSize(i, f);
-        this.M1.setTextSize(TypedValue.applyDimension(i, f, getResources().getDisplayMetrics()));
+    public final gk0 e() {
+        return this.a;
     }
 
-    public void A(int i) {
+    @Override
+    public final vj2 h(vo3 vo3Var) {
+        if (!this.c) {
+            if (vo3Var.h && this.b == null) {
+                return null;
+            }
+            return vj2.a(vo3Var.b);
+        }
+        return null;
     }
 }

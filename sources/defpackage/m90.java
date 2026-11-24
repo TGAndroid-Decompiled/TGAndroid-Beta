@@ -1,96 +1,62 @@
 package defpackage;
-public final class m90 extends zz2 {
-    public final String a;
-    public final String b;
-    public final String c;
-    public final String d;
-    public final String e;
-    public final String f;
 
-    public m90(String str, String str2, String str3, String str4, String str5, String str6) {
-        this.a = str;
-        this.b = str2;
-        this.c = str3;
-        this.d = str4;
-        this.e = str5;
-        this.f = str6;
+import android.content.Context;
+public final class m90 extends h13 {
+    public final Context a;
+    public final ti2 b;
+    public final ti2 c;
+    public final String d;
+
+    public m90(Context context, ti2 ti2Var, ti2 ti2Var2, String str) {
+        if (context != null) {
+            this.a = context;
+            if (ti2Var != null) {
+                this.b = ti2Var;
+                if (ti2Var2 != null) {
+                    this.c = ti2Var2;
+                    if (str != null) {
+                        this.d = str;
+                        return;
+                    } else {
+                        fvc.f("Null backendName");
+                        throw null;
+                    }
+                }
+                fvc.f("Null monotonicClock");
+                throw null;
+            }
+            fvc.f("Null wallClock");
+            throw null;
+        }
+        fvc.f("Null applicationContext");
+        throw null;
     }
 
     public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof zz2) {
-            m90 m90Var = (m90) ((zz2) obj);
-            if (this.a.equals(m90Var.a) && this.b.equals(m90Var.b)) {
-                String str = m90Var.c;
-                String str2 = this.c;
-                if (str2 != null ? str2.equals(str) : str == null) {
-                    String str3 = m90Var.d;
-                    String str4 = this.d;
-                    if (str4 != null ? str4.equals(str3) : str3 == null) {
-                        String str5 = m90Var.e;
-                        String str6 = this.e;
-                        if (str6 != null ? str6.equals(str5) : str5 == null) {
-                            String str7 = m90Var.f;
-                            String str8 = this.f;
-                            if (str8 != null ? str8.equals(str7) : str7 == null) {
-                                return true;
-                            }
-                        }
-                    }
-                }
+        if (obj instanceof h13) {
+            m90 m90Var = (m90) ((h13) obj);
+            if (this.a.equals(m90Var.a) && this.b.equals(m90Var.b) && this.c.equals(m90Var.c) && this.d.equals(m90Var.d)) {
+                return true;
             }
         }
         return false;
     }
 
     public final int hashCode() {
-        int hashCode;
-        int hashCode2;
-        int hashCode3;
-        int hashCode4 = (((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b.hashCode()) * 1000003;
-        int i = 0;
-        String str = this.c;
-        if (str == null) {
-            hashCode = 0;
-        } else {
-            hashCode = str.hashCode();
-        }
-        int i2 = (hashCode4 ^ hashCode) * (-721379959);
-        String str2 = this.d;
-        if (str2 == null) {
-            hashCode2 = 0;
-        } else {
-            hashCode2 = str2.hashCode();
-        }
-        int i3 = (i2 ^ hashCode2) * 1000003;
-        String str3 = this.e;
-        if (str3 == null) {
-            hashCode3 = 0;
-        } else {
-            hashCode3 = str3.hashCode();
-        }
-        int i4 = (i3 ^ hashCode3) * 1000003;
-        String str4 = this.f;
-        if (str4 != null) {
-            i = str4.hashCode();
-        }
-        return i4 ^ i;
+        return ((((((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b.hashCode()) * 1000003) ^ this.c.hashCode()) * 1000003) ^ this.d.hashCode();
     }
 
     public final String toString() {
-        StringBuilder sb = new StringBuilder("Application{identifier=");
+        StringBuilder sb = new StringBuilder("CreationContext{applicationContext=");
         sb.append(this.a);
-        sb.append(", version=");
+        sb.append(", wallClock=");
         sb.append(this.b);
-        sb.append(", displayVersion=");
+        sb.append(", monotonicClock=");
         sb.append(this.c);
-        sb.append(", organization=null, installationUuid=");
-        sb.append(this.d);
-        sb.append(", developmentPlatform=");
-        sb.append(this.e);
-        sb.append(", developmentPlatformVersion=");
-        return b10.j(sb, this.f, "}");
+        sb.append(", backendName=");
+        return b00.j(sb, this.d, "}");
     }
 }

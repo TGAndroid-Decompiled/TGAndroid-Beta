@@ -1,83 +1,120 @@
 package defpackage;
 
-import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.Collection;
-public abstract class d41 {
-    public static final byte[] a = {65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47};
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.tgnet.tl.TL_account;
+public final class d41 extends FrameLayout {
+    public final jia a;
+    public final wla b;
+    public final jia c;
+    public final wjb d;
+    public boolean e;
+    public TL_account.TL_businessChatLink f;
 
-    public static String a(byte[] bArr) {
+    public d41(Context context, wjb wjbVar) {
+        super(context);
         int i;
         int i2;
-        int i3;
-        int i4;
-        int i5;
-        if (bArr == 0) {
-            return null;
+        this.d = wjbVar;
+        setWillNotDraw(false);
+        ImageView imageView = new ImageView(context);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        imageView.setImageResource(2131232205);
+        imageView.setPadding(gl.L(9.0f), gl.L(9.0f), gl.L(9.0f), gl.L(9.0f));
+        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        int L = gl.L(36.0f);
+        int i3 = bkb.Ei;
+        ShapeDrawable K = bkb.K(L, bkb.w0(null, i3, false));
+        vkb M = zkb.M(i3);
+        imageView.setBackground(K);
+        zkb.j(imageView, K, M, null, null);
+        imageView.setOnClickListener(new j1(this, (byte) 24));
+        addView(imageView, nme.i(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
+        jia jiaVar = new jia(context);
+        this.a = jiaVar;
+        jiaVar.setTextSize(15);
+        zkb.W(jiaVar, bkb.F6, null);
+        if (k96.a0) {
+            i = 5;
+        } else {
+            i = 3;
         }
-        int length = (((((bArr.length << 3) + 5) / 6) + 3) / 4) << 2;
-        StringBuilder sb = new StringBuilder(length);
-        int i6 = 0;
-        while (true) {
-            int i7 = i6 / 8;
-            if (bArr.length <= i7) {
-                i3 = -1;
+        jiaVar.setGravity(i);
+        addView(jiaVar, nme.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
+        jia jiaVar2 = new jia(context);
+        this.c = jiaVar2;
+        jiaVar2.setTextSize(14);
+        int i4 = bkb.y6;
+        zkb.W(jiaVar2, i4, null);
+        if (k96.a0) {
+            i2 = 3;
+        } else {
+            i2 = 5;
+        }
+        jiaVar2.setGravity(i2);
+        addView(jiaVar2, nme.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
+        wla wlaVar = new wla(context);
+        this.b = wlaVar;
+        wlaVar.setTextSize(1, 13.0f);
+        wlaVar.setMaxLines(1);
+        wlaVar.setEllipsize(TextUtils.TruncateAt.END);
+        zkb.X(wlaVar, i4, wjbVar);
+        wlaVar.setGravity(k96.a0 ? 5 : 3);
+        wlaVar.r = false;
+        wlaVar.setUseAlphaForEmoji(false);
+        kk7.i(wlaVar);
+        addView(wlaVar, nme.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f;
+        super.onDraw(canvas);
+        if (this.e) {
+            Paint U0 = bkb.U0("paintDivider", this.d);
+            if (U0 == null) {
+                U0 = bkb.j0;
+            }
+            Paint paint = U0;
+            float f2 = 64.0f;
+            if (k96.a0) {
+                f = 0.0f;
             } else {
-                if (bArr.length - 1 == i7) {
-                    i = 0;
-                } else {
-                    i = bArr[i7 + 1];
-                }
-                int i8 = (i6 % 24) / 6;
-                if (i8 != 0) {
-                    if (i8 != 1) {
-                        if (i8 != 2) {
-                            if (i8 != 3) {
-                                i3 = 0;
-                            } else {
-                                i2 = bArr[i7];
-                            }
-                        } else {
-                            i4 = (bArr[i7] << 2) & 60;
-                            i5 = (i >> 6) & 3;
-                        }
-                    } else {
-                        i4 = (bArr[i7] << 4) & 48;
-                        i5 = (i >> 4) & 15;
-                    }
-                    i3 = i4 | i5;
-                } else {
-                    i2 = bArr[i7] >> 2;
-                }
-                i3 = i2 & 63;
+                f = 64.0f;
             }
-            if (i3 < 0) {
-                break;
+            float L = gl.L(f);
+            float measuredHeight = getMeasuredHeight() - 1;
+            int width = getWidth();
+            if (!k96.a0) {
+                f2 = 0.0f;
             }
-            sb.append((char) a[i3]);
-            i6 += 6;
+            canvas.drawRect(L, measuredHeight, width - gl.L(f2), getMeasuredHeight(), paint);
         }
-        for (int length2 = sb.length(); length2 < length; length2++) {
-            sb.append('=');
-        }
-        return sb.toString();
     }
 
-    public static y79 b(bs4 bs4Var, ArrayList arrayList) {
-        jo5 p = mo5.p();
-        for (int i = 0; i < arrayList.size(); i++) {
-            Bundle bundle = (Bundle) arrayList.get(i);
-            bundle.getClass();
-            p.c(bs4Var.apply(bundle));
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        boolean z2 = k96.a0;
+        jia jiaVar = this.c;
+        jia jiaVar2 = this.a;
+        if (z2) {
+            jiaVar2.setPadding(jiaVar.getTextWidth(), 0, 0, 0);
+        } else {
+            jiaVar2.setPadding(0, 0, jiaVar.getTextWidth(), 0);
         }
-        return p.f();
     }
 
-    public static ArrayList c(Collection collection, bs4 bs4Var) {
-        ArrayList arrayList = new ArrayList(collection.size());
-        for (Object obj : collection) {
-            arrayList.add((Bundle) bs4Var.apply(obj));
-        }
-        return arrayList;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(56.0f) + (this.e ? 1 : 0), 1073741824));
     }
 }

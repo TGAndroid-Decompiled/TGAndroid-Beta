@@ -36,7 +36,7 @@ public final class k1 implements ValueAnimator.AnimatorUpdateListener {
                 FrameLayout frameLayout2 = s1Var.K;
                 Float f3 = (Float) valueAnimator.getAnimatedValue();
                 ((Float) valueAnimator.getAnimatedValue()).getClass();
-                Typeface typeface = gm.a;
+                Typeface typeface = gl.a;
                 float min = Math.min((f3.floatValue() - ((Float) ((AtomicReference) obj2).getAndSet(f3)).floatValue()) * 1000.0f * 8.0f, 250.0f);
                 while (true) {
                     int i = (min > 0.0f ? 1 : (min == 0.0f ? 0 : -1));
@@ -49,7 +49,7 @@ public final class k1 implements ValueAnimator.AnimatorUpdateListener {
                         r1Var.a = (f6 * min2) + f4;
                         min -= min2;
                     } else {
-                        float R1 = gm.R1(f2, f, f4);
+                        float R1 = gl.R1(f2, f, f4);
                         s1Var.W = R1;
                         if (R1 > 0.8f && frameLayout2.getBackground() == null) {
                             frameLayout2.setBackground(s1Var.L);
@@ -64,18 +64,18 @@ public final class k1 implements ValueAnimator.AnimatorUpdateListener {
                 break;
             default:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ((HorizontalScrollView) frameLayout).setScrollX((int) td4.A(f, f2, floatValue, f2));
-                ((e29) obj2).setOutlineProgress(1.0f - floatValue);
-                ((e29) obj).setOutlineProgress(floatValue);
+                ((HorizontalScrollView) frameLayout).setScrollX((int) tb4.A(f, f2, floatValue, f2));
+                ((c09) obj2).setOutlineProgress(1.0f - floatValue);
+                ((c09) obj).setOutlineProgress(floatValue);
                 return;
         }
     }
 
-    public k1(HorizontalScrollView horizontalScrollView, float f, float f2, e29 e29Var, e29 e29Var2) {
+    public k1(HorizontalScrollView horizontalScrollView, float f, float f2, c09 c09Var, c09 c09Var2) {
         this.d = horizontalScrollView;
         this.b = f;
         this.c = f2;
-        this.e = e29Var;
-        this.f = e29Var2;
+        this.e = c09Var;
+        this.f = c09Var2;
     }
 }

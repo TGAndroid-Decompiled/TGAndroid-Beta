@@ -1,6 +1,16 @@
 package defpackage;
-public abstract class mce {
-    public static String a(int i) {
-        return td4.o(i, "activity with result code: ", " indicating not RESULT_OK");
+
+import android.os.IBinder;
+import android.os.IInterface;
+public final class mce implements IInterface {
+    public final IBinder a;
+
+    public mce(IBinder iBinder) {
+        this.a = iBinder;
+    }
+
+    @Override
+    public final IBinder asBinder() {
+        return this.a;
     }
 }

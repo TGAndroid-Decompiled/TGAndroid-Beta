@@ -1,211 +1,122 @@
 package defpackage;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-public final class ml8 implements AutoCloseable {
-    public long e;
-    public boolean f;
-    public vk2 h;
-    public Throwable n;
-    public volatile Set r;
-    public final Object a = new Object();
-    public final LinkedHashMap c = new LinkedHashMap(16, 0.75f, true);
-    public final HashMap d = new HashMap();
-    public final ExecutorService b = Executors.newSingleThreadExecutor(new y30((byte) 4));
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+public final class ml8 {
+    public byte a;
+    public final n41 b;
+    public final lm e;
+    public Drawable i;
+    public Drawable j;
+    public oy8 k;
+    public tgb l;
+    public r86 r;
+    public boolean s;
+    public boolean t;
+    public int u;
+    public long w;
+    public short x;
+    public final pl8 y;
+    public final RectF c = new RectF();
+    public final RectF d = new RectF();
+    public final RectF f = new RectF();
+    public final RectF g = new RectF();
+    public final Rect h = new Rect();
+    public float m = 1.0f;
+    public boolean n = false;
+    public boolean o = false;
+    public boolean p = false;
+    public final float q = 1.0f;
+    public short v = 0;
 
-    public ml8(a32 a32Var, a32 a32Var2) {
+    public ml8(pl8 pl8Var, nl8 nl8Var) {
+        this.y = pl8Var;
+        this.b = new n41(pl8Var);
+        this.e = new lm(pl8Var, 0L, 250L, s33.f);
+        d(0, nl8Var.b, nl8Var.c);
+        c(k96.M0(nl8Var.a, null));
     }
 
-    public static String b(String str) {
-        if (str == null) {
-            return "";
+    public final void a() {
+        float e = this.e.e(false, 1.0f);
+        if (e != 1.0f) {
+            RectF rectF = this.g;
+            float f = rectF.left;
+            RectF rectF2 = this.f;
+            float R1 = gl.R1(f, rectF2.left, e);
+            RectF rectF3 = this.d;
+            rectF3.left = R1;
+            rectF3.right = gl.R1(rectF.right, rectF2.right, e);
+            return;
         }
-        String lowerCase = str.trim().toLowerCase(Locale.ROOT);
-        lowerCase.getClass();
-        char c = 65535;
-        switch (lowerCase.hashCode()) {
-            case 3104:
-                if (lowerCase.equals("c#")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case 3261:
-                if (lowerCase.equals("fc")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case 96515:
-                if (lowerCase.equals("c++")) {
-                    c = 2;
-                    break;
-                }
-                break;
-            case 101379:
-                if (lowerCase.equals("fif")) {
-                    c = 3;
-                    break;
-                }
-                break;
-            case 3561037:
-                if (lowerCase.equals("tl-b")) {
-                    c = 4;
-                    break;
-                }
-                break;
-        }
-        switch (c) {
-            case 0:
-                return "csharp";
-            case 1:
-                return "func";
-            case 2:
-                return "cpp";
-            case 3:
-                return "fift";
-            case 4:
-                return "tlb";
-            default:
-                return lowerCase;
+        this.n = false;
+        if (this.o) {
+            this.p = true;
         }
     }
 
-    public final boolean a() {
-        synchronized (this.a) {
-            if (this.f) {
-                return false;
-            }
-            if (this.h != null) {
-                return true;
-            }
-            if (this.n == null) {
-                try {
-                    try {
-                        vk2 c = a32.c();
-                        try {
-                            LinkedHashSet linkedHashSet = new LinkedHashSet();
-                            Collections.addAll(linkedHashSet, c.a.a());
-                            if (linkedHashSet.contains("func")) {
-                                linkedHashSet.add("fc");
-                            }
-                            if (linkedHashSet.contains("fift")) {
-                                linkedHashSet.add("fif");
-                            }
-                            if (linkedHashSet.contains("tlb")) {
-                                linkedHashSet.add("tl-b");
-                            }
-                            this.r = DesugarCollections.unmodifiableSet(linkedHashSet);
-                            this.h = c;
-                            return true;
-                        } catch (Error | RuntimeException e) {
-                            c.close();
-                            throw e;
-                        }
-                    } catch (Exception e2) {
-                        e = e2;
-                        this.n = e;
-                        try {
-                            fc4.g(e, true);
-                        } catch (LinkageError | RuntimeException unused) {
-                        }
-                        return false;
-                    }
-                } catch (LinkageError e3) {
-                    e = e3;
-                    this.n = e;
-                    fc4.g(e, true);
-                    return false;
-                } catch (OutOfMemoryError e4) {
-                    e = e4;
-                    this.n = e;
-                    fc4.g(e, true);
-                    return false;
-                }
-            }
-            return false;
+    public final float b() {
+        boolean z = this.o;
+        lm lmVar = this.e;
+        if (z) {
+            return 1.0f - lmVar.e(false, 1.0f);
+        }
+        if (!this.n) {
+            return 1.0f;
+        }
+        return lmVar.e(false, 1.0f);
+    }
+
+    public final void c(String str) {
+        tgb tgbVar = new tgb(str, 11.0f, gl.o());
+        tgbVar.l(3);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        tgbVar.a();
+        this.l = tgbVar;
+    }
+
+    public final void d(int i, int i2, int i3) {
+        Drawable drawable;
+        Drawable drawable2 = null;
+        pl8 pl8Var = this.y;
+        if (i != 0) {
+            oy8 oy8Var = new oy8(i, gl.L(56.0f), gl.L(56.0f), false, null);
+            oy8Var.M(pl8Var);
+            oy8Var.start();
+            this.k = oy8Var;
+        } else {
+            this.k = null;
+        }
+        if (i2 != 0) {
+            drawable = pl8Var.getResources().getDrawable(i2).mutate();
+        } else {
+            drawable = null;
+        }
+        this.i = drawable;
+        if (i3 != 0) {
+            drawable2 = pl8Var.getResources().getDrawable(i3).mutate();
+        }
+        this.j = drawable2;
+        oy8 oy8Var2 = this.k;
+        Rect rect = this.h;
+        if (oy8Var2 != null) {
+            oy8Var2.setBounds(rect);
+        }
+        Drawable drawable3 = this.i;
+        if (drawable3 != null) {
+            drawable3.setBounds(rect);
+        }
+        Drawable drawable4 = this.j;
+        if (drawable4 != null) {
+            drawable4.setBounds(rect);
         }
     }
 
-    public final void c(kl8 kl8Var, wm4 wm4Var) {
-        il8 il8Var = new il8(kl8Var, wm4Var);
-        long j = il8Var.b;
-        if (j <= 8388608) {
-            LinkedHashMap linkedHashMap = this.c;
-            linkedHashMap.put(kl8Var, il8Var);
-            this.e += j;
-            while (true) {
-                if (linkedHashMap.size() <= 256 && this.e <= 8388608) {
-                    return;
-                }
-                Map.Entry entry = (Map.Entry) linkedHashMap.entrySet().iterator().next();
-                this.e -= ((il8) entry.getValue()).b;
-                linkedHashMap.remove(entry.getKey());
-            }
-        }
-    }
-
-    @Override
-    public final void close() {
-        synchronized (this.a) {
-            if (this.f) {
-                return;
-            }
-            this.f = true;
-            Iterator it = this.d.values().iterator();
-            while (true) {
-                int i = 0;
-                if (it.hasNext()) {
-                    ArrayList arrayList = (ArrayList) it.next();
-                    int size = arrayList.size();
-                    while (i < size) {
-                        Object obj = arrayList.get(i);
-                        i++;
-                        ((ll8) obj).a = null;
-                    }
-                } else {
-                    this.d.clear();
-                    this.c.clear();
-                    this.e = 0L;
-                    this.b.execute(new hl8(this, (byte) 0));
-                    this.b.shutdown();
-                    return;
-                }
-            }
-        }
-    }
-
-    public final ll8 d(String str, String str2, jl8 jl8Var) {
-        if (str != null) {
-            kl8 kl8Var = new kl8(str, b(str2));
-            ?? obj = new Object();
-            obj.a = jl8Var;
-            synchronized (this.a) {
-                if (!this.f) {
-                    ArrayList arrayList = (ArrayList) this.d.get(kl8Var);
-                    if (arrayList != null) {
-                        arrayList.add(obj);
-                        return obj;
-                    }
-                    ArrayList arrayList2 = new ArrayList();
-                    arrayList2.add(obj);
-                    this.d.put(kl8Var, arrayList2);
-                    this.b.execute(new a18(this, kl8Var, (byte) 24));
-                    return obj;
-                }
-                throw new IllegalStateException("Service is closed");
-            }
-        }
-        throw null;
+    public ml8(pl8 pl8Var) {
+        this.y = pl8Var;
+        this.b = new n41(pl8Var);
+        this.e = new lm(pl8Var, 0L, 250L, s33.f);
     }
 }

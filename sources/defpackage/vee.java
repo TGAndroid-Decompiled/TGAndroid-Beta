@@ -1,15 +1,29 @@
 package defpackage;
 
-import java.util.Calendar;
-import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 public abstract class vee {
-    public static int a(int i) {
-        if (i < 100 && i >= 0) {
-            if (k1f.G == null) {
-                k1f.G = new k1f((byte) 15);
-            }
-            return Integer.parseInt(String.format(Locale.US, "%s%02d", ts2.m(2, 0, String.valueOf(Calendar.getInstance().get(1))), Integer.valueOf(i)));
+    public static final long a(long j) {
+        long j2 = (j << 1) + 1;
+        int i = jr3.d;
+        int i2 = lr3.a;
+        return j2;
+    }
+
+    public static final long b(long j) {
+        long j2 = j << 1;
+        int i = jr3.d;
+        int i2 = lr3.a;
+        return j2;
+    }
+
+    public static final long c(int i, nr3 nr3Var) {
+        if (nr3Var.compareTo(nr3.SECONDS) <= 0) {
+            return b(TimeUnit.NANOSECONDS.convert(i, nr3Var.a));
         }
-        return i;
+        return d(i, nr3Var);
+    }
+
+    public static final long d(long r5, defpackage.nr3 r7) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.vee.d(long, nr3):long");
     }
 }

@@ -1,35 +1,33 @@
 package defpackage;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.TextView;
-public final class dp9 implements TextView.OnEditorActionListener {
-    public final byte a;
-    public final he b;
-
-    public dp9(he heVar, byte b) {
-        this.a = b;
-        this.b = heVar;
+import java.nio.ByteBuffer;
+import java.nio.channels.WritableByteChannel;
+public final class dp9 extends a2 {
+    public dp9() {
+        super("stsd");
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-        byte b = this.a;
-        he heVar = this.b;
-        switch (b) {
-            case 0:
-                gm.t1(textView);
-                View c = heVar.c(-1);
-                if (c != null) {
-                    c.callOnClick();
-                }
-                return false;
-            default:
-                if (i != 6) {
-                    return false;
-                }
-                heVar.c(-1).callOnClick();
-                return true;
+    public final void getBox(WritableByteChannel writableByteChannel) {
+        writableByteChannel.write(d());
+        ByteBuffer allocate = ByteBuffer.allocate(8);
+        ile.f(0, allocate);
+        ile.e(0, allocate);
+        allocate.putInt(this.b.size());
+        writableByteChannel.write((ByteBuffer) allocate.rewind());
+        c(writableByteChannel);
+    }
+
+    @Override
+    public final long getSize() {
+        int i;
+        long b = b();
+        long j = 8 + b;
+        if (b + 16 >= 4294967296L) {
+            i = 16;
+        } else {
+            i = 8;
         }
+        return j + i;
     }
 }

@@ -1,19 +1,3 @@
 package defpackage;
-public abstract class ph0 extends dm6 {
-    public int[] E;
-    public final long w;
-    public final long x;
-    public lx6 y;
-
-    public ph0(a83 a83Var, g83 g83Var, go4 go4Var, int i, Object obj, long j, long j2, long j3, long j4, long j5) {
-        super(a83Var, g83Var, go4Var, i, obj, j, j2, j5, null);
-        this.w = j3;
-        this.x = j4;
-    }
-
-    public final int d(int i) {
-        int[] iArr = this.E;
-        iArr.getClass();
-        return iArr[i];
-    }
+public interface ph0 {
 }

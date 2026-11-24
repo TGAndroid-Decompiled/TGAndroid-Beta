@@ -1,111 +1,35 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import java.util.ArrayList;
-import org.telegram.messenger.FilesMigrationService;
-import org.telegram.messenger.a;
-import org.telegram.ui.ActionBar.d;
-public final class yb0 extends my0 {
-    public final byte l1 = 1;
-    public d m1;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public abstract class yb0 {
+    public final xb0 a = new xb0(this, (byte) 0);
+    public final kk7 b = kk7.f(y6c.t0);
+    public final TLObject c;
+    public final int d;
+    public final int e;
+    public ac0 f;
+    public boolean g;
 
-    public yb0(mc0 mc0Var, Activity activity) {
-        super(activity, true);
-        this.m1 = mc0Var;
+    public yb0(int i, int i2, TLObject tLObject) {
+        this.c = tLObject;
+        this.d = i;
+        this.e = i2;
     }
 
-    @Override
-    public final boolean C() {
-        switch (this.l1) {
-            case 1:
-                return false;
-            default:
-                return super.C();
-        }
+    public void a() {
+        na7.q1(y6c.t0).Y2(this.d, ((TLRPC.Chat) this.c).id, false);
     }
 
-    public final void D0() {
+    public void b(Object... objArr) {
         boolean z;
-        Activity parentActivity = ((nk3) this.m1).getParentActivity();
-        boolean z2 = false;
-        if (parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        int i = Build.VERSION.SDK_INT;
-        if ((i >= 33 && parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") == 0 && parentActivity.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") == 0 && parentActivity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") == 0) || (i < 33 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0)) {
-            z2 = true;
-        }
-        if (z2 && z) {
-            boolean z3 = FilesMigrationService.c;
-            a.b.startService(new Intent(a.b, FilesMigrationService.class));
-            dismiss();
-            return;
-        }
-        ArrayList arrayList = new ArrayList();
-        if (!z2) {
-            if (i >= 33) {
-                arrayList.add("android.permission.READ_MEDIA_IMAGES");
-                arrayList.add("android.permission.READ_MEDIA_VIDEO");
-                arrayList.add("android.permission.READ_MEDIA_AUDIO");
-            } else {
-                arrayList.add("android.permission.READ_EXTERNAL_STORAGE");
+        TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
+        if (chatFull != null && chatFull.id == ((TLRPC.Chat) this.c).id && (z = this.g)) {
+            if (z) {
+                this.g = false;
+                this.b.n(this.a, this.e);
             }
+            this.f.accept(chatFull);
         }
-        if (!z) {
-            arrayList.add("android.permission.WRITE_EXTERNAL_STORAGE");
-        }
-        parentActivity.requestPermissions((String[]) arrayList.toArray(new String[arrayList.size()]), 4);
-    }
-
-    @Override
-    public final boolean E() {
-        switch (this.l1) {
-            case 1:
-                return false;
-            default:
-                return super.E();
-        }
-    }
-
-    @Override
-    public final void H() {
-        switch (this.l1) {
-            case 0:
-                super.H();
-                mc0 mc0Var = (mc0) this.m1;
-                gm.V2(mc0Var.getParentActivity(), mc0Var.getClassGuid());
-                mc0Var.T = null;
-                return;
-            default:
-                super.H();
-                return;
-        }
-    }
-
-    @Override
-    public final void dismiss() {
-        switch (this.l1) {
-            case 0:
-                super.dismiss();
-                mc0 mc0Var = (mc0) this.m1;
-                mc0Var.K.z1(mc0Var.Z);
-                mc0Var.f = true;
-                mc0Var.fragmentView.invalidate();
-                mc0Var.e.animate().setListener(new g0(this, (byte) 17)).alpha(0.0f).setDuration(200L).start();
-                return;
-            default:
-                super.dismiss();
-                FilesMigrationService.e = null;
-                return;
-        }
-    }
-
-    public yb0(Context context, boolean z) {
-        super(context, z);
     }
 }

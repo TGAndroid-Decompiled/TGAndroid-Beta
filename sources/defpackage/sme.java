@@ -1,17 +1,44 @@
 package defpackage;
-public final class sme implements cq7 {
-    public static final sme a = new Object();
 
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)));
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class sme extends dzc {
+    public final byte b;
+    public final TaskCompletionSource c;
+
+    public sme(TaskCompletionSource taskCompletionSource, byte b) {
+        super((byte) 13);
+        this.b = b;
+        this.c = taskCompletionSource;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+    public final void P(Status status, nn5 nn5Var) {
+        switch (this.b) {
+            case 0:
+                return;
+            default:
+                status.getClass();
+                dve.a(status, nn5Var, this.c);
+                return;
         }
-        throw new ClassCastException();
+    }
+
+    @Override
+    public final void f(Status status, r44 r44Var) {
+        switch (this.b) {
+            case 0:
+                status.getClass();
+                dve.a(status, r44Var, this.c);
+                return;
+            default:
+                return;
+        }
+    }
+
+    private final void T(Status status, r44 r44Var) {
+    }
+
+    private final void U(Status status, nn5 nn5Var) {
     }
 }

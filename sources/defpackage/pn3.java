@@ -1,106 +1,77 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Dictation.DictationAsr;
-public final class pn3 implements View.OnClickListener {
-    public final byte a = 1;
-    public final boolean b;
-    public final int c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
-    public final Object h;
-    public final Object n;
+import android.graphics.LinearGradient;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import android.text.style.UpdateAppearance;
+public final class pn3 extends CharacterStyle implements UpdateAppearance {
+    public final byte a;
+    public final Object b;
 
-    public pn3(b61 b61Var, boolean z, int i, p71 p71Var, Runnable runnable, Context context, ylb ylbVar) {
-        this.d = b61Var;
-        this.b = z;
-        this.c = i;
-        this.e = p71Var;
-        this.f = runnable;
-        this.h = context;
-        this.n = ylbVar;
+    public pn3(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        boolean z;
+    public final void updateDrawState(TextPaint textPaint) {
+        float A;
+        float A2;
         byte b = this.a;
-        boolean z2 = false;
-        Object obj = this.n;
-        Object obj2 = this.h;
-        Object obj3 = this.f;
-        Object obj4 = this.e;
-        boolean z3 = this.b;
-        Object obj5 = this.d;
+        Object obj = this.b;
         switch (b) {
             case 0:
-                un3 un3Var = (un3) obj5;
-                String str = (String) obj3;
-                String[] strArr = (String[]) obj2;
-                xv4 xv4Var = (xv4) obj;
-                un3Var.getClass();
-                ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = new ArrayList();
-                String g0 = DictationAsr.g0((gn3) obj4, str);
-                int length = strArr.length;
-                int i = 0;
-                while (i < length) {
-                    String str2 = strArr[i];
-                    Context context = un3Var.h;
-                    String N = un3.N(str2);
-                    if (z3 && str2.equals(g0)) {
-                        z = true;
-                    } else {
-                        z = z2;
-                    }
-                    arrayList.add(new k7(context, N, null, this.c, z));
-                    arrayList2.add(new pz2(un3Var, str, str2, (byte) 9));
-                    i++;
-                    z2 = false;
-                }
-                xv4Var.g(arrayList, arrayList2);
-                return;
-            default:
-                b61 b61Var = (b61) obj5;
-                p71 p71Var = (p71) obj4;
-                Runnable runnable = (Runnable) obj3;
-                Context context2 = (Context) obj2;
-                ylb ylbVar = (ylb) obj;
-                b61Var.setLoading(true);
-                int i2 = this.c;
-                if (z3) {
-                    TL_account.setPrivacy setprivacy = new TL_account.setPrivacy();
-                    setprivacy.key = new TLRPC.TL_inputPrivacyKeyStatusTimestamp();
-                    setprivacy.rules.add(new TLRPC.TL_inputPrivacyValueAllowAll());
-                    ConnectionsManager.getInstance(i2).sendRequest(setprivacy, new i65(b61Var, p71Var, runnable, (byte) 13));
+                qn3 qn3Var = (qn3) obj;
+                LinearGradient linearGradient = qn3Var.k;
+                if (linearGradient != null && qn3Var.m > 0.0f) {
+                    textPaint.setShader(linearGradient);
+                    textPaint.setColor(-1);
                     return;
                 }
-                TL_account.setGlobalPrivacySettings setglobalprivacysettings = new TL_account.setGlobalPrivacySettings();
-                TLRPC.GlobalPrivacySettings globalPrivacySettings = bw2.r(i2).Y;
-                setglobalprivacysettings.settings = globalPrivacySettings;
-                if (globalPrivacySettings == null) {
-                    globalPrivacySettings = new TLRPC.TL_globalPrivacySettings();
-                    setglobalprivacysettings.settings = globalPrivacySettings;
+                return;
+            case 1:
+                wic wicVar = (wic) obj;
+                float f = ((float) (yic.y3 - wicVar.c)) / 360.0f;
+                if (f <= 0.0f) {
+                    A = wicVar.d;
+                } else if (f >= 1.0f) {
+                    A = 1.0f;
+                } else {
+                    float f2 = wicVar.d;
+                    A = tb4.A(1.0f, (float) Math.pow(1.0f - f, 3.0d), 1.0f - f2, f2);
                 }
-                globalPrivacySettings.hide_read_marks = false;
-                ConnectionsManager.getInstance(i2).sendRequest(setglobalprivacysettings, new fo0(context2, ylbVar, b61Var, p71Var, runnable, (byte) 9));
+                float max = Math.max(0.0f, Math.min(1.0f, ((((float) (yic.y3 - wicVar.c)) / 1500.0f) - 0.2f) / 0.8f));
+                float B = yjb.B(max, 2.0f, 3.0f, max * max);
+                int alpha = textPaint.getAlpha();
+                textPaint.setColor(bm2.f(B, yic.z3, yic.A3));
+                textPaint.setAlpha((int) (alpha * A));
+                float f3 = yic.B3;
+                if (f3 > 0.0f && B < 1.0f) {
+                    textPaint.setShadowLayer(f3, 0.0f, 0.0f, bkb.p1((1.0f - B) * 0.55f * A, yic.z3));
+                    return;
+                }
+                return;
+            default:
+                ijc ijcVar = (ijc) obj;
+                float f4 = ((float) (jjc.b2 - ijcVar.c)) / 360.0f;
+                if (f4 <= 0.0f) {
+                    A2 = ijcVar.d;
+                } else if (f4 >= 1.0f) {
+                    A2 = 1.0f;
+                } else {
+                    float f5 = ijcVar.d;
+                    A2 = tb4.A(1.0f, (float) Math.pow(1.0f - f4, 3.0d), 1.0f - f5, f5);
+                }
+                float b2 = jjc.b(((((float) (jjc.b2 - ijcVar.c)) / 1900.0f) - 0.2f) / 0.8f);
+                float B2 = yjb.B(b2, 2.0f, 3.0f, b2 * b2);
+                int alpha2 = textPaint.getAlpha();
+                textPaint.setColor(bm2.f(B2, jjc.X1, jjc.Y1));
+                textPaint.setAlpha((int) (alpha2 * A2));
+                if (B2 < 1.0f) {
+                    textPaint.setShadowLayer(jjc.Z1, 0.0f, 0.0f, bkb.p1((1.0f - B2) * 0.55f * A2, jjc.X1));
+                    return;
+                }
                 return;
         }
-    }
-
-    public pn3(un3 un3Var, gn3 gn3Var, String str, String[] strArr, int i, boolean z, xv4 xv4Var) {
-        this.d = un3Var;
-        this.e = gn3Var;
-        this.f = str;
-        this.h = strArr;
-        this.c = i;
-        this.b = z;
-        this.n = xv4Var;
     }
 }

@@ -1,23 +1,109 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-public final class ly9 extends rz9 {
-    public final View R;
-    public final TL_stars.TL_starGiftUnique S;
-    public final my9 T;
+import org.telegram.tgnet.TLObject;
+public final class ly9 implements Runnable {
+    public final byte a = 1;
+    public final a8 b;
+    public final a8 c;
+    public final a8 d;
+    public final a8 e;
+    public final a8 f;
+    public final boolean h;
+    public final a8 n;
+    public final a8 r;
+    public final Object s;
 
-    public ly9(my9 my9Var, Context context, lz9 lz9Var, View view, fz9 fz9Var, ylb ylbVar, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(my9Var.e, context, lz9Var, view, fz9Var, ylbVar);
-        this.T = my9Var;
-        this.R = view2;
-        this.S = tL_starGiftUnique;
+    public ly9(a8 a8Var, xsa xsaVar, a8 a8Var2, a8 a8Var3, a8 a8Var4, a8 a8Var5, boolean z, a8 a8Var6, a8 a8Var7) {
+        this.b = a8Var;
+        this.s = xsaVar;
+        this.c = a8Var2;
+        this.d = a8Var3;
+        this.e = a8Var4;
+        this.f = a8Var5;
+        this.h = z;
+        this.n = a8Var6;
+        this.r = a8Var7;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.T.e.Y0 = null;
+    public final void run() {
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        byte b = this.a;
+        a8 a8Var = this.r;
+        a8 a8Var2 = this.n;
+        boolean z = this.h;
+        a8 a8Var3 = this.f;
+        a8 a8Var4 = this.e;
+        a8 a8Var5 = this.d;
+        a8 a8Var6 = this.c;
+        Object obj = this.s;
+        a8 a8Var7 = this.b;
+        switch (b) {
+            case 0:
+                xsa xsaVar = ((my9) obj).c.T1;
+                if (xsaVar.e) {
+                    i = 2131750181;
+                } else {
+                    i = 2131750182;
+                }
+                String M0 = k96.M0(i, null);
+                if (xsaVar.e) {
+                    i2 = 2131231894;
+                } else {
+                    i2 = 2131231892;
+                }
+                a8Var7.j(M0, i2, null);
+                a8Var6.setChecked(TLObject.hasFlag(xsaVar.g, 1));
+                a8Var5.setChecked(TLObject.hasFlag(xsaVar.g, 2));
+                a8Var4.setChecked(TLObject.hasFlag(xsaVar.g, 4));
+                a8Var3.setChecked(TLObject.hasFlag(xsaVar.g, 8));
+                if (z) {
+                    a8Var2.setChecked(TLObject.hasFlag(xsaVar.g, 256));
+                    a8Var.setChecked(TLObject.hasFlag(xsaVar.g, 512));
+                    return;
+                }
+                return;
+            default:
+                xsa xsaVar2 = (xsa) obj;
+                if (a8Var7 != null) {
+                    if (xsaVar2.e) {
+                        i3 = 2131750181;
+                    } else {
+                        i3 = 2131750182;
+                    }
+                    String M02 = k96.M0(i3, null);
+                    if (xsaVar2.e) {
+                        i4 = 2131231894;
+                    } else {
+                        i4 = 2131231892;
+                    }
+                    a8Var7.j(M02, i4, null);
+                }
+                a8Var6.setChecked(TLObject.hasFlag(xsaVar2.g, 1));
+                a8Var5.setChecked(TLObject.hasFlag(xsaVar2.g, 2));
+                a8Var4.setChecked(TLObject.hasFlag(xsaVar2.g, 4));
+                a8Var3.setChecked(TLObject.hasFlag(xsaVar2.g, 8));
+                if (z) {
+                    a8Var2.setChecked(TLObject.hasFlag(xsaVar2.g, 256));
+                    a8Var.setChecked(TLObject.hasFlag(xsaVar2.g, 512));
+                    return;
+                }
+                return;
+        }
+    }
+
+    public ly9(my9 my9Var, a8 a8Var, a8 a8Var2, a8 a8Var3, a8 a8Var4, a8 a8Var5, boolean z, a8 a8Var6, a8 a8Var7) {
+        this.s = my9Var;
+        this.b = a8Var;
+        this.c = a8Var2;
+        this.d = a8Var3;
+        this.e = a8Var4;
+        this.f = a8Var5;
+        this.h = z;
+        this.n = a8Var6;
+        this.r = a8Var7;
     }
 }

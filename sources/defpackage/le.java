@@ -1,67 +1,47 @@
 package defpackage;
 
-import android.view.animation.Animation;
-public final class le implements Animation.AnimationListener {
+import android.os.Bundle;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.ProfileActivity;
+public final class le implements View.OnClickListener {
     public final byte a;
-    public final Object b;
+    public final TLRPC.User b;
+    public final d c;
+    public final AlertDialog$Builder d;
 
-    public le(Object obj, byte b) {
+    public le(TLRPC.User user, d dVar, AlertDialog$Builder alertDialog$Builder, byte b) {
         this.a = b;
-        this.b = obj;
+        this.b = user;
+        this.c = dVar;
+        this.d = alertDialog$Builder;
     }
 
     @Override
-    public final void onAnimationEnd(Animation animation) {
+    public final void onClick(View view) {
         byte b = this.a;
-        Object obj = this.b;
+        AlertDialog$Builder alertDialog$Builder = this.d;
+        d dVar = this.c;
+        TLRPC.User user = this.b;
         switch (b) {
             case 0:
-                ((ne) obj).o1.setAlpha(0.0f);
-                return;
-            case 1:
-                ((fm4) obj).f.post(new a14(this, (byte) 27));
-                return;
-            default:
-                rv6 rv6Var = ((pv6) obj).x;
-                rv6Var.P = false;
-                rv6Var.o();
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationRepeat(Animation animation) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final void onAnimationStart(Animation animation) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                return;
-            case 1:
-                fm4 fm4Var = (fm4) obj;
-                fm4Var.i.setEnabled(false);
-                fm4Var.g.setVisibility(0);
-                fm4Var.h.setVisibility(0);
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", user.id);
+                if (dVar.getMessagesController().A(bundle, dVar, null, null)) {
+                    dVar.presentFragment(new ProfileActivity(bundle, null));
+                }
+                alertDialog$Builder.a.M0.run();
                 return;
             default:
-                ((pv6) obj).x.P = true;
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("user_id", user.id);
+                if (dVar.getMessagesController().A(bundle2, dVar, null, null)) {
+                    dVar.presentFragment(new ProfileActivity(bundle2, null));
+                }
+                alertDialog$Builder.a.M0.run();
                 return;
         }
-    }
-
-    private final void a(Animation animation) {
-    }
-
-    private final void b(Animation animation) {
-    }
-
-    private final void c(Animation animation) {
-    }
-
-    private final void d(Animation animation) {
     }
 }

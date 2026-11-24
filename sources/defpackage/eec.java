@@ -1,12 +1,8 @@
 package defpackage;
-public final class eec {
-    public final double a;
-    public final int b;
-    public final int c;
+public interface eec {
+    void a(int i);
 
-    public eec(int i, int i2, double d) {
-        this.a = d;
-        this.b = i;
-        this.c = i2;
-    }
+    void b(float f, int i, int i2);
+
+    void c(int i);
 }

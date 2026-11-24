@@ -1,101 +1,139 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class qg9 extends gkb {
-    public final ah9 F0;
-    public final ch9 G0;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.Spanned;
+import android.text.style.ReplacementSpan;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_iv;
+public final class qg9 extends ReplacementSpan {
+    public final og9 a;
+    public final TL_iv.textButton b;
+    public final RectF c = new RectF();
+    public float d;
+    public boolean e;
+    public int f;
+    public View h;
 
-    public qg9(ch9 ch9Var, ah9 ah9Var) {
-        this.G0 = ch9Var;
-        this.F0 = ah9Var;
+    public qg9(defpackage.rh9 r21, int r22, org.telegram.tgnet.tl.TL_iv.textButton r23, java.lang.Boolean r24) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.qg9.<init>(rh9, int, org.telegram.tgnet.tl.TL_iv$textButton, java.lang.Boolean):void");
+    }
+
+    public final void a(View view) {
+        this.h = view;
+        this.a.a.i(view);
     }
 
     @Override
-    public final boolean B() {
-        ch9 ch9Var = this.G0;
-        CharSequence q = ch9Var.v3.q();
-        if (q != null && q.length() != 0) {
-            ch9Var.f5(q);
-            return true;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        int i6;
+        float f2;
+        og9 og9Var = this.a;
+        int i7 = og9Var.a.s;
+        int i8 = 0;
+        if (i7 > 0 && this.f > 0) {
+            i6 = 1;
+        } else {
+            i6 = 0;
         }
-        return true;
-    }
-
-    @Override
-    public final void C() {
-        ch9 ch9Var = this.G0;
-        CharSequence q = ch9Var.v3.q();
-        if (q != null && q.length() > 0) {
-            ch9Var.f5(q);
-        }
-        ch9Var.A2();
-    }
-
-    @Override
-    public final void E() {
-        super.E();
-        this.F0.e();
-    }
-
-    @Override
-    public final void G() {
-        this.G0.c4();
-    }
-
-    @Override
-    public final boolean I() {
-        if (Z()) {
-            return true;
-        }
-        return this.G0.V4();
-    }
-
-    @Override
-    public final void J(float f, float f2) {
-        ch9 ch9Var = this.G0;
-        ch9Var.A3 = true;
-        ch9Var.B3 = f;
-        ch9Var.C3 = f2;
-    }
-
-    @Override
-    public final boolean i() {
-        int size;
-        String str;
-        int length;
-        ch9 ch9Var = this.G0;
-        qg9 qg9Var = ch9Var.v3;
-        ArrayList arrayList = ch9Var.t3;
-        boolean z = false;
-        if (!arrayList.isEmpty() && qg9Var.w() && qg9Var.p0 == 0 && qg9Var.q0 == 0 && qg9Var.r0 <= 0 && qg9Var.s0 == (size = arrayList.size() - 1)) {
-            ll0 ll0Var = (ll0) arrayList.get(size);
-            if (xk9.n(ll0Var.b)) {
-                str = zk9.l(xk9.h(ll0Var.b));
-            } else {
-                str = "";
-            }
-            int i = !str.isEmpty();
-            if (qg9Var.t0 == i) {
-                if (i == 1) {
-                    length = str.length();
+        if (i6 == 0 && i7 > 0 && (charSequence instanceof Spanned)) {
+            oh9[] oh9VarArr = (oh9[]) ((Spanned) charSequence).getSpans(i, i2, oh9.class);
+            int length = oh9VarArr.length;
+            int i9 = 0;
+            while (true) {
+                if (i9 >= length) {
+                    break;
+                } else if ((oh9VarArr[i9].b & 15) == 14) {
+                    i6 = 1;
+                    break;
                 } else {
-                    length = xk9.y(ll0Var.b).length();
-                }
-                if (qg9Var.u0 >= length) {
-                    z = true;
+                    i9++;
                 }
             }
         }
-        return !z;
+        if (i6 != 0) {
+            f2 = (i3 + i5) / 2.0f;
+        } else {
+            Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
+            f2 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2.0f) + i4;
+        }
+        canvas.save();
+        if (!og9Var.s) {
+            i8 = gl.L(1.0f);
+        }
+        int round = Math.round(f + i8);
+        int ceil = (int) Math.ceil((f2 - (og9Var.c() / 2.0f)) + (i6 ^ 1));
+        float f3 = round;
+        float f4 = ceil;
+        this.c.set(f3, f4, round + og9Var.e, og9Var.c() + ceil);
+        canvas.translate(f3, f4);
+        og9Var.a(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final int n() {
-        return this.G0.getPaddingBottom();
-    }
-
-    @Override
-    public final int o() {
-        return this.G0.getPaddingTop();
+    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        boolean z;
+        int i3;
+        int i4;
+        int i5;
+        int i6;
+        int i7;
+        int i8 = 0;
+        if (this.e && fontMetricsInt != null) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (z) {
+            i3 = fontMetricsInt.top;
+            i4 = fontMetricsInt.ascent;
+            i5 = fontMetricsInt.descent;
+            i6 = fontMetricsInt.bottom;
+            i7 = fontMetricsInt.leading;
+        } else {
+            i3 = 0;
+            i4 = 0;
+            i5 = 0;
+            i6 = 0;
+            i7 = 0;
+        }
+        int L = gl.L(8.0f);
+        int L2 = gl.L(10.0f);
+        og9 og9Var = this.a;
+        if (fontMetricsInt != null && og9Var.s) {
+            float f = this.d;
+            int i9 = (int) (((-L2) - L) * f);
+            fontMetricsInt.top = i9;
+            int i10 = (int) ((L2 - L) * f);
+            fontMetricsInt.bottom = i10;
+            fontMetricsInt.ascent = i9;
+            fontMetricsInt.descent = i10;
+            fontMetricsInt.leading = 0;
+        }
+        if (z) {
+            fontMetricsInt.top = i3;
+            fontMetricsInt.ascent = i4;
+            fontMetricsInt.descent = i5;
+            fontMetricsInt.bottom = i6;
+            fontMetricsInt.leading = i7;
+            int i11 = this.f;
+            int i12 = i5 - i4;
+            if (i11 > i12) {
+                int i13 = i11 - i12;
+                int i14 = (i13 + 1) / 2;
+                int i15 = i4 - i14;
+                fontMetricsInt.ascent = i15;
+                fontMetricsInt.descent = i5 + (i13 - i14);
+                fontMetricsInt.top = Math.min(i3, i15);
+                fontMetricsInt.bottom = Math.max(fontMetricsInt.bottom, fontMetricsInt.descent);
+            }
+        }
+        int i16 = og9Var.e;
+        if (!og9Var.s) {
+            i8 = gl.L(1.0f) << 1;
+        }
+        return i16 + i8;
     }
 }

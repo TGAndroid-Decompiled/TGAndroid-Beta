@@ -1,10 +1,17 @@
 package defpackage;
-public abstract class psd {
-    public static int a(long j) {
-        if (j <= 2147483647L && j >= -2147483648L) {
-            return (int) j;
+public final class psd implements zn7 {
+    public static final psd a = new Object();
+
+    static {
+        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        zo4.k(wi8.n(j, "A cast to int has gone wrong. Please contact the mp4parser discussion group (", ")"));
-        return 0;
+        throw new ClassCastException();
     }
 }

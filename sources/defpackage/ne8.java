@@ -1,52 +1,48 @@
 package defpackage;
+public final class ne8 implements Runnable {
+    public final byte a;
+    public final ve8 b;
 
-import android.os.Bundle;
-import java.util.ArrayList;
-public final class ne8 {
-    public static final ne8 b = new me8().b();
-    public static final String c;
-    public final lk4 a;
-
-    static {
-        String str = hac.a;
-        c = "0";
+    public ne8(ve8 ve8Var, boolean z) {
+        this.a = (byte) 0;
+        this.b = ve8Var;
     }
 
-    public ne8(lk4 lk4Var) {
-        this.a = lk4Var;
-    }
-
-    public final boolean a(int i) {
-        return this.a.a.get(i);
-    }
-
-    public final Bundle b() {
-        Bundle bundle = new Bundle();
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        int i = 0;
-        while (true) {
-            lk4 lk4Var = this.a;
-            if (i < lk4Var.a.size()) {
-                arrayList.add(Integer.valueOf(lk4Var.a(i)));
-                i++;
-            } else {
-                bundle.putIntegerArrayList(c, arrayList);
-                return bundle;
-            }
+    @Override
+    public final void run() {
+        byte b = this.a;
+        ve8 ve8Var = this.b;
+        switch (b) {
+            case 0:
+                gl.c3(new ne8(ve8Var, (byte) 3));
+                gb2 gb2Var = ve8Var.M;
+                if (gb2Var != null) {
+                    gb2Var.setVisibility(0);
+                    gb2 gb2Var2 = ve8Var.M;
+                    gb2Var2.d6 = null;
+                    gb2Var2.invalidate();
+                }
+                ft1 ft1Var = ve8Var.f0;
+                if (ft1Var != null) {
+                    gl.c3(ft1Var);
+                    ve8Var.f0 = null;
+                    return;
+                }
+                return;
+            case 1:
+                ve8Var.b(false);
+                return;
+            case 2:
+                ve8Var.b(false);
+                return;
+            default:
+                ve8Var.c();
+                return;
         }
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof ne8)) {
-            return false;
-        }
-        return this.a.equals(((ne8) obj).a);
-    }
-
-    public final int hashCode() {
-        return this.a.hashCode();
+    public ne8(ve8 ve8Var, byte b) {
+        this.a = b;
+        this.b = ve8Var;
     }
 }

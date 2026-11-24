@@ -1,745 +1,619 @@
 package defpackage;
 
-import java.lang.reflect.Array;
-import java.util.AbstractList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.CancellationSignal;
+import android.text.TextUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
+import com.google.android.gms.tasks.OnFailureListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.NoSuchElementException;
-public final class lt extends AbstractList implements List {
-    public static final Object[] d = new Object[0];
-    public int a;
-    public Object[] b = d;
-    public int c;
+import java.util.concurrent.Executor;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.NotificationsCustomSettingsActivity;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.Wallet.c;
+import org.telegram.ui.o;
+public final class lt implements ed, wi3, gj, OnFailureListener, pc3, fn7, eq6, vc7, j8c, bi0 {
+    public final byte a;
+    public final Object b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
 
-    @Override
-    public final void add(int i, Object obj) {
-        int i2;
-        int i3 = this.c;
-        if (i >= 0 && i <= i3) {
-            if (i == i3) {
-                addLast(obj);
-                return;
-            } else if (i == 0) {
-                addFirst(obj);
-                return;
-            } else {
-                n();
-                i(this.c + 1);
-                int m = m(this.a + i);
-                int i4 = this.c;
-                if (i < ((i4 + 1) >> 1)) {
-                    if (m == 0) {
-                        Object[] objArr = this.b;
-                        objArr.getClass();
-                        i2 = objArr.length - 1;
-                    } else {
-                        i2 = m - 1;
-                    }
-                    int i5 = this.a;
-                    if (i5 == 0) {
-                        Object[] objArr2 = this.b;
-                        objArr2.getClass();
-                        i5 = objArr2.length;
-                    }
-                    int i6 = i5 - 1;
-                    int i7 = this.a;
-                    Object[] objArr3 = this.b;
-                    if (i2 >= i7) {
-                        objArr3[i6] = objArr3[i7];
-                        tt.c(i7, i7 + 1, i2 + 1, objArr3, objArr3);
-                    } else {
-                        tt.c(i7 - 1, i7, objArr3.length, objArr3, objArr3);
-                        Object[] objArr4 = this.b;
-                        objArr4[objArr4.length - 1] = objArr4[0];
-                        tt.c(0, 1, i2 + 1, objArr4, objArr4);
-                    }
-                    this.b[i2] = obj;
-                    this.a = i6;
-                } else {
-                    int m2 = m(this.a + i4);
-                    Object[] objArr5 = this.b;
-                    if (m < m2) {
-                        tt.c(m + 1, m, m2, objArr5, objArr5);
-                    } else {
-                        tt.c(1, 0, m2, objArr5, objArr5);
-                        Object[] objArr6 = this.b;
-                        objArr6[0] = objArr6[objArr6.length - 1];
-                        tt.c(m + 1, m, objArr6.length - 1, objArr6, objArr6);
-                    }
-                    this.b[m] = obj;
-                }
-                this.c++;
-                return;
-            }
-        }
-        wa3.i(b10.g(i, i3, "index: ", ", size: "));
+    public lt(LaunchActivity launchActivity, d dVar, String str, String str2) {
+        this.a = (byte) 13;
+        this.b = launchActivity;
+        this.e = dVar;
+        this.c = str;
+        this.d = str2;
     }
 
     @Override
-    public final boolean addAll(int i, Collection collection) {
-        collection.getClass();
-        int i2 = this.c;
-        if (i >= 0 && i <= i2) {
-            if (collection.isEmpty()) {
-                return false;
-            }
-            if (i == this.c) {
-                return addAll(collection);
-            }
-            n();
-            i(collection.size() + this.c);
-            int m = m(this.a + this.c);
-            int m2 = m(this.a + i);
-            int size = collection.size();
-            if (i < ((this.c + 1) >> 1)) {
-                int i3 = this.a;
-                int i4 = i3 - size;
-                Object[] objArr = this.b;
-                if (m2 >= i3) {
-                    if (i4 >= 0) {
-                        tt.c(i4, i3, m2, objArr, objArr);
-                    } else {
-                        i4 += objArr.length;
-                        int i5 = m2 - i3;
-                        int length = objArr.length - i4;
-                        if (length >= i5) {
-                            tt.c(i4, i3, m2, objArr, objArr);
-                        } else {
-                            tt.c(i4, i3, i3 + length, objArr, objArr);
-                            Object[] objArr2 = this.b;
-                            tt.c(0, this.a + length, m2, objArr2, objArr2);
+    public final boolean G() {
+        byte b = this.a;
+        return false;
+    }
+
+    @Override
+    public final void b(fi0 fi0Var, List list) {
+        byte b = this.a;
+        Object obj = this.e;
+        Object obj2 = this.d;
+        Object obj3 = this.c;
+        Object obj4 = this.b;
+        switch (b) {
+            case 22:
+                gl.c3(new ex7(list, (i8c) obj4, (TLRPC.TL_inputStorePaymentStarsTopup) obj3, (TL_stars.TL_starsTopupOption) obj2, (Activity) obj, (byte) 28));
+                return;
+            default:
+                gl.c3(new foa((gta) obj4, list, (ae2) obj3, (TLRPC.TL_inputStorePaymentStarsGiveaway) obj2, fi0Var, (Activity) obj, (byte) 2));
+                return;
+        }
+    }
+
+    @Override
+    public final void f(String str, ArrayList arrayList) {
+        int intValue;
+        ArrayList arrayList2;
+        byte b = this.a;
+        Object obj = this.e;
+        Object obj2 = this.d;
+        Object obj3 = this.c;
+        Object obj4 = this.b;
+        switch (b) {
+            case 15:
+                hq6 hq6Var = (hq6) obj4;
+                fq6 fq6Var = (fq6) obj3;
+                gq6 gq6Var = (gq6) obj2;
+                p8c p8cVar = (p8c) obj;
+                HashMap hashMap = hq6Var.S1;
+                if (hashMap.containsKey(fq6Var)) {
+                    StringBuilder sb = new StringBuilder();
+                    int size = arrayList.size();
+                    int i = 0;
+                    while (i < size) {
+                        Object obj5 = arrayList.get(i);
+                        i++;
+                        dq6 dq6Var = (dq6) obj5;
+                        if (!TextUtils.isEmpty(dq6Var.a) && !dq6Var.a.startsWith("animated_")) {
+                            sb.append(dq6Var.a);
                         }
                     }
-                } else {
-                    tt.c(i4, i3, objArr.length, objArr, objArr);
-                    Object[] objArr3 = this.b;
-                    if (size >= m2) {
-                        tt.c(objArr3.length - size, 0, m2, objArr3, objArr3);
+                    TLRPC.TL_messages_searchStickers tL_messages_searchStickers = new TLRPC.TL_messages_searchStickers();
+                    boolean z = fq6Var.a;
+                    String str2 = fq6Var.b;
+                    tL_messages_searchStickers.emojis = z;
+                    if (!TextUtils.isEmpty(str2)) {
+                        tL_messages_searchStickers.lang_code.add(str2);
+                    }
+                    tL_messages_searchStickers.emoticon = sb.toString();
+                    tL_messages_searchStickers.q = fq6Var.c;
+                    tL_messages_searchStickers.limit = 100;
+                    if (gq6Var == null) {
+                        intValue = 0;
                     } else {
-                        tt.c(objArr3.length - size, 0, size, objArr3, objArr3);
-                        Object[] objArr4 = this.b;
-                        tt.c(0, size, m2, objArr4, objArr4);
+                        intValue = gq6Var.b.intValue();
                     }
+                    tL_messages_searchStickers.offset = intValue;
+                    hashMap.put(fq6Var, Integer.valueOf(hq6Var.getConnectionsManager().sendRequestTyped(tL_messages_searchStickers, new hc((byte) 0), new eu0(hq6Var, fq6Var, gq6Var, p8cVar, (byte) 11))));
+                    return;
                 }
-                this.a = i4;
-                h(k(m2 - size), collection);
-                return true;
-            }
-            int i6 = m2 + size;
-            Object[] objArr5 = this.b;
-            if (m2 < m) {
-                int i7 = size + m;
-                if (i7 <= objArr5.length) {
-                    tt.c(i6, m2, m, objArr5, objArr5);
-                } else if (i6 >= objArr5.length) {
-                    tt.c(i6 - objArr5.length, m2, m, objArr5, objArr5);
-                } else {
-                    int length2 = m - (i7 - objArr5.length);
-                    tt.c(0, length2, m, objArr5, objArr5);
-                    Object[] objArr6 = this.b;
-                    tt.c(i6, m2, length2, objArr6, objArr6);
-                }
-            } else {
-                tt.c(size, 0, m, objArr5, objArr5);
-                Object[] objArr7 = this.b;
-                if (i6 >= objArr7.length) {
-                    tt.c(i6 - objArr7.length, m2, objArr7.length, objArr7, objArr7);
-                } else {
-                    tt.c(0, objArr7.length - size, objArr7.length, objArr7, objArr7);
-                    Object[] objArr8 = this.b;
-                    tt.c(i6, m2, objArr8.length - size, objArr8, objArr8);
-                }
-            }
-            h(m2, collection);
-            return true;
-        }
-        wa3.i(b10.g(i, i2, "index: ", ", size: "));
-        return false;
-    }
-
-    public final void addFirst(Object obj) {
-        n();
-        i(this.c + 1);
-        int i = this.a;
-        if (i == 0) {
-            Object[] objArr = this.b;
-            objArr.getClass();
-            i = objArr.length;
-        }
-        int i2 = i - 1;
-        this.a = i2;
-        this.b[i2] = obj;
-        this.c++;
-    }
-
-    public final void addLast(Object obj) {
-        n();
-        i(this.c + 1);
-        this.b[m(this.a + this.c)] = obj;
-        this.c++;
-    }
-
-    @Override
-    public final void clear() {
-        if (!isEmpty()) {
-            n();
-            l(this.a, m(this.a + this.c));
-        }
-        this.a = 0;
-        this.c = 0;
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (indexOf(obj) != -1) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final Object get(int i) {
-        int i2 = this.c;
-        if (i >= 0 && i < i2) {
-            return this.b[m(this.a + i)];
-        }
-        wa3.i(b10.g(i, i2, "index: ", ", size: "));
-        return null;
-    }
-
-    public final void h(int i, Collection collection) {
-        Iterator it = collection.iterator();
-        int length = this.b.length;
-        while (i < length && it.hasNext()) {
-            this.b[i] = it.next();
-            i++;
-        }
-        int i2 = this.a;
-        for (int i3 = 0; i3 < i2 && it.hasNext(); i3++) {
-            this.b[i3] = it.next();
-        }
-        this.c = collection.size() + this.c;
-    }
-
-    public final void i(int i) {
-        if (i >= 0) {
-            Object[] objArr = this.b;
-            if (i <= objArr.length) {
                 return;
-            }
-            if (objArr == d) {
-                if (i < 10) {
-                    i = 10;
+            case 16:
+            default:
+                HashMap hashMap2 = (HashMap) obj4;
+                HashMap hashMap3 = (HashMap) obj3;
+                ArrayList arrayList3 = (ArrayList) obj2;
+                Runnable runnable = (Runnable) obj;
+                int size2 = arrayList.size();
+                for (int i2 = 0; i2 < size2; i2++) {
+                    String str3 = ((dq6) arrayList.get(i2)).a;
+                    ArrayList arrayList4 = (ArrayList) hashMap2.get(str3);
+                    if (arrayList4 != null && !arrayList4.isEmpty() && !hashMap3.containsKey(arrayList4)) {
+                        hashMap3.put(arrayList4, str3);
+                        arrayList3.add(arrayList4);
+                    }
                 }
-                this.b = new Object[i];
+                runnable.run();
                 return;
-            }
-            int length = objArr.length;
-            int i2 = length + (length >> 1);
-            if (i2 - i < 0) {
-                i2 = i;
-            }
-            if (i2 - 2147483639 > 0) {
-                if (i > 2147483639) {
-                    i2 = Integer.MAX_VALUE;
-                } else {
-                    i2 = 2147483639;
-                }
-            }
-            Object[] objArr2 = new Object[i2];
-            tt.c(0, this.a, objArr.length, objArr, objArr2);
-            Object[] objArr3 = this.b;
-            int length2 = objArr3.length;
-            int i3 = this.a;
-            tt.c(length2 - i3, 0, i3, objArr3, objArr2);
-            this.a = 0;
-            this.b = objArr2;
-            return;
-        }
-        dq9.m("Deque is too big.");
-    }
-
-    @Override
-    public final int indexOf(Object obj) {
-        int i;
-        int m = m(this.a + this.c);
-        int i2 = this.a;
-        if (i2 < m) {
-            while (i2 < m) {
-                if (rr5.a(obj, this.b[i2])) {
-                    i = this.a;
-                } else {
-                    i2++;
-                }
-            }
-            return -1;
-        } else if (i2 >= m) {
-            int length = this.b.length;
-            while (true) {
-                if (i2 < length) {
-                    if (rr5.a(obj, this.b[i2])) {
-                        i = this.a;
-                        break;
-                    }
-                    i2++;
-                } else {
-                    for (int i3 = 0; i3 < m; i3++) {
-                        if (rr5.a(obj, this.b[i3])) {
-                            i2 = i3 + this.b.length;
-                            i = this.a;
-                        }
-                    }
-                    return -1;
-                }
-            }
-        } else {
-            return -1;
-        }
-        return i2 - i;
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        if (this.c == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int j(int i) {
-        Object[] objArr = this.b;
-        objArr.getClass();
-        if (i == objArr.length - 1) {
-            return 0;
-        }
-        return i + 1;
-    }
-
-    public final int k(int i) {
-        if (i < 0) {
-            return i + this.b.length;
-        }
-        return i;
-    }
-
-    public final void l(int i, int i2) {
-        Object[] objArr = this.b;
-        if (i < i2) {
-            tt.e(i, i2, objArr);
-            return;
-        }
-        Arrays.fill(objArr, i, objArr.length, (Object) null);
-        tt.e(0, i2, this.b);
-    }
-
-    @Override
-    public final int lastIndexOf(Object obj) {
-        int length;
-        int i;
-        int m = m(this.a + this.c);
-        int i2 = this.a;
-        if (i2 < m) {
-            length = m - 1;
-            if (i2 <= length) {
-                while (!rr5.a(obj, this.b[length])) {
-                    if (length != i2) {
-                        length--;
-                    }
-                }
-                i = this.a;
-                return length - i;
-            }
-            return -1;
-        }
-        if (i2 > m) {
-            while (true) {
-                m--;
-                Object[] objArr = this.b;
-                if (-1 < m) {
-                    if (rr5.a(obj, objArr[m])) {
-                        length = m + this.b.length;
-                        i = this.a;
-                        break;
-                    }
-                } else {
-                    objArr.getClass();
-                    length = objArr.length - 1;
-                    int i3 = this.a;
-                    if (i3 <= length) {
-                        while (!rr5.a(obj, this.b[length])) {
-                            if (length != i3) {
-                                length--;
+            case 17:
+                ArrayList arrayList5 = (ArrayList) obj3;
+                ArrayList arrayList6 = (ArrayList) obj2;
+                Runnable runnable2 = (Runnable) obj;
+                TLRPC.messages_AvailableEffects C0 = na7.q1(((tx9) obj4).W).C0();
+                HashSet hashSet = new HashSet();
+                if (C0 != null) {
+                    for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                        try {
+                            if (!((dq6) arrayList.get(i3)).a.startsWith("animated_")) {
+                                String c = vu3.c(((dq6) arrayList.get(i3)).a);
+                                for (int i4 = 0; i4 < C0.effects.size(); i4++) {
+                                    TLRPC.TL_availableEffect tL_availableEffect = C0.effects.get(i4);
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.id)) && (tL_availableEffect.emoticon.contains(c) || c.contains(tL_availableEffect.emoticon))) {
+                                        if (tL_availableEffect.effect_animation_id == 0) {
+                                            arrayList2 = arrayList5;
+                                        } else {
+                                            arrayList2 = arrayList6;
+                                        }
+                                        arrayList2.add(h19.e(tL_availableEffect));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.id));
+                                    }
+                                }
                             }
+                        } catch (Exception unused) {
                         }
-                        i = this.a;
                     }
                 }
+                runnable2.run();
+                return;
+        }
+    }
+
+    @Override
+    public final Object g(Integer num, Object obj) {
+        Context context = (Context) this.b;
+        int[] iArr = (int[]) this.c;
+        wjb wjbVar = (wjb) this.d;
+        mfb mfbVar = (mfb) this.e;
+        Float f = (Float) obj;
+        LinearLayout j = de9.j(context, 1);
+        LinearLayout linearLayout = new LinearLayout(context);
+        j.addView(linearLayout, nme.t(-2, -2, 1, 0, 0, 0, 0));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(iArr[num.intValue() - 1]);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        linearLayout.addView(imageView, nme.o(24, 24));
+        if (num.intValue() == 7) {
+            for (int i = 0; i < 2; i++) {
+                ImageView imageView2 = new ImageView(context);
+                imageView2.setImageResource(iArr[num.intValue() - 1]);
+                imageView2.setScaleType(ImageView.ScaleType.CENTER);
+                linearLayout.addView(imageView2, nme.o(24, 24));
             }
         }
-        return -1;
-    }
-
-    public final int m(int i) {
-        Object[] objArr = this.b;
-        if (i >= objArr.length) {
-            return i - objArr.length;
+        TextView textView = new TextView(context);
+        textView.setTypeface(gl.n1("fonts/num.otf"));
+        zkb.X(textView, bkb.i5, wjbVar);
+        StringBuilder sb = new StringBuilder("x");
+        int i2 = (f.floatValue() > 0.0f ? 1 : (f.floatValue() == 0.0f ? 0 : -1));
+        Object obj2 = f;
+        if (i2 <= 0) {
+            obj2 = "0";
         }
-        return i;
+        sb.append(obj2);
+        textView.setText(sb.toString());
+        textView.setTextSize(1, 13.0f);
+        textView.setGravity(17);
+        j.addView(textView, nme.k(0.0f, 3.0f, 0.0f, 0.0f, -1, -2));
+        return new jfb(mfbVar, j, false);
     }
 
-    public final void n() {
-        ((AbstractList) this).modCount++;
+    @Override
+    public final void i(hn7 hn7Var, int i) {
+        h75 h75Var = (h75) this.b;
+        hn7 hn7Var2 = (hn7) this.c;
+        t55 t55Var = (t55) this.d;
+        u55 u55Var = (u55) this.e;
+        try {
+            h75Var.c.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
+        ij.g(h75Var.M1, h75Var.L1, 0L, 604800L, 2, hn7Var2, t55Var, u55Var);
     }
 
-    public final Object o(int i) {
-        int i2 = this.c;
-        if (i >= 0 && i < i2) {
-            if (i == i2 - 1) {
-                return removeLast();
-            }
-            if (i == 0) {
-                return removeFirst();
-            }
-            n();
-            int m = m(this.a + i);
-            Object[] objArr = this.b;
-            Object obj = objArr[m];
-            int i3 = this.c;
-            int i4 = i3 >> 1;
-            int i5 = this.a;
-            if (i < i4) {
-                if (m >= i5) {
-                    tt.c(i5 + 1, i5, m, objArr, objArr);
+    @Override
+    public final defpackage.w59 j(int r17, defpackage.sxb r18, int[] r19) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.lt.j(int, sxb, int[]):w59");
+    }
+
+    @Override
+    public final void onFailure(final Exception exc) {
+        byte b = this.a;
+        Object obj = this.e;
+        Object obj2 = this.d;
+        Object obj3 = this.c;
+        Object obj4 = this.b;
+        switch (b) {
+            case 9:
+                final y03 y03Var = (y03) obj3;
+                final Executor executor = (Executor) obj2;
+                final o13 o13Var = (o13) obj;
+                exc.getClass();
+                op4 op4Var = new op4(y03Var, exc, executor, o13Var) {
+                    public final Exception a;
+                    public final Executor b;
+                    public final o13 c;
+
+                    {
+                        this.a = exc;
+                        this.b = executor;
+                        this.c = o13Var;
+                    }
+
+                    @Override
+                    public final Object invoke() {
+                        Object c03Var;
+                        Exception exc2 = this.a;
+                        if (exc2 instanceof zn) {
+                            int statusCode = ((zn) exc2).getStatusCode();
+                            if (statusCode == 16) {
+                                c03Var = new b03(exc2.getMessage());
+                            } else if (statusCode == 17) {
+                                c03Var = new c03("API is not supported: " + exc2.getMessage(), (byte) 3);
+                            } else if (statusCode == 8) {
+                                c03Var = new g03(exc2.getMessage());
+                            } else if (y13.b.contains(Integer.valueOf(statusCode))) {
+                                c03Var = new f03(exc2.getMessage());
+                            } else {
+                                c03Var = new c03("Conditional create failed, failure: " + exc2.getMessage(), (byte) 2);
+                            }
+                        } else if (exc2 instanceof e6c) {
+                            c03Var = new c03("API is unsupported", (byte) 3);
+                        } else {
+                            c03Var = new c03("Conditional create failed, failure: " + exc2, (byte) 2);
+                        }
+                        this.b.execute(new gu2(this.c, c03Var, (byte) 14));
+                        return g5c.a;
+                    }
+                };
+                CredentialProviderPlayServicesImpl.Companion.getClass();
+                if (!l23.a((CancellationSignal) obj4)) {
+                    op4Var.invoke();
+                    return;
+                }
+                return;
+            default:
+                CredentialProviderPlayServicesImpl.runFallbackClearCredFlow$lambda$27((CredentialProviderPlayServicesImpl) obj4, (CancellationSignal) obj3, (Executor) obj2, (o13) obj, exc);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean r(cj3 cj3Var, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, qvb qvbVar) {
+        long j;
+        String H;
+        long j2;
+        TLRPC.TL_document tL_document;
+        byte b = this.a;
+        Object obj = this.e;
+        Object obj2 = this.c;
+        Object obj3 = this.d;
+        Object obj4 = this.b;
+        switch (b) {
+            case 1:
+                i20 i20Var = (i20) obj4;
+                ArrayList arrayList2 = (ArrayList) obj2;
+                TLRPC.TL_document tL_document2 = (TLRPC.TL_document) obj3;
+                k27 k27Var = (k27) obj;
+                if (arrayList.size() <= 1) {
+                    j = 0;
+                    if (((zc7) arrayList.get(0)).a != y6c.h(i20Var.a).e() && charSequence == null && arrayList2 != null) {
+                        zc7 zc7Var = (zc7) arrayList.get(0);
+                        long j3 = zc7Var.a;
+                        Bundle l = ir2.l("scrollToTopOnResume", true);
+                        if (cf3.B(j3)) {
+                            l.putInt("enc_id", (int) (j3 & 4294967295L));
+                        } else if (cf3.D(j3)) {
+                            l.putLong("user_id", j3);
+                        } else {
+                            l.putLong("chat_id", -j3);
+                        }
+                        mu1 mu1Var = new mu1(l);
+                        if (zc7Var.b != 0) {
+                            mm4.a(mu1Var, zc7Var);
+                        }
+                        if (i20Var.z2.u0(mu1Var, true, false)) {
+                            mu1Var.Qb(arrayList2);
+                            if (zc7Var.b != 0) {
+                                cj3Var.removeSelfFromStack();
+                            }
+                        } else {
+                            cj3Var.finishFragment();
+                        }
+                        return true;
+                    }
                 } else {
-                    tt.c(1, 0, m, objArr, objArr);
-                    Object[] objArr2 = this.b;
-                    objArr2[0] = objArr2[objArr2.length - 1];
-                    int i6 = this.a;
-                    tt.c(i6 + 1, i6, objArr2.length - 1, objArr2, objArr2);
+                    j = 0;
                 }
-                Object[] objArr3 = this.b;
-                int i7 = this.a;
-                objArr3[i7] = null;
-                this.a = j(i7);
-            } else {
-                int m2 = m((i3 - 1) + i5);
-                Object[] objArr4 = this.b;
-                int i8 = m + 1;
-                if (m <= m2) {
-                    tt.c(m, i8, m2 + 1, objArr4, objArr4);
+                int i3 = 0;
+                while (i3 < arrayList.size()) {
+                    long j4 = ((zc7) arrayList.get(i3)).a;
+                    if (charSequence != null) {
+                        j2 = j4;
+                        z3a.B(i20Var.a).q0(x3a.b(charSequence.toString(), j2, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                    } else {
+                        j2 = j4;
+                    }
+                    int i4 = i20Var.a;
+                    if (arrayList2 != null) {
+                        z3a.B(i4).p0(arrayList2, j2, false, false, true, 0, 0, null, -1, 0L, 0L, null);
+                        tL_document = tL_document2;
+                    } else {
+                        tL_document = tL_document2;
+                        z3a.B(i4).q0(x3a.e(tL_document, null, k27Var.k.attachPath, j2, null, null, null, null, null, z2, i, 0, 0, i20Var.p2, false));
+                    }
+                    i3++;
+                    tL_document2 = tL_document;
+                }
+                cj3Var.finishFragment();
+                d Q = LaunchActivity.Q();
+                if (Q != null) {
+                    u21 b0 = u21.b0(Q);
+                    if (arrayList.size() == 1 && ((zc7) arrayList.get(0)).a == y6c.h(i20Var.a).e()) {
+                        H = k96.M0(2131750482, null);
+                    } else if (arrayList.size() == 1 && ((zc7) arrayList.get(0)).a > j) {
+                        H = k96.a0(null, null, 2131750481, cf3.s(((zc7) arrayList.get(0)).a));
+                    } else if (arrayList.size() == 1 && ((zc7) arrayList.get(0)).a < j) {
+                        H = k96.a0(null, null, 2131750486, cf3.s(((zc7) arrayList.get(0)).a));
+                    } else {
+                        H = k96.H(',', "FwdMessageToManyChats", arrayList.size());
+                    }
+                    b0.Q(2131624029, 36, H).j();
+                }
+                return true;
+            case 2:
+                TLRPC.User user = (TLRPC.User) obj3;
+                String str = (String) obj2;
+                gr7 gr7Var = (gr7) obj;
+                ow0 ow0Var = ((jw0) obj4).d;
+                long j5 = ((zc7) arrayList.get(0)).a;
+                Bundle l2 = ir2.l("scrollToTopOnResume", true);
+                if (cf3.B(j5)) {
+                    l2.putInt("enc_id", (int) (j5 & 4294967295L));
+                } else if (cf3.D(j5)) {
+                    l2.putLong("user_id", j5);
                 } else {
-                    tt.c(m, i8, objArr4.length, objArr4, objArr4);
-                    Object[] objArr5 = this.b;
-                    objArr5[objArr5.length - 1] = objArr5[0];
-                    tt.c(0, 1, m2 + 1, objArr5, objArr5);
+                    l2.putLong("chat_id", -j5);
                 }
-                this.b[m2] = null;
-            }
-            this.c--;
-            return obj;
-        }
-        wa3.i(b10.g(i, i2, "index: ", ", size: "));
-        return null;
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        int indexOf = indexOf(obj);
-        if (indexOf == -1) {
-            return false;
-        }
-        o(indexOf);
-        return true;
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        int m;
-        Object[] objArr;
-        collection.getClass();
-        boolean z = false;
-        z = false;
-        z = false;
-        if (!isEmpty() && this.b.length != 0) {
-            int m2 = m(this.a + this.c);
-            int i = this.a;
-            if (i < m2) {
-                m = i;
-                while (true) {
-                    objArr = this.b;
-                    if (i >= m2) {
-                        break;
+                l2.putString("start_text", "@" + l7c.p(user) + " " + str);
+                Activity activity = ow0Var.m0;
+                if (activity instanceof LaunchActivity) {
+                    d lastFragment = ((LaunchActivity) activity).N().getLastFragment();
+                    if (na7.q1(ow0Var.I).A(l2, lastFragment, null, null)) {
+                        gr7Var.dismiss();
+                        ow0Var.e0 = true;
+                        gl.r(ow0Var.v0);
+                        ow0Var.E.f();
+                        kk7.f(ow0Var.I).n(ow0Var, 114);
+                        kk7.e().n(ow0Var, 267);
+                        kk7.f(ow0Var.I).n(ow0Var, 237);
+                        if (!ow0Var.R0) {
+                            ow0.f(ow0Var);
+                            ow0Var.R0 = true;
+                        }
+                        ri5 ri5Var = new ri5(new mu1(l2));
+                        ri5Var.b = true;
+                        lastFragment.presentFragment(ri5Var);
                     }
-                    Object obj = objArr[i];
-                    if (!collection.contains(obj)) {
-                        this.b[m] = obj;
-                        m++;
+                }
+                return true;
+            default:
+                TLRPC.User user2 = (TLRPC.User) obj3;
+                String str2 = (String) obj2;
+                gr7 gr7Var2 = (gr7) obj;
+                x02 x02Var = ((c02) obj4).e;
+                long j6 = ((zc7) arrayList.get(0)).a;
+                Bundle l3 = ir2.l("scrollToTopOnResume", true);
+                if (cf3.B(j6)) {
+                    l3.putInt("enc_id", (int) (j6 & 4294967295L));
+                } else if (cf3.D(j6)) {
+                    l3.putLong("user_id", j6);
+                } else {
+                    l3.putLong("chat_id", -j6);
+                }
+                l3.putString("start_text", "@" + l7c.p(user2) + " " + str2);
+                d dVar = x02Var.Z1;
+                if (na7.q1(x02Var.G3).A(l3, dVar, null, null)) {
+                    gr7Var2.dismiss();
+                    x02Var.a(true);
+                    ri5 ri5Var2 = new ri5(new mu1(l3));
+                    ri5Var2.b = true;
+                    dVar.presentFragment(ri5Var2);
+                }
+                return true;
+        }
+    }
+
+    @Override
+    public final void run(long j) {
+        byte b = this.a;
+        Object obj = this.e;
+        Object obj2 = this.d;
+        Object obj3 = this.c;
+        Object obj4 = this.b;
+        switch (b) {
+            case 19:
+                iy9 iy9Var = (iy9) obj4;
+                TLRPC.User user = (TLRPC.User) obj3;
+                TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP = (TLRPC.TL_inputCheckPasswordSRP) obj2;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) obj;
+                if (j != 0) {
+                    iy9Var.S1 = na7.q1(iy9Var.a).K0(Long.valueOf(j));
+                    iy9Var.Y0(user, tL_inputCheckPasswordSRP, twoStepVerificationActivity);
+                    return;
+                }
+                return;
+            default:
+                z3a z3aVar = (z3a) obj4;
+                Uri uri = (Uri) obj3;
+                ArrayList arrayList = (ArrayList) obj2;
+                ez5 ez5Var = (ez5) obj;
+                if (j != 0) {
+                    z3aVar.P(-j, uri, arrayList, ez5Var);
+                    return;
+                } else {
+                    ez5Var.run(0L);
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public final void s(int i, int i2, boolean z) {
+        TLRPC.BotInlineResult botInlineResult;
+        byte b = this.a;
+        Object obj = this.c;
+        Object obj2 = this.d;
+        Object obj3 = this.b;
+        switch (b) {
+            case 3:
+                ((mu1) obj3).x8((TLRPC.TL_document) obj2, (String) obj, this.e, z, i);
+                return;
+            case 4:
+            case 5:
+            default:
+                ((vv2) obj3).k((TLRPC.Document) obj2, (String) obj, this.e, z, i, i2);
+                return;
+            case 6:
+                k62 k62Var = (k62) obj3;
+                k62Var.k0.a((TLRPC.TL_messageMediaPoll) obj, k62Var.P, k62Var.n1, (ArrayList) obj2, z, i, ((Long) this.e).longValue());
+                k62Var.b.a(true);
+                return;
+            case 7:
+                vv2 vv2Var = (vv2) obj3;
+                TLRPC.Document document = (TLRPC.Document) obj;
+                TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) obj2;
+                if (document != null) {
+                    botInlineResult = document;
+                } else {
+                    botInlineResult = botInlineResult2;
+                }
+                vv2Var.u(botInlineResult, this.e, z, i, i2);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean t(cj3 cj3Var) {
+        byte b = this.a;
+        return false;
+    }
+
+    @Override
+    public final void u(hd hdVar, int i) {
+        byte b = this.a;
+        String str = null;
+        Object obj = this.e;
+        Object obj2 = this.d;
+        Object obj3 = this.c;
+        Object obj4 = this.b;
+        switch (b) {
+            case 0:
+                ((o) obj4).P((String) obj3, (String) obj2, (vt) obj);
+                return;
+            case 4:
+                ((mu1) obj4).b9((TLRPC.User) obj3, (AtomicBoolean) obj2, (TLRPC.TL_attachMenuBot) obj);
+                return;
+            case 13:
+                String str2 = (String) obj2;
+                String str3 = LaunchActivity.C1;
+                jj7 jj7Var = new jj7((d) obj, (LaunchActivity) obj4);
+                jj7Var.H0((String) obj3, false);
+                if (str2 != null) {
+                    String[] split = str2.split(" ", 2);
+                    String str4 = split[0];
+                    if (split.length > 1) {
+                        str = split[1];
+                    }
+                    dr7 dr7Var = jj7Var.m1;
+                    if (dr7Var != null) {
+                        dr7Var.getEditText().setText(str4);
                     } else {
-                        z = true;
+                        jj7Var.D1 = str4;
                     }
-                    i++;
-                }
-                tt.e(m, m2, objArr);
-            } else {
-                int length = this.b.length;
-                boolean z2 = false;
-                int i2 = i;
-                while (i < length) {
-                    Object[] objArr2 = this.b;
-                    Object obj2 = objArr2[i];
-                    objArr2[i] = null;
-                    if (!collection.contains(obj2)) {
-                        this.b[i2] = obj2;
-                        i2++;
+                    dr7 dr7Var2 = jj7Var.n1;
+                    if (dr7Var2 != null) {
+                        dr7Var2.getEditText().setText(str);
                     } else {
-                        z2 = true;
+                        jj7Var.E1 = str;
                     }
-                    i++;
                 }
-                m = m(i2);
-                for (int i3 = 0; i3 < m2; i3++) {
-                    Object[] objArr3 = this.b;
-                    Object obj3 = objArr3[i3];
-                    objArr3[i3] = null;
-                    if (!collection.contains(obj3)) {
-                        this.b[m] = obj3;
-                        m = j(m);
+                jj7Var.show();
+                return;
+            case 14:
+                ((mf6) obj4).v1((String) obj3, (String) obj2, (String) obj);
+                return;
+            case 16:
+                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) obj4;
+                notificationsCustomSettingsActivity.getClass();
+                SharedPreferences.Editor edit = ((SharedPreferences) obj2).edit();
+                edit.putBoolean((String) obj3, ((boolean[]) obj)[0]);
+                edit.apply();
+                notificationsCustomSettingsActivity.p0(true);
+                notificationsCustomSettingsActivity.getNotificationsController().b0(notificationsCustomSettingsActivity.s);
+                return;
+            case 24:
+                qvb qvbVar = (qvb) obj4;
+                HashSet hashSet = (HashSet) obj3;
+                HashSet hashSet2 = new HashSet();
+                qvbVar.B0 = hashSet2;
+                hashSet2.addAll(hashSet);
+                qvbVar.Y0(true, false);
+                u21.b0(qvbVar).U(k96.J0(hashSet.size(), "TopicsDeleted"), false, new km4(qvbVar, (byte) 5), new r1b(qvbVar, (ArrayList) obj2, (Runnable) obj, (byte) 18)).j();
+                qvbVar.C0();
+                hdVar.dismiss();
+                return;
+            default:
+                toc tocVar = (toc) obj4;
+                ag2 ag2Var = (ag2) obj3;
+                c cVar = (c) obj2;
+                Long l = (Long) obj;
+                if (ag2Var.isEnabled()) {
+                    boolean b2 = ag2Var.b();
+                    ag2Var.setEnabled(false);
+                    c01 g = hdVar.g(i, true, true);
+                    g.d();
+                    if (!b2) {
+                        cVar.E(false, true, false, new poc(tocVar, g, cVar, (byte) 0));
+                        return;
+                    } else if (cVar.z() < l.longValue()) {
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, tocVar.getResourceProvider(), tocVar.getParentActivity());
+                        String M0 = k96.M0(2131742822, null);
+                        hd hdVar2 = alertDialog$Builder.a;
+                        hdVar2.S = M0;
+                        hdVar2.U = k96.V(null, null, 2131742703, c.r(l.longValue(), false), cVar.q(l.longValue(), true));
+                        alertDialog$Builder.g(k96.M0(2131742820, null), new ho9((byte) 13));
+                        alertDialog$Builder.j(k96.M0(2131742727, null), new dkc(tocVar, (byte) 4));
+                        alertDialog$Builder.o();
+                        return;
                     } else {
-                        z2 = true;
+                        poc pocVar = new poc(tocVar, g, cVar, (byte) 1);
+                        c.O("prepare disable backup");
+                        cVar.E(true, false, false, new ae2(cVar, pocVar, (byte) 18));
+                        return;
                     }
                 }
-                z = z2;
-            }
-            if (z) {
-                n();
-                this.c = k(m - this.a);
-            }
-        }
-        return z;
-    }
-
-    public final Object removeFirst() {
-        if (!isEmpty()) {
-            n();
-            Object[] objArr = this.b;
-            int i = this.a;
-            Object obj = objArr[i];
-            objArr[i] = null;
-            this.a = j(i);
-            this.c--;
-            return obj;
-        }
-        throw new NoSuchElementException("ArrayDeque is empty.");
-    }
-
-    public final Object removeLast() {
-        if (!isEmpty()) {
-            n();
-            int m = m((size() - 1) + this.a);
-            Object[] objArr = this.b;
-            Object obj = objArr[m];
-            objArr[m] = null;
-            this.c--;
-            return obj;
-        }
-        throw new NoSuchElementException("ArrayDeque is empty.");
-    }
-
-    @Override
-    public final void removeRange(int i, int i2) {
-        bnd.a(i, i2, this.c);
-        int i3 = i2 - i;
-        if (i3 == 0) {
-            return;
-        }
-        if (i3 == this.c) {
-            clear();
-        } else if (i3 == 1) {
-            o(i);
-        } else {
-            n();
-            int i4 = this.c - i2;
-            int i5 = this.a;
-            if (i < i4) {
-                int m = m((i - 1) + i5);
-                int m2 = m(this.a + (i2 - 1));
-                while (i > 0) {
-                    int i6 = m + 1;
-                    int min = Math.min(i, Math.min(i6, m2 + 1));
-                    Object[] objArr = this.b;
-                    int i7 = m2 - min;
-                    int i8 = m - min;
-                    tt.c(i7 + 1, i8 + 1, i6, objArr, objArr);
-                    m = k(i8);
-                    m2 = k(i7);
-                    i -= min;
-                }
-                int m3 = m(this.a + i3);
-                l(this.a, m3);
-                this.a = m3;
-            } else {
-                int m4 = m(i5 + i2);
-                int m5 = m(this.a + i);
-                int i9 = this.c;
-                while (true) {
-                    i9 -= i2;
-                    if (i9 <= 0) {
-                        break;
-                    }
-                    Object[] objArr2 = this.b;
-                    i2 = Math.min(i9, Math.min(objArr2.length - m4, objArr2.length - m5));
-                    Object[] objArr3 = this.b;
-                    int i10 = m4 + i2;
-                    tt.c(m5, m4, i10, objArr3, objArr3);
-                    m4 = m(i10);
-                    m5 = m(m5 + i2);
-                }
-                int m6 = m(this.a + this.c);
-                l(k(m6 - i3), m6);
-            }
-            this.c -= i3;
+                return;
         }
     }
 
-    @Override
-    public final boolean retainAll(Collection collection) {
-        int m;
-        Object[] objArr;
-        collection.getClass();
-        boolean z = false;
-        z = false;
-        z = false;
-        if (!isEmpty() && this.b.length != 0) {
-            int m2 = m(this.a + this.c);
-            int i = this.a;
-            if (i < m2) {
-                m = i;
-                while (true) {
-                    objArr = this.b;
-                    if (i >= m2) {
-                        break;
-                    }
-                    Object obj = objArr[i];
-                    if (collection.contains(obj)) {
-                        this.b[m] = obj;
-                        m++;
-                    } else {
-                        z = true;
-                    }
-                    i++;
-                }
-                tt.e(m, m2, objArr);
-            } else {
-                int length = this.b.length;
-                boolean z2 = false;
-                int i2 = i;
-                while (i < length) {
-                    Object[] objArr2 = this.b;
-                    Object obj2 = objArr2[i];
-                    objArr2[i] = null;
-                    if (collection.contains(obj2)) {
-                        this.b[i2] = obj2;
-                        i2++;
-                    } else {
-                        z2 = true;
-                    }
-                    i++;
-                }
-                m = m(i2);
-                for (int i3 = 0; i3 < m2; i3++) {
-                    Object[] objArr3 = this.b;
-                    Object obj3 = objArr3[i3];
-                    objArr3[i3] = null;
-                    if (collection.contains(obj3)) {
-                        this.b[m] = obj3;
-                        m = j(m);
-                    } else {
-                        z2 = true;
-                    }
-                }
-                z = z2;
-            }
-            if (z) {
-                n();
-                this.c = k(m - this.a);
-            }
-        }
-        return z;
+    public lt(Object obj, Object obj2, Object obj3, String str, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.d = obj2;
+        this.c = str;
+        this.e = obj3;
     }
 
-    @Override
-    public final Object set(int i, Object obj) {
-        int i2 = this.c;
-        if (i >= 0 && i < i2) {
-            int m = m(this.a + i);
-            Object[] objArr = this.b;
-            Object obj2 = objArr[m];
-            objArr[m] = obj;
-            return obj2;
-        }
-        wa3.i(b10.g(i, i2, "index: ", ", size: "));
-        return null;
-    }
-
-    @Override
-    public final int size() {
-        return this.c;
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        objArr.getClass();
-        int length = objArr.length;
-        int i = this.c;
-        if (length < i) {
-            Object newInstance = Array.newInstance(objArr.getClass().getComponentType(), i);
-            newInstance.getClass();
-            objArr = (Object[]) newInstance;
-        }
-        int m = m(this.a + this.c);
-        int i2 = this.a;
-        if (i2 < m) {
-            tt.d(i2, m, 2, this.b, objArr);
-        } else if (!isEmpty()) {
-            Object[] objArr2 = this.b;
-            tt.c(0, this.a, objArr2.length, objArr2, objArr);
-            Object[] objArr3 = this.b;
-            tt.c(objArr3.length - this.a, 0, m, objArr3, objArr);
-        }
-        int i3 = this.c;
-        if (i3 < objArr.length) {
-            objArr[i3] = null;
-        }
-        return objArr;
-    }
-
-    @Override
-    public final Object remove(int i) {
-        return o(i);
-    }
-
-    @Override
-    public final Object[] toArray() {
-        return toArray(new Object[this.c]);
-    }
-
-    @Override
-    public final boolean add(Object obj) {
-        addLast(obj);
-        return true;
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        collection.getClass();
-        if (collection.isEmpty()) {
-            return false;
-        }
-        n();
-        i(collection.size() + this.c);
-        h(m(this.a + this.c), collection);
-        return true;
+    public lt(Object obj, Object obj2, Object obj3, Object obj4, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
+        this.d = obj3;
+        this.e = obj4;
     }
 }

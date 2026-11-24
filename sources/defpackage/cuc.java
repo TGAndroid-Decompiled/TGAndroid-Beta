@@ -1,14 +1,14 @@
 package defpackage;
+public class cuc extends Exception {
+    public final int a;
 
-import java.util.Arrays;
-public final class cuc implements wo {
-    public static final cuc a = new Object();
-
-    public final boolean equals(Object obj) {
-        return obj instanceof cuc;
+    public cuc(int i, String str) {
+        super(str);
+        this.a = i;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{cuc.class});
+    public cuc(int i, String str, Throwable th) {
+        super(str, th);
+        this.a = i;
     }
 }

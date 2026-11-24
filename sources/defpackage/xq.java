@@ -1,12 +1,15 @@
 package defpackage;
 
-import android.content.res.Resources;
-import android.widget.ThemedSpinnerAdapter;
-import j$.util.Objects;
-public abstract class xq {
-    public static void a(ThemedSpinnerAdapter themedSpinnerAdapter, Resources.Theme theme) {
-        if (!Objects.equals(themedSpinnerAdapter.getDropDownViewTheme(), theme)) {
-            themedSpinnerAdapter.setDropDownViewTheme(theme);
-        }
+import android.text.StaticLayout;
+import android.widget.TextView;
+public final class xq extends wq {
+    @Override
+    public void a(StaticLayout.Builder builder, TextView textView) {
+        builder.setTextDirection(textView.getTextDirectionHeuristic());
+    }
+
+    @Override
+    public boolean b(TextView textView) {
+        return textView.isHorizontallyScrollable();
     }
 }

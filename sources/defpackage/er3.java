@@ -1,778 +1,240 @@
 package defpackage;
 
-import android.util.Pair;
-import android.util.SparseArray;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_stories;
-public final class er3 extends pg0 implements jm7 {
-    public static volatile er3[] U = new er3[4];
-    public int E;
-    public boolean F;
-    public final vh6 G;
-    public final ArrayList H;
-    public final ArrayList I;
-    public final SparseArray J;
-    public final dr3 K;
-    public final dr3 L;
-    public final dr3 M;
-    public final dr3 N;
-    public final dr3 O;
-    public final dr3 P;
-    public int Q;
-    public int R;
-    public int S;
-    public final o1 T;
-    public int a;
-    public final ArrayList b;
-    public final ArrayList c;
-    public final ArrayList d;
-    public final ArrayList e;
-    public final HashMap f;
-    public final HashMap h;
-    public final HashMap n;
-    public final HashMap r;
-    public final SparseArray s;
-    public boolean w;
-    public final HashMap x;
-    public final ArrayList y;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import java.lang.reflect.InvocationTargetException;
+public class er3 extends ListView {
+    public final Rect a;
+    public int b;
+    public int c;
+    public int d;
+    public int e;
+    public int f;
+    public cr3 h;
+    public boolean n;
+    public final boolean r;
+    public boolean s;
+    public s56 w;
+    public o1 x;
 
-    public er3(int r35) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.er3.<init>(int):void");
+    public er3(Context context, boolean z) {
+        super(context, null, 2130968772);
+        this.a = new Rect();
+        this.b = 0;
+        this.c = 0;
+        this.d = 0;
+        this.e = 0;
+        this.r = z;
+        setCacheColorHint(0);
     }
 
-    public static er3 q(int i) {
-        er3 er3Var;
-        er3 er3Var2 = U[i];
-        if (er3Var2 == null) {
-            synchronized (er3.class) {
-                er3Var = U[i];
-                if (er3Var == null) {
-                    er3[] er3VarArr = U;
-                    er3 er3Var3 = new er3(i);
-                    er3VarArr[i] = er3Var3;
-                    er3Var = er3Var3;
-                }
+    public final int a(int i, int i2) {
+        int i3;
+        int listPaddingTop = getListPaddingTop();
+        int listPaddingBottom = getListPaddingBottom();
+        int dividerHeight = getDividerHeight();
+        Drawable divider = getDivider();
+        ListAdapter adapter = getAdapter();
+        int i4 = listPaddingTop + listPaddingBottom;
+        if (adapter == null) {
+            return i4;
+        }
+        dividerHeight = (dividerHeight <= 0 || divider == null) ? 0 : 0;
+        int count = adapter.getCount();
+        int i5 = 0;
+        View view = null;
+        for (int i6 = 0; i6 < count; i6++) {
+            int itemViewType = adapter.getItemViewType(i6);
+            if (itemViewType != i5) {
+                view = null;
+                i5 = itemViewType;
             }
-            return er3Var;
-        }
-        return er3Var2;
-    }
-
-    public static float r(long[] jArr) {
-        if (jArr.length >= 2) {
-            long j = jArr[1];
-            if (j != 0) {
-                return Math.min(1.0f, ((float) jArr[0]) / ((float) j));
+            view = adapter.getView(i6, view, this);
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            if (layoutParams == null) {
+                layoutParams = generateDefaultLayoutParams();
+                view.setLayoutParams(layoutParams);
             }
-            return 0.0f;
-        }
-        return 0.0f;
-    }
-
-    public static int x(int i) {
-        if (i == 1) {
-            return 0;
-        }
-        if (i == 2) {
-            return 2;
-        }
-        if (i == 4) {
-            return 1;
-        }
-        if (i != 8) {
-            return 0;
-        }
-        return 2;
-    }
-
-    public final void a(String str, k47 k47Var, cr3 cr3Var) {
-        if (this.w) {
-            this.x.put(str, cr3Var);
-            return;
-        }
-        v(cr3Var);
-        HashMap hashMap = this.n;
-        ArrayList arrayList = (ArrayList) hashMap.get(str);
-        if (arrayList == null) {
-            arrayList = new ArrayList();
-            hashMap.put(str, arrayList);
-        }
-        arrayList.add(new WeakReference(cr3Var));
-        if (k47Var != null) {
-            HashMap hashMap2 = this.r;
-            ArrayList arrayList2 = (ArrayList) hashMap2.get(str);
-            if (arrayList2 == null) {
-                arrayList2 = new ArrayList();
-                hashMap2.put(str, arrayList2);
-            }
-            arrayList2.add(k47Var);
-        }
-        this.s.put(cr3Var.getObserverTag(), str);
-    }
-
-    public final int b(org.telegram.tgnet.TLRPC.Message r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.er3.b(org.telegram.tgnet.TLRPC$Message):int");
-    }
-
-    public final boolean c(int i, long j) {
-        dr3 n;
-        int e = a.e();
-        if (e == 1) {
-            if (this.O.g) {
-                n = p();
+            int i7 = layoutParams.height;
+            if (i7 > 0) {
+                i3 = View.MeasureSpec.makeMeasureSpec(i7, 1073741824);
             } else {
-                return false;
+                i3 = 0;
             }
-        } else if (e == 2) {
-            if (this.P.g) {
-                n = o();
-            } else {
-                return false;
+            view.measure(i, i3);
+            view.forceLayout();
+            if (i6 > 0) {
+                i4 += dividerHeight;
             }
-        } else if (this.N.g) {
-            n = n();
-        } else {
-            return false;
+            i4 += view.getMeasuredHeight();
+            if (i4 >= i2) {
+                return i2;
+            }
         }
-        int i2 = n.a[1];
-        long j2 = n.b[x(i)];
-        if (i == 1 || (j != 0 && j <= j2)) {
-            if (i == 2 || (i2 & i) != 0) {
-                return true;
-            }
-            return false;
-        }
-        return false;
+        return i4;
     }
 
-    public final boolean d(k47 k47Var) {
-        TL_stories.StoryItem storyItem;
-        TLRPC.MessageMedia messageMedia;
-        if (k47Var.D == 23) {
-            boolean z = gda.a;
-            if (e86.e(1024) && (storyItem = ((TLRPC.TL_messageMediaStory) k47.m1(k47Var)).storyItem) != null && (messageMedia = storyItem.media) != null && messageMedia.document != null && storyItem.isPublic) {
-                return true;
+    public final boolean b(int r18, android.view.MotionEvent r19) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.er3.b(int, android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Drawable selector;
+        Rect rect = this.a;
+        if (!rect.isEmpty() && (selector = getSelector()) != null) {
+            selector.setBounds(rect);
+            selector.draw(canvas);
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void drawableStateChanged() {
+        if (this.x == null) {
+            super.drawableStateChanged();
+            cr3 cr3Var = this.h;
+            if (cr3Var != null) {
+                cr3Var.b = true;
             }
-            return false;
-        } else if (k47Var.a1 != null) {
-            return true;
-        } else {
-            if (!k47Var.x3() && e(k47Var) == 1) {
-                return true;
+            Drawable selector = getSelector();
+            if (selector != null && this.s && isPressed()) {
+                selector.setState(getDrawableState());
             }
-            return false;
         }
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        boolean z;
-        vh6 vh6Var = this.G;
-        int i3 = nm7.Z1;
-        SparseArray sparseArray = this.s;
-        HashMap hashMap = this.n;
-        if (i != i3 && i != nm7.S1) {
-            if (i != nm7.Y1 && i != nm7.R1) {
-                if (i == nm7.X1) {
-                    this.w = true;
-                    ArrayList arrayList = (ArrayList) hashMap.get((String) objArr[0]);
-                    if (arrayList != null) {
-                        Long l = (Long) objArr[1];
-                        Long l2 = (Long) objArr[2];
-                        int size = arrayList.size();
-                        for (int i4 = 0; i4 < size; i4++) {
-                            WeakReference weakReference = (WeakReference) arrayList.get(i4);
-                            if (weakReference.get() != null) {
-                                ((cr3) weakReference.get()).i(l.longValue(), l2.longValue());
-                            }
-                        }
-                    }
-                    this.w = false;
-                    u();
-                    return;
-                } else if (i == nm7.W1) {
-                    this.w = true;
-                    String str = (String) objArr[0];
-                    ArrayList arrayList2 = (ArrayList) hashMap.get(str);
-                    if (arrayList2 != null) {
-                        Long l3 = (Long) objArr[1];
-                        Long l4 = (Long) objArr[2];
-                        Boolean bool = (Boolean) objArr[3];
-                        int size2 = arrayList2.size();
-                        for (int i5 = 0; i5 < size2; i5++) {
-                            WeakReference weakReference2 = (WeakReference) arrayList2.get(i5);
-                            if (weakReference2.get() != null) {
-                                long longValue = l3.longValue();
-                                long longValue2 = l4.longValue();
-                                bool.getClass();
-                                ((cr3) weakReference2.get()).l(longValue, longValue2);
-                            }
-                        }
-                    }
-                    this.w = false;
-                    u();
-                    try {
-                        ArrayList arrayList3 = (ArrayList) getSendMessagesHelper().a.get(str);
-                        if (arrayList3 != null) {
-                            for (int i6 = 0; i6 < arrayList3.size(); i6++) {
-                                m5a m5aVar = (m5a) arrayList3.get(i6);
-                                if (m5aVar.n == null) {
-                                    long j = m5aVar.a;
-                                    Long l5 = (Long) vh6Var.f(j);
-                                    if (m5aVar.e == 4) {
-                                        if (l5 == null || l5.longValue() + 4000 < System.currentTimeMillis()) {
-                                            k47 k47Var = (k47) m5aVar.E.get(str + "_i");
-                                            if (k47Var != null) {
-                                                if (k47.K4(k47Var.k)) {
-                                                    getMessagesController().J4(5, 0, j, 0L, null);
-                                                } else if (k47Var.F0() != null) {
-                                                    getMessagesController().J4(3, 0, j, 0L, null);
-                                                }
-                                                vh6Var.k(Long.valueOf(System.currentTimeMillis()), j);
-                                            }
-                                            getMessagesController().J4(4, 0, j, 0L, null);
-                                            vh6Var.k(Long.valueOf(System.currentTimeMillis()), j);
-                                        }
-                                    } else {
-                                        m5aVar.m.F0();
-                                        if (l5 == null || l5.longValue() + 4000 < System.currentTimeMillis()) {
-                                            if (m5aVar.m.g4()) {
-                                                getMessagesController().J4(8, 0, j, 0L, null);
-                                            } else if (k47.K4(m5aVar.m.k)) {
-                                                getMessagesController().J4(5, 0, j, 0L, null);
-                                            } else if (k47.Q4(m5aVar.m.k)) {
-                                                getMessagesController().J4(9, 0, j, 0L, null);
-                                            } else if (m5aVar.m.F0() != null) {
-                                                getMessagesController().J4(3, 0, j, 0L, null);
-                                            } else if (m5aVar.g != null) {
-                                                getMessagesController().J4(4, 0, j, 0L, null);
-                                            }
-                                            vh6Var.k(Long.valueOf(System.currentTimeMillis()), j);
-                                        }
-                                    }
-                                }
-                            }
-                            return;
-                        }
-                        return;
-                    } catch (Exception e) {
-                        fc4.g(e, true);
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-            this.w = true;
-            String str2 = (String) objArr[0];
-            HashMap hashMap2 = this.r;
-            ArrayList arrayList4 = (ArrayList) hashMap2.get(str2);
-            if (arrayList4 != null) {
-                int size3 = arrayList4.size();
-                for (int i7 = 0; i7 < size3; i7++) {
-                    ((k47) arrayList4.get(i7)).z0 = true;
-                }
-                hashMap2.remove(str2);
-            }
-            ArrayList arrayList5 = (ArrayList) hashMap.get(str2);
-            if (arrayList5 != null) {
-                int size4 = arrayList5.size();
-                for (int i8 = 0; i8 < size4; i8++) {
-                    WeakReference weakReference3 = (WeakReference) arrayList5.get(i8);
-                    if (weakReference3.get() != null) {
-                        ((cr3) weakReference3.get()).N(str2);
-                        sparseArray.remove(((cr3) weakReference3.get()).getObserverTag());
-                    }
-                }
-                hashMap.remove(str2);
-            }
-            this.w = false;
-            u();
-            h(0, str2);
-            return;
-        }
-        String str3 = (String) objArr[0];
-        Integer num = (Integer) objArr[1];
-        this.w = true;
-        ArrayList arrayList6 = (ArrayList) hashMap.get(str3);
-        if (arrayList6 != null) {
-            int size5 = arrayList6.size();
-            for (int i9 = 0; i9 < size5; i9++) {
-                WeakReference weakReference4 = (WeakReference) arrayList6.get(i9);
-                if (weakReference4.get() != null) {
-                    cr3 cr3Var = (cr3) weakReference4.get();
-                    if (num.intValue() == 1) {
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                    cr3Var.A(z);
-                    if (num.intValue() != 1) {
-                        sparseArray.remove(((cr3) weakReference4.get()).getObserverTag());
-                    }
-                }
-            }
-            if (num.intValue() != 1) {
-                hashMap.remove(str3);
-            }
-        }
-        this.w = false;
-        u();
-        h(num.intValue(), str3);
-    }
-
-    public final int e(defpackage.k47 r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.er3.e(k47):int");
-    }
-
-    public final boolean f() {
-        dr3 n;
-        int e = a.e();
-        if (e == 1) {
-            if (!this.O.g) {
-                return false;
-            }
-            n = p();
-        } else if (e == 2) {
-            if (!this.P.g) {
-                return false;
-            }
-            n = o();
-        } else if (!this.N.g) {
+    public final boolean hasFocus() {
+        if (!this.r && !super.hasFocus()) {
             return false;
-        } else {
-            n = n();
         }
-        return n.e;
+        return true;
     }
 
-    public final void g() {
-        boolean z;
-        int m = m();
-        if (m != this.a) {
-            this.a = m;
-            int i = m & 1;
-            ArrayList arrayList = this.b;
-            if (i != 0) {
-                if (arrayList.isEmpty()) {
-                    t(1);
-                }
-            } else {
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    fr3 fr3Var = (fr3) arrayList.get(i2);
-                    TLObject tLObject = fr3Var.a;
-                    if (tLObject instanceof TLRPC.Photo) {
-                        TLRPC.PhotoSize w = bc4.w(((TLRPC.Photo) tLObject).sizes, gm.Y0(false), false, null, false);
-                        bc4 fileLoader = getFileLoader();
-                        fileLoader.getClass();
-                        fileLoader.e(null, null, null, w.location, null, null);
-                    } else if (tLObject instanceof TLRPC.Document) {
-                        getFileLoader().f((TLRPC.Document) fr3Var.a);
-                    }
-                }
-                arrayList.clear();
-            }
-            int i3 = m & 2;
-            ArrayList arrayList2 = this.c;
-            if (i3 != 0) {
-                if (arrayList2.isEmpty()) {
-                    t(2);
-                }
-            } else {
-                for (int i4 = 0; i4 < arrayList2.size(); i4++) {
-                    getFileLoader().f((TLRPC.Document) ((fr3) arrayList2.get(i4)).a);
-                }
-                arrayList2.clear();
-            }
-            int i5 = m & 8;
-            ArrayList arrayList3 = this.d;
-            if (i5 != 0) {
-                if (arrayList3.isEmpty()) {
-                    t(8);
-                }
-            } else {
-                for (int i6 = 0; i6 < arrayList3.size(); i6++) {
-                    getFileLoader().f((TLRPC.Document) ((fr3) arrayList3.get(i6)).a);
-                }
-                arrayList3.clear();
-            }
-            int i7 = m & 4;
-            ArrayList arrayList4 = this.e;
-            if (i7 != 0) {
-                if (arrayList4.isEmpty()) {
-                    t(4);
-                }
-            } else {
-                for (int i8 = 0; i8 < arrayList4.size(); i8++) {
-                    getFileLoader().f((TLRPC.Document) ((fr3) arrayList4.get(i8)).a);
-                }
-                arrayList4.clear();
-            }
-            if (!this.N.g && !this.P.g && !this.O.g) {
-                z = false;
-            } else {
-                z = false;
-                for (int i9 = 0; i9 < 4; i9++) {
-                    if ((n().a[i9] & 1) != 0 || (p().a[i9] & 1) != 0 || (o().a[i9] & 1) != 0) {
-                        z |= true;
-                    }
-                    if ((n().a[i9] & 2) != 0 || (p().a[i9] & 2) != 0 || (o().a[i9] & 2) != 0) {
-                        z |= true;
-                    }
-                    if ((n().a[i9] & 4) != 0 || (p().a[i9] & 4) != 0 || (o().a[i9] & 4) != 0) {
-                        z |= true;
-                    }
-                    if ((n().a[i9] & 8) != 0 || (p().a[i9] & 8) != 0 || (o().a[i9] & 8) != 0) {
-                        z |= true;
-                    }
-                }
-            }
-            if (!z) {
-                getMessagesStorage().q(0);
-                return;
-            }
-            if (!(z & true)) {
-                getMessagesStorage().q(1);
-            }
-            if (!(z & true)) {
-                getMessagesStorage().q(2);
-            }
-            if (!(z & true)) {
-                getMessagesStorage().q(4);
-            }
-            if (!(z & true)) {
-                getMessagesStorage().q(8);
-            }
+    @Override
+    public final boolean hasWindowFocus() {
+        if (!this.r && !super.hasWindowFocus()) {
+            return false;
         }
+        return true;
     }
 
-    public final void h(int i, String str) {
-        HashMap hashMap = this.f;
-        fr3 fr3Var = (fr3) hashMap.get(str);
-        if (fr3Var != null) {
-            hashMap.remove(str);
-            this.h.remove(new Pair(Long.valueOf(fr3Var.c), Integer.valueOf(fr3Var.b)));
-            if (i == 0 || i == 2) {
-                cf7 messagesStorage = getMessagesStorage();
-                long j = fr3Var.c;
-                messagesStorage.a.c(new cd7(messagesStorage, fr3Var.b, j, (byte) 6));
-            }
-            int i2 = fr3Var.b;
-            if (i2 == 1) {
-                ArrayList arrayList = this.b;
-                arrayList.remove(fr3Var);
-                if (arrayList.isEmpty()) {
-                    t(1);
-                }
-            } else if (i2 == 2) {
-                ArrayList arrayList2 = this.c;
-                arrayList2.remove(fr3Var);
-                if (arrayList2.isEmpty()) {
-                    t(2);
-                }
-            } else if (i2 == 4) {
-                ArrayList arrayList3 = this.e;
-                arrayList3.remove(fr3Var);
-                if (arrayList3.isEmpty()) {
-                    t(4);
-                }
-            } else if (i2 == 8) {
-                ArrayList arrayList4 = this.d;
-                arrayList4.remove(fr3Var);
-                if (arrayList4.isEmpty()) {
-                    t(8);
-                }
-            }
+    @Override
+    public final boolean isFocused() {
+        if (!this.r && !super.isFocused()) {
+            return false;
         }
+        return true;
     }
 
-    public final void i(int i, long j) {
-        SparseArray sparseArray = this.J;
-        k47 k47Var = (k47) sparseArray.get(i);
-        if (k47Var != null && k47.B0(k47Var.k) == j) {
-            sparseArray.remove(i);
-            if (sparseArray.size() == 0) {
-                getNotificationCenter().k(nm7.f5, new Object[0]);
-            }
+    @Override
+    public final boolean isInTouchMode() {
+        if ((this.r && this.n) || super.isInTouchMode()) {
+            return true;
         }
+        return false;
     }
 
-    public final void j(ArrayList arrayList) {
-        for (int i = 0; i < arrayList.size(); i++) {
-            int i2 = 0;
-            while (true) {
-                ArrayList arrayList2 = this.I;
-                if (i2 < arrayList2.size()) {
-                    if (((k47) arrayList.get(i)).e1() == ((k47) arrayList2.get(i2)).e1() && k47.B0(((k47) arrayList2.get(i2)).k) == k47.B0(((k47) arrayList.get(i)).k)) {
-                        arrayList2.remove(i2);
-                        break;
+    @Override
+    public final void onDetachedFromWindow() {
+        this.x = null;
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public boolean onHoverEvent(MotionEvent motionEvent) {
+        int i = Build.VERSION.SDK_INT;
+        if (i < 26) {
+            return super.onHoverEvent(motionEvent);
+        }
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 10 && this.x == null) {
+            o1 o1Var = new o1(this, (byte) 27);
+            this.x = o1Var;
+            post(o1Var);
+        }
+        boolean onHoverEvent = super.onHoverEvent(motionEvent);
+        if (actionMasked != 9 && actionMasked != 7) {
+            setSelection(-1);
+            return onHoverEvent;
+        }
+        int pointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY());
+        if (pointToPosition != -1 && pointToPosition != getSelectedItemPosition()) {
+            View childAt = getChildAt(pointToPosition - getFirstVisiblePosition());
+            if (childAt.isEnabled()) {
+                requestFocus();
+                if (i >= 30 && ar3.d) {
+                    try {
+                        ar3.a.invoke(this, Integer.valueOf(pointToPosition), childAt, Boolean.FALSE, -1, -1);
+                        ar3.b.invoke(this, Integer.valueOf(pointToPosition));
+                        ar3.c.invoke(this, Integer.valueOf(pointToPosition));
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e2) {
+                        e2.printStackTrace();
                     }
-                    i2++;
                 } else {
-                    int i3 = 0;
-                    while (true) {
-                        ArrayList arrayList3 = this.H;
-                        if (i3 >= arrayList3.size()) {
-                            break;
-                        }
-                        if (((k47) arrayList.get(i)).e1() == ((k47) arrayList3.get(i3)).e1() && k47.B0(((k47) arrayList3.get(i3)).k) == k47.B0(((k47) arrayList.get(i)).k)) {
-                            arrayList3.remove(i3);
-                            break;
-                        }
-                        i3++;
-                    }
+                    setSelectionFromTop(pointToPosition, childAt.getTop() - getTop());
                 }
             }
-            ((k47) arrayList.get(i)).P = false;
-            bc4.G(this.currentAccount).X(((k47) arrayList.get(i)).F0(), arrayList.get(i), 0, 0);
-            bc4.G(this.currentAccount).f(((k47) arrayList.get(i)).F0());
-        }
-        getNotificationCenter().k(nm7.f5, new Object[0]);
-        getMessagesStorage().a.c(new pf2(this, arrayList, (byte) 3));
-    }
-
-    public final int k() {
-        int i = this.E;
-        this.E = i + 1;
-        return i;
-    }
-
-    public final int l() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.er3.l():int");
-    }
-
-    public final int m() {
-        int e = a.e();
-        int i = 0;
-        if (e == 1) {
-            if (this.O.g) {
-                int i2 = 0;
-                while (i < 4) {
-                    i2 |= p().a[i];
-                    i++;
-                }
-                return i2;
-            }
-        } else if (e == 2) {
-            if (this.P.g) {
-                int i3 = 0;
-                while (i < 4) {
-                    i3 |= o().a[i];
-                    i++;
-                }
-                return i3;
-            }
-        } else if (this.N.g) {
-            int i4 = 0;
-            while (i < 4) {
-                i4 |= n().a[i];
-                i++;
-            }
-            return i4;
-        }
-        return 0;
-    }
-
-    public final dr3 n() {
-        int i = this.Q;
-        if (i == 0) {
-            return this.K;
-        }
-        if (i == 1) {
-            return this.L;
-        }
-        if (i == 2) {
-            return this.M;
-        }
-        return this.N;
-    }
-
-    public final dr3 o() {
-        int i = this.S;
-        if (i == 0) {
-            return this.K;
-        }
-        if (i == 1) {
-            return this.L;
-        }
-        if (i == 2) {
-            return this.M;
-        }
-        return this.P;
-    }
-
-    public final dr3 p() {
-        int i = this.R;
-        if (i == 0) {
-            return this.K;
-        }
-        if (i == 1) {
-            return this.L;
-        }
-        if (i == 2) {
-            return this.M;
-        }
-        return this.O;
-    }
-
-    public final void s(boolean z) {
-        if (!this.F) {
-            if (z || Math.abs(System.currentTimeMillis() - getUserConfig().b0) >= 86400000) {
-                this.F = true;
-                getConnectionsManager().sendRequest(new TL_account.getAutoDownloadSettings(), new tg(this, (byte) 21));
+            Drawable selector = getSelector();
+            if (selector != null && this.s && isPressed()) {
+                selector.setState(getDrawableState());
             }
         }
+        return onHoverEvent;
     }
 
-    public final void t(int i) {
-        int m = m();
-        if ((m & 1) != 0 && (i & 1) != 0 && this.b.isEmpty()) {
-            cf7 messagesStorage = getMessagesStorage();
-            messagesStorage.a.c(new ne7(messagesStorage, 1, (byte) 1));
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.f = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY());
         }
-        if ((m & 2) != 0 && (i & 2) != 0 && this.c.isEmpty()) {
-            cf7 messagesStorage2 = getMessagesStorage();
-            messagesStorage2.a.c(new ne7(messagesStorage2, 2, (byte) 1));
+        o1 o1Var = this.x;
+        if (o1Var != null) {
+            er3 er3Var = (er3) o1Var.b;
+            er3Var.x = null;
+            er3Var.removeCallbacks(o1Var);
         }
-        if ((m & 4) != 0 && (i & 4) != 0 && this.e.isEmpty()) {
-            cf7 messagesStorage3 = getMessagesStorage();
-            messagesStorage3.a.c(new ne7(messagesStorage3, 4, (byte) 1));
-        }
-        if ((m & 8) != 0 && (i & 8) != 0 && this.d.isEmpty()) {
-            cf7 messagesStorage4 = getMessagesStorage();
-            messagesStorage4.a.c(new ne7(messagesStorage4, 8, (byte) 1));
-        }
+        return super.onTouchEvent(motionEvent);
     }
 
-    public final void u() {
-        HashMap hashMap = this.x;
-        for (Map.Entry entry : hashMap.entrySet()) {
-            a((String) entry.getKey(), null, (cr3) entry.getValue());
-        }
-        hashMap.clear();
-        ArrayList arrayList = this.y;
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            v((cr3) obj);
-        }
-        arrayList.clear();
+    public void setListSelectionHidden(boolean z) {
+        this.n = z;
     }
 
-    public final void v(cr3 cr3Var) {
-        if (this.w) {
-            this.y.add(cr3Var);
-            return;
-        }
-        int observerTag = cr3Var.getObserverTag();
-        SparseArray sparseArray = this.s;
-        String str = (String) sparseArray.get(observerTag);
-        if (str != null) {
-            HashMap hashMap = this.n;
-            ArrayList arrayList = (ArrayList) hashMap.get(str);
-            if (arrayList != null) {
-                int i = 0;
-                while (i < arrayList.size()) {
-                    WeakReference weakReference = (WeakReference) arrayList.get(i);
-                    if (weakReference.get() == null || weakReference.get() == cr3Var) {
-                        arrayList.remove(i);
-                        i--;
-                    }
-                    i++;
-                }
-                if (arrayList.isEmpty()) {
-                    hashMap.remove(str);
-                }
+    @Override
+    public void setSelector(Drawable drawable) {
+        cr3 cr3Var = null;
+        if (drawable != 0) {
+            ?? drawable2 = new Drawable();
+            Drawable drawable3 = drawable2.a;
+            if (drawable3 != null) {
+                drawable3.setCallback(null);
             }
-            sparseArray.remove(cr3Var.getObserverTag());
+            drawable2.a = drawable;
+            drawable.setCallback(drawable2);
+            drawable2.b = true;
+            cr3Var = drawable2;
         }
-    }
-
-    public final void w(int i) {
-        dr3 o;
-        boolean z;
-        int i2;
-        long j;
-        TL_account.saveAutoDownloadSettings saveautodownloadsettings = new TL_account.saveAutoDownloadSettings();
-        if (i == 0) {
-            o = n();
-            z = this.N.g;
-        } else if (i == 1) {
-            o = p();
-            z = this.O.g;
-        } else {
-            o = o();
-            z = this.P.g;
+        this.h = cr3Var;
+        super.setSelector(cr3Var);
+        Rect rect = new Rect();
+        if (drawable != 0) {
+            drawable.getPadding(rect);
         }
-        TLRPC.TL_autoDownloadSettings tL_autoDownloadSettings = new TLRPC.TL_autoDownloadSettings();
-        saveautodownloadsettings.settings = tL_autoDownloadSettings;
-        boolean z2 = o.d;
-        long[] jArr = o.b;
-        tL_autoDownloadSettings.audio_preload_next = z2;
-        tL_autoDownloadSettings.video_preload_large = o.c;
-        tL_autoDownloadSettings.phonecalls_less_data = o.f;
-        tL_autoDownloadSettings.video_upload_maxbitrate = o.h;
-        tL_autoDownloadSettings.disabled = !z;
-        int i3 = 0;
-        boolean z3 = false;
-        boolean z4 = false;
-        boolean z5 = false;
-        while (true) {
-            int[] iArr = o.a;
-            if (i3 >= iArr.length) {
-                break;
-            }
-            int i4 = iArr[i3];
-            if ((i4 & 1) != 0) {
-                z3 = true;
-            }
-            if ((i4 & 4) != 0) {
-                z4 = true;
-            }
-            if ((i4 & 8) != 0) {
-                z5 = true;
-            }
-            if (z3 && z4 && z5) {
-                break;
-            }
-            i3++;
-        }
-        TLRPC.TL_autoDownloadSettings tL_autoDownloadSettings2 = saveautodownloadsettings.settings;
-        if (z3) {
-            i2 = (int) jArr[0];
-        } else {
-            i2 = 0;
-        }
-        tL_autoDownloadSettings2.photo_size_max = i2;
-        long j2 = 0;
-        if (z4) {
-            j = jArr[1];
-        } else {
-            j = 0;
-        }
-        tL_autoDownloadSettings2.video_size_max = j;
-        if (z5) {
-            j2 = jArr[2];
-        }
-        tL_autoDownloadSettings2.file_size_max = j2;
-        getConnectionsManager().sendRequest(saveautodownloadsettings, new nf2((byte) 0));
-    }
-
-    public final void y() {
-        ArrayList arrayList = this.H;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (getFileLoader().S(((k47) arrayList.get(size)).S0())) {
-                getFileLoader().X(((k47) arrayList.get(size)).F0(), arrayList.get(size), 2, 0);
-            }
-        }
+        this.b = rect.left;
+        this.c = rect.top;
+        this.d = rect.right;
+        this.e = rect.bottom;
     }
 }

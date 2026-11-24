@@ -1,49 +1,37 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class hb4 implements Runnable {
-    public final byte a;
-    public final lb4 b;
-    public final mb4 c;
+import java.io.File;
+import java.util.concurrent.atomic.AtomicBoolean;
+public final class hb4 implements xi2 {
+    public final File a;
+    public final a5a b;
+    public final kp5 c;
+    public final db4 d;
+    public final AtomicBoolean e;
+    public final nh7 f;
 
-    public hb4(lb4 lb4Var, mb4 mb4Var, byte b) {
-        this.a = b;
-        this.b = lb4Var;
-        this.c = mb4Var;
+    public hb4(File file, a5a a5aVar, kp5 kp5Var, db4 db4Var) {
+        a5aVar.getClass();
+        kp5Var.getClass();
+        this.a = file;
+        this.b = a5aVar;
+        this.c = kp5Var;
+        this.d = db4Var;
+        this.e = new AtomicBoolean(false);
+        this.f = new nh7();
+    }
+
+    public final java.lang.Object a(defpackage.e73 r8, defpackage.gw2 r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.hb4.a(e73, gw2):java.lang.Object");
+    }
+
+    public final java.lang.Object b(defpackage.u73 r10, defpackage.gw2 r11) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.hb4.b(u73, gw2):java.lang.Object");
     }
 
     @Override
-    public final void run() {
-        switch (this.a) {
-            case 0:
-                lb4 lb4Var = this.b;
-                mb4 mb4Var = this.c;
-                if (lb4Var.m != null) {
-                    fc4.d("FileLoadOperation " + lb4Var.r + " removing stream listener " + mb4Var);
-                    lb4Var.m.remove(mb4Var);
-                    return;
-                }
-                return;
-            default:
-                lb4 lb4Var2 = this.b;
-                mb4 mb4Var2 = this.c;
-                ArrayList arrayList = lb4Var2.m;
-                if (arrayList == null) {
-                    arrayList = new ArrayList();
-                    lb4Var2.m = arrayList;
-                }
-                if (mb4Var2 != null && !arrayList.contains(mb4Var2)) {
-                    lb4Var2.m.add(mb4Var2);
-                }
-                if (!lb4Var2.m.isEmpty()) {
-                    Utilities.d.a(lb4Var2.f1);
-                }
-                if (mb4Var2 != null && lb4Var2.Y != 1 && lb4Var2.Y != 0) {
-                    mb4Var2.a();
-                    return;
-                }
-                return;
-        }
+    public final void close() {
+        this.e.set(true);
+        this.d.invoke();
     }
 }

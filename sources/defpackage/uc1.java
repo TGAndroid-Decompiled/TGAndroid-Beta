@@ -1,44 +1,28 @@
 package defpackage;
-public final class uc1 implements Runnable {
-    public final byte a;
-    public final l9b b;
 
-    public uc1(l9b l9bVar, byte b) {
-        this.a = b;
-        this.b = l9bVar;
-    }
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
+public final class uc1 extends b4 {
+    public static final Parcelable.Creator<uc1> CREATOR = new qyd((byte) 10);
+    public ArrayList a;
+    public boolean b;
+    public boolean c;
+    public int d;
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        l9b l9bVar = this.b;
-        switch (b) {
-            case 0:
-                l9bVar.n();
-                return;
-            case 1:
-                l9bVar.K0 = false;
-                l9bVar.L0 = Integer.MIN_VALUE;
-                l9bVar.invalidate();
-                l9bVar.S0.setVisibility(0);
-                l9bVar.T0.setVisibility(0);
-                return;
-            default:
-                v9b v9bVar = l9bVar.S1;
-                k9b k9bVar = v9bVar.Y0;
-                if (k9bVar != null) {
-                    k9bVar.P = false;
-                    k9bVar.b();
-                    k9b k9bVar2 = v9bVar.Y0;
-                    k9bVar2.m(0L);
-                    lqb lqbVar = k9bVar2.G;
-                    if (lqbVar != null) {
-                        lqbVar.setProgress(0L);
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.h(parcel, 1, this.a);
+        boolean z = this.b;
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(z ? 1 : 0);
+        boolean z2 = this.c;
+        jte.q(parcel, 3, 4);
+        parcel.writeInt(z2 ? 1 : 0);
+        int i2 = this.d;
+        jte.q(parcel, 4, 4);
+        parcel.writeInt(i2);
+        jte.s(parcel, r);
     }
 }

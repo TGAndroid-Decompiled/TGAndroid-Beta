@@ -1,6 +1,12 @@
 package defpackage;
-public final class ol6 {
-    public int a;
-    public int b = 5;
-    public long c;
+
+import java.io.File;
+public final class ol6 extends File {
+    @Override
+    public final boolean delete() {
+        if (w01.a) {
+            fa4.d("delete voice file (joined)");
+        }
+        return super.delete();
+    }
 }

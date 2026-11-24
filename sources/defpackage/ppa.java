@@ -1,68 +1,50 @@
 package defpackage;
-public final class ppa implements Runnable {
-    public final byte a;
-    public final wsa b;
-    public final long c;
 
-    public ppa(wsa wsaVar, long j, byte b) {
-        this.a = b;
-        this.b = wsaVar;
-        this.c = j;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+public final class ppa extends View {
+    public final Paint a;
+    public final lm b;
+    public final lm c;
+    public float d;
+    public float e;
+
+    public ppa(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.a = paint;
+        z6a z6aVar = new z6a(this, (byte) 20);
+        s33 s33Var = s33.h;
+        this.b = new lm(z6aVar, 420L, s33Var, 0);
+        this.c = new lm(new z6a(this, (byte) 20), 420L, s33Var, 0);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        long j = this.c;
-        wsa wsaVar = this.b;
-        switch (b) {
-            case 0:
-                wsaVar.Y1(j);
-                return;
-            case 1:
-                wsaVar.Y1(j);
-                return;
-            case 2:
-                npa npaVar = wsaVar.s3;
-                wsaVar.z2(1, true, null);
-                if (j > 0) {
-                    gm.r(npaVar);
-                    gm.c3(npaVar);
-                    return;
-                }
-                return;
-            case 3:
-                wsaVar.Y1(j);
-                return;
-            case 4:
-                wsaVar.Y1(j);
-                return;
-            case 5:
-                wsaVar.U1(j);
-                return;
-            case 6:
-                dxa dxaVar = new dxa(wsaVar.getContext(), wsaVar.J0, this.c, 10, null, new e6a(wsaVar, new boolean[]{false}, (byte) 21), 0L);
-                dxaVar.setOnDismissListener(new qqa(wsaVar, (byte) 0));
-                dxaVar.show();
-                return;
-            case 7:
-                wsaVar.Y1(j);
-                return;
-            case 8:
-                wsaVar.U1(j);
-                return;
-            case 9:
-                wsaVar.Y1(j);
-                return;
-            case 10:
-                wsaVar.U1(j);
-                return;
-            case 11:
-                wsaVar.Y1(j);
-                return;
-            default:
-                wsaVar.U1(j);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        boolean z = false;
+        float e = this.b.e(false, this.d);
+        if (this.d > 0.0f) {
+            z = true;
+        }
+        float d = this.c.d(z);
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        float f = this.e;
+        RectF rectF = gl.P;
+        rectF.set(width - f, height - f, width + f, height + f);
+        int p1 = bkb.p1(0.25f, -1);
+        Paint paint = this.a;
+        paint.setColor(p1);
+        canvas.drawArc(rectF, 135.0f, 270.0f, false, paint);
+        if (d > 0.0f) {
+            paint.setColor(bkb.p1(d, -1));
+            canvas.drawArc(rectF, 135.0f, e * 270.0f, false, paint);
         }
     }
 }

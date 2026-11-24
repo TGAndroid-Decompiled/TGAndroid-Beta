@@ -1,58 +1,203 @@
 package defpackage;
 
-import java.util.Locale;
-public final class ce8 {
-    public static final ce8 d = new ce8(1.0f);
-    public static final String e;
-    public static final String f;
-    public final float a;
-    public final float b;
-    public final int c;
+import android.app.Activity;
+import android.text.SpannableString;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ce8 implements u04 {
+    public final ie8 a;
 
-    static {
-        String str = hac.a;
-        e = "0";
-        f = "1";
+    public ce8(ie8 ie8Var) {
+        this.a = ie8Var;
     }
 
-    public ce8(float f2, float f3) {
+    @Override
+    public final boolean A() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean h() {
+        return false;
+    }
+
+    @Override
+    public final void j(int i) {
         boolean z;
-        if (f2 > 0.0f) {
+        if (i != 0) {
             z = true;
         } else {
             z = false;
         }
-        jte.f(z);
-        jte.f(f3 > 0.0f);
-        this.a = f2;
-        this.b = f3;
-        this.c = Math.round(f2 * 1000.0f);
+        ie8 ie8Var = this.a;
+        ie8Var.C0 = z;
+        ie8Var.e.requestLayout();
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && ce8.class == obj.getClass()) {
-            ce8 ce8Var = (ce8) obj;
-            if (this.a == ce8Var.a && this.b == ce8Var.b) {
-                return true;
-            }
-        }
+    @Override
+    public final boolean k() {
         return false;
     }
 
-    public final int hashCode() {
-        return Float.floatToRawIntBits(this.b) + ((Float.floatToRawIntBits(this.a) + 527) * 31);
+    @Override
+    public final boolean l() {
+        EditTextBoldCursor editField = this.a.c0.getEditField();
+        if (editField == null) {
+            return false;
+        }
+        editField.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
     }
 
-    public final String toString() {
-        Object[] objArr = {Float.valueOf(this.a), Float.valueOf(this.b)};
-        String str = hac.a;
-        return String.format(Locale.US, "PlaybackParameters(speed=%.2f, pitch=%.2f)", objArr);
+    @Override
+    public final void m(String str) {
+        EditTextBoldCursor editField = this.a.c0.getEditField();
+        if (editField == null) {
+            return;
+        }
+        int selectionEnd = editField.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            CharSequence m = vu3.m(str, editField.getPaint().getFontMetricsInt(), false, null, 0);
+            editField.setText(editField.getText().insert(selectionEnd, m));
+            int length = selectionEnd + m.length();
+            editField.setSelection(length, length);
+        } catch (Exception e) {
+            fa4.g(e, true);
+        }
     }
 
-    public ce8(float f2) {
-        this(f2, 1.0f);
+    @Override
+    public final void n() {
+        wjb wjbVar;
+        ie8 ie8Var = this.a;
+        Activity parentActivity = ie8Var.getParentActivity();
+        wjbVar = ((d) ie8Var).resourceProvider;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, wjbVar, parentActivity);
+        String M0 = k96.M0(2131752056, null);
+        hd hdVar = alertDialog$Builder.a;
+        hdVar.S = M0;
+        hdVar.U = k96.M0(2131752057, null);
+        alertDialog$Builder.j(k96.M0(2131752087, null), new k88(this, (byte) 3));
+        alertDialog$Builder.g(k96.M0(2131752577, null), null);
+        alertDialog$Builder.o();
+    }
+
+    @Override
+    public final float o() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void w(long j, TLRPC.Document document, String str, boolean z) {
+        gm gmVar;
+        ie8 ie8Var = this.a;
+        EditTextBoldCursor editField = ie8Var.c0.getEditField();
+        if (editField == null) {
+            return;
+        }
+        int selectionEnd = editField.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            SpannableString spannableString = new SpannableString(str);
+            if (document != null) {
+                gmVar = new gm(document, editField.getPaint().getFontMetricsInt());
+            } else {
+                gmVar = new gm(j, editField.getPaint().getFontMetricsInt());
+            }
+            gmVar.cacheType = ie8Var.S.c;
+            spannableString.setSpan(gmVar, 0, spannableString.length(), 33);
+            editField.setText(editField.getText().insert(selectionEnd, spannableString));
+            int length = selectionEnd + spannableString.length();
+            editField.setSelection(length, length);
+        } catch (Exception e) {
+            fa4.g(e, true);
+        }
+    }
+
+    @Override
+    public final boolean z() {
+        return this.a.C0;
+    }
+
+    @Override
+    public final void p() {
+    }
+
+    @Override
+    public final void t() {
+    }
+
+    @Override
+    public final void v() {
+    }
+
+    @Override
+    public final void g(d2c d2cVar) {
+    }
+
+    @Override
+    public final void i(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void q(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void r(int i) {
+    }
+
+    @Override
+    public final void s(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
+    }
+
+    @Override
+    public final void u(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+    }
+
+    @Override
+    public final void x(View view, TLRPC.Document document, String str, Object obj, g27 g27Var, boolean z, int i) {
     }
 }

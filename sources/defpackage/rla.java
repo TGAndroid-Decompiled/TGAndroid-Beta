@@ -1,39 +1,48 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import org.telegram.messenger.Utilities;
 public final class rla implements Runnable {
     public final byte a;
-    public final TLRPC.Document b;
+    public final sla b;
     public final int c;
-    public final k47 d;
-    public final rc2 e;
-    public final TLRPC.TL_messages_stickerSet f;
 
-    public rla(TLRPC.Document document, int i, k47 k47Var, rc2 rc2Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, byte b) {
+    public rla(sla slaVar, int i, byte b) {
         this.a = b;
-        this.b = document;
+        this.b = slaVar;
         this.c = i;
-        this.d = k47Var;
-        this.e = rc2Var;
-        this.f = tL_messages_stickerSet;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.f;
-        rc2 rc2Var = this.e;
-        k47 k47Var = this.d;
         int i = this.c;
-        TLRPC.Document document = this.b;
+        sla slaVar = this.b;
         switch (b) {
             case 0:
-                er3.q(i).a(bc4.r(null, document), k47Var, rc2Var);
-                bc4.G(i).X(document, tL_messages_stickerSet, 1, 1);
+                int i2 = slaVar.k;
+                sk4[] sk4VarArr = slaVar.c;
+                if (sk4VarArr[i] == null) {
+                    sk4VarArr[i] = new sk4(i2);
+                }
+                Bitmap bitmap = slaVar.e;
+                if (bitmap == null) {
+                    slaVar.e = Bitmap.createBitmap(i2, i2, Bitmap.Config.ALPHA_8);
+                    slaVar.f = new Canvas(slaVar.e);
+                } else {
+                    bitmap.eraseColor(0);
+                }
+                slaVar.a(slaVar.f, slaVar.o);
+                Utilities.copyBitmaps(slaVar.e, (Bitmap) sk4VarArr[i].b);
+                gl.c3(new rla(slaVar, i, (byte) 1));
                 return;
             default:
-                er3.q(i).a(bc4.r(null, document), k47Var, rc2Var);
-                bc4.G(i).X(document, tL_messages_stickerSet, 1, 1);
+                slaVar.d = i;
+                slaVar.g.setShader((BitmapShader) slaVar.c[i].c);
+                slaVar.j = false;
+                slaVar.p = true;
                 return;
         }
     }

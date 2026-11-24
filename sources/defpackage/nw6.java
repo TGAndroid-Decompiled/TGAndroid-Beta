@@ -1,20 +1,40 @@
 package defpackage;
 
-import java.util.Arrays;
+import android.os.Build;
+import android.text.TextUtils;
 public final class nw6 {
-    public final long a;
+    public rw6 a;
+
+    public nw6(String str, int i, int i2) {
+        if (str != null) {
+            if (!TextUtils.isEmpty(str)) {
+                if (Build.VERSION.SDK_INT >= 28) {
+                    rw6 rw6Var = new rw6(str, i, i2);
+                    h15.b(i, i2, str);
+                    this.a = rw6Var;
+                    return;
+                }
+                this.a = new rw6(str, i, i2);
+                return;
+            }
+            w26.j("packageName should be nonempty");
+            throw null;
+        }
+        fvc.f("package shouldn't be null");
+        throw null;
+    }
 
     public final boolean equals(Object obj) {
-        if (this != obj) {
-            if ((obj instanceof nw6) && this.a == ((nw6) obj).a && fse.a(null, null)) {
-                return true;
-            }
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof nw6)) {
             return false;
         }
-        return true;
+        return this.a.equals(((nw6) obj).a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.a), 0, Boolean.FALSE, null});
+        return this.a.hashCode();
     }
 }

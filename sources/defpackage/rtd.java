@@ -1,17 +1,12 @@
 package defpackage;
-public final class rtd implements cq7 {
-    public static final rtd a = new Object();
 
-    static {
-        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)), 4)), 5)), 6)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+import android.content.res.Configuration;
+import android.os.Build;
+public abstract class rtd {
+    public static m96 a(Configuration configuration) {
+        if (Build.VERSION.SDK_INT >= 24) {
+            return new m96(new p96(kh0.i(configuration)));
         }
-        throw new ClassCastException();
+        return m96.a(configuration.locale);
     }
 }

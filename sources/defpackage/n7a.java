@@ -1,24 +1,54 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.Switch;
-public final class n7a implements View.OnClickListener {
-    public final yz1 a;
-    public final TLRPC.TL_authorization b;
-    public final p7a c;
-
-    public n7a(p7a p7aVar, yz1 yz1Var, TLRPC.TL_authorization tL_authorization) {
-        this.c = p7aVar;
-        this.a = yz1Var;
-        this.b = tL_authorization;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.SortedSet;
+public final class n7a extends m7a implements SortedSet {
+    @Override
+    public final Comparator comparator() {
+        return ((SortedSet) this.a).comparator();
     }
 
     @Override
-    public final void onClick(View view) {
-        Switch r3 = (Switch) this.a.f;
-        r3.c(!r3.h, true);
-        this.b.call_requests_disabled = !r3.h;
-        this.c.E0();
+    public final Object first() {
+        Iterator it = this.a.iterator();
+        it.getClass();
+        bg8 bg8Var = this.b;
+        bg8Var.getClass();
+        while (it.hasNext()) {
+            Object next = it.next();
+            if (bg8Var.apply(next)) {
+                return next;
+            }
+        }
+        w26.g();
+        return null;
+    }
+
+    @Override
+    public final SortedSet headSet(Object obj) {
+        return new m7a(((SortedSet) this.a).headSet(obj), this.b);
+    }
+
+    @Override
+    public final Object last() {
+        SortedSet sortedSet = (SortedSet) this.a;
+        while (true) {
+            Object last = sortedSet.last();
+            if (this.b.apply(last)) {
+                return last;
+            }
+            sortedSet = sortedSet.headSet(last);
+        }
+    }
+
+    @Override
+    public final SortedSet subSet(Object obj, Object obj2) {
+        return new m7a(((SortedSet) this.a).subSet(obj, obj2), this.b);
+    }
+
+    @Override
+    public final SortedSet tailSet(Object obj) {
+        return new m7a(((SortedSet) this.a).tailSet(obj), this.b);
     }
 }

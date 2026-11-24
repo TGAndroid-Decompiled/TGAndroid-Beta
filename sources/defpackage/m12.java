@@ -1,71 +1,85 @@
 package defpackage;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MotionEvent;
-import org.telegram.ui.ActionBar.d;
-public final class m12 extends cv3 {
-    public final i22 W;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import java.util.HashSet;
+public class m12 extends View implements tjb {
+    public final gia a;
+    public final Paint b;
+    public float c;
+    public yla d;
+    public final wjb e;
 
-    public m12(i22 i22Var, Context context, v12 v12Var, ylb ylbVar) {
-        super(context, v12Var, null, 1, true, ylbVar);
-        this.W = i22Var;
+    public m12(Context context, wjb wjbVar) {
+        super(context);
+        gia giaVar = new gia(new qm0((byte) 25), new qm0((byte) 26));
+        giaVar.c = 100.0f;
+        this.a = giaVar;
+        Paint paint = new Paint(1);
+        this.b = paint;
+        this.e = wjbVar;
+        paint.setColor(bkb.v0(bkb.Ei, wjbVar));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(gl.L(2.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
-    public final void f() {
-        super.f();
-        e34 emojiView = getEmojiView();
-        if (emojiView != null) {
-            emojiView.x0 = false;
-            emojiView.x2 = false;
-            emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(gm.n);
+    public final void draw(Canvas canvas) {
+        super.draw(canvas);
+        if (this.c > 0.0f) {
+            Paint paint = this.b;
+            float height = getHeight() - (paint.getStrokeWidth() / 2.0f);
+            canvas.drawLine(0.0f, height, getWidth() * this.c, height, paint);
         }
     }
 
     @Override
-    public final void i(ActionMode actionMode, Menu menu) {
-        d dVar = this.W.Z1;
-        if (dVar instanceof yv1) {
-            yv1.E6(menu, ((yv1) dVar).h, true, true, true, true);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        yla ylaVar = new yla(this, this.a);
+        zla zlaVar = new zla();
+        zlaVar.b(400.0f);
+        zlaVar.a(1.0f);
+        ylaVar.m = zlaVar;
+        this.d = ylaVar;
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.d.d();
+        this.d = null;
+    }
+
+    public void setLoadProgress(float f) {
+        this.c = f;
+        invalidate();
+    }
+
+    public void setLoadProgressAnimated(float f) {
+        yla ylaVar = this.d;
+        if (ylaVar == null) {
+            setLoadProgress(f);
+            return;
+        }
+        ylaVar.m.i = f * 100.0f;
+        ylaVar.h();
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.b.setColor(bkb.v0(bkb.Ei, this.e));
+            invalidate();
+        } catch (Exception e) {
+            fa4.g(e, true);
         }
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        i22 i22Var = this.W;
-        m12 m12Var = i22Var.M2;
-        if (!i22Var.r3) {
-            if (motionEvent.getX() > m12Var.getEditText().getLeft() && motionEvent.getX() < m12Var.getEditText().getRight() && motionEvent.getY() > m12Var.getEditText().getTop() && motionEvent.getY() < m12Var.getEditText().getBottom()) {
-                i22Var.c1(m12Var.getEditText(), true);
-            } else {
-                i22Var.c1(m12Var.getEditText(), false);
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        this.W.L1();
-    }
-
-    @Override
-    public final void q(int i, int i2) {
-        boolean z;
-        i22 i22Var = this.W;
-        i22Var.L1();
-        if (i22Var.W1) {
-            if (i2 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
-                z = true;
-            } else {
-                z = false;
-            }
-            i22Var.w1(z);
-        }
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -1,24 +1,27 @@
 package defpackage;
-public final class se4 implements Runnable {
-    public final byte a;
-    public final qf4 b;
+public final class se4 {
+    public long a;
+    public int b;
 
-    public se4(qf4 qf4Var, byte b) {
-        this.a = b;
-        this.b = qf4Var;
+    public se4(int i, long j) {
+        this.a = j;
+        this.b = i;
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        qf4 qf4Var = this.b;
-        switch (b) {
-            case 0:
-                qf4Var.p0();
-                return;
-            default:
-                qf4Var.o0();
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj != null && se4.class == obj.getClass()) {
+            se4 se4Var = (se4) obj;
+            if (this.a == se4Var.a && this.b == se4Var.b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.b;
     }
 }

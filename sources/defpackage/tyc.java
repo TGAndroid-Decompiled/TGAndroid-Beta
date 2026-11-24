@@ -1,12 +1,12 @@
 package defpackage;
+public final class tyc {
+    public final int a;
+    public final byte[] b;
+    public final boolean c;
 
-import android.view.View;
-public interface tyc {
-    void P();
-
-    View R();
-
-    void o(wzc wzcVar);
-
-    void v();
+    public tyc(int i, boolean z, byte[] bArr) {
+        this.a = i;
+        this.b = bArr;
+        this.c = z;
+    }
 }

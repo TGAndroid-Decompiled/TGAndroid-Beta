@@ -1,48 +1,43 @@
 package defpackage;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.security.SecureRandom;
-public abstract class ag7 {
-    public static final SecureRandom a = new SecureRandom();
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.tgnet.TLRPC;
+public final class ag7 implements View.OnClickListener {
+    public final byte a;
+    public final gg7 b;
 
-    public static byte[] a(String str) {
-        if (str == null) {
-            return null;
-        }
-        try {
-            return str.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException unused) {
-            return null;
-        }
+    public ag7(gg7 gg7Var, byte b) {
+        this.a = b;
+        this.b = gg7Var;
     }
 
-    public static String b(InputStream inputStream) {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        while (true) {
-            int read = inputStream.read();
-            if (read == -1) {
-                if (byteArrayOutputStream.size() == 0) {
-                    return null;
+    @Override
+    public final void onClick(View view) {
+        byte b = this.a;
+        gg7 gg7Var = this.b;
+        switch (b) {
+            case 0:
+                fg7 fg7Var = gg7Var.l2;
+                HashSet hashSet = gg7Var.Y1;
+                if (hashSet.size() != 0 && fg7Var != null) {
+                    ArrayList arrayList = new ArrayList();
+                    for (TLRPC.User user : gg7Var.d2.values()) {
+                        if (hashSet.contains(Long.valueOf(user.id))) {
+                            arrayList.add(Long.valueOf(user.id));
+                        }
+                    }
+                    fg7Var.a(arrayList);
+                    gg7Var.dismiss();
+                    return;
                 }
-            } else if (read == 10) {
-                break;
-            } else if (read != 13) {
-                byteArrayOutputStream.write(read);
-            } else {
-                int read2 = inputStream.read();
-                if (read2 == -1) {
-                    byteArrayOutputStream.write(read);
-                    break;
-                } else if (read2 == 10) {
-                    break;
-                } else {
-                    byteArrayOutputStream.write(read);
-                    byteArrayOutputStream.write(read2);
-                }
-            }
+                return;
+            default:
+                gg7Var.Y1.clear();
+                gg7Var.T1.d.b(true);
+                gg7Var.b1(true, false);
+                return;
         }
-        return byteArrayOutputStream.toString("UTF-8");
     }
 }

@@ -30,8 +30,8 @@ public final class r8 extends c6 {
     @Override
     public final void b(int i) {
         String str;
-        k47 k47Var;
-        rja rjaVar;
+        k27 k27Var;
+        pha phaVar;
         int i2;
         int i3;
         byte b = this.a;
@@ -45,62 +45,62 @@ public final class r8 extends c6 {
                 return;
             case 1:
                 if (i == -1) {
-                    ((ct) obj).finishFragment();
+                    ((cs) obj).finishFragment();
                     return;
                 }
                 return;
             case 2:
                 if (i == -1) {
-                    ((ht) obj).finishFragment();
+                    ((hs) obj).finishFragment();
                     return;
                 }
                 return;
             case 3:
-                i30 i30Var = (i30) obj;
+                i20 i20Var = (i20) obj;
                 if (i == -1) {
-                    i30Var.dismiss();
+                    i20Var.dismiss();
                     return;
                 } else {
-                    i30Var.J0(i);
+                    i20Var.J0(i);
                     return;
                 }
             case 4:
                 if (i == -1) {
-                    ((vn9) obj).finishFragment();
+                    ((vl9) obj).finishFragment();
                     return;
                 }
                 return;
             case 5:
                 if (i == -1) {
-                    ((v70) obj).finishFragment();
+                    ((v60) obj).finishFragment();
                     return;
                 }
                 return;
             case 6:
-                be0 be0Var = (be0) obj;
+                bd0 bd0Var = (bd0) obj;
                 if (i == -1) {
-                    if (be0Var.onBackPressed(true)) {
-                        be0Var.finishFragment();
+                    if (bd0Var.onBackPressed(true)) {
+                        bd0Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i == 1) {
-                    be0Var.c0();
+                    bd0Var.b0();
                     return;
                 } else {
                     return;
                 }
             case 7:
-                dn0 dn0Var = (dn0) obj;
-                HashSet hashSet = dn0Var.y;
+                dm0 dm0Var = (dm0) obj;
+                HashSet hashSet = dm0Var.y;
                 if (i == -1) {
-                    if (dn0.d0(dn0Var).y()) {
-                        dn0.e0(dn0Var).x();
+                    if (dm0.c0(dm0Var).y()) {
+                        dm0.d0(dm0Var).x();
                         hashSet.clear();
-                        gm.d0(dn0Var.a, new bn0((byte) 0));
+                        gl.d0(dm0Var.a, new bm0((byte) 0));
                         return;
                     }
-                    dn0Var.finishFragment();
+                    dm0Var.finishFragment();
                     return;
                 } else if (i == 2131296496) {
                     HashSet hashSet2 = new HashSet();
@@ -109,22 +109,22 @@ public final class r8 extends c6 {
                     Iterator it = hashSet.iterator();
                     while (it.hasNext()) {
                         int intValue = ((Integer) it.next()).intValue();
-                        ArrayList arrayList2 = dn0Var.e.a;
+                        ArrayList arrayList2 = dm0Var.e.a;
                         int size = arrayList2.size();
                         int i4 = 0;
                         while (true) {
                             if (i4 < size) {
                                 Object obj2 = arrayList2.get(i4);
                                 i4++;
-                                k47Var = (k47) obj2;
-                                if (k47Var == null || k47Var.e1() != intValue) {
+                                k27Var = (k27) obj2;
+                                if (k27Var == null || k27Var.e1() != intValue) {
                                 }
                             } else {
-                                k47Var = null;
+                                k27Var = null;
                             }
                         }
-                        cb cbVar = dn0Var.f;
-                        if (cbVar != null && k47Var == null) {
+                        cb cbVar = dm0Var.f;
+                        if (cbVar != null && k27Var == null) {
                             ArrayList arrayList3 = cbVar.a;
                             int size2 = arrayList3.size();
                             int i5 = 0;
@@ -132,290 +132,287 @@ public final class r8 extends c6 {
                                 if (i5 < size2) {
                                     Object obj3 = arrayList3.get(i5);
                                     i5++;
-                                    k47 k47Var2 = (k47) obj3;
-                                    if (k47Var2 != null && k47Var2.e1() == intValue) {
-                                        k47Var = k47Var2;
+                                    k27 k27Var2 = (k27) obj3;
+                                    if (k27Var2 != null && k27Var2.e1() == intValue) {
+                                        k27Var = k27Var2;
                                     }
                                 }
                             }
                         }
-                        if (k47Var != null) {
-                            arrayList.add(k47Var);
-                            hashSet3.add(Integer.valueOf(k47Var.e1()));
-                            hashSet2.add(eb.a(k47Var));
+                        if (k27Var != null) {
+                            arrayList.add(k27Var);
+                            hashSet3.add(Integer.valueOf(k27Var.e1()));
+                            hashSet2.add(eb.a(k27Var));
                         }
                     }
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, dn0Var.getResourceProvider(), dn0Var.getParentActivity());
-                    String G = jb6.G(hashSet3.size(), "DeleteOptionsTitle", new Object[0]);
-                    he heVar = alertDialog$Builder.a;
-                    heVar.S = G;
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, dm0Var.getResourceProvider(), dm0Var.getParentActivity());
+                    String G = k96.G(hashSet3.size(), "DeleteOptionsTitle", new Object[0]);
+                    hd hdVar = alertDialog$Builder.a;
+                    hdVar.S = G;
                     if (hashSet3.size() == 1) {
                         str = "AreYouSureUnsaveSingleMessage";
                     } else {
                         str = "AreYouSureUnsaveFewMessages";
                     }
-                    heVar.U = jb6.N0(str);
-                    alertDialog$Builder.j(jb6.M0(2131751535, null), new o(dn0Var, hashSet3, (byte) 18));
-                    alertDialog$Builder.g(jb6.M0(2131752542, null), null);
+                    hdVar.U = k96.N0(str);
+                    alertDialog$Builder.j(k96.M0(2131751586, null), new o(dm0Var, hashSet3, (byte) 18));
+                    alertDialog$Builder.g(k96.M0(2131752577, null), null);
                     alertDialog$Builder.c(-1);
                     alertDialog$Builder.o();
                     return;
                 } else if (i == 2131296500) {
-                    dn0Var.h0();
+                    dm0Var.g0();
                     return;
                 } else {
                     return;
                 }
             case 8:
                 if (i == -1) {
-                    ((vp0) obj).finishFragment();
+                    ((vo0) obj).finishFragment();
                     return;
                 }
                 return;
             case 9:
-                ((rs0) obj).g0(i);
+                if (i == -1) {
+                    ((ss0) obj).finishFragment();
+                    return;
+                }
                 return;
             case 10:
                 if (i == -1) {
-                    ((au0) obj).finishFragment();
+                    ((fy0) obj).dismiss();
                     return;
                 }
                 return;
             case 11:
+                y31 y31Var = (y31) obj;
                 if (i == -1) {
-                    ((mz0) obj).dismiss();
-                    return;
-                }
-                return;
-            case 12:
-                f51 f51Var = (f51) obj;
-                if (i == -1) {
-                    if (f51Var.onBackPressed(true)) {
-                        f51Var.finishFragment();
+                    if (y31Var.onBackPressed(true)) {
+                        y31Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i == 1) {
-                    f51Var.k0();
+                    y31Var.j0();
                     return;
                 } else {
                     return;
                 }
-            case 13:
+            case 12:
                 if (i == -1) {
-                    ((c71) obj).finishFragment();
+                    ((v51) obj).finishFragment();
                     return;
                 }
                 return;
-            case 14:
-                y71 y71Var = (y71) obj;
+            case 13:
+                r61 r61Var = (r61) obj;
                 if (i == -1) {
-                    if (y71.Z(y71Var).x()) {
-                        c81 c81Var = y71Var.e0;
-                        if (c81Var != null) {
-                            c81Var.d();
+                    if (r61.Y(r61Var).x()) {
+                        v61 v61Var = r61Var.e0;
+                        if (v61Var != null) {
+                            v61Var.d();
                         }
-                        k71 k71Var = y71Var.N;
-                        if (k71Var != null) {
-                            k71Var.f(false);
-                            y71Var.N.e();
+                        d61 d61Var = r61Var.N;
+                        if (d61Var != null) {
+                            d61Var.f(false);
+                            r61Var.N.e();
                             return;
                         }
                         return;
                     }
-                    y71Var.finishFragment();
+                    r61Var.finishFragment();
                     return;
                 } else if (i == 1) {
-                    y71Var.i0();
+                    r61Var.h0();
                     return;
                 } else if (i == 3) {
-                    y71Var.h0(false);
+                    r61Var.g0(false);
                     return;
                 } else if (i == 4) {
-                    y71Var.h0(true);
+                    r61Var.g0(true);
                     return;
                 } else {
                     return;
                 }
-            case 15:
-                k91 k91Var = (k91) obj;
+            case 14:
+                b81 b81Var = (b81) obj;
                 if (i == -1) {
-                    if (k91Var.Q == 0 && k91Var.R == 0 && !k91Var.H) {
-                        k91Var.finishFragment();
+                    if (b81Var.Q == 0 && b81Var.R == 0 && !b81Var.H) {
+                        b81Var.finishFragment();
                         return;
                     }
-                    k91Var.H = false;
-                    k91Var.Q = 0;
-                    k91Var.R = 0;
-                    k91Var.B0();
-                    k91Var.s0();
+                    b81Var.H = false;
+                    b81Var.Q = 0;
+                    b81Var.R = 0;
+                    b81Var.A0();
+                    b81Var.r0();
                     return;
                 }
                 return;
-            case 16:
-                ia1 ia1Var = (ia1) obj;
+            case 15:
+                z81 z81Var = (z81) obj;
                 if (i == -1) {
-                    rjaVar = ((d) ia1Var).simpleActionBar;
-                    if (rjaVar.x()) {
-                        ia1Var.e0(true);
+                    phaVar = ((d) z81Var).simpleActionBar;
+                    if (phaVar.x()) {
+                        z81Var.d0(true);
                         return;
                     } else {
-                        ia1Var.finishFragment();
+                        z81Var.finishFragment();
                         return;
                     }
                 } else if (i == 2) {
-                    ia1Var.m0(false);
+                    z81Var.m0(false);
                     return;
                 } else if (i == 3) {
-                    ia1Var.m0(true);
+                    z81Var.m0(true);
                     return;
                 } else {
                     return;
                 }
-            case 17:
+            case 16:
                 if (i == -1) {
-                    ((lb1) obj).finishFragment();
+                    ((da1) obj).finishFragment();
                     return;
                 }
                 return;
-            case 18:
-                hf1 hf1Var = (hf1) obj;
+            case 17:
+                zd1 zd1Var = (zd1) obj;
                 if (i == -1) {
-                    hf1Var.finishFragment();
+                    zd1Var.finishFragment();
                     return;
-                } else if (i == 1 && hf1Var.a.getText().length() != 0) {
-                    hf1Var.Z();
-                    hf1Var.finishFragment();
+                } else if (i == 1 && zd1Var.a.getText().length() != 0) {
+                    zd1Var.Y();
+                    zd1Var.finishFragment();
+                    return;
+                } else {
+                    return;
+                }
+            case 18:
+                me1 me1Var = (me1) obj;
+                if (i == -1) {
+                    me1Var.finishFragment();
+                    return;
+                } else if (i == 1) {
+                    me1Var.k0();
+                    me1Var.j0();
                     return;
                 } else {
                     return;
                 }
             case 19:
-                uf1 uf1Var = (uf1) obj;
                 if (i == -1) {
-                    uf1Var.finishFragment();
-                    return;
-                } else if (i == 1) {
-                    uf1Var.l0();
-                    uf1Var.k0();
-                    return;
-                } else {
-                    return;
-                }
-            case 20:
-                if (i == -1) {
-                    ((vg1) obj).finishFragment();
+                    ((nf1) obj).finishFragment();
                     return;
                 }
                 return;
-            case 21:
-                vi1 vi1Var = (vi1) obj;
+            case 20:
+                nh1 nh1Var = (nh1) obj;
                 if (i == -1) {
-                    if (vi1Var.b >= vi1Var.Z0() && vi1Var.U0()) {
-                        vi1Var.c1();
+                    if (nh1Var.b >= nh1Var.Y0() && nh1Var.T0()) {
+                        nh1Var.b1();
                         return;
                     } else {
-                        vi1Var.finishFragment();
+                        nh1Var.finishFragment();
                         return;
                     }
                 } else if (i == 1) {
-                    FrameLayout frameLayout = (FrameLayout) vi1Var.getParentActivity().getWindow().getDecorView();
+                    FrameLayout frameLayout = (FrameLayout) nh1Var.getParentActivity().getWindow().getDecorView();
                     Bitmap createBitmap = Bitmap.createBitmap(frameLayout.getWidth(), frameLayout.getHeight(), Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(createBitmap);
-                    vi1Var.M.setAlpha(0.0f);
+                    nh1Var.M.setAlpha(0.0f);
                     frameLayout.draw(canvas);
-                    vi1Var.M.setAlpha(1.0f);
+                    nh1Var.M.setAlpha(1.0f);
                     Paint paint = new Paint(1);
                     paint.setColor(-16777216);
                     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                     Paint paint2 = new Paint(1);
                     paint2.setFilterBitmap(true);
                     int[] iArr = new int[2];
-                    vi1Var.M.getLocationInWindow(iArr);
+                    nh1Var.M.getLocationInWindow(iArr);
                     float f = iArr[0];
                     float f2 = iArr[1];
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                     paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                    fi1 fi1Var = new fi1(vi1Var, vi1Var.getParentActivity(), canvas, (vi1Var.M.getMeasuredWidth() / 2.0f) + f, (vi1Var.M.getMeasuredHeight() / 2.0f) + f2, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + gm.n, paint, createBitmap, paint2, f, f2, (byte) 0);
-                    vi1Var.n0 = fi1Var;
-                    fi1Var.setOnTouchListener(new p8((byte) 25));
-                    vi1Var.o0 = 0.0f;
+                    xg1 xg1Var = new xg1(nh1Var, nh1Var.getParentActivity(), canvas, (nh1Var.M.getMeasuredWidth() / 2.0f) + f, (nh1Var.M.getMeasuredHeight() / 2.0f) + f2, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + gl.n, paint, createBitmap, paint2, f, f2, (byte) 0);
+                    nh1Var.n0 = xg1Var;
+                    xg1Var.setOnTouchListener(new p8((byte) 25));
+                    nh1Var.o0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    vi1Var.p0 = ofFloat;
-                    ofFloat.addUpdateListener(new gi1(vi1Var, (byte) 0));
-                    vi1Var.p0.addListener(new b91(vi1Var, (byte) 6));
-                    vi1Var.p0.setDuration(400L);
-                    vi1Var.p0.setInterpolator(vt3.e);
-                    vi1Var.p0.start();
-                    frameLayout.addView(vi1Var.n0, new ViewGroup.LayoutParams(-1, -1));
-                    gm.c3(new ai1(vi1Var, (byte) 0));
+                    nh1Var.p0 = ofFloat;
+                    ofFloat.addUpdateListener(new yg1(nh1Var, (byte) 0));
+                    nh1Var.p0.addListener(new bb1(nh1Var, (byte) 4));
+                    nh1Var.p0.setDuration(400L);
+                    nh1Var.p0.setInterpolator(ls3.e);
+                    nh1Var.p0.start();
+                    frameLayout.addView(nh1Var.n0, new ViewGroup.LayoutParams(-1, -1));
+                    gl.c3(new sg1(nh1Var, (byte) 0));
                     return;
                 } else {
                     return;
                 }
-            case 22:
-                fj1 fj1Var = (fj1) obj;
-                long j = fj1Var.k0;
-                wi1 wi1Var = fj1Var.x0;
+            case 21:
+                yh1 yh1Var = (yh1) obj;
+                long j = yh1Var.k0;
+                oh1 oh1Var = yh1Var.x0;
                 if (i == -1) {
-                    if (fj1Var.t0) {
-                        fj1Var.k0();
+                    if (yh1Var.t0) {
+                        yh1Var.j0();
                         return;
                     } else {
-                        fj1Var.finishFragment();
+                        yh1Var.finishFragment();
                         return;
                     }
                 } else if (i == 1) {
-                    int i6 = fj1Var.j0;
+                    int i6 = yh1Var.j0;
                     if (i6 == 0) {
-                        if (fj1Var.getParentActivity() != null) {
-                            if (fj1Var.t0) {
-                                fj1Var.k0();
+                        if (yh1Var.getParentActivity() != null) {
+                            if (yh1Var.t0) {
+                                yh1Var.j0();
                                 return;
-                            } else if (fj1Var.d.a.length() == 0) {
-                                Vibrator vibrator = (Vibrator) fj1Var.getParentActivity().getSystemService("vibrator");
+                            } else if (yh1Var.d.a.length() == 0) {
+                                Vibrator vibrator = (Vibrator) yh1Var.getParentActivity().getSystemService("vibrator");
                                 if (vibrator != null) {
                                     vibrator.vibrate(200L);
                                 }
-                                gm.z3(fj1Var.d);
+                                gl.z3(yh1Var.d);
                                 return;
                             } else {
-                                fj1Var.t0 = true;
-                                gm.d3(wi1Var, 200L);
-                                if (!fj1Var.x.g()) {
-                                    i3 = ((d) fj1Var).currentAccount;
-                                    fj1Var.u0 = Integer.valueOf(oc7.r1(i3).Q(fj1Var.d.getText().toString(), new ArrayList(), fj1Var.y.getText().toString(), 2, false, null, null, -1, fj1Var));
+                                yh1Var.t0 = true;
+                                gl.d3(oh1Var, 200L);
+                                if (!yh1Var.x.g()) {
+                                    i3 = ((d) yh1Var).currentAccount;
+                                    yh1Var.u0 = Integer.valueOf(na7.q1(i3).Q(yh1Var.d.getText().toString(), new ArrayList(), yh1Var.y.getText().toString(), 2, false, null, null, -1, yh1Var));
                                     return;
                                 }
-                                fj1Var.s0 = true;
+                                yh1Var.s0 = true;
                                 return;
                             }
                         }
                         return;
                     } else if (i6 == 1) {
-                        if (!fj1Var.c0) {
-                            if (fj1Var.y.length() == 0) {
-                                AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(fj1Var.getParentActivity());
-                                String M0 = jb6.M0(2131752258, null);
-                                he heVar2 = alertDialog$Builder2.a;
-                                heVar2.S = M0;
-                                heVar2.U = jb6.M0(2131752259, null);
-                                alertDialog$Builder2.j(jb6.M0(2131751978, null), null);
-                                fj1Var.showDialog(heVar2);
+                        if (!yh1Var.c0) {
+                            if (yh1Var.y.length() == 0) {
+                                AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(yh1Var.getParentActivity());
+                                String M0 = k96.M0(2131752304, null);
+                                hd hdVar2 = alertDialog$Builder2.a;
+                                hdVar2.S = M0;
+                                hdVar2.U = k96.M0(2131752305, null);
+                                alertDialog$Builder2.j(k96.M0(2131752029, null), null);
+                                yh1Var.showDialog(hdVar2);
                                 return;
-                            } else if (!fj1Var.b0) {
-                                Vibrator vibrator2 = (Vibrator) fj1Var.getParentActivity().getSystemService("vibrator");
+                            } else if (!yh1Var.b0) {
+                                Vibrator vibrator2 = (Vibrator) yh1Var.getParentActivity().getSystemService("vibrator");
                                 if (vibrator2 != null) {
                                     vibrator2.vibrate(200L);
                                 }
-                                gm.z3(fj1Var.W);
+                                gl.z3(yh1Var.W);
                                 return;
                             } else {
-                                gm.d3(wi1Var, 200L);
-                                i2 = ((d) fj1Var).currentAccount;
-                                oc7 r1 = oc7.r1(i2);
-                                long j2 = fj1Var.k0;
-                                String str2 = fj1Var.Z;
+                                gl.d3(oh1Var, 200L);
+                                i2 = ((d) yh1Var).currentAccount;
+                                na7 q1 = na7.q1(i2);
+                                long j2 = yh1Var.k0;
+                                String str2 = yh1Var.Z;
                                 Runnable runnable = new Runnable(this) {
                                     public final r8 b;
 
@@ -429,20 +426,20 @@ public final class r8 extends c6 {
                                         r8 r8Var = this.b;
                                         switch (b2) {
                                             case 0:
-                                                fj1 fj1Var2 = (fj1) r8Var.b;
-                                                fj1Var2.m0(false);
-                                                jac jacVar = fj1Var2.v0;
-                                                if (jacVar != null) {
-                                                    jacVar.a(fj1Var2, Long.valueOf(fj1Var2.k0));
+                                                yh1 yh1Var2 = (yh1) r8Var.b;
+                                                yh1Var2.l0(false);
+                                                i8c i8cVar = yh1Var2.v0;
+                                                if (i8cVar != null) {
+                                                    i8cVar.a(yh1Var2, Long.valueOf(yh1Var2.k0));
                                                     return;
                                                 }
                                                 return;
                                             default:
-                                                fj1 fj1Var3 = (fj1) r8Var.b;
-                                                fj1Var3.m0(false);
-                                                jac jacVar2 = fj1Var3.v0;
-                                                if (jacVar2 != null) {
-                                                    jacVar2.a(fj1Var3, Long.valueOf(fj1Var3.k0));
+                                                yh1 yh1Var3 = (yh1) r8Var.b;
+                                                yh1Var3.l0(false);
+                                                i8c i8cVar2 = yh1Var3.v0;
+                                                if (i8cVar2 != null) {
+                                                    i8cVar2.a(yh1Var3, Long.valueOf(yh1Var3.k0));
                                                     return;
                                                 }
                                                 return;
@@ -462,20 +459,20 @@ public final class r8 extends c6 {
                                         r8 r8Var = this.b;
                                         switch (b2) {
                                             case 0:
-                                                fj1 fj1Var2 = (fj1) r8Var.b;
-                                                fj1Var2.m0(false);
-                                                jac jacVar = fj1Var2.v0;
-                                                if (jacVar != null) {
-                                                    jacVar.a(fj1Var2, Long.valueOf(fj1Var2.k0));
+                                                yh1 yh1Var2 = (yh1) r8Var.b;
+                                                yh1Var2.l0(false);
+                                                i8c i8cVar = yh1Var2.v0;
+                                                if (i8cVar != null) {
+                                                    i8cVar.a(yh1Var2, Long.valueOf(yh1Var2.k0));
                                                     return;
                                                 }
                                                 return;
                                             default:
-                                                fj1 fj1Var3 = (fj1) r8Var.b;
-                                                fj1Var3.m0(false);
-                                                jac jacVar2 = fj1Var3.v0;
-                                                if (jacVar2 != null) {
-                                                    jacVar2.a(fj1Var3, Long.valueOf(fj1Var3.k0));
+                                                yh1 yh1Var3 = (yh1) r8Var.b;
+                                                yh1Var3.l0(false);
+                                                i8c i8cVar2 = yh1Var3.v0;
+                                                if (i8cVar2 != null) {
+                                                    i8cVar2.a(yh1Var3, Long.valueOf(yh1Var3.k0));
                                                     return;
                                                 }
                                                 return;
@@ -483,22 +480,22 @@ public final class r8 extends c6 {
                                     }
                                 };
                                 TLRPC.TL_channels_updateUsername tL_channels_updateUsername = new TLRPC.TL_channels_updateUsername();
-                                tL_channels_updateUsername.channel = r1.g1(j2);
+                                tL_channels_updateUsername.channel = q1.f1(j2);
                                 tL_channels_updateUsername.username = str2;
-                                r1.getConnectionsManager().sendRequest(tL_channels_updateUsername, new s97(r1, j2, str2, runnable, fj1Var, tL_channels_updateUsername, runnable2), 64);
+                                q1.getConnectionsManager().sendRequest(tL_channels_updateUsername, new p77(q1, j2, str2, runnable, yh1Var, tL_channels_updateUsername, runnable2), 64);
                             }
                         } else {
-                            jac jacVar = fj1Var.v0;
-                            if (jacVar != null) {
-                                jacVar.a(fj1Var, Long.valueOf(j));
+                            i8c i8cVar = yh1Var.v0;
+                            if (i8cVar != null) {
+                                i8cVar.a(yh1Var, Long.valueOf(j));
                             }
                         }
-                        if (fj1Var.v0 == null) {
+                        if (yh1Var.v0 == null) {
                             Bundle bundle = new Bundle();
                             bundle.putInt("step", 2);
                             bundle.putLong("chatId", j);
                             bundle.putInt("chatType", 2);
-                            fj1Var.presentFragment(new oc5(bundle), true);
+                            yh1Var.presentFragment(new qa5(bundle), true);
                             return;
                         }
                         return;
@@ -508,75 +505,89 @@ public final class r8 extends c6 {
                 } else {
                     return;
                 }
-            case 23:
-                i22 i22Var = (i22) obj;
-                a22 a22Var = i22Var.v2;
+            case 22:
+                x02 x02Var = (x02) obj;
+                p02 p02Var = x02Var.v2;
                 if (i == -1) {
-                    if (!a22Var.k()) {
-                        i22Var.dismiss();
+                    if (!p02Var.k()) {
+                        x02Var.dismiss();
                         return;
                     }
                     return;
                 }
-                a22Var.w(i);
+                p02Var.x(i);
                 return;
-            case 24:
-                n92 n92Var = (n92) obj;
-                if (i == -1 && !n92Var.d0(true)) {
-                    n92Var.finishFragment();
+            case 23:
+                c82 c82Var = (c82) obj;
+                if (i == -1 && !c82Var.c0(true)) {
+                    c82Var.finishFragment();
                     return;
                 }
                 return;
-            case 25:
-                ba2 ba2Var = (ba2) obj;
+            case 24:
+                p82 p82Var = (p82) obj;
                 if (i == -1) {
-                    if (ba2Var.c0(true)) {
-                        ba2Var.finishFragment();
+                    if (p82Var.b0(true)) {
+                        p82Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i == 1) {
-                    ba2Var.o0();
+                    p82Var.n0();
                     return;
                 } else {
                     return;
                 }
+            case 25:
+                if (i == -1) {
+                    ((x92) obj).finishFragment();
+                    return;
+                }
+                return;
             case 26:
                 if (i == -1) {
-                    ((ib2) obj).finishFragment();
+                    ((oc2) obj).finishFragment();
                     return;
                 }
                 return;
             case 27:
+                zc2 zc2Var = (zc2) obj;
                 if (i == -1) {
-                    ((zd2) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 28:
-                ke2 ke2Var = (ke2) obj;
-                if (i == -1) {
-                    if (ke2Var.c0(true)) {
-                        ke2Var.finishFragment();
+                    if (zc2Var.b0(true)) {
+                        zc2Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i == 1) {
-                    ke2Var.o0(true);
+                    zc2Var.n0(true);
+                    return;
+                } else {
+                    return;
+                }
+            case 28:
+                kf2 kf2Var = (kf2) obj;
+                if (i == -1) {
+                    if (kf2Var.g0(true)) {
+                        kf2Var.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i == 1) {
+                    kf2Var.x0();
                     return;
                 } else {
                     return;
                 }
             default:
-                wg2 wg2Var = (wg2) obj;
+                uf2 uf2Var = (uf2) obj;
                 if (i == -1) {
-                    if (wg2Var.h0(true)) {
-                        wg2Var.finishFragment();
+                    if (uf2Var.onBackPressed(true)) {
+                        uf2Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i == 1) {
-                    wg2Var.y0();
+                    uf2Var.e0();
                     return;
                 } else {
                     return;

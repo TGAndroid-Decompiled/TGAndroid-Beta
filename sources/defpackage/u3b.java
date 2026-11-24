@@ -1,129 +1,168 @@
 package defpackage;
 
-import android.text.TextUtils;
+import j$.util.DesugarCollections;
+import java.io.Closeable;
 import java.util.ArrayList;
-import java.util.List;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_stories;
-public final class u3b extends z3b {
-    public final String C;
-    public final String D;
-    public final TL_stories.MediaArea E;
-    public final ArrayList F;
-    public boolean G;
-    public String H;
-    public int I;
-    public int J;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeMap;
+import org.telegram.ui.Dictation.DictationAsr;
+public final class u3b {
+    public static xl3 A;
+    public static final long[] y = {30000, 90000};
+    public static String z;
+    public final String b;
+    public final s3b c;
+    public final Runnable e;
+    public xl3 f;
+    public int g;
+    public boolean h;
+    public long l;
+    public long m;
+    public q3b n;
+    public boolean o;
+    public boolean p;
+    public boolean q;
+    public boolean r;
+    public p3b t;
+    public wb1 u;
+    public float v;
+    public il1 w;
+    public r1b x;
+    public final Set a = DesugarCollections.synchronizedSet(new HashSet());
+    public int d = -1;
+    public final TreeMap i = new TreeMap();
+    public final HashMap j = new HashMap();
+    public long k = Long.MAX_VALUE;
+    public final ArrayList s = new ArrayList();
 
-    public u3b(int i, String str, String str2) {
-        super(i, 0L, 3, -1, null);
-        this.F = new ArrayList();
-        this.H = "";
-        this.C = str2;
-        this.D = str;
-        this.E = null;
-    }
-
-    @Override
-    public final k47 f(int i) {
-        if (i >= 0) {
-            ArrayList arrayList = this.i;
-            if (i < arrayList.size()) {
-                return (k47) arrayList.get(i);
-            }
-            return null;
+    public u3b(s3b s3bVar, long j, long j2, Runnable runnable) {
+        this.c = s3bVar;
+        this.e = runnable;
+        this.l = j;
+        this.m = j2;
+        String str = s3bVar.g() + "|" + j;
+        this.b = str;
+        if (str.equals(z)) {
+            this.f = A;
+        } else {
+            new Thread(new n30(this, j, j2, s3bVar, (byte) 16), "StoryCaptions").start();
         }
-        return null;
     }
 
-    @Override
-    public final int g() {
-        return this.J;
+    public static int a(long j) {
+        return (int) (Math.max(0L, j) / 30000);
     }
 
-    @Override
-    public final ArrayList h() {
-        return this.F;
+    public static long d(int[] iArr, int i) {
+        return iArr[((i + 1) << 2) + 2] - iArr[(i << 2) + 3];
     }
 
-    @Override
-    public final int i() {
-        return this.i.size();
+    public static int g(int i, int i2, float[] fArr) {
+        int max = Math.max(0, i);
+        int min = Math.min(fArr.length, i2);
+        int max2 = Math.max(0, Math.min(fArr.length, (max + min) / 2));
+        double d = Double.MAX_VALUE;
+        while (true) {
+            int i3 = max + 1600;
+            if (i3 <= min) {
+                double d2 = 0.0d;
+                for (int i4 = max; i4 < i3; i4++) {
+                    float f = fArr[i4];
+                    d2 += f * f;
+                }
+                if (d2 < d) {
+                    max2 = max + 800;
+                    d = d2;
+                }
+                max += 800;
+            } else {
+                return max2;
+            }
+        }
     }
 
-    @Override
-    public final boolean k() {
-        return this.G;
+    public static float k(float[] fArr, float[] fArr2, int i, int i2) {
+        return (fArr[i2 + 1] - fArr[i]) - fArr2[i];
     }
 
-    @Override
-    public final boolean l() {
+    public final float[] b(defpackage.s3b r37, long r38, long r40, long[] r42) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.u3b.b(s3b, long, long, long[]):float[]");
+    }
+
+    public final void c() {
+        int i;
+        Closeable[] closeableArr;
+        this.h = true;
+        i();
+        synchronized (this.a) {
+            closeableArr = (Closeable[]) this.a.toArray(new Closeable[0]);
+        }
+        for (Closeable closeable : closeableArr) {
+            try {
+                closeable.close();
+            } catch (Throwable unused) {
+            }
+        }
+    }
+
+    public final boolean e(int i) {
+        o3b o3bVar = (o3b) this.i.get(Integer.valueOf(i));
+        if ((o3bVar != null && o3bVar.c) || i * 30000 >= this.k) {
+            return true;
+        }
         return false;
     }
 
-    @Override
-    public final boolean q(int i, List list, boolean z) {
-        if (this.G || this.H == null) {
-            return false;
-        }
-        TL_stories.TL_stories_searchPosts tL_stories_searchPosts = new TL_stories.TL_stories_searchPosts();
-        tL_stories_searchPosts.offset = this.H;
-        tL_stories_searchPosts.limit = i;
-        String str = this.C;
-        if (str != null) {
-            tL_stories_searchPosts.flags |= 1;
-            tL_stories_searchPosts.hashtag = str;
-        }
-        TL_stories.MediaArea mediaArea = this.E;
-        if (mediaArea != null) {
-            tL_stories_searchPosts.flags |= 2;
-            tL_stories_searchPosts.area = mediaArea;
-        }
-        this.G = true;
-        String str2 = this.D;
-        boolean isEmpty = TextUtils.isEmpty(str2);
-        TLObject tLObject = null;
-        int i2 = this.c;
-        if (!isEmpty) {
-            TLObject b2 = oc7.r1(i2).b2(str2);
-            if (b2 == null) {
-                oc7.r1(i2).Z1().a(str2, null, new b42(this, z, i, list));
-                return true;
+    public final void f() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.u3b.f():void");
+    }
+
+    public final void h(long j, long j2, p3b p3bVar) {
+        this.t = p3bVar;
+        if (this.f != null) {
+            this.l = j;
+            this.m = j2;
+            this.o = true;
+            this.r = false;
+            ArrayList arrayList = this.s;
+            if (!arrayList.isEmpty()) {
+                p3bVar.a(arrayList);
             }
-            tLObject = b2;
+            f();
         }
-        if (tLObject != null) {
-            tL_stories_searchPosts.flags |= 4;
-            tL_stories_searchPosts.peer = oc7.j1(tLObject);
-        }
-        this.I = ConnectionsManager.getInstance(i2).sendRequest(tL_stories_searchPosts, new go9(this, (byte) 10));
-        return true;
     }
 
-    @Override
-    public final boolean r(int i) {
-        return false;
+    public final void i() {
+        this.g++;
+        il1 il1Var = this.w;
+        if (il1Var != null) {
+            il1Var.run();
+            this.w = null;
+        }
+        Iterator it = this.i.values().iterator();
+        while (it.hasNext()) {
+            if (!((o3b) it.next()).c) {
+                it.remove();
+            }
+        }
+        this.p = false;
+        this.o = false;
+        j();
+        this.t = null;
     }
 
-    @Override
     public final void j() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void x() {
-    }
-
-    public u3b(int i, TL_stories.MediaArea mediaArea) {
-        super(i, 0L, 3, -1, null);
-        this.F = new ArrayList();
-        this.H = "";
-        this.C = null;
-        this.D = null;
-        this.E = mediaArea;
+        r1b r1bVar = this.x;
+        if (r1bVar != null) {
+            DictationAsr.T(r1bVar);
+            this.x = null;
+            p3b p3bVar = this.t;
+            if (p3bVar != null) {
+                p3bVar.d(0L, 0L, false);
+            }
+        }
     }
 }

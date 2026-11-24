@@ -1,1063 +1,959 @@
 package defpackage;
 
-import android.accounts.Account;
-import android.content.ContentProviderOperation;
-import android.content.ContentProviderResult;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.ContactsContract;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.text.StaticLayout;
 import android.text.TextUtils;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import android.view.MotionEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.animation.AccelerateInterpolator;
+import android.widget.FrameLayout;
+import java.io.File;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_stories;
-public final class bw2 extends pg0 {
-    public static Locale o0;
-    public static Collator p0;
-    public static final String[] q0 = {"lookup", "data1", "data2", "data3", "display_name", "account_type"};
-    public static final String[] r0 = {"lookup", "data2", "data3", "data5"};
-    public static volatile bw2[] s0 = new bw2[4];
-    public boolean E;
-    public final HashMap F;
-    public byte G;
-    public byte H;
-    public int I;
-    public final int[] J;
-    public ArrayList K;
-    public ArrayList L;
-    public ArrayList M;
-    public ArrayList N;
-    public ArrayList O;
-    public ArrayList P;
-    public ArrayList Q;
-    public ArrayList R;
-    public ArrayList S;
-    public ArrayList T;
-    public ArrayList U;
-    public ArrayList V;
-    public ArrayList W;
-    public ArrayList X;
-    public TLRPC.GlobalPrivacySettings Y;
-    public HashMap Z;
-    public Account a;
-    public HashMap a0;
+import org.telegram.ui.Components.RadialProgress2;
+import org.telegram.ui.PhotoViewer;
+public final class bw2 extends FrameLayout implements sp3 {
+    public int E;
+    public StaticLayout F;
+    public final int G;
+    public StaticLayout H;
+    public final int I;
+    public StaticLayout J;
+    public TLRPC.BotInlineResult K;
+    public TLRPC.User L;
+    public TLRPC.Document M;
+    public int N;
+    public TLRPC.Photo O;
+    public TLRPC.PhotoSize P;
+    public byte Q;
+    public boolean R;
+    public k27 S;
+    public AnimatorSet T;
+    public final Paint U;
+    public final int V;
+    public int W;
+    public final ImageReceiver a;
+    public final RadialProgress2 a0;
     public boolean b;
-    public ArrayList b0;
-    public final Object c;
-    public HashMap c0;
-    public boolean d;
-    public ArrayList d0;
-    public boolean e;
-    public HashMap e0;
-    public final Object f;
-    public ArrayList f0;
-    public ConcurrentHashMap g0;
-    public boolean h;
-    public HashMap h0;
-    public ArrayList i0;
-    public HashMap j0;
-    public ArrayList k0;
-    public HashMap l0;
-    public HashMap m0;
+    public boolean b0;
+    public final o06 c;
+    public final wf2 c0;
+    public final int d;
+    public aw2 d0;
+    public Object e;
+    public n41 e0;
+    public final wjb f;
+    public boolean f0;
+    public String g0;
+    public qvc h;
+    public boolean h0;
+    public float i0;
+    public final v10 j0;
     public boolean n;
-    public int n0;
     public boolean r;
     public boolean s;
-    public String w;
-    public final ArrayList x;
-    public String y;
+    public boolean w;
+    public boolean x;
+    public boolean y;
 
-    public bw2(int i) {
-        super(i);
-        this.c = new Object();
-        this.f = new Object();
-        this.w = "";
-        this.x = new ArrayList();
-        HashMap hashMap = new HashMap();
-        this.F = hashMap;
-        this.J = new int[15];
-        this.Z = new HashMap();
-        this.a0 = new HashMap();
-        this.b0 = new ArrayList();
-        this.c0 = new HashMap();
-        this.d0 = new ArrayList();
-        this.e0 = new HashMap();
-        this.f0 = new ArrayList();
-        this.g0 = new ConcurrentHashMap(20, 1.0f, 2);
-        this.h0 = new HashMap();
-        this.i0 = new ArrayList();
-        this.j0 = new HashMap();
-        this.k0 = new ArrayList();
-        this.l0 = new HashMap();
-        this.m0 = new HashMap();
-        if (oc7.r1(this.currentAccount).X3.getBoolean("needGetStatuses", false)) {
-            I();
-        }
-        hashMap.put("À", "A");
-        hashMap.put("Á", "A");
-        hashMap.put("Ä", "A");
-        hashMap.put("Ù", "U");
-        hashMap.put("Ú", "U");
-        hashMap.put("Ü", "U");
-        hashMap.put("Ì", "I");
-        hashMap.put("Í", "I");
-        hashMap.put("Ï", "I");
-        hashMap.put("È", "E");
-        hashMap.put("É", "E");
-        hashMap.put("Ê", "E");
-        hashMap.put("Ë", "E");
-        hashMap.put("Ò", "O");
-        hashMap.put("Ó", "O");
-        hashMap.put("Ö", "O");
-        hashMap.put("Ç", "C");
-        hashMap.put("Ñ", "N");
-        hashMap.put("Ÿ", "Y");
-        hashMap.put("Ý", "Y");
-        hashMap.put("Ţ", "Y");
-        if (i == 0) {
-            Utilities.e.c(new hv2(this, (byte) 8));
-        }
+    static {
+        new AccelerateInterpolator(0.5f);
     }
 
-    public static String m(int i, String str, String str2) {
-        int i2;
-        int i3;
-        if (str != null) {
-            str = str.trim();
-        }
-        if (str != null && str2 == null && i > 0 && str.contains(" ")) {
-            int indexOf = str.indexOf(" ");
-            String substring = str.substring(indexOf + 1);
-            str = str.substring(0, indexOf);
-            str2 = substring;
-        }
-        if (str2 != null) {
-            str2 = str2.trim();
-        }
-        if (str != null) {
-            i2 = str.length();
-        } else {
-            i2 = 0;
-        }
-        if (str2 != null) {
-            i3 = str2.length();
-        } else {
-            i3 = 0;
-        }
-        StringBuilder sb = new StringBuilder(i2 + i3 + 1);
-        if (jb6.b0 == 1) {
-            if (str != null && str.length() > 0) {
-                if (i > 0 && str.length() > i + 2) {
-                    return str.substring(0, i).concat("…");
-                }
-                sb.append(str);
-                if (str2 != null && str2.length() > 0) {
-                    sb.append(" ");
-                    if (i > 0) {
-                        if (str2.length() + sb.length() > i) {
-                            sb.append(str2.charAt(0));
-                        }
-                    }
-                    sb.append(str2);
-                }
-            } else if (str2 != null && str2.length() > 0) {
-                if (i > 0 && str2.length() > i + 2) {
-                    return str2.substring(0, i).concat("…");
-                }
-                sb.append(str2);
-            }
-        } else if (str2 != null && str2.length() > 0) {
-            if (i > 0 && str2.length() > i + 2) {
-                return str2.substring(0, i).concat("…");
-            }
-            sb.append(str2);
-            if (str != null && str.length() > 0) {
-                sb.append(" ");
-                if (i > 0) {
-                    if (str.length() + sb.length() > i) {
-                        sb.append(str.charAt(0));
-                    }
-                }
-                sb.append(str);
-            }
-        } else if (str != null && str.length() > 0) {
-            if (i > 0 && str.length() > i + 2) {
-                return str.substring(0, i).concat("…");
-            }
-            sb.append(str);
-        }
-        return sb.toString();
-    }
-
-    public static String n(String str, String str2) {
-        return m(0, str, str2);
-    }
-
-    public static String o(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.User) {
-            return p((TLRPC.User) tLObject);
-        }
-        if (tLObject instanceof TLRPC.Chat) {
-            return ((TLRPC.Chat) tLObject).title;
-        }
-        return jb6.M0(2131749085, null);
-    }
-
-    public static String p(TLRPC.User user) {
-        if (user == null) {
-            return "";
-        }
-        return m(0, user.first_name, user.last_name);
-    }
-
-    public static HashMap q(HashMap hashMap) {
-        HashMap hashMap2 = new HashMap();
-        for (Map.Entry entry : hashMap.entrySet()) {
-            yv2 yv2Var = new yv2();
-            yv2 yv2Var2 = (yv2) entry.getValue();
-            yv2Var.h.addAll(yv2Var2.h);
-            yv2Var.e.addAll(yv2Var2.e);
-            yv2Var.f.addAll(yv2Var2.f);
-            yv2Var.g.addAll(yv2Var2.g);
-            yv2Var.i = yv2Var2.i;
-            yv2Var.j = yv2Var2.j;
-            yv2Var.a = yv2Var2.a;
-            String str = yv2Var2.b;
-            yv2Var.b = str;
-            hashMap2.put(str, yv2Var);
-        }
-        return hashMap2;
-    }
-
-    public static bw2 r(int i) {
-        bw2 bw2Var;
-        bw2 bw2Var2 = s0[i];
-        if (bw2Var2 == null) {
-            synchronized (bw2.class) {
-                bw2Var = s0[i];
-                if (bw2Var == null) {
-                    bw2[] bw2VarArr = s0;
-                    bw2 bw2Var3 = new bw2(i);
-                    bw2VarArr[i] = bw2Var3;
-                    bw2Var = bw2Var3;
-                }
-            }
-            return bw2Var;
-        }
-        return bw2Var2;
-    }
-
-    public static Collator u() {
-        if (p0 == null || o0 != Locale.getDefault()) {
-            try {
-                Locale locale = Locale.getDefault();
-                o0 = locale;
-                Collator collator = Collator.getInstance(locale);
-                p0 = collator;
-                collator.setStrength(1);
-            } catch (Exception e) {
-                fc4.g(e, true);
-            }
-        }
-        if (p0 == null) {
-            try {
-                Collator collator2 = Collator.getInstance();
-                p0 = collator2;
-                collator2.setStrength(1);
-            } catch (Exception e2) {
-                fc4.g(e2, true);
-            }
-        }
-        if (p0 == null) {
-            p0 = new xv2();
-        }
-        return p0;
-    }
-
-    public static boolean w() {
-        if (a.b.checkSelfPermission("android.permission.READ_CONTACTS") == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean z(String str) {
-        if (!TextUtils.isEmpty(str)) {
-            int length = str.length();
-            int i = 0;
-            for (int i2 = 0; i2 < length; i2++) {
-                char charAt = str.charAt(i2);
-                if (charAt >= '0' && charAt <= '9') {
-                    i++;
-                }
-            }
-            if (i <= 3) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    public final void A(long j, boolean z) {
-        synchronized (this.c) {
-            this.b = true;
-        }
+    public bw2(wjb wjbVar, Context context, boolean z) {
+        super(context);
+        int i = y6c.t0;
+        this.d = i;
+        this.G = gl.L(7.0f);
+        this.I = gl.L(27.0f);
+        this.i0 = 1.0f;
+        this.j0 = new v10(this, (byte) 2);
+        this.f = wjbVar;
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.a = imageReceiver;
+        imageReceiver.A1 = true;
+        imageReceiver.m0(1);
+        imageReceiver.w0 = true;
+        this.c = new o06(0, wjbVar);
+        this.a0 = new RadialProgress2(this, null);
+        this.V = up3.q(i).k();
+        setFocusable(true);
         if (z) {
-            if (e21.a) {
-                fc4.b("load contacts from cache");
+            Paint paint = new Paint();
+            this.U = paint;
+            int i2 = bkb.Bi;
+            paint.setColor(bkb.v0(i2, wjbVar));
+            wf2 wf2Var = new wf2(21, wjbVar, context);
+            this.c0 = wf2Var;
+            wf2Var.setVisibility(4);
+            wf2Var.b(-1, i2, bkb.j7);
+            wf2Var.setDrawUnchecked(false);
+            wf2Var.setDrawBackgroundAsArc(1);
+            addView(wf2Var, nme.d(24, 24.0f, 53, 0.0f, 1.0f, 1.0f, 0.0f));
+        }
+        setWillNotDraw(false);
+    }
+
+    private int getIconForCurrentState() {
+        byte b = this.Q;
+        RadialProgress2 radialProgress2 = this.a0;
+        if (b != 3 && b != 5) {
+            radialProgress2.g(bkb.bf, bkb.cf, bkb.df, bkb.ef);
+            if (this.W != 1) {
+                return 4;
             }
-            cf7 messagesStorage = getMessagesStorage();
-            messagesStorage.a.c(new xd7(messagesStorage, (byte) 18));
-            return;
+            return 10;
         }
-        if (e21.a) {
-            fc4.b("load contacts from server");
+        radialProgress2.g(bkb.Ye, bkb.Ze, bkb.kd, bkb.ld);
+        int i = this.W;
+        if (i == 1) {
+            return 1;
         }
-        TLRPC.TL_contacts_getContacts tL_contacts_getContacts = new TLRPC.TL_contacts_getContacts();
-        tL_contacts_getContacts.hash = j;
-        getConnectionsManager().sendRequest(tL_contacts_getContacts, new qv2(this, j, (byte) 0));
-    }
-
-    public final void B() {
-        if (this.G == 0) {
-            this.G = (byte) 1;
-            getConnectionsManager().sendRequest(new TL_account.getGlobalPrivacySettings(), new nv2(this, (byte) 1));
+        if (i == 2) {
+            return 2;
         }
-    }
-
-    public final void C() {
-        D(false);
-    }
-
-    public final void D(boolean r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.bw2.D(boolean):void");
-    }
-
-    public final void E(HashMap hashMap, ArrayList arrayList, HashMap hashMap2, boolean z) {
-        Utilities.e.c(new b5a(this, z, new ArrayList(this.f0), hashMap2, hashMap, arrayList));
-    }
-
-    public final void F(final HashMap hashMap, final boolean z, final boolean z2, final boolean z3, final boolean z4, final boolean z5, final boolean z6) {
-        if (!z2 && !this.r) {
-            return;
+        if (i == 4) {
+            return 3;
         }
-        Utilities.e.c(new Runnable() {
-            @Override
-            public final void run() {
-                throw new UnsupportedOperationException("Method not decompiled: defpackage.wv2.run():void");
-            }
-        });
+        return 0;
     }
 
-    public final void G(ArrayList arrayList, ConcurrentHashMap concurrentHashMap) {
-        ArrayList arrayList2;
-        int indexOf;
-        int indexOf2;
-        ArrayList arrayList3 = new ArrayList();
-        ArrayList arrayList4 = new ArrayList();
-        int size = arrayList.size();
-        int i = 0;
-        while (true) {
-            arrayList2 = this.x;
-            if (i >= size) {
-                break;
-            }
-            Object obj = arrayList.get(i);
-            i++;
-            Long l = (Long) obj;
-            if (l.longValue() > 0) {
-                TLRPC.TL_contact tL_contact = new TLRPC.TL_contact();
-                tL_contact.user_id = l.longValue();
-                arrayList3.add(tL_contact);
-                if (!arrayList2.isEmpty() && (indexOf = arrayList2.indexOf(Long.valueOf(-l.longValue()))) != -1) {
-                    arrayList2.remove(indexOf);
+    @Override
+    public final void B(boolean z) {
+        f(true, z);
+    }
+
+    @Override
+    public final void N(String str) {
+        this.h0 = true;
+        this.a0.o(true, 1.0f);
+        f(false, true);
+    }
+
+    public final void a() {
+        int i;
+        byte b = this.Q;
+        if (b == 3 || b == 5) {
+            int i2 = this.W;
+            RadialProgress2 radialProgress2 = this.a0;
+            if (i2 == 0) {
+                if (MediaController.w().R(this.S)) {
+                    this.W = 1;
+                    radialProgress2.setIcon(getIconForCurrentState(), false, true);
+                    invalidate();
                 }
-            } else if (l.longValue() < 0) {
-                arrayList4.add(Long.valueOf(-l.longValue()));
-                if (!arrayList2.isEmpty() && (indexOf2 = arrayList2.indexOf(Long.valueOf(-l.longValue()))) != -1) {
-                    arrayList2.remove(indexOf2);
+            } else if (i2 == 1) {
+                if (MediaController.w().Q(this.S, true)) {
+                    this.W = 0;
+                    radialProgress2.setIcon(getIconForCurrentState(), false, true);
+                    invalidate();
                 }
-            }
-        }
-        if (!arrayList4.isEmpty()) {
-            cf7 messagesStorage = getMessagesStorage();
-            messagesStorage.getClass();
-            if (!arrayList4.isEmpty()) {
-                messagesStorage.a.c(new p51(messagesStorage, arrayList4, (byte) 23));
-            }
-        }
-        if (!arrayList3.isEmpty()) {
-            getMessagesStorage().Z0(arrayList3, false);
-        }
-        if (this.h && this.r) {
-            c(arrayList, concurrentHashMap, arrayList3, arrayList4);
-            return;
-        }
-        arrayList2.addAll(arrayList);
-        if (e21.a) {
-            fc4.b("delay update - contacts add = " + arrayList3.size() + " delete = " + arrayList4.size());
-        }
-    }
-
-    public final java.util.HashMap H() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.bw2.H():java.util.HashMap");
-    }
-
-    public final void I() {
-        L();
-        oc7 messagesController = getMessagesController();
-        messagesController.i1.clear();
-        messagesController.p1.clear();
-        SharedPreferences.Editor edit = oc7.r1(this.currentAccount).X3.edit();
-        edit.putBoolean("needGetStatuses", true).commit();
-        getConnectionsManager().sendRequest(new TLRPC.TL_contacts_getStatuses(), new pm(this, edit, (byte) 28));
-    }
-
-    public final void J(boolean z) {
-        try {
-            if (oc7.r1(this.currentAccount).X3.getLong("lastReloadStatusTime", 0L) >= System.currentTimeMillis() - 10800000 && !z) {
-                return;
-            }
-            I();
-        } catch (Exception e) {
-            fc4.g(e, true);
-        }
-    }
-
-    public final void K() {
-        getConnectionsManager().sendRequest(new TLRPC.TL_contacts_resetSaved(), new nf2((byte) 0));
-    }
-
-    public final void L() {
-        try {
-            oc7.r1(this.currentAccount).X3.edit().putLong("lastReloadStatusTime", System.currentTimeMillis()).commit();
-        } catch (Exception e) {
-            fc4.g(e, true);
-        }
-    }
-
-    public final void M(int i, ArrayList arrayList) {
-        switch (i) {
-            case 0:
-                this.K = arrayList;
-                break;
-            case 1:
-                this.L = arrayList;
-                break;
-            case 2:
-                this.M = arrayList;
-                break;
-            case 3:
-                this.N = arrayList;
-                break;
-            case 4:
-                this.O = arrayList;
-                break;
-            case 5:
-                this.R = arrayList;
-                break;
-            case 6:
-                this.S = arrayList;
-                break;
-            case 7:
-                this.T = arrayList;
-                break;
-            case 8:
-                this.U = arrayList;
-                break;
-            case 9:
-                this.P = arrayList;
-                break;
-            case 11:
-                this.V = arrayList;
-                break;
-            case 12:
-                this.W = arrayList;
-                break;
-            case 13:
-                this.X = arrayList;
-                break;
-            case 14:
-                this.Q = arrayList;
-                break;
-        }
-        getNotificationCenter().k(nm7.k0, new Object[0]);
-        I();
-    }
-
-    public final void N() {
-        HashMap hashMap = new HashMap();
-        int size = this.f0.size();
-        for (int i = 0; i < size; i++) {
-            TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) this.f0.get(i);
-            TLRPC.User W1 = getMessagesController().W1(Long.valueOf(tL_contact.user_id));
-            if (W1 != null && !TextUtils.isEmpty(W1.phone)) {
-                hashMap.put(W1.phone, tL_contact);
-            }
-        }
-        ArrayList arrayList = new ArrayList();
-        for (Map.Entry entry : this.Z.entrySet()) {
-            yv2 yv2Var = (yv2) entry.getValue();
-            int i2 = 0;
-            while (true) {
-                if (i2 < yv2Var.e.size()) {
-                    if (!hashMap.containsKey((String) yv2Var.g.get(i2)) && ((Integer) yv2Var.h.get(i2)).intValue() != 1) {
-                        i2++;
+            } else {
+                int i3 = this.d;
+                if (i2 == 2) {
+                    radialProgress2.o(false, 0.0f);
+                    if (this.M != null) {
+                        ba4.G(i3).X(this.M, this.K, 1, 0);
+                    } else if (this.K.content instanceof TLRPC.TL_webDocument) {
+                        i = 4;
+                        ba4.G(i3).W(null, null, usc.c(this.K.content), null, null, null, null, 0L, 3, 1);
+                        this.W = i;
+                        radialProgress2.setIcon(getIconForCurrentState(), false, true);
+                        invalidate();
                     }
-                } else {
-                    arrayList.add(yv2Var);
-                    break;
+                    i = 4;
+                    this.W = i;
+                    radialProgress2.setIcon(getIconForCurrentState(), false, true);
+                    invalidate();
+                } else if (i2 == 4) {
+                    if (this.M != null) {
+                        ba4.G(i3).f(this.M);
+                    } else if (this.K.content instanceof TLRPC.TL_webDocument) {
+                        ba4.G(i3).e(null, null, usc.c(this.K.content), null, null, null);
+                    }
+                    this.W = 2;
+                    radialProgress2.setIcon(getIconForCurrentState(), false, true);
+                    invalidate();
                 }
-            }
-        }
-        Collections.sort(arrayList, new io0(u(), (byte) 2));
-        this.b0 = arrayList;
-    }
-
-    public final void a(TLRPC.User user) {
-        Uri uri;
-        if (this.a != null && a.b.checkSelfPermission("android.permission.WRITE_CONTACTS") == 0) {
-            synchronized (this.f) {
-                this.d = true;
-            }
-            ContentResolver contentResolver = a.b.getContentResolver();
-            try {
-                Uri build = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").appendQueryParameter("account_name", this.a.name).appendQueryParameter("account_type", this.a.type).build();
-                contentResolver.delete(build, "sync2 = " + user.id, null);
-            } catch (Exception unused) {
-            }
-            ArrayList<ContentProviderOperation> arrayList = new ArrayList<>();
-            b(arrayList, user);
-            try {
-                ContentProviderResult[] applyBatch = contentResolver.applyBatch("com.android.contacts", arrayList);
-                if (applyBatch != null && applyBatch.length > 0 && (uri = applyBatch[0].uri) != null) {
-                    Long.parseLong(uri.getLastPathSegment());
-                }
-            } catch (Exception e) {
-                fc4.g(e, true);
-            }
-            synchronized (this.f) {
-                this.d = false;
             }
         }
     }
 
-    public final void b(ArrayList arrayList, TLRPC.User user) {
+    public final void b() {
         String str;
         String str2;
-        if (user == null) {
+        this.S = null;
+        this.Q = (byte) 0;
+        TLRPC.Document document = this.M;
+        if (document != null) {
+            if (k27.s3(document, false)) {
+                this.Q = (byte) 2;
+            } else if (!k27.t4(this.M) && !k27.K2(this.M, true)) {
+                if (k27.J3(this.M)) {
+                    this.Q = (byte) 5;
+                } else if (k27.P4(this.M)) {
+                    this.Q = (byte) 3;
+                }
+            } else {
+                this.Q = (byte) 6;
+            }
+        } else {
+            TLRPC.BotInlineResult botInlineResult = this.K;
+            if (botInlineResult != null) {
+                if (botInlineResult.photo != null) {
+                    this.Q = (byte) 7;
+                } else if (botInlineResult.type.equals("audio")) {
+                    this.Q = (byte) 5;
+                } else if (this.K.type.equals("voice")) {
+                    this.Q = (byte) 3;
+                }
+            }
+        }
+        byte b = this.Q;
+        if (b != 3 && b != 5) {
             return;
         }
-        int size = arrayList.size();
-        ContentProviderOperation.Builder newInsert = ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI);
-        newInsert.withValue("account_name", this.a.name);
-        newInsert.withValue("account_type", this.a.type);
-        if (TextUtils.isEmpty(user.phone)) {
-            str = "";
+        TLRPC.TL_message tL_message = new TLRPC.TL_message();
+        tL_message.out = true;
+        tL_message.id = -Utilities.b.nextInt();
+        tL_message.peer_id = new TLRPC.TL_peerUser();
+        TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+        tL_message.from_id = tL_peerUser;
+        TLRPC.Peer peer = tL_message.peer_id;
+        int i = this.d;
+        long e = y6c.h(i).e();
+        tL_peerUser.user_id = e;
+        peer.user_id = e;
+        tL_message.date = (int) (System.currentTimeMillis() / 1000);
+        String str3 = "";
+        tL_message.message = "";
+        TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+        tL_message.media = tL_messageMediaDocument;
+        tL_messageMediaDocument.flags |= 3;
+        tL_messageMediaDocument.document = new TLRPC.TL_document();
+        TLRPC.MessageMedia messageMedia = tL_message.media;
+        messageMedia.document.file_reference = new byte[0];
+        tL_message.flags |= 768;
+        TLRPC.Document document2 = this.M;
+        if (document2 != null) {
+            messageMedia.document = document2;
+            tL_message.attachPath = "";
         } else {
-            str = user.phone;
+            String str4 = this.K.content.url;
+            String str5 = "ogg";
+            if (this.Q != 5) {
+                str = "ogg";
+            } else {
+                str = "mp3";
+            }
+            String x = fl5.x(str4, str);
+            TLRPC.Document document3 = tL_message.media.document;
+            document3.id = 0L;
+            document3.access_hash = 0L;
+            document3.date = tL_message.date;
+            document3.mime_type = b00.h("audio/", x);
+            TLRPC.Document document4 = tL_message.media.document;
+            document4.size = 0L;
+            document4.dc_id = 0;
+            TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
+            tL_documentAttributeAudio.duration = k27.f1(this.K);
+            TLRPC.BotInlineResult botInlineResult2 = this.K;
+            String str6 = botInlineResult2.title;
+            if (str6 == null) {
+                str6 = "";
+            }
+            tL_documentAttributeAudio.title = str6;
+            String str7 = botInlineResult2.description;
+            if (str7 != null) {
+                str3 = str7;
+            }
+            tL_documentAttributeAudio.performer = str3;
+            tL_documentAttributeAudio.flags |= 3;
+            if (this.Q == 3) {
+                tL_documentAttributeAudio.voice = true;
+            }
+            tL_message.media.document.attributes.add(tL_documentAttributeAudio);
+            TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
+            StringBuilder sb = new StringBuilder();
+            sb.append(Utilities.a(this.K.content.url));
+            sb.append(".");
+            String str8 = this.K.content.url;
+            if (this.Q != 5) {
+                str2 = "ogg";
+            } else {
+                str2 = "mp3";
+            }
+            sb.append(fl5.x(str8, str2));
+            tL_documentAttributeFilename.file_name = sb.toString();
+            tL_message.media.document.attributes.add(tL_documentAttributeFilename);
+            File z = ba4.z(4);
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(Utilities.a(this.K.content.url));
+            sb2.append(".");
+            String str9 = this.K.content.url;
+            if (this.Q == 5) {
+                str5 = "mp3";
+            }
+            sb2.append(fl5.x(str9, str5));
+            tL_message.attachPath = new File(z, sb2.toString()).getAbsolutePath();
         }
-        newInsert.withValue("sync1", str);
-        newInsert.withValue("sync2", Long.valueOf(user.id));
-        arrayList.add(newInsert.build());
-        Uri uri = ContactsContract.Data.CONTENT_URI;
-        ContentProviderOperation.Builder newInsert2 = ContentProviderOperation.newInsert(uri);
-        newInsert2.withValueBackReference("raw_contact_id", size);
-        newInsert2.withValue("mimetype", "vnd.android.cursor.item/name");
-        newInsert2.withValue("data2", user.first_name);
-        newInsert2.withValue("data3", user.last_name);
-        arrayList.add(newInsert2.build());
-        if (TextUtils.isEmpty(user.phone)) {
-            str2 = m(0, user.first_name, user.last_name);
-        } else {
-            str2 = "+" + user.phone;
-        }
-        ContentProviderOperation.Builder newInsert3 = ContentProviderOperation.newInsert(uri);
-        newInsert3.withValueBackReference("raw_contact_id", size);
-        newInsert3.withValue("mimetype", "vnd.android.cursor.item/vnd.org.telegram.messenger.android.profile");
-        newInsert3.withValue("data1", Long.valueOf(user.id));
-        newInsert3.withValue("data2", "Telegram Profile");
-        newInsert3.withValue("data3", jb6.a0("ContactShortcutMessage", null, 2131751723, str2));
-        newInsert3.withValue("data4", Long.valueOf(user.id));
-        arrayList.add(newInsert3.build());
-        ContentProviderOperation.Builder newInsert4 = ContentProviderOperation.newInsert(uri);
-        newInsert4.withValueBackReference("raw_contact_id", size);
-        newInsert4.withValue("mimetype", "vnd.android.cursor.item/vnd.org.telegram.messenger.android.call");
-        String str3 = str2;
-        newInsert4.withValue("data1", Long.valueOf(user.id));
-        newInsert4.withValue("data2", "Telegram Voice Call");
-        newInsert4.withValue("data3", jb6.a0("ContactShortcutVoiceCall", null, 2131751721, str3));
-        newInsert4.withValue("data4", Long.valueOf(user.id));
-        arrayList.add(newInsert4.build());
-        ContentProviderOperation.Builder newInsert5 = ContentProviderOperation.newInsert(uri);
-        newInsert5.withValueBackReference("raw_contact_id", size);
-        newInsert5.withValue("mimetype", "vnd.android.cursor.item/vnd.org.telegram.messenger.android.call.video");
-        newInsert5.withValue("data1", Long.valueOf(user.id));
-        newInsert5.withValue("data2", "Telegram Video Call");
-        newInsert5.withValue("data3", jb6.a0("ContactShortcutVideoCall", null, 2131751722, str3));
-        newInsert5.withValue("data4", Long.valueOf(user.id));
-        arrayList.add(newInsert5.build());
+        this.S = new k27(i, tL_message, false, true);
     }
 
-    public final void c(ArrayList arrayList, ConcurrentHashMap concurrentHashMap, ArrayList arrayList2, ArrayList arrayList3) {
-        ArrayList arrayList4;
-        ArrayList arrayList5;
-        TLRPC.User user;
-        int indexOf;
-        TLRPC.User user2;
-        int indexOf2;
-        if (arrayList2 != null && arrayList3 != null) {
-            arrayList4 = arrayList2;
-            arrayList5 = arrayList3;
-        } else {
-            arrayList4 = new ArrayList();
-            arrayList5 = new ArrayList();
-            for (int i = 0; i < arrayList.size(); i++) {
-                Long l = (Long) arrayList.get(i);
-                if (l.longValue() > 0) {
-                    TLRPC.TL_contact tL_contact = new TLRPC.TL_contact();
-                    tL_contact.user_id = l.longValue();
-                    arrayList4.add(tL_contact);
-                } else if (l.longValue() < 0) {
-                    arrayList5.add(Long.valueOf(-l.longValue()));
-                }
-            }
+    public final void c(boolean z, boolean z2) {
+        wf2 wf2Var = this.c0;
+        if (wf2Var == null) {
+            return;
         }
-        if (e21.a) {
-            fc4.b("process update - contacts add = " + arrayList4.size() + " delete = " + arrayList5.size());
+        if (wf2Var.getVisibility() != 0) {
+            wf2Var.setVisibility(0);
         }
-        StringBuilder sb = new StringBuilder();
-        StringBuilder sb2 = new StringBuilder();
-        boolean z = false;
-        for (int i2 = 0; i2 < arrayList4.size(); i2++) {
-            TLRPC.TL_contact tL_contact2 = (TLRPC.TL_contact) arrayList4.get(i2);
-            if (concurrentHashMap != null) {
-                user2 = (TLRPC.User) concurrentHashMap.get(Long.valueOf(tL_contact2.user_id));
-            } else {
-                user2 = null;
-            }
-            if (user2 == null) {
-                user2 = getMessagesController().W1(Long.valueOf(tL_contact2.user_id));
-            } else {
-                getMessagesController().c4(user2, true, false);
-            }
-            if (user2 != null && !TextUtils.isEmpty(user2.phone)) {
-                yv2 yv2Var = (yv2) this.a0.get(user2.phone);
-                if (yv2Var != null && (indexOf2 = yv2Var.g.indexOf(user2.phone)) != -1) {
-                    yv2Var.h.set(indexOf2, 0);
-                }
-                if (sb.length() != 0) {
-                    sb.append(",");
-                }
-                sb.append(user2.phone);
-            } else {
-                z = true;
-            }
+        wf2Var.a(z, z2);
+        AnimatorSet animatorSet = this.T;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.T = null;
         }
-        for (int i3 = 0; i3 < arrayList5.size(); i3++) {
-            Long l2 = (Long) arrayList5.get(i3);
-            Utilities.h.c(new ra2(this, l2, (byte) 29));
-            if (concurrentHashMap != null) {
-                user = (TLRPC.User) concurrentHashMap.get(l2);
-            } else {
-                user = null;
+        float f = 1.0f;
+        if (z2) {
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.T = animatorSet2;
+            if (z) {
+                f = 0.81f;
             }
-            if (user == null) {
-                user = getMessagesController().W1(l2);
-            } else {
-                getMessagesController().c4(user, true, false);
-            }
-            if (user == null) {
-                z = true;
-            } else if (!TextUtils.isEmpty(user.phone)) {
-                yv2 yv2Var2 = (yv2) this.a0.get(user.phone);
-                if (yv2Var2 != null && (indexOf = yv2Var2.g.indexOf(user.phone)) != -1) {
-                    yv2Var2.h.set(indexOf, 1);
-                }
-                if (sb2.length() != 0) {
-                    sb2.append(",");
-                }
-                sb2.append(user.phone);
-            }
-        }
-        if (sb.length() != 0 || sb2.length() != 0) {
-            getMessagesStorage().e(sb.toString(), sb2.toString());
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this, this.j0, f));
+            this.T.setDuration(200L);
+            this.T.addListener(new y7((byte) 25, this, z));
+            this.T.start();
+            return;
         }
         if (z) {
-            Utilities.d.c(new hv2(this, (byte) 2));
-        } else {
-            gm.c3(new co1(this, arrayList4, arrayList5, (byte) 28));
+            f = 0.85f;
         }
+        this.i0 = f;
+        invalidate();
     }
 
-    public final void d(boolean z) {
-        String upperCase;
-        Collator u = u();
-        if (z) {
-            Collections.sort(this.f0, new ov2(this, u, (byte) 0));
+    public final void d(int i, Object obj, TLRPC.Document document) {
+        this.n = false;
+        this.s = false;
+        this.N = i;
+        this.K = null;
+        this.e = obj;
+        this.M = document;
+        this.O = null;
+        this.R = true;
+        this.y = true;
+        b();
+        this.Q = (byte) 2;
+        requestLayout();
+        this.g0 = null;
+        this.h0 = false;
+        this.f0 = false;
+        f(false, false);
+    }
+
+    public final void e(TLRPC.BotInlineResult botInlineResult, TLRPC.User user, boolean z, boolean z2, boolean z3, boolean z4) {
+        qvc qvcVar;
+        this.n = z2;
+        this.s = z3;
+        this.L = user;
+        this.K = botInlineResult;
+        this.e = botInlineResult;
+        if (botInlineResult != null) {
+            this.M = botInlineResult.document;
+            this.O = botInlineResult.photo;
+        } else {
+            this.M = null;
+            this.O = null;
         }
-        HashMap hashMap = new HashMap();
-        ArrayList arrayList = new ArrayList();
-        for (int i = 0; i < this.f0.size(); i++) {
-            TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) this.f0.get(i);
-            TLRPC.User W1 = getMessagesController().W1(Long.valueOf(tL_contact.user_id));
-            if (W1 != null) {
-                String k = m9c.k(W1, true);
-                if (k.length() > 1) {
-                    k = k.substring(0, 1);
-                }
-                if (k.length() == 0) {
-                    upperCase = "#";
+        this.R = z;
+        this.y = z4;
+        qvc qvcVar2 = this.h;
+        if (qvcVar2 != null && qvcVar2.r) {
+            qvcVar2.r = false;
+            qvcVar2.h.q(false);
+            qvcVar2.h.r();
+            vvc.r(qvcVar2.c);
+        }
+        if (botInlineResult != null && (botInlineResult.send_message instanceof TLRPC.TL_botInlineMessageWidget)) {
+            qvcVar = new qvc(this, this.d, botInlineResult, this.f);
+        } else {
+            qvcVar = null;
+        }
+        this.h = qvcVar;
+        b();
+        if (z4) {
+            this.Q = (byte) 2;
+        }
+        requestLayout();
+        this.g0 = null;
+        this.h0 = false;
+        this.f0 = false;
+        f(false, false);
+    }
+
+    public final void f(boolean z, boolean z2) {
+        boolean containsKey;
+        String str = this.g0;
+        if (str == null && !this.f0) {
+            this.f0 = true;
+            Utilities.g.c(new zv2(this, z));
+            this.a0.setIcon(4, z, false);
+        } else if (TextUtils.isEmpty(str)) {
+            this.W = -1;
+            this.a0.setIcon(4, z, false);
+        } else {
+            if (this.M != null) {
+                containsKey = ba4.G(this.d).S(this.g0);
+            } else {
+                fl5 z3 = fl5.z();
+                containsKey = z3.C.containsKey(this.g0);
+            }
+            if (!containsKey && this.h0) {
+                up3.q(this.d).v(this);
+                byte b = this.Q;
+                if (b != 5 && b != 3) {
+                    this.W = -1;
                 } else {
-                    upperCase = k.toUpperCase();
+                    boolean D = MediaController.w().D(this.S);
+                    if (D && (!D || !MediaController.w().C())) {
+                        this.W = 1;
+                    } else {
+                        this.W = 0;
+                    }
+                    this.a0.o(z2, 1.0f);
                 }
-                String str = (String) this.F.get(upperCase);
-                if (str != null) {
-                    upperCase = str;
+            } else {
+                up3.q(this.d).a(this.g0, null, this);
+                byte b2 = this.Q;
+                float f = 0.0f;
+                if (b2 != 5 && b2 != 3) {
+                    this.W = 1;
+                    Float s = fl5.z().s(this.g0);
+                    if (s != null) {
+                        f = s.floatValue();
+                    }
+                    this.a0.o(false, f);
+                } else if (!containsKey) {
+                    this.W = 2;
+                } else {
+                    this.W = 4;
+                    Float s2 = fl5.z().s(this.g0);
+                    RadialProgress2 radialProgress2 = this.a0;
+                    if (s2 != null) {
+                        radialProgress2.o(z2, s2.floatValue());
+                    } else {
+                        radialProgress2.o(z2, 0.0f);
+                    }
                 }
-                ArrayList arrayList2 = (ArrayList) hashMap.get(upperCase);
-                if (arrayList2 == null) {
-                    arrayList2 = new ArrayList();
-                    hashMap.put(upperCase, arrayList2);
-                    arrayList.add(upperCase);
-                }
-                arrayList2.add(tL_contact);
             }
-        }
-        Collections.sort(arrayList, new io0(u, (byte) 1));
-        this.h0 = hashMap;
-        this.i0 = arrayList;
-    }
-
-    public final boolean e() {
-        boolean z = false;
-        try {
-        } catch (Exception e) {
-            fc4.g(e, true);
-        }
-        if (!w()) {
-            return false;
-        }
-        try {
-            Cursor query = a.b.getContentResolver().query(ContactsContract.RawContacts.CONTENT_URI, new String[]{"version"}, null, null, null);
-            if (query != null) {
-                StringBuilder sb = new StringBuilder();
-                while (query.moveToNext()) {
-                    sb.append(query.getString(query.getColumnIndex("version")));
-                }
-                String sb2 = sb.toString();
-                if (this.w.length() != 0 && !this.w.equals(sb2)) {
-                    z = true;
-                }
-                this.w = sb2;
-            }
-            if (query != null) {
-                query.close();
-            }
-        } catch (Exception e2) {
-            fc4.g(e2, true);
-        }
-        return z;
-    }
-
-    public final void f() {
-        SharedPreferences sharedPreferences = oc7.r1(this.currentAccount).X3;
-        this.y = sharedPreferences.getString("invitelink", null);
-        int i = sharedPreferences.getInt("invitelinktime", 0);
-        if (!this.E) {
-            if (this.y == null || Math.abs((System.currentTimeMillis() / 1000) - i) >= 86400) {
-                this.E = true;
-                getConnectionsManager().sendRequest(new TLRPC.TL_help_getInviteText(), new nv2(this, (byte) 0), 2);
-            }
+            this.a0.setIcon(getIconForCurrentState(), z, z2);
+            invalidate();
         }
     }
 
-    public final void g(long j, String str, String str2) {
-        Cursor cursor;
-        int parseInt;
-        Cursor cursor2;
-        if (!w()) {
+    public TLRPC.BotInlineResult getBotInlineResult() {
+        return this.K;
+    }
+
+    public int getDate() {
+        return this.N;
+    }
+
+    public TLRPC.Document getDocument() {
+        return this.M;
+    }
+
+    public TLRPC.User getInlineBot() {
+        return this.L;
+    }
+
+    public k27 getMessageObject() {
+        return this.S;
+    }
+
+    @Override
+    public int getObserverTag() {
+        return this.V;
+    }
+
+    public Object getParentObject() {
+        return this.e;
+    }
+
+    public ImageReceiver getPhotoImage() {
+        return this.a;
+    }
+
+    public TLRPC.BotInlineResult getResult() {
+        return this.K;
+    }
+
+    @Override
+    public final void i(long j, long j2) {
+        this.a0.o(true, Math.min(1.0f, ((float) j) / ((float) j2)));
+        byte b = this.Q;
+        if (b != 3 && b != 5) {
+            if (this.W != 1) {
+                f(false, true);
+            }
+        } else if (this.W != 4) {
+            f(false, true);
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        float f;
+        super.onAttachedToWindow();
+        if (this.a.I()) {
+            f(false, false);
+        }
+        this.a0.e();
+        if (this.h != null && getMeasuredWidth() > 0) {
+            qvc qvcVar = this.h;
+            int measuredWidth = getMeasuredWidth();
+            if (this.R) {
+                f = 4.0f;
+            } else {
+                f = 16.0f;
+            }
+            qvcVar.a(measuredWidth - gl.L(f));
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.a.K();
+        this.a0.f();
+        up3.q(this.d).v(this);
+        qvc qvcVar = this.h;
+        if (qvcVar != null && qvcVar.r) {
+            qvcVar.r = false;
+            qvcVar.h.q(false);
+            qvcVar.h.r();
+            vvc.r(qvcVar.c);
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        byte b;
+        TLRPC.BotInlineResult botInlineResult;
+        int i;
+        float f;
+        float f2;
+        int i2;
+        qvc qvcVar = this.h;
+        float f3 = 8.0f;
+        float f4 = 2.0f;
+        if (qvcVar != null) {
+            if (this.R) {
+                f3 = 2.0f;
+            }
+            float L = gl.L(f3);
+            if (!this.R) {
+                f4 = 6.0f;
+            }
+            float L2 = gl.L(f4);
+            Paint paint = qvcVar.e;
+            Path path = qvcVar.f;
+            bwc bwcVar = qvcVar.c;
+            if (bwcVar != null && (i2 = qvcVar.n) > 0) {
+                int min = Math.min(vvc.c(qvcVar.b, bwcVar, i2), gl.L(320.0f));
+                float L3 = gl.L(gba.U0);
+                canvas.save();
+                canvas.translate(L, L2);
+                path.rewind();
+                RectF rectF = gl.P;
+                rectF.set(0.0f, 0.0f, qvcVar.n, min);
+                path.addRoundRect(rectF, L3, L3, Path.Direction.CW);
+                canvas.clipPath(path);
+                paint.setColor(bkb.v0(bkb.qb, qvcVar.d) | (-16777216));
+                canvas.drawRect(rectF, paint);
+                gwc gwcVar = qvcVar.h;
+                if (gwcVar != null && gwcVar.c(canvas, qvcVar.n)) {
+                    qvcVar.a.postInvalidateOnAnimation();
+                }
+                canvas.restore();
+            }
+            if (this.n && !this.R) {
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, bkb.j0);
+                return;
+            }
             return;
         }
-        try {
-            ContentResolver contentResolver = a.b.getContentResolver();
-            ArrayList<ContentProviderOperation> arrayList = new ArrayList<>();
-            Uri build = ContactsContract.Groups.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").build();
-            Uri build2 = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").build();
-            Account account = this.a;
-            Cursor query = contentResolver.query(build, new String[]{"_id"}, "title=? AND account_type=? AND account_name=?", new String[]{"TelegramConnectionService", account.type, account.name}, null);
-            if (query != null && query.moveToFirst()) {
-                parseInt = query.getInt(0);
-                cursor = query;
-            } else {
-                ContentValues contentValues = new ContentValues();
-                cursor = query;
-                contentValues.put("account_type", this.a.type);
-                contentValues.put("account_name", this.a.name);
-                contentValues.put("group_visible", (Integer) 0);
-                contentValues.put("group_is_read_only", (Integer) 1);
-                contentValues.put("title", "TelegramConnectionService");
-                parseInt = Integer.parseInt(contentResolver.insert(build, contentValues).getLastPathSegment());
-            }
-            if (cursor != null) {
-                cursor.close();
-            }
-            Uri uri = ContactsContract.Data.CONTENT_URI;
-            Cursor query2 = contentResolver.query(uri, new String[]{"raw_contact_id"}, "mimetype=? AND data1=?", new String[]{"vnd.android.cursor.item/group_membership", parseInt + ""}, null);
-            int size = arrayList.size();
-            int i = parseInt;
-            if (query2 != null && query2.moveToFirst()) {
-                int i2 = query2.getInt(0);
-                ContentProviderOperation.Builder newUpdate = ContentProviderOperation.newUpdate(build2);
-                cursor2 = query2;
-                arrayList.add(newUpdate.withSelection("_id=?", new String[]{i2 + ""}).withValue("deleted", 0).build());
-                ContentProviderOperation.Builder newUpdate2 = ContentProviderOperation.newUpdate(uri);
-                ContentProviderOperation.Builder withSelection = newUpdate2.withSelection("raw_contact_id=? AND mimetype=?", new String[]{i2 + "", "vnd.android.cursor.item/phone_v2"});
-                StringBuilder sb = new StringBuilder("+99084");
-                sb.append(j);
-                arrayList.add(withSelection.withValue("data1", sb.toString()).build());
-                ContentProviderOperation.Builder newUpdate3 = ContentProviderOperation.newUpdate(uri);
-                arrayList.add(newUpdate3.withSelection("raw_contact_id=? AND mimetype=?", new String[]{i2 + "", "vnd.android.cursor.item/name"}).withValue("data2", str).withValue("data3", str2).build());
-            } else {
-                cursor2 = query2;
-                arrayList.add(ContentProviderOperation.newInsert(build2).withValue("account_type", this.a.type).withValue("account_name", this.a.name).withValue("raw_contact_is_read_only", 1).withValue("aggregation_mode", 3).build());
-                arrayList.add(ContentProviderOperation.newInsert(uri).withValueBackReference("raw_contact_id", size).withValue("mimetype", "vnd.android.cursor.item/name").withValue("data2", str).withValue("data3", str2).build());
-                ContentProviderOperation.Builder withValue = ContentProviderOperation.newInsert(uri).withValueBackReference("raw_contact_id", size).withValue("mimetype", "vnd.android.cursor.item/phone_v2");
-                arrayList.add(withValue.withValue("data1", "+99084" + j).build());
-                arrayList.add(ContentProviderOperation.newInsert(uri).withValueBackReference("raw_contact_id", size).withValue("mimetype", "vnd.android.cursor.item/group_membership").withValue("data1", Integer.valueOf(i)).build());
-            }
-            if (cursor2 != null) {
-                cursor2.close();
-            }
-            contentResolver.applyBatch("com.android.contacts", arrayList);
-        } catch (Exception e) {
-            fc4.g(e, true);
+        ImageReceiver imageReceiver = this.a;
+        wf2 wf2Var = this.c0;
+        if (wf2Var != null && (wf2Var.a.q || !imageReceiver.B() || imageReceiver.i1 != 1.0f || PhotoViewer.P0((k27) this.e))) {
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.U);
         }
-    }
-
-    public final void h() {
-        if (w()) {
-            try {
-                ContentResolver contentResolver = a.b.getContentResolver();
-                Account account = this.a;
-                Cursor query = contentResolver.query(ContactsContract.Groups.CONTENT_URI, new String[]{"_id"}, "title=? AND account_type=? AND account_name=?", new String[]{"TelegramConnectionService", account.type, account.name}, null);
-                if (query != null) {
-                    if (query.moveToFirst()) {
-                        int i = query.getInt(0);
-                        query.close();
-                        Cursor query2 = contentResolver.query(ContactsContract.Data.CONTENT_URI, new String[]{"raw_contact_id"}, "mimetype=? AND data1=?", new String[]{"vnd.android.cursor.item/group_membership", i + ""}, null);
-                        if (query2 != null) {
-                            if (query2.moveToFirst()) {
-                                int i2 = query2.getInt(0);
-                                query2.close();
-                                Uri uri = ContactsContract.RawContacts.CONTENT_URI;
-                                contentResolver.delete(uri, "_id=?", new String[]{i2 + ""});
-                                return;
-                            }
-                            query2.close();
-                            return;
+        if (this.H != null) {
+            canvas.save();
+            if (k96.a0) {
+                f2 = 8.0f;
+            } else {
+                f2 = gl.C;
+            }
+            canvas.translate(gl.L(f2), this.G);
+            this.H.draw(canvas);
+            canvas.restore();
+        }
+        StaticLayout staticLayout = this.J;
+        wjb wjbVar = this.f;
+        if (staticLayout != null) {
+            bkb.f3.setColor(bkb.v0(bkb.y6, wjbVar));
+            canvas.save();
+            if (k96.a0) {
+                f = 8.0f;
+            } else {
+                f = gl.C;
+            }
+            canvas.translate(gl.L(f), this.I);
+            this.J.draw(canvas);
+            canvas.restore();
+        }
+        if (this.F != null) {
+            bkb.f3.setColor(bkb.v0(bkb.I6, wjbVar));
+            canvas.save();
+            if (!k96.a0) {
+                f3 = gl.C;
+            }
+            canvas.translate(gl.L(f3), this.E);
+            this.F.draw(canvas);
+            canvas.restore();
+        }
+        boolean z = this.R;
+        RadialProgress2 radialProgress2 = this.a0;
+        if (!z) {
+            boolean z2 = this.b;
+            o06 o06Var = this.c;
+            if (z2 && !PhotoViewer.R0(this.K)) {
+                o06Var.setAlpha((int) ((1.0f - imageReceiver.i1) * 255.0f));
+            } else {
+                o06Var.setAlpha(255);
+            }
+            byte b2 = this.Q;
+            if (b2 != 3 && b2 != 5) {
+                TLRPC.BotInlineResult botInlineResult2 = this.K;
+                if (botInlineResult2 != null && botInlineResult2.type.equals("file")) {
+                    int intrinsicWidth = bkb.l4.getIntrinsicWidth();
+                    int intrinsicHeight = bkb.l4.getIntrinsicHeight();
+                    int L4 = (int) (imageReceiver.L0 + ((gl.L(52.0f) - intrinsicWidth) / 2));
+                    int L5 = (int) (imageReceiver.M0 + ((gl.L(52.0f) - intrinsicHeight) / 2));
+                    float f5 = imageReceiver.L0;
+                    canvas.drawRect(f5, imageReceiver.M0, gl.L(52.0f) + f5, imageReceiver.M0 + gl.L(52.0f), o06.k);
+                    bkb.l4.setBounds(L4, L5, intrinsicWidth + L4, intrinsicHeight + L5);
+                    bkb.l4.draw(canvas);
+                } else {
+                    TLRPC.BotInlineResult botInlineResult3 = this.K;
+                    if (botInlineResult3 != null && (botInlineResult3.type.equals("audio") || this.K.type.equals("voice"))) {
+                        int intrinsicWidth2 = bkb.m4.getIntrinsicWidth();
+                        int intrinsicHeight2 = bkb.m4.getIntrinsicHeight();
+                        int L6 = (int) (imageReceiver.L0 + ((gl.L(52.0f) - intrinsicWidth2) / 2));
+                        int L7 = (int) (imageReceiver.M0 + ((gl.L(52.0f) - intrinsicHeight2) / 2));
+                        float f6 = imageReceiver.L0;
+                        canvas.drawRect(f6, imageReceiver.M0, gl.L(52.0f) + f6, imageReceiver.M0 + gl.L(52.0f), o06.k);
+                        bkb.m4.setBounds(L6, L7, intrinsicWidth2 + L6, intrinsicHeight2 + L7);
+                        bkb.m4.draw(canvas);
+                    } else {
+                        TLRPC.BotInlineResult botInlineResult4 = this.K;
+                        if (botInlineResult4 != null && (botInlineResult4.type.equals("venue") || this.K.type.equals("geo"))) {
+                            int intrinsicWidth3 = bkb.n4.getIntrinsicWidth();
+                            int intrinsicHeight3 = bkb.n4.getIntrinsicHeight();
+                            int L8 = (int) (imageReceiver.L0 + ((gl.L(52.0f) - intrinsicWidth3) / 2));
+                            int L9 = (int) (imageReceiver.M0 + ((gl.L(52.0f) - intrinsicHeight3) / 2));
+                            float f7 = imageReceiver.L0;
+                            canvas.drawRect(f7, imageReceiver.M0, gl.L(52.0f) + f7, imageReceiver.M0 + gl.L(52.0f), o06.k);
+                            bkb.n4.setBounds(L8, L9, intrinsicWidth3 + L8, intrinsicHeight3 + L9);
+                            bkb.n4.draw(canvas);
+                        } else {
+                            o06Var.draw(canvas);
                         }
-                        return;
-                    }
-                    query.close();
-                }
-            } catch (Exception e) {
-                fc4.g(e, true);
-            }
-        }
-    }
-
-    public final void i(ArrayList arrayList, boolean z) {
-        if (arrayList.isEmpty()) {
-            return;
-        }
-        TLRPC.TL_contacts_deleteContacts tL_contacts_deleteContacts = new TLRPC.TL_contacts_deleteContacts();
-        ArrayList arrayList2 = new ArrayList();
-        int size = arrayList.size();
-        for (int i = 0; i < size; i++) {
-            TLRPC.User user = (TLRPC.User) arrayList.get(i);
-            h4b N1 = getMessagesController().N1();
-            long j = user.id;
-            int i2 = N1.a;
-            ArrayList arrayList3 = N1.h;
-            ArrayList arrayList4 = N1.g;
-            int i3 = 0;
-            while (true) {
-                if (i3 >= arrayList4.size()) {
-                    break;
-                } else if (pg3.n(((TL_stories.PeerStories) arrayList4.get(i3)).peer) == j) {
-                    arrayList4.remove(i3);
-                    break;
-                } else {
-                    i3++;
-                }
-            }
-            int i4 = 0;
-            while (true) {
-                if (i4 >= arrayList3.size()) {
-                    break;
-                } else if (pg3.n(((TL_stories.PeerStories) arrayList3.get(i4)).peer) == j) {
-                    arrayList3.remove(i4);
-                    break;
-                } else {
-                    i4++;
-                }
-            }
-            t4b t4bVar = N1.k;
-            t4bVar.b.a.c(new toa(t4bVar, j, (byte) 4));
-            oc7.r1(i2).z();
-            nm7.f(i2).k(nm7.z5, new Object[0]);
-            TLRPC.InputUser p1 = getMessagesController().p1(user);
-            user.contact = false;
-            arrayList2.add(Long.valueOf(user.id));
-            tL_contacts_deleteContacts.id.add(p1);
-        }
-        getConnectionsManager().sendRequest(tL_contacts_deleteContacts, new bh2(this, arrayList2, arrayList, z, ((TLRPC.User) arrayList.get(0)).first_name));
-    }
-
-    public final void j(long j) {
-        if (w()) {
-            synchronized (this.f) {
-                this.d = true;
-            }
-            try {
-                ContentResolver contentResolver = a.b.getContentResolver();
-                Uri build = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").appendQueryParameter("account_name", this.a.name).appendQueryParameter("account_type", this.a.type).build();
-                contentResolver.delete(build, "sync2 = " + j, null);
-            } catch (Exception e) {
-                fc4.g(e, false);
-            }
-            synchronized (this.f) {
-                this.d = false;
-            }
-        }
-    }
-
-    public final void k(ContentResolver contentResolver, Account account, ArrayList arrayList, vh6 vh6Var, vh6 vh6Var2) {
-        synchronized (this.f) {
-            this.d = true;
-        }
-        try {
-            Uri build = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").build();
-            if (arrayList.size() > (vh6Var.m() << 1) + 500) {
-                contentResolver.delete(build, "account_type=? AND account_name=? AND sync2 IS NOT NULL", new String[]{account.type, account.name});
-                for (int i = 0; i < vh6Var.m(); i++) {
-                    long j = vh6Var.j(i);
-                    if (((Long) vh6Var.n(i)).equals(vh6Var2.f(j))) {
-                        vh6Var2.l(j);
                     }
                 }
             } else {
-                StringBuilder sb = new StringBuilder();
-                int i2 = 0;
-                while (i2 < arrayList.size()) {
-                    if (sb.length() != 0) {
-                        sb.append(',');
-                    }
-                    sb.append(arrayList.get(i2));
-                    int i3 = i2 + 1;
-                    if (i3 % 500 == 0 || i2 == arrayList.size() - 1) {
-                        contentResolver.delete(build, "_id IN (" + ((Object) sb) + ")", null);
-                        sb.setLength(0);
-                    }
-                    i2 = i3;
+                if (this.r) {
+                    i = bkb.Zd;
+                } else {
+                    i = bkb.Yd;
+                }
+                radialProgress2.d = bkb.v0(i, wjbVar);
+                radialProgress2.draw(canvas);
+            }
+        } else {
+            TLRPC.BotInlineResult botInlineResult5 = this.K;
+            if (botInlineResult5 != null) {
+                TLRPC.BotInlineMessage botInlineMessage = botInlineResult5.send_message;
+                if ((botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaGeo) || (botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaVenue)) {
+                    int intrinsicWidth4 = bkb.n4.getIntrinsicWidth();
+                    int intrinsicHeight4 = bkb.n4.getIntrinsicHeight();
+                    float f8 = imageReceiver.L0;
+                    float f9 = imageReceiver.N0;
+                    int z3 = (int) oo1.z(f9, intrinsicWidth4, 2.0f, f8);
+                    float f10 = imageReceiver.M0;
+                    float f11 = imageReceiver.O0;
+                    int z4 = (int) oo1.z(f11, intrinsicHeight4, 2.0f, f10);
+                    canvas.drawRect(f8, f10, f9 + f8, f10 + f11, o06.k);
+                    bkb.n4.setBounds(z3, z4, intrinsicWidth4 + z3, intrinsicHeight4 + z4);
+                    bkb.n4.draw(canvas);
                 }
             }
-        } catch (Exception e) {
-            fc4.g(e, true);
         }
-        synchronized (this.f) {
-            this.d = false;
+        if (this.b) {
+            if (this.K != null) {
+                imageReceiver.v0(!PhotoViewer.R0(botInlineResult), false);
+            }
+            canvas.save();
+            float f12 = this.i0;
+            n41 n41Var = this.e0;
+            if (n41Var != null) {
+                f12 *= n41Var.a(0.1f);
+            }
+            canvas.scale(f12, f12, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
+            imageReceiver.h(canvas, null);
+            canvas.restore();
         }
-    }
-
-    public final void l() {
-        Utilities.e.c(new hv2(this, (byte) 1));
-    }
-
-    public final String s(int i) {
-        String str = this.y;
-        if (str == null) {
-            str = "https://telegram.org/dl";
+        if (this.R && ((b = this.Q) == 7 || b == 2)) {
+            radialProgress2.draw(canvas);
         }
-        if (i <= 1) {
-            return jb6.a0(null, null, 2131748873, str);
+        if (this.n && !this.R) {
+            if (k96.a0) {
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - gl.L(gl.C), getMeasuredHeight() - 1, bkb.j0);
+            } else {
+                canvas.drawLine(gl.L(gl.C), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, bkb.j0);
+            }
         }
-        try {
-            return String.format(jb6.J0(i, "InviteTextNum"), Integer.valueOf(i), str);
-        } catch (Exception unused) {
-            return jb6.a0(null, null, 2131748873, str);
-        }
-    }
-
-    public final boolean t(int i) {
-        if (this.J[i] != 2) {
-            return true;
-        }
-        return false;
-    }
-
-    public final ArrayList v(int i) {
-        switch (i) {
-            case 0:
-                return this.K;
-            case 1:
-                return this.L;
-            case 2:
-                return this.M;
-            case 3:
-                return this.N;
-            case 4:
-                return this.O;
-            case 5:
-                return this.R;
-            case 6:
-                return this.S;
-            case 7:
-                return this.T;
-            case 8:
-                return this.U;
-            case 9:
-                return this.P;
-            case 10:
-            default:
-                return null;
-            case 11:
-                return this.V;
-            case 12:
-                return this.W;
-            case 13:
-                return this.X;
-            case 14:
-                return this.Q;
+        if (this.s) {
+            bkb.o4.setBounds(0, 0, getMeasuredWidth(), gl.L(3.0f));
+            bkb.o4.draw(canvas);
         }
     }
 
-    public final boolean x(long j) {
-        if (this.g0.get(Long.valueOf(j)) != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean y() {
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         boolean z;
-        synchronized (this.c) {
-            z = this.b;
+        boolean z2;
+        String M0;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        StringBuilder sb = new StringBuilder();
+        switch (this.Q) {
+            case 1:
+                sb.append(k96.M0(2131753972, null));
+                break;
+            case 2:
+                sb.append(k96.M0(2131753968, null));
+                break;
+            case 3:
+                sb.append(k96.M0(2131753979, null));
+                break;
+            case 4:
+                sb.append(k96.M0(2131753930, null));
+                break;
+            case 5:
+                sb.append(k96.M0(2131753949, null));
+                break;
+            case 6:
+                sb.append(k96.M0(2131753933, null));
+                break;
+            case 7:
+                sb.append(k96.M0(2131753945, null));
+                break;
         }
-        return z;
+        StaticLayout staticLayout = this.H;
+        if (staticLayout != null && !TextUtils.isEmpty(staticLayout.getText())) {
+            z = true;
+        } else {
+            z = false;
+        }
+        StaticLayout staticLayout2 = this.J;
+        if (staticLayout2 != null && !TextUtils.isEmpty(staticLayout2.getText())) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        if (this.Q == 5 && z && z2) {
+            sb.append(", ");
+            sb.append(k96.a0("AccDescrMusicInfo", null, 2131754831, this.J.getText(), this.H.getText()));
+        } else {
+            if (z) {
+                if (sb.length() > 0) {
+                    sb.append(", ");
+                }
+                sb.append(this.H.getText());
+            }
+            if (z2) {
+                if (sb.length() > 0) {
+                    sb.append(", ");
+                }
+                sb.append(this.J.getText());
+            }
+        }
+        accessibilityNodeInfo.setText(sb);
+        wf2 wf2Var = this.c0;
+        if (wf2Var != null && wf2Var.a.q) {
+            accessibilityNodeInfo.setCheckable(true);
+            accessibilityNodeInfo.setChecked(true);
+        }
+        byte b = this.Q;
+        if (b != 3 && b != 5) {
+            return;
+        }
+        int iconForCurrentState = getIconForCurrentState();
+        if (iconForCurrentState != 1) {
+            if (iconForCurrentState != 2) {
+                if (iconForCurrentState != 3) {
+                    M0 = k96.M0(2131754929, "AccActionPlay");
+                } else {
+                    M0 = k96.M0(2131754941, "AccActionCancelDownload");
+                }
+            } else {
+                M0 = k96.M0(2131754938, "AccActionDownload");
+            }
+        } else {
+            M0 = k96.M0(2131754930, "AccActionPause");
+        }
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, M0));
+    }
+
+    @Override
+    public final void onMeasure(int r39, int r40) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.bw2.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        TLRPC.WebDocument webDocument;
+        if (!this.R && this.d0 != null && this.K != null) {
+            int x = (int) motionEvent.getX();
+            int y = (int) motionEvent.getY();
+            Typeface typeface = gl.a;
+            byte b = this.Q;
+            o06 o06Var = this.c;
+            boolean z = true;
+            if (b != 3 && b != 5) {
+                TLRPC.BotInlineResult botInlineResult = this.K;
+                if (botInlineResult != null && (webDocument = botInlineResult.content) != null && !TextUtils.isEmpty(webDocument.url)) {
+                    if (motionEvent.getAction() == 0) {
+                        if (o06Var.getBounds().contains(x, y)) {
+                            this.r = true;
+                        }
+                    } else if (this.r) {
+                        if (motionEvent.getAction() == 1) {
+                            this.r = false;
+                            playSoundEffect(0);
+                            ((zy6) this.d0).a.W.b.k(getResult());
+                        } else if (motionEvent.getAction() == 3) {
+                            this.r = false;
+                        } else if (motionEvent.getAction() == 2 && !o06Var.getBounds().contains(x, y)) {
+                            this.r = false;
+                        }
+                    }
+                }
+                z = false;
+            } else {
+                boolean contains = o06Var.getBounds().contains(x, y);
+                int action = motionEvent.getAction();
+                RadialProgress2 radialProgress2 = this.a0;
+                if (action == 0) {
+                    if (contains) {
+                        this.r = true;
+                        radialProgress2.n(true, false);
+                        invalidate();
+                    }
+                } else if (this.r) {
+                    if (motionEvent.getAction() == 1) {
+                        this.r = false;
+                        playSoundEffect(0);
+                        a();
+                        invalidate();
+                    } else if (motionEvent.getAction() == 3) {
+                        this.r = false;
+                        invalidate();
+                    } else if (motionEvent.getAction() == 2 && !contains) {
+                        this.r = false;
+                        invalidate();
+                    }
+                    radialProgress2.n(this.r, false);
+                }
+                z = false;
+            }
+            if (!z) {
+                return super.onTouchEvent(motionEvent);
+            }
+            return z;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(int i, Bundle bundle) {
+        byte b;
+        if (i == 16 && ((b = this.Q) == 3 || b == 5)) {
+            a();
+            return true;
+        }
+        return super.performAccessibilityAction(i, bundle);
+    }
+
+    public void setCanPreviewGif(boolean z) {
+        this.w = z;
+    }
+
+    public void setDelegate(aw2 aw2Var) {
+        this.d0 = aw2Var;
+    }
+
+    public void setIsKeyboard(boolean z) {
+        this.x = z;
+    }
+
+    @Override
+    public void setPressed(boolean z) {
+        boolean z2;
+        super.setPressed(z);
+        n41 n41Var = this.e0;
+        if (n41Var != null) {
+            if (!z && !this.b0) {
+                z2 = false;
+            } else {
+                z2 = true;
+            }
+            n41Var.c(z2);
+        }
+    }
+
+    public void setScaled(boolean z) {
+        boolean z2;
+        this.b0 = z;
+        n41 n41Var = this.e0;
+        if (n41Var != null) {
+            if (!isPressed() && !this.b0) {
+                z2 = false;
+            } else {
+                z2 = true;
+            }
+            n41Var.c(z2);
+        }
+    }
+
+    @Override
+    public final void l(long j, long j2) {
+    }
+
+    public bw2(Context context) {
+        this(null, context, false);
     }
 }

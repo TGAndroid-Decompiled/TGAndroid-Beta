@@ -1,15 +1,8 @@
 package defpackage;
-public final class kl7 implements Runnable {
-    public final byte a;
-    public final Object b;
 
-    public kl7(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.kl7.run():void");
+import android.app.Notification;
+public abstract class kl7 {
+    public static Notification.Action.Builder a(Notification.Action.Builder builder, boolean z) {
+        return builder.setAuthenticationRequired(z);
     }
 }

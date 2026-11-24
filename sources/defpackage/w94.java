@@ -1,91 +1,37 @@
 package defpackage;
 
-import android.content.Context;
-public final class w94 extends ft4 {
-    public final byte j0;
+import java.util.ArrayList;
+public final class w94 implements Runnable {
+    public final byte a;
+    public final ba4 b;
 
-    public w94(gk8 gk8Var, Context context, int i, int i2, Context context2) {
-        super(context, i, i2);
-        this.j0 = (byte) 4;
+    public w94(ba4 ba4Var, byte b) {
+        this.a = b;
+        this.b = ba4Var;
     }
 
     @Override
-    public final void g() {
-        switch (this.j0) {
-            case 4:
-                boolean z = e21.a;
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void n() {
-        switch (this.j0) {
-            case 5:
-                return;
-            default:
-                super.n();
-                return;
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        switch (this.j0) {
+    public final void run() {
+        byte b = this.a;
+        ba4 ba4Var = this.b;
+        switch (b) {
             case 0:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 1:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 2:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 3:
-                super.onAttachedToWindow();
-                setPaused(false);
+                u20[] u20VarArr = ba4Var.c;
+                u20[] u20VarArr2 = ba4Var.b;
+                for (int i = 0; i < u20VarArr2.length; i++) {
+                    if (((ArrayList) u20VarArr2[i].d).size() > 0 || ((ArrayList) u20VarArr[i].d).size() > 0) {
+                        fa4.b("download queue: dc" + (i + 1) + " account=" + ba4Var.currentAccount + " small_operations=" + ((ArrayList) u20VarArr2[i].d).size() + " large_operations=" + ((ArrayList) u20VarArr[i].d).size());
+                    }
+                }
+                if (w01.a) {
+                    ba4.K.a(ba4Var.I);
+                    ba4.K.d(ba4Var.I, 10000L);
+                    return;
+                }
                 return;
             default:
-                super.onAttachedToWindow();
+                ba4Var.getNotificationCenter().k(307, new Object[0]);
                 return;
         }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        switch (this.j0) {
-            case 0:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 1:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 2:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 3:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    public w94(Context context, int i, int i2, byte b) {
-        super(context, i, i2);
-        this.j0 = b;
-    }
-
-    private final void p() {
     }
 }

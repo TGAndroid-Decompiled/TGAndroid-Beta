@@ -1,70 +1,45 @@
 package defpackage;
 
 import android.os.Bundle;
-import android.view.View;
-import java.io.Serializable;
-public final class m55 implements ee, oac {
-    public final byte a;
-    public final n55 b;
+import org.telegram.messenger.voip.GroupCallMessage;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public final class m55 implements q75 {
+    public final h75 a;
 
-    public m55(n55 n55Var, byte b) {
-        this.a = b;
-        this.b = n55Var;
+    public m55(h75 h75Var) {
+        this.a = h75Var;
     }
 
-    @Override
-    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        c6c c6cVar = (c6c) obj;
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f = (Float) serializable;
-        Float f2 = (Float) serializable2;
-        n55 n55Var = this.b;
-        if (!n55Var.c.h(c6cVar)) {
-            int i = c6cVar.d;
-            if (i != 2 && c6cVar.a != 17) {
-                if (i == 1) {
-                    n55Var.r = !n55Var.r;
-                    n55Var.b.g3.O(true);
-                    n55Var.Z(true);
-                    return;
-                } else if (i == 3) {
-                    t51 t51Var = n55Var.c;
-                    n55Var.s = true;
-                    t51Var.h = true;
-                    n55Var.b.g3.O(true);
-                    n55Var.Z(true);
-                    return;
-                } else if (i == 4) {
-                    t51 t51Var2 = n55Var.c;
-                    n55Var.s = false;
-                    t51Var2.h = false;
-                    n55Var.b.g3.O(true);
-                    n55Var.Z(true);
-                    return;
-                } else {
-                    return;
-                }
-            }
-            Bundle bundle = new Bundle();
-            bundle.putLong("user_id", n55Var.getUserConfig().e());
-            bundle.putInt("chatMode", 5);
-            bundle.putString("quick_reply", "hello");
-            n55Var.presentFragment(new yv1(bundle));
+    public final void a(GroupCallMessage groupCallMessage) {
+        d Q = LaunchActivity.Q();
+        if (Q == null) {
+            return;
         }
-    }
-
-    @Override
-    public final void r(he heVar, int i) {
-        byte b = this.a;
-        n55 n55Var = this.b;
-        switch (b) {
-            case 0:
-                n55Var.c0();
-                return;
-            default:
-                n55Var.finishFragment();
-                return;
+        boolean z = Q instanceof ProfileActivity;
+        h75 h75Var = this.a;
+        if (z && ((ProfileActivity) Q).a() == groupCallMessage.fromId) {
+            h75Var.dismiss();
+            return;
         }
+        int F0 = h75Var.F0();
+        Bundle bundle = new Bundle();
+        long j = groupCallMessage.fromId;
+        if (j > 0) {
+            bundle.putLong("user_id", j);
+        } else {
+            bundle.putLong("chat_id", -j);
+        }
+        boolean z2 = true;
+        if (groupCallMessage.fromId == y6c.h(h75Var.n1.a).e()) {
+            bundle.putBoolean("my_profile", true);
+        }
+        ProfileActivity profileActivity = new ProfileActivity(bundle, null);
+        if (F0 > 0 && F0 != Integer.MAX_VALUE) {
+            z2 = false;
+        }
+        Q.presentFragment(profileActivity, false, z2);
+        h75Var.dismiss();
     }
 }

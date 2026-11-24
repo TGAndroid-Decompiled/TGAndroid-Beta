@@ -1,165 +1,220 @@
 package defpackage;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.widget.CompoundButton;
-import android.widget.TextView;
-import java.util.Iterator;
-import java.util.Map;
-public final class op {
-    public Parcelable a;
-    public Object b;
-    public boolean c;
-    public boolean d;
-    public boolean e;
-    public final Object f;
+import android.text.InputFilter;
+import android.util.AttributeSet;
+import android.widget.RadioButton;
+public final class op extends RadioButton implements zob {
+    public final oo a;
+    public final ko b;
+    public final pq c;
+    public ip d;
 
-    public op(TextView textView) {
-        this.a = null;
-        this.b = null;
-        this.c = false;
-        this.d = false;
-        this.f = textView;
+    public op(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet, 2130968907);
+        xob.a(context);
+        cnb.a(getContext(), this);
+        oo ooVar = new oo(this);
+        this.a = ooVar;
+        ooVar.e(attributeSet, 2130968907);
+        ko koVar = new ko(this);
+        this.b = koVar;
+        koVar.g(attributeSet, 2130968907);
+        pq pqVar = new pq(this);
+        this.c = pqVar;
+        pqVar.f(attributeSet, 2130968907);
+        getEmojiTextViewHelper().a(attributeSet, 2130968907);
     }
 
-    public final void a() {
-        CompoundButton compoundButton = (CompoundButton) this.f;
-        Drawable buttonDrawable = compoundButton.getButtonDrawable();
-        if (buttonDrawable != null) {
-            if (this.c || this.d) {
-                Drawable mutate = buttonDrawable.mutate();
-                if (this.c) {
-                    mutate.setTintList((ColorStateList) this.a);
-                }
-                if (this.d) {
-                    mutate.setTintMode((PorterDuff.Mode) this.b);
-                }
-                if (mutate.isStateful()) {
-                    mutate.setState(compoundButton.getDrawableState());
-                }
-                compoundButton.setButtonDrawable(mutate);
-            }
+    private ip getEmojiTextViewHelper() {
+        ip ipVar = this.d;
+        if (ipVar == null) {
+            ip ipVar2 = new ip(this);
+            this.d = ipVar2;
+            return ipVar2;
+        }
+        return ipVar;
+    }
+
+    @Override
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        ko koVar = this.b;
+        if (koVar != null) {
+            koVar.b();
+        }
+        pq pqVar = this.c;
+        if (pqVar != null) {
+            pqVar.b();
         }
     }
 
-    public final void b() {
-        np npVar = (np) this.f;
-        Drawable checkMarkDrawable = npVar.getCheckMarkDrawable();
-        if (checkMarkDrawable != null) {
-            if (this.c || this.d) {
-                Drawable mutate = checkMarkDrawable.mutate();
-                if (this.c) {
-                    mutate.setTintList((ColorStateList) this.a);
-                }
-                if (this.d) {
-                    mutate.setTintMode((PorterDuff.Mode) this.b);
-                }
-                if (mutate.isStateful()) {
-                    mutate.setState(npVar.getDrawableState());
-                }
-                npVar.setCheckMarkDrawable(mutate);
-            }
+    @Override
+    public int getCompoundPaddingLeft() {
+        int compoundPaddingLeft = super.getCompoundPaddingLeft();
+        oo ooVar = this.a;
+        if (ooVar != null) {
+            ooVar.getClass();
         }
+        return compoundPaddingLeft;
     }
 
-    public final Bundle c(String str) {
-        if (this.d) {
-            Bundle bundle = (Bundle) this.a;
-            if (bundle == null) {
-                return null;
-            }
-            Bundle bundle2 = bundle.getBundle(str);
-            Bundle bundle3 = (Bundle) this.a;
-            if (bundle3 != null) {
-                bundle3.remove(str);
-            }
-            Bundle bundle4 = (Bundle) this.a;
-            if (bundle4 != null && !bundle4.isEmpty()) {
-                return bundle2;
-            }
-            this.a = null;
-            return bundle2;
+    public ColorStateList getSupportBackgroundTintList() {
+        ko koVar = this.b;
+        if (koVar != null) {
+            return koVar.e();
         }
-        dq9.m("You can consumeRestoredStateForKey only after super.onCreate of corresponding component");
         return null;
     }
 
-    public final ds9 d() {
-        Map.Entry entry;
-        ds9 ds9Var;
-        Iterator it = ((xq9) this.f).iterator();
-        do {
-            tq9 tq9Var = (tq9) it;
-            if (tq9Var.hasNext()) {
-                entry = (Map.Entry) tq9Var.next();
-                entry.getClass();
-                ds9Var = (ds9) entry.getValue();
-            } else {
-                return null;
-            }
-        } while (!rr5.a((String) entry.getKey(), "androidx.lifecycle.internal.SavedStateHandlesProvider"));
-        return ds9Var;
-    }
-
-    public final void e(android.util.AttributeSet r8, int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.op.e(android.util.AttributeSet, int):void");
-    }
-
-    public final void f(String str, ds9 ds9Var) {
-        Object obj;
-        ds9Var.getClass();
-        xq9 xq9Var = (xq9) this.f;
-        uq9 h = xq9Var.h(str);
-        if (h != null) {
-            obj = h.b;
-        } else {
-            uq9 uq9Var = new uq9(str, ds9Var);
-            xq9Var.d++;
-            uq9 uq9Var2 = xq9Var.b;
-            if (uq9Var2 == null) {
-                xq9Var.a = uq9Var;
-                xq9Var.b = uq9Var;
-            } else {
-                uq9Var2.c = uq9Var;
-                uq9Var.d = uq9Var2;
-                xq9Var.b = uq9Var;
-            }
-            obj = null;
+    public PorterDuff.Mode getSupportBackgroundTintMode() {
+        ko koVar = this.b;
+        if (koVar != null) {
+            return koVar.f();
         }
-        if (((ds9) obj) == null) {
-            return;
-        }
-        u36.j("SavedStateProvider with the given key is already registered");
+        return null;
     }
 
-    public final void g() {
-        if (this.e) {
-            m49 m49Var = (m49) this.b;
-            if (m49Var == null) {
-                m49Var = new m49(this);
-            }
-            this.b = m49Var;
-            try {
-                k26.class.getDeclaredConstructor(null);
-                m49 m49Var2 = (m49) this.b;
-                if (m49Var2 != null) {
-                    m49Var2.a.add(k26.class.getName());
-                    return;
-                }
+    public ColorStateList getSupportButtonTintList() {
+        oo ooVar = this.a;
+        if (ooVar != null) {
+            return (ColorStateList) ooVar.a;
+        }
+        return null;
+    }
+
+    public PorterDuff.Mode getSupportButtonTintMode() {
+        oo ooVar = this.a;
+        if (ooVar != null) {
+            return (PorterDuff.Mode) ooVar.b;
+        }
+        return null;
+    }
+
+    public ColorStateList getSupportCompoundDrawablesTintList() {
+        return this.c.d();
+    }
+
+    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
+        return this.c.e();
+    }
+
+    @Override
+    public void setAllCaps(boolean z) {
+        super.setAllCaps(z);
+        getEmojiTextViewHelper().b(z);
+    }
+
+    @Override
+    public void setBackgroundDrawable(Drawable drawable) {
+        super.setBackgroundDrawable(drawable);
+        ko koVar = this.b;
+        if (koVar != null) {
+            koVar.h();
+        }
+    }
+
+    @Override
+    public void setBackgroundResource(int i) {
+        super.setBackgroundResource(i);
+        ko koVar = this.b;
+        if (koVar != null) {
+            koVar.i(i);
+        }
+    }
+
+    @Override
+    public void setButtonDrawable(Drawable drawable) {
+        super.setButtonDrawable(drawable);
+        oo ooVar = this.a;
+        if (ooVar != null) {
+            if (ooVar.e) {
+                ooVar.e = false;
                 return;
-            } catch (NoSuchMethodException e) {
-                String simpleName = k26.class.getSimpleName();
-                throw new IllegalArgumentException("Class " + simpleName + " must have default constructor in order to be automatically recreated", e);
             }
+            ooVar.e = true;
+            ooVar.a();
         }
-        dq9.m("Can not perform this action after onSaveInstanceState");
     }
 
-    public op() {
-        this.f = new xq9();
-        this.e = true;
+    @Override
+    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
+        pq pqVar = this.c;
+        if (pqVar != null) {
+            pqVar.b();
+        }
+    }
+
+    @Override
+    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
+        pq pqVar = this.c;
+        if (pqVar != null) {
+            pqVar.b();
+        }
+    }
+
+    public void setEmojiCompatEnabled(boolean z) {
+        getEmojiTextViewHelper().c(z);
+    }
+
+    @Override
+    public void setFilters(InputFilter[] inputFilterArr) {
+        super.setFilters(((efe) getEmojiTextViewHelper().b.a).a(inputFilterArr));
+    }
+
+    public void setSupportBackgroundTintList(ColorStateList colorStateList) {
+        ko koVar = this.b;
+        if (koVar != null) {
+            koVar.m(colorStateList);
+        }
+    }
+
+    public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
+        ko koVar = this.b;
+        if (koVar != null) {
+            koVar.n(mode);
+        }
+    }
+
+    public void setSupportButtonTintList(ColorStateList colorStateList) {
+        oo ooVar = this.a;
+        if (ooVar != null) {
+            ooVar.a = colorStateList;
+            ooVar.c = true;
+            ooVar.a();
+        }
+    }
+
+    public void setSupportButtonTintMode(PorterDuff.Mode mode) {
+        oo ooVar = this.a;
+        if (ooVar != null) {
+            ooVar.b = mode;
+            ooVar.d = true;
+            ooVar.a();
+        }
+    }
+
+    @Override
+    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
+        pq pqVar = this.c;
+        pqVar.l(colorStateList);
+        pqVar.b();
+    }
+
+    @Override
+    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
+        pq pqVar = this.c;
+        pqVar.m(mode);
+        pqVar.b();
+    }
+
+    @Override
+    public void setButtonDrawable(int i) {
+        setButtonDrawable(hmd.a(getContext(), i));
     }
 }

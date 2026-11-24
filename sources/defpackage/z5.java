@@ -22,19 +22,19 @@ public final class z5 extends ChangeBounds {
             case 0:
                 super.captureEndValues(transitionValues);
                 View view = transitionValues.view;
-                if (view instanceof lka) {
-                    transitionValues.values.put("text_size", Float.valueOf(((lka) view).getTextPaint().getTextSize()));
+                if (view instanceof jia) {
+                    transitionValues.values.put("text_size", Float.valueOf(((jia) view).getTextPaint().getTextSize()));
                     return;
                 }
                 return;
             default:
                 super.captureEndValues(transitionValues);
                 View view2 = transitionValues.view;
-                if (view2 instanceof g44) {
-                    int i = ((g44) view2).n;
-                    int i2 = ((g44) view2).r;
-                    int i3 = ((g44) view2).s;
-                    int i4 = ((g44) view2).w;
+                if (view2 instanceof v24) {
+                    int i = ((v24) view2).n;
+                    int i2 = ((v24) view2).r;
+                    int i3 = ((v24) view2).s;
+                    int i4 = ((v24) view2).w;
                     transitionValues.values.put("back_color_end_close", Integer.valueOf(i));
                     transitionValues.values.put("round_end_close", Integer.valueOf(i2));
                     transitionValues.values.put("decline_call_alpha_end_close", Integer.valueOf(i3));
@@ -51,19 +51,19 @@ public final class z5 extends ChangeBounds {
             case 0:
                 super.captureStartValues(transitionValues);
                 View view = transitionValues.view;
-                if (view instanceof lka) {
-                    transitionValues.values.put("text_size", Float.valueOf(((lka) view).getTextPaint().getTextSize()));
+                if (view instanceof jia) {
+                    transitionValues.values.put("text_size", Float.valueOf(((jia) view).getTextPaint().getTextSize()));
                     return;
                 }
                 return;
             default:
                 super.captureStartValues(transitionValues);
                 View view2 = transitionValues.view;
-                if (view2 instanceof g44) {
-                    int i = ((g44) view2).n;
-                    int i2 = ((g44) view2).r;
-                    int i3 = ((g44) view2).s;
-                    int i4 = ((g44) view2).w;
+                if (view2 instanceof v24) {
+                    int i = ((v24) view2).n;
+                    int i2 = ((v24) view2).r;
+                    int i3 = ((v24) view2).s;
+                    int i4 = ((v24) view2).w;
                     transitionValues.values.put("back_color_end_close", Integer.valueOf(i));
                     transitionValues.values.put("round_end_close", Integer.valueOf(i2));
                     transitionValues.values.put("decline_call_alpha_end_close", Integer.valueOf(i3));
@@ -78,7 +78,7 @@ public final class z5 extends ChangeBounds {
     public final Animator createAnimator(ViewGroup viewGroup, final TransitionValues transitionValues, TransitionValues transitionValues2) {
         switch (this.a) {
             case 0:
-                if (transitionValues != null && (transitionValues.view instanceof lka)) {
+                if (transitionValues != null && (transitionValues.view instanceof jia)) {
                     AnimatorSet animatorSet = new AnimatorSet();
                     if (transitionValues2 != null) {
                         Animator createAnimator = super.createAnimator(viewGroup, transitionValues, transitionValues2);
@@ -96,7 +96,7 @@ public final class z5 extends ChangeBounds {
                 }
                 return super.createAnimator(viewGroup, transitionValues, transitionValues2);
             default:
-                if (transitionValues != null && transitionValues2 != null && (transitionValues.view instanceof g44)) {
+                if (transitionValues != null && transitionValues2 != null && (transitionValues.view instanceof v24)) {
                     AnimatorSet animatorSet2 = new AnimatorSet();
                     Animator createAnimator2 = super.createAnimator(viewGroup, transitionValues, transitionValues2);
                     if (createAnimator2 != null) {
@@ -115,16 +115,16 @@ public final class z5 extends ChangeBounds {
                             TransitionValues transitionValues3 = transitionValues;
                             switch (b) {
                                 case 0:
-                                    ((g44) transitionValues3.view).n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 1:
-                                    ((g44) transitionValues3.view).r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 2:
-                                    ((g44) transitionValues3.view).s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 default:
-                                    ((g44) transitionValues3.view).w = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).w = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                             }
                         }
@@ -138,16 +138,16 @@ public final class z5 extends ChangeBounds {
                             TransitionValues transitionValues3 = transitionValues;
                             switch (b) {
                                 case 0:
-                                    ((g44) transitionValues3.view).n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 1:
-                                    ((g44) transitionValues3.view).r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 2:
-                                    ((g44) transitionValues3.view).s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 default:
-                                    ((g44) transitionValues3.view).w = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).w = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                             }
                         }
@@ -161,16 +161,16 @@ public final class z5 extends ChangeBounds {
                             TransitionValues transitionValues3 = transitionValues;
                             switch (b) {
                                 case 0:
-                                    ((g44) transitionValues3.view).n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 1:
-                                    ((g44) transitionValues3.view).r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 2:
-                                    ((g44) transitionValues3.view).s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 default:
-                                    ((g44) transitionValues3.view).w = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).w = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                             }
                         }
@@ -184,16 +184,16 @@ public final class z5 extends ChangeBounds {
                             TransitionValues transitionValues3 = transitionValues;
                             switch (b) {
                                 case 0:
-                                    ((g44) transitionValues3.view).n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 1:
-                                    ((g44) transitionValues3.view).r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 2:
-                                    ((g44) transitionValues3.view).s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 default:
-                                    ((g44) transitionValues3.view).w = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((v24) transitionValues3.view).w = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                             }
                         }

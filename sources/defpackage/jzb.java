@@ -1,29 +1,20 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class jzb implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final lzb b;
+import android.content.Context;
+public final class jzb extends rzb {
+    public final cib T1;
 
-    public jzb(lzb lzbVar, byte b) {
-        this.a = b;
-        this.b = lzbVar;
+    public jzb(Context context, String str, String str2, CharSequence charSequence, cib cibVar) {
+        super(context, str, str2, charSequence, null, 0, false, null);
+        this.T1 = cibVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        lzb lzbVar = this.b;
-        switch (b) {
-            case 0:
-                lzbVar.V = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lzbVar.h();
-                lzbVar.g();
-                return;
-            default:
-                lzbVar.M = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                lzbVar.h.invalidate();
-                return;
+    public final void dismiss() {
+        super.dismiss();
+        cib cibVar = this.T1;
+        if (cibVar != null) {
+            cibVar.run();
         }
     }
 }

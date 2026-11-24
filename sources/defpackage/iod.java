@@ -1,17 +1,21 @@
 package defpackage;
-public final class iod implements cq7 {
-    public static final iod a = new Object();
 
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)));
-    }
+import java.nio.charset.Charset;
+public final class iod {
+    public static final sid b = new sid((byte) 1);
+    public final xod a;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+    public iod() {
+        pqd pqdVar;
+        try {
+            pqdVar = (pqd) Class.forName("com.google.protobuf.DescriptorMessageInfoFactory").getDeclaredMethod("getInstance", null).invoke(null, null);
+        } catch (Exception unused) {
+            pqdVar = b;
         }
-        throw new ClassCastException();
+        pqd[] pqdVarArr = {sid.b, pqdVar};
+        ?? obj = new Object();
+        obj.a = pqdVarArr;
+        Charset charset = ejd.a;
+        this.a = obj;
     }
 }

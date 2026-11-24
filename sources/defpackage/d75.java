@@ -1,24 +1,92 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class d75 extends qc0 {
-    public final g95 V;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.widget.ImageView;
+public final class d75 extends Drawable {
+    public final Paint a;
+    public final Paint b;
+    public long c;
+    public float d;
+    public boolean e;
+    public boolean f;
+    public ImageView g;
 
-    public d75(g95 g95Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.V = g95Var;
+    public d75() {
+        Paint paint = new Paint(1);
+        this.a = paint;
+        this.b = new Paint(1);
+        this.d = 1.0f;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(gl.L(1.5f));
     }
 
     @Override
-    public final void c() {
-        g95 g95Var = this.V;
-        j5 j5Var = g95Var.n1;
-        e75 e75Var = g95Var.l1;
-        long dialogId = e75Var.getDialogId();
-        if (dialogId > 0) {
-            TLRPC.User W1 = oc7.r1(j5Var.a).W1(Long.valueOf(dialogId));
-            e75Var.H(null, gn5.m(j5Var.a, 0, W1), gn5.m(j5Var.a, 1, W1), false);
+    public final void draw(Canvas canvas) {
+        int i;
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        canvas.drawCircle(centerX, centerY, gl.L(10.0f), this.a);
+        if (this.f) {
+            i = -1147527;
+        } else {
+            i = -1;
         }
+        Paint paint = this.b;
+        paint.setColor(i);
+        paint.setAlpha((int) (this.d * 255.0f));
+        canvas.drawCircle(centerX, centerY, gl.L(5.0f), paint);
+        if (this.f) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            long j = elapsedRealtime - this.c;
+            if (j > 17) {
+                j = 17;
+            }
+            this.c = elapsedRealtime;
+            boolean z = this.e;
+            if (!z) {
+                float f = (((float) j) / 2000.0f) + this.d;
+                this.d = f;
+                if (f >= 1.0f) {
+                    this.d = 1.0f;
+                    this.e = true;
+                }
+            } else if (z) {
+                float f2 = this.d - (((float) j) / 2000.0f);
+                this.d = f2;
+                if (f2 < 0.5f) {
+                    this.d = 0.5f;
+                    this.e = false;
+                }
+            }
+            this.g.invalidate();
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return gl.L(24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return gl.L(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

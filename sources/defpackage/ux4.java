@@ -1,562 +1,485 @@
 package defpackage;
 
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Collection;
-import j$.util.stream.Collectors;
+import android.content.ComponentName;
+import android.content.Context;
+import android.os.Build;
+import android.os.Message;
+import android.util.Log;
+import j$.util.DesugarCollections;
+import j$.util.Objects;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.TreeSet;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class ux4 extends mz0 implements jm7 {
-    public final ArrayList A2;
-    public boolean B2;
-    public int C2;
-    public boolean D2;
-    public final int S1;
-    public l7c T1;
-    public List U1;
-    public TLRPC.DisallowedGiftsSettings V1;
-    public final long W1;
-    public final boolean X1;
-    public final String Y1;
-    public final a6 Z1;
-    public final FrameLayout a2;
-    public final LinearLayout b2;
-    public final f84 c2;
-    public final gx4 d2;
-    public final a31 e2;
-    public final a31 f2;
-    public final ArrayList g2;
-    public final ava h2;
-    public int i2;
-    public int j2;
-    public int k2;
-    public int l2;
-    public boolean m2;
-    public boolean n2;
-    public boolean o2;
-    public uwa p2;
-    public final l66 q2;
-    public final TextView r2;
-    public final TextView s2;
-    public boolean t2;
-    public final rja u2;
-    public final fn0 v2;
-    public final View w2;
-    public final View x2;
-    public final su y2;
-    public final vgc z2;
+import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.Executor;
+public final class ux4 {
+    public static final int F = 0;
+    public bt6 A;
+    public int B;
+    public xl3 C;
+    public mv6 D;
+    public final pj4 E;
+    public final ee3 c;
+    public eu6 d;
+    public vt6 e;
+    public vbd f;
+    public cu6 g;
+    public final Context h;
+    public final rf6 n;
+    public final z24 o;
+    public final boolean p;
+    public final boolean q;
+    public fs6 r;
+    public final vb8 s;
+    public final ie2 t;
+    public iu6 u;
+    public eu6 v;
+    public eu6 w;
+    public eu6 x;
+    public ut6 y;
+    public bt6 z;
+    public final rx4 a = new rx4(this);
+    public final HashMap b = new HashMap();
+    public final ArrayList i = new ArrayList();
+    public final ArrayList j = new ArrayList();
+    public final HashMap k = new HashMap();
+    public final ArrayList l = new ArrayList();
+    public final ArrayList m = new ArrayList();
 
-    public ux4(final android.content.Context r34, final int r35, final long r36, java.util.List r38, final defpackage.qac r39) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ux4.<init>(android.content.Context, int, long, java.util.List, qac):void");
+    static {
+        Log.isLoggable("GlobalMediaRouter", 3);
     }
 
-    @Override
-    public final q59 G0(r59 r59Var) {
-        l7c l7cVar = new l7c(this.n1, getContext(), this.S1, 0, true, new vt4(this, (byte) 3), this.J0);
-        this.T1 = l7cVar;
-        l7cVar.r = false;
-        return l7cVar;
+    public ux4(android.content.Context r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ux4.<init>(android.content.Context):void");
     }
 
-    @Override
-    public final CharSequence J0() {
-        if (this.X1) {
-            return jb6.M0(2131749872, null);
-        }
-        return gw3.m(jb6.a0(null, null, 2131749781, this.Y1), null, false, null, 0);
-    }
-
-    @Override
-    public final void M0(android.graphics.Canvas r12, int r13) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ux4.M0(android.graphics.Canvas, int):void");
-    }
-
-    @Override
-    public final void W0() {
-        super.W0();
-        rja rjaVar = this.u2;
-        if (rjaVar != null) {
-            rjaVar.setTitle(J0());
+    public final void a(wt6 wt6Var, boolean z) {
+        if (d(wt6Var) == null) {
+            du6 du6Var = new du6(wt6Var, z);
+            this.l.add(du6Var);
+            this.a.b(513, du6Var);
+            m(du6Var, (am4) wt6Var.n);
+            gu6.b();
+            wt6Var.f = this.o;
+            wt6Var.h(this.z);
         }
     }
 
-    public final void Y0(ArrayList arrayList, l7c l7cVar) {
-        boolean z;
-        ArrayList arrayList2;
-        boolean z2;
-        boolean z3;
-        float f;
-        float f2;
-        float f3;
-        long j;
-        float f4;
-        ava avaVar;
-        TL_stars.StarGift starGift;
-        boolean z4;
-        boolean z5;
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        boolean z6;
-        boolean z7;
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
-        vgc vgcVar;
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings3;
-        ava avaVar2;
-        ava avaVar3;
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings4;
-        this.B2 = false;
-        this.t2 = false;
-        if (!this.X1 && this.W1 >= 0 && ((disallowedGiftsSettings4 = this.V1) == null || !disallowedGiftsSettings4.disallow_premium_gifts)) {
-            arrayList.add(c6c.k(this.Z1));
-            this.t2 = true;
-            arrayList.add(c6c.k(this.a2));
-            ArrayList arrayList3 = this.g2;
-            if (arrayList3 != null && !arrayList3.isEmpty()) {
-                ArrayList arrayList4 = this.g2;
-                int size = arrayList4.size();
-                int i = 0;
-                while (i < size) {
-                    Object obj = arrayList4.get(i);
+    public final String b(du6 du6Var, String str) {
+        String p;
+        String flattenToShortString = ((ComponentName) du6Var.d.b).flattenToShortString();
+        boolean z = du6Var.c;
+        if (z) {
+            p = str;
+        } else {
+            p = tb4.p(flattenToShortString, ":", str);
+        }
+        HashMap hashMap = this.k;
+        if (!z) {
+            ArrayList arrayList = this.j;
+            int size = arrayList.size();
+            int i = 0;
+            while (true) {
+                if (i < size) {
+                    if (((eu6) arrayList.get(i)).c.equals(p)) {
+                        break;
+                    }
                     i++;
-                    int i2 = nx4.b;
-                    c6c K = c6c.K(nx4.class);
-                    K.v = 1;
-                    K.H = (nw4) obj;
-                    arrayList.add(K);
+                } else {
+                    i = -1;
+                    break;
                 }
-            } else {
-                c6c q = c6c.q(1, 34);
-                q.v = 1;
-                arrayList.add(q);
-                c6c q2 = c6c.q(2, 34);
-                q2.v = 1;
-                arrayList.add(q2);
-                c6c q3 = c6c.q(3, 34);
-                q3.v = 1;
-                arrayList.add(q3);
             }
-            z = true;
+            if (i >= 0) {
+                Log.w("GlobalMediaRouter", b00.i("Either ", str, " isn't unique in ", flattenToShortString, " or we're trying to assign a unique ID for an already added route"));
+                int i2 = 2;
+                while (true) {
+                    Locale locale = Locale.US;
+                    String str2 = p + "_" + i2;
+                    int size2 = arrayList.size();
+                    int i3 = 0;
+                    while (true) {
+                        if (i3 < size2) {
+                            if (((eu6) arrayList.get(i3)).c.equals(str2)) {
+                                break;
+                            }
+                            i3++;
+                        } else {
+                            i3 = -1;
+                            break;
+                        }
+                    }
+                    if (i3 < 0) {
+                        hashMap.put(new lu7(flattenToShortString, str), str2);
+                        return str2;
+                    }
+                    i2++;
+                }
+            }
+        }
+        hashMap.put(new lu7(flattenToShortString, str), p);
+        return p;
+    }
+
+    public final eu6 c() {
+        ArrayList arrayList = this.j;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            eu6 eu6Var = (eu6) obj;
+            if (eu6Var != this.v && eu6Var.c() == this.s && eu6Var.m("android.media.intent.category.LIVE_AUDIO") && !eu6Var.m("android.media.intent.category.LIVE_VIDEO") && eu6Var.f()) {
+                return eu6Var;
+            }
+        }
+        return this.v;
+    }
+
+    public final du6 d(wt6 wt6Var) {
+        ArrayList arrayList = this.l;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            du6 du6Var = (du6) obj;
+            if (du6Var.a == wt6Var) {
+                return du6Var;
+            }
+        }
+        return null;
+    }
+
+    public final eu6 e() {
+        eu6 eu6Var = this.d;
+        if (eu6Var != null) {
+            return eu6Var;
+        }
+        sc8.j("There is no currently selected route.  The media router has not yet been fully initialized.");
+        return null;
+    }
+
+    public final boolean f() {
+        if (this.q) {
+            iu6 iu6Var = this.u;
+            if (iu6Var == null || iu6Var.b) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void g() {
+        if (this.d.e()) {
+            List<eu6> unmodifiableList = DesugarCollections.unmodifiableList(this.d.v);
+            HashSet hashSet = new HashSet();
+            for (eu6 eu6Var : unmodifiableList) {
+                hashSet.add(eu6Var.c);
+            }
+            HashMap hashMap = this.b;
+            Iterator it = hashMap.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry entry = (Map.Entry) it.next();
+                if (!hashSet.contains(entry.getKey())) {
+                    vt6 vt6Var = (vt6) entry.getValue();
+                    vt6Var.h(0);
+                    vt6Var.d();
+                    it.remove();
+                }
+            }
+            for (eu6 eu6Var2 : unmodifiableList) {
+                if (!hashMap.containsKey(eu6Var2.c)) {
+                    vt6 e = eu6Var2.c().e(eu6Var2.b, this.d.b);
+                    e.e();
+                    hashMap.put(eu6Var2.c, e);
+                }
+            }
+        }
+    }
+
+    public final void h(ux4 ux4Var, eu6 eu6Var, vt6 vt6Var, int i, eu6 eu6Var2, ArrayList arrayList) {
+        vbd vbdVar;
+        cu6 cu6Var = this.g;
+        if (cu6Var != null) {
+            cu6Var.d();
+            this.g = null;
+        }
+        cu6 cu6Var2 = new cu6(ux4Var, eu6Var, vt6Var, i, eu6Var2, arrayList);
+        this.g = cu6Var2;
+        if (cu6Var2.b == 3 && (vbdVar = this.f) != null) {
+            eu6 eu6Var3 = this.d;
+            eu6 eu6Var4 = (eu6) cu6Var2.h;
+            vbd.c.b("Prepare transfer from Route(%s) to Route(%s)", eu6Var3, eu6Var4);
+            ?? obj = new Object();
+            obj.c = new Object();
+            m91 m91Var = new m91(obj);
+            l91 l91Var = m91Var.b;
+            obj.b = m91Var;
+            obj.a = wad.class;
+            try {
+                obj.a = Boolean.valueOf(vbdVar.b.post(new vc1(vbdVar, eu6Var3, eu6Var4, obj, (byte) 1)));
+            } catch (Exception e) {
+                l91Var.l(e);
+            }
+            cu6 cu6Var3 = this.g;
+            ux4 ux4Var2 = (ux4) ((WeakReference) cu6Var3.s).get();
+            if (ux4Var2 != null && ux4Var2.g == cu6Var3) {
+                if (((m91) cu6Var3.w) == null) {
+                    cu6Var3.w = m91Var;
+                    bu6 bu6Var = new bu6(cu6Var3, (byte) 0);
+                    rx4 rx4Var = ux4Var2.a;
+                    Objects.requireNonNull(rx4Var);
+                    l91Var.b(bu6Var, new ge2(rx4Var, (byte) 2));
+                    return;
+                }
+                sc8.j("future is already set");
+                return;
+            }
+            Log.w("AxMediaRouter", "Router is released. Cancel transfer");
+            cu6Var3.d();
+            return;
+        }
+        cu6Var2.i();
+    }
+
+    public final void i(eu6 eu6Var, int i) {
+        if (!this.j.contains(eu6Var)) {
+            Log.w("GlobalMediaRouter", "Ignoring attempt to select removed route: " + eu6Var);
+        } else if (!eu6Var.g) {
+            Log.w("GlobalMediaRouter", "Ignoring attempt to select disabled route: " + eu6Var);
         } else {
-            z = false;
+            if (Build.VERSION.SDK_INT >= 30) {
+                wt6 c = eu6Var.c();
+                fs6 fs6Var = this.r;
+                if (c == fs6Var && this.d != eu6Var) {
+                    fs6Var.s(eu6Var.b);
+                    return;
+                }
+            }
+            j(eu6Var, i);
         }
-        jva v = jva.v(this.S1, false);
-        if (this.m2) {
-            arrayList2 = v.J;
-        } else {
-            arrayList2 = v.I;
+    }
+
+    public final void j(eu6 eu6Var, int i) {
+        am4 am4Var;
+        if (this.d == eu6Var) {
+            return;
         }
-        if (this.V1 != null) {
-            arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new sn1(this, (byte) 3)).collect(Collectors.toCollection(new tn1((byte) 0)));
+        if (this.x != null) {
+            this.x = null;
+            ut6 ut6Var = this.y;
+            if (ut6Var != null) {
+                ut6Var.h(3);
+                this.y.d();
+                this.y = null;
+            }
         }
-        if (this.W1 < 0) {
-            arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new se((byte) 5)).collect(Collectors.toCollection(new tn1((byte) 0)));
+        if (f() && (am4Var = eu6Var.a.e) != null && am4Var.c) {
+            ut6 c = eu6Var.c().c(eu6Var.b);
+            if (c != null) {
+                Executor g = rr.g(this.h);
+                pj4 pj4Var = this.E;
+                synchronized (c.a) {
+                    if (g != null) {
+                        if (pj4Var != null) {
+                            c.b = g;
+                            c.c = pj4Var;
+                            ArrayList arrayList = c.e;
+                            if (arrayList != null && !arrayList.isEmpty()) {
+                                zs6 zs6Var = c.d;
+                                ArrayList arrayList2 = c.e;
+                                c.d = null;
+                                c.e = null;
+                                c.b.execute(new st6(c, pj4Var, zs6Var, arrayList2, (byte) 0));
+                            }
+                        } else {
+                            throw new NullPointerException("Listener shouldn't be null");
+                        }
+                    } else {
+                        throw new NullPointerException("Executor shouldn't be null");
+                    }
+                }
+                this.x = eu6Var;
+                this.y = c;
+                c.e();
+                return;
+            }
+            Log.w("GlobalMediaRouter", "setSelectedRouteInternal: Failed to create dynamic group route controller. route=" + eu6Var);
         }
-        if (this.W1 != z8c.h(this.S1).e() && (avaVar3 = this.h2) != null) {
-            ArrayList arrayList5 = avaVar3.l;
-            int size2 = arrayList5.size();
+        vt6 d = eu6Var.c().d(eu6Var.b);
+        if (d != null) {
+            d.e();
+        }
+        if (this.d == null) {
+            this.d = eu6Var;
+            this.e = d;
+            Message obtainMessage = this.a.obtainMessage(262, new lu7(null, eu6Var));
+            obtainMessage.arg1 = i;
+            obtainMessage.sendToTarget();
+            return;
+        }
+        h(this, eu6Var, d, i, null, null);
+    }
+
+    public final void k() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ux4.k():void");
+    }
+
+    public final void l() {
+        int i;
+        eu6 eu6Var = this.d;
+        if (eu6Var != null) {
+            int i2 = eu6Var.p;
+            rf6 rf6Var = this.n;
+            rf6Var.a = i2;
+            rf6Var.b = eu6Var.q;
             int i3 = 0;
-            while (i3 < size2) {
-                Object obj2 = arrayList5.get(i3);
-                i3++;
-                TL_stars.StarGift starGift2 = ((TL_stars.SavedStarGift) obj2).gift;
-                if ((starGift2 instanceof TL_stars.TL_starGiftUnique) && !fs7.m(starGift2)) {
-                    z2 = true;
+            if (eu6Var.e() && !gu6.g()) {
+                i = 0;
+            } else {
+                i = eu6Var.o;
+            }
+            rf6Var.c = i;
+            rf6Var.d = this.d.m;
+            if (f() && this.d.c() == this.r) {
+                rf6Var.e = fs6.p(this.e);
+            } else {
+                rf6Var.e = null;
+            }
+            ArrayList arrayList = this.m;
+            if (arrayList.size() <= 0) {
+                xl3 xl3Var = this.C;
+                if (xl3Var != null) {
+                    eu6 eu6Var2 = this.d;
+                    eu6 eu6Var3 = this.v;
+                    if (eu6Var3 != null) {
+                        if (eu6Var2 != eu6Var3 && eu6Var2 != this.w) {
+                            if (rf6Var.c == 1) {
+                                i3 = 2;
+                            }
+                            int i4 = i3;
+                            int i5 = rf6Var.b;
+                            int i6 = rf6Var.a;
+                            String str = (String) rf6Var.e;
+                            mv6 mv6Var = (mv6) xl3Var.b;
+                            if (mv6Var != null) {
+                                tx3 tx3Var = (tx3) xl3Var.c;
+                                if (tx3Var != null && i4 == 0 && i5 == 0) {
+                                    tx3Var.c = i6;
+                                    vjc.a(tx3Var.b(), i6);
+                                    return;
+                                }
+                                tx3 tx3Var2 = new tx3(xl3Var, i4, i5, i6, str);
+                                xl3Var.c = tx3Var2;
+                                ((zu6) mv6Var.b).a.setPlaybackToRemote(tx3Var2.b());
+                                return;
+                            }
+                            return;
+                        }
+                        xl3Var.o();
+                        return;
+                    }
+                    sc8.j("There is no default route.  The media router has not yet been fully initialized.");
+                    return;
+                }
+                return;
+            }
+            ((tx4) arrayList.get(0)).getClass();
+            throw null;
+        }
+        xl3 xl3Var2 = this.C;
+        if (xl3Var2 != null) {
+            xl3Var2.o();
+        }
+    }
+
+    public final void m(defpackage.du6 r20, defpackage.am4 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ux4.m(du6, am4):void");
+    }
+
+    public final int n(eu6 eu6Var, zs6 zs6Var) {
+        int i = eu6Var.i(zs6Var);
+        if (i != 0) {
+            int i2 = i & 1;
+            rx4 rx4Var = this.a;
+            if (i2 != 0) {
+                rx4Var.b(259, eu6Var);
+            }
+            if ((i & 2) != 0) {
+                rx4Var.b(260, eu6Var);
+            }
+            if ((i & 4) != 0) {
+                rx4Var.b(261, eu6Var);
+            }
+        }
+        return i;
+    }
+
+    public final void o(boolean z) {
+        eu6 eu6Var = this.v;
+        if (eu6Var != null && !eu6Var.f()) {
+            Log.i("GlobalMediaRouter", "Clearing the default route because it is no longer selectable: " + this.v);
+            this.v = null;
+        }
+        eu6 eu6Var2 = this.v;
+        vb8 vb8Var = this.s;
+        ArrayList arrayList = this.j;
+        if (eu6Var2 == null) {
+            int size = arrayList.size();
+            int i = 0;
+            while (true) {
+                if (i >= size) {
+                    break;
+                }
+                Object obj = arrayList.get(i);
+                i++;
+                eu6 eu6Var3 = (eu6) obj;
+                if (eu6Var3.c() == vb8Var && eu6Var3.b.equals("DEFAULT_ROUTE") && eu6Var3.f()) {
+                    this.v = eu6Var3;
+                    Log.i("GlobalMediaRouter", "Found default route: " + this.v);
                     break;
                 }
             }
         }
-        z2 = false;
-        float f5 = 300.0f;
-        if (!oc7.r1(this.S1).l4.x2.f && (!arrayList2.isEmpty() || ((disallowedGiftsSettings3 = this.V1) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && (avaVar2 = this.h2) != null && !avaVar2.l.isEmpty()))) {
-            if (!z) {
-                arrayList.add(c6c.k(this.Z1));
-            } else {
-                arrayList.add(c6c.D(gm.L(16.0f)));
-            }
-            arrayList.add(c6c.k(this.b2));
-            TreeSet treeSet = new TreeSet();
-            TLRPC.DisallowedGiftsSettings disallowedGiftsSettings5 = this.V1;
-            if (disallowedGiftsSettings5 == null || !disallowedGiftsSettings5.disallow_unique_stargifts) {
-                for (int i4 = 0; i4 < arrayList2.size(); i4++) {
-                    treeSet.add(Long.valueOf(((TL_stars.StarGift) arrayList2.get(i4)).stars));
-                }
-            }
-            ArrayList arrayList6 = new ArrayList();
-            this.j2 = -1;
-            this.i2 = -1;
-            if (!arrayList2.isEmpty()) {
-                this.i2 = arrayList6.size();
-                arrayList6.add(jb6.M0(2131749883, null));
-            }
-            TLRPC.DisallowedGiftsSettings disallowedGiftsSettings6 = this.V1;
-            if ((disallowedGiftsSettings6 == null || !disallowedGiftsSettings6.disallow_unique_stargifts) && z2) {
-                this.j2 = arrayList6.size();
-                arrayList6.add(jb6.M0(2131749879, null));
-            }
-            this.k2 = arrayList6.size();
-            arrayList6.add(jb6.M0(2131749882, null));
-            if (this.n2 && !this.o2) {
-                this.o2 = true;
-                this.l2 = this.k2;
-            }
-            arrayList.add(c6c.n(this.x2, 52));
-            this.B2 = true;
-            ArrayList arrayList7 = this.A2;
-            float f6 = 1.0f;
-            if (this.z2 != null) {
-                if (!arrayList7.equals(arrayList6)) {
-                    arrayList7.clear();
-                    arrayList7.addAll(arrayList6);
-                    this.z2.c();
-                    int i5 = 0;
-                    while (true) {
-                        int size3 = arrayList6.size();
-                        vgcVar = this.z2;
-                        if (i5 >= size3) {
-                            break;
-                        }
-                        vgcVar.a(i5, (CharSequence) arrayList6.get(i5));
-                        i5++;
-                    }
-                    vgcVar.y.f();
-                    this.y2.requestLayout();
-                }
-                int currentTabId = this.z2.getCurrentTabId();
-                int i6 = this.l2;
-                if (currentTabId != i6) {
-                    this.z2.g(1.0f, i6);
-                }
-            }
-            if (this.l2 == this.k2 && !this.X1 && this.W1 >= 0) {
-                z3 = true;
-            } else {
-                z3 = false;
-            }
-            if (z3 == this.D2) {
-                j = 0;
-            } else {
-                this.D2 = z3;
-                ViewPropertyAnimator animate = this.e2.animate();
-                float f7 = 0.0f;
-                if (!z3) {
-                    f = 1.0f;
-                } else {
-                    f = 0.0f;
-                }
-                ViewPropertyAnimator alpha = animate.alpha(f);
-                if (!z3) {
-                    f2 = 1.0f;
-                } else {
-                    f2 = 0.85f;
-                }
-                ViewPropertyAnimator scaleX = alpha.scaleX(f2);
-                if (!z3) {
-                    f3 = 1.0f;
-                } else {
-                    f3 = 0.85f;
-                }
-                j = 0;
-                ViewPropertyAnimator duration = scaleX.scaleY(f3).setDuration(380L);
-                d53 d53Var = d53.h;
-                duration.setInterpolator(d53Var).start();
-                ViewPropertyAnimator animate2 = this.f2.animate();
-                if (z3) {
-                    f7 = 1.0f;
-                }
-                ViewPropertyAnimator alpha2 = animate2.alpha(f7);
-                if (z3) {
-                    f4 = 1.0f;
-                } else {
-                    f4 = 0.85f;
-                }
-                ViewPropertyAnimator scaleX2 = alpha2.scaleX(f4);
-                if (!z3) {
-                    f6 = 0.85f;
-                }
-                scaleX2.scaleY(f6).setDuration(380L).setInterpolator(d53Var).start();
-            }
-            if (this.h2 != null && this.l2 == this.j2) {
-                arrayList2 = new ArrayList();
-                ArrayList arrayList8 = this.h2.l;
-                int size4 = arrayList8.size();
-                int i7 = 0;
-                while (i7 < size4) {
-                    Object obj3 = arrayList8.get(i7);
-                    i7++;
-                    TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj3;
-                    TL_stars.StarGift starGift3 = savedStarGift.gift;
-                    if ((starGift3 instanceof TL_stars.TL_starGiftUnique) && !fs7.m(starGift3)) {
-                        arrayList2.add(savedStarGift.gift);
-                    }
-                }
-            }
-            int i8 = 0;
-            for (int i9 = 0; i9 < arrayList2.size(); i9++) {
-                TL_stars.StarGift starGift4 = (TL_stars.StarGift) arrayList2.get(i9);
-                int i10 = this.l2;
-                if (i10 == this.i2 || i10 == this.j2 || (i10 == this.k2 && (starGift4.availability_resale > j || starGift4.require_premium || starGift4.locked_until_date != 0))) {
-                    if (!starGift4.sold_out && starGift4.availability_resale > j && i10 != this.k2) {
-                        if (i10 == this.j2) {
-                            z6 = true;
-                        } else {
-                            z6 = false;
-                        }
-                        if (starGift4.limited && (disallowedGiftsSettings2 = this.V1) != null && disallowedGiftsSettings2.disallow_limited_stargifts) {
-                            z7 = true;
-                        } else {
-                            z7 = false;
-                        }
-                        c6c i11 = nx4.i(i10, starGift4, z6, z7, false, false, false);
-                        starGift = starGift4;
-                        arrayList.add(i11);
-                        i8++;
-                    } else {
-                        starGift = starGift4;
-                    }
-                    int i12 = this.l2;
-                    if (i12 == this.j2) {
-                        z4 = true;
-                    } else {
-                        z4 = false;
-                    }
-                    if (starGift.limited && (disallowedGiftsSettings = this.V1) != null && disallowedGiftsSettings.disallow_limited_stargifts) {
-                        z5 = true;
-                    } else {
-                        z5 = false;
-                    }
-                    arrayList.add(nx4.i(i12, starGift, z4, z5, true, false, false));
-                    i8++;
-                }
-            }
-            int i13 = this.l2;
-            int i14 = this.j2;
-            if (i13 == i14 && (avaVar = this.h2) != null && !avaVar.j) {
-                avaVar.a();
-                c6c q4 = c6c.q(4, 34);
-                q4.v = 1;
-                arrayList.add(q4);
-                c6c q5 = c6c.q(5, 34);
-                q5.v = 1;
-                arrayList.add(q5);
-                c6c q6 = c6c.q(6, 34);
-                q6.v = 1;
-                arrayList.add(q6);
-            } else if (i13 != i14 && v.C) {
-                c6c q7 = c6c.q(4, 34);
-                q7.v = 1;
-                arrayList.add(q7);
-                c6c q8 = c6c.q(5, 34);
-                q8.v = 1;
-                arrayList.add(q8);
-                c6c q9 = c6c.q(6, 34);
-                q9.v = 1;
-                arrayList.add(q9);
-            }
-            if (i8 >= 9) {
-                f5 = 40.0f;
-            }
-            arrayList.add(c6c.D(gm.L(f5)));
-            return;
+        eu6 eu6Var4 = this.w;
+        if (eu6Var4 != null && !eu6Var4.f()) {
+            Log.i("GlobalMediaRouter", "Clearing the bluetooth route because it is no longer selectable: " + this.w);
+            this.w = null;
         }
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings7 = this.V1;
-        if (disallowedGiftsSettings7 != null && !disallowedGiftsSettings7.disallow_unique_stargifts && arrayList2.isEmpty()) {
-            arrayList.add(c6c.D(gm.L(300.0f)));
-        }
-    }
-
-    public final float Z0() {
-        int i = 0;
-        float f = Float.MAX_VALUE;
-        while (true) {
-            r59 r59Var = this.n1;
-            if (i < r59Var.getChildCount()) {
-                View childAt = r59Var.getChildAt(i);
-                int R = RecyclerView.R(childAt);
-                if (R == 1) {
-                    return r59Var.getY() + childAt.getY();
+        if (this.w == null) {
+            int size2 = arrayList.size();
+            int i2 = 0;
+            while (true) {
+                if (i2 >= size2) {
+                    break;
                 }
-                if (R > 1) {
-                    f = -3.4028235E38f;
+                Object obj2 = arrayList.get(i2);
+                i2++;
+                eu6 eu6Var5 = (eu6) obj2;
+                if (eu6Var5.c() == vb8Var && eu6Var5.m("android.media.intent.category.LIVE_AUDIO") && !eu6Var5.m("android.media.intent.category.LIVE_VIDEO") && eu6Var5.f()) {
+                    this.w = eu6Var5;
+                    Log.i("GlobalMediaRouter", "Found bluetooth route: " + this.w);
+                    break;
                 }
-                i++;
-            } else if (f == Float.MAX_VALUE) {
-                return r59Var.getHeight();
-            } else {
-                return f;
             }
         }
-    }
-
-    public final void a1(boolean z) {
-        this.m2 = z;
-        this.T1.O(false);
-    }
-
-    public final void b1() {
-        List list;
-        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption;
-        ArrayList arrayList = this.g2;
-        arrayList.clear();
-        if (arrayList.isEmpty() && (list = this.U1) != null && !list.isEmpty()) {
-            ArrayList arrayList2 = new ArrayList();
-            long j = 0;
-            for (int size = this.U1.size() - 1; size >= 0; size--) {
-                TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption2 = (TLRPC.TL_premiumGiftCodeOption) this.U1.get(size);
-                if (!"XTR".equalsIgnoreCase(tL_premiumGiftCodeOption2.currency)) {
-                    Iterator it = this.U1.iterator();
-                    while (true) {
-                        if (it.hasNext()) {
-                            tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) it.next();
-                            if (tL_premiumGiftCodeOption != tL_premiumGiftCodeOption2 && "XTR".equalsIgnoreCase(tL_premiumGiftCodeOption.currency) && tL_premiumGiftCodeOption.months == tL_premiumGiftCodeOption2.months) {
-                                break;
-                            }
-                        } else {
-                            tL_premiumGiftCodeOption = null;
-                            break;
-                        }
-                    }
-                    nw4 nw4Var = new nw4(tL_premiumGiftCodeOption2, tL_premiumGiftCodeOption);
-                    arrayList.add(nw4Var);
-                    if (e21.b()) {
-                        if (nw4Var.f() > j) {
-                            j = nw4Var.f();
-                        }
-                    } else if (nw4Var.h() != null && cj0.h().j()) {
-                        ?? obj = new Object();
-                        obj.b = "inapp";
-                        obj.a = nw4Var.h();
-                        arrayList2.add(obj.a());
-                    }
-                }
-            }
-            if (e21.b()) {
-                int size2 = arrayList.size();
-                int i = 0;
-                while (i < size2) {
-                    Object obj2 = arrayList.get(i);
-                    i++;
-                    ((nw4) obj2).g = j;
-                }
-            } else if (!arrayList2.isEmpty()) {
-                System.currentTimeMillis();
-                cj0.h().o(arrayList2, new zw4(this));
-            }
-        }
-        if (arrayList.isEmpty()) {
-            oo0.l(this.S1, null, new ax4(this, (byte) 1));
-        }
-    }
-
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        l7c l7cVar;
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        if (i == nm7.n5) {
-            b1();
-        } else if (i == nm7.H3) {
-            l7c l7cVar2 = this.T1;
-            if (l7cVar2 != null) {
-                l7cVar2.O(true);
-            }
-        } else if (i == nm7.E0) {
-            if (!this.J) {
-                long longValue = ((Long) objArr[0]).longValue();
-                long j = this.W1;
-                if (longValue == j && j > 0) {
-                    int i3 = this.S1;
-                    TLRPC.UserFull X1 = oc7.r1(i3).X1(j);
-                    if (j != z8c.h(i3).e() && X1 != null) {
-                        disallowedGiftsSettings = X1.disallowed_stargifts;
-                    } else {
-                        disallowedGiftsSettings = null;
-                    }
-                    this.V1 = disallowedGiftsSettings;
-                    if (disallowedGiftsSettings != null && disallowedGiftsSettings.disallow_premium_gifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts) {
-                        dismiss();
-                        d S = LaunchActivity.S();
-                        if (S != null) {
-                            b10.u(jb6.a0(null, null, 2131743429, pg3.s(j)), c41.b0(S), 2131624012, 36);
-                            return;
-                        }
-                        return;
-                    }
-                    l7c l7cVar3 = this.T1;
-                    if (l7cVar3 != null) {
-                        l7cVar3.O(true);
-                    }
-                }
-                ArrayList arrayList = this.g2;
-                if (arrayList == null || arrayList.isEmpty()) {
-                    b1();
-                    l7c l7cVar4 = this.T1;
-                    if (l7cVar4 != null) {
-                        l7cVar4.O(true);
-                    }
-                }
-            }
-        } else if (i == nm7.K3) {
-            if (!this.J) {
-                TL_stars.StarGift starGift = (TL_stars.StarGift) objArr[0];
-                new c41(this.c, this.J0).s(starGift.sticker, jb6.M0(2131749900, null), gm.S2(jb6.H(',', "Gift2SoldOutCount", starGift.availability_total))).j();
-                l7c l7cVar5 = this.T1;
-                if (l7cVar5 != null) {
-                    l7cVar5.O(true);
-                }
-            }
-        } else if (i == nm7.I3 && objArr[1] == this.h2 && (l7cVar = this.T1) != null) {
-            l7cVar.O(true);
-        }
-    }
-
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        int i = this.S1;
-        nm7.f(i).n(this, nm7.n5);
-        nm7.f(i).n(this, nm7.H3);
-        nm7.f(i).n(this, nm7.E0);
-        nm7.f(i).n(this, nm7.K3);
-        nm7.f(i).n(this, nm7.I3);
-    }
-
-    @Override
-    public final void p0() {
-        try {
-            super.p0();
-        } catch (Exception e) {
-            fc4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void show() {
-        int i = this.S1;
-        if (oc7.r1(i).u2()) {
-            h5.b(i);
-            return;
-        }
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = this.V1;
-        if (disallowedGiftsSettings != null && disallowedGiftsSettings.disallow_premium_gifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts) {
-            d S = LaunchActivity.S();
-            if (S != null) {
-                b10.u(jb6.a0(null, null, 2131743429, pg3.s(this.W1)), c41.b0(S), 2131624012, 36);
+        eu6 eu6Var6 = this.d;
+        if (eu6Var6 != null && eu6Var6.g) {
+            if (z) {
+                g();
+                l();
                 return;
             }
             return;
         }
-        super.show();
-    }
-
-    public ux4(LaunchActivity launchActivity, int i, long j) {
-        this(launchActivity, i, j, null, null);
+        Log.i("GlobalMediaRouter", "Unselecting the current route because it is no longer selectable: " + this.d);
+        j(c(), 0);
     }
 }

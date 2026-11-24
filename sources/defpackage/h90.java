@@ -1,41 +1,34 @@
 package defpackage;
-
-import java.util.Arrays;
-public final class h90 extends uz2 {
+public final class h90 extends az2 {
     public final String a;
-    public final byte[] b;
+    public final String b;
 
-    public h90(String str, byte[] bArr) {
+    public h90(String str, String str2) {
         this.a = str;
-        this.b = bArr;
+        this.b = str2;
     }
 
     public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof uz2) {
-                uz2 uz2Var = (uz2) obj;
-                h90 h90Var = (h90) uz2Var;
-                if (this.a.equals(h90Var.a)) {
-                    if (uz2Var instanceof h90) {
-                        h90Var = (h90) uz2Var;
-                    }
-                    if (Arrays.equals(this.b, h90Var.b)) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+        if (obj == this) {
+            return true;
         }
-        return true;
+        if (obj instanceof az2) {
+            h90 h90Var = (h90) ((az2) obj);
+            if (this.a.equals(h90Var.a) && this.b.equals(h90Var.b)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public final int hashCode() {
-        return ((this.a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.b);
+        return ((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b.hashCode();
     }
 
     public final String toString() {
-        return "File{filename=" + this.a + ", contents=" + Arrays.toString(this.b) + "}";
+        StringBuilder sb = new StringBuilder("RolloutVariant{rolloutId=");
+        sb.append(this.a);
+        sb.append(", variantId=");
+        return b00.j(sb, this.b, "}");
     }
 }

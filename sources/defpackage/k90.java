@@ -1,48 +1,42 @@
 package defpackage;
+public final class k90 extends ez2 {
+    public final int a;
+    public final String b;
+    public final String c;
+    public final boolean d;
 
-import java.util.List;
-public final class k90 {
-    public String a;
-    public String b;
-    public String c;
-    public long d;
-    public Long e;
-    public boolean f;
-    public m90 g;
-    public la0 h;
-    public ka0 i;
-    public p90 j;
-    public List k;
-    public int l;
-    public byte m;
+    public k90(int i, String str, String str2, boolean z) {
+        this.a = i;
+        this.b = str;
+        this.c = str2;
+        this.d = z;
+    }
 
-    public final l90 a() {
-        String str;
-        String str2;
-        m90 m90Var;
-        if (this.m == 7 && (str = this.a) != null && (str2 = this.b) != null && (m90Var = this.g) != null) {
-            return new l90(str, str2, this.c, this.d, this.e, this.f, m90Var, this.h, this.i, this.j, this.k, this.l);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        StringBuilder sb = new StringBuilder();
-        if (this.a == null) {
-            sb.append(" generator");
+        if (obj instanceof ez2) {
+            k90 k90Var = (k90) ((ez2) obj);
+            if (this.a == k90Var.a && this.b.equals(k90Var.b) && this.c.equals(k90Var.c) && this.d == k90Var.d) {
+                return true;
+            }
         }
-        if (this.b == null) {
-            sb.append(" identifier");
+        return false;
+    }
+
+    public final int hashCode() {
+        int i;
+        int hashCode = (((((this.a ^ 1000003) * 1000003) ^ this.b.hashCode()) * 1000003) ^ this.c.hashCode()) * 1000003;
+        if (this.d) {
+            i = 1231;
+        } else {
+            i = 1237;
         }
-        if ((this.m & 1) == 0) {
-            sb.append(" startedAt");
-        }
-        if ((this.m & 2) == 0) {
-            sb.append(" crashed");
-        }
-        if (this.g == null) {
-            sb.append(" app");
-        }
-        if ((this.m & 4) == 0) {
-            sb.append(" generatorType");
-        }
-        dq9.m(ts2.n("Missing required properties:", sb));
-        return null;
+        return hashCode ^ i;
+    }
+
+    public final String toString() {
+        return "OperatingSystem{platform=" + this.a + ", version=" + this.b + ", buildVersion=" + this.c + ", jailbroken=" + this.d + "}";
     }
 }

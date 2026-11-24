@@ -1,284 +1,425 @@
 package defpackage;
 
 import android.app.Activity;
-import android.text.TextUtils;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import org.json.JSONArray;
-import org.telegram.tgnet.TLObject;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.UserInfoActivity;
-import org.telegram.ui.Wallet.c;
-public final class lo0 implements Runnable {
-    public final byte a;
-    public final Object b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
-    public final Object h;
-    public final Object n;
-    public final Object r;
+import org.telegram.ui.Components.Premium.LimitPreviewView;
+import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
+import org.telegram.ui.ProfileActivity;
+public final class lo0 extends iz4 implements gk7 {
+    public final long S;
+    public final int T;
+    public TL_stories.TL_premium_boostsStatus U;
+    public ng1 V;
+    public ScrollSlidingTextTabStrip W;
+    public final ArrayList X;
+    public final ArrayList Y;
+    public boolean Z;
+    public int a0;
+    public boolean b0;
+    public int c0;
+    public final ArrayList d0;
+    public int e0;
+    public LimitPreviewView f0;
+    public final eo0 g0;
+    public boolean h0;
+    public LinearLayout i0;
+    public final TLRPC.Chat j0;
+    public String k0;
+    public String l0;
+    public byte m0;
+    public byte n0;
+    public int o0;
+    public int p0;
 
-    public lo0(UserInfoActivity userInfoActivity, TLRPC.TL_error tL_error, TLObject tLObject, TL_account.TL_birthday tL_birthday, TLRPC.UserFull userFull, TLObject tLObject2, int[] iArr, ArrayList arrayList) {
-        this.a = (byte) 10;
-        this.h = userInfoActivity;
-        this.b = tL_error;
-        this.c = tLObject;
-        this.d = tL_birthday;
-        this.e = userFull;
-        this.n = tLObject2;
-        this.f = iArr;
-        this.r = arrayList;
+    public lo0(long j) {
+        int i = y6c.t0;
+        this.T = i;
+        this.X = new ArrayList();
+        this.Y = new ArrayList();
+        this.d0 = new ArrayList();
+        this.e0 = 0;
+        this.g0 = new eo0(this);
+        this.k0 = "";
+        this.l0 = "";
+        this.m0 = (byte) 5;
+        this.n0 = (byte) 5;
+        this.S = j;
+        this.j0 = na7.q1(i).K0(Long.valueOf(-j));
     }
 
-    @Override
-    public final void run() {
-        String str;
-        byte b = this.a;
-        String str2 = "SERVER_ERROR";
-        Object obj = this.r;
-        Object obj2 = this.f;
-        Object obj3 = this.n;
-        Object obj4 = this.e;
-        Object obj5 = this.d;
-        Object obj6 = this.c;
-        Object obj7 = this.b;
-        Object obj8 = this.h;
-        switch (b) {
-            case 0:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj7;
-                to0 to0Var = (to0) obj8;
-                TLObject tLObject = (TLObject) obj6;
-                List list = (List) obj5;
-                fj0 fj0Var = (fj0) obj4;
-                to0 to0Var2 = (to0) obj3;
-                d dVar = (d) obj2;
-                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) obj;
-                if (tL_error != null) {
-                    to0Var.a(tL_error);
-                    return;
-                } else if (tLObject != null) {
-                    cj0.h().c(((ln8) list.get(0)).c, new ad0(fj0Var, to0Var2, (byte) 2));
-                    cj0.h().h = new no0(to0Var, (byte) 0);
-                    cj0 h = cj0.h();
-                    Activity parentActivity = dVar.getParentActivity();
-                    j5 a = j5.a(z8c.t0);
-                    hi2 hi2Var = new hi2((byte) 9, false);
-                    hi2Var.T((ln8) list.get(0));
-                    h.k(parentActivity, a, tL_inputStorePaymentPremiumGiveaway, Collections.singletonList(hi2Var.c()));
-                    return;
+    public final void D0(Context context, View view, int i) {
+        boolean z = false;
+        if (view instanceof uv4) {
+            uv4 uv4Var = (uv4) view;
+            TL_stories.Boost boost = uv4Var.getBoost();
+            boolean z2 = boost.giveaway;
+            if (z2 && boost.stars > 0) {
+                jva.h1(context, this.T, this.S, boost, getResourceProvider());
+            } else {
+                boolean z3 = boost.gift;
+                if (((!z3 && !z2) || boost.user_id < 0) && !boost.unclaimed) {
+                    if (z2 && boost.user_id == -1) {
+                        t11 t11Var = new t11(getParentActivity(), getResourceProvider());
+                        t11Var.c(2131623982, 36, 36, new String[0]);
+                        t11Var.b.setText(k96.M0(2131753300, null));
+                        t11Var.b.setSingleLine(false);
+                        t11Var.b.setMaxLines(2);
+                        m21.g(this, t11Var, 2750).j();
+                    } else if (!z3 && !z2) {
+                        presentFragment(ProfileActivity.P2(uv4Var.getDialogId()));
+                    }
                 } else {
-                    return;
+                    TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = new TLRPC.TL_payments_checkedGiftCode();
+                    tL_payments_checkedGiftCode.giveaway_msg_id = boost.giveaway_msg_id;
+                    tL_payments_checkedGiftCode.to_id = boost.user_id;
+                    tL_payments_checkedGiftCode.from_id = na7.q1(y6c.t0).w1(-this.j0.id);
+                    int i2 = boost.date;
+                    tL_payments_checkedGiftCode.date = i2;
+                    tL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
+                    int i3 = boost.expires - i2;
+                    tL_payments_checkedGiftCode.days = i3 / 86400;
+                    tL_payments_checkedGiftCode.months = (i3 / 30) / 86400;
+                    if (boost.unclaimed) {
+                        tL_payments_checkedGiftCode.to_id = -1L;
+                        tL_payments_checkedGiftCode.flags = -1;
+                    } else {
+                        tL_payments_checkedGiftCode.boost = boost;
+                    }
+                    new pt4(this, tL_payments_checkedGiftCode, boost.used_gift_slug).show();
                 }
-            case 1:
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj7;
-                qac qacVar = (qac) obj8;
-                TLObject tLObject2 = (TLObject) obj6;
-                List list2 = (List) obj5;
-                fj0 fj0Var2 = (fj0) obj4;
-                qac qacVar2 = (qac) obj3;
-                d dVar2 = (d) obj2;
-                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) obj;
-                if (tL_error2 != null) {
-                    qacVar.a(tL_error2);
-                    return;
-                } else if (tLObject2 != null) {
-                    cj0.h().c(((ln8) list2.get(0)).c, new ad0(fj0Var2, qacVar2, (byte) 1));
-                    cj0.h().h = new mo0(qacVar, (byte) 0);
-                    cj0 h2 = cj0.h();
-                    Activity parentActivity2 = dVar2.getParentActivity();
-                    j5 a2 = j5.a(z8c.t0);
-                    hi2 hi2Var2 = new hi2((byte) 9, false);
-                    hi2Var2.T((ln8) list2.get(0));
-                    h2.k(parentActivity2, a2, tL_inputStorePaymentPremiumGiftCode, Collections.singletonList(hi2Var2.c()));
-                    return;
-                } else {
-                    return;
-                }
-            case 2:
-                String[] strArr = (String[]) obj7;
-                HorizontalScrollView horizontalScrollView = (HorizontalScrollView) obj8;
-                b61 b61Var = (b61) obj6;
-                boolean[] zArr = (boolean[]) obj5;
-                f fVar = (f) obj4;
-                ImageView imageView = (ImageView) obj3;
-                ylb ylbVar = (ylb) obj2;
-                int[] iArr = (int[]) obj;
-                if (TextUtils.isEmpty(strArr[0].trim())) {
-                    horizontalScrollView.setVisibility(8);
-                    b61Var.setEnabled(false);
-                    return;
-                }
-                boolean z = zArr[0];
-                String str3 = strArr[0];
-                fVar.a(str3, new d82(str3, strArr, imageView, ylbVar, z, iArr, b61Var, horizontalScrollView, zArr));
-                return;
-            case 3:
-                w45 w45Var = (w45) obj7;
-                r45 r45Var = (r45) obj8;
-                TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj6;
-                String str4 = (String) obj5;
-                byte[] bArr = (byte[]) obj4;
-                String str5 = ((t45) obj3).a;
-                u35 u35Var = (u35) obj2;
-                y25 y25Var = (y25) obj;
-                if (w45Var.c(r45Var, tonconnectsession, str4, bArr) && ((str = r45Var.e.client_id) == null || str5.equalsIgnoreCase(str))) {
-                    TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
-                    tonconnectregisterkey.session_id = tonconnectsession.id;
-                    tonconnectregisterkey.client_id = str5;
-                    w45Var.f.sendRequestTyped(tonconnectregisterkey, new kc((byte) 0), new t35(w45Var, u35Var, y25Var, tonconnectsession, str4, bArr, r45Var));
-                    return;
-                }
-                u35Var.a("Wallet or TON Connect session changed. Open the request again.");
-                return;
-            case 4:
-                w45 w45Var2 = (w45) obj7;
-                y25 y25Var2 = (y25) obj8;
-                TL_wallet.tonConnectSession tonconnectsession2 = (TL_wallet.tonConnectSession) obj6;
-                String str6 = (String) obj5;
-                byte[] bArr2 = (byte[]) obj4;
-                r45 r45Var2 = (r45) obj3;
-                TL_wallet.tonConnectChallenge tonconnectchallenge = (TL_wallet.tonConnectChallenge) obj2;
-                u35 u35Var2 = (u35) obj;
-                w45Var2.getClass();
-                try {
-                    gm.c3(new ja7(w45Var2, r45Var2, tonconnectsession2, str6, bArr2, w45.r(y25Var2, tonconnectsession2, str6, bArr2, r45Var2.a, r45Var2.b, r45Var2.d, tonconnectchallenge, w45Var2.f.getCurrentTime()), u35Var2, (byte) 9));
-                    return;
-                } catch (Exception e) {
-                    gm.c3(new s35(u35Var2, w45.h("prepare connect challenge", e), (byte) 1));
-                    return;
-                }
-            case 5:
-                w45 w45Var3 = (w45) obj7;
-                y25 y25Var3 = (y25) obj8;
-                TL_wallet.tonConnectSession tonconnectsession3 = (TL_wallet.tonConnectSession) obj6;
-                String str7 = (String) obj5;
-                byte[] bArr3 = (byte[]) obj4;
-                JSONArray jSONArray = (JSONArray) obj3;
-                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) obj2;
-                lf2 lf2Var = (lf2) obj;
-                w45Var3.getClass();
-                try {
-                    gm.c3(new r35(w45Var3, str7, bArr3, tonconnectsession3, w45.s(y25Var3, tonconnectsession3, str7, bArr3, jSONArray, tL_urlAuthResultRequest.domain, null, null, w45Var3.f.getCurrentTime()), lf2Var, y25Var3, jSONArray, tL_urlAuthResultRequest));
-                    return;
-                } catch (Exception e2) {
-                    lf2Var.a(null, w45.h("prepare OAuth identity", e2));
-                    return;
-                }
-            case 6:
-                String str8 = (String) obj5;
-                w45 w45Var4 = ((c) obj8).g;
-                u56 u56Var = new u56((a66) obj7, (String) obj, (byte) 1);
-                w45Var4.getClass();
-                TL_wallet.tonConnectCreateSession tonconnectcreatesession = new TL_wallet.tonConnectCreateSession();
-                tonconnectcreatesession.dapp_client_id = (String) obj6;
-                tonconnectcreatesession.manifest_url = str8;
-                w45Var4.f.sendRequestTyped(tonconnectcreatesession, new kc((byte) 0), new w35(w45Var4, u56Var, (String) obj4, str8, (String) obj3, (String) obj2, (byte) 0));
-                return;
-            case 7:
-                lo7 notificationsController = ((cf7) obj7).getNotificationsController();
-                Collection values = ((HashMap) obj).values();
-                notificationsController.getMessagesController().d4((ArrayList) obj4, true);
-                notificationsController.getMessagesController().X3((ArrayList) obj3, true);
-                notificationsController.getMessagesController().a4((ArrayList) obj2);
-                lo7.l0.c(new v15(notificationsController, (ArrayList) obj6, (vh6) obj8, (ArrayList) obj5, values, (byte) 29));
-                return;
-            case 8:
-                TLObject tLObject3 = (TLObject) obj6;
-                ln8 ln8Var = (ln8) obj8;
-                fj0 fj0Var3 = (fj0) obj4;
-                lf2 lf2Var2 = (lf2) obj3;
-                Activity activity = (Activity) obj2;
-                TLRPC.TL_inputStorePaymentStarsGiveaway tL_inputStorePaymentStarsGiveaway = (TLRPC.TL_inputStorePaymentStarsGiveaway) obj;
-                List list3 = (List) obj5;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj7;
-                if (tLObject3 instanceof TLRPC.TL_boolTrue) {
-                    cj0.h().c(ln8Var.c, new ad0(fj0Var3, lf2Var2, (byte) 5));
-                    cj0.h().h = new rta(lf2Var2, (byte) 2);
-                    cj0 h3 = cj0.h();
-                    j5 a3 = j5.a(z8c.t0);
-                    hi2 hi2Var3 = new hi2((byte) 9, false);
-                    hi2Var3.T((ln8) list3.get(0));
-                    h3.k(activity, a3, tL_inputStorePaymentStarsGiveaway, Collections.singletonList(hi2Var3.c()));
-                    return;
-                }
-                boolean z2 = tLObject3 instanceof TLRPC.TL_boolFalse;
-                Boolean bool = Boolean.FALSE;
-                if (z2) {
-                    lf2Var2.a(bool, "PURCHASE_FORBIDDEN");
-                    return;
-                }
-                if (tL_error3 != null) {
-                    str2 = tL_error3.text;
-                }
-                lf2Var2.a(bool, str2);
-                return;
-            case 9:
-                TLObject tLObject4 = (TLObject) obj6;
-                ln8 ln8Var2 = (ln8) obj8;
-                fj0 fj0Var4 = (fj0) obj4;
-                fv4 fv4Var = (fv4) obj3;
-                Activity activity2 = (Activity) obj2;
-                TLRPC.TL_inputStorePaymentStarsGift tL_inputStorePaymentStarsGift = (TLRPC.TL_inputStorePaymentStarsGift) obj;
-                List list4 = (List) obj5;
-                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj7;
-                if (tLObject4 instanceof TLRPC.TL_boolTrue) {
-                    cj0.h().c(ln8Var2.c, new ad0(fj0Var4, fv4Var, (byte) 4));
-                    cj0.h().h = new xta(fv4Var, (byte) 2);
-                    cj0 h4 = cj0.h();
-                    j5 a4 = j5.a(z8c.t0);
-                    hi2 hi2Var4 = new hi2((byte) 9, false);
-                    hi2Var4.T((ln8) list4.get(0));
-                    h4.k(activity2, a4, tL_inputStorePaymentStarsGift, Collections.singletonList(hi2Var4.c()));
-                    return;
-                }
-                boolean z3 = tLObject4 instanceof TLRPC.TL_boolFalse;
-                Boolean bool2 = Boolean.FALSE;
-                if (z3) {
-                    fv4Var.a(bool2, "PURCHASE_FORBIDDEN");
-                    return;
-                }
-                if (tL_error4 != null) {
-                    str2 = tL_error4.text;
-                }
-                fv4Var.a(bool2, str2);
-                return;
-            default:
-                ((UserInfoActivity) obj8).g0((TLRPC.TL_error) obj7, (TLObject) obj6, (TL_account.TL_birthday) obj5, (TLRPC.UserFull) obj4, (TLObject) obj3, (int[]) obj2, (ArrayList) obj);
-                return;
+            }
+        }
+        boolean z4 = view instanceof wgb;
+        long j = this.S;
+        if (z4) {
+            dn0.D0(this, this.resourceProvider, j, null);
+        }
+        if (view instanceof xv4) {
+            dn0.D0(this, this.resourceProvider, j, ((xv4) view).getPrepaidGiveaway());
+        }
+        if (((ko0) this.d0.get(i)).a == 9) {
+            if (this.e0 == 1) {
+                z = true;
+            }
+            G0(Boolean.valueOf(z));
         }
     }
 
-    public lo0(TLObject tLObject, ln8 ln8Var, fj0 fj0Var, jac jacVar, Activity activity, TLRPC.InputStorePaymentPurpose inputStorePaymentPurpose, List list, TLRPC.TL_error tL_error, byte b) {
-        this.a = b;
-        this.c = tLObject;
-        this.h = ln8Var;
-        this.e = fj0Var;
-        this.n = jacVar;
-        this.f = activity;
-        this.r = inputStorePaymentPurpose;
-        this.d = list;
-        this.b = tL_error;
+    public final void E0(CountDownLatch countDownLatch, bo0 bo0Var) {
+        TL_stories.TL_premium_getBoostsList tL_premium_getBoostsList = new TL_stories.TL_premium_getBoostsList();
+        tL_premium_getBoostsList.limit = this.n0;
+        tL_premium_getBoostsList.offset = this.k0;
+        int i = this.T;
+        tL_premium_getBoostsList.peer = na7.q1(i).h1(this.S);
+        ConnectionsManager.getInstance(i).sendRequest(tL_premium_getBoostsList, new en0(this, countDownLatch, bo0Var, (byte) 4), 2);
     }
 
-    public lo0(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.h = obj2;
-        this.c = obj3;
-        this.d = obj4;
-        this.e = obj5;
-        this.n = obj6;
-        this.f = obj7;
-        this.r = obj8;
+    public final void F0(CountDownLatch countDownLatch, bo0 bo0Var) {
+        TL_stories.TL_premium_getBoostsList tL_premium_getBoostsList = new TL_stories.TL_premium_getBoostsList();
+        tL_premium_getBoostsList.limit = this.m0;
+        tL_premium_getBoostsList.gifts = true;
+        tL_premium_getBoostsList.offset = this.l0;
+        int i = this.T;
+        tL_premium_getBoostsList.peer = na7.q1(i).h1(this.S);
+        ConnectionsManager.getInstance(i).sendRequest(tL_premium_getBoostsList, new en0(this, countDownLatch, bo0Var, (byte) 5), 2);
+    }
+
+    public final void G0(Boolean bool) {
+        if (this.h0) {
+            return;
+        }
+        this.h0 = true;
+        if (bool == null) {
+            Utilities.e.c(new bo0(this, (byte) 1));
+        } else if (bool.booleanValue()) {
+            F0(null, new bo0(this, (byte) 2));
+        } else {
+            E0(null, new bo0(this, (byte) 3));
+        }
+    }
+
+    public final void H0(boolean z) {
+        int i;
+        int i2;
+        View view;
+        float f;
+        if (getParentActivity() == null) {
+            return;
+        }
+        if (this.f0 == null) {
+            LimitPreviewView limitPreviewView = new LimitPreviewView(getParentActivity(), 2131231129, 0, 0, this.resourceProvider);
+            this.f0 = limitPreviewView;
+            limitPreviewView.d0 = true;
+            limitPreviewView.setDarkGradientProvider(new sg0(this, (byte) 7));
+        }
+        if (this.f0.getParent() != null) {
+            ((ViewGroup) this.f0.getParent()).removeView(this.f0);
+        }
+        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.U;
+        if (tL_premium_boostsStatus != null) {
+            this.f0.h(tL_premium_boostsStatus, false);
+            if (z) {
+                this.f0.setAlpha(0.0f);
+                this.f0.animate().alpha(1.0f).start();
+            }
+        }
+        TLRPC.Chat chat = this.j0;
+        if (hc2.V(chat)) {
+            i = 2131753586;
+        } else {
+            i = 2131753584;
+        }
+        String M0 = k96.M0(i, null);
+        if (hc2.V(chat)) {
+            i2 = 2131753585;
+        } else {
+            i2 = 2131753583;
+        }
+        SpannableStringBuilder S2 = gl.S2(k96.M0(i2, null));
+        FrameLayout frameLayout = new FrameLayout(getParentActivity());
+        if (this.U != null) {
+            view = this.f0;
+        } else {
+            view = new View(frameLayout.getContext());
+        }
+        if (this.U != null) {
+            f = -2.0f;
+        } else {
+            f = 110.0f;
+        }
+        frameLayout.addView(view, nme.d(-1, f, 0, 8.0f, 46.0f, 8.0f, 33.0f));
+        i0(M0, S2, frameLayout, new io0(this, getParentActivity()));
+    }
+
+    public final void I0(boolean z) {
+        boolean z2;
+        int i;
+        int i2;
+        boolean z3;
+        boolean z4;
+        ArrayList arrayList = new ArrayList(this.d0);
+        this.d0.clear();
+        this.d0.add(new ja(14, false));
+        if (this.U != null) {
+            this.d0.add(new ko0(16, k96.M0(2131744658, null)));
+            this.d0.add(new ja(0, false));
+            this.d0.add(new ja(2, false));
+            if (this.U.prepaid_giveaways.size() > 0) {
+                this.d0.add(new ko0(12, k96.M0(2131753321, null)));
+                for (int i3 = 0; i3 < this.U.prepaid_giveaways.size(); i3++) {
+                    TL_stories.PrepaidGiveaway prepaidGiveaway = this.U.prepaid_giveaways.get(i3);
+                    ArrayList arrayList2 = this.d0;
+                    if (i3 == this.U.prepaid_giveaways.size() - 1) {
+                        z4 = true;
+                    } else {
+                        z4 = false;
+                    }
+                    ?? jaVar = new ja(11, true);
+                    jaVar.e = prepaidGiveaway;
+                    jaVar.f = z4;
+                    arrayList2.add(jaVar);
+                }
+                this.d0.add(new ko0(6, k96.M0(2131753283, null)));
+            }
+            this.d0.add(new ko0(13, k96.M0(2131753603, null)));
+            int i4 = 2131753601;
+            if (this.e0 == 0) {
+                if (this.X.isEmpty()) {
+                    this.d0.add(new ja(8, false));
+                    this.d0.add(new ja(2, false));
+                } else {
+                    for (int i5 = 0; i5 < this.X.size(); i5++) {
+                        ArrayList arrayList3 = this.d0;
+                        TL_stories.Boost boost = (TL_stories.Boost) this.X.get(i5);
+                        if (i5 == this.X.size() - 1 && !this.Z) {
+                            z3 = true;
+                        } else {
+                            z3 = false;
+                        }
+                        arrayList3.add(new ko0(boost, z3, this.e0));
+                    }
+                    boolean z5 = this.Z;
+                    ArrayList arrayList4 = this.d0;
+                    if (z5) {
+                        arrayList4.add(new ja(9, true));
+                    } else {
+                        arrayList4.add(new ja(7, false));
+                    }
+                    ArrayList arrayList5 = this.d0;
+                    if (hc2.V(this.j0)) {
+                        i4 = 2131753602;
+                    }
+                    arrayList5.add(new ko0(6, k96.M0(i4, null)));
+                }
+            } else if (this.Y.isEmpty()) {
+                this.d0.add(new ja(8, false));
+                this.d0.add(new ja(2, false));
+            } else {
+                for (int i6 = 0; i6 < this.Y.size(); i6++) {
+                    ArrayList arrayList6 = this.d0;
+                    TL_stories.Boost boost2 = (TL_stories.Boost) this.Y.get(i6);
+                    if (i6 == this.Y.size() - 1 && !this.b0) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    arrayList6.add(new ko0(boost2, z2, this.e0));
+                }
+                boolean z6 = this.b0;
+                ArrayList arrayList7 = this.d0;
+                if (z6) {
+                    arrayList7.add(new ja(9, true));
+                } else {
+                    arrayList7.add(new ja(7, false));
+                }
+                ArrayList arrayList8 = this.d0;
+                if (hc2.V(this.j0)) {
+                    i4 = 2131753602;
+                }
+                arrayList8.add(new ko0(6, k96.M0(i4, null)));
+            }
+            this.d0.add(new ko0(1, k96.M0(2131748722, null)));
+            this.d0.add(new ko0(3, this.U.boost_url));
+            if (na7.q1(this.T).k4.O1.f && hc2.N(this.j0)) {
+                ArrayList arrayList9 = this.d0;
+                if (hc2.V(this.j0)) {
+                    i = 2131753266;
+                } else {
+                    i = 2131753265;
+                }
+                arrayList9.add(new ko0(6, k96.M0(i, null)));
+                this.d0.add(new ja(10, true));
+                ArrayList arrayList10 = this.d0;
+                if (hc2.V(this.j0)) {
+                    i2 = 2131753500;
+                } else {
+                    i2 = 2131753499;
+                }
+                arrayList10.add(new ko0(6, k96.M0(i2, null)));
+            } else {
+                this.d0.add(new ko0(6, ""));
+            }
+            this.d0.add(new ja(15, false));
+        }
+        eo0 eo0Var = this.g0;
+        if (z) {
+            eo0Var.E(arrayList, this.d0);
+        } else {
+            eo0Var.f();
+        }
+    }
+
+    @Override
+    public final View createView(Context context) {
+        View createView = super.createView(context);
+        H0(false);
+        gb3 gb3Var = new gb3();
+        gb3Var.m = false;
+        gb3Var.C = false;
+        this.c.setItemAnimator(gb3Var);
+        this.c.setOnItemClickListener(new k0(this, context, (byte) 2));
+        Activity parentActivity = getParentActivity();
+        LinearLayout linearLayout = new LinearLayout(parentActivity);
+        this.i0 = linearLayout;
+        linearLayout.setOrientation(1);
+        this.i0.addView(new fo0(parentActivity), nme.t(100, 100, 17, 0, 120, 0, 0));
+        ((ViewGroup) this.fragmentView).addView(this.i0, nme.e(-1, -2, 17));
+        this.i0.setAlpha(0.0f);
+        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.U;
+        LinearLayout linearLayout2 = this.i0;
+        if (tL_premium_boostsStatus == null) {
+            linearLayout2.animate().alpha(1.0f).setDuration(200L).setStartDelay(500L).start();
+            getMessagesController().E0().a(this.S, new co0(this, (byte) 1));
+        } else {
+            linearLayout2.setVisibility(8);
+            G0(null);
+        }
+        I0(false);
+        return createView;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        d dVar;
+        d dVar2;
+        if (i == kk7.W2) {
+            TLRPC.Chat chat = (TLRPC.Chat) objArr[0];
+            boolean booleanValue = ((Boolean) objArr[1]).booleanValue();
+            List fragmentStack = getParentLayout().getFragmentStack();
+            d dVar3 = null;
+            if (fragmentStack.size() >= 2) {
+                dVar = (d) oo1.m(2, fragmentStack);
+            } else {
+                dVar = null;
+            }
+            if (dVar instanceof p82) {
+                ((ActionBarLayout) getParentLayout()).c0(dVar, false);
+            }
+            List fragmentStack2 = getParentLayout().getFragmentStack();
+            if (fragmentStack2.size() >= 2) {
+                dVar2 = (d) oo1.m(2, fragmentStack2);
+            } else {
+                dVar2 = null;
+            }
+            if (booleanValue) {
+                if (fragmentStack2.size() >= 3) {
+                    dVar3 = (d) oo1.m(3, fragmentStack2);
+                }
+                if (dVar2 instanceof ProfileActivity) {
+                    ((ActionBarLayout) getParentLayout()).c0(dVar2, false);
+                }
+                finishFragment();
+                if (dVar3 instanceof mu1) {
+                    ym0.f(dVar3, chat, true);
+                }
+                if (dVar2 instanceof mu1) {
+                    ym0.f(dVar2, chat, true);
+                    return;
+                }
+                return;
+            }
+            finishFragment();
+            if ((dVar2 instanceof ProfileActivity) || (dVar2 instanceof mu1)) {
+                ym0.f(dVar2, chat, false);
+            }
+        } else if (i == kk7.q3) {
+            if (this.S == ((Long) objArr[2]).longValue()) {
+                this.U = (TL_stories.TL_premium_boostsStatus) objArr[0];
+                this.V = (ng1) objArr[1];
+            }
+        }
+    }
+
+    @Override
+    public final w39 j0() {
+        return this.g0;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        getNotificationCenter().b(this, kk7.W2);
+        getNotificationCenter().b(this, kk7.q3);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        getNotificationCenter().n(this, kk7.W2);
+        getNotificationCenter().n(this, kk7.q3);
+        super.onFragmentDestroy();
     }
 }

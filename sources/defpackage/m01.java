@@ -1,33 +1,60 @@
 package defpackage;
 
-import java.util.LinkedHashMap;
-public final class m01 {
-    public final long a;
-    public int b;
-    public k01 c;
-    public k01 d;
-    public int e;
-    public long f;
-    public boolean g;
-    public byte[] h;
-    public int i;
-    public int j;
-    public final LinkedHashMap k = new LinkedHashMap();
-    public long l;
+import java.util.Arrays;
+import java.util.List;
+public abstract class m01 {
+    public static final List a = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object(), new Object());
 
-    public m01(long j) {
-        this.a = j;
+    public float a() {
+        return 0.85f;
     }
 
-    public final boolean a() {
-        if (this.h != null) {
-            for (u01 u01Var : this.k.values()) {
-                if (u01Var.i == null) {
-                    return false;
+    public int b() {
+        return -16777216;
+    }
+
+    public float c() {
+        return 0.25f;
+    }
+
+    public int d() {
+        return 2131624126;
+    }
+
+    public float e() {
+        return 1.0f;
+    }
+
+    public float f() {
+        return 0.4f;
+    }
+
+    public float g() {
+        return 1.0f;
+    }
+
+    public String h(int i) {
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 2) {
+                    return null;
                 }
+                return "brush";
             }
-            return true;
+            return "compositeWithMask";
         }
-        return false;
+        return "blitWithMask";
+    }
+
+    public float i() {
+        return 1.0f;
+    }
+
+    public float j() {
+        return 0.15f;
+    }
+
+    public int k() {
+        return 2131232516;
     }
 }

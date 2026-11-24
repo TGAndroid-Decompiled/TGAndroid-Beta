@@ -1,15 +1,18 @@
 package defpackage;
-public abstract class dke {
-    public final byte a = 1;
+public enum dke {
+    BROADCAST_ACTION_UNSPECIFIED(0),
+    PURCHASES_UPDATED_ACTION(1),
+    LOCAL_PURCHASES_UPDATED_ACTION(2),
+    ALTERNATIVE_BILLING_ACTION(3);
+    
+    public final byte a;
 
-    public abstract Object d();
+    dke(int i) {
+        this.a = i;
+    }
 
+    @Override
     public final String toString() {
-        switch (this.a) {
-            case 1:
-                return d().toString();
-            default:
-                return super.toString();
-        }
+        return Integer.toString(this.a);
     }
 }

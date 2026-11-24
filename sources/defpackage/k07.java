@@ -1,3 +1,9 @@
 package defpackage;
-public interface k07 {
+
+import android.graphics.Point;
+import android.view.Display;
+public abstract class k07 {
+    public static void a(Display display, Point point) {
+        display.getRealSize(point);
+    }
 }

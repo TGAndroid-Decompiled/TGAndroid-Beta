@@ -1,46 +1,43 @@
 package defpackage;
+public final class ip3 implements Runnable {
+    public final byte a;
+    public final op3 b;
 
-import java.io.EOFException;
-public final class ip3 implements yzb {
-    public final byte[] a = new byte[4096];
-
-    @Override
-    public final void b(yw7 yw7Var, int i, int i2) {
-        yw7Var.O(i);
+    public ip3(op3 op3Var, byte b) {
+        this.a = b;
+        this.b = op3Var;
     }
 
     @Override
-    public final int c(s73 s73Var, int i, boolean z) {
-        byte[] bArr = this.a;
-        int read = s73Var.read(bArr, 0, Math.min(bArr.length, i));
-        if (read == -1) {
-            if (z) {
-                return -1;
-            }
-            throw new EOFException();
+    public final void run() {
+        byte b = this.a;
+        op3 op3Var = this.b;
+        switch (b) {
+            case 0:
+                op3Var.b();
+                return;
+            case 1:
+                op3Var.e = false;
+                lp3 lp3Var = op3Var.s;
+                if (lp3Var != null) {
+                    lp3Var.a(true);
+                    op3Var.s = null;
+                }
+                np3 np3Var = op3Var.n;
+                if (np3Var != null) {
+                    np3Var.a();
+                }
+                op3Var.c = false;
+                op3Var.d();
+                return;
+            default:
+                if (op3Var.c && op3Var.r != null) {
+                    op3Var.n.b(2131624012, 3500, k96.N0("VideoConvertFail"));
+                    op3Var.c = false;
+                    op3Var.d();
+                    return;
+                }
+                return;
         }
-        return read;
-    }
-
-    @Override
-    public final void e(int i, yw7 yw7Var) {
-        mlb.b(this, yw7Var, i);
-    }
-
-    @Override
-    public final int f(s73 s73Var, int i, boolean z) {
-        return c(s73Var, i, z);
-    }
-
-    @Override
-    public final void d(long j) {
-    }
-
-    @Override
-    public final void g(go4 go4Var) {
-    }
-
-    @Override
-    public final void a(long j, int i, int i2, int i3, xzb xzbVar) {
     }
 }

@@ -1,11 +1,8 @@
 package defpackage;
 
-import java.io.IOException;
-public final class bs3 extends IOException {
-    public final int a;
+import android.content.Context;
+public interface bs3 {
+    int a(Context context, String str, boolean z);
 
-    public bs3(int i, Throwable th) {
-        super(th);
-        this.a = i;
-    }
+    int b(Context context, String str);
 }

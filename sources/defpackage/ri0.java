@@ -1,38 +1,32 @@
 package defpackage;
-public final class ri0 {
-    public static final byte[] e = new byte[1792];
-    public final CharSequence a;
-    public final int b;
-    public int c;
-    public char d;
+public final class ri0 implements Runnable {
+    public final byte a;
+    public final aj0 b;
 
-    static {
-        for (int i = 0; i < 1792; i++) {
-            e[i] = Character.getDirectionality(i);
-        }
+    public ri0(aj0 aj0Var, byte b) {
+        this.a = b;
+        this.b = aj0Var;
     }
 
-    public ri0(CharSequence charSequence) {
-        this.a = charSequence;
-        this.b = charSequence.length();
-    }
-
-    public final byte a() {
-        CharSequence charSequence = this.a;
-        char charAt = charSequence.charAt(this.c - 1);
-        this.d = charAt;
-        boolean isLowSurrogate = Character.isLowSurrogate(charAt);
-        int i = this.c;
-        if (isLowSurrogate) {
-            int codePointBefore = Character.codePointBefore(charSequence, i);
-            this.c -= Character.charCount(codePointBefore);
-            return Character.getDirectionality(codePointBefore);
+    @Override
+    public final void run() {
+        byte b = this.a;
+        aj0 aj0Var = this.b;
+        switch (b) {
+            case 0:
+                lj0 lj0Var = aj0Var.m0;
+                aod aodVar = lj0Var.c;
+                aod aodVar2 = aodVar;
+                if (aodVar == null) {
+                    ?? obj = new Object();
+                    lj0Var.c = obj;
+                    aodVar2 = obj;
+                }
+                aodVar2.b();
+                return;
+            default:
+                aj0Var.m0.u = false;
+                return;
         }
-        this.c = i - 1;
-        char c = this.d;
-        if (c < 1792) {
-            return e[c];
-        }
-        return Character.getDirectionality(c);
     }
 }

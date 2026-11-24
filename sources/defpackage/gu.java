@@ -1,52 +1,59 @@
 package defpackage;
 
-import android.content.Context;
-import android.net.Uri;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.o;
-public final class gu implements Runnable {
-    public final byte a = 2;
-    public final Object b;
-    public final int c;
-    public final boolean d;
-    public final Object e;
-    public final Object f;
-    public final Object h;
-    public final Object n;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class gu extends c49 {
+    public final mu a;
 
-    public gu(k11 k11Var, he[] heVarArr, TLObject tLObject, int i, Uri uri, Context context, boolean z) {
-        this.e = k11Var;
-        this.f = heVarArr;
-        this.b = tLObject;
-        this.c = i;
-        this.h = uri;
-        this.n = context;
-        this.d = z;
+    public gu(mu muVar) {
+        this.a = muVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gu.run():void");
-    }
-
-    public gu(jn3 jn3Var, int[] iArr, String str, String str2, boolean z, int i, Runnable runnable) {
-        this.e = jn3Var;
-        this.b = iArr;
-        this.n = str;
-        this.f = str2;
-        this.d = z;
-        this.c = i;
-        this.h = runnable;
-    }
-
-    public gu(o oVar, TLObject tLObject, int i, TLRPC.WebPage webPage, k47 k47Var, boolean z, String str) {
-        this.e = oVar;
-        this.b = tLObject;
-        this.c = i;
-        this.f = webPage;
-        this.h = k47Var;
-        this.d = z;
-        this.n = str;
+    public final void e(Rect rect, View view, RecyclerView recyclerView, p49 p49Var) {
+        c27 c27Var;
+        float[] fArr;
+        lu luVar = this.a.w;
+        int i = 0;
+        rect.bottom = 0;
+        if (view instanceof cv) {
+            c27Var = (c27) luVar.b.get(((cv) view).O);
+        } else if (view instanceof xv) {
+            c27Var = (c27) luVar.b.get(((xv) view).M);
+        } else {
+            c27Var = null;
+        }
+        if (c27Var != null && c27Var.m != null) {
+            Point point = gl.q;
+            float max = Math.max(point.x, point.y) * 0.5f;
+            int i2 = 0;
+            int i3 = 0;
+            while (true) {
+                if (i2 >= c27Var.m.length) {
+                    break;
+                }
+                i3 += (int) Math.ceil(fArr[i2] * max);
+                i2++;
+            }
+            int M = (gl.M(11.0f) * (c27Var.d - c27Var.c)) + i3;
+            int size = luVar.a.size();
+            while (true) {
+                if (i < size) {
+                    c27 c27Var2 = (c27) luVar.a.get(i);
+                    byte b = c27Var2.c;
+                    byte b2 = c27Var.c;
+                    if (b == b2 && ((c27Var2.a != c27Var.a || c27Var2.b != c27Var.b || b != b2 || c27Var2.d != c27Var.d) && b == b2)) {
+                        M = de9.f(4.0f, (int) Math.ceil(max * c27Var2.f), M);
+                        break;
+                    }
+                    i++;
+                } else {
+                    break;
+                }
+            }
+            rect.bottom = -M;
+        }
     }
 }

@@ -21,7 +21,7 @@ public class AnimatedArrowDrawable extends Drawable {
         Paint paint = new Paint(1);
         this.a = paint;
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(gm.N(1.66f));
+        paint.setStrokeWidth(gl.N(1.66f));
         paint.setColor(i);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -49,9 +49,9 @@ public class AnimatedArrowDrawable extends Drawable {
         if (f2 > 0.0f) {
             float f3 = this.h;
             if (f3 > 0.0f) {
-                float N = gm.N(this.i) / 2.0f;
-                float N2 = gm.N(f2) - N;
-                float N3 = gm.N(f3) - N;
+                float N = gl.N(this.i) / 2.0f;
+                float N2 = gl.N(f2) - N;
+                float N3 = gl.N(f3) - N;
                 float f4 = N3 - N;
                 path.moveTo(N, N3 - (this.c * f4));
                 path.lineTo((N + N2) / 2.0f, (this.c * f4) + N);
@@ -60,14 +60,14 @@ public class AnimatedArrowDrawable extends Drawable {
             }
         }
         if (this.f) {
-            path.moveTo(gm.L(3.0f), gm.L(6.0f) - (gm.L(2.0f) * f));
-            path.lineTo(gm.L(8.0f), (gm.L(2.0f) * f) + gm.L(6.0f));
-            path.lineTo(gm.L(13.0f), gm.L(6.0f) - (gm.L(2.0f) * f));
+            path.moveTo(gl.L(3.0f), gl.L(6.0f) - (gl.L(2.0f) * f));
+            path.lineTo(gl.L(8.0f), (gl.L(2.0f) * f) + gl.L(6.0f));
+            path.lineTo(gl.L(13.0f), gl.L(6.0f) - (gl.L(2.0f) * f));
             return;
         }
-        path.moveTo(gm.L(4.5f), (gm.L(2.0f) * this.c) + (gm.L(12.0f) - (gm.L(4.0f) * f)));
-        path.lineTo(gm.L(13.0f), (gm.L(2.0f) * this.c) + (gm.L(4.0f) * f) + gm.L(12.0f));
-        path.lineTo(gm.L(21.5f), (gm.L(2.0f) * this.c) + (gm.L(12.0f) - (gm.L(4.0f) * f)));
+        path.moveTo(gl.L(4.5f), (gl.L(2.0f) * this.c) + (gl.L(12.0f) - (gl.L(4.0f) * f)));
+        path.lineTo(gl.L(13.0f), (gl.L(2.0f) * this.c) + (gl.L(4.0f) * f) + gl.L(12.0f));
+        path.lineTo(gl.L(21.5f), (gl.L(2.0f) * this.c) + (gl.L(12.0f) - (gl.L(4.0f) * f)));
     }
 
     @Override
@@ -105,18 +105,18 @@ public class AnimatedArrowDrawable extends Drawable {
     public final int getIntrinsicHeight() {
         float f = this.h;
         if (f > 0.0f) {
-            return gm.L(f);
+            return gl.L(f);
         }
-        return gm.L(26.0f);
+        return gl.L(26.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
         float f = this.g;
         if (f > 0.0f) {
-            return gm.L(f);
+            return gl.L(f);
         }
-        return gm.L(26.0f);
+        return gl.L(26.0f);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class AnimatedArrowDrawable extends Drawable {
         Paint paint = new Paint(1);
         this.a = paint;
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(gm.L(2.0f));
+        paint.setStrokeWidth(gl.L(2.0f));
         paint.setColor(i);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);

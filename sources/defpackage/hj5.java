@@ -2,27 +2,32 @@ package defpackage;
 
 import android.os.IBinder;
 import android.os.IInterface;
-import android.os.Parcel;
-public final class hj5 implements jj5, IInterface {
-    public final IBinder a;
+public interface hj5 extends IInterface {
+    void A(long j, boolean z);
 
-    public hj5(IBinder iBinder) {
-        this.a = iBinder;
-    }
+    void D(long j, float f);
 
-    public final void a(Parcel parcel, int i) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            this.a.transact(i, parcel, obtain, 0);
-            obtain.readException();
-        } finally {
-            parcel.recycle();
-            obtain.recycle();
-        }
-    }
+    long G(byte[] bArr, byte[] bArr2, float f, float f2, int i, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6, boolean z, jj5 jj5Var);
 
-    @Override
-    public final IBinder asBinder() {
-        return this.a;
-    }
+    void H(long j);
+
+    void K(long j, int i, float f, float f2, int i2);
+
+    void L();
+
+    void M(long j, byte[] bArr);
+
+    void k(long j, float f, boolean z, boolean z2, boolean z3);
+
+    void l(long j, long j2, int i, byte[] bArr);
+
+    void r(long j);
+
+    void s(long j, byte[] bArr);
+
+    void u(long j, byte[] bArr);
+
+    void v(IBinder iBinder);
+
+    void x(long j, int i, float f, float f2, int i2, boolean z, boolean z2, int i3, int i4);
 }

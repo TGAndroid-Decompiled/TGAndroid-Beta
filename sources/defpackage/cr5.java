@@ -1,5 +1,3 @@
 package defpackage;
-
-import java.util.RandomAccess;
-public abstract class cr5 extends s3 implements RandomAccess {
+public final class cr5 extends gb3 {
 }

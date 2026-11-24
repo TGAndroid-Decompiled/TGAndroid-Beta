@@ -1,23 +1,15 @@
 package defpackage;
+public final class h50 implements zn7 {
+    public static final h50 a = new Object();
+    public static final w84 b = w84.c("clientType");
+    public static final w84 c = w84.c("androidClientInfo");
 
-import android.media.AudioTrack;
-import android.media.AudioTrack$StreamEventCallback;
-public final class h50 extends AudioTrack$StreamEventCallback {
-    public final i50 a;
-
-    public h50(i50 i50Var) {
-        this.a = i50Var;
-    }
-
-    public final void onDataRequest(AudioTrack audioTrack, int i) {
-        this.a.c.i.e(-1, new w00((byte) 4));
-    }
-
-    public final void onPresentationEnded(AudioTrack audioTrack) {
-        this.a.c.i.e(-1, new w00((byte) 5));
-    }
-
-    public final void onTearDown(AudioTrack audioTrack) {
-        this.a.c.i.e(-1, new w00((byte) 4));
+    @Override
+    public final void a(Object obj, Object obj2) {
+        li2 li2Var = (li2) obj;
+        ao7 ao7Var = (ao7) obj2;
+        ((x70) li2Var).getClass();
+        ao7Var.a(b, ki2.a);
+        ao7Var.a(c, ((x70) li2Var).a);
     }
 }

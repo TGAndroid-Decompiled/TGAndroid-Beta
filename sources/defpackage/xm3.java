@@ -1,46 +1,65 @@
 package defpackage;
 
-import java.util.Comparator;
-import org.telegram.ui.Dictation.DictationAsr;
-public final class xm3 implements Comparator {
-    public final byte a;
-    public final float[] b;
+import android.os.SystemClock;
+import android.util.Log;
+import java.io.File;
+import java.util.concurrent.CountDownLatch;
+public final class xm3 implements gk7 {
+    public final String a;
+    public final long[] b;
+    public final ym3 c;
+    public final File[] d;
+    public final File e;
+    public final CountDownLatch f;
 
-    public xm3(float[] fArr, byte b) {
-        this.a = b;
-        this.b = fArr;
+    public xm3(String str, long[] jArr, ym3 ym3Var, File[] fileArr, File file, CountDownLatch countDownLatch) {
+        this.a = str;
+        this.b = jArr;
+        this.c = ym3Var;
+        this.d = fileArr;
+        this.e = file;
+        this.f = countDownLatch;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        float f;
-        byte b = this.a;
-        float[] fArr = this.b;
-        Integer num = (Integer) obj;
-        Integer num2 = (Integer) obj2;
-        switch (b) {
-            case 0:
-                gn3[] gn3VarArr = DictationAsr.a;
-                return Float.compare(fArr[num2.intValue()], fArr[num.intValue()]);
-            case 1:
-                return Float.compare(fArr[(num.intValue() * 3) + 2], fArr[(num2.intValue() * 3) + 2]);
-            case 2:
-                float f2 = fArr[num.intValue()];
-                float f3 = 0.0f;
-                if (f2 > 0.0f) {
-                    f = (float) Math.log(f2);
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        Object obj;
+        File file;
+        if (objArr.length != 0) {
+            Object obj2 = objArr[0];
+            String str = this.a;
+            if (str.equals(obj2)) {
+                this.b[0] = SystemClock.elapsedRealtime();
+                if (i == kk7.W1) {
+                    this.c.c(((Long) objArr[1]).longValue(), ((Long) objArr[2]).longValue());
+                    return;
+                }
+                if (i == kk7.X1) {
+                    if (objArr.length > 1) {
+                        Object obj3 = objArr[1];
+                        if (obj3 instanceof File) {
+                            file = (File) obj3;
+                            this.d[0] = file;
+                        }
+                    }
+                    file = this.e;
+                    this.d[0] = file;
+                } else if (i == kk7.Y1) {
+                    StringBuilder p = ug8.p("speech models: ", str, " download failed (");
+                    if (objArr.length > 1) {
+                        obj = objArr[1];
+                    } else {
+                        obj = "";
+                    }
+                    p.append(obj);
+                    p.append(")");
+                    Log.d("Dictation", p.toString());
+                    na7.c1().edit().remove("speech_models_checked").apply();
                 } else {
-                    f = 0.0f;
+                    return;
                 }
-                float f4 = fArr[num2.intValue()];
-                if (f4 > 0.0f) {
-                    f3 = (float) Math.log(f4);
-                }
-                return Float.compare(f, f3);
-            case 3:
-                return Float.compare(fArr[(num.intValue() * 3) + 2], fArr[(num2.intValue() * 3) + 2]);
-            default:
-                return Float.compare(fArr[(num.intValue() * 3) + 2], fArr[(num2.intValue() * 3) + 2]);
+                this.f.countDown();
+            }
         }
     }
 }

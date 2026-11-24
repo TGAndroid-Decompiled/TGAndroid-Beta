@@ -1,24 +1,25 @@
 package defpackage;
-public final class jz9 implements Runnable {
-    public final byte a;
-    public final pz b;
 
-    public jz9(pz pzVar, byte b) {
-        this.a = b;
-        this.b = pzVar;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class jz9 extends b4c {
+    public static final int b = 0;
+
+    static {
+        b4c.h(new b4c());
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        pz pzVar = this.b;
-        switch (b) {
-            case 0:
-                gm.E3(((ny9) pzVar.f2).h);
-                return;
-            default:
-                pzVar.requestFocus();
-                return;
-        }
+    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
+        kz9 kz9Var = (kz9) view;
+        kz9Var.setUser((TLRPC.User) c4cVar.H);
+        kz9Var.c(c4cVar.e, false);
+        kz9Var.setDivider(z);
+    }
+
+    @Override
+    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
+        return new kz9(context, true, false, wjbVar, false);
     }
 }

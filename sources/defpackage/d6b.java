@@ -1,50 +1,15 @@
 package defpackage;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-public final class d6b implements e6b, atc {
+public final class d6b implements Runnable {
     public final byte a;
-    public final File b;
+    public final t7b b;
 
-    public d6b(File file, byte b) {
+    public d6b(t7b t7bVar, byte b) {
         this.a = b;
-        this.b = file;
+        this.b = t7bVar;
     }
 
     @Override
-    public final InputStream a() {
-        byte b = this.a;
-        File file = this.b;
-        switch (b) {
-            case 2:
-                return new FileInputStream(file);
-            case 3:
-                if (!file.exists()) {
-                    return null;
-                }
-                return new FileInputStream(file);
-            case 4:
-                if (!file.exists()) {
-                    return null;
-                }
-                return new FileInputStream(file);
-            default:
-                return new FileInputStream(file);
-        }
-    }
-
-    @Override
-    public final Bitmap n(BitmapFactory.Options options) {
-        byte b = this.a;
-        File file = this.b;
-        switch (b) {
-            case 0:
-                return BitmapFactory.decodeFile(file.getPath(), options);
-            default:
-                return BitmapFactory.decodeFile(file.getPath(), options);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.d6b.run():void");
     }
 }

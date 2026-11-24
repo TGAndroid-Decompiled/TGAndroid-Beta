@@ -1,66 +1,45 @@
 package defpackage;
 
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class py7 implements View.OnTouchListener {
-    public final byte a;
-    public final xz7 b;
-
-    public py7(xz7 xz7Var, byte b) {
-        this.a = b;
-        this.b = xz7Var;
-    }
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
+public final class py7 extends b4 {
+    public static final Parcelable.Creator<py7> CREATOR = new t4d((byte) 9);
+    public boolean a;
+    public boolean b;
+    public uc1 c;
+    public boolean d;
+    public lga e;
+    public ArrayList f;
+    public wz7 h;
+    public myb n;
+    public boolean r;
+    public String s;
+    public Bundle w;
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        byte b = this.a;
-        xz7 xz7Var = this.b;
-        switch (b) {
-            case 0:
-                if (xz7Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    az2 az2Var = new az2(null, false);
-                    az2Var.r = new cz6(xz7Var, view, (byte) 10);
-                    xz7Var.presentFragment(az2Var);
-                }
-                return true;
-            case 1:
-                if (xz7Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xz7Var.getParentActivity());
-                    String M0 = jb6.M0(2131747199, null);
-                    he heVar = alertDialog$Builder.a;
-                    heVar.S = M0;
-                    alertDialog$Builder.e(new CharSequence[]{jb6.M0(2131747241, null), jb6.M0(2131747302, null)}, new r30(xz7Var, (byte) 3));
-                    alertDialog$Builder.j(jb6.M0(2131752542, null), null);
-                    xz7Var.showDialog(heVar);
-                }
-                return true;
-            case 2:
-                if (xz7Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    az2 az2Var2 = new az2(null, false);
-                    az2Var2.r = new qy7(xz7Var, (byte) 2);
-                    xz7Var.presentFragment(az2Var2);
-                }
-                return true;
-            default:
-                if (xz7Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    az2 az2Var3 = new az2(null, false);
-                    az2Var3.r = new qy7(xz7Var, (byte) 3);
-                    xz7Var.presentFragment(az2Var3);
-                }
-                return true;
-        }
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        boolean z = this.a;
+        jte.q(parcel, 1, 4);
+        parcel.writeInt(z ? 1 : 0);
+        boolean z2 = this.b;
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(z2 ? 1 : 0);
+        jte.k(parcel, 3, this.c, i);
+        boolean z3 = this.d;
+        jte.q(parcel, 4, 4);
+        parcel.writeInt(z3 ? 1 : 0);
+        jte.k(parcel, 5, this.e, i);
+        jte.h(parcel, 6, this.f);
+        jte.k(parcel, 7, this.h, i);
+        jte.k(parcel, 8, this.n, i);
+        boolean z4 = this.r;
+        jte.q(parcel, 9, 4);
+        parcel.writeInt(z4 ? 1 : 0);
+        jte.l(parcel, 10, this.s);
+        jte.b(parcel, 11, this.w);
+        jte.s(parcel, r);
     }
 }

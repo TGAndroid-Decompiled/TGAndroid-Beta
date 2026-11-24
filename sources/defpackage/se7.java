@@ -1,29 +1,69 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class se7 implements Runnable {
-    public final cf7 a;
-    public final String b;
-    public final long c;
-    public final TLRPC.Reaction d;
-    public final short e;
-    public final int f;
-    public final boolean h;
-    public final nac n;
+import java.util.concurrent.Delayed;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+public final class se7 extends cie implements ScheduledFuture, t56, Future {
+    public final t2 b;
+    public final ScheduledFuture c;
 
-    public se7(cf7 cf7Var, String str, long j, TLRPC.Reaction reaction, int i, int i2, boolean z, nac nacVar) {
-        this.a = cf7Var;
-        this.b = str;
-        this.c = j;
-        this.d = reaction;
-        this.e = i;
-        this.f = i2;
-        this.h = z;
-        this.n = nacVar;
+    public se7(t2 t2Var, ScheduledFuture scheduledFuture) {
+        this.b = t2Var;
+        this.c = scheduledFuture;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.se7.run():void");
+    public final void b(Runnable runnable, Executor executor) {
+        this.b.b(runnable, executor);
+    }
+
+    @Override
+    public final boolean cancel(boolean z) {
+        boolean e = e(z);
+        if (e) {
+            this.c.cancel(z);
+        }
+        return e;
+    }
+
+    @Override
+    public final int compareTo(Delayed delayed) {
+        return this.c.compareTo(delayed);
+    }
+
+    @Override
+    public final Object d() {
+        return this.b;
+    }
+
+    public final boolean e(boolean z) {
+        return this.b.cancel(z);
+    }
+
+    @Override
+    public final Object get() {
+        return this.b.get();
+    }
+
+    @Override
+    public final long getDelay(TimeUnit timeUnit) {
+        return this.c.getDelay(timeUnit);
+    }
+
+    @Override
+    public final boolean isCancelled() {
+        return this.b.isCancelled();
+    }
+
+    @Override
+    public final boolean isDone() {
+        return this.b.isDone();
+    }
+
+    @Override
+    public final Object get(long j, TimeUnit timeUnit) {
+        return this.b.get(j, timeUnit);
     }
 }

@@ -1,59 +1,62 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.LinearLayout;
-public final class bg implements View.OnClickListener {
-    public final byte a = 1;
-    public final LinearLayout b;
-    public final int[] c;
+import android.content.DialogInterface;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+public final class bg implements DialogInterface.OnCancelListener {
+    public final byte a;
+    public final int b;
+    public final Object c;
+    public final Object d;
 
-    public bg(LinearLayout linearLayout, int[] iArr) {
-        this.b = linearLayout;
+    public bg(int i, int[] iArr, hb5 hb5Var) {
+        this.a = (byte) 1;
+        this.b = i;
         this.c = iArr;
+        this.d = hb5Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        boolean z;
-        boolean z2;
+    public final void onCancel(DialogInterface dialogInterface) {
+        int[] iArr;
         byte b = this.a;
-        int[] iArr = this.c;
-        LinearLayout linearLayout = this.b;
+        Object obj = this.d;
+        int i = this.b;
+        Object obj2 = this.c;
         switch (b) {
             case 0:
-                iArr[0] = ((Integer) view.getTag()).intValue();
-                int childCount = linearLayout.getChildCount();
-                for (int i = 0; i < childCount; i++) {
-                    View childAt = linearLayout.getChildAt(i);
-                    if (childAt instanceof x09) {
-                        x09 x09Var = (x09) childAt;
-                        if (childAt == view) {
-                            z = true;
-                        } else {
-                            z = false;
-                        }
-                        x09Var.c.a(z, true);
+                vm1 vm1Var = (vm1) obj;
+                for (int i2 : (int[]) obj2) {
+                    if (i2 != 0) {
+                        ConnectionsManager.getInstance(i).cancelRequest(i2, true);
                     }
+                }
+                if (vm1Var != null) {
+                    vm1Var.run();
+                    return;
+                }
+                return;
+            case 1:
+                hb5 hb5Var = (hb5) obj;
+                String str = LaunchActivity.C1;
+                ConnectionsManager.getInstance(i).cancelRequest(((int[]) obj2)[0], true);
+                if (hb5Var != null) {
+                    hb5Var.run();
+                    return;
                 }
                 return;
             default:
-                int childCount2 = linearLayout.getChildCount();
-                for (int i2 = 0; i2 < childCount2; i2++) {
-                    x09 x09Var2 = (x09) linearLayout.getChildAt(i2);
-                    if (x09Var2 == view) {
-                        z2 = true;
-                    } else {
-                        z2 = false;
-                    }
-                    x09Var2.c.a(z2, true);
-                }
-                iArr[0] = djb.f[((Integer) view.getTag()).intValue()];
+                ((na7) obj2).getConnectionsManager().cancelRequest(i, true);
+                ((d) obj).setVisibleDialog(null);
                 return;
         }
     }
 
-    public bg(int[] iArr, LinearLayout linearLayout) {
-        this.c = iArr;
-        this.b = linearLayout;
+    public bg(Object obj, int i, Object obj2, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = i;
+        this.d = obj2;
     }
 }

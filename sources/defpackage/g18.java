@@ -1,32 +1,17 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.p;
-public final class g18 implements v18 {
-    public final p a;
+import android.view.View;
+public final class g18 implements View.OnClickListener {
+    public final byte a;
+    public final y28 b;
 
-    public g18(p pVar) {
-        this.a = pVar;
+    public g18(y28 y28Var, byte b) {
+        this.a = b;
+        this.b = y28Var;
     }
 
     @Override
-    public final boolean c(String str, String str2, boolean z, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        return false;
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
-        p pVar = this.a;
-        pVar.J0 = tL_payments_validateRequestedInfo;
-        pVar.H0(tL_payments_validateRequestedInfo.info);
-    }
-
-    @Override
-    public final void a(TL_account.Password password) {
-    }
-
-    @Override
-    public final void b() {
+    public final void onClick(android.view.View r20) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.g18.onClick(android.view.View):void");
     }
 }

@@ -1,3 +1,5 @@
 package defpackage;
-public abstract class phe {
+
+import android.os.IInterface;
+public interface phe extends IInterface {
 }

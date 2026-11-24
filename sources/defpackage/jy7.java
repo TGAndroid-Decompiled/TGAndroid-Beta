@@ -1,85 +1,64 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.util.Base64;
-import org.json.JSONObject;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class jy7 implements a33 {
-    public final fh6 a;
-    public final Context b;
-    public final int c;
+import android.graphics.Path;
+import java.util.ArrayList;
+public final class jy7 {
+    public Path a;
+    public float b;
+    public float c;
+    public float d;
+    public float e;
+    public float f;
+    public ArrayList g;
 
-    public jy7(fh6 fh6Var, Context context, int i) {
-        this.a = fh6Var;
-        this.b = context;
-        this.c = i;
-    }
-
-    @Override
-    public final void A(Object obj) {
-        vu4 vu4Var = (vu4) obj;
-        boolean z = vu4Var instanceof sl7;
-        fh6 fh6Var = this.a;
-        if (z) {
-            fh6Var.a(0L, null, "EMPTY");
-        } else if (vu4Var instanceof su4) {
-            fh6Var.a(0L, null, "CANCELLED");
-        } else if (vu4Var instanceof wu4) {
-            fh6Var.a(0L, null, "CANCELLED");
-        } else if (vu4Var != null) {
-            fh6Var.a(0L, null, vu4Var.getMessage());
-        }
-    }
-
-    @Override
-    public final void onResult(Object obj) {
-        final fh6 fh6Var = this.a;
-        x23 x23Var = ((yu4) obj).a;
-        TL_account.finishPasskeyLogin finishpasskeylogin = new TL_account.finishPasskeyLogin();
-        finishpasskeylogin.credential = new TL_account.inputPasskeyCredentialPublicKey();
+    public final void a(String str, float f) {
+        float f2 = this.e;
+        float f3 = this.d;
+        float f4 = this.c;
         try {
-            JSONObject jSONObject = new JSONObject(((Bundle) x23Var.a).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
-            finishpasskeylogin.credential.id = jSONObject.getString("id");
-            finishpasskeylogin.credential.raw_id = jSONObject.getString("rawId");
-            JSONObject jSONObject2 = jSONObject.getJSONObject("response");
-            TL_account.inputPasskeyResponseLogin inputpasskeyresponselogin = new TL_account.inputPasskeyResponseLogin();
-            TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
-            inputpasskeyresponselogin.client_data = tL_dataJSON;
-            tL_dataJSON.data = new String(Base64.decode(jSONObject2.getString("clientDataJSON"), 8));
-            inputpasskeyresponselogin.authenticator_data = Base64.decode(jSONObject2.getString("authenticatorData"), 8);
-            inputpasskeyresponselogin.signature = Base64.decode(jSONObject2.getString("signature"), 8);
-            String str = new String(Base64.decode(jSONObject2.getString("userHandle"), 8));
-            inputpasskeyresponselogin.user_handle = str;
-            int parseInt = Integer.parseInt(str.split(":")[0]);
-            final long parseLong = Long.parseLong(inputpasskeyresponselogin.user_handle.split(":")[1]);
-            finishpasskeylogin.credential.response = inputpasskeyresponselogin;
-            he heVar = new he(3, null, this.b);
-            heVar.q(500L);
-            int i = this.c;
-            if (parseInt != ConnectionsManager.getInstance(i).getCurrentDatacenterId()) {
-                int currentDatacenterId = ConnectionsManager.getInstance(i).getCurrentDatacenterId();
-                long currentAuthKeyId = ConnectionsManager.getInstance(i).getCurrentAuthKeyId();
-                ConnectionsManager.getInstance(i).setDefaultDatacenterId(parseInt);
-                finishpasskeylogin.flags |= 1;
-                finishpasskeylogin.from_dc_id = currentDatacenterId;
-                finishpasskeylogin.from_auth_key_id = currentAuthKeyId;
-            }
-            final int sendRequestTyped = ConnectionsManager.getInstance(i).sendRequestTyped(finishpasskeylogin, new kc((byte) 0), new fv4(heVar, fh6Var, parseLong, (byte) 4), parseInt, 72);
-            final int i2 = this.c;
-            heVar.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public final void onCancel(DialogInterface dialogInterface) {
-                    ConnectionsManager.getInstance(i2).cancelRequest(sendRequestTyped, true);
-                    fh6Var.a(Long.valueOf(parseLong), null, "CANCELLED");
+            ?? obj = new Object();
+            obj.a = new ArrayList();
+            obj.b = f * this.f;
+            String[] split = str.split(" ");
+            int i = 0;
+            while (i < split.length) {
+                char charAt = split[i].charAt(0);
+                if (charAt != 'C') {
+                    if (charAt != 'L') {
+                        if (charAt == 'M') {
+                            ?? obj2 = new Object();
+                            obj2.a = (Float.parseFloat(split[i + 1]) + f3) * f4;
+                            i += 2;
+                            obj2.b = (Float.parseFloat(split[i]) + f2) * f4;
+                            obj.a.add(obj2);
+                        }
+                    } else {
+                        ?? obj3 = new Object();
+                        obj3.a = (Float.parseFloat(split[i + 1]) + f3) * f4;
+                        i += 2;
+                        obj3.b = (Float.parseFloat(split[i]) + f2) * f4;
+                        obj.a.add(obj3);
+                    }
+                } else {
+                    ?? obj4 = new Object();
+                    obj4.c = (Float.parseFloat(split[i + 1]) + f3) * f4;
+                    obj4.d = (Float.parseFloat(split[i + 2]) + f2) * f4;
+                    obj4.e = (Float.parseFloat(split[i + 3]) + f3) * f4;
+                    obj4.f = (Float.parseFloat(split[i + 4]) + f2) * f4;
+                    obj4.a = (Float.parseFloat(split[i + 5]) + f3) * f4;
+                    i += 6;
+                    obj4.b = (Float.parseFloat(split[i]) + f2) * f4;
+                    obj.a.add(obj4);
                 }
-            });
+                i++;
+            }
+            this.g.add(obj);
         } catch (Exception e) {
-            fc4.g(e, true);
-            fh6Var.a(0L, null, e.getMessage());
+            fa4.g(e, true);
         }
+    }
+
+    public final void b(android.graphics.Canvas r18, android.graphics.Paint r19, float r20) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.jy7.b(android.graphics.Canvas, android.graphics.Paint, float):void");
     }
 }

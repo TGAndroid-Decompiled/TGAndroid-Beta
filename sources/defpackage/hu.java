@@ -1,37 +1,40 @@
 package defpackage;
 
-import android.text.TextUtils;
-import org.telegram.ui.o;
-public final class hu implements Runnable {
-    public final byte a;
-    public final o b;
-    public final String c;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_iv;
+public final class hu extends s35 {
+    public final mu S;
 
-    public hu(o oVar, String str, byte b) {
-        this.a = b;
-        this.b = oVar;
-        this.c = str;
+    public hu(mu muVar) {
+        super(true);
+        this.S = muVar;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        String str = this.c;
-        o oVar = this.b;
-        switch (b) {
-            case 0:
-                vc vcVar = oVar.i0.c0;
-                if (TextUtils.isEmpty(str)) {
-                    str = "about:blank";
+    public final boolean x0() {
+        return false;
+    }
+
+    @Override
+    public final boolean z1(int i) {
+        byte b;
+        mu muVar = this.S;
+        ArrayList<TL_iv.PageBlock> arrayList = muVar.s.items;
+        lu luVar = muVar.w;
+        c27 c27Var = (c27) luVar.b.get(arrayList.get((arrayList.size() - i) - 1));
+        if (c27Var.a != c27Var.b && (b = c27Var.c) == c27Var.d && b != 0) {
+            int size = luVar.a.size();
+            for (int i2 = 0; i2 < size; i2++) {
+                c27 c27Var2 = (c27) luVar.a.get(i2);
+                if (c27Var2 != c27Var) {
+                    byte b2 = c27Var2.c;
+                    byte b3 = c27Var.c;
+                    if (b2 <= b3 && c27Var2.d >= b3) {
+                        return true;
+                    }
                 }
-                vcVar.setText(str);
-                vc vcVar2 = oVar.i0.c0;
-                vcVar2.setSelection(vcVar2.getText().length());
-                gm.E3(oVar.i0.c0);
-                return;
-            default:
-                l11.o(oVar.M, str, false, null);
-                return;
+            }
         }
+        return false;
     }
 }

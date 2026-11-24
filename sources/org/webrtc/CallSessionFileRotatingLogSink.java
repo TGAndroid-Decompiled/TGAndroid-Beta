@@ -8,7 +8,7 @@ public class CallSessionFileRotatingLogSink {
         if (str != null) {
             this.nativeSink = nativeAddSink(str, i, severity.ordinal());
         } else {
-            u36.j("dirPath may not be null.");
+            w26.j("dirPath may not be null.");
             throw null;
         }
     }
@@ -17,7 +17,7 @@ public class CallSessionFileRotatingLogSink {
         if (str != null) {
             return nativeGetLogData(str);
         }
-        u36.j("dirPath may not be null.");
+        w26.j("dirPath may not be null.");
         return null;
     }
 

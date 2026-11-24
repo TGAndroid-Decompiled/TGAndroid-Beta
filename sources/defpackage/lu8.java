@@ -1,73 +1,13 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class lu8 {
-    public final String a;
-    public final String b;
-    public final String c;
-    public final String d;
-    public final String e;
+import java.util.LinkedHashMap;
+public abstract class lu8 {
+    public static final LinkedHashMap a;
 
-    public lu8(String str, String str2, String str3, String str4, String str5) {
-        this.a = str;
-        this.b = str2;
-        this.c = str3;
-        this.d = str4;
-        this.e = str5;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof lu8)) {
-            return false;
-        }
-        lu8 lu8Var = (lu8) obj;
-        if (Objects.equals(this.a, lu8Var.a) && Objects.equals(this.b, lu8Var.b) && Objects.equals(this.c, lu8Var.c) && Objects.equals(this.d, lu8Var.d) && Objects.equals(this.e, lu8Var.e)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int i;
-        int i2;
-        int i3;
-        int i4;
-        int i5 = 0;
-        String str = this.a;
-        if (str != null) {
-            i = str.hashCode();
-        } else {
-            i = 0;
-        }
-        int i6 = (527 + i) * 31;
-        String str2 = this.b;
-        if (str2 != null) {
-            i2 = str2.hashCode();
-        } else {
-            i2 = 0;
-        }
-        int i7 = (i6 + i2) * 31;
-        String str3 = this.c;
-        if (str3 != null) {
-            i3 = str3.hashCode();
-        } else {
-            i3 = 0;
-        }
-        int i8 = (i7 + i3) * 31;
-        String str4 = this.d;
-        if (str4 != null) {
-            i4 = str4.hashCode();
-        } else {
-            i4 = 0;
-        }
-        int i9 = (i8 + i4) * 31;
-        String str5 = this.e;
-        if (str5 != null) {
-            i5 = str5.hashCode();
-        }
-        return i9 + i5;
+    static {
+        ku7[] ku7VarArr = {new ku7(v34.UNKNOWN_ERR, new h1((byte) 26)), new ku7(v34.ABORT_ERR, new h1((byte) 0)), new ku7(v34.ATTESTATION_NOT_PRIVATE_ERR, new h1((byte) 16)), new ku7(v34.CONSTRAINT_ERR, new h1((byte) 1)), new ku7(v34.DATA_ERR, new h1((byte) 3)), new ku7(v34.INVALID_STATE_ERR, new h1((byte) 10)), new ku7(v34.ENCODING_ERR, new h1((byte) 4)), new ku7(v34.NETWORK_ERR, new h1((byte) 12)), new ku7(v34.NOT_ALLOWED_ERR, new h1((byte) 14)), new ku7(v34.NOT_SUPPORTED_ERR, new h1((byte) 17)), new ku7(v34.SECURITY_ERR, new h1((byte) 22)), new ku7(v34.TIMEOUT_ERR, new h1((byte) 24))};
+        LinkedHashMap linkedHashMap = new LinkedHashMap(qi6.b(12));
+        qi6.d(linkedHashMap, ku7VarArr);
+        a = linkedHashMap;
     }
 }

@@ -1,44 +1,39 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-public final class ud0 extends ev5 {
-    public static final long n = fy.a.objectFieldOffset(ud0.class.getDeclaredField("_disposer$volatile"));
-    private volatile Object _disposer$volatile;
-    public final vb1 e;
-    public xp3 f;
-    public final wd0 h;
+import android.graphics.drawable.GradientDrawable;
+public abstract class ud0 {
+    public static final int[] a;
 
-    public ud0(wd0 wd0Var, vb1 vb1Var) {
-        this.h = wd0Var;
-        this.e = vb1Var;
-    }
-
-    @Override
-    public final void l(Throwable th) {
-        vb1 vb1Var = this.e;
-        if (th != null) {
-            du2 E = vb1Var.E(new qq2(th, false), null);
-            if (E != null) {
-                vb1Var.e(E);
-                vd0 vd0Var = (vd0) fy.a.getObjectVolatile(this, n);
-                if (vd0Var != null) {
-                    vd0Var.b();
-                    return;
-                }
-                return;
-            }
-            return;
+    static {
+        int[] iArr = new int[GradientDrawable.Orientation.values().length];
+        a = iArr;
+        try {
+            iArr[GradientDrawable.Orientation.TOP_BOTTOM.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
         }
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = wd0.b;
-        wd0 wd0Var = this.h;
-        if (atomicIntegerFieldUpdater.decrementAndGet(wd0Var) == 0) {
-            le3[] le3VarArr = wd0Var.a;
-            ArrayList arrayList = new ArrayList(le3VarArr.length);
-            for (le3 le3Var : le3VarArr) {
-                arrayList.add(le3Var.getCompleted());
-            }
-            vb1Var.resumeWith(arrayList);
+        try {
+            a[GradientDrawable.Orientation.TR_BL.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            a[GradientDrawable.Orientation.RIGHT_LEFT.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            a[GradientDrawable.Orientation.BR_TL.ordinal()] = 4;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            a[GradientDrawable.Orientation.BOTTOM_TOP.ordinal()] = 5;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            a[GradientDrawable.Orientation.BL_TR.ordinal()] = 6;
+        } catch (NoSuchFieldError unused6) {
+        }
+        try {
+            a[GradientDrawable.Orientation.LEFT_RIGHT.ordinal()] = 7;
+        } catch (NoSuchFieldError unused7) {
         }
     }
 }

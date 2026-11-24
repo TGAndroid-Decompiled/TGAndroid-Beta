@@ -1,34 +1,39 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
-public final class b7c {
-    public a7c a;
-    public final HashMap b = new HashMap();
-    public final ArrayList c = new ArrayList();
+import android.content.Context;
+import android.text.Editable;
+import org.telegram.ui.UserInfoActivity;
+public final class b7c extends it3 {
+    public final byte F;
+    public final UserInfoActivity G;
 
-    public final boolean a() {
-        return !this.c.isEmpty();
+    public b7c(UserInfoActivity userInfoActivity, Context context, String str, int i, wjb wjbVar) {
+        super(context, str, true, false, i, wjbVar);
+        this.F = (byte) 2;
+        this.G = userInfoActivity;
     }
 
-    public final void b(UUID uuid, Runnable runnable) {
-        this.b.put(uuid, runnable);
-        this.c.add(uuid);
-        gm.c3(new zcb(this, (byte) 28));
-    }
-
-    public final void c() {
-        ArrayList arrayList = this.c;
-        if (arrayList.size() == 0) {
-            return;
+    @Override
+    public final void b(Editable editable) {
+        byte b = this.F;
+        UserInfoActivity userInfoActivity = this.G;
+        switch (b) {
+            case 0:
+                userInfoActivity.e0(true);
+                return;
+            case 1:
+                userInfoActivity.e0(true);
+                return;
+            default:
+                userInfoActivity.e0(true);
+                userInfoActivity.i0();
+                return;
         }
-        int size = arrayList.size() - 1;
-        UUID uuid = (UUID) arrayList.get(size);
-        HashMap hashMap = this.b;
-        hashMap.remove(uuid);
-        arrayList.remove(size);
-        ((Runnable) hashMap.get(uuid)).run();
-        gm.c3(new zcb(this, (byte) 28));
+    }
+
+    public b7c(UserInfoActivity userInfoActivity, Context context, String str, wjb wjbVar, byte b) {
+        super(context, str, false, false, -1, wjbVar);
+        this.F = b;
+        this.G = userInfoActivity;
     }
 }

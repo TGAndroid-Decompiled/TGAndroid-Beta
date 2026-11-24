@@ -1,45 +1,20 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.json.JSONArray;
-import org.json.JSONObject;
-public final class kn8 {
-    public final String a;
-    public final jk4 b;
+import android.content.Context;
+import android.graphics.RectF;
+import org.telegram.ui.ProfileActivity;
+public final class kn8 extends pha {
+    public final ProfileActivity x0;
 
-    public kn8(JSONObject jSONObject) {
-        jSONObject.optString("basePlanId");
-        jSONObject.optString("offerId").getClass();
-        this.a = jSONObject.getString("offerIdToken");
-        this.b = new jk4(jSONObject.getJSONArray("pricingPhases"));
-        JSONObject optJSONObject = jSONObject.optJSONObject("installmentPlanDetails");
-        if (optJSONObject != null) {
-            optJSONObject.getInt("commitmentPaymentsCount");
-            optJSONObject.optInt("subsequentCommitmentPaymentsCount");
-        }
-        JSONObject optJSONObject2 = jSONObject.optJSONObject("transitionPlanDetails");
-        if (optJSONObject2 != null) {
-            optJSONObject2.getString("productId");
-            optJSONObject2.optString("title");
-            optJSONObject2.optString("name");
-            optJSONObject2.optString("description");
-            optJSONObject2.optString("basePlanId");
-            JSONObject optJSONObject3 = optJSONObject2.optJSONObject("pricingPhase");
-            if (optJSONObject3 != null) {
-                optJSONObject3.optString("billingPeriod");
-                optJSONObject3.optString("priceCurrencyCode");
-                optJSONObject3.optString("formattedPrice");
-                optJSONObject3.optLong("priceAmountMicros");
-                optJSONObject3.optInt("recurrenceMode");
-                optJSONObject3.optInt("billingCycleCount");
-            }
-        }
-        ArrayList arrayList = new ArrayList();
-        JSONArray optJSONArray = jSONObject.optJSONArray("offerTags");
-        if (optJSONArray != null) {
-            for (int i = 0; i < optJSONArray.length(); i++) {
-                arrayList.add(optJSONArray.getString(i));
-            }
-        }
+    public kn8(ProfileActivity profileActivity, Context context, wjb wjbVar) {
+        super(context, wjbVar);
+        this.x0 = profileActivity;
+    }
+
+    @Override
+    public final void p(int i, float f, float f2, y74 y74Var) {
+        super.p(i, f, f2, y74Var);
+        RectF rectF = ProfileActivity.Z6;
+        this.x0.R3();
     }
 }

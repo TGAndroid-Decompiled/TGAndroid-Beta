@@ -1,46 +1,43 @@
 package defpackage;
-public final class abb implements hf3 {
-    @Override
-    public final void a(vib vibVar, vib vibVar2, int i) {
-        ui6 ui6Var = new ui6();
-        for (ui6 ui6Var2 = (ui6) vibVar.f; ui6Var2 != null && ui6Var2 != vibVar2; ui6Var2 = (ui6) ui6Var2.f) {
-            ui6Var.b(ui6Var2);
-        }
-        ui6Var.g();
-        ui6 ui6Var3 = (ui6) vibVar.f;
-        ui6Var.f = ui6Var3;
-        if (ui6Var3 != null) {
-            ui6Var3.e = ui6Var;
-        }
-        ui6Var.e = vibVar;
-        vibVar.f = ui6Var;
-        ui6 ui6Var4 = (ui6) vibVar.b;
-        ui6Var.b = ui6Var4;
-        if (((ui6) ui6Var.f) == null) {
-            ui6Var4.d = ui6Var;
-        }
+
+import android.content.Context;
+import android.view.MotionEvent;
+public final class abb extends o39 {
+    public boolean f3;
+    public boolean g3;
+    public final dbb h3;
+
+    public abb(dbb dbbVar, Context context) {
+        super(context, null);
+        this.h3 = dbbVar;
     }
 
     @Override
-    public final char b() {
-        return '~';
-    }
-
-    @Override
-    public final int c() {
-        return 2;
-    }
-
-    @Override
-    public final int d(gf3 gf3Var, gf3 gf3Var2) {
-        if (gf3Var.g >= 2 && gf3Var2.g >= 2) {
-            return 2;
+    public final void m0(int i) {
+        boolean canScrollHorizontally = canScrollHorizontally(-1);
+        boolean canScrollHorizontally2 = canScrollHorizontally(1);
+        if (this.f3 == canScrollHorizontally && this.g3 == canScrollHorizontally2) {
+            return;
         }
-        return 0;
+        zab zabVar = this.h3.d;
+        if (zabVar != null) {
+            zabVar.invalidate();
+        }
+        this.f3 = canScrollHorizontally;
+        this.g3 = canScrollHorizontally2;
     }
 
     @Override
-    public final char e() {
-        return '~';
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        vv2 previewDelegate;
+        xv2 e = xv2.e();
+        dbb dbbVar = this.h3;
+        abb abbVar = dbbVar.e;
+        previewDelegate = dbbVar.getPreviewDelegate();
+        boolean g = e.g(motionEvent, abbVar, previewDelegate, this.o2);
+        if (!super.onInterceptTouchEvent(motionEvent) && !g) {
+            return false;
+        }
+        return true;
     }
 }

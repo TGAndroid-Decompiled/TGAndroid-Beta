@@ -1,13 +1,16 @@
 package defpackage;
 
-import android.hardware.biometrics.BiometricPrompt;
-import android.security.identity.IdentityCredential;
-public abstract class c53 {
-    public static BiometricPrompt.CryptoObject a(IdentityCredential identityCredential) {
-        return new BiometricPrompt.CryptoObject(identityCredential);
-    }
+import java.io.Closeable;
+public final class c53 implements Closeable {
+    public lt8 a;
+    public pj4 b;
+    public lt8 c;
+    public g29 d;
+    public lt8 e;
+    public lt8 f;
 
-    public static IdentityCredential b(BiometricPrompt.CryptoObject cryptoObject) {
-        return cryptoObject.getIdentityCredential();
+    @Override
+    public final void close() {
+        ((lo9) this.e.mo9get()).close();
     }
 }

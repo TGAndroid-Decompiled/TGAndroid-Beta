@@ -9,21 +9,21 @@ public final class b1 implements Runnable {
     }
 
     private final void a() {
-        vy vyVar = (vy) this.b;
-        synchronized (vyVar.a) {
-            if (vyVar.m) {
+        ux uxVar = (ux) this.b;
+        synchronized (uxVar.a) {
+            if (uxVar.m) {
                 return;
             }
-            long j = vyVar.l - 1;
-            vyVar.l = j;
+            long j = uxVar.l - 1;
+            uxVar.l = j;
             int i = (j > 0L ? 1 : (j == 0L ? 0 : -1));
             if (i > 0) {
                 return;
             }
             if (i < 0) {
-                vyVar.c(new IllegalStateException());
+                uxVar.c(new IllegalStateException());
             } else {
-                vyVar.a();
+                uxVar.a();
             }
         }
     }

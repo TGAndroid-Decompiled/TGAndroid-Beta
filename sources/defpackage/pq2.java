@@ -1,42 +1,41 @@
 package defpackage;
-public final class pq2 implements px2 {
-    public static final pq2 b = new pq2((byte) 0);
-    public static final pq2 c = new pq2((byte) 1);
-    public final byte a;
 
-    public pq2(byte b2) {
-        this.a = b2;
-    }
+import android.util.SparseArray;
+import j$.util.Objects;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class pq2 {
+    public static final SparseArray e = new SparseArray();
+    public static final ArrayList f = new ArrayList();
+    public final int a;
+    public final boolean b;
+    public final int c;
+    public final boolean d;
 
-    @Override
-    public final cy2 getContext() {
-        switch (this.a) {
-            case 0:
-                throw new IllegalStateException("This continuation is already complete");
-            default:
-                return k34.a;
+    public pq2(int i, int i2) {
+        if (i == -2) {
+            this.d = true;
+            i = -1;
         }
+        this.a = i;
+        Integer valueOf = Integer.valueOf(i);
+        this.b = i2;
+        this.c = Objects.hash(0, valueOf, Integer.valueOf(i2));
     }
 
-    @Override
-    public final void resumeWith(Object obj) {
-        switch (this.a) {
-            case 0:
-                throw new IllegalStateException("This continuation is already complete");
-            default:
-                return;
+    public final void a() {
+        if (e.indexOfKey(this.c) >= 0) {
+            return;
         }
-    }
-
-    public final String toString() {
-        switch (this.a) {
-            case 0:
-                return "This continuation is already complete";
-            default:
-                return super.toString();
+        ArrayList arrayList = f;
+        if (arrayList.contains(Integer.valueOf(this.c))) {
+            return;
         }
+        arrayList.add(Integer.valueOf(this.c));
+        Utilities.e.c(new mk2(this, (byte) 8));
     }
 
-    private final void a(Object obj) {
+    public final int hashCode() {
+        return this.c;
     }
 }

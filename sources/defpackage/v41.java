@@ -1,40 +1,42 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-public final class v41 implements Runnable {
-    public final byte a;
-    public final w41 b;
+import java.io.Serializable;
+import java.util.Arrays;
+public final class v41 extends yq7 implements Serializable {
+    public final aq4 a;
+    public final yq7 b;
 
-    public v41(w41 w41Var, byte b) {
-        this.a = b;
-        this.b = w41Var;
+    public v41(aq4 aq4Var, yq7 yq7Var) {
+        this.a = aq4Var;
+        this.b = yq7Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        w41 w41Var = this.b;
-        switch (b) {
-            case 0:
-                w41Var.a();
-                return;
-            case 1:
-                TL_account.disablePeerConnectedBot disablepeerconnectedbot = new TL_account.disablePeerConnectedBot();
-                int i = w41Var.a;
-                disablepeerconnectedbot.peer = oc7.r1(i).i1(w41Var.s);
-                ConnectionsManager.getInstance(i).sendRequest(disablepeerconnectedbot, null);
-                SharedPreferences.Editor edit = oc7.r1(i).W3.edit();
-                SharedPreferences.Editor remove = edit.remove("dialog_botid" + w41Var.s);
-                SharedPreferences.Editor remove2 = remove.remove("dialog_boturl" + w41Var.s);
-                remove2.remove("dialog_botflags" + w41Var.s).apply();
-                nm7.f(i).k(80, Long.valueOf(w41Var.s));
-                x41.a(i).f = false;
-                return;
-            default:
-                l11.u(w41Var.getContext(), w41Var.y);
-                return;
+    public final int compare(Object obj, Object obj2) {
+        aq4 aq4Var = this.a;
+        return this.b.compare(aq4Var.apply(obj), aq4Var.apply(obj2));
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof v41) {
+                v41 v41Var = (v41) obj;
+                if (this.a.equals(v41Var.a) && this.b.equals(v41Var.b)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, this.b});
+    }
+
+    public final String toString() {
+        return this.b + ".onResultOf(" + this.a + ")";
     }
 }

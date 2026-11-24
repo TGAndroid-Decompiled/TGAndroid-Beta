@@ -1,8 +1,14 @@
 package defpackage;
 
-import java.io.IOException;
-public final class la6 extends IOException {
-    public la6(java.lang.Throwable r4) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.la6.<init>(java.lang.Throwable):void");
-    }
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class la6 {
+    public long a;
+    public TLRPC.Message b;
+    public TLRPC.User c;
+    public TLRPC.Chat d;
+    public sy4 e;
+    public sy4 f;
+    public boolean g;
+    public ImageReceiver h;
 }

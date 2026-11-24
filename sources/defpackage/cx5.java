@@ -1,8 +1,17 @@
 package defpackage;
-public interface cx5 {
-    void b(c40 c40Var, Object obj);
+public final class cx5 {
+    public final sxe a;
+    public final d6e b;
+    public final u44 c;
 
-    Object c(jif jifVar);
-
-    y6a d();
+    public cx5(d6e d6eVar, u44 u44Var) {
+        sxe a;
+        this.b = d6eVar;
+        this.c = u44Var;
+        d6eVar.getClass();
+        synchronized (eze.class) {
+            a = eze.a(new hwe("language-id"));
+        }
+        this.a = a;
+    }
 }

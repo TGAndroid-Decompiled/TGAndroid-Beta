@@ -17,33 +17,33 @@ public final class g extends AnimatorListenerAdapter {
         if (animator.equals(chatActivityEnterView.j3)) {
             chatActivityEnterView.j3 = null;
         }
-        chatActivityEnterView.V0();
+        chatActivityEnterView.U0();
         float f = 1.0f;
         chatActivityEnterView.a2.setAlpha(1.0f);
         chatActivityEnterView.a2.setTranslationX(0.0f);
         l lVar = chatActivityEnterView.E2;
-        if (lVar != null && gda.N < 3) {
+        if (lVar != null && gba.N < 3) {
             ChatActivityEnterView chatActivityEnterView2 = lVar.Q0;
             chatActivityEnterView2.T4 = true;
             chatActivityEnterView2.U4 = System.currentTimeMillis();
         }
-        sy1 sy1Var = chatActivityEnterView.F0;
-        if (sy1Var != null) {
+        ex1 ex1Var = chatActivityEnterView.F0;
+        if (ex1Var != null) {
             if (!chatActivityEnterView.g0()) {
                 f = 0.0f;
             }
-            sy1Var.setAlpha(f);
+            ex1Var.setAlpha(f);
         }
         if (this.a) {
-            l49 l49Var = chatActivityEnterView.i1;
-            if (l49Var != null) {
-                l49Var.setVisibility(8);
+            i29 i29Var = chatActivityEnterView.i1;
+            if (i29Var != null) {
+                i29Var.setVisibility(8);
             }
-            px1 px1Var = chatActivityEnterView.f1;
-            if (px1Var != null) {
-                px1Var.setVisibility(8);
+            cw1 cw1Var = chatActivityEnterView.f1;
+            if (cw1Var != null) {
+                cw1Var.setVisibility(8);
             }
-            chatActivityEnterView.V0();
+            chatActivityEnterView.U0();
         }
     }
 }

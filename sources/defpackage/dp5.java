@@ -1,18 +1,43 @@
 package defpackage;
-public final class dp5 implements ep5 {
-    public final ul7 a;
 
-    public dp5(ul7 ul7Var) {
-        this.a = ul7Var;
-    }
+import java.math.RoundingMode;
+public abstract class dp5 {
+    public static final int[] a;
 
-    @Override
-    public final ul7 b() {
-        return this.a;
-    }
-
-    @Override
-    public final boolean isActive() {
-        return false;
+    static {
+        int[] iArr = new int[RoundingMode.values().length];
+        a = iArr;
+        try {
+            iArr[RoundingMode.UNNECESSARY.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            a[RoundingMode.DOWN.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            a[RoundingMode.FLOOR.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            a[RoundingMode.UP.ordinal()] = 4;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            a[RoundingMode.CEILING.ordinal()] = 5;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            a[RoundingMode.HALF_DOWN.ordinal()] = 6;
+        } catch (NoSuchFieldError unused6) {
+        }
+        try {
+            a[RoundingMode.HALF_UP.ordinal()] = 7;
+        } catch (NoSuchFieldError unused7) {
+        }
+        try {
+            a[RoundingMode.HALF_EVEN.ordinal()] = 8;
+        } catch (NoSuchFieldError unused8) {
+        }
     }
 }

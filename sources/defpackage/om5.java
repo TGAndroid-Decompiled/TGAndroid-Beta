@@ -1,51 +1,62 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class om5 implements Runnable {
-    public final byte a = 0;
-    public final String b;
-    public final int c;
-    public final boolean d;
+import java.io.Serializable;
+public final class om5 implements Serializable {
+    public static final om5 c = new om5(0, new long[0]);
+    public final long[] a;
+    public final int b;
 
-    public om5(int i, String str, boolean z) {
-        this.c = i;
-        this.b = str;
-        this.d = z;
+    public om5(int i, long[] jArr) {
+        this.a = jArr;
+        this.b = i;
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        boolean z = this.d;
-        int i = this.c;
-        String str = this.b;
-        switch (b) {
-            case 0:
-                nm7.f(i).k(140, str, Boolean.valueOf(z));
-                return;
-            default:
-                txc txcVar = (txc) wxc.a.get(str);
-                if (txcVar != null && txcVar.v != null) {
-                    if (wxc.g.contains(txcVar)) {
-                        txcVar.M = i;
-                        txcVar.v.m(i);
-                        return;
+    public final long a(int i) {
+        gre.j(i, this.b);
+        return this.a[i];
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof om5) {
+                om5 om5Var = (om5) obj;
+                int i = om5Var.b;
+                int i2 = this.b;
+                if (i2 == i) {
+                    for (int i3 = 0; i3 < i2; i3++) {
+                        if (a(i3) == om5Var.a(i3)) {
+                        }
                     }
-                    txcVar.M = i;
-                    txcVar.N = z;
-                    ArrayList arrayList = wxc.f;
-                    arrayList.remove(txcVar);
-                    arrayList.add(txcVar);
-                    wxc.o();
-                    return;
+                    return true;
                 }
-                return;
+            }
+            return false;
         }
+        return true;
     }
 
-    public om5(String str, int i, boolean z) {
-        this.b = str;
-        this.c = i;
-        this.d = z;
+    public final int hashCode() {
+        int i = 1;
+        for (int i2 = 0; i2 < this.b; i2++) {
+            i = (i * 31) + zne.b(this.a[i2]);
+        }
+        return i;
+    }
+
+    public final String toString() {
+        int i = this.b;
+        if (i == 0) {
+            return "[]";
+        }
+        StringBuilder sb = new StringBuilder(i * 5);
+        sb.append('[');
+        long[] jArr = this.a;
+        sb.append(jArr[0]);
+        for (int i2 = 1; i2 < i; i2++) {
+            sb.append(", ");
+            sb.append(jArr[i2]);
+        }
+        sb.append(']');
+        return sb.toString();
     }
 }

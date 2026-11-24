@@ -1,128 +1,20 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class nx8 extends View {
-    public final int a;
-    public vm b;
-    public final Paint c;
-    public long d;
-    public TLRPC.Document e;
-    public String f;
-    public float h;
-    public float n;
-    public float r;
+import java.util.HashSet;
+public final class nx8 {
+    public int a;
+    public String b;
+    public int c;
+    public int d;
+    public k27 e;
+    public int f;
+    public boolean g;
+    public final HashSet h = new HashSet();
 
-    public nx8(Context context, int i) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.c = paint;
-        this.n = 1.0f;
-        this.r = 1.0f;
-        this.a = i;
-        paint.setColor(738197503);
-    }
-
-    public String getKey() {
+    public final int a() {
+        if (this.g) {
+            return this.h.size();
+        }
         return this.f;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        vm vmVar = this.b;
-        if (vmVar != null) {
-            vmVar.b(this);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        vm vmVar = this.b;
-        if (vmVar != null) {
-            vmVar.o(this);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f;
-        mm mmVar;
-        if (isPressed()) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
-        }
-        float f2 = this.h;
-        if (f2 != f) {
-            if (Math.abs(f2 - f) >= 0.02f) {
-                float f3 = this.h;
-                f = td4.A(f, f3, 0.35f, f3);
-            }
-            this.h = f;
-            invalidate();
-        }
-        float f4 = (1.0f - (this.h * 0.2f)) * this.n * this.r;
-        if (f4 > 0.01f) {
-            float width = getWidth() * 0.78f * f4;
-            float width2 = getWidth() / 2.0f;
-            float height = getHeight() / 2.0f;
-            vm vmVar = this.b;
-            if (vmVar == null || (mmVar = vmVar.k) == null || !mmVar.B()) {
-                canvas.drawCircle(width2, height, 0.42f * width, this.c);
-            }
-            vm vmVar2 = this.b;
-            if (vmVar2 != null) {
-                float f5 = width / 2.0f;
-                vmVar2.setBounds((int) (width2 - f5), (int) (height - f5), (int) (width2 + f5), (int) (height + f5));
-                tx8.b(canvas, this.b);
-            }
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        setMeasuredDimension(size, size);
-    }
-
-    public void set(TLRPC.Document document) {
-        long j = document.id;
-        if (j == 0) {
-            if (this.b != null && isAttachedToWindow()) {
-                this.b.o(this);
-            }
-            this.b = null;
-            this.d = 0L;
-            this.e = document;
-            this.f = null;
-            invalidate();
-        } else if (j == this.d && this.b != null) {
-        } else {
-            if (this.b != null && isAttachedToWindow()) {
-                this.b.o(this);
-            }
-            this.d = document.id;
-            this.e = document;
-            this.f = "c:" + document.id;
-            this.b = vm.l(this.a, 2, document);
-            if (isAttachedToWindow()) {
-                this.b.b(this);
-            }
-            setContentDescription(document.id + "");
-            invalidate();
-        }
-    }
-
-    @Override
-    public void setPressed(boolean z) {
-        if (z != isPressed()) {
-            super.setPressed(z);
-            invalidate();
-        }
     }
 }

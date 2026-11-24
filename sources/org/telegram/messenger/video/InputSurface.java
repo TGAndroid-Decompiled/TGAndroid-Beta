@@ -29,7 +29,7 @@ public class InputSurface {
         if (!z) {
             return;
         }
-        zo4.k("EGL error encountered (see log)");
+        wn4.j("EGL error encountered (see log)");
     }
 
     private void eglSetup() {
@@ -48,20 +48,20 @@ public class InputSurface {
                         if (this.mEGLSurface != null) {
                             return;
                         }
-                        zo4.k("surface was null");
+                        wn4.j("surface was null");
                         return;
                     }
-                    zo4.k("null context");
+                    wn4.j("null context");
                     return;
                 }
-                zo4.k("unable to find RGB888+recordable ES2 EGL config");
+                wn4.j("unable to find RGB888+recordable ES2 EGL config");
                 return;
             }
             this.mEGLDisplay = null;
-            zo4.k("unable to initialize EGL14");
+            wn4.j("unable to initialize EGL14");
             return;
         }
-        zo4.k("unable to get EGL14 display");
+        wn4.j("unable to get EGL14 display");
     }
 
     public Surface getSurface() {
@@ -74,7 +74,7 @@ public class InputSurface {
         if (EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.mEGLContext)) {
             return;
         }
-        zo4.k("eglMakeCurrent failed");
+        wn4.j("eglMakeCurrent failed");
     }
 
     public void release() {

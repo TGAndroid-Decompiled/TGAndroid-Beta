@@ -1,44 +1,38 @@
 package defpackage;
 
-import android.view.WindowInsetsAnimation;
-import android.widget.FrameLayout;
-public final class fzc extends gzc {
-    public final WindowInsetsAnimation e;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.RemoteException;
+import java.util.ArrayList;
+public final class fzc extends s0d {
+    public final IBinder h;
+    public final b5a n;
 
-    public fzc(WindowInsetsAnimation windowInsetsAnimation) {
-        super(0, null, 0L);
-        this.e = windowInsetsAnimation;
-    }
-
-    public static iq5 e(WindowInsetsAnimation.Bounds bounds) {
-        return iq5.c(bounds.getUpperBound());
-    }
-
-    public static iq5 f(WindowInsetsAnimation.Bounds bounds) {
-        return iq5.c(bounds.getLowerBound());
-    }
-
-    public static void g(FrameLayout frameLayout, uyc uycVar) {
-        frameLayout.setWindowInsetsAnimationCallback(new ezc(uycVar));
+    public fzc(b5a b5aVar, IBinder iBinder) {
+        this.h = iBinder;
+        this.n = b5aVar;
     }
 
     @Override
-    public final long a() {
-        return this.e.getDurationMillis();
-    }
-
-    @Override
-    public final float b() {
-        return this.e.getInterpolatedFraction();
-    }
-
-    @Override
-    public final int c() {
-        return this.e.getTypeMask();
-    }
-
-    @Override
-    public final void d(float f) {
-        this.e.setFraction(f);
+    public final void b() {
+        hzc hzcVar = (hzc) this.n.b;
+        hzcVar.n = (IInterface) hzcVar.i.a(this.h);
+        q0d q0dVar = hzcVar.b;
+        int i = 0;
+        q0dVar.b("linkToDeath", new Object[0]);
+        try {
+            hzcVar.n.asBinder().linkToDeath(hzcVar.k, 0);
+        } catch (RemoteException e) {
+            q0dVar.a(e, "linkToDeath failed", new Object[0]);
+        }
+        hzcVar.g = false;
+        ArrayList arrayList = hzcVar.d;
+        int size = arrayList.size();
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((Runnable) obj).run();
+        }
+        hzcVar.d.clear();
     }
 }

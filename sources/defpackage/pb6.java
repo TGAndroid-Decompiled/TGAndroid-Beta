@@ -1,31 +1,7 @@
 package defpackage;
-
-import android.util.SparseArray;
-import j$.util.Comparator$CC;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-public final class pb6 {
-    public SparseArray a;
-
-    public final void a(HashMap hashMap) {
-        if (this.a == null) {
-            this.a = new SparseArray(hashMap.size());
-            ArrayList arrayList = new ArrayList(hashMap.entrySet());
-            Collections.sort(arrayList, Comparator$CC.comparingInt(new mn((byte) 6)));
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                Map.Entry entry = (Map.Entry) obj;
-                this.a.append(((String) entry.getKey()).hashCode(), (String) entry.getValue());
-            }
-            return;
-        }
-        for (Map.Entry entry2 : hashMap.entrySet()) {
-            this.a.put(((String) entry2.getKey()).hashCode(), (String) entry2.getValue());
-        }
+public final class pb6 extends zs8 implements op4 {
+    @Override
+    public final Object invoke() {
+        return this.receiver.getClass().getSimpleName();
     }
 }

@@ -1,17 +1,23 @@
 package defpackage;
-public final class n1f implements cq7 {
-    public static final n1f a = new Object();
-
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+public abstract class n1f {
+    public static String a(String str) {
+        int length = str.length();
+        int i = 0;
+        while (i < length) {
+            char charAt = str.charAt(i);
+            if (charAt >= 'a' && charAt <= 'z') {
+                char[] charArray = str.toCharArray();
+                while (i < length) {
+                    char c = charArray[i];
+                    if (c >= 'a' && c <= 'z') {
+                        charArray[i] = (char) (c ^ ' ');
+                    }
+                    i++;
+                }
+                return String.valueOf(charArray);
+            }
+            i++;
         }
-        throw new ClassCastException();
+        return str;
     }
 }

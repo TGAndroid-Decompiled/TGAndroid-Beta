@@ -1,14 +1,17 @@
 package defpackage;
+public final class hme implements zn7 {
+    public static final hme a = new Object();
 
-import java.io.Closeable;
-import java.io.IOException;
-public abstract class hme {
-    public static void a(Closeable closeable) {
-        if (closeable != null) {
-            try {
-                closeable.close();
-            } catch (IOException unused) {
-            }
+    static {
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

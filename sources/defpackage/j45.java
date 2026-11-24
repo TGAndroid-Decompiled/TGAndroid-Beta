@@ -1,26 +1,37 @@
 package defpackage;
-
-import android.view.View;
-public final class j45 implements View.OnClickListener {
+public final class j45 implements Runnable {
     public final byte a;
-    public final el7 b;
+    public final int b;
+    public final Object c;
+    public final Object d;
 
-    public j45(el7 el7Var, byte b) {
-        this.a = b;
-        this.b = el7Var;
+    public j45(int i, int[] iArr, hb5 hb5Var) {
+        this.a = (byte) 4;
+        this.b = i;
+        this.c = iArr;
+        this.d = hb5Var;
+    }
+
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.j45.a():void");
     }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        el7 el7Var = this.b;
-        switch (b) {
-            case 0:
-                el7Var.dismiss();
-                return;
-            default:
-                el7Var.dismiss();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.j45.run():void");
+    }
+
+    public j45(Object obj, int i, Object obj2, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = i;
+        this.d = obj2;
+    }
+
+    public j45(Object obj, Object obj2, int i, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.d = obj2;
+        this.b = i;
     }
 }

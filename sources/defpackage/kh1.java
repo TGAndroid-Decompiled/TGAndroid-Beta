@@ -1,30 +1,29 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-public final class kh1 extends b6c {
-    public static final int b = 0;
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class kh1 implements ResultCallback {
+    public final int a;
+    public final lh1 b;
 
-    static {
-        b6c.h(new b6c());
+    public kh1(lh1 lh1Var, int i) {
+        this.b = lh1Var;
+        this.a = i;
     }
 
     @Override
-    public final void b(View view, c6c c6cVar, boolean z, l7c l7cVar, q7c q7cVar) {
-        lh1 lh1Var = (lh1) view;
-        CharSequence charSequence = c6cVar.m;
-        CharSequence charSequence2 = c6cVar.n;
-        lh1Var.setText(charSequence);
-        lh1Var.r.setText(charSequence2);
+    public final void onComplete(Object obj) {
+        kk7.f(this.a).d(new q21(this, (List) obj, (byte) 24));
     }
 
     @Override
-    public final View d(Context context, r59 r59Var, int i, ylb ylbVar) {
-        return new lh1(context, ylbVar);
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.b.getContext(), tL_error.text, 0).show();
     }
 
     @Override
-    public final boolean f() {
-        return false;
+    public final void onError(Throwable th) {
     }
 }

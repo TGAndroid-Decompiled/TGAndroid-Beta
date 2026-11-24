@@ -1,3 +1,5 @@
 package defpackage;
-public abstract class mbb extends lbb {
+
+import android.util.AndroidRuntimeException;
+public final class mbb extends AndroidRuntimeException {
 }

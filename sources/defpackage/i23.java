@@ -1,30 +1,20 @@
 package defpackage;
-public final class i23 extends rs4 implements fs4 {
-    public final byte a;
 
-    public i23(int i, Object obj, Class cls, String str, String str2, int i2, byte b) {
-        super(i, obj, cls, str, str2, i2);
-        this.a = b;
-    }
+import android.content.Context;
+import android.os.CancellationSignal;
+import android.os.Handler;
+import android.os.Looper;
+import java.util.concurrent.Executor;
+public final class i23 extends y13 {
+    public final Context e;
+    public o13 f;
+    public Executor g;
+    public CancellationSignal h;
+    public final x03 i;
 
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        switch (this.a) {
-            case 0:
-                ((e33) this.receiver).getClass();
-                return e33.a((String) obj, (String) obj2);
-            case 1:
-                ((e33) this.receiver).getClass();
-                return e33.b((String) obj, (String) obj2);
-            case 2:
-                ((e33) this.receiver).getClass();
-                return e33.a((String) obj, (String) obj2);
-            case 3:
-                ((e33) this.receiver).getClass();
-                return e33.b((String) obj, (String) obj2);
-            default:
-                ((e33) this.receiver).getClass();
-                return e33.b((String) obj, (String) obj2);
-        }
+    public i23(Context context) {
+        context.getClass();
+        this.e = context;
+        this.i = new x03(this, new Handler(Looper.getMainLooper()), (byte) 3);
     }
 }

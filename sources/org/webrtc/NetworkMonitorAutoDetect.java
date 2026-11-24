@@ -491,7 +491,7 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
                     if (j == -1) {
                         j = NetworkMonitorAutoDetect.networkToNetId(network);
                     } else {
-                        zo4.k("Multiple connected networks of same type are not supported.");
+                        wn4.j("Multiple connected networks of same type are not supported.");
                         return 0L;
                     }
                 }

@@ -1,5 +1,21 @@
 package defpackage;
-public abstract class i09 {
-    public static final int[] a = {16842755, 16842960, 16842961};
-    public static final int[] b = {16842755, 16842961};
+
+import android.animation.ValueAnimator;
+public final class i09 implements ValueAnimator.AnimatorUpdateListener {
+    public final float a;
+    public final t09 b;
+
+    public i09(t09 t09Var, float f) {
+        this.b = t09Var;
+        this.a = f;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        t09 t09Var = this.b;
+        t09Var.p0 = floatValue;
+        t09Var.o0 = (1.0f - floatValue) * this.a;
+        t09Var.invalidate();
+    }
 }

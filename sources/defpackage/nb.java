@@ -1,7 +1,7 @@
 package defpackage;
 
 import org.telegram.tgnet.TLRPC;
-public final class nb implements qac {
+public final class nb implements p8c {
     public final byte a;
     public final bc b;
 
@@ -16,15 +16,15 @@ public final class nb implements qac {
         bc bcVar = this.b;
         switch (b) {
             case 0:
-                gm.c3(new pf2(bcVar, (TLRPC.UserFull) obj, (byte) 22));
+                gl.c3(new ee2(bcVar, (TLRPC.UserFull) obj, (byte) 22));
                 return;
             case 1:
                 bcVar.b0.commission_permille = ((Integer) obj).intValue();
-                bcVar.L0();
+                bcVar.K0();
                 return;
             default:
                 bcVar.b0.duration_months = ((Integer) bcVar.d0.get(((Integer) obj).intValue())).intValue();
-                bcVar.L0();
+                bcVar.K0();
                 return;
         }
     }

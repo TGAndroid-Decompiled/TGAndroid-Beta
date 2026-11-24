@@ -1,100 +1,29 @@
 package defpackage;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Process;
-import android.os.SystemClock;
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-public final class mp3 extends Thread {
-    public volatile Handler a;
-    public final Object b = new Object();
-    public ArrayList c = new ArrayList();
-    public final CountDownLatch d = new CountDownLatch(1);
-    public final int e = -1000;
+import android.view.ViewGroup;
+public final class mp3 implements Runnable {
+    public final byte a;
+    public final np3 b;
 
-    public mp3(String str) {
-        setName(str);
-        start();
-    }
-
-    public final void a(Runnable runnable) {
-        Handler handler = this.a;
-        if (handler != null) {
-            handler.removeCallbacks(runnable);
-            return;
-        }
-        synchronized (this.b) {
-            ArrayList arrayList = this.c;
-            if (arrayList != null) {
-                for (int size = arrayList.size() - 1; size >= 0; size--) {
-                    if (((lp3) this.c.get(size)).b == runnable) {
-                        this.c.remove(size);
-                    }
-                }
-                return;
-            }
-            this.a.removeCallbacks(runnable);
-        }
-    }
-
-    public final Handler b() {
-        try {
-            this.d.await();
-        } catch (Exception e) {
-            fc4.g(e, false);
-        }
-        return this.a;
-    }
-
-    public final void c(Runnable runnable) {
-        SystemClock.elapsedRealtime();
-        d(runnable, 0L);
-    }
-
-    public final boolean d(Runnable runnable, long j) {
-        Handler handler = this.a;
-        if (handler != null) {
-            if (j <= 0) {
-                return handler.post(runnable);
-            }
-            return handler.postDelayed(runnable, j);
-        }
-        long max = Math.max(0L, j) + SystemClock.uptimeMillis();
-        synchronized (this.b) {
-            ArrayList arrayList = this.c;
-            if (arrayList != null) {
-                arrayList.add(new lp3(0, max, runnable));
-                return true;
-            }
-            return this.a.postAtTime(runnable, max);
-        }
+    public mp3(np3 np3Var, byte b) {
+        this.a = b;
+        this.b = np3Var;
     }
 
     @Override
     public final void run() {
-        Looper.prepare();
-        Handler handler = new Handler(Looper.myLooper(), new Object());
-        synchronized (this.b) {
-            for (int i = 0; i < this.c.size(); i++) {
-                lp3 lp3Var = (lp3) this.c.get(i);
-                boolean z = lp3Var.a;
-                if (!z) {
-                    handler.postAtTime(lp3Var.b, lp3Var.c);
-                } else if (z) {
-                    handler.postAtFrontOfQueue(lp3Var.b);
-                } else {
-                    handler.sendMessageAtTime(null, lp3Var.c);
+        byte b = this.a;
+        np3 np3Var = this.b;
+        switch (b) {
+            case 0:
+                if (np3Var.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) np3Var.getParent()).removeView(np3Var);
+                    return;
                 }
-            }
-            this.c = null;
-            this.a = handler;
+                return;
+            default:
+                np3Var.a();
+                return;
         }
-        this.d.countDown();
-        int i2 = this.e;
-        if (i2 != -1000) {
-            Process.setThreadPriority(i2);
-        }
-        Looper.loop();
     }
 }

@@ -1,33 +1,26 @@
 package defpackage;
-public final class agd extends sfd {
-    public final pw8 a;
+public final class agd extends ncd {
+    public final transient Object[] h;
+    public final transient boolean n;
+    public final transient boolean r;
 
-    public agd(pw8 pw8Var) {
-        this.a = pw8Var;
+    public agd(int i, Object[] objArr) {
+        super((byte) 1);
+        this.h = objArr;
+        this.n = i;
+        this.r = true;
     }
 
     @Override
-    public final Object a() {
-        return this.a;
+    public final Object get(int i) {
+        i4f.a(i, this.r ? 1 : 0);
+        Object obj = this.h[(i << 1) + (this.n ? 1 : 0)];
+        obj.getClass();
+        return obj;
     }
 
     @Override
-    public final boolean b() {
-        return true;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof agd) {
-            return this.a.equals(((agd) obj).a);
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.a.hashCode() + 1502476572;
-    }
-
-    public final String toString() {
-        return kt6.o("Optional.of(", this.a.toString(), ")");
+    public final int size() {
+        return this.r ? 1 : 0;
     }
 }

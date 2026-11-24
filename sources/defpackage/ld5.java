@@ -1,196 +1,252 @@
 package defpackage;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.os.Build;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ld5 extends q59 {
-    public final Context c;
-    public final pd5 d;
+import java.util.WeakHashMap;
+public class ld5 extends FrameLayout {
+    public int a;
+    public final byte b;
+    public final byte c;
+    public final TextView d;
+    public final hn e;
+    public final jia f;
+    public int h;
+    public final boolean n;
 
-    public ld5(pd5 pd5Var, Context context) {
-        this.d = pd5Var;
-        this.c = context;
-    }
-
-    @Override
-    public final void A(u69 u69Var) {
-        View view = u69Var.a;
-        if (view instanceof ij6) {
-            ((ij6) view).a();
+    public ld5(Context context, int i, int i2, int i3, int i4, boolean z, boolean z2, wjb wjbVar) {
+        super(context);
+        int i5;
+        int i6;
+        int i7;
+        int i8;
+        int i9;
+        this.h = 40;
+        this.b = i2;
+        this.c = i4;
+        this.n = z2;
+        if (z2) {
+            hn hnVar = new hn(getContext(), false, false, false);
+            this.e = hnVar;
+            hnVar.setTextSize(gl.L(14.0f));
+            hnVar.setTypeface(gl.o());
+            if (k96.a0) {
+                i8 = 5;
+            } else {
+                i8 = 3;
+            }
+            hnVar.setGravity(i8 | 16);
+            zkb.U(hnVar, i, wjbVar);
+            hnVar.setTag(Integer.valueOf(i));
+            hnVar.getDrawable().r(true, false);
+            float f = this.h - i3;
+            if (k96.a0) {
+                i9 = 5;
+            } else {
+                i9 = 3;
+            }
+            int i10 = i9 | 48;
+            float f2 = i2;
+            addView(hnVar, nme.d(-1, f, i10, f2, i3, f2, z ? 0.0f : i4));
+        } else {
+            TextView textView = new TextView(getContext());
+            this.d = textView;
+            ir2.t(textView, 1, 14.0f);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            if (k96.a0) {
+                i5 = 5;
+            } else {
+                i5 = 3;
+            }
+            textView.setGravity(i5 | 16);
+            textView.setMinHeight(gl.L(this.h - i3));
+            zkb.X(textView, i, wjbVar);
+            textView.setTag(Integer.valueOf(i));
+            if (k96.a0) {
+                i6 = 5;
+            } else {
+                i6 = 3;
+            }
+            int i11 = i6 | 48;
+            float f3 = i2;
+            addView(textView, nme.d(-1, -1.0f, i11, f3, i3, f3, z ? 0.0f : i4));
         }
-    }
-
-    @Override
-    public final boolean D(u69 u69Var) {
-        View view = u69Var.a;
-        if (!(view instanceof ij6) || !this.d.Z1.contains(Long.valueOf(((ij6) view).getUserId()))) {
-            int i = u69Var.f;
-            if (i == 0 || i == 1) {
-                return true;
+        if (z) {
+            jia jiaVar = new jia(getContext());
+            this.f = jiaVar;
+            jiaVar.setTextSize(13);
+            if (k96.a0) {
+                i7 = 3;
+            } else {
+                i7 = 5;
             }
-            return false;
+            jiaVar.setGravity(i7 | 48);
+            float f4 = i2;
+            addView(jiaVar, nme.d(-1, -1.0f, (k96.a0 ? 3 : 5) | 48, f4, 21.0f, f4, i4));
         }
-        return false;
+        WeakHashMap weakHashMap = jdc.a;
+        new xcc(2131296686, Boolean.class, 0, 28, (byte) 2).a(this, Boolean.TRUE);
     }
 
-    @Override
-    public final int b() {
-        return this.d.l2;
-    }
-
-    @Override
-    public final int d(int i) {
-        pd5 pd5Var = this.d;
-        if (i < pd5Var.e2 || i >= pd5Var.f2) {
-            if (i < pd5Var.h2 || i >= pd5Var.i2) {
-                if (i == pd5Var.c2) {
-                    return 1;
-                }
-                if (i != pd5Var.j2 && i != pd5Var.g2) {
-                    if (i == 0) {
-                        return 3;
-                    }
-                    if (i == pd5Var.d2) {
-                        return 4;
-                    }
-                    if (i == pd5Var.k2) {
-                        return 5;
-                    }
-                    return 0;
-                }
-                return 2;
+    public final void a(ArrayList arrayList, boolean z) {
+        float f = 0.5f;
+        TextView textView = this.d;
+        if (arrayList != null) {
+            if (z) {
+                f = 1.0f;
             }
-            return 0;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void t(u69 u69Var, int i) {
-        TLObject tLObject;
-        int i2;
-        long j;
-        pd5 pd5Var = this.d;
-        ArrayList arrayList = pd5Var.R1;
-        int i3 = u69Var.f;
-        View view = u69Var.a;
-        boolean z = false;
-        if (i3 != 0) {
-            if (i3 != 1) {
-                if (i3 == 2) {
-                    l55 l55Var = (l55) view;
-                    if (i == pd5Var.j2) {
-                        l55Var.setText(jb6.M0(2131752278, null));
-                        return;
-                    } else if (i == pd5Var.g2) {
-                        if (pd5Var.b2) {
-                            l55Var.setText(jb6.M0(2131742488, null));
-                            return;
-                        } else {
-                            l55Var.setText(jb6.M0(2131749213, null));
-                            return;
-                        }
-                    } else {
-                        return;
-                    }
-                }
-                return;
-            }
-            fj6 fj6Var = (fj6) view;
-            if (i == pd5Var.c2) {
-                if ((!pd5Var.W1 || pd5Var.X1) && pd5Var.j2 == -1 && !arrayList.isEmpty()) {
-                    z = true;
-                }
-                fj6Var.b(2131232209, 7, jb6.M0(2131743074, null), z);
-                return;
-            }
+            arrayList.add(ObjectAnimator.ofFloat(textView, View.ALPHA, f));
             return;
         }
-        ij6 ij6Var = (ij6) view;
-        ij6Var.setTag(Integer.valueOf(i));
-        int i4 = pd5Var.e2;
-        if (i >= i4 && i < pd5Var.f2) {
-            tLObject = (TLObject) arrayList.get(i - i4);
+        if (z) {
+            f = 1.0f;
+        }
+        textView.setAlpha(f);
+    }
+
+    public final void b(boolean z) {
+        float f;
+        super.setEnabled(z);
+        ViewPropertyAnimator animate = this.d.animate();
+        if (z) {
+            f = 1.0f;
         } else {
-            int i5 = pd5Var.h2;
-            if (i >= i5 && i < pd5Var.i2) {
-                tLObject = (TLObject) pd5Var.S1.get(i - i5);
-            } else {
-                tLObject = null;
+            f = 0.5f;
+        }
+        animate.alpha(f).start();
+    }
+
+    public final void c(CharSequence charSequence, boolean z) {
+        boolean z2 = k96.a0;
+        int i = 3;
+        if (this.n) {
+            if (z2) {
+                i = 5;
             }
+            hn hnVar = this.e;
+            hnVar.setGravity(i | 16);
+            hnVar.c(charSequence, z, true);
+            return;
         }
-        if (i < pd5Var.e2 || i >= (i2 = pd5Var.f2)) {
-            i2 = pd5Var.i2;
+        if (z2) {
+            i = 5;
         }
-        if (tLObject instanceof TLRPC.TL_contact) {
-            j = ((TLRPC.TL_contact) tLObject).user_id;
-        } else if (tLObject instanceof TLRPC.User) {
-            j = ((TLRPC.User) tLObject).id;
-        } else if (tLObject instanceof TLRPC.ChannelParticipant) {
-            j = k47.B1(((TLRPC.ChannelParticipant) tLObject).peer);
-        } else {
-            j = ((TLRPC.ChatParticipant) tLObject).user_id;
-        }
-        TLRPC.User W1 = oc7.r1(pd5Var.a).W1(Long.valueOf(j));
-        if (W1 != null) {
-            ij6Var.setCustomImageVisible(pd5Var.Z1.contains(Long.valueOf(W1.id)));
-            if (i != i2 - 1) {
-                z = true;
-            }
-            ij6Var.c(W1, null, null, z);
-        }
+        TextView textView = this.d;
+        textView.setGravity(i | 16);
+        textView.setText(charSequence);
+    }
+
+    public float getAnimatedWidth() {
+        return this.e.getDrawable().c();
+    }
+
+    public TextView getTextView() {
+        return this.d;
+    }
+
+    public jia getTextView2() {
+        return this.f;
     }
 
     @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        ij6 ij6Var;
-        if (i != 0) {
-            Context context = this.c;
-            if (i != 1) {
-                if (i != 2) {
-                    if (i != 3) {
-                        if (i != 5) {
-                            ij6Var = new View(context);
-                        } else {
-                            ?? tk4Var = new tk4(context, null);
-                            tk4Var.setViewType(6);
-                            tk4Var.setIsSingleCell(true);
-                            tk4Var.e(cmb.Vg, cmb.Hh, cmb.Zg);
-                            ij6Var = tk4Var;
-                        }
-                    } else {
-                        ?? view = new View(context);
-                        view.setLayoutParams(new g69(-1, gm.L(56.0f)));
-                        ij6Var = view;
-                    }
-                } else {
-                    ?? l55Var = new l55(context, null);
-                    anb.h(cmb.Zg, null, l55Var);
-                    l55Var.setTextColor(cmb.Gh);
-                    ij6Var = l55Var;
-                }
-            } else {
-                ?? fj6Var = new fj6(context);
-                int i2 = cmb.fh;
-                fj6Var.a(i2, i2);
-                fj6Var.setDividerColor(cmb.Wg);
-                ij6Var = fj6Var;
-            }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (Build.VERSION.SDK_INT >= 28) {
+            accessibilityNodeInfo.setHeading(true);
         } else {
-            ij6 ij6Var2 = new ij6(this.c, 6, 2, false, null);
-            ij6Var2.setCustomRightImage(2131232198);
-            ij6Var2.setNameColor(cmb.w0(null, cmb.dh, false));
-            int w0 = cmb.w0(null, cmb.bh, false);
-            int w02 = cmb.w0(null, cmb.fh, false);
-            ij6Var2.P = true;
-            ij6Var2.I = w0;
-            ij6Var2.J = w02;
-            ij6Var2.setDividerColor(cmb.Wg);
-            ij6Var = ij6Var2;
+            AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
+            if (collectionItemInfo != null) {
+                accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(collectionItemInfo.getRowIndex(), collectionItemInfo.getRowSpan(), collectionItemInfo.getColumnIndex(), collectionItemInfo.getColumnSpan(), true));
+            }
         }
-        return new u69(ij6Var);
+        accessibilityNodeInfo.setEnabled(true);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), 0);
+    }
+
+    public void setBottomMargin(int i) {
+        float f = i;
+        ((FrameLayout.LayoutParams) this.d.getLayoutParams()).bottomMargin = gl.L(f);
+        jia jiaVar = this.f;
+        if (jiaVar != null) {
+            ((FrameLayout.LayoutParams) jiaVar.getLayoutParams()).bottomMargin = gl.L(f);
+        }
+    }
+
+    public void setHeight(int i) {
+        this.h = i;
+        int L = gl.L(i);
+        TextView textView = this.d;
+        int i2 = L - ((FrameLayout.LayoutParams) textView.getLayoutParams()).topMargin;
+        if (textView.getMinHeight() != i2) {
+            textView.setMinHeight(i2);
+            requestLayout();
+        }
+    }
+
+    public void setOnWidthUpdateListener(Runnable runnable) {
+        this.e.setOnWidthUpdatedListener(runnable);
+    }
+
+    public void setText(CharSequence charSequence) {
+        c(charSequence, false);
+    }
+
+    public void setText2(CharSequence charSequence) {
+        jia jiaVar = this.f;
+        if (jiaVar == null) {
+            return;
+        }
+        jiaVar.l(charSequence, false);
+    }
+
+    public void setTextColor(int i) {
+        TextView textView = this.d;
+        if (textView != null) {
+            textView.setTextColor(i);
+        }
+        hn hnVar = this.e;
+        if (hnVar != null) {
+            hnVar.setTextColor(i);
+        }
+    }
+
+    public void setTextSize(float f) {
+        if (this.n) {
+            this.e.setTextSize(gl.L(f));
+            return;
+        }
+        this.d.setTextSize(1, f);
+    }
+
+    public void setTopMargin(int i) {
+        ((FrameLayout.LayoutParams) this.d.getLayoutParams()).topMargin = gl.L(i);
+        setHeight(this.h);
+    }
+
+    public ld5(Context context, wjb wjbVar) {
+        this(context, bkb.K6, 20, 7, false, wjbVar);
+    }
+
+    public ld5(Context context, int i) {
+        this(context, bkb.K6, i, 7, false, null);
+    }
+
+    public ld5(Context context, int i, int i2, int i3, boolean z, wjb wjbVar) {
+        this(context, i, i2, i3, 0, z, false, wjbVar);
+    }
+
+    public ld5(Context context) {
+        this(context, bkb.K6, 20, 7, false, null);
     }
 }

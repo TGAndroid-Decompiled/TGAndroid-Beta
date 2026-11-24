@@ -1,17 +1,13 @@
 package defpackage;
-public final class x0f implements cq7 {
-    public static final x0f a = new Object();
 
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+public abstract class x0f {
+    public static boolean a(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, akd akdVar, Object obj, Object obj2) {
+        while (!atomicReferenceFieldUpdater.compareAndSet(akdVar, obj, obj2)) {
+            if (atomicReferenceFieldUpdater.get(akdVar) != obj && atomicReferenceFieldUpdater.get(akdVar) != obj) {
+                return false;
+            }
         }
-        throw new ClassCastException();
+        return true;
     }
 }

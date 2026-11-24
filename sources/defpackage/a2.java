@@ -3,8 +3,8 @@ package defpackage;
 import java.nio.ByteBuffer;
 import java.nio.channels.WritableByteChannel;
 import java.util.ArrayList;
-public abstract class a2 extends yh0 implements pz0 {
-    public yh0 d;
+public abstract class a2 extends yg0 implements iy0 {
+    public yg0 d;
     public final String e;
 
     public a2(String str) {
@@ -42,7 +42,7 @@ public abstract class a2 extends yh0 implements pz0 {
     }
 
     @Override
-    public final gw2 getParent() {
+    public final wu2 getParent() {
         return this.d;
     }
 
@@ -64,7 +64,7 @@ public abstract class a2 extends yh0 implements pz0 {
     }
 
     @Override
-    public final void setParent(gw2 gw2Var) {
-        this.d = (yh0) gw2Var;
+    public final void setParent(wu2 wu2Var) {
+        this.d = (yg0) wu2Var;
     }
 }

@@ -1,15 +1,17 @@
 package defpackage;
-public abstract class xve {
-    public static final lve a;
-    public static final lve b;
+public final class xve implements zn7 {
+    public static final xve a = new Object();
 
     static {
-        lve lveVar = null;
-        try {
-            lveVar = (lve) Class.forName("com.google.protobuf.MapFieldSchemaFull").getDeclaredConstructor(null).newInstance(null);
-        } catch (Exception unused) {
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        a = lveVar;
-        b = new Object();
+        throw new ClassCastException();
     }
 }

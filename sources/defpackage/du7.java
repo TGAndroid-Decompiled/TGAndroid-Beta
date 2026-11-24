@@ -1,33 +1,29 @@
 package defpackage;
+public final class du7 implements Runnable {
+    public final byte a;
+    public final gu7 b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-public final class du7 extends View {
-    public final Paint a;
-    public float b;
-
-    public du7(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.a = paint;
-        paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(gm.L(2.0f));
+    public du7(gu7 gu7Var, byte b) {
+        this.a = b;
+        this.b = gu7Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        Paint paint = this.a;
-        canvas.drawLine((getWidth() / 2.0f) + gm.L(gm.R1(-6.7f, -7.0f, this.b)), (getHeight() / 2.0f) + gm.L(gm.R1(0.71f, 0.0f, this.b)), (getWidth() / 2.0f) + gm.L(gm.R1(-2.45f, 7.0f, this.b)), (getHeight() / 2.0f) + gm.L(gm.R1(4.79f, 0.0f, this.b)), paint);
-        canvas.drawLine((getWidth() / 2.0f) + gm.L(gm.R1(-2.45f, 0.0f, this.b)), (getHeight() / 2.0f) + gm.L(gm.R1(4.79f, 7.0f, this.b)), (getWidth() / 2.0f) + gm.L(gm.R1(6.59f, 0.0f, this.b)), (getHeight() / 2.0f) + gm.L(gm.R1(-4.27f, -7.0f, this.b)), paint);
-    }
-
-    public void setProgress(float f) {
-        this.b = f;
-        invalidate();
+    public final void run() {
+        byte b = this.a;
+        gu7 gu7Var = this.b;
+        switch (b) {
+            case 0:
+                gu7Var.c = null;
+                u39 u39Var = gu7Var.a;
+                if (u39Var != null) {
+                    u39Var.i0();
+                    return;
+                }
+                return;
+            default:
+                gu7Var.b();
+                return;
+        }
     }
 }

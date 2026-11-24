@@ -1,32 +1,42 @@
 package defpackage;
 
-import android.content.Context;
-import org.telegram.tgnet.tl.TL_stories;
-public final class ic6 extends nha {
-    public final pc6 x2;
+import android.os.Bundle;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.play.core.integrity.IntegrityTokenResponse;
+import org.telegram.tgnet.TLRPC;
+public final class ic6 implements OnSuccessListener {
+    public final byte a = 0;
+    public final mf6 b;
+    public final String c;
+    public final TLRPC.auth_SentCode d;
+    public final Bundle e;
+    public final boolean f;
 
-    public ic6(pc6 pc6Var, Context context, fha fhaVar, pc6 pc6Var2, hc6 hc6Var, ylb ylbVar) {
-        super(context, 0L, fhaVar, 0, null, null, null, 8, 0, pc6Var2, hc6Var, 0, ylbVar, null);
-        this.x2 = pc6Var;
+    public ic6(mf6 mf6Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z) {
+        this.b = mf6Var;
+        this.e = bundle;
+        this.d = auth_sentcode;
+        this.c = str;
+        this.f = z;
     }
 
     @Override
-    public final boolean H() {
-        return true;
+    public final void onSuccess(Object obj) {
+        switch (this.a) {
+            case 0:
+                this.b.s1(this.e, this.d, this.c, this.f, (IntegrityTokenResponse) obj);
+                return;
+            default:
+                this.b.t1(this.c, this.d, this.e, this.f, (bp9) obj);
+                return;
+        }
     }
 
-    @Override
-    public final int I0() {
-        return 32;
-    }
-
-    @Override
-    public final int Z0() {
-        return 3;
-    }
-
-    @Override
-    public final TL_stories.MediaArea getStoriesArea() {
-        return this.x2.T0;
+    public ic6(mf6 mf6Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z) {
+        this.b = mf6Var;
+        this.c = str;
+        this.d = auth_sentcode;
+        this.e = bundle;
+        this.f = z;
     }
 }

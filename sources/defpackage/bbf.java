@@ -1,3 +1,5 @@
 package defpackage;
-public abstract class bbf {
+
+import android.os.IInterface;
+public interface bbf extends IInterface {
 }

@@ -28,7 +28,7 @@ public class PredefinedTeXFormulaParser {
         if (!attribute.equals("")) {
             return attribute;
         }
-        wa3.f("PredefinedTeXFormulas.xml", element.getTagName(), str, null);
+        k93.g("PredefinedTeXFormulas.xml", element.getTagName(), str, null);
         return null;
     }
 

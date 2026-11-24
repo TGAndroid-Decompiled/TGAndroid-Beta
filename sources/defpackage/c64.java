@@ -1,30 +1,20 @@
 package defpackage;
+public final class c64 {
+    public final i64 a;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class c64 extends b4 {
-    public static final Parcelable.Creator<c64> CREATOR = new jid((byte) 19);
-    public String a;
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof c64) {
-            return fse.a(this.a, ((c64) obj).a);
-        }
-        return false;
+    public c64(i64 i64Var) {
+        this.a = i64Var;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.a});
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        mve.l(parcel, 1, this.a);
-        mve.s(parcel, r);
+    public final void a() {
+        i64 i64Var = this.a;
+        if (!i64Var.M) {
+            if (i64Var.U) {
+                i64Var.T.getClass();
+            } else if (!i64Var.k0) {
+                return;
+            }
+        }
+        i64Var.h.h(2);
     }
 }

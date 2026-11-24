@@ -1,17 +1,51 @@
 package defpackage;
-public final class cld implements cq7 {
-    public static final cld a = new Object();
 
-    static {
-        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)), 4)), 5)));
+import java.io.Serializable;
+public final class cld extends kld implements Serializable {
+    public static final cld b = new cld((byte) 0);
+    public static final cld c = new cld((byte) 1);
+    public final byte a;
+
+    public cld(byte b2) {
+        this.a = b2;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+    public final kld a() {
+        switch (this.a) {
+            case 0:
+                return c;
+            default:
+                return b;
         }
-        throw new ClassCastException();
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        switch (this.a) {
+            case 0:
+                Comparable comparable = (Comparable) obj;
+                Comparable comparable2 = (Comparable) obj2;
+                comparable.getClass();
+                comparable2.getClass();
+                return comparable.compareTo(comparable2);
+            default:
+                Comparable comparable3 = (Comparable) obj;
+                Comparable comparable4 = (Comparable) obj2;
+                comparable3.getClass();
+                if (comparable3 == comparable4) {
+                    return 0;
+                }
+                return comparable4.compareTo(comparable3);
+        }
+    }
+
+    public final String toString() {
+        switch (this.a) {
+            case 0:
+                return "Ordering.natural()";
+            default:
+                return "Ordering.natural().reverse()";
+        }
     }
 }

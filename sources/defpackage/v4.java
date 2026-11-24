@@ -15,59 +15,59 @@ public class v4 extends AccessibilityNodeProvider {
     public final byte a = 0;
     public final Object b;
 
-    public v4(ni6 ni6Var) {
-        this.b = ni6Var;
+    public v4(l69 l69Var) {
+        this.b = l69Var;
     }
 
     @Override
     public final AccessibilityNodeInfo createAccessibilityNodeInfo(int i) {
-        nn8 nn8Var;
+        ml8 ml8Var;
         byte b = this.a;
         Object obj = this.b;
         switch (b) {
             case 0:
-                u4 i2 = ((ni6) obj).i(i);
-                if (i2 == null) {
+                u4 u = ((l69) obj).u(i);
+                if (u == null) {
                     return null;
                 }
-                return i2.a;
+                return u.a;
             default:
                 int[] iArr = {0, 0};
-                qn8 qn8Var = (qn8) obj;
-                ArrayList arrayList = qn8Var.a;
-                qn8Var.getLocationOnScreen(iArr);
+                pl8 pl8Var = (pl8) obj;
+                ArrayList arrayList = pl8Var.a;
+                pl8Var.getLocationOnScreen(iArr);
                 if (i == -1) {
-                    AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(qn8Var);
-                    qn8Var.onInitializeAccessibilityNodeInfo(obtain);
+                    AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(pl8Var);
+                    pl8Var.onInitializeAccessibilityNodeInfo(obtain);
                     obtain.setEnabled(true);
-                    for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                        obtain.addChild(qn8Var, ((nn8) arrayList.get(i3)).a);
+                    for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                        obtain.addChild(pl8Var, ((ml8) arrayList.get(i2)).a);
                     }
                     return obtain;
                 }
-                int i4 = 0;
+                int i3 = 0;
                 while (true) {
-                    if (i4 < arrayList.size()) {
-                        if (((nn8) arrayList.get(i4)).a == i) {
-                            nn8Var = (nn8) arrayList.get(i4);
+                    if (i3 < arrayList.size()) {
+                        if (((ml8) arrayList.get(i3)).a == i) {
+                            ml8Var = (ml8) arrayList.get(i3);
                         } else {
-                            i4++;
+                            i3++;
                         }
                     } else {
-                        nn8Var = null;
+                        ml8Var = null;
                     }
                 }
-                if (nn8Var == null) {
+                if (ml8Var == null) {
                     return null;
                 }
-                RectF rectF = nn8Var.d;
+                RectF rectF = ml8Var.d;
                 if (rectF.isEmpty()) {
                     return null;
                 }
                 AccessibilityNodeInfo obtain2 = AccessibilityNodeInfo.obtain();
-                obtain2.setSource(qn8Var, i);
-                obtain2.setParent(qn8Var);
-                obtain2.setPackageName(qn8Var.getContext().getPackageName());
+                obtain2.setSource(pl8Var, i);
+                obtain2.setParent(pl8Var);
+                obtain2.setPackageName(pl8Var.getContext().getPackageName());
                 obtain2.addAction(16);
                 obtain2.addAction(64);
                 obtain2.setClickable(true);
@@ -75,7 +75,7 @@ public class v4 extends AccessibilityNodeProvider {
                 obtain2.setEnabled(true);
                 obtain2.setVisibleToUser(true);
                 obtain2.setClassName(Button.class.getName());
-                obtain2.setText(nn8Var.l.i());
+                obtain2.setText(ml8Var.l.i());
                 Rect rect = new Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                 obtain2.setBoundsInParent(rect);
                 rect.offset(iArr[0], iArr[1]);
@@ -88,7 +88,7 @@ public class v4 extends AccessibilityNodeProvider {
     public final List findAccessibilityNodeInfosByText(String str, int i) {
         switch (this.a) {
             case 0:
-                ((ni6) this.b).getClass();
+                ((l69) this.b).getClass();
                 return null;
             default:
                 return super.findAccessibilityNodeInfosByText(str, i);
@@ -99,11 +99,11 @@ public class v4 extends AccessibilityNodeProvider {
     public final AccessibilityNodeInfo findFocus(int i) {
         switch (this.a) {
             case 0:
-                u4 j = ((ni6) this.b).j(i);
-                if (j == null) {
+                u4 w = ((l69) this.b).w(i);
+                if (w == null) {
                     return null;
                 }
-                return j.a;
+                return w.a;
             default:
                 return super.findFocus(i);
         }
@@ -111,46 +111,46 @@ public class v4 extends AccessibilityNodeProvider {
 
     @Override
     public final boolean performAction(int i, int i2, Bundle bundle) {
-        nn8 nn8Var;
+        ml8 ml8Var;
         byte b = this.a;
         Object obj = this.b;
         switch (b) {
             case 0:
-                return ((ni6) obj).C(i, i2, bundle);
+                return ((l69) obj).E(i, i2, bundle);
             default:
-                qn8 qn8Var = (qn8) obj;
-                ArrayList arrayList = qn8Var.a;
+                pl8 pl8Var = (pl8) obj;
+                ArrayList arrayList = pl8Var.a;
                 if (i == -1) {
-                    return qn8Var.performAccessibilityAction(i2, bundle);
+                    return pl8Var.performAccessibilityAction(i2, bundle);
                 }
                 int i3 = 0;
                 while (true) {
                     if (i3 < arrayList.size()) {
-                        if (((nn8) arrayList.get(i3)).a == i) {
-                            nn8Var = (nn8) arrayList.get(i3);
+                        if (((ml8) arrayList.get(i3)).a == i) {
+                            ml8Var = (ml8) arrayList.get(i3);
                         } else {
                             i3++;
                         }
                     } else {
-                        nn8Var = null;
+                        ml8Var = null;
                     }
                 }
-                if (nn8Var != null) {
+                if (ml8Var != null) {
                     if (i2 == 64) {
-                        if (((AccessibilityManager) qn8Var.getContext().getSystemService("accessibility")).isTouchExplorationEnabled()) {
+                        if (((AccessibilityManager) pl8Var.getContext().getSystemService("accessibility")).isTouchExplorationEnabled()) {
                             AccessibilityEvent obtain = AccessibilityEvent.obtain(32768);
-                            obtain.setPackageName(qn8Var.getContext().getPackageName());
-                            obtain.setSource(qn8Var, i);
-                            if (qn8Var.getParent() != null) {
-                                qn8Var.getParent().requestSendAccessibilityEvent(qn8Var, obtain);
+                            obtain.setPackageName(pl8Var.getContext().getPackageName());
+                            obtain.setSource(pl8Var, i);
+                            if (pl8Var.getParent() != null) {
+                                pl8Var.getParent().requestSendAccessibilityEvent(pl8Var, obtain);
                             }
                         }
                     } else if (i2 == 16) {
-                        pn8 pn8Var = qn8Var.y;
-                        if (pn8Var != null) {
-                            ProfileActivity profileActivity = ((tn8) pn8Var).b;
-                            RectF rectF = ProfileActivity.e7;
-                            profileActivity.w2(0.0f, 0.0f, i);
+                        ol8 ol8Var = pl8Var.y;
+                        if (ol8Var != null) {
+                            ProfileActivity profileActivity = ((ql8) ol8Var).b;
+                            RectF rectF = ProfileActivity.Z6;
+                            profileActivity.t2(0.0f, 0.0f, i);
                         }
                     }
                     return true;
@@ -159,7 +159,7 @@ public class v4 extends AccessibilityNodeProvider {
         }
     }
 
-    public v4(qn8 qn8Var) {
-        this.b = qn8Var;
+    public v4(pl8 pl8Var) {
+        this.b = pl8Var;
     }
 }

@@ -1,73 +1,52 @@
 package defpackage;
 
-import android.os.Bundle;
 import android.os.Parcel;
-import android.os.RemoteException;
-import android.view.View;
-import j$.util.Objects;
-public final class f4d {
-    public final byte a;
-    public final pr2 b;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.Status;
+public final class f4d extends ig0 {
+    public final byte q;
 
-    public f4d(pr2 pr2Var, byte b) {
-        this.a = b;
-        switch (b) {
-            case 1:
-                Objects.requireNonNull(pr2Var);
-                this.b = pr2Var;
-                return;
-            default:
-                Objects.requireNonNull(pr2Var);
-                this.b = pr2Var;
-                return;
-        }
+    public f4d(x1d x1dVar, byte b) {
+        super(o40.a, x1dVar);
+        this.q = b;
     }
 
-    public final int a() {
-        switch (this.a) {
-            case 0:
-                return 1;
-            default:
-                return 5;
-        }
+    @Override
+    public final void a(ua9 ua9Var) {
+        a(ua9Var);
     }
 
-    public final void b() {
-        byte b = this.a;
-        pr2 pr2Var = this.b;
-        switch (b) {
+    @Override
+    public final ua9 d(Status status) {
+        byte b = this.q;
+        return status;
+    }
+
+    @Override
+    public final void n(xx4 xx4Var) {
+        switch (this.q) {
             case 0:
-                wm9 wm9Var = (wm9) pr2Var.a;
-                su suVar = (su) wm9Var.b;
-                mye myeVar = (mye) wm9Var.c;
-                try {
-                    Bundle bundle = new Bundle();
-                    Parcel R = myeVar.R();
-                    tid.b(R, bundle);
-                    myeVar.V(R, 2);
-                    pjd.b(bundle, null);
-                    Parcel Q = myeVar.Q(myeVar.R(), 8);
-                    xk5 T = eq7.T(Q.readStrongBinder());
-                    Q.recycle();
-                    wm9Var.d = (View) eq7.U(T);
-                    suVar.removeAllViews();
-                    suVar.addView((View) wm9Var.d);
-                    return;
-                } catch (RemoteException e) {
-                    i2d.h(e);
-                    return;
-                }
+                z3d z3dVar = (z3d) xx4Var;
+                j4d j4dVar = (j4d) z3dVar.k();
+                c4d c4dVar = new c4d(this, (byte) 0);
+                GoogleSignInOptions googleSignInOptions = z3dVar.F;
+                Parcel e = j4dVar.e();
+                int i = w3d.a;
+                e.writeStrongBinder(c4dVar);
+                w3d.c(e, googleSignInOptions);
+                j4dVar.f(e, 102);
+                return;
             default:
-                wm9 wm9Var2 = (wm9) pr2Var.a;
-                wm9Var2.getClass();
-                try {
-                    mye myeVar2 = (mye) wm9Var2.c;
-                    myeVar2.V(myeVar2.R(), 3);
-                    return;
-                } catch (RemoteException e2) {
-                    i2d.h(e2);
-                    return;
-                }
+                z3d z3dVar2 = (z3d) xx4Var;
+                j4d j4dVar2 = (j4d) z3dVar2.k();
+                c4d c4dVar2 = new c4d(this, (byte) 1);
+                GoogleSignInOptions googleSignInOptions2 = z3dVar2.F;
+                Parcel e2 = j4dVar2.e();
+                int i2 = w3d.a;
+                e2.writeStrongBinder(c4dVar2);
+                w3d.c(e2, googleSignInOptions2);
+                j4dVar2.f(e2, 103);
+                return;
         }
     }
 }

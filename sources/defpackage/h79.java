@@ -1,21 +1,34 @@
 package defpackage;
-public abstract class h79 {
-    public static final i79 a;
 
-    static {
-        ?? r0 = 0;
-        try {
-            r0 = (i79) Class.forName("kotlin.reflect.jvm.internal.ReflectionFactoryImpl").newInstance();
-        } catch (ClassCastException | ClassNotFoundException | IllegalAccessException | InstantiationException unused) {
-        }
-        if (r0 == 0) {
-            r0 = new Object();
-        }
-        a = r0;
+import android.app.Activity;
+import android.widget.ImageView;
+public final class h79 extends e21 {
+    public final i79 c;
+
+    public h79(Activity activity, String str) {
+        super(activity, null);
+        this.b.setText(str);
+        this.b.setTranslationY(-1.0f);
+        ImageView imageView = this.a;
+        i79 i79Var = new i79();
+        this.c = i79Var;
+        imageView.setImageDrawable(i79Var);
     }
 
-    public static cj2 a(Class cls) {
-        a.getClass();
-        return new cj2(cls);
+    @Override
+    public final void onEnterTransitionEnd() {
+        super.onEnterTransitionEnd();
+        i79 i79Var = this.c;
+        i79Var.getClass();
+        i79Var.g = System.currentTimeMillis();
+        i79Var.invalidateSelf();
+    }
+
+    @Override
+    public final void onExitTransitionEnd() {
+        super.onExitTransitionEnd();
+        i79 i79Var = this.c;
+        i79Var.g = -1L;
+        i79Var.invalidateSelf();
     }
 }

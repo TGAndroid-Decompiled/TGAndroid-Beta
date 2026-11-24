@@ -1,10 +1,18 @@
 package defpackage;
+public final class xx3 extends oh8 {
+    @Override
+    public final void invalidate() {
+        if (pg5.b(this)) {
+            return;
+        }
+        super.invalidate();
+    }
 
-import androidx.emoji2.text.EmojiCompatInitializer;
-public final class xx3 implements d36 {
-    public final w26 a;
-
-    public xx3(EmojiCompatInitializer emojiCompatInitializer, w26 w26Var) {
-        this.a = w26Var;
+    @Override
+    public final void invalidate(int i, int i2, int i3, int i4) {
+        if (pg5.b(this)) {
+            return;
+        }
+        super.invalidate(i, i2, i3, i4);
     }
 }

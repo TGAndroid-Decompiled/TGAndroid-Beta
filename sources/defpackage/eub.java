@@ -1,11 +1,28 @@
 package defpackage;
-public enum eub extends rub {
-    public eub() {
-        super("Rawtext", 4);
+public final class eub implements Runnable {
+    public final byte a;
+    public final pub b;
+    public final long c;
+
+    public eub(pub pubVar, long j, byte b) {
+        this.a = b;
+        this.b = pubVar;
+        this.c = j;
     }
 
     @Override
-    public final void c(bsb bsbVar, hl1 hl1Var) {
-        rub.d(bsbVar, hl1Var, this, rub.y);
+    public final void run() {
+        byte b = this.a;
+        long j = this.c;
+        pub pubVar = this.b;
+        switch (b) {
+            case 0:
+                pubVar.c.put(j, 0);
+                pubVar.getNotificationCenter().k(322, Long.valueOf(j), Boolean.FALSE);
+                return;
+            default:
+                pubVar.n(0, j, false);
+                return;
+        }
     }
 }

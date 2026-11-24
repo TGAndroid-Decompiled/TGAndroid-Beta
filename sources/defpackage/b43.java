@@ -1,38 +1,50 @@
 package defpackage;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class b43 extends u43 {
-    public final byte Q;
-    public final FrameLayout R;
+import android.database.ContentObserver;
+import android.database.Cursor;
+import android.os.Handler;
+public final class b43 extends ContentObserver {
+    public final byte a = 0;
+    public final Object b;
 
-    public b43(FrameLayout frameLayout, Context context, byte b) {
-        super(context);
-        this.Q = b;
-        this.R = frameLayout;
+    public b43(kbb kbbVar) {
+        super(new Handler());
+        this.b = kbbVar;
     }
 
     @Override
-    public final int getCurrentHeight() {
-        byte b = this.Q;
-        FrameLayout frameLayout = this.R;
-        switch (b) {
+    public final boolean deliverSelfNotifications() {
+        switch (this.a) {
             case 0:
-                return e43.b((e43) frameLayout);
+                return true;
             default:
-                return j43.b((j43) frameLayout);
+                return super.deliverSelfNotifications();
         }
     }
 
     @Override
-    public final int getCurrentWidth() {
-        byte b = this.Q;
-        FrameLayout frameLayout = this.R;
-        switch (b) {
+    public final void onChange(boolean z) {
+        Cursor cursor;
+        switch (this.a) {
             case 0:
-                return e43.a((e43) frameLayout);
+                kbb kbbVar = (kbb) this.b;
+                if (kbbVar.b && (cursor = kbbVar.c) != null && !cursor.isClosed()) {
+                    kbbVar.a = kbbVar.c.requery();
+                    return;
+                }
+                return;
             default:
-                return j43.a((j43) frameLayout);
+                p5d p5dVar = (p5d) this.b;
+                synchronized (p5dVar.d) {
+                    p5dVar.e = null;
+                }
+                ((p5d) this.b).b();
+                return;
         }
+    }
+
+    public b43(p5d p5dVar) {
+        super(null);
+        this.b = p5dVar;
     }
 }

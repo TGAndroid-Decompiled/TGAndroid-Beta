@@ -10,56 +10,56 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import java.io.InputStream;
 import org.telegram.ui.LaunchActivity;
-public final class a implements qac {
-    public final qqb a;
+public final class a implements p8c {
+    public final pob a;
     public final boolean[] b;
-    public final rqb c;
-    public final dvc d;
-    public final qac e;
+    public final qob c;
+    public final ctc d;
+    public final p8c e;
 
-    public a(qqb qqbVar, boolean[] zArr, rqb rqbVar, dvc dvcVar, qac qacVar) {
-        this.a = qqbVar;
+    public a(pob pobVar, boolean[] zArr, qob qobVar, ctc ctcVar, p8c p8cVar) {
+        this.a = pobVar;
         this.b = zArr;
-        this.c = rqbVar;
-        this.d = dvcVar;
-        this.e = qacVar;
+        this.c = qobVar;
+        this.d = ctcVar;
+        this.e = p8cVar;
     }
 
     @Override
     public final void a(Object obj) {
-        qqb qqbVar = this.a;
+        pob pobVar = this.a;
         boolean[] zArr = this.b;
-        rqb rqbVar = this.c;
-        dvc dvcVar = this.d;
-        qac qacVar = this.e;
+        qob qobVar = this.c;
+        ctc ctcVar = this.d;
+        p8c p8cVar = this.e;
         InputStream inputStream = (InputStream) obj;
-        rqb.a(qqbVar);
+        qob.a(pobVar);
         if (zArr[0]) {
             return;
         }
-        qqb d = rqb.d(rqbVar, "readHTML");
-        String str = dvcVar.a;
-        final hv0 hv0Var = new hv0(d, zArr, rqbVar, dvcVar, qacVar, (byte) 9);
+        pob d = qob.d(qobVar, "readHTML");
+        String str = ctcVar.a;
+        final yt0 yt0Var = new yt0(d, zArr, qobVar, ctcVar, p8cVar, (byte) 9);
         if (inputStream == null) {
-            hv0Var.a(null);
+            yt0Var.a(null);
             return;
         }
         Context context = LaunchActivity.H1;
         if (context == null) {
             context = org.telegram.messenger.a.b;
         }
-        Activity W = gm.W(context);
+        Activity W = gl.W(context);
         if (W == null) {
-            hv0Var.a(null);
+            yt0Var.a(null);
             return;
         }
         View rootView = W.findViewById(16908290).getRootView();
         if (!(rootView instanceof ViewGroup)) {
-            hv0Var.a(null);
+            yt0Var.a(null);
             return;
         }
-        final ct8 ct8Var = new ct8(context, (byte) 22);
-        ((ViewGroup) rootView).addView(ct8Var);
+        final ar8 ar8Var = new ar8(context, (byte) 22);
+        ((ViewGroup) rootView).addView(ar8Var);
         final WebView webView = new WebView(context);
         WebSettings settings = webView.getSettings();
         settings.setAllowContentAccess(false);
@@ -71,14 +71,14 @@ public final class a implements qac {
         settings.setDomStorageEnabled(false);
         settings.setAllowFileAccessFromFileURLs(false);
         settings.setAllowUniversalAccessFromFileURLs(false);
-        webView.setWebViewClient(new yuc(dvcVar, inputStream));
+        webView.setWebViewClient(new xsc(ctcVar, inputStream));
         webView.setWebChromeClient(new WebChromeClient());
-        ct8Var.addView(webView, qoe.c(-1.0f, -1));
+        ar8Var.addView(webView, nme.c(-1.0f, -1));
         final boolean[] zArr2 = {false};
         webView.addJavascriptInterface(new Object() {
             @JavascriptInterface
             public void done(String str2) {
-                gm.c3(new vua(zArr2, webView, ct8Var, str2, hv0Var, (byte) 10));
+                gl.c3(new tsa(zArr2, webView, ar8Var, str2, yt0Var, (byte) 10));
             }
         }, "Instant");
         webView.loadUrl(str);

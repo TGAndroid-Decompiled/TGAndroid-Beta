@@ -1,5 +1,140 @@
 package defpackage;
-public abstract class ned {
-    public static final float[][] a = {new float[]{1.1f, 27.0f, 1.05f, 23.0f, 1.15f, 33.0f, 3.8f, 1.0f, -1.0f, 1.0f, 1.0f, 2.0f, 3.0f}, new float[]{0.83f, 27.0f, 0.79f, 23.0f, 0.86f, 33.0f, 3.8f, 1.0f, -1.0f, 0.6f, 1.0f, 2.0f, 3.0f}, new float[]{1.1f, 27.0f, 1.05f, 23.0f, 1.15f, 18.0f, 3.8f, 1.0f, -1.0f, 1.2f, 1.0f, 2.0f, 3.0f}, new float[]{0.83f, 13.0f, 0.79f, 11.0f, 0.86f, 16.0f, 3.8f, 1.0f, -1.0f, 0.6f, 1.0f, 1.0f, 1.5f}};
-    public static final float[] b = {20.0f, 10.0f, 17.5f, 6.0f, 85.0f, 55.0f, 26.0f, 50.0f, 40.0f, 5.0f, 7.0f, 9.0f, 33.0f, 46.0f, 24.0f, 0.0f, 30.0f, 45.0f, 67.0f, 15.0f, 70.0f, 139.0f, 100.0f, 61.0f, 193.0f, 4.0f, 2.0f, 100.0f, 55.0f, 0.3f, 100.0f, 30.0f, 1.5f, 2.5f, 0.0f, 1.0f, 1.3f, 200.0f, 0.7f, 207.0f, 0.0f, 0.0f, 3.5f, 0.0f, 1.5f, 2.5f, 34.0f, 27.0f, 360.0f, 780.0f, 1.1f, 920.0f, 1.0f, 10.0f};
+
+import j$.lang.Iterable$CC;
+import j$.util.Collection;
+import j$.util.Spliterator;
+import j$.util.Spliterators;
+import j$.util.stream.Stream;
+import java.io.Serializable;
+import java.util.AbstractCollection;
+import java.util.Arrays;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+import java.util.function.IntFunction;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+public abstract class ned extends AbstractCollection implements Serializable, Collection {
+    public static final Object[] a = new Object[0];
+
+    @Override
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean addAll(java.util.Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void clear() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void forEach(Consumer consumer) {
+        Iterable$CC.$default$forEach(this, consumer);
+    }
+
+    public abstract int h(Object[] objArr);
+
+    public int i() {
+        throw new UnsupportedOperationException();
+    }
+
+    public int j() {
+        throw new UnsupportedOperationException();
+    }
+
+    public abstract efd k();
+
+    public abstract boolean l();
+
+    public Object[] m() {
+        return null;
+    }
+
+    @Override
+    public final Stream parallelStream() {
+        return Stream.Wrapper.convert(parallelStream());
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean removeAll(java.util.Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean removeIf(Predicate predicate) {
+        return Collection.CC.$default$removeIf(this, predicate);
+    }
+
+    @Override
+    public final boolean retainAll(java.util.Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final Spliterator spliterator() {
+        return Spliterator.Wrapper.convert(spliterator());
+    }
+
+    @Override
+    public final java.util.stream.Stream stream() {
+        return Stream.Wrapper.convert(stream());
+    }
+
+    @Override
+    public final Object[] toArray(Object[] objArr) {
+        objArr.getClass();
+        int size = size();
+        int length = objArr.length;
+        if (length < size) {
+            Object[] m = m();
+            if (m == null) {
+                if (length != 0) {
+                    objArr = Arrays.copyOf(objArr, 0);
+                }
+                objArr = Arrays.copyOf(objArr, size);
+            } else {
+                return Arrays.copyOfRange(m, j(), i(), objArr.getClass());
+            }
+        } else if (length > size) {
+            objArr[size] = null;
+        }
+        h(objArr);
+        return objArr;
+    }
+
+    @Override
+    public final j$.util.stream.Stream parallelStream() {
+        return Collection.CC.$default$parallelStream(this);
+    }
+
+    @Override
+    public final j$.util.Spliterator spliterator() {
+        return Spliterators.spliterator(this, 1296);
+    }
+
+    @Override
+    public final j$.util.stream.Stream stream() {
+        return Collection.CC.$default$stream(this);
+    }
+
+    @Override
+    public final Object[] toArray() {
+        return toArray(a);
+    }
+
+    @Override
+    public final Object[] toArray(IntFunction intFunction) {
+        Object[] array;
+        array = toArray((Object[]) intFunction.apply(0));
+        return array;
+    }
 }

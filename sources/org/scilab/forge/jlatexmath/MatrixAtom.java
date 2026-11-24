@@ -161,7 +161,7 @@ public class MatrixAtom extends Atom {
                 }
                 i++;
             } else {
-                qn0.g("Column specification is too complex");
+                qm0.g("Column specification is too complex");
                 return;
             }
         }

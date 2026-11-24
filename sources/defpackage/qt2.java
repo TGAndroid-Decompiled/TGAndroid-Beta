@@ -1,37 +1,44 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class qt2 extends b4 {
-    public static final Parcelable.Creator<qt2> CREATOR = new sje((byte) 24);
-    public final ol9 a;
-    public final boolean b;
-    public final boolean c;
-    public final int[] d;
-    public final int e;
-    public final int[] f;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class qt2 implements TextWatcher {
+    public final EditTextBoldCursor a;
 
-    public qt2(ol9 ol9Var, boolean z, boolean z2, int[] iArr, int i, int[] iArr2) {
-        this.a = ol9Var;
-        this.b = z;
-        this.c = z2;
-        this.d = iArr;
-        this.e = i;
-        this.f = iArr2;
+    public qt2(EditTextBoldCursor editTextBoldCursor) {
+        this.a = editTextBoldCursor;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        mve.k(parcel, 1, this.a, i);
-        mve.q(parcel, 2, 4);
-        parcel.writeInt(this.b ? 1 : 0);
-        mve.q(parcel, 3, 4);
-        parcel.writeInt(this.c ? 1 : 0);
-        mve.g(parcel, 4, this.d);
-        mve.q(parcel, 5, 4);
-        parcel.writeInt(this.e);
-        mve.g(parcel, 6, this.f);
-        mve.s(parcel, r);
+    public final void afterTextChanged(Editable editable) {
+        try {
+            String obj = editable.toString();
+            if (!obj.isEmpty()) {
+                int intValue = Utilities.z(obj).intValue();
+                EditTextBoldCursor editTextBoldCursor = this.a;
+                if (intValue < 0) {
+                    editTextBoldCursor.setText("0");
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                } else if (intValue > 300) {
+                    editTextBoldCursor.setText("300");
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                } else if (!obj.equals(String.valueOf(intValue))) {
+                    editTextBoldCursor.setText(String.valueOf(intValue));
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                }
+            }
+        } catch (Exception e) {
+            fa4.g(e, true);
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

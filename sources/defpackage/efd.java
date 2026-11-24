@@ -1,118 +1,192 @@
 package defpackage;
 
-import java.io.Serializable;
+import j$.util.List;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
-public final class efd implements Serializable, Iterable {
-    public static final efd c = new efd(gld.b);
-    public static final red d;
-    public int a = 0;
-    public final byte[] b;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+import java.util.function.UnaryOperator;
+public abstract class efd extends ned implements List, RandomAccess, j$.util.List {
+    public static final sed b = new sed(nhd.e, 0);
 
-    static {
-        ?? r0;
-        if (lcd.a()) {
-            r0 = new Object();
-        } else {
-            r0 = new Object();
+    public static nhd o(int i, Object[] objArr) {
+        if (i == 0) {
+            return nhd.e;
         }
-        d = r0;
+        return new nhd(i, objArr);
     }
 
-    public efd(byte[] bArr) {
-        this.b = bArr;
+    public static efd p(List list) {
+        if (list instanceof ned) {
+            efd k = ((ned) list).k();
+            if (k.l()) {
+                Object[] array = k.toArray(ned.a);
+                return o(array.length, array);
+            }
+            return k;
+        }
+        Object[] array2 = list.toArray();
+        int length = array2.length;
+        s0f.a(length, array2);
+        return o(length, array2);
     }
 
-    public static efd i(int i, int i2, byte[] bArr) {
-        return new efd(d.c(i, i2, bArr));
+    @Override
+    public final void add(int i, Object obj) {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
+    public final boolean addAll(int i, Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        if (indexOf(obj) >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public final boolean equals(Object obj) {
+        Object next;
+        Object next2;
         if (obj != this) {
-            if ((obj instanceof efd) && size() == ((efd) obj).size()) {
-                if (size() != 0) {
-                    if (obj instanceof efd) {
-                        efd efdVar = (efd) obj;
-                        int i = this.a;
-                        int i2 = efdVar.a;
-                        if (i == 0 || i2 == 0 || i == i2) {
-                            int size = size();
-                            if (size <= efdVar.size()) {
-                                if (size <= efdVar.size()) {
-                                    byte[] bArr = efdVar.b;
-                                    int h = h() + size;
-                                    int h2 = h();
-                                    int h3 = efdVar.h();
-                                    while (h2 < h) {
-                                        if (this.b[h2] != bArr[h3]) {
-                                            return false;
-                                        }
-                                        h2++;
-                                        h3++;
-                                    }
-                                    return true;
-                                }
-                                int size2 = efdVar.size();
-                                StringBuilder sb = new StringBuilder(59);
-                                sb.append("Ran off end of other: 0, ");
-                                sb.append(size);
-                                sb.append(", ");
-                                sb.append(size2);
-                                throw new IllegalArgumentException(sb.toString());
+            if (obj instanceof List) {
+                List list = (List) obj;
+                int size = size();
+                if (size == list.size()) {
+                    if (list instanceof RandomAccess) {
+                        for (int i = 0; i < size; i++) {
+                            Object obj2 = get(i);
+                            Object obj3 = list.get(i);
+                            if (obj2 == obj3 || (obj2 != null && obj2.equals(obj3))) {
                             }
-                            int size3 = size();
-                            StringBuilder sb2 = new StringBuilder(40);
-                            sb2.append("Length too large: ");
-                            sb2.append(size);
-                            sb2.append(size3);
-                            throw new IllegalArgumentException(sb2.toString());
                         }
-                        return false;
+                        return true;
                     }
-                    return obj.equals(this);
+                    sed listIterator = listIterator(0);
+                    Iterator it = list.iterator();
+                    while (true) {
+                        if (listIterator.hasNext()) {
+                            if (!it.hasNext() || ((next = listIterator.next()) != (next2 = it.next()) && (next == null || !next.equals(next2)))) {
+                                break;
+                            }
+                        } else if (!it.hasNext()) {
+                            return true;
+                        }
+                    }
                 }
-                return true;
             }
             return false;
         }
         return true;
     }
 
-    public final int h() {
-        return 0;
+    @Override
+    public int h(Object[] objArr) {
+        int size = size();
+        for (int i = 0; i < size; i++) {
+            objArr[i] = get(i);
+        }
+        return size;
     }
 
+    @Override
     public final int hashCode() {
-        int i = this.a;
-        if (i == 0) {
-            int size = size();
-            int h = h();
-            int i2 = size;
-            for (int i3 = h; i3 < h + size; i3++) {
-                i2 = (i2 * 31) + this.b[i3];
-            }
-            if (i2 == 0) {
-                i2 = 1;
-            }
-            this.a = i2;
-            return i2;
+        int size = size();
+        int i = 1;
+        for (int i2 = 0; i2 < size; i2++) {
+            i = (i * 31) + get(i2).hashCode();
         }
         return i;
     }
 
     @Override
+    public final int indexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        int size = size();
+        for (int i = 0; i < size; i++) {
+            if (obj.equals(get(i))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @Override
     public final Iterator iterator() {
-        return new j61(this);
+        return listIterator(0);
     }
 
-    public final byte j(int i) {
-        return this.b[i];
+    @Override
+    public final int lastIndexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        for (int size = size() - 1; size >= 0; size--) {
+            if (obj.equals(get(size))) {
+                return size;
+            }
+        }
+        return -1;
     }
 
-    public final int size() {
-        return this.b.length;
+    @Override
+    public final ListIterator listIterator() {
+        return listIterator(0);
     }
 
-    public final String toString() {
-        return String.format("<ByteString@%s size=%d>", Integer.toHexString(System.identityHashCode(this)), Integer.valueOf(size()));
+    @Override
+    public efd subList(int i, int i2) {
+        sze.c(i, i2, size());
+        int i3 = i2 - i;
+        if (i3 == size()) {
+            return this;
+        }
+        if (i3 == 0) {
+            return nhd.e;
+        }
+        return new zed(this, i, i3);
+    }
+
+    @Override
+    public final sed listIterator(int i) {
+        sze.b(i, size());
+        if (isEmpty()) {
+            return b;
+        }
+        return new sed(this, i);
+    }
+
+    @Override
+    public final Object remove(int i) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void replaceAll(UnaryOperator unaryOperator) {
+        List.CC.$default$replaceAll(this, unaryOperator);
+    }
+
+    @Override
+    public final Object set(int i, Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void sort(Comparator comparator) {
+        List.CC.$default$sort(this, comparator);
+    }
+
+    @Override
+    public final efd k() {
+        return this;
     }
 }

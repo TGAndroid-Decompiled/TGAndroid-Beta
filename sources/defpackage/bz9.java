@@ -1,85 +1,148 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.PorterDuff;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class bz9 extends FrameLayout {
-    public final TextView a;
-    public final s09 b;
-    public final ImageView c;
-    public float d;
-    public ValueAnimator e;
-    public final vz9 f;
+import org.telegram.tgnet.TLRPC;
+public final class bz9 extends gf0 {
+    public final wf2 s;
+    public TLRPC.TL_help_country w;
+    public final TextPaint x;
+    public final zk9 y;
 
-    public bz9(vz9 vz9Var, Context context, boolean z) {
-        super(context);
+    public bz9(Context context, wjb wjbVar) {
+        super(context, wjbVar);
         int i;
-        this.f = vz9Var;
-        LinearLayout i2 = hg9.i(context, 0);
-        if (z) {
+        TextPaint textPaint = new TextPaint();
+        this.x = textPaint;
+        this.y = new zk9(this, (byte) 23);
+        textPaint.setTextSize(gl.L(20.0f));
+        this.f.setVisibility(8);
+        this.c.setVisibility(8);
+        wf2 wf2Var = new wf2(21, wjbVar, context);
+        this.s = wf2Var;
+        wf2Var.b(bkb.A5, bkb.i7, bkb.B5);
+        wf2Var.setDrawUnchecked(true);
+        wf2Var.setDrawBackgroundAsArc(10);
+        addView(wf2Var);
+        wf2Var.a(false, false);
+        if (k96.a0) {
+            i = 5;
+        } else {
             i = 3;
-        } else {
-            i = 17;
         }
-        addView(i2, qoe.e(-2, -2, i));
-        ?? imageView = new ImageView(context);
-        this.b = imageView;
-        imageView.f(2131624310, 20, 20, null);
-        int i3 = cmb.Kf;
-        ylb ylbVar = vz9Var.a1;
-        anb.s(imageView, i3, ylbVar, PorterDuff.Mode.SRC_ATOP);
-        i2.addView((View) imageView, qoe.o(20, 20));
-        TextView textView = new TextView(context);
-        this.a = textView;
-        anb.X(textView, i3, ylbVar);
-        textView.setTypeface(gm.o());
-        textView.setTextSize(1, 14.0f);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setLines(1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        i2.addView(textView, qoe.r(-2, -2, 17));
-        ImageView imageView2 = new ImageView(context);
-        this.c = imageView2;
-        imageView2.setImageResource(2131232102);
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        anb.s(imageView2, cmb.Mf, ylbVar, PorterDuff.Mode.MULTIPLY);
-        addView(imageView2, qoe.e(24, 24, 21));
-    }
-
-    public final void a(String str, boolean z) {
-        this.a.setText(str);
-        b(z);
-    }
-
-    public final void b(boolean z) {
-        float f;
-        ValueAnimator valueAnimator = this.e;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.e = null;
-        }
-        if (z) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
-        }
-        this.d = f;
-        float L = (1.0f - this.d) * gm.L(-8.0f);
-        s09 s09Var = this.b;
-        s09Var.setTranslationX(L);
-        this.a.setTranslationX((1.0f - this.d) * gm.L(-8.0f));
-        s09Var.setAlpha(this.d);
+        wf2Var.setLayoutParams(nme.d(24, 24.0f, i | 16, 13.0f, 0.0f, 14.0f, 0.0f));
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(30.0f), 1073741824));
+    public final int a() {
+        return 22;
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final void c(boolean z, boolean z2) {
+        wf2 wf2Var = this.s;
+        if (wf2Var.getVisibility() == 0) {
+            wf2Var.a(z, z2);
+        }
+    }
+
+    @Override
+    public final void d() {
+        int i;
+        float f;
+        float f2;
+        int i2;
+        float f3;
+        float f4;
+        float f5;
+        float f6;
+        boolean z = k96.a0;
+        int i3 = 3;
+        if (z) {
+            i = 5;
+        } else {
+            i = 3;
+        }
+        int i4 = i | 16;
+        if (z) {
+            f = 20.0f;
+        } else {
+            f = 52.0f;
+        }
+        if (z) {
+            f2 = 52.0f;
+        } else {
+            f2 = 20.0f;
+        }
+        this.d.setLayoutParams(nme.d(-1, -2.0f, i4, f, 0.0f, f2, 0.0f));
+        boolean z2 = k96.a0;
+        if (z2) {
+            i2 = 5;
+        } else {
+            i2 = 3;
+        }
+        int i5 = i2 | 16;
+        if (z2) {
+            f3 = 20.0f;
+        } else {
+            f3 = 52.0f;
+        }
+        if (z2) {
+            f4 = 52.0f;
+        } else {
+            f4 = 20.0f;
+        }
+        this.e.setLayoutParams(nme.d(-1, -2.0f, i5, f3, 0.0f, f4, 0.0f));
+        boolean z3 = k96.a0;
+        if (z3) {
+            i3 = 5;
+        }
+        int i6 = i3 | 16;
+        if (z3) {
+            f5 = 15.0f;
+        } else {
+            f5 = 20.0f;
+        }
+        if (z3) {
+            f6 = 20.0f;
+        } else {
+            f6 = 15.0f;
+        }
+        this.f.setLayoutParams(nme.d(22, 22.0f, i6, f5, 0.0f, f6, 0.0f));
+    }
+
+    public final void f() {
+        TLRPC.TL_help_country tL_help_country = this.w;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        CharSequence o = vu3.o(k96.E0(tL_help_country.iso2), this.x.getFontMetricsInt(), 0, this.y);
+        if (o != null) {
+            spannableStringBuilder.append(o).append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new az9(16), o.length(), o.length() + 1, 0);
+        } else {
+            spannableStringBuilder.append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new az9(34), 0, 1, 0);
+        }
+        String i0 = k96.i0(2131750504, tL_help_country.iso2);
+        if (TextUtils.isEmpty(i0)) {
+            i0 = tL_help_country.default_name;
+        }
+        spannableStringBuilder.append((CharSequence) i0);
+        this.d.k(spannableStringBuilder);
+    }
+
+    public TLRPC.TL_help_country getCountry() {
+        return this.w;
+    }
+
+    @Override
+    public int getFullHeight() {
+        return 44;
     }
 }

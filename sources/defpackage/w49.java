@@ -1,87 +1,134 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.util.SparseArray;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.HashSet;
-public final class w49 {
-    public final r59 a;
-    public boolean d;
-    public final boolean e;
-    public final SparseArray b = new SparseArray();
-    public final HashSet c = new HashSet();
-    public final boolean f = true;
-    public final ArrayList g = new ArrayList();
-    public final ArrayList h = new ArrayList();
+public final class w49 implements h49 {
+    public RecyclerView a;
+    public boolean c;
+    public int d;
+    public int e;
+    public int f;
+    public boolean g;
+    public boolean h;
+    public int i;
+    public final v49 k;
+    public int b = -1;
+    public final int j = gl.L(80.0f);
+    public final bg7 l = new bg7(this, (byte) 14);
 
-    public w49(r59 r59Var, boolean z) {
-        this.a = r59Var;
-        this.e = z;
-        r59Var.setItemsEnterAnimator(this);
+    public w49(v49 v49Var) {
+        this.k = v49Var;
     }
 
-    public final void a() {
-        ArrayList arrayList = this.g;
-        int i = 0;
-        if (!arrayList.isEmpty()) {
-            ArrayList arrayList2 = new ArrayList(arrayList);
-            for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-                ((AnimatorSet) arrayList2.get(i2)).end();
-                ((AnimatorSet) arrayList2.get(i2)).cancel();
-            }
+    @Override
+    public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
+        int i;
+        int i2;
+        View E = recyclerView.E(motionEvent.getX(), motionEvent.getY());
+        if (E != null) {
+            i = RecyclerView.R(E);
+        } else {
+            i = -1;
         }
-        arrayList.clear();
-        while (true) {
-            ArrayList arrayList3 = this.h;
-            int size = arrayList3.size();
-            r59 r59Var = this.a;
-            if (i < size) {
-                r59Var.getViewTreeObserver().removeOnPreDrawListener((ViewTreeObserver.OnPreDrawListener) arrayList3.get(i));
-                i++;
-            } else {
-                arrayList3.clear();
-                this.b.clear();
-                r59Var.invalidate();
-                this.d = true;
+        float y = motionEvent.getY();
+        int action = motionEvent.getAction();
+        v49 v49Var = this.k;
+        bg7 bg7Var = this.l;
+        if (action != 1) {
+            if (action == 2) {
+                if (this.j > -1) {
+                    if (y >= 0.0f && y <= this.d) {
+                        this.h = false;
+                        if (!this.g) {
+                            this.g = true;
+                            gl.r(bg7Var);
+                            gl.c3(bg7Var);
+                        }
+                        this.i = ((int) (this.d - (y - 0.0f))) / 2;
+                    } else if (y >= this.e && y <= this.f) {
+                        this.g = false;
+                        if (!this.h) {
+                            this.h = true;
+                            gl.r(bg7Var);
+                            gl.c3(bg7Var);
+                        }
+                        this.i = ((int) ((y + this.f) - (this.e + i2))) / 2;
+                    } else if (this.g || this.h) {
+                        gl.r(bg7Var);
+                        this.g = false;
+                        this.h = false;
+                    }
+                }
+                if (i != -1 && this.b != i) {
+                    this.b = i;
+                    v49Var.H1(E, !v49Var.n2(i));
+                    return;
+                }
                 return;
             }
+            return;
         }
+        this.c = false;
+        this.g = false;
+        this.h = false;
+        gl.r(bg7Var);
+        v49Var.v(false);
     }
 
-    public final void b(int i) {
-        Animator ofFloat;
-        r59 r59Var = this.a;
-        int childCount = r59Var.getChildCount();
-        tk4 tk4Var = null;
-        for (int i2 = 0; i2 < childCount; i2++) {
-            View childAt = r59Var.getChildAt(i2);
-            if (RecyclerView.R(childAt) >= 0 && (childAt instanceof tk4)) {
-                tk4Var = childAt;
+    @Override
+    public final boolean b(RecyclerView recyclerView, MotionEvent motionEvent) {
+        boolean z;
+        boolean z2;
+        if (recyclerView.getAdapter() != null && recyclerView.getAdapter().b() != 0) {
+            z = false;
+        } else {
+            z = true;
+        }
+        if (this.c && !z) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        if (z2) {
+            this.a = recyclerView;
+            int i = this.j;
+            if (i > -1) {
+                this.d = i;
+                this.e = recyclerView.getMeasuredHeight() - i;
+                this.f = recyclerView.getMeasuredHeight();
             }
         }
-        f69 layoutManager = r59Var.getLayoutManager();
-        if (tk4Var != null && layoutManager != null) {
-            r59Var.removeView(tk4Var);
-            this.c.add(tk4Var);
-            r59Var.addView(tk4Var);
-            layoutManager.L(tk4Var);
-            if (this.f) {
-                ofFloat = ObjectAnimator.ofFloat(tk4Var, View.ALPHA, tk4Var.getAlpha(), 0.0f);
-            } else {
-                ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            }
-            ofFloat.addListener(new ic8(this, tk4Var, layoutManager));
-            ofFloat.start();
-            i--;
+        if (z2 && motionEvent.getAction() == 1) {
+            this.c = false;
+            this.g = false;
+            this.h = false;
+            gl.r(this.l);
+            this.k.v(false);
         }
-        m42 m42Var = new m42(this, tk4Var, i, (byte) 3);
-        this.h.add(m42Var);
-        r59Var.getViewTreeObserver().addOnPreDrawListener(m42Var);
+        return z2;
+    }
+
+    public final void d(int i, View view, boolean z) {
+        if (this.c) {
+            return;
+        }
+        this.b = -1;
+        gl.r(this.l);
+        this.g = false;
+        this.h = false;
+        v49 v49Var = this.k;
+        if (!v49Var.K(i)) {
+            this.c = false;
+            return;
+        }
+        v49Var.v(true);
+        v49Var.H1(view, z);
+        this.c = true;
+        this.b = i;
+    }
+
+    @Override
+    public final void c(boolean z) {
     }
 }

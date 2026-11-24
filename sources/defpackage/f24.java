@@ -1,60 +1,93 @@
 package defpackage;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public interface f24 {
-    boolean A();
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
+public final class f24 implements Set, Serializable {
+    public static final f24 a = new Object();
 
-    long a();
+    @Override
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
 
-    boolean b();
+    @Override
+    public final boolean addAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
 
-    boolean c();
+    @Override
+    public final void clear() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
 
-    void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z);
+    @Override
+    public final boolean contains(Object obj) {
+        return false;
+    }
 
-    void e(Object obj, Object obj2);
+    @Override
+    public final boolean containsAll(Collection collection) {
+        collection.getClass();
+        return collection.isEmpty();
+    }
 
-    int f();
+    @Override
+    public final boolean equals(Object obj) {
+        if ((obj instanceof Set) && ((Set) obj).isEmpty()) {
+            return true;
+        }
+        return false;
+    }
 
-    void g(d4c d4cVar);
+    @Override
+    public final int hashCode() {
+        return 0;
+    }
 
-    boolean h();
+    @Override
+    public final boolean isEmpty() {
+        return true;
+    }
 
-    void i(TLRPC.StickerSetCovered stickerSetCovered);
+    @Override
+    public final Iterator iterator() {
+        return b24.a;
+    }
 
-    void j(int i);
+    @Override
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
 
-    boolean k();
+    @Override
+    public final boolean removeAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
 
-    boolean l();
+    @Override
+    public final boolean retainAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
 
-    void m(String str);
+    @Override
+    public final int size() {
+        return 0;
+    }
 
-    void n();
+    @Override
+    public final Object[] toArray(Object[] objArr) {
+        objArr.getClass();
+        return s83.c(this, objArr);
+    }
 
-    float o();
+    public final String toString() {
+        return "[]";
+    }
 
-    void p();
-
-    void q(TLRPC.StickerSetCovered stickerSetCovered);
-
-    void r(int i);
-
-    void s(ArrayList arrayList);
-
-    void t();
-
-    void u(View view, Object obj, String str, Object obj2, boolean z, int i, int i2);
-
-    void v();
-
-    void w(long j, TLRPC.Document document, String str, boolean z);
-
-    void x(View view, TLRPC.Document document, String str, Object obj, g47 g47Var, boolean z, int i);
-
-    void y(long j);
-
-    boolean z();
+    @Override
+    public final Object[] toArray() {
+        return s83.b(this);
+    }
 }

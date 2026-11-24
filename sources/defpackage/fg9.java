@@ -1,30 +1,25 @@
 package defpackage;
-public final class fg9 implements Runnable {
-    public final byte a;
-    public final ch9 b;
-    public final d69 c;
 
-    public fg9(ch9 ch9Var, d69 d69Var, byte b) {
-        this.a = b;
-        this.b = ch9Var;
-        this.c = d69Var;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+public final class fg9 implements ll5 {
+    public final gg9 a;
+
+    public fg9(gg9 gg9Var) {
+        this.a = gg9Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        d69 d69Var = this.c;
-        ch9 ch9Var = this.b;
-        switch (b) {
-            case 0:
-                ch9Var.setItemAnimator(d69Var);
-                return;
-            case 1:
-                ch9Var.setItemAnimator(d69Var);
-                return;
-            default:
-                ch9Var.setItemAnimator(d69Var);
-                return;
-        }
+    public final void v(ImageReceiver imageReceiver) {
+        gg9 gg9Var = this.a;
+        gg9Var.n(gg9Var.T, true);
+    }
+
+    @Override
+    public final void E(int i, Drawable drawable) {
+    }
+
+    @Override
+    public final void C(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
     }
 }

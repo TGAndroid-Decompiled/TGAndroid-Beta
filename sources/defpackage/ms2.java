@@ -1,60 +1,29 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.TLRPC;
-public final class ms2 extends qs2 {
-    public final boolean d;
-    public final int e;
-    public volatile boolean f;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.play.core.integrity.IntegrityTokenResponse;
+import org.telegram.tgnet.ConnectionsManager;
+public final class ms2 implements OnSuccessListener, OnFailureListener {
+    public final int a;
+    public final long b;
+    public final int c;
+    public final String d;
 
-    public ms2(int i, String str, boolean z) {
-        super(str);
-        this.d = z;
-        this.e = i;
-        this.f = z;
+    public ms2(int i, long j, String str, int i2) {
+        this.a = i;
+        this.b = j;
+        this.c = i2;
+        this.d = str;
     }
 
     @Override
-    public final boolean b(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-        boolean z;
-        if (!(jSONValue instanceof TLRPC.TL_jsonBool) || (z = ((TLRPC.TL_jsonBool) jSONValue).value) == this.f) {
-            return false;
-        }
-        this.f = z;
-        editor.putBoolean(e(), z);
-        return true;
+    public final void onFailure(Exception exc) {
+        ConnectionsManager.lambda$onIntegrityCheckClassic$26(this.a, this.b, this.c, this.d, exc);
     }
 
     @Override
-    public final boolean c(SharedPreferences.Editor editor) {
-        if (this.e == 2) {
-            boolean z = this.f;
-            boolean z2 = this.d;
-            if (z != z2) {
-                this.f = z2;
-                editor.remove(e());
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void d(SharedPreferences sharedPreferences) {
-        try {
-            this.f = sharedPreferences.getBoolean(e(), this.d);
-        } catch (ClassCastException e) {
-            fc4.g(e, true);
-            this.f = this.d;
-        }
-    }
-
-    public final boolean f() {
-        return this.f;
-    }
-
-    public final String toString() {
-        return this.a + "=" + this.f;
+    public final void onSuccess(Object obj) {
+        ConnectionsManager.lambda$onIntegrityCheckClassic$25(this.a, this.b, this.c, this.d, (IntegrityTokenResponse) obj);
     }
 }

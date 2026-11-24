@@ -1,63 +1,30 @@
 package defpackage;
 
-import android.content.Context;
+import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class nu2 implements Runnable {
-    public final byte a = 1;
-    public final byte b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
-    public final Object h;
+public final class nu2 {
+    public int a;
+    public String b;
+    public String c;
+    public boolean d;
+    public final ArrayList e = new ArrayList(4);
+    public final ArrayList f = new ArrayList(4);
+    public final ArrayList g = new ArrayList(4);
+    public final ArrayList h = new ArrayList(4);
+    public String i;
+    public String j;
+    public boolean k;
+    public int l;
+    public TLRPC.User m;
 
-    public nu2(tu2 tu2Var, TLRPC.FileLocation fileLocation, TLRPC.InputFile inputFile, TLObject tLObject, TLRPC.FileLocation fileLocation2, int i) {
-        this.c = tu2Var;
-        this.d = fileLocation;
-        this.f = inputFile;
-        this.h = tLObject;
-        this.e = fileLocation2;
-        this.b = i;
-    }
-
-    @Override
-    public final void run() {
-        byte b = this.a;
-        Object obj = this.h;
-        Object obj2 = this.f;
-        Object obj3 = this.e;
-        Object obj4 = this.d;
-        Object obj5 = this.c;
-        switch (b) {
-            case 0:
-                ((tu2) obj5).g0((TLRPC.FileLocation) obj4, (TLRPC.InputFile) obj2, (TLObject) obj, (TLRPC.FileLocation) obj3, this.b);
-                return;
-            default:
-                hs6 hs6Var = (hs6) obj5;
-                boolean[] zArr = (boolean[]) obj4;
-                ArrayList arrayList = (ArrayList) obj3;
-                Context context = (Context) obj2;
-                d dVar = (d) obj;
-                if (!zArr[0]) {
-                    zArr[0] = true;
-                    for (int i = 0; i < arrayList.size(); i++) {
-                        hs6Var.j2(context, 0, dVar, null, true, (TLObject) arrayList.get(i), ((TLRPC.TL_messages_stickerSet) arrayList.get(i)).set, null, this.b, false);
-                    }
-                    return;
-                }
-                return;
+    public static String a(String str, String str2) {
+        if (!TextUtils.isEmpty(str)) {
+            return str.substring(0, 1);
         }
-    }
-
-    public nu2(hs6 hs6Var, boolean[] zArr, ArrayList arrayList, Context context, d dVar, int i) {
-        this.c = hs6Var;
-        this.d = zArr;
-        this.e = arrayList;
-        this.f = context;
-        this.h = dVar;
-        this.b = i;
+        if (!TextUtils.isEmpty(str2)) {
+            return str2.substring(0, 1);
+        }
+        return "#";
     }
 }

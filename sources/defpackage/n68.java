@@ -1,30 +1,28 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-public final class n68 extends FrameLayout {
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.PhotoViewer;
+public final class n68 implements jac {
     public final byte a;
-    public RectF b;
+    public final lm6 b;
 
-    public n68(Context context, byte b) {
-        super(context);
+    public n68(lm6 lm6Var, byte b) {
         this.a = b;
+        this.b = lm6Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.a) {
+    public final void a(td4 td4Var) {
+        byte b = this.a;
+        lm6 lm6Var = this.b;
+        switch (b) {
             case 0:
-                RectF rectF = this.b;
-                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                canvas.drawRoundRect(rectF, gm.L(4.0f), gm.L(4.0f), cmb.h2);
+                Drawable[] drawableArr = PhotoViewer.d9;
+                td4Var.c(new z24(lm6Var, (byte) 1));
                 return;
             default:
-                RectF rectF2 = this.b;
-                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                canvas.drawRoundRect(rectF2, gm.L(4.0f), gm.L(4.0f), cmb.h2);
+                Drawable[] drawableArr2 = PhotoViewer.d9;
+                td4Var.c(new z24(lm6Var, (byte) 1));
                 return;
         }
     }

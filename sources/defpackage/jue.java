@@ -1,8 +1,34 @@
 package defpackage;
 
-import android.os.IInterface;
-public interface jue extends IInterface {
-    void t(z7e z7eVar);
-
-    void zze();
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public abstract class jue {
+    public static FrameLayout a(Activity activity, wjb wjbVar, int i, String str, String str2) {
+        FrameLayout frameLayout = new FrameLayout(activity);
+        ImageView imageView = new ImageView(activity);
+        int i2 = bkb.i5;
+        imageView.setColorFilter(new PorterDuffColorFilter(bkb.v0(i2, wjbVar), PorterDuff.Mode.SRC_IN));
+        imageView.setImageResource(i);
+        frameLayout.addView(imageView, nme.d(24, 24.0f, 51, 0.0f, 8.0f, 0.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(activity);
+        linearLayout.setOrientation(1);
+        TextView textView = new TextView(activity);
+        textView.setTextColor(bkb.v0(i2, wjbVar));
+        textView.setTypeface(gl.o());
+        textView.setTextSize(0, gl.L(14.0f));
+        textView.setText(str);
+        linearLayout.addView(textView, nme.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
+        TextView textView2 = new TextView(activity);
+        textView2.setTextColor(bkb.v0(bkb.y6, wjbVar));
+        textView2.setTextSize(0, gl.L(14.0f));
+        textView2.setText(str2);
+        linearLayout.addView(textView2, nme.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
+        frameLayout.addView(linearLayout, nme.d(-1, -2.0f, 55, 41.0f, 0.0f, 0.0f, 0.0f));
+        return frameLayout;
+    }
 }

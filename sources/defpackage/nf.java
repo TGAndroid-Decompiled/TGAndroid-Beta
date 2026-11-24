@@ -1,40 +1,32 @@
 package defpackage;
-
-import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.PhotoViewer;
-public final class nf implements DialogInterface.OnDismissListener {
+public final class nf implements fn7 {
     public final byte a;
-    public final Runnable b;
+    public final hn7 b;
+    public final hn7 c;
+    public final hn7 d;
 
-    public nf(Runnable runnable, byte b) {
+    public nf(hn7 hn7Var, hn7 hn7Var2, hn7 hn7Var3, byte b) {
         this.a = b;
-        this.b = runnable;
+        this.b = hn7Var;
+        this.c = hn7Var2;
+        this.d = hn7Var3;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
+    public final void i(hn7 hn7Var, int i) {
         byte b = this.a;
-        Runnable runnable = this.b;
+        hn7 hn7Var2 = this.d;
+        hn7 hn7Var3 = this.c;
+        hn7 hn7Var4 = this.b;
         switch (b) {
             case 0:
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                ij.v0(hn7Var4, hn7Var3, hn7Var2);
                 return;
             case 1:
-                runnable.run();
-                return;
-            case 2:
-                Drawable[] drawableArr = PhotoViewer.d9;
-                runnable.run();
+                ij.v0(hn7Var4, hn7Var3, hn7Var2);
                 return;
             default:
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                ij.b(hn7Var4, hn7Var3, hn7Var2);
                 return;
         }
     }

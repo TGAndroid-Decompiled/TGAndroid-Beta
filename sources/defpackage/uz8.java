@@ -1,29 +1,25 @@
 package defpackage;
 
-import android.view.animation.Interpolator;
-public final class uz8 implements Interpolator {
-    public final boolean a;
-    public final float b;
-    public final float c;
-    public final Interpolator d;
+import androidx.recyclerview.widget.RecyclerView;
+public final class uz8 extends i49 {
+    public final t26 a;
+    public final a09 b;
 
-    public uz8(boolean z, float f, float f2, Interpolator interpolator) {
-        this.a = z;
-        this.b = f;
-        this.c = f2;
-        this.d = interpolator;
+    public uz8(a09 a09Var, t26 t26Var) {
+        this.b = a09Var;
+        this.a = t26Var;
     }
 
     @Override
-    public final float getInterpolation(float f) {
-        boolean z = this.a;
-        float f2 = this.b;
-        float f3 = this.c;
-        Interpolator interpolator = this.d;
-        float f4 = (f - f2) / (f3 - f2);
-        if (z) {
-            return 1.0f - interpolator.getInterpolation(1.0f - pqe.a(f4, 0.0f, 1.0f));
+    public final void b(RecyclerView recyclerView, int i, int i2) {
+        int loadCount;
+        a09 a09Var = this.b;
+        if (a09Var.x && a09Var.y && !a09Var.w) {
+            int M0 = this.a.M0();
+            loadCount = a09Var.getLoadCount();
+            if (M0 >= (a09Var.f.b() - 1) - loadCount) {
+                a09Var.c();
+            }
         }
-        return interpolator.getInterpolation(pqe.a(f4, 0.0f, 1.0f));
     }
 }

@@ -1,21 +1,17 @@
 package defpackage;
+public final class cue implements zn7 {
+    public static final cue a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class cue extends b4 {
-    public static final Parcelable.Creator<cue> CREATOR = new sje((byte) 5);
-    public int a;
-    public boolean b;
+    static {
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)));
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        int i2 = this.a;
-        mve.q(parcel, 2, 4);
-        parcel.writeInt(i2);
-        boolean z = this.b;
-        mve.q(parcel, 3, 4);
-        parcel.writeInt(z ? 1 : 0);
-        mve.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

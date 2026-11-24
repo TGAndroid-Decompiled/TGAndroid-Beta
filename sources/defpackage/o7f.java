@@ -1,68 +1,118 @@
 package defpackage;
-public enum o7f implements ujd {
-    NO_ERROR(0),
-    NATIVE_LIBRARY_LOAD_ERROR(1),
-    INCOMPATIBLE_OUTPUT(2),
-    INCOMPATIBLE_TFLITE_VERSION(3),
-    MISSING_OP(4),
-    DATA_TYPE_ERROR(6),
-    TFLITE_INTERNAL_ERROR(7),
-    TFLITE_UNKNOWN_ERROR(8),
-    REMOTE_MODEL_INVALID(9),
-    TIME_OUT_FETCHING_MODEL_METADATA(5),
-    MODEL_NOT_DOWNLOADED(100),
-    URI_EXPIRED(101),
-    NO_NETWORK_CONNECTION(102),
-    METERED_NETWORK(103),
-    DOWNLOAD_FAILED(104),
-    OPTIONAL_TFLITE_MODULE_INIT_ERROR(105),
-    NATIVE_LIBRARY_LOAD_ERROR(106),
-    REMOTE_MODEL_INVALID(107),
-    OPTIONAL_TFLITE_MODULE_INIT_ERROR(108),
-    NATIVE_LIBRARY_LOAD_ERROR(109),
-    REMOTE_MODEL_INVALID(110),
-    OPTIONAL_TFLITE_MODULE_INIT_ERROR(111),
-    NATIVE_LIBRARY_LOAD_ERROR(112),
-    OPTIONAL_TFLITE_MODULE_INIT_ERROR(113),
-    NATIVE_LIBRARY_LOAD_ERROR(114),
-    OPTIONAL_TFLITE_MODULE_INIT_ERROR(115),
-    NATIVE_LIBRARY_LOAD_ERROR(116),
-    OPTIONAL_MODULE_NOT_AVAILABLE(201),
-    OPTIONAL_MODULE_INIT_ERROR(202),
-    OPTIONAL_MODULE_INFERENCE_ERROR(203),
-    NATIVE_LIBRARY_LOAD_ERROR(204),
-    OPTIONAL_TFLITE_MODULE_INIT_ERROR(205),
-    NATIVE_LIBRARY_LOAD_ERROR(206),
-    OPTIONAL_MODULE_CREATE_ERROR(207),
-    CAMERAX_SOURCE_ERROR(301),
-    CAMERA1_SOURCE_CANT_START_ERROR(302),
-    CAMERA1_SOURCE_NO_SUITABLE_SIZE_ERROR(303),
-    CAMERA1_SOURCE_NO_SUITABLE_FPS_ERROR(304),
-    CAMERA1_SOURCE_NO_BYTE_SOURCE_FOUND_ERROR(305),
-    CODE_SCANNER_UNAVAILABLE(400),
-    CODE_SCANNER_CANCELLED(401),
-    CODE_SCANNER_CAMERA_PERMISSION_NOT_GRANTED(402),
-    CODE_SCANNER_APP_NAME_UNAVAILABLE(403),
-    CODE_SCANNER_TASK_IN_PROGRESS(404),
-    CODE_SCANNER_PIPELINE_INITIALIZATION_ERROR(405),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(406),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(407),
-    LOW_LIGHT_AUTO_EXPOSURE_COMPUTATION_FAILURE(500),
-    LOW_LIGHT_IMAGE_CAPTURE_PROCESSING_FAILURE(501),
-    PERMISSION_DENIED(600),
-    CANCELLED(601),
-    GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(602),
-    LOW_MEMORY(603),
-    UNKNOWN_ERROR(9999);
-    
-    public final short a;
 
-    o7f(int i) {
-        this.a = i;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.net.Uri;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+public final class o7f {
+    public static final Charset b = Charset.forName("UTF-8");
+    public static final vk9 c;
+    public static final vk9 d;
+    public static final ConcurrentHashMap e;
+    public static final HashMap f;
+    public static Boolean g;
+    public static Long h;
+    public static final p7d i;
+    public final Context a;
+
+    static {
+        vk9 vk9Var = new vk9(Uri.parse("content://com.google.android.gms.phenotype/com.google.android.gms.clearcut.public"), "gms:playlog:service:samplingrules_", "LogSamplingRules__", (byte) 20);
+        c = vk9Var;
+        d = new vk9(Uri.parse("content://com.google.android.gms.phenotype/com.google.android.gms.clearcut.public"), "gms:playlog:service:sampling_", "LogSampling__", (byte) 20);
+        e = new ConcurrentHashMap();
+        f = new HashMap();
+        g = null;
+        h = null;
+        i = new p7d(vk9Var, "enable_log_sampling_rules", Boolean.FALSE, (byte) 0);
     }
 
-    @Override
-    public final int zza() {
-        return this.a;
+    public o7f(Context context) {
+        this.a = context;
+        if (context != null) {
+            g6d.b(context);
+        }
+    }
+
+    public static long a(long j, String str) {
+        if (str != null && !str.isEmpty()) {
+            byte[] bytes = str.getBytes(b);
+            ByteBuffer allocate = ByteBuffer.allocate(bytes.length + 8);
+            allocate.put(bytes);
+            allocate.putLong(j);
+            return s2f.c(allocate.array());
+        }
+        return s2f.c(ByteBuffer.allocate(8).putLong(j).array());
+    }
+
+    public static boolean b(long j, long j2, long j3) {
+        if (j2 >= 0 && j3 > 0) {
+            if (j < 0) {
+                j = ((j & Long.MAX_VALUE) % j3) + (Long.MAX_VALUE % j3) + 1;
+            }
+            if (j % j3 >= j2) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    public static boolean c(Context context) {
+        boolean z;
+        Boolean bool = g;
+        if (bool == null) {
+            if (ryc.a(context).a.checkCallingOrSelfPermission("com.google.android.providers.gsf.permission.READ_GSERVICES") == 0) {
+                z = true;
+            } else {
+                z = false;
+            }
+            bool = Boolean.valueOf(z);
+            g = bool;
+        }
+        return bool.booleanValue();
+    }
+
+    public static long d(Context context) {
+        Object obj;
+        long j = 0;
+        Long l = 0L;
+        Long l2 = h;
+        if (l2 == null) {
+            if (context == null) {
+                return 0L;
+            }
+            if (c(context)) {
+                ContentResolver contentResolver = context.getContentResolver();
+                Uri uri = qhf.a;
+                synchronized (qhf.class) {
+                    qhf.c(contentResolver);
+                    obj = qhf.k;
+                }
+                HashMap hashMap = qhf.i;
+                Long l3 = (Long) qhf.a(hashMap, "android_id", l);
+                if (l3 != null) {
+                    j = l3.longValue();
+                } else {
+                    String b2 = qhf.b(contentResolver, "android_id");
+                    if (b2 != null) {
+                        try {
+                            long parseLong = Long.parseLong(b2);
+                            l3 = Long.valueOf(parseLong);
+                            j = parseLong;
+                        } catch (NumberFormatException unused) {
+                        }
+                    }
+                    qhf.e(obj, hashMap, "android_id", l3);
+                }
+                l = Long.valueOf(j);
+            }
+            h = l;
+        } else {
+            l = l2;
+        }
+        return l.longValue();
     }
 }

@@ -1,17 +1,12 @@
 package defpackage;
-public final class tge implements cq7 {
-    public static final tge a = new Object();
-
-    static {
-        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)), 3)), 4)), 5)));
+public final class tge extends e0e {
+    public final void c(mie mieVar) {
+        b();
+        fhe.q((fhe) this.b, (fje) mieVar.a());
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void d(vqe vqeVar) {
+        b();
+        fhe.s((fhe) this.b, (dre) vqeVar.a());
     }
 }

@@ -1,26 +1,13 @@
 package defpackage;
 
-import android.telephony.TelephonyCallback;
-import android.telephony.TelephonyDisplayInfo;
-public final class cl7 extends TelephonyCallback implements TelephonyCallback.DisplayInfoListener {
-    public final ow2 a;
-
-    public cl7(ow2 ow2Var) {
-        this.a = ow2Var;
+import android.app.Notification;
+import android.net.Uri;
+public abstract class cl7 {
+    public static Notification.MessagingStyle.Message a(CharSequence charSequence, long j, CharSequence charSequence2) {
+        return new Notification.MessagingStyle.Message(charSequence, j, charSequence2);
     }
 
-    public final void onDisplayInfoChanged(TelephonyDisplayInfo telephonyDisplayInfo) {
-        boolean z;
-        int overrideNetworkType = telephonyDisplayInfo.getOverrideNetworkType();
-        int i = 5;
-        if (overrideNetworkType != 3 && overrideNetworkType != 4 && overrideNetworkType != 5) {
-            z = false;
-        } else {
-            z = true;
-        }
-        if (z) {
-            i = 10;
-        }
-        this.a.i(i);
+    public static Notification.MessagingStyle.Message b(Notification.MessagingStyle.Message message, String str, Uri uri) {
+        return message.setData(str, uri);
     }
 }

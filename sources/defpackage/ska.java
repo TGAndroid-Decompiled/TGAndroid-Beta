@@ -1,99 +1,128 @@
 package defpackage;
 
+import android.content.Context;
+import android.media.AudioFormat;
+import android.media.AudioManager;
+import android.media.Spatializer;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import j$.util.Objects;
 import java.util.List;
-public final class ska implements s84 {
-    public final int a;
-    public final int b;
-    public final String c;
-    public int d;
-    public byte e;
-    public u84 f;
-    public yzb g;
+public final class ska {
+    public final Spatializer a;
+    public final boolean b;
+    public final Handler c;
+    public final rka d;
 
-    public ska(int i, int i2, String str) {
-        this.a = i;
-        this.b = i2;
-        this.c = str;
-    }
-
-    @Override
-    public final int b(t84 t84Var, u21 u21Var) {
-        byte b = this.e;
-        if (b != 1) {
-            if (b == 2) {
-                return -1;
-            }
-            rjb.h();
-            return 0;
-        }
-        yzb yzbVar = this.g;
-        yzbVar.getClass();
-        int f = yzbVar.f(t84Var, 1024, true);
-        if (f == -1) {
-            this.e = (byte) 2;
-            this.g.a(0L, 1, this.d, 0, null);
-            this.d = 0;
-            return 0;
-        }
-        this.d += f;
-        return 0;
-    }
-
-    @Override
-    public final boolean c(t84 t84Var) {
+    public ska(Context context, Runnable runnable, Boolean bool) {
+        AudioManager e;
         boolean z;
-        int i = this.b;
-        int i2 = this.a;
-        if (i2 != -1 && i != -1) {
-            z = true;
+        if (context == null) {
+            e = null;
         } else {
-            z = false;
+            e = i00.e(context);
         }
-        jte.p(z);
-        yw7 yw7Var = new yw7(i);
-        ((vb3) t84Var).d(yw7Var.a, 0, i, false);
-        if (yw7Var.H() == i2) {
+        if (e != null && (bool == null || !bool.booleanValue())) {
+            Spatializer spatializer = e.getSpatializer();
+            this.a = spatializer;
+            if (spatializer.getImmersiveAudioLevel() != 0) {
+                z = true;
+            } else {
+                z = false;
+            }
+            this.b = z;
+            Looper myLooper = Looper.myLooper();
+            myLooper.getClass();
+            Handler handler = new Handler(myLooper);
+            this.c = handler;
+            rka rkaVar = new rka(runnable);
+            this.d = rkaVar;
+            spatializer.addOnSpatializerStateChangedListener(new g40(handler, (byte) 0), rkaVar);
+            return;
+        }
+        this.a = null;
+        this.b = false;
+        this.c = null;
+        this.d = null;
+    }
+
+    public final boolean a(nz nzVar, fm4 fm4Var) {
+        int i;
+        if (this.a == null || !this.b || !c() || !d()) {
+            return false;
+        }
+        String str = fm4Var.t;
+        int i2 = fm4Var.N;
+        if (Objects.equals(str, "audio/eac3-joc")) {
+            if (i2 == 16) {
+                i = 12;
+            }
+            i = i2;
+        } else if (Objects.equals(str, "audio/iamf")) {
+            if (i2 == -1) {
+                i = 6;
+            }
+            i = i2;
+        } else {
+            if (Objects.equals(str, "audio/ac4") && (i2 == 18 || i2 == 21)) {
+                i = 24;
+            }
+            i = i2;
+        }
+        int i3 = fm4Var.O;
+        if (i3 == -1 || i2 != i) {
+            i3 = g8c.t(i);
+        }
+        if (i3 == 0) {
+            return false;
+        }
+        AudioFormat.Builder channelMask = new AudioFormat.Builder().setEncoding(2).setChannelMask(i3);
+        int i4 = fm4Var.P;
+        if (i4 != -1) {
+            channelMask.setSampleRate(i4);
+        }
+        Spatializer spatializer = this.a;
+        spatializer.getClass();
+        return spatializer.canBeSpatialized(nzVar.b(), channelMask.build());
+    }
+
+    public final List b() {
+        if (this.a != null && this.b && c() && d()) {
+            if (Build.VERSION.SDK_INT >= 36) {
+                Spatializer spatializer = this.a;
+                spatializer.getClass();
+                return spatializer.getSpatializedChannelMasks();
+            }
+            return mm5.u(252);
+        }
+        km5 km5Var = mm5.b;
+        return w59.e;
+    }
+
+    public final boolean c() {
+        Spatializer spatializer = this.a;
+        if (spatializer != null && spatializer.isAvailable()) {
             return true;
         }
         return false;
     }
 
-    @Override
-    public final void d(long j, long j2) {
-        if (j != 0 && this.e != 1) {
-            return;
+    public final boolean d() {
+        Spatializer spatializer = this.a;
+        if (spatializer != null && spatializer.isEnabled()) {
+            return true;
         }
-        this.e = (byte) 1;
-        this.d = 0;
+        return false;
     }
 
-    @Override
-    public final List e() {
-        ko5 ko5Var = mo5.b;
-        return y79.e;
-    }
-
-    @Override
-    public final void f(u84 u84Var) {
-        this.f = u84Var;
-        yzb c0 = u84Var.c0(1024, 4);
-        this.g = c0;
-        fo4 fo4Var = new fo4();
-        String str = this.c;
-        fo4Var.r = wf7.n(str);
-        fo4Var.s = wf7.n(str);
-        mlb.w(fo4Var, c0);
-        this.f.B();
-        this.f.f0(new Object());
-        this.e = (byte) 1;
-    }
-
-    @Override
-    public final s84 a() {
-        return this;
-    }
-
-    @Override
-    public final void release() {
+    public final void e() {
+        rka rkaVar;
+        Handler handler;
+        Spatializer spatializer = this.a;
+        if (spatializer != null && (rkaVar = this.d) != null && (handler = this.c) != null) {
+            spatializer.removeOnSpatializerStateChangedListener(rkaVar);
+            handler.removeCallbacksAndMessages(null);
+        }
     }
 }

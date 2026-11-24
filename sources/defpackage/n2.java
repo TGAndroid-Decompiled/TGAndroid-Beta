@@ -1,3 +1,3 @@
 package defpackage;
-public final class n2 extends smd {
+public final class n2 extends qkd {
 }

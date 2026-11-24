@@ -1,34 +1,17 @@
 package defpackage;
-public final class ype extends f4e {
-    private static final ype zzb;
-    private int zzd;
-    private int zze;
-    private String zzf = "";
+public final class ype implements zn7 {
+    public static final ype a = new Object();
 
     static {
-        ype ypeVar = new ype();
-        zzb = ypeVar;
-        f4e.k(ype.class, ypeVar);
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
     }
 
     @Override
-    public final Object d(int i) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 == 5) {
-                            return zzb;
-                        }
-                        throw null;
-                    }
-                    return new h2e(zzb);
-                }
-                return new ype();
-            }
-            return new wce(zzb, "\u0004\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001᠌\u0000\u0002ဈ\u0001", new Object[]{"zzd", "zze", btd.h, "zzf"});
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        return (byte) 1;
+        throw new ClassCastException();
     }
 }

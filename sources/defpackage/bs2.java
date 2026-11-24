@@ -1,67 +1,23 @@
 package defpackage;
 
-import android.graphics.Paint;
-import android.util.Pair;
-import java.util.Arrays;
-import java.util.List;
-public abstract class bs2 {
-    public static final List a = Arrays.asList("🏻", "🏼", "🏽", "🏾", "🏿");
-    public static final Paint b = new Paint(2);
+import java.util.ArrayDeque;
+public final class bs2 {
+    public final Object a;
+    public final ny0 b;
+    public q5a d;
+    public kc8 e;
+    public boolean f;
+    public aob h;
+    public eyb i;
+    public final ArrayDeque c = new ArrayDeque();
+    public kc8 g = kc8.b;
 
-    public static zr2 a(String str, Integer num, Integer num2) {
-        Pair c;
-        if (str != null && (c = c(str)) != null) {
-            if (num == null) {
-                num = (Integer) c.first;
-            }
-            as2 as2Var = new as2(num.intValue(), 0);
-            if (num2 == null) {
-                num2 = (Integer) c.second;
-            }
-            as2 as2Var2 = new as2(num2.intValue(), 1);
-            ?? cw3Var = new cw3();
-            cw3Var.c = as2Var;
-            cw3Var.d = as2Var2;
-            return cw3Var;
-        }
-        return null;
-    }
-
-    public static int b(String str) {
-        if (str == null) {
-            return -1;
-        }
-        return a.indexOf(str.substring(str.length() - 2));
-    }
-
-    public static Pair c(String str) {
-        int i;
-        String[] split;
-        int i2 = -1;
-        if (str.startsWith("🤝")) {
-            if (str.length() != 2) {
-                if (str.length() == 4) {
-                    i = b(str);
-                    if (i >= 0) {
-                        i2 = i;
-                    }
-                    split = str.split("\u200d");
-                    if (split.length != 2 && split[0].startsWith("🫱") && split[1].startsWith("🫲")) {
-                        if (split[0].length() == 2 || (split[0].length() == 4 && (i = b(split[0])) >= 0)) {
-                            if (split[1].length() == 2 || (split[1].length() == 4 && (i2 = b(split[1])) >= 0)) {
-                                return new Pair(Integer.valueOf(i), Integer.valueOf(i2));
-                            }
-                            return null;
-                        }
-                        return null;
-                    }
-                    return null;
-                }
-            }
-            return new Pair(Integer.valueOf(i2), Integer.valueOf(i2));
-        }
-        i = -1;
-        split = str.split("\u200d");
-        return split.length != 2 ? null : null;
+    public bs2(Object obj, ny0 ny0Var, q5a q5aVar, kc8 kc8Var, aob aobVar, eyb eybVar) {
+        this.a = obj;
+        this.b = ny0Var;
+        this.d = q5aVar;
+        this.e = kc8Var;
+        this.h = aobVar;
+        this.i = eybVar;
     }
 }

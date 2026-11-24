@@ -1,31 +1,15 @@
 package defpackage;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 public final class go3 implements Runnable {
-    public final byte a;
-    public final CountDownLatch b;
+    public final boolean a;
+    public final uk5 b;
 
-    public go3(CountDownLatch countDownLatch, byte b) {
-        this.a = b;
-        this.b = countDownLatch;
+    public go3(int i, uk5 uk5Var) {
+        this.a = i;
+        this.b = uk5Var;
     }
 
     @Override
     public final void run() {
-        byte b = this.a;
-        CountDownLatch countDownLatch = this.b;
-        switch (b) {
-            case 0:
-                try {
-                    countDownLatch.await(20000L, TimeUnit.MILLISECONDS);
-                    return;
-                } catch (InterruptedException unused) {
-                    return;
-                }
-            default:
-                countDownLatch.countDown();
-                return;
-        }
+        this.b.run();
     }
 }

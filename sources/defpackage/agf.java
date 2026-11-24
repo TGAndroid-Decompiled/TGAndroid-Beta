@@ -1,17 +1,30 @@
 package defpackage;
-public abstract class agf {
-    public static z0f a;
+public final class agf implements dgf {
+    public final dgf[] a;
 
-    public static synchronized iff a(lef lefVar) {
-        iff iffVar;
-        synchronized (agf.class) {
-            z0f z0fVar = a;
-            if (z0fVar == null) {
-                z0fVar = new z0f((byte) 3);
-                a = z0fVar;
+    public agf(dgf... dgfVarArr) {
+        this.a = dgfVarArr;
+    }
+
+    @Override
+    public final sgf zzb(Class cls) {
+        for (int i = 0; i < 2; i++) {
+            dgf dgfVar = this.a[i];
+            if (dgfVar.zzc(cls)) {
+                return dgfVar.zzb(cls);
             }
-            iffVar = (iff) z0fVar.c(lefVar);
         }
-        return iffVar;
+        fyb.i("No factory is available for message type: ".concat(cls.getName()));
+        return null;
+    }
+
+    @Override
+    public final boolean zzc(Class cls) {
+        for (int i = 0; i < 2; i++) {
+            if (this.a[i].zzc(cls)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,29 +1,27 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class h52 implements gk {
+import android.animation.ValueAnimator;
+public final class h52 implements ValueAnimator.AnimatorUpdateListener {
     public final byte a;
-    public final n52 b;
-    public final TLRPC.TL_messageMediaVenue c;
+    public final l52 b;
 
-    public h52(n52 n52Var, TLRPC.TL_messageMediaVenue tL_messageMediaVenue, byte b) {
+    public h52(l52 l52Var, byte b) {
         this.a = b;
-        this.b = n52Var;
-        this.c = tL_messageMediaVenue;
+        this.b = l52Var;
     }
 
     @Override
-    public final void y(int i, int i2, boolean z) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        n52 n52Var = this.b;
+        l52 l52Var = this.b;
         switch (b) {
             case 0:
-                n52Var.o0.b(this.c, n52Var.p0, z, i, 0L);
-                n52Var.b.a(true);
+                l52Var.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l52Var.invalidate();
                 return;
             default:
-                n52Var.o0.b(this.c, n52Var.p0, z, i, 0L);
-                n52Var.b.a(true);
+                l52Var.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l52Var.invalidate();
                 return;
         }
     }

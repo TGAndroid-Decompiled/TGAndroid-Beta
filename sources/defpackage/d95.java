@@ -1,83 +1,24 @@
 package defpackage;
+public final class d95 implements eec {
+    public final f65 a;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.view.View;
-public final class d95 extends Drawable {
-    public long b;
-    public boolean d;
-    public final View e;
-    public final Paint a = new Paint(1);
-    public float c = 1.0f;
-
-    public d95(View view) {
-        this.e = view;
+    public d95(f65 f65Var) {
+        this.a = f65Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int L;
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY();
-        View view = this.e;
-        if (view instanceof lka) {
-            L = gm.L(1.0f) + centerY;
-            centerX -= gm.L(3.0f);
-        } else {
-            L = gm.L(2.0f) + centerY;
-        }
-        Paint paint = this.a;
-        paint.setColor(-1147527);
-        paint.setAlpha((int) (this.c * 255.0f));
-        canvas.drawCircle(centerX, L, gm.L(4.0f), paint);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j = elapsedRealtime - this.b;
-        if (j > 17) {
-            j = 17;
-        }
-        this.b = elapsedRealtime;
-        boolean z = this.d;
-        if (!z) {
-            float f = (((float) j) / 2000.0f) + this.c;
-            this.c = f;
-            if (f >= 1.0f) {
-                this.c = 1.0f;
-                this.d = true;
-            }
-        } else if (z) {
-            float f2 = this.c - (((float) j) / 2000.0f);
-            this.c = f2;
-            if (f2 < 0.5f) {
-                this.c = 0.5f;
-                this.d = false;
-            }
-        }
-        view.invalidate();
+    public final void b(float f, int i, int i2) {
+        f65 f65Var = this.a;
+        f65Var.q1 = i;
+        f65Var.p1 = f;
+        f65Var.D0();
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return gm.L(24.0f);
+    public final void a(int i) {
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return gm.L(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void c(int i) {
     }
 }

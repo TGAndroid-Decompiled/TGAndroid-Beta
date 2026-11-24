@@ -1,57 +1,49 @@
 package defpackage;
 
-import java.io.InputStream;
-import java.util.ArrayDeque;
-import java.util.Arrays;
-public abstract class i61 {
-    public static byte[] a(ArrayDeque arrayDeque, int i) {
-        if (arrayDeque.isEmpty()) {
-            return new byte[0];
-        }
-        byte[] bArr = (byte[]) arrayDeque.remove();
-        if (bArr.length == i) {
-            return bArr;
-        }
-        int length = i - bArr.length;
-        byte[] copyOf = Arrays.copyOf(bArr, i);
-        while (length > 0) {
-            byte[] bArr2 = (byte[]) arrayDeque.remove();
-            int min = Math.min(length, bArr2.length);
-            System.arraycopy(bArr2, 0, copyOf, i - length, min);
-            length -= min;
-        }
-        return copyOf;
+import android.content.Context;
+public final class i61 extends fx0 {
+    public static final int m1 = 0;
+    public final byte l1;
+
+    public i61(int i, wjb wjbVar, Context context, boolean z) {
+        super(i, wjbVar, context, z);
+        this.l1 = (byte) 2;
     }
 
-    public static byte[] b(InputStream inputStream) {
-        int i;
-        inputStream.getClass();
-        ArrayDeque arrayDeque = new ArrayDeque(20);
-        int i2 = 128;
-        int i3 = 0;
-        while (i3 < 2147483639) {
-            int min = Math.min(i2, 2147483639 - i3);
-            byte[] bArr = new byte[min];
-            arrayDeque.add(bArr);
-            int i4 = 0;
-            while (i4 < min) {
-                int read = inputStream.read(bArr, i4, min - i4);
-                if (read == -1) {
-                    return a(arrayDeque, i3);
+    @Override
+    public final boolean E() {
+        switch (this.l1) {
+            case 0:
+                return false;
+            default:
+                return super.E();
+        }
+    }
+
+    @Override
+    public final void p0() {
+        switch (this.l1) {
+            case 2:
+                super.p0();
+                try {
+                    int v0 = bkb.v0(bkb.g5, this.J0);
+                    if (this.H0 != v0) {
+                        L(v0);
+                        return;
+                    }
+                    return;
+                } catch (Exception e) {
+                    fa4.g(e, true);
+                    return;
                 }
-                i4 += read;
-                i3 += read;
-            }
-            if (i2 < 4096) {
-                i = 4;
-            } else {
-                i = 2;
-            }
-            i2 = ine.d(i2 * i);
+            default:
+                super.p0();
+                return;
         }
-        if (inputStream.read() == -1) {
-            return a(arrayDeque, 2147483639);
-        }
-        throw new OutOfMemoryError("input is too large to fit in a byte array");
+    }
+
+    public i61(byte b, Context context, boolean z) {
+        super(context, z);
+        this.l1 = b;
     }
 }

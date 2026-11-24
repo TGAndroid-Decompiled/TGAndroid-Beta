@@ -1,26 +1,15 @@
 package defpackage;
+public final class jcc extends l13 {
+    public final xu7 b;
+    public final xu7 c;
+    public int d;
+    public boolean e;
+    public boolean f;
+    public int g;
 
-import org.telegram.messenger.voip.VideoCapturerDevice;
-public final class jcc implements Runnable {
-    public final byte a;
-    public final VideoCapturerDevice b;
-
-    public jcc(VideoCapturerDevice videoCapturerDevice, byte b) {
-        this.a = b;
-        this.b = videoCapturerDevice;
-    }
-
-    @Override
-    public final void run() {
-        byte b = this.a;
-        VideoCapturerDevice videoCapturerDevice = this.b;
-        switch (b) {
-            case 0:
-                videoCapturerDevice.lambda$onDestroy$8();
-                return;
-            default:
-                videoCapturerDevice.lambda$onDestroy$9();
-                return;
-        }
+    public jcc(wxb wxbVar) {
+        super(wxbVar);
+        this.b = new xu7(yad.a);
+        this.c = new xu7(4);
     }
 }

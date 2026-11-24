@@ -1,15 +1,15 @@
 package defpackage;
-public final class cod implements cq7 {
+public final class cod implements zn7 {
     public static final cod a = new Object();
 
     static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)), 5)));
+        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
+            ao7 ao7Var = (ao7) obj2;
             throw null;
         }
         throw new ClassCastException();

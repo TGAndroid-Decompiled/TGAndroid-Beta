@@ -66,7 +66,7 @@ class MediaCodecUtils {
             if (i == 5) {
                 return H264Utils.getDefaultH264Params(z);
             }
-            u36.i(videoCodecMimeType, "Unsupported codec: ");
+            w26.i(videoCodecMimeType, "Unsupported codec: ");
             return null;
         }
         return new HashMap();

@@ -1,66 +1,61 @@
 package defpackage;
-public interface pe8 {
-    void A(int i, qe8 qe8Var, qe8 qe8Var2);
 
-    void B(jt6 jt6Var);
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d;
+public final class pe8 implements Runnable {
+    public final byte a = 1;
+    public final ve8 b;
+    public final boolean c;
+    public final TLRPC.PollAnswer d;
+    public final d e;
+    public final ArrayList f;
 
-    void C(jt6 jt6Var);
+    public pe8(ve8 ve8Var, boolean z, TLRPC.PollAnswer pollAnswer, d dVar, ArrayList arrayList) {
+        this.b = ve8Var;
+        this.c = z;
+        this.d = pollAnswer;
+        this.e = dVar;
+        this.f = arrayList;
+    }
 
-    void D(bqb bqbVar, int i);
+    @Override
+    public final void run() {
+        byte b = this.a;
+        ArrayList arrayList = this.f;
+        d dVar = this.e;
+        TLRPC.PollAnswer pollAnswer = this.d;
+        boolean z = this.c;
+        ve8 ve8Var = this.b;
+        switch (b) {
+            case 0:
+                if (!z) {
+                    dVar.getSendMessagesHelper().v0(ve8Var.I, null, null);
+                } else {
+                    arrayList.remove(pollAnswer);
+                    dVar.getSendMessagesHelper().v0(ve8Var.I, arrayList, null);
+                }
+                ve8Var.b(true);
+                return;
+            default:
+                if (!z) {
+                    ArrayList arrayList2 = new ArrayList(1);
+                    arrayList2.add(pollAnswer);
+                    dVar.getSendMessagesHelper().v0(ve8Var.I, arrayList2, null);
+                } else {
+                    arrayList.add(pollAnswer);
+                    dVar.getSendMessagesHelper().v0(ve8Var.I, arrayList, null);
+                }
+                ve8Var.b(true);
+                return;
+        }
+    }
 
-    void E(u64 u64Var);
-
-    void F(u64 u64Var);
-
-    void G(y79 y79Var);
-
-    void H(int i, boolean z);
-
-    void J(ce8 ce8Var);
-
-    void K(ne8 ne8Var);
-
-    void L(nf7 nf7Var);
-
-    void M(int i, int i2);
-
-    void P(boolean z);
-
-    void a(jec jecVar);
-
-    void b(int i);
-
-    void c(int i);
-
-    void d(oe8 oe8Var);
-
-    void e(boolean z);
-
-    void f(boolean z);
-
-    void g(int i);
-
-    void h(int i);
-
-    void l(o00 o00Var);
-
-    void m(d0c d0cVar);
-
-    void o(boolean z);
-
-    void onRenderedFirstFrame();
-
-    void p(int i, boolean z);
-
-    void q(float f);
-
-    void r(int i, bt6 bt6Var);
-
-    void t(int i);
-
-    void v(boolean z);
-
-    void x(g53 g53Var);
-
-    void z(g0c g0cVar);
+    public pe8(ve8 ve8Var, boolean z, d dVar, ArrayList arrayList, TLRPC.PollAnswer pollAnswer) {
+        this.b = ve8Var;
+        this.c = z;
+        this.e = dVar;
+        this.f = arrayList;
+        this.d = pollAnswer;
+    }
 }

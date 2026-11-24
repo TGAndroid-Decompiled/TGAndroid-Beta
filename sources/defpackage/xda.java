@@ -1,30 +1,32 @@
 package defpackage;
-public final class xda implements Runnable {
-    public final byte a;
-    public final iga b;
-    public final int c;
 
-    public xda(iga igaVar, int i, byte b) {
-        this.a = b;
-        this.b = igaVar;
-        this.c = i;
+import android.content.Context;
+public final class xda extends kfa {
+    public final nfa H;
+
+    public xda(nfa nfaVar, Context context) {
+        super(nfaVar, context, 0, false);
+        this.H = nfaVar;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        int i = this.c;
-        iga igaVar = this.b;
-        switch (b) {
-            case 0:
-                igaVar.h.scrollBy(0, i);
-                return;
-            case 1:
-                igaVar.h.scrollBy(0, i);
-                return;
-            default:
-                igaVar.h.scrollBy(0, i);
-                return;
+    public final void f() {
+        boolean z;
+        super.f();
+        nfa nfaVar = this.H;
+        iea P = nfaVar.P(8);
+        if (P != null && P.n.getVisibility() == 0) {
+            nfaVar.g0.f();
+        }
+        if (P != null) {
+            eda edaVar = P.w;
+            y1b y1bVar = this.s;
+            if (y1bVar != null && (y1bVar.k() || (nfaVar.d0() && this.s.g() > 0))) {
+                z = true;
+            } else {
+                z = false;
+            }
+            edaVar.e(z, true);
         }
     }
 }

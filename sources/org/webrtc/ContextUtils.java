@@ -14,7 +14,7 @@ public class ContextUtils {
         if (context != null) {
             applicationContext = context;
         } else {
-            u36.j("Application context cannot be null for ContextUtils.initialize.");
+            w26.j("Application context cannot be null for ContextUtils.initialize.");
         }
     }
 }

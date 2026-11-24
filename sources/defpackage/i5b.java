@@ -1,40 +1,31 @@
 package defpackage;
-public final class i5b implements Runnable {
-    public final byte a;
-    public final j5b b;
 
-    public i5b(j5b j5bVar, byte b) {
-        this.a = b;
-        this.b = j5bVar;
-    }
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class i5b extends LinearLayout {
+    public final TextView a;
+    public final TextView b;
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        j5b j5bVar = this.b;
-        switch (b) {
-            case 0:
-                k5b k5bVar = j5bVar.v;
-                k5bVar.s = 0;
-                k5bVar.requestLayout();
-                l5b l5bVar = k5bVar.K;
-                l5bVar.L(l5bVar.getWidth(), l5bVar.getHeight());
-                l5bVar.requestLayout();
-                return;
-            case 1:
-                k5b k5bVar2 = j5bVar.v;
-                k5bVar2.s = 0;
-                k5bVar2.requestLayout();
-                l5b l5bVar2 = k5bVar2.K;
-                l5bVar2.L(l5bVar2.getWidth(), l5bVar2.getHeight());
-                l5bVar2.requestLayout();
-                return;
-            case 2:
-                j5bVar.v.post(new i5b(j5bVar, (byte) 3));
-                return;
-            default:
-                j5bVar.v.y = true;
-                return;
+    public i5b(wjb wjbVar, Context context, boolean z) {
+        super(context);
+        int i;
+        setOrientation(1);
+        TextView textView = new TextView(context);
+        this.a = textView;
+        tb4.w(textView, bkb.i5, wjbVar, 1, 20.0f);
+        if (z) {
+            i = 4;
+        } else {
+            i = 13;
+        }
+        addView(textView, nme.t(-1, -2, 55, 27, 16, 27, i));
+        TextView textView2 = new TextView(context);
+        this.b = textView2;
+        zkb.X(textView2, bkb.p5, wjbVar);
+        textView2.setTextSize(1, 14.0f);
+        if (z) {
+            addView(textView2, nme.t(-1, -2, 55, 27, 0, 27, 13));
         }
     }
 }

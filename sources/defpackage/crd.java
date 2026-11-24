@@ -1,56 +1,17 @@
 package defpackage;
+public final class crd implements zn7 {
+    public static final crd a = new Object();
 
-import android.util.LongSparseArray;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public abstract class crd {
-    public static boolean a;
-    public static boolean b;
-    public static ArrayList c;
-    public static LongSparseArray d;
-    public static ArrayList e;
-
-    public static ArrayList a(qac qacVar) {
-        boolean z;
-        if (qacVar != null && !b) {
-            ArrayList arrayList = e;
-            if (arrayList == null) {
-                arrayList = new ArrayList();
-                e = arrayList;
-            }
-            arrayList.add(qacVar);
-            z = true;
-        } else {
-            z = false;
-        }
-        b();
-        if (z) {
-            return null;
-        }
-        return c;
+    static {
+        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)), 5)));
     }
 
-    public static void b() {
-        if (!a && !b) {
-            a = true;
-            c = new ArrayList();
-            d = new LongSparseArray();
-            Utilities.e.c(new jd((byte) 12));
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-    }
-
-    public static void c(m11 m11Var) {
-        if (m11Var != null && m11Var.d != null) {
-            b();
-            m11 m11Var2 = (m11) d.get(m11Var.a);
-            if (m11Var2 != null) {
-                m11Var2.d = m11Var.d;
-            } else {
-                c.add(m11Var);
-                d.put(m11Var.a, m11Var);
-            }
-            gm.r(new jd((byte) 11));
-            gm.d3(new jd((byte) 11), 1000L);
-        }
+        throw new ClassCastException();
     }
 }

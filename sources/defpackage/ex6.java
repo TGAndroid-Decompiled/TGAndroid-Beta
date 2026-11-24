@@ -1,11 +1,7 @@
 package defpackage;
-
-import android.content.Context;
-import android.media.session.MediaSession;
-import android.os.Bundle;
-public class ex6 extends cx6 {
+public final class ex6 implements as2 {
     @Override
-    public MediaSession a(Context context, String str, Bundle bundle) {
-        return ul1.f(context, str, bundle);
+    public final t56 run() {
+        return am5.b;
     }
 }

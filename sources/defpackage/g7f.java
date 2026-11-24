@@ -1,42 +1,45 @@
 package defpackage;
 
-import android.os.IBinder;
-import android.os.IInterface;
-public final class g7f extends zz4 {
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+public final class g7f implements Iterator {
+    public Map.Entry a;
+    public final Iterator b;
+
+    public g7f(xze xzeVar, Iterator it) {
+        this.b = it;
+    }
+
     @Override
-    public final IInterface b(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
+    public final boolean hasNext() {
+        return this.b.hasNext();
+    }
+
+    @Override
+    public final Object next() {
+        Map.Entry entry = (Map.Entry) this.b.next();
+        this.a = entry;
+        return entry.getKey();
+    }
+
+    @Override
+    public final void remove() {
+        boolean z;
+        Map.Entry entry = this.a;
+        if (entry != null) {
+            z = true;
+        } else {
+            z = false;
         }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cast.internal.ICastService");
-        if (queryLocalInterface instanceof p9d) {
-            return (p9d) queryLocalInterface;
+        if (z) {
+            Collection collection = (Collection) entry.getValue();
+            this.b.remove();
+            collection.size();
+            collection.clear();
+            this.a = null;
+            return;
         }
-        return new f1d(iBinder, "com.google.android.gms.cast.internal.ICastService", (byte) 3);
-    }
-
-    @Override
-    public final o94[] f() {
-        return jgd.e;
-    }
-
-    @Override
-    public final int i() {
-        return 12451000;
-    }
-
-    @Override
-    public final String l() {
-        return "com.google.android.gms.cast.internal.ICastService";
-    }
-
-    @Override
-    public final String n() {
-        return "com.google.android.gms.cast.service.BIND_CAST_DEVICE_CONTROLLER_SERVICE";
-    }
-
-    @Override
-    public final boolean x() {
-        return true;
+        sc8.j("no calls to next() since the last call to remove()");
     }
 }

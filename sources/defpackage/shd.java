@@ -1,54 +1,17 @@
 package defpackage;
+public final class shd implements zn7 {
+    public static final shd a = new Object();
 
-import java.util.Iterator;
-import java.util.Map;
-public final class shd extends cfd {
-    public final transient h9d h;
-    public final transient Object[] n;
-    public final transient boolean r;
-
-    public shd(h9d h9dVar, Object[] objArr) {
-        super((byte) 1);
-        this.h = h9dVar;
-        this.n = objArr;
-        this.r = true;
+    static {
+        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            if (value != null && value.equals(this.h.get(key))) {
-                return true;
-            }
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        return false;
-    }
-
-    @Override
-    public final int h(Object[] objArr) {
-        ped pedVar = this.f;
-        if (pedVar == null) {
-            pedVar = new nhd(this);
-            this.f = pedVar;
-        }
-        return pedVar.h(objArr);
-    }
-
-    @Override
-    public final Iterator iterator() {
-        ped pedVar = this.f;
-        if (pedVar == null) {
-            pedVar = new nhd(this);
-            this.f = pedVar;
-        }
-        return pedVar.listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        return this.r ? 1 : 0;
+        throw new ClassCastException();
     }
 }

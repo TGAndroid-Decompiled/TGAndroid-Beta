@@ -200,8 +200,8 @@ public class TL_aicompose {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.hash = inputSerializedData.readInt64(z);
-            this.tones = Vector.deserialize(inputSerializedData, new rfb((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
+            this.tones = Vector.deserialize(inputSerializedData, new qdb((byte) 13), z);
+            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
         }
 
         @Override

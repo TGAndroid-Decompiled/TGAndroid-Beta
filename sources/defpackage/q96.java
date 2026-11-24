@@ -1,51 +1,31 @@
 package defpackage;
-public final class q96 implements Runnable {
-    public final byte a;
-    public final s96 b;
 
-    public q96(s96 s96Var, byte b) {
-        this.a = b;
-        this.b = s96Var;
-    }
+import android.util.SparseArray;
+import j$.util.Comparator$CC;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+public final class q96 {
+    public SparseArray a;
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        s96 s96Var = this.b;
-        switch (b) {
-            case 0:
-                s96Var.B();
-                return;
-            case 1:
-                if (!s96Var.w) {
-                    s96Var.x();
-                    return;
-                }
-                return;
-            case 2:
-            case 5:
-                s96Var.G();
-                return;
-            case 3:
-                s96Var.A();
-                return;
-            case 4:
-                s96Var.u();
-                nm7.f(s96Var.e).k(177, Long.valueOf(s96Var.s.id));
-                s96Var.E(true);
-                return;
-            case 6:
-                s96Var.A();
-                return;
-            case 7:
-                s96Var.B();
-                return;
-            case 8:
-                nm7.f(s96Var.e).k(177, Long.valueOf(s96Var.j()));
-                return;
-            default:
-                s96Var.f();
-                return;
+    public final void a(HashMap hashMap) {
+        if (this.a == null) {
+            this.a = new SparseArray(hashMap.size());
+            ArrayList arrayList = new ArrayList(hashMap.entrySet());
+            Collections.sort(arrayList, Comparator$CC.comparingInt(new mm((byte) 6)));
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                Map.Entry entry = (Map.Entry) obj;
+                this.a.append(((String) entry.getKey()).hashCode(), (String) entry.getValue());
+            }
+            return;
+        }
+        for (Map.Entry entry2 : hashMap.entrySet()) {
+            this.a.put(((String) entry2.getKey()).hashCode(), (String) entry2.getValue());
         }
     }
 }

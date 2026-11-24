@@ -1,117 +1,57 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class lk {
-    public final qk0 a;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final int f;
-    public final float g;
-    public final ArrayList b = new ArrayList(5);
-    public final int[] h = new int[3];
+import android.view.View;
+public final class lk implements xr3 {
+    public final byte a = 0;
+    public final float b;
+    public final Object c;
+    public final Object d;
 
-    public lk(qk0 qk0Var, int i, int i2, int i3, int i4, float f) {
-        this.a = qk0Var;
-        this.c = i;
-        this.d = i2;
-        this.e = i3;
-        this.f = i4;
-        this.g = f;
+    public lk(float f, View view, Runnable runnable) {
+        this.c = runnable;
+        this.d = view;
+        this.b = f;
     }
 
-    public final boolean a(int[] iArr) {
-        float f = this.g;
-        float f2 = f / 2.0f;
-        for (int i = 0; i < 3; i++) {
-            if (Math.abs(f - iArr[i]) >= f2) {
-                return false;
-            }
+    @Override
+    public final void a(yla ylaVar, boolean z, float f, float f2) {
+        byte b = this.a;
+        Object obj = this.d;
+        float f3 = this.b;
+        Object obj2 = this.c;
+        switch (b) {
+            case 0:
+                Runnable runnable = (Runnable) obj2;
+                View view = (View) obj;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                view.setTranslationX(f3);
+                view.setTag(2131296665, null);
+                view.setTag(2131296666, null);
+                return;
+            default:
+                wr4 wr4Var = (wr4) obj2;
+                tr4 tr4Var = (tr4) obj;
+                vr4 vr4Var = wr4Var.l1;
+                if (!z) {
+                    vr4Var.setTranslationY(f3);
+                    vr4Var.L = false;
+                    wr4Var.n1 = null;
+                    wr4Var.o1 = null;
+                    if (tr4Var != null) {
+                        tr4Var.run();
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        return true;
     }
 
-    public final kk b(int i, int i2, int[] iArr) {
-        int i3;
-        int i4 = 0;
-        int i5 = iArr[0];
-        int i6 = iArr[1];
-        int i7 = i5 + i6 + iArr[2];
-        float f = (i2 - i3) - (i6 / 2.0f);
-        int i8 = (int) f;
-        int i9 = i6 << 1;
-        qk0 qk0Var = this.a;
-        int i10 = qk0Var.b;
-        int[] iArr2 = this.h;
-        iArr2[0] = 0;
-        iArr2[1] = 0;
-        iArr2[2] = 0;
-        int i11 = i;
-        while (i11 >= 0 && qk0Var.b(i8, i11)) {
-            int i12 = iArr2[1];
-            if (i12 > i9) {
-                break;
-            }
-            iArr2[1] = i12 + 1;
-            i11--;
-        }
-        float f2 = Float.NaN;
-        if (i11 >= 0 && iArr2[1] <= i9) {
-            while (i11 >= 0 && !qk0Var.b(i8, i11)) {
-                int i13 = iArr2[0];
-                if (i13 > i9) {
-                    break;
-                }
-                iArr2[0] = i13 + 1;
-                i11--;
-            }
-            if (iArr2[0] <= i9) {
-                int i14 = i + 1;
-                while (i14 < i10 && qk0Var.b(i8, i14)) {
-                    int i15 = iArr2[1];
-                    if (i15 > i9) {
-                        break;
-                    }
-                    iArr2[1] = i15 + 1;
-                    i14++;
-                }
-                if (i14 != i10 && iArr2[1] <= i9) {
-                    while (i14 < i10 && !qk0Var.b(i8, i14)) {
-                        int i16 = iArr2[2];
-                        if (i16 > i9) {
-                            break;
-                        }
-                        iArr2[2] = i16 + 1;
-                        i14++;
-                    }
-                    int i17 = iArr2[2];
-                    if (i17 <= i9 && Math.abs(((iArr2[0] + iArr2[1]) + i17) - i7) * 5 < (i7 << 1) && a(iArr2)) {
-                        f2 = (i14 - iArr2[2]) - (iArr2[1] / 2.0f);
-                    }
-                }
-            }
-        }
-        if (!Float.isNaN(f2)) {
-            float f3 = ((iArr[0] + iArr[1]) + iArr[2]) / 3.0f;
-            ArrayList arrayList = this.b;
-            int size = arrayList.size();
-            while (i4 < size) {
-                Object obj = arrayList.get(i4);
-                i4++;
-                kk kkVar = (kk) obj;
-                float f4 = kkVar.c;
-                float f5 = kkVar.a;
-                float f6 = kkVar.b;
-                if (Math.abs(f2 - f6) <= f3 && Math.abs(f - f5) <= f3) {
-                    float abs = Math.abs(f3 - f4);
-                    if (abs <= 1.0f || abs <= f4) {
-                        return new kk((f5 + f) / 2.0f, (f6 + f2) / 2.0f, (kkVar.c + f3) / 2.0f);
-                    }
-                }
-            }
-            arrayList.add(new kk(f, f2, f3));
-            return null;
-        }
-        return null;
+    public lk(wr4 wr4Var, float f, tr4 tr4Var) {
+        this.c = wr4Var;
+        this.b = f;
+        this.d = tr4Var;
     }
 }

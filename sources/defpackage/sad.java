@@ -1,3 +1,6 @@
 package defpackage;
-public final class sad extends f1d {
+public final class sad {
+    public int a;
+    public long b;
+    public Object c;
 }

@@ -1,17 +1,30 @@
 package defpackage;
-public final class dr6 implements Runnable {
-    public final byte a;
-    public final hs6 b;
-    public final boolean c;
 
-    public dr6(hs6 hs6Var, boolean z, byte b) {
-        this.a = b;
-        this.b = hs6Var;
-        this.c = z;
+import android.os.Bundle;
+public final class dr6 {
+    public static final String a;
+    public static final String b;
+    public static final String c;
+    public static final String d;
+
+    static {
+        String str = g8c.a;
+        a = "0";
+        b = "1";
+        c = "2";
+        d = "3";
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.dr6.run():void");
+    public static dr6 a(Bundle bundle) {
+        Bundle o = g8c.o(bundle.getBundle(a));
+        bundle.getBoolean(b, false);
+        bundle.getBoolean(c, false);
+        bundle.getBoolean(d, false);
+        if (o == null) {
+            o = Bundle.EMPTY;
+        }
+        ?? obj = new Object();
+        new Bundle(o);
+        return obj;
     }
 }

@@ -1,158 +1,189 @@
 package defpackage;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.StaticLayout;
 import android.text.TextPaint;
-import android.text.style.ImageSpan;
-import j$.util.Objects;
-public final class dw3 extends ImageSpan {
-    public Paint.FontMetricsInt a;
-    public float b;
-    public int c;
-    public String d;
-    public boolean e;
-    public int f;
-    public boolean h;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class dw3 extends View {
+    public final RectF E;
+    public final RectF F;
+    public float G;
+    public av3 H;
+    public int I;
+    public final TextPaint a;
+    public final Paint b;
+    public StaticLayout c;
+    public float d;
+    public float e;
+    public StaticLayout f;
+    public float h;
     public float n;
-    public float r;
+    public StaticLayout r;
+    public float s;
+    public float w;
+    public final RectF x;
+    public final RectF y;
 
-    public static void a(Paint.FontMetricsInt fontMetricsInt, int i) {
-        int i2 = fontMetricsInt.descent;
-        int i3 = fontMetricsInt.ascent;
-        int i4 = i2 - i3;
-        if (i <= i4) {
-            return;
-        }
-        int i5 = i - i4;
-        int i6 = (i5 + 1) / 2;
-        int i7 = i3 - i6;
-        fontMetricsInt.ascent = i7;
-        fontMetricsInt.descent = i2 + (i5 - i6);
-        fontMetricsInt.top = Math.min(fontMetricsInt.top, i7);
-        fontMetricsInt.bottom = Math.max(fontMetricsInt.bottom, fontMetricsInt.descent);
+    public dw3(Context context) {
+        super(context);
+        this.a = new TextPaint(1);
+        this.b = new Paint(1);
+        this.x = new RectF();
+        this.y = new RectF();
+        this.E = new RectF();
+        this.F = new RectF();
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        boolean z;
-        this.n = kt6.d(this.b, this.c, 2.0f, f);
-        this.r = ((i5 - i3) / 2.0f) + i3;
-        boolean z2 = true;
-        this.h = true;
-        if (paint.getAlpha() != 255 && gw3.n) {
-            getDrawable().setAlpha(paint.getAlpha());
-            z = true;
+    public final void dispatchDraw(Canvas canvas) {
+        RectF rectF;
+        RectF rectF2;
+        canvas.drawColor(-14737633);
+        Paint paint = this.b;
+        paint.setColor(-13224394);
+        float f = this.G;
+        int i = (int) f;
+        RectF rectF3 = this.E;
+        RectF rectF4 = this.y;
+        RectF rectF5 = this.x;
+        if (i <= 0) {
+            rectF = rectF5;
+        } else if (i == 1) {
+            rectF = rectF4;
         } else {
-            z = false;
+            rectF = rectF3;
         }
-        float f2 = gw3.m;
-        int i6 = this.c;
-        float f3 = f2 - ((i6 - (this.b * i6)) / 2.0f);
-        if (f3 != 0.0f) {
+        int ceil = (int) Math.ceil(f);
+        if (ceil <= 0) {
+            rectF2 = rectF5;
+        } else if (ceil == 1) {
+            rectF2 = rectF4;
+        } else {
+            rectF2 = rectF3;
+        }
+        float f2 = this.G;
+        RectF rectF6 = this.F;
+        gl.X1(rectF, rectF2, f2 - ((int) f2), rectF6);
+        canvas.drawRoundRect(rectF6, gl.L(20.0f), gl.L(20.0f), paint);
+        StaticLayout staticLayout = this.c;
+        TextPaint textPaint = this.a;
+        if (staticLayout != null) {
             canvas.save();
-            canvas.translate(0.0f, f3);
-        } else {
-            z2 = false;
-        }
-        super.draw(canvas, charSequence, i, i2, f, i3, i4, i5, paint);
-        if (z2) {
+            canvas.translate((rectF5.left + gl.L(12.0f)) - this.e, oo1.z(rectF5.height(), this.c.getHeight(), 2.0f, rectF5.top));
+            textPaint.setColor(bm2.f(Utilities.i(1.0f - Math.abs(this.G - 0.0f), 1.0f, 0.0f), -8158333, -1));
+            this.c.draw(canvas);
             canvas.restore();
         }
-        if (z) {
-            getDrawable().setAlpha(255);
+        if (this.f != null) {
+            canvas.save();
+            canvas.translate((rectF4.left + gl.L(12.0f)) - this.n, oo1.z(rectF4.height(), this.f.getHeight(), 2.0f, rectF4.top));
+            textPaint.setColor(bm2.f(Utilities.i(1.0f - Math.abs(this.G - 1.0f), 1.0f, 0.0f), -8158333, -1));
+            this.f.draw(canvas);
+            canvas.restore();
         }
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+        if (this.r != null) {
+            canvas.save();
+            canvas.translate((rectF3.left + gl.L(12.0f)) - this.w, oo1.z(rectF3.height(), this.r.getHeight(), 2.0f, rectF3.top));
+            textPaint.setColor(bm2.f(Utilities.i(1.0f - Math.abs(this.G - 2.0f), 1.0f, 0.0f), -8158333, -1));
+            this.r.draw(canvas);
+            canvas.restore();
         }
-        if (obj != null && dw3.class == obj.getClass()) {
-            dw3 dw3Var = (dw3) obj;
-            if (Float.compare(this.b, dw3Var.b) == 0 && this.c == dw3Var.c && Objects.equals(this.d, dw3Var.d)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        boolean z;
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        int i7;
-        Paint.FontMetricsInt fontMetricsInt2 = fontMetricsInt;
-        if (this.e && fontMetricsInt2 != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (z) {
-            i3 = fontMetricsInt2.top;
-            i4 = fontMetricsInt2.ascent;
-            i5 = fontMetricsInt2.descent;
-            i6 = fontMetricsInt2.bottom;
-            i7 = fontMetricsInt2.leading;
-        } else {
-            i3 = 0;
-            i4 = 0;
-            i5 = 0;
-            i6 = 0;
-            i7 = 0;
-        }
-        if (fontMetricsInt2 == null) {
-            fontMetricsInt2 = new Paint.FontMetricsInt();
-        }
-        Paint.FontMetricsInt fontMetricsInt3 = fontMetricsInt2;
-        int i8 = (int) (this.b * this.c);
-        Paint.FontMetricsInt fontMetricsInt4 = this.a;
-        if (fontMetricsInt4 == null) {
-            int size = super.getSize(paint, charSequence, i, i2, fontMetricsInt3);
-            int L = gm.L(8.0f);
-            int L2 = gm.L(10.0f);
-            int i9 = (-L2) - L;
-            fontMetricsInt3.top = i9;
-            int i10 = L2 - L;
-            fontMetricsInt3.bottom = i10;
-            fontMetricsInt3.ascent = i9;
-            fontMetricsInt3.leading = 0;
-            fontMetricsInt3.descent = i10;
-            if (z) {
-                fontMetricsInt3.top = i3;
-                fontMetricsInt3.ascent = i4;
-                fontMetricsInt3.descent = i5;
-                fontMetricsInt3.bottom = i6;
-                fontMetricsInt3.leading = i7;
-                a(fontMetricsInt3, this.f);
+    public final void onMeasure(int i, int i2) {
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        float f5;
+        setMeasuredDimension(View.MeasureSpec.getSize(i), gl.L(40.0f) + gl.n);
+        if (getMeasuredWidth() != this.I || this.c == null) {
+            TextPaint textPaint = this.a;
+            textPaint.setTextSize(gl.L(14.0f));
+            textPaint.setTypeface(gl.o());
+            String N0 = k96.N0("Emoji");
+            int measuredWidth = getMeasuredWidth();
+            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+            StaticLayout staticLayout = new StaticLayout(N0, textPaint, measuredWidth, alignment, 1.0f, 0.0f, false);
+            this.c = staticLayout;
+            float f6 = 0.0f;
+            if (staticLayout.getLineCount() >= 1) {
+                f = this.c.getLineWidth(0);
+            } else {
+                f = 0.0f;
             }
-            return size;
+            this.d = f;
+            if (this.c.getLineCount() >= 1) {
+                f2 = this.c.getLineLeft(0);
+            } else {
+                f2 = 0.0f;
+            }
+            this.e = f2;
+            StaticLayout staticLayout2 = new StaticLayout(k96.N0("AccDescrStickers"), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
+            this.f = staticLayout2;
+            if (staticLayout2.getLineCount() >= 1) {
+                f3 = this.f.getLineWidth(0);
+            } else {
+                f3 = 0.0f;
+            }
+            this.h = f3;
+            if (this.f.getLineCount() >= 1) {
+                f4 = this.f.getLineLeft(0);
+            } else {
+                f4 = 0.0f;
+            }
+            this.n = f4;
+            StaticLayout staticLayout3 = new StaticLayout(k96.M0(2131754879, null), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
+            this.r = staticLayout3;
+            if (staticLayout3.getLineCount() >= 1) {
+                f5 = this.r.getLineWidth(0);
+            } else {
+                f5 = 0.0f;
+            }
+            this.s = f5;
+            if (this.r.getLineCount() >= 1) {
+                f6 = this.r.getLineLeft(0);
+            }
+            this.w = f6;
+            float L = gl.L(14.0f) / 2.0f;
+            float L2 = gl.L(66.0f) / 2.0f;
+            float measuredWidth2 = (getMeasuredWidth() - ((((((gl.L(12.0f) + this.d) + gl.L(36.0f)) + this.h) + gl.L(36.0f)) + this.s) + gl.L(12.0f))) / 2.0f;
+            this.x.set(measuredWidth2, L, this.d + measuredWidth2 + gl.L(24.0f), L2);
+            float L3 = this.d + gl.L(36.0f) + measuredWidth2;
+            this.y.set(L3, L, this.h + L3 + gl.L(24.0f), L2);
+            float L4 = this.h + gl.L(36.0f) + L3;
+            this.E.set(L4, L, this.s + L4 + gl.L(24.0f), L2);
+            gl.L(36.0f);
         }
-        fontMetricsInt3.ascent = fontMetricsInt4.ascent;
-        fontMetricsInt3.descent = fontMetricsInt4.descent;
-        fontMetricsInt3.top = fontMetricsInt4.top;
-        fontMetricsInt3.bottom = fontMetricsInt4.bottom;
-        if (getDrawable() != null) {
-            getDrawable().setBounds(0, 0, i8, i8);
-        }
-        if (z) {
-            fontMetricsInt3.top = i3;
-            fontMetricsInt3.ascent = i4;
-            fontMetricsInt3.descent = i5;
-            fontMetricsInt3.bottom = i6;
-            fontMetricsInt3.leading = i7;
-            a(fontMetricsInt3, this.f);
-        }
-        return i8;
+        this.I = getMeasuredWidth();
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        if (getDrawable() instanceof cw3) {
-            ((cw3) getDrawable()).b = textPaint.getColor() & 285212671;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() != 0) {
+            if (motionEvent.getAction() == 1 && this.H != null) {
+                if (this.x.contains(motionEvent.getX(), motionEvent.getY())) {
+                    this.H.a(0);
+                    return true;
+                }
+                if (this.y.contains(motionEvent.getX(), motionEvent.getY())) {
+                    this.H.a(1);
+                    return true;
+                }
+                if (this.E.contains(motionEvent.getX(), motionEvent.getY())) {
+                    this.H.a(2);
+                }
+            } else {
+                return super.onTouchEvent(motionEvent);
+            }
         }
-        super.updateDrawState(textPaint);
+        return true;
     }
 }

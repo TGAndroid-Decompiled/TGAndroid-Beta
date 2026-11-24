@@ -1,11 +1,11 @@
 package defpackage;
 public final class x3 implements Runnable {
-    public final ec9 a;
-    public final t76 b;
+    public final ea9 a;
+    public final t56 b;
 
-    public x3(ec9 ec9Var, t76 t76Var) {
-        this.a = ec9Var;
-        this.b = t76Var;
+    public x3(ea9 ea9Var, t56 t56Var) {
+        this.a = ea9Var;
+        this.b = t56Var;
     }
 
     @Override

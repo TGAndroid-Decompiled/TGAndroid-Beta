@@ -1,15 +1,23 @@
 package defpackage;
-public final class dt9 implements Runnable {
-    public final byte a;
-    public final gt9 b;
 
-    public dt9(gt9 gt9Var, byte b) {
-        this.a = b;
-        this.b = gt9Var;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class dt9 extends w1 {
+    public static final Parcelable.Creator<dt9> CREATOR = new v1((byte) 2);
+    public boolean c;
+
+    public dt9(Parcel parcel, ClassLoader classLoader) {
+        super(parcel, classLoader);
+        this.c = ((Boolean) parcel.readValue(null)).booleanValue();
+    }
+
+    public final String toString() {
+        return "SearchView.SavedState{" + Integer.toHexString(System.identityHashCode(this)) + " isIconified=" + this.c + "}";
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.dt9.run():void");
+    public final void writeToParcel(Parcel parcel, int i) {
+        super.writeToParcel(parcel, i);
+        parcel.writeValue(Boolean.valueOf(this.c));
     }
 }

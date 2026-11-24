@@ -1,322 +1,394 @@
 package defpackage;
 
-import android.content.Context;
+import android.text.TextUtils;
 import android.util.LongSparseArray;
-import android.util.SparseArray;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
+import j$.util.Objects;
 import java.util.HashMap;
-import java.util.List;
-import org.telegram.tgnet.TLRPC;
-public final class c4c extends q59 {
-    public final Context c;
+import org.telegram.tgnet.TLObject;
+public final class c4c extends ja {
+    public static int K = 10000;
+    public static LongSparseArray L;
+    public static HashMap M;
+    public int A;
+    public float B;
+    public long C;
+    public p8c D;
+    public View.OnClickListener E;
+    public View.OnClickListener F;
+    public p8c G;
+    public Object H;
+    public Object I;
+    public boolean J;
+    public View c;
+    public int d;
+    public boolean e;
+    public boolean f;
+    public boolean g;
+    public boolean h;
+    public int i;
+    public boolean j;
+    public int k;
+    public fm2 l;
+    public CharSequence m;
+    public CharSequence n;
+    public CharSequence o;
+    public CharSequence p;
+    public String[] q;
     public boolean r;
     public boolean s;
-    public int x;
-    public final d4c y;
-    public final SparseArray d = new SparseArray();
-    public final ArrayList e = new ArrayList();
-    public final SparseArray f = new SparseArray();
-    public final HashMap h = new HashMap();
-    public final ArrayList n = new ArrayList();
-    public int w = 5;
+    public boolean t;
+    public boolean u;
+    public int v;
+    public int w;
+    public boolean x;
+    public long y;
+    public int z;
 
-    public c4c(d4c d4cVar, Context context) {
-        this.y = d4cVar;
-        this.c = context;
+    public c4c(int i) {
+        super(i, false);
+        this.g = true;
+        this.v = -1;
+        this.J = true;
     }
 
-    @Override
-    public final boolean D(u69 u69Var) {
-        if (u69Var.f == 5) {
+    public static c4c A(String str, CharSequence charSequence, int i) {
+        c4c c4cVar = new c4c(41);
+        c4cVar.d = i;
+        c4cVar.m = charSequence;
+        c4cVar.p = str;
+        return c4cVar;
+    }
+
+    public static c4c B(int i, CharSequence charSequence) {
+        c4c c4cVar = new c4c(7);
+        c4cVar.d = i;
+        c4cVar.m = charSequence;
+        return c4cVar;
+    }
+
+    public static c4c C(CharSequence charSequence) {
+        c4c c4cVar = new c4c(7);
+        c4cVar.m = charSequence;
+        return c4cVar;
+    }
+
+    public static c4c D(int i) {
+        c4c c4cVar = new c4c(28);
+        c4cVar.A = i;
+        return c4cVar;
+    }
+
+    public static c4c E(int i, int i2) {
+        c4c c4cVar = new c4c(28);
+        c4cVar.d = i;
+        c4cVar.A = i2;
+        return c4cVar;
+    }
+
+    public static c4c F(int i, String str) {
+        c4c c4cVar = new c4c(39);
+        c4cVar.d = i;
+        c4cVar.m = str;
+        c4cVar.A = 1;
+        return c4cVar;
+    }
+
+    public static b4c G(int i) {
+        LongSparseArray longSparseArray = L;
+        if (longSparseArray == null) {
+            return null;
+        }
+        return (b4c) longSparseArray.get(i);
+    }
+
+    public static c4c K(Class cls) {
+        if (M == null) {
+            M = new HashMap();
+        }
+        if (L == null) {
+            L = new LongSparseArray();
+        }
+        b4c b4cVar = (b4c) M.get(cls);
+        if (b4cVar != null) {
+            return new c4c(b4cVar.a);
+        }
+        fyb.h(cls, "UItemFactory was not setuped: ");
+        return null;
+    }
+
+    public static c4c b(String str) {
+        c4c c4cVar = new c4c(1);
+        c4cVar.m = str;
+        return c4cVar;
+    }
+
+    public static c4c c(int i, int i2, String str) {
+        c4c c4cVar = new c4c(3);
+        c4cVar.d = i;
+        c4cVar.k = i2;
+        c4cVar.m = str;
+        return c4cVar;
+    }
+
+    public static c4c d(int i, int i2, String str, String str2) {
+        c4c c4cVar = new c4c(3);
+        c4cVar.d = i;
+        c4cVar.k = i2;
+        c4cVar.m = str;
+        c4cVar.o = str2;
+        return c4cVar;
+    }
+
+    public static c4c e(int i, String str) {
+        c4c c4cVar = new c4c(3);
+        c4cVar.d = i;
+        c4cVar.m = str;
+        return c4cVar;
+    }
+
+    public static c4c f(String str, CharSequence charSequence, int i) {
+        c4c c4cVar = new c4c(3);
+        c4cVar.d = i;
+        c4cVar.m = str;
+        c4cVar.o = charSequence;
+        return c4cVar;
+    }
+
+    public static c4c g(CharSequence charSequence) {
+        c4c c4cVar = new c4c(7);
+        c4cVar.m = charSequence;
+        c4cVar.r = true;
+        return c4cVar;
+    }
+
+    public static c4c h(int i, int i2, gxa gxaVar) {
+        c4c c4cVar = new c4c(i + 18);
+        c4cVar.A = i2;
+        c4cVar.H = gxaVar;
+        return c4cVar;
+    }
+
+    public static c4c i(int i, CharSequence charSequence) {
+        c4c c4cVar = new c4c(4);
+        c4cVar.d = i;
+        c4cVar.m = charSequence;
+        return c4cVar;
+    }
+
+    public static c4c j(int i, View view) {
+        c4c c4cVar = new c4c(-1);
+        c4cVar.d = i;
+        c4cVar.c = view;
+        c4cVar.A = -1;
+        return c4cVar;
+    }
+
+    public static c4c k(View view) {
+        c4c c4cVar = new c4c(-1);
+        c4cVar.c = view;
+        c4cVar.A = -1;
+        return c4cVar;
+    }
+
+    public static c4c l(int i, View view) {
+        c4c c4cVar = new c4c(-4);
+        c4cVar.d = i;
+        c4cVar.c = view;
+        c4cVar.A = -1;
+        return c4cVar;
+    }
+
+    public static c4c m(View view) {
+        c4c c4cVar = new c4c(-4);
+        c4cVar.c = view;
+        c4cVar.A = -1;
+        return c4cVar;
+    }
+
+    public static c4c n(View view, int i) {
+        c4c c4cVar = new c4c(-4);
+        c4cVar.c = view;
+        c4cVar.A = i;
+        return c4cVar;
+    }
+
+    public static c4c o(int i, String str, String str2) {
+        c4c c4cVar = new c4c(40);
+        c4cVar.d = i;
+        c4cVar.m = str;
+        c4cVar.p = str2;
+        return c4cVar;
+    }
+
+    public static c4c p(int i) {
+        c4c c4cVar = new c4c(34);
+        c4cVar.A = i;
+        return c4cVar;
+    }
+
+    public static c4c q(int i, int i2) {
+        c4c c4cVar = new c4c(34);
+        c4cVar.d = i;
+        c4cVar.A = i2;
+        return c4cVar;
+    }
+
+    public static c4c r(String str) {
+        c4c c4cVar = new c4c(31);
+        c4cVar.m = str;
+        return c4cVar;
+    }
+
+    public static c4c s(String str, String str2, View.OnClickListener onClickListener) {
+        c4c c4cVar = new c4c(31);
+        c4cVar.m = str;
+        c4cVar.n = str2;
+        c4cVar.E = onClickListener;
+        return c4cVar;
+    }
+
+    public static c4c t(int i, String str) {
+        c4c c4cVar = new c4c(0);
+        c4cVar.d = i;
+        c4cVar.m = str;
+        return c4cVar;
+    }
+
+    public static c4c u(String str) {
+        c4c c4cVar = new c4c(0);
+        c4cVar.m = str;
+        return c4cVar;
+    }
+
+    public static c4c v(wi1 wi1Var) {
+        c4c c4cVar = new c4c(24);
+        c4cVar.H = wi1Var;
+        return c4cVar;
+    }
+
+    public static c4c w(TLObject tLObject) {
+        c4c c4cVar = new c4c(32);
+        c4cVar.H = tLObject;
+        return c4cVar;
+    }
+
+    public static c4c x(int i, String str) {
+        c4c c4cVar = new c4c(10);
+        c4cVar.d = i;
+        c4cVar.m = str;
+        return c4cVar;
+    }
+
+    public static c4c y(int i, String str, String str2) {
+        c4c c4cVar = new c4c(44);
+        c4cVar.d = i;
+        c4cVar.m = str;
+        c4cVar.o = str2;
+        return c4cVar;
+    }
+
+    public static c4c z(int i, CharSequence charSequence) {
+        c4c c4cVar = new c4c(35);
+        c4cVar.d = i;
+        c4cVar.m = charSequence;
+        return c4cVar;
+    }
+
+    public final boolean H(Class cls) {
+        HashMap hashMap;
+        b4c b4cVar;
+        if (this.a >= 10000 && (hashMap = M) != null && (b4cVar = (b4c) hashMap.get(cls)) != null && b4cVar.a == this.a) {
             return true;
         }
         return false;
     }
 
-    public final void E(int r19, android.view.View r20, boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.c4c.E(int, android.view.View, boolean):void");
+    public final boolean I(defpackage.c4c r4) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.c4c.I(c4c):boolean");
     }
 
-    public final void F(org.telegram.tgnet.TLRPC.StickerSetCovered r9, android.widget.FrameLayout r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.c4c.F(org.telegram.tgnet.TLRPC$StickerSetCovered, android.widget.FrameLayout):void");
+    public final boolean J(c4c c4cVar) {
+        if (this.d == c4cVar.d && this.i == c4cVar.i && this.y == c4cVar.y && this.k == c4cVar.k && this.j == c4cVar.j && this.t == c4cVar.t && this.s == c4cVar.s && this.u == c4cVar.u && this.r == c4cVar.r && this.c == c4cVar.c && TextUtils.equals(this.m, c4cVar.m) && TextUtils.equals(this.n, c4cVar.n) && TextUtils.equals(this.o, c4cVar.o) && this.c == c4cVar.c && this.A == c4cVar.A && Math.abs(this.B - c4cVar.B) < 0.01f && this.C == c4cVar.C && this.l == c4cVar.l && Objects.equals(this.H, c4cVar.H) && Objects.equals(this.I, c4cVar.I)) {
+            return true;
+        }
+        return false;
     }
 
-    public final void G() {
-        int i;
-        int i2;
-        d4c d4cVar = this.y;
-        int measuredWidth = d4cVar.getMeasuredWidth();
-        int i3 = 0;
-        if (measuredWidth != 0) {
-            int max = Math.max(5, measuredWidth / gm.L(72.0f));
-            this.w = max;
-            u3c u3cVar = d4cVar.r;
-            if (u3cVar.J != max) {
-                u3cVar.x1(max);
-                d4cVar.K = false;
-            }
+    public final void L(boolean z) {
+        this.e = z;
+        if (this.a == 11) {
+            this.a = 12;
         }
-        if (d4cVar.K) {
-            return;
-        }
-        SparseArray sparseArray = this.d;
-        sparseArray.clear();
-        SparseArray sparseArray2 = this.f;
-        sparseArray2.clear();
-        HashMap hashMap = this.h;
-        hashMap.clear();
-        ArrayList arrayList = this.e;
-        arrayList.clear();
-        this.x = 0;
-        hs6 d0 = hs6.d0(d4cVar.a);
-        ArrayList arrayList2 = new ArrayList(d0.t0[0]);
-        int size = arrayList2.size();
-        arrayList2.addAll(this.n);
-        int i4 = 0;
-        int i5 = 0;
-        while (true) {
-            int i6 = 1;
-            if (i4 >= arrayList2.size()) {
-                break;
-            }
-            TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList2.get(i4);
-            if (!stickerSetCovered.covers.isEmpty() || stickerSetCovered.cover != null) {
-                if (i4 == size) {
-                    int i7 = this.x;
-                    this.x = i7 + 1;
-                    sparseArray.put(i7, -1);
-                }
-                arrayList.add(stickerSetCovered);
-                sparseArray2.put(this.x, stickerSetCovered);
-                hashMap.put(stickerSetCovered, Integer.valueOf(this.x));
-                int i8 = this.x;
-                this.x = i8 + 1;
-                int i9 = i5 + 1;
-                sparseArray.put(i8, Integer.valueOf(i5));
-                if (!stickerSetCovered.covers.isEmpty()) {
-                    i6 = (int) Math.ceil(stickerSetCovered.covers.size() / this.w);
-                    for (int i10 = i3; i10 < stickerSetCovered.covers.size(); i10++) {
-                        sparseArray.put(this.x + i10, stickerSetCovered.covers.get(i10));
-                    }
-                } else {
-                    sparseArray.put(this.x, stickerSetCovered.cover);
-                }
-                int i11 = 0;
-                while (true) {
-                    i = this.w * i6;
-                    i2 = this.x;
-                    if (i11 >= i) {
-                        break;
-                    }
-                    sparseArray2.put(i2 + i11, stickerSetCovered);
-                    i11++;
-                }
-                this.x = i + i2;
-                i5 = i9;
-            }
-            i4++;
-            i3 = 0;
-        }
-        if (this.x != 0) {
-            d4cVar.K = true;
-            d4cVar.L = d0.Z();
-        }
-        f();
     }
 
     @Override
-    public final int b() {
-        return this.x + 1;
-    }
-
-    @Override
-    public final int d(int i) {
-        if (i == this.x) {
-            return 3;
-        }
-        Object obj = this.d.get(i);
-        if (obj != null) {
-            if (obj instanceof TLRPC.Document) {
-                return 0;
-            }
-            if (obj.equals(-1)) {
-                return 4;
-            }
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void t(u69 u69Var, int i) {
-        int i2 = u69Var.f;
-        View view = u69Var.a;
-        if (i2 != 0) {
-            if (i2 != 1) {
-                if (i2 != 2) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return;
+    public final boolean a(ja jaVar) {
+        b4c G;
+        if (this != jaVar) {
+            if (c4c.class == jaVar.getClass()) {
+                c4c c4cVar = (c4c) jaVar;
+                int i = this.a;
+                if (i == c4cVar.a) {
+                    if (i == 31) {
+                        if (TextUtils.equals(this.m, c4cVar.m) && TextUtils.equals(this.n, c4cVar.n)) {
+                            return true;
                         }
+                        return false;
+                    } else if (i == 28) {
+                        if (this.A == c4cVar.A) {
+                            return true;
+                        }
+                        return false;
+                    } else if (i != 35 && i != 37) {
+                        if (i >= 10000 && (G = G(i)) != null) {
+                            return G.c(this, c4cVar);
+                        }
+                        return I(c4cVar);
+                    } else if (this.d == c4cVar.d && TextUtils.equals(this.m, c4cVar.m) && this.e == c4cVar.e) {
+                        return true;
                     } else {
-                        ((l55) view).setText(jb6.M0(2131747497, null));
-                        return;
+                        return false;
                     }
                 }
-                E(i, view, false);
-                return;
+                return false;
             }
-            ((j34) view).setHeight(gm.L(82.0f));
-            return;
+            return false;
         }
-        ((y0b) view).d((TLRPC.Document) this.d.get(i), null, this.f.get(i), null, false, false);
+        return true;
     }
 
-    @Override
-    public final void w(u69 u69Var, int i, List list) {
-        if (list.contains(0)) {
-            int i2 = u69Var.f;
-            if (i2 != 2 && i2 != 5) {
-                return;
-            }
-            E(i, u69Var.a, true);
-            return;
-        }
-        t(u69Var, i);
-    }
-
-    @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        r94 r94Var;
-        d4c d4cVar = this.y;
-        ylb ylbVar = d4cVar.Q;
-        Context context = this.c;
-        if (i != 0) {
-            if (i != 1) {
-                if (i != 2) {
-                    if (i != 3) {
-                        if (i != 4) {
-                            if (i != 5) {
-                                r94Var = null;
-                            } else {
-                                r94 r94Var2 = new r94(context, ylbVar);
-                                r94Var2.setAddOnClickListener(new View.OnClickListener(this) {
-                                    public final c4c b;
-
-                                    {
-                                        this.b = this;
-                                    }
-
-                                    @Override
-                                    public final void onClick(View view) {
-                                        byte b = r2;
-                                        c4c c4cVar = this.b;
-                                        switch (b) {
-                                            case 0:
-                                                v94 v94Var = (v94) view.getParent();
-                                                TLRPC.StickerSetCovered stickerSet = v94Var.getStickerSet();
-                                                d4c d4cVar2 = c4cVar.y;
-                                                LongSparseArray longSparseArray = d4cVar2.d;
-                                                LongSparseArray longSparseArray2 = d4cVar2.e;
-                                                if (longSparseArray.indexOfKey(stickerSet.set.id) < 0 && longSparseArray2.indexOfKey(stickerSet.set.id) < 0) {
-                                                    if (v94Var.r) {
-                                                        longSparseArray2.put(stickerSet.set.id, stickerSet);
-                                                        d4cVar2.b.h(stickerSet);
-                                                        return;
-                                                    }
-                                                    c4cVar.F(stickerSet, v94Var);
-                                                    return;
-                                                }
-                                                return;
-                                            default:
-                                                r94 r94Var3 = (r94) view.getParent();
-                                                TLRPC.StickerSetCovered stickerSet2 = r94Var3.getStickerSet();
-                                                d4c d4cVar3 = c4cVar.y;
-                                                LongSparseArray longSparseArray3 = d4cVar3.d;
-                                                LongSparseArray longSparseArray4 = d4cVar3.e;
-                                                if (longSparseArray3.indexOfKey(stickerSet2.set.id) < 0 && longSparseArray4.indexOfKey(stickerSet2.set.id) < 0) {
-                                                    if (r94Var3.w) {
-                                                        longSparseArray4.put(stickerSet2.set.id, stickerSet2);
-                                                        d4cVar3.b.h(stickerSet2);
-                                                        return;
-                                                    }
-                                                    c4cVar.F(stickerSet2, r94Var3);
-                                                    return;
-                                                }
-                                                return;
-                                        }
-                                    }
-                                });
-                                r94Var2.getImageView().setLayerNum(3);
-                                r94Var = r94Var2;
+    public final boolean equals(Object obj) {
+        b4c G;
+        if (this != obj) {
+            if (obj != null && c4c.class == obj.getClass()) {
+                c4c c4cVar = (c4c) obj;
+                int i = this.a;
+                if (i == c4cVar.a) {
+                    if (i != 36 && i != 35) {
+                        if (i == 28) {
+                            if (this.d == c4cVar.d) {
+                                return true;
                             }
+                            return false;
+                        } else if (i == 31) {
+                            return TextUtils.equals(this.m, c4cVar.m);
                         } else {
-                            r94Var = new l55(context, ylbVar);
-                        }
-                    } else {
-                        r94Var = new View(context);
-                    }
-                } else {
-                    v94 v94Var = new v94(17, d4cVar.Q, this.c, true, true);
-                    v94Var.setAddOnClickListener(new View.OnClickListener(this) {
-                        public final c4c b;
-
-                        {
-                            this.b = this;
-                        }
-
-                        @Override
-                        public final void onClick(View view) {
-                            byte b = r2;
-                            c4c c4cVar = this.b;
-                            switch (b) {
-                                case 0:
-                                    v94 v94Var2 = (v94) view.getParent();
-                                    TLRPC.StickerSetCovered stickerSet = v94Var2.getStickerSet();
-                                    d4c d4cVar2 = c4cVar.y;
-                                    LongSparseArray longSparseArray = d4cVar2.d;
-                                    LongSparseArray longSparseArray2 = d4cVar2.e;
-                                    if (longSparseArray.indexOfKey(stickerSet.set.id) < 0 && longSparseArray2.indexOfKey(stickerSet.set.id) < 0) {
-                                        if (v94Var2.r) {
-                                            longSparseArray2.put(stickerSet.set.id, stickerSet);
-                                            d4cVar2.b.h(stickerSet);
-                                            return;
-                                        }
-                                        c4cVar.F(stickerSet, v94Var2);
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    r94 r94Var3 = (r94) view.getParent();
-                                    TLRPC.StickerSetCovered stickerSet2 = r94Var3.getStickerSet();
-                                    d4c d4cVar3 = c4cVar.y;
-                                    LongSparseArray longSparseArray3 = d4cVar3.d;
-                                    LongSparseArray longSparseArray4 = d4cVar3.e;
-                                    if (longSparseArray3.indexOfKey(stickerSet2.set.id) < 0 && longSparseArray4.indexOfKey(stickerSet2.set.id) < 0) {
-                                        if (r94Var3.w) {
-                                            longSparseArray4.put(stickerSet2.set.id, stickerSet2);
-                                            d4cVar3.b.h(stickerSet2);
-                                            return;
-                                        }
-                                        c4cVar.F(stickerSet2, r94Var3);
-                                        return;
-                                    }
-                                    return;
+                            if (i >= 10000 && (G = G(i)) != null) {
+                                return G.e(this, c4cVar);
                             }
+                            return J(c4cVar);
                         }
-                    });
-                    r94Var = v94Var;
+                    } else if (this.d == c4cVar.d) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
-            } else {
-                r94Var = new j34(context);
+                return false;
             }
-        } else {
-            v24 v24Var = new v24(context, false, ylbVar, (byte) 3);
-            v24Var.getImageView().m0(3);
-            r94Var = v24Var;
+            return false;
         }
-        return new u69(r94Var);
+        return true;
     }
 }

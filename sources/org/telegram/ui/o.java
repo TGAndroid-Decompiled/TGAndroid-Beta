@@ -55,7 +55,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class o extends ui5 implements jm7 {
+public final class o extends vg5 implements gk7 {
     public static Paint A1;
     public static Paint B1;
     public static Paint D1;
@@ -82,39 +82,39 @@ public final class o extends ui5 implements jm7 {
     public ActionBarPopupWindow$ActionBarPopupWindowLayout C0;
     public TextView D0;
     public Rect E0;
-    public tvc F0;
-    public tvc G0;
+    public stc F0;
+    public stc G0;
     public int H0;
     public int I0;
     public int J0;
     public final boolean K;
     public int K0;
-    public final sx L;
+    public final sw L;
     public boolean L0;
     public Activity M;
-    public ax M0;
+    public aw M0;
     public org.telegram.ui.ActionBar.d N;
-    public ax N0;
+    public aw N0;
     public final ArrayList O;
-    public vu O0;
+    public vt O0;
     public View P;
     public int P0;
     public FrameLayout Q;
-    public gkb Q0;
+    public fib Q0;
     public TextureView R;
-    public gkb R0;
-    public jy S;
-    public pc8 S0;
+    public fib R0;
+    public ix S;
+    public ma8 S0;
     public WebChromeClient.CustomViewCallback T;
-    public final po T0;
+    public final on T0;
     public WindowInsets U;
-    public final yd[] U0;
+    public final yc[] U0;
     public boolean V;
     public boolean V0;
     public boolean W;
-    public a26 W0;
+    public a06 W0;
     public boolean X;
-    public wc7 X0;
+    public va7 X0;
     public int Y;
     public int Y0;
     public int Z;
@@ -122,18 +122,18 @@ public final class o extends ui5 implements jm7 {
     public byte a0;
     public float a1;
     public Runnable b0;
-    public final km b1;
+    public final kl b1;
     public long c0;
-    public final km c1;
+    public final kl c1;
     public final DecelerateInterpolator d0;
     public final ArrayList e0;
     public WindowManager.LayoutParams f0;
     public ArticleViewer$WindowView g0;
     public a h0;
-    public wu i0;
+    public wt i0;
     public eb j0;
-    public ut k0;
-    public my0 l0;
+    public ts k0;
+    public fx0 l0;
     public Paint m0;
     public Drawable n0;
     public Paint o0;
@@ -142,7 +142,7 @@ public final class o extends ui5 implements jm7 {
     public a6 r0;
     public ImageView s0;
     public ImageView t0;
-    public io u0;
+    public hn u0;
     public m[] v0;
     public AnimatorSet w0;
     public final Paint x0;
@@ -150,9 +150,9 @@ public final class o extends ui5 implements jm7 {
     public final Paint z0;
     public static final HashSet d1 = new HashSet();
     public static volatile o e1 = null;
-    public static final b f1 = new ro("innerTranslationX", (byte) 0);
+    public static final b f1 = new qn("innerTranslationX", (byte) 0);
     public static final TextPaint g1 = new TextPaint(1);
-    public static final nx h1 = new nx();
+    public static final nw h1 = new nw();
     public static final WeakHashMap C1 = new WeakHashMap();
 
     public o(org.telegram.ui.ActionBar.d dVar) {
@@ -167,15 +167,15 @@ public final class o extends ui5 implements jm7 {
         this.L0 = false;
         this.M0 = null;
         this.N0 = null;
-        this.T0 = new po(new int[]{nm7.r, nm7.s});
-        this.U0 = new yd[2];
+        this.T0 = new on(new int[]{kk7.r, kk7.s});
+        this.U0 = new yc[2];
         this.Y0 = -1;
-        ut utVar = new ut(this, (byte) 2);
-        d53 d53Var = d53.h;
-        this.b1 = new km(utVar, 320L, d53Var);
-        this.c1 = new km(new ut(this, (byte) 3), 320L, d53Var);
+        ts tsVar = new ts(this, (byte) 2);
+        s33 s33Var = s33.h;
+        this.b1 = new kl(tsVar, 320L, s33Var);
+        this.c1 = new kl(new ts(this, (byte) 3), 320L, s33Var);
         this.K = true;
-        this.L = new sx(this, dVar);
+        this.L = new sw(this, dVar);
         W(dVar.getParentActivity(), dVar);
     }
 
@@ -224,8 +224,8 @@ public final class o extends ui5 implements jm7 {
         }
     }
 
-    public static android.text.TextPaint B(defpackage.ui5 r21, org.telegram.tgnet.tl.TL_iv.RichText r22, org.telegram.tgnet.tl.TL_iv.RichText r23, org.telegram.tgnet.tl.TL_iv.PageBlock r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.o.B(ui5, org.telegram.tgnet.tl.TL_iv$RichText, org.telegram.tgnet.tl.TL_iv$RichText, org.telegram.tgnet.tl.TL_iv$PageBlock):android.text.TextPaint");
+    public static android.text.TextPaint B(defpackage.vg5 r21, org.telegram.tgnet.tl.TL_iv.RichText r22, org.telegram.tgnet.tl.TL_iv.RichText r23, org.telegram.tgnet.tl.TL_iv.PageBlock r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.o.B(vg5, org.telegram.tgnet.tl.TL_iv$RichText, org.telegram.tgnet.tl.TL_iv$RichText, org.telegram.tgnet.tl.TL_iv$PageBlock):android.text.TextPaint");
     }
 
     public static String C(TL_iv.RichText richText) {
@@ -271,7 +271,7 @@ public final class o extends ui5 implements jm7 {
     }
 
     public static boolean I(TL_iv.PageBlock pageBlock) {
-        if (!(pageBlock instanceof vx) && !(pageBlock instanceof xx)) {
+        if (!(pageBlock instanceof vw) && !(pageBlock instanceof xw)) {
             return false;
         }
         return true;
@@ -284,53 +284,53 @@ public final class o extends ui5 implements jm7 {
         return windowInsets.consumeSystemWindowInsets();
     }
 
-    public static boolean M(tx txVar) {
+    public static boolean M(tw twVar) {
         boolean z;
-        TL_iv.PageBlock w = w(txVar.a);
+        TL_iv.PageBlock w = w(twVar.a);
         if (w instanceof TL_iv.pageBlockDetails) {
             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) w;
             if (!pageblockdetails.open) {
                 pageblockdetails.open = true;
                 return true;
             }
-        } else if (w instanceof tx) {
-            tx txVar2 = (tx) w;
-            TL_iv.PageBlock w2 = w(txVar2.b);
+        } else if (w instanceof tw) {
+            tw twVar2 = (tw) w;
+            TL_iv.PageBlock w2 = w(twVar2.b);
             if (w2 instanceof TL_iv.pageBlockDetails) {
                 TL_iv.pageBlockDetails pageblockdetails2 = (TL_iv.pageBlockDetails) w2;
                 if (!pageblockdetails2.open) {
                     pageblockdetails2.open = true;
                     z = true;
-                    if (!M(txVar2) || z) {
+                    if (!M(twVar2) || z) {
                         return true;
                     }
                 }
             }
             z = false;
-            if (!M(txVar2)) {
+            if (!M(twVar2)) {
             }
             return true;
         }
         return false;
     }
 
-    public static void R(ui5 ui5Var) {
-        if (ui5Var.b != null || ui5Var.f != null) {
-            View view = ui5Var.f;
-            ui5Var.c.e(true);
-            ui5Var.b = null;
-            ui5Var.d = null;
-            ui5Var.f = null;
+    public static void R(vg5 vg5Var) {
+        if (vg5Var.b != null || vg5Var.f != null) {
+            View view = vg5Var.f;
+            vg5Var.c.e(true);
+            vg5Var.b = null;
+            vg5Var.d = null;
+            vg5Var.f = null;
             if (view != null) {
                 view.invalidate();
             }
         }
     }
 
-    public static void c(String str, int i, FrameLayout frameLayout, sx sxVar, ylb ylbVar) {
-        String r = qw0.r(str);
-        long e = z8c.h(i).e();
-        a6a.B(i).q0(y5a.a(e, r));
+    public static void c(String str, int i, FrameLayout frameLayout, sw swVar, wjb wjbVar) {
+        String r = hv0.r(str);
+        long e = y6c.h(i).e();
+        z3a.B(i).q0(x3a.a(e, r));
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
         tL_message.peer_id = tL_peerUser;
@@ -345,26 +345,26 @@ public final class o extends ui5 implements jm7 {
         TLRPC.WebPage webPage = tL_message.media.webpage;
         webPage.url = r;
         webPage.display_url = r;
-        nm7.f(i).k(nm7.H1, new k47(i, tL_message, false, false));
-        new c41(frameLayout, ylbVar).Q(2131624185, 36, gm.N2(jb6.M0(2131742603, null), -1, 0, new fu(sxVar, e, (byte) 0), null)).k(true);
+        kk7.f(i).k(kk7.G1, new k27(i, tL_message, false, false));
+        new u21(frameLayout, wjbVar).Q(2131624185, 36, gl.N2(k96.M0(2131742677, null), -1, 0, new et(swVar, e, (byte) 0), null)).k(true);
     }
 
-    public static void e0(ui5 ui5Var) {
+    public static void e0(vg5 vg5Var) {
         TextPaint textPaint = o1;
         if (textPaint != null) {
-            textPaint.setColor(cmb.w0(null, cmb.F6, false));
+            textPaint.setColor(bkb.w0(null, bkb.F6, false));
         }
         TextPaint textPaint2 = p1;
         if (textPaint2 != null) {
-            textPaint2.setColor(cmb.w0(null, cmb.F6, false));
+            textPaint2.setColor(bkb.w0(null, bkb.F6, false));
         }
         TextPaint textPaint3 = i1;
         if (textPaint3 != null) {
-            textPaint3.setColor(cmb.w0(null, cmb.F6, false));
+            textPaint3.setColor(bkb.w0(null, bkb.F6, false));
         }
         TextPaint textPaint4 = k1;
         if (textPaint4 != null) {
-            textPaint4.setColor(cmb.w0(null, cmb.F6, false));
+            textPaint4.setColor(bkb.w0(null, bkb.F6, false));
         }
         TextPaint textPaint5 = l1;
         if (textPaint5 != null) {
@@ -372,44 +372,44 @@ public final class o extends ui5 implements jm7 {
         }
         TextPaint textPaint6 = m1;
         if (textPaint6 != null) {
-            textPaint6.setColor(cmb.w0(null, cmb.F6, false));
+            textPaint6.setColor(bkb.w0(null, bkb.F6, false));
         }
         TextPaint textPaint7 = n1;
         if (textPaint7 != null) {
-            textPaint7.setColor(cmb.w0(null, cmb.x6, false));
+            textPaint7.setColor(bkb.w0(null, bkb.x6, false));
         }
         TextPaint textPaint8 = j1;
         if (textPaint8 != null) {
-            textPaint8.setColor(cmb.w0(null, cmb.x6, false));
+            textPaint8.setColor(bkb.w0(null, bkb.x6, false));
         }
-        o(ui5Var, true);
-        nx nxVar = h1;
-        nx.a(ui5Var, nxVar.d);
-        nx.a(ui5Var, nxVar.e);
-        nx.a(ui5Var, nxVar.g);
-        nx.a(ui5Var, nxVar.f);
-        nx.a(ui5Var, nxVar.h);
-        nx.a(ui5Var, nxVar.i);
-        nx.a(ui5Var, nxVar.j);
-        nx.a(ui5Var, nxVar.k);
-        nx.a(ui5Var, nxVar.l);
-        nx.a(ui5Var, nxVar.m);
-        nx.a(ui5Var, nxVar.n);
-        nx.a(ui5Var, nxVar.t);
-        nx.a(ui5Var, nxVar.s);
-        nx.a(ui5Var, nxVar.q);
-        nx.a(ui5Var, nxVar.r);
-        nx.a(ui5Var, nxVar.u);
-        nx.a(ui5Var, nxVar.w);
-        nx.a(ui5Var, nxVar.x);
-        nx.a(ui5Var, nxVar.b);
-        nx.a(ui5Var, nxVar.c);
-        nx.a(ui5Var, nxVar.o);
-        nx.a(ui5Var, nxVar.p);
-        nx.a(ui5Var, nxVar.v);
-        nx.a(ui5Var, nxVar.y);
-        nx.a(ui5Var, nxVar.z);
-        nx.a(ui5Var, nxVar.A);
+        o(vg5Var, true);
+        nw nwVar = h1;
+        nw.a(vg5Var, nwVar.d);
+        nw.a(vg5Var, nwVar.e);
+        nw.a(vg5Var, nwVar.g);
+        nw.a(vg5Var, nwVar.f);
+        nw.a(vg5Var, nwVar.h);
+        nw.a(vg5Var, nwVar.i);
+        nw.a(vg5Var, nwVar.j);
+        nw.a(vg5Var, nwVar.k);
+        nw.a(vg5Var, nwVar.l);
+        nw.a(vg5Var, nwVar.m);
+        nw.a(vg5Var, nwVar.n);
+        nw.a(vg5Var, nwVar.t);
+        nw.a(vg5Var, nwVar.s);
+        nw.a(vg5Var, nwVar.q);
+        nw.a(vg5Var, nwVar.r);
+        nw.a(vg5Var, nwVar.u);
+        nw.a(vg5Var, nwVar.w);
+        nw.a(vg5Var, nwVar.x);
+        nw.a(vg5Var, nwVar.b);
+        nw.a(vg5Var, nwVar.c);
+        nw.a(vg5Var, nwVar.o);
+        nw.a(vg5Var, nwVar.p);
+        nw.a(vg5Var, nwVar.v);
+        nw.a(vg5Var, nwVar.y);
+        nw.a(vg5Var, nwVar.z);
+        nw.a(vg5Var, nwVar.A);
     }
 
     public static SpannableStringBuilder f(int i, CharSequence charSequence) {
@@ -420,14 +420,14 @@ public final class o extends ui5 implements jm7 {
         if (spannableStringBuilder.length() > 0) {
             spannableStringBuilder.append((CharSequence) ", ");
         }
-        spannableStringBuilder.append((CharSequence) jb6.M0(i, null));
+        spannableStringBuilder.append((CharSequence) k96.M0(i, null));
         return spannableStringBuilder;
     }
 
-    public static CharSequence g(ui5 ui5Var, ey eyVar, bx bxVar) {
+    public static CharSequence g(vg5 vg5Var, dx dxVar, bw bwVar) {
         StaticLayout staticLayout;
-        if (bxVar != null && (staticLayout = bxVar.d) != null) {
-            SpannableStringBuilder spannableStringBuilder = bxVar.E;
+        if (bwVar != null && (staticLayout = bwVar.d) != null) {
+            SpannableStringBuilder spannableStringBuilder = bwVar.E;
             if (spannableStringBuilder != null) {
                 return spannableStringBuilder;
             }
@@ -436,20 +436,20 @@ public final class o extends ui5 implements jm7 {
                 return text;
             }
             Spannable spannable = (Spannable) text;
-            vjb[] vjbVarArr = (vjb[]) spannable.getSpans(0, spannable.length(), vjb.class);
+            thb[] thbVarArr = (thb[]) spannable.getSpans(0, spannable.length(), thb.class);
             SpannableStringBuilder spannableStringBuilder2 = text;
-            if (vjbVarArr != null) {
+            if (thbVarArr != null) {
                 spannableStringBuilder2 = text;
-                if (vjbVarArr.length != 0) {
+                if (thbVarArr.length != 0) {
                     SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(spannable);
-                    for (vjb vjbVar : vjbVarArr) {
-                        int spanStart = spannableStringBuilder3.getSpanStart(vjbVar);
-                        int spanEnd = spannableStringBuilder3.getSpanEnd(vjbVar);
+                    for (thb thbVar : thbVarArr) {
+                        int spanStart = spannableStringBuilder3.getSpanStart(thbVar);
+                        int spanEnd = spannableStringBuilder3.getSpanEnd(thbVar);
                         if (spanStart >= 0 && spanEnd > spanStart) {
-                            spannableStringBuilder3.setSpan(new tl(ui5Var, eyVar, vjbVar, (byte) 1), spanStart, spanEnd, 33);
+                            spannableStringBuilder3.setSpan(new tk(vg5Var, dxVar, thbVar, (byte) 1), spanStart, spanEnd, 33);
                         }
                     }
-                    bxVar.E = spannableStringBuilder3;
+                    bwVar.E = spannableStringBuilder3;
                     spannableStringBuilder2 = spannableStringBuilder3;
                 }
             }
@@ -458,41 +458,41 @@ public final class o extends ui5 implements jm7 {
         return null;
     }
 
-    public static TL_iv.PageBlock h0(TL_iv.PageBlock pageBlock, tx txVar) {
-        if (pageBlock instanceof vx) {
-            vx vxVar = (vx) pageBlock;
-            vx vxVar2 = new vx();
-            vxVar2.a = vxVar.a;
-            vxVar2.b = vxVar.b;
-            vxVar2.c = vxVar.c;
-            vxVar2.d = h0(vxVar.d, txVar);
-            return vxVar2;
-        } else if (pageBlock instanceof xx) {
-            xx xxVar = (xx) pageBlock;
-            xx xxVar2 = new xx();
-            xxVar2.a = xxVar.a;
-            xxVar2.b = xxVar.b;
-            xxVar2.c = xxVar.c;
-            xxVar2.d = h0(xxVar.d, txVar);
-            return xxVar2;
+    public static TL_iv.PageBlock h0(TL_iv.PageBlock pageBlock, tw twVar) {
+        if (pageBlock instanceof vw) {
+            vw vwVar = (vw) pageBlock;
+            vw vwVar2 = new vw();
+            vwVar2.a = vwVar.a;
+            vwVar2.b = vwVar.b;
+            vwVar2.c = vwVar.c;
+            vwVar2.d = h0(vwVar.d, twVar);
+            return vwVar2;
+        } else if (pageBlock instanceof xw) {
+            xw xwVar = (xw) pageBlock;
+            xw xwVar2 = new xw();
+            xwVar2.a = xwVar.a;
+            xwVar2.b = xwVar.b;
+            xwVar2.c = xwVar.c;
+            xwVar2.d = h0(xwVar.d, twVar);
+            return xwVar2;
         } else {
-            return txVar;
+            return twVar;
         }
     }
 
-    public static boolean i(defpackage.ui5 r25, defpackage.ey r26, android.view.MotionEvent r27, android.view.View r28, defpackage.bx r29, int r30, int r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.o.i(ui5, ey, android.view.MotionEvent, android.view.View, bx, int, int):boolean");
+    public static boolean i(defpackage.vg5 r25, defpackage.dx r26, android.view.MotionEvent r27, android.view.View r28, defpackage.bw r29, int r30, int r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.o.i(vg5, dx, android.view.MotionEvent, android.view.View, bw, int, int):boolean");
     }
 
-    public static bx m(ui5 ui5Var, View view, CharSequence charSequence, TL_iv.RichText richText, int i, int i2, TL_iv.PageBlock pageBlock, ey eyVar) {
-        return n(ui5Var, view, charSequence, richText, i, i2, pageBlock, Layout.Alignment.ALIGN_NORMAL, 0, eyVar);
+    public static bw m(vg5 vg5Var, View view, CharSequence charSequence, TL_iv.RichText richText, int i, int i2, TL_iv.PageBlock pageBlock, dx dxVar) {
+        return n(vg5Var, view, charSequence, richText, i, i2, pageBlock, Layout.Alignment.ALIGN_NORMAL, 0, dxVar);
     }
 
-    public static defpackage.bx n(defpackage.ui5 r19, android.view.View r20, java.lang.CharSequence r21, org.telegram.tgnet.tl.TL_iv.RichText r22, int r23, int r24, org.telegram.tgnet.tl.TL_iv.PageBlock r25, android.text.Layout.Alignment r26, int r27, defpackage.ey r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.o.n(ui5, android.view.View, java.lang.CharSequence, org.telegram.tgnet.tl.TL_iv$RichText, int, int, org.telegram.tgnet.tl.TL_iv$PageBlock, android.text.Layout$Alignment, int, ey):bx");
+    public static defpackage.bw n(defpackage.vg5 r19, android.view.View r20, java.lang.CharSequence r21, org.telegram.tgnet.tl.TL_iv.RichText r22, int r23, int r24, org.telegram.tgnet.tl.TL_iv.PageBlock r25, android.text.Layout.Alignment r26, int r27, defpackage.dx r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.o.n(vg5, android.view.View, java.lang.CharSequence, org.telegram.tgnet.tl.TL_iv$RichText, int, int, org.telegram.tgnet.tl.TL_iv$PageBlock, android.text.Layout$Alignment, int, dx):bw");
     }
 
-    public static void o(ui5 ui5Var, boolean z) {
+    public static void o(vg5 vg5Var, boolean z) {
         int i;
         if (s1 == null) {
             s1 = new Paint();
@@ -501,11 +501,11 @@ public final class o extends ui5 implements jm7 {
             u1 = paint;
             Paint.Style style = Paint.Style.STROKE;
             paint.setStyle(style);
-            u1.setStrokeWidth(gm.L(1.0f));
+            u1.setStrokeWidth(gl.L(1.0f));
             Paint paint2 = new Paint();
             v1 = paint2;
             paint2.setStyle(style);
-            v1.setStrokeWidth(gm.L(1.0f) / 2.0f);
+            v1.setStrokeWidth(gl.L(1.0f) / 2.0f);
             w1 = new Paint();
             x1 = new Paint();
             y1 = new Paint();
@@ -517,9 +517,9 @@ public final class o extends ui5 implements jm7 {
         } else if (!z) {
             return;
         }
-        int w0 = cmb.w0(null, cmb.c6, false);
+        int w0 = bkb.w0(null, bkb.c6, false);
         float green = Color.green(w0) * 0.7152f;
-        float y = b10.y(Color.blue(w0), 0.0722f, green + (Color.red(w0) * 0.2126f), 255.0f);
+        float y = b00.y(Color.blue(w0), 0.0722f, green + (Color.red(w0) * 0.2126f), 255.0f);
         Paint paint3 = A1;
         if (y <= 0.705f) {
             i = -3041234;
@@ -528,38 +528,38 @@ public final class o extends ui5 implements jm7 {
         }
         paint3.setColor(i);
         Paint paint4 = z1;
-        int i2 = cmb.J6;
-        paint4.setColor(cmb.w0(null, i2, false) & 872415231);
-        z1.setPathEffect(b66.c());
-        y1.setColor(cmb.w0(null, i2, false) & 872415231);
-        y1.setPathEffect(b66.c());
+        int i2 = bkb.J6;
+        paint4.setColor(bkb.w0(null, i2, false) & 872415231);
+        z1.setPathEffect(b46.c());
+        y1.setColor(bkb.w0(null, i2, false) & 872415231);
+        y1.setPathEffect(b46.c());
         Paint paint5 = v1;
-        int i3 = cmb.j6;
-        paint5.setColor(cmb.w0(null, i3, false));
-        u1.setColor(cmb.w0(null, i3, false));
+        int i3 = bkb.j6;
+        paint5.setColor(bkb.w0(null, i3, false));
+        u1.setColor(bkb.w0(null, i3, false));
         q1.setColor(251658240);
-        t1.setColor(cmb.w0(null, cmb.c7, false));
-        B1.setColor(cmb.w0(null, i2, false) & 872415231);
-        B1.setPathEffect(b66.c());
-        int w02 = cmb.w0(null, cmb.L6, false);
+        t1.setColor(bkb.w0(null, bkb.c7, false));
+        B1.setColor(bkb.w0(null, i2, false) & 872415231);
+        B1.setPathEffect(b46.c());
+        int w02 = bkb.w0(null, bkb.L6, false);
         int red = Color.red(w02);
         int green2 = Color.green(w02);
         int blue = Color.blue(w02);
         x1.setColor(Color.argb(20, red, green2, blue));
         w1.setColor(Color.argb(34, red, green2, blue));
-        int w03 = cmb.w0(null, i2, false);
+        int w03 = bkb.w0(null, i2, false);
         r1.setColor(Color.argb(20, Color.red(w03), Color.green(w03), Color.blue(w03)));
-        s1.setColor(cmb.w0(null, cmb.Kd, false));
+        s1.setColor(bkb.w0(null, bkb.Kd, false));
     }
 
-    public static void r(Canvas canvas, ui5 ui5Var, TL_iv.PageBlock pageBlock, int i) {
+    public static void r(Canvas canvas, vg5 vg5Var, TL_iv.PageBlock pageBlock, int i) {
         int i2;
         int L;
         int L2;
-        if (pageBlock != null && ui5Var != null && s1 != null) {
+        if (pageBlock != null && vg5Var != null && s1 != null) {
             int i3 = 0;
             if (pageBlock.bottom) {
-                i2 = gm.L(6.0f);
+                i2 = gl.L(6.0f);
             } else {
                 i2 = 0;
             }
@@ -567,14 +567,14 @@ public final class o extends ui5 implements jm7 {
             int i5 = pageBlock.quoteLevels;
             if (i5 == 0) {
                 if (pageBlock.level > 0) {
-                    canvas.drawRect(gm.L(18.0f), 0.0f, gm.L(2.0f) + L2, i4, s1);
+                    canvas.drawRect(gl.L(18.0f), 0.0f, gl.L(2.0f) + L2, i4, s1);
                     return;
                 }
                 return;
             }
             while (i5 != 0) {
                 if ((i5 & 1) != 0) {
-                    canvas.drawRect(gm.L((i3 * 14) + 18), 0.0f, gm.L(2.0f) + L, i4, s1);
+                    canvas.drawRect(gl.L((i3 * 14) + 18), 0.0f, gl.L(2.0f) + L, i4, s1);
                 }
                 i5 >>>= 1;
                 i3++;
@@ -582,8 +582,8 @@ public final class o extends ui5 implements jm7 {
         }
     }
 
-    public static void s(defpackage.ui5 r2, android.graphics.Canvas r3, defpackage.fkb r4, int r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.o.s(ui5, android.graphics.Canvas, fkb, int):void");
+    public static void s(defpackage.vg5 r2, android.graphics.Canvas r3, defpackage.eib r4, int r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.o.s(vg5, android.graphics.Canvas, eib, int):void");
     }
 
     public static TL_iv.RichText t(int i, TL_iv.PageBlock pageBlock) {
@@ -707,29 +707,29 @@ public final class o extends ui5 implements jm7 {
     }
 
     public static View v(View view) {
-        b59 b59Var;
-        if (view instanceof xv) {
-            b59 b59Var2 = ((xv) view).d;
-            if (b59Var2 != null) {
-                return v(b59Var2.a);
+        y29 y29Var;
+        if (view instanceof xu) {
+            y29 y29Var2 = ((xu) view).d;
+            if (y29Var2 != null) {
+                return v(y29Var2.a);
             }
             return view;
-        } else if ((view instanceof aw) && (b59Var = ((aw) view).d) != null) {
-            return v(b59Var.a);
+        } else if ((view instanceof av) && (y29Var = ((av) view).d) != null) {
+            return v(y29Var.a);
         } else {
             return view;
         }
     }
 
     public static TL_iv.PageBlock w(TL_iv.PageBlock pageBlock) {
-        if (pageBlock instanceof vx) {
-            TL_iv.PageBlock pageBlock2 = ((vx) pageBlock).d;
+        if (pageBlock instanceof vw) {
+            TL_iv.PageBlock pageBlock2 = ((vw) pageBlock).d;
             if (pageBlock2 != null) {
                 return w(pageBlock2);
             }
             return pageBlock2;
-        } else if (pageBlock instanceof xx) {
-            TL_iv.PageBlock pageBlock3 = ((xx) pageBlock).d;
+        } else if (pageBlock instanceof xw) {
+            TL_iv.PageBlock pageBlock3 = ((xw) pageBlock).d;
             if (pageBlock3 != null) {
                 return w(pageBlock3);
             }
@@ -843,54 +843,56 @@ public final class o extends ui5 implements jm7 {
         }
     }
 
-    public static CharSequence z(ui5 ui5Var, TLRPC.WebPage webPage, View view, TL_iv.RichText richText, TL_iv.RichText richText2, TL_iv.PageBlock pageBlock, int i) {
-        vjb vjbVar;
-        vjb vjbVar2;
+    public static CharSequence z(vg5 vg5Var, TLRPC.WebPage webPage, View view, TL_iv.RichText richText, TL_iv.RichText richText2, TL_iv.PageBlock pageBlock, int i) {
+        boolean z;
+        int i2;
+        thb thbVar;
+        thb thbVar2;
         TextPaint textPaint = null;
         if (richText2 == null) {
             return null;
         }
         if (richText2 instanceof TL_iv.textFixed) {
-            return z(ui5Var, webPage, view, richText, ((TL_iv.textFixed) richText2).text, pageBlock, i);
+            return z(vg5Var, webPage, view, richText, ((TL_iv.textFixed) richText2).text, pageBlock, i);
         }
         if (richText2 instanceof TL_iv.textItalic) {
-            return z(ui5Var, webPage, view, richText, ((TL_iv.textItalic) richText2).text, pageBlock, i);
+            return z(vg5Var, webPage, view, richText, ((TL_iv.textItalic) richText2).text, pageBlock, i);
         }
         if (richText2 instanceof TL_iv.textBold) {
-            return z(ui5Var, webPage, view, richText, ((TL_iv.textBold) richText2).text, pageBlock, i);
+            return z(vg5Var, webPage, view, richText, ((TL_iv.textBold) richText2).text, pageBlock, i);
         }
         if (richText2 instanceof TL_iv.textUnderline) {
-            return z(ui5Var, webPage, view, richText, ((TL_iv.textUnderline) richText2).text, pageBlock, i);
+            return z(vg5Var, webPage, view, richText, ((TL_iv.textUnderline) richText2).text, pageBlock, i);
         }
         if (richText2 instanceof TL_iv.textStrike) {
-            return z(ui5Var, webPage, view, richText, ((TL_iv.textStrike) richText2).text, pageBlock, i);
+            return z(vg5Var, webPage, view, richText, ((TL_iv.textStrike) richText2).text, pageBlock, i);
         }
         if (richText2 instanceof TL_iv.textEmail) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(z(ui5Var, webPage, view, richText, ((TL_iv.textEmail) richText2).text, pageBlock, i));
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(z(vg5Var, webPage, view, richText, ((TL_iv.textEmail) richText2).text, pageBlock, i));
             MetricAffectingSpan[] metricAffectingSpanArr = (MetricAffectingSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), MetricAffectingSpan.class);
             if (spannableStringBuilder.length() != 0) {
                 if (metricAffectingSpanArr == null || metricAffectingSpanArr.length == 0) {
-                    textPaint = B(ui5Var, richText, richText2, pageBlock);
+                    textPaint = B(vg5Var, richText, richText2, pageBlock);
                 }
-                spannableStringBuilder.setSpan(new vjb(textPaint, "mailto:" + C(richText2)), 0, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(new thb(textPaint, "mailto:" + C(richText2)), 0, spannableStringBuilder.length(), 33);
             }
             return spannableStringBuilder;
         }
         long j = 0;
         if (richText2 instanceof TL_iv.textUrl) {
             TL_iv.textUrl texturl = (TL_iv.textUrl) richText2;
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(z(ui5Var, webPage, view, richText, texturl.text, pageBlock, i));
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(z(vg5Var, webPage, view, richText, texturl.text, pageBlock, i));
             MetricAffectingSpan[] metricAffectingSpanArr2 = (MetricAffectingSpan[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), MetricAffectingSpan.class);
             if (metricAffectingSpanArr2 == null || metricAffectingSpanArr2.length == 0) {
-                textPaint = B(ui5Var, richText, richText2, pageBlock);
+                textPaint = B(vg5Var, richText, richText2, pageBlock);
             }
             if (texturl.webpage_id != 0) {
-                vjbVar2 = new vjb(textPaint, C(richText2));
+                thbVar2 = new thb(textPaint, C(richText2));
             } else {
-                vjbVar2 = new vjb(textPaint, C(richText2));
+                thbVar2 = new thb(textPaint, C(richText2));
             }
             if (spannableStringBuilder2.length() != 0) {
-                spannableStringBuilder2.setSpan(vjbVar2, 0, spannableStringBuilder2.length(), 33);
+                spannableStringBuilder2.setSpan(thbVar2, 0, spannableStringBuilder2.length(), 33);
             }
             return spannableStringBuilder2;
         } else if (richText2 instanceof TL_iv.textPlain) {
@@ -898,7 +900,7 @@ public final class o extends ui5 implements jm7 {
         } else {
             if (richText2 instanceof TL_iv.textAnchor) {
                 TL_iv.textAnchor textanchor = (TL_iv.textAnchor) richText2;
-                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(z(ui5Var, webPage, view, richText, textanchor.text, pageBlock, i));
+                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(z(vg5Var, webPage, view, richText, textanchor.text, pageBlock, i));
                 String str = textanchor.name;
                 ?? metricAffectingSpan = new MetricAffectingSpan();
                 metricAffectingSpan.a = str.toLowerCase();
@@ -907,29 +909,33 @@ public final class o extends ui5 implements jm7 {
             }
             if (!(richText2 instanceof TL_iv.textEmpty)) {
                 char c = '\n';
-                int i2 = 1;
+                int i3 = 1;
                 if (richText2 instanceof TL_iv.textConcat) {
                     SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
                     int size = richText2.texts.size();
-                    int i3 = 0;
-                    while (i3 < size) {
-                        TL_iv.RichText richText3 = richText2.texts.get(i3);
+                    int i4 = 0;
+                    while (i4 < size) {
+                        TL_iv.RichText richText3 = richText2.texts.get(i4);
                         TL_iv.RichText x = x(richText3);
-                        int i4 = (i < 0 || !(richText3 instanceof TL_iv.textUrl) || ((TL_iv.textUrl) richText3).webpage_id == j) ? 0 : i2;
-                        if (i4 != 0 && spannableStringBuilder4.length() != 0 && spannableStringBuilder4.charAt(spannableStringBuilder4.length() - i2) != c) {
-                            spannableStringBuilder4.append((CharSequence) " ");
-                            spannableStringBuilder4.setSpan(new Object(), spannableStringBuilder4.length() - i2, spannableStringBuilder4.length(), 33);
+                        if (i >= 0 && (richText3 instanceof TL_iv.textUrl) && ((TL_iv.textUrl) richText3).webpage_id != j) {
+                            i2 = i3;
+                        } else {
+                            i2 = 0;
                         }
-                        int i5 = i3;
-                        int i6 = i2;
-                        CharSequence z = z(ui5Var, webPage, view, richText, richText3, pageBlock, i);
+                        if (i2 != 0 && spannableStringBuilder4.length() != 0 && spannableStringBuilder4.charAt(spannableStringBuilder4.length() - i3) != c) {
+                            spannableStringBuilder4.append((CharSequence) " ");
+                            spannableStringBuilder4.setSpan(new Object(), spannableStringBuilder4.length() - i3, spannableStringBuilder4.length(), 33);
+                        }
+                        int i5 = i4;
+                        int i6 = i3;
+                        CharSequence z2 = z(vg5Var, webPage, view, richText, richText3, pageBlock, i);
                         int A = A(x);
                         int length = spannableStringBuilder4.length();
-                        spannableStringBuilder4.append(z);
-                        if (A != 0 && !(z instanceof SpannableStringBuilder)) {
+                        spannableStringBuilder4.append(z2);
+                        if (A != 0 && !(z2 instanceof SpannableStringBuilder)) {
                             if ((A & 8) == 0 && (A & 512) == 0) {
                                 if (length != spannableStringBuilder4.length()) {
-                                    TextPaint B = B(ui5Var, richText, x, pageBlock);
+                                    TextPaint B = B(vg5Var, richText, x, pageBlock);
                                     ?? metricAffectingSpan2 = new MetricAffectingSpan();
                                     metricAffectingSpan2.a = B;
                                     spannableStringBuilder4.setSpan(metricAffectingSpan2, length, spannableStringBuilder4.length(), 33);
@@ -940,37 +946,37 @@ public final class o extends ui5 implements jm7 {
                                     C = C(richText);
                                 }
                                 if ((A & 512) != 0) {
-                                    vjbVar = new vjb(B(ui5Var, richText, x, pageBlock), C);
+                                    thbVar = new thb(B(vg5Var, richText, x, pageBlock), C);
                                 } else {
-                                    vjbVar = new vjb(B(ui5Var, richText, x, pageBlock), C);
+                                    thbVar = new thb(B(vg5Var, richText, x, pageBlock), C);
                                 }
                                 if (length != spannableStringBuilder4.length()) {
-                                    spannableStringBuilder4.setSpan(vjbVar, length, spannableStringBuilder4.length(), 33);
+                                    spannableStringBuilder4.setSpan(thbVar, length, spannableStringBuilder4.length(), 33);
                                 }
                             }
                         }
-                        if (i4 != 0 && i5 != size - 1) {
+                        if (i2 != 0 && i5 != size - 1) {
                             spannableStringBuilder4.append((CharSequence) " ");
                             spannableStringBuilder4.setSpan(new Object(), spannableStringBuilder4.length() - 1, spannableStringBuilder4.length(), 33);
                         }
-                        i3 = i5 + 1;
-                        i2 = i6;
+                        i4 = i5 + 1;
+                        i3 = i6;
                         c = '\n';
                         j = 0;
                     }
                     return spannableStringBuilder4;
                 } else if (richText2 instanceof TL_iv.textSubscript) {
-                    return z(ui5Var, webPage, view, richText, ((TL_iv.textSubscript) richText2).text, pageBlock, i);
+                    return z(vg5Var, webPage, view, richText, ((TL_iv.textSubscript) richText2).text, pageBlock, i);
                 } else {
                     if (richText2 instanceof TL_iv.textSuperscript) {
-                        return z(ui5Var, webPage, view, richText, ((TL_iv.textSuperscript) richText2).text, pageBlock, i);
+                        return z(vg5Var, webPage, view, richText, ((TL_iv.textSuperscript) richText2).text, pageBlock, i);
                     }
                     if (richText2 instanceof TL_iv.textMarked) {
-                        SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(z(ui5Var, webPage, view, richText, ((TL_iv.textMarked) richText2).text, pageBlock, i));
+                        SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(z(vg5Var, webPage, view, richText, ((TL_iv.textMarked) richText2).text, pageBlock, i));
                         MetricAffectingSpan[] metricAffectingSpanArr3 = (MetricAffectingSpan[]) spannableStringBuilder5.getSpans(0, spannableStringBuilder5.length(), MetricAffectingSpan.class);
                         if (spannableStringBuilder5.length() != 0) {
                             if (metricAffectingSpanArr3 == null || metricAffectingSpanArr3.length == 0) {
-                                textPaint = B(ui5Var, richText, richText2, pageBlock);
+                                textPaint = B(vg5Var, richText, richText2, pageBlock);
                             }
                             ?? metricAffectingSpan3 = new MetricAffectingSpan();
                             metricAffectingSpan3.a = textPaint;
@@ -978,61 +984,65 @@ public final class o extends ui5 implements jm7 {
                         }
                         return spannableStringBuilder5;
                     } else if (richText2 instanceof TL_iv.textSpoiler) {
-                        SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(z(ui5Var, webPage, view, richText, ((TL_iv.textSpoiler) richText2).text, pageBlock, i));
+                        SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(z(vg5Var, webPage, view, richText, ((TL_iv.textSpoiler) richText2).text, pageBlock, i));
                         if (spannableStringBuilder6.length() != 0) {
                             ?? obj = new Object();
                             obj.a |= 256;
-                            spannableStringBuilder6.setSpan(new xkb(obj, 0), 0, spannableStringBuilder6.length(), 33);
+                            spannableStringBuilder6.setSpan(new wib(obj, 0), 0, spannableStringBuilder6.length(), 33);
                         }
                         return spannableStringBuilder6;
                     } else if (richText2 instanceof TL_iv.textPhone) {
-                        SpannableStringBuilder spannableStringBuilder7 = new SpannableStringBuilder(z(ui5Var, webPage, view, richText, ((TL_iv.textPhone) richText2).text, pageBlock, i));
+                        SpannableStringBuilder spannableStringBuilder7 = new SpannableStringBuilder(z(vg5Var, webPage, view, richText, ((TL_iv.textPhone) richText2).text, pageBlock, i));
                         MetricAffectingSpan[] metricAffectingSpanArr4 = (MetricAffectingSpan[]) spannableStringBuilder7.getSpans(0, spannableStringBuilder7.length(), MetricAffectingSpan.class);
                         if (spannableStringBuilder7.length() != 0) {
                             if (metricAffectingSpanArr4 == null || metricAffectingSpanArr4.length == 0) {
-                                textPaint = B(ui5Var, richText, richText2, pageBlock);
+                                textPaint = B(vg5Var, richText, richText2, pageBlock);
                             }
-                            spannableStringBuilder7.setSpan(new vjb(textPaint, "tel:" + C(richText2)), 0, spannableStringBuilder7.length(), 33);
+                            spannableStringBuilder7.setSpan(new thb(textPaint, "tel:" + C(richText2)), 0, spannableStringBuilder7.length(), 33);
                         }
                         return spannableStringBuilder7;
                     } else if (richText2 instanceof TL_iv.textImage) {
                         TL_iv.textImage textimage = (TL_iv.textImage) richText2;
-                        TLRPC.Document a = dy.a(webPage, textimage.document_id);
-                        TLRPC.Photo e = dy.e(webPage, textimage.photo_id);
+                        TLRPC.Document a = cx.a(webPage, textimage.document_id);
+                        TLRPC.Photo e = cx.e(webPage, textimage.photo_id);
                         if (a != null) {
                             SpannableStringBuilder spannableStringBuilder8 = new SpannableStringBuilder("*");
-                            int L = gm.L(textimage.w);
-                            int L2 = gm.L(textimage.h);
+                            int L = gl.L(textimage.w);
+                            int L2 = gl.L(textimage.h);
                             int abs = Math.abs(i);
                             if (L > abs) {
                                 L2 = (int) (L2 * (abs / L));
                                 L = abs;
                             }
                             if (view != null) {
-                                int i7 = cmb.c6;
-                                ((o) ui5Var).getClass();
-                                boolean z2 = gm.B(cmb.w0(null, i7, false)) <= 0.705f;
+                                int i7 = bkb.c6;
+                                ((o) vg5Var).getClass();
+                                if (gl.B(bkb.w0(null, i7, false)) <= 0.705f) {
+                                    z = true;
+                                } else {
+                                    z = false;
+                                }
                                 ?? replacementSpan = new ReplacementSpan();
                                 Locale locale = Locale.US;
                                 String str2 = L + "_" + L2 + "_i";
                                 replacementSpan.b = L;
                                 replacementSpan.c = L2;
-                                boolean z3 = z2;
+                                boolean z3 = z;
                                 ImageReceiver imageReceiver = new ImageReceiver(view);
                                 replacementSpan.a = imageReceiver;
                                 imageReceiver.K0 = true;
                                 if (z3) {
-                                    imageReceiver.h1 = new rjb((byte) 0);
+                                    imageReceiver.h1 = new sdb((byte) 24);
                                 }
-                                imageReceiver.Z(gn5.b(a), str2, gn5.c(bc4.w(a.thumbs, 90, false, null, false), a), str2, null, -1L, null, webPage, 1);
+                                imageReceiver.Z(gl5.b(a), str2, gl5.c(ba4.w(a.thumbs, 90, false, null, false), a), str2, null, -1L, null, webPage, 1);
                                 spannableStringBuilder8.setSpan(replacementSpan, 0, spannableStringBuilder8.length(), 33);
                             }
                             return spannableStringBuilder8;
-                        } else if (e instanceof cvc) {
-                            cvc cvcVar = (cvc) e;
+                        } else if (e instanceof btc) {
+                            btc btcVar = (btc) e;
                             SpannableStringBuilder spannableStringBuilder9 = new SpannableStringBuilder("*");
-                            int L3 = gm.L(textimage.w);
-                            int L4 = gm.L(textimage.h);
+                            int L3 = gl.L(textimage.w);
+                            int L4 = gl.L(textimage.h);
                             int abs2 = Math.abs(i);
                             if (L3 > abs2) {
                                 L4 = (int) (L4 * (abs2 / L3));
@@ -1045,7 +1055,7 @@ public final class o extends ui5 implements jm7 {
                                 ImageReceiver imageReceiver2 = new ImageReceiver(view);
                                 replacementSpan2.a = imageReceiver2;
                                 imageReceiver2.K0 = true;
-                                dvc.g(cvcVar, imageReceiver2, new jd((byte) 10));
+                                ctc.g(btcVar, imageReceiver2, new jc((byte) 10));
                                 spannableStringBuilder9.setSpan(replacementSpan2, 0, spannableStringBuilder9.length(), 33);
                             }
                             return spannableStringBuilder9;
@@ -1054,7 +1064,7 @@ public final class o extends ui5 implements jm7 {
                         TL_iv.textMath textmath = (TL_iv.textMath) richText2;
                         if (textmath.bitmap == null && !textmath.tried) {
                             textmath.tried = true;
-                            lz5 a2 = lz5.a(textmath.source, gm.L(20.0f), true);
+                            lx5 a2 = lx5.a(textmath.source, gl.L(20.0f), true);
                             if (a2 != null) {
                                 textmath.w = a2.b;
                                 textmath.h = a2.c;
@@ -1072,12 +1082,12 @@ public final class o extends ui5 implements jm7 {
                             Bitmap bitmap = textmath.bitmap;
                             int i8 = textmath.w;
                             int i9 = textmath.h;
-                            int i10 = cmb.F6;
-                            ((o) ui5Var).getClass();
-                            spannableStringBuilder10.setSpan(new sjb(view, bitmap, i8, i9, cmb.w0(null, i10, false), textmath.depth), 0, spannableStringBuilder10.length(), 33);
+                            int i10 = bkb.F6;
+                            ((o) vg5Var).getClass();
+                            spannableStringBuilder10.setSpan(new qhb(view, bitmap, i8, i9, bkb.w0(null, i10, false), textmath.depth), 0, spannableStringBuilder10.length(), 33);
                             String str4 = textmath.source;
                             if (str4 != null && !str4.isEmpty()) {
-                                spannableStringBuilder10.setSpan(new lkb(textmath.source), 0, spannableStringBuilder10.length(), 33);
+                                spannableStringBuilder10.setSpan(new kib(textmath.source), 0, spannableStringBuilder10.length(), 33);
                             }
                             return spannableStringBuilder10;
                         }
@@ -1099,26 +1109,26 @@ public final class o extends ui5 implements jm7 {
         ArrayList arrayList = this.e0;
         int size = arrayList.size();
         ArticleViewer$WindowView articleViewer$WindowView = this.g0;
-        sx sxVar = this.L;
+        sw swVar = this.L;
         boolean z2 = false;
         if (size <= 1) {
             articleViewer$WindowView.e = false;
             articleViewer$WindowView.d = false;
             a aVar = this.h0;
-            if (sxVar != null) {
-                x = sxVar.J * sxVar.c.getWidth();
+            if (swVar != null) {
+                x = swVar.J * swVar.c.getWidth();
             } else {
                 x = aVar.getX();
             }
             AnimatorSet animatorSet = new AnimatorSet();
             float measuredWidth = aVar.getMeasuredWidth() - x;
-            if (sxVar != null) {
-                animatorSet.playTogether(sxVar.l(1.0f));
+            if (swVar != null) {
+                animatorSet.playTogether(swVar.l(1.0f));
             } else {
                 animatorSet.playTogether(ObjectAnimator.ofFloat(this.h0, View.TRANSLATION_X, aVar.getMeasuredWidth()), ObjectAnimator.ofFloat(this.g0, f1, aVar.getMeasuredWidth()));
             }
             animatorSet.setDuration(Math.max((int) ((420.0f / aVar.getMeasuredWidth()) * measuredWidth), 250));
-            animatorSet.setInterpolator(d53.h);
+            animatorSet.setInterpolator(s33.h);
             animatorSet.addListener(new d(this));
             animatorSet.start();
             this.V0 = true;
@@ -1131,7 +1141,7 @@ public final class o extends ui5 implements jm7 {
         this.v0[1].setAlpha(1.0f);
         this.v0[1].setTranslationX(0.0f);
         m mVar = this.v0[0];
-        if (sxVar == null) {
+        if (swVar == null) {
             color = 0;
         } else {
             color = this.m0.getColor();
@@ -1144,39 +1154,39 @@ public final class o extends ui5 implements jm7 {
         mVar2.getMeasuredWidth();
         animatorSet2.playTogether(ObjectAnimator.ofFloat(this.v0[0], View.TRANSLATION_X, mVar2.getMeasuredWidth()));
         animatorSet2.setDuration(420L);
-        animatorSet2.setInterpolator(d53.h);
+        animatorSet2.setInterpolator(s33.h);
         animatorSet2.addListener(new e(this));
         animatorSet2.start();
-        wu wuVar = this.i0;
+        wt wtVar = this.i0;
         m mVar3 = this.v0[0];
-        if (mVar3 != null && gda.s0) {
+        if (mVar3 != null && gba.s0) {
             w0 = mVar3.getBackgroundColor();
         } else {
-            w0 = cmb.w0(null, cmb.Fl, false);
+            w0 = bkb.w0(null, bkb.Fl, false);
         }
-        wuVar.setMenuColors(w0);
-        wu wuVar2 = this.i0;
+        wtVar.setMenuColors(w0);
+        wt wtVar2 = this.i0;
         m mVar4 = this.v0[0];
-        if (mVar4 != null && gda.s0) {
+        if (mVar4 != null && gba.s0) {
             w02 = mVar4.getActionBarColor();
         } else {
-            w02 = cmb.w0(null, cmb.Fl, false);
+            w02 = bkb.w0(null, bkb.Fl, false);
         }
-        wuVar2.d(w02, true);
-        wu wuVar3 = this.i0;
+        wtVar2.d(w02, true);
+        wt wtVar3 = this.i0;
         m mVar5 = this.v0[0];
         if (mVar5 != null && mVar5.d()) {
             z = true;
         } else {
             z = false;
         }
-        wuVar3.setIsTonsite(z);
-        wu wuVar4 = this.i0;
+        wtVar3.setIsTonsite(z);
+        wt wtVar4 = this.i0;
         m mVar6 = this.v0[0];
         if (mVar6 != null && mVar6.c()) {
             z2 = true;
         }
-        wuVar4.setIsLocal(z2);
+        wtVar4.setIsLocal(z2);
         this.V0 = true;
     }
 
@@ -1189,26 +1199,26 @@ public final class o extends ui5 implements jm7 {
         ArrayList arrayList = this.e0;
         int size = arrayList.size();
         ArticleViewer$WindowView articleViewer$WindowView = this.g0;
-        sx sxVar = this.L;
+        sw swVar = this.L;
         boolean z2 = false;
         if (size <= 1) {
             articleViewer$WindowView.e = false;
             articleViewer$WindowView.d = false;
             a aVar = this.h0;
-            if (sxVar != null) {
-                x = sxVar.J * sxVar.c.getWidth();
+            if (swVar != null) {
+                x = swVar.J * swVar.c.getWidth();
             } else {
                 x = aVar.getX();
             }
             AnimatorSet animatorSet = new AnimatorSet();
             float measuredWidth = aVar.getMeasuredWidth() - x;
-            if (sxVar != null) {
-                animatorSet.playTogether(sxVar.l(1.0f));
+            if (swVar != null) {
+                animatorSet.playTogether(swVar.l(1.0f));
             } else {
                 animatorSet.playTogether(ObjectAnimator.ofFloat(this.h0, View.TRANSLATION_X, aVar.getMeasuredWidth()), ObjectAnimator.ofFloat(this.g0, f1, aVar.getMeasuredWidth()));
             }
             animatorSet.setDuration(Math.max((int) ((420.0f / aVar.getMeasuredWidth()) * measuredWidth), 250));
-            animatorSet.setInterpolator(d53.h);
+            animatorSet.setInterpolator(s33.h);
             animatorSet.addListener(new f(this));
             animatorSet.start();
             this.V0 = true;
@@ -1219,7 +1229,7 @@ public final class o extends ui5 implements jm7 {
         this.v0[1].setAlpha(1.0f);
         this.v0[1].setTranslationX(0.0f);
         m mVar = this.v0[0];
-        if (sxVar == null) {
+        if (swVar == null) {
             color = 0;
         } else {
             color = this.m0.getColor();
@@ -1232,39 +1242,39 @@ public final class o extends ui5 implements jm7 {
         mVar2.getMeasuredWidth();
         animatorSet2.playTogether(ObjectAnimator.ofFloat(this.v0[0], View.TRANSLATION_X, mVar2.getMeasuredWidth()));
         animatorSet2.setDuration(420L);
-        animatorSet2.setInterpolator(d53.h);
+        animatorSet2.setInterpolator(s33.h);
         animatorSet2.addListener(new g(this, i));
         animatorSet2.start();
-        wu wuVar = this.i0;
+        wt wtVar = this.i0;
         m mVar3 = this.v0[0];
-        if (mVar3 != null && gda.s0) {
+        if (mVar3 != null && gba.s0) {
             w0 = mVar3.getBackgroundColor();
         } else {
-            w0 = cmb.w0(null, cmb.Fl, false);
+            w0 = bkb.w0(null, bkb.Fl, false);
         }
-        wuVar.setMenuColors(w0);
-        wu wuVar2 = this.i0;
+        wtVar.setMenuColors(w0);
+        wt wtVar2 = this.i0;
         m mVar4 = this.v0[0];
-        if (mVar4 != null && gda.s0) {
+        if (mVar4 != null && gba.s0) {
             w02 = mVar4.getActionBarColor();
         } else {
-            w02 = cmb.w0(null, cmb.Fl, false);
+            w02 = bkb.w0(null, bkb.Fl, false);
         }
-        wuVar2.d(w02, true);
-        wu wuVar3 = this.i0;
+        wtVar2.d(w02, true);
+        wt wtVar3 = this.i0;
         m mVar5 = this.v0[0];
         if (mVar5 != null && mVar5.d()) {
             z = true;
         } else {
             z = false;
         }
-        wuVar3.setIsTonsite(z);
-        wu wuVar4 = this.i0;
+        wtVar3.setIsTonsite(z);
+        wt wtVar4 = this.i0;
         m mVar6 = this.v0[0];
         if (mVar6 != null && mVar6.c()) {
             z2 = true;
         }
-        wuVar4.setIsLocal(z2);
+        wtVar4.setIsLocal(z2);
         this.V0 = true;
     }
 
@@ -1288,7 +1298,7 @@ public final class o extends ui5 implements jm7 {
                 try {
                     break;
                 } catch (Exception e) {
-                    fc4.g(e, true);
+                    fa4.g(e, true);
                 }
             }
         }
@@ -1300,14 +1310,14 @@ public final class o extends ui5 implements jm7 {
                 ((j) arrayList.get(i2)).a(false);
                 i2++;
             } else {
-                this.h0.post(new ut(this, (byte) 6));
-                nm7.f(this.Y).k(nm7.d1, new Object[0]);
+                this.h0.post(new ts(this, (byte) 6));
+                kk7.f(this.Y).k(kk7.c1, new Object[0]);
                 return;
             }
         }
     }
 
-    public final boolean L(k47 k47Var, TLRPC.TL_webPage tL_webPage, String str, String str2) {
+    public final boolean L(k27 k27Var, TLRPC.TL_webPage tL_webPage, String str, String str2) {
         TLRPC.TL_webPage tL_webPage2;
         boolean z;
         int lastIndexOf;
@@ -1321,17 +1331,17 @@ public final class o extends ui5 implements jm7 {
         if (this.M == null) {
             return false;
         }
-        sx sxVar = this.L;
-        if (sxVar == null && this.W) {
+        sw swVar = this.L;
+        if (swVar == null && this.W) {
             return false;
         }
         org.telegram.ui.ActionBar.d dVar = this.N;
         if (dVar != null && (dVar.getParentLayout() instanceof ActionBarLayout)) {
-            gm.t1((ActionBarLayout) this.N.getParentLayout());
+            gl.t1((ActionBarLayout) this.N.getParentLayout());
         }
-        if (k47Var != null) {
+        if (k27Var != null) {
             if (tL_webPage == null) {
-                tL_webPage2 = k47Var.k.media.webpage;
+                tL_webPage2 = k27Var.k.media.webpage;
             } else {
                 tL_webPage2 = tL_webPage;
             }
@@ -1340,11 +1350,11 @@ public final class o extends ui5 implements jm7 {
             } else {
                 z = false;
             }
-            for (int i2 = 0; i2 < k47Var.k.entities.size(); i2++) {
-                TLRPC.MessageEntity messageEntity = k47Var.k.entities.get(i2);
+            for (int i2 = 0; i2 < k27Var.k.entities.size(); i2++) {
+                TLRPC.MessageEntity messageEntity = k27Var.k.entities.get(i2);
                 if (messageEntity instanceof TLRPC.TL_messageEntityUrl) {
                     try {
-                        String str4 = k47Var.k.message;
+                        String str4 = k27Var.k.message;
                         int i3 = messageEntity.offset;
                         String lowerCase2 = str4.substring(i3, messageEntity.length + i3).toLowerCase();
                         if (!TextUtils.isEmpty(tL_webPage2.cached_page.url)) {
@@ -1361,7 +1371,7 @@ public final class o extends ui5 implements jm7 {
                             break;
                         }
                     } catch (Exception e) {
-                        fc4.g(e, true);
+                        fa4.g(e, true);
                     }
                 }
             }
@@ -1376,7 +1386,7 @@ public final class o extends ui5 implements jm7 {
             substring = null;
         }
         ArrayList arrayList = this.e0;
-        if (sxVar != null && !arrayList.isEmpty()) {
+        if (swVar != null && !arrayList.isEmpty()) {
             z2 = z;
             r5 = 1;
         } else {
@@ -1386,11 +1396,11 @@ public final class o extends ui5 implements jm7 {
         if (r5 == 0) {
             arrayList.clear();
             this.h0.setTranslationX(0.0f);
-            if (sxVar != null) {
-                sxVar.J = 0.0f;
-                sxVar.c.invalidate();
-                sxVar.u();
-                sxVar.r();
+            if (swVar != null) {
+                swVar.J = 0.0f;
+                swVar.c.invalidate();
+                swVar.s();
+                swVar.r();
             }
             this.h0.setTranslationY(0.0f);
             this.v0[0].setTranslationY(0.0f);
@@ -1399,10 +1409,10 @@ public final class o extends ui5 implements jm7 {
             this.v0[0].setAlpha(1.0f);
             this.g0.setInnerTranslationX(0.0f);
             this.v0[0].f();
-            V(gm.L(56.0f));
+            V(gl.L(56.0f));
         }
-        if (sxVar != null && qw0.R0) {
-            sxVar.a.d();
+        if (swVar != null && hv0.R0) {
+            swVar.a.d();
         }
         if (tL_webPage2 != null) {
             boolean e2 = e(tL_webPage2, substring, r5);
@@ -1420,28 +1430,28 @@ public final class o extends ui5 implements jm7 {
                 } else {
                     tL_messages_getWebPage.hash = 0;
                 }
-                if (k47Var != null) {
-                    i = k47Var.K1;
+                if (k27Var != null) {
+                    i = k27Var.K1;
                 } else {
-                    i = z8c.t0;
+                    i = y6c.t0;
                 }
                 int i4 = i;
-                ConnectionsManager.getInstance(i4).sendRequest(tL_messages_getWebPage, new ru((o) this, i4, tL_webPage2, k47Var, (boolean) r5, str3));
+                ConnectionsManager.getInstance(i4).sendRequest(tL_messages_getWebPage, new rt((o) this, i4, tL_webPage2, k27Var, (boolean) r5, str3));
             }
         } else {
             d(r5, str2);
         }
-        wu wuVar = this.i0;
-        if (wuVar != null && r5 == 0) {
-            wuVar.setIsLocal(this.v0[0].c());
+        wt wtVar = this.i0;
+        if (wtVar != null && r5 == 0) {
+            wtVar.setIsLocal(this.v0[0].c());
         }
         this.U = null;
-        if (sxVar != null) {
+        if (swVar != null) {
             if (r5 == 0) {
-                gm.B2(this.g0);
-                sxVar.d = this.g0;
-                sxVar.A();
-                sxVar.c.addView(this.g0, qoe.c(-1.0f, -1));
+                gl.B2(this.g0);
+                swVar.d = this.g0;
+                swVar.A();
+                swVar.c.addView(this.g0, nme.c(-1.0f, -1));
             }
         } else if (!this.W) {
             WindowManager windowManager = (WindowManager) this.M.getSystemService("window");
@@ -1461,7 +1471,7 @@ public final class o extends ui5 implements jm7 {
                 this.h0.setFocusable(false);
                 windowManager.addView(this.g0, this.f0);
             } catch (Exception e3) {
-                fc4.g(e3, true);
+                fa4.g(e3, true);
                 return false;
             }
         } else {
@@ -1471,12 +1481,12 @@ public final class o extends ui5 implements jm7 {
         this.W = true;
         this.a0 = (byte) 1;
         if (r5 == 0) {
-            if (sxVar != null) {
+            if (swVar != null) {
                 if (r5 != 0) {
-                    sxVar.a.e();
-                } else if (!sxVar.h) {
-                    sxVar.q(sxVar.b);
-                    sxVar.o();
+                    swVar.a.e();
+                } else if (!swVar.h) {
+                    swVar.p(swVar.b);
+                    swVar.o();
                 }
             } else {
                 this.g0.setAlpha(0.0f);
@@ -1484,13 +1494,13 @@ public final class o extends ui5 implements jm7 {
                 AnimatorSet animatorSet = new AnimatorSet();
                 ArticleViewer$WindowView articleViewer$WindowView = this.g0;
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(articleViewer$WindowView, property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.h0, property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.g0, View.TRANSLATION_X, gm.L(56.0f), 0.0f));
-                this.b0 = new ut(this, (byte) 11);
+                animatorSet.playTogether(ObjectAnimator.ofFloat(articleViewer$WindowView, property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.h0, property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.g0, View.TRANSLATION_X, gl.L(56.0f), 0.0f));
+                this.b0 = new ts(this, (byte) 11);
                 animatorSet.setDuration(150L);
                 animatorSet.setInterpolator(this.d0);
-                animatorSet.addListener(new av(this));
+                animatorSet.addListener(new au(this));
                 this.c0 = System.currentTimeMillis();
-                gm.c3(new pf2(this, animatorSet, (byte) 27));
+                gl.c3(new ee2(this, animatorSet, (byte) 26));
             }
         }
         this.h0.setLayerType(2, null);
@@ -1502,67 +1512,67 @@ public final class o extends ui5 implements jm7 {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", user.id);
             bundle.putString("botUser", "webpage" + j);
-            ((LaunchActivity) this.M).u0(new yv1(bundle), false, true);
+            ((LaunchActivity) this.M).u0(new mu1(bundle), false, true);
             l(false, true);
         }
     }
 
-    public final void O(String str, String str2, vu vuVar) {
+    public final void O(String str, String str2, vt vtVar) {
         Activity activity = this.M;
         if (activity != null && !activity.isFinishing()) {
             m mVar = this.v0[0];
             if (mVar != null && mVar.c()) {
-                String M0 = jb6.M0(2131747515, null);
+                String M0 = k96.M0(2131747589, null);
                 int indexOf = M0.indexOf("%");
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(String.format(M0, str));
                 if (indexOf >= 0) {
                     spannableStringBuilder.setSpan(new URLSpan(str), indexOf, str.length() + indexOf, 33);
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, null, this.M);
-                String M02 = jb6.M0(2131747512, null);
-                he heVar = alertDialog$Builder.a;
-                heVar.S = M02;
-                heVar.U = spannableStringBuilder;
-                heVar.i0 = false;
-                alertDialog$Builder.g(jb6.M0(2131752542, null), null);
-                alertDialog$Builder.j(jb6.M0(2131747550, null), new lu(this, str, str2, vuVar, (byte) 0));
+                String M02 = k96.M0(2131747586, null);
+                hd hdVar = alertDialog$Builder.a;
+                hdVar.S = M02;
+                hdVar.U = spannableStringBuilder;
+                hdVar.i0 = false;
+                alertDialog$Builder.g(k96.M0(2131752577, null), null);
+                alertDialog$Builder.j(k96.M0(2131747624, null), new lt(this, str, str2, vtVar, (byte) 0));
                 alertDialog$Builder.o();
                 return;
             }
-            P(str, str2, vuVar);
+            P(str, str2, vtVar);
         }
     }
 
-    public final void P(String str, String str2, vu vuVar) {
-        sx sxVar;
-        vu vuVar2 = this.O0;
-        if (vuVar2 != null) {
-            vuVar2.a(false);
+    public final void P(String str, String str2, vt vtVar) {
+        sw swVar;
+        vt vtVar2 = this.O0;
+        if (vtVar2 != null) {
+            vtVar2.a(false);
         }
-        this.O0 = vuVar;
+        this.O0 = vtVar;
         if (this.H0 != 0) {
             ConnectionsManager.getInstance(this.Y).cancelRequest(this.H0, false);
             this.H0 = 0;
         }
         boolean[] zArr = new boolean[1];
-        if (l11.n(this.M, str, false)) {
-            if (this.e0.isEmpty() && (sxVar = this.L) != null) {
-                sxVar.a(false);
+        if (d01.m(this.M, str, false)) {
+            if (this.e0.isEmpty() && (swVar = this.L) != null) {
+                swVar.a(false);
                 return;
             }
             return;
         }
-        nu nuVar = new nu(this, str, zArr, vuVar);
+        nt ntVar = new nt(this, str, zArr, vtVar);
         int i = this.J0 + 1;
         this.J0 = i;
         Z(true);
         TLRPC.TL_messages_getWebPage tL_messages_getWebPage = new TLRPC.TL_messages_getWebPage();
         tL_messages_getWebPage.url = str;
         tL_messages_getWebPage.hash = 0;
-        this.H0 = ConnectionsManager.getInstance(this.Y).sendRequest(tL_messages_getWebPage, new ou(this, i, vuVar, str2, nuVar, tL_messages_getWebPage));
-        if (vuVar != null) {
-            vuVar.b = new wc7(this, i, vuVar, (byte) 4);
-            vuVar.d();
+        this.H0 = ConnectionsManager.getInstance(this.Y).sendRequest(tL_messages_getWebPage, new ot(this, i, vtVar, str2, ntVar, tL_messages_getWebPage));
+        if (vtVar != null) {
+            vtVar.b = new va7(this, i, vtVar, (byte) 4);
+            vtVar.d();
         }
     }
 
@@ -1571,54 +1581,54 @@ public final class o extends ui5 implements jm7 {
         int w02;
         TextView textView = this.D0;
         if (textView != null) {
-            int i = cmb.h6;
-            fg0 f0 = cmb.f0(cmb.w0(null, i, false), 2, -1);
-            wmb M = anb.M(i);
+            int i = bkb.h6;
+            ff0 f0 = bkb.f0(bkb.w0(null, i, false), 2, -1);
+            vkb M = zkb.M(i);
             textView.setBackground(f0);
-            anb.j(textView, f0, null, M, null);
-            anb.X(this.D0, cmb.D8, null);
+            zkb.j(textView, f0, null, M, null);
+            zkb.X(this.D0, bkb.D8, null);
         }
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.C0;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
-            anb.h(cmb.F8, null, actionBarPopupWindow$ActionBarPopupWindowLayout);
+            zkb.h(bkb.F8, null, actionBarPopupWindow$ActionBarPopupWindowLayout);
         }
         ImageView imageView = this.s0;
         if (imageView != null) {
-            anb.s(imageView, cmb.F6, null, PorterDuff.Mode.MULTIPLY);
+            zkb.s(imageView, bkb.F6, null, PorterDuff.Mode.MULTIPLY);
             ImageView imageView2 = this.s0;
-            int i2 = cmb.y8;
-            anb.R(imageView2, cmb.f0(cmb.w0(null, i2, false), 1, -1), null, anb.M(i2), null);
+            int i2 = bkb.y8;
+            zkb.R(imageView2, bkb.f0(bkb.w0(null, i2, false), 1, -1), null, zkb.M(i2), null);
         }
         ImageView imageView3 = this.t0;
         if (imageView3 != null) {
-            anb.s(imageView3, cmb.F6, null, PorterDuff.Mode.MULTIPLY);
+            zkb.s(imageView3, bkb.F6, null, PorterDuff.Mode.MULTIPLY);
             ImageView imageView4 = this.t0;
-            int i3 = cmb.y8;
-            anb.R(imageView4, cmb.f0(cmb.w0(null, i3, false), 1, -1), null, anb.M(i3), null);
+            int i3 = bkb.y8;
+            zkb.R(imageView4, bkb.f0(bkb.w0(null, i3, false), 1, -1), null, zkb.M(i3), null);
         }
-        io ioVar = this.u0;
-        if (ioVar != null) {
-            anb.U(ioVar, cmb.F6, null);
+        hn hnVar = this.u0;
+        if (hnVar != null) {
+            zkb.U(hnVar, bkb.F6, null);
         }
-        wu wuVar = this.i0;
-        if (wuVar != null) {
+        wt wtVar = this.i0;
+        if (wtVar != null) {
             m mVar = this.v0[0];
-            if (mVar != null && gda.s0) {
+            if (mVar != null && gba.s0) {
                 w0 = mVar.getBackgroundColor();
             } else {
-                w0 = cmb.w0(null, cmb.Fl, false);
+                w0 = bkb.w0(null, bkb.Fl, false);
             }
-            wuVar.setMenuColors(w0);
-            wu wuVar2 = this.i0;
+            wtVar.setMenuColors(w0);
+            wt wtVar2 = this.i0;
             m mVar2 = this.v0[0];
-            if (mVar2 != null && gda.s0) {
+            if (mVar2 != null && gba.s0) {
                 w02 = mVar2.getActionBarColor();
             } else {
-                w02 = cmb.w0(null, cmb.Fl, false);
+                w02 = bkb.w0(null, bkb.Fl, false);
             }
-            wuVar2.d(w02, true);
+            wtVar2.d(w02, true);
         }
-        this.m0.setColor(cmb.w0(null, cmb.Fl, false));
+        this.m0.setColor(bkb.w0(null, bkb.Fl, false));
     }
 
     public final void S() {
@@ -1636,7 +1646,7 @@ public final class o extends ui5 implements jm7 {
             String str = "article" + this.v0[0].c.F.id;
             SharedPreferences.Editor putInt = org.telegram.messenger.a.b.getSharedPreferences("articles", 0).edit().putInt(str, K0).putInt(str.concat("o"), i);
             String concat = str.concat("r");
-            Point point = gm.q;
+            Point point = gl.q;
             if (point.x > point.y) {
                 z = true;
             }
@@ -1662,42 +1672,42 @@ public final class o extends ui5 implements jm7 {
                     } else {
                         lowerCase = mVarArr[0].c.F.url.toLowerCase();
                     }
-                    pageblockparagraph.text = dvc.d(textanchor.text, lowerCase, lowerCase2);
+                    pageblockparagraph.text = ctc.d(textanchor.text, lowerCase, lowerCase2);
                     this.v0[0].c.getClass();
-                    int I = ey.I(pageblockparagraph);
-                    u69 x = this.v0[0].c.x(null, I);
+                    int I = dx.I(pageblockparagraph);
+                    s49 x = this.v0[0].c.x(null, I);
                     View view = x.a;
                     this.v0[0].c.H(I, x, pageblockparagraph, 0, 0, false);
-                    my0 i2 = wi8.i(this.M, false, 1, null);
+                    fx0 i2 = ug8.i(this.M, false, 1, null);
                     i2.v0 = false;
                     i2.w0 = false;
                     LinearLayout linearLayout = new LinearLayout(this.M);
                     linearLayout.setOrientation(1);
-                    gkb gkbVar = new gkb();
-                    this.R0 = gkbVar;
-                    gkbVar.Q(linearLayout);
-                    this.R0.D = new yu(this, (byte) 1);
+                    fib fibVar = new fib();
+                    this.R0 = fibVar;
+                    fibVar.Q(linearLayout);
+                    this.R0.D = new yt(this, (byte) 1);
                     wb wbVar = new wb(this.M, (byte) 11);
                     wbVar.setTextSize(1, 16.0f);
-                    wbVar.setTypeface(gm.o());
-                    wbVar.setText(jb6.M0(2131748949, null));
+                    wbVar.setTypeface(gl.o());
+                    wbVar.setText(k96.M0(2131749000, null));
                     if (this.v0[0].c.H) {
                         i = 5;
                     } else {
                         i = 3;
                     }
                     wbVar.setGravity(i | 16);
-                    wbVar.setTextColor(cmb.w0(null, cmb.F6, false));
-                    wbVar.setPadding(gm.L(18.0f), 0, gm.L(18.0f), 0);
-                    linearLayout.addView(wbVar, new LinearLayout.LayoutParams(-1, gm.L(48.0f) + 1));
+                    wbVar.setTextColor(bkb.w0(null, bkb.F6, false));
+                    wbVar.setPadding(gl.L(18.0f), 0, gl.L(18.0f), 0);
+                    linearLayout.addView(wbVar, new LinearLayout.LayoutParams(-1, gl.L(48.0f) + 1));
                     view.setTag("bottomSheet");
-                    linearLayout.addView(view, qoe.k(0.0f, 7.0f, 0.0f, 0.0f, -1, -2));
-                    rkb m = this.R0.m(this.M);
-                    su suVar = new su(this, this.M, linearLayout, (byte) 0);
-                    i2.z0 = new tu(this, (byte) 0);
-                    suVar.addView(linearLayout, -1, -2);
-                    suVar.addView(m, -1, -2);
-                    i2.O = suVar;
+                    linearLayout.addView(view, nme.k(0.0f, 7.0f, 0.0f, 0.0f, -1, -2));
+                    qib m = this.R0.m(this.M);
+                    st stVar = new st(this, this.M, linearLayout, (byte) 0);
+                    i2.z0 = new tt(this, (byte) 0);
+                    stVar.addView(linearLayout, -1, -2);
+                    stVar.addView(m, -1, -2);
+                    i2.O = stVar;
                     if (this.Q0.w()) {
                         this.Q0.e(false);
                     }
@@ -1707,7 +1717,7 @@ public final class o extends ui5 implements jm7 {
                 } else if (num2.intValue() >= 0 && num2.intValue() < this.v0[0].c.e.size()) {
                     TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) this.v0[0].c.e.get(num2.intValue());
                     TL_iv.PageBlock w = w(pageBlock);
-                    if ((w instanceof tx) && M((tx) w)) {
+                    if ((w instanceof tw) && M((tw) w)) {
                         this.v0[0].c.M();
                         this.v0[0].c.f();
                     }
@@ -1719,8 +1729,8 @@ public final class o extends ui5 implements jm7 {
                     if (num3 != null) {
                         if (num3.intValue() == -1) {
                             this.v0[0].c.getClass();
-                            int I2 = ey.I(pageBlock);
-                            u69 x2 = this.v0[0].c.x(null, I2);
+                            int I2 = dx.I(pageBlock);
+                            s49 x2 = this.v0[0].c.x(null, I2);
                             this.v0[0].c.H(I2, x2, pageBlock, 0, 0, false);
                             x2.a.measure(View.MeasureSpec.makeMeasureSpec(this.v0[0].b.getMeasuredWidth(), 1073741824), 0);
                             Integer num4 = (Integer) this.v0[0].c.n.get(lowerCase2);
@@ -1735,13 +1745,13 @@ public final class o extends ui5 implements jm7 {
                         num2 = Integer.valueOf(num2.intValue() + 1);
                     }
                     if (z) {
-                        yla ylaVar = new yla(this.v0[0].getContext());
-                        ylaVar.a = num2.intValue();
-                        ylaVar.s = (-gm.L(56.0f)) - num.intValue();
-                        this.v0[0].d.v0(ylaVar);
+                        xja xjaVar = new xja(this.v0[0].getContext());
+                        xjaVar.a = num2.intValue();
+                        xjaVar.s = (-gl.L(56.0f)) - num.intValue();
+                        this.v0[0].d.v0(xjaVar);
                         return true;
                     }
-                    this.v0[0].d.g1(num2.intValue(), (-gm.L(56.0f)) - num.intValue());
+                    this.v0[0].d.g1(num2.intValue(), (-gl.L(56.0f)) - num.intValue());
                     return true;
                 }
             }
@@ -1754,9 +1764,9 @@ public final class o extends ui5 implements jm7 {
     }
 
     public final void V(int i) {
-        wu wuVar = this.i0;
-        if (wuVar != null && !wuVar.U && !wuVar.a0) {
-            int j = Utilities.j(i, gm.L(56.0f), gm.L(24.0f));
+        wt wtVar = this.i0;
+        if (wtVar != null && !wtVar.U && !wtVar.a0) {
+            int j = Utilities.j(i, gl.L(56.0f), gl.L(24.0f));
             this.K0 = j;
             this.i0.setHeight(j);
             this.Q0.x = this.K0;
@@ -1779,32 +1789,32 @@ public final class o extends ui5 implements jm7 {
         int w0;
         int i2;
         int i3;
-        sx sxVar;
-        a26 a26Var = this.W0;
-        if (a26Var != null) {
-            a26Var.a();
+        sw swVar;
+        a06 a06Var = this.W0;
+        if (a06Var != null) {
+            a06Var.a();
             this.W0 = null;
         }
         this.W0 = LaunchActivity.c0();
         this.N = dVar;
-        if (!(dVar instanceof i34)) {
+        if (!(dVar instanceof x14)) {
             i = dVar.getCurrentAccount();
         } else {
-            i = z8c.t0;
+            i = y6c.t0;
         }
         this.Y = i;
-        nm7.f(i).b(this, nm7.e2);
-        nm7.f(this.Y).b(this, nm7.f2);
-        nm7.f(this.Y).b(this, nm7.g2);
-        nm7.f(this.Y).b(this, nm7.h2);
-        nm7.f(this.Y).b(this, nm7.m4);
+        kk7.f(i).b(this, kk7.d2);
+        kk7.f(this.Y).b(this, kk7.e2);
+        kk7.f(this.Y).b(this, kk7.f2);
+        kk7.f(this.Y).b(this, kk7.g2);
+        kk7.f(this.Y).b(this, kk7.k4);
         Activity activity2 = this.M;
-        if (activity2 != activity && (activity2 == null || !this.K || (sxVar = this.L) == null || sxVar.e == null)) {
+        if (activity2 != activity && (activity2 == null || !this.K || (swVar = this.L) == null || swVar.e == null)) {
             this.M = activity;
             this.a = org.telegram.messenger.a.b.getSharedPreferences("articles", 0).getInt("font_type", 0);
             o(this, false);
             this.m0 = new Paint();
-            this.n0 = activity.getResources().getDrawable(2131231624);
+            this.n0 = activity.getResources().getDrawable(2131231623);
             this.o0 = new Paint();
             ArticleViewer$WindowView articleViewer$WindowView = new ArticleViewer$WindowView(this, activity);
             this.g0 = articleViewer$WindowView;
@@ -1813,21 +1823,21 @@ public final class o extends ui5 implements jm7 {
             this.g0.setFocusable(false);
             a aVar = new a(this, activity);
             this.h0 = aVar;
-            this.g0.addView(aVar, qoe.e(-1, -1, 51));
+            this.g0.addView(aVar, nme.e(-1, -1, 51));
             if (this.L == null) {
                 this.g0.setFitsSystemWindows(true);
-                this.h0.setOnApplyWindowInsetsListener(new wt((byte) 0));
+                this.h0.setOnApplyWindowInsetsListener(new vs((byte) 0));
             }
             FrameLayout frameLayout = new FrameLayout(activity);
             this.Q = frameLayout;
             frameLayout.setBackgroundColor(-16777216);
             this.Q.setVisibility(4);
-            this.g0.addView(this.Q, qoe.c(-1.0f, -1));
-            jy jyVar = new jy(activity);
-            this.S = jyVar;
-            jyVar.setVisibility(0);
+            this.g0.addView(this.Q, nme.c(-1.0f, -1));
+            ix ixVar = new ix(activity);
+            this.S = ixVar;
+            ixVar.setVisibility(0);
             this.S.setBackgroundColor(-16777216);
-            this.Q.addView(this.S, qoe.e(-1, -1, 17));
+            this.Q.addView(this.S, nme.e(-1, -1, 17));
             this.R = new TextureView(activity);
             this.v0 = new m[2];
             int i4 = 0;
@@ -1844,83 +1854,83 @@ public final class o extends ui5 implements jm7 {
                     i3 = 8;
                 }
                 mVar.setVisibility(i3);
-                this.h0.addView(mVar, qoe.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 0.0f));
-                mVar.b.setOnItemLongClickListener(new zt(this));
+                this.h0.addView(mVar, nme.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 0.0f));
+                mVar.b.setOnItemLongClickListener(new ys(this));
                 mVar.b.setOnItemClickListener(new defpackage.o(this, mVar, (byte) 14));
                 i4++;
             }
-            this.h0.addView(new FrameLayout(activity), qoe.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 0.0f));
+            this.h0.addView(new FrameLayout(activity), nme.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 0.0f));
             this.x0.setColor(-16777216);
             this.y0.setColor(-16777216);
             this.B0.setColor(-14408666);
             this.z0.setColor(-16777216);
-            wu wuVar = new wu(this, activity);
-            this.i0 = wuVar;
+            wt wtVar = new wt(this, activity);
+            this.i0 = wtVar;
             if (this.L != null) {
                 z = true;
             } else {
                 z = false;
             }
-            wuVar.f0 = z;
-            this.h0.addView(wuVar, qoe.e(-1, -2, 48));
+            wtVar.f0 = z;
+            this.h0.addView(wtVar, nme.e(-1, -2, 48));
             this.i0.setOnClickListener(new defpackage.t(this, activity, (byte) 17));
-            this.i0.c0.addTextChangedListener(new b7(this, (byte) 2));
+            this.i0.c0.addTextChangedListener(new b7(this, (byte) 1));
             eb ebVar = new eb(activity);
             this.j0 = ebVar;
             ebVar.setOpenProgress(0.0f);
-            this.j0.x.j(new defpackage.y(this, (byte) 4));
-            this.h0.addView(this.j0, qoe.c(-1.0f, -1));
-            this.k0 = new ut(this, (byte) 1);
-            this.i0.M.setOnClickListener(new yt(this, (byte) 2));
-            this.i0.M.setOnLongClickListener(new au(this, (byte) 0));
-            this.i0.setMenuListener(new x0(this, activity, (byte) 2));
-            this.i0.P.setOnClickListener(new yt(this, (byte) 3));
+            this.j0.x.j(new defpackage.y(this, (byte) 3));
+            this.h0.addView(this.j0, nme.c(-1.0f, -1));
+            this.k0 = new ts(this, (byte) 1);
+            this.i0.M.setOnClickListener(new xs(this, (byte) 2));
+            this.i0.M.setOnLongClickListener(new zs(this, (byte) 0));
+            this.i0.setMenuListener(new x0(this, activity, (byte) 1));
+            this.i0.P.setOnClickListener(new xs(this, (byte) 3));
             a6 a6Var = new a6(this.M, (byte) 1);
             this.r0 = a6Var;
             a6Var.setOnTouchListener(new p8((byte) 14));
             this.r0.setWillNotDraw(false);
-            this.r0.setTranslationY(gm.L(51.0f));
+            this.r0.setTranslationY(gl.L(51.0f));
             this.r0.setVisibility(4);
             this.r0.setFocusable(true);
             this.r0.setFocusableInTouchMode(true);
             this.r0.setClickable(true);
-            this.r0.setPadding(0, gm.L(3.0f), 0, 0);
-            this.h0.addView(this.r0, qoe.e(-1, 51, 80));
-            new mx5(this.g0, false, new xt(this, (byte) 0));
+            this.r0.setPadding(0, gl.L(3.0f), 0, 0);
+            this.h0.addView(this.r0, nme.e(-1, 51, 80));
+            new mv5(this.g0, false, new ws(this, (byte) 0));
             ImageView imageView = new ImageView(this.M);
             this.s0 = imageView;
             ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
             imageView.setScaleType(scaleType);
-            this.s0.setImageResource(2131232180);
+            this.s0.setImageResource(2131232179);
             ImageView imageView2 = this.s0;
-            int i5 = cmb.F6;
+            int i5 = bkb.F6;
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            anb.s(imageView2, i5, null, mode);
+            zkb.s(imageView2, i5, null, mode);
             ImageView imageView3 = this.s0;
-            int i6 = cmb.y8;
-            anb.R(imageView3, cmb.f0(cmb.w0(null, i6, false), 1, -1), null, anb.M(i6), null);
-            this.r0.addView(this.s0, qoe.d(48, 48.0f, 53, 0.0f, 0.0f, 48.0f, 0.0f));
-            this.s0.setOnClickListener(new yt(this, (byte) 0));
-            this.s0.setContentDescription(jb6.M0(2131754778, null));
+            int i6 = bkb.y8;
+            zkb.R(imageView3, bkb.f0(bkb.w0(null, i6, false), 1, -1), null, zkb.M(i6), null);
+            this.r0.addView(this.s0, nme.d(48, 48.0f, 53, 0.0f, 0.0f, 48.0f, 0.0f));
+            this.s0.setOnClickListener(new xs(this, (byte) 0));
+            this.s0.setContentDescription(k96.M0(2131754778, null));
             ImageView imageView4 = new ImageView(this.M);
             this.t0 = imageView4;
             imageView4.setScaleType(scaleType);
-            this.t0.setImageResource(2131232179);
-            anb.s(this.t0, i5, null, mode);
-            anb.R(this.t0, cmb.f0(cmb.w0(null, i6, false), 1, -1), null, anb.M(i6), null);
-            this.r0.addView(this.t0, qoe.d(48, 48.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
-            this.t0.setOnClickListener(new yt(this, (byte) 1));
-            this.t0.setContentDescription(jb6.M0(2131754777, null));
-            io ioVar = new io(this.M, true, true, true);
-            this.u0 = ioVar;
-            ioVar.setScaleProperty(0.6f);
-            this.u0.b(0.4f, 350L, d53.h);
-            anb.U(this.u0, i5, null);
-            this.u0.setTextSize(gm.L(15.0f));
-            this.u0.setTypeface(gm.o());
+            this.t0.setImageResource(2131232178);
+            zkb.s(this.t0, i5, null, mode);
+            zkb.R(this.t0, bkb.f0(bkb.w0(null, i6, false), 1, -1), null, zkb.M(i6), null);
+            this.r0.addView(this.t0, nme.d(48, 48.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
+            this.t0.setOnClickListener(new xs(this, (byte) 1));
+            this.t0.setContentDescription(k96.M0(2131754777, null));
+            hn hnVar = new hn(this.M, true, true, true);
+            this.u0 = hnVar;
+            hnVar.setScaleProperty(0.6f);
+            this.u0.b(0.4f, 350L, s33.h);
+            zkb.U(this.u0, i5, null);
+            this.u0.setTextSize(gl.L(15.0f));
+            this.u0.setTypeface(gl.o());
             this.u0.setGravity(3);
-            this.u0.getDrawable().N = gm.q.x;
-            this.r0.addView(this.u0, qoe.d(-2, -2.0f, 19, 18.0f, 0.0f, 108.0f, 0.0f));
+            this.u0.getDrawable().N = gl.q.x;
+            this.r0.addView(this.u0, nme.d(-2, -2.0f, 19, 18.0f, 0.0f, 108.0f, 0.0f));
             WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
             this.f0 = layoutParams;
             layoutParams.height = -1;
@@ -1931,11 +1941,11 @@ public final class o extends ui5 implements jm7 {
             layoutParams.softInputMode = 48;
             layoutParams.flags = 131072;
             if (this.L == null) {
-                w0 = cmb.w0(null, cmb.Z6, true);
+                w0 = bkb.w0(null, bkb.Z6, true);
             } else {
-                w0 = cmb.w0(null, cmb.Z6, false);
+                w0 = bkb.w0(null, bkb.Z6, false);
             }
-            if (gm.B(w0) >= 0.721f && Build.VERSION.SDK_INT >= 26) {
+            if (gl.B(w0) >= 0.721f && Build.VERSION.SDK_INT >= 26) {
                 i2 = 1808;
             } else {
                 i2 = 1792;
@@ -1948,22 +1958,22 @@ public final class o extends ui5 implements jm7 {
             if (Build.VERSION.SDK_INT >= 28) {
                 layoutParams2.layoutInDisplayCutoutMode = 1;
             }
-            gkb gkbVar = new gkb();
-            this.Q0 = gkbVar;
-            gkbVar.Q(this.v0[0].b);
-            if (oc7.r1(this.Y).i4.r()) {
-                this.Q0.k0 = new zt(this);
+            fib fibVar = new fib();
+            this.Q0 = fibVar;
+            fibVar.Q(this.v0[0].b);
+            if (na7.q1(this.Y).i4.r()) {
+                this.Q0.k0 = new ys(this);
             }
-            gkb gkbVar2 = this.Q0;
-            gkbVar2.z0 = this.v0[0].d;
-            gkbVar2.D = new yu(this, (byte) 0);
-            this.h0.addView(gkbVar2.m(activity));
+            fib fibVar2 = this.Q0;
+            fibVar2.z0 = this.v0[0].d;
+            fibVar2.D = new yt(this, (byte) 0);
+            this.h0.addView(fibVar2.m(activity));
             a aVar2 = this.h0;
-            pc8 pc8Var = new pc8(aVar2, aVar2);
-            this.S0 = pc8Var;
-            pc8Var.F = new zt(this);
-            pc8Var.E = new k6d(this, (byte) 6);
-            this.m0.setColor(cmb.w0(null, cmb.Fl, false));
+            ma8 ma8Var = new ma8(aVar2, aVar2);
+            this.S0 = ma8Var;
+            ma8Var.F = new ys(this);
+            ma8Var.E = new i4d(this);
+            this.m0.setColor(bkb.w0(null, bkb.Fl, false));
             e0(this);
             return;
         }
@@ -1976,81 +1986,81 @@ public final class o extends ui5 implements jm7 {
         if (this.M == null) {
             return;
         }
-        my0 my0Var = this.J;
-        if (my0Var != null) {
-            my0Var.dismiss();
+        fx0 fx0Var = this.J;
+        if (fx0Var != null) {
+            fx0Var.dismiss();
             this.J = null;
         }
-        my0 i = wi8.i(this.M, false, 1, null);
+        fx0 i = ug8.i(this.M, false, 1, null);
         try {
             str2 = URLDecoder.decode(str.replaceAll("\\+", "%2b"), "UTF-8");
         } catch (Exception e) {
-            fc4.g(e, true);
+            fa4.g(e, true);
             str2 = str;
         }
         i.P = str2;
         i.Q = false;
         i.R = true;
-        CharSequence[] charSequenceArr = {jb6.M0(2131747550, null), jb6.M0(2131751704, null)};
-        ff ffVar = new ff(this, str, (byte) 1);
+        CharSequence[] charSequenceArr = {k96.M0(2131747624, null), k96.M0(2131751755, null)};
+        fe feVar = new fe(this, str, (byte) 1);
         i.M = charSequenceArr;
-        i.L = ffVar;
-        i.I0 = new bu(this, (byte) 0);
+        i.L = feVar;
+        i.I0 = new at(this, (byte) 0);
         Y(i);
     }
 
-    public final void Y(my0 my0Var) {
+    public final void Y(fx0 fx0Var) {
         if (this.M != null) {
             try {
-                my0 my0Var2 = this.l0;
-                if (my0Var2 != null) {
-                    my0Var2.dismiss();
+                fx0 fx0Var2 = this.l0;
+                if (fx0Var2 != null) {
+                    fx0Var2.dismiss();
                     this.l0 = null;
                 }
             } catch (Exception e) {
-                fc4.g(e, true);
+                fa4.g(e, true);
             }
             try {
-                this.l0 = my0Var;
-                my0Var.setCanceledOnTouchOutside(true);
-                this.l0.setOnDismissListener(new bu(this, (byte) 1));
-                my0Var.show();
+                this.l0 = fx0Var;
+                fx0Var.setCanceledOnTouchOutside(true);
+                this.l0.setOnDismissListener(new at(this, (byte) 1));
+                fx0Var.show();
             } catch (Exception e2) {
-                fc4.g(e2, true);
+                fa4.g(e2, true);
             }
         }
     }
 
     public final void Z(boolean z) {
-        gm.r(this.k0);
-        wu wuVar = this.i0;
+        gl.r(this.k0);
+        wt wtVar = this.i0;
         if (z) {
-            wuVar.e0.a(false, 0.0f);
+            wtVar.e0.a(false, 0.0f);
             this.i0.e0.a(true, 0.3f);
-            gm.d3(this.k0, 100L);
+            gl.d3(this.k0, 100L);
             return;
         }
-        wuVar.e0.a(true, 1.0f);
+        wtVar.e0.a(true, 1.0f);
     }
 
     @Override
-    public final void a(ey eyVar, vjb vjbVar) {
+    public final void a(dx dxVar, thb thbVar) {
         String str;
         String str2;
-        m66 m66Var;
+        m46 m46Var;
         String lowerCase;
-        if (vjbVar != null && (str = vjbVar.b) != null) {
-            my0 my0Var = this.J;
-            vu vuVar = null;
-            if (my0Var != null) {
-                my0Var.dismiss();
+        if (thbVar != null && (str = thbVar.b) != null) {
+            fx0 fx0Var = this.J;
+            vt vtVar = null;
+            if (fx0Var != null) {
+                fx0Var.dismiss();
                 this.J = null;
             }
             int lastIndexOf = str.lastIndexOf(35);
             boolean z = false;
             if (lastIndexOf != -1) {
-                boolean isEmpty = TextUtils.isEmpty(eyVar.F.cached_page.url);
-                TLRPC.WebPage webPage = eyVar.F;
+                boolean isEmpty = TextUtils.isEmpty(dxVar.F.cached_page.url);
+                TLRPC.WebPage webPage = dxVar.F;
                 if (!isEmpty) {
                     lowerCase = webPage.cached_page.url.toLowerCase();
                 } else {
@@ -2069,11 +2079,11 @@ public final class o extends ui5 implements jm7 {
                 str2 = null;
             }
             if (!z) {
-                bx bxVar = this.d;
-                if (bxVar != null && (m66Var = this.b) != null) {
-                    vuVar = new vu(this, bxVar, m66Var);
+                bw bwVar = this.d;
+                if (bwVar != null && (m46Var = this.b) != null) {
+                    vtVar = new vt(this, bwVar, m46Var);
                 }
-                O(str, str2, vuVar);
+                O(str, str2, vtVar);
             }
         }
     }
@@ -2098,27 +2108,27 @@ public final class o extends ui5 implements jm7 {
                     return;
                 }
             }
-            new c41(frameLayout, null).G(2131623982, 4, gm.N2(jb6.M0(2131752827, null), -1, 0, new ut(this, (byte) 10), null)).k(true);
+            new u21(frameLayout, null).G(2131623982, 4, gl.N2(k96.M0(2131752862, null), -1, 0, new ts(this, (byte) 10), null)).k(true);
         }
     }
 
     @Override
-    public final boolean b(ey eyVar, TL_iv.PageBlock pageBlock) {
+    public final boolean b(dx dxVar, TL_iv.PageBlock pageBlock) {
         int indexOf;
         List list;
         org.telegram.ui.ActionBar.d dVar = this.N;
         if (dVar != null && dVar.getParentActivity() != null) {
-            if ((pageBlock instanceof TL_iv.pageBlockVideo) && !dy.g(eyVar.F, pageBlock)) {
+            if ((pageBlock instanceof TL_iv.pageBlockVideo) && !cx.g(dxVar.F, pageBlock)) {
                 list = Collections.singletonList(pageBlock);
                 indexOf = 0;
             } else {
-                ArrayList arrayList = new ArrayList(eyVar.f);
-                indexOf = eyVar.f.indexOf(pageBlock);
+                ArrayList arrayList = new ArrayList(dxVar.f);
+                indexOf = dxVar.f.indexOf(pageBlock);
                 list = arrayList;
             }
             PhotoViewer r0 = PhotoViewer.r0();
             r0.T1(null, this.N, null);
-            if (r0.m1(null, null, null, null, null, null, null, indexOf, new ex(this, list), null, 0L, 0L, 0L, true, new lx(this, eyVar.F, list), null)) {
+            if (r0.n1(null, null, null, null, null, null, null, indexOf, new ew(this, list), null, 0L, 0L, 0L, true, new lw(this, dxVar.F, list), null)) {
                 k();
                 return true;
             }
@@ -2141,10 +2151,10 @@ public final class o extends ui5 implements jm7 {
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
         this.Z0 = ofFloat;
-        ofFloat.addUpdateListener(new vt(this, (byte) 1));
+        ofFloat.addUpdateListener(new us(this, (byte) 1));
         this.Z0.addListener(new y7((byte) 2, this, z));
         this.Z0.setDuration(320L);
-        this.Z0.setInterpolator(d53.h);
+        this.Z0.setInterpolator(s33.h);
         this.Z0.start();
     }
 
@@ -2159,7 +2169,7 @@ public final class o extends ui5 implements jm7 {
         boolean z2;
         boolean z3;
         if (obj != null) {
-            if (((obj instanceof TLRPC.WebPage) && ((TLRPC.WebPage) obj).cached_page != null) || (obj instanceof zw)) {
+            if (((obj instanceof TLRPC.WebPage) && ((TLRPC.WebPage) obj).cached_page != null) || (obj instanceof zv)) {
                 int i5 = 1;
                 if (!z && i != 0) {
                     m[] mVarArr = this.v0;
@@ -2169,9 +2179,9 @@ public final class o extends ui5 implements jm7 {
                     this.i0.i();
                     this.b1.a(this.v0[0].getBackgroundColor(), true);
                     this.c1.a(this.v0[1].getBackgroundColor(), true);
-                    sx sxVar = this.L;
-                    if (sxVar != null) {
-                        sxVar.z();
+                    sw swVar = this.L;
+                    if (swVar != null) {
+                        swVar.y();
                     }
                     int indexOfChild = this.h0.indexOfChild(this.v0[0]);
                     int indexOfChild2 = this.h0.indexOfChild(this.v0[1]);
@@ -2201,59 +2211,59 @@ public final class o extends ui5 implements jm7 {
                     this.v0[i4].setLayerType(2, null);
                     if (i == 1) {
                         m mVar3 = this.v0[0];
-                        Point point = gm.q;
+                        Point point = gl.q;
                         mVar3.setTranslationX(point.x);
                         this.w0.playTogether(ObjectAnimator.ofFloat(this.v0[0], View.TRANSLATION_X, point.x, 0.0f));
                     } else if (i == -1) {
                         this.v0[0].setTranslationX(0.0f);
-                        this.w0.playTogether(ObjectAnimator.ofFloat(this.v0[1], View.TRANSLATION_X, 0.0f, gm.q.x));
+                        this.w0.playTogether(ObjectAnimator.ofFloat(this.v0[1], View.TRANSLATION_X, 0.0f, gl.q.x));
                     }
                     this.w0.setDuration(320L);
-                    this.w0.setInterpolator(d53.h);
+                    this.w0.setInterpolator(s33.h);
                     this.w0.addListener(new c(this, i4));
                     this.g0.f = true;
-                    wu wuVar = this.i0;
+                    wt wtVar = this.i0;
                     m mVar4 = this.v0[0];
-                    if (mVar4 != null && gda.s0) {
+                    if (mVar4 != null && gba.s0) {
                         w0 = mVar4.getBackgroundColor();
                     } else {
-                        w0 = cmb.w0(null, cmb.Fl, false);
+                        w0 = bkb.w0(null, bkb.Fl, false);
                     }
-                    wuVar.setMenuColors(w0);
-                    wu wuVar2 = this.i0;
+                    wtVar.setMenuColors(w0);
+                    wt wtVar2 = this.i0;
                     m mVar5 = this.v0[0];
-                    if (mVar5 != null && gda.s0) {
+                    if (mVar5 != null && gba.s0) {
                         w02 = mVar5.getActionBarColor();
                     } else {
-                        w02 = cmb.w0(null, cmb.Fl, false);
+                        w02 = bkb.w0(null, bkb.Fl, false);
                     }
-                    wuVar2.d(w02, true);
-                    wu wuVar3 = this.i0;
+                    wtVar2.d(w02, true);
+                    wt wtVar3 = this.i0;
                     m mVar6 = this.v0[0];
                     if (mVar6 != null && mVar6.d()) {
                         z2 = true;
                     } else {
                         z2 = false;
                     }
-                    wuVar3.setIsTonsite(z2);
-                    wu wuVar4 = this.i0;
+                    wtVar3.setIsTonsite(z2);
+                    wt wtVar4 = this.i0;
                     m mVar7 = this.v0[0];
                     if (mVar7 != null && mVar7.c()) {
                         z3 = true;
                     } else {
                         z3 = false;
                     }
-                    wuVar4.setIsLocal(z3);
+                    wtVar4.setIsLocal(z3);
                     AnimatorSet animatorSet = this.w0;
                     Objects.requireNonNull(animatorSet);
-                    gm.c3(new pu(animatorSet, (byte) 0));
+                    gl.c3(new pt(animatorSet, (byte) 0));
                 }
                 if (!z) {
                     this.Q0.e(true);
                 }
-                ey eyVar = this.v0[z ? 1 : 0].c;
+                dx dxVar = this.v0[z ? 1 : 0].c;
                 if (z) {
-                    obj = b10.f(2, this.e0);
+                    obj = b00.f(2, this.e0);
                 }
                 this.v0[z ? 1 : 0].a();
                 if (obj instanceof TLRPC.WebPage) {
@@ -2261,8 +2271,8 @@ public final class o extends ui5 implements jm7 {
                     this.v0[z ? 1 : 0].setWeb(null);
                     this.v0[z ? 1 : 0].setType(0);
                     TL_iv.Page page = webPage.cached_page;
-                    eyVar.H = page.rtl;
-                    eyVar.F = webPage;
+                    dxVar.H = page.rtl;
+                    dxVar.F = webPage;
                     int size = page.blocks.size();
                     for (int i6 = 0; i6 < size; i6++) {
                         TL_iv.PageBlock pageBlock = webPage.cached_page.blocks.get(i6);
@@ -2275,54 +2285,54 @@ public final class o extends ui5 implements jm7 {
                                 if (((t != null && !(t instanceof TL_iv.textEmpty)) || (t2 != null && !(t2 instanceof TL_iv.textEmpty))) && size > 1) {
                                     TL_iv.PageBlock pageBlock2 = webPage.cached_page.blocks.get(1);
                                     if (pageBlock2 instanceof TL_iv.pageBlockChannel) {
-                                        eyVar.G = (TL_iv.pageBlockChannel) pageBlock2;
+                                        dxVar.G = (TL_iv.pageBlockChannel) pageBlock2;
                                     }
                                 }
                             }
-                        } else if (i6 == 1 && eyVar.G != null) {
+                        } else if (i6 == 1 && dxVar.G != null) {
                         }
                         if (i6 == size - 1) {
                             i3 = i6;
                         } else {
                             i3 = 0;
                         }
-                        eyVar.F(eyVar, pageBlock, 0, 0, i3);
+                        dxVar.F(dxVar, pageBlock, 0, 0, i3);
                     }
-                    eyVar.f();
+                    dxVar.f();
                     if (this.e0.size() != 1 && i != -1) {
-                        u46 u46Var = this.v0[z ? 1 : 0].d;
-                        sx sxVar2 = this.L;
-                        if (sxVar2 == null) {
+                        t26 t26Var = this.v0[z ? 1 : 0].d;
+                        sw swVar2 = this.L;
+                        if (swVar2 == null) {
                             i5 = 0;
                         }
-                        if (sxVar2 != null) {
-                            i2 = gm.L(32.0f);
+                        if (swVar2 != null) {
+                            i2 = gl.L(32.0f);
                         } else {
                             i2 = 0;
                         }
-                        u46Var.g1(i5, i2);
+                        t26Var.g1(i5, i2);
                     } else {
                         SharedPreferences sharedPreferences = org.telegram.messenger.a.b.getSharedPreferences("articles", 0);
                         String str = "article" + webPage.id;
                         int i7 = sharedPreferences.getInt(str, -1);
                         boolean z4 = sharedPreferences.getBoolean(str.concat("r"), true);
-                        Point point2 = gm.q;
+                        Point point2 = gl.q;
                         if (point2.x <= point2.y) {
                             i5 = 0;
                         }
                         if (z4 == i5) {
                             L = sharedPreferences.getInt(str.concat("o"), 0) - this.v0[z ? 1 : 0].b.getPaddingTop();
                         } else {
-                            L = gm.L(10.0f);
+                            L = gl.L(10.0f);
                         }
                         if (i7 != -1) {
                             this.v0[z ? 1 : 0].d.g1(i7, L);
                         }
                     }
-                } else if (obj instanceof zw) {
+                } else if (obj instanceof zv) {
                     this.v0[z ? 1 : 0].setType(1);
                     this.v0[z ? 1 : 0].f();
-                    this.v0[z ? 1 : 0].setWeb((zw) obj);
+                    this.v0[z ? 1 : 0].setWeb((zv) obj);
                 }
                 if (!z) {
                     j(null);
@@ -2335,11 +2345,11 @@ public final class o extends ui5 implements jm7 {
 
     public final void d(int i, String str) {
         S();
-        wy0 wy0Var = new wy0();
-        wy0Var.x = str;
-        this.e0.add(wy0Var);
+        px0 px0Var = new px0();
+        px0Var.x = str;
+        this.e0.add(px0Var);
         this.i0.h(false);
-        c0(i, wy0Var, false);
+        c0(i, px0Var, false);
     }
 
     public final void d0() {
@@ -2361,15 +2371,15 @@ public final class o extends ui5 implements jm7 {
                 translationX = 1.0f - (this.v0[0].getTranslationX() / this.v0[0].getWidth());
             }
             float f3 = 1.0f - translationX;
-            wu wuVar = this.i0;
-            wuVar.d[0] = this.v0[0].getProgress();
-            wuVar.invalidate();
-            wu wuVar2 = this.i0;
-            wuVar2.d[1] = this.v0[1].getProgress();
-            wuVar2.invalidate();
+            wt wtVar = this.i0;
+            wtVar.d[0] = this.v0[0].getProgress();
+            wtVar.invalidate();
+            wt wtVar2 = this.i0;
+            wtVar2.d[1] = this.v0[1].getProgress();
+            wtVar2.invalidate();
             this.i0.setTransitionProgress(f3);
-            wu wuVar3 = this.i0;
-            if (!wuVar3.a0 && !wuVar3.U) {
+            wt wtVar3 = this.i0;
+            if (!wtVar3.a0 && !wtVar3.U) {
                 ArticleViewer$WindowView articleViewer$WindowView = this.g0;
                 if (articleViewer$WindowView.e || articleViewer$WindowView.f) {
                     boolean G = G();
@@ -2386,29 +2396,29 @@ public final class o extends ui5 implements jm7 {
                         if (this.v0[1].s || arrayList.size() > 2) {
                             f2 = 1.0f;
                         }
-                        float R1 = gm.R1(f, f2, f3);
+                        float R1 = gl.R1(f, f2, f3);
                         this.i0.N.c(false, 1.0f - R1);
                         this.i0.Q.c();
-                        wu wuVar4 = this.i0;
+                        wt wtVar4 = this.i0;
                         if (R1 > 0.5f) {
                             z3 = true;
                         } else {
                             z3 = false;
                         }
-                        wuVar4.setBackButtonCached(z3);
+                        wtVar4.setBackButtonCached(z3);
                     }
                     this.i0.setHasForward(this.v0[0].w);
                     this.i0.setIsLocal(this.v0[0].c());
-                    wu wuVar5 = this.i0;
+                    wt wtVar5 = this.i0;
                     if (this.v0[0].getWebView() != null && this.v0[0].getWebView().b) {
                         z4 = true;
                     } else {
                         z4 = false;
                     }
-                    wuVar5.setIsLoaded(z4);
+                    wtVar5.setIsLoaded(z4);
                 }
             }
-            wu wuVar6 = this.i0;
+            wt wtVar6 = this.i0;
             int actionBarColor = this.v0[0].getActionBarColor();
             ArticleViewer$WindowView articleViewer$WindowView2 = this.g0;
             if (!articleViewer$WindowView2.e && !articleViewer$WindowView2.f) {
@@ -2416,8 +2426,8 @@ public final class o extends ui5 implements jm7 {
             } else {
                 z = true;
             }
-            wuVar6.b(0, this.b1.a(actionBarColor, z));
-            wu wuVar7 = this.i0;
+            wtVar6.b(0, this.b1.a(actionBarColor, z));
+            wt wtVar7 = this.i0;
             int actionBarColor2 = this.v0[1].getActionBarColor();
             ArticleViewer$WindowView articleViewer$WindowView3 = this.g0;
             if (!articleViewer$WindowView3.e && !articleViewer$WindowView3.f) {
@@ -2425,9 +2435,9 @@ public final class o extends ui5 implements jm7 {
             } else {
                 z2 = true;
             }
-            wuVar7.b(1, this.c1.a(actionBarColor2, z2));
-            this.i0.d(on2.f(f3, this.v0[0].getActionBarColor(), this.v0[1].getActionBarColor()), false);
-            wu wuVar8 = this.i0;
+            wtVar7.b(1, this.c1.a(actionBarColor2, z2));
+            this.i0.d(bm2.f(f3, this.v0[0].getActionBarColor(), this.v0[1].getActionBarColor()), false);
+            wt wtVar8 = this.i0;
             int i = (translationX > 0.5f ? 1 : (translationX == 0.5f ? 0 : -1));
             m[] mVarArr2 = this.v0;
             if (i > 0) {
@@ -2435,10 +2445,10 @@ public final class o extends ui5 implements jm7 {
             } else {
                 mVar2 = mVarArr2[1];
             }
-            wuVar8.setMenuType(mVar2.a);
-            sx sxVar = this.L;
-            if (sxVar != null) {
-                sxVar.c.invalidate();
+            wtVar8.setMenuType(mVar2.a);
+            sw swVar = this.L;
+            if (swVar != null) {
+                swVar.c.invalidate();
                 return;
             }
             ArticleViewer$WindowView articleViewer$WindowView4 = this.g0;
@@ -2450,10 +2460,10 @@ public final class o extends ui5 implements jm7 {
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        bv bvVar;
-        k47 messageObject;
-        if (i == nm7.h2) {
-            k47 k47Var = (k47) objArr[0];
+        bu buVar;
+        k27 messageObject;
+        if (i == kk7.g2) {
+            k27 k27Var = (k27) objArr[0];
             if (this.v0 != null) {
                 int i3 = 0;
                 while (true) {
@@ -2462,8 +2472,8 @@ public final class o extends ui5 implements jm7 {
                         int childCount = mVarArr[i3].b.getChildCount();
                         for (int i4 = 0; i4 < childCount; i4++) {
                             View childAt = this.v0[i3].b.getChildAt(i4);
-                            if (childAt instanceof bv) {
-                                ((bv) childAt).a(true);
+                            if (childAt instanceof bu) {
+                                ((bu) childAt).a(true);
                             }
                         }
                         i3++;
@@ -2472,8 +2482,8 @@ public final class o extends ui5 implements jm7 {
                     }
                 }
             }
-        } else if (i != nm7.f2 && i != nm7.g2) {
-            if (i == nm7.e2) {
+        } else if (i != kk7.e2 && i != kk7.f2) {
+            if (i == kk7.d2) {
                 Integer num = (Integer) objArr[0];
                 if (this.v0 != null) {
                     int i5 = 0;
@@ -2485,13 +2495,13 @@ public final class o extends ui5 implements jm7 {
                             while (true) {
                                 if (i6 < childCount2) {
                                     View childAt2 = this.v0[i5].b.getChildAt(i6);
-                                    if ((childAt2 instanceof bv) && (messageObject = (bvVar = (bv) childAt2).getMessageObject()) != null && messageObject.e1() == num.intValue()) {
-                                        k47 k47Var2 = MediaController.w().v0;
-                                        if (k47Var2 != null) {
-                                            messageObject.b0 = k47Var2.b0;
-                                            messageObject.i0 = k47Var2.i0;
-                                            messageObject.j0 = k47Var2.j0;
-                                            bvVar.b();
+                                    if ((childAt2 instanceof bu) && (messageObject = (buVar = (bu) childAt2).getMessageObject()) != null && messageObject.e1() == num.intValue()) {
+                                        k27 k27Var2 = MediaController.w().v0;
+                                        if (k27Var2 != null) {
+                                            messageObject.b0 = k27Var2.b0;
+                                            messageObject.i0 = k27Var2.i0;
+                                            messageObject.j0 = k27Var2.j0;
+                                            buVar.b();
                                         }
                                     } else {
                                         i6++;
@@ -2504,7 +2514,7 @@ public final class o extends ui5 implements jm7 {
                         }
                     }
                 }
-            } else if (i == nm7.m4 && this.v0 != null) {
+            } else if (i == kk7.k4 && this.v0 != null) {
                 int i7 = 0;
                 while (true) {
                     m[] mVarArr3 = this.v0;
@@ -2512,8 +2522,8 @@ public final class o extends ui5 implements jm7 {
                         int childCount3 = mVarArr3[i7].b.getChildCount();
                         for (int i8 = 0; i8 < childCount3; i8++) {
                             View childAt3 = this.v0[i7].b.getChildAt(i8);
-                            if (childAt3 instanceof uw) {
-                                ((uw) childAt3).e.invalidate();
+                            if (childAt3 instanceof uv) {
+                                ((uv) childAt3).e.invalidate();
                             } else {
                                 childAt3.invalidate();
                             }
@@ -2532,10 +2542,10 @@ public final class o extends ui5 implements jm7 {
                     int childCount4 = mVarArr4[i9].b.getChildCount();
                     for (int i10 = 0; i10 < childCount4; i10++) {
                         View childAt4 = this.v0[i9].b.getChildAt(i10);
-                        if (childAt4 instanceof bv) {
-                            bv bvVar2 = (bv) childAt4;
-                            if (bvVar2.getMessageObject() != null) {
-                                bvVar2.a(true);
+                        if (childAt4 instanceof bu) {
+                            bu buVar2 = (bu) childAt4;
+                            if (buVar2.getMessageObject() != null) {
+                                buVar2.a(true);
                             }
                         }
                     }
@@ -2608,13 +2618,13 @@ public final class o extends ui5 implements jm7 {
             this.u0.setText("");
             return;
         }
-        io ioVar = this.u0;
+        hn hnVar = this.u0;
         if (size == 0) {
-            ioVar.setText(jb6.M0(2131747901, null));
+            hnVar.setText(k96.M0(2131747975, null));
         } else if (size == 1) {
-            ioVar.setText(jb6.M0(2131747560, null));
+            hnVar.setText(k96.M0(2131747634, null));
         } else {
-            ioVar.setText(String.format(jb6.J0(size, "CountOfResults"), Integer.valueOf(i + 1), Integer.valueOf(size)));
+            hnVar.setText(String.format(k96.J0(size, "CountOfResults"), Integer.valueOf(i + 1), Integer.valueOf(size)));
         }
     }
 
@@ -2623,49 +2633,49 @@ public final class o extends ui5 implements jm7 {
         boolean z3 = false;
         this.i0.g(0, this.v0[0].getTitle(), z);
         this.i0.f(0, this.v0[0].getSubtitle());
-        wu wuVar = this.i0;
+        wt wtVar = this.i0;
         if (this.v0[0].e() && this.v0[0].getWebView() != null && this.v0[0].getWebView().F) {
             z2 = true;
         } else {
             z2 = false;
         }
-        wuVar.e(0, z2);
+        wtVar.e(0, z2);
         this.i0.g(1, this.v0[1].getTitle(), z);
         this.i0.f(1, this.v0[1].getSubtitle());
-        wu wuVar2 = this.i0;
+        wt wtVar2 = this.i0;
         if (this.v0[1].e() && this.v0[1].getWebView() != null && this.v0[1].getWebView().F) {
             z3 = true;
         }
-        wuVar2.e(1, z3);
+        wtVar2.e(1, z3);
     }
 
     public final void h() {
         this.L0 = false;
-        ax axVar = this.M0;
-        if (axVar != null) {
-            this.g0.removeCallbacks(axVar);
+        aw awVar = this.M0;
+        if (awVar != null) {
+            this.g0.removeCallbacks(awVar);
             this.M0 = null;
         }
-        ax axVar2 = this.N0;
-        if (axVar2 != null) {
-            this.g0.removeCallbacks(axVar2);
+        aw awVar2 = this.N0;
+        if (awVar2 != null) {
+            this.g0.removeCallbacks(awVar2);
             this.N0 = null;
         }
     }
 
-    public final void j(eu euVar) {
-        if (this.K0 == gm.L(56.0f)) {
-            if (euVar != null) {
-                euVar.run();
+    public final void j(dt dtVar) {
+        if (this.K0 == gl.L(56.0f)) {
+            if (dtVar != null) {
+                dtVar.run();
                 return;
             }
             return;
         }
-        ValueAnimator duration = ValueAnimator.ofObject(new IntEvaluator(), Integer.valueOf(this.K0), Integer.valueOf(gm.L(56.0f))).setDuration(180L);
+        ValueAnimator duration = ValueAnimator.ofObject(new IntEvaluator(), Integer.valueOf(this.K0), Integer.valueOf(gl.L(56.0f))).setDuration(180L);
         duration.setInterpolator(new DecelerateInterpolator());
-        duration.addUpdateListener(new vt(this, (byte) 0));
-        duration.addListener(new g0(euVar, (byte) 13));
-        if (euVar != null) {
+        duration.addUpdateListener(new us(this, (byte) 0));
+        duration.addListener(new g0(dtVar, (byte) 11));
+        if (dtVar != null) {
             duration.setDuration(duration.getDuration() / 2);
         }
         duration.start();
@@ -2673,38 +2683,38 @@ public final class o extends ui5 implements jm7 {
 
     public final void k() {
         long j;
-        xw xwVar;
-        hx hxVar = this.v0[0].b;
-        if (hxVar != null && this.X) {
-            float measuredHeight = hxVar.getMeasuredHeight() / 2.0f;
+        xv xvVar;
+        hw hwVar = this.v0[0].b;
+        if (hwVar != null && this.X) {
+            float measuredHeight = hwVar.getMeasuredHeight() / 2.0f;
             Uri uri = null;
             float f = 0.0f;
-            xw xwVar2 = null;
-            for (int i = 0; i < hxVar.getChildCount(); i++) {
-                View childAt = hxVar.getChildAt(i);
-                if (childAt instanceof xw) {
+            xv xvVar2 = null;
+            for (int i = 0; i < hwVar.getChildCount(); i++) {
+                View childAt = hwVar.getChildAt(i);
+                if (childAt instanceof xv) {
                     float measuredHeight2 = (childAt.getMeasuredHeight() / 2.0f) + childAt.getTop();
-                    if (xwVar2 == null || Math.abs(measuredHeight - measuredHeight2) < Math.abs(measuredHeight - f)) {
-                        xwVar2 = (xw) childAt;
+                    if (xvVar2 == null || Math.abs(measuredHeight - measuredHeight2) < Math.abs(measuredHeight - f)) {
+                        xvVar2 = (xv) childAt;
                         f = measuredHeight2;
                     }
                 }
             }
             boolean z = PhotoViewer.r0().f;
-            if (z || ((xwVar = this.y) != null && xwVar != xwVar2 && this.x != null)) {
+            if (z || ((xvVar = this.y) != null && xvVar != xvVar2 && this.x != null)) {
                 VideoPlayerHolderBase videoPlayerHolderBase = this.x;
                 if (videoPlayerHolderBase != null) {
-                    xw xwVar3 = this.y;
-                    long j2 = xwVar3.M.video_id;
-                    yw a = yw.a(videoPlayerHolderBase, xwVar3);
-                    xwVar3.c(a);
+                    xv xvVar3 = this.y;
+                    long j2 = xvVar3.M.video_id;
+                    yv a = yv.a(videoPlayerHolderBase, xvVar3);
+                    xvVar3.c(a);
                     this.E.k(a, j2);
-                    xw xwVar4 = this.y;
-                    yw ywVar = xwVar4.N;
-                    if (ywVar != null) {
-                        Bitmap bitmap = ywVar.b;
+                    xv xvVar4 = this.y;
+                    yv yvVar = xvVar4.N;
+                    if (yvVar != null) {
+                        Bitmap bitmap = yvVar.b;
                         if (bitmap != null) {
-                            xwVar4.e.f0(bitmap);
+                            xvVar4.e.f0(bitmap);
                         }
                         this.y.e(false);
                     }
@@ -2713,36 +2723,36 @@ public final class o extends ui5 implements jm7 {
                 this.x = null;
                 this.y = null;
             }
-            if (!z && xwVar2 != null) {
-                int i2 = xw.W;
-                ui5 ui5Var = xwVar2.a;
-                if (xwVar2.P != null && ui5Var.x == null) {
-                    ui5Var.x = new ww(xwVar2).with(xwVar2.n);
-                    TLRPC.Document document = xwVar2.P;
+            if (!z && xvVar2 != null) {
+                int i2 = xv.W;
+                vg5 vg5Var = xvVar2.a;
+                if (xvVar2.P != null && vg5Var.x == null) {
+                    vg5Var.x = new wv(xvVar2).with(xvVar2.n);
+                    TLRPC.Document document = xvVar2.P;
                     for (int i3 = 0; i3 < document.attributes.size(); i3++) {
                         if (document.attributes.get(i3) instanceof TLRPC.TL_documentAttributeVideo) {
                             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) document.attributes.get(i3);
-                            xwVar2.h.a(tL_documentAttributeVideo.w / tL_documentAttributeVideo.h, 0);
+                            xvVar2.h.a(tL_documentAttributeVideo.w / tL_documentAttributeVideo.h, 0);
                         }
                     }
-                    TLRPC.WebPage webPage = xwVar2.b.F;
+                    TLRPC.WebPage webPage = xvVar2.b.F;
                     if (webPage != null) {
-                        uri = kd4.j(((o) ui5Var).Y, webPage, document);
+                        uri = kb4.j(((o) vg5Var).Y, webPage, document);
                     }
                     if (uri != null) {
-                        VideoPlayerHolderBase videoPlayerHolderBase2 = ui5Var.x;
-                        yw ywVar2 = xwVar2.N;
-                        if (ywVar2 == null) {
+                        VideoPlayerHolderBase videoPlayerHolderBase2 = vg5Var.x;
+                        yv yvVar2 = xvVar2.N;
+                        if (yvVar2 == null) {
                             j = 0;
                         } else {
-                            j = ywVar2.a;
+                            j = yvVar2.a;
                         }
                         videoPlayerHolderBase2.seekTo(j);
-                        ui5Var.x.preparePlayer(uri, true, 1.0f);
-                        ui5Var.x.play();
+                        vg5Var.x.preparePlayer(uri, true, 1.0f);
+                        vg5Var.x.play();
                     }
                 }
-                this.y = xwVar2;
+                this.y = xvVar2;
             }
         }
     }
@@ -2759,9 +2769,9 @@ public final class o extends ui5 implements jm7 {
                 this.a0 = (byte) 0;
             }
             if (this.a0 == 0) {
-                sx sxVar = this.L;
-                if (sxVar != null) {
-                    sxVar.a(false);
+                sw swVar = this.L;
+                if (swVar != null) {
+                    swVar.a(false);
                     return;
                 }
                 if (this.Q.getVisibility() == 0) {
@@ -2771,11 +2781,11 @@ public final class o extends ui5 implements jm7 {
                         this.Q.removeView(this.P);
                         this.P = null;
                     } else {
-                        tvc tvcVar = this.G0;
-                        if (tvcVar != null && tvcVar.U) {
-                            tvcVar.U = false;
-                            tvcVar.m();
-                            tvcVar.l(false);
+                        stc stcVar = this.G0;
+                        if (stcVar != null && stcVar.U) {
+                            stcVar.U = false;
+                            stcVar.m();
+                            stcVar.l(false);
                         }
                     }
                     if (!z2) {
@@ -2786,11 +2796,11 @@ public final class o extends ui5 implements jm7 {
                     this.Q0.e(false);
                     return;
                 }
-                wu wuVar = this.i0;
-                if (wuVar.U) {
-                    wuVar.h(false);
-                } else if (wuVar.a0) {
-                    wuVar.k(false);
+                wt wtVar = this.i0;
+                if (wtVar.U) {
+                    wtVar.h(false);
+                } else if (wtVar.a0) {
+                    wtVar.k(false);
                 } else {
                     if (this.H0 != 0) {
                         ConnectionsManager.getInstance(this.Y).cancelRequest(this.H0, true);
@@ -2806,61 +2816,61 @@ public final class o extends ui5 implements jm7 {
                     if (z && !z2) {
                         ArrayList arrayList = this.e0;
                         if (arrayList.size() >= 2) {
-                            Object m = td4.m(1, arrayList);
-                            if (m instanceof zw) {
-                                ((zw) m).a();
+                            Object l = tb4.l(1, arrayList);
+                            if (l instanceof zv) {
+                                ((zv) l).a();
                             }
-                            if (m instanceof TLRPC.WebPage) {
-                                dvc.o((TLRPC.WebPage) m);
+                            if (l instanceof TLRPC.WebPage) {
+                                ctc.o((TLRPC.WebPage) l);
                             }
                             c0(-1, arrayList.get(arrayList.size() - 1), false);
                             return;
                         }
                     }
-                    nm7.f(this.Y).n(this, nm7.e2);
-                    nm7.f(this.Y).n(this, nm7.f2);
-                    nm7.f(this.Y).n(this, nm7.g2);
-                    nm7.f(this.Y).n(this, nm7.h2);
-                    nm7.f(this.Y).n(this, nm7.m4);
-                    a26 a26Var = this.W0;
-                    if (a26Var != null) {
-                        a26Var.a();
+                    kk7.f(this.Y).n(this, kk7.d2);
+                    kk7.f(this.Y).n(this, kk7.e2);
+                    kk7.f(this.Y).n(this, kk7.f2);
+                    kk7.f(this.Y).n(this, kk7.g2);
+                    kk7.f(this.Y).n(this, kk7.k4);
+                    a06 a06Var = this.W0;
+                    if (a06Var != null) {
+                        a06Var.a();
                         this.W0 = null;
                     }
                     this.N = null;
                     try {
-                        my0 my0Var = this.l0;
-                        if (my0Var != null) {
-                            my0Var.dismiss();
+                        fx0 fx0Var = this.l0;
+                        if (fx0Var != null) {
+                            fx0Var.dismiss();
                             this.l0 = null;
                         }
                     } catch (Exception e) {
-                        fc4.g(e, true);
+                        fa4.g(e, true);
                     }
                     AnimatorSet animatorSet = new AnimatorSet();
                     ArticleViewer$WindowView articleViewer$WindowView = this.g0;
                     Property property = View.ALPHA;
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(articleViewer$WindowView, property, 0.0f), ObjectAnimator.ofFloat(this.h0, property, 0.0f), ObjectAnimator.ofFloat(this.g0, View.TRANSLATION_X, 0.0f, gm.L(56.0f)));
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(articleViewer$WindowView, property, 0.0f), ObjectAnimator.ofFloat(this.h0, property, 0.0f), ObjectAnimator.ofFloat(this.g0, View.TRANSLATION_X, 0.0f, gl.L(56.0f)));
                     this.a0 = (byte) 2;
-                    this.b0 = new ut(this, (byte) 9);
+                    this.b0 = new ts(this, (byte) 9);
                     animatorSet.setDuration(150L);
                     animatorSet.setInterpolator(this.d0);
-                    animatorSet.addListener(new g0(this, (byte) 14));
+                    animatorSet.addListener(new g0(this, (byte) 12));
                     this.c0 = System.currentTimeMillis();
                     this.h0.setLayerType(2, null);
                     animatorSet.start();
                     while (true) {
-                        vh6 vh6Var = this.E;
-                        if (i < vh6Var.m()) {
-                            yw ywVar = (yw) vh6Var.n(i);
-                            Bitmap bitmap = ywVar.b;
+                        vf6 vf6Var = this.E;
+                        if (i < vf6Var.m()) {
+                            yv yvVar = (yv) vf6Var.n(i);
+                            Bitmap bitmap = yvVar.b;
                             if (bitmap != null) {
                                 bitmap.recycle();
-                                ywVar.b = null;
+                                yvVar.b = null;
                             }
                             i++;
                         } else {
-                            vh6Var.b();
+                            vf6Var.b();
                             return;
                         }
                     }
@@ -2875,18 +2885,18 @@ public final class o extends ui5 implements jm7 {
             ArrayList arrayList = this.e0;
             if (i < arrayList.size()) {
                 Object obj = arrayList.get(i);
-                if (obj instanceof zw) {
+                if (obj instanceof zv) {
                     m mVar = this.v0[0];
                     if (mVar != null && mVar.L == obj) {
-                        ((zw) obj).c(mVar);
+                        ((zv) obj).c(mVar);
                     }
                     m mVar2 = this.v0[1];
                     if (mVar2 != null && mVar2.L == obj) {
-                        ((zw) obj).c(mVar2);
+                        ((zv) obj).c(mVar2);
                     }
-                    ((zw) obj).a();
+                    ((zv) obj).a();
                 } else if (obj instanceof TLRPC.WebPage) {
-                    dvc.o((TLRPC.WebPage) obj);
+                    ctc.o((TLRPC.WebPage) obj);
                 }
                 i++;
             } else {
@@ -2908,7 +2918,7 @@ public final class o extends ui5 implements jm7 {
                     }
                     this.g0 = null;
                 } catch (Exception e) {
-                    fc4.g(e, true);
+                    fa4.g(e, true);
                 }
             }
             int i = 0;
@@ -2925,7 +2935,7 @@ public final class o extends ui5 implements jm7 {
             try {
                 this.M.getWindow().clearFlags(128);
             } catch (Exception e2) {
-                fc4.g(e2, true);
+                fa4.g(e2, true);
             }
             this.M = null;
             this.N = null;
@@ -2945,13 +2955,13 @@ public final class o extends ui5 implements jm7 {
         this.L0 = false;
         this.M0 = null;
         this.N0 = null;
-        this.T0 = new po(new int[]{nm7.r, nm7.s});
-        this.U0 = new yd[2];
+        this.T0 = new on(new int[]{kk7.r, kk7.s});
+        this.U0 = new yc[2];
         this.Y0 = -1;
-        ut utVar = new ut(this, (byte) 2);
-        d53 d53Var = d53.h;
-        this.b1 = new km(utVar, 320L, d53Var);
-        this.c1 = new km(new ut(this, (byte) 3), 320L, d53Var);
+        ts tsVar = new ts(this, (byte) 2);
+        s33 s33Var = s33.h;
+        this.b1 = new kl(tsVar, 320L, s33Var);
+        this.c1 = new kl(new ts(this, (byte) 3), 320L, s33Var);
         this.K = false;
         this.L = null;
     }

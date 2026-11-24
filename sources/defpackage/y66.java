@@ -1,7 +1,25 @@
 package defpackage;
-public abstract class y66 extends gl0 {
+
+import android.view.View;
+public final class y66 extends gb3 {
+    public final l18 F;
+
+    public y66(l18 l18Var) {
+        this.F = l18Var;
+    }
+
     @Override
-    public void a(knd kndVar) {
-        kndVar.k(this);
+    public final float A(View view) {
+        return 0.5f;
+    }
+
+    @Override
+    public final void M() {
+        this.F.c.invalidate();
+    }
+
+    @Override
+    public final void P(s49 s49Var) {
+        this.F.c.invalidate();
     }
 }

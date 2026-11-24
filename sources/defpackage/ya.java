@@ -2,14 +2,14 @@ package defpackage;
 
 import android.content.Context;
 import android.view.ViewGroup;
-public final class ya extends jh2 {
+public final class ya extends wf2 {
     public final byte d;
     public final ViewGroup e;
 
-    public ya(pt4 pt4Var, Context context, r63 r63Var) {
-        super(24, r63Var, context);
+    public ya(or4 or4Var, Context context, f53 f53Var) {
+        super(24, f53Var, context);
         this.d = (byte) 2;
-        this.e = pt4Var;
+        this.e = or4Var;
     }
 
     @Override
@@ -23,17 +23,17 @@ public final class ya extends jh2 {
                 return;
             case 1:
                 super.invalidate();
-                ((hg3) viewGroup).invalidate();
+                ((ue3) viewGroup).invalidate();
                 return;
             default:
                 super.invalidate();
-                ((pt4) viewGroup).invalidate();
+                ((or4) viewGroup).invalidate();
                 return;
         }
     }
 
-    public ya(ViewGroup viewGroup, Context context, ylb ylbVar, byte b) {
-        super(21, ylbVar, context);
+    public ya(ViewGroup viewGroup, Context context, wjb wjbVar, byte b) {
+        super(21, wjbVar, context);
         this.d = b;
         this.e = viewGroup;
     }

@@ -1,64 +1,61 @@
 package defpackage;
 
-import android.os.Looper;
-import java.util.concurrent.Executor;
-public class lk0 extends pfc {
-    public Executor b;
-    public dqd c;
-    public hk0 d;
-    public gk0 e;
-    public u50 f;
-    public lx6 g;
-    public kk0 h;
-    public String i;
-    public boolean k;
-    public boolean l;
-    public boolean m;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_iv;
+public final class lk0 {
+    public static long u = 1;
+    public final long a;
+    public TL_iv.PageBlock b;
+    public int c;
+    public int d;
+    public boolean e;
+    public boolean f;
+    public iy6 g;
+    public ArrayList h;
+    public boolean i;
+    public final ArrayList j;
+    public final ArrayList k;
+    public int l;
+    public int m;
     public boolean n;
     public boolean o;
-    public kj7 p;
-    public kj7 q;
-    public kj7 r;
-    public kj7 s;
-    public kj7 t;
-    public kj7 v;
-    public kj7 x;
-    public kj7 y;
-    public byte j = 0;
-    public boolean u = true;
-    public int w = 0;
+    public boolean p;
+    public boolean q;
+    public boolean r;
+    public boolean s;
+    public long t;
 
-    public static void f(kj7 kj7Var, Object obj) {
-        if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
-            kj7Var.i(obj);
-        } else {
-            kj7Var.g(obj);
-        }
+    public lk0(TL_iv.PageBlock pageBlock, int i, int i2, long j) {
+        this.j = new ArrayList();
+        this.k = new ArrayList();
+        this.b = pageBlock;
+        this.c = i;
+        this.d = i2;
+        this.a = j;
     }
 
-    public final int c() {
-        hk0 hk0Var = this.d;
-        if (hk0Var != null) {
-            return zod.a(hk0Var, this.e);
+    public final boolean a() {
+        if (this.c > 0 && this.e) {
+            return true;
         }
-        return 0;
+        return false;
     }
 
-    public final void d(int i) {
-        kj7 kj7Var = this.x;
-        if (kj7Var == null) {
-            kj7Var = new kj7();
-            this.x = kj7Var;
+    public final boolean b() {
+        if (this.c > 0) {
+            return true;
         }
-        f(kj7Var, Integer.valueOf(i));
+        return false;
     }
 
-    public final void e(boolean z) {
-        kj7 kj7Var = this.t;
-        if (kj7Var == null) {
-            kj7Var = new kj7();
-            this.t = kj7Var;
+    public final boolean c() {
+        if (this.d > 0) {
+            return true;
         }
-        f(kj7Var, Boolean.valueOf(z));
+        return false;
+    }
+
+    public lk0(org.telegram.tgnet.tl.TL_iv.PageBlock r7, int r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.lk0.<init>(org.telegram.tgnet.tl.TL_iv$PageBlock, int, int):void");
     }
 }

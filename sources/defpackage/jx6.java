@@ -1,45 +1,6 @@
 package defpackage;
 
-import android.media.session.MediaSession;
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class jx6 implements Parcelable {
-    public static final Parcelable.Creator<jx6> CREATOR = new hx6((byte) 0);
-    public final ks6 a;
-    public final long b;
-    public MediaSession.QueueItem c;
-
-    public jx6(ks6 ks6Var, long j) {
-        if (j != -1) {
-            this.a = ks6Var;
-            this.b = j;
-            this.c = null;
-            return;
-        }
-        u36.j("Id cannot be QueueItem.UNKNOWN_ID");
-        throw null;
-    }
-
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("MediaSession.QueueItem { Description=");
-        sb.append(this.a);
-        sb.append(", Id=");
-        return kt6.q(sb, this.b, " }");
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        this.a.writeToParcel(parcel, i);
-        parcel.writeLong(this.b);
-    }
-
-    public jx6(Parcel parcel) {
-        this.a = ks6.CREATOR.createFromParcel(parcel);
-        this.b = parcel.readLong();
-    }
+import java.util.List;
+public interface jx6 {
+    void b(ad8 ad8Var, su6 su6Var, List list);
 }

@@ -1,39 +1,32 @@
 package defpackage;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.voip.VoIPService;
-public final class ljc implements Runnable {
-    public final byte a;
-    public final VoIPService b;
-    public final ArrayList c;
-    public final ArrayList d;
-    public final ArrayList e;
-    public final String f;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class ljc extends AnimatorListenerAdapter {
+    public final gb2 a;
+    public final w02 b;
+    public final mjc c;
 
-    public ljc(VoIPService voIPService, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, String str, byte b) {
-        this.a = b;
-        this.b = voIPService;
-        this.c = arrayList;
-        this.d = arrayList2;
-        this.e = arrayList3;
-        this.f = str;
+    public ljc(mjc mjcVar, gb2 gb2Var, w02 w02Var) {
+        this.c = mjcVar;
+        this.a = gb2Var;
+        this.b = w02Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        String str = this.f;
-        ArrayList arrayList = this.e;
-        ArrayList arrayList2 = this.d;
-        ArrayList arrayList3 = this.c;
-        VoIPService voIPService = this.b;
-        switch (b) {
-            case 0:
-                voIPService.lambda$startConferenceGroupCall$50(arrayList3, arrayList2, arrayList, str);
-                return;
-            default:
-                voIPService.lambda$startConferenceGroupCall$42(arrayList3, arrayList2, arrayList, str);
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        this.a.setEnterTransitionInProgress(false);
+        w02 w02Var = this.b;
+        mjc mjcVar = this.c;
+        ((ArrayList) w02Var.c).remove(mjcVar);
+        w02Var.a();
+        ((ViewGroup) w02Var.d).invalidate();
+        ChatActivityEnterView.RecordCircle recordCircle = mjcVar.g;
+        if (recordCircle != null) {
+            recordCircle.O = false;
         }
     }
 }

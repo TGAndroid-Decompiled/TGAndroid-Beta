@@ -1,17 +1,36 @@
 package defpackage;
-public final class m8e implements cq7 {
-    public static final m8e a = new Object();
+
+import java.util.Comparator;
+public final class m8e implements Comparator {
+    public static final m8e a;
+    public static final m8e[] b;
 
     static {
-        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)), 3)));
+        ?? r0 = new Enum("INSTANCE", 0);
+        a = r0;
+        b = new m8e[]{r0};
+    }
+
+    public static m8e[] values() {
+        return (m8e[]) b.clone();
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+    public final int compare(Object obj, Object obj2) {
+        byte[] bArr = (byte[]) obj;
+        byte[] bArr2 = (byte[]) obj2;
+        int min = Math.min(bArr.length, bArr2.length);
+        for (int i = 0; i < min; i++) {
+            int i2 = (bArr[i] & 255) - (bArr2[i] & 255);
+            if (i2 != 0) {
+                return i2;
+            }
         }
-        throw new ClassCastException();
+        return bArr.length - bArr2.length;
+    }
+
+    @Override
+    public final String toString() {
+        return "UnsignedBytes.lexicographicalComparator() (pure Java version)";
     }
 }

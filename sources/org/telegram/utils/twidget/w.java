@@ -6,8 +6,8 @@ import android.os.Parcel;
 import android.os.SystemClock;
 import java.io.ByteArrayOutputStream;
 import java.util.concurrent.Semaphore;
-public final class w extends Binder implements il5 {
-    public final zxc a;
+public final class w extends Binder implements jj5 {
+    public final yvc a;
     public final WidgetSandboxBackend b;
     public volatile long c;
     public final ByteArrayOutputStream d;
@@ -16,14 +16,14 @@ public final class w extends Binder implements il5 {
     public long i;
     public final x j;
 
-    public w(x xVar, zxc zxcVar, WidgetSandboxBackend widgetSandboxBackend) {
+    public w(x xVar, yvc yvcVar, WidgetSandboxBackend widgetSandboxBackend) {
         this.j = xVar;
         attachInterface(this, "org.telegram.utils.twidget.IWidgetEngineCallback");
         this.d = new ByteArrayOutputStream();
         this.e = new Semaphore(4);
         this.f = 2000.0d;
         this.i = SystemClock.elapsedRealtime();
-        this.a = zxcVar;
+        this.a = yvcVar;
         this.b = widgetSandboxBackend;
     }
 
@@ -34,7 +34,7 @@ public final class w extends Binder implements il5 {
 
     @Override
     public final void E(final int i, final int i2, final byte[] bArr) {
-        a(new yxc() {
+        a(new xvc() {
             @Override
             public final Object run() {
                 w wVar = w.this;
@@ -46,7 +46,7 @@ public final class w extends Binder implements il5 {
 
     @Override
     public final void I(byte[] bArr) {
-        a(new uxb(this, bArr, (byte) 14));
+        a(new cwb(this, bArr, (byte) 13));
     }
 
     @Override
@@ -62,14 +62,14 @@ public final class w extends Binder implements il5 {
         a(new q(this, i, (byte) 0));
     }
 
-    public final Object a(yxc yxcVar) {
+    public final Object a(xvc xvcVar) {
         if (this.a.w == 0) {
             this.a.w = Binder.getCallingPid();
         }
         if (this.e.tryAcquire()) {
             try {
                 if (this.j.i.tryAcquire()) {
-                    Object run = yxcVar.run();
+                    Object run = xvcVar.run();
                     this.j.i.release();
                     return run;
                 }
@@ -77,7 +77,7 @@ public final class w extends Binder implements il5 {
             } finally {
             }
         } else {
-            dq9.m("Widget engine: too many calls at once");
+            sc8.j("Widget engine: too many calls at once");
             return null;
         }
     }
@@ -98,7 +98,7 @@ public final class w extends Binder implements il5 {
 
     @Override
     public final byte[] n(final int i, final int i2, final int i3, final int i4, final int i5) {
-        return (byte[]) a(new yxc() {
+        return (byte[]) a(new xvc() {
             @Override
             public final Object run() {
                 return w.this.b.canvasRead(i, i2, i3, i4, i5);
@@ -193,7 +193,7 @@ public final class w extends Binder implements il5 {
 
     @Override
     public final void p(final byte[] bArr, final byte[] bArr2, final double d, final int i, final int i2, final float f, final float f2, final int i3, final int i4) {
-        a(new yxc() {
+        a(new xvc() {
             @Override
             public final Object run() {
                 int i5;
@@ -212,7 +212,7 @@ public final class w extends Binder implements il5 {
                         return null;
                     }
                 }
-                u36.j("Frame size");
+                w26.j("Frame size");
                 return null;
             }
         });
@@ -220,7 +220,7 @@ public final class w extends Binder implements il5 {
 
     @Override
     public final float[] q(final int i, final byte[] bArr, final float f, final int i2, final boolean z, final byte[] bArr2) {
-        return (float[]) a(new yxc() {
+        return (float[]) a(new xvc() {
             @Override
             public final Object run() {
                 return w.this.b.defineFont(i, bArr, f, i2, z, bArr2);

@@ -1,51 +1,27 @@
 package defpackage;
+public final class b1b implements Runnable {
+    public final c1b a;
 
-import android.content.Context;
-public final class b1b extends bf0 implements jm7 {
-    public final int H;
-    public int I;
-    public String J;
-
-    public b1b(Context context, int i) {
-        super(context);
-        this.J = "tg_placeholders_android";
-        this.H = i;
+    public b1b(c1b c1bVar) {
+        this.a = c1bVar;
     }
 
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == nm7.y0) {
-            if (this.J.equals((String) objArr[0])) {
-                u();
-            }
+    public final void a() {
+        c1b c1bVar = this.a;
+        if (c1bVar.R) {
+            return;
         }
+        c1bVar.R = true;
+        c1bVar.J.clear();
+        c1bVar.K.clear();
+        c1bVar.G.clear();
+        c1bVar.F.clear();
+        c1bVar.H.clear();
+        c1bVar.I.clear();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        u();
-        nm7.f(this.H).b(this, nm7.y0);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        nm7.f(this.H).n(this, nm7.y0);
-    }
-
-    public void setStickerNum(int i) {
-        if (this.I != i) {
-            this.I = i;
-            u();
-        }
-    }
-
-    public void setStickerPackName(String str) {
-        this.J = str;
-    }
-
-    public final void u() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.b1b.u():void");
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.b1b.run():void");
     }
 }

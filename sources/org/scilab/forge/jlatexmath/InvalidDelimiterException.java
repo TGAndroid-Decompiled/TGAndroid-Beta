@@ -7,6 +7,6 @@ public class InvalidDelimiterException extends JMathTeXException {
     }
 
     public InvalidDelimiterException(String str) {
-        super(kt6.o("The symbol with the name '", str, "' is not defined as a delimiter (del='true') in 'TeXSymbols.xml'!"));
+        super(tb4.y("The symbol with the name '", str, "' is not defined as a delimiter (del='true') in 'TeXSymbols.xml'!"));
     }
 }

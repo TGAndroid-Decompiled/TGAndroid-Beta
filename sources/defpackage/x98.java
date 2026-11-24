@@ -1,43 +1,41 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.PhotoViewer;
-public final class x98 extends pec {
-    public final wm0 h0;
-    public final PhotoViewer i0;
+public final class x98 implements Runnable {
+    public final byte a;
+    public final z98 b;
 
-    public x98(Context context, PhotoViewer photoViewer) {
-        super(context);
-        this.i0 = photoViewer;
-        this.h0 = new wm0(photoViewer.c0, this, 0, false);
+    public x98(z98 z98Var, byte b) {
+        this.a = b;
+        this.b = z98Var;
     }
 
     @Override
-    public final void b(Canvas canvas, RectF rectF) {
-        canvas.save();
-        canvas.clipRect(rectF);
-        PhotoViewer photoViewer = this.i0;
-        canvas.translate((-getX()) - photoViewer.W7.getX(), (-getY()) - photoViewer.W7.getY());
-        photoViewer.P(canvas, this.h0, -14803426, 855638016, false, true, false);
-        canvas.restore();
-    }
-
-    @Override
-    public final void invalidate() {
-        byte b;
-        if (gda.Z && ((b = this.i0.m4) == 1 || b == 2 || b == 3)) {
-            return;
-        }
-        super.invalidate();
-    }
-
-    @Override
-    public final void setTranslationY(float f) {
-        if (getTranslationY() != f) {
-            super.setTranslationY(f);
-            this.i0.f0.invalidate();
+    public final void run() {
+        byte b = this.a;
+        z98 z98Var = this.b;
+        switch (b) {
+            case 0:
+                x88 x88Var = z98Var.a;
+                RadialProgressView radialProgressView = x88Var.n;
+                a8 a8Var = x88Var.r;
+                radialProgressView.setVisibility(4);
+                if (x88Var.G) {
+                    x88Var.G = false;
+                    x88Var.setPlaybackSpeed(x88Var.F);
+                }
+                a8Var.setEnabled(true);
+                a8Var.setAlpha(1.0f);
+                PhotoViewer photoViewer = x88Var.b;
+                if (photoViewer != null) {
+                    photoViewer.u();
+                    return;
+                }
+                return;
+            default:
+                z98Var.a.h.setVisibility(4);
+                return;
         }
     }
 }

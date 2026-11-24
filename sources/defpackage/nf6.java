@@ -1,56 +1,71 @@
 package defpackage;
 
-import org.telegram.messenger.Utilities;
-public final class nf6 implements Runnable {
-    public final byte a;
-    public final pf6 b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.text.TextPaint;
+import android.view.View;
+import java.util.HashSet;
+public final class nf6 extends View implements tjb {
+    public final TextPaint a;
+    public final Paint b;
+    public final String c;
+    public final Rect d;
+    public View e;
 
-    public nf6(pf6 pf6Var, byte b) {
-        this.a = b;
-        this.b = pf6Var;
+    public nf6(Context context) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.a = textPaint;
+        this.b = new Paint(1);
+        this.d = new Rect();
+        this.c = k96.M0(2131748535, null);
+        textPaint.setTextSize(gl.L(14.0f));
+        updateColors();
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        int i = 1;
-        pf6 pf6Var = this.b;
-        switch (b) {
-            case 0:
-                l7 l7Var = pf6Var.c;
-                l7Var.requestFocus();
-                String str = pf6Var.L;
-                if (str != null && str.length() > 1) {
-                    String obj = l7Var.getText().toString();
-                    int length = obj.length();
-                    int i2 = 0;
-                    while (i2 < length && obj.charAt(i2) <= ' ') {
-                        i2++;
-                    }
-                    int length2 = pf6Var.L.length() + i2;
-                    if (length2 < 0 || length2 >= obj.length() || obj.charAt(length2) != ' ') {
-                        i = 0;
-                    }
-                    l7Var.setSelection(Utilities.j(length2 + i, obj.length(), 0), l7Var.getText().length());
-                    return;
-                }
-                l7Var.setSelection(0, l7Var.getText().length());
-                return;
-            case 1:
-                pf6Var.p(true);
-                return;
-            case 2:
-                pf6Var.n(false);
-                return;
-            default:
-                l7 l7Var2 = pf6Var.c;
-                if (l7Var2 != null) {
-                    l7Var2.requestFocus();
-                    l7Var2.setSelection(l7Var2.length());
-                    gm.E3(l7Var2);
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        float L;
+        super.onDraw(canvas);
+        View view = this.e;
+        Rect rect = this.d;
+        if (view != null) {
+            L = ((((getWidth() - rect.width()) - gl.L(8.0f)) - this.e.getPaddingLeft()) - this.e.getPaddingRight()) / 2.0f;
+        } else {
+            L = gl.L(64.0f);
         }
+        Paint paint = this.b;
+        canvas.drawLine((((getWidth() - rect.width()) / 2.0f) - gl.L(8.0f)) - L, getHeight() / 2.0f, ((getWidth() - rect.width()) / 2.0f) - gl.L(8.0f), getHeight() / 2.0f, paint);
+        canvas.drawLine(((rect.width() + getWidth()) / 2.0f) + gl.L(8.0f), getHeight() / 2.0f, ((rect.width() + getWidth()) / 2.0f) + gl.L(8.0f) + L, getHeight() / 2.0f, paint);
+        int height = getHeight();
+        canvas.drawText(this.c, (getWidth() - rect.width()) / 2.0f, (rect.height() + height) / 2.0f, this.a);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        View view = this.e;
+        if (view != null) {
+            i = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(view.getMeasuredWidth()), 1073741824);
+        }
+        super.onMeasure(i, i2);
+        String str = this.c;
+        this.a.getTextBounds(str, 0, str.length(), this.d);
+    }
+
+    public void setMeasureAfter(View view) {
+        this.e = view;
+    }
+
+    @Override
+    public final void updateColors() {
+        this.a.setColor(bkb.w0(null, bkb.x6, false));
+        this.b.setColor(bkb.w0(null, bkb.yj, false));
+        invalidate();
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

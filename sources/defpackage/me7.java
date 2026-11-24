@@ -1,59 +1,24 @@
 package defpackage;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.Locale;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.SQLite.SQLiteException;
-public final class me7 implements Runnable {
-    public final byte a;
-    public final cf7 b;
-    public final long c;
-    public final ArrayList d;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class me7 extends b4 {
+    public static final Parcelable.Creator<me7> CREATOR = new hv6((byte) 29);
+    public final boolean a;
+    public final int b;
 
-    public me7(cf7 cf7Var, long j, ArrayList arrayList, byte b) {
-        this.a = b;
-        this.b = cf7Var;
-        this.c = j;
-        this.d = arrayList;
-    }
-
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.me7.a():void");
-    }
-
-    private final void b() {
-        cf7 cf7Var = this.b;
-        ArrayList arrayList = this.d;
-        long j = this.c;
-        try {
-            String join = TextUtils.join(", ", arrayList);
-            SQLiteDatabase sQLiteDatabase = cf7Var.b;
-            Locale locale = Locale.US;
-            sQLiteDatabase.executeFast("DELETE FROM topics WHERE did = " + j + " AND topic_id IN (" + join + ")").stepThis().dispose();
-            try {
-                SQLiteDatabase sQLiteDatabase2 = cf7Var.b;
-                sQLiteDatabase2.executeFast("DELETE FROM messages_v2 WHERE uid = " + j + " AND mid IN (SELECT mid FROM messages_topics WHERE uid = " + j + " AND topic_id IN (" + join + "))").stepThis().dispose();
-            } catch (SQLiteException e) {
-                e.printStackTrace();
-            }
-            SQLiteDatabase sQLiteDatabase3 = cf7Var.b;
-            Locale locale2 = Locale.US;
-            sQLiteDatabase3.executeFast("DELETE FROM messages_topics WHERE uid = " + j + " AND topic_id IN (" + join + ")").stepThis().dispose();
-        } catch (SQLiteException e2) {
-            e2.printStackTrace();
-        }
+    public me7(int i, boolean z) {
+        this.a = z;
+        this.b = i;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.me7.run():void");
-    }
-
-    public me7(cf7 cf7Var, ArrayList arrayList, long j, byte b) {
-        this.a = b;
-        this.b = cf7Var;
-        this.d = arrayList;
-        this.c = j;
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 1, 4);
+        parcel.writeInt(this.a ? 1 : 0);
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(this.b);
+        jte.s(parcel, r);
     }
 }

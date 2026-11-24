@@ -62,40 +62,40 @@ public final class t implements View.OnClickListener {
         Object obj2 = this.c;
         switch (b) {
             case 0:
-                new kj8(42, (ylb) obj, ((a1) obj2).getContext()).show();
+                new jh8(42, (wjb) obj, ((a1) obj2).getContext()).show();
                 return;
             case 1:
                 final r0 r0Var = (r0) obj2;
-                final ylb ylbVar = (ylb) obj;
-                su3 su3Var = r0Var.W1;
-                su3 su3Var2 = r0Var.V1;
-                jh2 jh2Var = r0Var.Y1;
-                b61 b61Var = r0Var.b2;
-                if (!b61Var.R) {
-                    if (!b61Var.e0) {
+                final wjb wjbVar = (wjb) obj;
+                it3 it3Var = r0Var.W1;
+                it3 it3Var2 = r0Var.V1;
+                wf2 wf2Var = r0Var.Y1;
+                u41 u41Var = r0Var.b2;
+                if (!u41Var.R) {
+                    if (!u41Var.e0) {
                         if (r0Var.c2 == null) {
                             r0Var.Y0();
                             return;
                         }
                         return;
                     }
-                    b61Var.setLoading(true);
+                    u41Var.setLoading(true);
                     if (r0Var.e2 != null) {
                         TL_aicompose.updateTone updatetone = new TL_aicompose.updateTone();
                         updatetone.flags |= 1;
-                        updatetone.display_author = jh2Var.a.q;
+                        updatetone.display_author = wf2Var.a.q;
                         updatetone.tone = TL_aicompose.InputAiComposeTone.from(r0Var.e2);
                         updatetone.flags |= 2;
                         updatetone.emoji_id = r0Var.c2.longValue();
                         updatetone.flags |= 4;
-                        updatetone.title = su3Var2.getText().toString();
+                        updatetone.title = it3Var2.getText().toString();
                         updatetone.flags |= 8;
-                        updatetone.prompt = su3Var.getText().toString();
-                        ConnectionsManager.getInstance(r0Var.a).sendRequestTyped(updatetone, new kc((byte) 0), new jac() {
+                        updatetone.prompt = it3Var.getText().toString();
+                        ConnectionsManager.getInstance(r0Var.a).sendRequestTyped(updatetone, new hc((byte) 0), new i8c() {
                             @Override
                             public final void a(Object obj3, Object obj4) {
                                 byte b2 = r3;
-                                ylb ylbVar2 = ylbVar;
+                                wjb wjbVar2 = wjbVar;
                                 r0 r0Var2 = r0Var;
                                 TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj3;
                                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj4;
@@ -110,7 +110,7 @@ public final class t implements View.OnClickListener {
                                             r0Var2.dismiss();
                                             return;
                                         } else if (tL_error != null) {
-                                            wi8.u(r0Var2.a2, ylbVar2, tL_error, false);
+                                            ug8.u(r0Var2.a2, wjbVar2, tL_error, false);
                                             return;
                                         } else {
                                             return;
@@ -129,10 +129,10 @@ public final class t implements View.OnClickListener {
                                             boolean equalsIgnoreCase = "TONES_SAVED_TOO_MANY".equalsIgnoreCase(tL_error.text);
                                             FrameLayout frameLayout = r0Var2.a2;
                                             if (equalsIgnoreCase) {
-                                                a1.q1(new c41(frameLayout, ylbVar2), r0Var2.a);
+                                                a1.q1(new u21(frameLayout, wjbVar2), r0Var2.a);
                                                 return;
                                             } else {
-                                                wi8.u(frameLayout, ylbVar2, tL_error, false);
+                                                ug8.u(frameLayout, wjbVar2, tL_error, false);
                                                 return;
                                             }
                                         } else {
@@ -144,15 +144,15 @@ public final class t implements View.OnClickListener {
                         return;
                     }
                     TL_aicompose.createTone createtone = new TL_aicompose.createTone();
-                    createtone.display_author = jh2Var.a.q;
+                    createtone.display_author = wf2Var.a.q;
                     createtone.emoji_id = r0Var.c2.longValue();
-                    createtone.title = su3Var2.getText().toString();
-                    createtone.prompt = su3Var.getText().toString();
-                    ConnectionsManager.getInstance(r0Var.a).sendRequestTyped(createtone, new kc((byte) 0), new jac() {
+                    createtone.title = it3Var2.getText().toString();
+                    createtone.prompt = it3Var.getText().toString();
+                    ConnectionsManager.getInstance(r0Var.a).sendRequestTyped(createtone, new hc((byte) 0), new i8c() {
                         @Override
                         public final void a(Object obj3, Object obj4) {
                             byte b2 = r3;
-                            ylb ylbVar2 = ylbVar;
+                            wjb wjbVar2 = wjbVar;
                             r0 r0Var2 = r0Var;
                             TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj3;
                             TLRPC.TL_error tL_error = (TLRPC.TL_error) obj4;
@@ -167,7 +167,7 @@ public final class t implements View.OnClickListener {
                                         r0Var2.dismiss();
                                         return;
                                     } else if (tL_error != null) {
-                                        wi8.u(r0Var2.a2, ylbVar2, tL_error, false);
+                                        ug8.u(r0Var2.a2, wjbVar2, tL_error, false);
                                         return;
                                     } else {
                                         return;
@@ -186,10 +186,10 @@ public final class t implements View.OnClickListener {
                                         boolean equalsIgnoreCase = "TONES_SAVED_TOO_MANY".equalsIgnoreCase(tL_error.text);
                                         FrameLayout frameLayout = r0Var2.a2;
                                         if (equalsIgnoreCase) {
-                                            a1.q1(new c41(frameLayout, ylbVar2), r0Var2.a);
+                                            a1.q1(new u21(frameLayout, wjbVar2), r0Var2.a);
                                             return;
                                         } else {
-                                            wi8.u(frameLayout, ylbVar2, tL_error, false);
+                                            ug8.u(frameLayout, wjbVar2, tL_error, false);
                                             return;
                                         }
                                     } else {
@@ -202,18 +202,18 @@ public final class t implements View.OnClickListener {
                 }
                 return;
             case 2:
-                ((qac) obj2).a((TL_aicompose.AiComposeTone) obj);
+                ((p8c) obj2).a((TL_aicompose.AiComposeTone) obj);
                 return;
             case 3:
                 o5 o5Var = (o5) obj2;
-                long n = pg3.n(((TL_stars.TL_StarGiftAuctionAcquiredGift) obj).peer);
+                long n = cf3.n(((TL_stars.TL_StarGiftAuctionAcquiredGift) obj).peer);
                 o5Var.dismiss();
                 d S = LaunchActivity.S();
-                if (S != null && !m9c.C(n)) {
+                if (S != null && !l7c.C(n)) {
                     Bundle bundle = new Bundle();
                     if (n > 0) {
                         bundle.putLong("user_id", n);
-                        if (n == z8c.h(o5Var.a).e()) {
+                        if (n == y6c.h(o5Var.a).e()) {
                             z = true;
                             bundle.putBoolean("my_profile", true);
                         } else {
@@ -241,7 +241,7 @@ public final class t implements View.OnClickListener {
                         q7Var.setSelectedForDelete(true);
                         return;
                     }
-                    sh4 filter = q7Var.getFilter();
+                    rf4 filter = q7Var.getFilter();
                     r7Var.J(filter);
                     n7 n7Var = r7Var.I;
                     if (n7Var != null) {
@@ -278,63 +278,63 @@ public final class t implements View.OnClickListener {
             case 6:
                 eb ebVar = (eb) obj2;
                 ebVar.b = true;
-                ((hu) obj).run();
+                ((gt) obj).run();
                 ebVar.x.g3.O(true);
                 return;
             case 7:
-                ((bc) obj2).G0((Context) obj);
+                ((bc) obj2).F0((Context) obj);
                 return;
             case 8:
-                he heVar = (he) obj2;
-                if (!((zd) obj).a) {
-                    ee eeVar = heVar.n0;
-                    if (eeVar != null) {
-                        eeVar.r(heVar, -1);
+                hd hdVar = (hd) obj2;
+                if (!((zc) obj).a) {
+                    ed edVar = hdVar.n0;
+                    if (edVar != null) {
+                        edVar.u(hdVar, -1);
                     }
-                    if (heVar.k0) {
-                        heVar.dismiss();
+                    if (hdVar.k0) {
+                        hdVar.dismiss();
                         return;
                     }
                     return;
                 }
                 return;
             case 9:
-                he heVar2 = (he) obj2;
-                if (!((zd) obj).a) {
-                    ee eeVar2 = heVar2.p0;
-                    if (eeVar2 != null) {
-                        eeVar2.r(heVar2, -2);
+                hd hdVar2 = (hd) obj2;
+                if (!((zc) obj).a) {
+                    ed edVar2 = hdVar2.p0;
+                    if (edVar2 != null) {
+                        edVar2.u(hdVar2, -2);
                     }
-                    if (heVar2.k0) {
-                        heVar2.cancel();
+                    if (hdVar2.k0) {
+                        hdVar2.cancel();
                         return;
                     }
                     return;
                 }
                 return;
             case 10:
-                he heVar3 = (he) obj2;
-                if (!((zd) obj).a) {
-                    ee eeVar3 = heVar3.t0;
-                    if (eeVar3 != null) {
-                        eeVar3.r(heVar3, -2);
+                hd hdVar3 = (hd) obj2;
+                if (!((zc) obj).a) {
+                    ed edVar3 = hdVar3.t0;
+                    if (edVar3 != null) {
+                        edVar3.u(hdVar3, -2);
                     }
-                    if (heVar3.k0) {
-                        heVar3.dismiss();
+                    if (hdVar3.k0) {
+                        hdVar3.dismiss();
                         return;
                     }
                     return;
                 }
                 return;
             case 11:
-                he heVar4 = (he) obj2;
-                if (!((zd) obj).a) {
-                    kh9 kh9Var = heVar4.r0;
-                    if (kh9Var != null) {
-                        kh9Var.r(heVar4, -2);
+                hd hdVar4 = (hd) obj2;
+                if (!((zc) obj).a) {
+                    gf9 gf9Var = hdVar4.r0;
+                    if (gf9Var != null) {
+                        gf9Var.u(hdVar4, -2);
                     }
-                    if (heVar4.k0) {
-                        heVar4.cancel();
+                    if (hdVar4.k0) {
+                        hdVar4.cancel();
                         return;
                     }
                     return;
@@ -342,42 +342,42 @@ public final class t implements View.OnClickListener {
                 return;
             case 12:
                 r7 r7Var3 = (r7) obj2;
-                fk fkVar = (fk) obj;
+                fj fjVar = (fj) obj;
                 r7Var3.U(null, null);
-                r7Var3.O(fkVar.d, false);
-                r7Var3.setupPopupRadialSelectors(fkVar.f);
-                r7Var3.I(fkVar.e);
+                r7Var3.O(fjVar.d, false);
+                r7Var3.setupPopupRadialSelectors(fjVar.f);
+                r7Var3.I(fjVar.e);
                 return;
             case 13:
                 boolean[] zArr = (boolean[]) obj2;
                 boolean z3 = !zArr[0];
                 zArr[0] = z3;
-                ((oh2) view).c(z3, true);
-                ((rh) obj).run();
+                ((ag2) view).c(z3, true);
+                ((rg) obj).run();
                 return;
             case 14:
                 int intValue = ((Integer) view.getTag()).intValue();
                 ((AlertDialog$Builder) obj2).a.M0.run();
-                ((w73) obj).onClick(null, intValue);
+                ((k63) obj).onClick(null, intValue);
                 return;
             case 15:
-                ((my0) ((k6d) obj2).b).y0.run();
-                ((qac) obj).a(null);
+                ((fx0) ((i4d) obj2).a).y0.run();
+                ((p8c) obj).a(null);
                 return;
             case 16:
                 ((boolean[]) obj2)[0] = true;
-                ((zx0) obj).run();
+                ((rw0) obj).run();
                 return;
             case 17:
                 o oVar = (o) obj2;
                 Activity activity = (Activity) obj;
-                sx sxVar = oVar.L;
+                sw swVar = oVar.L;
                 if (!oVar.i0.B0) {
                     m mVar = oVar.v0[0];
                     if (mVar.e()) {
                         if (mVar.getWebView() != null && !oVar.i0.a0) {
                             if (oVar.j0 != null) {
-                                mw0 webView = mVar.getWebView();
+                                cv0 webView = mVar.getWebView();
                                 if (webView != null) {
                                     str = webView.getTitle();
                                     str2 = webView.getUrl();
@@ -385,7 +385,7 @@ public final class t implements View.OnClickListener {
                                     str = null;
                                     str2 = null;
                                 }
-                                String r = qw0.r(str2);
+                                String r = hv0.r(str2);
                                 eb ebVar2 = oVar.j0;
                                 if (webView != null) {
                                     bitmap = webView.getFavicon();
@@ -393,22 +393,22 @@ public final class t implements View.OnClickListener {
                                     bitmap = null;
                                 }
                                 if (TextUtils.isEmpty(str)) {
-                                    str = jb6.M0(2131742589, null);
+                                    str = k96.M0(2131742663, null);
                                 }
                                 if (TextUtils.isEmpty(r)) {
                                     str3 = "about:blank";
                                 } else {
                                     str3 = r;
                                 }
-                                hu huVar = new hu(oVar, r, (byte) 0);
-                                iu iuVar = new iu(oVar, mVar, activity, (byte) 0);
-                                xt xtVar = new xt(oVar, (byte) 1);
-                                xt xtVar2 = new xt(oVar, (byte) 2);
+                                gt gtVar = new gt(oVar, r, (byte) 0);
+                                ht htVar = new ht(oVar, mVar, activity, (byte) 0);
+                                ws wsVar = new ws(oVar, (byte) 1);
+                                ws wsVar2 = new ws(oVar, (byte) 2);
                                 b0 b0Var = new b0(oVar, r, mVar, (byte) 6);
                                 va vaVar = ebVar2.x;
                                 ImageView imageView = ebVar2.f;
                                 if (bitmap == null) {
-                                    imageView.setImageResource(2131232200);
+                                    imageView.setImageResource(2131232199);
                                     imageView.setColorFilter(new PorterDuffColorFilter(ebVar2.I, PorterDuff.Mode.SRC_IN));
                                     r8 = 0;
                                 } else {
@@ -417,48 +417,48 @@ public final class t implements View.OnClickListener {
                                     imageView.setColorFilter((ColorFilter) null);
                                 }
                                 TextView textView = ebVar2.r;
-                                textView.setText(gw3.m(str, textView.getPaint().getFontMetricsInt(), false, r8, 0));
+                                textView.setText(vu3.m(str, textView.getPaint().getFontMetricsInt(), false, r8, 0));
                                 try {
                                     try {
                                         Uri parse = Uri.parse(str3);
-                                        str3 = l11.x(parse, r8, r8, l11.a(parse.getHost()), r8);
+                                        str3 = d01.w(parse, r8, r8, d01.a(parse.getHost()), r8);
                                     } catch (Exception e) {
-                                        fc4.g(e, false);
+                                        fa4.g(e, false);
                                     }
                                     str4 = URLDecoder.decode(str3.replaceAll("\\+", "%2b"), "UTF-8");
                                 } catch (Exception e2) {
-                                    fc4.g(e2, true);
+                                    fa4.g(e2, true);
                                     str4 = str3;
                                 }
                                 TextView textView2 = ebVar2.s;
                                 i4 = 0;
-                                textView2.setText(gw3.m(str4, textView2.getPaint().getFontMetricsInt(), false, null, 0));
-                                ebVar2.M = iuVar;
-                                ebVar2.N = xtVar;
-                                ebVar2.O = xtVar2;
-                                ebVar2.e.setOnClickListener(new t(ebVar2, huVar, (byte) 6));
+                                textView2.setText(vu3.m(str4, textView2.getPaint().getFontMetricsInt(), false, null, 0));
+                                ebVar2.M = htVar;
+                                ebVar2.N = wsVar;
+                                ebVar2.O = wsVar2;
+                                ebVar2.e.setOnClickListener(new t(ebVar2, gtVar, (byte) 6));
                                 ebVar2.n.setOnClickListener(b0Var);
                                 ebVar2.b = false;
                                 ebVar2.setInput(null);
                                 vaVar.g3.O(true);
                                 vaVar.w0(0);
                             }
-                            wu wuVar = oVar.i0;
-                            x0 x0Var = new x0(mVar, activity, (byte) 3);
-                            vc vcVar = wuVar.c0;
-                            vcVar.setText("");
-                            vcVar.setSelection(i4, vcVar.getText().length());
-                            vcVar.setScrollX(i4);
-                            wuVar.w0 = x0Var;
-                            wuVar.k(true);
+                            wt wtVar = oVar.i0;
+                            x0 x0Var = new x0(mVar, activity, (byte) 2);
+                            ps0 ps0Var = wtVar.c0;
+                            ps0Var.setText("");
+                            ps0Var.setSelection(i4, ps0Var.getText().length());
+                            ps0Var.setScrollX(i4);
+                            wtVar.w0 = x0Var;
+                            wtVar.k(true);
                             return;
                         }
                         return;
-                    } else if (sxVar != null) {
-                        yla ylaVar = new yla(activity);
-                        ylaVar.a = 1;
-                        ylaVar.s = -gm.L(32.0f);
-                        mVar.d.v0(ylaVar);
+                    } else if (swVar != null) {
+                        xja xjaVar = new xja(activity);
+                        xjaVar.a = 1;
+                        xjaVar.s = -gl.L(32.0f);
+                        mVar.d.v0(xjaVar);
                         return;
                     } else {
                         mVar.b.z0(0);
@@ -467,20 +467,20 @@ public final class t implements View.OnClickListener {
                 }
                 return;
             case 18:
-                ev evVar = (ev) obj2;
-                ui5 ui5Var = (ui5) obj;
-                if (evVar.h == 0) {
-                    evVar.a(1, true);
-                    int i5 = ((o) ui5Var).Y;
-                    TLRPC.Chat chat = ui5Var.n;
+                eu euVar = (eu) obj2;
+                vg5 vg5Var = (vg5) obj;
+                if (euVar.h == 0) {
+                    euVar.a(1, true);
+                    int i5 = ((o) vg5Var).Y;
+                    TLRPC.Chat chat = vg5Var.n;
                     TLRPC.TL_channels_joinChannel tL_channels_joinChannel = new TLRPC.TL_channels_joinChannel();
-                    tL_channels_joinChannel.channel = oc7.h1(chat);
-                    ConnectionsManager.getInstance(i5).sendRequestTyped(tL_channels_joinChannel, new e(evVar, i5, tL_channels_joinChannel, chat, (byte) 2));
+                    tL_channels_joinChannel.channel = na7.g1(chat);
+                    ConnectionsManager.getInstance(i5).sendRequestTyped(tL_channels_joinChannel, new e(euVar, i5, tL_channels_joinChannel, chat, (byte) 2));
                     return;
                 }
                 return;
             case 19:
-                i30 i30Var = (i30) obj2;
+                i20 i20Var = (i20) obj2;
                 float[] fArr = (float[]) obj;
                 float f = MediaController.w().r0;
                 int i6 = 0;
@@ -499,144 +499,144 @@ public final class t implements View.OnClickListener {
                 }
                 MediaController.w().l0(true, fArr[i7]);
                 long currentTimeMillis = System.currentTimeMillis();
-                if (currentTimeMillis - i30Var.J2 > 300) {
-                    int i8 = oc7.e1().getInt("speedhint", 0) + 1;
+                if (currentTimeMillis - i20Var.J2 > 300) {
+                    int i8 = na7.d1().getInt("speedhint", 0) + 1;
                     if (i8 > 2) {
                         i8 = -10;
                     }
-                    oc7.e1().edit().putInt("speedhint", i8).apply();
-                    if (i8 >= 0 && i30Var.b != null) {
-                        ?? ig5Var = new ig5(5, null, i30Var.getContext(), false);
-                        i30Var.I2 = ig5Var;
-                        ig5Var.setExtraTranslationY(gm.L(6.0f));
-                        i30Var.I2.setText(jb6.M0(2131744958, null));
-                        i30Var.x1.addView(i30Var.I2, qoe.d(-2, -2.0f, 48, 0.0f, 0.0f, 6.0f, 0.0f));
-                        i30Var.I2.c(i30Var.O1);
+                    na7.d1().edit().putInt("speedhint", i8).apply();
+                    if (i8 >= 0 && i20Var.b != null) {
+                        ?? ke5Var = new ke5(5, null, i20Var.getContext(), false);
+                        i20Var.I2 = ke5Var;
+                        ke5Var.setExtraTranslationY(gl.L(6.0f));
+                        i20Var.I2.setText(k96.M0(2131745032, null));
+                        i20Var.x1.addView(i20Var.I2, nme.d(-2, -2.0f, 48, 0.0f, 0.0f, 6.0f, 0.0f));
+                        i20Var.I2.c(i20Var.O1);
                     }
                 }
-                i30Var.J2 = currentTimeMillis;
+                i20Var.J2 = currentTimeMillis;
                 return;
             case 20:
-                ((bu5) obj).u();
-                ((i30) obj2).J0(6);
+                ((cs5) obj).u();
+                ((i20) obj2).J0(6);
                 return;
             case 21:
-                fl6 fl6Var = (fl6) obj;
-                i30 i30Var2 = (i30) ((z20) obj2).G;
-                int i9 = i30Var2.a;
-                LaunchActivity launchActivity = i30Var2.z2;
-                ArrayList arrayList = (ArrayList) oc7.r1(i9).w.get(0);
+                cj6 cj6Var = (cj6) obj;
+                i20 i20Var2 = (i20) ((z10) obj2).G;
+                int i9 = i20Var2.a;
+                LaunchActivity launchActivity = i20Var2.z2;
+                ArrayList arrayList = (ArrayList) na7.q1(i9).w.get(0);
                 if (arrayList != null) {
                     i = arrayList.size();
                 } else {
                     i = 0;
                 }
-                if (i > 10 && !TextUtils.isEmpty(fl6Var.getText().toString())) {
-                    String charSequence = fl6Var.getText().toString();
-                    if (launchActivity.N().getLastFragment() instanceof nk3) {
-                        nk3 nk3Var = (nk3) launchActivity.N().getLastFragment();
-                        ArrayList arrayList2 = (ArrayList) nk3Var.getMessagesController().w.get(0);
+                if (i > 10 && !TextUtils.isEmpty(cj6Var.getText().toString())) {
+                    String charSequence = cj6Var.getText().toString();
+                    if (launchActivity.N().getLastFragment() instanceof cj3) {
+                        cj3 cj3Var = (cj3) launchActivity.N().getLastFragment();
+                        ArrayList arrayList2 = (ArrayList) cj3Var.getMessagesController().w.get(0);
                         if (arrayList2 != null) {
                             i2 = arrayList2.size();
                         } else {
                             i2 = 0;
                         }
-                        if (!nk3Var.n2 && (i2 > 10 || nk3Var.L)) {
-                            if (!nk3Var.l2) {
-                                nk3Var.y = 3;
-                                nk3Var.Y.r.setText(charSequence);
-                                nk3Var.Y.r.setSelection(charSequence.length());
+                        if (!cj3Var.n2 && (i2 > 10 || cj3Var.L)) {
+                            if (!cj3Var.l2) {
+                                cj3Var.y = 3;
+                                cj3Var.Y.r.setText(charSequence);
+                                cj3Var.Y.r.setSelection(charSequence.length());
                             } else {
-                                nk3Var.Y.r.setText(charSequence);
-                                nk3Var.Y.r.setSelection(charSequence.length());
-                                sj3 sj3Var = nk3Var.D0;
-                                if (sj3Var != null && (N = sj3Var.N(3)) >= 0 && nk3Var.D0.getTabsView().getCurrentTabId() != N) {
-                                    nk3Var.D0.getTabsView().e(N, N);
+                                cj3Var.Y.r.setText(charSequence);
+                                cj3Var.Y.r.setSelection(charSequence.length());
+                                hi3 hi3Var = cj3Var.D0;
+                                if (hi3Var != null && (N = hi3Var.N(3)) >= 0 && cj3Var.D0.getTabsView().getCurrentTabId() != N) {
+                                    cj3Var.D0.getTabsView().e(N, N);
                                 }
                             }
-                            i30Var2.dismiss();
+                            i20Var2.dismiss();
                             return;
                         }
                     }
-                    nk3 nk3Var2 = new nk3(null);
-                    nk3Var2.p2 = charSequence;
-                    nk3Var2.y = 3;
-                    launchActivity.u0(nk3Var2, false, false);
-                    i30Var2.dismiss();
+                    cj3 cj3Var2 = new cj3(null);
+                    cj3Var2.p2 = charSequence;
+                    cj3Var2.y = 3;
+                    launchActivity.u0(cj3Var2, false, false);
+                    i20Var2.dismiss();
                     return;
                 }
                 return;
             case 22:
-                mc0 mc0Var = (mc0) obj2;
+                mb0 mb0Var = (mb0) obj2;
                 ((boolean[]) obj)[0] = true;
-                mc0Var.K.z1(mc0Var.Z);
-                mc0Var.T.dismiss();
+                mb0Var.K.z1(mb0Var.Z);
+                mb0Var.T.dismiss();
                 return;
             case 23:
-                bd0 bd0Var = (bd0) obj2;
-                bd0Var.b(false);
-                bd0Var.e.j((cd0) obj);
+                bc0 bc0Var = (bc0) obj2;
+                bc0Var.b(false);
+                bc0Var.e.j((cc0) obj);
                 return;
             case 24:
-                ((au0) obj2).r0((Context) obj, view);
+                ((ss0) obj2).q0((Context) obj, view);
                 return;
             case 25:
-                wx0 wx0Var = (wx0) obj2;
-                lq0 lq0Var = (lq0) obj;
-                if (lq0Var.c()) {
-                    lq0Var.a();
+                ow0 ow0Var = (ow0) obj2;
+                lp0 lp0Var = (lp0) obj;
+                if (lp0Var.c()) {
+                    lp0Var.a();
                 } else {
-                    File file = lq0Var.d;
+                    File file = lp0Var.d;
                     if (file != null && file.exists()) {
-                        File file2 = lq0Var.d;
-                        gm.s2(file2, file2.getName(), null, LaunchActivity.H1, null, true);
+                        File file2 = lp0Var.d;
+                        gl.s2(file2, file2.getName(), null, LaunchActivity.H1, null, true);
                     }
                 }
-                bu5 bu5Var = wx0Var.P0;
-                if (bu5Var != null) {
-                    bu5Var.u();
-                    wx0Var.P0 = null;
+                cs5 cs5Var = ow0Var.P0;
+                if (cs5Var != null) {
+                    cs5Var.u();
+                    ow0Var.P0 = null;
                     return;
                 }
                 return;
             case 26:
-                gm.g(((TL_account.TL_businessChatLink) obj2).link);
-                c41.b0((yv1) obj).k(false).j();
+                gl.g(((TL_account.TL_businessChatLink) obj2).link);
+                u21.b0((mu1) obj).k(false).j();
                 return;
             case 27:
-                ((y71) ((w71) obj2).f).w0((oh2) obj);
+                ((r61) ((p61) obj2).f).v0((ag2) obj);
                 return;
             case 28:
-                g81 g81Var = (g81) obj2;
-                p81 p81Var = (p81) obj;
-                l81 l81Var = g81Var.f.G;
-                if (l81Var != null) {
-                    l81Var.h(p81Var.c, p81Var.d, true);
+                z61 z61Var = (z61) obj2;
+                h71 h71Var = (h71) obj;
+                d71 d71Var = z61Var.f.G;
+                if (d71Var != null) {
+                    d71Var.i(h71Var.c, h71Var.d, true);
                 }
-                m8 m8Var = g81Var.a;
+                m8 m8Var = z61Var.a;
                 if (m8Var != null) {
                     m8Var.d(true);
                     return;
                 }
                 return;
             default:
-                ia1 ia1Var = (ia1) obj2;
-                fa1 fa1Var = (fa1) obj;
-                ArrayList arrayList3 = fa1Var.b;
+                z81 z81Var = (z81) obj2;
+                w81 w81Var = (w81) obj;
+                ArrayList arrayList3 = w81Var.b;
                 if (arrayList3.size() == 1) {
                     TLRPC.User user = (TLRPC.User) arrayList3.get(0);
-                    TLRPC.UserFull X1 = ia1Var.getMessagesController().X1(user.id);
-                    ia1Var.L = user;
-                    boolean z4 = fa1Var.e;
-                    if (!z4 && (X1 == null || !X1.video_calls_available)) {
+                    TLRPC.UserFull W1 = z81Var.getMessagesController().W1(user.id);
+                    z81Var.L = user;
+                    boolean z4 = w81Var.e;
+                    if (!z4 && (W1 == null || !W1.video_calls_available)) {
                         z2 = false;
                     } else {
                         z2 = true;
                     }
-                    sic.m(user, z4, z2, ia1Var.getParentActivity(), null, ia1Var.getAccountInstance());
+                    rgc.m(user, z4, z2, z81Var.getParentActivity(), null, z81Var.getAccountInstance());
                     return;
                 }
-                boolean z5 = fa1Var.e;
+                boolean z5 = w81Var.e;
                 HashSet hashSet = new HashSet();
                 int size = arrayList3.size();
                 int i10 = 0;
@@ -646,13 +646,13 @@ public final class t implements View.OnClickListener {
                     hashSet.add(Long.valueOf(((TLRPC.User) obj3).id));
                 }
                 TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = new TLRPC.TL_inputGroupCallInviteMessage();
-                tL_inputGroupCallInviteMessage.msg_id = ((TLRPC.Message) fa1Var.c.get(0)).id;
-                he heVar5 = new he(3, null, ia1Var.getParentActivity());
+                tL_inputGroupCallInviteMessage.msg_id = ((TLRPC.Message) w81Var.c.get(0)).id;
+                hd hdVar5 = new hd(3, null, z81Var.getParentActivity());
                 TL_phone.getGroupCall getgroupcall = new TL_phone.getGroupCall();
                 getgroupcall.call = tL_inputGroupCallInviteMessage;
-                getgroupcall.limit = ia1Var.getMessagesController().l4.w3.f();
-                heVar5.setOnCancelListener(new p91(ia1Var, ia1Var.getConnectionsManager().sendRequest(getgroupcall, new o91(ia1Var, heVar5, hashSet, tL_inputGroupCallInviteMessage, z5, (byte) 1)), (byte) 1));
-                heVar5.q(600L);
+                getgroupcall.limit = z81Var.getMessagesController().k4.w3.f();
+                hdVar5.setOnCancelListener(new g81(z81Var, z81Var.getConnectionsManager().sendRequest(getgroupcall, new f81(z81Var, hdVar5, hashSet, tL_inputGroupCallInviteMessage, z5, (byte) 1)), (byte) 1));
+                hdVar5.q(600L);
                 return;
         }
     }

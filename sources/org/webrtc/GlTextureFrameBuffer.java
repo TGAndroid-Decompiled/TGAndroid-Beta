@@ -18,7 +18,7 @@ public class GlTextureFrameBuffer {
                 this.height = 0;
                 return;
             default:
-                u36.j(hg9.j(i, "Invalid pixel format: "));
+                w26.j(de9.k(i, "Invalid pixel format: "));
                 throw null;
         }
     }
@@ -76,10 +76,10 @@ public class GlTextureFrameBuffer {
                 GLES20.glBindFramebuffer(36160, 0);
                 return;
             } else {
-                dq9.m(hg9.j(glCheckFramebufferStatus, "Framebuffer not complete, status: "));
+                sc8.j(de9.k(glCheckFramebufferStatus, "Framebuffer not complete, status: "));
                 return;
             }
         }
-        u36.j(b10.g(i, i2, "Invalid size: ", "x"));
+        w26.j(b00.g(i, i2, "Invalid size: ", "x"));
     }
 }

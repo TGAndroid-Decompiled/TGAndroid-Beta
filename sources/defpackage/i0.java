@@ -59,7 +59,7 @@ public final class i0 extends ReplacementSpan {
         paint2.setColor(color);
         canvas.save();
         float f2 = (this.f / 2.0f) + f;
-        hg9.m(this.n, 2.0f, i4, f2, canvas);
+        de9.n(this.n, 2.0f, i4, f2, canvas);
         canvas.drawPath(this.b, paint2);
         canvas.restore();
     }

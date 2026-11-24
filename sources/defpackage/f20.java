@@ -1,43 +1,33 @@
 package defpackage;
 
-import android.widget.FrameLayout;
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
 public final class f20 implements Runnable {
     public final byte a;
-    public final i30 b;
-    public final TLRPC.TL_error c;
+    public final h20 b;
+    public final String c;
 
-    public f20(i30 i30Var, TLRPC.TL_error tL_error, byte b) {
+    public f20(h20 h20Var, String str, byte b) {
         this.a = b;
-        this.b = i30Var;
-        this.c = tL_error;
+        this.b = h20Var;
+        this.c = str;
     }
 
     @Override
     public final void run() {
-        FrameLayout frameLayout;
-        ylb ylbVar;
-        byte b = this.a;
-        TLRPC.TL_error tL_error = this.c;
-        i30 i30Var = this.b;
-        switch (b) {
+        switch (this.a) {
             case 0:
-                frameLayout = (FrameLayout) i30Var.b;
-                ylbVar = i30Var.J0;
-                break;
-            case 1:
-                frameLayout = (FrameLayout) i30Var.b;
-                ylbVar = i30Var.J0;
-                break;
-            case 2:
-                frameLayout = (FrameLayout) i30Var.b;
-                ylbVar = i30Var.J0;
-                break;
+                h20 h20Var = this.b;
+                String str = this.c;
+                h20Var.f = null;
+                gl.c3(new f20(h20Var, str, (byte) 1));
+                return;
             default:
-                frameLayout = (FrameLayout) i30Var.b;
-                ylbVar = i30Var.J0;
-                break;
+                h20 h20Var2 = this.b;
+                String str2 = this.c;
+                h20Var2.getClass();
+                Utilities.g.c(new g20(h20Var2, str2, new ArrayList(h20Var2.n.q2)));
+                return;
         }
-        wi8.u(frameLayout, ylbVar, tL_error, false);
     }
 }

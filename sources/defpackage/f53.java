@@ -1,204 +1,270 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.SpannedString;
-import android.text.TextUtils;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.util.SparseIntArray;
 import j$.util.Objects;
-import java.util.ArrayList;
-public final class f53 {
-    public static final String A;
-    public static final String B;
-    public static final String C;
-    public static final String D;
-    public static final String E;
-    public static final String F;
-    public static final String G;
-    public static final String H;
-    public static final String I;
-    public static final String J;
-    public static final String K;
-    public static final String L;
-    public static final String s;
-    public static final String t;
-    public static final String u;
-    public static final String v;
-    public static final String w;
-    public static final String x;
-    public static final String y;
-    public static final String z;
-    public final CharSequence a;
-    public final Layout.Alignment b;
-    public final Layout.Alignment c;
-    public final Bitmap d;
-    public final float e;
-    public final int f;
-    public final int g;
-    public final float h;
-    public final int i;
-    public final float j;
-    public final float k;
-    public final boolean l;
-    public final int m;
-    public final int n;
-    public final float o;
-    public final int p;
-    public final float q;
-    public final int r;
+import java.util.HashSet;
+public class f53 implements wjb {
+    public final HashSet a = new HashSet();
+    public final SparseIntArray b;
+    public final Paint c;
+    public Paint d;
+    public PorterDuffColorFilter e;
+    public m17 f;
 
-    static {
-        new f53("", null, null, null, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, -16777216, Integer.MIN_VALUE, 0.0f, 0);
-        String str = hac.a;
-        s = "0";
-        t = "h";
-        u = "1";
-        v = "2";
-        w = "3";
-        x = "i";
-        y = "4";
-        z = "5";
-        A = "6";
-        B = "7";
-        C = "8";
-        D = "9";
-        E = "a";
-        F = "b";
-        G = "c";
-        H = "d";
-        I = "e";
-        J = "f";
-        K = "g";
-        L = "j";
+    public f53() {
+        SparseIntArray sparseIntArray = new SparseIntArray();
+        this.b = sparseIntArray;
+        Paint paint = new Paint();
+        this.c = paint;
+        sparseIntArray.put(bkb.ng, -1308622848);
+        sparseIntArray.put(bkb.og, -1056964608);
+        sparseIntArray.put(bkb.Oj, -1214008894);
+        sparseIntArray.put(bkb.Pj, -1946157057);
+        sparseIntArray.put(bkb.Qj, 452984831);
+        sparseIntArray.put(bkb.Rj, -665229191);
+        sparseIntArray.put(bkb.Sj, -667862461);
+        sparseIntArray.put(bkb.Tj, -665229191);
+        sparseIntArray.put(bkb.Ej, -1);
+        sparseIntArray.put(bkb.I5, -1);
+        sparseIntArray.put(bkb.p7, -2406842);
+        sparseIntArray.put(bkb.G5, -10177041);
+        sparseIntArray.put(bkb.gg, bm2.f(0.2f, -16777216, -1));
+        int i = bkb.O5;
+        sparseIntArray.put(i, bm2.f(0.5f, -16777216, -1));
+        sparseIntArray.put(bkb.P5, bm2.f(0.5f, -16777216, -1));
+        int i2 = bkb.N5;
+        sparseIntArray.put(i2, bm2.o(-1, 17));
+        sparseIntArray.put(bkb.D8, -1);
+        sparseIntArray.put(bkb.E8, -1);
+        sparseIntArray.put(bkb.o7, -1152913);
+        sparseIntArray.put(bkb.h6, 385875967);
+        int i3 = bkb.H5;
+        sparseIntArray.put(i3, 436207615);
+        sparseIntArray.put(bkb.Jf, -1);
+        sparseIntArray.put(bkb.Qi, -1711276033);
+        sparseIntArray.put(bkb.G6, bm2.f(0.5f, -16777216, -1));
+        sparseIntArray.put(bkb.s5, bm2.f(0.5f, -16777216, -1));
+        sparseIntArray.put(bkb.yj, bm2.f(0.2f, -16777216, -1));
+        sparseIntArray.put(bkb.i5, -592138);
+        sparseIntArray.put(bkb.q5, -8553091);
+        sparseIntArray.put(bkb.u6, -1);
+        sparseIntArray.put(bkb.Kf, 1946157055);
+        sparseIntArray.put(bkb.Mf, 1946157055);
+        sparseIntArray.put(bkb.lg, -1);
+        sparseIntArray.put(bkb.Ci, -1);
+        sparseIntArray.put(bkb.r8, -1);
+        sparseIntArray.put(bkb.fg, -1);
+        sparseIntArray.put(bkb.zf, bm2.o(-1, 30));
+        sparseIntArray.put(bkb.yf, -14670806);
+        sparseIntArray.put(bkb.x8, -1);
+        sparseIntArray.put(i, bm2.f(0.5f, -16777216, -1));
+        sparseIntArray.put(i2, bm2.o(-1, 17));
+        sparseIntArray.put(bkb.x6, bm2.o(-1, 127));
+        sparseIntArray.put(bkb.Qe, -14606046);
+        sparseIntArray.put(bkb.Pe, -1);
+        sparseIntArray.put(bkb.Zf, -1221292);
+        sparseIntArray.put(bkb.Uf, -1);
+        sparseIntArray.put(bkb.ag, -15033089);
+        sparseIntArray.put(bkb.Vf, -1);
+        sparseIntArray.put(bkb.dg, 2030043135);
+        sparseIntArray.put(bkb.cg, -10638868);
+        sparseIntArray.put(bkb.Me, -1);
+        sparseIntArray.put(bkb.Le, bkb.p1(0.6f, -1));
+        sparseIntArray.put(bkb.kg, -1515107571);
+        sparseIntArray.put(bkb.Xc, -5316609);
+        sparseIntArray.put(bkb.Ke, -1);
+        sparseIntArray.put(bkb.Ne, bkb.p1(0.9f, -1));
+        sparseIntArray.put(bkb.Ml, bkb.p1(0.8f, -1));
+        sparseIntArray.put(bkb.Ie, -14670806);
+        sparseIntArray.put(bkb.g5, -14737633);
+        sparseIntArray.put(bkb.h5, -16777216);
+        sparseIntArray.put(bkb.L5, -15393241);
+        sparseIntArray.put(bkb.c6, -15198183);
+        sparseIntArray.put(bkb.Ol, -15198183);
+        sparseIntArray.put(bkb.Sl, -1);
+        sparseIntArray.put(bkb.F6, -1);
+        sparseIntArray.put(bkb.Cf, -8553090);
+        sparseIntArray.put(bkb.g6, -10177027);
+        sparseIntArray.put(bkb.Gf, 181267199);
+        sparseIntArray.put(bkb.Af, bm2.o(-1, 125));
+        sparseIntArray.put(bkb.Df, -2130706433);
+        sparseIntArray.put(bkb.Ef, bm2.o(-1, 125));
+        sparseIntArray.put(bkb.Ff, -1);
+        sparseIntArray.put(bkb.Hf, -10177041);
+        sparseIntArray.put(bkb.Bf, bm2.o(-16777216, 30));
+        sparseIntArray.put(bkb.If, bm2.o(-1, 125));
+        int i4 = bkb.c7;
+        sparseIntArray.put(i4, -16777216);
+        sparseIntArray.put(bkb.pg, -15033089);
+        sparseIntArray.put(bkb.T5, -1);
+        sparseIntArray.put(bkb.d7, -14079703);
+        sparseIntArray.put(bkb.e7, -8158332);
+        sparseIntArray.put(bkb.Z6, -16777216);
+        sparseIntArray.put(bkb.K6, -15033089);
+        sparseIntArray.put(bkb.k6, -10177041);
+        sparseIntArray.put(bkb.j6, -10177041);
+        sparseIntArray.put(bkb.z6, bm2.f(0.3f, -1, -16777216));
+        sparseIntArray.put(bkb.vj, -14605274);
+        sparseIntArray.put(bkb.wj, -7616267);
+        sparseIntArray.put(bkb.xj, -1);
+        sparseIntArray.put(bkb.G8, -233499371);
+        sparseIntArray.put(bkb.Lf, -1);
+        sparseIntArray.put(bkb.A6, -8355712);
+        sparseIntArray.put(bkb.dh, -1);
+        sparseIntArray.put(bkb.Vg, -14538189);
+        sparseIntArray.put(bkb.z5, -14538189);
+        sparseIntArray.put(bkb.Y8, -9316522);
+        sparseIntArray.put(bkb.W8, -1446156);
+        sparseIntArray.put(bkb.bd, -2110438831);
+        sparseIntArray.put(bkb.L6, -10263709);
+        sparseIntArray.put(bkb.M6, -15033089);
+        sparseIntArray.put(bkb.A5, -15033089);
+        sparseIntArray.put(bkb.D5, -15033089);
+        sparseIntArray.put(bkb.m5, -15033089);
+        sparseIntArray.put(bkb.mk, -832444);
+        sparseIntArray.put(bkb.h7, -12692893);
+        int i5 = bkb.i7;
+        sparseIntArray.put(i5, -10329502);
+        sparseIntArray.put(bkb.B5, -1);
+        sparseIntArray.put(i3, 436207615);
+        sparseIntArray.put(bkb.Si, -13816531);
+        sparseIntArray.put(bkb.Ti, -1);
+        sparseIntArray.put(bkb.Ri, -657931);
+        sparseIntArray.put(bkb.I7, -1);
+        sparseIntArray.put(bkb.Ni, -8553091);
+        sparseIntArray.put(bkb.Oi, -10177041);
+        sparseIntArray.put(bkb.F8, -232841441);
+        sparseIntArray.put(bkb.s8, 385875967);
+        sparseIntArray.put(bkb.l7, -12500671);
+        sparseIntArray.put(bkb.k7, -13133079);
+        sparseIntArray.put(bkb.m7, -1);
+        sparseIntArray.put(bkb.Ei, -15033089);
+        sparseIntArray.put(bkb.j5, -10177041);
+        sparseIntArray.put(bkb.Q5, -1);
+        sparseIntArray.put(bkb.Wc, -12147733);
+        sparseIntArray.put(bkb.p5, -8553091);
+        sparseIntArray.put(bkb.kj, -592138);
+        sparseIntArray.put(bkb.mj, -14737633);
+        sparseIntArray.put(bkb.nj, -12632257);
+        sparseIntArray.put(bkb.lj, -8796932);
+        sparseIntArray.put(bkb.zj, 1140850687);
+        sparseIntArray.put(bkb.qb, bm2.f(0.4f, -16777216, -1));
+        sparseIntArray.put(bkb.tb, 0);
+        sparseIntArray.put(bkb.ub, 0);
+        sparseIntArray.put(bkb.vb, 0);
+        sparseIntArray.put(bkb.Ce, bm2.o(-1, 75));
+        sparseIntArray.put(bkb.g7, -10177041);
+        sparseIntArray.put(i5, -12237499);
+        sparseIntArray.put(bkb.j7, -1);
+        sparseIntArray.put(bkb.J7, -10703370);
+        sparseIntArray.put(bkb.K7, -12547121);
+        sparseIntArray.put(bkb.Ll, -1);
+        sparseIntArray.put(bkb.Jl, -1207959553);
+        sparseIntArray.put(bkb.Kl, 352321535);
+        sparseIntArray.put(bkb.Ij, -8553091);
+        sparseIntArray.put(bkb.Lj, -11292689);
+        sparseIntArray.put(bkb.Jj, -12829636);
+        sparseIntArray.put(bkb.Kj, -11184811);
+        sparseIntArray.put(bkb.Pl, -15198183);
+        k();
+        paint.setColor(h(i4));
     }
 
-    public f53(CharSequence charSequence, Layout.Alignment alignment, Layout.Alignment alignment2, Bitmap bitmap, float f, int i, int i2, float f2, int i3, int i4, float f3, float f4, float f5, boolean z2, int i5, int i6, float f6, int i7) {
-        boolean z3;
-        if (charSequence == null) {
-            bitmap.getClass();
-        } else {
-            if (bitmap == null) {
-                z3 = true;
-            } else {
-                z3 = false;
+    @Override
+    public final boolean a() {
+        return bkb.I.o();
+    }
+
+    @Override
+    public final void b(float f, float f2, int i, int i2) {
+        bkb.q(f, f2, i, i2);
+    }
+
+    @Override
+    public final ColorFilter c() {
+        PorterDuffColorFilter porterDuffColorFilter = this.e;
+        if (porterDuffColorFilter == null) {
+            PorterDuffColorFilter porterDuffColorFilter2 = new PorterDuffColorFilter(h(bkb.F6), PorterDuff.Mode.SRC_IN);
+            this.e = porterDuffColorFilter2;
+            return porterDuffColorFilter2;
+        }
+        return porterDuffColorFilter;
+    }
+
+    @Override
+    public final Paint d(String str) {
+        if (str.equals("paintDivider")) {
+            return this.c;
+        }
+        if (str.equals("paintChatActionBackground")) {
+            if (this.d == null) {
+                Paint paint = new Paint(1);
+                this.d = paint;
+                paint.setColor(bm2.f(0.1f, -16777216, -1));
             }
-            jte.f(z3);
+            return this.d;
         }
-        if (charSequence instanceof Spanned) {
-            this.a = SpannedString.valueOf(charSequence);
-        } else if (charSequence != null) {
-            this.a = charSequence.toString();
-        } else {
-            this.a = null;
-        }
-        this.b = alignment;
-        this.c = alignment2;
-        this.d = bitmap;
-        this.e = f;
-        this.f = i;
-        this.g = i2;
-        this.h = f2;
-        this.i = i3;
-        this.j = f4;
-        this.k = f5;
-        this.l = z2;
-        this.m = i5;
-        this.n = i4;
-        this.o = f3;
-        this.p = i6;
-        this.q = f6;
-        this.r = i7;
+        return bkb.T0(str);
     }
 
-    public final Bundle a() {
-        eq9[] eq9VarArr;
-        ljb[] ljbVarArr;
-        nlc[] nlcVarArr;
-        Bundle bundle = new Bundle();
-        CharSequence charSequence = this.a;
-        if (charSequence != null) {
-            bundle.putCharSequence(s, charSequence);
-            if (charSequence instanceof Spanned) {
-                Spanned spanned = (Spanned) charSequence;
-                String str = h63.a;
-                ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
-                for (eq9 eq9Var : (eq9[]) spanned.getSpans(0, spanned.length(), eq9.class)) {
-                    eq9Var.getClass();
-                    Bundle bundle2 = new Bundle();
-                    bundle2.putString(eq9.c, eq9Var.a);
-                    bundle2.putInt(eq9.d, eq9Var.b);
-                    arrayList.add(h63.a(spanned, eq9Var, 1, bundle2));
-                }
-                for (ljb ljbVar : (ljb[]) spanned.getSpans(0, spanned.length(), ljb.class)) {
-                    ljbVar.getClass();
-                    Bundle bundle3 = new Bundle();
-                    bundle3.putInt(ljb.d, ljbVar.a);
-                    bundle3.putInt(ljb.e, ljbVar.b);
-                    bundle3.putInt(ljb.f, ljbVar.c);
-                    arrayList.add(h63.a(spanned, ljbVar, 2, bundle3));
-                }
-                for (xh5 xh5Var : (xh5[]) spanned.getSpans(0, spanned.length(), xh5.class)) {
-                    arrayList.add(h63.a(spanned, xh5Var, 3, null));
-                }
-                for (nlc nlcVar : (nlc[]) spanned.getSpans(0, spanned.length(), nlc.class)) {
-                    nlcVar.getClass();
-                    Bundle bundle4 = new Bundle();
-                    bundle4.putString(nlc.b, nlcVar.a);
-                    arrayList.add(h63.a(spanned, nlcVar, 4, bundle4));
-                }
-                if (!arrayList.isEmpty()) {
-                    bundle.putParcelableArrayList(t, arrayList);
-                }
+    @Override
+    public final boolean e() {
+        return gba.D0;
+    }
+
+    @Override
+    public final int f(int i) {
+        return h(i);
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final Drawable getDrawable(String str) {
+        if (Objects.equals(str, "drawableMsgOutMedia")) {
+            m17 m17Var = this.f;
+            if (m17Var == null) {
+                m17 m17Var2 = new m17(1, true, false, this);
+                this.f = m17Var2;
+                return m17Var2;
             }
+            return m17Var;
         }
-        bundle.putSerializable(u, this.b);
-        bundle.putSerializable(v, this.c);
-        bundle.putFloat(y, this.e);
-        bundle.putInt(z, this.f);
-        bundle.putInt(A, this.g);
-        bundle.putFloat(B, this.h);
-        bundle.putInt(C, this.i);
-        bundle.putInt(D, this.n);
-        bundle.putFloat(E, this.o);
-        bundle.putFloat(F, this.j);
-        bundle.putFloat(G, this.k);
-        bundle.putBoolean(I, this.l);
-        bundle.putInt(H, this.m);
-        bundle.putInt(J, this.p);
-        bundle.putFloat(K, this.q);
-        bundle.putInt(L, this.r);
-        return bundle;
+        return null;
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && f53.class == obj.getClass()) {
-                f53 f53Var = (f53) obj;
-                if (TextUtils.equals(this.a, f53Var.a) && this.b == f53Var.b && this.c == f53Var.c) {
-                    Bitmap bitmap = f53Var.d;
-                    Bitmap bitmap2 = this.d;
-                    if (bitmap2 == null) {
-                        if (bitmap != null) {
-                            return false;
-                        }
-                    } else if (bitmap == null || !bitmap2.sameAs(bitmap)) {
-                        return false;
-                    }
-                    if (this.e == f53Var.e && this.f == f53Var.f && this.g == f53Var.g && this.h == f53Var.h && this.i == f53Var.i && this.j == f53Var.j && this.k == f53Var.k && this.l == f53Var.l && this.m == f53Var.m && this.n == f53Var.n && this.o == f53Var.o && this.p == f53Var.p && this.q == f53Var.q && this.r == f53Var.r) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final int h(int i) {
+        SparseIntArray sparseIntArray = this.b;
+        int indexOfKey = sparseIntArray.indexOfKey(i);
+        if (indexOfKey >= 0) {
+            return sparseIntArray.valueAt(indexOfKey);
         }
-        return true;
+        Integer valueOf = Integer.valueOf(i);
+        HashSet hashSet = this.a;
+        if (!hashSet.contains(valueOf)) {
+            hashSet.add(Integer.valueOf(i));
+        }
+        return bkb.u0(i);
     }
 
-    public final int hashCode() {
-        return Objects.hash(this.a, this.b, this.c, this.d, Float.valueOf(this.e), Integer.valueOf(this.f), Integer.valueOf(this.g), Float.valueOf(this.h), Integer.valueOf(this.i), Float.valueOf(this.j), Float.valueOf(this.k), Boolean.valueOf(this.l), Integer.valueOf(this.m), Integer.valueOf(this.n), Float.valueOf(this.o), Integer.valueOf(this.p), Float.valueOf(this.q), Integer.valueOf(this.r));
+    @Override
+    public final int j(int i) {
+        return h(i);
+    }
+
+    public void k() {
+    }
+
+    @Override
+    public final void i(int i, int i2) {
     }
 }

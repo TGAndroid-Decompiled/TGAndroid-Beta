@@ -12,7 +12,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-public final class f implements jac {
+public final class f implements i8c {
     public final byte a;
     public final Object b;
 
@@ -22,104 +22,109 @@ public final class f implements jac {
     }
 
     private final void b(Object obj, Object obj2) {
-        l7c l7cVar;
-        f51 f51Var = (f51) this.b;
-        f51Var.M.dismiss();
-        f51Var.E = (String) obj;
-        f51Var.F = (TLRPC.InputDocument) obj2;
-        f51Var.x = false;
-        gm.r(f51Var.e);
-        f51Var.n.setSticker(f51Var.E);
-        f51Var.g0(true);
-        va vaVar = f51Var.a;
-        if (vaVar != null && (l7cVar = vaVar.g3) != null) {
-            l7cVar.O(true);
+        l5c l5cVar;
+        y31 y31Var = (y31) this.b;
+        y31Var.M.dismiss();
+        y31Var.E = (String) obj;
+        y31Var.F = (TLRPC.InputDocument) obj2;
+        y31Var.x = false;
+        gl.r(y31Var.e);
+        y31Var.n.setSticker(y31Var.E);
+        y31Var.f0(true);
+        va vaVar = y31Var.a;
+        if (vaVar != null && (l5cVar = vaVar.g3) != null) {
+            l5cVar.O(true);
         }
     }
 
     private final void c(Object obj, Object obj2) {
-        TLRPC.Chat L0;
-        ia1 ia1Var = (ia1) this.b;
+        TLRPC.Chat K0;
+        z81 z81Var = (z81) this.b;
         ArrayList arrayList = (ArrayList) obj;
-        l7c l7cVar = (l7c) obj2;
-        boolean isEmpty = ia1Var.G.isEmpty();
-        ArrayList arrayList2 = ia1Var.x;
+        l5c l5cVar = (l5c) obj2;
+        boolean isEmpty = z81Var.G.isEmpty();
+        ArrayList arrayList2 = z81Var.x;
         boolean isEmpty2 = arrayList2.isEmpty();
         if (!isEmpty || !isEmpty2) {
-            c6c c = c6c.c(1, 2131231775, jb6.M0(2131749247, null));
+            c4c c = c4c.c(1, 2131231774, k96.M0(2131749298, null));
             c.r = true;
             arrayList.add(c);
-            arrayList.add(c6c.C(null));
+            if (!z81Var.getUserConfig().X) {
+                c4c c2 = c4c.c(2, 2131231768, k96.M0(2131749269, null));
+                c2.r = true;
+                arrayList.add(c2);
+            }
+            arrayList.add(c4c.C(null));
         }
         int i = 0;
         if (!isEmpty) {
-            ArrayList arrayList3 = ia1Var.G;
+            ArrayList arrayList3 = z81Var.G;
             int size = arrayList3.size();
             int i2 = 0;
             while (i2 < size) {
                 Object obj3 = arrayList3.get(i2);
                 i2++;
                 Long l = (Long) obj3;
-                if (l != null && (L0 = ia1Var.getMessagesController().L0(l)) != null) {
-                    m91 m91Var = new m91(ia1Var, (byte) 0);
-                    int i3 = ga1.b;
-                    c6c K = c6c.K(ga1.class);
-                    K.H = L0;
-                    K.E = m91Var;
+                if (l != null && (K0 = z81Var.getMessagesController().K0(l)) != null) {
+                    d81 d81Var = new d81(z81Var, (byte) 0);
+                    int i3 = x81.b;
+                    c4c K = c4c.K(x81.class);
+                    K.H = K0;
+                    K.E = d81Var;
                     arrayList.add(K);
                 }
             }
-            arrayList.add(c6c.C(null));
+            arrayList.add(c4c.C(null));
         }
         if (!isEmpty2) {
             int size2 = arrayList2.size();
             while (i < size2) {
                 Object obj4 = arrayList2.get(i);
                 i++;
-                fa1 fa1Var = (fa1) obj4;
-                t tVar = new t(ia1Var, fa1Var, (byte) 29);
-                int i4 = da1.b;
-                c6c K2 = c6c.K(da1.class);
-                K2.H = fa1Var;
+                w81 w81Var = (w81) obj4;
+                t tVar = new t(z81Var, w81Var, (byte) 29);
+                int i4 = u81.b;
+                c4c K2 = c4c.K(u81.class);
+                K2.H = w81Var;
                 K2.E = tVar;
-                K2.L(ia1Var.f0(fa1Var.c));
+                K2.L(z81Var.e0(w81Var.c));
                 arrayList.add(K2);
             }
-            if (!ia1Var.F) {
-                arrayList.add(c6c.q(-1, 8));
-                arrayList.add(c6c.q(-2, 8));
-                arrayList.add(c6c.q(-3, 8));
+            if (!z81Var.F) {
+                arrayList.add(c4c.q(-1, 8));
+                arrayList.add(c4c.q(-2, 8));
+                arrayList.add(c4c.q(-3, 8));
             }
         }
     }
 
     private final void d(Object obj, Object obj2) {
         int i;
-        pc1 pc1Var = (pc1) this.b;
+        ib1 ib1Var = (ib1) this.b;
         Canvas canvas = (Canvas) obj;
         Runnable runnable = (Runnable) obj2;
-        Paint paint = pc1Var.J;
-        RectF rectF = pc1Var.z0;
-        jc1 jc1Var = pc1Var.f;
-        if (pc1Var.g()) {
-            if (pc1Var.H == null) {
+        Paint paint = ib1Var.J;
+        RectF rectF = ib1Var.z0;
+        cb1 cb1Var = ib1Var.f;
+        if (ib1Var.g()) {
+            if (ib1Var.H == null) {
                 runnable.run();
                 return;
             }
-            qu3 editText = jc1Var.getEditText();
+            gt3 editText = cb1Var.getEditText();
             canvas.translate(-editText.q0, 0.0f);
-            canvas.saveLayerAlpha(0.0f, 0.0f, pc1Var.H.getWidth(), pc1Var.H.getHeight(), 255, 31);
-            rectF.set(0.0f, 1.0f, pc1Var.H.getWidth(), pc1Var.H.getHeight() - 1);
-            pc1Var.h(pc1Var.Q, canvas, rectF, 0.0f, true, (-jc1Var.getX()) - editText.getPaddingLeft(), ((-jc1Var.getY()) - editText.getPaddingTop()) - editText.getExtendedPaddingTop(), true);
+            canvas.saveLayerAlpha(0.0f, 0.0f, ib1Var.H.getWidth(), ib1Var.H.getHeight(), 255, 31);
+            rectF.set(0.0f, 1.0f, ib1Var.H.getWidth(), ib1Var.H.getHeight() - 1);
+            ib1Var.h(ib1Var.Q, canvas, rectF, 0.0f, true, (-cb1Var.getX()) - editText.getPaddingLeft(), ((-cb1Var.getY()) - editText.getPaddingTop()) - editText.getExtendedPaddingTop(), true);
             canvas.save();
             paint.setAlpha(165);
-            canvas.drawBitmap(pc1Var.H, 0.0f, 0.0f, paint);
+            canvas.drawBitmap(ib1Var.H, 0.0f, 0.0f, paint);
             canvas.restore();
             canvas.restore();
             return;
         }
-        Paint c = pc1Var.Q.c(1.0f);
-        qu3 editText2 = jc1Var.getEditText();
+        Paint c = ib1Var.Q.c(1.0f);
+        gt3 editText2 = cb1Var.getEditText();
         if (c != null) {
             i = -1;
         } else {
@@ -130,7 +135,7 @@ public final class f implements jac {
             runnable.run();
             return;
         }
-        qu3 editText3 = jc1Var.getEditText();
+        gt3 editText3 = cb1Var.getEditText();
         canvas.saveLayerAlpha(0.0f, 0.0f, editText3.getWidth(), editText3.getHeight(), 255, 31);
         runnable.run();
         canvas.drawRect(0.0f, 0.0f, editText3.getWidth(), editText3.getHeight(), c);
@@ -138,135 +143,135 @@ public final class f implements jac {
     }
 
     private final void e(Object obj, Object obj2) {
-        ((mh1) this.b).D0((ArrayList) obj, (l7c) obj2);
+        ((eg1) this.b).C0((ArrayList) obj, (l5c) obj2);
     }
 
     private final void f(Object obj, Object obj2) {
         int i;
         int i2;
-        jza jzaVar;
-        ik1 ik1Var = (ik1) this.b;
+        gxa gxaVar;
+        zi1 zi1Var = (zi1) this.b;
         ArrayList arrayList = (ArrayList) obj;
-        l7c l7cVar = (l7c) obj2;
-        ik1Var.R0 = -1;
-        TLRPC.Chat L0 = oc7.r1(ik1Var.o0).L0(Long.valueOf(-ik1Var.p0));
-        TLRPC.ChatFull M0 = oc7.r1(ik1Var.o0).M0(-ik1Var.p0);
-        if (M0 != null) {
-            i = M0.stats_dc;
+        l5c l5cVar = (l5c) obj2;
+        zi1Var.R0 = -1;
+        TLRPC.Chat K0 = na7.q1(zi1Var.o0).K0(Long.valueOf(-zi1Var.p0));
+        TLRPC.ChatFull L0 = na7.q1(zi1Var.o0).L0(-zi1Var.p0);
+        if (L0 != null) {
+            i = L0.stats_dc;
         } else {
             i = -1;
         }
-        if (ik1Var.b1) {
-            arrayList.add(c6c.g(ik1Var.s0));
-            jza jzaVar2 = ik1Var.l1;
-            if (jzaVar2 != null && !jzaVar2.l) {
-                arrayList.add(c6c.h(5, i, jzaVar2));
-                arrayList.add(c6c.B(-1, null));
+        if (zi1Var.b1) {
+            arrayList.add(c4c.g(zi1Var.s0));
+            gxa gxaVar2 = zi1Var.l1;
+            if (gxaVar2 != null && !gxaVar2.l) {
+                arrayList.add(c4c.h(5, i, gxaVar2));
+                arrayList.add(c4c.B(-1, null));
             }
-            jza jzaVar3 = ik1Var.m1;
-            if (jzaVar3 != null && !jzaVar3.l) {
-                arrayList.add(c6c.h(2, i, jzaVar3));
-                arrayList.add(c6c.B(-2, null));
+            gxa gxaVar3 = zi1Var.m1;
+            if (gxaVar3 != null && !gxaVar3.l) {
+                arrayList.add(c4c.h(2, i, gxaVar3));
+                arrayList.add(c4c.B(-2, null));
             }
         }
-        if (ik1Var.c1 && (jzaVar = ik1Var.n1) != null && !jzaVar.l) {
-            arrayList.add(c6c.h(2, i, jzaVar));
-            arrayList.add(c6c.B(-3, null));
+        if (zi1Var.c1 && (gxaVar = zi1Var.n1) != null && !gxaVar.l) {
+            arrayList.add(c4c.h(2, i, gxaVar));
+            arrayList.add(c4c.B(-3, null));
         }
-        if (ik1Var.o1) {
-            arrayList.add(c6c.b(jb6.M0(2131748142, null)));
-            arrayList.add(c6c.v(ik1Var.p1));
-            arrayList.add(c6c.v(ik1Var.q1));
-            arrayList.add(c6c.v(ik1Var.r1));
-            arrayList.add(c6c.B(-4, ik1Var.u0));
+        if (zi1Var.o1) {
+            arrayList.add(c4c.b(k96.M0(2131748193, null)));
+            arrayList.add(c4c.v(zi1Var.p1));
+            arrayList.add(c4c.v(zi1Var.q1));
+            arrayList.add(c4c.v(zi1Var.r1));
+            arrayList.add(c4c.B(-4, zi1Var.u0));
         }
-        if (L0 != null && L0.creator) {
-            if (ik1Var.b1) {
-                arrayList.add(c6c.b(jb6.M0(2131748163, null)));
-                arrayList.add(c6c.k(ik1Var.w0));
-                arrayList.add(c6c.B(-5, ik1Var.t0));
-                int f = oc7.r1(ik1Var.o0).l4.T1.f();
-                String M02 = jb6.M0(2131748122, null);
+        if (K0 != null && K0.creator) {
+            if (zi1Var.b1) {
+                arrayList.add(c4c.b(k96.M0(2131748214, null)));
+                arrayList.add(c4c.k(zi1Var.w0));
+                arrayList.add(c4c.B(-5, zi1Var.t0));
+                int f = na7.q1(zi1Var.o0).k4.T1.f();
+                String M0 = k96.M0(2131748173, null);
                 boolean z = false;
-                if (ik1Var.r0 < f) {
+                if (zi1Var.r0 < f) {
                     i2 = f;
                 } else {
                     i2 = 0;
                 }
                 if (i2 > 0) {
                     Context context = a.b;
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(M02);
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(M0);
                     spannableStringBuilder.append((CharSequence) "  L");
-                    pn2 pn2Var = new pn2(0, new hd(i2, null, context, false));
-                    pn2Var.s = gm.L(1.0f);
-                    spannableStringBuilder.setSpan(pn2Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-                    M02 = spannableStringBuilder;
+                    cm2 cm2Var = new cm2(0, new gc(i2, null, context, false));
+                    cm2Var.s = gl.L(1.0f);
+                    spannableStringBuilder.setSpan(cm2Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+                    M0 = spannableStringBuilder;
                 }
-                c6c i3 = c6c.i(1, M02);
-                if (ik1Var.r0 >= f && ik1Var.j1) {
+                c4c i3 = c4c.i(1, M0);
+                if (zi1Var.r0 >= f && zi1Var.j1) {
                     z = true;
                 }
                 i3.L(z);
                 arrayList.add(i3);
-                arrayList.add(c6c.B(-8, jb6.M0(2131748121, null)));
+                arrayList.add(c4c.B(-8, k96.M0(2131748172, null)));
             }
-            if (ik1Var.c1) {
-                arrayList.add(c6c.b(jb6.M0(2131748130, null)));
-                arrayList.add(c6c.j(3, ik1Var.C0));
-                arrayList.add(c6c.B(-6, ik1Var.v0));
+            if (zi1Var.c1) {
+                arrayList.add(c4c.b(k96.M0(2131748181, null)));
+                arrayList.add(c4c.j(3, zi1Var.C0));
+                arrayList.add(c4c.B(-6, zi1Var.v0));
             }
         }
-        if (sd2.V(oc7.r1(ik1Var.o0).L0(Long.valueOf(-ik1Var.p0))) && oc7.r1(ik1Var.o0).l4.C2.f) {
-            arrayList.add(xb.i(4, cmb.v0(cmb.kk, ik1Var.n0), ba2.b0(jb6.M0(2131752421, null)), jb6.M0(2131752422, null)));
-            arrayList.add(c6c.B(-7, null));
+        if (hc2.V(na7.q1(zi1Var.o0).K0(Long.valueOf(-zi1Var.p0))) && na7.q1(zi1Var.o0).k4.C2.f) {
+            arrayList.add(xb.i(4, bkb.v0(bkb.kk, zi1Var.n0), p82.a0(k96.M0(2131752462, null)), k96.M0(2131752463, null)));
+            arrayList.add(c4c.B(-7, null));
         }
-        if (ik1Var.a1.a()) {
-            ik1Var.R0 = arrayList.size();
-            arrayList.add(c6c.n(ik1Var.T0, -2));
+        if (zi1Var.a1.a()) {
+            zi1Var.R0 = arrayList.size();
+            arrayList.add(c4c.n(zi1Var.T0, -2));
             return;
         }
-        arrayList.add(c6c.B(-10, null));
+        arrayList.add(c4c.B(-10, null));
     }
 
     private final void g(Object obj, Object obj2) {
         ArrayList arrayList;
         String str;
-        ck1 ck1Var = (ck1) this.b;
+        ti1 ti1Var = (ti1) this.b;
         ArrayList arrayList2 = (ArrayList) obj;
-        l7c l7cVar = (l7c) obj2;
-        ek1 ek1Var = ck1Var.f;
-        int i = ck1Var.d;
-        int i2 = ek1.y;
+        l5c l5cVar = (l5c) obj2;
+        vi1 vi1Var = ti1Var.f;
+        int i = ti1Var.d;
+        int i2 = vi1.y;
         if (i == 0) {
-            arrayList = ek1Var.r;
+            arrayList = vi1Var.r;
         } else {
-            arrayList = ek1Var.n;
+            arrayList = vi1Var.n;
         }
         int size = arrayList.size();
         int i3 = 0;
         while (i3 < size) {
             Object obj3 = arrayList.get(i3);
             i3++;
-            int i4 = hxa.b;
-            c6c K = c6c.K(hxa.class);
+            int i4 = dva.b;
+            c4c K = c4c.K(dva.class);
             K.H = (TL_stars.StarsTransaction) obj3;
             K.r = true;
             arrayList2.add(K);
         }
         if (i == 0) {
-            str = ek1Var.s;
+            str = vi1Var.s;
         } else {
-            str = ek1Var.h;
+            str = vi1Var.h;
         }
         if (!TextUtils.isEmpty(str)) {
-            arrayList2.add(c6c.q(arrayList2.size(), 7));
-            arrayList2.add(c6c.q(arrayList2.size(), 7));
-            arrayList2.add(c6c.q(arrayList2.size(), 7));
+            arrayList2.add(c4c.q(arrayList2.size(), 7));
+            arrayList2.add(c4c.q(arrayList2.size(), 7));
+            arrayList2.add(c4c.q(arrayList2.size(), 7));
         }
     }
 
     private final void h(Object obj, Object obj2) {
-        ((ChatActivityEnterView) this.b).v0((Canvas) obj, (iac) obj2);
+        ((ChatActivityEnterView) this.b).v0((Canvas) obj, (h8c) obj2);
     }
 
     private final void i(java.lang.Object r21, java.lang.Object r22) {

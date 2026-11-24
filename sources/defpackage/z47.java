@@ -1,87 +1,43 @@
 package defpackage;
 
 import org.telegram.tgnet.TLRPC;
-public final class z47 extends hkb {
-    public final f57 w0;
+public final class z47 implements Runnable {
+    public final byte a;
+    public final na7 b;
+    public final TLRPC.Chat c;
 
-    public z47(f57 f57Var) {
-        this.w0 = f57Var;
-        this.g0 = f57Var.d0.G;
+    public z47(na7 na7Var, TLRPC.Chat chat, byte b) {
+        this.a = b;
+        this.b = na7Var;
+        this.c = chat;
     }
 
     @Override
-    public final void H(int i, int i2, k47 k47Var) {
-        nv1 nv1Var;
-        k47 k47Var2;
-        f57 f57Var = this.w0;
-        z47 z47Var = f57Var.e;
-        int i3 = z47Var.v - z47Var.u;
-        l57 l57Var = f57Var.d0;
-        if (i3 > oc7.r1(l57Var.x).l4.N1.f()) {
-            f57Var.f();
-            return;
+    public final void run() {
+        byte b = this.a;
+        TLRPC.Chat chat = this.c;
+        na7 na7Var = this.b;
+        switch (b) {
+            case 0:
+                na7Var.g(chat);
+                return;
+            case 1:
+                na7Var.getNotificationCenter().k(90, chat);
+                return;
+            case 2:
+                na7Var.C(chat.id, true);
+                return;
+            case 3:
+                na7Var.getNotificationCenter().k(90, chat);
+                return;
+            case 4:
+                na7Var.getNotificationCenter().k(323, Long.valueOf(chat.id), Boolean.valueOf(chat.forum), Boolean.valueOf(chat.forum_tabs), Boolean.valueOf(chat.forum_sidebar));
+                return;
+            default:
+                na7Var.Z4(null);
+                na7Var.getNotificationCenter().k(351, Long.valueOf(chat.id), Boolean.valueOf(chat.collapsed_in_dialogs));
+                na7Var.getNotificationCenter().k(3, new Object[0]);
+                return;
         }
-        o47 o47Var = l57Var.d;
-        o47Var.e = z47Var.u;
-        o47Var.f = z47Var.v;
-        k47 a = f57Var.a(k47Var);
-        if (a != null && ((nv1Var = l57Var.d.d) == null || nv1Var.m || (k47Var2 = nv1Var.a) == null || k47Var2.e1() != a.e1())) {
-            l57Var.d.d = nv1.b(i, i2, a);
-        }
-        l57Var.b();
-        l57Var.a(true);
-    }
-
-    @Override
-    public final boolean a() {
-        k47 a;
-        TLRPC.Message message;
-        f57 f57Var = this.w0;
-        if (f57Var.a == 0 && (a = f57Var.a(null)) != null && (message = a.k) != null && message.rich_message != null) {
-            return false;
-        }
-        o47 o47Var = f57Var.d0.d;
-        if (o47Var != null && o47Var.s) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean d() {
-        k47 a;
-        TLRPC.Message message;
-        f57 f57Var = this.w0;
-        int i = f57Var.a;
-        if (i == 0 && !f57Var.d0.d.i) {
-            if (i != 0 || (a = f57Var.a(null)) == null || (message = a.k) == null || message.rich_message == null || yj9.c(f57Var.a(null))) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final ylb p() {
-        return this.g0;
-    }
-
-    @Override
-    public final void v() {
-        super.v();
-        fv fvVar = this.w0.f;
-        if (fvVar != null) {
-            fvVar.invalidate();
-        }
-    }
-
-    @Override
-    public final boolean y(k47 k47Var) {
-        f57 f57Var = this.w0;
-        if (f57Var.a == 0 && !f57Var.d0.d.i && w()) {
-            return true;
-        }
-        return false;
     }
 }

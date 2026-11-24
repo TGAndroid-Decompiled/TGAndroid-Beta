@@ -1,10 +1,6 @@
 package defpackage;
-
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class zt1 extends cm1 {
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setVisibleToUser(true);
-    }
+public final class zt1 {
+    public int a;
+    public int b;
+    public int c;
 }

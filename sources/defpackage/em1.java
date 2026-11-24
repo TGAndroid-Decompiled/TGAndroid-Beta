@@ -1,44 +1,38 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class em1 implements ValueAnimator.AnimatorUpdateListener {
+import android.view.View;
+import java.util.ArrayList;
+public final class em1 implements View.OnClickListener {
     public final byte a;
-    public final yv1 b;
+    public final mu1 b;
+    public final ArrayList c;
 
-    public em1(yv1 yv1Var, byte b) {
+    public em1(mu1 mu1Var, ArrayList arrayList, byte b) {
         this.a = b;
-        this.b = yv1Var;
+        this.b = mu1Var;
+        this.c = arrayList;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        yv1 yv1Var = this.b;
-        switch (b) {
+    public final void onClick(View view) {
+        switch (this.a) {
             case 0:
-                yv1Var.a9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mu1 mu1Var = yv1Var.m1;
-                if (mu1Var != null) {
-                    mu1Var.invalidate();
-                    yv1Var.A0.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                yv1Var.x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yv1Var.Tc();
-                return;
-            case 2:
-                yv1Var.x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yv1Var.Tc();
-                return;
-            case 3:
-                yv1Var.bb = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yv1Var.O7();
+                mu1 mu1Var = this.b;
+                ep1 ep1Var = new ep1(mu1Var, mu1Var, mu1Var.getParentActivity(), mu1Var.Ba, this.c);
+                boolean Q7 = mu1Var.Q7();
+                ep1Var.i0 = Q7;
+                ep1Var.n = Q7;
+                ep1Var.p0 = false;
+                mu1Var.G5(false);
+                mu1Var.showDialog(ep1Var);
                 return;
             default:
-                yv1Var.bb = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yv1Var.O7();
+                mu1 mu1Var2 = this.b;
+                if (mu1Var2.getParentActivity() != null && mu1Var2.getParentActivity() != null) {
+                    new qx3(mu1Var2, mu1Var2.getParentActivity(), mu1Var2.Ba, this.c).show();
+                    mu1Var2.G5(true);
+                    return;
+                }
                 return;
         }
     }

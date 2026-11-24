@@ -1,36 +1,25 @@
 package defpackage;
+public final class ol9 {
+    public static final ol9 a;
+    public static final ol9 b;
+    public static final ol9 c;
+    public static final ol9[] d;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class ol9 extends b4 {
-    public static final Parcelable.Creator<ol9> CREATOR = new v6d((byte) 17);
-    public final int a;
-    public final boolean b;
-    public final boolean c;
-    public final int d;
-    public final int e;
-
-    public ol9(int i, int i2, int i3, boolean z, boolean z2) {
-        this.a = i;
-        this.b = z;
-        this.c = z2;
-        this.d = i2;
-        this.e = i3;
+    static {
+        ?? r0 = new Enum("HIGH", 0);
+        a = r0;
+        ?? r1 = new Enum("MEDIUM", 1);
+        b = r1;
+        ?? r3 = new Enum("LOW", 2);
+        c = r3;
+        d = new ol9[]{r0, r1, r3};
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        mve.q(parcel, 1, 4);
-        parcel.writeInt(this.a);
-        mve.q(parcel, 2, 4);
-        parcel.writeInt(this.b ? 1 : 0);
-        mve.q(parcel, 3, 4);
-        parcel.writeInt(this.c ? 1 : 0);
-        mve.q(parcel, 4, 4);
-        parcel.writeInt(this.d);
-        mve.q(parcel, 5, 4);
-        parcel.writeInt(this.e);
-        mve.s(parcel, r);
+    public static ol9 valueOf(String str) {
+        return (ol9) Enum.valueOf(ol9.class, str);
+    }
+
+    public static ol9[] values() {
+        return (ol9[]) d.clone();
     }
 }

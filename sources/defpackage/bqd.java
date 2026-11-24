@@ -1,17 +1,24 @@
 package defpackage;
-public final class bqd implements cq7 {
-    public static final bqd a = new Object();
 
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+public abstract class bqd {
+    public static byte[] a(ArrayDeque arrayDeque, int i) {
+        if (arrayDeque.isEmpty()) {
+            return new byte[0];
         }
-        throw new ClassCastException();
+        byte[] bArr = (byte[]) arrayDeque.remove();
+        if (bArr.length == i) {
+            return bArr;
+        }
+        int length = i - bArr.length;
+        byte[] copyOf = Arrays.copyOf(bArr, i);
+        while (length > 0) {
+            byte[] bArr2 = (byte[]) arrayDeque.remove();
+            int min = Math.min(length, bArr2.length);
+            System.arraycopy(bArr2, 0, copyOf, i - length, min);
+            length -= min;
+        }
+        return copyOf;
     }
 }

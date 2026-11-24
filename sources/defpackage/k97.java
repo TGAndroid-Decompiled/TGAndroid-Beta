@@ -1,75 +1,97 @@
 package defpackage;
 
-import android.util.SparseArray;
-public final class k97 implements Runnable {
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class k97 implements RequestDelegate {
     public final byte a;
-    public final oc7 b;
-    public final SparseArray c;
+    public final s61 b;
 
-    public k97(oc7 oc7Var, SparseArray sparseArray, byte b) {
+    public k97(s61 s61Var, byte b) {
         this.a = b;
-        this.b = oc7Var;
-        this.c = sparseArray;
+        this.b = s61Var;
     }
 
     @Override
-    public final void run() {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i;
+        TLRPC.TL_help_appConfig tL_help_appConfig;
+        int i2;
+        TLRPC.TL_messages_availableEffects tL_messages_availableEffects;
+        TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups;
         byte b = this.a;
-        SparseArray sparseArray = this.c;
-        oc7 oc7Var = this.b;
-        char c = 2;
+        boolean z = true;
+        String str = "";
+        s61 s61Var = this.b;
         switch (b) {
             case 0:
-                int i = 0;
-                while (i < sparseArray.size()) {
-                    int keyAt = sparseArray.keyAt(i);
-                    long[] jArr = (long[]) sparseArray.valueAt(i);
-                    oc7Var.getSendMessagesHelper().c0((int) jArr[1]);
-                    nm7 notificationCenter = oc7Var.getNotificationCenter();
-                    Integer valueOf = Integer.valueOf((int) jArr[1]);
-                    Integer valueOf2 = Integer.valueOf(keyAt);
-                    Long valueOf3 = Long.valueOf(jArr[0]);
-                    Boolean bool = Boolean.FALSE;
-                    char c2 = c;
-                    Object[] objArr = new Object[7];
-                    objArr[0] = valueOf;
-                    objArr[1] = valueOf2;
-                    objArr[c2] = null;
-                    objArr[3] = valueOf3;
-                    objArr[4] = 0L;
-                    objArr[5] = -1;
-                    objArr[6] = bool;
-                    notificationCenter.k(21, objArr);
-                    nm7 notificationCenter2 = oc7Var.getNotificationCenter();
-                    Integer valueOf4 = Integer.valueOf((int) jArr[1]);
-                    Integer valueOf5 = Integer.valueOf(keyAt);
-                    Long valueOf6 = Long.valueOf(jArr[0]);
-                    Object[] objArr2 = new Object[7];
-                    objArr2[0] = valueOf4;
-                    objArr2[1] = valueOf5;
-                    objArr2[c2] = null;
-                    objArr2[3] = valueOf6;
-                    objArr2[4] = 0L;
-                    objArr2[5] = -1;
-                    objArr2[6] = bool;
-                    notificationCenter2.k(22, objArr2);
-                    i++;
-                    c = c2;
+                if (tLObject instanceof TLRPC.TL_help_appConfigNotModified) {
+                    Boolean bool = Boolean.TRUE;
+                    s61Var.a(bool, null, 0L, bool);
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_help_appConfig) {
+                    s61Var.a(Boolean.FALSE, (TLRPC.TL_help_appConfig) tLObject, Long.valueOf(tL_help_appConfig.hash), Boolean.TRUE);
+                    return;
+                } else {
+                    if (tL_error != null) {
+                        str = tL_error.code + " " + tL_error.text;
+                    }
+                    fa4.d("getting appconfig error ".concat(str));
+                    Boolean bool2 = Boolean.FALSE;
+                    if (tL_error != null && ((i = tL_error.code) == -2000 || i == -2001)) {
+                        z = false;
+                    }
+                    s61Var.a(bool2, null, 0L, Boolean.valueOf(z));
+                    return;
                 }
+            case 1:
+                if (tLObject instanceof TLRPC.TL_messages_availableEffectsNotModified) {
+                    Boolean bool3 = Boolean.TRUE;
+                    s61Var.a(bool3, null, 0L, bool3);
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_messages_availableEffects) {
+                    s61Var.a(Boolean.FALSE, (TLRPC.TL_messages_availableEffects) tLObject, Long.valueOf(tL_messages_availableEffects.hash), Boolean.TRUE);
+                    return;
+                } else {
+                    if (tL_error != null) {
+                        str = tL_error.code + " " + tL_error.text;
+                    }
+                    fa4.d("getting available effects error ".concat(str));
+                    Boolean bool4 = Boolean.FALSE;
+                    if (tL_error != null && ((i2 = tL_error.code) == -2000 || i2 == -2001)) {
+                        z = false;
+                    }
+                    s61Var.a(bool4, null, 0L, Boolean.valueOf(z));
+                    return;
+                }
+            case 2:
+                if (tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified) {
+                    Boolean bool5 = Boolean.TRUE;
+                    s61Var.a(bool5, null, 0L, bool5);
+                    return;
+                }
+                boolean z2 = tLObject instanceof TLRPC.TL_messages_emojiGroups;
+                Boolean bool6 = Boolean.FALSE;
+                if (z2) {
+                    s61Var.a(bool6, (TLRPC.TL_messages_emojiGroups) tLObject, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
+                    return;
+                }
+                s61Var.a(bool6, null, 0L, Boolean.TRUE);
                 return;
             default:
-                for (int i2 = 0; i2 < sparseArray.size(); i2++) {
-                    int keyAt2 = sparseArray.keyAt(i2);
-                    long[] jArr2 = (long[]) sparseArray.valueAt(i2);
-                    oc7Var.getSendMessagesHelper().c0((int) jArr2[1]);
-                    nm7 notificationCenter3 = oc7Var.getNotificationCenter();
-                    Integer valueOf7 = Integer.valueOf((int) jArr2[1]);
-                    Integer valueOf8 = Integer.valueOf(keyAt2);
-                    Long valueOf9 = Long.valueOf(jArr2[0]);
-                    Boolean bool2 = Boolean.FALSE;
-                    notificationCenter3.k(21, valueOf7, valueOf8, null, valueOf9, 0L, -1, bool2);
-                    oc7Var.getNotificationCenter().k(22, Integer.valueOf((int) jArr2[1]), Integer.valueOf(keyAt2), null, Long.valueOf(jArr2[0]), 0L, -1, bool2);
+                if (tLObject instanceof TLRPC.TL_emojiListNotModified) {
+                    Boolean bool7 = Boolean.TRUE;
+                    s61Var.a(bool7, null, 0L, bool7);
+                    return;
                 }
+                boolean z3 = tLObject instanceof TLRPC.TL_emojiList;
+                Boolean bool8 = Boolean.FALSE;
+                if (z3) {
+                    TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
+                    s61Var.a(bool8, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
+                    return;
+                }
+                s61Var.a(bool8, null, 0L, Boolean.TRUE);
                 return;
         }
     }

@@ -1,23 +1,38 @@
 package defpackage;
 
-import android.os.RemoteException;
-import com.google.android.gms.common.api.Status;
-public abstract class z4d {
+import android.os.Bundle;
+import android.util.Log;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+public final class z4d implements aq2, OnSuccessListener, OnFailureListener {
     public final byte a;
 
-    public z4d(int i) {
-        this.a = i;
+    public z4d(ad1 ad1Var) {
+        this.a = (byte) 3;
     }
 
-    public static Status e(RemoteException remoteException) {
-        return new Status(19, remoteException.getClass().getSimpleName() + ": " + remoteException.getLocalizedMessage(), null, null);
+    @Override
+    public final Object L(gl2 gl2Var) {
+        switch (this.a) {
+            case 0:
+                ae7 ae7Var = (ae7) gl2Var.a(ae7.class);
+                return new ie7((byte) 0);
+            default:
+                return new l69(gl2Var.O(k69.class));
+        }
     }
 
-    public abstract void a(Status status);
+    @Override
+    public final void onFailure(Exception exc) {
+        Log.e("OptionalModuleUtils", "Failed to request modules install request", exc);
+    }
 
-    public abstract void b(RuntimeException runtimeException);
+    @Override
+    public final void onSuccess(Object obj) {
+        cze.a("com.google.android.gms.cast.MAP_CAST_STATUS_CODES_TO_CAST_REASON_CODES", (Bundle) obj);
+    }
 
-    public abstract void c(rhb rhbVar, boolean z);
-
-    public abstract void d(w3d w3dVar);
+    public z4d(byte b) {
+        this.a = b;
+    }
 }

@@ -1,115 +1,103 @@
 package defpackage;
 
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import java.util.ArrayList;
-public final class mba {
-    public e99 a;
-    public y89 b;
+import android.graphics.RectF;
+import android.view.View;
+import java.util.HashSet;
+import java.util.Random;
+public final class mba extends View implements tjb {
+    public Random a;
+    public Paint b;
     public Paint c;
     public Paint d;
     public Paint e;
-    public Paint f;
-    public Paint g;
-    public dba h;
-    public float i;
-    public float j;
-    public lba k;
-    public iba l;
-    public ArrayList m;
-    public ArrayList n;
-    public Matrix o;
-    public float[] p;
+    public float f;
+    public float h;
+    public float n;
 
-    public static float a(float f, float f2, float f3, float f4, float f5, float f6) {
-        float f7 = f5 - f3;
-        float f8 = f6 - f4;
-        float max = Math.max(Math.min((((f2 - f4) * f8) + ((f - f3) * f7)) / ((f8 * f8) + (f7 * f7)), 1.0f), 0.0f);
-        float f9 = ((f7 * max) + f3) - f;
-        float f10 = ((max * f8) + f4) - f2;
-        return (float) Math.sqrt((f10 * f10) + (f9 * f9));
-    }
-
-    public final void b(Canvas canvas, xka xkaVar, lba lbaVar) {
-        Paint paint;
-        Paint paint2;
-        float width = (lbaVar.d / xkaVar.a) * canvas.getWidth();
-        float height = (lbaVar.e / xkaVar.b) * canvas.getHeight();
-        float L = gm.L(5.0f);
-        boolean z = lbaVar.a;
-        if (z) {
-            paint = this.d;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f;
+        float f2;
+        Paint paint = this.c;
+        Paint paint2 = this.b;
+        super.onDraw(canvas);
+        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
+        float f3 = 3.0f;
+        int measuredWidth = (getMeasuredWidth() / 2) - gl.L(3.0f);
+        int L = gl.L(1.0f) + ((gl.L(1.0f) + measuredWidth) * 7);
+        s33 s33Var = s33.g;
+        float f4 = this.f;
+        if (f4 > 0.4f) {
+            f = (f4 - 0.4f) / 0.6f;
         } else {
-            paint = this.f;
+            f = 0.0f;
         }
-        canvas.drawCircle(width, height, L, paint);
-        float width2 = (lbaVar.d / xkaVar.a) * canvas.getWidth();
-        float height2 = (lbaVar.e / xkaVar.b) * canvas.getHeight();
-        float L2 = gm.L(5.0f);
-        if (z) {
-            paint2 = this.e;
-        } else {
-            paint2 = this.g;
+        float interpolation = s33Var.getInterpolation(f);
+        float f5 = (this.n * interpolation) + ((1.0f - interpolation) * this.h);
+        canvas.save();
+        canvas.translate(0.0f, (-de9.f(4.0f, getMeasuredHeight(), L)) * f5);
+        int i = 0;
+        for (int i2 = 7; i < i2; i2 = 7) {
+            int L2 = ((gl.L(1.0f) + measuredWidth) * i) + gl.L(f3);
+            RectF rectF = gl.P;
+            float f6 = L2;
+            float f7 = L2 + measuredWidth;
+            rectF.set(0.0f, f6, measuredWidth, f7);
+            canvas.drawRoundRect(rectF, gl.L(2.0f), gl.L(2.0f), paint2);
+            rectF.set(gl.L(1.0f) + measuredWidth, f6, de9.w(1.0f, measuredWidth, measuredWidth), f7);
+            canvas.drawRoundRect(rectF, gl.L(2.0f), gl.L(2.0f), paint2);
+            i++;
+            f3 = f3;
         }
-        canvas.drawCircle(width2, height2, L2, paint2);
-    }
-
-    public final void c(float f, float f2, boolean z) {
-        float[] fArr = this.p;
-        fArr[0] = f;
-        fArr[1] = f2;
-        d(z);
-    }
-
-    public final void d(boolean z) {
-        int i;
-        float[] fArr = this.p;
-        dba dbaVar = this.h;
-        if (dbaVar != null) {
-            float f = dbaVar.h;
-            if (f != 0.0f) {
-                float f2 = fArr[0] - dbaVar.b;
-                fArr[0] = f2;
-                fArr[1] = fArr[1] - dbaVar.c;
-                if (z) {
-                    i = -1;
-                } else {
-                    i = 1;
-                }
-                double d = f * i;
-                float cos = (float) ((Math.cos(d) * f2) - (Math.sin(d) * fArr[1]));
-                double sin = Math.sin(d) * fArr[0];
-                dba dbaVar2 = this.h;
-                fArr[0] = cos + dbaVar2.b;
-                fArr[1] = ((float) wi8.d(d, fArr[1], sin)) + dbaVar2.c;
-            }
-        }
-    }
-
-    public final void e() {
-        dba dbaVar;
-        e99 e99Var = this.a;
-        if (e99Var != null && e99Var.getPainting() != null && (dbaVar = this.h) != null) {
-            dbaVar.f = e99Var.getCurrentWeight();
-            hw7 painting = e99Var.getPainting();
-            dba dbaVar2 = this.h;
-            int currentColor = e99Var.getCurrentColor();
-            if (dbaVar2 != null) {
-                if (painting.r != null) {
-                    painting.f.f(new h65(painting, dbaVar2, currentColor, (byte) 20));
-                }
+        float f8 = f3;
+        canvas.restore();
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), gl.L(4.0f), this.d);
+        canvas.translate(0.0f, getMeasuredHeight() - gl.L(4.0f));
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), gl.L(4.0f), this.e);
+        canvas.restore();
+        float measuredHeight = ((getMeasuredHeight() - gl.L(21.0f)) * f5) + gl.L(f8);
+        RectF rectF2 = gl.P;
+        rectF2.set(getMeasuredWidth() - gl.L(f8), measuredHeight, getMeasuredWidth(), gl.L(15.0f) + measuredHeight);
+        canvas.drawRoundRect(rectF2, gl.L(1.5f), gl.L(1.5f), paint);
+        float centerY = rectF2.centerY();
+        float L3 = gl.L(0.5f) + measuredWidth;
+        rectF2.set(L3 - gl.L(8.0f), centerY - gl.L(f8), L3 + gl.L(8.0f), centerY + gl.L(f8));
+        canvas.drawRoundRect(rectF2, gl.L(f8), gl.L(f8), paint);
+        float f9 = this.f + 0.016f;
+        this.f = f9;
+        if (f9 > 1.0f) {
+            this.h = this.n;
+            float abs = Math.abs(this.a.nextInt() % 1001) / 1000.0f;
+            this.n = abs;
+            if (abs > this.h) {
+                f2 = abs + 0.3f;
+                this.n = f2;
             } else {
-                painting.getClass();
+                f2 = abs - 0.3f;
+                this.n = f2;
             }
-            this.m.clear();
-            this.n.clear();
-            this.h = null;
-            d99 d99Var = e99Var.a;
-            if (d99Var != null) {
-                d99Var.B();
-            }
-            e99Var.e.z = true;
+            this.n = Math.max(0.0f, Math.min(1.0f, f2));
+            this.f = 0.0f;
         }
+        invalidate();
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            Paint paint = this.b;
+            int i = bkb.fg;
+            paint.setColor(bm2.o(bkb.w0(null, i, false), 76));
+            this.c.setColor(bkb.w0(null, i, false));
+            invalidate();
+        } catch (Exception e) {
+            fa4.g(e, true);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

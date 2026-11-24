@@ -31,7 +31,7 @@ public class RtpTransceiver {
                     return rtpTransceiverDirection;
                 }
             }
-            u36.j(hg9.j(i, "Uknown native RtpTransceiverDirection type"));
+            w26.j(de9.k(i, "Uknown native RtpTransceiverDirection type"));
             return null;
         }
 
@@ -50,7 +50,7 @@ public class RtpTransceiver {
         if (this.nativeRtpTransceiver != 0) {
             return;
         }
-        dq9.m("RtpTransceiver has been disposed.");
+        sc8.j("RtpTransceiver has been disposed.");
     }
 
     private static native RtpTransceiverDirection nativeCurrentDirection(long j);

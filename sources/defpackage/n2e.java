@@ -1,28 +1,17 @@
 package defpackage;
+public final class n2e implements zn7 {
+    public static final n2e a = new Object();
 
-import java.lang.ref.WeakReference;
-public final class n2e extends WeakReference {
-    public final int a;
-
-    public n2e(Exception exc) {
-        super(exc, null);
-        this.a = System.identityHashCode(exc);
+    static {
+        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)));
     }
 
-    public final boolean equals(Object obj) {
-        if (obj != null && obj.getClass() == n2e.class) {
-            if (this == obj) {
-                return true;
-            }
-            n2e n2eVar = (n2e) obj;
-            if (this.a == n2eVar.a && get() == n2eVar.get()) {
-                return true;
-            }
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.a;
+        throw new ClassCastException();
     }
 }

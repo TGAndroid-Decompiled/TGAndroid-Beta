@@ -1,60 +1,88 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-public final class d48 implements u29 {
-    public final a58 a;
+import android.text.Editable;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class d48 implements s58 {
+    public final byte a;
+    public final HashMap b;
+    public final ArrayList c;
+    public final g48 d;
 
-    public d48(a58 a58Var) {
-        this.a = a58Var;
+    public d48(g48 g48Var, HashMap hashMap, ArrayList arrayList, byte b) {
+        this.a = b;
+        this.d = g48Var;
+        this.b = hashMap;
+        this.c = arrayList;
     }
 
     @Override
-    public final void g(View view, k39 k39Var, boolean z, boolean z2) {
-        a58 a58Var = this.a;
-        if (!z) {
-            a58Var.d0(new eb7(this, view, k39Var, z, z2));
-        } else {
-            ik.X(a58Var.s2, a58Var.r1, 1, new sw1(this, z, k39Var, view));
-        }
-    }
-
-    @Override
-    public final boolean h() {
+    public final boolean c() {
+        byte b = this.a;
         return true;
     }
 
     @Override
-    public final boolean l() {
-        return this.a.G0();
+    public final void e() {
+        byte b = this.a;
     }
 
     @Override
-    public final void m(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
-        a58 a58Var = this.a;
-        Paint paint = a58Var.d2;
-        eq eqVar = a58Var.F1;
-        float f4 = -f2;
-        float f5 = -f3;
-        eqVar.i(f4, f5, a58Var.getMeasuredWidth() + f4, a58Var.getMeasuredHeight() + f5);
-        if (f > 0.0f) {
-            canvas.drawRoundRect(rectF, f, f, (Paint) eqVar.a);
-            canvas.drawRoundRect(rectF, f, f, paint);
-            return;
+    public final void j(Editable editable) {
+        byte b = this.a;
+        g48 g48Var = this.d;
+        switch (b) {
+            case 0:
+                rt3 rt3Var = g48Var.N;
+                g48Var.a = editable;
+                rt3Var.setText(editable);
+                return;
+            default:
+                rt3 rt3Var2 = g48Var.N;
+                g48Var.a = editable;
+                rt3Var2.setText(editable);
+                return;
         }
-        canvas.drawRect(rectF, (Paint) eqVar.a);
-        canvas.drawRect(rectF, paint);
     }
 
     @Override
-    public final void o() {
-        ((fab) this.a.G1).b(false);
+    public final void k() {
+        byte b = this.a;
     }
 
     @Override
-    public final boolean s() {
-        return false;
+    public final void l(int i, boolean z, boolean z2) {
+        byte b = this.a;
+        ArrayList arrayList = this.c;
+        HashMap hashMap = this.b;
+        g48 g48Var = this.d;
+        switch (b) {
+            case 0:
+                g48Var.removeSelfFromStack();
+                if (!z) {
+                    g48Var.Z(hashMap, arrayList, z2, i);
+                    return;
+                }
+                return;
+            default:
+                g48Var.removeSelfFromStack();
+                if (!z) {
+                    g48Var.Z(hashMap, arrayList, z2, i);
+                    return;
+                }
+                return;
+        }
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
+    }
+
+    private final void d() {
+    }
+
+    private final void f() {
     }
 }

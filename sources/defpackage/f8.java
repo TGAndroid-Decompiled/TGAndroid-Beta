@@ -25,13 +25,13 @@ public final class f8 implements View.OnTouchListener {
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
         int i;
-        int i2;
         String M0;
+        int i2;
         int i3;
         int i4;
         int i5;
         int i6;
-        hu5 hu5Var;
+        is5 is5Var;
         byte b = this.a;
         boolean z = false;
         Object obj = this.c;
@@ -42,7 +42,7 @@ public final class f8 implements View.OnTouchListener {
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) obj;
                 if (motionEvent.getAction() == 0) {
                     Drawable backgroundDrawable = actionBarPopupWindow$ActionBarPopupWindowLayout.getBackgroundDrawable();
-                    RectF rectF = gm.P;
+                    RectF rectF = gl.P;
                     rectF.set(backgroundDrawable.getBounds());
                     rectF.offset(actionBarPopupWindow$ActionBarPopupWindowLayout.getX(), actionBarPopupWindow$ActionBarPopupWindowLayout.getY());
                     if (!rectF.contains(motionEvent.getX(), motionEvent.getY())) {
@@ -52,44 +52,44 @@ public final class f8 implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                h30 h30Var = (h30) obj2;
-                j30 j30Var = (j30) obj;
+                h20 h20Var = (h20) obj2;
+                j20 j20Var = (j20) obj;
                 if (motionEvent.getAction() == 0) {
-                    i30 i30Var = h30Var.n;
-                    i30Var.A1.s(i30Var.r1.T(j30Var));
+                    i20 i20Var = h20Var.n;
+                    i20Var.A1.s(i20Var.r1.T(j20Var));
                 }
                 return false;
             case 2:
-                hv3 hv3Var = (hv3) obj2;
-                xc5 xc5Var = (xc5) obj;
+                wt3 wt3Var = (wt3) obj2;
+                za5 za5Var = (za5) obj;
                 if (motionEvent.getAction() == 0) {
-                    kv3 kv3Var = hv3Var.f;
-                    kv3Var.c.s(kv3Var.b.T(xc5Var));
+                    zt3 zt3Var = wt3Var.f;
+                    zt3Var.c.s(zt3Var.b.T(za5Var));
                 }
                 return false;
             case 3:
-                yw3 yw3Var = (yw3) obj2;
-                hx2 e = hx2.e();
-                fv fvVar = yw3Var.b;
-                vw3 vw3Var = yw3Var.f;
-                px3 px3Var = yw3Var.r;
-                int i7 = px3.C1;
-                return e.h(motionEvent, fvVar, (u) obj, vw3Var, px3Var.J0);
+                nv3 nv3Var = (nv3) obj2;
+                xv2 e = xv2.e();
+                fu fuVar = nv3Var.b;
+                kv3 kv3Var = nv3Var.f;
+                ew3 ew3Var = nv3Var.r;
+                int i7 = ew3.C1;
+                return e.h(motionEvent, fuVar, (u) obj, kv3Var, ew3Var.J0);
             case 4:
-                az3 az3Var = (az3) obj2;
-                return hx2.e().h(motionEvent, az3Var.q1, (c72) obj, az3Var.H1, az3Var.J0);
+                qx3 qx3Var = (qx3) obj2;
+                return xv2.e().h(motionEvent, qx3Var.q1, (r52) obj, qx3Var.H1, qx3Var.J0);
             case 5:
-                lh4 lh4Var = (lh4) obj2;
-                hh4 hh4Var = (hh4) obj;
+                kf4 kf4Var = (kf4) obj2;
+                ff4 ff4Var = (ff4) obj;
                 if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = lh4Var.e;
-                    filtersSetupActivity.c.s(filtersSetupActivity.a.T(hh4Var));
+                    FiltersSetupActivity filtersSetupActivity = kf4Var.e;
+                    filtersSetupActivity.c.s(filtersSetupActivity.a.T(ff4Var));
                 }
                 return false;
             case 6:
-                xz7 xz7Var = (xz7) obj2;
+                vx7 vx7Var = (vx7) obj2;
                 Context context = (Context) obj;
-                if (xz7Var.getParentActivity() == null) {
+                if (vx7Var.getParentActivity() == null) {
                     return false;
                 }
                 if (motionEvent.getAction() != 1) {
@@ -103,14 +103,14 @@ public final class f8 implements View.OnTouchListener {
                     EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
                     int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
                     if (intValue == 8) {
-                        i2 = 0;
-                        M0 = jb6.M0(2131747200, null);
+                        M0 = k96.M0(2131747274, null);
                         i3 = 20;
+                        i2 = 0;
                         i = 0;
                     } else {
                         i = -120;
+                        M0 = k96.M0(2131747275, null);
                         i2 = -18;
-                        M0 = jb6.M0(2131747201, null);
                         i3 = 0;
                     }
                     String[] split = editTextBoldCursor.getText().toString().split("\\.");
@@ -126,25 +126,25 @@ public final class f8 implements View.OnTouchListener {
                     if (intValue == 8) {
                         z = true;
                     }
-                    AlertDialog$Builder w = ik.w(context, i, i3, i2, i4, i6, i5, M0, z, new yg(xz7Var, intValue, editTextBoldCursor, (byte) 12));
+                    AlertDialog$Builder w = ij.w(context, i, i3, i2, i4, i6, i5, M0, z, new yf(vx7Var, intValue, editTextBoldCursor, (byte) 11));
                     if (intValue == 8) {
-                        w.g(jb6.M0(2131747198, null), new cz6(xz7Var, editTextBoldCursor, (byte) 9));
+                        w.g(k96.M0(2131747272, null), new dx6(vx7Var, editTextBoldCursor, (byte) 8));
                     }
-                    xz7Var.showDialog(w.a);
+                    vx7Var.showDialog(w.a);
                     return true;
                 } catch (Exception e2) {
-                    fc4.g(e2, true);
+                    fa4.g(e2, true);
                     return true;
                 }
             case 7:
-                q7c q7cVar = (q7c) obj2;
-                s1b s1bVar = (s1b) obj;
-                if (motionEvent.getAction() == 0 && (hu5Var = q7cVar.h3) != null) {
-                    hu5Var.s(q7cVar.T(s1bVar));
+                q5c q5cVar = (q5c) obj2;
+                rza rzaVar = (rza) obj;
+                if (motionEvent.getAction() == 0 && (is5Var = q5cVar.h3) != null) {
+                    is5Var.s(q5cVar.T(rzaVar));
                 }
                 return false;
             default:
-                return ((fdb) obj2).f((s19) obj, motionEvent);
+                return ((dbb) obj2).f((f09) obj, motionEvent);
         }
     }
 }

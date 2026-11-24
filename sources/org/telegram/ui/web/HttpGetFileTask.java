@@ -3,16 +3,16 @@ package org.telegram.ui.web;
 import android.os.AsyncTask;
 import java.io.File;
 public class HttpGetFileTask extends AsyncTask<String, Void, File> {
-    private qac doneCallback;
+    private p8c doneCallback;
     private Exception exception;
     private File file;
     private long max_size = -1;
     private String overrideExt;
-    private qac progressCallback;
+    private p8c progressCallback;
 
-    public HttpGetFileTask(qac qacVar, qac qacVar2) {
-        this.doneCallback = qacVar;
-        this.progressCallback = qacVar2;
+    public HttpGetFileTask(p8c p8cVar, p8c p8cVar2) {
+        this.doneCallback = p8cVar;
+        this.progressCallback = p8cVar2;
     }
 
     public void lambda$doInBackground$0(float f) {
@@ -24,18 +24,18 @@ public class HttpGetFileTask extends AsyncTask<String, Void, File> {
     }
 
     @Override
-    public java.io.File doInBackground(java.lang.String... r20) {
+    public java.io.File doInBackground(java.lang.String... r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.HttpGetFileTask.doInBackground(java.lang.String[]):java.io.File");
     }
 
     @Override
     public void onPostExecute(File file) {
-        qac qacVar = this.doneCallback;
-        if (qacVar != null) {
+        p8c p8cVar = this.doneCallback;
+        if (p8cVar != null) {
             if (this.exception == null) {
-                qacVar.a(file);
+                p8cVar.a(file);
             } else {
-                qacVar.a(null);
+                p8cVar.a(null);
             }
         }
     }

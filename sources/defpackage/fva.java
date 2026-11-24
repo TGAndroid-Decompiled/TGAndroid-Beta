@@ -1,49 +1,27 @@
 package defpackage;
 public final class fva implements Runnable {
-    public final byte a;
-    public final hva b;
+    public final long a;
+    public final int b;
+    public final int c;
+    public final boolean d;
 
-    public fva(hva hvaVar, byte b) {
-        this.a = b;
-        this.b = hvaVar;
+    public fva(int i, int i2, long j, boolean z) {
+        this.a = j;
+        this.b = i;
+        this.c = i2;
+        this.d = z;
     }
 
     @Override
     public final void run() {
-        byte b = this.a;
-        hva hvaVar = this.b;
-        switch (b) {
-            case 0:
-                hvaVar.b();
-                return;
-            case 1:
-                hvaVar.a();
-                return;
-            default:
-                u31 u31Var = hvaVar.d;
-                jva jvaVar = hvaVar.q;
-                fva fvaVar = hvaVar.p;
-                k47 k47Var = hvaVar.b;
-                if (!hvaVar.l) {
-                    hvaVar.l = true;
-                    k47Var.f((int) hvaVar.k, hvaVar.c(), true);
-                    long j = jvaVar.g;
-                    int i = jvaVar.a;
-                    jvaVar.g = j + hvaVar.k;
-                    nm7.f(i).k(224, new Object[0]);
-                    hvaVar.k = 0L;
-                    nm7.f(i).k(104, Long.valueOf(k47.B0(k47Var.k)), Integer.valueOf(k47Var.e1()), k47Var.k.reactions);
-                }
-                if (!hvaVar.m) {
-                    hvaVar.m = true;
-                    hvaVar.f.b = 5000L;
-                    gm.r(fvaVar);
-                    gm.d3(fvaVar, 5000L);
-                    u31Var.k(true);
-                    u31Var.w = fvaVar;
-                }
-                hvaVar.e.b.setText(hvaVar.d());
-                return;
+        long j = this.a;
+        int i = (j > 0L ? 1 : (j == 0L ? 0 : -1));
+        int i2 = this.b;
+        int i3 = this.c;
+        if (i != 0) {
+            ct0.g(i2).p(i3, j);
+        } else {
+            gta.v(i2, this.d).V(i3);
         }
     }
 }

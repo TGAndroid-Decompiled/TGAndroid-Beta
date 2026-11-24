@@ -1,20 +1,17 @@
 package defpackage;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class gpd {
-    public static final int a = 0;
+public final class gpd implements zn7 {
+    public static final gpd a = new Object();
 
     static {
-        gpd.class.getClassLoader();
+        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)));
     }
 
-    public static void a(Parcel parcel, Parcelable parcelable) {
-        if (parcelable == null) {
-            parcel.writeInt(0);
-            return;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        parcel.writeInt(1);
-        parcelable.writeToParcel(parcel, 0);
+        throw new ClassCastException();
     }
 }

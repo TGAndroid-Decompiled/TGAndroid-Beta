@@ -1,175 +1,46 @@
 package defpackage;
+public final class y9d extends aad {
+    public final transient int h;
+    public final transient int n;
+    public final aad r;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.Base64;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import org.json.JSONException;
-import org.json.JSONObject;
-public final class y9d extends b4 {
-    public static final Parcelable.Creator<y9d> CREATOR = new v6d((byte) 21);
-    public static final byte[] b = "WebAuthn PRF\u0000".getBytes(StandardCharsets.UTF_8);
-    public final byte[][] a;
-
-    public y9d(byte[][] bArr) {
-        boolean z;
-        boolean z2;
-        boolean z3;
-        boolean z4;
-        boolean z5;
-        if (bArr != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        ite.b(z);
-        if (1 != ((bArr.length & 1) ^ 1)) {
-            z2 = false;
-        } else {
-            z2 = true;
-        }
-        ite.b(z2);
-        for (int i = 0; i < bArr.length; i += 2) {
-            if (i != 0 && bArr[i] == null) {
-                z3 = false;
-            } else {
-                z3 = true;
-            }
-            ite.b(z3);
-            int i2 = i + 1;
-            if (bArr[i2] != null) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            ite.b(z4);
-            int length = bArr[i2].length;
-            if (length != 32 && length != 64) {
-                z5 = false;
-            } else {
-                z5 = true;
-            }
-            ite.b(z5);
-        }
-        this.a = bArr;
-    }
-
-    public static y9d b(JSONObject jSONObject, boolean z) {
-        ArrayList arrayList = new ArrayList();
-        try {
-            if (jSONObject.has("eval")) {
-                arrayList.add(null);
-                if (z) {
-                    arrayList.add(e(jSONObject.getJSONObject("eval")));
-                } else {
-                    arrayList.add(f(jSONObject.getJSONObject("eval")));
-                }
-            }
-            if (jSONObject.has("evalByCredential")) {
-                JSONObject jSONObject2 = jSONObject.getJSONObject("evalByCredential");
-                Iterator<String> keys = jSONObject2.keys();
-                while (keys.hasNext()) {
-                    String next = keys.next();
-                    arrayList.add(xpd.a(next));
-                    if (z) {
-                        arrayList.add(e(jSONObject2.getJSONObject(next)));
-                    } else {
-                        arrayList.add(f(jSONObject2.getJSONObject(next)));
-                    }
-                }
-            }
-            return new y9d((byte[][]) arrayList.toArray(new byte[0]));
-        } catch (IllegalArgumentException unused) {
-            throw new JSONException("invalid base64url value");
-        }
-    }
-
-    public static JSONObject c(byte[] bArr) {
-        JSONObject jSONObject = new JSONObject();
-        if (bArr.length == 32) {
-            jSONObject.put("first", Base64.encodeToString(bArr, 11));
-            return jSONObject;
-        }
-        jSONObject.put("first", Base64.encodeToString(bArr, 0, 32, 11));
-        jSONObject.put("second", Base64.encodeToString(bArr, 32, 32, 11));
-        return jSONObject;
-    }
-
-    public static byte[] d(byte[] r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.y9d.d(byte[]):byte[]");
-    }
-
-    public static byte[] e(JSONObject jSONObject) {
-        byte[] a = xpd.a(jSONObject.getString("first"));
-        if (a.length == 32) {
-            if (!jSONObject.has("second")) {
-                return a;
-            }
-            byte[] a2 = xpd.a(jSONObject.getString("second"));
-            if (a2.length == 32) {
-                return e4f.a(a, a2);
-            }
-            throw new JSONException("hashed PRF value with wrong length");
-        }
-        throw new JSONException("hashed PRF value with wrong length");
-    }
-
-    public static byte[] f(JSONObject jSONObject) {
-        byte[] d = d(xpd.a(jSONObject.getString("first")));
-        if (!jSONObject.has("second")) {
-            return d;
-        }
-        return e4f.a(d, d(xpd.a(jSONObject.getString("second"))));
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof y9d)) {
-            return false;
-        }
-        return Arrays.deepEquals(this.a, ((y9d) obj).a);
-    }
-
-    public final int hashCode() {
-        byte[][] bArr;
-        int i = 0;
-        for (byte[] bArr2 : this.a) {
-            if (bArr2 != null) {
-                i ^= Arrays.hashCode(new Object[]{bArr2});
-            }
-        }
-        return i;
-    }
-
-    public final String toString() {
-        byte[][] bArr = this.a;
-        try {
-            JSONObject jSONObject = new JSONObject();
-            JSONObject jSONObject2 = null;
-            for (int i = 0; i < bArr.length; i += 2) {
-                if (bArr[i] == null) {
-                    jSONObject.put("eval", c(bArr[i + 1]));
-                } else {
-                    if (jSONObject2 == null) {
-                        jSONObject2 = new JSONObject();
-                        jSONObject.put("evalByCredential", jSONObject2);
-                    }
-                    jSONObject2.put(xpd.b(bArr[i]), c(bArr[i + 1]));
-                }
-            }
-            String obj = jSONObject.toString();
-            return "PrfExtension{" + obj + "}";
-        } catch (JSONException e) {
-            return kt6.o("PrfExtension{Exception:", e.getMessage(), "}");
-        }
+    public y9d(aad aadVar, int i, int i2) {
+        super((byte) 0);
+        this.r = aadVar;
+        this.h = i;
+        this.n = i2;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        mve.d(parcel, 1, this.a);
-        mve.s(parcel, r);
+    public final Object get(int i) {
+        l2f.a(i, this.n);
+        return this.r.get(i + this.h);
+    }
+
+    @Override
+    public final int i() {
+        return this.r.j() + this.h + this.n;
+    }
+
+    @Override
+    public final int j() {
+        return this.r.j() + this.h;
+    }
+
+    @Override
+    public final Object[] k() {
+        return this.r.k();
+    }
+
+    @Override
+    public final aad subList(int i, int i2) {
+        l2f.b(i, i2, this.n);
+        int i3 = this.h;
+        return this.r.subList(i + i3, i2 + i3);
+    }
+
+    @Override
+    public final int size() {
+        return this.n;
     }
 }

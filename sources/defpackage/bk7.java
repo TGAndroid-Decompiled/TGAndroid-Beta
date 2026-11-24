@@ -1,37 +1,29 @@
 package defpackage;
+public final class bk7 implements Runnable {
+    public final byte a;
+    public final kk7 b;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public final class bk7 {
-    public static final Pattern c = Pattern.compile("[ |\t]*([^/^ ^;^,]+/[^ ^;^,]+)", 2);
-    public static final Pattern d = Pattern.compile("[ |\t]*(charset)[ |\t]*=[ |\t]*['|\"]?([^\"^'^;^,]*)['|\"]?", 2);
-    public static final Pattern e = Pattern.compile("[ |\t]*(boundary)[ |\t]*=[ |\t]*['|\"]?([^\"^'^;^,]*)['|\"]?", 2);
-    public final String a;
-    public final String b;
+    public bk7(kk7 kk7Var, byte b) {
+        this.a = b;
+        this.b = kk7Var;
+    }
 
-    public bk7(String str) {
-        String str2;
-        String str3;
-        this.a = str;
-        str2 = "";
-        if (str != null) {
-            Matcher matcher = c.matcher(str);
-            str2 = matcher.find() ? matcher.group(1) : "";
-            Matcher matcher2 = d.matcher(str);
-            if (matcher2.find()) {
-                str3 = matcher2.group(2);
-            } else {
-                str3 = null;
-            }
-            this.b = str3;
-        } else {
-            this.b = "UTF-8";
-        }
-        if ("multipart/form-data".equalsIgnoreCase(str2)) {
-            Matcher matcher3 = e.matcher(str);
-            if (matcher3.find()) {
-                matcher3.group(2);
-            }
+    @Override
+    public final void run() {
+        byte b = this.a;
+        kk7 kk7Var = this.b;
+        switch (b) {
+            case 0:
+            case 2:
+                kk7Var.c();
+                return;
+            case 1:
+                kk7Var.getClass();
+                kk7Var.i = new bk7(kk7Var, (byte) 2);
+                return;
+            default:
+                kk7Var.o();
+                return;
         }
     }
 }

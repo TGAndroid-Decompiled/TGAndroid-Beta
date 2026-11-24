@@ -1,17 +1,14 @@
 package defpackage;
-public final class h7e implements cq7 {
-    public static final h7e a = new Object();
+public enum h7e {
+    DEFAULT(0),
+    UNMETERED_ONLY(1),
+    UNMETERED_OR_DAILY(2),
+    FAST_IF_RADIO_AWAKE(3),
+    NEVER(4);
+    
+    public final byte a;
 
-    static {
-        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)), 3)), 4)), 5)), 6)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    h7e(int i) {
+        this.a = i;
     }
 }

@@ -1,92 +1,86 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.NinePatchDrawable;
-public final class fm0 extends pqd {
-    public NinePatchDrawable d;
-    public long e;
-    public final im0 g;
-    public final ucb a = new Object();
-    public final Paint b = new Paint(1);
-    public final Rect c = new Rect();
-    public final Bitmap[] f = new Bitmap[1];
+import android.view.View;
+import android.view.animation.Interpolator;
+public final class fm0 implements x74 {
+    public final int a;
+    public final x74 b;
+    public final Interpolator c;
+    public final short d;
+    public float e;
+    public boolean f;
+    public y74 h;
 
-    public fm0(im0 im0Var) {
-        this.g = im0Var;
+    public fm0(int i, x74 x74Var, Interpolator interpolator, long j, boolean z) {
+        float f;
+        this.a = i;
+        this.b = x74Var;
+        this.c = interpolator;
+        this.d = (int) j;
+        this.f = z;
+        if (z) {
+            f = 1.0f;
+        } else {
+            f = 0.0f;
+        }
+        this.e = f;
     }
 
     @Override
-    public final void b(Canvas canvas, iz4 iz4Var) {
-        int i;
-        iz4 v = im0.v(iz4Var);
-        im0 im0Var = this.g;
-        if (Color.alpha(im0Var.y) != 255 && (v instanceof kz4)) {
-            i = ((kz4) v).b;
-        } else {
-            i = 0;
-        }
-        c(canvas, on2.l(im0Var.y, i));
+    public final void F(float f, int i) {
+        this.b.F(f, this.a);
     }
 
-    public final void c(Canvas canvas, int i) {
-        long j;
-        int i2;
-        im0 im0Var = this.g;
-        hm0 hm0Var = im0Var.S;
-        if (Color.alpha(i) == 0 && Color.alpha(im0Var.x) == 0) {
-            return;
-        }
-        if (hm0Var.e()) {
-            float f = im0Var.c / 255.0f;
-            int p1 = cmb.p1(f, i);
-            Paint paint = this.b;
-            paint.setColor(p1);
-            int p12 = cmb.p1(f * im0Var.X, im0Var.x);
-            if (Color.alpha(p12) != 0) {
-                paint.setShadowLayer(im0Var.V, 0.0f, im0Var.W, p12);
+    public final void a(boolean z, boolean z2) {
+        float f;
+        if (this.f != z || !z2) {
+            this.f = z;
+            if (z) {
+                f = 1.0f;
             } else {
-                paint.clearShadowLayer();
+                f = 0.0f;
             }
-            canvas.drawPath(hm0Var.k, paint);
-            return;
-        }
-        ucb ucbVar = this.a;
-        ucbVar.a = 0L;
-        ucbVar.b = false;
-        ucbVar.a(i);
-        ucbVar.a(im0Var.x);
-        for (float f2 : hm0Var.b) {
-            ucbVar.c(f2);
-        }
-        ucbVar.c(im0Var.V);
-        ucbVar.c(0.0f);
-        ucbVar.c(im0Var.W);
-        if (ucbVar.b) {
-            j = -1;
-        } else {
-            j = ucbVar.a;
-        }
-        NinePatchDrawable ninePatchDrawable = this.d;
-        Rect rect = this.c;
-        if (ninePatchDrawable == null || this.e != j) {
-            this.e = j;
-            if (Color.alpha(i) == 255) {
-                i2 = i;
-            } else {
-                i2 = 1;
+            y74 y74Var = this.h;
+            if (z2) {
+                if (y74Var == null) {
+                    float f2 = this.e;
+                    y74 y74Var2 = new y74(0, this, this.c, this.d, f2);
+                    this.h = y74Var2;
+                    y74Var = y74Var2;
+                }
+                y74Var.a(f);
+                return;
             }
-            NinePatchDrawable b = ure.b(this.f, i, hm0Var.b, im0Var.V, im0Var.x, im0Var.W, i2);
-            this.d = b;
-            b.getPadding(rect);
+            if (y74Var != null) {
+                y74Var.c(f);
+            }
+            float f3 = this.e;
+            if (f3 != f) {
+                int i = (f3 > f ? 1 : (f3 == f ? 0 : -1));
+                int i2 = this.a;
+                x74 x74Var = this.b;
+                if (i != 0) {
+                    this.e = f;
+                    x74Var.p(i2, f, -1.0f, null);
+                }
+                x74Var.F(f, i2);
+            }
         }
-        NinePatchDrawable ninePatchDrawable2 = this.d;
-        Rect rect2 = hm0Var.m;
-        ninePatchDrawable2.setBounds(rect2.left - rect.left, rect2.top - rect.top, rect2.right + rect.right, rect2.bottom + rect.bottom);
-        ninePatchDrawable2.setAlpha(im0Var.c);
-        ninePatchDrawable2.draw(canvas);
+    }
+
+    @Override
+    public final void p(int i, float f, float f2, y74 y74Var) {
+        if (this.e != f) {
+            this.e = f;
+            this.b.p(this.a, f, -1.0f, null);
+        }
+    }
+
+    public fm0(int i, x74 x74Var, s33 s33Var, long j) {
+        this(i, x74Var, s33Var, j, false);
+    }
+
+    public fm0(long j, View view, Interpolator interpolator) {
+        this(0, new em0(view), interpolator, j, false);
     }
 }

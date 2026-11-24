@@ -1,63 +1,25 @@
 package defpackage;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class b60 extends c60 {
-    public static final Parcelable.Creator<b60> CREATOR = new sje((byte) 25);
-    public final f54 a;
-    public final String b;
-    public final int c;
-
-    public b60(int i, int i2, String str) {
-        try {
-            this.a = f54.a(i);
-            this.b = str;
-            this.c = i2;
-        } catch (e54 e) {
-            throw new IllegalArgumentException(e);
-        }
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof b60)) {
-            return false;
-        }
-        b60 b60Var = (b60) obj;
-        if (!fse.a(this.a, b60Var.a) || !fse.a(this.b, b60Var.b) || !fse.a(Integer.valueOf(this.c), Integer.valueOf(b60Var.c))) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.a, this.b, Integer.valueOf(this.c)});
-    }
-
-    public final String toString() {
-        wm9 wm9Var = new wm9(getClass().getSimpleName(), (byte) 25);
-        String valueOf = String.valueOf((int) this.a.a);
-        wm9 wm9Var2 = new wm9((byte) 24, false);
-        ((wm9) wm9Var.d).d = wm9Var2;
-        wm9Var.d = wm9Var2;
-        wm9Var2.c = valueOf;
-        wm9Var2.b = "errorCode";
-        String str = this.b;
-        if (str != null) {
-            wm9Var.B(str, "errorMessage");
-        }
-        return wm9Var.toString();
-    }
+public final class b60 implements zn7 {
+    public static final b60 a = new Object();
+    public static final w84 b = w84.c("execution");
+    public static final w84 c = w84.c("customAttributes");
+    public static final w84 d = w84.c("internalKeys");
+    public static final w84 e = w84.c("background");
+    public static final w84 f = w84.c("currentProcessDetails");
+    public static final w84 g = w84.c("appProcessDetails");
+    public static final w84 h = w84.c("uiOrientation");
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        byte b = this.a.a;
-        mve.q(parcel, 2, 4);
-        parcel.writeInt(b);
-        mve.l(parcel, 3, this.b);
-        mve.q(parcel, 4, 4);
-        parcel.writeInt(this.c);
-        mve.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        xy2 xy2Var = (xy2) obj;
+        ao7 ao7Var = (ao7) obj2;
+        ao7Var.a(b, ((t80) xy2Var).a);
+        t80 t80Var = (t80) xy2Var;
+        ao7Var.a(c, t80Var.b);
+        ao7Var.a(d, t80Var.c);
+        ao7Var.a(e, t80Var.d);
+        ao7Var.a(f, t80Var.e);
+        ao7Var.a(g, t80Var.f);
+        ao7Var.e(h, t80Var.g);
     }
 }

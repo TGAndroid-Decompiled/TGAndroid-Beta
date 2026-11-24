@@ -1,17 +1,18 @@
 package defpackage;
-public final class gye implements cq7 {
-    public static final gye a = new Object();
 
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)), 5)), 6)), 7)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+import android.os.Build;
+import android.view.View;
+import android.view.Window;
+public abstract class gye {
+    public static void a(Window window) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 35) {
+            tga.t(window);
+        } else if (i >= 30) {
+            tga.s(window);
+        } else {
+            View decorView = window.getDecorView();
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | 1792);
         }
-        throw new ClassCastException();
     }
 }

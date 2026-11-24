@@ -1,46 +1,54 @@
 package defpackage;
-public final class l8d extends t8d {
-    public final transient int r;
-    public final transient int s;
-    public final t8d w;
 
-    public l8d(t8d t8dVar, int i, int i2) {
+import java.util.Iterator;
+import java.util.Map;
+public final class l8d extends r7d {
+    public final transient f7d r;
+    public final transient Object[] s;
+    public final transient int w;
+
+    public l8d(f7d f7dVar, Object[] objArr, int i) {
         super((byte) 2);
-        this.w = t8dVar;
-        this.r = i;
-        this.s = i2;
+        this.r = f7dVar;
+        this.s = objArr;
+        this.w = i;
     }
 
     @Override
-    public final Object get(int i) {
-        m6f.a(i, this.s);
-        return this.w.get(i + this.r);
+    public final boolean contains(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            if (value != null && value.equals(this.r.get(key))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public final int q() {
-        return this.w.s() + this.r + this.s;
+    public final Iterator iterator() {
+        r6d r6dVar = this.n;
+        if (r6dVar == null) {
+            r6dVar = new h8d(this);
+            this.n = r6dVar;
+        }
+        return r6dVar.listIterator(0);
     }
 
     @Override
-    public final int s() {
-        return this.w.s() + this.r;
+    public final int p(Object[] objArr) {
+        r6d r6dVar = this.n;
+        if (r6dVar == null) {
+            r6dVar = new h8d(this);
+            this.n = r6dVar;
+        }
+        return r6dVar.p(objArr);
     }
 
     @Override
     public final int size() {
-        return this.s;
-    }
-
-    @Override
-    public final Object[] v() {
-        return this.w.v();
-    }
-
-    @Override
-    public final t8d subList(int i, int i2) {
-        m6f.c(i, i2, this.s);
-        int i3 = this.r;
-        return this.w.subList(i + i3, i2 + i3);
+        return this.w;
     }
 }

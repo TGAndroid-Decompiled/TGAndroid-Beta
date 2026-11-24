@@ -1,27 +1,37 @@
 package defpackage;
+public final class kp9 {
+    public final long a;
+    public final long b;
+    public final long c;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class kp9 extends tca {
-    public final pp9 U2;
-
-    public kp9(pp9 pp9Var, Context context, String str, String str2) {
-        super(context, null, str, null, false, str2, null, true);
-        this.U2 = pp9Var;
+    public kp9(long j, long j2, long j3) {
+        this.a = j;
+        this.b = j2;
+        this.c = j3;
     }
 
-    @Override
-    public final void L0(vh6 vh6Var, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-        if (!z) {
-            return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        int m = vh6Var.m();
-        UndoView undoView = this.U2.J;
-        if (m == 1) {
-            undoView.m(Integer.valueOf(i), 41, ((TLRPC.Dialog) vh6Var.n(0)).id);
-            return;
+        if (obj == null || kp9.class != obj.getClass()) {
+            return false;
         }
-        undoView.k(0L, 41, Integer.valueOf(i), Integer.valueOf(vh6Var.m()), null, null);
+        kp9 kp9Var = (kp9) obj;
+        if (this.a == kp9Var.a && this.c == kp9Var.c && this.b == kp9Var.b) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        long j = this.a;
+        long j2 = this.b;
+        long j3 = this.c;
+        return (((((int) (j ^ (j >>> 32))) * 31) + ((int) (j2 ^ (j2 >>> 32)))) * 31) + ((int) (j3 ^ (j3 >>> 32)));
+    }
+
+    public final String toString() {
+        return "Entry{firstChunk=" + this.a + ", samplesPerChunk=" + this.b + ", sampleDescriptionIndex=" + this.c + '}';
     }
 }

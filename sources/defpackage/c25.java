@@ -1,75 +1,60 @@
 package defpackage;
 
-import org.telegram.ui.Wallet.c;
-public final class c25 implements Runnable {
+import android.graphics.Point;
+import android.os.SystemClock;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.PopupWindow;
+import org.telegram.ui.LaunchActivity;
+public final class c25 implements ViewTreeObserver.OnGlobalLayoutListener {
     public final byte a;
-    public final jac b;
+    public final Object b;
 
-    public c25(c cVar, jac jacVar) {
-        this.a = (byte) 0;
-        this.b = jacVar;
+    public c25(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final void run() {
+    public final void onGlobalLayout() {
         byte b = this.a;
-        jac jacVar = this.b;
+        Object obj = this.b;
         switch (b) {
             case 0:
-                c.m("getSecretPhrase: password request closed without a result");
-                jacVar.a(null, "WALLET_SEND_CANCELLED");
+                ((jf4) obj).run();
                 return;
             case 1:
-                jacVar.a(null, "CANCELLED");
+                ((mv5) obj).d();
                 return;
             case 2:
-                jacVar.a(null, "EMPTY");
+                String str = LaunchActivity.C1;
+                int measuredHeight = ((View) obj).getMeasuredHeight();
+                StringBuilder m = de9.m(measuredHeight, "height = ", " displayHeight = ");
+                Point point = gl.q;
+                b00.p(point.y, m);
+                int i = (measuredHeight - gl.n) - gl.m;
+                if (i > gl.L(100.0f) && i < point.y && gl.L(100.0f) + i > point.y) {
+                    point.y = i;
+                    if (w01.a) {
+                        b00.p(point.y, new StringBuilder("fix display size y to "));
+                        return;
+                    }
+                    return;
+                }
                 return;
             case 3:
-                jacVar.a(Boolean.FALSE, null);
-                return;
-            case 4:
-                jacVar.a(Boolean.FALSE, "PRODUCT_NOT_FOUND");
-                return;
-            case 5:
-                jacVar.a(Boolean.FALSE, "PRODUCT_NO_ONETIME_OFFER_DETAILS");
-                return;
-            case 6:
-                fc4.b("StarsController.buy onCanceled");
-                gm.c3(new c25(jacVar, (byte) 3));
-                return;
-            case 7:
-                jacVar.a(null, Boolean.FALSE);
-                return;
-            case 8:
-                jacVar.a(null, "Wallet engine is closed");
-                return;
-            case 9:
-                jacVar.a(null, "NO_WALLET_ENGINE");
-                return;
-            case 10:
-                jacVar.a(null, "NO_WALLET_ENGINE");
-                return;
-            case 11:
-                jacVar.a(null, "Recovery phrase is required");
-                return;
-            case 12:
-                jacVar.a(null, "Transaction hash is required");
-                return;
-            case 13:
-                jacVar.a(null, "NO_WALLET_ENGINE");
-                return;
-            case 14:
-                jacVar.a(null, "NO_WALLET_ENGINE");
+                qmb qmbVar = (qmb) obj;
+                qmbVar.R = SystemClock.elapsedRealtime() + 1500;
+                qmbVar.m0.invalidate();
                 return;
             default:
-                jacVar.a(null, "NO_WALLET_ENGINE");
+                lqc lqcVar = (lqc) obj;
+                PopupWindow popupWindow = lqcVar.s;
+                if (popupWindow != null && popupWindow.isShowing()) {
+                    lqcVar.c();
+                    return;
+                }
                 return;
         }
-    }
-
-    public c25(jac jacVar, byte b) {
-        this.a = b;
-        this.b = jacVar;
     }
 }

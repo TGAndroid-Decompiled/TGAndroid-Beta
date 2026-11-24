@@ -1,77 +1,73 @@
 package defpackage;
+public class ps2 implements fv9 {
+    public final long a;
+    public final long b;
+    public final int c;
+    public final long d;
+    public final int e;
+    public final long f;
+    public final boolean g;
+    public final boolean h;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.TLRPC;
-public final class ps2 extends qs2 {
-    public final double d;
-    public final double e;
-    public final double f;
-    public final double g;
-    public final int h;
-    public volatile double i;
-
-    public ps2(String str, double d, double d2, double d3, double d4, int i) {
-        super(str);
-        this.d = d;
-        this.e = d2;
-        this.f = d3;
-        this.g = d4;
-        this.h = i;
-        this.i = d;
-    }
-
-    @Override
-    public final boolean b(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-        if (jSONValue instanceof TLRPC.TL_jsonNumber) {
-            double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
-            if (!Double.isNaN(d) && !Double.isInfinite(d)) {
-                double max = Math.max(this.e, Math.min(this.f, d));
-                if (max != this.i && Math.abs(max - this.i) >= this.g) {
-                    this.i = max;
-                    editor.putLong(e(), Double.doubleToRawLongBits(max));
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean c(SharedPreferences.Editor editor) {
-        if (this.h == 2) {
-            double d = this.i;
-            double d2 = this.d;
-            if (d != d2) {
-                this.i = d2;
-                editor.remove(e());
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void d(SharedPreferences sharedPreferences) {
-        if (!sharedPreferences.contains(e())) {
-            this.i = this.d;
+    public ps2(long j, long j2, int i, int i2, boolean z, boolean z2) {
+        this.a = j;
+        this.b = j2;
+        this.c = i2 == -1 ? 1 : i2;
+        this.e = i;
+        this.g = z;
+        this.h = z2;
+        if (j == -1) {
+            this.d = -1L;
+            this.f = -9223372036854775807L;
             return;
         }
-        try {
-            try {
-                this.i = Math.max(this.e, Math.min(this.f, Double.longBitsToDouble(sharedPreferences.getLong(e(), 0L))));
-            } catch (ClassCastException e) {
-                fc4.g(e, true);
-                this.i = this.d;
-            }
-        } catch (ClassCastException unused) {
-            this.i = Math.max(this.e, Math.min(this.f, sharedPreferences.getFloat(e(), (float) this.d)));
-        }
+        long j3 = j - j2;
+        this.d = j3;
+        this.f = ((Math.max(0L, j3) << 3) * 1000000) / i;
     }
 
-    public final String toString() {
-        return this.a + "=" + this.i;
+    @Override
+    public final boolean c() {
+        if (this.d == -1 && !this.g) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean d() {
+        return this.h;
+    }
+
+    @Override
+    public ev9 f(long j) {
+        long j2 = this.d;
+        int i = (j2 > (-1L) ? 1 : (j2 == (-1L) ? 0 : -1));
+        long j3 = this.b;
+        if (i == 0 && !this.g) {
+            hv9 hv9Var = new hv9(0L, j3);
+            return new ev9(hv9Var, hv9Var);
+        }
+        int i2 = this.e;
+        long j4 = this.c;
+        long j5 = (((i2 * j) / 8000000) / j4) * j4;
+        if (i != 0) {
+            j5 = Math.min(j5, j2 - j4);
+        }
+        long max = Math.max(j5, 0L) + j3;
+        long max2 = ((Math.max(0L, max - j3) << 3) * 1000000) / i2;
+        hv9 hv9Var2 = new hv9(max2, max);
+        if (i != 0 && max2 < j) {
+            long j6 = max + j4;
+            if (j6 < this.a) {
+                return new ev9(hv9Var2, new hv9(((Math.max(0L, j6 - j3) << 3) * 1000000) / i2, j6));
+            }
+        }
+        return new ev9(hv9Var2, hv9Var2);
+    }
+
+    @Override
+    public long h() {
+        return this.f;
     }
 }

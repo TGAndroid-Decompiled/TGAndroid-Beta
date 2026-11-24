@@ -1,16 +1,17 @@
 package defpackage;
-public interface ywd {
-    Object a();
+public final class ywd implements zn7 {
+    public static final ywd a = new Object();
 
-    void b(Object obj);
+    static {
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
+    }
 
-    void c(Object obj, byte[] bArr, int i, int i2, ucd ucdVar);
-
-    void d(xkd xkdVar, xkd xkdVar2);
-
-    int e(xkd xkdVar);
-
-    boolean f(xkd xkdVar, xkd xkdVar2);
-
-    boolean g(Object obj);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

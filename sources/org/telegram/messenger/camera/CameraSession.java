@@ -170,7 +170,7 @@ public class CameraSession {
                 try {
                     parameters = camera.getParameters();
                 } catch (Exception e) {
-                    fc4.g(e, true);
+                    fa4.g(e, true);
                     parameters = null;
                 }
                 updateCameraInfo();
@@ -244,7 +244,7 @@ public class CameraSession {
                 }
             }
         } catch (Throwable th) {
-            fc4.g(th, true);
+            fa4.g(th, true);
         }
     }
 
@@ -271,7 +271,7 @@ public class CameraSession {
         } else if (hasProfile2) {
             mediaRecorder.setProfile(CamcorderProfile.get(this.cameraInfo.cameraId, 0));
         } else {
-            dq9.m("cannot find valid CamcorderProfile");
+            sc8.j("cannot find valid CamcorderProfile");
             return;
         }
         this.isVideo = true;
@@ -289,18 +289,18 @@ public class CameraSession {
                 try {
                     parameters = camera.getParameters();
                 } catch (Exception e) {
-                    fc4.g(e, true);
+                    fa4.g(e, true);
                     parameters = null;
                 }
                 updateCameraInfo();
                 updateRotation();
                 if (parameters != null) {
-                    if (z && e21.a) {
-                        fc4.b("set preview size = " + this.previewSize.getWidth() + " " + this.previewSize.getHeight());
+                    if (z && w01.a) {
+                        fa4.b("set preview size = " + this.previewSize.getWidth() + " " + this.previewSize.getHeight());
                     }
                     parameters.setPreviewSize(this.previewSize.getWidth(), this.previewSize.getHeight());
-                    if (z && e21.a) {
-                        fc4.b("set picture size = " + this.pictureSize.getWidth() + " " + this.pictureSize.getHeight());
+                    if (z && w01.a) {
+                        fa4.b("set picture size = " + this.pictureSize.getWidth() + " " + this.pictureSize.getHeight());
                     }
                     parameters.setPictureSize(this.pictureSize.getWidth(), this.pictureSize.getHeight());
                     parameters.setPictureFormat(this.pictureFormat);
@@ -359,7 +359,7 @@ public class CameraSession {
             }
             return true;
         } catch (Throwable th) {
-            fc4.g(th, true);
+            fa4.g(th, true);
             return false;
         }
     }
@@ -383,7 +383,7 @@ public class CameraSession {
                 try {
                     parameters = camera.getParameters();
                 } catch (Exception e) {
-                    fc4.g(e, true);
+                    fa4.g(e, true);
                     parameters = null;
                 }
                 if (parameters != null) {
@@ -400,12 +400,12 @@ public class CameraSession {
                         camera.setParameters(parameters);
                         camera.autoFocus(this.autoFocusCallback);
                     } catch (Exception e2) {
-                        fc4.g(e2, true);
+                        fa4.g(e2, true);
                     }
                 }
             }
         } catch (Exception e3) {
-            fc4.g(e3, true);
+            fa4.g(e3, true);
         }
     }
 
@@ -525,7 +525,7 @@ public class CameraSession {
                 }
             }
         } catch (Exception e) {
-            fc4.g(e, true);
+            fa4.g(e, true);
         }
     }
 
@@ -559,7 +559,7 @@ public class CameraSession {
             updateCameraInfo();
             return getDisplayOrientation(this.info, true);
         } catch (Exception e) {
-            fc4.g(e, true);
+            fa4.g(e, true);
             return 0;
         }
     }

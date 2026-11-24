@@ -1,6 +1,10 @@
 package defpackage;
 
-import android.view.View;
-public interface vk7 extends uk7 {
-    void l(View view, int i, int i2, int i3, int i4, int i5, int[] iArr);
+import android.app.PendingIntent;
+import androidx.core.graphics.drawable.IconCompat;
+public final class vk7 {
+    public PendingIntent a;
+    public IconCompat b;
+    public int c;
+    public int d;
 }

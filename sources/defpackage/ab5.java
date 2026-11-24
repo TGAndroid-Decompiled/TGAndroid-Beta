@@ -4,42 +4,133 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-public final class ab5 extends FrameLayout {
-    public final d85 a;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+public final class ab5 extends n39 {
+    public final Context c;
+    public final bb5 d;
 
-    public ab5(d85 d85Var, Context context) {
-        super(context);
-        this.a = d85Var;
+    public ab5(bb5 bb5Var, Context context) {
+        this.d = bb5Var;
+        this.c = context;
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        this.a.D0();
+    public final boolean D(s49 s49Var) {
+        int b = s49Var.b();
+        bb5 bb5Var = this.d;
+        if (b != bb5Var.r && b != bb5Var.n && b != bb5Var.s && b != 0) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        boolean z;
-        if (View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2)) {
-            z = true;
-        } else {
-            z = false;
+    public final int b() {
+        bb5 bb5Var = this.d;
+        if (bb5Var.e) {
+            return 0;
         }
-        d85 d85Var = this.a;
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) d85Var.m1.getLayoutParams();
-        if (z) {
-            int L = gm.L(80.0f);
-            marginLayoutParams.leftMargin = L;
-            marginLayoutParams.rightMargin = L;
-        } else {
-            int L2 = gm.L(16.0f);
-            marginLayoutParams.leftMargin = L2;
-            marginLayoutParams.rightMargin = L2;
+        return bb5Var.x;
+    }
+
+    @Override
+    public final int d(int i) {
+        bb5 bb5Var = this.d;
+        if (i != bb5Var.n && i != bb5Var.s && i != bb5Var.r) {
+            if (i != bb5Var.w && i != bb5Var.h) {
+                if (i == 0) {
+                    return 2;
+                }
+                return 0;
+            }
+            return 1;
         }
-        int D = wi8.D(200.0f, View.MeasureSpec.getSize(i), 2);
-        d85Var.l1.setPadding(D, 0, D, 0);
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(370.0f), 1073741824));
-        measureChildWithMargins(d85Var.n1, 0, 0, View.MeasureSpec.makeMeasureSpec(gm.L(64.0f), 1073741824), 0);
+        return 0;
+    }
+
+    @Override
+    public final void t(s49 s49Var, int i) {
+        String str;
+        int i2 = s49Var.f;
+        View view = s49Var.a;
+        bb5 bb5Var = this.d;
+        if (i2 != 0) {
+            if (i2 != 1) {
+                if (i2 == 2) {
+                    vgb vgbVar = (vgb) view;
+                    TLRPC.TL_chatInviteExported tL_chatInviteExported = bb5Var.f;
+                    if (tL_chatInviteExported != null) {
+                        str = tL_chatInviteExported.link;
+                    } else {
+                        str = "error";
+                    }
+                    vgbVar.a.setText(str);
+                    vgbVar.setWillNotDraw(true);
+                    return;
+                }
+                return;
+            }
+            mhb mhbVar = (mhb) view;
+            if (i == bb5Var.w) {
+                mhbVar.setText("");
+                return;
+            } else if (i == bb5Var.h) {
+                TLRPC.Chat K0 = bb5Var.getMessagesController().K0(Long.valueOf(bb5Var.d));
+                if (hc2.T(K0) && !K0.megagroup) {
+                    mhbVar.setText(k96.M0(2131752374, null));
+                    return;
+                } else {
+                    mhbVar.setText(k96.M0(2131748719, null));
+                    return;
+                }
+            } else {
+                return;
+            }
+        }
+        uib uibVar = (uib) view;
+        if (i == bb5Var.n) {
+            uibVar.b(k96.M0(2131751750, null), true);
+        } else if (i == bb5Var.s) {
+            uibVar.b(k96.M0(2131745266, null), false);
+        } else if (i == bb5Var.r) {
+            uibVar.b(k96.M0(2131745830, null), true);
+        }
+    }
+
+    @Override
+    public final s49 x(ViewGroup viewGroup, int i) {
+        FrameLayout frameLayout;
+        int i2;
+        Context context = this.c;
+        if (i != 0) {
+            if (i != 1) {
+                ?? frameLayout2 = new FrameLayout(context);
+                TextView textView = new TextView(context);
+                frameLayout2.a = textView;
+                zkb.X(textView, bkb.F6, null);
+                textView.setTextSize(1, 16.0f);
+                int i3 = 3;
+                if (k96.a0) {
+                    i2 = 5;
+                } else {
+                    i2 = 3;
+                }
+                textView.setGravity(i2 | 16);
+                if (k96.a0) {
+                    i3 = 5;
+                }
+                frameLayout2.addView(textView, nme.d(-1, -2.0f, i3 | 48, 23.0f, 10.0f, 23.0f, 10.0f));
+                zkb.h(bkb.c6, null, frameLayout2);
+                frameLayout = frameLayout2;
+            } else {
+                frameLayout = new mhb(context);
+            }
+        } else {
+            FrameLayout uibVar = new uib(context);
+            zkb.h(bkb.c6, null, uibVar);
+            frameLayout = uibVar;
+        }
+        return new s49(frameLayout);
     }
 }

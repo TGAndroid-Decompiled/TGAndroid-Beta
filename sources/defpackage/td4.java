@@ -1,421 +1,417 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-public abstract class td4 {
-    public static float A(float f, float f2, float f3, float f4) {
-        return ((f - f2) * f3) + f4;
-    }
+import android.graphics.Bitmap;
+import android.graphics.SurfaceTexture;
+import android.opengl.GLES20;
+import android.opengl.Matrix;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+import java.util.Locale;
+import javax.microedition.khronos.egl.EGL10;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.egl.EGLDisplay;
+import javax.microedition.khronos.egl.EGLSurface;
+public final class td4 extends do3 {
+    public final float[] E;
+    public final int[] F;
+    public boolean G;
+    public boolean H;
+    public final sl0 I;
+    public xl0 J;
+    public final wd4 K;
+    public int L;
+    public int M;
+    public int N;
+    public int O;
+    public int P;
+    public int Q;
+    public int R;
+    public int S;
+    public int T;
+    public boolean U;
+    public int V;
+    public int W;
+    public int X;
+    public int Y;
+    public final FloatBuffer Z;
+    public final SurfaceTexture a;
+    public boolean a0;
+    public EGL10 b;
+    public long b0;
+    public EGLDisplay c;
+    public final hza c0;
+    public EGLContext d;
+    public boolean d0;
+    public EGLSurface e;
+    public final Runnable e0;
+    public boolean f;
+    public final boolean h;
+    public volatile int n;
+    public volatile int r;
+    public Bitmap s;
+    public final int w;
+    public SurfaceTexture x;
+    public boolean y;
 
-    public static String B(int i) {
-        if (i != 1) {
-            if (i != 2) {
-                if (i != 3) {
-                    if (i != 4) {
-                        return "null";
-                    }
-                    return "FROSTED_FILTERED";
-                }
-                return "FROSTED_GLASS";
-            }
-            return "GLASS";
+    public td4(SurfaceTexture surfaceTexture, Bitmap bitmap, int i, boolean z, boolean z2, sl0 sl0Var, int i2, int i3) {
+        super("PhotoFilterGLThread", false);
+        boolean z3;
+        this.E = new float[16];
+        this.F = new int[1];
+        this.e0 = new rd4(this, (byte) 1);
+        this.a = surfaceTexture;
+        this.n = i2;
+        this.r = i3;
+        this.s = bitmap;
+        this.w = i;
+        this.I = sl0Var;
+        if (sl0Var != null) {
+            z3 = true;
+        } else {
+            z3 = false;
         }
-        return "BLURRED";
+        this.H = z3;
+        if (z3) {
+            xl0 xl0Var = new xl0();
+            this.J = xl0Var;
+            sl0 sl0Var2 = xl0Var.t;
+            if (sl0Var2 != null && sl0Var2.m != null) {
+                sl0Var2.m = null;
+            }
+            xl0Var.t = sl0Var;
+            if (sl0Var != null && sl0Var.m != xl0Var) {
+                sl0Var.m = xl0Var;
+                sl0Var.d();
+            }
+        }
+        this.h = false;
+        wd4 wd4Var = new wd4(false, null);
+        this.K = wd4Var;
+        wd4Var.i1 = z2;
+        float[] fArr = {0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
+        if (z) {
+            fArr[2] = 0.0f;
+            fArr[0] = 1.0f;
+            fArr[6] = 0.0f;
+            fArr[4] = 1.0f;
+        }
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
+        allocateDirect.order(ByteOrder.nativeOrder());
+        FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
+        this.Z = asFloatBuffer;
+        asFloatBuffer.put(fArr);
+        asFloatBuffer.position(0);
+        start();
     }
 
-    public static void a(au5 au5Var, boolean z) {
+    public final void a() {
+        if (!this.d.equals(this.b.eglGetCurrentContext()) || !this.e.equals(this.b.eglGetCurrentSurface(12377))) {
+            EGL10 egl10 = this.b;
+            EGLDisplay eGLDisplay = this.c;
+            EGLSurface eGLSurface = this.e;
+            if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.d) && w01.a) {
+                b00.v(this.b, new StringBuilder("eglMakeCurrent failed "));
+            }
+        }
+    }
+
+    public final void b(boolean z, boolean z2, boolean z3) {
+        postRunnable(new sd4(this, z, z3, z2, (byte) 0));
+    }
+
+    public final void c(vd4 vd4Var) {
+        postRunnable(new vc4(this, vd4Var, (byte) 5));
+    }
+
+    public final void d() {
         int i;
-        View view = (View) au5Var;
-        if (z) {
-            i = 4;
+        int i2;
+        if (!this.a0 && (i = this.X) > 0 && (i2 = this.Y) > 0) {
+            this.K.i(this.s, this.w, this.F[0], i, i2);
+            this.a0 = true;
+            wd4 wd4Var = this.K;
+            this.V = wd4Var.X0;
+            this.W = wd4Var.Y0;
+        }
+    }
+
+    public final boolean e(e4b e4bVar) {
+        int i;
+        String str;
+        int h;
+        int h2;
+        if (e4bVar != null) {
+            i = e4bVar.a();
         } else {
             i = 0;
         }
-        view.setVisibility(i);
-    }
-
-    public static int b(int i) {
-        int[] G = wi8.G(126);
-        if (i >= 0 && i < G.length) {
-            return G[i];
+        if (i == 1) {
+            str = gl.v2(null, 2131624046);
+        } else if (i == 2) {
+            str = gl.v2(null, 2131624047);
+        } else {
+            str = "";
         }
-        return 0;
-    }
-
-    public static final boolean c(int i) {
-        if (i != 3 && i != 4) {
+        if (i != 0) {
+            h = wd4.h(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;}");
+            h2 = wd4.h(35632, String.format(Locale.US, "%1$s\nvarying highp vec2 vTextureCoord;void main() {gl_FragColor = TEX(vTextureCoord);}", str));
+        } else {
+            h = wd4.h(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;}");
+            h2 = wd4.h(35632, "#extension GL_OES_EGL_image_external : require\n" + "varying highp vec2 vTextureCoord;uniform sampler2D sTexture;void main() {gl_FragColor = texture2D(sTexture, vTextureCoord);}".replace("sampler2D", "samplerExternalOES"));
+        }
+        if (h == 0 || h2 == 0) {
             return false;
+        }
+        int i2 = this.P;
+        if (i2 != 0) {
+            GLES20.glDeleteProgram(i2);
+        }
+        int glCreateProgram = GLES20.glCreateProgram();
+        this.P = glCreateProgram;
+        GLES20.glAttachShader(glCreateProgram, h);
+        GLES20.glAttachShader(this.P, h2);
+        GLES20.glBindAttribLocation(this.P, 0, "position");
+        GLES20.glBindAttribLocation(this.P, 1, "inputTexCoord");
+        GLES20.glLinkProgram(this.P);
+        int[] iArr = new int[1];
+        GLES20.glGetProgramiv(this.P, 35714, iArr, 0);
+        int i3 = iArr[0];
+        int i4 = this.P;
+        if (i3 == 0) {
+            GLES20.glDeleteProgram(i4);
+            this.P = 0;
+        } else {
+            this.Q = GLES20.glGetAttribLocation(i4, "position");
+            this.S = GLES20.glGetAttribLocation(this.P, "inputTexCoord");
+            this.T = GLES20.glGetUniformLocation(this.P, "sourceImage");
+            this.R = GLES20.glGetUniformLocation(this.P, "videoMatrix");
         }
         return true;
     }
 
-    public static String d(int i) {
-        switch (i) {
-            case 1:
-                return "Blues";
-            case 2:
-                return "Classic Rock";
-            case 3:
-                return "Country";
-            case 4:
-                return "Dance";
-            case 5:
-                return "Disco";
-            case 6:
-                return "Funk";
-            case 7:
-                return "Grunge";
-            case 8:
-                return "Hip-Hop";
-            case 9:
-                return "Jazz";
-            case 10:
-                return "Metal";
-            case 11:
-                return "New Age";
-            case 12:
-                return "Oldies";
-            case 13:
-                return "Other";
-            case 14:
-                return "Pop";
-            case 15:
-                return "R&B";
-            case 16:
-                return "Rap";
-            case 17:
-                return "Reggae";
-            case 18:
-                return "Rock";
-            case 19:
-                return "Techno";
-            case 20:
-                return "Industrial";
-            case 21:
-                return "Alternative";
-            case 22:
-                return "Ska";
-            case 23:
-                return "Death Metal";
-            case 24:
-                return "Pranks";
-            case 25:
-                return "Soundtrack";
-            case 26:
-                return "Euro-Techno";
-            case 27:
-                return "Ambient";
-            case 28:
-                return "Trip-Hop";
-            case 29:
-                return "Vocal";
-            case 30:
-                return "Jazz+Funk";
-            case 31:
-                return "Fusion";
-            case 32:
-                return "Trance";
-            case 33:
-                return "Classical";
-            case 34:
-                return "Instrumental";
-            case 35:
-                return "Acid";
-            case 36:
-                return "House";
-            case 37:
-                return "Game";
-            case 38:
-                return "Sound Clip";
-            case 39:
-                return "Gospel";
-            case 40:
-                return "Noise";
-            case 41:
-                return "AlternRock";
-            case 42:
-                return "Bass";
-            case 43:
-                return "Soul";
-            case 44:
-                return "Punk";
-            case 45:
-                return "Space";
-            case 46:
-                return "Meditative";
-            case 47:
-                return "Instrumental Pop";
-            case 48:
-                return "Instrumental Rock";
-            case 49:
-                return "Ethnic";
-            case 50:
-                return "Gothic";
-            case 51:
-                return "Darkwave";
-            case 52:
-                return "Techno-Industrial";
-            case 53:
-                return "Electronic";
-            case 54:
-                return "Pop-Folk";
-            case 55:
-                return "Eurodance";
-            case 56:
-                return "Dream";
-            case 57:
-                return "Southern Rock";
-            case 58:
-                return "Comedy";
-            case 59:
-                return "Cult";
-            case 60:
-                return "Gangsta";
-            case 61:
-                return "Top 40";
-            case 62:
-                return "Christian Rap";
-            case 63:
-                return "Pop/Funk";
-            case 64:
-                return "Jungle";
-            case 65:
-                return "Native American";
-            case 66:
-                return "Cabaret";
-            case 67:
-                return "New Wave";
-            case 68:
-                return "Psychadelic";
-            case 69:
-                return "Rave";
-            case 70:
-                return "Showtunes";
-            case 71:
-                return "Trailer";
-            case 72:
-                return "Lo-Fi";
-            case 73:
-                return "Tribal";
-            case 74:
-                return "Acid Punk";
-            case 75:
-                return "Acid Jazz";
-            case 76:
-                return "Polka";
-            case 77:
-                return "Retro";
-            case 78:
-                return "Musical";
-            case 79:
-                return "Rock & Roll";
-            case 80:
-                return "Hard Rock";
-            case 81:
-                return "Folk";
-            case 82:
-                return "Folk-Rock";
-            case 83:
-                return "National Folk";
-            case 84:
-                return "Swing";
-            case 85:
-                return "Fast Fusion";
-            case 86:
-                return "Bebop";
-            case 87:
-                return "Latin";
-            case 88:
-                return "Revival";
-            case 89:
-                return "Celtic";
-            case 90:
-                return "Bluegrass";
-            case 91:
-                return "Avantgarde";
-            case 92:
-                return "Gothic Rock";
-            case 93:
-                return "Progressive Rock";
-            case 94:
-                return "Psychedelic Rock";
-            case 95:
-                return "Symphonic Rock";
-            case 96:
-                return "Slow Rock";
-            case 97:
-                return "Big Band";
-            case 98:
-                return "Chorus";
-            case 99:
-                return "Easy Listening";
-            case 100:
-                return "Acoustic";
-            case 101:
-                return "Humour";
-            case 102:
-                return "Speech";
-            case 103:
-                return "Chanson";
-            case 104:
-                return "Opera";
-            case 105:
-                return "Chamber Music";
-            case 106:
-                return "Sonata";
-            case 107:
-                return "Symphony";
-            case 108:
-                return "Booty Bass";
-            case 109:
-                return "Primus";
-            case 110:
-                return "Porn Groove";
-            case 111:
-                return "Satire";
-            case 112:
-                return "Slow Jam";
-            case 113:
-                return "Club";
-            case 114:
-                return "Tango";
-            case 115:
-                return "Samba";
-            case 116:
-                return "Folklore";
-            case 117:
-                return "Ballad";
-            case 118:
-                return "Power Ballad";
-            case 119:
-                return "Rhythmic Soul";
-            case 120:
-                return "Freestyle";
-            case 121:
-                return "Duet";
-            case 122:
-                return "Punk Rock";
-            case 123:
-                return "Drum Solo";
-            case 124:
-                return "A capella";
-            case 125:
-                return "Euro-House";
-            case 126:
-                return "Dance Hall";
-            default:
-                throw null;
+    public final void f(int i, int i2) {
+        if (this.J == null) {
+            return;
+        }
+        postRunnable(new qd4(this, i, i2, (byte) 2));
+    }
+
+    public final void finish() {
+        this.s = null;
+        if (this.e != null) {
+            EGL10 egl10 = this.b;
+            EGLDisplay eGLDisplay = this.c;
+            EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
+            egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
+            this.b.eglDestroySurface(this.c, this.e);
+            this.e = null;
+        }
+        EGLContext eGLContext = this.d;
+        if (eGLContext != null) {
+            sl0 sl0Var = this.I;
+            if (sl0Var != null) {
+                synchronized (sl0Var.f) {
+                    if (sl0Var.g == eGLContext) {
+                        sl0Var.g = null;
+                    }
+                }
+            }
+            this.b.eglDestroyContext(this.c, this.d);
+            this.d = null;
+        }
+        EGLDisplay eGLDisplay2 = this.c;
+        if (eGLDisplay2 != null) {
+            this.b.eglTerminate(eGLDisplay2);
+            this.c = null;
+        }
+        SurfaceTexture surfaceTexture = this.a;
+        if (surfaceTexture != null) {
+            surfaceTexture.release();
         }
     }
 
-    public static float e(float f, float f2, float f3, float f4) {
-        return ((f + f2) / f3) + f4;
+    @Override
+    public final void run() {
+        EGLContext eGLContext;
+        int i;
+        int i2;
+        xl0 xl0Var;
+        EGL10 egl10 = (EGL10) EGLContext.getEGL();
+        this.b = egl10;
+        EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
+        this.c = eglGetDisplay;
+        boolean z = false;
+        if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+            if (w01.a) {
+                b00.v(this.b, new StringBuilder("eglGetDisplay failed "));
+            }
+            finish();
+        } else if (!this.b.eglInitialize(eglGetDisplay, new int[2])) {
+            if (w01.a) {
+                b00.v(this.b, new StringBuilder("eglInitialize failed "));
+            }
+            finish();
+        } else {
+            int[] iArr = new int[1];
+            EGLConfig[] eGLConfigArr = new EGLConfig[1];
+            if (!this.b.eglChooseConfig(this.c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
+                if (w01.a) {
+                    b00.v(this.b, new StringBuilder("eglChooseConfig failed "));
+                }
+                finish();
+            } else if (iArr[0] > 0) {
+                EGLConfig eGLConfig = eGLConfigArr[0];
+                int[] iArr2 = {12440, 2, 12344};
+                sl0 sl0Var = this.I;
+                if (sl0Var != null) {
+                    synchronized (sl0Var.f) {
+                        eGLContext = sl0Var.g;
+                        if (eGLContext == null) {
+                            eGLContext = EGL10.EGL_NO_CONTEXT;
+                        }
+                    }
+                } else {
+                    eGLContext = EGL10.EGL_NO_CONTEXT;
+                }
+                EGLContext eglCreateContext = this.b.eglCreateContext(this.c, eGLConfig, eGLContext, iArr2);
+                this.d = eglCreateContext;
+                if (eglCreateContext == null) {
+                    if (w01.a) {
+                        b00.v(this.b, new StringBuilder("eglCreateContext failed "));
+                    }
+                    finish();
+                } else {
+                    sl0 sl0Var2 = this.I;
+                    if (sl0Var2 != null) {
+                        sl0Var2.a(eglCreateContext);
+                    }
+                    SurfaceTexture surfaceTexture = this.a;
+                    if (surfaceTexture != null) {
+                        EGLSurface eglCreateWindowSurface = this.b.eglCreateWindowSurface(this.c, eGLConfig, surfaceTexture, null);
+                        this.e = eglCreateWindowSurface;
+                        if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
+                            if (!this.b.eglMakeCurrent(this.c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
+                                if (w01.a) {
+                                    b00.v(this.b, new StringBuilder("eglMakeCurrent failed "));
+                                }
+                                finish();
+                            } else {
+                                int h = wd4.h(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;}");
+                                int h2 = wd4.h(35632, "varying highp vec2 vTextureCoord;uniform sampler2D sTexture;void main() {gl_FragColor = texture2D(sTexture, vTextureCoord);}");
+                                if (h != 0 && h2 != 0) {
+                                    int glCreateProgram = GLES20.glCreateProgram();
+                                    this.L = glCreateProgram;
+                                    GLES20.glAttachShader(glCreateProgram, h);
+                                    GLES20.glAttachShader(this.L, h2);
+                                    GLES20.glBindAttribLocation(this.L, 0, "position");
+                                    GLES20.glBindAttribLocation(this.L, 1, "inputTexCoord");
+                                    GLES20.glLinkProgram(this.L);
+                                    int[] iArr3 = new int[1];
+                                    GLES20.glGetProgramiv(this.L, 35714, iArr3, 0);
+                                    int i3 = iArr3[0];
+                                    int i4 = this.L;
+                                    if (i3 == 0) {
+                                        GLES20.glDeleteProgram(i4);
+                                        this.L = 0;
+                                    } else {
+                                        this.M = GLES20.glGetAttribLocation(i4, "position");
+                                        this.N = GLES20.glGetAttribLocation(this.L, "inputTexCoord");
+                                        this.O = GLES20.glGetUniformLocation(this.L, "sourceImage");
+                                    }
+                                    if (e(null)) {
+                                        Bitmap bitmap = this.s;
+                                        if (bitmap != null) {
+                                            i = bitmap.getWidth();
+                                            i2 = this.s.getHeight();
+                                        } else {
+                                            i = this.X;
+                                            i2 = this.Y;
+                                        }
+                                        int i5 = i;
+                                        int i6 = i2;
+                                        if (this.c0 != null) {
+                                            GLES20.glGenTextures(1, this.F, 0);
+                                            Matrix.setIdentityM(this.E, 0);
+                                            SurfaceTexture surfaceTexture2 = new SurfaceTexture(this.F[0]);
+                                            this.x = surfaceTexture2;
+                                            surfaceTexture2.setOnFrameAvailableListener(new ha1(this, (byte) 1));
+                                            GLES20.glBindTexture(36197, this.F[0]);
+                                            GLES20.glTexParameterf(36197, 10240, 9729.0f);
+                                            GLES20.glTexParameterf(36197, 10241, 9728.0f);
+                                            GLES20.glTexParameteri(36197, 10242, 33071);
+                                            GLES20.glTexParameteri(36197, 10243, 33071);
+                                            gl.c3(new rd4(this, (byte) 2));
+                                        }
+                                        if (this.H && (xl0Var = this.J) != null && !xl0Var.b(this.n / this.r, this.I.a ? 1 : 0)) {
+                                            fa4.d("Failed to create uiBlurFramebuffer");
+                                            this.H = false;
+                                            this.J = null;
+                                        }
+                                        if (!this.K.a()) {
+                                            finish();
+                                        } else {
+                                            if (i5 != 0 && i6 != 0) {
+                                                this.K.i(this.s, this.w, this.F[0], i5, i6);
+                                                this.a0 = true;
+                                                wd4 wd4Var = this.K;
+                                                this.V = wd4Var.X0;
+                                                this.W = wd4Var.Y0;
+                                            }
+                                            z = true;
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if (w01.a) {
+                                b00.v(this.b, new StringBuilder("createWindowSurface failed "));
+                            }
+                            finish();
+                        }
+                    } else {
+                        finish();
+                    }
+                }
+            } else {
+                if (w01.a) {
+                    fa4.d("eglConfig not initialized");
+                }
+                finish();
+            }
+        }
+        this.f = z;
+        super.run();
     }
 
-    public static int f(int i, int i2, int i3, int i4) {
-        return ((i - i2) - i3) - i4;
-    }
-
-    public static int g(int i, int i2, int i3, ArrayList arrayList) {
-        arrayList.add(Integer.valueOf(i));
-        return i2 + i3;
-    }
-
-    public static int h(tk4 tk4Var, int i) {
-        return tk4Var.c(tk4Var.getMeasuredWidth()) + i;
-    }
-
-    public static int i(Float f, float f2) {
-        return gm.L(f.floatValue() * f2);
-    }
-
-    public static Bundle j(int i, String str, String str2, boolean z) {
-        Bundle bundle = new Bundle();
-        bundle.putBoolean(str, z);
-        bundle.putInt(str2, i);
-        return bundle;
-    }
-
-    public static ImageView k(Context context, int i) {
-        ImageView imageView = new ImageView(context);
-        imageView.setImageResource(i);
-        return imageView;
-    }
-
-    public static LinearLayout l(Activity activity, int i) {
-        LinearLayout linearLayout = new LinearLayout(activity);
-        linearLayout.setOrientation(i);
-        return linearLayout;
-    }
-
-    public static Object m(int i, ArrayList arrayList) {
-        return arrayList.remove(arrayList.size() - i);
-    }
-
-    public static String n(int i, int i2, String str) {
-        return i + str + i2;
-    }
-
-    public static String o(int i, String str, String str2) {
-        return str + i + str2;
-    }
-
-    public static String p(String str, String str2) {
-        return str + str2;
-    }
-
-    public static String q(String str, String str2, String str3) {
-        return str + str2 + str3;
-    }
-
-    public static String r(String str, String str2, String str3, String str4) {
-        return str + str2 + str3 + str4;
-    }
-
-    public static StringBuilder s(String str) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(str);
-        return sb;
-    }
-
-    public static ArrayList t(vh6 vh6Var, long j) {
-        ArrayList arrayList = new ArrayList();
-        vh6Var.k(arrayList, j);
-        return arrayList;
-    }
-
-    public static ArrayList u(k47 k47Var) {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(k47Var);
-        return arrayList;
-    }
-
-    public static void v(float f, int i, int i2, TextView textView, String str) {
-        textView.setText(jb6.M0(i, str));
-        textView.setTextSize(i2, f);
-    }
-
-    public static void w(int i, ArrayList arrayList) {
-        arrayList.remove(arrayList.size() - i);
-    }
-
-    public static void x(TextView textView, int i, ylb ylbVar, int i2, float f) {
-        anb.X(textView, i, ylbVar);
-        textView.setTextSize(i2, f);
-        textView.setTypeface(gm.o());
-    }
-
-    public static float y(float f, float f2, float f3, float f4) {
-        return f4 - ((f - f2) / f3);
-    }
-
-    public static float z(float f, float f2, float f3, float f4) {
-        return (f - f2) * f3 * f4;
+    public td4(SurfaceTexture surfaceTexture, hza hzaVar, e4b e4bVar, sl0 sl0Var, int i, int i2) {
+        super("VideoFilterGLThread", false);
+        this.E = new float[16];
+        this.F = new int[1];
+        this.e0 = new rd4(this, (byte) 1);
+        this.a = surfaceTexture;
+        this.n = i;
+        this.r = i2;
+        this.c0 = hzaVar;
+        this.I = sl0Var;
+        boolean z = sl0Var != null;
+        this.H = z;
+        if (z) {
+            xl0 xl0Var = new xl0();
+            this.J = xl0Var;
+            sl0 sl0Var2 = xl0Var.t;
+            if (sl0Var2 != null && sl0Var2.m != null) {
+                sl0Var2.m = null;
+            }
+            xl0Var.t = sl0Var;
+            if (sl0Var != null && sl0Var.m != xl0Var) {
+                sl0Var.m = xl0Var;
+                sl0Var.d();
+            }
+        }
+        this.h = true;
+        this.K = new wd4(true, e4bVar);
+        start();
     }
 }

@@ -1,16 +1,17 @@
 package defpackage;
+public final class ire implements zn7 {
+    public static final ire a = new Object();
 
-import java.io.IOException;
-public class ire extends IOException {
-    public static ire a() {
-        return new IOException("While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.");
+    static {
+        yjb.y(yjb.p(gid.class, new bgd(1)));
     }
 
-    public static ire b() {
-        return new IOException("CodedInputStream encountered an embedded string or message which claimed to have negative size.");
-    }
-
-    public static ire c() {
-        return new IOException("Protocol message had invalid UTF-8.");
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

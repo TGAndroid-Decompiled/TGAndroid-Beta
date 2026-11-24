@@ -1,15 +1,15 @@
 package defpackage;
-public final class gmd {
-    public static final gmd a;
-    public static final gmd[] b;
 
-    static {
-        ?? r0 = new Enum("DEFAULT", 0);
-        a = r0;
-        b = new gmd[]{r0, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
-    }
-
-    public static gmd[] values() {
-        return (gmd[]) b.clone();
+import android.view.View;
+import android.view.ViewParent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.TextView;
+public abstract class gmd {
+    public static void a(EditorInfo editorInfo, InputConnection inputConnection, TextView textView) {
+        if (inputConnection != null && editorInfo.hintText == null) {
+            for (ViewParent parent = textView.getParent(); parent instanceof View; parent = parent.getParent()) {
+            }
+        }
     }
 }

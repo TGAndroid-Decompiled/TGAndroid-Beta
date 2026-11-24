@@ -1,37 +1,44 @@
 package defpackage;
+public final class icc {
+    public static final icc d = new icc(0, 0);
+    public static final String e;
+    public static final String f;
+    public static final String g;
+    public final int a;
+    public final int b;
+    public final float c;
 
-import org.telegram.messenger.voip.VideoCapturerDevice;
-public final class icc implements Runnable {
-    public final byte a = 0;
-    public final VideoCapturerDevice b;
-    public final long c;
-    public final int d;
-
-    public icc(VideoCapturerDevice videoCapturerDevice, int i, long j) {
-        this.b = videoCapturerDevice;
-        this.d = i;
-        this.c = j;
+    static {
+        String str = g8c.a;
+        e = "0";
+        f = "1";
+        g = "3";
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        int i = this.d;
-        long j = this.c;
-        VideoCapturerDevice videoCapturerDevice = this.b;
-        switch (b) {
-            case 0:
-                VideoCapturerDevice.b(videoCapturerDevice, i, j);
-                return;
-            default:
-                VideoCapturerDevice.h(videoCapturerDevice, i, j);
-                return;
+    public icc(float f2, int i, int i2) {
+        this.a = i;
+        this.b = i2;
+        this.c = f2;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj instanceof icc) {
+            icc iccVar = (icc) obj;
+            if (this.a == iccVar.a && this.b == iccVar.b && this.c == iccVar.c) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public icc(VideoCapturerDevice videoCapturerDevice, long j, int i) {
-        this.b = videoCapturerDevice;
-        this.c = j;
-        this.d = i;
+    public final int hashCode() {
+        return Float.floatToRawIntBits(this.c) + ((((217 + this.a) * 31) + this.b) * 31);
+    }
+
+    public icc(int i, int i2) {
+        this(1.0f, i, i2);
     }
 }

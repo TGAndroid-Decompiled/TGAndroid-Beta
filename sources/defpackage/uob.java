@@ -1,274 +1,128 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.view.MotionEvent;
-import android.widget.LinearLayout;
-import org.telegram.ui.ActionBar.d;
-public class uob extends LinearLayout {
-    public final zcb E;
-    public Drawable F;
-    public boolean G;
-    public final ln H;
-    public ve0 a;
-    public ve0 b;
-    public Drawable c;
-    public Drawable d;
-    public ColorDrawable e;
-    public boolean f;
-    public boolean h;
-    public final rc2[] n;
-    public final Drawable r;
-    public final tk5 s;
-    public final int w;
-    public d x;
-    public int y;
+import java.math.RoundingMode;
+public final class uob {
+    public long a;
+    public long b;
+    public long c;
+    public final ThreadLocal d = new ThreadLocal();
 
-    public uob(android.content.Context r25, defpackage.tk5 r26, int r27, long r28, defpackage.ylb r30) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.uob.<init>(android.content.Context, tk5, int, long, ylb):void");
+    public uob(long j) {
+        g(j);
     }
 
-    private Drawable getCompactBackground() {
-        int w0 = cmb.w0(null, cmb.ta, false);
-        ColorDrawable colorDrawable = this.e;
-        if (colorDrawable == null || colorDrawable.getColor() != w0) {
-            this.e = new ColorDrawable(w0);
+    public final synchronized long a(long j) {
+        if (j == -9223372036854775807L) {
+            return -9223372036854775807L;
         }
-        return this.e;
-    }
-
-    public final boolean a() {
-        int i = this.w;
-        if (i != 3 && i != 0) {
-            return false;
+        if (!f()) {
+            long j2 = this.a;
+            if (j2 == 9223372036854775806L) {
+                Long l = (Long) this.d.get();
+                l.getClass();
+                j2 = l.longValue();
+            }
+            this.b = j2 - j;
+            notifyAll();
         }
-        return true;
+        this.c = j;
+        return j + this.b;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.w != 2 && !a()) {
-            return false;
+    public final synchronized long b(long j) {
+        if (j == -9223372036854775807L) {
+            return -9223372036854775807L;
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public rc2[] getCells() {
-        return this.n;
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        int i = 0;
-        while (true) {
-            rc2[] rc2VarArr = this.n;
-            if (i < rc2VarArr.length) {
-                rc2VarArr[i].invalidate();
-                i++;
+        long j2 = this.c;
+        if (j2 != -9223372036854775807L) {
+            String str = g8c.a;
+            long b0 = g8c.b0(j2, 90000L, 1000000L, RoundingMode.DOWN);
+            long j3 = (4294967296L + b0) / 8589934592L;
+            long j4 = ((j3 - 1) * 8589934592L) + j;
+            long j5 = (j3 * 8589934592L) + j;
+            if (Math.abs(j4 - b0) < Math.abs(j5 - b0)) {
+                j = j4;
             } else {
-                return;
+                j = j5;
             }
         }
+        long j6 = j;
+        String str2 = g8c.a;
+        return a(g8c.b0(j6, 1000000L, 90000L, RoundingMode.DOWN));
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        Drawable drawable = this.F;
-        if (drawable instanceof a92) {
-            ((a92) drawable).f(this);
+    public final synchronized long c(long j) {
+        if (j == -9223372036854775807L) {
+            return -9223372036854775807L;
         }
+        long j2 = this.c;
+        if (j2 != -9223372036854775807L) {
+            String str = g8c.a;
+            long b0 = g8c.b0(j2, 90000L, 1000000L, RoundingMode.DOWN);
+            long j3 = b0 / 8589934592L;
+            Long.signum(j3);
+            long j4 = (j3 * 8589934592L) + j;
+            long j5 = ((j3 + 1) * 8589934592L) + j;
+            if (j4 >= b0) {
+                j = j4;
+            } else {
+                j = j5;
+            }
+        }
+        long j6 = j;
+        String str2 = g8c.a;
+        return a(g8c.b0(j6, 1000000L, 90000L, RoundingMode.DOWN));
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        ve0 ve0Var = this.a;
-        if (ve0Var != null) {
-            ve0Var.dispose();
-            this.a = null;
-        }
-        ve0 ve0Var2 = this.b;
-        if (ve0Var2 != null) {
-            ve0Var2.dispose();
-            this.b = null;
-        }
-        Drawable drawable = this.F;
-        if (drawable instanceof a92) {
-            ((a92) drawable).g(this);
-        }
+    public final synchronized long d() {
+        long j;
+        j = this.a;
+        return (j == Long.MAX_VALUE || j == 9223372036854775806L) ? -9223372036854775807L : -9223372036854775807L;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
+    public final synchronized long e() {
+        return this.b;
+    }
+
+    public final synchronized boolean f() {
         boolean z;
-        float e;
-        Drawable drawable;
-        int i;
-        boolean z2;
-        Drawable drawable2 = this.F;
-        if (drawable2 == null) {
-            drawable2 = cmb.s0();
-        }
-        if (cmb.d != null) {
-            invalidate();
-        }
-        if (this.F == null && gda.D0) {
+        if (this.b != -9223372036854775807L) {
             z = true;
         } else {
             z = false;
         }
-        if (z) {
-            drawable2 = getCompactBackground();
-        }
-        if (this.f != z) {
-            this.f = z;
-            if (this.c != null) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-            this.h = z2;
-        }
-        Drawable drawable3 = this.c;
-        ln lnVar = this.H;
-        if (drawable2 != drawable3 && drawable2 != null) {
-            if (!cmb.f1() && !this.G && !this.h) {
-                ve0 ve0Var = this.a;
-                if (ve0Var != null) {
-                    ve0Var.dispose();
-                    this.a = null;
-                }
-            } else {
-                this.d = this.c;
-                this.b = this.a;
-            }
-            this.c = drawable2;
-            lnVar.e(true, 0.0f);
-        }
-        boolean z3 = this.G;
-        tk5 tk5Var = this.s;
-        if (!z3 && !this.h) {
-            e = tk5Var.getThemeAnimationValue();
+        return z;
+    }
+
+    public final synchronized void g(long j) {
+        long j2;
+        this.a = j;
+        if (j == Long.MAX_VALUE) {
+            j2 = 0;
         } else {
-            e = lnVar.e(false, 1.0f);
+            j2 = -9223372036854775807L;
         }
-        for (int i2 = 0; i2 < 2; i2++) {
-            if (i2 == 0) {
-                drawable = this.d;
-            } else {
-                drawable = this.c;
-            }
-            if (drawable != null) {
-                if (i2 == 1 && this.d != null && (tk5Var != null || this.G)) {
-                    i = (int) (255.0f * e);
-                } else {
-                    i = 255;
-                }
-                if (i > 0) {
-                    drawable.setAlpha(i);
-                    if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof ah7)) {
-                        if (drawable instanceof BitmapDrawable) {
-                            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-                            bitmapDrawable.setFilterBitmap(true);
-                            if (bitmapDrawable.getTileModeX() == Shader.TileMode.REPEAT) {
-                                canvas.save();
-                                float f = 2.0f / gm.p;
-                                canvas.scale(f, f);
-                                drawable.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f), (int) Math.ceil(getMeasuredHeight() / f));
-                            } else {
-                                int measuredHeight = getMeasuredHeight();
-                                float max = Math.max(getMeasuredWidth() / drawable.getIntrinsicWidth(), measuredHeight / drawable.getIntrinsicHeight());
-                                int ceil = (int) Math.ceil(drawable.getIntrinsicWidth() * max);
-                                int ceil2 = (int) Math.ceil(drawable.getIntrinsicHeight() * max);
-                                int measuredWidth = (getMeasuredWidth() - ceil) / 2;
-                                int i3 = (measuredHeight - ceil2) / 2;
-                                canvas.save();
-                                canvas.clipRect(0, 0, ceil, getMeasuredHeight());
-                                drawable.setBounds(measuredWidth, i3, ceil + measuredWidth, ceil2 + i3);
-                            }
-                            drawable.draw(canvas);
-                            canvas.restore();
-                        } else {
-                            g6b.j(canvas, drawable, getWidth(), getHeight());
-                        }
-                    } else {
-                        drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                        if (drawable instanceof we0) {
-                            this.a = ((we0) drawable).b(canvas, this);
-                        } else {
-                            drawable.draw(canvas);
-                        }
-                    }
-                    if (i2 == 0 && this.d != null && e >= 1.0f) {
-                        ve0 ve0Var2 = this.b;
-                        if (ve0Var2 != null) {
-                            ve0Var2.dispose();
-                            this.b = null;
-                        }
-                        this.d = null;
-                        this.h = false;
-                        invalidate();
-                    }
-                }
-            }
+        this.b = j2;
+        this.c = -9223372036854775807L;
+    }
+
+    public final synchronized void h(long j, boolean z) {
+        boolean z2;
+        if (this.a == 9223372036854775806L) {
+            z2 = true;
+        } else {
+            z2 = false;
         }
-        if ((getParent() instanceof r59) && ((r59) getParent()).c1()) {
+        gre.p(z2);
+        if (f()) {
             return;
         }
-        int measuredWidth2 = getMeasuredWidth();
-        int measuredHeight2 = getMeasuredHeight();
-        Drawable drawable4 = this.r;
-        drawable4.setBounds(0, 0, measuredWidth2, measuredHeight2);
-        drawable4.draw(canvas);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.w != 2 && !a()) {
-            return false;
+        if (z) {
+            this.d.set(Long.valueOf(j));
+        } else {
+            while (!f()) {
+                wait();
+            }
         }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.w != 2 && !a()) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    public void setOverrideBackground(Drawable drawable) {
-        this.F = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        if ((this.F instanceof a92) && isAttachedToWindow()) {
-            ((a92) this.F).f(this);
-        }
-        invalidate();
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.F && drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void dispatchSetPressed(boolean z) {
-    }
-
-    public uob(Context context, tk5 tk5Var, int i) {
-        this(context, tk5Var, i, 0L, null);
     }
 }

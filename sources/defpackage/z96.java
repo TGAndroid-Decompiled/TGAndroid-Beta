@@ -1,135 +1,130 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.SurfaceTexture;
-import android.os.SystemClock;
-import android.view.Surface;
-import android.view.TextureView;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.location.Location;
+import android.net.Uri;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class z96 extends TextureView implements aq9, TextureView.SurfaceTextureListener {
-    public final lj4 a;
-    public volatile Surface b;
-    public volatile boolean c;
-    public int d;
-    public int e;
+import android.widget.ImageView;
+import org.telegram.messenger.a;
+public final class z96 implements xh5, nh5, ed, zh5, mg0 {
+    public final byte a;
+    public final qa6 b;
 
-    public z96(Context context, lj4 lj4Var) {
-        super(context);
-        this.a = lj4Var;
-        setOpaque(false);
-        setSurfaceTextureListener(this);
+    public z96(qa6 qa6Var, byte b) {
+        this.a = b;
+        this.b = qa6Var;
     }
 
     @Override
-    public final void a(int i, int i2) {
-        gm.c3(new cu(this, i, i2, (byte) 9));
-    }
-
-    @Override
-    public final boolean b() {
-        return this.c;
-    }
-
-    public final void c() {
-        boolean z;
-        if (isAttachedToWindow() && getWindowVisibility() == 0 && isShown()) {
-            z = true;
-        } else {
-            z = false;
+    public final boolean a(MotionEvent motionEvent, wy4 wy4Var) {
+        MotionEvent motionEvent2;
+        Location location;
+        byte b = this.a;
+        qa6 qa6Var = this.b;
+        switch (b) {
+            case 0:
+                qa6Var.C0();
+                if (qa6Var.K != 0.0f) {
+                    motionEvent = MotionEvent.obtain(motionEvent);
+                    motionEvent.offsetLocation(0.0f, (-qa6Var.K) / 2.0f);
+                    motionEvent2 = motionEvent;
+                } else {
+                    motionEvent2 = null;
+                }
+                boolean booleanValue = wy4Var.a(motionEvent).booleanValue();
+                if (motionEvent2 != null) {
+                    motionEvent2.recycle();
+                }
+                return booleanValue;
+            default:
+                if (qa6Var.J0 == null && qa6Var.H0 == null) {
+                    if (motionEvent.getAction() == 0) {
+                        AnimatorSet animatorSet = qa6Var.s0;
+                        if (animatorSet != null) {
+                            animatorSet.cancel();
+                        }
+                        AnimatorSet animatorSet2 = new AnimatorSet();
+                        qa6Var.s0 = animatorSet2;
+                        animatorSet2.setDuration(200L);
+                        qa6Var.s0.playTogether(ObjectAnimator.ofFloat(qa6Var.U, View.TRANSLATION_Y, qa6Var.B0 - gl.L(10.0f)));
+                        qa6Var.s0.start();
+                    } else if (motionEvent.getAction() == 1) {
+                        AnimatorSet animatorSet3 = qa6Var.s0;
+                        if (animatorSet3 != null) {
+                            animatorSet3.cancel();
+                        }
+                        qa6Var.K = 0.0f;
+                        AnimatorSet animatorSet4 = new AnimatorSet();
+                        qa6Var.s0 = animatorSet4;
+                        animatorSet4.setDuration(200L);
+                        qa6Var.s0.playTogether(ObjectAnimator.ofFloat(qa6Var.U, View.TRANSLATION_Y, qa6Var.B0));
+                        qa6Var.s0.start();
+                        qa6Var.Q.H();
+                    }
+                    if (motionEvent.getAction() == 2) {
+                        if (!qa6Var.K0) {
+                            ImageView imageView = qa6Var.a;
+                            int i = bkb.kj;
+                            zkb.s(imageView, i, qa6Var.getResourceProvider(), PorterDuff.Mode.MULTIPLY);
+                            qa6Var.a.setTag(Integer.valueOf(i));
+                            qa6Var.K0 = true;
+                        }
+                        ty4 ty4Var = qa6Var.F;
+                        if (ty4Var != null && (location = qa6Var.A0) != null) {
+                            location.setLatitude(((yh5) ty4Var.d().b).a);
+                            qa6Var.A0.setLongitude(((yh5) qa6Var.F.d().b).b);
+                        }
+                        qa6Var.Q.L(qa6Var.A0);
+                    }
+                }
+                return wy4Var.a(motionEvent).booleanValue();
         }
-        this.c = z;
     }
 
     @Override
-    public Surface getSurface() {
-        return this.b;
-    }
-
-    public int getVideoHeight() {
-        return this.e;
-    }
-
-    public int getVideoWidth() {
-        return this.d;
+    public final void b() {
+        qa6 qa6Var = this.b;
+        qa6Var.w0 = false;
+        qa6Var.N0();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        c();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        c();
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int i3;
-        int defaultSize = View.getDefaultSize(Integer.MAX_VALUE, i);
-        int defaultSize2 = View.getDefaultSize(Integer.MAX_VALUE, i2);
-        int i4 = this.d;
-        if (i4 > 0 && (i3 = this.e) > 0 && defaultSize > 0 && defaultSize2 > 0) {
-            float f = i4 / i3;
-            setMeasuredDimension(Math.min(defaultSize, Math.round(defaultSize2 * f)), Math.min(defaultSize2, Math.round(defaultSize / f)));
-            return;
-        }
-        setMeasuredDimension(defaultSize, defaultSize2);
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
-        this.b = new Surface(surfaceTexture);
-        vo9.I(this, null);
-    }
-
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        Surface surface = this.b;
-        this.b = null;
-        vo9.I(this, new x96(surface, surfaceTexture, (byte) 2));
-        return false;
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        int i;
-        t96 t96Var = (t96) this.a.a;
-        if (!t96Var.y) {
-            t96Var.onFirstFrameRendered();
-        }
-        z96 z96Var = t96Var.e;
-        if (z96Var != null && z96Var.isAvailable() && e86.e(512)) {
-            int videoWidth = t96Var.e.getVideoWidth();
-            int videoHeight = t96Var.e.getVideoHeight();
-            if (videoWidth > 0 && videoHeight > 0) {
-                if (t96Var.e.getMeasuredWidth() < t96Var.getMeasuredWidth() || t96Var.e.getMeasuredHeight() < t96Var.getMeasuredHeight()) {
-                    long elapsedRealtime = SystemClock.elapsedRealtime();
-                    if (elapsedRealtime - t96Var.n >= 100) {
-                        t96Var.n = elapsedRealtime;
-                        int i2 = 48;
-                        if (videoWidth >= videoHeight) {
-                            i = Math.max(1, Math.round((videoHeight * 48) / videoWidth));
+    public final void c(int i) {
+        View childAt;
+        s49 T;
+        int L;
+        qa6 qa6Var = this.b;
+        byte b = qa6Var.N0;
+        if (i == 1) {
+            qa6Var.q0 = -1L;
+            if (qa6Var.r0) {
+                qa6Var.r0 = false;
+                qa6Var.Q0();
+            }
+            if (!qa6Var.N) {
+                if ((b == 0 || b == 1) && qa6Var.R.getChildCount() > 0 && (childAt = qa6Var.R.getChildAt(0)) != null) {
+                    fu fuVar = qa6Var.R;
+                    View F = fuVar.F(childAt);
+                    if (F == null) {
+                        T = null;
+                    } else {
+                        T = fuVar.T(F);
+                    }
+                    if (T != null && T.b() == 0) {
+                        if (b == 0) {
+                            L = 0;
                         } else {
-                            i2 = Math.max(1, Math.round((videoWidth * 48) / videoHeight));
-                            i = 48;
+                            L = gl.L(66.0f);
                         }
-                        Bitmap bitmap = t96Var.h;
-                        if (bitmap == null || bitmap.getWidth() != i2 || t96Var.h.getHeight() != i) {
-                            t96Var.h = Bitmap.createBitmap(i2, i, Bitmap.Config.ARGB_8888);
-                        }
-                        try {
-                            t96Var.e.getBitmap(t96Var.h);
-                            Utilities.stackBlurBitmap(t96Var.h, 3);
-                            a91 a91Var = t96Var.f;
-                            a91Var.c = t96Var.h;
-                            a91Var.invalidate();
-                        } catch (Exception e) {
-                            fc4.g(e, true);
+                        int top = childAt.getTop();
+                        if (top < (-L)) {
+                            fw5 d = qa6Var.F.d();
+                            qa6Var.I = ((ize) a.j()).newCameraUpdateLatLngZoom((yh5) d.b, d.c);
+                            qa6Var.R.x0(0, top + L, null);
                         }
                     }
                 }
@@ -138,24 +133,44 @@ public final class z96 extends TextureView implements aq9, TextureView.SurfaceTe
     }
 
     @Override
-    public final void onVisibilityChanged(View view, int i) {
-        super.onVisibilityChanged(view, i);
-        c();
-    }
-
-    @Override
-    public final void onWindowVisibilityChanged(int i) {
-        boolean z;
-        super.onWindowVisibilityChanged(i);
-        if (isAttachedToWindow() && i == 0 && isShown()) {
-            z = true;
-        } else {
-            z = false;
+    public final void onLocationChanged(Location location) {
+        if (location == null) {
+            return;
         }
-        this.c = z;
+        qa6 qa6Var = this.b;
+        qa6Var.D0(location);
+        qa6Var.getLocationController().n(location, qa6Var.l0);
+        qa6Var.l0 = false;
     }
 
     @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+    public final void u(hd hdVar, int i) {
+        byte b = this.a;
+        qa6 qa6Var = this.b;
+        switch (b) {
+            case 4:
+                if (qa6Var.getParentActivity() != null) {
+                    try {
+                        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                        intent.setData(Uri.parse("package:" + a.b.getPackageName()));
+                        qa6Var.getParentActivity().startActivity(intent);
+                        return;
+                    } catch (Exception e) {
+                        fa4.g(e, true);
+                        return;
+                    }
+                }
+                return;
+            default:
+                if (qa6Var.getParentActivity() != null) {
+                    try {
+                        qa6Var.getParentActivity().startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
+                return;
+        }
     }
 }

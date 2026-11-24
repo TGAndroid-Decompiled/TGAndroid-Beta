@@ -1,63 +1,72 @@
 package defpackage;
 
-import android.view.ViewGroup;
-public final class ifa extends yp {
-    public final byte c;
-    public final Object d;
-    public final ViewGroup e;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ifa extends ifc {
+    public final kfa h;
 
-    public ifa(ViewGroup viewGroup, Object obj, byte b) {
-        this.c = b;
-        this.e = viewGroup;
-        this.d = obj;
+    public ifa(kfa kfaVar, g2b g2bVar, long j, int i) {
+        super(i, j, g2bVar);
+        this.h = kfaVar;
     }
 
     @Override
-    public final int i(int i) {
-        int i2;
-        int i3;
-        byte b = this.c;
-        ViewGroup viewGroup = this.e;
-        Object obj = this.d;
-        switch (b) {
-            case 0:
-                iga igaVar = (iga) obj;
-                y59 adapter = igaVar.n.getAdapter();
-                nha nhaVar = (nha) viewGroup;
-                hha hhaVar = nhaVar.L;
-                if (adapter == hhaVar) {
-                    if (hhaVar.d(i) != 2) {
-                        return 1;
-                    }
-                    return igaVar.r.J;
-                } else if (nhaVar.y1(adapter) == -1) {
-                    return 1;
-                } else {
-                    ((kha) adapter).getClass();
-                    return 1;
+    public final void a(ArrayList arrayList) {
+        sca scaVar;
+        k27 messageObject;
+        kfa kfaVar = this.h;
+        nfa nfaVar = kfaVar.G;
+        int i = 0;
+        while (true) {
+            iea[] ieaVarArr = nfaVar.n0;
+            if (i < ieaVarArr.length) {
+                sca scaVar2 = ieaVarArr[i].h;
+                if (scaVar2 != null && scaVar2.getAdapter() == kfaVar) {
+                    scaVar = nfaVar.n0[i].h;
+                    break;
                 }
-            case 1:
-                o7c o7cVar = (o7c) obj;
-                l7c l7cVar = ((q7c) viewGroup).g3;
-                if (l7cVar == null) {
-                    return o7cVar.J;
-                }
-                c6c G = l7cVar.G(i);
-                if (G != null && (i2 = G.v) != -1) {
-                    return i2;
-                }
-                return o7cVar.J;
-            default:
-                o7c o7cVar2 = (o7c) obj;
-                l7c l7cVar2 = ((q7c) viewGroup).g3;
-                if (l7cVar2 == null) {
-                    return o7cVar2.J;
-                }
-                c6c G2 = l7cVar2.G(i);
-                if (G2 != null && (i3 = G2.v) != -1) {
-                    return i3;
-                }
-                return o7cVar2.J;
+                i++;
+            } else {
+                scaVar = null;
+                break;
+            }
         }
+        if (scaVar != null) {
+            for (int i2 = 0; i2 < scaVar.getChildCount(); i2++) {
+                View childAt = scaVar.getChildAt(i2);
+                if ((childAt instanceof qfa) && (messageObject = ((qfa) childAt).getMessageObject()) != null && messageObject.w4()) {
+                    arrayList.add(Integer.valueOf(messageObject.l.id));
+                }
+            }
+        }
+    }
+
+    @Override
+    public final boolean d(ArrayList arrayList, TL_stories.TL_stories_storyViews tL_stories_storyViews) {
+        TL_stories.StoryItem storyItem;
+        y1b y1bVar = this.h.s;
+        ArrayList<TL_stories.StoryViews> arrayList2 = tL_stories_storyViews.views;
+        y1bVar.getClass();
+        if (arrayList != null && arrayList2 != null) {
+            boolean z = false;
+            for (int i = 0; i < arrayList.size(); i++) {
+                Integer num = (Integer) arrayList.get(i);
+                num.getClass();
+                if (i >= arrayList2.size()) {
+                    break;
+                }
+                TL_stories.StoryViews storyViews = arrayList2.get(i);
+                k27 k27Var = (k27) y1bVar.j.get(num);
+                if (k27Var != null && (storyItem = k27Var.l) != null) {
+                    storyItem.views = storyViews;
+                    z = true;
+                }
+            }
+            if (z) {
+                y1bVar.x();
+            }
+        }
+        return true;
     }
 }

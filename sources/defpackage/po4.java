@@ -1,10 +1,8 @@
 package defpackage;
 
-import android.os.SystemClock;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewParent;
-public final class po4 implements Runnable {
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class po4 extends AnimatorListenerAdapter {
     public final byte a;
     public final qo4 b;
 
@@ -14,29 +12,18 @@ public final class po4 implements Runnable {
     }
 
     @Override
-    public final void run() {
+    public final void onAnimationEnd(Animator animator) {
         byte b = this.a;
         qo4 qo4Var = this.b;
         switch (b) {
             case 0:
-                ViewParent parent = qo4Var.d.getParent();
-                if (parent != null) {
-                    parent.requestDisallowInterceptTouchEvent(true);
-                    return;
-                }
+                kk7.f(qo4Var.r.a).j(qo4Var.f);
+                qo4Var.requestLayout();
                 return;
             default:
-                qo4Var.a();
-                View view = qo4Var.d;
-                if (view.isEnabled() && !view.isLongClickable() && qo4Var.c()) {
-                    view.getParent().requestDisallowInterceptTouchEvent(true);
-                    long uptimeMillis = SystemClock.uptimeMillis();
-                    MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 3, 0.0f, 0.0f, 0);
-                    view.onTouchEvent(obtain);
-                    obtain.recycle();
-                    qo4Var.h = true;
-                    return;
-                }
+                qo4Var.d = null;
+                qo4Var.a = null;
+                qo4Var.b = false;
                 return;
         }
     }

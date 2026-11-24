@@ -1,85 +1,29 @@
 package defpackage;
 
-import android.app.Activity;
-import android.view.View;
-import java.util.HashMap;
-public final class hxb extends View {
-    public final HashMap a;
-    public final ixb b;
+import android.animation.ValueAnimator;
+public final class hxb implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final jxb b;
 
-    public hxb(ixb ixbVar, Activity activity) {
-        super(activity);
-        this.b = ixbVar;
-        this.a = new HashMap();
+    public hxb(jxb jxbVar, byte b) {
+        this.a = b;
+        this.b = jxbVar;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        int i3;
-        int i4;
-        float f;
-        int L;
-        boolean z;
-        int i5;
-        sxb sxbVar = this.b.d;
-        int size = View.MeasureSpec.getSize(i);
-        int L2 = gm.L(64.0f);
-        int i6 = 0;
-        int i7 = 0;
-        for (int i8 = 0; i8 < sxbVar.b.size(); i8++) {
-            if (sxbVar.b.get(i8) != null && ((jxb) sxbVar.b.get(i8)).c != null) {
-                String str = ((jxb) sxbVar.b.get(i8)).c.title;
-                HashMap hashMap = this.a;
-                Boolean bool = (Boolean) hashMap.get(str);
-                if (bool == null) {
-                    int i9 = 50;
-                    if (!jb6.a0) {
-                        if (sxbVar.isInPreviewMode()) {
-                            i5 = 11;
-                        } else {
-                            i5 = 50;
-                        }
-                        f = i5 + 4;
-                    } else {
-                        f = 18.0f;
-                    }
-                    int L3 = size - gm.L(f);
-                    if (!jb6.a0) {
-                        L = gm.L(22.0f);
-                    } else {
-                        if (sxbVar.isInPreviewMode()) {
-                            i9 = 11;
-                        }
-                        L = gm.L(i9 + 13);
-                    }
-                    if (cmb.A0[0].measureText(str) <= (L3 - L) - ((int) Math.ceil(cmb.H0.measureText("00:00")))) {
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                    bool = Boolean.valueOf(z);
-                    hashMap.put(str, bool);
-                }
-                if (!bool.booleanValue()) {
-                    i4 = 20;
-                } else {
-                    i4 = 0;
-                }
-                int L4 = gm.L(i4 + 64);
-                if (((jxb) sxbVar.b.get(i8)).c.id == 1) {
-                    L2 = L4;
-                }
-                if (((jxb) sxbVar.b.get(i8)).c.hidden) {
-                    i6++;
-                }
-                i7 += L4;
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        jxb jxbVar = this.b;
+        switch (b) {
+            case 0:
+                jxbVar.V = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jxbVar.h();
+                jxbVar.g();
+                return;
+            default:
+                jxbVar.M = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                jxbVar.h.invalidate();
+                return;
         }
-        if (i6 > 0) {
-            i3 = (((sxbVar.O.getMeasuredHeight() - sxbVar.O.getPaddingTop()) - sxbVar.O.getPaddingBottom()) - i7) + L2;
-        } else {
-            i3 = 0;
-        }
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.max(0, i3), 1073741824));
     }
 }

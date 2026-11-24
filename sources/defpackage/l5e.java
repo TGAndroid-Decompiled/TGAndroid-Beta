@@ -1,79 +1,17 @@
 package defpackage;
+public final class l5e implements zn7 {
+    public static final l5e a = new Object();
 
-import java.util.ListIterator;
-public final class l5e extends v7c implements ListIterator {
-    public final int b;
-    public int c;
-    public final x5e d;
-
-    public l5e(x5e x5eVar, int i) {
-        super((byte) 12);
-        int size = x5eVar.size();
-        r3f.b(i, size);
-        this.b = size;
-        this.c = i;
-        this.d = x5eVar;
-    }
-
-    public final Object a(int i) {
-        return this.d.get(i);
+    static {
+        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)));
     }
 
     @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.c < this.b) {
-            return true;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        if (this.c > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i = this.c;
-            this.c = i + 1;
-            return a(i);
-        }
-        u36.g();
-        return null;
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i = this.c - 1;
-            this.c = i;
-            return a(i);
-        }
-        u36.g();
-        return null;
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+        throw new ClassCastException();
     }
 }

@@ -1,22 +1,17 @@
 package defpackage;
-
-import java.util.concurrent.CancellationException;
-public final class kvd {
-    public static final kvd b;
-    public static final kvd c;
-    public final CancellationException a;
+public final class kvd implements zn7 {
+    public static final kvd a = new Object();
 
     static {
-        if (a7f.d) {
-            c = null;
-            b = null;
-            return;
-        }
-        c = new kvd(null);
-        b = new kvd(null);
+        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)));
     }
 
-    public kvd(CancellationException cancellationException) {
-        this.a = cancellationException;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

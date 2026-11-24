@@ -1,43 +1,107 @@
 package defpackage;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Set;
-public abstract class co5 extends qo5 {
-    public static co5 g(HashMap hashMap) {
-        int i;
-        Set entrySet = hashMap.entrySet();
-        if (entrySet != null) {
-            i = entrySet.size();
-        } else {
-            i = 4;
-        }
-        ?? kqVar = new kq(i);
-        kqVar.E(entrySet);
-        return kqVar.C();
+import android.content.ClipDescription;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.ResultReceiver;
+import android.text.TextUtils;
+import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputConnectionWrapper;
+public final class co5 extends InputConnectionWrapper {
+    public final do5 a;
+
+    public co5(InputConnection inputConnection, do5 do5Var) {
+        super(inputConnection, false);
+        this.a = do5Var;
     }
 
     @Override
-    public final go5 f() {
-        x79 x79Var = ((x79) this).n;
-        yo5 yo5Var = x79Var.b;
-        if (yo5Var == null) {
-            b89 d = x79Var.d();
-            x79Var.b = d;
-            return d;
+    public final boolean performPrivateCommand(String str, Bundle bundle) {
+        Object[] objArr;
+        String str2;
+        ResultReceiver resultReceiver;
+        String str3;
+        String str4;
+        String str5;
+        String str6;
+        String str7;
+        do5 do5Var = this.a;
+        boolean z = false;
+        z = false;
+        z = false;
+        z = false;
+        if (bundle != null) {
+            if (TextUtils.equals("androidx.core.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT", str)) {
+                objArr = null;
+            } else if (TextUtils.equals("android.support.v13.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT", str)) {
+                objArr = 1;
+            }
+            if (objArr != null) {
+                str2 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_RESULT_RECEIVER";
+            } else {
+                str2 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_RESULT_RECEIVER";
+            }
+            try {
+                resultReceiver = (ResultReceiver) bundle.getParcelable(str2);
+                if (objArr != null) {
+                    str3 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_URI";
+                } else {
+                    str3 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_URI";
+                }
+                try {
+                    Uri uri = (Uri) bundle.getParcelable(str3);
+                    if (objArr != null) {
+                        str4 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
+                    } else {
+                        str4 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
+                    }
+                    ClipDescription clipDescription = (ClipDescription) bundle.getParcelable(str4);
+                    if (objArr != null) {
+                        str5 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
+                    } else {
+                        str5 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
+                    }
+                    Uri uri2 = (Uri) bundle.getParcelable(str5);
+                    if (objArr != null) {
+                        str6 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
+                    } else {
+                        str6 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
+                    }
+                    int i = bundle.getInt(str6);
+                    if (objArr != null) {
+                        str7 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
+                    } else {
+                        str7 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
+                    }
+                    Bundle bundle2 = (Bundle) bundle.getParcelable(str7);
+                    if (uri != null && clipDescription != null) {
+                        ?? obj = new Object();
+                        if (Build.VERSION.SDK_INT >= 25) {
+                            obj.a = new eo5(uri, clipDescription, uri2);
+                        } else {
+                            obj.a = new xl3(uri, clipDescription, uri2, (byte) 11);
+                        }
+                        z = do5Var.a(obj, i, bundle2);
+                    }
+                    if (resultReceiver != null) {
+                        resultReceiver.send(z ? 1 : 0, null);
+                    }
+                } catch (Throwable th) {
+                    th = th;
+                    if (resultReceiver != null) {
+                        resultReceiver.send(0, null);
+                    }
+                    throw th;
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                resultReceiver = null;
+            }
         }
-        return yo5Var;
-    }
-
-    @Override
-    public final Collection values() {
-        x79 x79Var = ((x79) this).n;
-        yo5 yo5Var = x79Var.b;
-        if (yo5Var == null) {
-            b89 d = x79Var.d();
-            x79Var.b = d;
-            return d;
+        if (z) {
+            return true;
         }
-        return yo5Var;
+        return super.performPrivateCommand(str, bundle);
     }
 }

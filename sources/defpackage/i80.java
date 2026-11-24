@@ -1,17 +1,26 @@
 package defpackage;
-public final class i80 implements cq7 {
-    public static final i80 a = new Object();
+public final class i80 extends my2 {
+    public final j80 a;
 
-    static {
-        wa4.c("clientMetrics");
+    public i80(j80 j80Var) {
+        this.a = j80Var;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        throw new ClassCastException();
+        if (obj instanceof my2) {
+            return this.a.equals(((i80) ((my2) obj)).a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return 1000003 ^ this.a.hashCode();
+    }
+
+    public final String toString() {
+        return "ProfilingManagerInfo{profilingTrigger=" + this.a + "}";
     }
 }

@@ -1,129 +1,161 @@
 package defpackage;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import java.util.ArrayDeque;
-import java.util.Iterator;
-import java.util.concurrent.CopyOnWriteArraySet;
-public final class a86 {
-    public final Thread a;
-    public final dfb b;
-    public final y76 c;
-    public final CopyOnWriteArraySet d;
-    public final ArrayDeque e;
-    public final ArrayDeque f;
-    public final Object g;
-    public boolean h;
-    public final boolean i;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.SurfaceTexture;
+import android.os.SystemClock;
+import android.view.Surface;
+import android.view.TextureView;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class a86 extends TextureView implements zn9, TextureView.SurfaceTextureListener {
+    public final gi3 a;
+    public volatile Surface b;
+    public volatile boolean c;
+    public int d;
+    public int e;
 
-    public a86(CopyOnWriteArraySet copyOnWriteArraySet, Looper looper, Thread thread, bfb bfbVar, y76 y76Var, boolean z) {
-        this.a = thread;
-        this.d = copyOnWriteArraySet;
-        this.c = y76Var;
-        this.g = new Object();
-        this.e = new ArrayDeque();
-        this.f = new ArrayDeque();
-        if (looper != null && bfbVar != null && y76Var != null) {
-            this.b = bfbVar.a(looper, new jp3(this, (byte) 1));
+    public a86(Context context, gi3 gi3Var) {
+        super(context);
+        this.a = gi3Var;
+        setOpaque(false);
+        setSurfaceTextureListener(this);
+    }
+
+    @Override
+    public final void a(int i, int i2) {
+        gl.c3(new bt(this, i, i2, (byte) 9));
+    }
+
+    @Override
+    public final boolean b() {
+        return this.c;
+    }
+
+    public final void c() {
+        boolean z;
+        if (isAttachedToWindow() && getWindowVisibility() == 0 && isShown()) {
+            z = true;
         } else {
-            this.b = null;
+            z = false;
         }
-        this.i = z;
+        this.c = z;
     }
 
-    public final void a(Object obj) {
-        obj.getClass();
-        synchronized (this.g) {
-            if (this.h) {
-                return;
-            }
-            this.d.add(new z76(obj));
-        }
+    @Override
+    public Surface getSurface() {
+        return this.b;
     }
 
-    public final void b() {
-        boolean z;
-        if (this.i) {
-            if (Thread.currentThread() == this.a) {
-                z = true;
-            } else {
-                z = false;
-            }
-            jte.p(z);
+    public int getVideoHeight() {
+        return this.e;
+    }
+
+    public int getVideoWidth() {
+        return this.d;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        c();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        c();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int i3;
+        int defaultSize = View.getDefaultSize(Integer.MAX_VALUE, i);
+        int defaultSize2 = View.getDefaultSize(Integer.MAX_VALUE, i2);
+        int i4 = this.d;
+        if (i4 > 0 && (i3 = this.e) > 0 && defaultSize > 0 && defaultSize2 > 0) {
+            float f = i4 / i3;
+            setMeasuredDimension(Math.min(defaultSize, Math.round(defaultSize2 * f)), Math.min(defaultSize2, Math.round(defaultSize / f)));
+            return;
         }
-        ArrayDeque arrayDeque = this.f;
-        if (!arrayDeque.isEmpty()) {
-            if (this.c != null) {
-                dfb dfbVar = this.b;
-                dfbVar.getClass();
-                Handler handler = dfbVar.a;
-                if (!handler.hasMessages(1)) {
-                    cfb a = dfbVar.a(1);
-                    Message message = a.a;
-                    message.getClass();
-                    handler.sendMessageAtFrontOfQueue(message);
-                    a.a();
+        setMeasuredDimension(defaultSize, defaultSize2);
+    }
+
+    @Override
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+        this.b = new Surface(surfaceTexture);
+        um9.I(this, null);
+    }
+
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        Surface surface = this.b;
+        this.b = null;
+        um9.I(this, new y76(surface, surfaceTexture, (byte) 2));
+        return false;
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        int i;
+        u76 u76Var = (u76) this.a.a;
+        if (!u76Var.y) {
+            u76Var.onFirstFrameRendered();
+        }
+        a86 a86Var = u76Var.e;
+        if (a86Var != null && a86Var.isAvailable() && e66.e(512)) {
+            int videoWidth = u76Var.e.getVideoWidth();
+            int videoHeight = u76Var.e.getVideoHeight();
+            if (videoWidth > 0 && videoHeight > 0) {
+                if (u76Var.e.getMeasuredWidth() < u76Var.getMeasuredWidth() || u76Var.e.getMeasuredHeight() < u76Var.getMeasuredHeight()) {
+                    long elapsedRealtime = SystemClock.elapsedRealtime();
+                    if (elapsedRealtime - u76Var.n >= 100) {
+                        u76Var.n = elapsedRealtime;
+                        int i2 = 48;
+                        if (videoWidth >= videoHeight) {
+                            i = Math.max(1, Math.round((videoHeight * 48) / videoWidth));
+                        } else {
+                            i2 = Math.max(1, Math.round((videoWidth * 48) / videoHeight));
+                            i = 48;
+                        }
+                        Bitmap bitmap = u76Var.h;
+                        if (bitmap == null || bitmap.getWidth() != i2 || u76Var.h.getHeight() != i) {
+                            u76Var.h = Bitmap.createBitmap(i2, i, Bitmap.Config.ARGB_8888);
+                        }
+                        try {
+                            u76Var.e.getBitmap(u76Var.h);
+                            Utilities.stackBlurBitmap(u76Var.h, 3);
+                            s71 s71Var = u76Var.f;
+                            s71Var.c = u76Var.h;
+                            s71Var.invalidate();
+                        } catch (Exception e) {
+                            fa4.g(e, true);
+                        }
+                    }
                 }
             }
-            ArrayDeque arrayDeque2 = this.e;
-            boolean isEmpty = arrayDeque2.isEmpty();
-            arrayDeque2.addAll(arrayDeque);
-            arrayDeque.clear();
-            if (isEmpty) {
-                while (!arrayDeque2.isEmpty()) {
-                    ((Runnable) arrayDeque2.peekFirst()).run();
-                    arrayDeque2.removeFirst();
-                }
-            }
         }
     }
 
-    public final void c(int i, x76 x76Var) {
+    @Override
+    public final void onVisibilityChanged(View view, int i) {
+        super.onVisibilityChanged(view, i);
+        c();
+    }
+
+    @Override
+    public final void onWindowVisibilityChanged(int i) {
         boolean z;
-        if (this.i) {
-            if (Thread.currentThread() == this.a) {
-                z = true;
-            } else {
-                z = false;
-            }
-            jte.p(z);
+        super.onWindowVisibilityChanged(i);
+        if (isAttachedToWindow() && i == 0 && isShown()) {
+            z = true;
+        } else {
+            z = false;
         }
-        this.f.add(new h65(new CopyOnWriteArraySet(this.d), i, x76Var, (byte) 5));
+        this.c = z;
     }
 
-    public final void d() {
-        boolean z;
-        if (this.i) {
-            if (Thread.currentThread() == this.a) {
-                z = true;
-            } else {
-                z = false;
-            }
-            jte.p(z);
-        }
-        synchronized (this.g) {
-            this.h = true;
-        }
-        Iterator it = this.d.iterator();
-        while (it.hasNext()) {
-            z76 z76Var = (z76) it.next();
-            y76 y76Var = this.c;
-            z76Var.d = true;
-            if (y76Var != null && z76Var.c) {
-                z76Var.c = false;
-                y76Var.c(z76Var.a, z76Var.b.f());
-            }
-        }
-        this.d.clear();
-    }
-
-    public final void e(int i, x76 x76Var) {
-        c(i, x76Var);
-        b();
-    }
-
-    public a86(Thread thread) {
-        this(new CopyOnWriteArraySet(), null, thread, null, null, true);
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
     }
 }

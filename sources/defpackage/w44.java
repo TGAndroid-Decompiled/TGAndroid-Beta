@@ -1,777 +1,137 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
-import org.telegram.messenger.Utilities;
-public abstract class w44 extends FrameLayout {
-    public static final List r0 = Arrays.asList(-90, 0, 90, 180);
-    public boolean E;
-    public boolean F;
-    public boolean G;
-    public u44 H;
-    public PointF I;
-    public v44 J;
-    public final r44 K;
-    public final UUID L;
-    public boolean M;
-    public int N;
-    public int O;
-    public bm3 P;
-    public float Q;
-    public ValueAnimator R;
-    public ValueAnimator S;
-    public int T;
-    public int U;
-    public final r44 V;
-    public final r44 W;
-    public final u51 a;
-    public int a0;
-    public float b;
-    public int b0;
-    public float c;
-    public ValueAnimator c0;
-    public float d;
-    public ValueAnimator d0;
-    public float e;
-    public boolean e0;
-    public float f;
-    public boolean f0;
-    public final float[] g0;
-    public float h;
-    public final float[] h0;
-    public final float[] i0;
-    public float j0;
-    public float k0;
-    public float l0;
-    public ValueAnimator m0;
-    public boolean n;
-    public boolean n0;
-    public FrameLayout o0;
-    public float p0;
-    public ValueAnimator q0;
-    public boolean r;
-    public boolean s;
-    public boolean w;
-    public boolean x;
-    public boolean y;
+import android.util.Log;
+import android.view.WindowManager;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.concurrent.ExecutorsRegistrar;
+import com.google.firebase.installations.FirebaseInstallationsRegistrar;
+import com.google.firebase.pnv.internal.FirebasePhoneNumberVerificationRegistrar;
+import com.google.firebase.sessions.FirebaseSessionsRegistrar;
+import java.io.IOException;
+import java.util.concurrent.ScheduledExecutorService;
+public final class w44 implements aq2, x56, y56, ed, Continuation, OnFailureListener, eia, fia {
+    public final byte a;
 
-    public w44(Context context, PointF pointF) {
-        super(context);
-        this.a = new u51(this);
-        this.n = false;
-        this.r = false;
-        this.w = false;
-        this.x = false;
-        this.y = false;
-        this.E = false;
-        this.F = false;
-        this.G = false;
-        this.K = new Runnable(this) {
-            public final w44 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void run() {
-                byte b = r2;
-                w44 w44Var = this.b;
-                switch (b) {
-                    case 0:
-                        w44Var.G = true;
-                        if (w44Var.H != null) {
-                            try {
-                                w44Var.performHapticFeedback(0);
-                            } catch (Exception unused) {
-                            }
-                            w44Var.H.A(w44Var);
-                            return;
-                        }
-                        return;
-                    case 1:
-                        w44Var.n();
-                        return;
-                    default:
-                        w44Var.o();
-                        return;
-                }
-            }
-        };
-        this.M = true;
-        this.N = 0;
-        this.O = -1;
-        this.T = 0;
-        this.U = 0;
-        this.V = new Runnable(this) {
-            public final w44 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void run() {
-                byte b = r2;
-                w44 w44Var = this.b;
-                switch (b) {
-                    case 0:
-                        w44Var.G = true;
-                        if (w44Var.H != null) {
-                            try {
-                                w44Var.performHapticFeedback(0);
-                            } catch (Exception unused) {
-                            }
-                            w44Var.H.A(w44Var);
-                            return;
-                        }
-                        return;
-                    case 1:
-                        w44Var.n();
-                        return;
-                    default:
-                        w44Var.o();
-                        return;
-                }
-            }
-        };
-        this.W = new Runnable(this) {
-            public final w44 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void run() {
-                byte b = r2;
-                w44 w44Var = this.b;
-                switch (b) {
-                    case 0:
-                        w44Var.G = true;
-                        if (w44Var.H != null) {
-                            try {
-                                w44Var.performHapticFeedback(0);
-                            } catch (Exception unused) {
-                            }
-                            w44Var.H.A(w44Var);
-                            return;
-                        }
-                        return;
-                    case 1:
-                        w44Var.n();
-                        return;
-                    default:
-                        w44Var.o();
-                        return;
-                }
-            }
-        };
-        this.g0 = new float[2];
-        this.h0 = new float[2];
-        this.i0 = new float[2];
-        this.j0 = 1.0f;
-        this.n0 = false;
-        this.p0 = 1.0f;
-        this.L = UUID.randomUUID();
-        this.I = pointF;
+    public w44(y54 y54Var) {
+        this.a = (byte) 5;
     }
 
-    public v44 a() {
-        f29 f29Var = new f29(this, getContext(), (byte) 0);
-        f29Var.r = new RectF();
-        return f29Var;
+    public static void d(Object obj, Object obj2, String str) {
+        throw new IllegalStateException(str + obj + obj2);
     }
 
-    public final float b() {
-        return (float) ((Math.abs(Math.sin((getRotation() / 180.0f) * 3.141592653589793d)) * getMeasuredWidth()) + (Math.abs(Math.cos((getRotation() / 180.0f) * 3.141592653589793d)) * getMeasuredHeight()));
+    public static void e(Object obj, String str) {
+        throw new IOException(str + obj);
     }
 
-    public final boolean c(float f, float f2, float f3, float f4, boolean z) {
-        float f5;
-        float f6;
-        float f7;
-        boolean z2;
-        float f8;
-        boolean z3;
-        boolean z4;
-        u44 u44Var;
-        u44 u44Var2;
-        u44 u44Var3;
-        u44 u44Var4;
-        if (getParent() != null) {
-            float scaleX = ((View) getParent()).getScaleX();
-            if (z) {
-                f5 = (f + f3) / 2.0f;
-                f6 = (f2 + f4) / 2.0f;
-            } else {
-                f5 = f;
-                f6 = f2;
-            }
-            float f9 = (f5 - this.f) / scaleX;
-            float f10 = (f6 - this.h) / scaleX;
-            float hypot = (float) Math.hypot(f9, f10);
-            if (this.n) {
-                f7 = 6.0f;
-            } else {
-                f7 = 16.0f;
-            }
-            if (hypot > f7 || z) {
-                gm.r(this.K);
-                e(f9, f10);
-                if (z) {
-                    float a = oqe.a(f, f2, f3, f4);
-                    float a2 = oqe.a(this.b, this.c, this.d, this.e);
-                    if (a2 > 0.0f) {
-                        j(a / a2);
-                    }
-                    f(this.k0 + ((float) Math.toDegrees(Math.atan2(f2 - f4, f - f3) - Math.atan2(this.c - this.e, this.b - this.d))));
-                }
-                this.b = f;
-                this.c = f2;
-                this.f = f5;
-                this.h = f6;
-                if (z) {
-                    this.d = f3;
-                    this.e = f4;
-                }
-                this.n = true;
-                if ((getParent() instanceof p44) && (this.T != 0 || this.U != 0)) {
-                    ((p44) getParent()).invalidate();
-                }
-                if (!this.x && (u44Var4 = this.H) != null) {
-                    this.x = true;
-                    u44Var4.C();
-                }
-                if (!this.y && z && (u44Var3 = this.H) != null) {
-                    this.y = true;
-                    u44Var3.g();
-                }
-                if (this.y && !z && (u44Var2 = this.H) != null) {
-                    this.y = false;
-                    u44Var2.f();
-                }
-                if (!this.n0 && !this.E && (u44Var = this.H) != null) {
-                    u44Var.i(this);
-                    this.E = true;
-                }
-                u44 u44Var5 = this.H;
-                if (u44Var5 != null) {
-                    if (hg9.x(getHeight(), 2.0f, scaleX, this.I.y) < gm.L(66.0f)) {
-                        z3 = true;
-                    } else {
-                        z3 = false;
-                    }
-                    u44Var5.B(z3);
-                    u44 u44Var6 = this.H;
-                    if (b10.A(getHeight(), 2.0f, scaleX, this.I.y) > ((View) getParent()).getHeight() - gm.L(114.0f)) {
-                        z4 = true;
-                    } else {
-                        z4 = false;
-                    }
-                    u44Var6.d(z4);
-                }
-                u44 u44Var7 = this.H;
-                if ((u44Var7 == null || u44Var7.o()) && !z && oqe.a(f5, f6, ((View) getParent()).getWidth() / 2.0f, ((View) getParent()).getHeight() - gm.L(76.0f)) < gm.L(32.0f)) {
-                    z2 = true;
-                } else {
-                    z2 = false;
-                }
-                if (this.F != z2) {
-                    ValueAnimator valueAnimator = this.q0;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                        this.q0 = null;
-                    }
-                    float f11 = this.p0;
-                    if (z2) {
-                        f8 = 0.5f;
-                    } else {
-                        f8 = 1.0f;
-                    }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f8);
-                    this.q0 = ofFloat;
-                    ofFloat.addUpdateListener(new s44(this, (byte) 1));
-                    this.q0.setInterpolator(d53.h);
-                    this.q0.setDuration(280L);
-                    this.q0.start();
-                    this.F = z2;
-                    u44 u44Var8 = this.H;
-                    if (u44Var8 != null) {
-                        u44Var8.j(z2);
-                    }
-                }
-                this.a.c(false);
-                return true;
-            }
-        }
-        return false;
+    public static void f(String str, Object obj, Object obj2, Object obj3, Object obj4) {
+        throw new IllegalStateException(str + obj + obj2 + obj3 + obj4);
     }
 
-    public final void d(boolean z) {
-        u44 u44Var;
-        u44 u44Var2;
-        if (this.x) {
-            this.H.e(this.F);
-            this.x = false;
-        }
-        this.y = false;
-        if (!z && !this.G && !this.n && !this.w && !this.E && (u44Var2 = this.H) != null) {
-            u44Var2.i(this);
-        }
-        if (this.n && (u44Var = this.H) != null) {
-            u44Var.B(false);
-            this.H.d(false);
-        }
-        gm.r(this.K);
-        this.G = false;
-        this.n = false;
-        this.w = false;
-        this.r = true;
-        this.s = false;
-        this.E = false;
-        this.O = this.N;
-        bm3 bm3Var = this.P;
-        if (bm3Var != null) {
-            gm.r(bm3Var);
-            this.P = null;
-        }
-        this.a0 = this.T;
-        gm.r(this.V);
-        this.b0 = this.U;
-        gm.r(this.W);
-        if (getParent() instanceof p44) {
-            ((p44) getParent()).invalidate();
+    @Override
+    public final Object L(gl2 gl2Var) {
+        rg4 lambda$getComponents$0;
+        yg4 components$lambda$0;
+        fh4 components$lambda$02;
+        ih4 components$lambda$1;
+        switch (this.a) {
+            case 0:
+                return (ScheduledExecutorService) ExecutorsRegistrar.c.get();
+            case 1:
+                return (ScheduledExecutorService) ExecutorsRegistrar.b.get();
+            case 2:
+                e06 e06Var = ExecutorsRegistrar.a;
+                return m4c.a;
+            case 17:
+                lambda$getComponents$0 = FirebaseInstallationsRegistrar.lambda$getComponents$0(gl2Var);
+                return lambda$getComponents$0;
+            case 19:
+                components$lambda$0 = FirebasePhoneNumberVerificationRegistrar.getComponents$lambda$0(gl2Var);
+                return components$lambda$0;
+            case 21:
+                components$lambda$02 = FirebaseSessionsRegistrar.getComponents$lambda$0(gl2Var);
+                return components$lambda$02;
+            default:
+                components$lambda$1 = FirebaseSessionsRegistrar.getComponents$lambda$1(gl2Var);
+                return components$lambda$1;
         }
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        float a = this.a.a(getBounceScale());
-        canvas.save();
-        canvas.scale(a, a, getWidth() / 2.0f, getHeight() / 2.0f);
-        if (getParent() instanceof View) {
-            View view = (View) getParent();
-            if (this instanceof ao9) {
-                float f = this.p0;
-                canvas.scale(f, f, getWidth() / 2.0f, getHeight() / 2.0f);
-            } else {
-                float width = (view.getWidth() / 2.0f) - getX();
-                float height = (view.getHeight() - gm.L(76.0f)) - getY();
-                float f2 = this.p0;
-                canvas.scale(f2, f2, width, height);
-            }
+    public final void b(Object obj, float f) {
+        sj4 sj4Var = (sj4) obj;
+        switch (this.a) {
+            case 25:
+                WindowManager.LayoutParams layoutParams = sj4Var.e;
+                sj4Var.B = f;
+                layoutParams.x = (int) f;
+                sj4Var.r();
+                return;
+            default:
+                WindowManager.LayoutParams layoutParams2 = sj4Var.e;
+                sj4Var.C = f;
+                layoutParams2.y = (int) f;
+                sj4Var.r();
+                return;
         }
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    public final void e(float r10, float r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.w44.e(float, float):void");
-    }
-
-    public final void f(float f) {
-        if (this.T != 0) {
-            this.a0 = 0;
-            n();
-        }
-        if (this.U != 0) {
-            this.b0 = 0;
-            o();
-        }
-        this.k0 = f;
-        if (!this.M) {
-            if (!this.e0) {
-                Iterator it = r0.iterator();
-                while (true) {
-                    if (!it.hasNext()) {
-                        break;
-                    }
-                    int intValue = ((Integer) it.next()).intValue();
-                    if (Math.abs(intValue - f) < 4.0f) {
-                        if (this.O != intValue) {
-                            this.O = intValue;
-                            bm3 bm3Var = this.P;
-                            if (bm3Var != null) {
-                                gm.r(bm3Var);
-                            }
-                            bm3 bm3Var2 = new bm3(this, intValue, (byte) 5);
-                            this.P = bm3Var2;
-                            gm.d3(bm3Var2, 250L);
-                        }
-                    }
-                }
-            }
-        } else if (Math.abs(this.N - f) < 12.0f && !this.e0) {
-            if (this.R != null) {
-                f = this.Q;
-            } else {
-                f = this.N;
-            }
-        } else {
-            this.O = -1;
-            bm3 bm3Var3 = this.P;
-            if (bm3Var3 != null) {
-                gm.r(bm3Var3);
-                this.P = null;
-            }
-            ValueAnimator valueAnimator = this.R;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            ValueAnimator valueAnimator2 = this.S;
-            if (valueAnimator2 != null) {
-                valueAnimator2.cancel();
-            }
-            ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-            this.S = duration;
-            duration.setInterpolator(d53.f);
-            this.S.addUpdateListener(new s44(this, (byte) 0));
-            this.S.addListener(new t44(this, (byte) 3));
-            this.S.start();
-            this.M = false;
-        }
-        ValueAnimator valueAnimator3 = this.S;
-        if (valueAnimator3 != null) {
-            f = gm.Z1(0.0f, f, valueAnimator3.getAnimatedFraction());
-        }
-        g(f);
-    }
-
-    public final void g(float f) {
-        setRotation(f);
-        if (this.T != 0 || this.U != 0) {
-            k();
-        }
-        m();
-    }
-
-    public float getBounceScale() {
-        return 0.04f;
-    }
-
-    public float getMaxScale() {
-        return 100.0f;
-    }
-
-    public float getMinScale() {
-        return 0.0f;
-    }
-
-    public PointF getPosition() {
-        return this.I;
-    }
-
-    public float getPositionX() {
-        float f;
-        float f2 = this.I.x;
-        if (getParent() != null) {
-            View view = (View) getParent();
-            int i = this.T;
-            if (i == 1) {
-                f = (getScaleX() * ((p() / 2.0f) - getStickyPaddingLeft())) + gm.L(8.0f);
-            } else if (i == 2) {
-                f = view.getMeasuredWidth() / 2.0f;
-            } else if (i == 3) {
-                f = (view.getMeasuredWidth() - gm.L(8.0f)) - (getScaleX() * (getStickyPaddingRight() + (p() / 2.0f)));
-            } else {
-                f = f2;
-            }
-            ValueAnimator valueAnimator = this.c0;
-            if (valueAnimator != null) {
-                return gm.R1(f2, f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-            }
-            if (f != 0.0f) {
-                return f;
-            }
-        }
-        return f2;
-    }
-
-    public float getPositionY() {
-        float f;
-        float f2 = this.I.y;
-        if (getParent() != null) {
-            View view = (View) getParent();
-            int i = this.U;
-            if (i == 1) {
-                f = (getScaleY() * ((b() / 2.0f) - getStickyPaddingTop())) + gm.L(64.0f);
-            } else if (i == 2) {
-                f = view.getMeasuredHeight() / 2.0f;
-            } else if (i == 3) {
-                f = (view.getMeasuredHeight() - gm.L(64.0f)) - (getScaleY() * (getStickyPaddingBottom() + (b() / 2.0f)));
-            } else {
-                f = f2;
-            }
-            ValueAnimator valueAnimator = this.d0;
-            if (valueAnimator != null) {
-                return gm.R1(f2, f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-            }
-            if (f != 0.0f) {
-                return f;
-            }
-        }
-        return f2;
-    }
-
-    public float getScale() {
-        return getScaleX();
-    }
-
-    public o49 getSelectionBounds() {
-        return new o49(0.0f, 0.0f, 0.0f, 0.0f);
-    }
-
-    public float getStickyPaddingBottom() {
-        return 0.0f;
-    }
-
-    public float getStickyPaddingLeft() {
-        return 0.0f;
-    }
-
-    public float getStickyPaddingRight() {
-        return 0.0f;
-    }
-
-    public float getStickyPaddingTop() {
-        return 0.0f;
-    }
-
-    public final int getStickyX() {
-        return this.T;
-    }
-
-    public final int getStickyY() {
-        return this.U;
-    }
-
-    public UUID getUUID() {
-        return this.L;
-    }
-
-    public final void h(float... fArr) {
-        ValueAnimator valueAnimator = this.c0;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(150L);
-        this.c0 = duration;
-        duration.setInterpolator(d53.f);
-        this.c0.addUpdateListener(new s44(this, (byte) 3));
-        this.c0.addListener(new t44(this, (byte) 0));
-        this.c0.start();
-    }
-
-    public final void i(float... fArr) {
-        ValueAnimator valueAnimator = this.d0;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(150L);
-        this.d0 = duration;
-        duration.setInterpolator(d53.f);
-        this.d0.addUpdateListener(new s44(this, (byte) 4));
-        this.d0.addListener(new t44(this, (byte) 1));
-        this.d0.start();
     }
 
     @Override
-    public final boolean isSelected() {
-        return this.n0;
-    }
-
-    public final void j(float f) {
-        boolean z;
-        float f2 = this.j0;
-        float f3 = f * f2;
-        this.j0 = f3;
-        float i = Utilities.i(Math.max(f3, 0.1f), getMaxScale(), getMinScale());
-        if (!(this instanceof g29)) {
-            boolean z2 = false;
-            if (i < getMaxScale() && i > getMinScale()) {
-                z = false;
-            } else {
-                z = true;
-            }
-            if (f2 >= getMaxScale() || f2 <= getMinScale()) {
-                z2 = true;
-            }
-            if (z != z2) {
-                try {
-                    performHapticFeedback(3, 1);
-                } catch (Exception unused) {
-                }
-            }
-        }
-        setScaleX(i);
-        setScaleY(i);
-    }
-
-    public void k() {
-        setX(getPositionX() - (getMeasuredWidth() / 2.0f));
-        setY(getPositionY() - (getMeasuredHeight() / 2.0f));
-        m();
-    }
-
-    public final void l(FrameLayout frameLayout, boolean z) {
-        if (this.n0 != z) {
-            this.n0 = z;
-            ValueAnimator valueAnimator = this.m0;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.m0 = null;
-            }
-            float f = 0.0f;
-            if (this.J == null) {
-                if (z || frameLayout != null) {
-                    v44 a = a();
-                    this.J = a;
-                    a.f = !this.e0;
-                    a.invalidate();
-                    frameLayout.addView(this.J);
-                    this.l0 = 0.0f;
-                } else {
-                    return;
-                }
-            }
-            this.J.b();
-            float f2 = this.l0;
-            if (z) {
-                f = 1.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
-            this.m0 = ofFloat;
-            ofFloat.addUpdateListener(new s44(this, (byte) 2));
-            this.m0.addListener(new t44(this, (byte) 4));
-            this.m0.setDuration(280L);
-            this.m0.setInterpolator(d53.h);
-            this.m0.start();
-        }
-    }
-
-    public final void m() {
-        v44 v44Var = this.J;
-        if (v44Var != null) {
-            v44Var.b();
-        }
-    }
-
-    public final void n() {
-        gm.r(this.V);
-        int i = this.T;
-        int i2 = this.a0;
-        if (i == i2) {
-            return;
-        }
-        this.T = i2;
-        if (getParent() instanceof p44) {
-            ((p44) getParent()).invalidate();
-        }
-        ValueAnimator valueAnimator = this.c0;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        if (this.a0 == 0) {
-            h(1.0f, 0.0f);
-            return;
-        }
-        try {
-            performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-        h(0.0f, 1.0f);
-    }
-
-    public final void o() {
-        gm.r(this.W);
-        int i = this.U;
-        int i2 = this.b0;
-        if (i == i2) {
-            return;
-        }
-        this.U = i2;
-        if (getParent() instanceof p44) {
-            ((p44) getParent()).invalidate();
-        }
-        ValueAnimator valueAnimator = this.d0;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        if (this.b0 == 0) {
-            i(1.0f, 0.0f);
-            return;
-        }
-        try {
-            performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-        i(0.0f, 1.0f);
+    public final void c(Object obj, gi4 gi4Var) {
+        ((mc8) obj).c(new lc8(gi4Var));
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return this.H.p();
+    public final float get(Object obj) {
+        sj4 sj4Var = (sj4) obj;
+        switch (this.a) {
+            case 24:
+                return sj4Var.B;
+            default:
+                return sj4Var.C;
+        }
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.w44.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void invoke(Object obj) {
+        mc8 mc8Var = (mc8) obj;
+        switch (this.a) {
+            case 4:
+                mc8Var.F(new j54(2, new RuntimeException("Player release timed out."), 1003));
+                return;
+            default:
+                mc8Var.onRenderedFirstFrame();
+                return;
+        }
     }
 
-    public final float p() {
-        return (float) ((Math.abs(Math.sin((getRotation() / 180.0f) * 3.141592653589793d)) * getMeasuredHeight()) + (Math.abs(Math.cos((getRotation() / 180.0f) * 3.141592653589793d)) * getMeasuredWidth()));
+    @Override
+    public final void onFailure(Exception exc) {
+        Log.e("FirebaseCrashlytics", "Error fetching settings.", exc);
     }
 
-    public void setDelegate(u44 u44Var) {
-        this.H = u44Var;
-    }
-
-    public void setPosition(PointF pointF) {
-        this.I = pointF;
-        k();
-    }
-
-    public void setScale(float f) {
-        this.j0 = f;
-        setScaleX(f);
-        setScaleY(f);
-    }
-
-    public void setSelectionVisibility(boolean z) {
+    @Override
+    public final Object then(Task task) {
         int i;
-        v44 v44Var = this.J;
-        if (v44Var == null) {
-            return;
+        switch (this.a) {
+            case 8:
+                i = 403;
+                break;
+            default:
+                i = -1;
+                break;
         }
-        if (z) {
-            i = 0;
-        } else {
-            i = 8;
-        }
-        v44Var.setVisibility(i);
+        return Integer.valueOf(i);
     }
 
-    public void setStickyX(int i) {
-        this.a0 = i;
-        this.T = i;
+    @Override
+    public final void u(hd hdVar, int i) {
+        hdVar.dismiss();
     }
 
-    public void setStickyY(int i) {
-        this.b0 = i;
-        this.U = i;
-    }
-
-    public void setIsVideo(boolean z) {
+    public w44(byte b) {
+        this.a = b;
     }
 }

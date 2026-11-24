@@ -1,65 +1,31 @@
 package defpackage;
 
-import android.util.Log;
-public final class o83 extends eeb implements fs4 {
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class o83 implements RequestDelegate {
     public final byte a;
-    public Object b;
+    public final r83 b;
 
-    public o83(v7a v7aVar, px2 px2Var) {
-        super(2, px2Var);
-        this.a = (byte) 2;
-        this.b = v7aVar;
+    public o83(r83 r83Var, byte b) {
+        this.a = b;
+        this.b = r83Var;
     }
 
     @Override
-    public final px2 create(Object obj, px2 px2Var) {
-        switch (this.a) {
-            case 0:
-                o83 o83Var = new o83(2, px2Var, (byte) 0);
-                o83Var.b = obj;
-                return o83Var;
-            case 1:
-                o83 o83Var2 = new o83(2, px2Var, (byte) 1);
-                o83Var2.b = obj;
-                return o83Var2;
-            default:
-                return new o83((v7a) this.b, px2Var);
-        }
-    }
-
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         byte b = this.a;
-        g7c g7cVar = g7c.a;
+        r83 r83Var = this.b;
         switch (b) {
             case 0:
-                return ((o83) create((iya) obj, (px2) obj2)).invokeSuspend(g7cVar);
-            case 1:
-                ((o83) create((String) obj, (px2) obj2)).invokeSuspend(g7cVar);
-                return g7cVar;
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                r83Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new o83(r83Var, (byte) 1));
+                return;
             default:
-                return ((o83) create((v7a) obj, (px2) obj2)).invokeSuspend(g7cVar);
+                r83Var.getMessagesController().U2(true);
+                return;
         }
-    }
-
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        switch (this.a) {
-            case 0:
-                tue.b(obj);
-                return Boolean.valueOf(!(((iya) this.b) instanceof vh4));
-            case 1:
-                tue.b(obj);
-                Log.e("FirebaseSessions", "Error failed to fetch the remote configs: " + ((String) this.b));
-                return g7c.a;
-            default:
-                tue.b(obj);
-                return (v7a) this.b;
-        }
-    }
-
-    public o83(int i, px2 px2Var, byte b) {
-        super(i, px2Var);
-        this.a = b;
     }
 }

@@ -1,24 +1,43 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-public final class sv7 extends e99 {
-    public final z8b F;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class sv7 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final tv7 b;
 
-    public sv7(z8b z8bVar, Context context, hw7 hw7Var, Bitmap bitmap, Bitmap bitmap2, sm0 sm0Var) {
-        super(context, hw7Var, bitmap, bitmap2, sm0Var);
-        this.F = z8bVar;
+    public sv7(tv7 tv7Var, byte b) {
+        this.a = b;
+        this.b = tv7Var;
     }
 
     @Override
-    public final void g(u11 u11Var) {
-        int indexOf = u11.a.indexOf(u11Var);
-        int i = indexOf + 1;
-        if (i <= 1) {
-            indexOf = i;
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        tv7 tv7Var = this.b;
+        switch (b) {
+            case 0:
+                AnimatorSet animatorSet = (AnimatorSet) tv7Var.e;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    tv7Var.e = null;
+                    return;
+                }
+                return;
+            case 1:
+                AnimatorSet animatorSet2 = (AnimatorSet) tv7Var.e;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    tv7Var.e = null;
+                    return;
+                }
+                return;
+            default:
+                AnimatorSet animatorSet3 = (AnimatorSet) tv7Var.e;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    tv7Var.e = null;
+                    return;
+                }
+                return;
         }
-        z8b z8bVar = this.F;
-        z8bVar.a1.b(indexOf);
-        z8bVar.s(u11Var);
     }
 }

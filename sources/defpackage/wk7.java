@@ -1,12 +1,24 @@
 package defpackage;
 
-import android.view.View;
-public interface wk7 {
-    void addOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
+import android.media.AudioAttributes;
+public abstract class wk7 {
+    public static AudioAttributes a(AudioAttributes.Builder builder) {
+        return builder.build();
+    }
 
-    int getMeasuredHeight();
+    public static AudioAttributes.Builder b() {
+        return new AudioAttributes.Builder();
+    }
 
-    int getTop();
+    public static AudioAttributes.Builder c(AudioAttributes.Builder builder, int i) {
+        return builder.setContentType(i);
+    }
 
-    void removeOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
+    public static AudioAttributes.Builder d(AudioAttributes.Builder builder, int i) {
+        return builder.setLegacyStreamType(i);
+    }
+
+    public static AudioAttributes.Builder e(AudioAttributes.Builder builder, int i) {
+        return builder.setUsage(i);
+    }
 }

@@ -1,264 +1,104 @@
 package defpackage;
-public final class ts3 implements Comparable {
-    public static final long b;
-    public static final long c;
-    public static final int d = 0;
-    public final long a;
 
-    static {
-        int i = vs3.a;
-        b = wge.a(4611686018427387903L);
-        c = wge.a(-4611686018427387903L);
-    }
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
+import android.view.ActionMode;
+import android.view.Menu;
+public final class ts3 extends rt3 {
+    public final wjb W;
+    public final boolean a0;
+    public final ws3 b0;
 
-    public static final void a(StringBuilder sb, int i, int i2, int i3, String str, boolean z) {
-        CharSequence charSequence;
-        sb.append(i);
-        if (i2 != 0) {
-            sb.append('.');
-            String valueOf = String.valueOf(i2);
-            valueOf.getClass();
-            if (i3 >= 0) {
-                if (i3 <= valueOf.length()) {
-                    charSequence = valueOf.subSequence(0, valueOf.length());
-                } else {
-                    StringBuilder sb2 = new StringBuilder(i3);
-                    int length = i3 - valueOf.length();
-                    int i4 = 1;
-                    if (1 <= length) {
-                        while (true) {
-                            sb2.append('0');
-                            if (i4 == length) {
-                                break;
-                            }
-                            i4++;
-                        }
-                    }
-                    sb2.append((CharSequence) valueOf);
-                    charSequence = sb2;
-                }
-                String obj = charSequence.toString();
-                int i5 = -1;
-                int length2 = obj.length() - 1;
-                if (length2 >= 0) {
-                    while (true) {
-                        int i6 = length2 - 1;
-                        if (obj.charAt(length2) != '0') {
-                            i5 = length2;
-                            break;
-                        } else if (i6 < 0) {
-                            break;
-                        } else {
-                            length2 = i6;
-                        }
-                    }
-                }
-                int i7 = i5 + 1;
-                if (!z && i7 < 3) {
-                    sb.append((CharSequence) obj, 0, i7);
-                } else {
-                    sb.append((CharSequence) obj, 0, ((i5 + 3) / 3) * 3);
-                }
-            } else {
-                u36.j(td4.o(i3, "Desired length ", " is less than zero."));
-                return;
-            }
-        }
-        sb.append(str);
-    }
-
-    public static int b(long j, long j2) {
-        long j3 = j ^ j2;
-        if (j3 >= 0 && (((int) j3) & 1) != 0) {
-            int i = (((int) j) & 1) - (((int) j2) & 1);
-            if (j < 0) {
-                return -i;
-            }
-            return i;
-        }
-        int i2 = (j > j2 ? 1 : (j == j2 ? 0 : -1));
-        if (i2 < 0) {
-            return -1;
-        }
-        if (i2 != 0) {
-            return 1;
-        }
-        return 0;
-    }
-
-    public static final boolean c(long j) {
-        if (j != b && j != c) {
-            return false;
-        }
-        return true;
-    }
-
-    public static final long d(long j, xs3 xs3Var) {
-        xs3 xs3Var2;
-        if (j == b) {
-            return Long.MAX_VALUE;
-        }
-        if (j == c) {
-            return Long.MIN_VALUE;
-        }
-        long j2 = j >> 1;
-        if ((((int) j) & 1) == 0) {
-            xs3Var2 = xs3.NANOSECONDS;
-        } else {
-            xs3Var2 = xs3.MILLISECONDS;
-        }
-        return xs3Var.a.convert(j2, xs3Var2.a);
+    public ts3(ws3 ws3Var, Context context, cja cjaVar, wjb wjbVar, boolean z) {
+        super(context, cjaVar, null, 4, true, null);
+        this.b0 = ws3Var;
+        this.W = wjbVar;
+        this.a0 = z;
     }
 
     @Override
-    public final int compareTo(Object obj) {
-        return b(this.a, ((ts3) obj).a);
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof ts3) {
-            if (this.a != ((ts3) obj).a) {
-                return false;
-            }
+    public final boolean a() {
+        if (this.b0.r && super.a()) {
             return true;
         }
         return false;
     }
 
-    public final int hashCode() {
-        long j = this.a;
-        return (int) (j ^ (j >>> 32));
+    @Override
+    public final boolean b() {
+        return this.b0.s;
     }
 
-    public final String toString() {
-        boolean z;
-        int d2;
-        int d3;
-        int d4;
-        long j;
+    @Override
+    public final int h() {
+        return this.b0.a();
+    }
+
+    @Override
+    public final void i(ActionMode actionMode, Menu menu) {
+        if (menu.findItem(2131296493) != null) {
+            return;
+        }
+        menu.removeItem(16908341);
+        menu.add(2131296498, 2131296510, 6, k96.M0(2131745025, null));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(k96.M0(2131753668, null));
+        spannableStringBuilder.setSpan(new z3c(gl.o()), 0, spannableStringBuilder.length(), 33);
+        menu.add(2131296498, 2131296493, 7, spannableStringBuilder);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(k96.M0(2131748895, null));
+        spannableStringBuilder2.setSpan(new z3c(gl.n1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        menu.add(2131296498, 2131296499, 8, spannableStringBuilder2);
+        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(k96.M0(2131744196, null));
+        ?? obj = new Object();
+        obj.a |= 8;
+        spannableStringBuilder3.setSpan(new wib(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        menu.add(2131296498, 2131296511, 9, spannableStringBuilder3);
+        menu.add(2131296498, 2131296505, 10, k96.M0(2131746144, null));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f;
         int i;
-        boolean z2;
-        boolean z3;
-        boolean z4;
-        boolean z5;
-        long j2 = this.a;
-        int i2 = (j2 > 0L ? 1 : (j2 == 0L ? 0 : -1));
-        if (i2 == 0) {
-            return "0s";
+        canvas.save();
+        int i2 = 0;
+        canvas.clipRect(getPaddingLeft() + getScrollX(), 0, (getWidth() + getScrollX()) - getPaddingRight(), getHeight());
+        super.onDraw(canvas);
+        canvas.restore();
+        ws3 ws3Var = this.b0;
+        gn gnVar = ws3Var.y;
+        kl klVar = ws3Var.w;
+        if (klVar != null) {
+            if (ws3Var.x <= 0) {
+                i = bkb.o7;
+            } else {
+                i = bkb.O5;
+            }
+            gnVar.u(klVar.a(bkb.v0(i, this.W), false));
         }
-        if (j2 == b) {
-            return "Infinity";
-        }
-        if (j2 == c) {
-            return "-Infinity";
-        }
-        int i3 = 0;
-        if (i2 < 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        StringBuilder sb = new StringBuilder();
+        int min = Math.min(gl.L(48.0f), getHeight());
+        boolean z = this.a0;
         if (z) {
-            sb.append('-');
-        }
-        if (i2 < 0) {
-            j2 = (((int) j2) & 1) + ((-(j2 >> 1)) << 1);
-            int i4 = vs3.a;
-        }
-        long d5 = d(j2, xs3.DAYS);
-        if (c(j2)) {
-            d2 = 0;
+            f = 0.0f;
         } else {
-            d2 = (int) (d(j2, xs3.HOURS) % 24);
+            f = -gl.L(1.0f);
         }
-        if (c(j2)) {
-            d3 = 0;
-        } else {
-            d3 = (int) (d(j2, xs3.MINUTES) % 60);
+        float scrollX = getScrollX();
+        float height = (getHeight() + f) - min;
+        int width = getWidth() + getScrollX();
+        if (!z) {
+            i2 = 44;
         }
-        if (c(j2)) {
-            d4 = 0;
-        } else {
-            d4 = (int) (d(j2, xs3.SECONDS) % 60);
+        gnVar.o(scrollX, height, width - gl.L(i2 + 12), f + getHeight());
+        gnVar.draw(canvas);
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.b0.y && !super.verifyDrawable(drawable)) {
+            return false;
         }
-        if (c(j2)) {
-            i = 0;
-        } else {
-            int i5 = ((int) j2) & 1;
-            long j3 = j2 >> 1;
-            if (i5 == 1) {
-                j = (j3 % 1000) * 1000000;
-            } else {
-                j = j3 % 1000000000;
-            }
-            i = (int) j;
-        }
-        if (d5 != 0) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        if (d2 != 0) {
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        if (d3 != 0) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        if (d4 == 0 && i == 0) {
-            z5 = false;
-        } else {
-            z5 = true;
-        }
-        if (z2) {
-            sb.append(d5);
-            sb.append('d');
-            i3 = 1;
-        }
-        if (z3 || (z2 && (z4 || z5))) {
-            int i6 = i3 + 1;
-            if (i3 > 0) {
-                sb.append(' ');
-            }
-            sb.append(d2);
-            sb.append('h');
-            i3 = i6;
-        }
-        if (z4 || (z5 && (z3 || z2))) {
-            int i7 = i3 + 1;
-            if (i3 > 0) {
-                sb.append(' ');
-            }
-            sb.append(d3);
-            sb.append('m');
-            i3 = i7;
-        }
-        if (z5) {
-            int i8 = i3 + 1;
-            if (i3 > 0) {
-                sb.append(' ');
-            }
-            if (d4 == 0 && !z2 && !z3 && !z4) {
-                if (i >= 1000000) {
-                    a(sb, i / 1000000, i % 1000000, 6, "ms", false);
-                } else if (i >= 1000) {
-                    a(sb, i / 1000, i % 1000, 3, "us", false);
-                } else {
-                    sb.append(i);
-                    sb.append("ns");
-                }
-            } else {
-                a(sb, d4, i, 9, "s", false);
-            }
-            i3 = i8;
-        }
-        if (z && i3 > 1) {
-            sb.insert(1, '(').append(')');
-        }
-        return sb.toString();
+        return true;
     }
 }

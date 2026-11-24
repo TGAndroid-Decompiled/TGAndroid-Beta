@@ -1,12 +1,12 @@
 package defpackage;
 public abstract class m1f {
-    public static int a(Object obj) {
-        int hashCode;
-        if (obj == null) {
-            hashCode = 0;
-        } else {
-            hashCode = obj.hashCode();
+    public static boolean a(Object obj, Object obj2) {
+        if (obj == obj2) {
+            return true;
         }
-        return (int) (Integer.rotateLeft((int) (hashCode * (-862048943)), 15) * 461845907);
+        if (obj != null && obj.equals(obj2)) {
+            return true;
+        }
+        return false;
     }
 }

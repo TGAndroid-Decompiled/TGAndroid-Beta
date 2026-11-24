@@ -27,9 +27,9 @@ public final class z7 extends AnimatorListenerAdapter {
         }
         int i = this.b;
         int i2 = this.c;
-        int f2 = on2.f(f, i, i2);
+        int f2 = bm2.f(f, i, i2);
         a8 a8Var = this.e;
         a8Var.setTextColor(f2);
-        a8Var.setIconColor(on2.f(f, this.d, i2));
+        a8Var.setIconColor(bm2.f(f, this.d, i2));
     }
 }

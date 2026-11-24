@@ -1,29 +1,39 @@
 package defpackage;
-public final class yc6 implements Runnable {
-    public final byte a;
-    public final dd6 b;
-    public final Integer c;
 
-    public yc6(dd6 dd6Var, Integer num, byte b) {
-        this.a = b;
-        this.b = dd6Var;
-        this.c = num;
+import android.content.Context;
+import org.telegram.ui.PasscodeActivity;
+public final class yc6 extends fj2 {
+    public final byte h;
+    public final Object n;
+
+    public yc6(byte b, Context context, Object obj) {
+        super(context);
+        this.h = b;
+        this.n = obj;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        Integer num = this.c;
-        dd6 dd6Var = this.b;
+    public final void a() {
+        byte b = this.h;
+        Object obj = this.n;
         switch (b) {
             case 0:
-                if (!dd6Var.b.isEmpty()) {
-                    gm.c3(new yc6(dd6Var, num, (byte) 1));
+                ((ad6) obj).h(null);
+                return;
+            case 1:
+                ((td6) obj).h(null);
+                return;
+            case 2:
+                PasscodeActivity passcodeActivity = (PasscodeActivity) obj;
+                if (!passcodeActivity.F) {
+                    postDelayed(new oq7(this, (byte) 4), 260L);
+                    return;
+                } else {
+                    passcodeActivity.t0();
                     return;
                 }
-                return;
             default:
-                dd6Var.getNotificationCenter().k(77, num);
+                ((p3c) obj).G0();
                 return;
         }
     }

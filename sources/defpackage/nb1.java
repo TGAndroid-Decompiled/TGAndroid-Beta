@@ -1,40 +1,43 @@
 package defpackage;
-
-import org.telegram.messenger.camera.CameraView;
 public final class nb1 implements Runnable {
     public final byte a;
-    public final CameraView b;
+    public final j7b b;
 
-    public nb1(CameraView cameraView, byte b) {
+    public nb1(j7b j7bVar, byte b) {
         this.a = b;
-        this.b = cameraView;
+        this.b = j7bVar;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        CameraView cameraView = this.b;
+        j7b j7bVar = this.b;
         switch (b) {
             case 0:
-                CameraView.j(cameraView);
+                j7bVar.n();
                 return;
             case 1:
-                CameraView.c(cameraView);
-                return;
-            case 2:
-                CameraView.b(cameraView);
-                return;
-            case 3:
-                CameraView.l(cameraView);
-                return;
-            case 4:
-                CameraView.e(cameraView);
-                return;
-            case 5:
-                CameraView.m(cameraView);
+                j7bVar.K0 = false;
+                j7bVar.L0 = Integer.MIN_VALUE;
+                j7bVar.invalidate();
+                j7bVar.S0.setVisibility(0);
+                j7bVar.T0.setVisibility(0);
                 return;
             default:
-                CameraView.g(cameraView);
+                t7b t7bVar = j7bVar.S1;
+                i7b i7bVar = t7bVar.Y0;
+                if (i7bVar != null) {
+                    i7bVar.P = false;
+                    i7bVar.b();
+                    i7b i7bVar2 = t7bVar.Y0;
+                    i7bVar2.m(0L);
+                    kob kobVar = i7bVar2.G;
+                    if (kobVar != null) {
+                        kobVar.setProgress(0L);
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }

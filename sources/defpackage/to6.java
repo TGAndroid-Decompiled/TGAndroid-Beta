@@ -1,22 +1,29 @@
 package defpackage;
 
-import android.content.Context;
-import android.media.session.MediaController;
-import java.util.ArrayList;
-import java.util.HashMap;
-public class to6 {
-    public final MediaController a;
-    public final Object b = new Object();
-    public final ArrayList c = new ArrayList();
-    public final HashMap d = new HashMap();
-    public final kx6 e;
+import java.util.Locale;
+import org.telegram.SQLite.SQLiteDatabase;
+public final class to6 implements Runnable {
+    public final hq6 a;
+    public final long b;
+    public final byte c;
 
-    public to6(Context context, kx6 kx6Var) {
-        this.e = kx6Var;
-        MediaController mediaController = new MediaController(context, kx6Var.b);
-        this.a = mediaController;
-        if (kx6Var.a() == null) {
-            mediaController.sendCommand("android.support.v4.media.session.command.GET_EXTRA_BINDER", null, new j23(this));
+    public to6(hq6 hq6Var, long j, int i) {
+        this.a = hq6Var;
+        this.b = j;
+        this.c = i;
+    }
+
+    @Override
+    public final void run() {
+        hq6 hq6Var = this.a;
+        long j = this.b;
+        byte b = this.c;
+        try {
+            SQLiteDatabase sQLiteDatabase = hq6Var.getMessagesStorage().b;
+            Locale locale = Locale.US;
+            sQLiteDatabase.executeFast("DELETE FROM chat_hints WHERE did = " + j + " AND type = " + ((int) b)).stepThis().dispose();
+        } catch (Exception e) {
+            fa4.g(e, true);
         }
     }
 }

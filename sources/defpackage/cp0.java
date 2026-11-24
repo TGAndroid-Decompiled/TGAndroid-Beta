@@ -1,26 +1,13 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_stories;
-public final class cp0 implements qac {
-    public final byte a;
-    public final lp0 b;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class cp0 extends LinearLayout {
+    public TextView a;
+    public wb b;
+    public String c;
 
-    public cp0(lp0 lp0Var, byte b) {
-        this.a = b;
-        this.b = lp0Var;
-    }
-
-    @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        lp0 lp0Var = this.b;
-        switch (b) {
-            case 0:
-                lp0Var.V = (vh1) obj;
-                return;
-            default:
-                gm.c3(new x30(lp0Var, (TL_stories.TL_premium_boostsStatus) obj, (byte) 15));
-                return;
-        }
+    public String getCommand() {
+        return this.c;
     }
 }

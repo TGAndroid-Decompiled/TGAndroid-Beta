@@ -1,50 +1,29 @@
 package defpackage;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
-public final class y14 extends qt7 {
-    public final e34 c;
+public final class y14 extends FrameLayout {
+    public int a;
 
-    public y14(e34 e34Var) {
-        this.c = e34Var;
+    public y14(Context context) {
+        this(context, 8);
     }
 
     @Override
-    public final void a(ggc ggcVar, Object obj) {
-        ggcVar.removeView((View) obj);
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.a, 1073741824));
     }
 
-    @Override
-    public final int b() {
-        return this.c.e.size();
-    }
-
-    @Override
-    public final CharSequence d(int i) {
-        if (i != 0) {
-            if (i != 1) {
-                if (i != 2) {
-                    return null;
-                }
-                return jb6.M0(2131754755, null);
-            }
-            return jb6.M0(2131754879, null);
+    public void setHeight(int i) {
+        if (this.a != i) {
+            this.a = i;
+            requestLayout();
         }
-        return jb6.M0(2131751133, null);
     }
 
-    @Override
-    public final Object e(ggc ggcVar, int i) {
-        FrameLayout frameLayout = ((a34) this.c.e.get(i)).b;
-        ggcVar.addView(frameLayout);
-        return frameLayout;
-    }
-
-    @Override
-    public final boolean f(View view, Object obj) {
-        if (view == obj) {
-            return true;
-        }
-        return false;
+    public y14(Context context, int i) {
+        super(context);
+        this.a = i;
     }
 }

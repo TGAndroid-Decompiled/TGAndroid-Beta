@@ -1,167 +1,143 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.tgnet.TLRPC;
-public final class hv3 extends q59 {
-    public final Context c;
-    public Drawable d;
-    public Drawable e;
-    public final kv3 f;
+import android.graphics.Canvas;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import java.util.ArrayList;
+import org.telegram.messenger.ImageReceiver;
+public final class hv3 extends oq3 {
+    public int N;
+    public int O;
+    public ArrayList P;
+    public final ArrayList Q = new ArrayList();
+    public final boolean R = e66.e(8200);
+    public final jv3 S;
 
-    public hv3(kv3 kv3Var, Context context) {
-        this.f = kv3Var;
-        this.c = context;
+    public hv3(jv3 jv3Var) {
+        this.S = jv3Var;
+    }
+
+    public static void m(Canvas canvas, vl vlVar, iv3 iv3Var, float f) {
+        if (vlVar != null) {
+            vlVar.setAlpha((int) (f * 255.0f));
+            vlVar.draw(canvas);
+        } else if (iv3Var.f != null) {
+            canvas.save();
+            ImageReceiver imageReceiver = iv3Var.f;
+            canvas.clipRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.w(), iv3Var.f.x());
+            iv3Var.f.setAlpha(f);
+            iv3Var.f.h(canvas, null);
+            canvas.restore();
+        }
     }
 
     @Override
-    public final boolean D(u69 u69Var) {
-        int i = u69Var.f;
-        if (i == 1 || i == 3) {
-            return true;
+    public final void a(Canvas canvas, long j, int i, int i2, float f) {
+        boolean z;
+        if (this.P == null) {
+            return;
         }
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.f.w;
-    }
-
-    @Override
-    public final int d(int i) {
-        if (i == 0) {
-            return 2;
+        boolean z2 = true;
+        if (!this.S.c0() && this.P.size() > 4 && this.R) {
+            z = false;
+        } else {
+            z = true;
         }
-        kv3 kv3Var = this.f;
-        if (i == kv3Var.h) {
-            return 1;
-        }
-        if (i == kv3Var.s) {
-            return 0;
-        }
-        return 3;
-    }
-
-    @Override
-    public final void t(u69 u69Var, int i) {
-        int i2 = u69Var.f;
-        View view = u69Var.a;
-        kv3 kv3Var = this.f;
-        boolean z = true;
-        if (i2 != 0) {
-            if (i2 != 1) {
-                if (i2 == 3) {
-                    xc5 xc5Var = (xc5) view;
-                    Long l = (Long) kv3Var.e.get(i - kv3Var.n);
-                    long longValue = l.longValue();
-                    if (pg3.D(longValue)) {
-                        TLRPC.User W1 = kv3Var.getMessagesController().W1(l);
-                        if (i == kv3Var.r - 1) {
-                            z = false;
-                        }
-                        xc5Var.e(W1, null, null, z);
-                        return;
-                    }
-                    TLRPC.Chat L0 = kv3Var.getMessagesController().L0(Long.valueOf(-longValue));
-                    if (i == kv3Var.r - 1) {
-                        z = false;
-                    }
-                    xc5Var.e(L0, null, null, z);
-                    return;
+        if (!z) {
+            for (int i3 = 0; i3 < this.P.size(); i3++) {
+                if (((iv3) this.P.get(i3)).getScale() != 1.0f) {
+                    break;
                 }
+            }
+        }
+        z2 = z;
+        if (z2) {
+            i(System.currentTimeMillis());
+            d(canvas, f);
+            k();
+            return;
+        }
+        super.a(canvas, j, i, i2, f);
+    }
+
+    @Override
+    public final void c(Canvas canvas) {
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.Q;
+            if (i < arrayList.size()) {
+                iv3 iv3Var = (iv3) arrayList.get(i);
+                iv3Var.getClass();
+                vl vlVar = iv3Var.d;
+                if (vlVar != null) {
+                    vlVar.setColorFilter(this.S.p3);
+                }
+                iv3Var.r.h(canvas, iv3Var.n[this.L]);
+                i++;
+            } else {
                 return;
             }
-            xib xibVar = (xib) view;
-            xibVar.g(-1, cmb.p6);
-            if (this.d == null) {
-                Context context = this.c;
-                this.d = context.getResources().getDrawable(2131232576);
-                this.e = context.getResources().getDrawable(2131232577);
-            }
-            Drawable drawable = this.d;
-            Drawable drawable2 = this.e;
-            int i3 = cmb.M6;
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            anb.x(xibVar, drawable, i3, null, mode);
-            anb.x(xibVar, drawable2, cmb.j7, null, mode);
-            sn2 sn2Var = new sn2(drawable, drawable2);
-            String M0 = jb6.M0(2131745402, null);
-            if (kv3Var.n == -1) {
-                z = false;
-            }
-            xibVar.p(M0, sn2Var, z);
-            xibVar.getImageView().setPadding(0, gm.L(7.0f), 0, 0);
-            return;
-        }
-        njb njbVar = (njb) view;
-        if (i == kv3Var.s) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            int i4 = kv3Var.x;
-            if (i4 == 0) {
-                spannableStringBuilder.append((CharSequence) jb6.M0(2131751149, null));
-            } else if (i4 == 1) {
-                spannableStringBuilder.append((CharSequence) jb6.M0(2131751148, null));
-            }
-            if (gda.r.length() > 0) {
-                spannableStringBuilder.append((CharSequence) "\n\n").append((CharSequence) gm.S2(jb6.M0(2131742534, null)));
-            }
-            njbVar.setText(spannableStringBuilder);
         }
     }
 
     @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        jv3 jv3Var;
-        int i2;
-        Context context = this.c;
-        if (i != 0) {
-            if (i != 1) {
-                if (i != 2) {
-                    FrameLayout xc5Var = new xc5(context, 0, 0, false);
-                    ImageView k = td4.k(context, 2131231632);
-                    k.setScaleType(ImageView.ScaleType.CENTER);
-                    xc5Var.setTag(2131296587, k);
-                    if (jb6.a0) {
-                        i2 = 3;
-                    } else {
-                        i2 = 5;
-                    }
-                    xc5Var.addView(k, qoe.d(40, -1.0f, i2 | 16, 10.0f, 0.0f, 10.0f, 0.0f));
-                    k.setOnTouchListener(new f8(this, xc5Var, (byte) 2));
-                    anb.s(k, cmb.a9, null, PorterDuff.Mode.MULTIPLY);
-                    jv3Var = xc5Var;
-                } else {
-                    kv3 kv3Var = this.f;
-                    jv3 jv3Var2 = new jv3(kv3Var, context);
-                    kv3Var.f = jv3Var2;
-                    jv3Var = jv3Var2;
+    public final void d(Canvas canvas, float f) {
+        vl vlVar;
+        if (this.P != null) {
+            canvas.save();
+            canvas.translate(-this.O, 0.0f);
+            for (int i = 0; i < this.P.size(); i++) {
+                iv3 iv3Var = (iv3) this.P.get(i);
+                iv3Var.getClass();
+                float scale = iv3Var.getScale();
+                float alpha = iv3Var.getAlpha() * f;
+                Rect rect = gl.Q;
+                rect.set(iv3Var.getPaddingLeft() + ((int) iv3Var.getX()), iv3Var.getPaddingTop(), (iv3Var.getWidth() + ((int) iv3Var.getX())) - iv3Var.getPaddingRight(), iv3Var.getHeight() - iv3Var.getPaddingBottom());
+                vl vlVar2 = iv3Var.d;
+                if (vlVar2 != null) {
+                    vlVar2.setBounds(rect);
                 }
-            } else {
-                FrameLayout xibVar = new xib(context);
-                anb.h(cmb.c6, null, xibVar);
-                jv3Var = xibVar;
+                ImageReceiver imageReceiver = iv3Var.f;
+                if (imageReceiver != null) {
+                    imageReceiver.j0(rect);
+                }
+                PorterDuffColorFilter porterDuffColorFilter = this.S.p3;
+                if (porterDuffColorFilter != null && (vlVar = iv3Var.d) != null) {
+                    vlVar.setColorFilter(porterDuffColorFilter);
+                }
+                if (scale != 1.0f) {
+                    canvas.save();
+                    canvas.scale(scale, scale, rect.centerX(), rect.centerY());
+                    m(canvas, vlVar2, iv3Var, alpha);
+                    canvas.restore();
+                } else {
+                    m(canvas, vlVar2, iv3Var, alpha);
+                }
             }
-        } else {
-            FrameLayout njbVar = new njb(context);
-            anb.Z(njbVar, context, 2131231234, cmb.a7);
-            jv3Var = njbVar;
+            canvas.restore();
         }
-        return new u69(jv3Var);
     }
 
     @Override
-    public final void y(u69 u69Var) {
-        int i = u69Var.f;
-        if (i != 3 && i != 1) {
-            return;
+    public final void g() {
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.Q;
+            if (i < arrayList.size()) {
+                il5 il5Var = ((iv3) arrayList.get(i)).n[this.L];
+                if (il5Var != null) {
+                    il5Var.a();
+                }
+                i++;
+            } else {
+                this.S.invalidate();
+                return;
+            }
         }
-        anb.h(cmb.c6, null, u69Var.a);
+    }
+
+    @Override
+    public final void i(long r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.hv3.i(long):void");
     }
 }

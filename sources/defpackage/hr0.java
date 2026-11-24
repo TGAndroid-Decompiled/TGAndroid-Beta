@@ -1,42 +1,29 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_keyboard;
-public final class hr0 extends gr0 {
-    public final TL_keyboard.KeyboardInlineButton a;
+import android.content.Context;
+import android.view.View;
+public final class hr0 extends b4c {
+    public static final int b = 0;
 
-    public hr0(TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
-        this.a = keyboardInlineButton;
+    static {
+        b4c.h(new b4c());
     }
 
     @Override
-    public final int a() {
-        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.a.style;
-        if (keyboardButtonStyle != null) {
-            if (keyboardButtonStyle.bg_success) {
-                return 3;
-            }
-            if (keyboardButtonStyle.bg_danger) {
-                return 4;
-            }
-            if (keyboardButtonStyle.bg_primary) {
-                return 2;
-            }
-            return 1;
+    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
+        ir0 ir0Var = (ir0) view;
+        u0c u0cVar = (u0c) c4cVar.H;
+        ir0Var.a.setText(u0cVar.b);
+        ir0Var.b.setText(u0cVar.c);
+        if (ir0Var.c != z) {
+            ir0Var.invalidate();
         }
-        return 1;
+        ir0Var.c = z;
+        ir0Var.setWillNotDraw(!z);
     }
 
     @Override
-    public final long b() {
-        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.a.style;
-        if (keyboardButtonStyle != null) {
-            return keyboardButtonStyle.icon;
-        }
-        return 0L;
-    }
-
-    @Override
-    public final String d() {
-        return this.a.text;
+    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
+        return new ir0(context);
     }
 }

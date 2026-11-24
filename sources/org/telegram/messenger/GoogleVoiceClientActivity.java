@@ -1,3 +1,3 @@
 package org.telegram.messenger;
-public class GoogleVoiceClientActivity extends pt9 {
+public class GoogleVoiceClientActivity extends nr9 {
 }

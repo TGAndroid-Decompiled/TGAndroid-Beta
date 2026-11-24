@@ -1,42 +1,36 @@
 package defpackage;
 
-import android.widget.LinearLayout;
-import org.telegram.ui.LaunchActivity;
-public final class v75 extends LinearLayout {
-    public boolean a;
-    public final lp7 b;
-    public final r75 c;
-    public final s75 d;
+import org.telegram.messenger.voip.GroupCallMessage;
+import org.telegram.messenger.voip.GroupCallMessagesController;
+public final class v75 implements Runnable {
+    public final byte a;
+    public final GroupCallMessagesController b;
+    public final long c;
+    public final GroupCallMessage d;
 
-    public v75(LaunchActivity launchActivity, lp7 lp7Var, r75 r75Var, s75 s75Var) {
-        super(launchActivity);
-        this.b = lp7Var;
-        this.c = r75Var;
-        this.d = s75Var;
-        this.a = false;
+    public v75(GroupCallMessagesController groupCallMessagesController, long j, GroupCallMessage groupCallMessage, byte b) {
+        this.a = b;
+        this.b = groupCallMessagesController;
+        this.c = j;
+        this.d = groupCallMessage;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        this.a = true;
-        lp7 lp7Var = this.b;
-        lp7Var.setItemCount(5);
-        r75 r75Var = this.c;
-        r75Var.setItemCount(5);
-        s75 s75Var = this.d;
-        s75Var.setItemCount(5);
-        lp7Var.getLayoutParams().height = gm.L(54.0f) * 5;
-        r75Var.getLayoutParams().height = gm.L(54.0f) * 5;
-        s75Var.getLayoutParams().height = gm.L(54.0f) * 5;
-        this.a = false;
-        super.onMeasure(i, i2);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.a) {
-            return;
+    public final void run() {
+        byte b = this.a;
+        GroupCallMessage groupCallMessage = this.d;
+        long j = this.c;
+        GroupCallMessagesController groupCallMessagesController = this.b;
+        switch (b) {
+            case 0:
+                GroupCallMessagesController.a(groupCallMessagesController, j, groupCallMessage);
+                return;
+            case 1:
+                GroupCallMessagesController.d(groupCallMessagesController, j, groupCallMessage);
+                return;
+            default:
+                GroupCallMessagesController.f(groupCallMessagesController, j, groupCallMessage);
+                return;
         }
-        super.requestLayout();
     }
 }

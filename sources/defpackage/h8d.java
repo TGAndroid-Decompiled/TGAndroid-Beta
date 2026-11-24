@@ -1,53 +1,30 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-import java.io.IOException;
-public final class h8d implements Continuation, v76, lr2, pje {
-    public static final h8d b = new h8d((byte) 0);
-    public final byte a;
+import j$.util.Objects;
+import java.util.AbstractMap;
+public final class h8d extends r6d {
+    public final l8d r;
 
-    public h8d(byte b2) {
-        this.a = b2;
+    public h8d(l8d l8dVar) {
+        super((byte) 2);
+        this.r = l8dVar;
     }
 
     @Override
-    public final Object X(sm2 sm2Var) {
-        switch (this.a) {
-            case 2:
-                cg7 cg7Var = (cg7) sm2Var.a(cg7.class);
-                synchronized (agf.class) {
-                    agf.a(new Object());
-                }
-                return new Object();
-            default:
-                return new uha((Context) sm2Var.a(Context.class));
-        }
+    public final Object get(int i) {
+        l8d l8dVar = this.r;
+        k4f.a(i, l8dVar.w);
+        Object[] objArr = l8dVar.s;
+        int i2 = i << 1;
+        Object obj = objArr[i2];
+        Objects.requireNonNull(obj);
+        Object obj2 = objArr[i2 + 1];
+        Objects.requireNonNull(obj2);
+        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
     }
 
     @Override
-    public final byte[] a(int i, int i2, byte[] bArr) {
-        byte[] bArr2 = new byte[i2];
-        System.arraycopy(bArr, i, bArr2, 0, i2);
-        return bArr2;
-    }
-
-    @Override
-    public final void c(Object obj) {
-        ((m05) obj).getClass();
-    }
-
-    @Override
-    public final Object then(Task task) {
-        if (task.isSuccessful()) {
-            return (Bundle) task.getResult();
-        }
-        if (Log.isLoggable("Rpc", 3)) {
-            Log.d("Rpc", "Error making request: ".concat(String.valueOf(task.getException())));
-        }
-        throw new IOException("SERVICE_NOT_AVAILABLE", task.getException());
+    public final int size() {
+        return this.r.w;
     }
 }

@@ -1,76 +1,48 @@
 package defpackage;
 
-import android.graphics.Point;
-public final class rf4 implements Runnable {
-    public final byte a;
-    public final uf4 b;
-    public final int c;
-    public final int d;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class rf4 {
+    public final int a;
+    public final int b;
+    public final String c;
+    public final byte d;
+    public final TLRPC.MessagesFilter e;
+    public TLObject f;
+    public pf4 g;
+    public boolean h;
 
-    public rf4(uf4 uf4Var, int i, int i2, byte b) {
-        this.a = b;
-        this.b = uf4Var;
-        this.c = i;
+    public rf4(int i, int i2, String str) {
+        this.h = true;
+        this.a = i;
+        this.c = str;
+        this.e = null;
         this.d = i2;
     }
 
-    @Override
-    public final void run() {
-        int i;
-        switch (this.a) {
-            case 0:
-                uf4 uf4Var = this.b;
-                int i2 = this.c;
-                int i3 = this.d;
-                if (uf4Var.X != i2 || uf4Var.Y != i3) {
-                    uf4Var.X = i2;
-                    uf4Var.Y = i3;
-                    int o = gda.o();
-                    int i4 = 1920;
-                    if (o != 1) {
-                        if (o != 2) {
-                            i4 = 720;
-                        } else {
-                            Point point = gm.q;
-                            i4 = Math.min(1920, Math.max(point.x, point.y));
-                        }
-                    }
-                    if (gda.o() == 0 && ((i = uf4Var.X) > 1280 || uf4Var.Y > 1280)) {
-                        uf4Var.X = i / 2;
-                        uf4Var.Y /= 2;
-                    }
-                    int i5 = uf4Var.X;
-                    if (i5 > i4 || uf4Var.Y > i4) {
-                        int i6 = uf4Var.Y;
-                        if (i5 > i6) {
-                            uf4Var.Y = (int) (i6 / (i4 / i5));
-                            uf4Var.X = i4;
-                        } else {
-                            uf4Var.X = (int) (i5 / (i4 / i6));
-                            uf4Var.Y = i4;
-                        }
-                    }
-                    uf4Var.a0 = false;
-                    uf4Var.d();
-                    uf4Var.e0.run();
-                    return;
-                }
-                return;
-            case 1:
-                uf4 uf4Var2 = this.b;
-                int i7 = this.c;
-                int i8 = this.d;
-                uf4Var2.n = i7;
-                uf4Var2.r = i8;
-                return;
-            default:
-                uf4 uf4Var3 = this.b;
-                int i9 = this.c;
-                int i10 = this.d;
-                xm0 xm0Var = uf4Var3.J;
-                xm0Var.l = i9;
-                xm0Var.m = i10;
-                return;
+    public final boolean a() {
+        byte b = this.d;
+        if (b == 0 || b == 1 || b == 2 || b == 3 || b == 5) {
+            return true;
         }
+        return false;
+    }
+
+    public final boolean b(rf4 rf4Var) {
+        if (this.d != rf4Var.d) {
+            if (a() && rf4Var.a()) {
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public rf4(int i, int i2, TLRPC.MessagesFilter messagesFilter, int i3) {
+        this.h = true;
+        this.a = i;
+        this.b = i2;
+        this.e = messagesFilter;
+        this.d = i3;
     }
 }

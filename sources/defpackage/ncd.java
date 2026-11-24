@@ -1,71 +1,156 @@
 package defpackage;
 
-import android.text.TextUtils;
-import android.util.Log;
-import java.net.UnknownHostException;
-public abstract class ncd {
-    public static final Object a = new Object();
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+public abstract class ncd extends x8d implements List, RandomAccess {
+    public static final ccd f = new ccd(hfd.r, 0);
 
-    public static String a(String str, Throwable th) {
-        String replace;
-        if (th == null) {
-            replace = null;
-        } else {
-            synchronized (a) {
-                Throwable th2 = th;
-                while (true) {
-                    if (th2 != null) {
-                        if (th2 instanceof UnknownHostException) {
-                            replace = "UnknownHostException (no network)";
-                            break;
+    @Override
+    public final void add(int i, Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean addAll(int i, Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        if (indexOf(obj) >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof List) {
+                List list = (List) obj;
+                int size = size();
+                if (size == list.size()) {
+                    if (list instanceof RandomAccess) {
+                        for (int i = 0; i < size; i++) {
+                            if (s3f.a(get(i), list.get(i))) {
+                            }
                         }
-                        th2 = th2.getCause();
-                    } else {
-                        replace = Log.getStackTraceString(th).trim().replace("\t", "    ");
-                        break;
+                        return true;
+                    }
+                    ccd listIterator = listIterator(0);
+                    Iterator it = list.iterator();
+                    while (true) {
+                        if (listIterator.hasNext()) {
+                            if (it.hasNext()) {
+                                if (!s3f.a(listIterator.next(), it.next())) {
+                                    break;
+                                }
+                            } else {
+                                break;
+                            }
+                        } else if (!it.hasNext()) {
+                            return true;
+                        }
                     }
                 }
             }
+            return false;
         }
-        if (!TextUtils.isEmpty(replace)) {
-            return str + "\n  " + replace.replace("\n", "\n  ") + '\n';
-        }
-        return str;
+        return true;
     }
 
-    public static void b(String str, String str2) {
-        synchronized (a) {
-            Log.d(str, a(str2, null));
+    @Override
+    public int h(Object[] objArr) {
+        int size = size();
+        for (int i = 0; i < size; i++) {
+            objArr[i] = get(i);
         }
+        return size;
     }
 
-    public static void c(String str, String str2) {
-        synchronized (a) {
-            Log.e(str, a(str2, null));
+    @Override
+    public final int hashCode() {
+        int size = size();
+        int i = 1;
+        for (int i2 = 0; i2 < size; i2++) {
+            i = (i * 31) + get(i2).hashCode();
         }
+        return i;
     }
 
-    public static void d(String str, String str2, Throwable th) {
-        synchronized (a) {
-            Log.e(str, a(str2, th));
+    @Override
+    public final int indexOf(Object obj) {
+        if (obj == null) {
+            return -1;
         }
+        int size = size();
+        for (int i = 0; i < size; i++) {
+            if (obj.equals(get(i))) {
+                return i;
+            }
+        }
+        return -1;
     }
 
-    public static void e(String str, String str2) {
-        synchronized (a) {
-            Log.i(str, a(str2, null));
-        }
+    @Override
+    public final Iterator iterator() {
+        return listIterator(0);
     }
 
-    public static void f(String str, String str2) {
-        synchronized (a) {
-            Log.w(str, a(str2, null));
+    @Override
+    public ncd subList(int i, int i2) {
+        i4f.b(i, i2, size());
+        int i3 = i2 - i;
+        if (i3 == size()) {
+            return this;
         }
+        if (i3 == 0) {
+            return hfd.r;
+        }
+        return new kcd(this, i, i3);
     }
 
-    public static void g(String str, String str2, Throwable th) {
-        synchronized (a) {
-            Log.w(str, a(str2, th));
+    @Override
+    public final int lastIndexOf(Object obj) {
+        if (obj == null) {
+            return -1;
         }
+        for (int size = size() - 1; size >= 0; size--) {
+            if (obj.equals(get(size))) {
+                return size;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final ListIterator listIterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public final ccd listIterator(int i) {
+        int size = size();
+        if (i >= 0 && i <= size) {
+            if (isEmpty()) {
+                return f;
+            }
+            return new ccd(this, i);
+        }
+        k93.i(i4f.c(i, size, "index"));
+        return null;
+    }
+
+    @Override
+    public final Object remove(int i) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final Object set(int i, Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

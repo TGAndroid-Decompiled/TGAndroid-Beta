@@ -1,34 +1,79 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class wh0 {
-    public final String a;
-    public final String b;
-    public final int c;
-    public final int d;
+import org.telegram.messenger.a;
+public final class wh0 implements Runnable {
+    public final byte a;
+    public final hd[] b;
 
-    public wh0(int i, int i2, String str, String str2) {
-        this.a = str;
-        this.b = str2;
-        this.c = i;
-        this.d = i2;
+    public wh0(hd[] hdVarArr, byte b) {
+        this.a = b;
+        this.b = hdVarArr;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        hd[] hdVarArr = this.b;
+        switch (b) {
+            case 0:
+                hd hdVar = new hd(3, null, a.b);
+                hdVarArr[0] = hdVar;
+                hdVar.q(500L);
+                return;
+            case 1:
+                hd hdVar2 = hdVarArr[0];
+                if (hdVar2 != null) {
+                    hdVar2.dismiss();
+                    return;
+                }
+                return;
+            case 2:
+                try {
+                    hdVarArr[0].dismiss();
+                } catch (Throwable unused) {
+                }
+                hdVarArr[0] = null;
+                return;
+            case 3:
+                try {
+                    hdVarArr[0].dismiss();
+                } catch (Throwable unused2) {
+                }
+                hdVarArr[0] = null;
+                return;
+            case 4:
+                gl.c3(new wh0(hdVarArr, (byte) 6));
+                return;
+            case 5:
+                gl.c3(new wh0(hdVarArr, (byte) 7));
+                return;
+            case 6:
+                hdVarArr[0].dismiss();
+                return;
+            case 7:
+                hdVarArr[0].dismiss();
+                return;
+            case 8:
+                hd hdVar3 = hdVarArr[0];
+                if (hdVar3 != null) {
+                    hdVar3.dismiss();
+                    return;
+                }
+                return;
+            case 9:
+                try {
+                    hdVarArr[0].dismiss();
+                } catch (Throwable unused3) {
+                }
+                hdVarArr[0] = null;
+                return;
+            default:
+                try {
+                    hdVarArr[0].dismiss();
+                } catch (Throwable unused4) {
+                }
+                hdVarArr[0] = null;
+                return;
         }
-        if (!(obj instanceof wh0)) {
-            return false;
-        }
-        wh0 wh0Var = (wh0) obj;
-        if (this.c == wh0Var.c && this.d == wh0Var.d && Objects.equals(this.a, wh0Var.a) && Objects.equals(this.b, wh0Var.b)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.a, this.b, Integer.valueOf(this.c), Integer.valueOf(this.d));
     }
 }

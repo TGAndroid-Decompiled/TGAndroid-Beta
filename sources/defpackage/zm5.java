@@ -1,35 +1,22 @@
 package defpackage;
 
-import j$.util.concurrent.ConcurrentHashMap;
-public final class zm5 implements Runnable {
-    public final byte a;
-    public final an5 b;
-    public final long c;
-    public final long d;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class zm5 extends b4 {
+    public static final Parcelable.Creator<zm5> CREATOR = new x21((byte) 22);
+    public final Bundle a;
 
-    public zm5(an5 an5Var, long j, long j2, byte b) {
-        this.a = b;
-        this.b = an5Var;
-        this.c = j;
-        this.d = j2;
+    public zm5(Bundle bundle) {
+        bundle.getClass();
+        this.a = bundle;
     }
 
     @Override
-    public final void run() {
-        switch (this.a) {
-            case 0:
-                an5 an5Var = this.b;
-                ConcurrentHashMap concurrentHashMap = an5Var.h.u;
-                String str = an5Var.a.e;
-                long j = this.c;
-                long j2 = this.d;
-                concurrentHashMap.put(str, new long[]{j, j2});
-                gm.c3(new zm5(an5Var, j, j2, (byte) 1));
-                return;
-            default:
-                tm5 tm5Var = this.b.a;
-                nm7.f(tm5Var.o).k(142, tm5Var.e, Long.valueOf(this.c), Long.valueOf(this.d));
-                return;
-        }
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.getClass();
+        int r = jte.r(parcel, 20293);
+        jte.b(parcel, 1, this.a);
+        jte.s(parcel, r);
     }
 }

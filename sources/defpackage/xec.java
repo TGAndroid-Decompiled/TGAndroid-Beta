@@ -1,7 +1,7 @@
 package defpackage;
-public final class xec implements ir7 {
-    @Override
-    public final rw2 a(rw2 rw2Var) {
-        return rw2Var;
-    }
+
+import android.graphics.RectF;
+import android.view.View;
+public interface xec {
+    void a(View view, RectF rectF);
 }

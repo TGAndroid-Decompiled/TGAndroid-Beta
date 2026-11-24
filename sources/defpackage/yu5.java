@@ -1,10 +1,23 @@
 package defpackage;
 
-import org.chromium.support_lib_boundary.JsReplyProxyBoundaryInterface;
-public final class yu5 {
-    public final JsReplyProxyBoundaryInterface a;
+import java.util.List;
+import java.util.Map;
+public interface yu5 extends xu5 {
+    Object call(Object... objArr);
 
-    public yu5(JsReplyProxyBoundaryInterface jsReplyProxyBoundaryInterface) {
-        this.a = jsReplyProxyBoundaryInterface;
-    }
+    Object callBy(Map map);
+
+    List getParameters();
+
+    dv5 getReturnType();
+
+    List getTypeParameters();
+
+    ev5 getVisibility();
+
+    boolean isAbstract();
+
+    boolean isFinal();
+
+    boolean isOpen();
 }

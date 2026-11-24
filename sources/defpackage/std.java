@@ -1,17 +1,24 @@
 package defpackage;
-public final class std implements cq7 {
-    public static final std a = new Object();
 
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class std extends b4 {
+    public static final Parcelable.Creator<std> CREATOR = new rpd((byte) 12);
+    public final int a;
+    public final boolean b;
+
+    public std(int i, boolean z) {
+        this.a = i;
+        this.b = z;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        jte.q(parcel, 3, 4);
+        parcel.writeInt(this.b ? 1 : 0);
+        jte.s(parcel, r);
     }
 }

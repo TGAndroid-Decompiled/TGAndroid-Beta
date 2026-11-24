@@ -20,7 +20,7 @@ public class EncryptionKeyEmojifier {
             }
             return strArr;
         }
-        u36.j("sha256 needs to be exactly 32 bytes");
+        w26.j("sha256 needs to be exactly 32 bytes");
         return null;
     }
 

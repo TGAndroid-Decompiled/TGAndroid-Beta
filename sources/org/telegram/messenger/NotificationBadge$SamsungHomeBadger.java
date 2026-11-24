@@ -8,7 +8,7 @@ import android.net.Uri;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-public class NotificationBadge$SamsungHomeBadger implements bm7 {
+public class NotificationBadge$SamsungHomeBadger implements yj7 {
     public static final String[] a = {"_id", "class"};
     public static NotificationBadge$DefaultBadger b;
 
@@ -37,25 +37,25 @@ public class NotificationBadge$SamsungHomeBadger implements bm7 {
         ContentResolver contentResolver = a.b.getContentResolver();
         Cursor cursor = null;
         try {
-            cursor = contentResolver.query(parse, a, "package=?", new String[]{dm7.d.getPackageName()}, null);
+            cursor = contentResolver.query(parse, a, "package=?", new String[]{ak7.d.getPackageName()}, null);
             if (cursor != null) {
-                String className = dm7.d.getClassName();
+                String className = ak7.d.getClassName();
                 boolean z = false;
                 while (cursor.moveToNext()) {
-                    contentResolver.update(parse, c(dm7.d, i, false), "_id=?", new String[]{String.valueOf(cursor.getInt(0))});
+                    contentResolver.update(parse, c(ak7.d, i, false), "_id=?", new String[]{String.valueOf(cursor.getInt(0))});
                     if (className.equals(cursor.getString(cursor.getColumnIndex("class")))) {
                         z = true;
                     }
                 }
                 if (!z) {
-                    contentResolver.insert(parse, c(dm7.d, i, true));
+                    contentResolver.insert(parse, c(ak7.d, i, true));
                 }
             }
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }
         } catch (Throwable th) {
-            LinkedList linkedList = dm7.a;
+            LinkedList linkedList = ak7.a;
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }

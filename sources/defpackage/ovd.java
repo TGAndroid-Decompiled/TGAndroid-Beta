@@ -1,16 +1,23 @@
 package defpackage;
-public final class ovd extends x23 {
-    public final cg7 b;
 
-    public ovd(cg7 cg7Var) {
-        super((byte) 4);
-        this.b = cg7Var;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class ovd extends b4 {
+    public static final Parcelable.Creator<ovd> CREATOR = new rpd((byte) 24);
+    public final int a;
+    public final kpd b;
+
+    public ovd(int i, kpd kpdVar) {
+        this.a = i;
+        this.b = kpdVar;
     }
 
     @Override
-    public final Object a(Object obj) {
-        tgf b = bhf.b();
-        cg7 cg7Var = this.b;
-        return new yoe(cg7Var, (hcb) obj, b, new rhb(cg7Var.b(), (byte) 23));
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        jte.k(parcel, 3, this.b, i);
+        jte.s(parcel, r);
     }
 }

@@ -1,35 +1,36 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class lqa implements Runnable {
-    public final byte a;
-    public final p b;
-    public final x51[] c;
-    public final TL_stars.UniqueStarGiftValueInfo d;
-    public final String e;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+public final class lqa extends q41 {
+    public final wjb Q;
+    public String R;
+    public int S;
 
-    public lqa(p pVar, x51[] x51VarArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str, byte b) {
-        this.a = b;
-        this.b = pVar;
-        this.c = x51VarArr;
-        this.d = uniqueStarGiftValueInfo;
-        this.e = str;
+    public lqa(Context context, wjb wjbVar) {
+        super(context);
+        this.Q = wjbVar;
+        zkb.X(this, bkb.F6, wjbVar);
+        setTextSize(1, 14.0f);
+        setPadding(0, gl.L(4.0f), 0, gl.L(4.0f));
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        String str = this.e;
-        TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo = this.d;
-        x51[] x51VarArr = this.c;
-        p pVar = this.b;
-        switch (b) {
-            case 0:
-                pVar.a(x51VarArr[0], jb6.a0(null, null, 2131749353, cj0.h().e(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
-                return;
-            default:
-                pVar.a(x51VarArr[0], jb6.a0(null, null, 2131749361, cj0.h().e(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), str));
-                return;
+    public final void e(String str, int i, sna snaVar) {
+        t79 t79Var;
+        if (str == this.R && this.S == i) {
+            return;
         }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(vu3.m(str, getPaint().getFontMetricsInt(), false, null, 0));
+        SpannableStringBuilder append = spannableStringBuilder.append((CharSequence) " ");
+        String I0 = bc.I0(i);
+        if (snaVar != null) {
+            t79Var = new t79(this, snaVar, i, (byte) 12);
+        } else {
+            t79Var = null;
+        }
+        append.append((CharSequence) r41.b(I0, t79Var, this.Q, null));
+        setText(spannableStringBuilder);
+        this.R = str;
+        this.S = i;
     }
 }

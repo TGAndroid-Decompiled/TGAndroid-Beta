@@ -1,46 +1,70 @@
 package defpackage;
-public final class n14 implements Runnable {
-    public final byte a;
-    public final float b;
-    public final int c;
-    public final Object d;
 
-    public n14(Object obj, float f, int i, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.b = f;
-        this.c = i;
+import android.text.TextUtils;
+import android.util.LongSparseArray;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.Utilities;
+public final class n14 implements Runnable {
+    public String a;
+    public int b;
+    public final ArrayList c = new ArrayList();
+    public final HashMap d = new HashMap();
+    public final HashMap e = new HashMap();
+    public final HashMap f = new HashMap();
+    public final ArrayList h = new ArrayList();
+    public final ArrayList n = new ArrayList();
+    public final ArrayList r = new ArrayList(0);
+    public final ArrayList s = new ArrayList(0);
+    public final LongSparseArray w = new LongSparseArray(0);
+    public final o14 x;
+
+    public n14(o14 o14Var) {
+        this.x = o14Var;
+    }
+
+    public final void a(Runnable runnable, boolean z) {
+        String str;
+        String[] F0 = gl.F0();
+        if (F0.length == 0) {
+            str = "";
+        } else {
+            str = F0[0];
+        }
+        hq6.d0(this.x.R.d1).b2(false, str, this.a, new o42(this, z, runnable, (byte) 1), z);
     }
 
     @Override
     public final void run() {
-        byte b = this.a;
-        int i = this.c;
-        float f = this.b;
-        Object obj = this.d;
-        switch (b) {
-            case 0:
-                e34 e34Var = ((o14) obj).G;
-                try {
-                    w46 w46Var = new w46(e34Var.Q.getContext(), 0, f);
-                    w46Var.a = i;
-                    e34Var.R.v0(w46Var);
-                    return;
-                } catch (Exception e) {
-                    fc4.g(e, true);
-                    return;
-                }
-            default:
-                vz9 vz9Var = (vz9) obj;
-                try {
-                    w46 w46Var2 = new w46(vz9Var.i0.getContext(), 0, f);
-                    w46Var2.a = i;
-                    vz9Var.s0.v0(w46Var2);
-                    return;
-                } catch (Exception e2) {
-                    fc4.g(e2, true);
-                    return;
-                }
+        o14 o14Var = this.x;
+        t14 t14Var = o14Var.R;
+        if (TextUtils.isEmpty(o14Var.O)) {
+            w39 adapter = t14Var.E0.getAdapter();
+            l14 l14Var = t14Var.z0;
+            if (adapter != l14Var) {
+                t14Var.E0.setAdapter(l14Var);
+            }
+            o14Var.f();
+            return;
+        }
+        int i = o14Var.N + 1;
+        o14Var.N = i;
+        this.b = i;
+        this.a = o14Var.O;
+        o14Var.E = false;
+        this.c.clear();
+        this.d.clear();
+        this.e.clear();
+        this.f.clear();
+        this.h.clear();
+        this.r.clear();
+        this.s.clear();
+        this.w.clear();
+        t14Var.H0.d(true);
+        if ("premium".equalsIgnoreCase(this.a)) {
+            Utilities.B(new az3(this, (byte) 1), new m14(this, (byte) 1));
+        } else {
+            Utilities.B(new az3(this, (byte) 1), new m14(this, (byte) 2), new m14(this, (byte) 3), new m14(this, (byte) 4), new m14(this, (byte) 5), new m14(this, (byte) 6), new m14(this, (byte) 7));
         }
     }
 }

@@ -1,194 +1,87 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import android.os.SystemClock;
-import android.util.Base64;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Dictation.DictationAsr;
-public abstract class jo3 {
-    public static ArrayList a;
-    public static long b;
-    public static CountDownLatch c;
-    public static long d;
+import java.util.concurrent.CancellationException;
+public abstract class jo3 extends zfb {
+    public int c;
 
-    public static synchronized ArrayList a() {
-        synchronized (jo3.class) {
-            if (a == null) {
-                String string = oc7.d1().getString("speech_models", null);
-                if (string == null) {
-                    return null;
-                }
-                SerializedData serializedData = new SerializedData(Base64.decode(string, 0));
-                int readInt32 = serializedData.readInt32(true);
-                ArrayList arrayList = new ArrayList(readInt32);
-                for (int i = 0; i < readInt32; i++) {
-                    arrayList.add(TLRPC.TL_transcriptionModel.TLdeserialize(serializedData, serializedData.readInt32(true), true));
-                }
-                serializedData.cleanup();
-                a = arrayList;
-            }
-            return a;
-        }
+    public jo3(int i) {
+        super(0L, false);
+        this.c = i;
     }
 
-    public static boolean b() {
-        dr3 n;
-        er3 q = er3.q(z8c.k());
-        int e = a.e();
-        if (e == 1) {
-            n = q.p();
-        } else if (e == 2) {
-            n = q.o();
+    public abstract fw2 d();
+
+    public Throwable f(Object obj) {
+        fp2 fp2Var;
+        if (obj instanceof fp2) {
+            fp2Var = (fp2) obj;
         } else {
-            n = q.n();
+            fp2Var = null;
         }
-        if (n != null && n.g) {
-            return true;
-        }
-        return false;
-    }
-
-    public static int c(org.telegram.tgnet.TLRPC.TL_transcriptionModel r23, java.io.File r24, boolean r25, defpackage.io3 r26) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jo3.c(org.telegram.tgnet.TLRPC$TL_transcriptionModel, java.io.File, boolean, io3):int");
-    }
-
-    public static boolean d() {
-        long j;
-        ArrayList a2 = a();
-        long currentTimeMillis = System.currentTimeMillis() - oc7.d1().getLong("speech_models_checked", 0L);
-        if (a2 != null) {
-            if (a2.isEmpty()) {
-                j = 3600000;
-            } else {
-                j = 86400000;
-            }
-            if (currentTimeMillis <= j) {
-                if (!a2.isEmpty() || b != 0) {
-                    if ((e21.c + "/" + DictationAsr.h0()).equals(oc7.d1().getString("speech_models_build", null))) {
-                        return false;
-                    }
-                    return true;
-                }
-                return true;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    public static synchronized CountDownLatch e() {
-        synchronized (jo3.class) {
-            CountDownLatch countDownLatch = c;
-            if (countDownLatch != null) {
-                return countDownLatch;
-            }
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j = b;
-            if (j != 0 && elapsedRealtime - j < 60000) {
-                return null;
-            }
-            int k = z8c.k();
-            if (!z8c.q(k)) {
-                return null;
-            }
-            b = elapsedRealtime;
-            CountDownLatch countDownLatch2 = new CountDownLatch(1);
-            c = countDownLatch2;
-            TLRPC.TL_messages_getTranscriptionModels tL_messages_getTranscriptionModels = new TLRPC.TL_messages_getTranscriptionModels();
-            tL_messages_getTranscriptionModels.version = DictationAsr.h0();
-            ConnectionsManager.getInstance(k).sendRequest(tL_messages_getTranscriptionModels, new tg(countDownLatch2, (byte) 20));
-            return countDownLatch2;
-        }
-    }
-
-    public static TLRPC.TL_transcriptionModel f(ArrayList arrayList, String... strArr) {
-        if (arrayList == null) {
+        if (fp2Var == null) {
             return null;
         }
-        String[] strArr2 = (String[]) strArr.clone();
-        Arrays.sort(strArr2);
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            TLRPC.TL_transcriptionModel tL_transcriptionModel = (TLRPC.TL_transcriptionModel) obj;
-            String[] strArr3 = (String[]) tL_transcriptionModel.languages.toArray(new String[0]);
-            Arrays.sort(strArr3);
-            if (Arrays.equals(strArr2, strArr3)) {
-                return tL_transcriptionModel;
-            }
-        }
-        return null;
+        return fp2Var.a;
     }
 
-    public static void g(File file) {
-        SharedPreferences.Editor edit = oc7.d1().edit();
-        edit.remove("speech_doc_" + file.getName()).apply();
+    public final void h(Throwable th) {
+        c9e.a(d().getContext(), new Error("Fatal exception in coroutines machinery for " + this + ". Please read KDoc to 'handleFatalException' method and report this incident to maintainers", th));
     }
 
-    public static boolean h() {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j = d;
-        if (j == 0 || elapsedRealtime - j > 60000) {
-            d = elapsedRealtime;
-            if (d()) {
-                e();
+    public abstract Object i();
+
+    @Override
+    public final void run() {
+        y4c y4cVar;
+        try {
+            fw2 d = d();
+            d.getClass();
+            ho3 ho3Var = (ho3) d;
+            gw2 gw2Var = ho3Var.e;
+            Object obj = ho3Var.h;
+            sw2 context = gw2Var.getContext();
+            Object c = edd.c(context, obj);
+            bt5 bt5Var = null;
+            if (c != edd.a) {
+                y4cVar = qzd.c(gw2Var, context, c);
+            } else {
+                y4cVar = null;
             }
-        }
-        ArrayList a2 = a();
-        if (a2 != null) {
-            int size = a2.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = a2.get(i);
-                i++;
-                TLRPC.TL_transcriptionModel tL_transcriptionModel = (TLRPC.TL_transcriptionModel) obj;
-                if (!tL_transcriptionModel.languages.isEmpty() && !tL_transcriptionModel.languages.contains("tinylid") && !tL_transcriptionModel.languages.contains("silero-vad")) {
-                    return true;
+            sw2 context2 = gw2Var.getContext();
+            Object i = i();
+            Throwable f = f(i);
+            if (f == null) {
+                int i2 = this.c;
+                boolean z = true;
+                if (i2 != 1 && i2 != 2) {
+                    z = false;
+                }
+                if (z) {
+                    bt5Var = (bt5) context2.get(pd5.c);
                 }
             }
-        }
-        return false;
-    }
-
-    public static boolean i(TLRPC.TL_transcriptionModel tL_transcriptionModel, File file) {
-        if (tL_transcriptionModel != null && file.exists()) {
-            SharedPreferences d1 = oc7.d1();
-            if (d1.getLong("speech_doc_" + file.getName(), 0L) != tL_transcriptionModel.document.id) {
-                return true;
+            if (bt5Var != null && !bt5Var.isActive()) {
+                CancellationException cancellationException = bt5Var.getCancellationException();
+                c(cancellationException);
+                gw2Var.resumeWith(qse.a(cancellationException));
+            } else if (f != null) {
+                gw2Var.resumeWith(new sa9(f));
+            } else {
+                gw2Var.resumeWith(g(i));
             }
-            return false;
-        }
-        return false;
-    }
-
-    public static void j() {
-        CountDownLatch e = e();
-        if (e != null) {
-            new Thread(new go3(e, (byte) 0), "DictationModels").start();
+            if (y4cVar != null && !y4cVar.S()) {
+                return;
+            }
+            edd.a(context, c);
+        } catch (Throwable th) {
+            h(th);
         }
     }
 
-    public static void k(ArrayList arrayList) {
-        SerializedData serializedData = new SerializedData();
-        serializedData.writeInt32(arrayList.size());
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            ((TLRPC.TL_transcriptionModel) obj).serializeToStream(serializedData);
-        }
-        SharedPreferences.Editor putLong = oc7.d1().edit().putString("speech_models", Base64.encodeToString(serializedData.toByteArray(), 2)).putLong("speech_models_checked", System.currentTimeMillis());
-        putLong.putString("speech_models_build", e21.c + "/" + DictationAsr.h0()).apply();
-        serializedData.cleanup();
+    public void c(CancellationException cancellationException) {
+    }
+
+    public Object g(Object obj) {
+        return obj;
     }
 }

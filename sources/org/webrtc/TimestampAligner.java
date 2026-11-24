@@ -6,7 +6,7 @@ public class TimestampAligner {
         if (this.nativeTimestampAligner != 0) {
             return;
         }
-        dq9.m("TimestampAligner has been disposed.");
+        sc8.j("TimestampAligner has been disposed.");
     }
 
     public static long getRtcTimeNanos() {

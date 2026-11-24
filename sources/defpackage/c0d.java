@@ -1,3 +1,3 @@
 package defpackage;
-public interface c0d {
+public final class c0d extends ezc implements e0d {
 }

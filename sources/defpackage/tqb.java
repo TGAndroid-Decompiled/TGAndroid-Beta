@@ -1,11 +1,11 @@
 package defpackage;
-public final class tqb {
-    public float a;
-    public float b;
-    public float c;
-    public float d;
-    public float e;
-    public float f;
-    public float g;
-    public float h;
+public enum tqb extends qsb {
+    public tqb() {
+        super("ScriptDataEscapedEndTagName", 26);
+    }
+
+    @Override
+    public final void c(aqb aqbVar, zj1 zj1Var) {
+        qsb.b(aqbVar, zj1Var, qsb.L);
+    }
 }

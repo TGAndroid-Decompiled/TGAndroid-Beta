@@ -1,60 +1,50 @@
 package defpackage;
-public final class na6 extends kj7 {
-    public final x5d l;
-    public e36 m;
-    public m41 n;
 
-    public na6(x5d x5dVar) {
-        this.l = x5dVar;
-        if (x5dVar.a == null) {
-            x5dVar.a = this;
-        } else {
-            dq9.m("There is already a listener registered");
-            throw null;
+import android.graphics.SurfaceTexture;
+import android.view.TextureView;
+import org.telegram.ui.ActionBar.d;
+public final class na6 implements TextureView.SurfaceTextureListener {
+    public final TextureView.SurfaceTextureListener a;
+    public final qa6 b;
+
+    public na6(qa6 qa6Var, TextureView.SurfaceTextureListener surfaceTextureListener) {
+        this.b = qa6Var;
+        this.a = surfaceTextureListener;
+    }
+
+    @Override
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.a;
+        if (surfaceTextureListener != null) {
+            surfaceTextureListener.onSurfaceTextureAvailable(surfaceTexture, i, i2);
         }
     }
 
     @Override
-    public final void e() {
-        x5d x5dVar = this.l;
-        x5dVar.b = true;
-        x5dVar.d = false;
-        x5dVar.c = false;
-        x5dVar.i.drainPermits();
-        x5dVar.c();
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.a;
+        if (surfaceTextureListener != null && !surfaceTextureListener.onSurfaceTextureDestroyed(surfaceTexture)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final void f() {
-        this.l.b = false;
-    }
-
-    @Override
-    public final void h(fq7 fq7Var) {
-        super.h(fq7Var);
-        this.m = null;
-        this.n = null;
-    }
-
-    public final void j() {
-        e36 e36Var = this.m;
-        m41 m41Var = this.n;
-        if (e36Var != null && m41Var != null) {
-            super.h(m41Var);
-            d(e36Var, m41Var);
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.a;
+        if (surfaceTextureListener != null) {
+            surfaceTextureListener.onSurfaceTextureSizeChanged(surfaceTexture, i, i2);
         }
     }
 
-    public final String toString() {
-        StringBuilder sb = new StringBuilder(64);
-        sb.append("LoaderInfo{");
-        sb.append(Integer.toHexString(System.identityHashCode(this)));
-        sb.append(" #0 : ");
-        Class<?> cls = this.l.getClass();
-        sb.append(cls.getSimpleName());
-        sb.append("{");
-        sb.append(Integer.toHexString(System.identityHashCode(cls)));
-        sb.append("}}");
-        return sb.toString();
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        qw4 qw4Var;
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.a;
+        if (surfaceTextureListener != null) {
+            surfaceTextureListener.onSurfaceTextureUpdated(surfaceTexture);
+        }
+        qw4Var = ((d) this.b).glassEngine;
+        qw4Var.g();
     }
 }

@@ -1,5 +1,20 @@
 package defpackage;
-public abstract class cgd {
-    public static final o94 a = new o94("is_user_verifying_platform_authenticator_available_for_credential", 1);
-    public static final o94 b = new o94("is_user_verifying_platform_authenticator_available", 1);
+
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class cgd extends b4 {
+    public static final Parcelable.Creator<cgd> CREATOR = new igd((byte) 0);
+    public final int a;
+
+    public cgd(int i) {
+        this.a = i;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        jte.s(parcel, r);
+    }
 }

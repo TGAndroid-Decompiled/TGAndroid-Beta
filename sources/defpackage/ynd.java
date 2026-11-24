@@ -1,13 +1,17 @@
 package defpackage;
-public abstract class ynd {
-    public boolean a() {
-        return false;
+public final class ynd implements zn7 {
+    public static final ynd a = new Object();
+
+    static {
+        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)));
     }
 
-    public abstract void c();
-
-    public abstract void d();
-
-    public void b() {
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

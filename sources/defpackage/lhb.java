@@ -1,73 +1,60 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.widget.TextView;
-public final class lhb extends TextView {
-    public final mhb a;
-    public boolean b;
-    public boolean c;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+public final class lhb extends mhb {
+    public Drawable E;
+    public int F;
+    public boolean G;
+    public final wjb x;
+    public ColorDrawable y;
 
-    public lhb(mhb mhbVar, String str) {
-        super(mhbVar.getContext());
-        this.a = mhbVar;
-        ylb ylbVar = mhbVar.a;
-        setPadding(gm.L(12.66f), gm.L(9.33f), gm.L(12.66f), gm.L(9.33f));
-        anb.X(this, cmb.F6, ylbVar);
-        setTypeface(gm.o());
-        setTextSize(1, 14.0f);
-        setText(str);
+    public lhb(Context context, wjb wjbVar) {
+        super(context, wjbVar);
+        this.x = wjbVar;
+    }
+
+    public void setBackground(boolean z) {
+        int i;
+        Context context = getContext();
+        if (z) {
+            i = 2131231233;
+        } else {
+            i = 2131231232;
+        }
+        int i2 = bkb.a7;
+        wjb wjbVar = this.x;
+        Drawable V0 = bkb.V0(context, i, bkb.v0(i2, wjbVar));
+        ColorDrawable colorDrawable = new ColorDrawable(bkb.v0(bkb.Z6, wjbVar));
+        this.y = colorDrawable;
+        this.E = V0;
+        fm2 fm2Var = new fm2(colorDrawable, V0, 0, 0);
+        fm2Var.x = true;
+        setBackground(fm2Var);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float f;
-        boolean z = this.b;
-        mhb mhbVar = this.a;
-        if (!z && !this.c) {
-            float f2 = mhbVar.h;
-            float f3 = mhbVar.h;
-            canvas2 = canvas;
-            canvas2.drawRect(f2, f2, getWidth() + f3, getHeight() + f3, mhbVar.d);
-            float f4 = mhbVar.h;
-            canvas2.drawRect(f4, f4, getWidth() + f3, getHeight() + f3, mhbVar.e);
-        } else {
-            canvas2 = canvas;
-            float L = gm.L(10.0f);
-            float[] fArr = mhbVar.c;
-            float f5 = mhbVar.h;
-            Path path = mhbVar.b;
-            if (this.b) {
-                f = L;
-            } else {
-                f = 0.0f;
+    public final void updateColors() {
+        super.updateColors();
+        try {
+            ColorDrawable colorDrawable = this.y;
+            wjb wjbVar = this.x;
+            if (colorDrawable != null) {
+                colorDrawable.setColor(bkb.v0(bkb.Z6, wjbVar));
             }
-            int i = 1;
-            fArr[1] = f;
-            fArr[0] = f;
-            fArr[3] = 0.0f;
-            fArr[2] = 0.0f;
-            fArr[5] = 0.0f;
-            fArr[4] = 0.0f;
-            if (!this.c) {
-                L = 0.0f;
+            if (this.E != null) {
+                int v0 = bkb.v0(bkb.a7, wjbVar);
+                if (v0 != this.F || !this.G) {
+                    this.F = v0;
+                    this.G = true;
+                    this.E.setColorFilter(new PorterDuffColorFilter(v0, PorterDuff.Mode.MULTIPLY));
+                }
             }
-            fArr[7] = L;
-            fArr[6] = L;
-            path.rewind();
-            RectF rectF = gm.P;
-            float width = getWidth() + f5;
-            float height = getHeight();
-            if (this.c) {
-                i = -1;
-            }
-            rectF.set(f5, f5, width, (i * f5) + height);
-            path.addRoundRect(rectF, mhbVar.c, Path.Direction.CW);
-            canvas2.drawPath(path, mhbVar.d);
-            canvas2.drawPath(path, mhbVar.e);
+        } catch (Exception e) {
+            fa4.g(e, true);
         }
-        super.onDraw(canvas2);
     }
 }

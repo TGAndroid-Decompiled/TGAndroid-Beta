@@ -1,70 +1,46 @@
 package defpackage;
-public abstract class mzc {
-    public final wzc a;
-    public iq5[] b;
+public final class mzc extends nzc {
+    public final transient int r;
+    public final transient int s;
+    public final nzc w;
 
-    public mzc() {
-        this(new wzc());
+    public mzc(nzc nzcVar, int i, int i2) {
+        super((byte) 0);
+        this.w = nzcVar;
+        this.r = i;
+        this.s = i2;
     }
 
-    public final void a() {
-        iq5[] iq5VarArr = this.b;
-        if (iq5VarArr != null) {
-            iq5 iq5Var = iq5VarArr[0];
-            iq5 iq5Var2 = iq5VarArr[1];
-            wzc wzcVar = this.a;
-            if (iq5Var2 == null) {
-                iq5Var2 = wzcVar.a.f(2);
-            }
-            if (iq5Var == null) {
-                iq5Var = wzcVar.a.f(1);
-            }
-            g(iq5.a(iq5Var, iq5Var2));
-            iq5 iq5Var3 = this.b[j0f.a(16)];
-            if (iq5Var3 != null) {
-                f(iq5Var3);
-            }
-            iq5 iq5Var4 = this.b[j0f.a(32)];
-            if (iq5Var4 != null) {
-                d(iq5Var4);
-            }
-            iq5 iq5Var5 = this.b[j0f.a(64)];
-            if (iq5Var5 != null) {
-                h(iq5Var5);
-            }
-        }
+    @Override
+    public final Object get(int i) {
+        qye.a(i, this.s);
+        return this.w.get(i + this.r);
     }
 
-    public abstract wzc b();
-
-    public void c(int i, iq5 iq5Var) {
-        if (this.b == null) {
-            this.b = new iq5[10];
-        }
-        for (int i2 = 1; i2 <= 512; i2 <<= 1) {
-            if ((i & i2) != 0) {
-                this.b[j0f.a(i2)] = iq5Var;
-            }
-        }
+    @Override
+    public final int i() {
+        return this.w.j() + this.r + this.s;
     }
 
-    public abstract void e(iq5 iq5Var);
-
-    public abstract void g(iq5 iq5Var);
-
-    public mzc(wzc wzcVar) {
-        this.a = wzcVar;
+    @Override
+    public final int j() {
+        return this.w.j() + this.r;
     }
 
-    public void d(iq5 iq5Var) {
+    @Override
+    public final Object[] k() {
+        return this.w.k();
     }
 
-    public void f(iq5 iq5Var) {
+    @Override
+    public final int size() {
+        return this.s;
     }
 
-    public void h(iq5 iq5Var) {
-    }
-
-    public void i(int i, boolean z) {
+    @Override
+    public final nzc subList(int i, int i2) {
+        qye.b(i, i2, this.s);
+        int i3 = this.r;
+        return this.w.subList(i + i3, i2 + i3);
     }
 }

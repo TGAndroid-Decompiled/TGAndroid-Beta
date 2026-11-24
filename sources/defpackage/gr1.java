@@ -1,21 +1,20 @@
 package defpackage;
+public final class gr1 extends cu6 {
+    public final mu1 x;
 
-import android.app.Activity;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.d;
-public final class gr1 extends az3 {
-    public final yv1 Q1;
-
-    public gr1(yv1 yv1Var, d dVar, Activity activity, ylb ylbVar, ArrayList arrayList) {
-        super(dVar, activity, ylbVar, arrayList);
-        this.Q1 = yv1Var;
+    public gr1(mu1 mu1Var, jq1 jq1Var, mq1 mq1Var) {
+        super(jq1Var, mq1Var);
+        this.x = mu1Var;
     }
 
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        yv1 yv1Var = this.Q1;
-        yv1Var.getClass();
-        yv1Var.y6(false, true, 0.0f);
+    public final void l(int i) {
+        if (this.x.nb) {
+            if (i == 0) {
+                i = 1;
+            } else if (i == 1) {
+                i = 0;
+            }
+        }
+        this.b = i;
     }
 }

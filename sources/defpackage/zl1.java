@@ -1,39 +1,33 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public interface zl1 {
-    void C(cm1 cm1Var, int i);
+import android.view.View;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class zl1 implements View.OnClickListener {
+    public final byte a;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout b;
 
-    void I(long j);
+    public zl1(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, byte b) {
+        this.a = b;
+        this.b = actionBarPopupWindow$ActionBarPopupWindowLayout;
+    }
 
-    void J(cm1 cm1Var);
-
-    long a();
-
-    void b0(cm1 cm1Var);
-
-    long d();
-
-    boolean f();
-
-    void g0(cm1 cm1Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str);
-
-    void h(cm1 cm1Var);
-
-    boolean j0(cm1 cm1Var, float f, float f2);
-
-    void l(cm1 cm1Var, String str);
-
-    void n(cm1 cm1Var, int i, int i2);
-
-    void o(cm1 cm1Var);
-
-    void r(cm1 cm1Var, TLRPC.Document document, TLRPC.VideoSize videoSize);
-
-    d w();
-
-    void x(TLRPC.TL_chatInviteExported tL_chatInviteExported);
-
-    void y(cm1 cm1Var, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2);
+    @Override
+    public final void onClick(View view) {
+        byte b = this.a;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.b;
+        switch (b) {
+            case 0:
+                actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
+                return;
+            case 1:
+                actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
+                return;
+            case 2:
+                actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
+                return;
+            default:
+                actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
+                return;
+        }
+    }
 }

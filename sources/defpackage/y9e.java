@@ -1,17 +1,21 @@
 package defpackage;
-public final class y9e implements cq7 {
-    public static final y9e a = new Object();
-
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+public abstract class y9e {
+    public static h7e a(int i) {
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 2) {
+                    if (i != 3) {
+                        if (i != 4) {
+                            return null;
+                        }
+                        return h7e.NEVER;
+                    }
+                    return h7e.FAST_IF_RADIO_AWAKE;
+                }
+                return h7e.UNMETERED_OR_DAILY;
+            }
+            return h7e.UNMETERED_ONLY;
         }
-        throw new ClassCastException();
+        return h7e.DEFAULT;
     }
 }

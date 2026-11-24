@@ -1,438 +1,293 @@
 package defpackage;
 
-import java.util.Arrays;
-import java.util.Map;
-public class cka {
-    public int[] a;
-    public Object[] b;
-    public int c;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.os.Build;
+import android.view.View;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class cka {
+    public final cyb a;
+    public final Paint b;
+    public final Paint c;
+    public final Paint d;
+    public int g;
+    public final boolean h;
+    public final short i;
+    public Bitmap j;
+    public long k;
+    public int n;
+    public final Paint e = new Paint();
+    public final int f = bkb.z8;
+    public final ArrayList l = new ArrayList();
+    public final ArrayList m = new ArrayList();
 
     public cka(int i) {
-        int[] iArr;
-        Object[] objArr;
+        short s;
+        this.h = i;
         if (i == 0) {
-            iArr = ir3.c;
+            s = 100;
         } else {
-            iArr = new int[i];
+            s = 300;
         }
-        this.a = iArr;
-        if (i == 0) {
-            objArr = ir3.e;
+        this.i = s;
+        Paint paint = new Paint(1);
+        this.c = paint;
+        paint.setStrokeWidth(gl.L(1.5f));
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint.setStrokeCap(cap);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        paint2.setStrokeWidth(gl.L(0.5f));
+        paint2.setStrokeCap(cap);
+        paint2.setStyle(style);
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.a = new cyb(s);
+            this.b = s4.a(a(true));
         } else {
-            objArr = new Object[i << 1];
+            this.a = null;
+            this.b = null;
         }
-        this.b = objArr;
+        c();
+        for (int i2 = 0; i2 < 20; i2++) {
+            this.m.add(new bka(this));
+        }
     }
 
-    public final int b(Object obj) {
-        int i = this.c << 1;
-        Object[] objArr = this.b;
-        if (obj == null) {
-            for (int i2 = 1; i2 < i; i2 += 2) {
-                if (objArr[i2] == null) {
-                    return i2 >> 1;
-                }
-            }
-            return -1;
+    public static Bitmap a(boolean z) {
+        int L;
+        Paint paint = new Paint(1);
+        paint.setStrokeWidth(gl.L(0.5f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(-1);
+        if (z) {
+            L = gl.L(20.0f);
+        } else {
+            L = gl.L(10.0f);
         }
-        for (int i3 = 1; i3 < i; i3 += 2) {
-            if (obj.equals(objArr[i3])) {
-                return i3 >> 1;
-            }
+        Bitmap createBitmap = Bitmap.createBitmap(L, gl.L(10.0f), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        float N = gl.N(2.0f) * 2.0f;
+        float f = (-gl.N(0.57f)) * 2.0f;
+        float N2 = gl.N(1.55f) * 2.0f;
+        float f2 = 5.0f;
+        float L2 = gl.L(5.0f);
+        float L3 = gl.L(5.0f);
+        float f3 = -1.5707964f;
+        int i = 0;
+        while (i < 6) {
+            double d = f3;
+            float f4 = f2;
+            float f5 = f3;
+            float cos = ((float) Math.cos(d)) * N;
+            Bitmap bitmap = createBitmap;
+            float sin = ((float) Math.sin(d)) * N;
+            float f6 = cos * 0.66f;
+            float f7 = 0.66f * sin;
+            canvas.drawLine(L2, L3, cos + L2, sin + L3, paint);
+            float f8 = L2;
+            float f9 = L3;
+            double d2 = (float) (d - 1.5707963267948966d);
+            double d3 = f;
+            double d4 = N2;
+            float f10 = f8 + f6;
+            float f11 = f9 + f7;
+            canvas.drawLine(f10, f11, f8 + ((float) ((Math.cos(d2) * d3) - (Math.sin(d2) * d4))), ((float) ug8.d(d2, d4, Math.sin(d2) * d3)) + f9, paint);
+            canvas.drawLine(f10, f11, f8 + ((float) (((-Math.cos(d2)) * d3) - (Math.sin(d2) * d4))), ((float) ug8.d(d2, d4, (-Math.sin(d2)) * d3)) + f9, paint);
+            f3 = f5 + 1.0471976f;
+            i++;
+            L3 = f9;
+            f2 = f4;
+            createBitmap = bitmap;
+            L2 = f8;
         }
-        return -1;
+        Bitmap bitmap2 = createBitmap;
+        float f12 = f2;
+        if (z) {
+            Paint paint2 = new Paint(1);
+            paint2.setStrokeWidth(gl.L(1.5f));
+            paint2.setStrokeCap(Paint.Cap.ROUND);
+            paint2.setStyle(Paint.Style.STROKE);
+            paint2.setColor(-1);
+            canvas.drawPoint(gl.L(15.0f), gl.L(f12), paint2);
+        }
+        return bitmap2;
     }
 
-    public final int c(int i, Object obj) {
-        int i2 = this.c;
-        if (i2 == 0) {
-            return -1;
-        }
-        int a = ir3.a(i2, i, this.a);
-        if (a < 0 || rr5.a(obj, this.b[a << 1])) {
-            return a;
-        }
-        int i3 = a + 1;
-        while (i3 < i2 && this.a[i3] == i) {
-            if (rr5.a(obj, this.b[i3 << 1])) {
-                return i3;
-            }
-            i3++;
-        }
-        for (int i4 = a - 1; i4 >= 0 && this.a[i4] == i; i4--) {
-            if (rr5.a(obj, this.b[i4 << 1])) {
-                return i4;
-            }
-        }
-        return ~i3;
-    }
-
-    public final void clear() {
-        int i = this.c;
-        if (i > 0) {
-            this.a = ir3.c;
-            this.b = ir3.e;
-            i = 0;
-            this.c = 0;
-        }
-        if (i <= 0) {
-            return;
-        }
-        zg.b();
-    }
-
-    public final boolean containsKey(Object obj) {
-        if (d(obj) >= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean containsValue(Object obj) {
-        if (b(obj) >= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int d(Object obj) {
-        if (obj == null) {
-            return e();
-        }
-        return c(obj.hashCode(), obj);
-    }
-
-    public final int e() {
-        int i = this.c;
-        if (i == 0) {
-            return -1;
-        }
-        int a = ir3.a(i, 0, this.a);
-        if (a < 0 || this.b[a << 1] == null) {
-            return a;
-        }
-        int i2 = a + 1;
-        while (i2 < i && this.a[i2] == 0) {
-            if (this.b[i2 << 1] == null) {
-                return i2;
-            }
-            i2++;
-        }
-        for (int i3 = a - 1; i3 >= 0 && this.a[i3] == 0; i3--) {
-            if (this.b[i3 << 1] == null) {
-                return i3;
-            }
-        }
-        return ~i2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        try {
-            if (obj instanceof cka) {
-                int i = this.c;
-                if (i != ((cka) obj).c) {
-                    return false;
-                }
-                cka ckaVar = (cka) obj;
-                for (int i2 = 0; i2 < i; i2++) {
-                    Object f = f(i2);
-                    Object i3 = i(i2);
-                    Object obj2 = ckaVar.get(f);
-                    if (i3 == null) {
-                        if (obj2 != null || !ckaVar.containsKey(f)) {
-                            return false;
-                        }
-                    } else if (!i3.equals(obj2)) {
-                        return false;
+    public final void b(Canvas canvas, View view) {
+        int i;
+        short s;
+        float nextFloat;
+        bka bkaVar;
+        float f;
+        float f2;
+        if (view != null && canvas != null && e66.e(32)) {
+            c();
+            short s2 = this.i;
+            cyb cybVar = this.a;
+            int i2 = 0;
+            ArrayList arrayList = this.l;
+            if (cybVar != null) {
+                int min = Math.min((int) s2, arrayList.size());
+                int L = gl.L(10.0f);
+                for (int i3 = 0; i3 < min; i3++) {
+                    bka bkaVar2 = (bka) arrayList.get(i3);
+                    float f3 = bkaVar2.a;
+                    float f4 = bkaVar2.b;
+                    if (bkaVar2.j == 0) {
+                        f = L / 2.0f;
+                        f2 = L;
+                    } else {
+                        f = (L / 2.0f) * bkaVar2.i;
+                        f2 = 0.0f;
                     }
+                    cybVar.s(i3, bm2.o(this.n, (int) (bkaVar2.f * 255.0f)));
+                    cyb.d((float[]) cybVar.c, i3, f3 - f, f4 - f, f3 + f, f4 + f);
+                    float f5 = L;
+                    cyb.d((float[]) cybVar.d, i3, f2, 0.0f, f2 + f5, f5);
                 }
-                return true;
-            } else if (!(obj instanceof Map) || this.c != ((Map) obj).size()) {
-                return false;
+                s4.b(canvas, cybVar, min, this.b);
             } else {
-                int i4 = this.c;
-                for (int i5 = 0; i5 < i4; i5++) {
-                    Object f2 = f(i5);
-                    Object i6 = i(i5);
-                    Object obj3 = ((Map) obj).get(f2);
-                    if (i6 == null) {
-                        if (obj3 != null || !((Map) obj).containsKey(f2)) {
-                            return false;
+                int size = arrayList.size();
+                for (int i4 = 0; i4 < size; i4++) {
+                    bka bkaVar3 = (bka) arrayList.get(i4);
+                    int i5 = bkaVar3.j;
+                    cka ckaVar = bkaVar3.k;
+                    if (i5 != 0) {
+                        Bitmap bitmap = ckaVar.j;
+                        Paint paint = ckaVar.e;
+                        if (bitmap == null) {
+                            ckaVar.j = a(false);
                         }
-                    } else if (!i6.equals(obj3)) {
-                        return false;
+                        paint.setAlpha((int) (bkaVar3.f * 255.0f));
+                        canvas.save();
+                        float f6 = bkaVar3.i;
+                        canvas.scale(f6, f6, bkaVar3.a, bkaVar3.b);
+                        canvas.drawBitmap(ckaVar.j, bkaVar3.a, bkaVar3.b, paint);
+                        canvas.restore();
+                    } else {
+                        ckaVar.c.setAlpha((int) (bkaVar3.f * 255.0f));
+                        canvas.drawPoint(bkaVar3.a, bkaVar3.b, ckaVar.c);
                     }
                 }
-                return true;
             }
-        } catch (ClassCastException | NullPointerException unused) {
-        }
-        return false;
-    }
-
-    public final Object f(int i) {
-        if (i >= 0 && i < this.c) {
-            return this.b[i << 1];
-        }
-        c1b.a(hg9.j(i, "Expected index to be within 0..size()-1, but was "));
-        return null;
-    }
-
-    public final Object g(int i) {
-        int i2;
-        if (i >= 0 && i < (i2 = this.c)) {
-            Object[] objArr = this.b;
-            int i3 = i << 1;
-            Object obj = objArr[i3 + 1];
-            if (i2 <= 1) {
-                clear();
-                return obj;
+            boolean z = this.h;
+            if (!z) {
+                i = 1;
+            } else {
+                i = 10;
             }
-            int i4 = i2 - 1;
-            int[] iArr = this.a;
-            int i5 = 8;
-            if (iArr.length > 8 && i2 < iArr.length / 3) {
-                if (i2 > 8) {
-                    i5 = i2 + (i2 >> 1);
+            int size2 = arrayList.size();
+            int i6 = 40;
+            ArrayList arrayList2 = this.m;
+            if (size2 < s2) {
+                int i7 = 0;
+                while (i7 < i) {
+                    if (arrayList.size() < s2) {
+                        SecureRandom secureRandom = Utilities.b;
+                        if (secureRandom.nextFloat() > 0.7f) {
+                            int i8 = gl.m;
+                            float nextFloat2 = secureRandom.nextFloat() * view.getMeasuredWidth();
+                            if (!z) {
+                                nextFloat = (secureRandom.nextFloat() * ls6.x(20.0f, view.getMeasuredHeight(), i8)) + i8;
+                            } else {
+                                nextFloat = secureRandom.nextFloat() * view.getMeasuredHeight();
+                            }
+                            float f7 = nextFloat;
+                            double nextInt = (secureRandom.nextInt(40) + 70) * 0.017453292519943295d;
+                            s = s2;
+                            float cos = (float) Math.cos(nextInt);
+                            float sin = (float) Math.sin(nextInt);
+                            if (!arrayList2.isEmpty()) {
+                                bkaVar = (bka) arrayList2.get(0);
+                                arrayList2.remove(0);
+                            } else {
+                                bkaVar = new bka(this);
+                            }
+                            bkaVar.a = nextFloat2;
+                            bkaVar.b = f7;
+                            bkaVar.c = cos;
+                            bkaVar.d = sin;
+                            bkaVar.f = 0.0f;
+                            bkaVar.h = 0.0f;
+                            bkaVar.i = secureRandom.nextFloat() * 1.2f;
+                            bkaVar.j = secureRandom.nextInt(2);
+                            if (!z) {
+                                bkaVar.g = secureRandom.nextInt(100) + 2000;
+                            } else {
+                                bkaVar.g = secureRandom.nextInt(2000) + 3000;
+                            }
+                            bkaVar.e = (secureRandom.nextFloat() * 4.0f) + 20.0f;
+                            arrayList.add(bkaVar);
+                            i7++;
+                            s2 = s;
+                        }
+                    }
+                    s = s2;
+                    i7++;
+                    s2 = s;
                 }
-                this.a = Arrays.copyOf(iArr, i5);
-                this.b = Arrays.copyOf(this.b, i5 << 1);
-                if (i2 == this.c) {
-                    if (i > 0) {
-                        tt.b(0, 0, i, iArr, this.a);
-                        tt.c(0, 0, i3, objArr, this.b);
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            long min2 = Math.min(17L, currentTimeMillis - this.k);
+            int size3 = arrayList.size();
+            while (i2 < size3) {
+                bka bkaVar4 = (bka) arrayList.get(i2);
+                float f8 = bkaVar4.h;
+                float f9 = bkaVar4.g;
+                if (f8 >= f9) {
+                    if (arrayList2.size() < i6) {
+                        arrayList2.add(bkaVar4);
                     }
-                    if (i < i4) {
-                        int i6 = i + 1;
-                        tt.b(i, i6, i2, iArr, this.a);
-                        tt.c(i3, i6 << 1, i2 << 1, objArr, this.b);
-                    }
+                    arrayList.remove(i2);
+                    i2--;
+                    size3--;
                 } else {
-                    zg.b();
-                    return null;
+                    int i9 = (f8 > 200.0f ? 1 : (f8 == 200.0f ? 0 : -1));
+                    if (!z) {
+                        if (i9 < 0) {
+                            bkaVar4.f = gl.G.getInterpolation(f8 / 200.0f);
+                        } else {
+                            bkaVar4.f = 1.0f - gl.F.getInterpolation((f8 - 200.0f) / (f9 - 200.0f));
+                        }
+                    } else if (i9 < 0) {
+                        bkaVar4.f = gl.G.getInterpolation(f8 / 200.0f);
+                    } else {
+                        float f10 = f9 - f8;
+                        if (f10 < 2000.0f) {
+                            bkaVar4.f = gl.F.getInterpolation(f10 / 2000.0f);
+                        }
+                    }
+                    float f11 = bkaVar4.a;
+                    float f12 = bkaVar4.c;
+                    float f13 = bkaVar4.e;
+                    float f14 = (float) min2;
+                    bkaVar4.a = ls6.d(f12 * f13, f14, 500.0f, f11);
+                    bkaVar4.b = (((bkaVar4.d * f13) * f14) / 500.0f) + bkaVar4.b;
+                    bkaVar4.h += f14;
                 }
-            } else {
-                if (i < i4) {
-                    int i7 = i + 1;
-                    tt.b(i, i7, i2, iArr, iArr);
-                    Object[] objArr2 = this.b;
-                    tt.c(i3, i7 << 1, i2 << 1, objArr2, objArr2);
-                }
-                Object[] objArr3 = this.b;
-                int i8 = i4 << 1;
-                objArr3[i8] = null;
-                objArr3[i8 + 1] = null;
+                i2++;
+                i6 = 40;
             }
-            if (i2 == this.c) {
-                this.c = i4;
-                return obj;
-            }
-            zg.b();
-            return null;
+            this.k = currentTimeMillis;
+            view.invalidate();
         }
-        c1b.a(hg9.j(i, "Expected index to be within 0..size()-1, but was "));
-        return null;
     }
 
-    public final Object get(Object obj) {
-        int d = d(obj);
-        if (d >= 0) {
-            return this.b[(d << 1) + 1];
+    public final void c() {
+        int i = this.g;
+        if (i == 0) {
+            i = bkb.w0(null, this.f, false) & (-1644826);
         }
-        return null;
-    }
-
-    public final Object getOrDefault(Object obj, Object obj2) {
-        int d = d(obj);
-        if (d >= 0) {
-            return this.b[(d << 1) + 1];
+        if (this.n != i) {
+            this.n = i;
+            this.c.setColor(i);
+            this.d.setColor(i);
         }
-        return obj2;
-    }
-
-    public final Object h(int i, Object obj) {
-        if (i >= 0 && i < this.c) {
-            int i2 = (i << 1) + 1;
-            Object[] objArr = this.b;
-            Object obj2 = objArr[i2];
-            objArr[i2] = obj;
-            return obj2;
-        }
-        c1b.a(hg9.j(i, "Expected index to be within 0..size()-1, but was "));
-        return null;
-    }
-
-    public final int hashCode() {
-        int i;
-        int[] iArr = this.a;
-        Object[] objArr = this.b;
-        int i2 = this.c;
-        int i3 = 1;
-        int i4 = 0;
-        int i5 = 0;
-        while (i4 < i2) {
-            Object obj = objArr[i3];
-            int i6 = iArr[i4];
-            if (obj != null) {
-                i = obj.hashCode();
-            } else {
-                i = 0;
-            }
-            i5 += i6 ^ i;
-            i4++;
-            i3 += 2;
-        }
-        return i5;
-    }
-
-    public final Object i(int i) {
-        if (i >= 0 && i < this.c) {
-            return this.b[(i << 1) + 1];
-        }
-        c1b.a(hg9.j(i, "Expected index to be within 0..size()-1, but was "));
-        return null;
-    }
-
-    public final boolean isEmpty() {
-        if (this.c <= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final Object put(Object obj, Object obj2) {
-        int e;
-        int i;
-        int i2 = this.c;
-        if (obj != null) {
-            i = obj.hashCode();
-            e = c(i, obj);
-        } else {
-            e = e();
-            i = 0;
-        }
-        if (e >= 0) {
-            int i3 = (e << 1) + 1;
-            Object[] objArr = this.b;
-            Object obj3 = objArr[i3];
-            objArr[i3] = obj2;
-            return obj3;
-        }
-        int i4 = ~e;
-        int[] iArr = this.a;
-        if (i2 >= iArr.length) {
-            int i5 = 8;
-            if (i2 >= 8) {
-                i5 = (i2 >> 1) + i2;
-            } else if (i2 < 4) {
-                i5 = 4;
-            }
-            this.a = Arrays.copyOf(iArr, i5);
-            this.b = Arrays.copyOf(this.b, i5 << 1);
-            if (i2 != this.c) {
-                zg.b();
-                return null;
-            }
-        }
-        if (i4 < i2) {
-            int[] iArr2 = this.a;
-            int i6 = i4 + 1;
-            tt.b(i6, i4, i2, iArr2, iArr2);
-            Object[] objArr2 = this.b;
-            tt.c(i6 << 1, i4 << 1, this.c << 1, objArr2, objArr2);
-        }
-        int i7 = this.c;
-        if (i2 == i7) {
-            int[] iArr3 = this.a;
-            if (i4 < iArr3.length) {
-                iArr3[i4] = i;
-                Object[] objArr3 = this.b;
-                int i8 = i4 << 1;
-                objArr3[i8] = obj;
-                objArr3[i8 + 1] = obj2;
-                this.c = i7 + 1;
-                return null;
-            }
-        }
-        zg.b();
-        return null;
-    }
-
-    public final Object putIfAbsent(Object obj, Object obj2) {
-        Object obj3 = get(obj);
-        if (obj3 == null) {
-            return put(obj, obj2);
-        }
-        return obj3;
-    }
-
-    public final boolean remove(Object obj, Object obj2) {
-        int d = d(obj);
-        if (d >= 0 && rr5.a(obj2, i(d))) {
-            g(d);
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean replace(Object obj, Object obj2, Object obj3) {
-        int d = d(obj);
-        if (d >= 0 && rr5.a(obj2, i(d))) {
-            h(d, obj3);
-            return true;
-        }
-        return false;
-    }
-
-    public final int size() {
-        return this.c;
-    }
-
-    public final String toString() {
-        if (isEmpty()) {
-            return "{}";
-        }
-        StringBuilder sb = new StringBuilder(this.c * 28);
-        sb.append('{');
-        int i = this.c;
-        for (int i2 = 0; i2 < i; i2++) {
-            if (i2 > 0) {
-                sb.append(", ");
-            }
-            Object f = f(i2);
-            if (f != sb) {
-                sb.append(f);
-            } else {
-                sb.append("(this Map)");
-            }
-            sb.append('=');
-            Object i3 = i(i2);
-            if (i3 != sb) {
-                sb.append(i3);
-            } else {
-                sb.append("(this Map)");
-            }
-        }
-        sb.append('}');
-        return sb.toString();
-    }
-
-    public final Object remove(Object obj) {
-        int d = d(obj);
-        if (d >= 0) {
-            return g(d);
-        }
-        return null;
-    }
-
-    public final Object replace(Object obj, Object obj2) {
-        int d = d(obj);
-        if (d >= 0) {
-            return h(d, obj2);
-        }
-        return null;
     }
 }

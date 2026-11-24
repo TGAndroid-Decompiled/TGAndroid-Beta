@@ -1,151 +1,156 @@
 package defpackage;
 
-import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
-public final class ot implements Set {
-    public final qt a;
+import android.app.Activity;
+import android.content.Context;
+import android.text.TextUtils;
+import android.widget.Toast;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.o;
+public final class ot implements RequestDelegate {
+    public final byte a = 6;
+    public final int b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
+    public final Object f;
+    public final Object g;
 
-    public ot(qt qtVar) {
-        this.a = qtVar;
+    public ot(int i, boolean[] zArr, File file, TL_phone.setCallRating setcallrating, ArrayList arrayList, Activity activity) {
+        this.b = i;
+        this.c = zArr;
+        this.d = file;
+        this.e = setcallrating;
+        this.f = arrayList;
+        this.g = activity;
     }
 
     @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void clear() {
-        this.a.clear();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        return this.a.containsKey(obj);
-    }
-
-    @Override
-    public final boolean containsAll(Collection collection) {
-        return this.a.j(collection);
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        qt qtVar = this.a;
-        if (this != obj) {
-            if (obj instanceof Set) {
-                Set set = (Set) obj;
-                try {
-                    if (qtVar.c == set.size()) {
-                        if (qtVar.j(set)) {
-                            return true;
-                        }
-                        return false;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        int i = this.b;
+        Object obj = this.g;
+        Object obj2 = this.f;
+        Object obj3 = this.e;
+        Object obj4 = this.d;
+        Object obj5 = this.c;
+        switch (b) {
+            case 0:
+                gl.c3(new qt((o) obj5, this.b, (vt) obj4, tLObject, (String) obj3, (nt) obj2, (TLRPC.TL_messages_getWebPage) obj, (byte) 0));
+                return;
+            case 1:
+                gl.c3(new qt(tLObject, (hd) obj5, (Context) obj4, this.b, (TL_phone.exportGroupCallInvite) obj3, (wjb) obj2, (fa5) obj));
+                return;
+            case 2:
+                String str = LaunchActivity.C1;
+                gl.c3(new qt((LaunchActivity) obj5, tLObject, this.b, (cj3) obj4, (d) obj2, (TLRPC.User) obj, (String) obj3));
+                return;
+            case 3:
+                gl.c3(new ox1(tLObject, (d) obj5, (TLRPC.TL_inputStorePaymentPremiumSubscription) obj4, (gi8) obj3, (nfd) obj2, this.b, tL_error, (TLRPC.TL_payments_canPurchaseStore) obj, (byte) 4));
+                return;
+            case 4:
+                Context context = (Context) obj5;
+                wjb wjbVar = (wjb) obj4;
+                byte[] bArr = (byte[]) obj3;
+                d dVar = (d) obj2;
+                tj9 tj9Var = (tj9) obj;
+                if (tLObject != null) {
+                    if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
+                        gl.c3(new e57((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject, context, wjbVar, bArr, dVar, tj9Var, (byte) 22));
+                        return;
+                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
+                        gl.d3(new s79(dVar, context, wjbVar, tj9Var, (byte) 0), 200L);
+                        return;
+                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
+                        gl.d3(new t79(dVar, i, tj9Var, (byte) 0), 200L);
+                        return;
+                    } else {
+                        return;
                     }
-                    return false;
-                } catch (ClassCastException | NullPointerException unused) {
-                    return false;
+                } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                    gl.d3(new s79(dVar, context, wjbVar, tj9Var, (byte) 1), 200L);
+                    return;
+                } else {
+                    return;
                 }
-            }
-            return false;
+            case 5:
+                gl.c3(new qt((z3a) obj5, tLObject, (TLRPC.InputFile) obj4, (TLRPC.TL_inputMediaUploadedDocument) obj2, (k3a) obj, this.b, (String) obj3, (byte) 18));
+                return;
+            default:
+                boolean[] zArr = (boolean[]) obj5;
+                File file = (File) obj4;
+                TL_phone.setCallRating setcallrating = (TL_phone.setCallRating) obj3;
+                ArrayList arrayList = (ArrayList) obj2;
+                Activity activity = (Activity) obj;
+                if (tLObject instanceof TLRPC.TL_updates) {
+                    na7.q1(i).R3((TLRPC.TL_updates) tLObject, false);
+                }
+                if (zArr[0] && file.exists() && setcallrating.rating < 4) {
+                    z3a.S(j5.a(y6c.t0), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, true, null, null);
+                    Toast.makeText(activity, k96.M0(2131752590, null), 1).show();
+                    return;
+                }
+                return;
         }
-        return true;
     }
 
-    @Override
-    public final int hashCode() {
-        int hashCode;
-        qt qtVar = this.a;
-        int i = 0;
-        for (int i2 = qtVar.c - 1; i2 >= 0; i2--) {
-            Object f = qtVar.f(i2);
-            if (f == null) {
-                hashCode = 0;
-            } else {
-                hashCode = f.hashCode();
-            }
-            i += hashCode;
-        }
-        return i;
+    public ot(hd hdVar, Context context, int i, TL_phone.exportGroupCallInvite exportgroupcallinvite, wjb wjbVar, fa5 fa5Var) {
+        this.c = hdVar;
+        this.d = context;
+        this.b = i;
+        this.e = exportgroupcallinvite;
+        this.f = wjbVar;
+        this.g = fa5Var;
     }
 
-    @Override
-    public final boolean isEmpty() {
-        return this.a.isEmpty();
+    public ot(z3a z3aVar, TLRPC.InputFile inputFile, TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument, k3a k3aVar, int i, String str) {
+        this.c = z3aVar;
+        this.d = inputFile;
+        this.f = tL_inputMediaUploadedDocument;
+        this.g = k3aVar;
+        this.b = i;
+        this.e = str;
     }
 
-    @Override
-    public final Iterator iterator() {
-        return new nt(this.a, (byte) 0);
+    public ot(Context context, wjb wjbVar, byte[] bArr, d dVar, tj9 tj9Var, int i) {
+        this.c = context;
+        this.d = wjbVar;
+        this.e = bArr;
+        this.f = dVar;
+        this.g = tj9Var;
+        this.b = i;
     }
 
-    @Override
-    public final boolean remove(Object obj) {
-        qt qtVar = this.a;
-        int d = qtVar.d(obj);
-        if (d >= 0) {
-            qtVar.g(d);
-            return true;
-        }
-        return false;
+    public ot(d dVar, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, gi8 gi8Var, nfd nfdVar, int i, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
+        this.c = dVar;
+        this.d = tL_inputStorePaymentPremiumSubscription;
+        this.e = gi8Var;
+        this.f = nfdVar;
+        this.b = i;
+        this.g = tL_payments_canPurchaseStore;
     }
 
-    @Override
-    public final boolean removeAll(Collection collection) {
-        return this.a.k(collection);
+    public ot(o oVar, int i, vt vtVar, String str, nt ntVar, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) {
+        this.c = oVar;
+        this.b = i;
+        this.d = vtVar;
+        this.e = str;
+        this.f = ntVar;
+        this.g = tL_messages_getWebPage;
     }
 
-    @Override
-    public final boolean retainAll(Collection collection) {
-        qt qtVar = this.a;
-        int i = qtVar.c;
-        for (int i2 = i - 1; i2 >= 0; i2--) {
-            if (!collection.contains(qtVar.f(i2))) {
-                qtVar.g(i2);
-            }
-        }
-        if (i != qtVar.c) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int size() {
-        return this.a.c;
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        qt qtVar = this.a;
-        int i = qtVar.c;
-        if (objArr.length < i) {
-            objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), i);
-        }
-        for (int i2 = 0; i2 < i; i2++) {
-            objArr[i2] = qtVar.f(i2);
-        }
-        if (objArr.length > i) {
-            objArr[i] = null;
-        }
-        return objArr;
-    }
-
-    @Override
-    public final Object[] toArray() {
-        qt qtVar = this.a;
-        int i = qtVar.c;
-        Object[] objArr = new Object[i];
-        for (int i2 = 0; i2 < i; i2++) {
-            objArr[i2] = qtVar.f(i2);
-        }
-        return objArr;
+    public ot(LaunchActivity launchActivity, int i, cj3 cj3Var, d dVar, TLRPC.User user, String str) {
+        this.c = launchActivity;
+        this.b = i;
+        this.d = cj3Var;
+        this.f = dVar;
+        this.g = user;
+        this.e = str;
     }
 }

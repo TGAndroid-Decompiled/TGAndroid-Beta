@@ -1,20 +1,10 @@
 package defpackage;
-public final class l74 {
-    public final r74 a;
+public interface l74 {
+    public static final i2f v = new i2f((byte) 19);
 
-    public l74(r74 r74Var) {
-        this.a = r74Var;
-    }
+    wxb S(int i, int i2);
 
-    public final void a() {
-        r74 r74Var = this.a;
-        if (!r74Var.M) {
-            if (r74Var.U) {
-                r74Var.T.getClass();
-            } else if (!r74Var.k0) {
-                return;
-            }
-        }
-        r74Var.h.h(2);
-    }
+    void g0(fv9 fv9Var);
+
+    void z();
 }

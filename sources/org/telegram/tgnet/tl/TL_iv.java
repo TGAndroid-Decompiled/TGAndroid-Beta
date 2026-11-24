@@ -143,8 +143,6 @@ public class TL_iv {
                     return new pageBlockEmbedPost_layer82();
                 case 834148991:
                     return new pageBlockAudio_layer82();
-                case 864221827:
-                    return new pageBlockGroup();
                 case 955923363:
                     return new pageBlockDocument();
                 case 972174080:
@@ -300,9 +298,9 @@ public class TL_iv {
             this.flags = readInt32;
             this.rtl = TLObject.hasFlag(readInt32, 1);
             this.part = TLObject.hasFlag(this.flags, 2);
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
-            this.photos = Vector.deserialize(inputSerializedData, new pfb((byte) 13), z);
-            this.documents = Vector.deserialize(inputSerializedData, new lfb((byte) 13), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
+            this.photos = Vector.deserialize(inputSerializedData, new odb((byte) 12), z);
+            this.documents = Vector.deserialize(inputSerializedData, new kdb((byte) 12), z);
         }
 
         @Override
@@ -429,15 +427,15 @@ public class TL_iv {
             this.flags = readInt32;
             this.rtl = TLObject.hasFlag(readInt32, 1);
             this.noautolink = TLObject.hasFlag(this.flags, 2);
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.photos = Vector.deserialize(inputSerializedData, new rfb((byte) 25), z);
+                this.photos = Vector.deserialize(inputSerializedData, new qdb((byte) 19), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.documents = Vector.deserialize(inputSerializedData, new lfb((byte) 18), z);
+                this.documents = Vector.deserialize(inputSerializedData, new kdb((byte) 17), z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.users = Vector.deserialize(inputSerializedData, new lfb((byte) 19), z);
+                this.users = Vector.deserialize(inputSerializedData, new kdb((byte) 18), z);
             }
         }
 
@@ -473,9 +471,9 @@ public class TL_iv {
             this.rtl = TLObject.hasFlag(this.flags, 2);
             this.v2 = TLObject.hasFlag(this.flags, 4);
             this.url = inputSerializedData.readString(z);
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
-            this.photos = Vector.deserialize(inputSerializedData, new pfb((byte) 13), z);
-            this.documents = Vector.deserialize(inputSerializedData, new lfb((byte) 13), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
+            this.photos = Vector.deserialize(inputSerializedData, new odb((byte) 12), z);
+            this.documents = Vector.deserialize(inputSerializedData, new kdb((byte) 12), z);
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = inputSerializedData.readInt32(z);
             }
@@ -506,9 +504,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
-            this.photos = Vector.deserialize(inputSerializedData, new pfb((byte) 13), z);
-            this.documents = Vector.deserialize(inputSerializedData, new lfb((byte) 13), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
+            this.photos = Vector.deserialize(inputSerializedData, new odb((byte) 12), z);
+            this.documents = Vector.deserialize(inputSerializedData, new kdb((byte) 12), z);
         }
 
         @Override
@@ -525,9 +523,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
-            this.photos = Vector.deserialize(inputSerializedData, new pfb((byte) 13), z);
-            this.documents = Vector.deserialize(inputSerializedData, new lfb((byte) 13), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
+            this.photos = Vector.deserialize(inputSerializedData, new odb((byte) 12), z);
+            this.documents = Vector.deserialize(inputSerializedData, new kdb((byte) 12), z);
         }
 
         @Override
@@ -549,7 +547,7 @@ public class TL_iv {
             this.flags = readInt32;
             this.checkbox = TLObject.hasFlag(readInt32, 1);
             this.checked = TLObject.hasFlag(this.flags, 2);
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
         }
 
         @Override
@@ -569,7 +567,7 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
         }
 
         @Override
@@ -632,7 +630,7 @@ public class TL_iv {
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.num = inputSerializedData.readString(z);
             }
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.value = inputSerializedData.readInt32(z);
             }
@@ -682,7 +680,7 @@ public class TL_iv {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.num = inputSerializedData.readString(z);
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
         }
 
         @Override
@@ -773,9 +771,9 @@ public class TL_iv {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.part = true;
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
-            this.photos = Vector.deserialize(inputSerializedData, new pfb((byte) 13), z);
-            this.documents = Vector.deserialize(inputSerializedData, new lfb((byte) 13), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
+            this.photos = Vector.deserialize(inputSerializedData, new odb((byte) 12), z);
+            this.documents = Vector.deserialize(inputSerializedData, new kdb((byte) 12), z);
         }
 
         @Override
@@ -793,9 +791,9 @@ public class TL_iv {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.part = true;
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
-            this.photos = Vector.deserialize(inputSerializedData, new pfb((byte) 13), z);
-            this.documents = Vector.deserialize(inputSerializedData, new lfb((byte) 13), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
+            this.photos = Vector.deserialize(inputSerializedData, new odb((byte) 12), z);
+            this.documents = Vector.deserialize(inputSerializedData, new kdb((byte) 12), z);
         }
 
         @Override
@@ -817,9 +815,9 @@ public class TL_iv {
             this.part = TLObject.hasFlag(readInt32, 1);
             this.rtl = TLObject.hasFlag(this.flags, 2);
             this.url = inputSerializedData.readString(z);
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
-            this.photos = Vector.deserialize(inputSerializedData, new pfb((byte) 13), z);
-            this.documents = Vector.deserialize(inputSerializedData, new lfb((byte) 13), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
+            this.photos = Vector.deserialize(inputSerializedData, new odb((byte) 12), z);
+            this.documents = Vector.deserialize(inputSerializedData, new kdb((byte) 12), z);
         }
 
         @Override
@@ -847,9 +845,9 @@ public class TL_iv {
             this.part = TLObject.hasFlag(readInt32, 1);
             this.rtl = TLObject.hasFlag(this.flags, 2);
             this.v2 = TLObject.hasFlag(this.flags, 4);
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
-            this.photos = Vector.deserialize(inputSerializedData, new pfb((byte) 13), z);
-            this.documents = Vector.deserialize(inputSerializedData, new lfb((byte) 13), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
+            this.photos = Vector.deserialize(inputSerializedData, new odb((byte) 12), z);
+            this.documents = Vector.deserialize(inputSerializedData, new kdb((byte) 12), z);
         }
 
         @Override
@@ -1026,7 +1024,7 @@ public class TL_iv {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
             this.collapsed = TLObject.hasFlag(readInt32, 1);
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
             this.caption = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
@@ -1046,7 +1044,7 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
             ((pageBlockBlockquoteBlocks) this).caption = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
@@ -1090,7 +1088,7 @@ public class TL_iv {
             this.align_left = TLObject.hasFlag(readInt32, 1);
             this.align_center = TLObject.hasFlag(this.flags, 2);
             this.align_right = TLObject.hasFlag(this.flags, 4);
-            this.buttons = Vector.deserialize(inputSerializedData, new rfb((byte) 26), z);
+            this.buttons = Vector.deserialize(inputSerializedData, new qdb((byte) 20), z);
         }
 
         @Override
@@ -1129,7 +1127,7 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.items = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.items = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
             this.caption = PageCaption.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
@@ -1146,7 +1144,7 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.items = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.items = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
             PageCaption pageCaption = new PageCaption();
             this.caption = pageCaption;
             pageCaption.text = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -1189,7 +1187,7 @@ public class TL_iv {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
             this.open = TLObject.hasFlag(readInt32, 1);
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
             this.title = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
@@ -1309,7 +1307,7 @@ public class TL_iv {
             this.author_photo_id = inputSerializedData.readInt64(z);
             this.author = inputSerializedData.readString(z);
             this.date = inputSerializedData.readInt32(z);
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
             this.caption = PageCaption.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
@@ -1336,7 +1334,7 @@ public class TL_iv {
             this.author_photo_id = inputSerializedData.readInt64(z);
             this.author = inputSerializedData.readString(z);
             this.date = inputSerializedData.readInt32(z);
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.blocks = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
             PageCaption pageCaption = new PageCaption();
             this.caption = pageCaption;
             pageCaption.text = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -1460,46 +1458,6 @@ public class TL_iv {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1216809369);
             this.text.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class pageBlockGroup extends PageBlock {
-        public static final int constructor = 864221827;
-        public ArrayList<PageBlock> blocks = new ArrayList<>();
-        public int flags;
-        public String id;
-        public boolean no_animate;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.no_animate = TLObject.hasFlag(readInt32, 2);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.id = inputSerializedData.readString(z);
-            }
-            this.blocks = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            boolean z;
-            outputSerializedData.writeInt32(864221827);
-            int i = this.flags;
-            if (this.id != null) {
-                z = true;
-            } else {
-                z = false;
-            }
-            int flag = TLObject.setFlag(i, 1, z);
-            this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 2, this.no_animate);
-            this.flags = flag2;
-            outputSerializedData.writeInt32(flag2);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeString(this.id);
-            }
-            Vector.serialize(outputSerializedData, this.blocks);
         }
     }
 
@@ -1630,7 +1588,7 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.items = Vector.deserialize(inputSerializedData, new rfb((byte) 27), z);
+            this.items = Vector.deserialize(inputSerializedData, new qdb((byte) 21), z);
         }
 
         @Override
@@ -1646,7 +1604,7 @@ public class TL_iv {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.ordered = inputSerializedData.readBool(z);
-            ArrayList deserialize = Vector.deserialize(inputSerializedData, new i98((byte) 21), z);
+            ArrayList deserialize = Vector.deserialize(inputSerializedData, new sc8((byte) 20), z);
             int size = deserialize.size();
             int i = 0;
             while (i < size) {
@@ -1734,7 +1692,7 @@ public class TL_iv {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
             this.reversed = TLObject.hasFlag(readInt32, 4);
-            this.items = Vector.deserialize(inputSerializedData, new rfb((byte) 28), z);
+            this.items = Vector.deserialize(inputSerializedData, new qdb((byte) 22), z);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.start = inputSerializedData.readInt32(z);
             }
@@ -1764,7 +1722,7 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.items = Vector.deserialize(inputSerializedData, new rfb((byte) 28), z);
+            this.items = Vector.deserialize(inputSerializedData, new qdb((byte) 22), z);
         }
 
         @Override
@@ -1898,7 +1856,7 @@ public class TL_iv {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.title = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.articles = Vector.deserialize(inputSerializedData, new rfb((byte) 29), z);
+            this.articles = Vector.deserialize(inputSerializedData, new qdb((byte) 23), z);
         }
 
         @Override
@@ -1915,7 +1873,7 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.items = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.items = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
             this.caption = PageCaption.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
@@ -1932,7 +1890,7 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.items = Vector.deserialize(inputSerializedData, new rfb((byte) 24), z);
+            this.items = Vector.deserialize(inputSerializedData, new qdb((byte) 18), z);
             PageCaption pageCaption = new PageCaption();
             this.caption = pageCaption;
             pageCaption.text = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -1994,7 +1952,7 @@ public class TL_iv {
             this.striped = TLObject.hasFlag(this.flags, 2);
             this.compact = TLObject.hasFlag(this.flags, 4);
             this.title = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.rows = Vector.deserialize(inputSerializedData, new sfb((byte) 0), z);
+            this.rows = Vector.deserialize(inputSerializedData, new qdb((byte) 24), z);
         }
 
         @Override
@@ -2265,7 +2223,7 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.cells = Vector.deserialize(inputSerializedData, new sfb((byte) 1), z);
+            this.cells = Vector.deserialize(inputSerializedData, new qdb((byte) 25), z);
         }
 
         @Override
@@ -2391,7 +2349,7 @@ public class TL_iv {
 
         @Override
         public final byte[] getData() {
-            return hg9.a(this);
+            return de9.a(this);
         }
 
         @Override
@@ -2410,7 +2368,7 @@ public class TL_iv {
 
         @Override
         public final String getUrl() {
-            return hg9.b(this);
+            return de9.b(this);
         }
 
         @Override
@@ -2464,7 +2422,7 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.texts = Vector.deserialize(inputSerializedData, new i98((byte) 21), z);
+            this.texts = Vector.deserialize(inputSerializedData, new sc8((byte) 20), z);
         }
 
         @Override

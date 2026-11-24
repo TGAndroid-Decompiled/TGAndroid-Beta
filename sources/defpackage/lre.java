@@ -1,17 +1,16 @@
 package defpackage;
-public final class lre implements cq7 {
-    public static final lre a = new Object();
+public final class lre {
+    public final Long a;
+    public final yse b;
+    public final Boolean c;
+    public final Boolean d;
+    public final Boolean e;
 
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public lre(gl2 gl2Var) {
+        this.a = (Long) gl2Var.b;
+        this.b = (yse) gl2Var.c;
+        this.c = (Boolean) gl2Var.d;
+        this.d = (Boolean) gl2Var.e;
+        this.e = (Boolean) gl2Var.f;
     }
 }

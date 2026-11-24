@@ -1,25 +1,24 @@
 package defpackage;
 public final class fc implements Runnable {
     public final byte a;
-    public final jc b;
+    public final gc b;
 
-    public fc(jc jcVar, byte b) {
+    public fc(gc gcVar, byte b) {
         this.a = b;
-        this.b = jcVar;
+        this.b = gcVar;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        jc jcVar = this.b;
+        gc gcVar = this.b;
         switch (b) {
             case 0:
-                jcVar.Z0();
+                gcVar.invalidateSelf();
                 return;
             default:
-                su3 su3Var = jcVar.g2;
-                su3Var.d.requestFocus();
-                gm.E3(su3Var.d);
+                ((lm) gcVar.d).e(true, 0.0f);
+                gcVar.invalidateSelf();
                 return;
         }
     }

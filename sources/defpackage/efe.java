@@ -1,17 +1,10 @@
 package defpackage;
-public final class efe implements cq7 {
-    public static final efe a = new Object();
 
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)), 5)), 6)));
-    }
+import android.text.InputFilter;
+public abstract class efe {
+    public abstract InputFilter[] a(InputFilter[] inputFilterArr);
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
-    }
+    public abstract void b(boolean z);
+
+    public abstract void c(boolean z);
 }

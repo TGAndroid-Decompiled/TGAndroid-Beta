@@ -1,55 +1,66 @@
 package defpackage;
 
-import android.text.InputFilter;
-import android.widget.TextView;
-public final class oz3 extends fhe {
-    public final nz3 a;
+import android.view.MotionEvent;
+import org.telegram.tgnet.TLRPC;
+public final class oz3 extends a2c {
+    public final t14 b;
 
-    public oz3(TextView textView) {
-        this.a = new nz3(textView);
+    public oz3(t14 t14Var) {
+        this.b = t14Var;
     }
 
     @Override
-    public final InputFilter[] a(InputFilter[] inputFilterArr) {
-        boolean z;
-        if (wx3.j != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (!z) {
-            return inputFilterArr;
-        }
-        return this.a.a(inputFilterArr);
+    public final boolean a() {
+        return this.b.u1.b();
     }
 
     @Override
-    public final void b(boolean z) {
-        boolean z2;
-        if (wx3.j != null) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        if (!z2) {
-            return;
-        }
-        this.a.b(z);
+    public final String[] b() {
+        return this.b.X0;
     }
 
     @Override
-    public final void c(boolean z) {
-        boolean z2;
-        if (wx3.j != null) {
-            z2 = true;
-        } else {
-            z2 = false;
+    public final boolean c() {
+        return this.b.u1.c();
+    }
+
+    @Override
+    public final boolean d(t1c t1cVar, MotionEvent motionEvent) {
+        xv2 e = xv2.e();
+        t14 t14Var = this.b;
+        t14Var.getMeasuredHeight();
+        return e.g(motionEvent, t1cVar, t14Var.h2, t14Var.a2);
+    }
+
+    @Override
+    public final boolean e(t1c t1cVar, f09 f09Var, MotionEvent motionEvent) {
+        xv2 e = xv2.e();
+        t14 t14Var = this.b;
+        t14Var.getMeasuredHeight();
+        return e.h(motionEvent, t1cVar, f09Var, t14Var.h2, t14Var.a2);
+    }
+
+    @Override
+    public final void f(int i, Object obj, TLRPC.Document document, boolean z) {
+        this.b.u1.x(null, document, null, obj, null, z, i);
+    }
+
+    @Override
+    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z) {
+        t14 t14Var = this.b;
+        t14Var.u1.q(stickerSetCovered);
+        if (z) {
+            t14Var.Y(true);
         }
-        nz3 nz3Var = this.a;
-        if (!z2) {
-            nz3Var.c = z;
-        } else {
-            nz3Var.c(z);
-        }
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+        this.b.u1.i(stickerSetCovered);
+    }
+
+    @Override
+    public final void i(String[] strArr) {
+        this.b.X0 = strArr;
     }
 }

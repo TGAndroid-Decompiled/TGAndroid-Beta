@@ -1,32 +1,26 @@
 package defpackage;
-public final class wj7 {
-    public final int a;
-    public final tj7 b;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final int f;
-    public final int g;
-    public final int h;
-    public final float i;
-    public final int j;
-    public final int k;
-    public final int l;
-    public final int m;
 
-    public wj7(int i, tj7 tj7Var, int i2, int i3, int i4, int i5, int i6, int i7, float f, int i8, int i9, int i10, int i11) {
-        this.a = i;
-        this.b = tj7Var;
-        this.c = i2;
-        this.d = i3;
-        this.e = i4;
-        this.f = i5;
-        this.i = f;
-        this.j = i8;
-        this.k = i9;
-        this.l = i10;
-        this.m = i11;
-        this.g = i6;
-        this.h = i7;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class wj7 extends b4 {
+    public static final Parcelable.Creator<wj7> CREATOR = new xff((byte) 9);
+    public final String a;
+    public final int b;
+    public final String c;
+
+    public wj7(String str, int i, String str2) {
+        this.a = str;
+        this.b = i;
+        this.c = str2;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.l(parcel, 2, this.a);
+        jte.q(parcel, 3, 4);
+        parcel.writeInt(this.b);
+        jte.l(parcel, 4, this.c);
+        jte.s(parcel, r);
     }
 }

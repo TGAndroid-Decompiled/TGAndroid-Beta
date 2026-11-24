@@ -1,53 +1,62 @@
 package defpackage;
 
-import sun.misc.Unsafe;
-public final class sh2 extends ev5 {
-    public final vb1 e;
+import java.io.FilterInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+public final class sh2 extends FilterInputStream {
+    public int a;
+    public int b;
 
-    public sh2(vb1 vb1Var) {
-        this.e = vb1Var;
+    public sh2(InputStream inputStream) {
+        super(inputStream);
+        this.a = -1;
+        this.b = -1;
     }
 
     @Override
-    public final boolean k() {
-        return true;
+    public final boolean markSupported() {
+        return false;
     }
 
     @Override
-    public final void l(Throwable th) {
-        Unsafe unsafe;
-        Unsafe unsafe2;
-        ov5 j = j();
-        vb1 vb1Var = this.e;
-        Throwable p = vb1Var.p(j);
-        if (vb1Var.w()) {
-            rp3 rp3Var = (rp3) vb1Var.d;
-            long j2 = rp3.n;
-            loop0: while (true) {
-                Object objectVolatile = fy.a.getObjectVolatile(rp3Var, j2);
-                du2 du2Var = r5c.b;
-                if (rr5.a(objectVolatile, du2Var)) {
-                    do {
-                        unsafe = fy.a;
-                        if (unsafe.compareAndSwapObject(rp3Var, rp3.n, du2Var, p)) {
-                            return;
-                        }
-                    } while (unsafe.getObjectVolatile(rp3Var, j2) == du2Var);
-                } else if (objectVolatile instanceof Throwable) {
-                    return;
-                } else {
-                    do {
-                        unsafe2 = fy.a;
-                        if (unsafe2.compareAndSwapObject(rp3Var, rp3.n, objectVolatile, (Object) null)) {
-                            break loop0;
-                        }
-                    } while (unsafe2.getObjectVolatile(rp3Var, j2) == objectVolatile);
+    public final int read(byte[] bArr, int i, int i2) {
+        bArr.getClass();
+        if (i >= 0 && i2 >= 0 && i2 <= bArr.length - i) {
+            if (i2 == 0) {
+                return 0;
+            }
+            int read = read();
+            if (read == -1) {
+                return -1;
+            }
+            bArr[i] = (byte) read;
+            int i3 = 1;
+            while (i3 < i2) {
+                try {
+                    int read2 = read();
+                    if (read2 == -1) {
+                        break;
+                    }
+                    bArr[i + i3] = (byte) read2;
+                    i3++;
+                } catch (IOException unused) {
                 }
             }
+            return i3;
         }
-        vb1Var.m(p);
-        if (!vb1Var.w()) {
-            vb1Var.n();
+        throw new IndexOutOfBoundsException();
+    }
+
+    @Override
+    public final int read() {
+        int read = super.read();
+        if (read == 3 && this.a == 0 && this.b == 0) {
+            this.a = -1;
+            this.b = -1;
+            read = super.read();
         }
+        this.a = this.b;
+        this.b = read;
+        return read;
     }
 }

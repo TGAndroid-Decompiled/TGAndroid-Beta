@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-public final class b3 extends p9a {
+public final class b3 extends o7a {
     public final byte b;
     public final AbstractMap c;
 
@@ -50,7 +50,7 @@ public final class b3 extends p9a {
             } catch (ClassCastException | NullPointerException unused) {
                 obj2 = null;
             }
-            if (ese.a(obj2, entry.getValue())) {
+            if (bqe.a(obj2, entry.getValue())) {
                 if (obj2 != null || i().containsKey(key)) {
                     return true;
                 }
@@ -68,7 +68,7 @@ public final class b3 extends p9a {
             case 0:
                 return (d3) abstractMap;
             default:
-                return (qk6) abstractMap;
+                return (oi6) abstractMap;
         }
     }
 
@@ -85,11 +85,11 @@ public final class b3 extends p9a {
             case 0:
                 return new c3((d3) abstractMap);
             default:
-                qk6 qk6Var = (qk6) abstractMap;
-                Iterator it = qk6Var.a.entrySet().iterator();
-                pk6 pk6Var = qk6Var.b;
-                pk6Var.getClass();
-                return new ju5(it, new nk6(pk6Var));
+                oi6 oi6Var = (oi6) abstractMap;
+                Iterator it = oi6Var.a.entrySet().iterator();
+                ni6 ni6Var = oi6Var.b;
+                ni6Var.getClass();
+                return new ks5(it, new li6(ni6Var));
         }
     }
 
@@ -110,9 +110,9 @@ public final class b3 extends p9a {
                 }
                 Map.Entry entry = (Map.Entry) obj;
                 Objects.requireNonNull(entry);
-                zi7 zi7Var = (zi7) ((d3) this.c).e;
+                wg7 wg7Var = (wg7) ((d3) this.c).e;
                 Object key = entry.getKey();
-                Map map = zi7Var.e;
+                Map map = wg7Var.e;
                 map.getClass();
                 try {
                     obj2 = map.remove(key);
@@ -123,7 +123,7 @@ public final class b3 extends p9a {
                 if (collection != null) {
                     int size = collection.size();
                     collection.clear();
-                    zi7Var.f -= size;
+                    wg7Var.f -= size;
                 }
                 return true;
             default:
@@ -151,7 +151,7 @@ public final class b3 extends p9a {
             collection.getClass();
             return super.retainAll(collection);
         } catch (UnsupportedOperationException unused) {
-            HashSet hashSet = new HashSet(fqe.a(collection.size()));
+            HashSet hashSet = new HashSet(coe.a(collection.size()));
             for (Object obj : collection) {
                 if (this.contains(obj) && (obj instanceof Map.Entry)) {
                     hashSet.add(((Map.Entry) obj).getKey());

@@ -1,4 +1,10 @@
 package defpackage;
-public abstract class nbd extends e1d implements bcd {
-    public static final int b = 0;
+
+import java.util.ArrayList;
+public interface nbd {
+    ArrayList d(go5 go5Var);
+
+    void zzb();
+
+    void zzc();
 }

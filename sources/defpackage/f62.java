@@ -1,74 +1,67 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.camera.CameraView;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-public final class f62 implements CameraView.CameraViewDelegate {
-    public final ChatAttachAlertPhotoLayout a;
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
+import java.util.ArrayList;
+public final class f62 extends le8 {
+    public final int G;
+    public final s20 H;
 
-    public f62(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.a = chatAttachAlertPhotoLayout;
+    public f62(s20 s20Var, Context context, int i, wjb wjbVar, int i2) {
+        super(context, i, null, wjbVar);
+        this.H = s20Var;
+        this.G = i2;
     }
 
     @Override
-    public final void onCameraInit() {
-        int i;
-        float f;
-        int i2;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.a;
-        ImageView imageView = chatAttachAlertPhotoLayout.s0;
-        ImageView[] imageViewArr = chatAttachAlertPhotoLayout.T;
-        String currentFlashMode = chatAttachAlertPhotoLayout.Q.getCameraSession().getCurrentFlashMode();
-        String nextFlashMode = chatAttachAlertPhotoLayout.Q.getCameraSession().getNextFlashMode();
-        if (currentFlashMode != null && nextFlashMode != null) {
-            int i3 = 4;
-            if (currentFlashMode.equals(nextFlashMode)) {
-                for (int i4 = 0; i4 < 2; i4++) {
-                    imageViewArr[i4].setVisibility(4);
-                    imageViewArr[i4].setAlpha(0.0f);
-                    imageViewArr[i4].setTranslationY(0.0f);
-                }
-            } else {
-                ChatAttachAlertPhotoLayout.r0(imageViewArr[0], chatAttachAlertPhotoLayout.Q.getCameraSession().getCurrentFlashMode());
-                for (int i5 = 0; i5 < 2; i5++) {
-                    ImageView imageView2 = imageViewArr[i5];
-                    if (i5 == 0) {
-                        i = 0;
-                    } else {
-                        i = 4;
-                    }
-                    imageView2.setVisibility(i);
-                    ImageView imageView3 = imageViewArr[i5];
-                    if (i5 == 0 && chatAttachAlertPhotoLayout.c0) {
-                        f = 1.0f;
-                    } else {
-                        f = 0.0f;
-                    }
-                    imageView3.setAlpha(f);
-                    imageViewArr[i5].setTranslationY(0.0f);
-                }
-            }
-            if (chatAttachAlertPhotoLayout.Q.isFrontface()) {
-                i2 = 2131230930;
-            } else {
-                i2 = 2131230931;
-            }
-            imageView.setImageResource(i2);
-            if (chatAttachAlertPhotoLayout.Q.hasFrontFaceCamera()) {
-                i3 = 0;
-            }
-            imageView.setVisibility(i3);
-            if (!chatAttachAlertPhotoLayout.c0) {
-                AnimatorSet animatorSet = new AnimatorSet();
-                chatAttachAlertPhotoLayout.P = animatorSet;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.Q, View.ALPHA, 0.0f, 1.0f));
-                chatAttachAlertPhotoLayout.P.setDuration(180L);
-                chatAttachAlertPhotoLayout.P.addListener(new b91(this, (byte) 19));
-                chatAttachAlertPhotoLayout.P.start();
+    public final void h(py pyVar, ActionMode actionMode) {
+        k62 k62Var = (k62) this.H.e;
+        if (!k62Var.n && this.G == 11 && pyVar.isFocused() && pyVar.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                mu1.x6(menu, ((mu1) k62Var.b.Z1).h, false, true, true, true);
             }
         }
+    }
+
+    @Override
+    public final void j(boolean z) {
+        ((k62) this.H.e).b0(this, z);
+    }
+
+    @Override
+    public final void k(le8 le8Var) {
+        ((k62) this.H.e).c0(le8Var);
+    }
+
+    @Override
+    public final void l(py pyVar) {
+        ((k62) this.H.e).b.c1(pyVar, true);
+    }
+
+    @Override
+    public final boolean m(ArrayList arrayList) {
+        k62 k62Var = (k62) this.H.e;
+        if (arrayList.isEmpty()) {
+            return false;
+        }
+        py pyVar = this.d;
+        pyVar.getText().replace(pyVar.getSelectionStart(), pyVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+        int i = 0;
+        while (!arrayList.isEmpty() && i < k62Var.K) {
+            for (int length = k62Var.L.length - 1; length > i; length--) {
+                CharSequence[] charSequenceArr = k62Var.L;
+                charSequenceArr[length] = charSequenceArr[length - 1];
+            }
+            k62Var.L[i] = (CharSequence) arrayList.remove(0);
+            k62Var.N++;
+            i++;
+        }
+        k62Var.n0();
+        k62Var.l0 = (k62Var.u0 + i) - 1;
+        k62Var.s.setItemAnimator(k62Var.w);
+        k62Var.r.f();
+        return true;
     }
 }

@@ -1,43 +1,42 @@
 package defpackage;
-public final class cqb implements Runnable {
-    public final byte a;
-    public final lqb b;
 
-    public cqb(lqb lqbVar, byte b) {
-        this.a = b;
-        this.b = lqbVar;
+import java.util.Locale;
+public enum cqb extends qsb {
+    public cqb() {
+        super("RcdataLessthanSign", 10);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        lqb lqbVar = this.b;
-        switch (b) {
-            case 0:
-                jqb jqbVar = lqbVar.N;
-                if (jqbVar != null) {
-                    long j = jqbVar.a;
-                    if (j > 0) {
-                        lqbVar.I = j;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                fqb fqbVar = lqbVar.a;
-                if (fqbVar != null) {
-                    fqbVar.V1();
-                    return;
-                }
-                return;
-            default:
-                fqb fqbVar2 = lqbVar.a;
-                if (fqbVar2 != null) {
-                    fqbVar2.V();
-                    return;
-                }
-                return;
+    public final void c(aqb aqbVar, zj1 zj1Var) {
+        String str;
+        if (zj1Var.m('/')) {
+            aqbVar.e();
+            aqbVar.a(qsb.w);
+            return;
         }
+        if (zj1Var.o() && aqbVar.o != null) {
+            String str2 = "</" + aqbVar.o;
+            Locale locale = Locale.ENGLISH;
+            String lowerCase = str2.toLowerCase(locale);
+            String upperCase = str2.toUpperCase(locale);
+            if (zj1Var.p(lowerCase) <= -1 && zj1Var.p(upperCase) <= -1) {
+                vpb d = aqbVar.d(false);
+                String str3 = aqbVar.o;
+                d.e = str3;
+                if (str3 != null) {
+                    str = str3.toLowerCase(locale);
+                } else {
+                    str = "";
+                }
+                d.f = str;
+                aqbVar.i = d;
+                aqbVar.k();
+                zj1Var.q();
+                aqbVar.c = qsb.a;
+                return;
+            }
+        }
+        aqbVar.h("<");
+        aqbVar.c = qsb.c;
     }
 }

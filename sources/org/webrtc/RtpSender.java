@@ -22,7 +22,7 @@ public class RtpSender {
         if (this.nativeRtpSender != 0) {
             return;
         }
-        dq9.m("RtpSender has been disposed.");
+        sc8.j("RtpSender has been disposed.");
     }
 
     private static native long nativeGetDtmfSender(long j);

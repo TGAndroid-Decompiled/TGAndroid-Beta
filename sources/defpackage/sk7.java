@@ -1,22 +1,75 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.view.View;
-public final class sk7 extends View.BaseSavedState {
-    public static final Parcelable.Creator<sk7> CREATOR = new hx6((byte) 4);
-    public int a;
+import android.app.Notification;
+import java.util.ArrayList;
+public final class sk7 extends gl7 {
+    public final byte e;
+    public Object f;
 
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("HorizontalScrollView.SavedState{");
-        sb.append(Integer.toHexString(System.identityHashCode(this)));
-        sb.append(" scrollPosition=");
-        return hg9.k(sb, this.a, "}");
+    public sk7(byte b) {
+        this.e = b;
+        switch (b) {
+            case 1:
+                this.f = new ArrayList();
+                return;
+            default:
+                return;
+        }
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        super.writeToParcel(parcel, i);
-        parcel.writeInt(this.a);
+    public final void b(h31 h31Var) {
+        switch (this.e) {
+            case 0:
+                Notification.BigTextStyle bigText = new Notification.BigTextStyle((Notification.Builder) h31Var.c).setBigContentTitle(this.b).bigText((CharSequence) this.f);
+                if (this.d) {
+                    bigText.setSummaryText(this.c);
+                    return;
+                }
+                return;
+            default:
+                Notification.InboxStyle bigContentTitle = new Notification.InboxStyle((Notification.Builder) h31Var.c).setBigContentTitle(this.b);
+                if (this.d) {
+                    bigContentTitle.setSummaryText(this.c);
+                }
+                ArrayList arrayList = (ArrayList) this.f;
+                int size = arrayList.size();
+                int i = 0;
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    bigContentTitle.addLine((CharSequence) obj);
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final String c() {
+        switch (this.e) {
+            case 0:
+                return "androidx.core.app.NotificationCompat$BigTextStyle";
+            default:
+                return "androidx.core.app.NotificationCompat$InboxStyle";
+        }
+    }
+
+    public final void d(String str) {
+        if (str != null) {
+            ((ArrayList) this.f).add(xk7.c(str));
+        }
+    }
+
+    public final void e(String str) {
+        this.f = xk7.c(str);
+    }
+
+    public final void f(String str) {
+        this.b = xk7.c(str);
+    }
+
+    public final void g(String str) {
+        this.c = xk7.c(str);
+        this.d = true;
     }
 }

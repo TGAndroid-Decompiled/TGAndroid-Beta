@@ -1,68 +1,44 @@
 package defpackage;
+public final class iz8 {
+    public final fs4 a;
+    public final String b;
+    public final Object[] c;
+    public final int d;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.TextView;
-public final class iz8 implements TextView.OnEditorActionListener {
-    public final a52 a;
-    public final int b;
-    public final oz8 c;
-    public final TextView d;
-    public final jv0 e;
-    public final qac f;
-    public final he[] g;
-    public final View h;
-
-    public iz8(a52 a52Var, int i, oz8 oz8Var, TextView textView, jv0 jv0Var, qac qacVar, he[] heVarArr, View view) {
-        this.a = a52Var;
-        this.b = i;
-        this.c = oz8Var;
-        this.d = textView;
-        this.e = jv0Var;
-        this.f = qacVar;
-        this.g = heVarArr;
-        this.h = view;
+    public iz8(fs4 fs4Var, String str, Object[] objArr) {
+        this.a = fs4Var;
+        this.b = str;
+        this.c = objArr;
+        char charAt = str.charAt(0);
+        if (charAt < 55296) {
+            this.d = charAt;
+            return;
+        }
+        int i = charAt & 8191;
+        int i2 = 13;
+        int i3 = 1;
+        while (true) {
+            int i4 = i3 + 1;
+            char charAt2 = str.charAt(i3);
+            if (charAt2 >= 55296) {
+                i |= (charAt2 & 8191) << i2;
+                i2 += 13;
+                i3 = i4;
+            } else {
+                this.d = i | (charAt2 << i2);
+                return;
+            }
+        }
     }
 
-    @Override
-    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-        int i2;
-        if (i != 6) {
-            return false;
+    public final int a() {
+        int i = this.d;
+        if ((i & 1) != 0) {
+            return 1;
         }
-        a52 a52Var = this.a;
-        String obj = a52Var.getText().toString();
-        if (obj.length() > 0 && obj.length() <= 32) {
-            pz8 f = pz8.f(this.b);
-            oz8 oz8Var = this.c;
-            if (oz8Var == null) {
-                i2 = -1;
-            } else {
-                i2 = oz8Var.a;
-            }
-            oz8 d = f.d(obj);
-            if (d != null && d.a != i2) {
-                gm.z3(a52Var);
-                this.d.setText(jb6.M0(2131752615, null));
-                this.e.a(Boolean.TRUE);
-                return true;
-            }
-            this.f.a(obj);
-            he[] heVarArr = this.g;
-            he heVar = heVarArr[0];
-            if (heVar != null) {
-                heVar.dismiss();
-            }
-            if (heVarArr[0] == lz8.f) {
-                lz8.f = null;
-            }
-            View view = this.h;
-            if (view != null) {
-                view.requestFocus();
-            }
-            return true;
+        if ((i & 4) == 4) {
+            return 3;
         }
-        gm.z3(a52Var);
-        return true;
+        return 2;
     }
 }

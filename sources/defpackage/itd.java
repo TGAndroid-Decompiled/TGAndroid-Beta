@@ -1,83 +1,64 @@
 package defpackage;
 
-import java.util.ListIterator;
-public final class itd extends v7c implements ListIterator {
-    public final int b;
-    public int c;
-    public final qtd d;
-
-    public itd(qtd qtdVar, int i) {
-        super((byte) 11);
-        int size = qtdVar.size();
-        if (i >= 0 && i <= size) {
-            this.b = size;
-            this.c = i;
-            this.d = qtdVar;
-            return;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+public final class itd extends ezc {
+    public final hbd Z() {
+        hbd ezcVar;
+        Parcel Q = Q(R(), 4);
+        IBinder readStrongBinder = Q.readStrongBinder();
+        if (readStrongBinder == null) {
+            ezcVar = 0;
+        } else {
+            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.maps.internal.ICameraUpdateFactoryDelegate");
+            if (queryLocalInterface instanceof hbd) {
+                ezcVar = (hbd) queryLocalInterface;
+            } else {
+                ezcVar = new ezc(readStrongBinder, "com.google.android.gms.maps.internal.ICameraUpdateFactoryDelegate", (byte) 6);
+            }
         }
-        wa3.i(k3f.c(i, size, "index"));
-        throw null;
+        Q.recycle();
+        return ezcVar;
     }
 
-    public final Object a(int i) {
-        return this.d.get(i);
-    }
-
-    @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.c < this.b) {
-            return true;
+    public final kwe a0(bo7 bo7Var) {
+        kwe ezcVar;
+        Parcel R = R();
+        sgd.c(R, bo7Var);
+        R.writeInt(0);
+        Parcel Q = Q(R, 3);
+        IBinder readStrongBinder = Q.readStrongBinder();
+        if (readStrongBinder == null) {
+            ezcVar = 0;
+        } else {
+            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.maps.internal.IMapViewDelegate");
+            if (queryLocalInterface instanceof kwe) {
+                ezcVar = (kwe) queryLocalInterface;
+            } else {
+                ezcVar = new ezc(readStrongBinder, "com.google.android.gms.maps.internal.IMapViewDelegate", (byte) 6);
+            }
         }
-        return false;
+        Q.recycle();
+        return ezcVar;
     }
 
-    @Override
-    public final boolean hasPrevious() {
-        if (this.c > 0) {
-            return true;
+    public final phe b0() {
+        phe ezcVar;
+        Parcel Q = Q(R(), 5);
+        IBinder readStrongBinder = Q.readStrongBinder();
+        int i = cce.b;
+        if (readStrongBinder == null) {
+            ezcVar = 0;
+        } else {
+            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.maps.model.internal.IBitmapDescriptorFactoryDelegate");
+            if (queryLocalInterface instanceof phe) {
+                ezcVar = (phe) queryLocalInterface;
+            } else {
+                ezcVar = new ezc(readStrongBinder, "com.google.android.gms.maps.model.internal.IBitmapDescriptorFactoryDelegate", (byte) 6);
+            }
         }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i = this.c;
-            this.c = i + 1;
-            return a(i);
-        }
-        u36.g();
-        return null;
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i = this.c - 1;
-            this.c = i;
-            return a(i);
-        }
-        u36.g();
-        return null;
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+        Q.recycle();
+        return ezcVar;
     }
 }

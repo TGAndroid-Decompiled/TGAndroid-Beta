@@ -1,116 +1,70 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-public final class ro2 extends FrameLayout implements vlb {
-    public final ylb a;
-    public final bf0 b;
-    public final TextView c;
-    public final TextView d;
-    public final ImageView e;
+import j$.util.Objects;
+import java.util.Map;
+public final class ro2 extends m3 {
+    public final Object b;
+    public int c;
+    public final so2 d;
 
-    public ro2(Context context, ylb ylbVar) {
-        super(context);
-        this.a = ylbVar;
-        bf0 bf0Var = new bf0(context);
-        this.b = bf0Var;
-        bf0Var.setRoundRadius(gm.L(7.3125f));
-        addView(bf0Var, qoe.d(26, 26.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setGravity(16);
-        TextView textView = new TextView(context);
-        this.c = textView;
-        textView.setTextSize(1, 16.0f);
-        textView.setSingleLine(true);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        linearLayout.addView(textView, qoe.o(-1, -2));
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setTextSize(1, 13.0f);
-        textView2.setSingleLine(true);
-        textView2.setEllipsize(truncateAt);
-        linearLayout.addView(textView2, qoe.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
-        addView(linearLayout, qoe.d(-1, -2.0f, 19, 58.0f, 0.0f, 48.0f, 1.0f));
-        ImageView imageView = new ImageView(context);
-        this.e = imageView;
-        imageView.setImageResource(2131232195);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, qoe.d(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
-        updateColors();
+    public ro2(so2 so2Var, int i) {
+        super((byte) 0, false);
+        this.d = so2Var;
+        Object obj = so2.w;
+        this.b = so2Var.g(i);
+        this.c = i;
     }
 
-    public final void a(int i, TLRPC.Chat chat) {
-        int i2;
-        if (chat == null) {
+    public final void a() {
+        int i = this.c;
+        Object obj = this.b;
+        so2 so2Var = this.d;
+        if (i != -1 && i < so2Var.size() && bqe.a(obj, so2Var.g(this.c))) {
             return;
         }
-        TLRPC.ChatFull M0 = oc7.r1(i).M0(chat.id);
-        setTitle(pg3.t(chat));
-        if (M0 != null) {
-            i2 = M0.linked_peers.size();
-        } else {
-            i2 = 0;
+        Object obj2 = so2.w;
+        this.c = so2Var.f(obj);
+    }
+
+    @Override
+    public final Object getKey() {
+        return this.b;
+    }
+
+    @Override
+    public final Object getValue() {
+        so2 so2Var = this.d;
+        Map d = so2Var.d();
+        if (d != null) {
+            return d.get(this.b);
         }
-        setSubtitle(jb6.G(i2, "CommunityWithChats", new Object[0]));
-        this.b.f(chat, new pc0(chat));
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(cmb.y6));
-        hashSet.add(Integer.valueOf(cmb.F6));
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Paint paint;
-        Drawable drawable = cmb.R0;
-        bf0 bf0Var = this.b;
-        ur3.a(canvas, drawable, (bf0Var.getWidth() / 2.0f) + bf0Var.getLeft(), (bf0Var.getHeight() / 2.0f) + bf0Var.getTop(), bf0Var.getHeight());
-        super.dispatchDraw(canvas);
-        ylb ylbVar = this.a;
-        if (ylbVar != null) {
-            paint = ylbVar.d("paintDivider");
-        } else {
-            paint = null;
+        a();
+        int i = this.c;
+        if (i == -1) {
+            return null;
         }
-        if (paint == null) {
-            paint = cmb.j0;
+        return so2Var.l(i);
+    }
+
+    @Override
+    public final Object setValue(Object obj) {
+        so2 so2Var = this.d;
+        Map d = so2Var.d();
+        Object obj2 = this.b;
+        if (d != null) {
+            return d.put(obj2, obj);
         }
-        canvas.drawLine(gm.L(58.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(56.0f), 1073741824));
-    }
-
-    public void setSubtitle(CharSequence charSequence) {
-        this.d.setText(charSequence);
-    }
-
-    public void setTitle(CharSequence charSequence) {
-        this.c.setText(charSequence);
-    }
-
-    @Override
-    public final void updateColors() {
-        int i = cmb.y6;
-        ylb ylbVar = this.a;
-        this.e.setColorFilter(cmb.v0(i, ylbVar));
-        this.c.setTextColor(cmb.v0(cmb.F6, ylbVar));
-        this.d.setTextColor(cmb.v0(i, ylbVar));
+        a();
+        int i = this.c;
+        if (i == -1) {
+            so2Var.put(obj2, obj);
+            return null;
+        }
+        Object l = so2Var.l(i);
+        int i2 = this.c;
+        Object[] objArr = so2Var.e;
+        Objects.requireNonNull(objArr);
+        objArr[i2] = obj;
+        return l;
     }
 }

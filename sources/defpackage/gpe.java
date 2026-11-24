@@ -1,19 +1,14 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.math.RoundingMode;
 public abstract class gpe {
-    public static Parcelable a(Parcelable parcelable, Parcelable.Creator creator) {
-        if (parcelable == null) {
-            return null;
+    public static int a(long j, long j2) {
+        if (j > 0 && j2 > 0) {
+            long b0 = g8c.b0(j, 8000000L, j2, RoundingMode.HALF_UP);
+            if (b0 > 0 && b0 <= 2147483647L) {
+                return (int) b0;
+            }
         }
-        Parcel obtain = Parcel.obtain();
-        try {
-            parcelable.writeToParcel(obtain, 0);
-            obtain.setDataPosition(0);
-            return (Parcelable) creator.createFromParcel(obtain);
-        } finally {
-            obtain.recycle();
-        }
+        return -2147483647;
     }
 }

@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONObject;
-public final class WidgetSandboxBackend implements eyc, ixc {
+public final class WidgetSandboxBackend implements dwc, hvc {
     private static final int MAX_CANVAS_WORDS = 2097152;
     private static final int MAX_COMPOSITION_LAYERS = 256;
     private static final int MAX_DISPLAY_OPS = 200000;
@@ -39,16 +39,16 @@ public final class WidgetSandboxBackend implements eyc, ixc {
     private int nextRecord;
     private final z owner;
     private long pendingLayerBytes;
-    private syc text;
+    private rwc text;
     private final Object recordLock = new Object();
     private final long[] recordTimes = new long[240];
     private final ConcurrentHashMap<Integer, Paint> fonts = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, Paint> deviceFonts = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, Bitmap> images = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<Integer, jxc> canvases = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<Integer, ivc> canvases = new ConcurrentHashMap<>();
     private final Object canvasLock = new Object();
-    private final HashMap<Integer, kxc> pendingLayers = new HashMap<>();
-    private HashMap<Long, ayc> layerContents = new HashMap<>();
+    private final HashMap<Integer, jvc> pendingLayers = new HashMap<>();
+    private HashMap<Long, zvc> layerContents = new HashMap<>();
     private final y painter = new y();
 
     public WidgetSandboxBackend(z zVar) {
@@ -59,7 +59,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             return;
         }
-        dq9.m("Native layout and recording must run off UI");
+        sc8.j("Native layout and recording must run off UI");
     }
 
     public static void checkJsonDepth(String str) {
@@ -80,7 +80,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
             } else if (charAt != '[' && charAt != '{') {
                 if (charAt != ']' && charAt != '}') {
                     if (charAt == '\'' || charAt == '/' || charAt == '#') {
-                        u36.j("Not JSON");
+                        w26.j("Not JSON");
                         return;
                     }
                 } else if (i2 > 0) {
@@ -89,7 +89,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
             } else {
                 i2++;
                 if (i2 > 32) {
-                    u36.j("JSON nests too deep");
+                    w26.j("JSON nests too deep");
                     return;
                 }
             }
@@ -149,8 +149,8 @@ public final class WidgetSandboxBackend implements eyc, ixc {
         return true;
     }
 
-    private defpackage.myc[] layers(org.json.JSONObject r42, float r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.layers(org.json.JSONObject, float):myc[]");
+    private defpackage.lwc[] layers(org.json.JSONObject r42, float r43) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.layers(org.json.JSONObject, float):lwc[]");
     }
 
     public static float[] metrics(int i, Paint paint, float f, Rect rect) {
@@ -189,7 +189,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
     private void recordLocked(byte[] bArr, byte[] bArr2, double d, int i, int i2, float f, float f2, int i3, int i4) {
         int i5;
         int i6;
-        pxc oxcVar;
+        ovc nvcVar;
         ?? r1 = bArr;
         if (r1.length <= 8388608) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
@@ -207,38 +207,38 @@ public final class WidgetSandboxBackend implements eyc, ixc {
             long nanoTime = System.nanoTime();
             double d2 = d - (nanoTime / 1.0E9d);
             if (Build.VERSION.SDK_INT >= 29) {
-                oxcVar = new nxc(0, 0, i, i2, "widget-sandbox-content");
+                nvcVar = new mvc(0, 0, i, i2, "widget-sandbox-content");
                 i5 = i;
                 i6 = i2;
             } else {
                 i5 = i;
                 i6 = i2;
-                oxcVar = new oxc(0, 0, i5, i6);
+                nvcVar = new nvc(0, 0, i5, i6);
             }
-            pxc pxcVar = oxcVar;
+            ovc ovcVar = nvcVar;
             try {
                 try {
                     try {
-                        kxc b = kxc.b(r1);
+                        jvc b = jvc.b(r1);
                         String text = text(bArr2);
                         checkJsonDepth(text);
                         JSONObject jSONObject = new JSONObject(text);
                         System.nanoTime();
                         this.painter.b(i5, i6);
-                        Canvas a = pxcVar.a();
+                        Canvas a = ovcVar.a();
                         try {
                             a.scale(f, f);
                             this.painter.f(a, b, this, f, 0.0f, 0.0f, i5 / f, i6 / f);
-                            pxcVar.d();
-                            myc[] layers = layers(jSONObject, f);
+                            ovcVar.d();
+                            lwc[] layers = layers(jSONObject, f);
                             z zVar = this.owner;
                             System.nanoTime();
                             zVar.getClass();
                             zVar.S = null;
-                            this.owner.c(pxcVar, layers, d2, i, i6, f2, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i3, i4, b.b, this.text);
+                            this.owner.c(ovcVar, layers, d2, i, i6, f2, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i3, i4, b.b, this.text);
                             return;
                         } catch (Throwable th) {
-                            pxcVar.d();
+                            ovcVar.d();
                             throw th;
                         }
                     } finally {
@@ -247,7 +247,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
                     }
                 } catch (Exception e) {
                     e = e;
-                    r1 = pxcVar;
+                    r1 = ovcVar;
                     r1.b();
                     throw e;
                 }
@@ -258,35 +258,35 @@ public final class WidgetSandboxBackend implements eyc, ixc {
             }
         }
         clearPendingLayers();
-        u36.j("Display list");
+        w26.j("Display list");
     }
 
-    private jxc reserveCanvas(int i, int i2, int i3) {
-        jxc jxcVar;
+    private ivc reserveCanvas(int i, int i2, int i3) {
+        ivc ivcVar;
         long j = i2 * i3;
         if (j <= 4194304) {
             synchronized (this.canvasLock) {
                 long j2 = j << 3;
                 long imageBytes = imageBytes() + j2;
-                for (Map.Entry<Integer, jxc> entry : this.canvases.entrySet()) {
+                for (Map.Entry<Integer, ivc> entry : this.canvases.entrySet()) {
                     if (entry.getKey().intValue() != i) {
                         imageBytes += entry.getValue().W;
                     }
                 }
                 if (imageBytes <= 33554432) {
-                    jxcVar = this.canvases.get(Integer.valueOf(i));
-                    if (jxcVar == null) {
-                        jxcVar = new jxc(i);
-                        this.canvases.put(Integer.valueOf(i), jxcVar);
+                    ivcVar = this.canvases.get(Integer.valueOf(i));
+                    if (ivcVar == null) {
+                        ivcVar = new ivc(i);
+                        this.canvases.put(Integer.valueOf(i), ivcVar);
                     }
-                    jxcVar.W = j2;
+                    ivcVar.W = j2;
                 } else {
                     throw new IllegalArgumentException("Canvas memory budget");
                 }
             }
-            return jxcVar;
+            return ivcVar;
         }
-        u36.j("Canvas dimensions");
+        w26.j("Canvas dimensions");
         return null;
     }
 
@@ -303,44 +303,44 @@ public final class WidgetSandboxBackend implements eyc, ixc {
 
     @Override
     public Bitmap canvas(int i) {
-        jxc jxcVar = this.canvases.get(Integer.valueOf(i));
-        if (jxcVar == null) {
+        ivc ivcVar = this.canvases.get(Integer.valueOf(i));
+        if (ivcVar == null) {
             return null;
         }
-        return jxcVar.j();
+        return ivcVar.j();
     }
 
     @Override
     public Bitmap canvasBitmap(int i) {
-        jxc jxcVar = this.canvases.get(Integer.valueOf(i));
-        if (jxcVar == null) {
+        ivc ivcVar = this.canvases.get(Integer.valueOf(i));
+        if (ivcVar == null) {
             return null;
         }
-        return jxcVar.j();
+        return ivcVar.j();
     }
 
     public byte[] canvasRead(int i, int i2, int i3, int i4, int i5) {
         int i6 = i2;
         assertWorker();
         if (i4 > 0 && i5 > 0 && i4 * i5 <= 4194304) {
-            jxc jxcVar = this.canvases.get(Integer.valueOf(i));
-            if (jxcVar == null) {
+            ivc ivcVar = this.canvases.get(Integer.valueOf(i));
+            if (ivcVar == null) {
                 return new byte[(i4 * i5) << 2];
             }
-            synchronized (jxcVar) {
+            synchronized (ivcVar) {
                 byte[] bArr = new byte[(Math.max(i4, 0) * Math.max(i5, 0)) << 2];
-                if (jxcVar.o == null) {
+                if (ivcVar.o == null) {
                     return bArr;
                 }
                 int max = Math.max(0, i6);
                 int max2 = Math.max(0, i3);
-                int min = Math.min(jxcVar.o.getWidth(), i6 + i4);
-                int min2 = Math.min(jxcVar.o.getHeight(), i5 + i3);
+                int min = Math.min(ivcVar.o.getWidth(), i6 + i4);
+                int min2 = Math.min(ivcVar.o.getHeight(), i5 + i3);
                 if (min > max && min2 > max2) {
                     int i7 = min - max;
                     int i8 = min2 - max2;
                     int[] iArr = new int[i7 * i8];
-                    jxcVar.o.getPixels(iArr, 0, i7, max, max2, i7, i8);
+                    ivcVar.o.getPixels(iArr, 0, i7, max, max2, i7, i8);
                     int i9 = max2;
                     while (i9 < min2) {
                         int i10 = max;
@@ -366,7 +366,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
     }
 
     public void canvasRelease(int i) {
-        jxc remove;
+        ivc remove;
         assertWorker();
         synchronized (this.canvasLock) {
             remove = this.canvases.remove(Integer.valueOf(i));
@@ -380,7 +380,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
         assertWorker();
         if (i2 > 0 && i3 > 0) {
             if (iArr.length <= 2097152) {
-                jxc reserveCanvas = reserveCanvas(i, i2, i3);
+                ivc reserveCanvas = reserveCanvas(i, i2, i3);
                 synchronized (reserveCanvas) {
                     Bitmap bitmap = reserveCanvas.o;
                     if (bitmap == null || bitmap.getWidth() != i2 || reserveCanvas.o.getHeight() != i3) {
@@ -412,7 +412,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
                 }
                 return;
             }
-            u36.j("Canvas batch");
+            w26.j("Canvas batch");
             return;
         }
         canvasRelease(i);
@@ -427,7 +427,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
 
     public float[] defineFont(int i, byte[] bArr, float f, int i2, boolean z, byte[] bArr2) {
         if (this.fonts.size() >= 4096 && !this.fonts.containsKey(Integer.valueOf(i))) {
-            u36.j("Too many fonts");
+            w26.j("Too many fonts");
             return null;
         }
         Paint[] paints = paints(text(bArr), f, i2, z, text(bArr2), this.owner.l);
@@ -484,7 +484,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
     }
 
     public byte[] formatIntl(byte[] bArr) {
-        return i10.d(text(bArr)).getBytes(StandardCharsets.UTF_8);
+        return i00.d(text(bArr)).getBytes(StandardCharsets.UTF_8);
     }
 
     @Override
@@ -512,7 +512,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
         assertWorker();
         long nanoTime = System.nanoTime();
         if (i >= 0 && i < 256 && bArr.length <= 8388608) {
-            kxc b = kxc.b(bArr);
+            jvc b = jvc.b(bArr);
             synchronized (this.recordLock) {
                 long j = this.pendingLayerBytes;
                 if (bArr.length + j <= 16777216) {
@@ -526,23 +526,23 @@ public final class WidgetSandboxBackend implements eyc, ixc {
             }
             return;
         }
-        u36.j("Layer");
+        w26.j("Layer");
     }
 
     public void selectableText(byte[] bArr) {
-        syc sycVar;
+        rwc rwcVar;
         assertWorker();
         String text = text(bArr);
         checkJsonDepth(text);
         try {
             ConcurrentHashMap<Integer, Paint> concurrentHashMap = this.deviceFonts;
             Objects.requireNonNull(concurrentHashMap);
-            sycVar = syc.a(text, new lcc(concurrentHashMap, (byte) 13), this.owner.l);
+            rwcVar = rwc.a(text, new dkc(concurrentHashMap, (byte) 9), this.owner.l);
         } catch (Exception unused) {
-            sycVar = null;
+            rwcVar = null;
         }
         synchronized (this.recordLock) {
-            this.text = sycVar;
+            this.text = rwcVar;
         }
     }
 
@@ -554,13 +554,13 @@ public final class WidgetSandboxBackend implements eyc, ixc {
         JSONObject jSONObject;
         String string;
         boolean optBoolean;
+        long j;
         boolean d;
         byte b;
         boolean z;
         boolean z2;
         boolean z3;
         boolean z4;
-        float f;
         boolean isEmpty;
         String text = text(bArr);
         if (jsonSignal(i)) {
@@ -584,7 +584,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
                             hashMap.put(optString, optJSONObject);
                         }
                         if (isEmpty) {
-                            zVar.a.post(new jyc(zVar, (byte) 6));
+                            zVar.a.post(new iwc(zVar, (byte) 6));
                         }
                     }
                 }
@@ -594,7 +594,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
                         if (i == 14) {
                             b = 6;
                         } else if (i == 11) {
-                            zVar.a.post(new ptc(zVar, text, (byte) 18));
+                            zVar.a.post(new isc(zVar, text, (byte) 15));
                             return;
                         } else if (i == 18) {
                             JSONObject jSONObject3 = new JSONObject(text);
@@ -603,28 +603,23 @@ public final class WidgetSandboxBackend implements eyc, ixc {
                         } else if (i != 16 && i != 17 && i != 9) {
                             if (i == 3) {
                                 JSONObject jSONObject4 = new JSONObject(text);
-                                zVar.a.post(new tf4(zVar, jSONObject4.optBoolean("x"), jSONObject4.optBoolean("y"), jSONObject4.optBoolean("hold"), (byte) 1));
+                                zVar.a.post(new sd4(zVar, jSONObject4.optBoolean("x"), jSONObject4.optBoolean("y"), jSONObject4.optBoolean("hold"), (byte) 1));
                                 return;
                             } else if (i == 4) {
                                 JSONObject jSONObject5 = new JSONObject(text);
                                 if (jSONObject5.optBoolean("loaded")) {
                                     zVar.B = true;
                                 }
-                                if (!zVar.f0 && jSONObject5.has("engine")) {
-                                    zVar.f0 = true;
-                                    if (e21.a) {
-                                        fc4.b("widget engine: " + jSONObject5.optString("engine") + ", " + jSONObject5.optString("boot"));
+                                if (!zVar.e0 && jSONObject5.has("engine")) {
+                                    zVar.e0 = true;
+                                    if (w01.a) {
+                                        fa4.b("widget engine: " + jSONObject5.optString("engine") + ", " + jSONObject5.optString("boot"));
                                     }
                                 }
                                 zVar.G = "bottom".equals(jSONObject5.optString("resizeAnchor"));
                                 if (jSONObject5.optBoolean("rendered") && !zVar.E) {
                                     double optDouble = jSONObject5.optDouble("height", -1.0d);
-                                    if (zVar.e0) {
-                                        f = 4000.0f;
-                                    } else {
-                                        f = 600.0f;
-                                    }
-                                    double min = Math.min(f, Math.max(50.0f, zVar.t / zVar.l));
+                                    double min = Math.min(600.0f, Math.max(50.0f, zVar.t / zVar.l));
                                     if (zVar.u && optDouble > 0.0d && Math.abs(min - optDouble) <= 1.0d) {
                                         zVar.F = true;
                                         if (zVar.D == 0) {
@@ -690,7 +685,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
                                                         i3++;
                                                     } else {
                                                         z = false;
-                                                        String[] strArr = qxc.m;
+                                                        String[] strArr = pvc.m;
                                                         boolean z5 = false;
                                                         for (int i5 = 0; i5 < 3; i5++) {
                                                             String str2 = strArr[i5];
@@ -721,7 +716,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
                                     z3 = z2;
                                 }
                                 if (z3) {
-                                    zVar.a.post(new ptc(zVar, jSONObject6, (byte) 19));
+                                    zVar.a.post(new isc(zVar, jSONObject6, (byte) 16));
                                     return;
                                 }
                                 return;
@@ -737,35 +732,37 @@ public final class WidgetSandboxBackend implements eyc, ixc {
                             return;
                         }
                     }
-                    zVar.a.post(new bnc(zVar, i, text, b));
+                    zVar.a.post(new clc(zVar, i, text, b));
                     return;
                 }
                 JSONObject jSONObject7 = new JSONObject(text);
-                long j = jSONObject7.getLong("id");
+                long j2 = jSONObject7.getLong("id");
                 if (i == 19) {
                     string = null;
                     jSONObject = jSONObject7.getJSONObject("call");
+                    j = j2;
                     optBoolean = false;
                 } else {
                     jSONObject = null;
                     string = jSONObject7.getString("data");
                     optBoolean = jSONObject7.optBoolean("wallet");
+                    j = j2;
                 }
-                qxc qxcVar = zVar.d;
+                pvc pvcVar = zVar.d;
                 if (i == 19) {
-                    d = qxcVar.e(jSONObject.toString(), zVar.L);
+                    d = pvcVar.e(jSONObject.toString(), zVar.L);
                 } else {
-                    d = qxcVar.d(string, optBoolean, zVar.L);
+                    d = pvcVar.d(string, optBoolean, zVar.L);
                 }
                 if (!d) {
-                    long j2 = zVar.v;
-                    if (j2 != 0) {
-                        zVar.c.a(j2, j, 3, null);
+                    long j3 = zVar.v;
+                    if (j3 != 0) {
+                        zVar.c.a(j3, j, 3, null);
                         return;
                     }
                     return;
                 }
-                zVar.a.post(new uk2(zVar, i, j, jSONObject, string, optBoolean));
+                zVar.a.post(new gj2(zVar, i, j, jSONObject, string, optBoolean));
             }
         } catch (Exception unused) {
         }
@@ -785,7 +782,7 @@ public final class WidgetSandboxBackend implements eyc, ixc {
                 atomicBoolean.set(z);
                 zVar.x = f;
                 if (zVar.y.compareAndSet(false, true)) {
-                    zVar.a.post(new jyc(zVar, (byte) 5));
+                    zVar.a.post(new iwc(zVar, (byte) 5));
                 }
             }
             if ((i & 4) != 0) {

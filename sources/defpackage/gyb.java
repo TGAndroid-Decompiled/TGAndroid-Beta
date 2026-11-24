@@ -1,39 +1,18 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class gyb extends AnimatorListenerAdapter {
-    public final byte a;
-    public final oyb b;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.graphics.drawable.ShapeDrawable;
+public final class gyb extends ShapeDrawable.ShaderFactory {
+    public final mj5 a;
 
-    public gyb(oyb oybVar, byte b) {
-        this.a = b;
-        this.b = oybVar;
+    public gyb(mj5 mj5Var) {
+        this.a = mj5Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        oyb oybVar = this.b;
-        switch (b) {
-            case 0:
-                if (oybVar.b0 == animator) {
-                    oybVar.b0 = null;
-                    return;
-                }
-                return;
-            case 1:
-                if (oybVar.k0 == animator) {
-                    oybVar.k0 = null;
-                }
-                oybVar.b(1.0f);
-                return;
-            default:
-                if (oybVar.K == animator) {
-                    oybVar.K = null;
-                    return;
-                }
-                return;
-        }
+    public final Shader resize(int i, int i2) {
+        mj5 mj5Var = this.a;
+        return new LinearGradient(0.0f, 0.0f, 0.0f, i2, mj5Var.a, mj5Var.b, Shader.TileMode.CLAMP);
     }
 }

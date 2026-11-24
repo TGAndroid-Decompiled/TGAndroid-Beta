@@ -1,32 +1,39 @@
 package defpackage;
-public abstract class wc9 {
-    public final float a;
-    public final float b;
 
-    public wc9(float f, float f2) {
-        this.a = f;
-        this.b = f2;
+import android.text.Editable;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class wc9 implements b42, e12 {
+    public final hd9 a;
+    public final x02 b;
+
+    public wc9(hd9 hd9Var, x02 x02Var) {
+        this.a = hd9Var;
+        this.b = x02Var;
     }
 
-    public static float a(wc9 wc9Var, wc9 wc9Var2) {
-        return oqe.a(wc9Var.a, wc9Var.b, wc9Var2.a, wc9Var2.b);
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof wc9) {
-            wc9 wc9Var = (wc9) obj;
-            if (this.a == wc9Var.a && this.b == wc9Var.b) {
-                return true;
-            }
+    @Override
+    public final void b(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+        x02 x02Var = this.b;
+        if (messageMedia != null && messageMedia.geo != null) {
+            TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
+            pageblockmap.geo = messageMedia.geo;
+            pageblockmap.zoom = 15;
+            pageblockmap.w = 600;
+            pageblockmap.h = 400;
+            this.a.Q.N1(pageblockmap);
+            x02Var.a(true);
+            return;
         }
-        return false;
+        x02Var.a(true);
     }
 
-    public final int hashCode() {
-        return Float.floatToIntBits(this.b) + (Float.floatToIntBits(this.a) * 31);
-    }
-
-    public final String toString() {
-        return "(" + this.a + ',' + this.b + ')';
+    @Override
+    public final void g(ArrayList arrayList, Editable editable, boolean z, int i, int i2, long j, boolean z2, long j2) {
+        if (!arrayList.isEmpty()) {
+            this.a.Q.W1((k27) arrayList.get(0));
+        }
+        this.b.a(true);
     }
 }

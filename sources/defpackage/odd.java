@@ -1,12 +1,18 @@
 package defpackage;
+public abstract class odd {
+    public static final Object a = new Object();
+    public static int b;
+    public static boolean c;
 
-import java.util.concurrent.Callable;
-public final class odd implements Callable {
-    public static final odd a = new Object();
-
-    @Override
-    public final Object call() {
-        s13 s13Var = hg7.e;
-        return null;
+    public static void a() {
+        synchronized (a) {
+            if (c) {
+                return;
+            }
+            c = true;
+            Thread thread = new Thread(new cza((byte) 18), "widget-engine-memory");
+            thread.setDaemon(true);
+            thread.start();
+        }
     }
 }

@@ -1,17 +1,44 @@
 package defpackage;
-public final class wve implements cq7 {
-    public static final wve a = new Object();
 
-    static {
-        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)));
+import android.os.Build;
+import android.os.Trace;
+import android.util.Log;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+public abstract class wve {
+    public static long a;
+    public static Method b;
+
+    public static void a(String str) {
+        if (str.length() > 127) {
+            str = str.substring(0, 127);
+        }
+        Trace.beginSection(str);
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+    public static boolean b() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            return lxb.a();
         }
-        throw new ClassCastException();
+        try {
+            Method method = b;
+            if (method == null) {
+                a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
+                method = Trace.class.getMethod("isTagEnabled", Long.TYPE);
+                b = method;
+            }
+            return ((Boolean) method.invoke(null, Long.valueOf(a))).booleanValue();
+        } catch (Exception e) {
+            if (e instanceof InvocationTargetException) {
+                Throwable cause = e.getCause();
+                if (!(cause instanceof RuntimeException)) {
+                    sdb.b(cause);
+                    return false;
+                }
+                throw ((RuntimeException) cause);
+            }
+            Log.v("Trace", "Unable to call isTagEnabled via reflection", e);
+            return false;
+        }
     }
 }

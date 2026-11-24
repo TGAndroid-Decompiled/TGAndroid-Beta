@@ -1,19 +1,17 @@
 package defpackage;
-public abstract class wsd {
-    public static final Object a(cy2 cy2Var, Object obj, Object obj2, fs4 fs4Var, px2 px2Var) {
-        Object c = gfd.c(cy2Var, obj2);
-        try {
-            loa loaVar = new loa(px2Var, cy2Var);
-            r5c.a(2, fs4Var);
-            Object invoke = fs4Var.invoke(obj, loaVar);
-            gfd.a(cy2Var, c);
-            if (invoke == ly2.a) {
-                px2Var.getClass();
-            }
-            return invoke;
-        } catch (Throwable th) {
-            gfd.a(cy2Var, c);
-            throw th;
+public final class wsd implements zn7 {
+    public static final wsd a = new Object();
+
+    static {
+        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)), 5)), 6)), 7)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

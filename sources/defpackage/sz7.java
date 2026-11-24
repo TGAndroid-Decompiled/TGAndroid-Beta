@@ -1,22 +1,13 @@
 package defpackage;
 
-import java.util.TimerTask;
-public final class sz7 extends TimerTask {
-    public final tz7 a;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public interface sz7 {
+    void a(TL_account.Password password);
 
-    public sz7(tz7 tz7Var) {
-        this.a = tz7Var;
-    }
+    void b();
 
-    @Override
-    public final void run() {
-        tz7 tz7Var = this.a;
-        if (tz7Var.w == null) {
-            return;
-        }
-        double currentTimeMillis = System.currentTimeMillis();
-        tz7Var.E = (int) (tz7Var.E - (currentTimeMillis - tz7Var.G));
-        tz7Var.G = currentTimeMillis;
-        gm.c3(new kl7(this, (byte) 17));
-    }
+    boolean c(String str, String str2, boolean z, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard);
+
+    void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo);
 }

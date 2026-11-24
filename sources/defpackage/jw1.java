@@ -1,68 +1,49 @@
 package defpackage;
 
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Space;
-import android.widget.TextView;
-public abstract class jw1 extends LinearLayout {
-    public ImageView a;
-    public TextView b;
-    public Space c;
-    public boolean d;
+import android.animation.ValueAnimator;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class jw1 implements gj {
+    public final ChatActivityEnterView a;
 
-    public final void a(ImageView imageView, LinearLayout.LayoutParams layoutParams) {
-        if (this.a == null) {
-            this.a = imageView;
-            addView(imageView, layoutParams);
+    public jw1(ChatActivityEnterView chatActivityEnterView) {
+        this.a = chatActivityEnterView;
+    }
+
+    public final void a() {
+        int i = ChatActivityEnterView.r7;
+        ChatActivityEnterView chatActivityEnterView = this.a;
+        ValueAnimator valueAnimator = chatActivityEnterView.B5;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
         }
-    }
-
-    public final void b(Space space, LinearLayout.LayoutParams layoutParams) {
-        if (this.c == null) {
-            this.c = space;
-            addView(space, layoutParams);
-        }
-    }
-
-    public final void c(TextView textView, LinearLayout.LayoutParams layoutParams) {
-        if (this.b == null) {
-            this.b = textView;
-            addView(textView, layoutParams);
-        }
-    }
-
-    public abstract void d();
-
-    public ImageView getImageView() {
-        return this.a;
-    }
-
-    public TextView getTextView() {
-        return this.b;
-    }
-
-    public void setEditButton(boolean z) {
-        this.d = z;
-    }
-
-    public void setOnlyIconMode(boolean z) {
-        int i;
-        TextView textView = this.b;
-        int i2 = 0;
-        if (textView != null) {
-            if (z) {
-                i = 8;
-            } else {
-                i = 0;
+        chatActivityEnterView.D5 = 0.0f;
+        chatActivityEnterView.C5 = 0.0f;
+        ry8 ry8Var = chatActivityEnterView.h1;
+        if (ry8Var != null) {
+            ry8Var.setRotation(0.0f);
+            ry8 ry8Var2 = chatActivityEnterView.h1;
+            ry8Var2.setPivotX(ry8Var2.getWidth() / 2.0f);
+            ry8 ry8Var3 = chatActivityEnterView.h1;
+            ry8Var3.setPivotY(ry8Var3.getHeight() / 2.0f);
+            if (chatActivityEnterView.h1.getAnimatedDrawable() == chatActivityEnterView.z5) {
+                chatActivityEnterView.h1.setProgress(0.0f);
             }
-            textView.setVisibility(i);
         }
-        Space space = this.c;
-        if (space != null) {
-            if (z) {
-                i2 = 8;
-            }
-            space.setVisibility(i2);
+        kx1 kx1Var = chatActivityEnterView.y5;
+        chatActivityEnterView.y5 = null;
+        if (kx1Var != null) {
+            kx1Var.run();
+        }
+    }
+
+    @Override
+    public final void s(int i, int i2, boolean z) {
+        ChatActivityEnterView chatActivityEnterView = this.a;
+        boolean v1 = chatActivityEnterView.v1(z, i, i2, 0L, true);
+        j47 j47Var = chatActivityEnterView.M0;
+        if (j47Var != null) {
+            j47Var.f(!v1);
+            chatActivityEnterView.M0 = null;
         }
     }
 }

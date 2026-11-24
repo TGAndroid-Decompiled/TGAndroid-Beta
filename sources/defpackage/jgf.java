@@ -1,55 +1,29 @@
 package defpackage;
 
-import java.lang.ref.WeakReference;
-import java.util.concurrent.Executor;
-import java.util.concurrent.TimeUnit;
-public final class jgf implements bpd {
-    public final WeakReference a;
-    public final vef b = new vef(this);
+import java.util.AbstractMap;
+public final class jgf extends f7f {
+    public final vgf h;
 
-    public jgf(j9f j9fVar) {
-        this.a = new WeakReference(j9fVar);
+    public jgf(vgf vgfVar) {
+        super((byte) 2);
+        this.h = vgfVar;
     }
 
     @Override
-    public final void c(Runnable runnable, Executor executor) {
-        this.b.c(runnable, executor);
+    public final Object get(int i) {
+        vgf vgfVar = this.h;
+        q1f.a(i, vgfVar.r ? 1 : 0);
+        Object[] objArr = vgfVar.n;
+        int i2 = i << 1;
+        Object obj = objArr[i2];
+        obj.getClass();
+        Object obj2 = objArr[i2 + 1];
+        obj2.getClass();
+        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
     }
 
     @Override
-    public final boolean cancel(boolean z) {
-        j9f j9fVar = (j9f) this.a.get();
-        boolean cancel = this.b.cancel(z);
-        if (cancel && j9fVar != null) {
-            j9fVar.a = null;
-            j9fVar.b = null;
-            j9fVar.c.i(null);
-            return true;
-        }
-        return cancel;
-    }
-
-    @Override
-    public final Object get() {
-        return this.b.get();
-    }
-
-    @Override
-    public final boolean isCancelled() {
-        return this.b.a instanceof kvd;
-    }
-
-    @Override
-    public final boolean isDone() {
-        return this.b.isDone();
-    }
-
-    public final String toString() {
-        return this.b.toString();
-    }
-
-    @Override
-    public final Object get(long j, TimeUnit timeUnit) {
-        return this.b.get(j, timeUnit);
+    public final int size() {
+        return this.h.r ? 1 : 0;
     }
 }

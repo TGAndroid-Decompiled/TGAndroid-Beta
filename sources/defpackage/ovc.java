@@ -1,27 +1,31 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ovc extends AnimatorListenerAdapter {
-    public final byte a;
-    public final pvc b;
+import android.graphics.Canvas;
+public abstract class ovc {
+    public final int a;
+    public final int b;
+    public final int c;
+    public final int d;
 
-    public ovc(pvc pvcVar, byte b) {
-        this.a = b;
-        this.b = pvcVar;
+    public ovc(int i, int i2, int i3, int i4) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+        this.d = i4;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        pvc pvcVar = this.b;
-        switch (b) {
-            case 0:
-                pvcVar.E = null;
-                return;
-            default:
-                pvcVar.E = null;
-                return;
-        }
+    public abstract Canvas a();
+
+    public abstract void b();
+
+    public abstract void c(Canvas canvas, float f);
+
+    public abstract void d();
+
+    public boolean e() {
+        return true;
+    }
+
+    public void f() {
     }
 }

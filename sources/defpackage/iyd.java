@@ -1,17 +1,10 @@
 package defpackage;
-public final class iyd implements cq7 {
-    public static final iyd a = new Object();
+
+import java.util.logging.Logger;
+public abstract class iyd {
+    public static final int a = 0;
 
     static {
-        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)), 3)), 4)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+        Logger.getLogger(iyd.class.getName());
     }
 }

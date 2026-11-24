@@ -1,40 +1,42 @@
 package defpackage;
+public final class gc6 implements Runnable {
+    public final byte a = 1;
+    public final mf6 b;
+    public final boolean c;
+    public final boolean d;
+    public final boolean e;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class gc6 extends View {
-    public final Drawable a;
-    public final ImageReceiver b;
-
-    public gc6(oc6 oc6Var, Context context) {
-        super(context);
-        this.a = getContext().getResources().getDrawable(2131231656).mutate();
-        pc0 pc0Var = new pc0((ylb) null);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.b = imageReceiver;
-        pc0Var.q(oc6Var.getUserConfig().f());
-        imageReceiver.U(oc6Var.getUserConfig().f(), pc0Var, null);
+    public gc6(mf6 mf6Var, int i, boolean z, boolean z2) {
+        this.b = mf6Var;
+        this.c = i;
+        this.d = z;
+        this.e = z2;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int L = gm.L(62.0f);
-        int L2 = gm.L(85.0f);
-        Drawable drawable = this.a;
-        drawable.setBounds(0, 0, L, L2);
-        drawable.draw(canvas);
-        int L3 = gm.L(62.0f);
-        ImageReceiver imageReceiver = this.b;
-        imageReceiver.q0(L3);
-        imageReceiver.i0(gm.L(6.0f), gm.L(6.0f), gm.L(50.0f), gm.L(50.0f));
-        imageReceiver.h(canvas, null);
+    public final void run() {
+        byte b = this.a;
+        boolean z = this.e;
+        boolean z2 = this.d;
+        boolean z3 = this.c;
+        mf6 mf6Var = this.b;
+        switch (b) {
+            case 0:
+                mf6Var.K1(z3, z2, z);
+                return;
+            default:
+                boolean z4 = mf6Var.K;
+                mf6Var.K = z3;
+                mf6Var.K1(z2, z, true);
+                mf6Var.K = z4;
+                return;
+        }
     }
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(gm.L(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(85.0f), 1073741824));
+    public gc6(mf6 mf6Var, boolean z, boolean z2, boolean z3) {
+        this.b = mf6Var;
+        this.c = z;
+        this.d = z2;
+        this.e = z3;
     }
 }

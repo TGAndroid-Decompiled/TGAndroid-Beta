@@ -1,52 +1,28 @@
 package defpackage;
 
-import android.os.Build;
-import java.util.Locale;
-public final class lb6 {
-    public static final lb6 b = a(new Locale[0]);
-    public final nb6 a;
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.common.api.Status;
+public final class lb6 extends b4 implements ua9 {
+    public static final Parcelable.Creator<lb6> CREATOR = new t4d((byte) 3);
+    public final Status a;
+    public final mb6 b;
 
-    public lb6(nb6 nb6Var) {
-        this.a = nb6Var;
+    public lb6(Status status, mb6 mb6Var) {
+        this.a = status;
+        this.b = mb6Var;
     }
 
-    public static lb6 a(Locale... localeArr) {
-        if (Build.VERSION.SDK_INT >= 24) {
-            return new lb6(new ob6(ki0.e(localeArr)));
-        }
-        return new lb6(new mb6(localeArr));
+    @Override
+    public final Status a() {
+        return this.a;
     }
 
-    public static lb6 b(String str) {
-        if (str != null && !str.isEmpty()) {
-            String[] split = str.split(",", -1);
-            int length = split.length;
-            Locale[] localeArr = new Locale[length];
-            for (int i = 0; i < length; i++) {
-                String str2 = split[i];
-                int i2 = kb6.a;
-                localeArr[i] = Locale.forLanguageTag(str2);
-            }
-            return a(localeArr);
-        }
-        return b;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof lb6) {
-            if (this.a.equals(((lb6) obj).a)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.a.hashCode();
-    }
-
-    public final String toString() {
-        return this.a.toString();
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.k(parcel, 1, this.a, i);
+        jte.k(parcel, 2, this.b, i);
+        jte.s(parcel, r);
     }
 }

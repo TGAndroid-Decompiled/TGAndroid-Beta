@@ -1,3 +1,4 @@
 package defpackage;
-public abstract class ik4 {
+public interface ik4 {
+    Object c(Object obj, fw2 fw2Var);
 }

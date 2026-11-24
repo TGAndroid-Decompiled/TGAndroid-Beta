@@ -1,38 +1,41 @@
 package defpackage;
-public final class sd0 implements nd0 {
-    public final int a;
-    public final int b;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final int f;
 
-    public sd0(int i, int i2, int i3, int i4, int i5, int i6) {
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
-        this.d = i4;
-        this.e = i5;
-        this.f = i6;
-    }
+import android.graphics.Bitmap;
+import org.telegram.messenger.Utilities;
+public final class sd0 implements vd0 {
+    public final wd0 a;
+    public final tnd[] b;
+    public final Runnable[] c;
+    public final ip5[] d;
 
-    public final int a() {
-        int i = this.a;
-        if (i != 1935960438) {
-            if (i != 1935963489) {
-                if (i != 1937012852) {
-                    ncd.f("AviStreamHeaderChunk", "Found unsupported streamType fourCC: " + Integer.toHexString(i));
-                    return -1;
-                }
-                return 3;
-            }
-            return 1;
-        }
-        return 2;
+    public sd0(wd0 wd0Var, tnd[] tndVarArr, Runnable[] runnableArr, ip5[] ip5VarArr) {
+        this.a = wd0Var;
+        this.b = tndVarArr;
+        this.c = runnableArr;
+        this.d = ip5VarArr;
     }
 
     @Override
-    public final int getType() {
-        return 1752331379;
+    public final void dispose() {
+        wd0 wd0Var = this.a;
+        tnd[] tndVarArr = this.b;
+        Runnable[] runnableArr = this.c;
+        ip5[] ip5VarArr = this.d;
+        tndVarArr[0] = null;
+        if (wd0Var.e.contains(runnableArr)) {
+            co3 co3Var = Utilities.e;
+            co3Var.getClass();
+            for (Runnable runnable : runnableArr) {
+                co3Var.a(runnable);
+            }
+            wd0Var.e.remove(runnableArr);
+        }
+        for (ip5 ip5Var : ip5VarArr) {
+            Bitmap bitmap = (Bitmap) wd0Var.b.remove(ip5Var);
+            wd0Var.c.remove(ip5Var);
+            if (bitmap != null) {
+                bitmap.recycle();
+            }
+        }
     }
 }

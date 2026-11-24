@@ -1,4 +1,59 @@
 package defpackage;
-public abstract class nmd {
-    public static final o94[] a = {new o94("name_ulr_private", 1), new o94("name_sleep_segment_request", 1), new o94("get_last_activity_feature_id", 1), new o94("support_context_feature_id", 1), new o94("get_current_location", 2), new o94("get_last_location_with_request", 1), new o94("set_mock_mode_with_callback", 1), new o94("set_mock_location_with_callback", 1), new o94("inject_location_with_callback", 1), new o94("location_updates_with_callback", 1), new o94("use_safe_parcelable_in_intents", 1)};
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+public final class nmd implements ymd {
+    public static final f06 b = new f06(nmd.class, (byte) 3);
+    public final Object a;
+
+    public nmd(Object obj) {
+        this.a = obj;
+    }
+
+    @Override
+    public final void c(Runnable runnable, Executor executor) {
+        if (executor != null) {
+            try {
+                executor.execute(runnable);
+                return;
+            } catch (Exception e) {
+                b.c().logp(Level.SEVERE, "com.google.common.util.concurrent.ImmediateFuture", "addListener", tb4.q("RuntimeException while executing runnable ", runnable.toString(), " with executor ", String.valueOf(executor)), (Throwable) e);
+                return;
+            }
+        }
+        fvc.f("Executor was null.");
+    }
+
+    @Override
+    public final boolean cancel(boolean z) {
+        return false;
+    }
+
+    @Override
+    public final Object get(long j, TimeUnit timeUnit) {
+        timeUnit.getClass();
+        return this.a;
+    }
+
+    @Override
+    public final boolean isCancelled() {
+        return false;
+    }
+
+    @Override
+    public final boolean isDone() {
+        return true;
+    }
+
+    public final String toString() {
+        String obj = super.toString();
+        String obj2 = this.a.toString();
+        return obj + "[status=SUCCESS, result=[" + obj2 + "]]";
+    }
+
+    @Override
+    public final Object get() {
+        return this.a;
+    }
 }

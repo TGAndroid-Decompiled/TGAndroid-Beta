@@ -1,28 +1,61 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-public final class kv6 extends u69 {
-    public ew6 A;
-    public final pv6 B;
-    public final View v;
-    public final ImageView w;
-    public final ProgressBar x;
-    public final TextView y;
-    public final float z;
+import android.media.session.MediaSession;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class kv6 implements Parcelable {
+    public static final Parcelable.Creator<kv6> CREATOR = new hv6((byte) 2);
+    public final MediaSession.Token b;
+    public li5 c;
+    public final Object a = new Object();
+    public aac d = null;
 
-    public kv6(pv6 pv6Var, View view) {
-        super(view);
-        this.B = pv6Var;
-        this.v = view;
-        this.w = (ImageView) view.findViewById(2131296522);
-        ProgressBar progressBar = (ProgressBar) view.findViewById(2131296524);
-        this.x = progressBar;
-        this.y = (TextView) view.findViewById(2131296523);
-        rv6 rv6Var = pv6Var.x;
-        this.z = yqe.c(rv6Var.E);
-        yqe.i(rv6Var.E, progressBar);
+    public kv6(MediaSession.Token token, av6 av6Var) {
+        this.b = token;
+        this.c = av6Var;
+    }
+
+    public final li5 a() {
+        li5 li5Var;
+        synchronized (this.a) {
+            li5Var = this.c;
+        }
+        return li5Var;
+    }
+
+    public final void b(li5 li5Var) {
+        synchronized (this.a) {
+            this.c = li5Var;
+        }
+    }
+
+    public final void c(aac aacVar) {
+        synchronized (this.a) {
+            this.d = aacVar;
+        }
+    }
+
+    @Override
+    public final int describeContents() {
+        return 0;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof kv6)) {
+            return false;
+        }
+        return this.b.equals(((kv6) obj).b);
+    }
+
+    public final int hashCode() {
+        return this.b.hashCode();
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.writeParcelable(this.b, i);
     }
 }

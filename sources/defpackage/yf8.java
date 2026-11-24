@@ -1,315 +1,440 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.app.Activity;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.a;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.RadialProgress2;
-public final class yf8 extends Drawable implements cr3 {
-    public final fn0 E;
-    public final RadialProgress2 F;
-    public k47 G;
-    public final kq H;
-    public String I;
-    public final int J;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class yf8 extends FrameLayout {
+    public final t1 E;
+    public final be0 F;
+    public final TextView G;
+    public final TextView H;
+    public final u41 I;
+    public final TextView J;
     public boolean K;
     public int L;
     public int M;
-    public final ho a;
-    public final jd0 b;
-    public final ImageReceiver c;
-    public final View d;
-    public final int e;
-    public boolean f;
+    public boolean N;
+    public boolean O;
+    public int P;
+    public boolean Q;
+    public boolean R;
+    public cm2 S;
+    public cm2 T;
+    public rk U;
+    public final cm2[] V;
+    public final vf8 W;
+    public final d a;
+    public final int b;
+    public final q5c c;
+    public TLRPC.SearchPostsFlood d;
+    public final ArrayList e;
+    public int f;
     public boolean h;
-    public boolean n;
-    public boolean r;
-    public Drawable s;
+    public final ArrayList n;
+    public int r;
+    public boolean s;
     public boolean w;
-    public final Paint x;
-    public final Paint y;
+    public String x;
+    public final FrameLayout y;
 
-    public yf8(int i, View view) {
-        Paint paint = new Paint(1);
-        this.x = paint;
-        this.y = new Paint(1);
-        this.H = new kq((byte) 11, false);
-        this.e = i;
-        this.d = view;
-        this.E = new fn0(380L, view, d53.h);
-        ho hoVar = new ho(false, false, false);
-        this.a = hoVar;
-        hoVar.b = 21;
-        hoVar.w(gm.L(11.0f));
-        hoVar.setCallback(view);
-        this.b = new jd0(i, view, gm.L(18.0f), gm.L(8.33f), gm.N(1.0f));
-        ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.c = imageReceiver;
-        imageReceiver.q0(gm.L(5.0f));
-        paint.setColor(1073741824);
-        RadialProgress2 radialProgress2 = new RadialProgress2(view, null);
-        this.F = radialProgress2;
-        radialProgress2.setCircleRadius(gm.L(18.0f));
-        radialProgress2.d = -1;
-        this.J = er3.q(i).k();
+    public yf8(Activity activity, d dVar) {
+        super(activity);
+        this.e = new ArrayList();
+        this.n = new ArrayList();
+        this.L = -1;
+        this.M = 0;
+        this.P = -1;
+        this.V = new cm2[1];
+        this.W = new vf8(this, (byte) 1);
+        this.a = dVar;
+        int currentAccount = dVar.getCurrentAccount();
+        this.b = currentAccount;
+        q5c q5cVar = new q5c(activity, currentAccount, 0, false, new tf8(this, (byte) 1), new k88(this, (byte) 6), null, null);
+        this.c = q5cVar;
+        q5cVar.j(new si1(this, dVar, (byte) 7));
+        addView(q5cVar, nme.e(-1, -1, 119));
+        FrameLayout frameLayout = new FrameLayout(activity);
+        this.y = frameLayout;
+        t1 t1Var = new t1((byte) 7, activity, false);
+        this.E = t1Var;
+        t1Var.setOrientation(1);
+        frameLayout.addView(t1Var, nme.d(-2, -2.0f, 17, 32.0f, 0.0f, 32.0f, 0.0f));
+        be0 be0Var = new be0(activity);
+        this.F = be0Var;
+        be0Var.setVisibility(8);
+        t1Var.addView(be0Var, nme.t(130, 130, 1, 0, 0, 0, 12));
+        TextView textView = new TextView(activity);
+        this.G = textView;
+        textView.setTextSize(1, 16.0f);
+        textView.setTypeface(gl.o());
+        textView.setGravity(17);
+        textView.setSingleLine(false);
+        textView.setMaxLines(4);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        t1Var.addView(textView, nme.r(-2, -2, 1));
+        TextView textView2 = new TextView(activity);
+        this.H = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(17);
+        textView2.setSingleLine(false);
+        textView2.setMaxLines(4);
+        textView2.setEllipsize(truncateAt);
+        t1Var.addView(textView2, nme.t(-2, -2, 1, 0, 9, 0, 0));
+        u41 u41Var = new u41(null, activity, true);
+        u41Var.setRoundRadius(24);
+        this.I = u41Var;
+        t1Var.addView(u41Var, nme.t(-1, 44, 7, 0, 19, 0, 0));
+        TextView textView3 = new TextView(activity);
+        this.J = textView3;
+        textView3.setTextSize(1, 12.0f);
+        textView3.setGravity(17);
+        t1Var.addView(textView3, nme.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+        addView(frameLayout, nme.e(-1, -1, 119));
+        q5cVar.setHideIfEmpty(false);
+        q5cVar.setEmptyView(frameLayout);
+        q5cVar.X1 = true;
+        q5cVar.Y1 = false;
+        c();
+        d();
     }
 
-    public final void a(TLRPC.Photo photo, k47 k47Var) {
+    public final void a(boolean z) {
         long j;
-        TLRPC.PhotoSize w = bc4.w(photo.sizes, 40, false, null, false);
-        TLRPC.PhotoSize w2 = bc4.w(photo.sizes, gm.L(36.0f), false, w, true);
-        gn5 f = gn5.f(w2, photo);
-        gn5 f2 = gn5.f(w, photo);
-        if (w2 != null) {
-            j = w2.size;
-        } else {
-            j = 0;
-        }
-        this.c.Z(f, "36_36", f2, "36_36_b", null, j, null, k47Var, 1);
-    }
-
-    public final void b(boolean z) {
-        int i;
-        if (!this.G.n4() && !this.G.Y2()) {
-            if (!TextUtils.isEmpty(this.I) && bc4.G(this.e).S(this.I)) {
-                f(3, z);
+        TLRPC.SearchPostsFlood searchPostsFlood;
+        if (!this.w) {
+            boolean isEmpty = TextUtils.isEmpty(this.x);
+            if (isEmpty) {
+                if (this.h) {
+                    return;
+                }
+            } else if (this.s || this.d == null) {
                 return;
             }
-            if (this.w) {
-                i = 0;
+            this.w = true;
+            int i = this.b;
+            na7 q1 = na7.q1(i);
+            ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i);
+            TLRPC.TL_channels_searchPosts tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
+            tL_channels_searchPosts.flags |= 2;
+            tL_channels_searchPosts.query = this.x;
+            tL_channels_searchPosts.limit = 30;
+            if (isEmpty) {
+                ArrayList arrayList = this.e;
+                if (!arrayList.isEmpty()) {
+                    k27 k27Var = (k27) b00.f(1, arrayList);
+                    tL_channels_searchPosts.offset_rate = this.f;
+                    tL_channels_searchPosts.offset_id = k27Var.L1();
+                    tL_channels_searchPosts.offset_peer = q1.k1(k27Var.k.peer_id);
+                } else {
+                    tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
+                }
             } else {
-                i = 4;
-            }
-            f(i, z);
-        }
-    }
-
-    public final void c(Canvas canvas) {
-        float f;
-        int i;
-        int i2;
-        int w0;
-        Rect bounds = getBounds();
-        if (this.f) {
-            f = 56.33f;
-        } else {
-            f = 19.0f;
-        }
-        int L = gm.L(f);
-        if (this.E.e > 0.0f) {
-            w66 w66Var = this.b.c.d;
-            float f2 = w66Var.c.a;
-            int i3 = (int) w66Var.f.a;
-            int U1 = (bounds.right - L) - gm.U1(f2, gm.L(2.0f), gm.L(4.0f) + i3);
-            if (f2 > 0.0f) {
-                jd0 jd0Var = this.b;
-                jd0Var.i = (int) (this.E.e * 255.0f);
-                jd0Var.setBounds((bounds.right - L) - i3, bounds.bottom - gm.L(31.33f), bounds.right - L, bounds.bottom);
-                this.b.c(canvas);
-            }
-            int L2 = bounds.bottom - gm.L(21.33f);
-            ho hoVar = this.a;
-            hoVar.C = (int) (this.E.e * 255.0f);
-            hoVar.setBounds(bounds.left, gm.L(15.0f) + L2, U1, L2 - gm.L(15.0f));
-            this.a.draw(canvas);
-        }
-        if (this.h) {
-            int L3 = gm.L(36.0f);
-            Rect rect = gm.Q;
-            rect.set(kt6.y(9.0f, bounds.right, L3), kt6.y(4.0f, bounds.bottom, L3), bounds.right - gm.L(9.0f), bounds.bottom - gm.L(4.0f));
-            RectF rectF = gm.P;
-            rectF.set(rect);
-            RadialProgress2 radialProgress2 = this.F;
-            radialProgress2.a.set(rectF.left, rectF.top, rectF.right, rectF.bottom);
-            this.c.j0(rect);
-            if (!this.n || this.r) {
-                this.c.h(canvas, null);
-            }
-            if (this.w || this.n) {
-                if (this.n && !this.r) {
-                    Paint paint = this.y;
-                    if (this.G.O3()) {
-                        i = cmb.Vc;
-                    } else {
-                        i = cmb.Uc;
-                    }
-                    paint.setColor(on2.p(cmb.w0(null, i, false), 16));
-                    canvas.drawRoundRect(rectF, gm.L(5.0f), gm.L(5.0f), this.y);
+                ArrayList arrayList2 = this.n;
+                if (!arrayList2.isEmpty()) {
+                    k27 k27Var2 = (k27) b00.f(1, arrayList2);
+                    tL_channels_searchPosts.offset_rate = this.r;
+                    tL_channels_searchPosts.offset_id = k27Var2.L1();
+                    tL_channels_searchPosts.offset_peer = q1.k1(k27Var2.k.peer_id);
                 } else {
-                    canvas.drawRoundRect(rectF, gm.L(5.0f), gm.L(5.0f), this.x);
+                    tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
                 }
             }
-            if (this.n) {
-                Drawable drawable = this.s;
-                if (drawable == null) {
-                    drawable = b10.d(a.b, 2131231750);
-                    this.s = drawable;
+            if (z && (searchPostsFlood = this.d) != null) {
+                tL_channels_searchPosts.flags |= 4;
+                j = searchPostsFlood.stars_amount;
+                tL_channels_searchPosts.allow_paid_stars = j;
+            } else {
+                j = 0;
+            }
+            this.L = connectionsManager.sendRequest(tL_channels_searchPosts, new e10(this, q1, isEmpty, tL_channels_searchPosts, z, j, connectionsManager), 1024);
+            d();
+            this.c.g3.O(true);
+        }
+    }
+
+    public final void b(String str) {
+        boolean z;
+        int i = this.P;
+        int i2 = this.b;
+        if (i >= 0) {
+            ConnectionsManager.getInstance(i2).cancelRequest(this.P, true);
+            this.P = -1;
+        }
+        if (!this.N) {
+            if (this.R && (!this.n.isEmpty() || !this.s)) {
+                z = true;
+            } else {
+                z = false;
+            }
+            this.O = z;
+        }
+        this.N = true;
+        TLRPC.TL_channels_checkSearchPostsFlood tL_channels_checkSearchPostsFlood = new TLRPC.TL_channels_checkSearchPostsFlood();
+        if (!TextUtils.isEmpty(str)) {
+            tL_channels_checkSearchPostsFlood.flags |= 1;
+            tL_channels_checkSearchPostsFlood.query = str;
+        }
+        this.P = ConnectionsManager.getInstance(i2).sendRequest(tL_channels_checkSearchPostsFlood, new n35(this, (byte) 17));
+    }
+
+    public final void c() {
+        this.y.setBackgroundColor(bkb.w0(null, bkb.c6, false));
+        this.G.setTextColor(bkb.w0(null, bkb.F6, false));
+        int i = bkb.x6;
+        this.J.setTextColor(bkb.w0(null, i, false));
+        this.H.setTextColor(bkb.w0(null, i, false));
+        q5c q5cVar = this.c;
+        q5cVar.setAdapter(null);
+        q5cVar.setAdapter(q5cVar.g3);
+        if (this.U != null) {
+            this.U = null;
+            d();
+        }
+    }
+
+    public final void d() {
+        TLRPC.SearchPostsFlood searchPostsFlood;
+        String str;
+        Object valueOf;
+        Object valueOf2;
+        vf8 vf8Var = this.W;
+        gl.r(vf8Var);
+        int i = this.b;
+        int currentTime = ConnectionsManager.getInstance(i).getCurrentTime();
+        boolean p = y6c.h(i).p();
+        TextView textView = this.H;
+        TextView textView2 = this.G;
+        be0 be0Var = this.F;
+        TextView textView3 = this.J;
+        u41 u41Var = this.I;
+        if (!p) {
+            be0Var.setVisibility(8);
+            textView2.setText(k96.M0(2131745521, null));
+            textView.setText(k96.M0(2131745522, null));
+            u41Var.setVisibility(0);
+            u41Var.i(k96.M0(2131745536, null), true, true);
+            u41Var.g(null, true);
+            u41Var.setOnClickListener(new View.OnClickListener(this) {
+                public final yf8 b;
+
+                {
+                    this.b = this;
                 }
-                kq kqVar = this.H;
-                if (this.r) {
-                    w0 = -1;
-                } else {
-                    if (this.G.O3()) {
-                        i2 = cmb.ic;
-                    } else {
-                        i2 = cmb.de;
+
+                @Override
+                public final void onClick(View view) {
+                    byte b = r2;
+                    yf8 yf8Var = this.b;
+                    switch (b) {
+                        case 0:
+                            yf8Var.a.presentFragment(new PremiumPreviewFragment(0, "search"));
+                            return;
+                        case 1:
+                            yf8Var.I.setLoading(true);
+                            yf8Var.a(true);
+                            return;
+                        default:
+                            yf8Var.I.setLoading(true);
+                            yf8Var.a(false);
+                            return;
                     }
-                    w0 = cmb.w0(null, i2, false);
                 }
-                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                kqVar.getClass();
-                PorterDuffColorFilter porterDuffColorFilter = (PorterDuffColorFilter) kqVar.c;
-                if (porterDuffColorFilter == null || kqVar.b != w0 || ((PorterDuff.Mode) kqVar.d) != mode) {
-                    porterDuffColorFilter = new PorterDuffColorFilter(w0, mode);
-                    kqVar.c = porterDuffColorFilter;
-                    kqVar.b = w0;
-                    kqVar.d = mode;
+            });
+            textView3.setVisibility(0);
+            textView3.setText(k96.M0(2131745523, null));
+            return;
+        }
+        boolean isEmpty = TextUtils.isEmpty(this.x);
+        ArrayList arrayList = this.n;
+        if (!isEmpty && arrayList.isEmpty() && this.s) {
+            if (be0Var.getImageReceiver().T == null) {
+                be0Var.setImageDrawable(new oy8(2131624314, gl.L(130.0f), gl.L(130.0f)));
+            }
+            be0Var.setVisibility(0);
+            textView2.setText(k96.M0(2131745525, null));
+            textView.setText(k96.a0(null, null, 2131745524, TextUtils.ellipsize(this.x, textView.getPaint(), gl.L(100.0f), TextUtils.TruncateAt.END)));
+            u41Var.setVisibility(8);
+            textView3.setVisibility(8);
+        } else if (!TextUtils.isEmpty(this.x) && (searchPostsFlood = this.d) != null && (searchPostsFlood.flags & 2) != 0 && currentTime < searchPostsFlood.wait_till) {
+            be0Var.setVisibility(8);
+            textView2.setText(k96.M0(2131745529, null));
+            textView.setText(k96.H(',', "SearchPostsLimitReachedText", this.d.total_daily));
+            int i2 = this.d.wait_till - currentTime;
+            int i3 = i2 / 3600;
+            int i4 = i2 - (i3 * 3600);
+            int i5 = i4 / 60;
+            int i6 = i4 - (i5 * 60);
+            u41Var.setVisibility(0);
+            u41Var.i(jva.T0(k96.H(',', "SearchPostsButtonPay", (int) this.d.stars_amount), 1.13f, this.V), true, true);
+            if (i3 > 0) {
+                str = oo1.n(i3, ":");
+            } else {
+                str = "";
+            }
+            StringBuilder sb = new StringBuilder(str);
+            if (i5 < 10) {
+                valueOf = de9.k(i5, "0");
+            } else {
+                valueOf = Integer.valueOf(i5);
+            }
+            sb.append(valueOf);
+            sb.append(":");
+            if (i6 < 10) {
+                valueOf2 = de9.k(i6, "0");
+            } else {
+                valueOf2 = Integer.valueOf(i6);
+            }
+            sb.append(valueOf2);
+            u41Var.g(k96.a0(null, null, 2131745535, sb.toString()), true);
+            u41Var.e.r(false, true);
+            u41Var.setOnClickListener(new View.OnClickListener(this) {
+                public final yf8 b;
+
+                {
+                    this.b = this;
                 }
-                drawable.setColorFilter(porterDuffColorFilter);
-                ur3.e(this.s, rectF.centerX(), rectF.centerY(), gm.L(24.0f), gm.L(24.0f), 17);
-                this.s.draw(canvas);
+
+                @Override
+                public final void onClick(View view) {
+                    byte b = r2;
+                    yf8 yf8Var = this.b;
+                    switch (b) {
+                        case 0:
+                            yf8Var.a.presentFragment(new PremiumPreviewFragment(0, "search"));
+                            return;
+                        case 1:
+                            yf8Var.I.setLoading(true);
+                            yf8Var.a(true);
+                            return;
+                        default:
+                            yf8Var.I.setLoading(true);
+                            yf8Var.a(false);
+                            return;
+                    }
+                }
+            });
+            gl.d3(vf8Var, 1000L);
+            textView3.setVisibility(8);
+        } else if (arrayList.isEmpty() && !this.w && !TextUtils.isEmpty(this.x)) {
+            be0Var.setVisibility(8);
+            textView2.setText(k96.M0(2131745521, null));
+            textView.setText(k96.M0(2131745522, null));
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("s ");
+            if (this.S == null) {
+                cm2 cm2Var = new cm2(2131232746, 0);
+                this.S = cm2Var;
+                cm2Var.I = 0.79f;
+                cm2Var.J = 0.79f;
             }
-            b(true);
-            if (this.K) {
-                this.F.draw(canvas);
+            if (this.U == null) {
+                this.U = new rk((byte) 3, bkb.v(bkb.w0(null, bkb.Ei, false), bkb.p1(0.75f, bkb.w0(null, bkb.Ii, false))), false);
             }
-        }
-    }
+            spannableStringBuilder.setSpan(this.S, 0, 1, 0);
+            spannableStringBuilder.append((CharSequence) k96.M0(2131745540, null));
+            spannableStringBuilder.append((CharSequence) " ");
+            int length = spannableStringBuilder.length();
+            spannableStringBuilder.append(TextUtils.ellipsize(this.x, u41Var.getTextPaint(), gl.L(100.0f), TextUtils.TruncateAt.END));
+            spannableStringBuilder.setSpan(this.U, length, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.append((CharSequence) " >");
+            cm2 cm2Var2 = this.T;
+            if (cm2Var2 == null) {
+                cm2Var2 = new cm2(2131232246, 0);
+                this.T = cm2Var2;
+                cm2Var2.I = 1.05f;
+                cm2Var2.J = 1.05f;
+            }
+            spannableStringBuilder.setSpan(cm2Var2, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+            u41Var.setVisibility(0);
+            u41Var.i(spannableStringBuilder, true, true);
+            u41Var.d.r(false, false);
+            u41Var.g(null, true);
+            u41Var.setOnClickListener(new View.OnClickListener(this) {
+                public final yf8 b;
 
-    public final float d(float f) {
-        jd0 jd0Var = this.b;
-        float c = this.a.c() + jd0Var.c.d.f.a;
-        float f2 = jd0Var.c.d.c.a;
-        float f3 = this.E.e;
-        return (f * f3) + (f2 * gm.L(4.0f) * f3) + c;
-    }
+                {
+                    this.b = this;
+                }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        c(canvas);
-    }
-
-    public final float e() {
-        int i;
-        float f = this.a.d;
-        int i2 = this.L;
-        if (i2 > 0) {
-            i = gm.L((i2 * 9.34f) + 8.66f);
+                @Override
+                public final void onClick(View view) {
+                    byte b = r2;
+                    yf8 yf8Var = this.b;
+                    switch (b) {
+                        case 0:
+                            yf8Var.a.presentFragment(new PremiumPreviewFragment(0, "search"));
+                            return;
+                        case 1:
+                            yf8Var.I.setLoading(true);
+                            yf8Var.a(true);
+                            return;
+                        default:
+                            yf8Var.I.setLoading(true);
+                            yf8Var.a(false);
+                            return;
+                    }
+                }
+            });
+            if (this.d != null) {
+                textView3.setVisibility(0);
+                TLRPC.SearchPostsFlood searchPostsFlood2 = this.d;
+                int i7 = searchPostsFlood2.remains;
+                if (i7 < 1) {
+                    i7 = searchPostsFlood2.total_daily;
+                }
+                textView3.setText(k96.H(',', "SearchPostsFreeSearches", i7));
+                return;
+            }
+            textView3.setVisibility(8);
         } else {
-            i = 0;
+            be0Var.setVisibility(8);
+            textView2.setText(k96.M0(2131745521, null));
+            textView.setText(k96.M0(2131745522, null));
+            u41Var.setVisibility(8);
+            if (this.d != null) {
+                textView3.setVisibility(0);
+                TLRPC.SearchPostsFlood searchPostsFlood3 = this.d;
+                int i8 = searchPostsFlood3.remains;
+                if (i8 < 1) {
+                    i8 = searchPostsFlood3.total_daily;
+                }
+                textView3.setText(k96.H(',', "SearchPostsFreeSearches", i8));
+                return;
+            }
+            textView3.setVisibility(8);
         }
-        return f + i;
-    }
-
-    public final void f(int i, boolean z) {
-        if (this.M != i) {
-            this.M = i;
-            this.F.setIcon(i, true, z);
-        }
-    }
-
-    public final void g(defpackage.k47 r27, org.telegram.tgnet.TLRPC.MessageMedia r28, defpackage.k47 r29, java.lang.String r30, boolean r31) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yf8.g(k47, org.telegram.tgnet.TLRPC$MessageMedia, k47, java.lang.String, boolean):void");
     }
 
     @Override
-    public final int getObserverTag() {
-        return this.J;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    public final void h(ArrayList arrayList, boolean z) {
-        int i;
-        if (arrayList != null) {
-            i = arrayList.size();
-        } else {
-            i = 0;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.d == null) {
+            b(null);
         }
-        this.L = i;
-        this.b.d(arrayList, z);
-    }
-
-    @Override
-    public final void i(long j, long j2) {
-        float min;
-        int i;
-        if (j2 == 0) {
-            min = 0.0f;
-        } else {
-            min = Math.min(1.0f, ((float) j) / ((float) j2));
+        if (!this.Q) {
+            this.Q = true;
+            na7.c1().edit().putInt("searchpostsnew", na7.c1().getInt("searchpostsnew", 0) + 1).apply();
+            gta.v(this.b, false).m();
         }
-        this.F.o(true, min);
-        if (min < 1.0f) {
-            i = 3;
-        } else if (this.w) {
-            i = 0;
-        } else {
-            i = 4;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.K) {
+            return;
         }
-        f(i, true);
-        this.d.invalidate();
+        super.requestLayout();
     }
 
-    public final void j(int i, boolean z) {
-        String str = null;
-        if (i > 0) {
-            str = jb6.S(null, i);
-        }
-        this.a.t(str, z, true);
-    }
-
-    public final void k(int i) {
-        this.a.u(i);
-    }
-
-    @Override
-    public final void l(long j, long j2) {
-        float min;
-        int i;
-        if (j2 == 0) {
-            min = 0.0f;
-        } else {
-            min = Math.min(1.0f, ((float) j) / ((float) j2));
-        }
-        this.F.o(true, min);
-        if (min < 1.0f) {
-            i = 3;
-        } else if (this.w) {
-            i = 0;
-        } else {
-            i = 4;
-        }
-        f(i, true);
-        this.d.invalidate();
-    }
-
-    @Override
-    public final void A(boolean z) {
-    }
-
-    @Override
-    public final void N(String str) {
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setKeyboardHeight(int i) {
+        this.E.animate().translationY((-i) / 2.0f).setDuration(250L).setInterpolator(gb.w).start();
     }
 }

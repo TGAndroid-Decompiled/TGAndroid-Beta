@@ -1,105 +1,195 @@
 package defpackage;
 
-import j$.util.Objects;
-import java.util.List;
-public final class kw5 implements s84 {
-    public u84 b;
-    public byte c;
-    public int d;
-    public int e;
-    public hh7 g;
-    public vb3 h;
-    public vh2 i;
-    public sh7 j;
-    public final yw7 a = new yw7(2);
-    public long f = -1;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class kw5 implements u04 {
+    public final rw5 a;
 
-    @Override
-    public final int b(defpackage.t84 r26, defpackage.u21 r27) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.kw5.b(t84, u21):int");
+    public kw5(rw5 rw5Var) {
+        this.a = rw5Var;
     }
 
     @Override
-    public final boolean c(t84 t84Var) {
-        String v;
-        yw7 yw7Var = this.a;
-        yw7Var.K(2);
-        ((vb3) t84Var).d(yw7Var.a, 0, 2, false);
-        if (yw7Var.H() == 65496) {
-            while (true) {
-                vb3 vb3Var = (vb3) t84Var;
-                yw7Var.K(2);
-                vb3Var.d(yw7Var.a, 0, 2, false);
-                int H = yw7Var.H();
-                this.d = H;
-                if (H == 65498) {
-                    break;
-                }
-                yw7Var.K(2);
-                vb3Var.d(yw7Var.a, 0, 2, false);
-                int H2 = yw7Var.H() - 2;
-                if (H2 < 0) {
-                    break;
-                } else if (this.d != 65505) {
-                    vb3Var.a(H2, false);
-                } else {
-                    yw7Var.K(H2);
-                    vb3Var.d(yw7Var.a, 0, H2, false);
-                    if (Objects.equals(yw7Var.v(), "http://ns.adobe.com/xap/1.0/") && (v = yw7Var.v()) != null) {
-                        for (int i = 0; i < 4; i++) {
-                            if (v.contains(tfd.a[i] + "=\"1\"")) {
-                                return true;
-                            }
-                        }
-                        continue;
-                    }
-                }
-            }
-        }
+    public final boolean A() {
         return false;
     }
 
     @Override
-    public final void d(long j, long j2) {
-        if (j == 0) {
-            this.c = (byte) 0;
-            this.j = null;
-        } else if (this.c == 5) {
-            sh7 sh7Var = this.j;
-            sh7Var.getClass();
-            sh7Var.d(j, j2);
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean h() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final boolean l() {
+        st3 editText = ((vhb) this.a.I0).getEditText();
+        if (editText == null || editText.length() == 0) {
+            return false;
+        }
+        editText.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
+    }
+
+    @Override
+    public final void m(String str) {
+        vhb vhbVar;
+        st3 editText;
+        su3[] su3VarArr;
+        l34 l34Var = this.a.I0;
+        if (!(l34Var instanceof vhb) || (editText = (vhbVar = (vhb) l34Var).getEditText()) == null) {
+            return;
+        }
+        int selectionEnd = editText.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            CharSequence m = vu3.m(str, vhbVar.getFontMetricsInt(), false, null, 0);
+            if ((m instanceof Spanned) && (su3VarArr = (su3[]) ((Spanned) m).getSpans(0, m.length(), su3.class)) != null) {
+                for (su3 su3Var : su3VarArr) {
+                    su3Var.b = 0.85f;
+                }
+            }
+            editText.setText(editText.getText().insert(selectionEnd, m));
+            int length = selectionEnd + m.length();
+            editText.setSelection(length, length);
+        } catch (Exception e) {
+            fa4.g(e, true);
         }
     }
 
     @Override
-    public final List e() {
-        ko5 ko5Var = mo5.b;
-        return y79.e;
+    public final void n() {
+        rw5 rw5Var = this.a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, rw5Var.G1, rw5Var.getContext());
+        String M0 = k96.M0(2131752056, null);
+        hd hdVar = alertDialog$Builder.a;
+        hdVar.S = M0;
+        hdVar.U = k96.M0(2131752057, null);
+        alertDialog$Builder.j(k96.M0(2131752087, null), new ry4(this, (byte) 17));
+        alertDialog$Builder.g(k96.M0(2131752577, null), null);
+        alertDialog$Builder.o();
     }
 
     @Override
-    public final void f(u84 u84Var) {
-        this.b = u84Var;
-    }
-
-    public final void g() {
-        u84 u84Var = this.b;
-        u84Var.getClass();
-        u84Var.B();
-        this.b.f0(new od0(-9223372036854775807L));
-        this.c = (byte) 6;
+    public final float o() {
+        return 0.0f;
     }
 
     @Override
-    public final void release() {
-        sh7 sh7Var = this.j;
-        if (sh7Var != null) {
-            sh7Var.getClass();
+    public final void w(long j, TLRPC.Document document, String str, boolean z) {
+        gm gmVar;
+        st3 editText = ((vhb) this.a.I0).getEditText();
+        if (editText == null) {
+            return;
+        }
+        int selectionEnd = editText.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            SpannableString spannableString = new SpannableString(str);
+            if (document != null) {
+                gmVar = new gm(document, editText.getPaint().getFontMetricsInt());
+            } else {
+                gmVar = new gm(j, editText.getPaint().getFontMetricsInt());
+            }
+            spannableString.setSpan(gmVar, 0, spannableString.length(), 33);
+            editText.setText(editText.getText().insert(selectionEnd, spannableString));
+            int length = selectionEnd + spannableString.length();
+            editText.setSelection(length, length);
+        } catch (Exception e) {
+            fa4.g(e, true);
         }
     }
 
     @Override
-    public final s84 a() {
-        return this;
+    public final boolean z() {
+        return false;
+    }
+
+    @Override
+    public final void p() {
+    }
+
+    @Override
+    public final void t() {
+    }
+
+    @Override
+    public final void v() {
+    }
+
+    @Override
+    public final void g(d2c d2cVar) {
+    }
+
+    @Override
+    public final void i(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void j(int i) {
+    }
+
+    @Override
+    public final void q(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void r(int i) {
+    }
+
+    @Override
+    public final void s(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
+    }
+
+    @Override
+    public final void u(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+    }
+
+    @Override
+    public final void x(View view, TLRPC.Document document, String str, Object obj, g27 g27Var, boolean z, int i) {
     }
 }

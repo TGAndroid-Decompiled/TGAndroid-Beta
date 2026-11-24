@@ -132,7 +132,7 @@ public class Logging {
                 return;
             }
         }
-        u36.j("Logging tag or message may not be null.");
+        w26.j("Logging tag or message may not be null.");
     }
 
     private static native void nativeEnableLogThreads();

@@ -1,10 +1,26 @@
 package defpackage;
-public final class zcf {
-    public final o7f a;
-    public final pef b;
+public final class zcf extends vbf implements Runnable {
+    public final Runnable n;
 
-    public zcf(xab xabVar) {
-        this.a = (o7f) xabVar.b;
-        this.b = (pef) xabVar.c;
+    public zcf(Runnable runnable) {
+        runnable.getClass();
+        this.n = runnable;
+    }
+
+    @Override
+    public final String a() {
+        return tb4.y("task=[", this.n.toString(), "]");
+    }
+
+    @Override
+    public final void run() {
+        try {
+            this.n.run();
+        } catch (Error | RuntimeException e) {
+            if (vbf.f.f(this, null, new obf(e))) {
+                vbf.g(this);
+            }
+            throw e;
+        }
     }
 }

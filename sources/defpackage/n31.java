@@ -1,118 +1,40 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
-public class n31 extends View {
-    public final Paint a;
-    public long b;
-    public int c;
-    public String d;
-    public int e;
-    public StaticLayout f;
-    public StaticLayout h;
-    public int n;
-    public float r;
-    public final TextPaint s;
-    public long w;
-    public final RectF x;
+import android.content.SharedPreferences;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+public final class n31 implements Runnable {
+    public final byte a;
+    public final o31 b;
 
-    public n31(Context context, ylb ylbVar) {
-        super(context);
-        this.r = 1.0f;
-        this.x = new RectF();
-        TextPaint textPaint = new TextPaint(1);
-        this.s = textPaint;
-        textPaint.setTextSize(gm.L(12.0f));
-        textPaint.setTypeface(gm.n1("fonts/num.otf"));
-        Paint paint = new Paint(1);
-        this.a = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(gm.L(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        setColor(cmb.v0(cmb.xj, ylbVar));
+    public n31(o31 o31Var, byte b) {
+        this.a = b;
+        this.b = o31Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        long j;
-        int i;
-        String valueOf;
-        super.onDraw(canvas);
-        if (this.b > 0) {
-            i = (int) Math.ceil(((float) j) / 1000.0f);
-        } else {
-            i = 0;
+    public final void run() {
+        byte b = this.a;
+        o31 o31Var = this.b;
+        switch (b) {
+            case 0:
+                o31Var.a();
+                return;
+            case 1:
+                TL_account.disablePeerConnectedBot disablepeerconnectedbot = new TL_account.disablePeerConnectedBot();
+                int i = o31Var.a;
+                disablepeerconnectedbot.peer = na7.q1(i).h1(o31Var.s);
+                ConnectionsManager.getInstance(i).sendRequest(disablepeerconnectedbot, null);
+                SharedPreferences.Editor edit = na7.q1(i).W3.edit();
+                SharedPreferences.Editor remove = edit.remove("dialog_botid" + o31Var.s);
+                SharedPreferences.Editor remove2 = remove.remove("dialog_boturl" + o31Var.s);
+                remove2.remove("dialog_botflags" + o31Var.s).apply();
+                kk7.f(i).k(79, Long.valueOf(o31Var.s));
+                p31.a(i).f = false;
+                return;
+            default:
+                d01.t(o31Var.getContext(), o31Var.y);
+                return;
         }
-        RectF rectF = this.x;
-        rectF.set(gm.L(1.0f), gm.L(1.0f), getMeasuredWidth() - gm.L(1.0f), getMeasuredHeight() - gm.L(1.0f));
-        int i2 = this.c;
-        TextPaint textPaint = this.s;
-        if (i2 != i) {
-            this.c = i;
-            this.d = String.valueOf(Math.max(0, i));
-            StaticLayout staticLayout = this.f;
-            if (staticLayout != null) {
-                this.h = staticLayout;
-                this.r = 0.0f;
-                this.n = this.e;
-            }
-            this.e = (int) Math.ceil(textPaint.measureText(valueOf));
-            this.f = new StaticLayout(this.d, textPaint, Integer.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        }
-        float f = this.r;
-        if (f < 1.0f) {
-            float f2 = f + 0.10666667f;
-            this.r = f2;
-            if (f2 > 1.0f) {
-                this.r = 1.0f;
-            } else {
-                invalidate();
-            }
-        }
-        int alpha = textPaint.getAlpha();
-        if (this.h != null) {
-            float f3 = this.r;
-            if (f3 < 1.0f) {
-                textPaint.setAlpha((int) ((1.0f - f3) * alpha));
-                canvas.save();
-                canvas.translate(rectF.centerX() - (this.n / 2.0f), ((gm.L(10.0f) * this.r) + (rectF.centerY() - (this.h.getHeight() / 2.0f))) - gm.L(0.5f));
-                this.h.draw(canvas);
-                textPaint.setAlpha(alpha);
-                canvas.restore();
-            }
-        }
-        if (this.f != null) {
-            float f4 = this.r;
-            if (f4 != 1.0f) {
-                textPaint.setAlpha((int) (alpha * f4));
-            }
-            canvas.save();
-            canvas.translate(rectF.centerX() - (this.e / 2.0f), kt6.B(1.0f, this.r, gm.L(10.0f), rectF.centerY() - (this.f.getHeight() / 2.0f)) - gm.L(0.5f));
-            this.f.draw(canvas);
-            if (this.r != 1.0f) {
-                textPaint.setAlpha(alpha);
-            }
-            canvas.restore();
-        }
-        canvas.drawArc(rectF, -90.0f, (((float) Math.max(0L, this.b)) / 5000.0f) * (-360.0f), false, this.a);
-        if (this.w != 0) {
-            long currentTimeMillis = System.currentTimeMillis();
-            this.b -= currentTimeMillis - this.w;
-            this.w = currentTimeMillis;
-        } else {
-            this.w = System.currentTimeMillis();
-        }
-        invalidate();
-    }
-
-    public void setColor(int i) {
-        this.s.setColor(i);
-        this.a.setColor(i);
     }
 }

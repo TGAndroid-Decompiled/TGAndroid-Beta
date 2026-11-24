@@ -1,44 +1,9 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class bv2 implements TextWatcher {
-    public final EditTextBoldCursor a;
-
-    public bv2(EditTextBoldCursor editTextBoldCursor) {
-        this.a = editTextBoldCursor;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        try {
-            String obj = editable.toString();
-            if (!obj.isEmpty()) {
-                int intValue = Utilities.z(obj).intValue();
-                EditTextBoldCursor editTextBoldCursor = this.a;
-                if (intValue < 0) {
-                    editTextBoldCursor.setText("0");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else if (intValue > 300) {
-                    editTextBoldCursor.setText("300");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else if (!obj.equals(String.valueOf(intValue))) {
-                    editTextBoldCursor.setText(String.valueOf(intValue));
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                }
-            }
-        } catch (Exception e) {
-            fc4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+import android.content.ClipData;
+import android.view.ContentInfo;
+public abstract class bv2 {
+    public static ContentInfo.Builder a(ClipData clipData, int i) {
+        return new ContentInfo.Builder(clipData, i);
     }
 }

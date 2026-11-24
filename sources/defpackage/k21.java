@@ -1,38 +1,135 @@
 package defpackage;
 
-import android.graphics.Rect;
-import android.view.GestureDetector;
-import android.widget.FrameLayout;
-public final class k21 extends FrameLayout {
-    public final u31 E;
-    public final y21 a;
-    public final Rect b;
-    public final GestureDetector c;
-    public boolean d;
-    public boolean e;
-    public float f;
-    public float h;
-    public float n;
-    public boolean r;
-    public boolean s;
-    public boolean w;
-    public boolean x;
-    public final FrameLayout y;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class k21 extends g11 implements tjb {
+    public final wjb a;
+    public Runnable b;
+    public Runnable c;
+    public m21 d;
+    public final TextView e;
+    public boolean f;
+    public final Drawable h;
+    public final Drawable n;
 
-    public k21(u31 u31Var, y21 y21Var, FrameLayout frameLayout) {
-        super(y21Var.getContext());
-        this.E = u31Var;
-        this.y = frameLayout;
-        this.b = new Rect();
-        this.a = y21Var;
-        GestureDetector gestureDetector = new GestureDetector(y21Var.getContext(), new j31(this, y21Var));
-        this.c = gestureDetector;
-        gestureDetector.setIsLongpressEnabled(false);
-        addView(y21Var);
+    public k21(wjb wjbVar, Context context, boolean z, boolean z2) {
+        super(context);
+        int w0;
+        float f;
+        float f2;
+        this.a = wjbVar;
+        int i = bkb.wj;
+        if (wjbVar != null) {
+            w0 = wjbVar.h(i);
+        } else {
+            w0 = bkb.w0(null, i, false);
+        }
+        if (z) {
+            TextView textView = new TextView(context);
+            this.e = textView;
+            textView.setBackground(bkb.f0((w0 & 16777215) | 419430400, 7, -1));
+            this.h = textView.getBackground();
+            ir2.t(textView, 1, 14.0f);
+            ug8.x(textView, i, wjbVar, null, 2131743646);
+            textView.setGravity(16);
+            if (z2) {
+                f = 34.0f;
+            } else {
+                f = 12.0f;
+            }
+            if (k96.a0) {
+                f2 = 12.0f;
+            } else {
+                f2 = f;
+                f = 12.0f;
+            }
+            txe.a(textView, f2, 8.0f, f, 8.0f);
+            addView(textView, nme.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
+        }
+        if (z2) {
+            ImageView imageView = new ImageView(getContext());
+            imageView.setImageResource(2131231003);
+            zkb.s(imageView, i, wjbVar, PorterDuff.Mode.MULTIPLY);
+            if (!z) {
+                imageView.setBackground(bkb.f0((w0 & 16777215) | 419430400, 1, -1));
+                this.n = imageView.getBackground();
+            }
+            txe.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
+            addView(imageView, nme.h(56.0f, 48.0f, 16));
+        }
+        setOnClickListener(new j1(this, (byte) 22));
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.k21.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void c() {
+        this.d = null;
+        Runnable runnable = this.c;
+        if (runnable != null && !this.f) {
+            runnable.run();
+        }
+    }
+
+    @Override
+    public final void d(m21 m21Var) {
+        this.d = m21Var;
+    }
+
+    public final void e(String str) {
+        TextView textView = this.e;
+        if (textView != null) {
+            textView.setText(str);
+        }
+    }
+
+    public final void f() {
+        if (this.d != null) {
+            this.f = true;
+            Runnable runnable = this.b;
+            if (runnable != null) {
+                runnable.run();
+            }
+            m21 m21Var = this.d;
+            if (m21Var != null) {
+                m21Var.b();
+            }
+        }
+    }
+
+    @Override
+    public final void updateColors() {
+        int w0;
+        Drawable drawable;
+        try {
+            int i = bkb.wj;
+            wjb wjbVar = this.a;
+            if (wjbVar != null) {
+                w0 = wjbVar.h(i);
+            } else {
+                w0 = bkb.w0(null, i, false);
+            }
+            int i2 = (w0 & 16777215) | 419430400;
+            TextView textView = this.e;
+            if (textView != null && (drawable = this.h) != null && textView.getBackground() == drawable) {
+                bkb.F1(drawable, i2, true);
+            }
+            Drawable drawable2 = this.n;
+            if (drawable2 != null) {
+                bkb.F1(drawable2, i2, true);
+            }
+        } catch (Exception e) {
+            fa4.g(e, true);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+    }
+
+    public k21(wjb wjbVar, Context context, boolean z) {
+        this(wjbVar, context, z, !z);
     }
 }

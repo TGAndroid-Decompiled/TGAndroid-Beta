@@ -1,31 +1,55 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class i38 implements ValueAnimator.AnimatorUpdateListener {
+import android.app.Activity;
+public final class i38 implements p8c {
     public final byte a;
-    public final a58 b;
+    public final String[] b;
+    public final Activity c;
+    public final p8c d;
 
-    public i38(a58 a58Var, byte b) {
+    public i38(String[] strArr, Activity activity, p8c p8cVar, byte b) {
         this.a = b;
-        this.b = a58Var;
+        this.b = strArr;
+        this.c = activity;
+        this.d = p8cVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+    public final void a(Object obj) {
         byte b = this.a;
-        a58 a58Var = this.b;
+        boolean z = false;
+        p8c p8cVar = this.d;
+        Activity activity = this.c;
+        String[] strArr = this.b;
+        int[] iArr = (int[]) obj;
         switch (b) {
             case 0:
-                a58Var.x2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                a58Var.invalidate();
-                return;
-            case 1:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                a58Var.j3 = floatValue;
-                a58Var.h3.setTransitionProgress(floatValue);
+                int length = strArr.length;
+                int i = 0;
+                while (true) {
+                    if (i < length) {
+                        if (activity.checkSelfPermission(strArr[i]) == 0) {
+                            z = true;
+                        } else {
+                            i++;
+                        }
+                    }
+                }
+                p8cVar.a(Boolean.valueOf(z));
                 return;
             default:
-                a58Var.D0(valueAnimator);
+                int length2 = strArr.length;
+                int i2 = 0;
+                while (true) {
+                    if (i2 < length2) {
+                        if (activity.checkSelfPermission(strArr[i2]) == 0) {
+                            i2++;
+                        }
+                    } else {
+                        z = true;
+                    }
+                }
+                p8cVar.a(Boolean.valueOf(z));
                 return;
         }
     }

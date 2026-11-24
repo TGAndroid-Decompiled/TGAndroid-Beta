@@ -1,23 +1,33 @@
 package defpackage;
 
-import android.os.Build;
-public final class cpa implements oy4, py4 {
-    public final kpa a;
+import android.content.Context;
+import android.text.TextPaint;
+import android.view.View;
+import android.widget.TextView;
+public final class cpa extends TextView {
+    public final float a;
 
-    @Override
-    public final int i() {
-        return this.a.Y0();
+    public cpa(Context context, float f) {
+        super(context);
+        this.a = f;
     }
 
     @Override
-    public final void s(int i) {
-        kpa kpaVar = this.a;
-        mr3 mr3Var = kpaVar.m2;
-        if (Build.VERSION.SDK_INT >= 31 && mr3Var != null) {
-            if (iqd.a(i, 4)) {
-                mr3Var.h(kpaVar.X0.e());
+    public final void onMeasure(int i, int i2) {
+        float measureText;
+        float f;
+        if (View.MeasureSpec.getMode(i) != 0) {
+            int size = (View.MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight();
+            TextPaint textPaint = new TextPaint(getPaint());
+            float f2 = this.a;
+            textPaint.setTextSize(f2);
+            if (textPaint.measureText("0000 0000 0000 0000") > size && size > 0) {
+                f2 = (float) Math.floor((f2 * f) / measureText);
             }
-            mr3Var.e(kpaVar.r2, kpaVar.b.getWidth(), kpaVar.b.getHeight());
+            if (getTextSize() != f2) {
+                setTextSize(0, f2);
+            }
         }
+        super.onMeasure(i, i2);
     }
 }

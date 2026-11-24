@@ -1,89 +1,85 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.RemoteViews;
-import android.widget.RemoteViewsService;
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.a;
-public final class ew2 implements RemoteViewsService.RemoteViewsFactory {
-    public ArrayList a;
-    public Context b;
-    public int c;
-    public j5 d;
-    public Paint e;
-    public RectF f;
-    public vh6 g;
-    public boolean h;
+import android.content.ContextWrapper;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.view.LayoutInflater;
+public final class ew2 extends ContextWrapper {
+    public int a;
+    public Resources.Theme b;
+    public LayoutInflater c;
+    public Resources d;
 
-    @Override
-    public final int getCount() {
-        if (this.h) {
-            return 1;
-        }
-        return ((int) Math.ceil(this.a.size() / 2.0f)) + 1;
+    public ew2(Context context, int i) {
+        super(context);
+        this.a = i;
     }
 
-    @Override
-    public final long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public final RemoteViews getLoadingView() {
-        return null;
-    }
-
-    @Override
-    public final android.widget.RemoteViews getViewAt(int r21) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ew2.getViewAt(int):android.widget.RemoteViews");
-    }
-
-    @Override
-    public final int getViewTypeCount() {
-        return 2;
-    }
-
-    @Override
-    public final boolean hasStableIds() {
-        return true;
-    }
-
-    @Override
-    public final void onCreate() {
-        a.v();
-    }
-
-    @Override
-    public final void onDataSetChanged() {
-        ArrayList arrayList = this.a;
-        arrayList.clear();
-        j5 j5Var = this.d;
-        if (j5Var != null) {
-            int i = j5Var.a;
-            if (z8c.h(i).o()) {
-                ArrayList arrayList2 = new ArrayList();
-                ArrayList arrayList3 = new ArrayList();
-                vh6 vh6Var = new vh6();
-                cf7 Y = cf7.Y(i);
-                int i2 = this.c;
-                vh6 vh6Var2 = this.g;
-                CountDownLatch countDownLatch = new CountDownLatch(1);
-                Y.a.c(new le7(Y, i2, arrayList, 1, vh6Var2, vh6Var, arrayList3, arrayList2, countDownLatch));
-                try {
-                    countDownLatch.await();
-                } catch (Exception e) {
-                    Y.n(e, true);
-                }
-                oc7.r1(i).d4(arrayList2, true);
-                oc7.r1(i).X3(arrayList3, true);
+    public final void a() {
+        if (this.b == null) {
+            this.b = getResources().newTheme();
+            Resources.Theme theme = getBaseContext().getTheme();
+            if (theme != null) {
+                this.b.setTo(theme);
             }
         }
+        this.b.applyStyle(this.a, true);
     }
 
     @Override
-    public final void onDestroy() {
+    public final void attachBaseContext(Context context) {
+        super.attachBaseContext(context);
+    }
+
+    @Override
+    public final AssetManager getAssets() {
+        return getResources().getAssets();
+    }
+
+    @Override
+    public final Resources getResources() {
+        Resources resources = this.d;
+        if (resources == null) {
+            Resources resources2 = super.getResources();
+            this.d = resources2;
+            return resources2;
+        }
+        return resources;
+    }
+
+    @Override
+    public final Object getSystemService(String str) {
+        if ("layout_inflater".equals(str)) {
+            LayoutInflater layoutInflater = this.c;
+            if (layoutInflater == null) {
+                LayoutInflater cloneInContext = LayoutInflater.from(getBaseContext()).cloneInContext(this);
+                this.c = cloneInContext;
+                return cloneInContext;
+            }
+            return layoutInflater;
+        }
+        return getBaseContext().getSystemService(str);
+    }
+
+    @Override
+    public final Resources.Theme getTheme() {
+        Resources.Theme theme = this.b;
+        if (theme != null) {
+            return theme;
+        }
+        if (this.a == 0) {
+            this.a = 2131755303;
+        }
+        a();
+        return this.b;
+    }
+
+    @Override
+    public final void setTheme(int i) {
+        if (this.a != i) {
+            this.a = i;
+            a();
+        }
     }
 }

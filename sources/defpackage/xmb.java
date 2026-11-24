@@ -1,6 +1,8 @@
 package defpackage;
 
-import android.view.View;
-public interface xmb {
-    int g(View view);
+import android.content.DialogInterface;
+public final class xmb implements DialogInterface.OnCancelListener {
+    @Override
+    public final void onCancel(DialogInterface dialogInterface) {
+    }
 }

@@ -1,19 +1,17 @@
 package defpackage;
-public final class pye {
-    public static final ce6 k = new ce6("ApplicationAnalyticsSession", null);
-    public static long l = System.currentTimeMillis();
-    public final r8d a;
-    public String b;
-    public String c;
-    public long d = l;
-    public int e = 1;
-    public String f;
-    public int g;
-    public String h;
-    public boolean i;
-    public int j;
+public final class pye implements zn7 {
+    public static final pye a = new Object();
 
-    public pye(r8d r8dVar) {
-        this.a = r8dVar;
+    static {
+        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -1,16 +1,17 @@
 package defpackage;
 public abstract class dle {
-    public static int a(int i) {
-        return (int) (Integer.rotateLeft((int) (i * (-862048943)), 15) * 461845907);
-    }
-
-    public static int b(Object obj) {
-        int hashCode;
-        if (obj == null) {
-            hashCode = 0;
+    public static fw2 a(fw2 fw2Var) {
+        gw2 gw2Var;
+        fw2 intercepted;
+        fw2Var.getClass();
+        if (fw2Var instanceof gw2) {
+            gw2Var = (gw2) fw2Var;
         } else {
-            hashCode = obj.hashCode();
+            gw2Var = null;
         }
-        return a(hashCode);
+        if (gw2Var != null && (intercepted = gw2Var.intercepted()) != null) {
+            return intercepted;
+        }
+        return fw2Var;
     }
 }

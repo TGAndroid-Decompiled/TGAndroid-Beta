@@ -1,95 +1,227 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-public final class mf8 extends View {
-    public final Drawable a;
-    public final fn0 b;
-    public final byte c;
-    public nf8 d;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.PopupNotificationActivity;
+public final class mf8 implements hy1 {
+    public final PopupNotificationActivity a;
 
-    public mf8(Context context, int i) {
-        super(context);
-        this.b = new fn0(380L, this, d53.h);
-        this.c = i;
-        Drawable d = b10.d(context, 2131232506);
-        this.a = d;
-        anb.x(this, d, cmb.n7, null, PorterDuff.Mode.SRC_IN);
+    public mf8(PopupNotificationActivity popupNotificationActivity) {
+        this.a = popupNotificationActivity;
     }
 
-    public final void a(nf8 nf8Var, boolean z) {
-        boolean z2;
-        nf8 nf8Var2;
-        nf8 nf8Var3;
-        if (nf8Var != null) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        this.b.a(z2, z);
-        if (isAttachedToWindow() && (nf8Var3 = this.d) != null) {
-            nf8Var3.b();
-        }
-        this.d = nf8Var;
-        if (isAttachedToWindow() && (nf8Var2 = this.d) != null) {
-            nf8Var2.a(this);
+    @Override
+    public final bu1 D() {
+        return null;
+    }
+
+    @Override
+    public final boolean H0() {
+        return false;
+    }
+
+    @Override
+    public final boolean M() {
+        return true;
+    }
+
+    @Override
+    public final boolean Q0() {
+        return false;
+    }
+
+    @Override
+    public final void W0() {
+        PopupNotificationActivity popupNotificationActivity = this.a;
+        k27 k27Var = popupNotificationActivity.R;
+        if (k27Var != null) {
+            na7.q1(k27Var.K1).H4(0, popupNotificationActivity.L, k27.B0(popupNotificationActivity.R.k), 0L, null);
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        nf8 nf8Var = this.d;
-        if (nf8Var != null) {
-            nf8Var.a(this);
-        }
+    public final boolean g() {
+        return false;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        nf8 nf8Var = this.d;
-        if (nf8Var != null) {
-            nf8Var.b();
-        }
+    public final int h() {
+        return 0;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        float f = this.b.e;
-        if (f < 1.0f) {
-            canvas.save();
-            float f2 = 1.0f - f;
-            canvas.scale(f2, f2, width, height);
-            this.a.draw(canvas);
-            canvas.restore();
-        }
-        if (f > 0.0f) {
-            float f3 = this.c;
-            int L = gm.L(f3);
-            canvas.save();
-            canvas.translate((getWidth() - L) / 2, (getHeight() - L) / 2);
-            canvas.scale(f, f, gm.L(f3) / 2.0f, gm.L(f3) / 2.0f);
-            nf8 nf8Var = this.d;
-            if (nf8Var != null) {
-                nf8Var.c(canvas, gm.L(f3), gm.L(f3));
-            }
-            canvas.restore();
-        }
+    public final TLRPC.Peer i() {
+        return null;
     }
 
     @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        int L = gm.L(24.0f);
-        int i5 = (i - L) / 2;
-        int i6 = (i2 - L) / 2;
-        this.a.setBounds(i5, i6, i5 + L, L + i6);
+    public final int o0() {
+        return 0;
+    }
+
+    @Override
+    public final TL_stories.StoryItem t0() {
+        return null;
+    }
+
+    @Override
+    public final void u(CharSequence charSequence, boolean z, int i, int i2, long j) {
+        PopupNotificationActivity popupNotificationActivity = this.a;
+        ArrayList arrayList = popupNotificationActivity.b0;
+        if (popupNotificationActivity.R == null) {
+            return;
+        }
+        int i3 = popupNotificationActivity.T;
+        if (i3 >= 0 && i3 < arrayList.size()) {
+            arrayList.remove(popupNotificationActivity.T);
+        }
+        na7.q1(popupNotificationActivity.R.K1).l3(k27.B0(popupNotificationActivity.R.k), popupNotificationActivity.R.e1(), Math.max(0, popupNotificationActivity.R.e1()), popupNotificationActivity.R.k.date, true, 0L, 0, true, 0);
+        popupNotificationActivity.R = null;
+        popupNotificationActivity.f();
+    }
+
+    @Override
+    public final boolean u0(long j) {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.TL_channels_sendAsPeers v() {
+        return null;
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
+    }
+
+    @Override
+    public final void B() {
+    }
+
+    @Override
+    public final void G0() {
+    }
+
+    @Override
+    public final void H() {
+    }
+
+    @Override
+    public final void I0() {
+    }
+
+    @Override
+    public final void K0() {
+    }
+
+    @Override
+    public final void L0() {
+    }
+
+    @Override
+    public final void R0() {
+    }
+
+    @Override
+    public final void S() {
+    }
+
+    @Override
+    public final void U() {
+    }
+
+    @Override
+    public final void a() {
+    }
+
+    @Override
+    public final void e() {
+    }
+
+    @Override
+    public final void e1() {
+    }
+
+    @Override
+    public final void g0() {
+    }
+
+    @Override
+    public final void g1() {
+    }
+
+    @Override
+    public final void j() {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void o1() {
+    }
+
+    @Override
+    public final void p1() {
+    }
+
+    @Override
+    public final void r() {
+    }
+
+    @Override
+    public final void s1() {
+    }
+
+    @Override
+    public final void y() {
+    }
+
+    @Override
+    public final void P0(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void f1(int i) {
+    }
+
+    @Override
+    public final void j1(boolean z) {
+    }
+
+    @Override
+    public final void k(float f) {
+    }
+
+    @Override
+    public final void m(boolean z) {
+    }
+
+    @Override
+    public final void n0(int i) {
+    }
+
+    @Override
+    public final void z(boolean z) {
+    }
+
+    @Override
+    public final void w(float f, int i) {
+    }
+
+    @Override
+    public final void C0(CharSequence charSequence, boolean z, boolean z2) {
+    }
+
+    @Override
+    public final void O0(View view, CharSequence charSequence, boolean z) {
+    }
+
+    @Override
+    public final void k1(int i, int i2, int i3, long j, long j2, boolean z) {
     }
 }

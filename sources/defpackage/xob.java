@@ -1,24 +1,14 @@
 package defpackage;
 
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.ui.Components.UndoView;
-public final class xob implements View.OnTouchListener {
-    public final byte a;
+import android.content.Context;
+import android.content.ContextWrapper;
+public abstract class xob extends ContextWrapper {
+    public static final Object a = null;
 
-    @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.a) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-                break;
-            case 4:
-            default:
-                int i = UndoView.j0;
-                break;
+    public static void a(Context context) {
+        if (!(context.getResources() instanceof yob)) {
+            context.getResources();
+            int i = s9c.a;
         }
-        return true;
     }
 }

@@ -11,7 +11,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-public final class v8 implements aeb {
+public final class v8 implements ybb {
     public CharSequence a;
     public CharSequence b;
     public Intent c;
@@ -30,12 +30,12 @@ public final class v8 implements aeb {
     public int p;
 
     @Override
-    public final aeb a(d27 d27Var) {
+    public final ybb a(d07 d07Var) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public final d27 b() {
+    public final d07 b() {
         return null;
     }
 
@@ -244,7 +244,7 @@ public final class v8 implements aeb {
     }
 
     @Override
-    public final aeb setContentDescription(CharSequence charSequence) {
+    public final ybb setContentDescription(CharSequence charSequence) {
         this.j = charSequence;
         return this;
     }
@@ -325,7 +325,7 @@ public final class v8 implements aeb {
     }
 
     @Override
-    public final aeb setTooltipText(CharSequence charSequence) {
+    public final ybb setTooltipText(CharSequence charSequence) {
         this.k = charSequence;
         return this;
     }

@@ -1,33 +1,56 @@
 package defpackage;
-public final class mkc implements Runnable {
-    public final byte a;
-    public final rkc b;
-    public final int c;
 
-    public mkc(rkc rkcVar, int i, byte b) {
-        this.a = b;
-        this.b = rkcVar;
-        this.c = i;
+import android.content.Context;
+import android.graphics.SurfaceTexture;
+import android.widget.ImageView;
+public final class mkc extends fnc {
+    public final byte E = 0;
+    public final Object F;
+
+    public mkc(voc vocVar, Context context, kbc kbcVar) {
+        super(context, kbcVar, 0);
+        this.F = vocVar;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        int i = this.c;
-        rkc rkcVar = this.b;
+    public final void a() {
+        byte b = this.E;
+        Object obj = this.F;
         switch (b) {
             case 0:
-                gm.c3(new mkc(rkcVar, i, (byte) 2));
-                return;
-            case 1:
-                gm.c3(new mkc(rkcVar, i, (byte) 3));
-                return;
-            case 2:
-                rkcVar.c(i);
+                nkc nkcVar = (nkc) obj;
+                nkcVar.o = true;
+                setPaused(true);
+                setVisibility(8);
+                nkcVar.a.invalidate();
                 return;
             default:
-                rkcVar.a(i);
+                setPaused(true);
+                setVisibility(8);
+                ((voc) obj).a.setVisibility(0);
                 return;
         }
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        switch (this.E) {
+            case 1:
+                ImageView imageView = ((voc) this.F).a;
+                super.onSurfaceTextureUpdated(surfaceTexture);
+                if (this.n && imageView.getVisibility() == 0) {
+                    imageView.setVisibility(4);
+                    return;
+                }
+                return;
+            default:
+                super.onSurfaceTextureUpdated(surfaceTexture);
+                return;
+        }
+    }
+
+    public mkc(nkc nkcVar, Context context, jkc jkcVar) {
+        super(context, jkcVar, 2);
+        this.F = nkcVar;
     }
 }

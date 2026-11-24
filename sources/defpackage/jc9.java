@@ -1,30 +1,41 @@
 package defpackage;
 
-import android.content.res.Resources;
-import j$.util.Objects;
-public final class jc9 {
-    public final Resources a;
-    public final Resources.Theme b;
+import android.os.SystemClock;
+public final class jc9 implements Runnable {
+    public final byte a;
+    public final mc9 b;
 
-    public jc9(Resources resources, Resources.Theme theme) {
-        this.a = resources;
-        this.b = theme;
+    public jc9(mc9 mc9Var, byte b) {
+        this.a = b;
+        this.b = mc9Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        mc9 mc9Var = this.b;
+        switch (b) {
+            case 0:
+                if (mc9Var.z2 >= 0) {
+                    long uptimeMillis = (mc9Var.y2 + 500) - SystemClock.uptimeMillis();
+                    if (uptimeMillis > 0 && mc9Var.isFocused()) {
+                        mc9Var.postDelayed(this, uptimeMillis);
+                        return;
+                    }
+                    int i = mc9Var.z2;
+                    mc9Var.z2 = -1;
+                    mc9Var.setInputType(i);
+                    return;
+                }
+                return;
+            default:
+                if (bkb.f1()) {
+                    mc9Var.postDelayed(this, 100L);
+                    return;
+                } else {
+                    mc9Var.J();
+                    return;
+                }
         }
-        if (obj != null && jc9.class == obj.getClass()) {
-            jc9 jc9Var = (jc9) obj;
-            if (this.a.equals(jc9Var.a) && Objects.equals(this.b, jc9Var.b)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.a, this.b);
     }
 }

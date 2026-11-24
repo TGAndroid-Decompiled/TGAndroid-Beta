@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class z4 extends pnd {
+public abstract class z4 extends nld {
 }

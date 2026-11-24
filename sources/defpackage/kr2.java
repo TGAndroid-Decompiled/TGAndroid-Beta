@@ -1,46 +1,79 @@
 package defpackage;
 
-import android.util.Log;
-import com.google.firebase.components.ComponentRegistrar;
-import java.lang.reflect.InvocationTargetException;
-public final class kr2 implements nv8 {
-    public final byte a;
-    public final Object b;
+import android.content.SharedPreferences;
+import java.util.function.IntSupplier;
+import org.telegram.tgnet.TLRPC;
+public final class kr2 extends fr2 {
+    public final IntSupplier d;
+    public final int e;
+    public final int f;
+    public final int g;
+    public volatile boolean h;
+    public volatile int i;
 
-    public kr2(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public kr2(String str, IntSupplier intSupplier, int i, int i2, int i3) {
+        super(str);
+        this.d = intSupplier;
+        this.e = i;
+        this.f = i2;
+        this.g = i3;
     }
 
     @Override
-    public final Object get() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                String str = (String) obj;
-                try {
-                    Class<?> cls = Class.forName(str);
-                    if (ComponentRegistrar.class.isAssignableFrom(cls)) {
-                        return (ComponentRegistrar) cls.getDeclaredConstructor(null).newInstance(null);
-                    }
-                    throw new RuntimeException("Class " + str + " is not an instance of com.google.firebase.components.ComponentRegistrar");
-                } catch (ClassNotFoundException unused) {
-                    Log.w("ComponentDiscovery", "Class " + str + " is not an found.");
-                    return null;
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(kt6.o("Could not instantiate ", str, "."), e);
-                } catch (InstantiationException e2) {
-                    throw new RuntimeException(kt6.o("Could not instantiate ", str, "."), e2);
-                } catch (NoSuchMethodException e3) {
-                    throw new RuntimeException(b10.h("Could not instantiate ", str), e3);
-                } catch (InvocationTargetException e4) {
-                    throw new RuntimeException(b10.h("Could not instantiate ", str), e4);
+    public final boolean b(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
+        if (jSONValue instanceof TLRPC.TL_jsonNumber) {
+            double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
+            if (d == Math.rint(d) && d >= -2.147483648E9d && d <= 2.147483647E9d) {
+                int max = Math.max(this.e, Math.min(this.f, (int) d));
+                if (max != f()) {
+                    this.i = max;
+                    this.h = true;
+                    editor.putInt(e(), max);
+                    return true;
                 }
-            case 1:
-                return (ComponentRegistrar) obj;
-            default:
-                return new am5((li4) obj);
+                return false;
+            }
+            return false;
         }
+        return false;
+    }
+
+    @Override
+    public final boolean c(SharedPreferences.Editor editor) {
+        if (this.g == 2 && this.h) {
+            int i = this.i;
+            this.h = false;
+            editor.remove(e());
+            if (i != f()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void d(SharedPreferences sharedPreferences) {
+        try {
+            if (sharedPreferences.contains(e())) {
+                this.i = Math.max(this.e, Math.min(this.f, sharedPreferences.getInt(e(), 0)));
+                this.h = true;
+                return;
+            }
+            this.h = false;
+        } catch (ClassCastException e) {
+            fa4.g(e, true);
+            this.h = false;
+        }
+    }
+
+    public final int f() {
+        if (this.h) {
+            return this.i;
+        }
+        return Math.max(this.e, Math.min(this.f, this.d.getAsInt()));
+    }
+
+    public final String toString() {
+        return this.a + "=" + f();
     }
 }

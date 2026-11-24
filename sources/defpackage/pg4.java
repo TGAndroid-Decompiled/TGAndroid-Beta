@@ -1,25 +1,15 @@
 package defpackage;
+public final class pg4 implements Runnable {
+    public final byte a;
+    public final qg4 b;
 
-import android.content.Context;
-public final class pg4 extends tk4 {
-    public final byte V;
-    public final Object W;
-
-    public pg4(byte b, Context context, Object obj) {
-        super(context, null);
-        this.V = b;
-        this.W = obj;
+    public pg4(qg4 qg4Var, byte b) {
+        this.a = b;
+        this.b = qg4Var;
     }
 
     @Override
-    public final int getColumnsCount() {
-        byte b = this.V;
-        Object obj = this.W;
-        switch (b) {
-            case 0:
-                return ((ch4) obj).s;
-            default:
-                return ((ah4) obj).d.s;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.pg4.run():void");
     }
 }

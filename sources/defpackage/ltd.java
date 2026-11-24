@@ -1,17 +1,16 @@
 package defpackage;
-public final class ltd implements cq7 {
-    public static final ltd a = new Object();
+public final class ltd extends l13 {
+    public final ae7 b;
 
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)), 5)));
+    public ltd(ae7 ae7Var) {
+        super((byte) 4);
+        this.b = ae7Var;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final Object a(Object obj) {
+        sef b = aff.b();
+        ae7 ae7Var = this.b;
+        return new vme(ae7Var, (fab) obj, b, new aec(ae7Var.b(), (byte) 21));
     }
 }

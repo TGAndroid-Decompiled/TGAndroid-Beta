@@ -1,39 +1,39 @@
 package defpackage;
 
-import android.graphics.Rect;
-import android.os.Build;
-import android.util.Log;
-import android.view.View;
-import java.lang.reflect.Method;
-import java.util.WeakHashMap;
-public abstract class ghc {
-    public static final Method a;
-    public static final boolean b;
+import java.util.HashSet;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ghc implements RequestDelegate {
+    public final byte a;
+    public final VoIPService b;
+    public final long c;
+    public final HashSet d;
+    public final AtomicInteger e;
+    public final int f;
+    public final String g;
 
-    static {
-        boolean z;
-        if (Build.VERSION.SDK_INT >= 27) {
-            z = true;
-        } else {
-            z = false;
-        }
-        b = z;
-        try {
-            Method declaredMethod = View.class.getDeclaredMethod("computeFitSystemWindows", Rect.class, Rect.class);
-            a = declaredMethod;
-            if (!declaredMethod.isAccessible()) {
-                declaredMethod.setAccessible(true);
-            }
-        } catch (NoSuchMethodException unused) {
-            Log.d("ViewUtils", "Could not find method computeFitSystemWindows. Oh well.");
-        }
+    public ghc(VoIPService voIPService, long j, HashSet hashSet, AtomicInteger atomicInteger, int i, String str, byte b) {
+        this.a = b;
+        this.b = voIPService;
+        this.c = j;
+        this.d = hashSet;
+        this.e = atomicInteger;
+        this.f = i;
+        this.g = str;
     }
 
-    public static boolean a(View view) {
-        WeakHashMap weakHashMap = kfc.a;
-        if (view.getLayoutDirection() == 1) {
-            return true;
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.a) {
+            case 0:
+                this.b.lambda$startConferenceGroupCall$54(this.c, this.d, this.e, this.f, this.g, tLObject, tL_error);
+                return;
+            default:
+                this.b.lambda$startConferenceGroupCall$46(this.c, this.d, this.e, this.f, this.g, tLObject, tL_error);
+                return;
         }
-        return false;
     }
 }

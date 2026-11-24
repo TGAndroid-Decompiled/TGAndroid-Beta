@@ -12,15 +12,15 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import org.telegram.ui.LaunchActivity;
-public class PipRoundVideoView implements jm7 {
+public class PipRoundVideoView implements gk7 {
     public static PipRoundVideoView G;
     public DecelerateInterpolator E;
     public final RectF F = new RectF();
-    public yc8 a;
+    public va8 a;
     public int b;
     public TextureView c;
     public ImageView d;
-    public oa8 e;
+    public m88 e;
     public Bitmap f;
     public int h;
     public int n;
@@ -34,18 +34,18 @@ public class PipRoundVideoView implements jm7 {
         int i3;
         int round;
         if (z) {
-            i3 = gm.q.x;
+            i3 = gl.q.x;
         } else {
-            i3 = gm.q.y - i2;
+            i3 = gl.q.y - i2;
             i2 = org.telegram.ui.ActionBar.a.getCurrentActionBarHeight();
         }
         int i4 = i3 - i2;
         if (i == 0) {
-            round = gm.L(10.0f);
+            round = gl.L(10.0f);
         } else if (i == 1) {
-            round = i4 - gm.L(10.0f);
+            round = i4 - gl.L(10.0f);
         } else {
-            round = Math.round((i4 - gm.L(20.0f)) * f) + gm.L(10.0f);
+            round = Math.round((i4 - gl.L(20.0f)) * f) + gl.L(10.0f);
         }
         if (!z) {
             return org.telegram.ui.ActionBar.a.getCurrentActionBarHeight() + round;
@@ -61,7 +61,7 @@ public class PipRoundVideoView implements jm7 {
                     int width = this.c.getWidth();
                     int height = this.c.getHeight();
                     Bitmap.Config config = Bitmap.Config.ARGB_8888;
-                    this.f = ld1.a(width, height);
+                    this.f = dc1.a(width, height);
                 }
                 try {
                     this.c.getBitmap(this.f);
@@ -91,7 +91,7 @@ public class PipRoundVideoView implements jm7 {
         if (G == this) {
             G = null;
         }
-        nm7.f(this.b).n(this, nm7.e2);
+        kk7.f(this.b).n(this, kk7.d2);
     }
 
     public final void c(boolean z) {
@@ -103,7 +103,7 @@ public class PipRoundVideoView implements jm7 {
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.r = animatorSet2;
-        yc8 yc8Var = this.a;
+        va8 va8Var = this.a;
         Property property = View.ALPHA;
         float f3 = 1.0f;
         if (z) {
@@ -111,26 +111,26 @@ public class PipRoundVideoView implements jm7 {
         } else {
             f = 0.0f;
         }
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(yc8Var, property, f);
-        yc8 yc8Var2 = this.a;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(va8Var, property, f);
+        va8 va8Var2 = this.a;
         Property property2 = View.SCALE_X;
         if (z) {
             f2 = 1.0f;
         } else {
             f2 = 0.8f;
         }
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(yc8Var2, property2, f2);
-        yc8 yc8Var3 = this.a;
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(va8Var2, property2, f2);
+        va8 va8Var3 = this.a;
         Property property3 = View.SCALE_Y;
         if (!z) {
             f3 = 0.8f;
         }
-        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(yc8Var3, property3, f3));
+        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(va8Var3, property3, f3));
         this.r.setDuration(150L);
         if (this.E == null) {
             this.E = new DecelerateInterpolator();
         }
-        this.r.addListener(new jf4((byte) 22, this, z));
+        this.r.addListener(new id4((byte) 22, this, z));
         this.r.setInterpolator(this.E);
         this.r.start();
     }
@@ -141,28 +141,28 @@ public class PipRoundVideoView implements jm7 {
         }
         G = this;
         this.s = runnable;
-        yc8 yc8Var = new yc8(this, launchActivity);
-        this.a = yc8Var;
-        yc8Var.setWillNotDraw(false);
-        this.h = gm.L(126.0f);
-        this.n = gm.L(126.0f);
-        oa8 oa8Var = new oa8((byte) 1, launchActivity, this);
-        this.e = oa8Var;
-        oa8Var.setOutlineProvider(new xj((byte) 11));
+        va8 va8Var = new va8(this, launchActivity);
+        this.a = va8Var;
+        va8Var.setWillNotDraw(false);
+        this.h = gl.L(126.0f);
+        this.n = gl.L(126.0f);
+        m88 m88Var = new m88((byte) 1, launchActivity, this);
+        this.e = m88Var;
+        m88Var.setOutlineProvider(new xi((byte) 11));
         this.e.setClipToOutline(true);
         this.e.a(1.0f, 0);
-        this.a.addView(this.e, qoe.d(120, 120.0f, 51, 3.0f, 3.0f, 0.0f, 0.0f));
+        this.a.addView(this.e, nme.d(120, 120.0f, 51, 3.0f, 3.0f, 0.0f, 0.0f));
         this.a.setAlpha(1.0f);
         this.a.setScaleX(0.8f);
         this.a.setScaleY(0.8f);
         this.c = new TextureView(launchActivity);
-        float N = (gm.N(2.0f) + gm.N(120.0f)) / gm.N(120.0f);
+        float N = (gl.N(2.0f) + gl.N(120.0f)) / gl.N(120.0f);
         this.c.setScaleX(N);
         this.c.setScaleY(N);
-        this.e.addView(this.c, qoe.c(-1.0f, -1));
+        this.e.addView(this.c, nme.c(-1.0f, -1));
         ImageView imageView = new ImageView(launchActivity);
         this.d = imageView;
-        this.e.addView(imageView, qoe.c(-1.0f, -1));
+        this.e.addView(imageView, nme.c(-1.0f, -1));
         this.d.setVisibility(4);
         this.x = (WindowManager) launchActivity.getSystemService("window");
         SharedPreferences sharedPreferences = org.telegram.messenger.a.b.getSharedPreferences("pipconfig", 0);
@@ -184,22 +184,22 @@ public class PipRoundVideoView implements jm7 {
             layoutParams2.gravity = 51;
             layoutParams2.type = 99;
             layoutParams2.flags = 16777736;
-            gm.s3(this.x, this.a, layoutParams2);
+            gl.s3(this.x, this.a, layoutParams2);
             this.x.addView(this.a, this.w);
-            int i4 = z8c.t0;
+            int i4 = y6c.t0;
             this.b = i4;
-            nm7.f(i4).b(this, nm7.e2);
+            kk7.f(i4).b(this, kk7.d2);
             c(true);
         } catch (Exception e) {
-            fc4.g(e, true);
+            fa4.g(e, true);
         }
     }
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        oa8 oa8Var;
-        if (i == nm7.e2 && (oa8Var = this.e) != null) {
-            oa8Var.invalidate();
+        m88 m88Var;
+        if (i == kk7.d2 && (m88Var = this.e) != null) {
+            m88Var.invalidate();
         }
     }
 
@@ -212,7 +212,7 @@ public class PipRoundVideoView implements jm7 {
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.r = animatorSet2;
-        yc8 yc8Var = this.a;
+        va8 va8Var = this.a;
         Property property = View.ALPHA;
         float f3 = 1.0f;
         if (z) {
@@ -220,26 +220,26 @@ public class PipRoundVideoView implements jm7 {
         } else {
             f = 0.0f;
         }
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(yc8Var, property, f);
-        yc8 yc8Var2 = this.a;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(va8Var, property, f);
+        va8 va8Var2 = this.a;
         Property property2 = View.SCALE_X;
         if (z) {
             f2 = 1.0f;
         } else {
             f2 = 0.8f;
         }
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(yc8Var2, property2, f2);
-        yc8 yc8Var3 = this.a;
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(va8Var2, property2, f2);
+        va8 va8Var3 = this.a;
         Property property3 = View.SCALE_Y;
         if (!z) {
             f3 = 0.8f;
         }
-        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(yc8Var3, property3, f3));
+        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(va8Var3, property3, f3));
         this.r.setDuration(150L);
         if (this.E == null) {
             this.E = new DecelerateInterpolator();
         }
-        this.r.addListener(new zc8(this, (byte) 0));
+        this.r.addListener(new wa8(this, (byte) 0));
         this.r.setInterpolator(this.E);
         this.r.start();
     }

@@ -1,157 +1,102 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.Looper;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-public final class tcd extends zv6 {
-    public static final ce6 f = new ce6("MRDiscoveryCallback", null);
-    public final xab e;
-    public final Map c = DesugarCollections.synchronizedMap(new HashMap());
-    public final LinkedHashSet d = new LinkedHashSet();
-    public final Set b = DesugarCollections.synchronizedSet(new LinkedHashSet());
-    public final qcd a = new qcd(this);
+public final class tcd extends b4 {
+    public static final Parcelable.Creator<tcd> CREATOR = new j9d((byte) 24);
+    public final oed a;
+    public final int b;
+    public final int c;
+    public final int d;
 
-    public tcd(Context context) {
-        this.e = new xab(context);
+    public tcd(oed oedVar, int i, int i2, int i3) {
+        this.a = oedVar;
+        this.b = i;
+        this.c = i2;
+        this.d = i3;
     }
 
-    @Override
-    public final void d(ew6 ew6Var) {
-        f.b("MediaRouterDiscoveryCallback.onRouteAdded.", new Object[0]);
-        o(ew6Var, true);
-    }
-
-    @Override
-    public final void e(ew6 ew6Var) {
-        f.b("MediaRouterDiscoveryCallback.onRouteChanged.", new Object[0]);
-        o(ew6Var, true);
-    }
-
-    @Override
-    public final void f(ew6 ew6Var) {
-        f.b("MediaRouterDiscoveryCallback.onRouteRemoved.", new Object[0]);
-        o(ew6Var, false);
-    }
-
-    public final void m() {
-        ce6 ce6Var = f;
-        ce6Var.b(td4.o(this.d.size(), "Starting RouteDiscovery with ", " IDs"), new Object[0]);
-        ce6Var.b("appIdToRouteInfo has these appId route keys: ".concat(String.valueOf(this.c.keySet())), new Object[0]);
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            n();
-        } else {
-            new q79(Looper.getMainLooper(), (byte) 3).post(new xbd(this, (byte) 1));
-        }
-    }
-
-    public final void n() {
-        xab xabVar = this.e;
-        gw6 gw6Var = (gw6) xabVar.c;
-        if (gw6Var == null) {
-            gw6Var = gw6.d((Context) xabVar.b);
-            xabVar.c = gw6Var;
-        }
-        gw6Var.h(this);
-        synchronized (this.d) {
-            Iterator it = this.d.iterator();
-            while (it.hasNext()) {
-                String str = (String) it.next();
-                String a = osd.a(str);
-                ArrayList<String> arrayList = new ArrayList<>();
-                if (!arrayList.contains(a)) {
-                    arrayList.add(a);
+    public final void b(fg1 fg1Var) {
+        oed oedVar = this.a;
+        int i = this.b;
+        if (i != 1) {
+            if (i != 2) {
+                if (i != 3) {
+                    if (i != 4) {
+                        Log.w("ChannelEventParcelable", "Unknown type: " + i);
+                        return;
+                    }
+                    fg1Var.d(oedVar);
+                    return;
                 }
-                Bundle bundle = new Bundle();
-                bundle.putStringArrayList("controlCategories", arrayList);
-                yv6 yv6Var = new yv6(bundle, arrayList);
-                if (((kcd) this.c.get(str)) == null) {
-                    this.c.put(str, new kcd(yv6Var));
-                }
-                ce6 ce6Var = f;
-                String a2 = osd.a(str);
-                ce6Var.b("Adding mediaRouter callback for control category " + a2, new Object[0]);
-                xab xabVar2 = this.e;
-                gw6 gw6Var2 = (gw6) xabVar2.c;
-                if (gw6Var2 == null) {
-                    gw6Var2 = gw6.d((Context) xabVar2.b);
-                    xabVar2.c = gw6Var2;
-                }
-                gw6Var2.a(yv6Var, this, 4);
+                fg1Var.c(oedVar);
+                return;
             }
+            fg1Var.b(oedVar);
+            return;
         }
-        Map map = this.c;
-        f.b("appIdToRouteInfo has these appId route keys: ".concat(String.valueOf(map.keySet())), new Object[0]);
+        fg1Var.a(oedVar);
     }
 
-    public final void o(ew6 ew6Var, boolean z) {
-        boolean z2;
-        Set z3;
-        boolean remove;
-        ce6 ce6Var = f;
-        ce6Var.b("MediaRouterDiscoveryCallback.updateRouteToAppIds (add=%b) route %s", Boolean.valueOf(z), ew6Var);
-        synchronized (this.c) {
-            ce6Var.b("appIdToRouteInfo has these appId route keys: ".concat(String.valueOf(this.c.keySet())), new Object[0]);
-            z2 = false;
-            for (Map.Entry entry : this.c.entrySet()) {
-                String str = (String) entry.getKey();
-                kcd kcdVar = (kcd) entry.getValue();
-                if (ew6Var.h(kcdVar.b)) {
-                    ce6 ce6Var2 = f;
-                    if (z) {
-                        ce6Var2.b("Adding/updating route for appId " + str, new Object[0]);
-                        remove = kcdVar.a.add(ew6Var);
-                        if (!remove) {
-                            Log.w(ce6Var2.a, ce6Var2.d("Route " + String.valueOf(ew6Var) + " already exists for appId " + str, new Object[0]));
-                        }
+    public final String toString() {
+        String str;
+        String str2;
+        String valueOf = String.valueOf(this.a);
+        int i = this.b;
+        if (i != 1) {
+            if (i != 2) {
+                if (i != 3) {
+                    if (i != 4) {
+                        str = Integer.toString(i);
                     } else {
-                        ce6Var2.b("Removing route for appId " + str, new Object[0]);
-                        remove = kcdVar.a.remove(ew6Var);
-                        if (!remove) {
-                            Log.w(ce6Var2.a, ce6Var2.d("Route " + String.valueOf(ew6Var) + " already removed from appId " + str, new Object[0]));
-                        }
+                        str = "OUTPUT_CLOSED";
                     }
-                    z2 = remove;
+                } else {
+                    str = "INPUT_CLOSED";
                 }
+            } else {
+                str = "CHANNEL_CLOSED";
             }
+        } else {
+            str = "CHANNEL_OPENED";
         }
-        if (z2) {
-            f.b("Invoking callback.onRouteUpdated.", new Object[0]);
-            synchronized (this.b) {
-                HashMap hashMap = new HashMap();
-                synchronized (this.c) {
-                    for (String str2 : this.c.keySet()) {
-                        kcd kcdVar2 = (kcd) this.c.get(p3f.a(str2));
-                        if (kcdVar2 == null) {
-                            int i = t6e.r;
-                            z3 = h9e.G;
-                        } else {
-                            LinkedHashSet linkedHashSet = kcdVar2.a;
-                            int i2 = t6e.r;
-                            Object[] array = linkedHashSet.toArray();
-                            z3 = t6e.z(array.length, array);
-                        }
-                        if (!z3.isEmpty()) {
-                            hashMap.put(str2, z3);
-                        }
+        int i2 = this.c;
+        if (i2 != 0) {
+            if (i2 != 1) {
+                if (i2 != 2) {
+                    if (i2 != 3) {
+                        str2 = Integer.toString(i2);
+                    } else {
+                        str2 = "CLOSE_REASON_LOCAL_CLOSE";
                     }
+                } else {
+                    str2 = "CLOSE_REASON_REMOTE_CLOSE";
                 }
-                h9d.b(hashMap.entrySet());
-                Iterator it = this.b.iterator();
-                if (it.hasNext()) {
-                    if (it.next() == null) {
-                        throw null;
-                    }
-                    throw new ClassCastException();
-                }
+            } else {
+                str2 = "CLOSE_REASON_DISCONNECTED";
             }
+        } else {
+            str2 = "CLOSE_REASON_NORMAL";
         }
+        StringBuilder l = yjb.l("ChannelEventParcelable[, channel=", valueOf, ", type=", str, ", closeReason=");
+        l.append(str2);
+        l.append(", appErrorCode=");
+        l.append(this.d);
+        l.append("]");
+        return l.toString();
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.k(parcel, 2, this.a, i);
+        jte.q(parcel, 3, 4);
+        parcel.writeInt(this.b);
+        jte.q(parcel, 4, 4);
+        parcel.writeInt(this.c);
+        jte.q(parcel, 5, 4);
+        parcel.writeInt(this.d);
+        jte.s(parcel, r);
     }
 }

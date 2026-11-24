@@ -1,20 +1,16 @@
 package defpackage;
-
-import android.graphics.Rect;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
 public abstract class zue {
-    public static StaticLayout a;
+    public static final long a(java.lang.String r21, long r22, long r24, long r26) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.zue.a(java.lang.String, long, long, long):long");
+    }
 
-    public static kd9 a(int i, int i2, int i3, int i4) {
-        Rect rect = new Rect(i, i2, i3, i4);
-        StaticLayout staticLayout = a;
-        if (staticLayout == null) {
-            StaticLayout staticLayout2 = new StaticLayout(" ", new TextPaint(), 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            a = staticLayout2;
-            staticLayout = staticLayout2;
+    public static int b(int i, int i2, String str) {
+        int i3;
+        if ((i2 & 8) != 0) {
+            i3 = Integer.MAX_VALUE;
+        } else {
+            i3 = 2097150;
         }
-        return new kd9(staticLayout, rect);
+        return (int) a(str, i, 1L, i3);
     }
 }

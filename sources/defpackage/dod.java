@@ -1,11 +1,17 @@
 package defpackage;
+public final class dod implements zn7 {
+    public static final dod a = new Object();
 
-import com.google.android.gms.common.api.Status;
-public abstract class dod {
-    public static ap a(Status status) {
-        if (status.c != null) {
-            return new ap(status);
+    static {
+        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
-        return new ap(status);
+        throw new ClassCastException();
     }
 }

@@ -1,58 +1,36 @@
 package defpackage;
 
-import android.util.SparseIntArray;
-public final class pv0 extends rk5 {
-    public final byte d;
+import org.telegram.tgnet.TLRPC;
+public final class pv0 implements p8c {
+    public final byte a;
+    public final ow0 b;
 
-    public pv0(ylb ylbVar, byte b) {
-        super(ylbVar);
-        this.d = b;
+    public pv0(ow0 ow0Var, byte b) {
+        this.a = b;
+        this.b = ow0Var;
     }
 
     @Override
-    public final void k() {
-        switch (this.d) {
+    public final void a(Object obj) {
+        byte b = this.a;
+        ow0 ow0Var = this.b;
+        switch (b) {
             case 0:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.b;
-                sparseIntArray.append(cmb.g5, -14803426);
-                sparseIntArray.append(cmb.Z6, -16777216);
-                return;
-            case 1:
-                SparseIntArray sparseIntArray2 = (SparseIntArray) this.b;
-                sparseIntArray2.append(cmb.g5, -14803426);
-                sparseIntArray2.append(cmb.Z6, -16777216);
-                return;
-            case 2:
-                ((SparseIntArray) this.b).put(cmb.yf, on2.p(-1, 30));
-                return;
-            case 3:
-                SparseIntArray sparseIntArray3 = (SparseIntArray) this.b;
-                sparseIntArray3.append(cmb.g5, -14737633);
-                sparseIntArray3.append(cmb.Z6, -13421773);
-                return;
-            case 4:
-                ((SparseIntArray) this.b).put(cmb.yf, -1071635414);
-                return;
-            case 5:
-                SparseIntArray sparseIntArray4 = (SparseIntArray) this.b;
-                sparseIntArray4.put(cmb.yf, on2.f(0.2f, -16777216, -1));
-                sparseIntArray4.put(cmb.Ne, on2.f(0.5f, -16777216, -1));
-                return;
-            case 6:
-                ((SparseIntArray) this.b).put(cmb.yf, on2.p(-1, 30));
-                return;
-            case 7:
-                ((SparseIntArray) this.b).put(cmb.yf, on2.p(-1, 30));
-                return;
-            case 8:
-                SparseIntArray sparseIntArray5 = (SparseIntArray) this.b;
-                sparseIntArray5.append(cmb.g5, -14737633);
-                sparseIntArray5.append(cmb.Z6, -13421773);
+                Boolean bool = (Boolean) obj;
+                gw0 gw0Var = ow0Var.E;
+                if (gw0Var != null) {
+                    if (bool.booleanValue()) {
+                        gw0Var.Q = System.currentTimeMillis();
+                        gw0Var.v("main_button_pressed", null);
+                        return;
+                    }
+                    gw0Var.Q = System.currentTimeMillis();
+                    gw0Var.v("secondary_button_pressed", null);
+                    return;
+                }
                 return;
             default:
-                SparseIntArray sparseIntArray6 = (SparseIntArray) this.b;
-                sparseIntArray6.append(cmb.g5, -14803426);
-                sparseIntArray6.append(cmb.Z6, -16777216);
+                gl.c3(new z20(ow0Var, (TLRPC.UserFull) obj, (byte) 20));
                 return;
         }
     }

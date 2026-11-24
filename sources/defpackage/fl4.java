@@ -1,23 +1,32 @@
 package defpackage;
-public final class fl4 implements Runnable {
-    public final byte a;
-    public final bmb b;
 
-    public fl4(bmb bmbVar, byte b) {
+import android.animation.ValueAnimator;
+public final class fl4 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final hl4 b;
+
+    public fl4(hl4 hl4Var, byte b) {
         this.a = b;
-        this.b = bmbVar;
+        this.b = hl4Var;
     }
 
     @Override
-    public final void run() {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        bmb bmbVar = this.b;
+        hl4 hl4Var = this.b;
         switch (b) {
             case 0:
-                nm7.e().k(275, bmbVar, Boolean.TRUE, null, -1);
+                hl4Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hl4Var.invalidate();
+                return;
+            case 1:
+                hl4Var.getClass();
+                hl4Var.w = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                hl4Var.invalidate();
                 return;
             default:
-                bmbVar.r();
+                hl4Var.n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hl4Var.invalidate();
                 return;
         }
     }

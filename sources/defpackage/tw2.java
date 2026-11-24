@@ -1,74 +1,80 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import java.util.ArrayList;
-public final class tw2 implements qq7, u29 {
-    public final hx2 a;
+import android.util.Log;
+import j$.util.DesugarCollections;
+import j$.util.Objects;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+public final class tw2 implements qp4 {
+    public final byte a;
 
-    public tw2(hx2 hx2Var) {
-        this.a = hx2Var;
+    public tw2(td5 td5Var) {
+        this.a = (byte) 2;
     }
 
     @Override
-    public final wzc C0(View view, wzc wzcVar) {
-        this.a.q = gm.H0(wzcVar, false);
-        return wzcVar;
-    }
-
-    @Override
-    public final void g(View view, k39 k39Var, boolean z, boolean z2) {
-        if (k39Var != null) {
-            hx2 hx2Var = this.a;
-            x53 reactionsWindow = hx2Var.P.getReactionsWindow();
-            boolean contains = hx2Var.o.contains(k39Var.f);
-            ArrayList arrayList = hx2Var.o;
-            if (contains) {
-                if (arrayList.size() > 1) {
-                    hx2Var.o.remove(k39Var.f);
-                } else {
-                    return;
+    public final Object invoke(Object obj) {
+        switch (this.a) {
+            case 0:
+                qw2 qw2Var = (qw2) obj;
+                if (!(qw2Var instanceof vw2)) {
+                    return null;
                 }
-            } else {
-                arrayList.add(k39Var.f);
-                if (hx2Var.o.size() > 7) {
-                    hx2Var.o.remove(0);
+                return (vw2) qw2Var;
+            case 1:
+                fx2 fx2Var = (fx2) obj;
+                fx2Var.getClass();
+                Log.w("FirebaseSessions", "CorruptionException in session configs DataStore", fx2Var);
+                return cff.e;
+            default:
+                ih7 ih7Var = (ih7) obj;
+                Map a = ih7Var.a();
+                LinkedHashMap linkedHashMap = ih7Var.a;
+                Iterator it = a.entrySet().iterator();
+                long j = 0;
+                while (true) {
+                    if (it.hasNext()) {
+                        Map.Entry entry = (Map.Entry) it.next();
+                        if (entry.getValue() instanceof Set) {
+                            lg8 lg8Var = (lg8) entry.getKey();
+                            String c = td5.c(System.currentTimeMillis());
+                            if (((Set) entry.getValue()).contains(c)) {
+                                Object[] objArr = {c};
+                                HashSet hashSet = new HashSet(1);
+                                Object obj2 = objArr[0];
+                                Objects.requireNonNull(obj2);
+                                if (hashSet.add(obj2)) {
+                                    ih7Var.c(lg8Var, DesugarCollections.unmodifiableSet(hashSet));
+                                    j++;
+                                } else {
+                                    w26.i(obj2, "duplicate element: ");
+                                }
+                            } else {
+                                lg8Var.getClass();
+                                ih7Var.b();
+                                linkedHashMap.remove(lg8Var);
+                            }
+                        }
+                    } else {
+                        int i = (j > 0L ? 1 : (j == 0L ? 0 : -1));
+                        lg8 lg8Var2 = td5.c;
+                        if (i == 0) {
+                            lg8Var2.getClass();
+                            ih7Var.b();
+                            linkedHashMap.remove(lg8Var2);
+                        } else {
+                            ih7Var.c(lg8Var2, Long.valueOf(j));
+                        }
+                    }
                 }
-            }
-            hx2Var.P.setSelectedEmojis(hx2Var.o);
-            if (reactionsWindow != null) {
-                t53 t53Var = reactionsWindow.m;
-                hx2Var.P.m(null, null, false);
-                if (t53Var != null) {
-                    t53Var.setSelectedReactions(hx2Var.o);
-                    t53Var.setRecentReactions(hx2Var.P.W);
-                }
-                reactionsWindow.d();
-            }
+                return null;
         }
     }
 
-    @Override
-    public final boolean h() {
-        return true;
-    }
-
-    @Override
-    public final boolean l() {
-        return false;
-    }
-
-    @Override
-    public final boolean s() {
-        return false;
-    }
-
-    @Override
-    public final void o() {
-    }
-
-    @Override
-    public final void m(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
+    public tw2(byte b) {
+        this.a = b;
     }
 }

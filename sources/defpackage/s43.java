@@ -1,96 +1,212 @@
 package defpackage;
 
-import android.graphics.Matrix;
-public final class s43 {
-    public float a;
-    public float b;
-    public float f;
-    public float h;
-    public boolean j;
-    public final u43 l;
-    public float c = 0.0f;
-    public float d = 0.0f;
-    public float e = 1.0f;
-    public final float g = 0.0f;
-    public float i = 0.0f;
-    public final Matrix k = new Matrix();
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.ViewGroup;
+import android.widget.EditText;
+public final class s43 extends ViewGroup {
+    public final q43 a;
+    public EditText b;
+    public final View[] c;
+    public View d;
+    public boolean e;
+    public boolean f;
+    public final p43 h;
+    public boolean n;
+    public final p43 r;
+    public int s;
+    public int w;
 
-    public s43(u43 u43Var, int i, int i2) {
-        this.l = u43Var;
-        this.a = i;
-        this.b = i2;
+    public s43(Context context) {
+        super(context);
+        String str;
+        int i;
+        this.c = new View[12];
+        int i2 = 0;
+        this.h = new p43(this, (byte) 0);
+        this.r = new p43(this, (byte) 1);
+        for (int i3 = 0; i3 < 11; i3++) {
+            if (i3 != 9) {
+                switch (i3) {
+                    case 1:
+                        str = "ABC";
+                        break;
+                    case 2:
+                        str = "DEF";
+                        break;
+                    case 3:
+                        str = "GHI";
+                        break;
+                    case 4:
+                        str = "JKL";
+                        break;
+                    case 5:
+                        str = "MNO";
+                        break;
+                    case 6:
+                        str = "PQRS";
+                        break;
+                    case 7:
+                        str = "TUV";
+                        break;
+                    case 8:
+                        str = "WXYZ";
+                        break;
+                    case 9:
+                    default:
+                        str = "";
+                        break;
+                    case 10:
+                        str = "+";
+                        break;
+                }
+                if (i3 != 10) {
+                    i = i3 + 1;
+                } else {
+                    i = 0;
+                }
+                String valueOf = String.valueOf(i);
+                this.c[i3] = new r43(context, valueOf, str);
+                this.c[i3].setOnClickListener(new kb1(this, valueOf, (byte) 26));
+                addView(this.c[i3]);
+            }
+        }
+        q43 q43Var = new q43(this, context, new gi3(context, new p12(this, ViewConfiguration.get(context).getScaledTouchSlop(), (byte) 1)));
+        this.a = q43Var;
+        q43Var.setImageResource(2131232098);
+        zkb.s(q43Var, bkb.F6, null, PorterDuff.Mode.SRC_ATOP);
+        int L = gl.L(11.0f);
+        q43Var.setPadding(L, L, L, L);
+        q43Var.setOnClickListener(new x00((byte) 1));
+        this.c[11] = q43Var;
+        addView(q43Var);
+        while (true) {
+            View[] viewArr = this.c;
+            if (i2 < viewArr.length) {
+                View view = viewArr[i2];
+                if (view != null) {
+                    ote.b(view, 0.02f, 1.2f);
+                    a(i2, view);
+                }
+                i2++;
+            } else {
+                return;
+            }
+        }
     }
 
-    public final float a() {
-        if ((this.h + this.g) % 180.0f != 0.0f) {
-            return this.a;
+    public static void a(int i, View view) {
+        boolean z;
+        boolean z2;
+        boolean z3;
+        float f;
+        float f2;
+        float f3;
+        boolean z4 = true;
+        if (i < 3) {
+            z = true;
+        } else {
+            z = false;
         }
-        return this.b;
+        int i2 = i % 3;
+        if (i2 == 0) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        if (i2 == 2) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        if (i <= 8) {
+            z4 = false;
+        }
+        int i3 = bkb.h6;
+        int w0 = bkb.w0(null, i3, false);
+        int o = bm2.o(bkb.w0(null, i3, false), 30);
+        float f4 = 12.0f;
+        if (z2 && z) {
+            f = 24.0f;
+        } else {
+            f = 12.0f;
+        }
+        int L = gl.L(f);
+        if (z3 && z) {
+            f2 = 24.0f;
+        } else {
+            f2 = 12.0f;
+        }
+        int L2 = gl.L(f2);
+        if (z3 && z4) {
+            f3 = 24.0f;
+        } else {
+            f3 = 12.0f;
+        }
+        int L3 = gl.L(f3);
+        if (z2 && z4) {
+            f4 = 24.0f;
+        }
+        ff0 i0 = bkb.i0(L, L2, L3, gl.L(f4), w0, o, o);
+        vkb M = zkb.M(i3);
+        vkb g = zkb.g(i3, 30);
+        view.setBackground(i0);
+        zkb.j(view, i0, M, g, null);
     }
 
-    public final float b() {
-        if ((this.h + this.g) % 180.0f != 0.0f) {
-            return this.b;
-        }
-        return this.a;
-    }
-
-    public final boolean c() {
-        if (Math.abs(this.c) <= 1.0E-5f && Math.abs(this.d) <= 1.0E-5f && Math.abs(this.e - this.f) <= 1.0E-5f && Math.abs(this.i) <= 1.0E-5f && Math.abs(this.h) <= 1.0E-5f) {
-            return false;
-        }
+    @Override
+    public final boolean canScrollHorizontally(int i) {
         return true;
     }
 
-    public final void d(float f) {
-        Matrix matrix = this.k;
-        matrix.reset();
-        this.c = 0.0f;
-        this.d = 0.0f;
-        this.i = 0.0f;
-        this.h = f;
-        h();
-        float f2 = this.f;
-        this.e = f2;
-        matrix.postScale(f2, f2);
-    }
-
-    public final void e(float f) {
-        this.i += f;
-        this.k.postRotate(f, 0.0f, 0.0f);
-    }
-
-    public final void f(float f, float f2, float f3) {
-        this.e *= f;
-        this.k.postScale(f, f, f2, f3);
-    }
-
-    public final void g(float f, float f2) {
-        this.c += f;
-        this.d += f2;
-        this.k.postTranslate(f, f2);
-    }
-
-    public final void h() {
-        float f;
-        float f2;
-        float f3 = this.h;
-        float f4 = this.g;
-        if ((f3 + f4) % 180.0f != 0.0f) {
-            f = this.b;
-        } else {
-            f = this.a;
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int D = ug8.D(32.0f, getWidth(), 3);
+        int D2 = ug8.D(42.0f, getHeight(), 4);
+        int i5 = 0;
+        while (true) {
+            View[] viewArr = this.c;
+            if (i5 < viewArr.length) {
+                int L = gl.L(6.0f) + D;
+                int L2 = gl.L(10.0f) + (L * (i5 % 3));
+                int L3 = gl.L(6.0f) + D2;
+                int L4 = gl.L(10.0f) + (L3 * (i5 / 3));
+                View view = viewArr[i5];
+                if (view != null) {
+                    view.layout(L2, L4, L2 + D, L4 + D2);
+                }
+                i5++;
+            } else {
+                return;
+            }
         }
-        if ((f3 + f4) % 180.0f != 0.0f) {
-            f2 = this.a;
-        } else {
-            f2 = this.b;
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        View[] viewArr;
+        setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
+        int D = ug8.D(32.0f, getWidth(), 3);
+        int D2 = ug8.D(42.0f, getHeight(), 4);
+        for (View view : this.c) {
+            if (view != null) {
+                view.measure(View.MeasureSpec.makeMeasureSpec(D, 1073741824), View.MeasureSpec.makeMeasureSpec(D2, 1073741824));
+            }
         }
-        u43 u43Var = this.l;
-        if (u43Var.y) {
-            this.f = u43Var.a.getCropWidth() / f;
-        } else {
-            this.f = Math.max(u43Var.a.getCropWidth() / f, u43Var.a.getCropHeight() / f2);
-        }
+    }
+
+    public void setDispatchBackWhenEmpty(boolean z) {
+        this.e = z;
+    }
+
+    public void setEditText(EditText editText) {
+        this.b = editText;
+        this.e = false;
+    }
+
+    public void setViewToFindFocus(View view) {
+        this.d = view;
     }
 }

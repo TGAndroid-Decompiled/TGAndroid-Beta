@@ -1,17 +1,38 @@
 package defpackage;
-public final class whd implements cq7 {
-    public static final whd a = new Object();
+public abstract class whd {
+    public static final int[] a;
+    public static final int[] b;
 
     static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)), 5)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+        int[] iArr = new int[gld.values().length];
+        b = iArr;
+        try {
+            iArr[gld.BYTE_STRING.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
         }
-        throw new ClassCastException();
+        try {
+            b[gld.MESSAGE.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            int[] iArr2 = b;
+            gld gldVar = gld.VOID;
+            iArr2[6] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        int[] iArr3 = new int[ug8.G(4).length];
+        a = iArr3;
+        try {
+            iArr3[3] = 1;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            a[1] = 2;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            a[0] = 3;
+        } catch (NoSuchFieldError unused6) {
+        }
     }
 }

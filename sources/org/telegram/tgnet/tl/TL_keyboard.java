@@ -136,12 +136,12 @@ public class TL_keyboard {
 
         @Override
         public final byte[] getData() {
-            return hg9.a(this);
+            return de9.a(this);
         }
 
         @Override
         public final String getUrl() {
-            return hg9.b(this);
+            return de9.b(this);
         }
     }
 
@@ -173,7 +173,7 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.buttons = Vector.deserialize(inputSerializedData, new sfb((byte) 2), z);
+            this.buttons = Vector.deserialize(inputSerializedData, new qdb((byte) 26), z);
         }
 
         @Override
@@ -313,12 +313,12 @@ public class TL_keyboard {
 
         @Override
         public final byte[] getData() {
-            return hg9.a(this);
+            return de9.a(this);
         }
 
         @Override
         public final String getUrl() {
-            return hg9.b(this);
+            return de9.b(this);
         }
     }
 
@@ -502,7 +502,7 @@ public class TL_keyboard {
             this.same_peer = TLObject.hasFlag(readInt32, 1);
             this.query = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.peer_types = Vector.deserialize(inputSerializedData, new ofb((byte) 27), z);
+                this.peer_types = Vector.deserialize(inputSerializedData, new ndb((byte) 26), z);
             }
         }
 
@@ -1712,7 +1712,7 @@ public class TL_keyboard {
             this.text = inputSerializedData.readString(z);
             this.mType.query = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.mType.peer_types = Vector.deserialize(inputSerializedData, new ofb((byte) 27), z);
+                this.mType.peer_types = Vector.deserialize(inputSerializedData, new ndb((byte) 26), z);
             }
             TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline = this.mType;
             tL_inlineButtonTypeSwitchInline.flags = TLObject.setFlag(tL_inlineButtonTypeSwitchInline.flags, 1, tL_inlineButtonTypeSwitchInline.same_peer);
@@ -1761,7 +1761,7 @@ public class TL_keyboard {
             this.text = inputSerializedData.readString(z);
             this.mType.query = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.mType.peer_types = Vector.deserialize(inputSerializedData, new ofb((byte) 27), z);
+                this.mType.peer_types = Vector.deserialize(inputSerializedData, new ndb((byte) 26), z);
             }
             TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline = this.mType;
             tL_inlineButtonTypeSwitchInline.flags = TLObject.setFlag(tL_inlineButtonTypeSwitchInline.flags, 1, tL_inlineButtonTypeSwitchInline.same_peer);
@@ -2177,7 +2177,7 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.buttons = Vector.deserialize(inputSerializedData, new sfb((byte) 3), z);
+            this.buttons = Vector.deserialize(inputSerializedData, new qdb((byte) 27), z);
         }
 
         @Override
@@ -2292,7 +2292,7 @@ public class TL_keyboard {
 
         @Override
         public final byte[] getData() {
-            return hg9.a(this);
+            return de9.a(this);
         }
 
         @Override
@@ -2306,7 +2306,7 @@ public class TL_keyboard {
 
         @Override
         public final String getUrl() {
-            return hg9.b(this);
+            return de9.b(this);
         }
 
         @Override

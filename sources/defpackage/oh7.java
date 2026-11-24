@@ -1,45 +1,61 @@
 package defpackage;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-public final class oh7 extends eu5 {
-    public final long e;
-    public final ArrayList f;
-    public final ArrayList g;
+public final class oh7 {
+    public final short a;
+    public boolean b;
+    public boolean c;
+    public byte[] d;
+    public int e;
 
-    public oh7(int i, long j) {
-        super(i, (byte) 1);
-        this.e = j;
-        this.f = new ArrayList();
-        this.g = new ArrayList();
+    public oh7(int i) {
+        this.a = i;
+        byte[] bArr = new byte[131];
+        this.d = bArr;
+        bArr[2] = 1;
     }
 
-    @Override
-    public final String toString() {
-        return eu5.e(this.b) + " leaves: " + Arrays.toString(this.f.toArray()) + " containers: " + Arrays.toString(this.g.toArray());
-    }
-
-    public final oh7 u(int i) {
-        ArrayList arrayList = this.g;
-        int size = arrayList.size();
-        for (int i2 = 0; i2 < size; i2++) {
-            oh7 oh7Var = (oh7) arrayList.get(i2);
-            if (oh7Var.b == i) {
-                return oh7Var;
-            }
+    public final void a(int i, int i2, byte[] bArr) {
+        if (!this.b) {
+            return;
         }
-        return null;
+        int i3 = i2 - i;
+        byte[] bArr2 = this.d;
+        int length = bArr2.length;
+        int i4 = this.e + i3;
+        if (length < i4) {
+            bArr2 = Arrays.copyOf(bArr2, i4 << 1);
+            this.d = bArr2;
+        }
+        System.arraycopy(bArr, i, bArr2, this.e, i3);
+        this.e += i3;
     }
 
-    public final ph7 v(int i) {
-        ArrayList arrayList = this.f;
-        int size = arrayList.size();
-        for (int i2 = 0; i2 < size; i2++) {
-            ph7 ph7Var = (ph7) arrayList.get(i2);
-            if (ph7Var.b == i) {
-                return ph7Var;
-            }
+    public final boolean b(int i) {
+        if (!this.b) {
+            return false;
         }
-        return null;
+        this.e -= i;
+        this.b = false;
+        this.c = true;
+        return true;
+    }
+
+    public final void c() {
+        this.b = false;
+        this.c = false;
+    }
+
+    public final void d(int i) {
+        boolean z = true;
+        gre.p(!this.b);
+        if (i != this.a) {
+            z = false;
+        }
+        this.b = z;
+        if (z) {
+            this.e = 3;
+            this.c = false;
+        }
     }
 }

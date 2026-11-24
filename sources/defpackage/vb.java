@@ -6,45 +6,45 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.ui.ActionBar.d;
-public final class vb extends l7c {
+public final class vb extends l5c {
     public final byte Q;
     public final Object R;
 
-    public vb(KeyEvent.Callback callback, r59 r59Var, Context context, int i, jac jacVar, ylb ylbVar, byte b) {
-        super(r59Var, context, i, 0, false, jacVar, ylbVar);
+    public vb(KeyEvent.Callback callback, o39 o39Var, Context context, int i, i8c i8cVar, wjb wjbVar, byte b) {
+        super(o39Var, context, i, 0, false, i8cVar, wjbVar);
         this.Q = b;
         this.R = callback;
     }
 
     @Override
-    public final void t(u69 u69Var, int i) {
-        d96 d96Var;
-        i96 i96Var;
+    public final void t(s49 s49Var, int i) {
+        d76 d76Var;
+        i76 i76Var;
         switch (this.Q) {
             case 2:
-                super.t(u69Var, i);
-                n38 n38Var = (n38) this.R;
-                if (n38Var.E) {
-                    View view = u69Var.a;
-                    if ((view instanceof d96) && (i96Var = (d96Var = (d96) view).L) != null && i96Var.a == n38Var.y) {
-                        d96Var.a();
-                        n38Var.E = false;
+                super.t(s49Var, i);
+                l18 l18Var = (l18) this.R;
+                if (l18Var.E) {
+                    View view = s49Var.a;
+                    if ((view instanceof d76) && (i76Var = (d76Var = (d76) view).L) != null && i76Var.a == l18Var.y) {
+                        d76Var.a();
+                        l18Var.E = false;
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                super.t(u69Var, i);
+                super.t(s49Var, i);
                 return;
         }
     }
 
     @Override
-    public final u69 x(ViewGroup viewGroup, int i) {
-        ylb ylbVar;
-        ylb ylbVar2;
-        ylb ylbVar3;
+    public final s49 x(ViewGroup viewGroup, int i) {
+        wjb wjbVar;
+        wjb wjbVar2;
+        wjb wjbVar3;
         byte b = this.Q;
         Object obj = this.R;
         switch (b) {
@@ -52,85 +52,85 @@ public final class vb extends l7c {
                 bc bcVar = (bc) obj;
                 if (i == 42) {
                     Activity parentActivity = bcVar.getParentActivity();
-                    int i2 = cmb.K6;
-                    ylbVar = ((d) bcVar).resourceProvider;
-                    jf5 jf5Var = new jf5(parentActivity, i2, 21, 0, false, ylbVar);
-                    jf5Var.setHeight(25);
-                    return new u69(jf5Var);
+                    int i2 = bkb.K6;
+                    wjbVar = ((d) bcVar).resourceProvider;
+                    ld5 ld5Var = new ld5(parentActivity, i2, 21, 0, false, wjbVar);
+                    ld5Var.setHeight(25);
+                    return new s49(ld5Var);
                 }
                 return super.x(viewGroup, i);
             case 1:
-                mh1 mh1Var = (mh1) obj;
+                eg1 eg1Var = (eg1) obj;
                 if (i == 42) {
-                    jf5 jf5Var2 = new jf5(mh1Var.getParentActivity(), cmb.K6, 21, 0, false, mh1.C0(mh1Var));
-                    jf5Var2.setHeight(25);
-                    return new u69(jf5Var2);
+                    ld5 ld5Var2 = new ld5(eg1Var.getParentActivity(), bkb.K6, 21, 0, false, eg1.B0(eg1Var));
+                    ld5Var2.setHeight(25);
+                    return new s49(ld5Var2);
                 }
                 return super.x(viewGroup, i);
             case 2:
             default:
                 return super.x(viewGroup, i);
             case 3:
-                yb9 yb9Var = (yb9) obj;
+                y99 y99Var = (y99) obj;
                 if (i == 0) {
-                    return new u69(new jf5(yb9Var.getContext(), cmb.K6, 13, 12, 4, false, false, yb9Var.J0));
+                    return new s49(new ld5(y99Var.getContext(), bkb.K6, 13, 12, 4, false, false, y99Var.J0));
                 }
                 if (i == 42) {
-                    return new u69(new jf5(yb9Var.getContext(), cmb.K6, 13, 12, 4, false, true, yb9Var.J0));
+                    return new s49(new ld5(y99Var.getContext(), bkb.K6, 13, 12, 4, false, true, y99Var.J0));
                 }
                 return super.x(viewGroup, i);
             case 4:
-                nxa nxaVar = (nxa) obj;
+                jva jvaVar = (jva) obj;
                 if (i == 42) {
-                    Activity parentActivity2 = nxaVar.getParentActivity();
-                    int i3 = cmb.K6;
-                    ylbVar2 = ((d) nxaVar).resourceProvider;
-                    jf5 jf5Var3 = new jf5(parentActivity2, i3, 21, 0, false, ylbVar2);
-                    jf5Var3.setHeight(25);
-                    return new u69(jf5Var3);
+                    Activity parentActivity2 = jvaVar.getParentActivity();
+                    int i3 = bkb.K6;
+                    wjbVar2 = ((d) jvaVar).resourceProvider;
+                    ld5 ld5Var3 = new ld5(parentActivity2, i3, 21, 0, false, wjbVar2);
+                    ld5Var3.setHeight(25);
+                    return new s49(ld5Var3);
                 }
                 return super.x(viewGroup, i);
             case 5:
-                yfb yfbVar = (yfb) obj;
+                ydb ydbVar = (ydb) obj;
                 if (i == 42) {
-                    Activity parentActivity3 = yfbVar.getParentActivity();
-                    int i4 = cmb.K6;
-                    ylbVar3 = ((d) yfbVar).resourceProvider;
-                    jf5 jf5Var4 = new jf5(parentActivity3, i4, 21, 0, false, ylbVar3);
-                    jf5Var4.setHeight(25);
-                    return new u69(jf5Var4);
+                    Activity parentActivity3 = ydbVar.getParentActivity();
+                    int i4 = bkb.K6;
+                    wjbVar3 = ((d) ydbVar).resourceProvider;
+                    ld5 ld5Var4 = new ld5(parentActivity3, i4, 21, 0, false, wjbVar3);
+                    ld5Var4.setHeight(25);
+                    return new s49(ld5Var4);
                 }
                 return super.x(viewGroup, i);
         }
     }
 
     @Override
-    public final void y(u69 u69Var) {
-        d96 d96Var;
-        i96 i96Var;
+    public final void y(s49 s49Var) {
+        d76 d76Var;
+        i76 i76Var;
         switch (this.Q) {
             case 2:
-                super.y(u69Var);
-                n38 n38Var = (n38) this.R;
-                if (n38Var.E) {
-                    View view = u69Var.a;
-                    if ((view instanceof d96) && (i96Var = (d96Var = (d96) view).L) != null && i96Var.a == n38Var.y) {
-                        d96Var.a();
-                        n38Var.E = false;
+                super.y(s49Var);
+                l18 l18Var = (l18) this.R;
+                if (l18Var.E) {
+                    View view = s49Var.a;
+                    if ((view instanceof d76) && (i76Var = (d76Var = (d76) view).L) != null && i76Var.a == l18Var.y) {
+                        d76Var.a();
+                        l18Var.E = false;
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                super.y(u69Var);
+                super.y(s49Var);
                 return;
         }
     }
 
-    public vb(h15 h15Var, r59 r59Var, Activity activity, int i, int i2, jac jacVar, ylb ylbVar, byte b) {
-        super(r59Var, activity, i, i2, true, jacVar, ylbVar);
+    public vb(iz4 iz4Var, o39 o39Var, Activity activity, int i, int i2, i8c i8cVar, wjb wjbVar, byte b) {
+        super(o39Var, activity, i, i2, true, i8cVar, wjbVar);
         this.Q = b;
-        this.R = h15Var;
+        this.R = iz4Var;
     }
 }

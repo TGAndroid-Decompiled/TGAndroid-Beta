@@ -1,11 +1,50 @@
 package defpackage;
-public final class xg5 extends ah5 {
-    public final boolean x;
-    public final boolean y;
 
-    public xg5(String str, zg5 zg5Var, long j, int i, long j2, as3 as3Var, String str2, String str3, long j3, long j4, boolean z, boolean z2, boolean z3) {
-        super(str, zg5Var, j, i, j2, as3Var, str2, str3, j3, j4, z);
-        this.x = z2;
-        this.y = z3;
+import android.os.IBinder;
+import android.os.Parcel;
+public final class xg5 implements zg5 {
+    public IBinder a;
+
+    public final boolean a(x43 x43Var) {
+        Parcel obtain = Parcel.obtain();
+        Parcel obtain2 = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("android.support.customtabs.ICustomTabsService");
+            obtain.writeStrongBinder(x43Var);
+            boolean z = false;
+            this.a.transact(3, obtain, obtain2, 0);
+            obtain2.readException();
+            if (obtain2.readInt() != 0) {
+                z = true;
+            }
+            return z;
+        } finally {
+            obtain2.recycle();
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final IBinder asBinder() {
+        return this.a;
+    }
+
+    public final boolean b() {
+        Parcel obtain = Parcel.obtain();
+        Parcel obtain2 = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("android.support.customtabs.ICustomTabsService");
+            obtain.writeLong(0L);
+            boolean z = false;
+            this.a.transact(2, obtain, obtain2, 0);
+            obtain2.readException();
+            if (obtain2.readInt() != 0) {
+                z = true;
+            }
+            return z;
+        } finally {
+            obtain2.recycle();
+            obtain.recycle();
+        }
     }
 }

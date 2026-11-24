@@ -23,24 +23,24 @@ public final class xa extends FrameLayout {
         this.a = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        imageView.setImageResource(2131231782);
-        addView(imageView, qoe.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
+        imageView.setImageResource(2131231781);
+        addView(imageView, nme.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
         TextView textView = new TextView(context);
         this.b = textView;
         textView.setTextSize(1, 16.0f);
-        addView(textView, qoe.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
+        addView(textView, nme.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
         ImageView imageView2 = new ImageView(context);
         this.c = imageView2;
         imageView2.setScaleType(scaleType);
-        imageView2.setImageResource(2131231773);
-        addView(imageView2, qoe.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
+        imageView2.setImageResource(2131231772);
+        addView(imageView2, nme.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.e) {
-            canvas.drawRect(gm.L(64.0f), getHeight() - Math.max(gm.L(0.66f), 1), getWidth(), getHeight(), this.d);
+            canvas.drawRect(gl.L(64.0f), getHeight() - Math.max(gl.L(0.66f), 1), getWidth(), getHeight(), this.d);
         }
     }
 
@@ -51,7 +51,7 @@ public final class xa extends FrameLayout {
 
     public void setAsShowMore(eb ebVar) {
         ImageView imageView = this.a;
-        imageView.setImageResource(2131230872);
+        imageView.setImageResource(2131230871);
         imageView.setColorFilter(new PorterDuffColorFilter(ebVar.I, PorterDuff.Mode.SRC_IN));
     }
 }

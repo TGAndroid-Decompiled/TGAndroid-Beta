@@ -1,170 +1,121 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Matrix;
-import android.graphics.drawable.Drawable;
-import android.opengl.GLUtils;
-import android.view.animation.OvershootInterpolator;
-import j$.util.DesugarCollections;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import javax.microedition.khronos.egl.EGL10;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.webrtc.TextureBufferImpl;
-public abstract class b10 {
-    public static float A(float f, float f2, float f3, float f4) {
-        return ((f / f2) * f3) + f4;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+public final class b10 implements Runnable {
+    public final byte a;
+    public final i20 b;
+    public final cs5 c;
+    public final k27 d;
+
+    public b10(i20 i20Var, cs5 cs5Var, k27 k27Var, byte b) {
+        this.a = b;
+        this.b = i20Var;
+        this.c = cs5Var;
+        this.d = k27Var;
     }
 
-    public static String B(int i) {
-        switch (i) {
+    @Override
+    public final void run() {
+        ArrayList t;
+        TLRPC.TL_document tL_document;
+        String a0;
+        byte b = this.a;
+        cs5 cs5Var = this.c;
+        k27 k27Var = this.d;
+        i20 i20Var = this.b;
+        switch (b) {
+            case 0:
+                cs5Var.u();
+                i20Var.G0(k27Var);
+                return;
             case 1:
-                return "IDLE";
+                cs5Var.u();
+                i20Var.P0(k27Var);
+                return;
             case 2:
-                return "STARTING";
+                i20Var.L0(k27Var, false, new b10(i20Var, k27Var, cs5Var, (byte) 5), false);
+                return;
             case 3:
-                return "RECORDING";
+                cs5Var.u();
+                i20Var.G0(k27Var);
+                return;
             case 4:
-                return "PAUSING";
+                cs5Var.u();
+                i20Var.P0(k27Var);
+                return;
             case 5:
-                return "PREVIEWING";
+                ia7 ia7Var = i20Var.p2;
+                TLRPC.Document a = ia7Var.a();
+                ia7Var.c.remove(k27Var);
+                if (ia7Var.a() != a) {
+                    ia7Var.e();
+                }
+                i20Var.q2.remove(k27Var);
+                i20Var.t1.f();
+                cs5Var.u();
+                i20Var.O0(false);
+                ir2.v(null, 2131753908, new u21((FrameLayout) i20Var.b, i20Var.J0), 2131624052, 36);
+                return;
             case 6:
-                return "RESUMING";
+                i20Var.L0(k27Var, true, new d10(i20Var, cs5Var, (byte) 4), false);
+                return;
             case 7:
-                return "FINISHING";
-            case 8:
-                return "COMPLETED";
-            case 9:
-                return "ERROR";
-            case 10:
-                return "RELEASED";
+                long e = y6c.h(i20Var.a).e();
+                int i = y6c.t0;
+                int i2 = i20Var.a;
+                if (i != i2) {
+                    i20Var.z2.N0(i2);
+                }
+                if (k27Var.e1() < 0) {
+                    if (k27Var.F0() instanceof TLRPC.TL_document) {
+                        tL_document = (TLRPC.TL_document) k27Var.F0();
+                        t = null;
+                    }
+                    cs5Var.u();
+                    ir2.v(null, 2131753906, new u21((FrameLayout) i20Var.b, i20Var.J0), 2131624185, 36);
+                    return;
+                }
+                t = tb4.t(k27Var);
+                tL_document = null;
+                int i3 = i20Var.a;
+                if (t != null) {
+                    z3a.B(i3).p0(t, e, false, false, true, 0, 0, null, -1, 0L, 0L, null);
+                } else {
+                    z3a B = z3a.B(i3);
+                    x3a e2 = x3a.e(tL_document, null, k27Var.k.attachPath, e, null, null, null, null, null, true, 0, 0, 0, i20Var.p2, false);
+                    e = e;
+                    B.q0(e2);
+                }
+                d Q = LaunchActivity.Q();
+                if (Q != null) {
+                    u21 b0 = u21.b0(Q);
+                    if (e == y6c.h(i20Var.a).e()) {
+                        a0 = k96.M0(2131750482, null);
+                    } else if (e > 0) {
+                        a0 = k96.a0(null, null, 2131750481, cf3.s(e));
+                    } else {
+                        a0 = k96.a0(null, null, 2131750486, cf3.s(e));
+                    }
+                    b0.Q(2131624029, 36, a0).j();
+                }
+                cs5Var.u();
+                ir2.v(null, 2131753906, new u21((FrameLayout) i20Var.b, i20Var.J0), 2131624185, 36);
+                return;
             default:
-                return "null";
+                i20Var.K0(k27Var);
+                cs5Var.u();
+                return;
         }
     }
 
-    public static TextureBufferImpl a(TextureBufferImpl textureBufferImpl, boolean z, int i) {
-        Matrix matrix = new Matrix();
-        matrix.preTranslate(0.5f, 0.5f);
-        if (z) {
-            matrix.preScale(-1.0f, 1.0f);
-        }
-        matrix.preRotate(i);
-        matrix.preTranslate(-0.5f, -0.5f);
-        return textureBufferImpl.applyTransformMatrix(matrix, textureBufferImpl.getWidth(), textureBufferImpl.getHeight());
-    }
-
-    public static float b(float f, float f2, float f3, float f4) {
-        return (f3 - (f * f2)) / f4;
-    }
-
-    public static int c(float f, int i, int i2) {
-        return Math.max(i2, i - gm.L(f));
-    }
-
-    public static Drawable d(Context context, int i) {
-        return context.getResources().getDrawable(i).mutate();
-    }
-
-    public static CharSequence e(lka lkaVar, String str, boolean z, int[] iArr, int i) {
-        return gw3.m(str, lkaVar.getPaint().getFontMetricsInt(), z, iArr, i);
-    }
-
-    public static Object f(int i, ArrayList arrayList) {
-        return arrayList.get(arrayList.size() - i);
-    }
-
-    public static String g(int i, int i2, String str, String str2) {
-        return str + i + str2 + i2;
-    }
-
-    public static String h(String str, String str2) {
-        return str + str2;
-    }
-
-    public static String i(String str, String str2, String str3, String str4, String str5) {
-        return str + str2 + str3 + str4 + str5;
-    }
-
-    public static String j(StringBuilder sb, String str, String str2) {
-        sb.append(str);
-        sb.append(str2);
-        return sb.toString();
-    }
-
-    public static StringBuilder k(String str, String str2) {
-        StringBuilder sb = new StringBuilder(str);
-        sb.append(str2);
-        return sb;
-    }
-
-    public static HashMap l(Class cls, wy wyVar) {
-        HashMap hashMap = new HashMap();
-        hashMap.put(cls, wyVar);
-        return hashMap;
-    }
-
-    public static Map m(HashMap hashMap) {
-        return DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-    }
-
-    public static void n(float f, ValueAnimator valueAnimator) {
-        valueAnimator.setInterpolator(new OvershootInterpolator(f));
-    }
-
-    public static void o(int i, String str, String str2) {
-        ncd.f(str2, str + i);
-    }
-
-    public static void p(int i, StringBuilder sb) {
-        sb.append(i);
-        fc4.b(sb.toString());
-    }
-
-    public static void q(int i, HashMap hashMap, String str, int i2, String str2) {
-        hashMap.put(Integer.valueOf(i), str);
-        hashMap.put(Integer.valueOf(i2), str2);
-    }
-
-    public static void r(String str, int i, ArrayList arrayList, int i2, ArrayList arrayList2) {
-        arrayList.add(jb6.M0(i, str));
-        arrayList2.add(Integer.valueOf(i2));
-    }
-
-    public static void s(String str, int i, ArrayList arrayList, ArrayList arrayList2, Integer num) {
-        arrayList.add(jb6.M0(i, str));
-        arrayList2.add(num);
-    }
-
-    public static void t(String str, int i, AlertDialog$Builder alertDialog$Builder, ee eeVar) {
-        alertDialog$Builder.j(jb6.M0(i, str), eeVar);
-        alertDialog$Builder.o();
-    }
-
-    public static void u(String str, c41 c41Var, int i, int i2) {
-        c41Var.Q(i, i2, gm.S2(str)).j();
-    }
-
-    public static void v(EGL10 egl10, StringBuilder sb) {
-        sb.append(GLUtils.getEGLErrorString(egl10.eglGetError()));
-        fc4.d(sb.toString());
-    }
-
-    public static float w(float f, float f2, float f3, float f4) {
-        return (f * f2 * f3) + f4;
-    }
-
-    public static int x(float f, int i, int i2) {
-        return Math.min(i2, i - gm.L(f));
-    }
-
-    public static float y(float f, float f2, float f3, float f4) {
-        return ((f * f2) + f3) / f4;
-    }
-
-    public static int z(float f, int i, int i2) {
-        return (i - gm.L(f)) + i2;
+    public b10(i20 i20Var, k27 k27Var, cs5 cs5Var, byte b) {
+        this.a = b;
+        this.b = i20Var;
+        this.d = k27Var;
+        this.c = cs5Var;
     }
 }

@@ -1,99 +1,170 @@
 package defpackage;
 
-import android.util.SparseIntArray;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class sj6 extends age {
-    public int a;
-    public int b;
-    public int c;
-    public int d;
-    public int e;
-    public int f;
-    public int g;
-    public final SparseIntArray h = new SparseIntArray();
-    public final SparseIntArray i = new SparseIntArray();
-    public final ArrayList j = new ArrayList();
-    public final ArrayList k = new ArrayList();
-    public final ak6 l;
+import java.util.Arrays;
+public final class sj6 implements jd7 {
+    public final String a;
+    public final byte[] b;
+    public final int c;
+    public final int d;
 
-    public sj6(ak6 ak6Var) {
-        this.l = ak6Var;
-    }
-
-    public static void f(int i, int i2, SparseIntArray sparseIntArray) {
-        if (i2 >= 0) {
-            sparseIntArray.put(i2, i);
+    public sj6(String str, byte[] bArr, int i, int i2) {
+        byte b;
+        str.getClass();
+        char c = 65535;
+        switch (str.hashCode()) {
+            case -1949883051:
+                if (str.equals("com.android.capture.fps")) {
+                    c = 0;
+                    break;
+                }
+                break;
+            case -269399509:
+                if (str.equals("auxiliary.tracks.interleaved")) {
+                    c = 1;
+                    break;
+                }
+                break;
+            case 1011693540:
+                if (str.equals("auxiliary.tracks.length")) {
+                    c = 2;
+                    break;
+                }
+                break;
+            case 1098277265:
+                if (str.equals("auxiliary.tracks.offset")) {
+                    c = 3;
+                    break;
+                }
+                break;
+            case 2002123038:
+                if (str.equals("auxiliary.tracks.map")) {
+                    c = 4;
+                    break;
+                }
+                break;
         }
+        switch (c) {
+            case 0:
+                if (i2 == 23 && bArr.length == 4) {
+                    r2 = true;
+                }
+                gre.f(r2);
+                break;
+            case 1:
+                if (i2 == 75 && bArr.length == 1 && ((b = bArr[0]) == 0 || b == 1)) {
+                    r2 = true;
+                }
+                gre.f(r2);
+                break;
+            case 2:
+            case 3:
+                if (i2 == 78 && bArr.length == 8) {
+                    r2 = true;
+                }
+                gre.f(r2);
+                break;
+            case 4:
+                gre.f(i2 == 0);
+                break;
+        }
+        this.a = str;
+        this.b = bArr;
+        this.c = i;
+        this.d = i2;
     }
 
     @Override
-    public final boolean a(int i, int i2) {
-        return b(i, i2);
+    public final fm4 a() {
+        return null;
     }
 
     @Override
-    public final boolean b(int i, int i2) {
-        int i3;
-        int i4;
-        TLRPC.TL_chatInviteExported tL_chatInviteExported;
-        TLRPC.TL_chatInviteExported tL_chatInviteExported2;
-        int i5 = this.b;
-        ak6 ak6Var = this.l;
-        if (((i >= i5 && i < this.c) || (i >= this.d && i < this.e)) && ((i2 >= (i4 = ak6Var.E) && i2 < ak6Var.F) || (i2 >= ak6Var.I && i2 < ak6Var.J))) {
-            if (i2 >= i4 && i2 < ak6Var.F) {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ak6Var.j0.get(i2 - i4);
-            } else {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ak6Var.k0.get(i2 - ak6Var.I);
-            }
-            int i6 = this.b;
-            if (i >= i6 && i < this.c) {
-                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.j.get(i - i6);
-            } else {
-                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.k.get(i - this.d);
-            }
-            return tL_chatInviteExported2.link.equals(tL_chatInviteExported.link);
+    public final byte[] c() {
+        return null;
+    }
+
+    public final ArrayList d() {
+        gre.o("Metadata is not an auxiliary tracks map", this.a.equals("auxiliary.tracks.map"));
+        byte[] bArr = this.b;
+        byte b = bArr[1];
+        ArrayList arrayList = new ArrayList();
+        for (int i = 0; i < b; i = tb4.g(bArr[i + 2] & 255, i, 1, arrayList)) {
         }
-        int i7 = this.f;
-        if (i >= i7 && i < this.g && i2 >= (i3 = ak6Var.V) && i2 < ak6Var.W) {
-            if (i - i7 == i2 - i3) {
-                return true;
+        return arrayList;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && sj6.class == obj.getClass()) {
+                sj6 sj6Var = (sj6) obj;
+                if (this.a.equals(sj6Var.a) && Arrays.equals(this.b, sj6Var.b) && this.c == sj6Var.c && this.d == sj6Var.d) {
+                    return true;
+                }
+                return false;
             }
             return false;
         }
-        int i8 = this.h.get(i, -1);
-        int i9 = this.i.get(i2, -1);
-        if (i8 >= 0 && i8 == i9) {
-            return true;
+        return true;
+    }
+
+    public final int hashCode() {
+        return ((((Arrays.hashCode(this.b) + ir2.j(527, 31, this.a)) * 31) + this.c) * 31) + this.d;
+    }
+
+    public final String toString() {
+        String sb;
+        boolean z;
+        boolean z2;
+        String str = this.a;
+        byte[] bArr = this.b;
+        int i = this.d;
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 23) {
+                    if (i != 67) {
+                        if (i != 75) {
+                            if (i == 78) {
+                                sb = String.valueOf(new xu7(bArr).G());
+                            }
+                            sb = g8c.g0(bArr);
+                        } else {
+                            sb = String.valueOf(bArr[0] & 255);
+                        }
+                    } else {
+                        if (bArr.length >= 4) {
+                            z2 = true;
+                        } else {
+                            z2 = false;
+                        }
+                        gre.b(bArr.length, 4, "array too small: %s < %s", z2);
+                        sb = String.valueOf(gle.c(bArr[0], bArr[1], bArr[2], bArr[3]));
+                    }
+                } else {
+                    if (bArr.length >= 4) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    gre.b(bArr.length, 4, "array too small: %s < %s", z);
+                    sb = String.valueOf(Float.intBitsToFloat(gle.c(bArr[0], bArr[1], bArr[2], bArr[3])));
+                }
+            } else {
+                sb = g8c.r(bArr);
+            }
+        } else {
+            if (str.equals("auxiliary.tracks.map")) {
+                ArrayList d = d();
+                StringBuilder r = tb4.r("track types = ");
+                new zb3(String.valueOf(',')).a(r, d.iterator());
+                sb = r.toString();
+            }
+            sb = g8c.g0(bArr);
         }
-        return false;
+        return tb4.q("mdta: key=", str, ", value=", sb);
     }
 
     @Override
-    public final int c() {
-        return this.l.Y;
-    }
-
-    @Override
-    public final int d() {
-        return this.a;
-    }
-
-    public final void e(SparseIntArray sparseIntArray) {
-        sparseIntArray.clear();
-        ak6 ak6Var = this.l;
-        f(1, ak6Var.r, sparseIntArray);
-        f(2, ak6Var.s, sparseIntArray);
-        f(3, ak6Var.w, sparseIntArray);
-        f(4, ak6Var.x, sparseIntArray);
-        f(5, ak6Var.y, sparseIntArray);
-        f(6, ak6Var.M, sparseIntArray);
-        f(7, ak6Var.O, sparseIntArray);
-        f(8, ak6Var.P, sparseIntArray);
-        f(9, ak6Var.R, sparseIntArray);
-        f(10, ak6Var.S, sparseIntArray);
-        f(11, ak6Var.T, sparseIntArray);
-        f(12, ak6Var.Q, sparseIntArray);
-        f(13, ak6Var.G, sparseIntArray);
+    public final void b(hr6 hr6Var) {
     }
 }

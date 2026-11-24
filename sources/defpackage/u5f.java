@@ -1,12 +1,6 @@
 package defpackage;
 public abstract class u5f {
-    public static boolean a(Object obj, Object obj2) {
-        if (obj == obj2) {
-            return true;
-        }
-        if (obj != null && obj.equals(obj2)) {
-            return true;
-        }
-        return false;
+    public static int a(int i) {
+        return (int) (Integer.rotateLeft((int) (i * (-862048943)), 15) * 461845907);
     }
 }

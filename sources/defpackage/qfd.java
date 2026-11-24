@@ -1,18 +1,17 @@
 package defpackage;
-public abstract class qfd {
-    public static final Object a = new Object();
-    public static int b;
-    public static boolean c;
+public final class qfd implements zn7 {
+    public static final qfd a = new Object();
 
-    public static void a() {
-        synchronized (a) {
-            if (c) {
-                return;
-            }
-            c = true;
-            Thread thread = new Thread(new e1b((byte) 18), "widget-engine-memory");
-            thread.setDaemon(true);
-            thread.start();
+    static {
+        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

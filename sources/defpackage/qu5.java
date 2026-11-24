@@ -1,55 +1,60 @@
 package defpackage;
-public final class qu5 extends x1 {
-    public final pu5 a = new ui6();
-    public final StringBuilder b = new StringBuilder();
-    public final int c;
 
-    public qu5(int i) {
-        this.c = i;
-    }
-
-    @Override
-    public final void a(CharSequence charSequence) {
-        StringBuilder sb = this.b;
-        sb.append(charSequence);
-        sb.append('\n');
-    }
-
-    @Override
-    public final void d() {
-        this.a.g = this.b.toString();
-    }
-
-    @Override
-    public final gl0 e() {
-        return this.a;
-    }
-
-    @Override
-    public final il2 h(fq3 fq3Var) {
-        int i;
-        int i2 = fq3Var.e;
-        String str = fq3Var.a;
-        int length = str.length();
-        if (fq3Var.g < 4) {
-            int i3 = i2;
-            while (true) {
-                if (i3 < length) {
-                    if ('$' != str.charAt(i3)) {
-                        i = i3 - i2;
-                        break;
-                    }
-                    i3++;
-                } else {
-                    i = length - i2;
-                    break;
-                }
-            }
-            int i4 = this.c;
-            if (i == i4 && ose.b(' ', str, i2 + i4, length) == length) {
-                return new il2(-1, -1, true);
+import java.util.Date;
+import java.util.HashMap;
+public final class qu5 implements r24 {
+    public static final nu5 e = new nu5((byte) 0);
+    public static final ou5 f = new y8c() {
+        @Override
+        public final void a(Object obj, Object obj2) {
+            switch (r1) {
+                case 0:
+                    ((z8c) obj2).b((String) obj);
+                    return;
+                default:
+                    ((z8c) obj2).c(((Boolean) obj).booleanValue());
+                    return;
             }
         }
-        return il2.a(fq3Var.b);
+    };
+    public static final ou5 h = new y8c() {
+        @Override
+        public final void a(Object obj, Object obj2) {
+            switch (r1) {
+                case 0:
+                    ((z8c) obj2).b((String) obj);
+                    return;
+                default:
+                    ((z8c) obj2).c(((Boolean) obj).booleanValue());
+                    return;
+            }
+        }
+    };
+    public static final pu5 n = new Object();
+    public final HashMap a;
+    public final HashMap b;
+    public final nu5 c;
+    public boolean d;
+
+    public qu5() {
+        HashMap hashMap = new HashMap();
+        this.a = hashMap;
+        HashMap hashMap2 = new HashMap();
+        this.b = hashMap2;
+        this.c = e;
+        this.d = false;
+        hashMap2.put(String.class, f);
+        hashMap.remove(String.class);
+        hashMap2.put(Boolean.class, h);
+        hashMap.remove(Boolean.class);
+        hashMap2.put(Date.class, n);
+        hashMap.remove(Date.class);
+    }
+
+    @Override
+    public final r24 a(Class cls, zn7 zn7Var) {
+        this.a.put(cls, zn7Var);
+        this.b.remove(cls);
+        return this;
     }
 }

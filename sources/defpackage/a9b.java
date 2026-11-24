@@ -1,43 +1,42 @@
 package defpackage;
+public final class a9b {
+    public static final a9b e;
+    public boolean a;
+    public boolean b;
+    public boolean c;
+    public boolean d;
 
-import android.content.Context;
-import org.telegram.messenger.Utilities;
-public final class a9b extends ss3 {
-    public final v9b c0;
-
-    public a9b(v9b v9bVar, Context context, boolean z) {
-        super(context, z);
-        this.c0 = v9bVar;
+    static {
+        ?? obj = new Object();
+        obj.a = true;
+        obj.b = true;
+        obj.c = false;
+        obj.d = false;
+        e = obj;
+        obj.a = true;
+        obj.b = true;
+        obj.c = false;
+        obj.d = false;
     }
 
-    @Override
-    public final void receivedAmplitude(double d) {
-        j49 j49Var = this.c0.P0;
-        if (j49Var != null) {
-            j49Var.h0 = Utilities.i((float) (d / 1800.0d), 1.0f, 0.0f);
+    public static String a(String str, Class cls, boolean z) {
+        if (cls == null) {
+            return "ANONYMOUS";
         }
-    }
-
-    @Override
-    public final void s(boolean z) {
-        v9b v9bVar = this.c0;
-        v9bVar.p1.b(v9bVar.d1.getText());
-        v9bVar.p1.a(false, z, v9bVar.l0);
-    }
-
-    @Override
-    public final void toggleDual() {
-        int i;
-        super.toggleDual();
-        v9b v9bVar = this.c0;
-        v9bVar.G0.setValue(isDual());
-        orb orbVar = v9bVar.G0;
-        if (isDual()) {
-            i = 2131754886;
+        if (cls.isArray()) {
+            Class<?> componentType = cls.getComponentType();
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append(a(componentType.getName(), componentType, z));
+            stringBuffer.append("[]");
+            return stringBuffer.toString();
+        } else if (z) {
+            int lastIndexOf = str.lastIndexOf(46);
+            if (lastIndexOf != -1) {
+                str = str.substring(lastIndexOf + 1);
+            }
+            return str.replace('$', '.');
         } else {
-            i = 2131754887;
+            return str.replace('$', '.');
         }
-        orbVar.setContentDescription(jb6.M0(i, null));
-        v9bVar.d0(v9bVar.A());
     }
 }

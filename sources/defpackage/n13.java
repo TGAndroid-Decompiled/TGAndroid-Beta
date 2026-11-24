@@ -1,25 +1,29 @@
 package defpackage;
-public final class n13 extends o13 {
-    public n13(CharSequence charSequence, byte b) {
-        super(charSequence, "androidx.credentials.TYPE_CREATE_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION");
-        switch (b) {
-            case 2:
-                super(charSequence, "android.credentials.CreateCredentialException.TYPE_UNKNOWN");
-                return;
-            case 3:
-                super(charSequence, "androidx.credentials.TYPE_CREATE_CREDENTIAL_UNSUPPORTED_EXCEPTION");
-                return;
-            default:
-                return;
-        }
+
+import android.os.CancellationSignal;
+public final class n13 implements qp4 {
+    public final byte a;
+    public final Object b;
+
+    public n13(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
-    public n13(CharSequence charSequence, String str) {
-        super(charSequence, str);
-        if (str.length() > 0) {
-            return;
+    @Override
+    public final Object invoke(Object obj) {
+        byte b = this.a;
+        g5c g5cVar = g5c.a;
+        Object obj2 = this.b;
+        switch (b) {
+            case 0:
+                Throwable th = (Throwable) obj;
+                ((CancellationSignal) obj2).cancel();
+                return g5cVar;
+            default:
+                Throwable th2 = (Throwable) obj;
+                ((na1) obj2).resumeWith(g5cVar);
+                return g5cVar;
         }
-        u36.j("type must not be empty");
-        throw null;
     }
 }

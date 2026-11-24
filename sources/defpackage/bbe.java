@@ -1,50 +1,20 @@
 package defpackage;
+public interface bbe {
+    void a(Object obj, byte[] bArr, int i, int i2, kj6 kj6Var);
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class bbe extends b4 {
-    public static final Parcelable.Creator<bbe> CREATOR = new t0e((byte) 13);
-    public final String a;
-    public final String b;
-    public final int c;
-    public final boolean d;
+    boolean b(c2e c2eVar, c2e c2eVar2);
 
-    public bbe(int i, String str, String str2, boolean z) {
-        this.a = str;
-        this.b = str2;
-        this.c = i;
-        this.d = z;
-    }
+    int c(c2e c2eVar);
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof bbe)) {
-            return false;
-        }
-        return ((bbe) obj).a.equals(this.a);
-    }
+    boolean d(Object obj);
 
-    public final int hashCode() {
-        return this.a.hashCode();
-    }
+    int e(c2e c2eVar);
 
-    public final String toString() {
-        StringBuilder m = mlb.m("Node{", this.b, ", id=", this.a, ", hops=");
-        m.append(this.c);
-        m.append(", isNearby=");
-        m.append(this.d);
-        m.append("}");
-        return m.toString();
-    }
+    void f(Object obj, xdd xddVar);
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        mve.l(parcel, 2, this.a);
-        mve.l(parcel, 3, this.b);
-        mve.q(parcel, 4, 4);
-        parcel.writeInt(this.c);
-        mve.q(parcel, 5, 4);
-        parcel.writeInt(this.d ? 1 : 0);
-        mve.s(parcel, r);
-    }
+    c2e zze();
+
+    void zzf(Object obj);
+
+    void zzg(Object obj, Object obj2);
 }

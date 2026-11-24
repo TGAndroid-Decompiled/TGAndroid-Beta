@@ -29,30 +29,30 @@ public final class n extends AnimatorListenerAdapter {
                 oVar.i0.i();
                 oVar.b1.a(oVar.v0[0].getBackgroundColor(), true);
                 oVar.c1.a(oVar.v0[1].getBackgroundColor(), true);
-                sx sxVar = oVar.L;
-                if (sxVar != null) {
-                    sxVar.z();
+                sw swVar = oVar.L;
+                if (swVar != null) {
+                    swVar.y();
                 }
-                obj = td4.m(1, oVar.e0);
+                obj = tb4.l(1, oVar.e0);
                 oVar.Q0.Q(oVar.v0[0].b);
-                gkb gkbVar = oVar.Q0;
-                gkbVar.z0 = oVar.v0[0].d;
-                gkbVar.e(true);
+                fib fibVar = oVar.Q0;
+                fibVar.z0 = oVar.v0[0].d;
+                fibVar.e(true);
                 oVar.g0(false);
                 oVar.d0();
             }
             oVar.v0[1].a();
             oVar.v0[1].setVisibility(8);
-            if (obj instanceof zw) {
-                ((zw) obj).a();
+            if (obj instanceof zv) {
+                ((zv) obj).a();
             }
             if (obj instanceof TLRPC.WebPage) {
-                dvc.o((TLRPC.WebPage) obj);
+                ctc.o((TLRPC.WebPage) obj);
             }
         } else if (!z2) {
-            sx sxVar2 = oVar.L;
-            if (sxVar2 != null) {
-                sxVar2.release();
+            sw swVar2 = oVar.L;
+            if (swVar2 != null) {
+                swVar2.release();
                 oVar.p();
             } else {
                 oVar.S();

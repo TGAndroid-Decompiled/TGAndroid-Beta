@@ -1,48 +1,12 @@
 package defpackage;
+public final class sh4 extends iq {
+    public static final sh4 e;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class sh4 {
-    public final int a;
-    public final int b;
-    public final String c;
-    public final byte d;
-    public final TLRPC.MessagesFilter e;
-    public TLObject f;
-    public qh4 g;
-    public boolean h;
-
-    public sh4(int i, int i2, String str) {
-        this.h = true;
-        this.a = i;
-        this.c = str;
-        this.e = null;
-        this.d = i2;
-    }
-
-    public final boolean a() {
-        byte b = this.d;
-        if (b == 0 || b == 1 || b == 2 || b == 3 || b == 5) {
-            return true;
+    static {
+        int[] iArr = new int[32];
+        for (int i = 0; i < 32; i++) {
+            iArr[i] = 5;
         }
-        return false;
-    }
-
-    public final boolean b(sh4 sh4Var) {
-        if (this.d != sh4Var.d) {
-            if (a() && sh4Var.a()) {
-                return true;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public sh4(int i, int i2, TLRPC.MessagesFilter messagesFilter, int i3) {
-        this.h = true;
-        this.a = i;
-        this.b = i2;
-        this.e = messagesFilter;
-        this.d = i3;
+        e = new iq(iArr);
     }
 }

@@ -1,45 +1,34 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.view.View;
-import java.util.ArrayList;
-public final class ilb {
-    public final View a;
-    public final ArrayList b;
-    public final Runnable c;
-    public Runnable d;
-    public final Bitmap e;
-    public final Matrix f;
-    public float g;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ilb implements p8c {
+    public final byte a;
+    public final qmb b;
 
-    public ilb(View view, Runnable runnable) {
-        this.g = 1.0f;
-        this.a = view;
-        this.b = null;
-        this.c = null;
-        this.d = runnable;
-        this.e = null;
-        this.f = null;
+    public ilb(qmb qmbVar, byte b) {
+        this.a = b;
+        this.b = qmbVar;
     }
 
-    public ilb(ArrayList arrayList, co1 co1Var) {
-        this.g = 1.0f;
-        this.a = null;
-        this.b = arrayList;
-        this.c = null;
-        this.d = co1Var;
-        this.e = null;
-        this.f = null;
-    }
-
-    public ilb(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-        this.g = 1.0f;
-        this.a = null;
-        this.b = null;
-        this.c = runnable;
-        this.d = runnable2;
-        this.f = matrix;
-        this.e = bitmap;
+    @Override
+    public final void a(Object obj) {
+        byte b = this.a;
+        qmb qmbVar = this.b;
+        switch (b) {
+            case 0:
+                qmbVar.p1 = ((Float) obj).floatValue();
+                qmbVar.z0.invalidate();
+                qmbVar.W0();
+                return;
+            case 1:
+                qmbVar.X1 = (TL_stories.TL_premium_boostsStatus) obj;
+                qmbVar.W1 = true;
+                qmbVar.l1(true);
+                qmbVar.V1 = false;
+                return;
+            default:
+                qmbVar.X0((ng1) obj);
+                return;
+        }
     }
 }

@@ -1,33 +1,48 @@
 package defpackage;
 
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-public final class h7d implements IInterface {
-    public final IBinder a;
+import java.util.Map;
+import java.util.Set;
+public abstract class h7d implements red {
+    public transient d5d a;
+    public transient d3 b;
 
-    public h7d(IBinder iBinder) {
-        this.a = iBinder;
-    }
-
-    public final void a(qpd qpdVar, dv4 dv4Var) {
-        Parcel obtain = Parcel.obtain();
-        Parcel obtain2 = Parcel.obtain();
-        try {
-            obtain.writeInterfaceToken("com.google.android.gms.common.internal.IGmsServiceBroker");
-            obtain.writeStrongBinder(qpdVar);
-            obtain.writeInt(1);
-            e2f.a(dv4Var, obtain, 0);
-            this.a.transact(46, obtain, obtain2, 0);
-            obtain2.readException();
-        } finally {
-            obtain2.recycle();
-            obtain.recycle();
+    public final Map a() {
+        d3 d3Var = this.b;
+        if (d3Var == null) {
+            j7d j7dVar = (j7d) this;
+            d3 d3Var2 = new d3(j7dVar, j7dVar.c, (byte) 2);
+            this.b = d3Var2;
+            return d3Var2;
         }
+        return d3Var;
     }
 
-    @Override
-    public final IBinder asBinder() {
-        return this.a;
+    public final Set b() {
+        d5d d5dVar = this.a;
+        if (d5dVar == null) {
+            j7d j7dVar = (j7d) this;
+            d5d d5dVar2 = new d5d(j7dVar, j7dVar.c);
+            this.a = d5dVar2;
+            return d5dVar2;
+        }
+        return d5dVar;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof red)) {
+            return false;
+        }
+        return a().equals(((h7d) ((red) obj)).a());
+    }
+
+    public final int hashCode() {
+        return ((so2) ((d3) a()).d).hashCode();
+    }
+
+    public final String toString() {
+        return ((so2) ((d3) a()).d).toString();
     }
 }

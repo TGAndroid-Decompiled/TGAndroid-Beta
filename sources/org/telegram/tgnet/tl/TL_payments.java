@@ -44,9 +44,9 @@ public class TL_payments {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.gifts = Vector.deserialize(inputSerializedData, new sfb((byte) 4), z);
-            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
-            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.gifts = Vector.deserialize(inputSerializedData, new qdb((byte) 28), z);
+            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
         }
 
         @Override
@@ -83,8 +83,8 @@ public class TL_payments {
             this.state = TL_stars.StarGiftAuctionState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.user_state = TL_stars.TL_StarGiftAuctionUserState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.timeout = inputSerializedData.readInt32(z);
-            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
-            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
         }
 
         @Override
@@ -107,9 +107,9 @@ public class TL_payments {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.auctions = Vector.deserialize(inputSerializedData, new sfb((byte) 5), z);
-            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
-            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.auctions = Vector.deserialize(inputSerializedData, new qdb((byte) 29), z);
+            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
         }
 
         @Override
@@ -214,8 +214,8 @@ public class TL_payments {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.count = inputSerializedData.readInt32(z);
-            this.connected_bots = Vector.deserialize(inputSerializedData, new sfb((byte) 6), z);
-            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
+            this.connected_bots = Vector.deserialize(inputSerializedData, new rdb((byte) 0), z);
+            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
         }
 
         @Override
@@ -397,8 +397,8 @@ public class TL_payments {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
             this.count = inputSerializedData.readInt32(z);
-            this.suggested_bots = Vector.deserialize(inputSerializedData, new sfb((byte) 7), z);
-            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
+            this.suggested_bots = Vector.deserialize(inputSerializedData, new rdb((byte) 1), z);
+            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }

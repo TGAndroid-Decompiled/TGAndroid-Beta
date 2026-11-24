@@ -1,17 +1,16 @@
 package defpackage;
-public final class hce implements cq7 {
-    public static final hce a = new Object();
 
-    static {
-        mlb.z(mlb.o(i9d.class, new f8d(1)));
+import android.os.IBinder;
+import android.os.IInterface;
+public final class hce implements IInterface {
+    public final IBinder a;
+
+    public hce(IBinder iBinder) {
+        this.a = iBinder;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final IBinder asBinder() {
+        return this.a;
     }
 }

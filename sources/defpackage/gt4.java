@@ -1,111 +1,168 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class gt4 extends LinearLayout {
-    public final b61 a;
-    public final b61 b;
-    public final b61 c;
-    public final long d;
+import org.telegram.tgnet.tl.TL_stars;
+public final class gt4 {
+    public final int a;
+    public final long b;
+    public final long c;
+    public TL_stars.StarGift d;
+    public TL_stars.TL_StarGiftAuctionUserState e;
+    public TL_stars.TL_starGiftAuctionState f;
+    public TL_stars.TL_starGiftAuctionStateFinished g;
+    public ArrayList h;
+    public int i;
 
-    public gt4(Context context, int i) {
-        super(context);
-        int i2;
-        TLRPC.TL_emojiList a = oc0.a(i);
-        setOrientation(1);
-        bf0 bf0Var = new bf0(context);
-        bf0Var.setImageDrawable(new p09(2131624317, gm.L(110.0f), gm.L(110.0f)));
-        if (!gm.O1()) {
-            addView(bf0Var, qoe.r(110, 110, 49));
-        }
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 20.0f);
-        anb.X(textView, cmb.F6, null);
-        textView.setGravity(1);
-        textView.setText(jb6.M0(2131750416, null));
-        textView.setTypeface(gm.o());
-        addView(textView, qoe.t(-2, -2, 49, 0, 15, 0, 7));
-        TextView textView2 = new TextView(context);
-        textView2.setTextSize(1, 14.0f);
-        anb.X(textView2, cmb.b7, null);
-        textView2.setGravity(1);
-        if (z8c.h(i).p()) {
-            i2 = 2131750411;
+    public gt4(int i, TL_stars.StarGift starGift, TL_stars.StarGiftAuctionState starGiftAuctionState, TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState) {
+        long j;
+        this.a = i;
+        this.d = starGift;
+        this.e = tL_StarGiftAuctionUserState;
+        this.b = starGift.id;
+        TLRPC.Document document = starGift.sticker;
+        if (document != null) {
+            j = document.id;
         } else {
-            i2 = 2131750412;
+            j = 0;
         }
-        textView2.setText(jb6.M0(i2, null));
-        textView2.setMaxWidth(gm.L(260.0f));
-        textView2.setLineSpacing(gm.L(2.0f), 1.0f);
-        addView(textView2, qoe.t(-2, -2, 49, 0, 0, 0, 14));
-        b61 b61Var = new b61(null, context, true);
-        this.a = b61Var;
-        b61Var.f();
-        b61Var.i(jb6.M0(2131750415, null), false, true);
-        addView(b61Var, qoe.r(-2, 44, 49));
-        b61 b61Var2 = new b61(null, context, false);
-        this.b = b61Var2;
-        b61Var2.f();
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
-        spannableStringBuilder.setSpan(new pn2(2131232494, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) jb6.M0(2131750413, null));
-        b61Var2.i(spannableStringBuilder, false, true);
-        addView(b61Var2, qoe.t(-2, 44, 49, 0, 8, 0, 0));
-        b61 b61Var3 = new b61(null, context, false);
-        this.c = b61Var3;
-        b61Var3.f();
-        b61Var3.setVisibility(8);
-        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("c");
-        ArrayList<Long> arrayList = a.document_id;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            long longValue = a.document_id.get(0).longValue();
-            this.d = longValue;
-            spannableStringBuilder2.setSpan(new gn(longValue, (Paint.FontMetricsInt) null), 0, 1, 33);
-            spannableStringBuilder2.append((CharSequence) "  ");
-        } else {
-            this.d = 0L;
-        }
-        spannableStringBuilder2.append((CharSequence) jb6.M0(2131743484, null));
-        b61Var3.i(spannableStringBuilder2, false, true);
-        addView(b61Var3, qoe.t(-2, 44, 49, 0, 1, 0, 0));
+        this.c = j;
+        a(starGiftAuctionState);
     }
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), Integer.MIN_VALUE);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(gm.L(44.0f), 1073741824);
-        b61 b61Var = this.a;
-        b61Var.setUseWrapContent(true);
-        b61 b61Var2 = this.b;
-        b61Var2.setUseWrapContent(true);
-        b61 b61Var3 = this.c;
-        b61Var3.setUseWrapContent(true);
-        b61Var.measure(makeMeasureSpec, makeMeasureSpec2);
-        b61Var2.measure(makeMeasureSpec, makeMeasureSpec2);
-        b61Var3.measure(makeMeasureSpec, makeMeasureSpec2);
-        b61Var.setUseWrapContent(false);
-        b61Var2.setUseWrapContent(false);
-        b61Var3.setUseWrapContent(false);
-        int max = Math.max(Math.max(b61Var.getMeasuredWidth(), b61Var2.getMeasuredWidth()), b61Var3.getMeasuredWidth());
-        b61Var.getLayoutParams().width = gm.L(80.0f) + max;
-        b61Var2.getLayoutParams().width = gm.L(80.0f) + max;
-        b61Var3.getLayoutParams().width = gm.L(80.0f) + max;
-        super.onMeasure(i, i2);
-    }
-
-    public void setUseAnEmojiVisible(boolean z) {
+    public final boolean a(TL_stars.StarGiftAuctionState starGiftAuctionState) {
         int i;
-        if (z) {
-            i = 0;
-        } else {
-            i = 8;
+        if (starGiftAuctionState instanceof TL_stars.TL_starGiftAuctionState) {
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = (TL_stars.TL_starGiftAuctionState) starGiftAuctionState;
+            if (f()) {
+                i = Integer.MAX_VALUE;
+            } else {
+                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState2 = this.f;
+                if (tL_starGiftAuctionState2 != null) {
+                    i = tL_starGiftAuctionState2.version;
+                } else {
+                    i = 0;
+                }
+            }
+            if (tL_starGiftAuctionState.version > i) {
+                this.f = tL_starGiftAuctionState;
+                h();
+                return true;
+            }
+        } else if ((starGiftAuctionState instanceof TL_stars.TL_starGiftAuctionStateFinished) && !f()) {
+            this.g = (TL_stars.TL_starGiftAuctionStateFinished) starGiftAuctionState;
+            return true;
         }
-        this.c.setVisibility(i);
+        return false;
+    }
+
+    public final long b(int i) {
+        ArrayList<TL_stars.TL_AuctionBidLevel> arrayList;
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f;
+        if (tL_starGiftAuctionState != null && (arrayList = tL_starGiftAuctionState.bid_levels) != null) {
+            int size = arrayList.size();
+            int i2 = 0;
+            while (i2 < size) {
+                TL_stars.TL_AuctionBidLevel tL_AuctionBidLevel = arrayList.get(i2);
+                i2++;
+                TL_stars.TL_AuctionBidLevel tL_AuctionBidLevel2 = tL_AuctionBidLevel;
+                if (i <= tL_AuctionBidLevel2.pos) {
+                    return tL_AuctionBidLevel2.amount;
+                }
+            }
+            return e();
+        }
+        return e();
+    }
+
+    public final int c(int i, long j) {
+        ArrayList<TL_stars.TL_AuctionBidLevel> arrayList;
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f;
+        if (tL_starGiftAuctionState != null && (arrayList = tL_starGiftAuctionState.bid_levels) != null) {
+            int size = arrayList.size();
+            int i2 = 0;
+            int i3 = 0;
+            while (i3 < size) {
+                TL_stars.TL_AuctionBidLevel tL_AuctionBidLevel = arrayList.get(i3);
+                i3++;
+                TL_stars.TL_AuctionBidLevel tL_AuctionBidLevel2 = tL_AuctionBidLevel;
+                long j2 = tL_AuctionBidLevel2.amount;
+                if (j <= j2 && (j != j2 || i > tL_AuctionBidLevel2.date)) {
+                    i2 = tL_AuctionBidLevel2.pos;
+                } else {
+                    return tL_AuctionBidLevel2.pos;
+                }
+            }
+            return i2 + 1;
+        }
+        return -1;
+    }
+
+    public final int d() {
+        TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.e;
+        if (tL_StarGiftAuctionUserState.returned) {
+            return 3;
+        }
+        if (tL_StarGiftAuctionUserState.bid_amount == 0) {
+            return 4;
+        }
+        if (this.i <= this.d.gifts_per_round) {
+            return 1;
+        }
+        return 2;
+    }
+
+    public final long e() {
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f;
+        if (tL_starGiftAuctionState != null) {
+            long j = this.e.min_bid_amount;
+            if (j > 0) {
+                return Math.max(tL_starGiftAuctionState.min_bid_amount, j);
+            }
+        }
+        long j2 = this.e.min_bid_amount;
+        if (j2 > 0) {
+            return j2;
+        }
+        if (tL_starGiftAuctionState == null) {
+            return 0L;
+        }
+        return tL_starGiftAuctionState.min_bid_amount;
+    }
+
+    public final boolean f() {
+        if (this.g != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean g(int i) {
+        if (this.d.auction_start_date > i) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void h() {
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f;
+        int i = -1;
+        if (tL_starGiftAuctionState != null) {
+            if (tL_starGiftAuctionState.top_bidders != null) {
+                long e = y6c.h(this.a).e();
+                for (int i2 = 0; i2 < this.f.top_bidders.size(); i2++) {
+                    if (e == this.f.top_bidders.get(i2).longValue()) {
+                        i = i2 + 1;
+                        break;
+                    }
+                }
+            }
+            TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.e;
+            long j = tL_StarGiftAuctionUserState.bid_amount;
+            if (j > 0 && !tL_StarGiftAuctionUserState.returned) {
+                i = c(tL_StarGiftAuctionUserState.bid_date, j);
+            }
+        }
+        this.i = i;
     }
 }

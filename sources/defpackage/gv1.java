@@ -1,238 +1,155 @@
 package defpackage;
 
-import android.view.ViewGroup;
+import android.view.View;
 import java.util.ArrayList;
+import java.util.List;
 import org.telegram.tgnet.TLRPC;
-public final class gv1 implements fx2 {
-    public final TLRPC.TL_messageMediaPoll a;
-    public final TLRPC.PollAnswer b;
-    public final rc2 c;
-    public final iv1 d;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class gv1 implements p8c {
+    public final byte a = 1;
+    public final boolean b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
 
-    public gv1(iv1 iv1Var, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, rc2 rc2Var) {
-        this.d = iv1Var;
-        this.a = tL_messageMediaPoll;
-        this.b = pollAnswer;
-        this.c = rc2Var;
+    public gv1(a28 a28Var, boolean z, h19 h19Var, View view) {
+        this.c = a28Var;
+        this.b = z;
+        this.d = h19Var;
+        this.e = view;
     }
 
     @Override
-    public final boolean B() {
-        return false;
-    }
-
-    @Override
-    public final boolean C(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final String E(boolean z) {
-        return null;
-    }
-
-    @Override
-    public final boolean H() {
-        return false;
-    }
-
-    @Override
-    public final bu5 I(ViewGroup viewGroup) {
-        return null;
-    }
-
-    @Override
-    public final boolean L() {
-        return false;
-    }
-
-    @Override
-    public final void M() {
-        ArrayList arrayList = new ArrayList(1);
-        arrayList.add(this.b);
-        a6a sendMessagesHelper = this.d.a.getSendMessagesHelper();
-        rc2 rc2Var = this.c;
-        sendMessagesHelper.v0(rc2Var.getMessageObject(), arrayList, null);
-        rc2Var.a0(true);
-    }
-
-    @Override
-    public final void P(TLRPC.InputStickerSet inputStickerSet, boolean z) {
-        yv1 yv1Var = this.d.a;
-        if (inputStickerSet != null && yv1Var.getParentActivity() != null) {
-            TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
-            tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-            tL_inputStickerSetID.id = inputStickerSet.id;
-            x2b x2bVar = new x2b(yv1Var.getParentActivity(), yv1Var, tL_inputStickerSetID, null, yv1Var.a0, yv1Var.Ba);
-            boolean Y7 = yv1Var.Y7();
-            x2bVar.i0 = Y7;
-            x2bVar.n = Y7;
-            x2bVar.c2 = z;
-            yv1Var.showDialog(x2bVar);
+    public final void a(Object obj) {
+        d19 d19Var;
+        TLRPC.Document e;
+        u21 u21Var;
+        int i;
+        int i2;
+        String M0;
+        byte b = this.a;
+        Object obj2 = this.e;
+        boolean z = this.b;
+        Object obj3 = this.d;
+        Object obj4 = this.c;
+        switch (b) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj4;
+                int i3 = ChatActivityEnterView.r7;
+                ((hd) obj3).dismiss();
+                tv4 tv4Var = new tv4(chatActivityEnterView.getContext(), chatActivityEnterView.R, ((TLRPC.User) obj2).id, on0.d(on0.c(1, (List) obj)), null);
+                tv4Var.a1(z);
+                tv4Var.show();
+                return;
+            case 1:
+                a28 a28Var = (a28) obj4;
+                h19 h19Var = (h19) obj3;
+                View view = (View) obj2;
+                Long l = (Long) obj;
+                y28 y28Var = a28Var.a;
+                if (z && h19Var.f != null) {
+                    try {
+                        y28Var.performHapticFeedback(0);
+                    } catch (Exception unused) {
+                    }
+                    d19Var = new d19(view.getContext(), null, y28Var.V1, null, view, y28Var.getMeasuredWidth() / 2.0f, y28Var.getMeasuredHeight() / 2.0f, h19Var, y28Var.s2, 0, true);
+                } else {
+                    d19Var = new d19(view.getContext(), null, y28Var.V1, null, view, y28Var.getMeasuredWidth() / 2.0f, y28Var.getMeasuredHeight() / 2.0f, h19Var, y28Var.s2, 2, true);
+                }
+                d19.B = d19Var;
+                a19 a19Var = d19Var.i;
+                a19Var.setTag(2131296593, 1);
+                y28Var.addView(a19Var);
+                x28 x28Var = y28Var.E1;
+                d19Var.s = true;
+                d19Var.y = System.currentTimeMillis();
+                String str = h19Var.f;
+                int i4 = y28Var.s2;
+                if (str != null) {
+                    e = hq6.d0(i4).V(h19Var.f);
+                    x3a a = x3a.a(y28Var.r1, h19Var.f);
+                    a.H = x28Var.a;
+                    a.Q = l.longValue();
+                    z3a.B(y28Var.s2).q0(a);
+                } else {
+                    e = vl.e(i4, h19Var.g);
+                    String V = k27.V(e, null, null);
+                    if (V == null) {
+                        if (y28Var.V1.getReactionsWindow() != null) {
+                            y28Var.V1.getReactionsWindow().e();
+                        }
+                        y28Var.i0();
+                        return;
+                    }
+                    x3a a2 = x3a.a(y28Var.r1, V);
+                    a2.w = new ArrayList();
+                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
+                    tL_messageEntityCustomEmoji.document_id = h19Var.g;
+                    tL_messageEntityCustomEmoji.offset = 0;
+                    tL_messageEntityCustomEmoji.length = V.length();
+                    a2.w.add(tL_messageEntityCustomEmoji);
+                    a2.H = x28Var.a;
+                    a2.Q = l.longValue();
+                    z3a.B(y28Var.s2).q0(a2);
+                }
+                if (l.longValue() <= 0) {
+                    m21 r = new u21(y28Var.S0, y28Var.r0).r(e, k96.M0(2131746196, null), k96.M0(2131743310, null), new oq7(a28Var, (byte) 16));
+                    r.j = 5000;
+                    r.j();
+                }
+                if (y28Var.V1.getReactionsWindow() != null) {
+                    y28Var.V1.getReactionsWindow().e();
+                }
+                y28Var.i0();
+                return;
+            default:
+                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj3;
+                f53 f53Var = (f53) obj2;
+                y28 y28Var2 = ((s28) obj4).x;
+                d28 d28Var = y28Var2.S0;
+                if (((Boolean) obj).booleanValue()) {
+                    storyItem.pinned = z;
+                    i = 2131623980;
+                    int i5 = 2131623990;
+                    if (y28Var2.s1) {
+                        u21 u21Var2 = new u21(d28Var, f53Var);
+                        if (z) {
+                            M0 = k96.M0(2131744342, null);
+                        } else {
+                            i5 = 2131623980;
+                            M0 = k96.M0(2131744490, null);
+                        }
+                        u21Var2.Q(i5, 36, M0).j();
+                        return;
+                    } else if (z) {
+                        new u21(d28Var, f53Var).I(2131623990, k96.M0(2131744344, null), k96.M0(2131744343, null)).j();
+                        return;
+                    } else {
+                        u21Var = new u21(d28Var, f53Var);
+                        i2 = 2131744214;
+                    }
+                } else {
+                    u21Var = new u21(d28Var, f53Var);
+                    i = 2131624012;
+                    i2 = 2131743640;
+                }
+                ir2.v(null, i2, u21Var, i, 36);
+                return;
         }
     }
 
-    @Override
-    public final boolean Q(TLRPC.Document document) {
-        return false;
+    public gv1(s28 s28Var, TL_stories.StoryItem storyItem, boolean z, f53 f53Var) {
+        this.c = s28Var;
+        this.d = storyItem;
+        this.b = z;
+        this.e = f53Var;
     }
 
-    @Override
-    public final Boolean S(TLRPC.Document document) {
-        return null;
-    }
-
-    @Override
-    public final boolean T() {
-        return true;
-    }
-
-    @Override
-    public final long a() {
-        return this.d.a.l6;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        if (this.d.a.g4 == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return this.a;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer g() {
-        return this.b;
-    }
-
-    @Override
-    public final boolean h() {
-        return true;
-    }
-
-    @Override
-    public final boolean i() {
-        return false;
-    }
-
-    @Override
-    public final boolean j(int i) {
-        return false;
-    }
-
-    @Override
-    public final boolean n() {
-        return false;
-    }
-
-    @Override
-    public final void p() {
-        a6a sendMessagesHelper = this.d.a.getSendMessagesHelper();
-        rc2 rc2Var = this.c;
-        sendMessagesHelper.v0(rc2Var.getMessageObject(), null, null);
-        rc2Var.a0(true);
-    }
-
-    @Override
-    public final boolean t() {
-        return true;
-    }
-
-    @Override
-    public final k47 x() {
-        return this.c.getMessageObject();
-    }
-
-    @Override
-    public final boolean y() {
-        return false;
-    }
-
-    @Override
-    public final void A(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void D(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void G(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void J(t5a t5aVar) {
-    }
-
-    @Override
-    public final void O() {
-    }
-
-    @Override
-    public final void R(String str) {
-    }
-
-    @Override
-    public final void l(String str) {
-    }
-
-    @Override
-    public final void m(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void o(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void r(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void w(String str) {
-    }
-
-    @Override
-    public final void K(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void s(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void z(CharSequence charSequence, String str, qy1 qy1Var) {
-    }
-
-    @Override
-    public final void u(Object obj, Object obj2, boolean z, int i, int i2) {
-    }
-
-    @Override
-    public final void k(TLRPC.Document document, String str, Object obj, boolean z, int i, int i2) {
+    public gv1(ChatActivityEnterView chatActivityEnterView, hd hdVar, TLRPC.User user, boolean z) {
+        this.c = chatActivityEnterView;
+        this.d = hdVar;
+        this.e = user;
+        this.b = z;
     }
 }

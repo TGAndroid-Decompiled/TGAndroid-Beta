@@ -1,17 +1,25 @@
 package defpackage;
-public final class rke implements cq7 {
-    public static final rke a = new Object();
+
+import java.util.Collections;
+import java.util.Map;
+public final class rke {
+    public static volatile rke a;
+    public static volatile rke b;
+    public static final rke c;
 
     static {
-        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)));
+        ?? obj = new Object();
+        Map map = Collections.EMPTY_MAP;
+        c = obj;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
+    public static void a() {
+        if (a == null) {
+            synchronized (rke.class) {
+                if (a == null) {
+                    a = c;
+                }
+            }
         }
-        throw new ClassCastException();
     }
 }

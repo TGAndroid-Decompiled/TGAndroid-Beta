@@ -1,318 +1,208 @@
 package defpackage;
 
-import android.view.Surface;
-import java.util.ArrayDeque;
-import java.util.List;
-import java.util.concurrent.Executor;
-public final class je3 implements iec {
-    public final xcc a;
-    public final ycc b;
-    public final ddc c;
-    public final ArrayDeque d;
-    public final zj4 e;
-    public Surface f;
-    public go4 g;
-    public long h;
-    public gec i;
-    public Executor j;
-    public vcc k;
+import android.app.Activity;
+import android.graphics.Paint;
+import android.widget.LinearLayout;
+import org.telegram.ui.ActionBar.d;
+public final class je3 extends fy0 {
+    public final ie3 S1;
+    public final l61 T1;
+    public final lv6 U1;
+    public g61 V1;
+    public final f15[] W1;
+    public final ag2[] X1;
+    public final LinearLayout Y1;
+    public final d61 Z1;
+    public final long a2;
+    public final v61 b2;
 
-    public je3(xcc xccVar, ycc yccVar, bfb bfbVar) {
-        this.a = xccVar;
-        this.b = yccVar;
-        xccVar.k = bfbVar;
-        zj4 zj4Var = new zj4(new wm2(xccVar, (byte) 22));
-        this.e = zj4Var;
-        this.c = new ddc(new hi2(this), xccVar, yccVar, zj4Var);
-        this.d = new ArrayDeque();
-        this.g = new go4(new fo4());
-        this.h = -9223372036854775807L;
-        this.i = gec.C;
-        this.j = new kc((byte) 2);
-        this.k = new Object();
-    }
-
-    @Override
-    public final boolean a() {
-        ddc ddcVar = this.c;
-        long j = ddcVar.k;
-        if (j != -9223372036854775807L && ddcVar.j == j) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final Surface b() {
-        Surface surface = this.f;
-        surface.getClass();
-        return surface;
-    }
-
-    @Override
-    public final void c(Surface surface, yka ykaVar) {
-        this.f = surface;
-        this.a.f(surface);
-    }
-
-    @Override
-    public final void d(float f) {
-        this.a.g(f);
-    }
-
-    @Override
-    public final void e() {
-        this.b.b();
-        xcc xccVar = this.a;
-        xccVar.d = false;
-        xccVar.h = -9223372036854775807L;
-        cdc cdcVar = xccVar.b;
-        cdcVar.d = false;
-        zcc zccVar = cdcVar.c;
-        if (zccVar != null) {
-            zccVar.b();
-        }
-        cdcVar.a();
-    }
-
-    @Override
-    public final void f() {
-        this.b.b();
-        this.a.d();
-    }
-
-    @Override
-    public final void g(go4 go4Var, long j, int i, List list) {
-        long j2;
-        long j3;
-        jte.p(list.isEmpty());
-        int i2 = go4Var.A;
-        int i3 = go4Var.B;
-        go4 go4Var2 = this.g;
-        int i4 = go4Var2.A;
-        ddc ddcVar = this.c;
-        if (i2 != i4 || i3 != go4Var2.B) {
-            ir irVar = ddcVar.d;
-            long j4 = ddcVar.i;
-            if (j4 == -9223372036854775807L) {
-                j2 = 0;
+    public je3(r61 r61Var, l61 l61Var, v61 v61Var, lv6 lv6Var) {
+        super((d) r61Var, false, !v61Var.h(), (wjb) null);
+        String M0;
+        int i;
+        long j;
+        String str;
+        ?? r6 = 1;
+        String str2 = null;
+        int i2 = 8;
+        this.W1 = new f15[8];
+        this.X1 = new ag2[8];
+        this.U1 = lv6Var;
+        this.T1 = l61Var;
+        this.b2 = v61Var;
+        this.a2 = l61Var.a;
+        this.r0 = false;
+        W0();
+        this.r0 = true;
+        this.u1 = 0.2f;
+        Activity parentActivity = r61Var.getParentActivity();
+        K();
+        this.w0 = false;
+        LinearLayout linearLayout = new LinearLayout(parentActivity);
+        this.Y1 = linearLayout;
+        linearLayout.setOrientation(1);
+        ie3 ie3Var = new ie3(getContext(), l61Var.a, lv6Var);
+        this.S1 = ie3Var;
+        linearLayout.addView(ie3Var, nme.t(-2, -2, 1, 0, 16, 0, 16));
+        int i3 = 0;
+        ag2 ag2Var = null;
+        while (i3 < i2) {
+            if (i3 == 0) {
+                M0 = k96.M0(2131748571, str2);
+                i = bkb.bk;
+            } else if (i3 == r6) {
+                M0 = k96.M0(2131748567, str2);
+                i = bkb.Xj;
+            } else if (i3 == 2) {
+                M0 = k96.M0(2131748576, str2);
+                i = bkb.Yj;
+            } else if (i3 == 3) {
+                M0 = k96.M0(2131748573, str2);
+                i = bkb.Zj;
+            } else if (i3 == 4) {
+                M0 = k96.M0(2131748583, str2);
+                i = bkb.ck;
+            } else if (i3 == 5) {
+                M0 = k96.M0(2131748569, str2);
+                i = bkb.dk;
+            } else if (i3 == 7) {
+                M0 = k96.M0(2131748568, str2);
+                i = bkb.ek;
             } else {
-                j2 = j4 + 1;
+                M0 = k96.M0(2131748574, str2);
+                i = bkb.fk;
             }
-            irVar.a(new jec(i2, i3), j2);
-        }
-        float f = go4Var.F;
-        if (f != this.g.F) {
-            zj4 zj4Var = this.e;
-            zj4Var.f = f;
-            zj4Var.a.c();
-            zj4Var.b.c();
-            zj4Var.c = false;
-            zj4Var.d = -9223372036854775807L;
-            zj4Var.e = 0;
-            zj4Var.c();
-        }
-        this.g = go4Var;
-        if (j != this.h) {
-            if (ddcVar.f.c == 0) {
-                ddcVar.b.e(i);
-                ddcVar.m = j;
+            String str3 = M0;
+            int i4 = i;
+            m61 m61Var = (m61) l61Var.d.get(i3);
+            Activity activity = parentActivity;
+            if (m61Var != null) {
+                j = m61Var.a;
             } else {
-                ir irVar2 = ddcVar.e;
-                long j5 = ddcVar.i;
-                if (j5 == -9223372036854775807L) {
-                    j3 = -4611686018427387904L;
+                j = 0;
+            }
+            int i5 = (j > 0L ? 1 : (j == 0L ? 0 : -1));
+            f15[] f15VarArr = this.W1;
+            if (i5 > 0) {
+                ?? obj = new Object();
+                Paint paint = new Paint((int) r6);
+                obj.e = paint;
+                obj.b = r6;
+                obj.c = false;
+                paint.setStyle(Paint.Style.STROKE);
+                paint.setStrokeWidth(gl.L(5.0f));
+                paint.setStrokeCap(Paint.Cap.ROUND);
+                paint.setStrokeJoin(Paint.Join.ROUND);
+                f15VarArr[i3] = obj;
+                f15 f15Var = this.W1[i3];
+                f15Var.d = j;
+                f15Var.a = i4;
+                parentActivity = activity;
+                ag2 ag2Var2 = new ag2(parentActivity, 4, 21, false, null);
+                ag2Var2.setTag(Integer.valueOf(i3));
+                ag2Var2.setBackgroundDrawable(bkb.L0(false));
+                this.Y1.addView(ag2Var2, nme.o(-1, 50));
+                ag2Var2.e(str3, gl.i0(j, false, false), true, true, false);
+                if (ag2Var2.getTextView() != null) {
+                    zkb.X(ag2Var2.getTextView(), bkb.i5, null);
                 } else {
-                    j3 = j5 + 1;
+                    ag2Var2.setTextColor(bkb.w0(null, bkb.i5, false));
                 }
-                irVar2.a(Long.valueOf(j), j3);
-            }
-            this.h = j;
-        }
-    }
-
-    @Override
-    public final void h(long j) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void i(k44 k44Var) {
-        this.i = k44Var;
-        this.j = fp3.a;
-    }
-
-    @Override
-    public final void j() {
-        ddc ddcVar = this.c;
-        long j = ddcVar.i;
-        if (j == -9223372036854775807L) {
-            j = Long.MIN_VALUE;
-            ddcVar.i = Long.MIN_VALUE;
-            ddcVar.j = Long.MIN_VALUE;
-        }
-        ddcVar.k = j;
-    }
-
-    @Override
-    public final void k(int i) {
-        cdc cdcVar = this.a.b;
-        if (cdcVar.i == i) {
-            return;
-        }
-        cdcVar.i = i;
-        cdcVar.c(true);
-    }
-
-    @Override
-    public final void l() {
-        this.f = null;
-        this.a.f(null);
-    }
-
-    @Override
-    public final boolean m(long j, vm6 vm6Var) {
-        this.d.add(vm6Var);
-        ddc ddcVar = this.c;
-        rh6 rh6Var = ddcVar.f;
-        int i = rh6Var.c;
-        long[] jArr = (long[]) rh6Var.e;
-        if (i == jArr.length) {
-            int length = jArr.length << 1;
-            if (length >= 0) {
-                ?? r5 = new long[length];
-                int length2 = jArr.length;
-                int i2 = rh6Var.a;
-                int i3 = length2 - i2;
-                System.arraycopy(jArr, i2, r5, 0, i3);
-                System.arraycopy((long[]) rh6Var.e, 0, r5, i3, i2);
-                rh6Var.a = 0;
-                int i4 = rh6Var.c;
-                rh6Var.b = i4 - 1;
-                rh6Var.e = r5;
-                rh6Var.d = length - 1;
-                i = i4;
-                jArr = r5;
+                int i6 = bkb.j7;
+                wf2 wf2Var = ag2Var2.r;
+                if (wf2Var != null) {
+                    wf2Var.b(i4, i4, i6);
+                }
+                ag2Var2.setOnClickListener(new kb1(this, v61Var, (byte) 29));
+                this.X1[i3] = ag2Var2;
+                ag2Var = ag2Var2;
+                str = null;
             } else {
-                rjb.h();
-                return false;
+                str = str2;
+                parentActivity = activity;
+                f15VarArr[i3] = str;
+                this.X1[i3] = str;
+            }
+            i3++;
+            str2 = str;
+            i2 = 8;
+            r6 = 1;
+        }
+        if (ag2Var != null) {
+            ag2Var.setNeedDivider(false);
+        }
+        ie3 ie3Var2 = this.S1;
+        f15[] f15VarArr2 = this.W1;
+        ie3Var2.b = f15VarArr2;
+        ie3Var2.G = v61Var;
+        ie3Var2.invalidate();
+        ie3Var2.c = new float[f15VarArr2.length];
+        ie3Var2.d = new float[f15VarArr2.length];
+        ie3Var2.e = new float[f15VarArr2.length];
+        ie3Var2.c(false);
+        if (ie3Var2.E > 1) {
+            ie3Var2.f = 0.0f;
+        } else {
+            ie3Var2.f = 1.0f;
+        }
+        d61 d61Var = new d61(this, getContext(), r61Var);
+        this.Z1 = d61Var;
+        int L = gl.L(80.0f);
+        if (d61Var.x == null) {
+            d61Var.w = L;
+            int i7 = 0;
+            while (true) {
+                wec wecVar = d61Var.n;
+                if (i7 >= wecVar.getViewPages().length) {
+                    break;
+                }
+                o39 a = d61Var.a(wecVar.getViewPages()[i7]);
+                if (a != null) {
+                    a.setPadding(a.getPaddingLeft(), 0, a.getPaddingRight(), L);
+                }
+                i7++;
             }
         }
-        int i5 = (rh6Var.b + 1) & rh6Var.d;
-        rh6Var.b = i5;
-        jArr[i5] = j;
-        rh6Var.c = i + 1;
-        ddcVar.i = j;
-        ddcVar.k = -9223372036854775807L;
-        this.j.execute(new xf2(this, (byte) 28));
-        return true;
-    }
-
-    @Override
-    public final boolean n(go4 go4Var) {
-        return true;
-    }
-
-    @Override
-    public final void o(boolean z) {
-        boolean z2;
-        boolean z3 = false;
-        if (z) {
-            xcc xccVar = this.a;
-            xccVar.b.b();
-            xccVar.f = -9223372036854775807L;
-            xccVar.e = Math.min(xccVar.e, 1);
-            xccVar.h = -9223372036854775807L;
-            xccVar.m = false;
+        this.Z1.setCacheModel(v61Var);
+        this.Z1.setDelegate(new tg2(this, v61Var, false, (byte) 23));
+        zx0 zx0Var = this.t1;
+        if (zx0Var != null) {
+            zx0Var.setChildLayout(this.Z1);
+        } else {
+            Y0();
+            this.Y1.addView(this.V1, nme.r(-1, 72, 80));
         }
-        this.b.b();
-        ddc ddcVar = this.c;
-        ir irVar = ddcVar.d;
-        rh6 rh6Var = ddcVar.f;
-        rh6Var.a = 0;
-        rh6Var.b = -1;
-        rh6Var.c = 0;
-        ddcVar.i = -9223372036854775807L;
-        ddcVar.j = -9223372036854775807L;
-        ddcVar.k = -9223372036854775807L;
-        ir irVar2 = ddcVar.e;
-        if (irVar2.p() > 0) {
-            if (irVar2.p() > 0) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-            jte.f(z2);
-            while (irVar2.p() > 1) {
-                irVar2.i();
-            }
-            Object i = irVar2.i();
-            i.getClass();
-            ddcVar.m = ((Long) i).longValue();
-        }
-        if (irVar.p() > 0) {
-            if (irVar.p() > 0) {
-                z3 = true;
-            }
-            jte.f(z3);
-            while (irVar.p() > 1) {
-                irVar.i();
-            }
-            Object i2 = irVar.i();
-            i2.getClass();
-            irVar.a((jec) i2, 0L);
-        }
-        this.d.clear();
-    }
-
-    @Override
-    public final void p(List list) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void q(long j, long j2) {
-        try {
-            this.c.a(j, j2);
-        } catch (u64 e) {
-            throw new hec(e, this.g);
+        if (this.V1 != null) {
+            this.V1.a(this.S1.a(), true);
         }
     }
 
     @Override
-    public final void r(boolean z) {
-        this.a.c(z);
+    public final n39 G0(o39 o39Var) {
+        return new gx0(this, (byte) 1);
     }
 
     @Override
-    public final boolean s(boolean z) {
-        return this.a.b(z);
+    public final CharSequence J0() {
+        return this.r1.getMessagesController().a1(this.a2);
     }
 
     @Override
-    public final void t(vcc vccVar) {
-        this.k = vccVar;
-    }
-
-    @Override
-    public final void u() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean v() {
-        return true;
-    }
-
-    @Override
-    public final void w() {
-        xcc xccVar = this.a;
-        if (xccVar.e == 0) {
-            xccVar.e = 1;
+    public final void P0(cja cjaVar) {
+        this.n1.j(new ao2(this, (byte) 4));
+        if (this.t1 != null) {
+            Y0();
+            cjaVar.addView(this.V1, nme.e(-1, 72, 80));
         }
     }
 
-    @Override
-    public final void release() {
+    public final void Y0() {
+        g61 g61Var = new g61(getContext());
+        this.V1 = g61Var;
+        g61Var.a.setOnClickListener(new x91(this, (byte) 27));
+        ie3 ie3Var = this.S1;
+        if (ie3Var != null) {
+            this.V1.a(ie3Var.a(), true);
+        }
     }
 }

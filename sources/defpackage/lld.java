@@ -1,20 +1,17 @@
 package defpackage;
-public final class lld implements Runnable {
-    public final wqd a;
-    public final bpd b;
+public final class lld implements zn7 {
+    public static final lld a = new Object();
 
-    public lld(wqd wqdVar, bpd bpdVar) {
-        this.a = wqdVar;
-        this.b = bpdVar;
+    static {
+        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)));
     }
 
     @Override
-    public final void run() {
-        if (this.a.a == this) {
-            bpd bpdVar = this.b;
-            if (cmd.h.f(this.a, this, wqd.h(bpdVar))) {
-                wqd.j(this.a);
-            }
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ao7 ao7Var = (ao7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

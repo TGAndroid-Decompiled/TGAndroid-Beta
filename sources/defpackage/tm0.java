@@ -1,16 +1,26 @@
 package defpackage;
-public final class tm0 {
-    public int a;
-    public int b;
-    public int c;
-    public int d;
-    public int e;
-    public int f;
-    public int g;
-    public int h;
-    public int i;
-    public int j;
-    public int k;
-    public int l;
-    public int m;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+public final class tm0 implements Runnable {
+    public final byte a;
+    public final AtomicBoolean b;
+
+    public tm0(AtomicBoolean atomicBoolean, byte b) {
+        this.a = b;
+        this.b = atomicBoolean;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        AtomicBoolean atomicBoolean = this.b;
+        switch (b) {
+            case 0:
+                atomicBoolean.set(true);
+                return;
+            default:
+                atomicBoolean.set(true);
+                return;
+        }
+    }
 }

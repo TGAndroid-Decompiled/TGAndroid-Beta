@@ -119,10 +119,10 @@ public class TeXFormula {
                     teXIcon.isColored = teXEnvironment.isColored;
                     return teXIcon;
                 }
-                dq9.m("A size is required. Use setStyle()");
+                sc8.j("A size is required. Use setStyle()");
                 return null;
             }
-            dq9.m("A style is required. Use setStyle()");
+            sc8.j("A style is required. Use setStyle()");
             return null;
         }
 
@@ -137,7 +137,7 @@ public class TeXFormula {
                 this.interLineSpacing = Float.valueOf(f);
                 return this;
             }
-            dq9.m("Cannot set inter line spacing without having specified a width!");
+            sc8.j("Cannot set inter line spacing without having specified a width!");
             return null;
         }
 
@@ -149,7 +149,7 @@ public class TeXFormula {
                 this.isMaxWidth = z;
                 return this;
             }
-            dq9.m("Cannot set 'isMaxWidth' without having specified a width!");
+            sc8.j("Cannot set 'isMaxWidth' without having specified a width!");
             return null;
         }
 

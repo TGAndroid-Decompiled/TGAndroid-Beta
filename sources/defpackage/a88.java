@@ -1,91 +1,317 @@
 package defpackage;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.view.ViewGroup;
+import java.io.File;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-public final class a88 extends FrameLayout {
-    public bf0 a;
-    public FrameLayout b;
-    public jh2 c;
-    public TextView d;
-    public jp0 e;
-    public int f;
-    public int h;
+import org.telegram.ui.PhotoViewer;
+public final class a88 implements vv2 {
+    public final String a;
+    public final oac b;
+    public final jm6 c;
+    public final boolean d;
+    public final int e;
+    public final int f;
+    public final boolean h;
+    public final PhotoViewer n;
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.c.b(cmb.V9, cmb.W9, cmb.U9);
+    public a88(PhotoViewer photoViewer, String str, oac oacVar, jm6 jm6Var, boolean z, int i, int i2, boolean z2) {
+        this.n = photoViewer;
+        this.a = str;
+        this.b = oacVar;
+        this.c = jm6Var;
+        this.d = z;
+        this.e = i;
+        this.f = i2;
+        this.h = z2;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f, 1073741824));
+    public final boolean A(TLRPC.Document document) {
+        return false;
     }
 
-    public void setImage(jo6 jo6Var) {
-        jp0 jp0Var = this.e;
-        bf0 bf0Var = this.a;
-        Drawable drawable = getResources().getDrawable(2131232467);
-        String str = jo6Var.c;
-        int i = jo6Var.C;
-        String str2 = jo6Var.I;
-        if (str != null) {
-            bf0Var.o(str, null, drawable);
-        } else if (str2 != null) {
-            bf0Var.r(jo6Var.J, jo6Var.K, true);
-            if (jo6Var.d()) {
-                jp0Var.setVisibility(4);
-                setContentDescription(jb6.M0(2131753927, null));
-                bf0Var.o(mle.d("thumb://", i, ":", str2), null, drawable);
-            } else if (jo6Var.b) {
-                jp0Var.setVisibility(0);
-                this.d.setText(gm.g0(jo6Var.E, false, false));
-                setContentDescription(jb6.M0(2131753898, null) + ", " + jb6.z(jo6Var.E));
-                StringBuilder sb = new StringBuilder("vthumb://");
-                sb.append(i);
-                bf0Var.o(b10.j(sb, ":", str2), null, drawable);
-            } else {
-                jp0Var.setVisibility(4);
-                setContentDescription(jb6.M0(2131753913, null));
-                bf0Var.o(mle.d("thumb://", i, ":", str2), null, drawable);
+    @Override
+    public final String C(boolean z) {
+        return null;
+    }
+
+    public final void D() {
+        xv2 e = xv2.e();
+        ImageReceiver imageReceiver = e.A;
+        jm6 jm6Var = this.c;
+        if (jm6Var.c != null) {
+            try {
+                new File(jm6Var.c).delete();
+            } catch (Exception e2) {
+                fa4.g(e2, true);
             }
-        } else {
-            bf0Var.setImageDrawable(drawable);
+            jm6Var.c = null;
+        }
+        Bitmap createBitmap = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        imageReceiver.setAlpha(1.0f);
+        imageReceiver.i0(0.0f, 0.0f, createBitmap.getWidth(), createBitmap.getHeight());
+        imageReceiver.h(canvas, null);
+        if (e.C != null) {
+            canvas.save();
+            canvas.scale(createBitmap.getWidth() / e.C.getWidth(), createBitmap.getHeight() / e.C.getHeight());
+            e.C.setAlpha(1.0f);
+            Path path = new Path();
+            path.rewind();
+            RectF rectF = gl.P;
+            rectF.set(0.0f, 0.0f, e.C.getWidth(), e.C.getHeight());
+            path.addRoundRect(rectF, e.C.getWidth() / 8.0f, e.C.getHeight() / 8.0f, Path.Direction.CW);
+            canvas.clipPath(path);
+            e.C.draw(canvas);
+            canvas.restore();
+        }
+        Drawable[] drawableArr = PhotoViewer.d9;
+        PhotoViewer photoViewer = this.n;
+        TLRPC.PhotoSize V = fl5.V(createBitmap, photoViewer.e0(), 512.0f, 512.0f, 83);
+        ba4.G(photoViewer.U);
+        jm6Var.c = ba4.J(V, null, true, true).toString();
+    }
+
+    @Override
+    public final boolean F() {
+        return false;
+    }
+
+    @Override
+    public final cs5 G(ViewGroup viewGroup) {
+        return null;
+    }
+
+    @Override
+    public final boolean K() {
+        if (this.n.y7 != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean P(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final void Q(String str) {
+        PhotoViewer photoViewer = this.n;
+        photoViewer.B7 = true;
+        D();
+        photoViewer.o5.o(this.a, this.b, str, null, true, 0L, null, null, photoViewer.t0(), this.c.c, null, null);
+    }
+
+    @Override
+    public final void R(CharSequence charSequence, String str, pz1 pz1Var) {
+        PhotoViewer photoViewer = this.n;
+        photoViewer.B7 = true;
+        D();
+        photoViewer.o5.o(this.a, this.b, str, charSequence, false, 0L, null, null, photoViewer.t0(), this.c.c, pz1Var, null);
+    }
+
+    @Override
+    public final Boolean S(TLRPC.Document document) {
+        return null;
+    }
+
+    @Override
+    public final boolean T() {
+        return true;
+    }
+
+    @Override
+    public final long a() {
+        return this.n.D5;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.TL_messageMediaPoll d() {
+        return null;
+    }
+
+    @Override
+    public final boolean e(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final boolean f() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PollAnswer g() {
+        return null;
+    }
+
+    @Override
+    public final boolean h() {
+        return true;
+    }
+
+    @Override
+    public final boolean i() {
+        return false;
+    }
+
+    @Override
+    public final boolean j(int i) {
+        return false;
+    }
+
+    @Override
+    public final void l(String str) {
+        PhotoViewer photoViewer = this.n;
+        photoViewer.B7 = true;
+        D();
+        photoViewer.o5.o(this.a, this.b, str, null, false, 0L, null, null, photoViewer.t0(), this.c.c, null, photoViewer.C7);
+    }
+
+    @Override
+    public final boolean n() {
+        return true;
+    }
+
+    @Override
+    public final void s(TLRPC.StickerSet stickerSet, String str) {
+        PhotoViewer photoViewer = this.n;
+        photoViewer.B7 = true;
+        D();
+        photoViewer.o5.o(this.a, this.b, str, null, false, 0L, stickerSet, photoViewer.y7, photoViewer.t0(), this.c.c, null, null);
+    }
+
+    @Override
+    public final boolean t() {
+        o98 o98Var;
+        TLRPC.Chat chat;
+        PhotoViewer photoViewer = this.n;
+        mu1 mu1Var = photoViewer.k4;
+        if ((mu1Var == null || (chat = mu1Var.e) == null || hc2.t(chat)) && (o98Var = photoViewer.d) != null) {
+            if (!o98Var.Q() || photoViewer.k4 != null) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void v(String str) {
+        PhotoViewer photoViewer = this.n;
+        o98 o98Var = photoViewer.d;
+        if (o98Var != null) {
+            boolean Q = o98Var.Q();
+            jm6 jm6Var = this.c;
+            if (Q) {
+                if (photoViewer.k4 == null) {
+                    return;
+                }
+                photoViewer.B7 = true;
+                D();
+                photoViewer.o5.o(this.a, this.b, str, null, false, photoViewer.k4.a(), null, null, photoViewer.t0(), jm6Var.c, null, null);
+                return;
+            }
+            photoViewer.B7 = true;
+            D();
+            jm6Var.h = this.a;
+            photoViewer.d.L(photoViewer.O4, this.b, this.d, this.e, this.f, this.h);
+            kk7.f(y6c.t0).m(kk7.t3, Boolean.TRUE);
         }
     }
 
-    public void setNum(int i) {
-        this.c.setNum(i);
+    @Override
+    public final k27 w() {
+        return null;
     }
 
-    public void setImage(no6 no6Var) {
-        bf0 bf0Var = this.a;
-        Drawable drawable = getResources().getDrawable(2131232467);
-        TLRPC.PhotoSize photoSize = no6Var.M;
-        if (photoSize != null) {
-            bf0Var.m(gn5.i(photoSize, no6Var.K), null, drawable, no6Var);
-            return;
+    @Override
+    public final boolean x() {
+        if (this.n.C7 != null) {
+            return true;
         }
-        TLRPC.PhotoSize photoSize2 = no6Var.L;
-        if (photoSize2 != null) {
-            bf0Var.m(gn5.i(photoSize2, no6Var.K), "80_80", drawable, no6Var);
-            return;
-        }
-        String str = no6Var.c;
-        if (str != null) {
-            bf0Var.o(str, null, drawable);
-            return;
-        }
-        String str2 = no6Var.D;
-        if (str2 != null && str2.length() > 0) {
-            bf0Var.o(no6Var.D, null, drawable);
-        } else if (k47.W2(no6Var.J)) {
-            bf0Var.m(gn5.c(bc4.w(no6Var.J.thumbs, 320, false, null, false), no6Var.J), null, drawable, no6Var);
-        } else {
-            bf0Var.setImageDrawable(drawable);
-        }
+        return false;
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void N() {
+    }
+
+    @Override
+    public final void p() {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void B(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void E(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void I(s3a s3aVar) {
+    }
+
+    @Override
+    public final void m(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void o(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void r(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void y(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void J(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void O(TLRPC.InputStickerSet inputStickerSet, boolean z) {
+    }
+
+    @Override
+    public final void u(Object obj, Object obj2, boolean z, int i, int i2) {
+    }
+
+    @Override
+    public final void k(TLRPC.Document document, String str, Object obj, boolean z, int i, int i2) {
     }
 }

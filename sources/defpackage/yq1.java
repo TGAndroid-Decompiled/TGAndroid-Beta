@@ -1,87 +1,25 @@
 package defpackage;
+public final class yq1 implements Runnable {
+    public final mu1 a;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Components.q;
-public final class yq1 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final yv1 b;
-
-    public yq1(yv1 yv1Var, byte b) {
-        this.a = b;
-        this.b = yv1Var;
+    public yq1(mu1 mu1Var) {
+        this.a = mu1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        vr1 vr1Var;
-        byte b = this.a;
-        yv1 yv1Var = this.b;
-        switch (b) {
-            case 0:
-                q qVar = yv1Var.q3;
-                if (qVar != null) {
-                    qVar.setIsMessageTransition(false);
-                    yv1Var.q3.m();
-                    yv1Var.q3.setVisibility(4);
-                    return;
-                }
-                return;
-            case 1:
-                yv1Var.X9 = gm.L(30.0f);
-                yv1Var.O7();
-                return;
-            case 2:
-                if (yv1Var.fragmentView != null && (vr1Var = yv1Var.A0) != null) {
-                    vr1Var.invalidate();
-                    yv1Var.fragmentView.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                yv1Var.R.setVisibility(4);
-                return;
-            case 4:
-                if (animator.equals(yv1Var.v3)) {
-                    yv1Var.v3 = null;
-                    return;
-                }
-                return;
-            case 5:
-                if (animator.equals(yv1Var.v3)) {
-                    yv1Var.v3 = null;
-                    return;
-                }
-                return;
-            case 6:
-                if (animator.equals(yv1Var.w3)) {
-                    yv1Var.x3 = 1.0f;
-                    yv1Var.Tc();
-                    yv1Var.w3 = null;
-                    return;
-                }
-                return;
-            case 7:
-                if (animator.equals(yv1Var.w3)) {
-                    yv1Var.x3 = 0.0f;
-                    yv1Var.Tc();
-                    yv1Var.w3 = null;
-                    return;
-                }
-                return;
-            case 8:
-                yv1Var.h5 = null;
-                return;
-            case 9:
-                yv1Var.bb = 1.0f;
-                yv1Var.a0.setVisibility(4);
-                yv1Var.d1.setVisibility(4);
-                yv1Var.O7();
-                return;
-            default:
-                yv1Var.bb = 0.0f;
-                yv1Var.O7();
-                return;
+    public final void run() {
+        String G;
+        mu1 mu1Var = this.a;
+        k27 k27Var = mu1Var.v5;
+        if (k27Var != null && mu1Var.l9 != null) {
+            int max = Math.max(0, k27Var.k.ttl_period - (mu1Var.getConnectionsManager().getCurrentTime() - mu1Var.v5.k.date));
+            if (max < 86400) {
+                G = gl.g0(max, false, true);
+            } else {
+                G = k96.G(Math.round(max / 86400.0f), "Days", new Object[0]);
+            }
+            mu1Var.l9.setSubtext(k96.a0(null, null, 2131753850, G));
+            gl.d3(mu1Var.m9, 1000L);
         }
     }
 }

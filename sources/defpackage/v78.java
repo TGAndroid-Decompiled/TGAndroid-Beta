@@ -1,6 +1,3 @@
 package defpackage;
-public interface v78 {
-    void H(String str);
-
-    void e();
+public final class v78 extends ss3 {
 }

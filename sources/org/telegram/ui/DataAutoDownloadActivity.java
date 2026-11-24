@@ -19,17 +19,17 @@ import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.DataAutoDownloadActivity;
 public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
-    public final dr3 E;
-    public final dr3 F;
-    public final dr3 G;
-    public final dr3 H;
-    public final dr3 I;
+    public final tp3 E;
+    public final tp3 F;
+    public final tp3 G;
+    public final tp3 H;
+    public final tp3 I;
     public boolean J;
     public final String K;
     public final String L;
-    public s30 a;
+    public s20 a;
     private int autoDownloadRow;
-    public r59 b;
+    public o39 b;
     public final ArrayList c;
     public int d;
     public int e;
@@ -52,32 +52,32 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
         this.c = new ArrayList();
         this.d = 1;
         this.f = i;
-        dr3 dr3Var = er3.q(this.currentAccount).K;
-        this.E = dr3Var;
-        dr3 dr3Var2 = er3.q(this.currentAccount).L;
-        this.F = dr3Var2;
-        dr3 dr3Var3 = er3.q(this.currentAccount).M;
-        this.G = dr3Var3;
+        tp3 tp3Var = up3.q(this.currentAccount).K;
+        this.E = tp3Var;
+        tp3 tp3Var2 = up3.q(this.currentAccount).L;
+        this.F = tp3Var2;
+        tp3 tp3Var3 = up3.q(this.currentAccount).M;
+        this.G = tp3Var3;
         if (i == 0) {
-            this.e = er3.q(this.currentAccount).Q;
-            this.H = er3.q(this.currentAccount).N;
-            this.I = dr3Var2;
+            this.e = up3.q(this.currentAccount).Q;
+            this.H = up3.q(this.currentAccount).N;
+            this.I = tp3Var2;
             this.K = "mobilePreset";
             this.L = "currentMobilePreset";
             return;
         }
         int i2 = this.currentAccount;
         if (i == 1) {
-            this.e = er3.q(i2).R;
-            this.H = er3.q(this.currentAccount).O;
-            this.I = dr3Var3;
+            this.e = up3.q(i2).R;
+            this.H = up3.q(this.currentAccount).O;
+            this.I = tp3Var3;
             this.K = "wifiPreset";
             this.L = "currentWifiPreset";
             return;
         }
-        this.e = er3.q(i2).S;
-        this.H = er3.q(this.currentAccount).P;
-        this.I = dr3Var;
+        this.e = up3.q(i2).S;
+        this.H = up3.q(this.currentAccount).P;
+        this.I = tp3Var;
         this.K = "roamingPreset";
         this.L = "currentRoamingPreset";
     }
@@ -85,73 +85,73 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
     @Override
     public final void addThemeColorKeys(HashSet hashSet) {
         super.addThemeColorKeys(hashSet);
-        hashSet.add(Integer.valueOf(cmb.x6));
-        hashSet.add(Integer.valueOf(cmb.M6));
-        hashSet.add(Integer.valueOf(cmb.L6));
-        hashSet.add(Integer.valueOf(cmb.A6));
-        hashSet.add(Integer.valueOf(cmb.y6));
-        hashSet.add(Integer.valueOf(cmb.F6));
-        hashSet.add(Integer.valueOf(cmb.f6));
-        hashSet.add(Integer.valueOf(cmb.d6));
-        hashSet.add(Integer.valueOf(cmb.e6));
-        hashSet.add(Integer.valueOf(cmb.K6));
-        hashSet.add(Integer.valueOf(cmb.h6));
-        hashSet.add(Integer.valueOf(cmb.s8));
-        hashSet.add(Integer.valueOf(cmb.z8));
-        hashSet.add(Integer.valueOf(cmb.u8));
-        hashSet.add(Integer.valueOf(cmb.r8));
+        hashSet.add(Integer.valueOf(bkb.x6));
+        hashSet.add(Integer.valueOf(bkb.M6));
+        hashSet.add(Integer.valueOf(bkb.L6));
+        hashSet.add(Integer.valueOf(bkb.A6));
+        hashSet.add(Integer.valueOf(bkb.y6));
+        hashSet.add(Integer.valueOf(bkb.F6));
+        hashSet.add(Integer.valueOf(bkb.f6));
+        hashSet.add(Integer.valueOf(bkb.d6));
+        hashSet.add(Integer.valueOf(bkb.e6));
+        hashSet.add(Integer.valueOf(bkb.K6));
+        hashSet.add(Integer.valueOf(bkb.h6));
+        hashSet.add(Integer.valueOf(bkb.s8));
+        hashSet.add(Integer.valueOf(bkb.z8));
+        hashSet.add(Integer.valueOf(bkb.u8));
+        hashSet.add(Integer.valueOf(bkb.r8));
     }
 
     @Override
     public final View createView(Context context) {
         setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(2131231244);
+        this.simpleActionBar.setBackButtonImage(2131231243);
         int i = this.f;
         if (i == 0) {
-            this.simpleActionBar.setTitle(jb6.M0(2131753789, null));
+            this.simpleActionBar.setTitle(k96.M0(2131753821, null));
         } else if (i == 1) {
-            this.simpleActionBar.setTitle(jb6.M0(2131753784, null));
+            this.simpleActionBar.setTitle(k96.M0(2131753816, null));
         } else if (i == 2) {
-            this.simpleActionBar.setTitle(jb6.M0(2131753787, null));
+            this.simpleActionBar.setTitle(k96.M0(2131753819, null));
         }
-        tk5 tk5Var = this.parentLayout;
-        if (tk5Var != null && ((ActionBarLayout) tk5Var).T0) {
+        ui5 ui5Var = this.parentLayout;
+        if (ui5Var != null && ((ActionBarLayout) ui5Var).T0) {
             this.simpleActionBar.setOccupyStatusBar(false);
         }
-        this.simpleActionBar.setActionBarMenuOnItemClick(new fh2(this, (byte) 9));
-        this.a = new s30(this, context, (byte) 2);
+        this.simpleActionBar.setActionBarMenuOnItemClick(new vm2(this, (byte) 8));
+        this.a = new s20(this, context, (byte) 2);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        r59 r59Var = new r59(context, null);
-        this.b = r59Var;
-        r59Var.r1();
+        o39 o39Var = new o39(context, null);
+        this.b = o39Var;
+        o39Var.r1();
         this.b.setVerticalScrollBarEnabled(false);
         this.b.setSectionsDrawBackground(true);
-        ((sc3) this.b.getItemAnimator()).C = false;
-        this.b.setLayoutManager(new u46(1, false));
-        frameLayout.addView(this.b, qoe.e(-1, -1, 51));
+        ((gb3) this.b.getItemAnimator()).C = false;
+        this.b.setLayoutManager(new t26(1, false));
+        frameLayout.addView(this.b, nme.e(-1, -1, 51));
         this.b.setAdapter(this.a);
-        this.b.setOnItemClickListener(new wm2(this, (byte) 14));
+        this.b.setOnItemClickListener(new vu2(this, (byte) 11));
         return this.fragmentView;
     }
 
     @Override
-    public final r59 getListViewForSimpleGlass() {
+    public final o39 getListViewForSimpleGlass() {
         return this.b;
     }
 
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new cnb(this.b, 16, new Class[]{jf5.class, yn7.class, hla.class}, (Paint) null, (Drawable[]) null, (bnb) null, cmb.c6));
-        arrayList.add(new cnb(this.b, 0, new Class[]{bjb.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.N6));
-        arrayList.add(new cnb(this.b, 0, new Class[]{bjb.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.O6));
-        arrayList.add(new cnb(this.b, 0, new Class[]{bjb.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.P6));
-        arrayList.add(new cnb(this.b, 0, new Class[]{bjb.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.Q6));
-        arrayList.add(new cnb(this.b, 0, new Class[]{bjb.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.R6));
-        arrayList.add(new cnb(this.b, 0, new Class[]{bjb.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.S6));
-        arrayList.add(new cnb(this.b, 0, new Class[]{yn7.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.L6));
-        arrayList.add(new cnb(this.b, 0, new Class[]{yn7.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.M6));
+        arrayList.add(new blb(this.b, 16, new Class[]{ld5.class, vl7.class, fja.class}, (Paint) null, (Drawable[]) null, (alb) null, bkb.c6));
+        arrayList.add(new blb(this.b, 0, new Class[]{ahb.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.N6));
+        arrayList.add(new blb(this.b, 0, new Class[]{ahb.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.O6));
+        arrayList.add(new blb(this.b, 0, new Class[]{ahb.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.P6));
+        arrayList.add(new blb(this.b, 0, new Class[]{ahb.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.Q6));
+        arrayList.add(new blb(this.b, 0, new Class[]{ahb.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.R6));
+        arrayList.add(new blb(this.b, 0, new Class[]{ahb.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.S6));
+        arrayList.add(new blb(this.b, 0, new Class[]{vl7.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.L6));
+        arrayList.add(new blb(this.b, 0, new Class[]{vl7.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.M6));
         return arrayList;
     }
 
@@ -160,43 +160,43 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
         return true;
     }
 
-    public final void n0() {
+    public final void m0() {
         ArrayList arrayList = this.c;
         arrayList.clear();
-        dr3 dr3Var = this.E;
-        arrayList.add(dr3Var);
-        dr3 dr3Var2 = this.F;
-        arrayList.add(dr3Var2);
-        dr3 dr3Var3 = this.G;
-        arrayList.add(dr3Var3);
-        dr3 dr3Var4 = this.H;
-        if (!dr3Var4.a(dr3Var) && !dr3Var4.a(dr3Var2) && !dr3Var4.a(dr3Var3)) {
-            arrayList.add(dr3Var4);
+        tp3 tp3Var = this.E;
+        arrayList.add(tp3Var);
+        tp3 tp3Var2 = this.F;
+        arrayList.add(tp3Var2);
+        tp3 tp3Var3 = this.G;
+        arrayList.add(tp3Var3);
+        tp3 tp3Var4 = this.H;
+        if (!tp3Var4.a(tp3Var) && !tp3Var4.a(tp3Var2) && !tp3Var4.a(tp3Var3)) {
+            arrayList.add(tp3Var4);
         }
-        Collections.sort(arrayList, new x03((byte) 2));
+        Collections.sort(arrayList, new mz2((byte) 2));
         int i = this.e;
-        if (i != 0 && (i != 3 || !dr3Var4.a(dr3Var))) {
+        if (i != 0 && (i != 3 || !tp3Var4.a(tp3Var))) {
             int i2 = this.e;
-            if (i2 != 1 && (i2 != 3 || !dr3Var4.a(dr3Var2))) {
+            if (i2 != 1 && (i2 != 3 || !tp3Var4.a(tp3Var2))) {
                 int i3 = this.e;
-                if (i3 != 2 && (i3 != 3 || !dr3Var4.a(dr3Var3))) {
-                    this.d = arrayList.indexOf(dr3Var4);
+                if (i3 != 2 && (i3 != 3 || !tp3Var4.a(tp3Var3))) {
+                    this.d = arrayList.indexOf(tp3Var4);
                 } else {
-                    this.d = arrayList.indexOf(dr3Var3);
+                    this.d = arrayList.indexOf(tp3Var3);
                 }
             } else {
-                this.d = arrayList.indexOf(dr3Var2);
+                this.d = arrayList.indexOf(tp3Var2);
             }
         } else {
-            this.d = arrayList.indexOf(dr3Var);
+            this.d = arrayList.indexOf(tp3Var);
         }
-        r59 r59Var = this.b;
-        if (r59Var != null) {
-            u69 K = r59Var.K(this.usageProgressRow);
+        o39 o39Var = this.b;
+        if (o39Var != null) {
+            s49 K = o39Var.K(this.usageProgressRow);
             if (K != null) {
                 View view = K.a;
-                if (view instanceof hla) {
-                    r0((hla) view);
+                if (view instanceof fja) {
+                    q0((fja) view);
                     return;
                 }
             }
@@ -204,14 +204,14 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
         }
     }
 
-    public final void o0(yib yibVar, yib[] yibVarArr, int i, ul6[] ul6VarArr, bjb[] bjbVarArr, AnimatorSet[] animatorSetArr, View view) {
+    public final void n0(xgb xgbVar, xgb[] xgbVarArr, int i, rj6[] rj6VarArr, ahb[] ahbVarArr, AnimatorSet[] animatorSetArr, View view) {
         if (view.isEnabled()) {
             boolean z = true;
-            yibVar.setChecked(!yibVar.b.h);
+            xgbVar.setChecked(!xgbVar.b.h);
             int i2 = 0;
             while (true) {
-                if (i2 < yibVarArr.length) {
-                    if (yibVarArr[i2].b.h) {
+                if (i2 < xgbVarArr.length) {
+                    if (xgbVarArr[i2].b.h) {
                         break;
                     }
                     i2++;
@@ -220,11 +220,11 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
                     break;
                 }
             }
-            if (i == this.videosRow && ul6VarArr[0].isEnabled() != z) {
+            if (i == this.videosRow && rj6VarArr[0].isEnabled() != z) {
                 ArrayList arrayList = new ArrayList();
-                ul6VarArr[0].a(arrayList, z);
-                if (ul6VarArr[0].getSize() > 2097152) {
-                    bjbVarArr[0].e(arrayList, z);
+                rj6VarArr[0].a(arrayList, z);
+                if (rj6VarArr[0].getSize() > 2097152) {
+                    ahbVarArr[0].e(arrayList, z);
                 }
                 AnimatorSet animatorSet = animatorSetArr[0];
                 if (animatorSet != null) {
@@ -234,18 +234,80 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 animatorSetArr[0] = animatorSet2;
                 animatorSet2.playTogether(arrayList);
-                animatorSetArr[0].addListener(new kh2(animatorSetArr, (byte) 5));
+                animatorSetArr[0].addListener(new im2(animatorSetArr, (byte) 3));
                 animatorSetArr[0].setDuration(150L);
                 animatorSetArr[0].start();
             }
         }
     }
 
+    public final void o0(xgb[] xgbVarArr, int i, rj6[] rj6VarArr, int i2, ahb[] ahbVarArr, int i3, String str, String str2, i4d i4dVar, View view) {
+        int i4 = this.e;
+        tp3 tp3Var = this.H;
+        if (i4 != 3) {
+            if (i4 == 0) {
+                tp3Var.c(this.E);
+            } else if (i4 == 1) {
+                tp3Var.c(this.F);
+            } else if (i4 == 2) {
+                tp3Var.c(this.G);
+            }
+        }
+        for (int i5 = 0; i5 < 4; i5++) {
+            if (xgbVarArr[i5].b.h) {
+                int[] iArr = tp3Var.a;
+                iArr[i5] = iArr[i5] | i;
+            } else {
+                int[] iArr2 = tp3Var.a;
+                iArr2[i5] = iArr2[i5] & (~i);
+            }
+        }
+        rj6 rj6Var = rj6VarArr[0];
+        if (rj6Var != null) {
+            rj6Var.getSize();
+            tp3Var.b[i2] = (int) rj6VarArr[0].getSize();
+        }
+        ahb ahbVar = ahbVarArr[0];
+        if (ahbVar != null) {
+            int i6 = this.videosRow;
+            Switch r9 = ahbVar.e;
+            if (i3 == i6) {
+                tp3Var.c = r9.h;
+            } else {
+                tp3Var.d = r9.h;
+            }
+        }
+        SharedPreferences.Editor edit = na7.q1(this.currentAccount).X3.edit();
+        edit.putString(str, tp3Var.toString());
+        this.e = 3;
+        edit.putInt(str2, 3);
+        int i7 = this.currentAccount;
+        int i8 = this.f;
+        if (i8 == 0) {
+            up3.q(i7).Q = this.e;
+        } else if (i8 == 1) {
+            up3.q(i7).R = this.e;
+        } else {
+            up3.q(i7).S = this.e;
+        }
+        edit.commit();
+        ((fx0) i4dVar.a).y0.run();
+        s49 G = this.b.G(view);
+        if (G != null) {
+            this.h = true;
+            this.a.t(G, i3);
+            this.h = false;
+        }
+        up3.q(this.currentAccount).g();
+        this.J = true;
+        m0();
+    }
+
     @Override
     public final boolean onFragmentCreate() {
         super.onFragmentCreate();
-        n0();
-        s0();
+        m0();
+        r0();
         return true;
     }
 
@@ -253,7 +315,7 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
     public final void onPause() {
         super.onPause();
         if (this.J) {
-            er3.q(this.currentAccount).w(this.f);
+            up3.q(this.currentAccount).w(this.f);
             this.J = false;
         }
     }
@@ -261,83 +323,21 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
     @Override
     public final void onResume() {
         super.onResume();
-        s30 s30Var = this.a;
-        if (s30Var != null) {
-            s30Var.f();
+        s20 s20Var = this.a;
+        if (s20Var != null) {
+            s20Var.f();
         }
     }
 
-    public final void p0(yib[] yibVarArr, int i, ul6[] ul6VarArr, int i2, bjb[] bjbVarArr, int i3, String str, String str2, k6d k6dVar, View view) {
-        int i4 = this.e;
-        dr3 dr3Var = this.H;
-        if (i4 != 3) {
-            if (i4 == 0) {
-                dr3Var.c(this.E);
-            } else if (i4 == 1) {
-                dr3Var.c(this.F);
-            } else if (i4 == 2) {
-                dr3Var.c(this.G);
-            }
-        }
-        for (int i5 = 0; i5 < 4; i5++) {
-            if (yibVarArr[i5].b.h) {
-                int[] iArr = dr3Var.a;
-                iArr[i5] = iArr[i5] | i;
-            } else {
-                int[] iArr2 = dr3Var.a;
-                iArr2[i5] = iArr2[i5] & (~i);
-            }
-        }
-        ul6 ul6Var = ul6VarArr[0];
-        if (ul6Var != null) {
-            ul6Var.getSize();
-            dr3Var.b[i2] = (int) ul6VarArr[0].getSize();
-        }
-        bjb bjbVar = bjbVarArr[0];
-        if (bjbVar != null) {
-            int i6 = this.videosRow;
-            Switch r9 = bjbVar.e;
-            if (i3 == i6) {
-                dr3Var.c = r9.h;
-            } else {
-                dr3Var.d = r9.h;
-            }
-        }
-        SharedPreferences.Editor edit = oc7.r1(this.currentAccount).X3.edit();
-        edit.putString(str, dr3Var.toString());
-        this.e = 3;
-        edit.putInt(str2, 3);
-        int i7 = this.currentAccount;
-        int i8 = this.f;
-        if (i8 == 0) {
-            er3.q(i7).Q = this.e;
-        } else if (i8 == 1) {
-            er3.q(i7).R = this.e;
-        } else {
-            er3.q(i7).S = this.e;
-        }
-        edit.commit();
-        ((my0) k6dVar.b).y0.run();
-        u69 G = this.b.G(view);
-        if (G != null) {
-            this.h = true;
-            this.a.t(G, i3);
-            this.h = false;
-        }
-        er3.q(this.currentAccount).g();
-        this.J = true;
-        n0();
-    }
-
-    public final void q0(float f, int i, final View view) {
+    public final void p0(float f, int i, final View view) {
         int i2;
-        dr3 o;
+        tp3 o;
         String str;
         String str2;
         boolean z;
         boolean z2;
-        u69 T;
-        final bjb[] bjbVarArr;
+        s49 T;
+        final ahb[] ahbVarArr;
         ?? r12;
         ArrayList arrayList;
         int i3;
@@ -354,68 +354,68 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
         int i7;
         int i8 = i;
         int i9 = this.autoDownloadRow;
-        dr3 dr3Var = this.G;
-        dr3 dr3Var2 = this.F;
-        dr3 dr3Var3 = this.E;
+        tp3 tp3Var = this.G;
+        tp3 tp3Var2 = this.F;
+        tp3 tp3Var3 = this.E;
         int i10 = this.f;
-        dr3 dr3Var4 = this.H;
-        ylb ylbVar = null;
+        tp3 tp3Var4 = this.H;
+        wjb wjbVar = null;
         if (i8 == i9) {
             int i11 = this.e;
             if (i11 != 3) {
                 if (i11 == 0) {
-                    dr3Var4.c(dr3Var3);
+                    tp3Var4.c(tp3Var3);
                 } else if (i11 == 1) {
-                    dr3Var4.c(dr3Var2);
+                    tp3Var4.c(tp3Var2);
                 } else if (i11 == 2) {
-                    dr3Var4.c(dr3Var);
+                    tp3Var4.c(tp3Var);
                 }
             }
-            bjb bjbVar = (bjb) view;
-            boolean z8 = bjbVar.e.h;
-            if (!z8 && dr3Var4.g) {
-                System.arraycopy(this.I.a, 0, dr3Var4.a, 0, 4);
+            ahb ahbVar = (ahb) view;
+            boolean z8 = ahbVar.e.h;
+            if (!z8 && tp3Var4.g) {
+                System.arraycopy(this.I.a, 0, tp3Var4.a, 0, 4);
             } else {
-                dr3Var4.g = !dr3Var4.g;
+                tp3Var4.g = !tp3Var4.g;
             }
-            if (dr3Var4.g) {
-                i6 = cmb.e6;
+            if (tp3Var4.g) {
+                i6 = bkb.e6;
             } else {
-                i6 = cmb.d6;
+                i6 = bkb.d6;
             }
             view.setTag(Integer.valueOf(i6));
             boolean z9 = !z8;
-            if (dr3Var4.g) {
-                i7 = cmb.e6;
+            if (tp3Var4.g) {
+                i7 = bkb.e6;
             } else {
-                i7 = cmb.d6;
+                i7 = bkb.d6;
             }
-            bjbVar.b(cmb.w0(null, i7, false), z9);
-            s0();
-            boolean z10 = dr3Var4.g;
-            s30 s30Var = this.a;
+            ahbVar.b(bkb.w0(null, i7, false), z9);
+            r0();
+            boolean z10 = tp3Var4.g;
+            s20 s20Var = this.a;
             int i12 = (this.n ? 1 : 0) + 1;
             if (z10) {
-                s30Var.p(i12, 9);
+                s20Var.p(i12, 9);
             } else {
-                s30Var.q(i12, 9);
+                s20Var.q(i12, 9);
             }
             this.a.g(this.n ? 1 : 0);
-            SharedPreferences.Editor edit = oc7.r1(this.currentAccount).X3.edit();
-            edit.putString(this.K, dr3Var4.toString());
+            SharedPreferences.Editor edit = na7.q1(this.currentAccount).X3.edit();
+            edit.putString(this.K, tp3Var4.toString());
             this.e = 3;
             edit.putInt(this.L, 3);
             int i13 = this.currentAccount;
             if (i10 == 0) {
-                er3.q(i13).Q = this.e;
+                up3.q(i13).Q = this.e;
             } else if (i10 == 1) {
-                er3.q(i13).R = this.e;
+                up3.q(i13).R = this.e;
             } else {
-                er3.q(i13).S = this.e;
+                up3.q(i13).S = this.e;
             }
             edit.commit();
-            bjbVar.setChecked(z9);
-            er3.q(this.currentAccount).g();
+            ahbVar.setChecked(z9);
+            up3.q(this.currentAccount).g();
             this.J = true;
         } else if ((i8 == this.photosRow || i8 == this.videosRow || i8 == this.filesRow || i8 == this.storiesRow) && view.isEnabled()) {
             if (i8 == this.photosRow) {
@@ -427,61 +427,61 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
             } else {
                 i2 = 8;
             }
-            final int x = er3.x(i2);
+            final int x = up3.x(i2);
             int i14 = this.currentAccount;
             if (i10 == 0) {
-                o = er3.q(i14).n();
+                o = up3.q(i14).n();
                 str = "mobilePreset";
                 str2 = "currentMobilePreset";
             } else if (i10 == 1) {
-                o = er3.q(i14).p();
+                o = up3.q(i14).p();
                 str = "wifiPreset";
                 str2 = "currentWifiPreset";
             } else {
-                o = er3.q(i14).o();
+                o = up3.q(i14).o();
                 str = "roamingPreset";
                 str2 = "currentRoamingPreset";
             }
-            yn7 yn7Var = (yn7) view;
-            boolean z11 = yn7Var.e.h;
-            if (i8 != this.storiesRow && ((!jb6.a0 || f > gm.L(76.0f)) && (jb6.a0 || f < view.getMeasuredWidth() - gm.L(76.0f)))) {
+            vl7 vl7Var = (vl7) view;
+            boolean z11 = vl7Var.e.h;
+            if (i8 != this.storiesRow && ((!k96.a0 || f > gl.L(76.0f)) && (k96.a0 || f < view.getMeasuredWidth() - gl.L(76.0f)))) {
                 if (getParentActivity() == null) {
                     return;
                 }
-                final k6d k6dVar = new k6d(getParentActivity(), (ylb) null);
-                Object obj = k6dVar.b;
-                my0 my0Var = (my0) obj;
-                my0Var.v0 = false;
-                my0Var.w0 = false;
+                final i4d i4dVar = new i4d(getParentActivity(), null);
+                Object obj = i4dVar.a;
+                fx0 fx0Var = (fx0) obj;
+                fx0Var.v0 = false;
+                fx0Var.w0 = false;
                 LinearLayout linearLayout = new LinearLayout(getParentActivity());
                 linearLayout.setOrientation(1);
-                ((my0) obj).O = linearLayout;
-                jf5 jf5Var = new jf5(getParentActivity(), cmb.m5, 21, 15, false, null);
+                ((fx0) obj).O = linearLayout;
+                ld5 ld5Var = new ld5(getParentActivity(), bkb.m5, 21, 15, false, null);
                 if (i8 == this.photosRow) {
-                    jf5Var.setText(jb6.M0(2131753780, null));
+                    ld5Var.setText(k96.M0(2131753812, null));
                 } else if (i8 == this.videosRow) {
-                    jf5Var.setText(jb6.M0(2131753769, null));
+                    ld5Var.setText(k96.M0(2131753801, null));
                 } else {
-                    jf5Var.setText(jb6.M0(2131753801, null));
+                    ld5Var.setText(k96.M0(2131753833, null));
                 }
-                linearLayout.addView(jf5Var, qoe.c(-2.0f, -1));
-                ul6[] ul6VarArr = new ul6[1];
-                bjb[] bjbVarArr2 = new bjb[1];
+                linearLayout.addView(ld5Var, nme.c(-2.0f, -1));
+                rj6[] rj6VarArr = new rj6[1];
+                ahb[] ahbVarArr2 = new ahb[1];
                 AnimatorSet[] animatorSetArr = new AnimatorSet[1];
                 int i15 = 4;
-                yib[] yibVarArr = new yib[4];
+                xgb[] xgbVarArr = new xgb[4];
                 int i16 = 0;
                 while (i16 < i15) {
                     Activity parentActivity = getParentActivity();
                     ?? frameLayout = new FrameLayout(parentActivity);
-                    boolean z12 = jb6.a0;
+                    boolean z12 = k96.a0;
                     TextView textView = new TextView(parentActivity);
                     frameLayout.a = textView;
-                    ul6[] ul6VarArr2 = ul6VarArr;
-                    anb.X(textView, cmb.i5, ylbVar);
-                    wi8.w(textView, 1, 16.0f, 1, 1);
+                    rj6[] rj6VarArr2 = rj6VarArr;
+                    zkb.X(textView, bkb.i5, wjbVar);
+                    ug8.w(textView, 1, 16.0f, 1, 1);
                     textView.setSingleLine(true);
-                    if (jb6.a0) {
+                    if (k96.a0) {
                         i3 = 5;
                     } else {
                         i3 = 3;
@@ -504,7 +504,7 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
                     } else {
                         f3 = 66.0f;
                     }
-                    frameLayout.addView(textView, qoe.d(-1, -1.0f, i17, f2, 0.0f, f3, 0.0f));
+                    frameLayout.addView(textView, nme.d(-1, -1.0f, i17, f2, 0.0f, f3, 0.0f));
                     CheckBoxSquare checkBoxSquare = new CheckBoxSquare(null, parentActivity, true);
                     frameLayout.b = checkBoxSquare;
                     checkBoxSquare.setDuplicateParentStateEnabled(false);
@@ -516,10 +516,10 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
                     } else {
                         i5 = 5;
                     }
-                    frameLayout.addView(checkBoxSquare, qoe.d(18, 18.0f, i5 | 16, 21.0f, 0.0f, 21.0f, 0.0f));
-                    yibVarArr[i16] = frameLayout;
+                    frameLayout.addView(checkBoxSquare, nme.d(18, 18.0f, i5 | 16, 21.0f, 0.0f, 21.0f, 0.0f));
+                    xgbVarArr[i16] = frameLayout;
                     if (i16 == 0) {
-                        String M0 = jb6.M0(2131753741, null);
+                        String M0 = k96.M0(2131753773, null);
                         if ((o.a[0] & i2) != 0) {
                             z7 = true;
                         } else {
@@ -527,7 +527,7 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
                         }
                         frameLayout.a(M0, z7, true);
                     } else if (i16 == 1) {
-                        String M02 = jb6.M0(2131753739, null);
+                        String M02 = k96.M0(2131753771, null);
                         if ((o.a[1] & i2) != 0) {
                             z6 = true;
                         } else {
@@ -535,7 +535,7 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
                         }
                         frameLayout.a(M02, z6, true);
                     } else if (i16 == 2) {
-                        String M03 = jb6.M0(2131753740, null);
+                        String M03 = k96.M0(2131753772, null);
                         if ((o.a[2] & i2) != 0) {
                             z5 = true;
                         } else {
@@ -543,7 +543,7 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
                         }
                         frameLayout.a(M03, z5, true);
                     } else {
-                        String M04 = jb6.M0(2131753742, null);
+                        String M04 = k96.M0(2131753774, null);
                         if ((o.a[3] & i2) != 0) {
                             z3 = true;
                         } else {
@@ -556,64 +556,64 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
                         }
                         frameLayout.a(M04, z3, z4);
                     }
-                    yibVarArr[i16].setBackgroundDrawable(cmb.L0(false));
-                    a51 a51Var = yibVarArr[i16];
-                    dr3 dr3Var5 = o;
+                    xgbVarArr[i16].setBackgroundDrawable(bkb.L0(false));
+                    a6 a6Var = xgbVarArr[i16];
+                    tp3 tp3Var5 = o;
                     int i18 = i8;
-                    yib[] yibVarArr2 = yibVarArr;
-                    f73 f73Var = new f73(this, (yib) frameLayout, yibVarArr2, i18, ul6VarArr2, bjbVarArr2, animatorSetArr);
+                    xgb[] xgbVarArr2 = xgbVarArr;
+                    t53 t53Var = new t53(this, (xgb) frameLayout, xgbVarArr2, i18, rj6VarArr2, ahbVarArr2, animatorSetArr);
                     i8 = i18;
-                    a51Var.setOnClickListener(f73Var);
-                    linearLayout.addView(yibVarArr2[i16], qoe.c(50.0f, -1));
+                    a6Var.setOnClickListener(t53Var);
+                    linearLayout.addView(xgbVarArr2[i16], nme.c(50.0f, -1));
                     i16++;
-                    o = dr3Var5;
-                    yibVarArr = yibVarArr2;
-                    ul6VarArr = ul6VarArr2;
+                    o = tp3Var5;
+                    xgbVarArr = xgbVarArr2;
+                    rj6VarArr = rj6VarArr2;
                     i15 = 4;
-                    ylbVar = null;
+                    wjbVar = null;
                 }
-                dr3 dr3Var6 = o;
-                final ul6[] ul6VarArr3 = ul6VarArr;
-                final yib[] yibVarArr3 = yibVarArr;
+                tp3 tp3Var6 = o;
+                final rj6[] rj6VarArr3 = rj6VarArr;
+                final xgb[] xgbVarArr3 = xgbVarArr;
                 if (i8 != this.photosRow) {
-                    njb njbVar = new njb(getParentActivity());
-                    h73 h73Var = new h73(this, getParentActivity(), i8, njbVar, bjbVarArr2, animatorSetArr);
-                    bjb[] bjbVarArr3 = bjbVarArr2;
-                    ul6VarArr3[0] = h73Var;
-                    h73Var.setSize(dr3Var6.b[x]);
-                    linearLayout.addView(ul6VarArr3[0], qoe.o(-1, 50));
-                    View bjbVar2 = new bjb(21, null, getParentActivity(), true);
-                    bjbVarArr3[0] = bjbVar2;
-                    linearLayout.addView(bjbVar2, qoe.o(-1, 48));
-                    bjbVarArr3[0].setOnClickListener(new k81(bjbVarArr3, (byte) 26));
-                    anb.h(cmb.Z6, null, njbVar);
-                    linearLayout.addView(njbVar, qoe.o(-1, -2));
+                    mhb mhbVar = new mhb(getParentActivity());
+                    v53 v53Var = new v53(this, getParentActivity(), i8, mhbVar, ahbVarArr2, animatorSetArr);
+                    ahb[] ahbVarArr3 = ahbVarArr2;
+                    rj6VarArr3[0] = v53Var;
+                    v53Var.setSize(tp3Var6.b[x]);
+                    linearLayout.addView(rj6VarArr3[0], nme.o(-1, 50));
+                    View ahbVar2 = new ahb(21, null, getParentActivity(), true);
+                    ahbVarArr3[0] = ahbVar2;
+                    linearLayout.addView(ahbVar2, nme.o(-1, 48));
+                    ahbVarArr3[0].setOnClickListener(new x91(ahbVarArr3, (byte) 23));
+                    zkb.h(bkb.Z6, null, mhbVar);
+                    linearLayout.addView(mhbVar, nme.o(-1, -2));
                     i8 = i;
                     if (i8 == this.videosRow) {
-                        ul6VarArr3[0].setText(jb6.M0(2131753796, null));
-                        bjbVarArr3[0].f(jb6.M0(2131753776, null), dr3Var6.c, false);
-                        njbVar.setText(jb6.a0("AutoDownloadPreloadVideoInfo", null, 2131753775, gm.i0(dr3Var6.b[x], false, false)));
-                        dr3Var6 = dr3Var6;
-                        bjbVarArr = bjbVarArr3;
+                        rj6VarArr3[0].setText(k96.M0(2131753828, null));
+                        ahbVarArr3[0].f(k96.M0(2131753808, null), tp3Var6.c, false);
+                        mhbVar.setText(k96.a0("AutoDownloadPreloadVideoInfo", null, 2131753807, gl.i0(tp3Var6.b[x], false, false)));
+                        tp3Var6 = tp3Var6;
+                        ahbVarArr = ahbVarArr3;
                     } else {
-                        ul6VarArr3[0].setText(jb6.M0(2131753797, null));
-                        bjbVarArr3[0].f(jb6.M0(2131753778, null), dr3Var6.d, false);
-                        njbVar.setText(jb6.M0(2131753777, null));
-                        bjbVarArr = bjbVarArr3;
+                        rj6VarArr3[0].setText(k96.M0(2131753829, null));
+                        ahbVarArr3[0].f(k96.M0(2131753810, null), tp3Var6.d, false);
+                        mhbVar.setText(k96.M0(2131753809, null));
+                        ahbVarArr = ahbVarArr3;
                     }
                 } else {
-                    ul6VarArr3[0] = null;
-                    bjbVarArr2[0] = null;
+                    rj6VarArr3[0] = null;
+                    ahbVarArr2[0] = null;
                     View view2 = new View(getParentActivity());
-                    anb.h(cmb.c7, null, view2);
+                    zkb.h(bkb.c7, null, view2);
                     linearLayout.addView(view2, new LinearLayout.LayoutParams(-1, 1));
-                    bjbVarArr = bjbVarArr2;
+                    ahbVarArr = ahbVarArr2;
                 }
                 if (i8 == this.videosRow) {
                     int i19 = 0;
                     while (true) {
                         if (i19 < 4) {
-                            if (yibVarArr3[i19].b.h) {
+                            if (xgbVarArr3[i19].b.h) {
                                 arrayList = null;
                                 r12 = 0;
                                 break;
@@ -622,36 +622,36 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
                         } else {
                             r12 = 0;
                             arrayList = null;
-                            ul6VarArr3[0].a(null, false);
-                            bjbVarArr[0].e(null, false);
+                            rj6VarArr3[0].a(null, false);
+                            ahbVarArr[0].e(null, false);
                             break;
                         }
                     }
-                    if (dr3Var6.b[x] <= 2097152) {
-                        bjbVarArr[r12].e(arrayList, r12);
+                    if (tp3Var6.b[x] <= 2097152) {
+                        ahbVarArr[r12].e(arrayList, r12);
                     }
                 }
                 FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
-                frameLayout2.setPadding(gm.L(8.0f), gm.L(8.0f), gm.L(8.0f), gm.L(8.0f));
-                linearLayout.addView(frameLayout2, qoe.o(-1, 52));
+                frameLayout2.setPadding(gl.L(8.0f), gl.L(8.0f), gl.L(8.0f), gl.L(8.0f));
+                linearLayout.addView(frameLayout2, nme.o(-1, 52));
                 TextView textView2 = new TextView(getParentActivity());
                 textView2.setTextSize(1, 14.0f);
-                int i20 = cmb.m5;
-                anb.X(textView2, i20, null);
+                int i20 = bkb.m5;
+                zkb.X(textView2, i20, null);
                 textView2.setGravity(17);
-                textView2.setTypeface(gm.o());
-                textView2.setText(jb6.M0(2131752542, null).toUpperCase());
-                textView2.setPadding(gm.L(10.0f), 0, gm.L(10.0f), 0);
-                frameLayout2.addView(textView2, qoe.e(-2, 36, 51));
-                textView2.setOnClickListener(new k81(k6dVar, (byte) 27));
+                textView2.setTypeface(gl.o());
+                textView2.setText(k96.M0(2131752577, null).toUpperCase());
+                textView2.setPadding(gl.L(10.0f), 0, gl.L(10.0f), 0);
+                frameLayout2.addView(textView2, nme.e(-2, 36, 51));
+                textView2.setOnClickListener(new x91(i4dVar, (byte) 24));
                 TextView textView3 = new TextView(getParentActivity());
                 textView3.setTextSize(1, 14.0f);
-                anb.X(textView3, i20, null);
+                zkb.X(textView3, i20, null);
                 textView3.setGravity(17);
-                textView3.setTypeface(gm.o());
-                textView3.setText(jb6.M0(2131745680, null).toUpperCase());
-                textView3.setPadding(gm.L(10.0f), 0, gm.L(10.0f), 0);
-                frameLayout2.addView(textView3, qoe.e(-2, 36, 53));
+                textView3.setTypeface(gl.o());
+                textView3.setText(k96.M0(2131745754, null).toUpperCase());
+                textView3.setPadding(gl.L(10.0f), 0, gl.L(10.0f), 0);
+                frameLayout2.addView(textView3, nme.e(-2, 36, 53));
                 final int i21 = i8;
                 final int i22 = i2;
                 final String str3 = str;
@@ -659,33 +659,33 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
                 textView3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view3) {
-                        DataAutoDownloadActivity.this.p0(yibVarArr3, i22, ul6VarArr3, x, bjbVarArr, i21, str3, str4, k6dVar, view);
+                        DataAutoDownloadActivity.this.o0(xgbVarArr3, i22, rj6VarArr3, x, ahbVarArr, i21, str3, str4, i4dVar, view);
                     }
                 });
-                showDialog((my0) obj);
+                showDialog((fx0) obj);
                 return;
             }
-            dr3 dr3Var7 = o;
+            tp3 tp3Var7 = o;
             int i23 = i2;
             String str5 = str;
             String str6 = str2;
             int i24 = this.e;
             if (i24 != 3) {
                 if (i24 == 0) {
-                    dr3Var4.c(dr3Var3);
+                    tp3Var4.c(tp3Var3);
                 } else if (i24 == 1) {
-                    dr3Var4.c(dr3Var2);
+                    tp3Var4.c(tp3Var2);
                 } else if (i24 == 2) {
-                    dr3Var4.c(dr3Var);
+                    tp3Var4.c(tp3Var);
                 }
             }
             if (i8 == this.storiesRow) {
-                dr3Var4.e = !z11;
+                tp3Var4.e = !z11;
             } else {
                 int i25 = 0;
                 while (true) {
-                    if (i25 < dr3Var4.a.length) {
-                        if ((dr3Var7.a[i25] & i23) != 0) {
+                    if (i25 < tp3Var4.a.length) {
+                        if ((tp3Var7.a[i25] & i23) != 0) {
                             z = true;
                             break;
                         }
@@ -697,7 +697,7 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
                 }
                 int i26 = 0;
                 while (true) {
-                    int[] iArr = dr3Var4.a;
+                    int[] iArr = tp3Var4.a;
                     if (i26 >= iArr.length) {
                         break;
                     }
@@ -709,59 +709,59 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.d {
                     i26++;
                 }
             }
-            SharedPreferences.Editor edit2 = oc7.r1(this.currentAccount).X3.edit();
-            edit2.putString(str5, dr3Var4.toString());
+            SharedPreferences.Editor edit2 = na7.q1(this.currentAccount).X3.edit();
+            edit2.putString(str5, tp3Var4.toString());
             this.e = 3;
             edit2.putInt(str6, 3);
             int i27 = this.currentAccount;
             if (i10 == 0) {
-                er3.q(i27).Q = this.e;
+                up3.q(i27).Q = this.e;
                 z2 = true;
             } else {
                 z2 = true;
                 if (i10 == 1) {
-                    er3.q(i27).R = this.e;
+                    up3.q(i27).R = this.e;
                 } else {
-                    er3.q(i27).S = this.e;
+                    up3.q(i27).S = this.e;
                 }
             }
             edit2.commit();
-            yn7Var.setChecked(z11 ^ z2);
-            r59 r59Var = this.b;
-            View F = r59Var.F(view);
+            vl7Var.setChecked(z11 ^ z2);
+            o39 o39Var = this.b;
+            View F = o39Var.F(view);
             if (F == null) {
                 T = null;
             } else {
-                T = r59Var.T(F);
+                T = o39Var.T(F);
             }
             if (T != null) {
                 this.a.t(T, i8);
             }
-            er3.q(this.currentAccount).g();
+            up3.q(this.currentAccount).g();
             this.J = true;
-            n0();
+            m0();
         }
     }
 
-    public final void r0(hla hlaVar) {
+    public final void q0(fja fjaVar) {
         ArrayList arrayList = this.c;
         String[] strArr = new String[arrayList.size()];
         for (int i = 0; i < arrayList.size(); i++) {
-            dr3 dr3Var = (dr3) arrayList.get(i);
-            if (dr3Var == this.E) {
-                strArr[i] = jb6.M0(2131753798, null);
-            } else if (dr3Var == this.F) {
-                strArr[i] = jb6.M0(2131753794, null);
-            } else if (dr3Var == this.G) {
-                strArr[i] = jb6.M0(2131753799, null);
+            tp3 tp3Var = (tp3) arrayList.get(i);
+            if (tp3Var == this.E) {
+                strArr[i] = k96.M0(2131753830, null);
+            } else if (tp3Var == this.F) {
+                strArr[i] = k96.M0(2131753826, null);
+            } else if (tp3Var == this.G) {
+                strArr[i] = k96.M0(2131753831, null);
             } else {
-                strArr[i] = jb6.M0(2131753805, null);
+                strArr[i] = k96.M0(2131753837, null);
             }
         }
-        hlaVar.b(this.d, null, strArr);
+        fjaVar.b(this.d, null, strArr);
     }
 
-    public final void s0() {
+    public final void r0() {
         this.autoDownloadRow = 0;
         this.y = 2;
         this.n = true;

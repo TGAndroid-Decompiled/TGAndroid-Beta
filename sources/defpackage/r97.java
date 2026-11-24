@@ -1,75 +1,45 @@
 package defpackage;
 
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class r97 implements Runnable {
-    public final byte a;
+public final class r97 {
+    public final int a;
     public final long b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
+    public boolean c;
+    public boolean d;
+    public final ArrayList e;
+    public int f;
+    public int g;
 
-    public r97(hva hvaVar, TLObject tLObject, oc7 oc7Var, TLRPC.TL_error tL_error, long j) {
-        this.a = (byte) 19;
-        this.e = hvaVar;
-        this.c = tLObject;
-        this.d = oc7Var;
-        this.f = tL_error;
+    public r97(int i, long j) {
+        long j2;
+        int i2;
+        ArrayList arrayList = new ArrayList();
+        this.e = arrayList;
+        this.f = -1;
+        this.a = i;
         this.b = j;
-    }
-
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.r97.a():void");
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.r97.run():void");
-    }
-
-    public r97(ku0 ku0Var, he heVar, TLObject tLObject, long j, qac qacVar) {
-        this.a = (byte) 1;
-        this.d = ku0Var;
-        this.e = heVar;
-        this.f = tLObject;
-        this.b = j;
-        this.c = qacVar;
-    }
-
-    public r97(Object obj, long j, Object obj2, Object obj3, Object obj4, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.b = j;
-        this.e = obj2;
-        this.c = obj3;
-        this.f = obj4;
-    }
-
-    public r97(Object obj, Object obj2, long j, Object obj3, Object obj4, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.e = obj2;
-        this.b = j;
-        this.c = obj3;
-        this.f = obj4;
-    }
-
-    public r97(Object obj, Object obj2, Object obj3, long j, Object obj4, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.e = obj2;
-        this.c = obj3;
-        this.b = j;
-        this.f = obj4;
-    }
-
-    public r97(Object obj, Object obj2, Object obj3, Object obj4, long j, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.e = obj2;
-        this.c = obj3;
-        this.f = obj4;
-        this.b = j;
+        if (!this.c && !this.d) {
+            boolean isEmpty = arrayList.isEmpty();
+            this.c = true;
+            TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
+            tL_messages_getCommonChats.user_id = na7.q1(i).m1(j);
+            if (arrayList.isEmpty()) {
+                j2 = 0;
+            } else {
+                j2 = ((TLRPC.Chat) b00.f(1, arrayList)).id;
+            }
+            tL_messages_getCommonChats.max_id = j2;
+            if (isEmpty) {
+                i2 = 15;
+            } else {
+                i2 = 30;
+            }
+            tL_messages_getCommonChats.limit = i2;
+            int sendRequest = ConnectionsManager.getInstance(i).sendRequest(tL_messages_getCommonChats, new mi1(this, r7, isEmpty, (byte) 9));
+            this.f = sendRequest;
+            int[] iArr = {sendRequest};
+        }
     }
 }

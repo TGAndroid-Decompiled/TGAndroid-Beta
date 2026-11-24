@@ -1,53 +1,37 @@
 package defpackage;
 
-import android.view.Choreographer;
-import android.view.Display;
-public final class adc extends zcc implements Choreographer.FrameCallback {
-    @Override
-    public final void a() {
-        long j;
-        this.b.registerDisplayListener(this, hac.q(null));
-        this.a.removeFrameCallback(this);
-        this.a.postFrameCallback(this);
-        Display display = this.b.getDisplay(0);
-        if (display != null) {
-            j = (long) (1.0E9d / display.getRefreshRate());
-        } else {
-            ncd.f("VideoFrameReleaseHelper", "Unable to query display refresh rate");
-            j = -9223372036854775807L;
-        }
-        this.d = j;
+import android.os.Build;
+import android.view.View;
+import android.view.WindowInsets;
+import java.util.WeakHashMap;
+public final class adc implements View.OnApplyWindowInsetsListener {
+    public vxc a = null;
+    public final View b;
+    public final no7 c;
+
+    public adc(View view, no7 no7Var) {
+        this.b = view;
+        this.c = no7Var;
     }
 
     @Override
-    public final void b() {
-        this.b.unregisterDisplayListener(this);
-        this.a.removeFrameCallback(this);
-        this.c = -9223372036854775807L;
-        this.d = -9223372036854775807L;
-    }
-
-    @Override
-    public final void doFrame(long j) {
-        this.c = j;
-        this.a.removeFrameCallback(this);
-        this.a.postFrameCallbackDelayed(this, 500L);
-    }
-
-    @Override
-    public final void onDisplayChanged(int i) {
-        long j;
-        if (i == 0) {
-            this.a.removeFrameCallback(this);
-            this.a.postFrameCallback(this);
-            Display display = this.b.getDisplay(0);
-            if (display != null) {
-                j = (long) (1.0E9d / display.getRefreshRate());
-            } else {
-                ncd.f("VideoFrameReleaseHelper", "Unable to query display refresh rate");
-                j = -9223372036854775807L;
+    public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+        vxc h = vxc.h(view, windowInsets);
+        int i = Build.VERSION.SDK_INT;
+        no7 no7Var = this.c;
+        if (i < 30) {
+            bdc.a(windowInsets, this.b);
+            if (h.equals(this.a)) {
+                return no7Var.W(view, h).g();
             }
-            this.d = j;
         }
+        this.a = h;
+        vxc W = no7Var.W(view, h);
+        if (i >= 30) {
+            return W.g();
+        }
+        WeakHashMap weakHashMap = jdc.a;
+        zcc.c(view);
+        return W.g();
     }
 }

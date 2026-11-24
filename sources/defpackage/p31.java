@@ -1,46 +1,83 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.widget.LinearLayout;
-public final class p31 extends p21 {
-    public final bf0 a;
-    public final l66 b;
-    public final l66 c;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+public final class p31 {
+    public static volatile p31[] g = new p31[4];
+    public static final Object[] h = new Object[4];
+    public final int a;
+    public long b;
+    public TL_account.connectedBots c;
+    public final ArrayList d = new ArrayList();
+    public boolean e;
+    public boolean f;
 
-    public p31(Context context, ylb ylbVar) {
-        super(context, ylbVar);
-        int i = cmb.xj;
-        getThemedColor(i);
-        setBackground(getThemedColor(cmb.vj));
-        bf0 bf0Var = new bf0(context);
-        this.a = bf0Var;
-        addView(bf0Var, qoe.i(32.0f, 32.0f, 8388627, 12.0f, 0.0f, 12.0f, 0.0f));
-        getThemedColor(i);
-        int i2 = cmb.wj;
-        getThemedColor(i2);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, qoe.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
-        l66 l66Var = new l66(context, null);
-        this.b = l66Var;
-        l66Var.setPadding(gm.L(4.0f), 0, gm.L(4.0f), 0);
-        anb.X(l66Var, i, ylbVar);
-        l66Var.setTextSize(1, 14.0f);
-        l66Var.setTypeface(gm.o());
-        linearLayout.addView(l66Var);
-        l66 l66Var2 = new l66(context, null);
-        this.c = l66Var2;
-        l66Var2.setPadding(gm.L(4.0f), 0, gm.L(4.0f), 0);
-        anb.X(l66Var2, i, ylbVar);
-        anb.G(l66Var2, i2, ylbVar);
-        l66Var2.setTypeface(Typeface.SANS_SERIF);
-        l66Var2.setTextSize(1, 13.0f);
-        linearLayout.addView(l66Var2);
+    static {
+        for (int i = 0; i < 4; i++) {
+            h[i] = new Object();
+        }
     }
 
-    @Override
-    public CharSequence getAccessibilityText() {
-        return ((Object) this.b.getText()) + ".\n" + ((Object) this.c.getText());
+    public p31(int i) {
+        this.a = i;
+    }
+
+    public static p31 a(int i) {
+        p31 p31Var;
+        p31 p31Var2 = g[i];
+        if (p31Var2 == null) {
+            synchronized (h[i]) {
+                p31Var = g[i];
+                if (p31Var == null) {
+                    p31[] p31VarArr = g;
+                    p31 p31Var3 = new p31(i);
+                    p31VarArr[i] = p31Var3;
+                    p31Var = p31Var3;
+                }
+            }
+            return p31Var;
+        }
+        return p31Var2;
+    }
+
+    public final void b() {
+        this.f = false;
+        c(null);
+    }
+
+    public final void c(p8c p8cVar) {
+        boolean z;
+        if (p8cVar != null) {
+            this.d.add(p8cVar);
+        }
+        if (!this.e) {
+            if (System.currentTimeMillis() - this.b <= 60000 && (z = this.f)) {
+                if (z) {
+                    d();
+                    return;
+                }
+                return;
+            }
+            this.e = true;
+            ConnectionsManager.getInstance(this.a).sendRequest(new TL_account.getConnectedBots(), new tf(this, (byte) 8));
+        }
+    }
+
+    public final void d() {
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.d;
+            if (i < arrayList.size()) {
+                if (arrayList.get(i) != null) {
+                    ((p8c) arrayList.get(i)).a(this.c);
+                }
+                i++;
+            } else {
+                arrayList.clear();
+                kk7.f(this.a).k(kk7.b4, new Object[0]);
+                return;
+            }
+        }
     }
 }

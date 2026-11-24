@@ -165,7 +165,7 @@ public class EglRenderer implements VideoSink {
                 if (handler != null) {
                     handler.post(this.eglSurfaceBackgroundCreationRunnable);
                 } else {
-                    fc4.b("can't create background surface. render thread is null");
+                    fa4.b("can't create background surface. render thread is null");
                 }
             }
             return;
@@ -176,10 +176,6 @@ public class EglRenderer implements VideoSink {
 
     public static void e(EglRenderer eglRenderer, boolean z, Runnable runnable) {
         eglRenderer.lambda$releaseEglSurface$5(z, runnable);
-    }
-
-    public static void f(EglRenderer eglRenderer) {
-        eglRenderer.renderFrameOnRenderThread();
     }
 
     public static void h(EglRenderer eglRenderer, GlGenericDrawer.TextureCallback textureCallback) {
@@ -501,10 +497,10 @@ public class EglRenderer implements VideoSink {
             try {
                 Handler handler = this.renderThreadHandler;
                 if (handler != null) {
-                    handler.post(new rd3(this, textureCallback, (byte) 29));
+                    handler.post(new wc3(this, textureCallback, (byte) 28));
                 }
             } catch (Exception e) {
-                fc4.g(e, true);
+                fa4.g(e, true);
             }
         }
     }
@@ -531,7 +527,7 @@ public class EglRenderer implements VideoSink {
                     }
                 });
                 this.renderThreadHandler = handlerWithExceptionCallback;
-                handlerWithExceptionCallback.post(new pz2(this, context, iArr, (byte) 15));
+                handlerWithExceptionCallback.post(new mg3(this, context, iArr, (byte) 13));
                 this.renderThreadHandler.post(this.eglSurfaceCreationRunnable);
             } else {
                 throw new IllegalStateException(this.name + "Already initialized");
@@ -553,7 +549,7 @@ public class EglRenderer implements VideoSink {
                 }
                 this.pendingFrame = videoFrame;
                 videoFrame.retain();
-                this.renderThreadHandler.post(new bi3(this, (byte) 20));
+                this.renderThreadHandler.post(new li3(this, (byte) 15));
             }
         }
     }
@@ -592,8 +588,8 @@ public class EglRenderer implements VideoSink {
                 logD("Already released");
                 return;
             }
-            handler.postAtFrontOfQueue(new pv3(this, countDownLatch, (byte) 0));
-            this.renderThreadHandler.post(new pv3(this, this.renderThreadHandler.getLooper(), (byte) 1));
+            handler.postAtFrontOfQueue(new wc3(this, countDownLatch, (byte) 29));
+            this.renderThreadHandler.post(new eu3(this, this.renderThreadHandler.getLooper(), (byte) 0));
             this.renderThreadHandler = null;
             ThreadUtils.awaitUninterruptibly(countDownLatch);
             synchronized (this.frameLock) {
@@ -613,7 +609,7 @@ public class EglRenderer implements VideoSink {
             Handler handler = this.renderThreadHandler;
             if (handler != null) {
                 handler.removeCallbacks(this.eglSurfaceCreationRunnable);
-                this.renderThreadHandler.postAtFrontOfQueue(new np6(this, z, runnable, (byte) 19));
+                this.renderThreadHandler.postAtFrontOfQueue(new mn6(this, z, runnable, (byte) 19));
             } else if (runnable != null) {
                 runnable.run();
             }
@@ -627,7 +623,7 @@ public class EglRenderer implements VideoSink {
                 return;
             }
             if (Thread.currentThread() != this.renderThreadHandler.getLooper().getThread()) {
-                postToRenderThread(new pz2(this, countDownLatch, frameListener, (byte) 16));
+                postToRenderThread(new mg3(this, countDownLatch, frameListener, (byte) 14));
                 ThreadUtils.awaitUninterruptibly(countDownLatch);
                 return;
             }

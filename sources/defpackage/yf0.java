@@ -1,87 +1,126 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.os.Parcel;
-import android.os.RemoteException;
-import android.util.Log;
-import android.util.SparseArray;
-import java.nio.ByteBuffer;
-public final class yf0 extends x23 {
-    public final ldd b;
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+public final class yf0 extends fx0 {
+    public final ag0 l1;
+    public final ui5[] m1;
+    public final d n1;
+    public final fx0[] o1;
 
-    public yf0(ldd lddVar) {
-        super((byte) 2);
-        this.b = lddVar;
+    public yf0(Activity activity, wjb wjbVar, ag0 ag0Var, ui5[] ui5VarArr, d dVar, fx0[] fx0VarArr) {
+        super(1, wjbVar, (Context) activity, true);
+        boolean z;
+        this.l1 = ag0Var;
+        this.m1 = ui5VarArr;
+        this.n1 = dVar;
+        this.o1 = fx0VarArr;
+        if (ag0Var != null && ag0Var.e) {
+            z = true;
+        } else {
+            z = false;
+        }
+        this.x = z;
+        this.n = !z;
+        ui5VarArr[0].setFragmentStack(new ArrayList());
+        ((ActionBarLayout) ui5VarArr[0]).b(-1, dVar);
+        ((ActionBarLayout) ui5VarArr[0]).e0();
+        ViewGroup view = ui5VarArr[0].getView();
+        int i = this.u0;
+        view.setPadding(i, 0, i, 0);
+        this.b = ui5VarArr[0].getView();
+        this.w0 = false;
+        setOnDismissListener(new cf(dVar, ag0Var, (byte) 3));
     }
 
     @Override
-    public final void d() {
-        super.d();
-        this.b.l();
+    public final boolean D() {
+        return false;
     }
 
-    public final SparseArray h(in3 in3Var) {
-        xf0[] xf0VarArr;
-        if (in3Var != null) {
-            wef b = wef.b(in3Var);
-            Bitmap bitmap = (Bitmap) in3Var.d;
-            ldd lddVar = this.b;
-            if (bitmap != null) {
-                if (!lddVar.k()) {
-                    xf0VarArr = new xf0[0];
-                } else {
-                    try {
-                        eq7 eq7Var = new eq7(bitmap);
-                        b7f b7fVar = (b7f) lddVar.m();
-                        ite.h(b7fVar);
-                        Parcel a = b7fVar.a();
-                        int i = gpd.a;
-                        a.writeStrongBinder(eq7Var);
-                        gpd.a(a, b);
-                        Parcel S = b7fVar.S(a, 2);
-                        xf0[] xf0VarArr2 = (xf0[]) S.createTypedArray(xf0.CREATOR);
-                        S.recycle();
-                        xf0VarArr = xf0VarArr2;
-                    } catch (RemoteException e) {
-                        Log.e("BarcodeNativeHandle", "Error calling native barcode detector", e);
-                        xf0VarArr = new xf0[0];
-                    }
-                }
-                if (xf0VarArr == null) {
-                    u36.j("Internal barcode detector error; check logcat output.");
-                    return null;
-                }
-            } else {
-                ByteBuffer v = in3Var.v();
-                ite.h(v);
-                if (!lddVar.k()) {
-                    xf0VarArr = new xf0[0];
-                } else {
-                    try {
-                        eq7 eq7Var2 = new eq7(v);
-                        b7f b7fVar2 = (b7f) lddVar.m();
-                        ite.h(b7fVar2);
-                        Parcel a2 = b7fVar2.a();
-                        int i2 = gpd.a;
-                        a2.writeStrongBinder(eq7Var2);
-                        gpd.a(a2, b);
-                        Parcel S2 = b7fVar2.S(a2, 1);
-                        xf0[] xf0VarArr3 = (xf0[]) S2.createTypedArray(xf0.CREATOR);
-                        S2.recycle();
-                        xf0VarArr = xf0VarArr3;
-                    } catch (RemoteException e2) {
-                        Log.e("BarcodeNativeHandle", "Error calling native barcode detector", e2);
-                        xf0VarArr = new xf0[0];
-                    }
-                }
-            }
-            SparseArray sparseArray = new SparseArray(xf0VarArr.length);
-            for (xf0 xf0Var : xf0VarArr) {
-                sparseArray.append(xf0Var.b.hashCode(), xf0Var);
-            }
-            return sparseArray;
+    @Override
+    public final boolean G(MotionEvent motionEvent) {
+        ui5[] ui5VarArr;
+        ui5 ui5Var;
+        ag0 ag0Var = this.l1;
+        if (ag0Var == null || !ag0Var.a || (ui5Var = (ui5VarArr = this.m1)[0]) == null || ui5Var.getFragmentStack().size() > 1 || (ui5VarArr[0].getFragmentStack().size() == 1 && !((d) ui5VarArr[0].getFragmentStack().get(0)).isSwipeBackEnabled(motionEvent))) {
+            return false;
         }
-        u36.j("No frame supplied.");
-        return null;
+        return true;
+    }
+
+    @Override
+    public final void dismiss() {
+        ag0 ag0Var;
+        Runnable runnable;
+        if (!this.J && (ag0Var = this.l1) != null && (runnable = ag0Var.d) != null) {
+            runnable.run();
+        }
+        super.dismiss();
+        ArrayList arrayList = LaunchActivity.H1.Q;
+        ui5[] ui5VarArr = this.m1;
+        arrayList.remove(ui5VarArr[0]);
+        ui5VarArr[0] = null;
+    }
+
+    @Override
+    public final void m0() {
+        ui5 ui5Var = this.m1[0];
+        if (ui5Var != null) {
+            for (d dVar : ui5Var.getFragmentStack()) {
+                if (dVar.getFragmentView() != null) {
+                    dVar.getFragmentView().requestLayout();
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void onBackPressed() {
+        ui5[] ui5VarArr = this.m1;
+        ui5 ui5Var = ui5VarArr[0];
+        if (ui5Var != null && ui5Var.getFragmentStack().size() > 1) {
+            ((ActionBarLayout) ui5VarArr[0]).G();
+            return;
+        }
+        ui5 ui5Var2 = ui5VarArr[0];
+        if (ui5Var2 != null && !ui5Var2.getFragmentStack().isEmpty() && ((d) ui5VarArr[0].getFragmentStack().get(0)).closeOpenMenuOverlay(true)) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        ui5 ui5Var = this.m1[0];
+        fx0[] fx0VarArr = this.o1;
+        ui5Var.setWindow(fx0VarArr[0].getWindow());
+        ag0 ag0Var = this.l1;
+        if (ag0Var != null && ag0Var.e) {
+            gl.i3(fx0VarArr[0], true);
+        } else {
+            M(bkb.h5);
+        }
+        d dVar = this.n1;
+        gl.l3(this, dVar.isLightStatusBar());
+        dVar.onBottomSheetCreated();
+    }
+
+    @Override
+    public final void x() {
+        Runnable runnable;
+        this.n1.onTransitionAnimationEnd(true, false);
+        ag0 ag0Var = this.l1;
+        if (ag0Var != null && (runnable = ag0Var.c) != null) {
+            runnable.run();
+        }
     }
 }

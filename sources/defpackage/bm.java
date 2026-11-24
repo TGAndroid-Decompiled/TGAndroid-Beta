@@ -1,24 +1,37 @@
 package defpackage;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-public final class bm extends CharacterStyle {
-    public final boolean a;
-    public final int b;
-    public final ylb c;
+import android.graphics.Rect;
+import android.text.Layout;
+import android.view.View;
+import java.lang.ref.WeakReference;
+public final class bm implements dm {
+    public final WeakReference a;
+    public final boolean b;
+    public Layout c;
+    public gm d;
+    public Rect e;
+    public vl f;
+    public ru3 h;
+    public boolean n;
+    public float r;
+    public float s;
+    public boolean w;
 
-    public bm(boolean z, int i, ylb ylbVar) {
-        this.a = z;
-        this.b = i;
-        this.c = ylbVar;
+    public bm(View view, boolean z) {
+        this.a = new WeakReference(view);
+        this.b = z;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
-        if (this.a) {
-            textPaint.setTypeface(gm.o());
+    public final void invalidate() {
+        View view = (View) this.a.get();
+        if (view == null) {
+            return;
         }
-        textPaint.setColor(cmb.v0(this.b, this.c));
+        if (this.b && view.getParent() != null) {
+            ((View) view.getParent()).invalidate();
+        } else {
+            view.invalidate();
+        }
     }
 }

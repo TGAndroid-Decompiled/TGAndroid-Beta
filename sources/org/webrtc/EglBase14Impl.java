@@ -60,13 +60,13 @@ public class EglBase14Impl implements EglBase14 {
         if (this.eglDisplay != EGL14.EGL_NO_DISPLAY && this.eglContext != EGL14.EGL_NO_CONTEXT && this.eglConfig != null) {
             return;
         }
-        zo4.k("This object has been released");
+        wn4.j("This object has been released");
     }
 
     private static EGLContext createEglContext(EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i) {
         EGLContext eglCreateContext;
         if (eGLContext != null && eGLContext == EGL14.EGL_NO_CONTEXT) {
-            zo4.k("Invalid sharedContext");
+            wn4.j("Invalid sharedContext");
             return null;
         }
         int[] iArr = {12440, i, 12344};
@@ -86,7 +86,7 @@ public class EglBase14Impl implements EglBase14 {
 
     private void createSurfaceInternal(Object obj, boolean z) {
         if (!(obj instanceof Surface) && !(obj instanceof SurfaceTexture)) {
-            dq9.m("Input must be either a Surface or SurfaceTexture");
+            sc8.j("Input must be either a Surface or SurfaceTexture");
             return;
         }
         checkIsNotReleased();
@@ -95,21 +95,21 @@ public class EglBase14Impl implements EglBase14 {
                 EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344}, 0);
                 this.eglSurfaceBackground = eglCreateWindowSurface;
                 if (eglCreateWindowSurface == EGL14.EGL_NO_SURFACE) {
-                    wa3.c(Integer.toHexString(EGL14.eglGetError()), "Failed to create window surface: 0x");
+                    k93.c(Integer.toHexString(EGL14.eglGetError()), "Failed to create window surface: 0x");
                     return;
                 }
                 return;
             }
-            zo4.k("Already has an EGLSurface");
+            wn4.j("Already has an EGLSurface");
         } else if (this.eglSurface == EGL14.EGL_NO_SURFACE) {
             EGLSurface eglCreateWindowSurface2 = EGL14.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344}, 0);
             this.eglSurface = eglCreateWindowSurface2;
             if (eglCreateWindowSurface2 != EGL14.EGL_NO_SURFACE) {
                 return;
             }
-            wa3.c(Integer.toHexString(EGL14.eglGetError()), "Failed to create window surface: 0x");
+            k93.c(Integer.toHexString(EGL14.eglGetError()), "Failed to create window surface: 0x");
         } else {
-            zo4.k("Already has an EGLSurface");
+            wn4.j("Already has an EGLSurface");
         }
     }
 
@@ -122,10 +122,10 @@ public class EglBase14Impl implements EglBase14 {
                 if (eGLConfig != null) {
                     return eGLConfig;
                 }
-                zo4.k("eglChooseConfig returned null");
+                wn4.j("eglChooseConfig returned null");
                 return null;
             }
-            zo4.k("Unable to find any matching EGL config");
+            wn4.j("Unable to find any matching EGL config");
             return null;
         }
         int eglGetError = EGL14.eglGetError();
@@ -187,11 +187,11 @@ public class EglBase14Impl implements EglBase14 {
             if (eglCreatePbufferSurface != EGL14.EGL_NO_SURFACE) {
                 return;
             }
-            StringBuilder o = ts2.o("Failed to create pixel buffer surface with size ", i, "x", i2, ": 0x");
-            o.append(Integer.toHexString(EGL14.eglGetError()));
-            throw new RuntimeException(o.toString());
+            StringBuilder p = ir2.p("Failed to create pixel buffer surface with size ", i, "x", i2, ": 0x");
+            p.append(Integer.toHexString(EGL14.eglGetError()));
+            throw new RuntimeException(p.toString());
         }
-        zo4.k("Already has an EGLSurface");
+        wn4.j("Already has an EGLSurface");
     }
 
     @Override
@@ -244,7 +244,7 @@ public class EglBase14Impl implements EglBase14 {
             }
             return;
         }
-        zo4.k("No EGLSurface - can't make current");
+        wn4.j("No EGLSurface - can't make current");
     }
 
     @Override
@@ -260,7 +260,7 @@ public class EglBase14Impl implements EglBase14 {
             }
             return;
         }
-        zo4.k("No EGLSurface - can't make current");
+        wn4.j("No EGLSurface - can't make current");
     }
 
     @Override
@@ -327,7 +327,7 @@ public class EglBase14Impl implements EglBase14 {
             }
             return;
         }
-        zo4.k("No EGLSurface - can't swap buffers");
+        wn4.j("No EGLSurface - can't swap buffers");
     }
 
     @Override
@@ -345,6 +345,6 @@ public class EglBase14Impl implements EglBase14 {
             }
             return;
         }
-        zo4.k("No EGLSurface - can't swap buffers");
+        wn4.j("No EGLSurface - can't swap buffers");
     }
 }

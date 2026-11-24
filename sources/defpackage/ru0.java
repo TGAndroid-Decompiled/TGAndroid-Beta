@@ -1,39 +1,68 @@
 package defpackage;
 
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.PasscodeActivity;
-public final class ru0 implements View.OnFocusChangeListener {
+import android.webkit.PermissionRequest;
+public final class ru0 implements vs2 {
     public final byte a;
-    public final Object b;
-    public final EditTextBoldCursor c;
+    public final zu0 b;
+    public final PermissionRequest c;
+    public final String d;
 
-    public ru0(Object obj, EditTextBoldCursor editTextBoldCursor, byte b) {
+    public ru0(zu0 zu0Var, PermissionRequest permissionRequest, String str, byte b) {
         this.a = b;
-        this.b = obj;
-        this.c = editTextBoldCursor;
+        this.b = zu0Var;
+        this.c = permissionRequest;
+        this.d = str;
     }
 
     @Override
-    public final void onFocusChange(View view, boolean z) {
+    public final void accept(Object obj) {
         byte b = this.a;
-        EditTextBoldCursor editTextBoldCursor = this.c;
-        Object obj = this.b;
+        String str = this.d;
+        PermissionRequest permissionRequest = this.c;
+        zu0 zu0Var = this.b;
+        Boolean bool = (Boolean) obj;
         switch (b) {
             case 0:
-                ((gt7) obj).c(z, !TextUtils.isEmpty(editTextBoldCursor.getText()));
+                if (zu0Var.a != null) {
+                    zu0Var.a = null;
+                    if (bool.booleanValue()) {
+                        ru0 ru0Var = new ru0(zu0Var, permissionRequest, str, (byte) 2);
+                        boolean z = hv0.R0;
+                        zu0Var.e.R.R(new String[]{"android.permission.RECORD_AUDIO"}, ru0Var);
+                        return;
+                    }
+                    permissionRequest.deny();
+                    return;
+                }
                 return;
             case 1:
-                ((gt7) obj).c(z, !TextUtils.isEmpty(editTextBoldCursor.getText()));
+                if (zu0Var.a != null) {
+                    zu0Var.a = null;
+                    if (bool.booleanValue()) {
+                        ru0 ru0Var2 = new ru0(zu0Var, permissionRequest, str, (byte) 3);
+                        boolean z2 = hv0.R0;
+                        zu0Var.e.R.R(new String[]{"android.permission.CAMERA"}, ru0Var2);
+                        return;
+                    }
+                    permissionRequest.deny();
+                    return;
+                }
                 return;
             case 2:
-                ((gt7) obj).c(z, !TextUtils.isEmpty(editTextBoldCursor.getText()));
+                if (bool.booleanValue()) {
+                    permissionRequest.grant(new String[]{str});
+                    zu0Var.e.R.U = true;
+                    return;
+                }
+                permissionRequest.deny();
                 return;
             default:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) obj;
-                passcodeActivity.w.setEditText((gl2) editTextBoldCursor);
-                passcodeActivity.w.setDispatchBackWhenEmpty(true);
+                if (bool.booleanValue()) {
+                    permissionRequest.grant(new String[]{str});
+                    zu0Var.e.R.U = true;
+                    return;
+                }
+                permissionRequest.deny();
                 return;
         }
     }

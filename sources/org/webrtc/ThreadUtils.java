@@ -30,7 +30,7 @@ public class ThreadUtils {
             if (Thread.currentThread() == this.thread) {
                 return;
             }
-            dq9.m("Wrong thread");
+            sc8.j("Wrong thread");
         }
 
         public void detachThread() {
@@ -66,7 +66,7 @@ public class ThreadUtils {
         if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
             return;
         }
-        dq9.m("Not on main thread!");
+        sc8.j("Not on main thread!");
     }
 
     public static StackTraceElement[] concatStackTraces(StackTraceElement[] stackTraceElementArr, StackTraceElement[] stackTraceElementArr2) {
@@ -96,7 +96,7 @@ public class ThreadUtils {
             try {
                 return callable.call();
             } catch (Exception e) {
-                rjb.m(e);
+                sdb.b(e);
                 return null;
             }
         }

@@ -1,30 +1,41 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class pqa implements RequestDelegate {
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.FrameLayout;
+public final class pqa extends AnimatorListenerAdapter {
     public final byte a;
-    public final wsa b;
-    public final TwoStepVerificationActivity c;
-    public final boolean d;
+    public final rqa b;
 
-    public pqa(wsa wsaVar, TwoStepVerificationActivity twoStepVerificationActivity, boolean z, byte b) {
+    public pqa(rqa rqaVar, byte b) {
         this.a = b;
-        this.b = wsaVar;
-        this.c = twoStepVerificationActivity;
-        this.d = z;
+        this.b = rqaVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.a) {
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        rqa rqaVar = this.b;
+        switch (b) {
             case 0:
-                gm.c3(new sqa(this.b, tLObject, this.c, this.d, tL_error));
+                rqaVar.k0 = false;
+                return;
+            case 1:
+                rqaVar.k0 = false;
+                return;
+            case 2:
+                rqaVar.P.setVisibility(4);
+                return;
+            case 3:
+                rqaVar.z0 = rqaVar.y0;
+                rqaVar.d(rqaVar.b0);
                 return;
             default:
-                gm.c3(new sqa(this.b, tL_error, this.c, tLObject, this.d));
+                rqaVar.A0 = 1.0f;
+                FrameLayout frameLayout = rqaVar.b;
+                frameLayout.setScaleX(1.0f);
+                frameLayout.setScaleY(rqaVar.A0);
+                rqaVar.invalidate();
                 return;
         }
     }

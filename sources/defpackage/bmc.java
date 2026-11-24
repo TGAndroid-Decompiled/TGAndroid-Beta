@@ -1,12 +1,24 @@
 package defpackage;
-public final class bmc {
-    public final amc a;
+public final class bmc implements Runnable {
+    public final byte a;
+    public final cmc b;
 
-    public bmc(amc amcVar) {
-        this.a = amcVar;
+    public bmc(cmc cmcVar, byte b) {
+        this.a = b;
+        this.b = cmcVar;
     }
 
-    public final String toString() {
-        return "WaiterEB(" + this.a + ')';
+    @Override
+    public final void run() {
+        byte b = this.a;
+        cmc cmcVar = this.b;
+        switch (b) {
+            case 0:
+                gl.c3(new bmc(cmcVar, (byte) 1));
+                return;
+            default:
+                cmcVar.a();
+                return;
+        }
     }
 }

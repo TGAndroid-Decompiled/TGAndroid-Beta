@@ -1,83 +1,48 @@
 package defpackage;
+public final class d6d implements g7d {
+    public final byte a;
 
-import java.util.ListIterator;
-public final class d6d extends v7c implements ListIterator {
-    public final int b;
-    public int c;
-    public final g6d d;
+    public d6d(int i) {
+        this.a = i;
+    }
 
-    public d6d(g6d g6dVar, int i) {
-        super((byte) 2);
-        int size = g6dVar.size();
-        if (i >= 0 && i <= size) {
-            this.b = size;
-            this.c = i;
-            this.d = g6dVar;
-            return;
+    @Override
+    public final Class annotationType() {
+        return g7d.class;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof g7d) {
+                g7d g7dVar = (g7d) obj;
+                if (this.a == g7dVar.zza() && y6d.a.equals(g7dVar.zzb())) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
-        wa3.i(a1f.c(i, size, "index"));
-        throw null;
-    }
-
-    public final Object a(int i) {
-        return this.d.get(i);
+        return true;
     }
 
     @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
+    public final int hashCode() {
+        return (this.a ^ 14552422) + (y6d.a.hashCode() ^ 2041407134);
     }
 
     @Override
-    public final boolean hasNext() {
-        if (this.c < this.b) {
-            return true;
-        }
-        return false;
+    public final String toString() {
+        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + ((int) this.a) + "intEncoding=" + y6d.a + ')';
     }
 
     @Override
-    public final boolean hasPrevious() {
-        if (this.c > 0) {
-            return true;
-        }
-        return false;
+    public final int zza() {
+        return this.a;
     }
 
     @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i = this.c;
-            this.c = i + 1;
-            return a(i);
-        }
-        u36.g();
-        return null;
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i = this.c - 1;
-            this.c = i;
-            return a(i);
-        }
-        u36.g();
-        return null;
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+    public final y6d zzb() {
+        return y6d.a;
     }
 }

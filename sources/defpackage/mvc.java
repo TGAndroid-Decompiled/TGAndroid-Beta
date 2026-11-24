@@ -1,92 +1,58 @@
 package defpackage;
 
 import android.graphics.Bitmap;
-import android.view.TextureView;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-public final class mvc implements Runnable {
-    public final byte a;
-    public final tvc b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RenderNode;
+public final class mvc extends ovc {
+    public final RenderNode e;
+    public Bitmap f;
+    public Paint g;
+    public Rect h;
 
-    public mvc(tvc tvcVar, byte b) {
-        this.a = b;
-        this.b = tvcVar;
+    public mvc(int i, int i2, int i3, int i4, String str) {
+        super(i, i2, i3, i4);
+        RenderNode renderNode = new RenderNode(str);
+        this.e = renderNode;
+        renderNode.setPosition(i, i2, i3, i4);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        tvc tvcVar = this.b;
-        switch (b) {
-            case 0:
-                pvc pvcVar = tvcVar.g0;
-                ndc ndcVar = tvcVar.a;
-                if (ndcVar != null && ndcVar.c0()) {
-                    pvcVar.c((int) (ndcVar.S() / 1000));
-                    pvcVar.x = (int) (ndcVar.N() / 1000);
-                    pvcVar.invalidate();
-                    gm.d3(tvcVar.j0, 1000L);
-                    return;
-                }
-                return;
-            default:
-                pvc pvcVar2 = tvcVar.g0;
-                ImageView imageView = tvcVar.e;
-                TextureView textureView = tvcVar.d;
-                tvcVar.a0 = false;
-                Bitmap bitmap = tvcVar.h;
-                if (bitmap != null) {
-                    bitmap.recycle();
-                    tvcVar.h = null;
-                }
-                tvcVar.T = true;
-                if (imageView != null) {
-                    try {
-                        int width = textureView.getWidth();
-                        int height = textureView.getHeight();
-                        Bitmap.Config config = Bitmap.Config.ARGB_8888;
-                        Bitmap a = ld1.a(width, height);
-                        tvcVar.h = a;
-                        textureView.getBitmap(a);
-                    } catch (Throwable th) {
-                        Bitmap bitmap2 = tvcVar.h;
-                        if (bitmap2 != null) {
-                            bitmap2.recycle();
-                            tvcVar.h = null;
-                        }
-                        fc4.g(th, true);
-                    }
-                    if (tvcVar.h != null) {
-                        imageView.setVisibility(0);
-                        imageView.setImageBitmap(tvcVar.h);
-                    } else {
-                        imageView.setImageDrawable(null);
-                    }
-                }
-                tvcVar.V = true;
-                tvcVar.n();
-                tvcVar.o();
-                tvcVar.k();
-                tvcVar.m();
-                ViewGroup viewGroup = (ViewGroup) pvcVar2.getParent();
-                if (viewGroup != null) {
-                    viewGroup.removeView(pvcVar2);
-                }
-                qvc qvcVar = tvcVar.w;
-                pvc pvcVar3 = tvcVar.g0;
-                boolean z = tvcVar.V;
-                int i = tvcVar.h0;
-                int i2 = tvcVar.i0;
-                tvcVar.c.getVideoRotation();
-                TextureView f = qvcVar.f(pvcVar3, z, i, i2, tvcVar.J);
-                tvcVar.n = f;
-                f.setVisibility(4);
-                ViewGroup viewGroup2 = (ViewGroup) textureView.getParent();
-                if (viewGroup2 != null) {
-                    viewGroup2.removeView(textureView);
-                }
-                pvcVar2.d(false, false);
-                return;
+    public final Canvas a() {
+        return this.e.beginRecording(this.c - this.a, this.d - this.b);
+    }
+
+    @Override
+    public final void b() {
+        this.e.discardDisplayList();
+    }
+
+    @Override
+    public final void c(android.graphics.Canvas r28, float r29) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mvc.c(android.graphics.Canvas, float):void");
+    }
+
+    @Override
+    public final void d() {
+        this.e.endRecording();
+    }
+
+    @Override
+    public final boolean e() {
+        return this.e.hasDisplayList();
+    }
+
+    @Override
+    public final void f() {
+        boolean z;
+        long j = this.c - this.a;
+        long j2 = this.d - this.b;
+        if (j > 0 && j2 > 0 && j <= 4096 && j2 <= 4096 && j * j2 <= 8388608) {
+            z = true;
+        } else {
+            z = false;
         }
+        this.e.setUseCompositingLayer(z, null);
     }
 }

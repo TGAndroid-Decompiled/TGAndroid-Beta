@@ -1,45 +1,64 @@
 package defpackage;
 
-import android.app.Activity;
+import java.util.ArrayList;
+import org.telegram.SQLite.SQLitePreparedStatement;
 public final class ya7 implements Runnable {
     public final byte a;
-    public final Activity b;
-    public final he c;
+    public final ad7 b;
+    public final ArrayList c;
+    public final ArrayList d;
 
-    public ya7(Activity activity, he heVar, byte b) {
+    public ya7(ad7 ad7Var, ArrayList arrayList, ArrayList arrayList2, byte b) {
         this.a = b;
-        this.b = activity;
-        this.c = heVar;
+        this.b = ad7Var;
+        this.c = arrayList;
+        this.d = arrayList2;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        he heVar = this.c;
-        Activity activity = this.b;
+        ArrayList arrayList = this.d;
+        ArrayList arrayList2 = this.c;
+        ad7 ad7Var = this.b;
         switch (b) {
             case 0:
-                if (!activity.isFinishing()) {
+                SQLitePreparedStatement sQLitePreparedStatement = null;
+                try {
                     try {
-                        heVar.dismiss();
+                        sQLitePreparedStatement = ad7Var.b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
+                        int size = arrayList2.size();
+                        for (int i = 0; i < size; i++) {
+                            sQLitePreparedStatement.requery();
+                            sQLitePreparedStatement.bindInteger(1, ((Integer) arrayList.get(i)).intValue());
+                            sQLitePreparedStatement.bindLong(2, ((Long) arrayList2.get(i)).longValue());
+                            sQLitePreparedStatement.step();
+                        }
+                        sQLitePreparedStatement.dispose();
                         return;
                     } catch (Exception e) {
-                        fc4.g(e, true);
+                        ad7Var.n(e, true);
+                        if (sQLitePreparedStatement != null) {
+                            sQLitePreparedStatement.dispose();
+                            return;
+                        }
                         return;
                     }
+                } catch (Throwable th) {
+                    if (sQLitePreparedStatement != null) {
+                        sQLitePreparedStatement.dispose();
+                    }
+                    throw th;
+                }
+            default:
+                if (!arrayList2.isEmpty()) {
+                    ad7Var.getMessagesController().b4(arrayList2, true);
+                }
+                if (!arrayList.isEmpty()) {
+                    ad7Var.getMessagesController().V3(arrayList, true);
+                    return;
                 }
                 return;
-            default:
-                try {
-                    if (!activity.isFinishing()) {
-                        heVar.dismiss();
-                        return;
-                    }
-                    return;
-                } catch (Exception e2) {
-                    fc4.g(e2, true);
-                    return;
-                }
         }
     }
 }

@@ -1,28 +1,35 @@
 package defpackage;
 
-import androidx.car.app.messaging.model.ConversationItem;
-import androidx.car.app.model.CarIcon;
-import androidx.car.app.model.CarText;
-import java.util.ArrayList;
+import j$.util.function.BiConsumer$CC;
 import java.util.List;
-public final class tx2 {
-    public final String a;
-    public final CarText b;
-    public final n58 c;
-    public final CarIcon d;
-    public final boolean e;
-    public List f;
-    public final sx2 g;
-    public final ArrayList h;
+import java.util.function.BiConsumer;
+public final class tx2 implements BiConsumer {
+    public final byte a;
+    public final fy0 b;
 
-    public tx2(ConversationItem conversationItem) {
-        this.a = conversationItem.getId();
-        this.b = conversationItem.getTitle();
-        this.c = conversationItem.getSelf();
-        this.d = conversationItem.getIcon();
-        this.e = conversationItem.isGroupConversation();
-        this.g = conversationItem.getConversationCallbackDelegate();
-        this.f = conversationItem.getMessages();
-        this.h = new ArrayList(conversationItem.getActions());
+    public tx2(fy0 fy0Var, byte b) {
+        this.a = b;
+        this.b = fy0Var;
+    }
+
+    @Override
+    public final void accept(Object obj, Object obj2) {
+        byte b = this.a;
+        fy0 fy0Var = this.b;
+        switch (b) {
+            case 0:
+                String str = (String) obj;
+                ((xx2) fy0Var).W1.addAll((List) obj2);
+                return;
+            default:
+                String str2 = (String) obj;
+                ((zy9) fy0Var).f2.addAll((List) obj2);
+                return;
+        }
+    }
+
+    public final BiConsumer andThen(BiConsumer biConsumer) {
+        byte b = this.a;
+        return BiConsumer$CC.$default$andThen(this, biConsumer);
     }
 }

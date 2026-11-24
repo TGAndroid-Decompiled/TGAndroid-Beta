@@ -1,213 +1,225 @@
 package defpackage;
 
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
-import android.text.style.TypefaceSpan;
-import android.text.style.UnderlineSpan;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-public final class q5c implements vcb {
-    public final yw7 a = new yw7();
-    public final boolean b;
-    public final int c;
-    public final int d;
-    public final String e;
-    public final float f;
-    public final int h;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.d;
+public class q5c extends o39 {
+    public t26 f3;
+    public final l5c g3;
+    public is5 h3;
+    public boolean i3;
+    public boolean j3;
+    public boolean k3;
+    public s49 l3;
+    public boolean m3;
 
-    public q5c(List list) {
-        if (list.size() == 1 && (((byte[]) list.get(0)).length == 48 || ((byte[]) list.get(0)).length == 53)) {
-            byte[] bArr = (byte[]) list.get(0);
-            this.c = bArr[24];
-            this.d = ((bArr[26] & 255) << 24) | ((bArr[27] & 255) << 16) | ((bArr[28] & 255) << 8) | (bArr[29] & 255);
-            this.e = "Serif".equals(new String(bArr, 43, bArr.length - 43, StandardCharsets.UTF_8)) ? "serif" : "sans-serif";
-            int i = bArr[25] * 20;
-            this.h = i;
-            boolean z = (bArr[0] & 32) != 0;
-            this.b = z;
-            if (z) {
-                this.f = hac.h((((bArr[10] & 255) << 8) | (bArr[11] & 255)) / i, 0.0f, 0.95f);
-                return;
-            } else {
-                this.f = 0.85f;
-                return;
-            }
+    public q5c(Context context, int i, int i2, boolean z, i8c i8cVar, n8c n8cVar, o8c o8cVar, wjb wjbVar, int i3, int i4) {
+        super(context, wjbVar);
+        this.m3 = true;
+        if (i3 == -1) {
+            xe2 xe2Var = new xe2(this, i4);
+            this.f3 = xe2Var;
+            setLayoutManager(xe2Var);
+        } else {
+            o5c o5cVar = new o5c(this, i3, (byte) 0);
+            o5cVar.O = new ida(this, o5cVar, (byte) 1);
+            this.f3 = o5cVar;
+            setLayoutManager(o5cVar);
         }
-        this.c = 0;
-        this.d = -1;
-        this.e = "sans-serif";
-        this.b = false;
-        this.f = 0.85f;
-        this.h = -1;
+        l5c l5cVar = new l5c(this, context, i, i2, z, i8cVar, wjbVar);
+        this.g3 = l5cVar;
+        setAdapter(l5cVar);
+        if (n8cVar != null) {
+            setOnItemClickListener(new cwb(this, n8cVar, (byte) 2));
+        }
+        if (o8cVar != null) {
+            setOnItemLongClickListener(new cwb(this, o8cVar, (byte) 3));
+        }
+        p5c p5cVar = new p5c(this);
+        p5cVar.m = false;
+        p5cVar.C = false;
+        p5cVar.o(s33.h);
+        p5cVar.n(350L);
+        setItemAnimator(p5cVar);
     }
 
-    public static void a(SpannableStringBuilder spannableStringBuilder, int i, int i2, int i3, int i4, int i5) {
-        if (i != i2) {
-            spannableStringBuilder.setSpan(new ForegroundColorSpan(((i & 255) << 24) | (i >>> 8)), i3, i4, i5 | 33);
-        }
-    }
-
-    public static void b(SpannableStringBuilder spannableStringBuilder, int i, int i2, int i3, int i4, int i5) {
-        boolean z;
-        boolean z2;
-        if (i != i2) {
-            int i6 = i5 | 33;
-            if ((i & 1) != 0) {
-                z = true;
-            } else {
-                z = false;
-            }
-            if ((i & 2) != 0) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-            if (z) {
-                if (z2) {
-                    spannableStringBuilder.setSpan(new StyleSpan(3), i3, i4, i6);
-                } else {
-                    spannableStringBuilder.setSpan(new StyleSpan(1), i3, i4, i6);
+    public final int A1(int i) {
+        int i2 = 0;
+        while (true) {
+            l5c l5cVar = this.g3;
+            if (i2 < l5cVar.E.size()) {
+                c4c G = l5cVar.G(i2);
+                if (G != null && G.d == i) {
+                    return i2;
                 }
-            } else if (z2) {
-                spannableStringBuilder.setSpan(new StyleSpan(2), i3, i4, i6);
-            }
-            if ((i & 4) != 0) {
-                spannableStringBuilder.setSpan(new UnderlineSpan(), i3, i4, i6);
-            } else if (!z && !z2) {
-                spannableStringBuilder.setSpan(new StyleSpan(0), i3, i4, i6);
+                i2++;
+            } else {
+                return -1;
             }
         }
     }
 
-    @Override
-    public final lcb g(int i, int i2, byte[] bArr) {
-        return hg9.c(this, bArr, i2);
+    public final View B1(int i) {
+        int i2 = 0;
+        while (true) {
+            l5c l5cVar = this.g3;
+            if (i2 < l5cVar.E.size()) {
+                c4c G = l5cVar.G(i2);
+                if (G != null && G.d == i) {
+                    break;
+                }
+                i2++;
+            } else {
+                i2 = -1;
+                break;
+            }
+        }
+        return U0(i2);
+    }
+
+    public final View C1(Object obj) {
+        int i = 0;
+        while (true) {
+            l5c l5cVar = this.g3;
+            if (i < l5cVar.E.size()) {
+                c4c G = l5cVar.G(i);
+                if (G != null && G.H == obj) {
+                    break;
+                }
+                i++;
+            } else {
+                i = -1;
+                break;
+            }
+        }
+        return U0(i);
+    }
+
+    public boolean D1() {
+        return false;
+    }
+
+    public final void E1(i8c i8cVar, boolean z) {
+        this.j3 = z;
+        is5 is5Var = new is5(new r10(this, (byte) 8));
+        this.h3 = is5Var;
+        is5Var.h(this);
+        this.g3.N = i8cVar;
     }
 
     @Override
-    public final void p(byte[] bArr, int i, int i2, ucb ucbVar, fu2 fu2Var) {
-        boolean z;
-        String y;
-        int i3;
-        boolean z2;
-        boolean z3;
-        boolean z4;
-        int i4;
-        yw7 yw7Var = this.a;
-        yw7Var.L(i + i2, bArr);
-        yw7Var.N(i);
-        int i5 = 1;
-        int i6 = 0;
-        int i7 = 2;
-        if (yw7Var.a() >= 2) {
-            z = true;
-        } else {
-            z = false;
-        }
-        jte.f(z);
-        int H = yw7Var.H();
-        if (H == 0) {
-            y = "";
-        } else {
-            int i8 = yw7Var.b;
-            Charset J = yw7Var.J();
-            int i9 = H - (yw7Var.b - i8);
-            if (J == null) {
-                J = StandardCharsets.UTF_8;
+    public void dispatchDraw(Canvas canvas) {
+        int i;
+        if (!c1()) {
+            l5c l5cVar = this.g3;
+            ArrayList arrayList = l5cVar.H;
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                i5c i5cVar = (i5c) arrayList.get(i2);
+                int i3 = i5cVar.b;
+                if (i3 >= 0) {
+                    int i4 = i5cVar.a;
+                    if (l5cVar.n) {
+                        i = bkb.g5;
+                    } else {
+                        i = bkb.c6;
+                    }
+                    int v0 = bkb.v0(i, l5cVar.x);
+                    if (i3 >= i4 && i4 >= 0 && i3 >= 0) {
+                        int i5 = Integer.MAX_VALUE;
+                        int i6 = Integer.MIN_VALUE;
+                        for (int i7 = 0; i7 < getChildCount(); i7++) {
+                            View childAt = getChildAt(i7);
+                            if (childAt != null) {
+                                int R = RecyclerView.R(childAt);
+                                int top = childAt.getTop();
+                                if (R >= i4 && R <= i3) {
+                                    i5 = Math.min(top, i5);
+                                    i6 = Math.max((int) ((childAt.getAlpha() * childAt.getHeight()) + top), i6);
+                                }
+                            }
+                        }
+                        if (i5 < i6) {
+                            Paint paint = this.t2;
+                            if (paint == null) {
+                                paint = new Paint(1);
+                                this.t2 = paint;
+                            }
+                            paint.setColor(v0);
+                            canvas.drawRect(0.0f, i5, getWidth(), i6, this.t2);
+                        }
+                    }
+                }
             }
-            y = yw7Var.y(i9, J);
         }
-        if (y.isEmpty()) {
-            ko5 ko5Var = mo5.b;
-            fu2Var.accept(new i53(-9223372036854775807L, -9223372036854775807L, y79.e));
+        super.dispatchDraw(canvas);
+    }
+
+    public int getSpanCount() {
+        t26 t26Var = this.f3;
+        if (t26Var instanceof w64) {
+            return ((w64) t26Var).J;
+        }
+        return -1;
+    }
+
+    @Override
+    public final void s1(int i, float f, boolean z) {
+        t1(new z02(this, (byte) 11), new pb((byte) 13), i, f, z);
+    }
+
+    public void setReorderLongPressEnabled(boolean z) {
+        this.m3 = z;
+    }
+
+    public void setSpanCount(int i) {
+        t26 t26Var = this.f3;
+        if (t26Var instanceof w64) {
+            ((w64) t26Var).x1(i);
+        } else if (t26Var != null && i != -1) {
+            getContext();
+            o5c o5cVar = new o5c(this, i, (byte) 1);
+            o5cVar.O = new ida(this, o5cVar, (byte) 2);
+            this.f3 = o5cVar;
+            setLayoutManager(o5cVar);
+        }
+    }
+
+    public final void z1(boolean z) {
+        if (this.k3 == z) {
             return;
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(y);
-        b(spannableStringBuilder, this.c, 0, 0, spannableStringBuilder.length(), 16711680);
-        a(spannableStringBuilder, this.d, -1, 0, spannableStringBuilder.length(), 16711680);
-        int length = spannableStringBuilder.length();
-        String str = this.e;
-        if (str != "sans-serif") {
-            spannableStringBuilder.setSpan(new TypefaceSpan(str), 0, length, 16711713);
-        }
-        float f = this.f;
-        while (yw7Var.a() >= 8) {
-            int i10 = yw7Var.b;
-            int m = yw7Var.m();
-            int m2 = yw7Var.m();
-            if (m2 == 1937013100) {
-                if (yw7Var.a() >= i7) {
-                    z3 = i5;
-                } else {
-                    z3 = i6;
-                }
-                jte.f(z3);
-                int H2 = yw7Var.H();
-                int i11 = i6;
-                while (i11 < H2) {
-                    if (yw7Var.a() >= 12) {
-                        z4 = i5;
-                    } else {
-                        z4 = i6;
-                    }
-                    jte.f(z4);
-                    int H3 = yw7Var.H();
-                    int H4 = yw7Var.H();
-                    yw7Var.O(i7);
-                    int i12 = i11;
-                    int A = yw7Var.A();
-                    yw7Var.O(i5);
-                    int m3 = yw7Var.m();
-                    if (H4 > spannableStringBuilder.length()) {
-                        StringBuilder l = hg9.l(H4, "Truncating styl end (", ") to cueText.length() (");
-                        l.append(spannableStringBuilder.length());
-                        l.append(").");
-                        ncd.f("Tx3gParser", l.toString());
-                        H4 = spannableStringBuilder.length();
-                    }
-                    if (H3 >= H4) {
-                        ncd.f("Tx3gParser", "Ignoring styl with start (" + H3 + ") >= end (" + H4 + ").");
-                        i4 = i12;
-                    } else {
-                        i4 = i12;
-                        int i13 = H4;
-                        b(spannableStringBuilder, A, this.c, H3, i13, 0);
-                        a(spannableStringBuilder, m3, this.d, H3, i13, 0);
-                    }
-                    i11 = i4 + 1;
-                    i5 = 1;
-                    i6 = 0;
-                    i7 = 2;
-                }
-                i3 = i7;
-            } else if (m2 == 1952608120 && this.b) {
-                i3 = 2;
-                if (yw7Var.a() >= 2) {
-                    z2 = true;
-                } else {
-                    z2 = false;
-                }
-                jte.f(z2);
-                f = hac.h(yw7Var.H() / this.h, 0.0f, 0.95f);
-            } else {
-                i3 = 2;
-            }
-            yw7Var.N(i10 + m);
-            i7 = i3;
-            i5 = 1;
-            i6 = 0;
-        }
-        fu2Var.accept(new i53(-9223372036854775807L, -9223372036854775807L, mo5.u(new f53(spannableStringBuilder, null, null, null, f, 0, 0, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, -16777216, Integer.MIN_VALUE, 0.0f, 0))));
+        this.k3 = z;
+        this.g3.O = z;
+        gl.d0(this, new ae9(this, (byte) 23));
     }
 
-    @Override
-    public final int r() {
-        return 2;
+    public void F1() {
     }
 
-    @Override
-    public final void reset() {
+    public void G1() {
+    }
+
+    public void K1() {
+    }
+
+    public void H1(s49 s49Var) {
+    }
+
+    public void I1(s49 s49Var) {
+    }
+
+    public void J1(s49 s49Var) {
+    }
+
+    public q5c(Context context, int i, int i2, boolean z, i8c i8cVar, n8c n8cVar, o8c o8cVar, wjb wjbVar) {
+        this(context, i, i2, z, i8cVar, n8cVar, o8cVar, wjbVar, -1, 1);
+    }
+
+    public q5c(d dVar, i8c i8cVar, n8c n8cVar, o8c o8cVar) {
+        this(dVar.getContext(), dVar.getCurrentAccount(), dVar.getClassGuid(), false, i8cVar, n8cVar, o8cVar, dVar.getResourceProvider());
     }
 }

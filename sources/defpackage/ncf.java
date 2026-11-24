@@ -1,33 +1,83 @@
 package defpackage;
-public final class ncf extends wgf {
-    private static final ncf zzb;
-    private int zzd;
-    private String zze = "";
 
-    static {
-        ncf ncfVar = new ncf();
-        zzb = ncfVar;
-        wgf.e(ncf.class, ncfVar);
+import java.util.List;
+import java.util.concurrent.AbstractExecutorService;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.RunnableFuture;
+import java.util.concurrent.TimeUnit;
+public class ncf extends AbstractExecutorService implements AutoCloseable, ExecutorService {
+    public final ExecutorService a;
+
+    public ncf(ExecutorService executorService) {
+        executorService.getClass();
+        this.a = executorService;
     }
 
     @Override
-    public final Object h(int i, wgf wgfVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
-                    }
-                    return new vgf(zzb);
-                }
-                return new ncf();
-            }
-            return new tif(zzb, "\u0001\u0001\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0001ဈ\u0000", new Object[]{"zzd", "zze"});
-        }
-        return (byte) 1;
+    public final boolean awaitTermination(long j, TimeUnit timeUnit) {
+        return this.a.awaitTermination(j, timeUnit);
+    }
+
+    public void close() {
+        z2.i(this);
+    }
+
+    @Override
+    public final void execute(Runnable runnable) {
+        this.a.execute(runnable);
+    }
+
+    @Override
+    public final boolean isShutdown() {
+        return this.a.isShutdown();
+    }
+
+    @Override
+    public final boolean isTerminated() {
+        return this.a.isTerminated();
+    }
+
+    @Override
+    public final RunnableFuture newTaskFor(Runnable runnable, Object obj) {
+        return new edf(Executors.callable(runnable, obj));
+    }
+
+    @Override
+    public final void shutdown() {
+        this.a.shutdown();
+    }
+
+    @Override
+    public final List shutdownNow() {
+        return this.a.shutdownNow();
+    }
+
+    @Override
+    public final Future submit(Runnable runnable) {
+        return (t56) super.submit(runnable);
+    }
+
+    public final String toString() {
+        String obj = super.toString();
+        String valueOf = String.valueOf(this.a);
+        return obj + "[" + valueOf + "]";
+    }
+
+    @Override
+    public final Future submit(Runnable runnable, Object obj) {
+        return (t56) super.submit(runnable, obj);
+    }
+
+    @Override
+    public final Future submit(Callable callable) {
+        return (t56) super.submit(callable);
+    }
+
+    @Override
+    public final RunnableFuture newTaskFor(Callable callable) {
+        return new edf(callable);
     }
 }

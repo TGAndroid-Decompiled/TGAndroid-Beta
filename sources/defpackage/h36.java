@@ -1,139 +1,118 @@
 package defpackage;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-public abstract class h36 {
-    public static final HashMap a = new HashMap();
-    public static final HashMap b = new HashMap();
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+public final class h36 extends FrameLayout {
+    public final wla a;
+    public final FrameLayout b;
+    public String c;
+    public String d;
+    public final ImageView e;
 
-    public static void a(Constructor constructor, Object obj) {
-        try {
-            constructor.newInstance(obj).getClass();
-            throw new ClassCastException();
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e2) {
-            throw new RuntimeException(e2);
-        } catch (InvocationTargetException e3) {
-            throw new RuntimeException(e3);
-        }
+    public h36(Context context, wjb wjbVar) {
+        super(context);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.b = frameLayout;
+        wla wlaVar = new wla(context);
+        this.a = wlaVar;
+        wlaVar.setPadding(gl.L(18.0f), gl.L(13.0f), gl.L(50.0f), gl.L(13.0f));
+        wlaVar.setTextSize(1, 16.0f);
+        wlaVar.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+        wlaVar.setSingleLine(true);
+        zkb.X(wlaVar, bkb.F6, wjbVar);
+        wlaVar.r = false;
+        frameLayout.addView(wlaVar, nme.e(-2, -2, 17));
+        int L = gl.L(8.0f);
+        int i = bkb.d7;
+        int v0 = bkb.v0(i, wjbVar);
+        int i2 = bkb.h6;
+        int o = bm2.o(bkb.v0(i2, wjbVar), 76);
+        ff0 i0 = bkb.i0(L, L, L, L, v0, o, o);
+        vkb M = zkb.M(i);
+        vkb g = zkb.g(i2, 76);
+        frameLayout.setBackground(i0);
+        zkb.j(frameLayout, i0, M, g, wjbVar);
+        addView(frameLayout, nme.d(-1, -2.0f, 0, 14.0f, 0.0f, 14.0f, 0.0f));
+        frameLayout.setOnClickListener(new View.OnClickListener(this) {
+            public final h36 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                byte b = r2;
+                h36 h36Var = this.b;
+                switch (b) {
+                    case 0:
+                        gl.g(h36Var.d);
+                        return;
+                    default:
+                        gl.g(h36Var.d);
+                        return;
+                }
+            }
+        });
+        ImageView imageView = new ImageView(getContext());
+        this.e = imageView;
+        imageView.setImageResource(2131231786);
+        zkb.s(imageView, bkb.i5, wjbVar, PorterDuff.Mode.SRC_ATOP);
+        imageView.setPadding(gl.L(8.0f), gl.L(8.0f), gl.L(8.0f), gl.L(8.0f));
+        int L2 = gl.L(20.0f);
+        int o2 = bm2.o(bkb.v0(i2, wjbVar), 76);
+        imageView.setBackground(bkb.i0(L2, L2, L2, L2, 0, o2, o2));
+        addView(imageView, nme.d(40, 40.0f, 21, 15.0f, 0.0f, 17.0f, 0.0f));
+        imageView.setOnClickListener(new View.OnClickListener(this) {
+            public final h36 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                byte b = r2;
+                h36 h36Var = this.b;
+                switch (b) {
+                    case 0:
+                        gl.g(h36Var.d);
+                        return;
+                    default:
+                        gl.g(h36Var.d);
+                        return;
+                }
+            }
+        });
     }
 
-    public static int b(Class cls) {
-        Constructor constructor;
-        boolean z;
-        String str;
-        HashMap hashMap = a;
-        Integer num = (Integer) hashMap.get(cls);
-        if (num != null) {
-            return num.intValue();
+    public final void a(Runnable runnable) {
+        this.e.setVisibility(4);
+        int L = gl.L(18.0f);
+        int L2 = gl.L(14.0f);
+        int L3 = gl.L(14.0f);
+        int L4 = gl.L(18.0f);
+        wla wlaVar = this.a;
+        wlaVar.setPadding(L, L2, L3, L4);
+        ?? obj = new Object();
+        obj.a |= 256;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.c);
+        if (this.c == null) {
+            spannableStringBuilder.append((CharSequence) "1234567891011123654897566536223");
         }
-        int i = 1;
-        if (cls.getCanonicalName() != null) {
-            int i2 = 0;
-            ArrayList arrayList = null;
-            try {
-                Package r4 = cls.getPackage();
-                String canonicalName = cls.getCanonicalName();
-                if (r4 != null) {
-                    str = r4.getName();
-                } else {
-                    str = "";
-                }
-                str.getClass();
-                if (str.length() != 0) {
-                    canonicalName.getClass();
-                    canonicalName = canonicalName.substring(str.length() + 1);
-                }
-                canonicalName.getClass();
-                String concat = pbb.c(canonicalName, ".", "_").concat("_LifecycleAdapter");
-                if (str.length() != 0) {
-                    concat = str + '.' + concat;
-                }
-                constructor = Class.forName(concat).getDeclaredConstructor(cls);
-                if (!constructor.isAccessible()) {
-                    constructor.setAccessible(true);
-                }
-            } catch (ClassNotFoundException unused) {
-                constructor = null;
-            } catch (NoSuchMethodException e) {
-                rjb.m(e);
-                return 0;
-            }
-            HashMap hashMap2 = b;
-            if (constructor != null) {
-                hashMap2.put(cls, lm2.a(constructor));
-            } else {
-                fj2 fj2Var = fj2.c;
-                HashMap hashMap3 = fj2Var.b;
-                Boolean bool = (Boolean) hashMap3.get(cls);
-                if (bool != null) {
-                    z = bool.booleanValue();
-                } else {
-                    try {
-                        Method[] declaredMethods = cls.getDeclaredMethods();
-                        int length = declaredMethods.length;
-                        int i3 = 0;
-                        while (true) {
-                            if (i3 < length) {
-                                if (((hr7) declaredMethods[i3].getAnnotation(hr7.class)) != null) {
-                                    fj2Var.a(cls, declaredMethods);
-                                    z = true;
-                                    break;
-                                }
-                                i3++;
-                            } else {
-                                hashMap3.put(cls, Boolean.FALSE);
-                                z = false;
-                                break;
-                            }
-                        }
-                    } catch (NoClassDefFoundError e2) {
-                        throw new IllegalArgumentException("The observer class has some methods that use newer APIs which are not available in the current OS version. Lifecycles cannot access even other methods so you should make sure that your observer classes only access framework classes that are available in your min API level OR use lifecycle:compiler annotation processor.", e2);
-                    }
-                }
-                if (!z) {
-                    Class superclass = cls.getSuperclass();
-                    if (superclass != null && d36.class.isAssignableFrom(superclass)) {
-                        superclass.getClass();
-                        if (b(superclass) != 1) {
-                            Object obj = hashMap2.get(superclass);
-                            obj.getClass();
-                            arrayList = new ArrayList((Collection) obj);
-                        }
-                    }
-                    Class<?>[] interfaces = cls.getInterfaces();
-                    interfaces.getClass();
-                    int length2 = interfaces.length;
-                    while (true) {
-                        if (i2 < length2) {
-                            Class<?> cls2 = interfaces[i2];
-                            if (cls2 != null && d36.class.isAssignableFrom(cls2)) {
-                                cls2.getClass();
-                                if (b(cls2) == 1) {
-                                    break;
-                                }
-                                if (arrayList == null) {
-                                    arrayList = new ArrayList();
-                                }
-                                Object obj2 = hashMap2.get(cls2);
-                                obj2.getClass();
-                                arrayList.addAll((Collection) obj2);
-                            }
-                            i2++;
-                        } else if (arrayList != null) {
-                            hashMap2.put(cls, arrayList);
-                        }
-                    }
-                }
-            }
-            i = 2;
-        }
-        hashMap.put(cls, Integer.valueOf(i));
-        return i;
+        spannableStringBuilder.setSpan(new wib(obj, 0), 0, spannableStringBuilder.length(), 33);
+        wlaVar.setText(spannableStringBuilder);
+        this.b.setOnClickListener(new nk3(runnable, (byte) 4));
+    }
+
+    public void setSlug(String str) {
+        this.c = str;
+        this.d = b00.h("https://t.me/giftcode/", str);
+        this.a.setText("t.me/giftcode/" + str);
     }
 }

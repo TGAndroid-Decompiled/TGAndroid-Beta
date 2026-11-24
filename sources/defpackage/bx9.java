@@ -1,86 +1,36 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.HashMap;
-import java.util.WeakHashMap;
-public abstract class bx9 extends View.AccessibilityDelegate {
-    public static final String c = "android.widget.SeekBar";
-    public final HashMap a = new HashMap(4);
-    public final wd b = new wd(this, (byte) 16);
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class bx9 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final dx9 b;
 
-    public boolean a() {
-        return true;
-    }
-
-    public boolean b() {
-        return true;
-    }
-
-    public abstract void c(boolean z);
-
-    public CharSequence d() {
-        return null;
-    }
-
-    public void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        accessibilityNodeInfo.setClassName(c);
-        CharSequence d = d();
-        if (!TextUtils.isEmpty(d)) {
-            accessibilityNodeInfo.setText(d);
-        }
-        if (a()) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
-        }
-        if (b()) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD);
-        }
-    }
-
-    public final void f(AccessibilityNodeInfo accessibilityNodeInfo) {
-        e(null, accessibilityNodeInfo);
-    }
-
-    public boolean g(View view, int i, Bundle bundle) {
-        boolean z = false;
-        if (i != 4096 && i != 8192) {
-            return false;
-        }
-        if (i == 8192) {
-            z = true;
-        }
-        c(z);
-        if (view != null) {
-            WeakHashMap weakHashMap = kfc.a;
-            if (view.isAttachedToWindow()) {
-                HashMap hashMap = this.a;
-                Runnable runnable = (Runnable) hashMap.get(view);
-                if (runnable == null) {
-                    runnable = new il9(this, view, (byte) 20);
-                    hashMap.put(view, runnable);
-                    view.addOnAttachStateChangeListener(this.b);
-                } else {
-                    view.removeCallbacks(runnable);
-                }
-                view.postDelayed(runnable, 400L);
-            }
-        }
-        return true;
+    public bx9(dx9 dx9Var, byte b) {
+        this.a = b;
+        this.b = dx9Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-        e(view, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(View view, int i, Bundle bundle) {
-        if (super.performAccessibilityAction(view, i, bundle)) {
-            return true;
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        dx9 dx9Var = this.b;
+        switch (b) {
+            case 0:
+                super.onAnimationEnd(animator);
+                dx9Var.J = null;
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                dx9Var.J = null;
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                dx9Var.O = 0.0f;
+                dx9Var.J = null;
+                dx9Var.N = false;
+                dx9Var.d(true, false);
+                return;
         }
-        return g(view, i, bundle);
     }
 }

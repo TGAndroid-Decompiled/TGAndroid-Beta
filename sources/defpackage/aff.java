@@ -1,26 +1,25 @@
 package defpackage;
-public final class aff extends wdf implements Runnable {
-    public final Runnable n;
+public abstract class aff {
+    public static xye a;
 
-    public aff(Runnable runnable) {
-        runnable.getClass();
-        this.n = runnable;
-    }
-
-    @Override
-    public final String a() {
-        return kt6.o("task=[", this.n.toString(), "]");
-    }
-
-    @Override
-    public final void run() {
-        try {
-            this.n.run();
-        } catch (Error | RuntimeException e) {
-            if (wdf.f.f(this, null, new pdf(e))) {
-                wdf.g(this);
+    public static synchronized sef a(gef gefVar) {
+        sef sefVar;
+        synchronized (aff.class) {
+            xye xyeVar = a;
+            if (xyeVar == null) {
+                xyeVar = new xye((byte) 4);
+                a = xyeVar;
             }
-            throw e;
+            sefVar = (sef) xyeVar.c(gefVar);
         }
+        return sefVar;
+    }
+
+    public static synchronized sef b() {
+        sef a2;
+        synchronized (aff.class) {
+            a2 = a(new Object());
+        }
+        return a2;
     }
 }

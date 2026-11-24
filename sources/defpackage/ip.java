@@ -1,54 +1,39 @@
 package defpackage;
 
-import j$.util.Objects;
-import java.util.Arrays;
-public final class ip extends tl5 {
-    public final String b;
-    public final String c;
-    public final short d;
-    public final byte[] e;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
+import android.widget.TextView;
+public final class ip {
+    public final TextView a;
+    public final gi3 b;
 
-    public ip(int i, String str, String str2, byte[] bArr) {
-        super("APIC");
-        this.b = str;
-        this.c = str2;
-        this.d = i;
-        this.e = bArr;
+    public ip(TextView textView) {
+        this.a = textView;
+        ?? obj = new Object();
+        obj.a = new ey3(textView);
+        this.b = obj;
     }
 
-    @Override
-    public final void b(ht6 ht6Var) {
-        ht6Var.a(this.d, this.e);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && ip.class == obj.getClass()) {
-                ip ipVar = (ip) obj;
-                if (this.d == ipVar.d && this.b.equals(ipVar.b) && Objects.equals(this.c, ipVar.c) && Arrays.equals(this.e, ipVar.e)) {
-                    return true;
-                }
-                return false;
+    public final void a(AttributeSet attributeSet, int i) {
+        TypedArray obtainStyledAttributes = this.a.getContext().obtainStyledAttributes(attributeSet, jy8.i, i, 0);
+        try {
+            boolean z = true;
+            if (obtainStyledAttributes.hasValue(14)) {
+                z = obtainStyledAttributes.getBoolean(14, true);
             }
-            return false;
+            obtainStyledAttributes.recycle();
+            c(z);
+        } catch (Throwable th) {
+            obtainStyledAttributes.recycle();
+            throw th;
         }
-        return true;
     }
 
-    public final int hashCode() {
-        int i;
-        int j = ts2.j((527 + this.d) * 31, 31, this.b);
-        String str = this.c;
-        if (str != null) {
-            i = str.hashCode();
-        } else {
-            i = 0;
-        }
-        return Arrays.hashCode(this.e) + ((j + i) * 31);
+    public final void b(boolean z) {
+        ((efe) this.b.a).b(z);
     }
 
-    @Override
-    public final String toString() {
-        return this.a + ": mimeType=" + this.b + ", description=" + this.c;
+    public final void c(boolean z) {
+        ((efe) this.b.a).c(z);
     }
 }

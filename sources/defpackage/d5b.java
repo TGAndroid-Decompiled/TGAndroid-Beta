@@ -1,107 +1,59 @@
 package defpackage;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.media.AudioManager;
-import android.os.Build;
-import android.view.KeyEvent;
-import android.view.View;
-public final class d5b extends View {
-    public Paint a;
-    public boolean b;
-    public zka c;
-    public ln d;
-    public ln e;
-    public float f;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class d5b extends FrameLayout {
+    public final Paint a;
+    public final lm b;
+    public final wjb c;
+    public final g5b d;
 
-    public final void a(boolean z) {
-        zka zkaVar = this.c;
-        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
-        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
-        int streamVolume = audioManager.getStreamVolume(3);
-        float f = streamMaxVolume;
-        int max = (int) Math.max(1.0f, f / 15.0f);
-        if (z) {
-            int i = streamVolume + max;
-            if (i <= streamMaxVolume) {
-                streamMaxVolume = i;
-            }
-        } else {
-            streamMaxVolume = streamVolume - max;
-            if (streamMaxVolume < 0) {
-                streamMaxVolume = 0;
-            }
-        }
-        audioManager.setStreamVolume(3, streamMaxVolume, 0);
-        float f2 = streamMaxVolume / f;
-        this.f = f2;
-        if (!this.b) {
-            this.e.e(true, f2);
-        }
-        invalidate();
-        this.b = true;
-        gm.r(zkaVar);
-        gm.d3(zkaVar, 2000L);
-    }
-
-    public final void b() {
-        int i;
-        zka zkaVar = this.c;
-        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
-        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
-        if (Build.VERSION.SDK_INT >= 28) {
-            i = audioManager.getStreamMinVolume(3);
-        } else {
-            i = 0;
-        }
-        int streamVolume = audioManager.getStreamVolume(3);
-        if (streamVolume <= i) {
-            a(true);
-        } else if (!this.b) {
-            float f = streamVolume / streamMaxVolume;
-            this.f = f;
-            this.e.e(true, f);
-            this.b = true;
-            invalidate();
-            gm.r(zkaVar);
-            gm.d3(zkaVar, 2000L);
-        }
+    public d5b(g5b g5bVar, Context context, wjb wjbVar) {
+        super(context);
+        this.d = g5bVar;
+        this.c = wjbVar;
+        this.a = new Paint(1);
+        this.b = new lm(this, 0L, 350L, s33.h);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f;
+    public final void dispatchDraw(Canvas canvas) {
+        boolean z;
+        int v0 = bkb.v0(bkb.g5, this.c);
         Paint paint = this.a;
-        super.onDraw(canvas);
-        ln lnVar = this.e;
-        lnVar.e(false, this.f);
-        ln lnVar2 = this.d;
-        if (this.b) {
-            f = 1.0f;
+        paint.setColor(v0);
+        g5b g5bVar = this.d;
+        float max = Math.max(0.0f, g5bVar.D0());
+        if (max < gl.m) {
+            z = true;
         } else {
-            f = 0.0f;
+            z = false;
         }
-        lnVar2.e(false, f);
-        if (lnVar2.c != 0.0f) {
-            float measuredHeight = getMeasuredHeight() / 2.0f;
-            paint.setAlpha((int) (lnVar2.c * 255.0f));
-            RectF rectF = gm.P;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth() * lnVar.c, getMeasuredHeight());
-            canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, paint);
-        }
+        lm lmVar = this.b;
+        float R1 = gl.R1(max, 0.0f, lmVar.d(z));
+        RectF rectF = gl.P;
+        rectF.set(g5bVar.u0, R1, getWidth() - g5bVar.u0, gl.L(14.0f) + getHeight());
+        float L = (1.0f - lmVar.c) * gl.L(14.0f);
+        canvas.drawRoundRect(rectF, L, L, paint);
+        g5bVar.q1.setTranslationY(Math.max(gl.L(8.0f) + gl.m, gl.L(14.0f) + R1));
+        canvas.save();
+        canvas.clipRect(g5bVar.u0, gl.L(14.0f) + gl.m, getWidth() - g5bVar.u0, getHeight());
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final boolean onKeyDown(int i, KeyEvent keyEvent) {
-        if (keyEvent.getAction() == 0 && i == 24) {
-            a(true);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        float y = motionEvent.getY();
+        g5b g5bVar = this.d;
+        if (y < g5bVar.D0()) {
+            g5bVar.dismiss();
             return true;
-        } else if (keyEvent.getAction() == 0 && i == 25) {
-            a(false);
-            return true;
-        } else {
-            return super.onKeyDown(i, keyEvent);
         }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

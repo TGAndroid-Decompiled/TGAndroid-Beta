@@ -1,35 +1,27 @@
 package defpackage;
 
-import android.media.session.MediaSession;
-import android.os.Bundle;
-public final class u8a {
-    public static final String b;
-    public static final String c;
-    public final v8a a;
-
-    static {
-        ct6.a("media3.session");
-        String str = hac.a;
-        b = "0";
-        c = "1";
+import android.app.Activity;
+import android.content.Context;
+import org.telegram.messenger.a;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+public final class u8a extends d {
+    @Override
+    public final Context getContext() {
+        return gl.W(LaunchActivity.H1);
     }
 
-    public u8a(int i, String str, oz6 oz6Var, Bundle bundle, MediaSession.Token token) {
-        this.a = new v8a(i, str, oz6Var, bundle, token);
+    @Override
+    public final int getCurrentAccount() {
+        return this.currentAccount;
     }
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof u8a)) {
-            return false;
+    @Override
+    public final Activity getParentActivity() {
+        Activity W = gl.W(a.b);
+        if (W == null) {
+            return LaunchActivity.H1;
         }
-        return this.a.equals(((u8a) obj).a);
-    }
-
-    public final int hashCode() {
-        return this.a.hashCode();
-    }
-
-    public final String toString() {
-        return this.a.toString();
+        return W;
     }
 }

@@ -1,37 +1,32 @@
 package defpackage;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import java.util.Arrays;
-public final class z5d implements wo {
-    public static final z5d c;
+public final class z5d extends b4 {
+    public static final Parcelable.Creator<z5d> CREATOR = new t4d((byte) 14);
     public final boolean a;
-    public final String b;
 
-    static {
-        rhb rhbVar = new rhb((byte) 9, false);
-        rhbVar.b = Boolean.FALSE;
-        c = new z5d(rhbVar);
-    }
-
-    public z5d(rhb rhbVar) {
-        this.a = ((Boolean) rhbVar.b).booleanValue();
-        this.b = (String) rhbVar.c;
+    public z5d(boolean z) {
+        this.a = z;
     }
 
     public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof z5d)) {
+        if (!(obj instanceof z5d) || this.a != ((z5d) obj).a) {
             return false;
         }
-        z5d z5dVar = (z5d) obj;
-        if (fse.a(null, null) && this.a == z5dVar.a && fse.a(this.b, z5dVar.b)) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, Boolean.valueOf(this.a), this.b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.a)});
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 1, 4);
+        parcel.writeInt(this.a ? 1 : 0);
+        jte.s(parcel, r);
     }
 }

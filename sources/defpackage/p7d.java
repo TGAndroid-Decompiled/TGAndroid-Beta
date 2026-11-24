@@ -1,32 +1,34 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class p7d extends b4 {
-    public static final Parcelable.Creator<p7d> CREATOR = new v6d((byte) 11);
-    public final long a;
+import android.util.Log;
+public final class p7d extends g6d {
+    public final byte i;
 
-    public p7d(long j) {
-        this.a = j;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof p7d) || this.a != ((p7d) obj).a) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.a)});
+    public p7d(vk9 vk9Var, String str, Object obj, byte b) {
+        super(vk9Var, str, obj);
+        this.i = b;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = mve.r(parcel, 20293);
-        mve.q(parcel, 1, 8);
-        parcel.writeLong(this.a);
-        mve.s(parcel, r);
+    public final Object d(String str) {
+        switch (this.i) {
+            case 0:
+                if (qhf.c.matcher(str).matches()) {
+                    return Boolean.TRUE;
+                }
+                if (qhf.d.matcher(str).matches()) {
+                    return Boolean.FALSE;
+                }
+                String str2 = this.b;
+                StringBuilder sb = new StringBuilder(str.length() + str2.length() + 28);
+                sb.append("Invalid boolean value for ");
+                sb.append(str2);
+                sb.append(": ");
+                sb.append(str);
+                Log.e("PhenotypeFlag", sb.toString());
+                return null;
+            default:
+                return str;
+        }
     }
 }

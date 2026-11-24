@@ -1,47 +1,38 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import org.telegram.ui.SaveToGallerySettingsActivity;
-public final class qr9 extends io {
-    public boolean s;
-    public final ln w;
-    public final SaveToGallerySettingsActivity x;
+import java.util.ArrayList;
+public final class qr9 implements yr9 {
+    public final nt2 a;
 
-    public qr9(SaveToGallerySettingsActivity saveToGallerySettingsActivity, Activity activity) {
-        super(activity, true, true, false);
-        this.x = saveToGallerySettingsActivity;
-        this.w = new ln(this);
-        getDrawable().K = true;
+    public qr9(nt2 nt2Var) {
+        this.a = nt2Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f;
-        if (this.s) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
-        }
-        ln lnVar = this.w;
-        lnVar.e(false, f);
-        int i = cmb.x6;
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.x;
-        setTextColor(on2.f(lnVar.c, saveToGallerySettingsActivity.getThemedColor(i), saveToGallerySettingsActivity.getThemedColor(cmb.m6)));
-        super.dispatchDraw(canvas);
+    public final vf6 O0() {
+        return null;
     }
 
-    public final void e(boolean z, boolean z2) {
-        float f;
-        if (this.s != z) {
-            this.s = z;
-            if (z) {
-                f = 1.0f;
-            } else {
-                f = 0.0f;
-            }
-            this.w.e(z2, f);
-            invalidate();
+    @Override
+    public final boolean U1(int i) {
+        return true;
+    }
+
+    @Override
+    public final void r(int i) {
+        nt2 nt2Var = this.a;
+        nt2Var.f();
+        if (i != 0) {
+            nt2Var.F();
         }
+    }
+
+    @Override
+    public final vf6 t1() {
+        return null;
+    }
+
+    @Override
+    public final void m2(ArrayList arrayList) {
     }
 }

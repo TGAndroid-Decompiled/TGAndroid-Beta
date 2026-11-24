@@ -1,17 +1,6 @@
 package defpackage;
-public final class sde implements cq7 {
-    public static final sde a = new Object();
-
-    static {
-        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            dq7 dq7Var = (dq7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+public abstract class sde {
+    public static int a(android.content.Context r15, java.lang.String r16, java.lang.String r17) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.sde.a(android.content.Context, java.lang.String, java.lang.String):int");
     }
 }

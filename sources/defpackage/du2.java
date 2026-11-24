@@ -1,54 +1,62 @@
 package defpackage;
-public final class du2 {
+
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class du2 implements Runnable {
     public final byte a;
-    public String b;
+    public final qu2 b;
+    public final HashMap c;
+    public final ArrayList d;
+    public final HashMap e;
 
-    public du2(String str, byte b) {
-        this.a = b;
-        this.b = str;
+    public du2(qu2 qu2Var, ArrayList arrayList, HashMap hashMap, HashMap hashMap2) {
+        this.a = (byte) 4;
+        this.b = qu2Var;
+        this.d = arrayList;
+        this.c = hashMap;
+        this.e = hashMap2;
     }
 
-    public static du2 a(yw7 yw7Var) {
-        String str;
-        String str2;
-        yw7Var.O(2);
-        int A = yw7Var.A();
-        int i = A >> 1;
-        int A2 = ((A & 1) << 5) | ((yw7Var.A() >> 3) & 31);
-        if (i != 4 && i != 5 && i != 7 && i != 8) {
-            if (i == 9) {
-                str = "dvav";
-            } else if (i == 10) {
-                str = "dav1";
-            } else {
-                return null;
-            }
-        } else {
-            str = "dvhe";
-        }
-        StringBuilder sb = new StringBuilder(str);
-        String str3 = ".";
-        if (i >= 10) {
-            str2 = ".";
-        } else {
-            str2 = ".0";
-        }
-        sb.append(str2);
-        sb.append(i);
-        if (A2 < 10) {
-            str3 = ".0";
-        }
-        sb.append(str3);
-        sb.append(A2);
-        return new du2(sb.toString(), (byte) 1);
-    }
-
-    public final String toString() {
-        switch (this.a) {
+    @Override
+    public final void run() {
+        byte b = this.a;
+        HashMap hashMap = this.e;
+        HashMap hashMap2 = this.c;
+        ArrayList arrayList = this.d;
+        qu2 qu2Var = this.b;
+        switch (b) {
+            case 0:
+                qu2Var.E(hashMap2, arrayList, hashMap, true);
+                qu2Var.N();
+                qu2Var.getNotificationCenter().k(25, new Object[0]);
+                qu2Var.getNotificationCenter().k(26, new Object[0]);
+                return;
+            case 1:
+                qu2Var.E(hashMap2, arrayList, hashMap, true);
+                qu2Var.N();
+                qu2Var.getNotificationCenter().k(25, new Object[0]);
+                qu2Var.getNotificationCenter().k(26, new Object[0]);
+                return;
             case 2:
-                return "<" + this.b + '>';
+                qu2Var.E(hashMap2, arrayList, hashMap, true);
+                return;
+            case 3:
+                qu2Var.E(hashMap2, arrayList, hashMap, true);
+                qu2Var.getNotificationCenter().k(26, new Object[0]);
+                return;
             default:
-                return super.toString();
+                qu2Var.d0 = arrayList;
+                qu2Var.e0 = hashMap2;
+                qu2Var.c0 = hashMap;
+                return;
         }
+    }
+
+    public du2(qu2 qu2Var, HashMap hashMap, ArrayList arrayList, HashMap hashMap2, byte b) {
+        this.a = b;
+        this.b = qu2Var;
+        this.c = hashMap;
+        this.d = arrayList;
+        this.e = hashMap2;
     }
 }

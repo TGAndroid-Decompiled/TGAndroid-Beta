@@ -74,7 +74,7 @@ public class VideoSource extends MediaSource {
     }
 
     public void lambda$setVideoProcessor$1(VideoFrame videoFrame) {
-        runWithReference(new x4c(this, videoFrame, (byte) 29));
+        runWithReference(new l3c(this, videoFrame, (byte) 27));
     }
 
     public void adaptOutputFormat(int i, int i2, int i3, int i4, int i5) {
@@ -110,7 +110,7 @@ public class VideoSource extends MediaSource {
             }
             this.videoProcessor = videoProcessor;
             if (videoProcessor != null) {
-                videoProcessor.setSink(new b11(this, (byte) 2));
+                videoProcessor.setSink(new uz0(this, (byte) 2));
                 if (this.isCapturerRunning) {
                     videoProcessor.onCapturerStarted(true);
                 }

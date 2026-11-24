@@ -1,4 +1,10 @@
 package defpackage;
-public interface c59 {
-    int run();
+
+import java.io.Serializable;
+public final class c59 implements Serializable {
+    public Object a;
+
+    public final String toString() {
+        return String.valueOf(this.a);
+    }
 }

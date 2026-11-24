@@ -9,7 +9,7 @@ public class AppStartReceiver extends BroadcastReceiver {
     @Override
     public final void onReceive(Context context, Intent intent) {
         if (intent != null && "android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
-            gm.c3(new jd((byte) 3));
+            gl.c3(new jc((byte) 3));
         }
     }
 }

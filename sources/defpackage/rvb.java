@@ -1,27 +1,21 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-public final class rvb implements Runnable {
-    public final byte a;
-    public final wvb b;
+import java.util.Iterator;
+public final class rvb implements ed {
+    public final tvb a;
 
-    public rvb(wvb wvbVar, byte b) {
-        this.a = b;
-        this.b = wvbVar;
+    public rvb(tvb tvbVar) {
+        this.a = tvbVar;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        wvb wvbVar = this.b;
-        switch (b) {
-            case 0:
-                new kj8((d) wvbVar, 11, false).show();
-                return;
-            default:
-                wvbVar.e.requestFocus();
-                gm.E3(wvbVar.e);
-                return;
+    public final void u(hd hdVar, int i) {
+        wvb wvbVar = this.a.a;
+        Iterator it = wvbVar.e.iterator();
+        while (it.hasNext()) {
+            wvbVar.Y(((Integer) it.next()).intValue());
         }
+        wvbVar.e.clear();
+        wvbVar.Z();
     }
 }

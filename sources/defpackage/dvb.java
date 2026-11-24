@@ -1,24 +1,34 @@
 package defpackage;
+public final class dvb implements Runnable {
+    public final byte a;
+    public final evb b;
 
-import android.view.View;
-import android.window.OnBackInvokedCallback;
-import android.window.OnBackInvokedDispatcher;
-import j$.util.Objects;
-public abstract class dvb {
-    public static OnBackInvokedDispatcher a(View view) {
-        return view.findOnBackInvokedDispatcher();
+    public dvb(evb evbVar, byte b) {
+        this.a = b;
+        this.b = evbVar;
     }
 
-    public static OnBackInvokedCallback b(Runnable runnable) {
-        Objects.requireNonNull(runnable);
-        return new up(runnable, (byte) 5);
-    }
-
-    public static void c(Object obj, Object obj2) {
-        ((OnBackInvokedDispatcher) obj).registerOnBackInvokedCallback(1000000, (OnBackInvokedCallback) obj2);
-    }
-
-    public static void d(Object obj, Object obj2) {
-        ((OnBackInvokedDispatcher) obj).unregisterOnBackInvokedCallback((OnBackInvokedCallback) obj2);
+    @Override
+    public final void run() {
+        byte b = this.a;
+        evb evbVar = this.b;
+        switch (b) {
+            case 0:
+                evbVar.F = null;
+                if (evbVar.G != -1) {
+                    evbVar.H.getNotificationCenter().j(evbVar.G);
+                    evbVar.G = -1;
+                    return;
+                }
+                return;
+            default:
+                evbVar.F = null;
+                if (evbVar.G != -1) {
+                    evbVar.H.getNotificationCenter().j(evbVar.G);
+                    evbVar.G = -1;
+                    return;
+                }
+                return;
+        }
     }
 }

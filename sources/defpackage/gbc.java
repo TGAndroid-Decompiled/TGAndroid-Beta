@@ -1,29 +1,46 @@
 package defpackage;
 
-import org.telegram.tgnet.InputSerializedData;
-public final class gbc implements rac {
-    public final byte a;
-    public final InputSerializedData b;
+import android.net.Uri;
+import java.util.Map;
+import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
+public final class gbc implements o63 {
+    public final ExtendedDefaultDataSource a;
+    public final long b;
 
-    public gbc(InputSerializedData inputSerializedData, byte b) {
-        this.a = b;
-        this.b = inputSerializedData;
+    public gbc(ExtendedDefaultDataSource extendedDefaultDataSource, long j) {
+        this.a = extendedDefaultDataSource;
+        this.b = j;
     }
 
     @Override
-    public final Object a(Object obj) {
-        byte b = this.a;
-        InputSerializedData inputSerializedData = this.b;
-        boolean booleanValue = ((Boolean) obj).booleanValue();
-        switch (b) {
-            case 0:
-                return Long.valueOf(inputSerializedData.readInt64(booleanValue));
-            case 1:
-                return Integer.valueOf(inputSerializedData.readInt32(booleanValue));
-            case 2:
-                return inputSerializedData.readString(booleanValue);
-            default:
-                return inputSerializedData.readByteArray(booleanValue);
-        }
+    public final void addTransferListener(vyb vybVar) {
+        this.a.addTransferListener(vybVar);
+    }
+
+    @Override
+    public final void close() {
+        this.a.close();
+    }
+
+    @Override
+    public final Map getResponseHeaders() {
+        return this.a.getResponseHeaders();
+    }
+
+    @Override
+    public final Uri getUri() {
+        return this.a.getUri();
+    }
+
+    @Override
+    public final long open(u63 u63Var) {
+        t63 a = u63Var.a();
+        a.e = u63Var.e + this.b;
+        return this.a.open(a.a());
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i, int i2) {
+        return this.a.read(bArr, i, i2);
     }
 }

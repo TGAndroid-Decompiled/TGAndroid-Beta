@@ -1,33 +1,28 @@
 package defpackage;
 
-import org.telegram.ui.ProfileActivity;
-public final class gs8 implements Runnable {
+import android.animation.ValueAnimator;
+public final class gs8 implements ValueAnimator.AnimatorUpdateListener {
     public final byte a;
-    public final ProfileActivity b;
+    public final js8 b;
 
-    public gs8(ProfileActivity profileActivity, byte b) {
+    public gs8(js8 js8Var, byte b) {
         this.a = b;
-        this.b = profileActivity;
+        this.b = js8Var;
     }
 
     @Override
-    public final void run() {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        ProfileActivity profileActivity = this.b;
+        js8 js8Var = this.b;
         switch (b) {
             case 0:
-                profileActivity.n3(true);
-                return;
-            case 1:
-                profileActivity.n3(true);
+                js8Var.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                js8Var.e();
                 return;
             default:
-                wp8 wp8Var = profileActivity.O;
-                if (wp8Var != null) {
-                    wp8Var.f1(14);
-                    profileActivity.n3(false);
-                    return;
-                }
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                js8Var.R = floatValue;
+                js8Var.r.setUseGyroscope(floatValue);
                 return;
         }
     }

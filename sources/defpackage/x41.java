@@ -1,83 +1,80 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-public final class x41 {
-    public static volatile x41[] g = new x41[4];
-    public static final Object[] h = new Object[4];
-    public final int a;
-    public long b;
-    public TL_account.connectedBots c;
-    public final ArrayList d = new ArrayList();
-    public boolean e;
+import android.net.Uri;
+public final class x41 extends qf0 {
+    public final w41 a;
+    public Uri b;
+    public byte[] c;
+    public int d;
+    public int e;
     public boolean f;
 
-    static {
-        for (int i = 0; i < 4; i++) {
-            h[i] = new Object();
+    public x41(byte[] bArr) {
+        super(false);
+        w41 w41Var = new w41(bArr);
+        this.a = w41Var;
+        gre.f(bArr.length > 0);
+    }
+
+    @Override
+    public final void close() {
+        if (this.f) {
+            this.f = false;
+            transferEnded();
         }
+        this.b = null;
+        this.c = null;
     }
 
-    public x41(int i) {
-        this.a = i;
+    @Override
+    public final Uri getUri() {
+        return this.b;
     }
 
-    public static x41 a(int i) {
-        x41 x41Var;
-        x41 x41Var2 = g[i];
-        if (x41Var2 == null) {
-            synchronized (h[i]) {
-                x41Var = g[i];
-                if (x41Var == null) {
-                    x41[] x41VarArr = g;
-                    x41 x41Var3 = new x41(i);
-                    x41VarArr[i] = x41Var3;
-                    x41Var = x41Var3;
-                }
+    @Override
+    public final long open(u63 u63Var) {
+        transferInitializing(u63Var);
+        Uri uri = u63Var.a;
+        long j = u63Var.f;
+        this.b = uri;
+        byte[] bArr = this.a.a;
+        this.c = bArr;
+        long j2 = u63Var.e;
+        if (j2 <= bArr.length) {
+            int i = (int) j2;
+            this.d = i;
+            int length = bArr.length - i;
+            this.e = length;
+            int i2 = (j > (-1L) ? 1 : (j == (-1L) ? 0 : -1));
+            if (i2 != 0) {
+                this.e = (int) Math.min(length, j);
             }
-            return x41Var;
-        }
-        return x41Var2;
-    }
-
-    public final void b() {
-        this.f = false;
-        c(null);
-    }
-
-    public final void c(qac qacVar) {
-        boolean z;
-        if (qacVar != null) {
-            this.d.add(qacVar);
-        }
-        if (!this.e) {
-            if (System.currentTimeMillis() - this.b <= 60000 && (z = this.f)) {
-                if (z) {
-                    d();
-                    return;
-                }
-                return;
+            this.f = true;
+            transferStarted(u63Var);
+            if (i2 != 0) {
+                return j;
             }
-            this.e = true;
-            ConnectionsManager.getInstance(this.a).sendRequest(new TL_account.getConnectedBots(), new tg(this, (byte) 8));
+            return this.e;
         }
+        throw new r63(2008);
     }
 
-    public final void d() {
-        int i = 0;
-        while (true) {
-            ArrayList arrayList = this.d;
-            if (i < arrayList.size()) {
-                if (arrayList.get(i) != null) {
-                    ((qac) arrayList.get(i)).a(this.c);
-                }
-                i++;
-            } else {
-                arrayList.clear();
-                nm7.f(this.a).k(nm7.d4, new Object[0]);
-                return;
-            }
+    @Override
+    public final int read(byte[] bArr, int i, int i2) {
+        if (i2 == 0) {
+            return 0;
         }
+        int i3 = this.e;
+        if (i3 == 0) {
+            return -1;
+        }
+        int min = Math.min(i2, i3);
+        byte[] bArr2 = this.c;
+        bArr2.getClass();
+        System.arraycopy(bArr2, this.d, bArr, i, min);
+        this.d += min;
+        this.e -= min;
+        bytesTransferred(min);
+        return min;
     }
 }

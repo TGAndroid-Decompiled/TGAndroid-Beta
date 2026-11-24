@@ -1,60 +1,37 @@
 package defpackage;
 
-import org.telegram.messenger.Utilities;
-public final class eg3 {
-    public long a;
-    public long b;
-    public boolean c;
-    public boolean d;
-    public long e;
-    public int f;
-    public Integer g;
-    public int h;
-    public int i;
-    public boolean j;
-    public boolean k;
-    public float l;
-    public boolean m;
-    public int n;
-    public boolean o = false;
-    public long p;
-    public final hg3 q;
+import android.content.DialogInterface;
+public final class eg3 implements DialogInterface.OnDismissListener {
+    public final byte a;
+    public final cj3 b;
 
-    public eg3(hg3 hg3Var) {
-        this.q = hg3Var;
+    public eg3(cj3 cj3Var, byte b) {
+        this.a = b;
+        this.b = cj3Var;
     }
 
-    public final boolean a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.eg3.a():boolean");
-    }
-
-    public final void b() {
-        boolean z = this.o;
-        hg3 hg3Var = this.q;
-        if (!z) {
-            Integer num = this.g;
-            if (num != null && hg3Var.g3 != null) {
-                float f = this.l;
-                if (f != 1.0f) {
-                    this.l = f + 0.08f;
-                    hg3Var.invalidate();
-                    this.l = Utilities.i(this.l, 1.0f, 0.0f);
+    @Override
+    public final void onDismiss(DialogInterface dialogInterface) {
+        byte b = this.a;
+        cj3 cj3Var = this.b;
+        switch (b) {
+            case 0:
+                if (cj3Var.W3 != null) {
+                    cj3Var.getMessagesController().n4(0L, cj3Var.W3);
+                    cj3Var.W3 = null;
+                    cj3Var.c5();
                     return;
                 }
-            }
-            if (num == null) {
-                float f2 = this.l;
-                if (f2 != 0.0f) {
-                    this.l = f2 - 0.08f;
-                    hg3Var.invalidate();
-                }
-            }
-            this.l = Utilities.i(this.l, 1.0f, 0.0f);
-            return;
+                return;
+            case 1:
+                cj3Var.y3(true);
+                return;
+            case 2:
+                cj3Var.y3(true);
+                return;
+            default:
+                cj3Var.U3();
+                return;
         }
-        if (System.currentTimeMillis() - this.p > 100) {
-            this.o = false;
-        }
-        hg3Var.invalidate();
     }
 }

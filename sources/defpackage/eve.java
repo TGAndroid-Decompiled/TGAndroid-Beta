@@ -1,28 +1,22 @@
 package defpackage;
-public final class eve {
-    public final String a;
-    public final String b;
-    public final String c;
-    public final String d;
-    public final tjf e;
-    public final String f;
-    public final Boolean g;
-    public final Boolean h;
-    public final Boolean i;
-    public final Integer j;
-    public final Integer k;
 
-    public eve(sue sueVar) {
-        this.a = sueVar.a;
-        this.b = sueVar.b;
-        this.c = sueVar.c;
-        this.d = sueVar.d;
-        this.e = (tjf) sueVar.k;
-        this.f = sueVar.e;
-        this.g = sueVar.f;
-        this.h = sueVar.g;
-        this.i = sueVar.h;
-        this.j = sueVar.i;
-        this.k = sueVar.j;
+import com.google.android.gms.tasks.Task;
+import java.util.concurrent.CancellationException;
+public abstract class eve {
+    public static final Object a(Task task, jo5 jo5Var) {
+        if (task.isComplete()) {
+            Exception exception = task.getException();
+            if (exception == null) {
+                if (!task.isCanceled()) {
+                    return task.getResult();
+                }
+                throw new CancellationException("Task " + task + " was cancelled normally.");
+            }
+            throw exception;
+        }
+        na1 na1Var = new na1(1, dle.a(jo5Var));
+        na1Var.s();
+        task.addOnCompleteListener(wn3.b, new ln8(na1Var, (byte) 19));
+        return na1Var.q();
     }
 }

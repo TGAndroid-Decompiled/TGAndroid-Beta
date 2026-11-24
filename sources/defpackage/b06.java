@@ -1,50 +1,57 @@
 package defpackage;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLObject;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class b06 implements Runnable {
-    public final byte a = 1;
-    public final LaunchActivity b;
-    public final byte[] c;
-    public final int d;
-    public final Integer e;
-    public final String f;
-    public final int h;
-    public final long n;
-    public final Object r;
-    public final Object s;
-    public final Object w;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+public final class b06 extends b4 {
+    public static final Parcelable.Creator<b06> CREATOR = new j9d((byte) 26);
+    public final boolean a;
+    public final String b;
+    public final boolean c;
+    public final n23 d;
 
-    public b06(LaunchActivity launchActivity, Bundle bundle, byte[] bArr, int i, Integer num, String str, int i2, long j, vu vuVar, d dVar) {
-        this.b = launchActivity;
-        this.r = bundle;
-        this.c = bArr;
-        this.d = i;
-        this.e = num;
-        this.f = str;
-        this.h = i2;
-        this.n = j;
-        this.s = vuVar;
-        this.w = dVar;
+    public b06() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.b06.<init>():void");
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof b06)) {
+            return false;
+        }
+        b06 b06Var = (b06) obj;
+        if (this.a == b06Var.a && id1.d(this.b, b06Var.b) && this.c == b06Var.c && id1.d(this.d, b06Var.d)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.a), this.b, Boolean.valueOf(this.c), this.d});
+    }
+
+    public final String toString() {
+        return "LaunchOptions(relaunchIfRunning=" + this.a + ", language=" + this.b + ", androidReceiverCompatible: " + this.c + ")";
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.b06.run():void");
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = jte.r(parcel, 20293);
+        jte.q(parcel, 2, 4);
+        parcel.writeInt(this.a ? 1 : 0);
+        jte.l(parcel, 3, this.b);
+        jte.q(parcel, 4, 4);
+        parcel.writeInt(this.c ? 1 : 0);
+        jte.k(parcel, 5, this.d, i);
+        jte.s(parcel, r);
     }
 
-    public b06(LaunchActivity launchActivity, TLObject tLObject, Integer num, Integer num2, byte[] bArr, long j, Runnable runnable, String str, int i, int i2) {
-        this.b = launchActivity;
-        this.r = tLObject;
-        this.e = num;
-        this.s = num2;
-        this.c = bArr;
-        this.n = j;
-        this.w = runnable;
-        this.f = str;
-        this.d = i;
-        this.h = i2;
+    public b06(boolean z, String str, boolean z2, n23 n23Var) {
+        this.a = z;
+        this.b = str;
+        this.c = z2;
+        this.d = n23Var;
     }
 }

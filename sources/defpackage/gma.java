@@ -1,67 +1,68 @@
 package defpackage;
 
-import java.net.Inet4Address;
-import java.net.Inet6Address;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-import javax.net.SocketFactory;
-public final class gma {
-    public final SocketFactory a;
-    public final qa b;
-    public final short c;
-    public final int d;
-    public final short e;
+import android.animation.TimeAnimator;
+import android.animation.ValueAnimator;
+public final class gma extends TimeAnimator {
+    public int a;
+    public int b;
+    public ValueAnimator.AnimatorUpdateListener c;
+    public Float d;
+    public float[] e;
 
-    public gma(SocketFactory socketFactory, qa qaVar, int i, int i2, int i3) {
-        this.a = socketFactory;
-        this.b = qaVar;
-        this.c = i;
-        this.d = i2;
-        this.e = i3;
+    @Override
+    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
+        this.c = animatorUpdateListener;
     }
 
-    public final Socket a(InetAddress[] inetAddressArr) {
-        ?? obj = new Object();
-        ArrayList arrayList = new ArrayList(inetAddressArr.length);
-        int length = inetAddressArr.length;
-        int i = 0;
-        de deVar = null;
-        short s = 0;
-        int i2 = 0;
-        while (i2 < length) {
-            InetAddress inetAddress = inetAddressArr[i2];
-            int i3 = this.d;
-            if ((i3 != 2 || (inetAddress instanceof Inet4Address)) && (i3 != 3 || (inetAddress instanceof Inet6Address))) {
-                int i4 = s + this.e;
-                de deVar2 = new de(i4, (byte) 17);
-                arrayList.add(new fma(obj, this.a, new InetSocketAddress(inetAddress, this.b.b), this.c, deVar, deVar2));
-                deVar = deVar2;
-                s = i4;
+    @Override
+    public final void end() {
+        this.c = null;
+        super.end();
+    }
+
+    @Override
+    public final Object getAnimatedValue() {
+        return this.d;
+    }
+
+    @Override
+    public final void setFloatValues(float[] fArr) {
+        super.setFloatValues(fArr);
+        this.e = fArr;
+    }
+
+    @Override
+    public final void start() {
+        setTimeListener(new TimeAnimator.TimeListener() {
+            @Override
+            public final void onTimeUpdate(TimeAnimator timeAnimator, long j, long j2) {
+                int i;
+                gma gmaVar = gma.this;
+                int i2 = gmaVar.a;
+                if (i2 > 0 && (i = gmaVar.b) > 0) {
+                    int i3 = i2 - 1;
+                    gmaVar.a = i3;
+                    if (gmaVar.c != null) {
+                        float[] fArr = gmaVar.e;
+                        if (fArr != null && fArr.length == 2) {
+                            float interpolation = gmaVar.getInterpolator().getInterpolation(1.0f - (i3 / i));
+                            float[] fArr2 = gmaVar.e;
+                            float f = fArr2[0];
+                            gmaVar.d = Float.valueOf(((fArr2[1] - f) * interpolation) + f);
+                            gmaVar.c.onAnimationUpdate(gmaVar);
+                            return;
+                        }
+                        gmaVar.end();
+                        return;
+                    }
+                    return;
+                }
+                gmaVar.end();
             }
-            i2++;
-            s = s;
-        }
-        obj.b = arrayList;
-        obj.a = new CountDownLatch(((ArrayList) obj.b).size());
-        ArrayList arrayList2 = (ArrayList) obj.b;
-        int size = arrayList2.size();
-        while (i < size) {
-            Object obj2 = arrayList2.get(i);
-            i++;
-            ((fma) obj2).start();
-        }
-        ((CountDownLatch) obj.a).await();
-        Socket socket = (Socket) obj.c;
-        if (socket != null) {
-            return socket;
-        }
-        Exception exc = (Exception) obj.d;
-        if (exc != null) {
-            throw exc;
-        }
-        throw new dwc(44, "No viable interface to connect");
+        });
+        int duration = (int) (((float) getDuration()) / gl.t);
+        this.a = duration;
+        this.b = duration;
+        super.start();
     }
 }

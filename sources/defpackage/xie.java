@@ -1,6 +1,19 @@
 package defpackage;
+
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
 public abstract class xie {
-    public static final java.lang.Object a(defpackage.jm4 r8, defpackage.hn8 r9, boolean r10, defpackage.qx2 r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.xie.a(jm4, hn8, boolean, qx2):java.lang.Object");
+    public abstract void b();
+
+    public abstract void c(Canvas canvas);
+
+    public boolean d() {
+        return false;
+    }
+
+    public abstract void e(float f);
+
+    public void a(Rect rect, RectF rectF) {
     }
 }

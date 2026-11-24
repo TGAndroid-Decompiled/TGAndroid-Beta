@@ -1,24 +1,24 @@
 package defpackage;
-public final class jya extends qx2 {
-    public kya a;
-    public jm4 b;
-    public lya c;
-    public av5 d;
-    public Object e;
-    public Object f;
-    public final kya h;
-    public int n;
+public final class jya implements Runnable {
+    public final byte a;
+    public final cv8 b;
 
-    public jya(kya kyaVar, px2 px2Var) {
-        super(px2Var);
-        this.h = kyaVar;
+    public jya(cv8 cv8Var, byte b) {
+        this.a = b;
+        this.b = cv8Var;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f = obj;
-        this.n |= Integer.MIN_VALUE;
-        this.h.g(null, this);
-        return ly2.a;
+    public final void run() {
+        byte b = this.a;
+        cv8 cv8Var = this.b;
+        switch (b) {
+            case 0:
+                cv8Var.b();
+                return;
+            default:
+                cv8Var.b();
+                return;
+        }
     }
 }

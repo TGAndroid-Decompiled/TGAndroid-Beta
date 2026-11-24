@@ -1,92 +1,165 @@
 package defpackage;
 
+import android.content.SharedPreferences;
+import android.util.SparseArray;
+import android.util.SparseIntArray;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.Set;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_stories;
-public final class qb4 implements Runnable {
-    public final byte a = 0;
-    public final long b;
-    public final boolean c;
-    public final long d;
-    public final Object e;
-    public final Object f;
-    public final Object h;
+import org.telegram.messenger.a;
+public final class qb4 {
+    public byte[] A;
+    public final boolean B;
+    public int C;
+    public boolean D;
+    public boolean E;
+    public String F;
+    public long G;
+    public int H;
+    public RandomAccessFile I;
+    public boolean J;
+    public int K;
+    public SharedPreferences L;
+    public final int M;
+    public int N;
+    public long O;
+    public boolean P;
+    public long S;
+    public volatile boolean T;
+    public final int a;
+    public boolean b;
+    public boolean c;
+    public int d;
+    public int e;
+    public boolean i;
+    public ArrayList j;
+    public int k;
+    public final String l;
+    public byte m;
+    public byte[] n;
+    public y94 o;
+    public int r;
+    public long s;
+    public long t;
+    public int u;
+    public long v;
+    public long w;
+    public int x;
+    public byte[] y;
+    public byte[] z;
+    public byte f = 4;
+    public final int[] g = new int[8];
+    public int h = 65536;
+    public final SparseIntArray p = new SparseIntArray();
+    public final ArrayList q = new ArrayList();
+    public final SparseArray Q = new SparseArray();
+    public final boolean[] R = {false, false};
 
-    public qb4(bc4 bc4Var, boolean z, String str, long j, long j2, Float f) {
-        this.e = bc4Var;
-        this.c = z;
-        this.f = str;
-        this.b = j;
-        this.d = j2;
-        this.h = f;
+    public qb4(int i, int i2, long j, String str, boolean z) {
+        boolean z2;
+        this.a = i;
+        this.l = str;
+        this.B = z;
+        this.G = j;
+        this.M = i2;
+        if (j != 0 && !z) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        this.P = z2;
     }
 
-    @Override
-    public final void run() {
-        qd4 qd4Var;
-        switch (this.a) {
-            case 0:
-                bc4 bc4Var = (bc4) this.e;
-                boolean z = this.c;
-                String str = (String) this.f;
-                long j = this.b;
-                long j2 = this.d;
-                Float f = (Float) this.h;
-                if (z) {
-                    qd4Var = (qd4) bc4Var.n.get(str);
-                } else {
-                    qd4Var = (qd4) bc4Var.h.get(str);
-                }
-                qd4 qd4Var2 = qd4Var;
-                if (qd4Var2 != null) {
-                    Utilities.d.c(new n40(qd4Var2, f, j2, j, (byte) 3));
-                    return;
-                } else if (j2 != 0) {
-                    bc4Var.y.put(str, Long.valueOf(j2));
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                h4b h4bVar = (h4b) this.e;
-                long j3 = this.b;
-                boolean z2 = this.c;
-                TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f;
-                long j4 = this.d;
-                TLObject tLObject = (TLObject) this.h;
-                h4bVar.D.remove(Long.valueOf(j3));
-                if (!z2) {
-                    peerStories = h4bVar.x(j4);
-                }
-                if (peerStories != null) {
-                    if (tLObject instanceof TL_stories.TL_stories_stories) {
-                        TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
-                        for (int i = 0; i < tL_stories_stories.stories.size(); i++) {
-                            for (int i2 = 0; i2 < peerStories.stories.size(); i2++) {
-                                if (peerStories.stories.get(i2).id == tL_stories_stories.stories.get(i).id) {
-                                    peerStories.stories.set(i2, tL_stories_stories.stories.get(i));
-                                    h4bVar.Y(j4, tL_stories_stories.stories.get(i));
-                                }
-                            }
-                        }
-                        if (!z2) {
-                            t4b t4bVar = h4bVar.k;
-                            t4bVar.b.a.c(new s4b(t4bVar, peerStories, (byte) 0));
-                        }
-                    }
-                    nm7.f(h4bVar.a).k(329, new Object[0]);
-                    return;
-                }
+    public final void a() {
+        if (this.P) {
+            boolean z = this.D;
+            long j = this.t;
+            int i = this.h;
+            if (z) {
+                long j2 = i;
+                this.u = ((int) ((((j - j2) + j2) - 1) / j2)) + 1;
                 return;
+            }
+            long j3 = i;
+            this.u = ((int) ((((j - 1024) + j3) - 1) / j3)) + 1;
+            return;
+        }
+        long j4 = this.t;
+        long j5 = this.h;
+        this.u = (int) (((j4 + j5) - 1) / j5);
+    }
+
+    public final void b() {
+        SharedPreferences sharedPreferences = this.L;
+        if (sharedPreferences == null) {
+            sharedPreferences = a.b.getSharedPreferences("uploadinfo", 0);
+            this.L = sharedPreferences;
+        }
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        SharedPreferences.Editor remove = edit.remove(this.F + "_time");
+        SharedPreferences.Editor remove2 = remove.remove(this.F + "_size");
+        SharedPreferences.Editor remove3 = remove2.remove(this.F + "_uploaded");
+        SharedPreferences.Editor remove4 = remove3.remove(this.F + "_id");
+        SharedPreferences.Editor remove5 = remove4.remove(this.F + "_iv");
+        SharedPreferences.Editor remove6 = remove5.remove(this.F + "_key");
+        remove6.remove(this.F + "_ivc").commit();
+        try {
+            RandomAccessFile randomAccessFile = this.I;
+            if (randomAccessFile != null) {
+                randomAccessFile.close();
+                this.I = null;
+            }
+        } catch (Exception e) {
+            fa4.g(e, true);
+        }
+        String str = this.l;
+        if (str == null) {
+            Set set = s60.a;
+        } else {
+            s60.a.remove(str);
         }
     }
 
-    public qb4(h4b h4bVar, long j, boolean z, TL_stories.PeerStories peerStories, long j2, TLObject tLObject) {
-        this.e = h4bVar;
-        this.b = j;
-        this.c = z;
-        this.f = peerStories;
-        this.d = j2;
-        this.h = tLObject;
+    public final void c() {
+        if (this.m != 0) {
+            return;
+        }
+        this.m = (byte) 1;
+        String str = this.l;
+        if (str == null) {
+            Set set = s60.a;
+        } else {
+            s60.a.add(str);
+        }
+        Utilities.d.c(new mb4(this, (byte) 0));
+    }
+
+    public final void d() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.qb4.d():void");
+    }
+
+    public final void e() {
+        int i;
+        while (this.m == 1 && (i = this.K) < this.e) {
+            d();
+            if (this.K == i) {
+                return;
+            }
+        }
+    }
+
+    public final void f() {
+        SharedPreferences.Editor edit = this.L.edit();
+        edit.putInt(b00.j(new StringBuilder(), this.F, "_time"), this.H);
+        edit.putLong(b00.j(new StringBuilder(), this.F, "_size"), this.t);
+        edit.putLong(b00.j(new StringBuilder(), this.F, "_id"), this.s);
+        edit.remove(this.F + "_uploaded");
+        if (this.B) {
+            edit.putString(b00.j(new StringBuilder(), this.F, "_iv"), Utilities.f(this.z));
+            edit.putString(b00.j(new StringBuilder(), this.F, "_ivc"), Utilities.f(this.A));
+            edit.putString(b00.j(new StringBuilder(), this.F, "_key"), Utilities.f(this.y));
+        }
+        edit.commit();
     }
 }

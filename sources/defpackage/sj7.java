@@ -1,10 +1,22 @@
 package defpackage;
-public final class sj7 {
-    public final int a;
-    public final int b;
+public final class sj7 implements no3, fg2 {
+    public static final sj7 a = new Object();
 
-    public sj7(int i, int i2) {
-        this.a = i;
-        this.b = i2;
+    @Override
+    public final boolean a(Throwable th) {
+        return false;
+    }
+
+    @Override
+    public final bt5 getParent() {
+        return null;
+    }
+
+    public final String toString() {
+        return "NonDisposableHandle";
+    }
+
+    @Override
+    public final void dispose() {
     }
 }

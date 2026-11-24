@@ -1,4 +1,3 @@
 package defpackage;
-public interface qy2 {
-    void n(long j);
+public abstract class qy2 {
 }

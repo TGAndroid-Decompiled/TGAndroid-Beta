@@ -1,67 +1,43 @@
 package defpackage;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Typeface;
-import java.io.File;
-import java.util.List;
-public abstract class xye {
-    public static co4 e(co4[] co4VarArr, int i) {
-        int i2;
-        boolean z;
-        int i3;
-        if ((i & 1) == 0) {
-            i2 = 400;
-        } else {
-            i2 = 700;
-        }
-        if ((i & 2) != 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        co4 co4Var = null;
-        int i4 = Integer.MAX_VALUE;
-        for (co4 co4Var2 : co4VarArr) {
-            int abs = Math.abs(co4Var2.c - i2) << 1;
-            if (co4Var2.d == z) {
-                i3 = 0;
-            } else {
-                i3 = 1;
-            }
-            int i5 = abs + i3;
-            if (co4Var == null || i4 > i5) {
-                co4Var = co4Var2;
-                i4 = i5;
-            }
-        }
-        return co4Var;
+import java.util.ArrayList;
+public final class xye extends l13 {
+    public final byte b;
+
+    public xye(byte b) {
+        super((byte) 4);
+        this.b = b;
     }
 
-    public abstract Typeface a(Context context, yn4 yn4Var, Resources resources, int i);
-
-    public abstract Typeface b(Context context, co4[] co4VarArr, int i);
-
-    public Typeface c(Context context, List list, int i) {
-        throw new IllegalStateException("createFromFontInfoWithFallback must only be called on API 29+");
-    }
-
-    public Typeface d(Context context, Resources resources, int i, String str, int i2) {
-        File c = aze.c(context);
-        Typeface typeface = null;
-        if (c == null) {
-            return null;
+    @Override
+    public final Object a(Object obj) {
+        switch (this.b) {
+            case 0:
+                hwe hweVar = (hwe) obj;
+                ae7 c = ae7.c();
+                return new sxe(c.b(), (sfa) c.a(sfa.class), new zwe(ae7.c().b(), hweVar), hweVar.a);
+            case 1:
+                ae7 c2 = ae7.c();
+                return new f1f(c2.b(), (sfa) c2.a(sfa.class), new w0f(ae7.c().b(), (j0f) obj));
+            case 2:
+                ae7 c3 = ae7.c();
+                return new z3f(c3.b(), (sfa) c3.a(sfa.class), new n3f(ae7.c().b(), (g3f) obj));
+            case 3:
+                ae7 c4 = ae7.c();
+                Context b = ae7.c().b();
+                ArrayList arrayList = new ArrayList();
+                ((kcf) obj).getClass();
+                Object obj2 = new Object();
+                i51 i51Var = i51.e;
+                i1c.b(b);
+                i1c.a().c(i51Var);
+                i51.d.contains(new s24("json"));
+                arrayList.add(obj2);
+                return new hdf(c4.b(), (sfa) c4.a(sfa.class));
+            default:
+                ae7 c5 = ae7.c();
+                return new sef(c5.b(), (sfa) c5.a(sfa.class), new nef(ae7.c().b(), (gef) obj));
         }
-        try {
-            if (aze.a(c, resources, i)) {
-                typeface = Typeface.createFromFile(c.getPath());
-            }
-        } catch (RuntimeException unused) {
-        } catch (Throwable th) {
-            c.delete();
-            throw th;
-        }
-        c.delete();
-        return typeface;
     }
 }

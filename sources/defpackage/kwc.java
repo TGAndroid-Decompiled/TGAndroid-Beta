@@ -1,44 +1,35 @@
 package defpackage;
+public final class kwc {
+    public final ovc a;
+    public final lwc[] b;
+    public final double c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final rwc g;
+    public final boolean h;
+    public final boolean i;
 
-import android.content.pm.PackageInfo;
-import android.net.Uri;
-import android.webkit.WebView;
-import java.util.Set;
-import java.util.WeakHashMap;
-public abstract class kwc {
-    public static final boolean a;
-    public static final WeakHashMap b;
-
-    static {
-        Uri.parse("*");
-        Uri.parse("");
-        a = true;
-        b = new WeakHashMap();
+    public kwc(ovc ovcVar, lwc[] lwcVarArr, double d, int i, int i2, float f, float f2, int i3, int i4, int i5, rwc rwcVar, boolean z, boolean z2) {
+        this.g = rwcVar;
+        this.h = z;
+        this.i = z2;
+        this.a = ovcVar;
+        this.b = lwcVarArr;
+        this.c = d;
+        this.d = i;
+        this.e = i2;
+        this.f = i5;
     }
 
-    public static void a(WebView webView, String str, Set set, jwc jwcVar) {
-        if (nwc.c.b()) {
-            c(webView).a.addWebMessageListener(str, (String[]) set.toArray(new String[0]), new nz0(new x59(jwcVar, (byte) 23)));
-            return;
-        }
-        rjb.j("This method is not supported by the current version of the framework and the current WebView APK");
-    }
-
-    public static PackageInfo b() {
-        return (PackageInfo) Class.forName("android.webkit.WebViewFactory").getMethod("getLoadedPackageInfo", null).invoke(null, null);
-    }
-
-    public static pwc c(WebView webView) {
-        if (nwc.e.b() && a) {
-            WeakHashMap weakHashMap = b;
-            pwc pwcVar = (pwc) weakHashMap.get(webView);
-            if (pwcVar == null) {
-                pwc pwcVar2 = new pwc(owc.a.createWebView(webView));
-                weakHashMap.put(webView, pwcVar2);
-                return pwcVar2;
+    public final boolean a() {
+        if (this.a.e()) {
+            for (lwc lwcVar : this.b) {
+                if (lwcVar.a.e()) {
+                }
             }
-            return pwcVar;
+            return true;
         }
-        return new pwc(owc.a.createWebView(webView));
+        return false;
     }
 }

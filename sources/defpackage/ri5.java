@@ -1,22 +1,17 @@
 package defpackage;
 
-import android.view.TextureView;
-public abstract class ri5 extends TextureView {
-    @Override
-    public void invalidate() {
-        if (pi5.c) {
-            pi5.b.add(this);
-        } else {
-            super.invalidate();
-        }
-    }
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.ActionBar.d;
+public final class ri5 {
+    public final d a;
+    public boolean b;
+    public boolean c;
+    public boolean d = true;
+    public boolean e;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f;
+    public boolean g;
 
-    @Override
-    public final void invalidate(int i, int i2, int i3, int i4) {
-        if (pi5.c) {
-            pi5.b.add(this);
-        } else {
-            super.invalidate(i, i2, i3, i4);
-        }
+    public ri5(d dVar) {
+        this.a = dVar;
     }
 }

@@ -1,90 +1,56 @@
 package defpackage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
-public abstract class co6 {
-    public ao6 A;
-    public CharSequence a;
-    public boolean b;
-    public String c;
-    public long d;
-    public TLRPC.Photo e;
-    public k47 f;
-    public String g;
-    public String h;
-    public String i;
-    public String j;
-    public String k;
-    public String l;
-    public long m;
-    public ArrayList n;
-    public lo6 o;
-    public ArrayList p;
-    public ArrayList q;
-    public ArrayList r;
-    public rcc s;
-    public long t;
-    public boolean u;
-    public boolean v;
-    public boolean w;
-    public int x;
-    public long y;
-    public Boolean z;
+public final class co6 implements Runnable {
+    public final byte a = 0;
+    public final hq6 b;
+    public final zc7 c;
+    public final TLRPC.Message d;
 
-    public abstract String a();
-
-    public final boolean b() {
-        ArrayList arrayList;
-        if (!this.b) {
-            return false;
-        }
-        rcc rccVar = this.s;
-        if (rccVar != null && (rccVar.t || rccVar.a > 0 || rccVar.b > 0)) {
-            return true;
-        }
-        ao6 ao6Var = this.A;
-        if ((ao6Var == null || ao6Var.b()) && this.o == null && this.j == null && (((arrayList = this.p) == null || arrayList.isEmpty()) && this.g == null)) {
-            return false;
-        }
-        return true;
+    public co6(hq6 hq6Var, zc7 zc7Var, TLRPC.Message message) {
+        this.b = hq6Var;
+        this.c = zc7Var;
+        this.d = message;
     }
 
-    public final boolean c() {
-        Boolean bool = this.z;
-        if (bool == null) {
-            return gda.d1;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        TLRPC.Message message = this.d;
+        zc7 zc7Var = this.c;
+        hq6 hq6Var = this.b;
+        switch (b) {
+            case 0:
+                hq6Var.getNotificationCenter().k(69, message, zc7Var);
+                return;
+            default:
+                vf6 vf6Var = hq6Var.B1;
+                HashMap hashMap = hq6Var.A1;
+                TLRPC.Message message2 = (TLRPC.Message) hashMap.get(zc7Var);
+                hashMap.put(zc7Var, message);
+                vf6 vf6Var2 = hq6Var.z1;
+                ArrayList arrayList = (ArrayList) vf6Var2.f(zc7Var.a);
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                }
+                arrayList.add(message);
+                vf6Var2.k(arrayList, zc7Var.a);
+                if (k27.v0(message) == 0) {
+                    if (message2 != null) {
+                        vf6Var.e(message2.id);
+                    }
+                    vf6Var.k(zc7Var, message.id);
+                }
+                hq6Var.getNotificationCenter().k(69, message, zc7Var);
+                return;
         }
-        return bool.booleanValue();
     }
 
-    public boolean d() {
-        if ((this instanceof jo6) && ((jo6) this).d()) {
-            return true;
-        }
-        return false;
-    }
-
-    public void e() {
-        this.a = null;
-        this.g = null;
-        this.e = null;
-        this.f = null;
-        this.c = null;
-        this.i = null;
-        this.h = null;
-        this.j = null;
-        this.l = null;
-        this.k = null;
-        this.u = false;
-        this.v = false;
-        this.w = false;
-        this.x = 0;
-        this.p = null;
-        this.s = null;
-        this.n = null;
-        this.o = null;
-        this.r = null;
-        this.A = null;
-        this.z = null;
+    public co6(hq6 hq6Var, TLRPC.Message message, zc7 zc7Var) {
+        this.b = hq6Var;
+        this.d = message;
+        this.c = zc7Var;
     }
 }

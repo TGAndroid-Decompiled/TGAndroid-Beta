@@ -1,6 +1,12 @@
 package defpackage;
-public interface ssd {
-    boolean zza(Class cls);
+public final class ssd {
+    public final isd a;
+    public final Integer b;
+    public final d3f c;
 
-    iwd zzb(Class cls);
+    public ssd(rod rodVar) {
+        this.a = (isd) rodVar.b;
+        this.b = (Integer) rodVar.c;
+        this.c = (d3f) rodVar.d;
+    }
 }

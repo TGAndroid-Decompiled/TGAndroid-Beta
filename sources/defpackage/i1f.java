@@ -1,68 +1,47 @@
 package defpackage;
 public abstract class i1f {
-    public static int a(Object obj, Object obj2, int i, Object obj3, int[] iArr, Object[] objArr, Object[] objArr2) {
-        int i2;
-        int i3;
-        int a = m1f.a(obj);
-        int i4 = a & i;
-        int b = b(i4, obj3);
-        if (b != 0) {
-            int i5 = ~i;
-            int i6 = a & i5;
-            int i7 = -1;
-            while (true) {
-                i2 = b - 1;
-                int i8 = iArr[i2];
-                i3 = i8 & i;
-                if ((i8 & i5) != i6 || !o3f.a(obj, objArr[i2]) || (objArr2 != null && !o3f.a(obj2, objArr2[i2]))) {
-                    if (i3 == 0) {
-                        break;
-                    }
-                    i7 = i2;
-                    b = i3;
-                }
-            }
-            if (i7 == -1) {
-                d(i4, i3, obj3);
-                return i2;
-            }
-            iArr[i7] = (iArr[i7] & i5) | (i3 & i);
-            return i2;
+    public static void a(int i, int i2) {
+        String a;
+        if (i >= 0 && i < i2) {
+            return;
         }
-        return -1;
-    }
-
-    public static int b(int i, Object obj) {
-        if (obj instanceof byte[]) {
-            return ((byte[]) obj)[i] & 255;
-        }
-        if (obj instanceof short[]) {
-            return (char) ((short[]) obj)[i];
-        }
-        return ((int[]) obj)[i];
-    }
-
-    public static Object c(int i) {
-        if (i >= 2 && i <= 1073741824 && Integer.highestOneBit(i) == i) {
-            if (i <= 256) {
-                return new byte[i];
+        if (i >= 0) {
+            if (i2 < 0) {
+                w26.j(de9.k(i2, "negative size: "));
+                return;
             }
-            if (i <= 65536) {
-                return new short[i];
-            }
-            return new int[i];
-        }
-        u36.j(hg9.j(i, "must be power of 2 between 2^1 and 2^30: "));
-        return null;
-    }
-
-    public static void d(int i, int i2, Object obj) {
-        if (obj instanceof byte[]) {
-            ((byte[]) obj)[i] = (byte) i2;
-        } else if (obj instanceof short[]) {
-            ((short[]) obj)[i] = (short) i2;
+            a = j1f.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i), Integer.valueOf(i2));
         } else {
-            ((int[]) obj)[i] = i2;
+            a = j1f.a("%s (%s) must not be negative", "index", Integer.valueOf(i));
         }
+        throw new IndexOutOfBoundsException(a);
+    }
+
+    public static void b(int i, int i2, int i3) {
+        String c;
+        if (i >= 0 && i2 >= i && i2 <= i3) {
+            return;
+        }
+        if (i >= 0 && i <= i3) {
+            if (i2 >= 0 && i2 <= i3) {
+                c = j1f.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i2), Integer.valueOf(i));
+            } else {
+                c = c(i2, i3, "end index");
+            }
+        } else {
+            c = c(i, i3, "start index");
+        }
+        throw new IndexOutOfBoundsException(c);
+    }
+
+    public static String c(int i, int i2, String str) {
+        if (i < 0) {
+            return j1f.a("%s (%s) must not be negative", str, Integer.valueOf(i));
+        }
+        if (i2 >= 0) {
+            return j1f.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i), Integer.valueOf(i2));
+        }
+        w26.j(de9.k(i2, "negative size: "));
+        return null;
     }
 }
